@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_quadruped_008d_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T22:36:53.813Z",
+    "updated_at": "2026-05-28T22:57:24.199Z",
+    "hypothesis": "Quadruped Walk trained dt_emb + gate + subsample ON (008d config: gate_fixed_dt=2, gate_subsample_max_dt=2, H=8), seed=0 — tests whether CIVO onset generalizes to 12-DoF four-legged morphology distinct from Walker/Cheetah single-spine. Expect NVE > 2.0× if CIVO is morphology-independent. Source: post-D171 scope expansion."
+  },
+  "timestamp": "2026-05-28T22:57:24.824154+00:00",
+  "trigger": "update_registry"
+}

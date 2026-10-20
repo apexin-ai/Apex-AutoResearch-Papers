@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "id": "18f9031d9c1a5736581d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper tawm contribution",
+  "task_key": "worker_paper_tawm-contribution_20260518T060258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_tawm-contribution_20260518T060258.jsonl",
+    "occurrence": 1,
+    "bytes": 8184,
+    "sha256": "5474d9ac82db0fbed75bad6686776e43ccb18b4fb778ec455afcc5ba7fe845c4"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T06:04:02.882217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T06:04:02.882724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T06:04:02.883014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T06:04:02.883249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/_corl_template/corl_2026_template_submission/example.tex\ndocs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex\nartifacts/dream_reports/dream_20260514T062606/best/paper.tex\nartifacts/dream_reports/dream_20260514T062606/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/best/paper.tex\nartifacts/dream_reports/dream_20260515T004704/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/worst/paper.tex\nartifacts/figures/archive/tab_rssm_fidelity.tex\nartifacts/_project/paper/nve_sensitivity_table_37b680.tex\nartifacts/dream_reports/dream_20260514T062606/worst/paper.tex\nartifacts/dream_reports/dream_20260516T115400/best/paper.tex\nartifacts/dream_reports/dream_20260516T115400/median/paper.tex\nartifacts/dream_reports/dream_20260516T115400/worst/paper.tex\nartifacts/dream_reports/dream_20260516T133210/best/paper.tex\nartifacts/dream_reports/dream_20260516T133210/median/paper.tex\nartifacts/dream_reports/dream_20260516T133210/worst/paper.tex\nartifacts/dream_reports/dream_20260516T172011/best/paper.tex\nartifacts/dream_reports/dream_20260516T172011/median/paper.tex\nartifacts/dream_reports/dream_20260516T172011/worst/paper.tex\nartifacts/analysis/detector_table.tex\ndocs/paper/sections/abstract_body.tex\npaper/tables/nve_sensitivity_table.tex\nartifacts/_project/paper/nve_sensitivity_table.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/methodology.tex\ndocs/paper/main.tex\ndocs/paper/sections/analysis.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/results.tex\ndocs/paper/sections/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T06:04:02.883472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:04:02.883694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTAWM \\citep{nhu2025tawm} shows that conditioning a world model on step size $\\dt$ yields consistent gains within TD-MPC2's MPC framework \\citep{hansen2024tdmpc2}. Can the same $\\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \\citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?\n5\t\n6\tWe find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\\dt{=}2$ collapses to $14\\%$ of baseline, fixed $\\dt{=}4$ never exceeds $19\\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\\%$. Through a factorial analysis on Walker Walk \\citep{tassa2018dmcontrol}, we isolate the combination of a \\emph{trained} $\\dt$-embedding and multi-rate data exposure as the causal factor within the factorial design tested. This trained-and-exposed embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$, which the critic internalizes as optimistic value estimates, a failure mode we term \\emph{conditioning-induced value overestimation} (CIVO). A $\\nve \\geq 1.5\\times$ threshold (35K+ window) achieves 11/12 CIVO classification ($n{=}12$, single environment), with one non-CIVO false positive, a failure mode analogous to delusional bias \\citep{lu2018nondelusional} that arises from model imprecision amplified by learned temporal conditioning. Gradient decomposition reveals a non-obvious mechanism: the reward head contributes the largest gradient share (38--49\\%) but does not encode $\\dt$-specific structural information, while the observation decoder channel (16--22\\%) carries the critical spatial predictions that drive the RSSM fidelity gap. Reward-only gradient stopping fails (NVE $10.42\\times$) despite targeting the largest pathway; full-pathway SGS that removes observation decoder gradients from the temporal embedding \\sgsclaim{} (eval \\sgseva\n…[truncated 1239 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T06:04:02.884031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+              "old_string": "and (4)~a lightweight four-condition rule-based monitor that tracks value-to-evaluation ratio dynamics achieves 100\\% sensitivity for CIVO detection (3/3 cases) with predictive warning before performance degradation in 2/3 cases, which supports early intervention without a reference baseline run.",
+              "new_string": "and (4)~a lightweight four-condition rule-based monitor that tracks value-to-evaluation ratio dynamics achieves 100\\% sensitivity for CIVO detection (3/3 cases) with predictive warning before performance degradation in 2/3 cases, which supports early intervention without a reference baseline run.\n\n\\paragraph{Contributions.}\n\\begin{itemize}\n    \\item We identify the feedback architecture (imagination-based bootstrapping versus MPC re-planning) as the structural factor that determines whether $\\dt$-conditioning is beneficial or pathological, explaining why identical conditioning succeeds in TD-MPC2 but fails in DreamerV3.\n\\end{itemize}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T06:04:02.884432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T06:04:02.884589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T06:04:02.884721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T06:04:02.884925+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "em-dash 检查通过。\n\n修改结果：\n\n- **文件**: `docs/paper/sections/introduction.tex`\n- **位置**: 第 9 行之后（introduction 末尾）\n- **内容**: 新增 `\\paragraph{Contributions.}` + `\\begin{itemize}` 包含一条 analytical contribution\n\n注意：当前 introduction 原本没有正式的 contribution list。新增的是一个独立的 Contributions 段落，目前只有这一条 analytical item。如需将其他 findings（如 CIVO 发现、SGS 干预、监控器等）也提炼为正式 contribution 项，可以后续补充到同一列表中。另外，最后一段 inline 第 (3) 点的内容与新增条目高度重叠，后续可考虑精简以避免重复。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tawm-contribution_20260518T060258"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-tawm-contribution.md"
+}

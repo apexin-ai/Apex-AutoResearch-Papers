@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_008e_v3_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:54:54.691Z",
+    "updated_at": "2026-05-18T11:20:55.565Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。",
+    "parent": "exp_008e_v3_subsample_on_dt1_h15",
+    "spec": {
+      "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15 --checkpoint_every 25000",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "732929",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log",
+      "submitted_at": "2026-05-18T08:10:53.528Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/event-gated-adaptive-horizon",
+      "data_count": 0,
+      "model_name": "DreamerV3+SubsampleON_FixedDt1_H15 (trained dt_emb)",
+      "seed": 3,
+      "checkpoint_source": "train_from_scratch",
+      "eval_data": "N/A (train_from_scratch)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T11:20:55.020Z"
+    }
+  },
+  "timestamp": "2026-05-18T11:20:55.767499+00:00",
+  "trigger": "update_registry"
+}

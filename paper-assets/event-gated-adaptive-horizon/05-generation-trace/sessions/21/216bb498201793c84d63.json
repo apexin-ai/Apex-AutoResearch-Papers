@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "216bb498201793c84d63",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "verify bjb1 gpu status",
+  "task_key": "worker_verify_bjb1_gpu_status_20260525T225314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_bjb1_gpu_status_20260525T225314_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "922ce6b58cb975417572638c5d83f60716dca6bb569e7c3a9a24d21fad942de1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### bjb1-45299\n\n| GPU | 实验 | PID | 显存 | GPU利用率 | 运行时间 | 状态 |\n|-----|------|-----|------|----------|---------|------|\n| cuda:0 | exp_092_cheetah_no_dt_emb_s1 | 313538 | 1309 MiB | 4% | ~1分钟（06:52启动） | **正常运行** |\n| cuda:1 | exp_093_cheetah_no_dt_emb_s2 | 313815 | 794 MiB | 1% | ~1分钟（06:52启动） | **正常运行** |\n\n- 两个 tmux session 均存在（`exp_092_cheetah_no_dt_emb_s1`, `exp_093_cheetah_no_dt_emb_s2`）\n- 两个 dreamer.py 进程存活，均刚启动约1分钟\n- 日志显示两个实验均已完成 prefill (2500 steps)，模型已初始化（model_opt 16.9M params），到达 step 5000 开始首次 evaluation\n- 无报错，仅有一条 FutureWarning（GradScaler API 弃用警告，不影响运行）\n\n### westd-19154\n\n| GPU | 显存 | GPU利用率 | 状态 |\n|-----|------|----------|------|\n| cuda:0 | 0 MiB | 0% | **空闲** |\n| cuda:1 | 0 MiB | 0% | **空闲** |\n\n- **exp_091_cheetah_008d_s2 已结束**，无任何 GPU 进程在运行\n- 两张卡均完全空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-bjb1-gpu-status.md"
+}

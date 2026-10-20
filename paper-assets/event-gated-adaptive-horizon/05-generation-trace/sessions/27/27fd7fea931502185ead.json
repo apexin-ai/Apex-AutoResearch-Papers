@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27fd7fea931502185ead",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing related work revision",
+  "task_key": "worker_writing_related-work-revision_20260515T044848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-revision_20260515T044848_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "3da9fdd4d9c31634492adca7a7b0fc1efe1d462010bcc3b50211bbf25381fc20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 modifications applied. Summary:\n\n| Item | Change | Location |\n|------|--------|----------|\n| **1** | \"recovers 95%\" → \"preliminary results show near-baseline recovery (95% in initial seed)\" | Line 39 (Overall positioning) |\n| **2** | New Section 2.5 \"Diagnostic Methodology\" citing Engstrom et al. 2020 & Andrychowicz et al. 2021 | Lines 33–35 |\n| **3** | Added sentence explaining ensemble/pessimistic methods target wrong error source | Line 25, end of Section 2.3 |\n| **4** | Added MuZero/EfficientZero sentence (tree search, not imagination rollouts) | Line 7, Section 2.1 |\n| **5** | \"avoids\" → \"may avoid … though we do not test this hypothesis\" for hierarchy claims | Line 13, Section 2.2 |\n| **7** | Section 2.4 trimmed ~35%: removed Ke2019, Barkley2024, redundant value overestimation discussion; consolidated citations; added cross-ref to Section 2.3 | Lines 29–31 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-revision.md"
+}

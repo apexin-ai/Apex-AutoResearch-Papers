@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_075_cheetah_civo_trigger_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:03:40.222Z",
+    "updated_at": "2026-05-25T10:04:11.525Z",
+    "hypothesis": "Cheetah Run CIVO trigger seed=2: trained dt_emb + subsample ON + dt=2 + H=8。当前 Cheetah CIVO trigger 有 2 seeds (s0, s1) 均确认 CIVO onset（NVE 70.64）。加 seed=2 巩固跨环境 CIVO 统计力度（Walker 有 10/10，Cheetah 需扩展）。来源: plan_021 扩展。",
+    "parent": "exp_010b_cheetah_civo_trigger",
+    "server": "westd-19154",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-25T10:04:11.906869+00:00",
+  "trigger": "update_registry"
+}

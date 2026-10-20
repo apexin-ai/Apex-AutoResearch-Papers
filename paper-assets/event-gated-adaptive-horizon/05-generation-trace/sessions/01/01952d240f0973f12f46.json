@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01952d240f0973f12f46",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 066 timeseries rssm fidelity",
+  "task_key": "worker_diagnose_exp_066_timeseries_rssm_fidelity_20260524T222916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_066_timeseries_rssm_fidelity_20260524T222916_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "88f97fd635b473e727951a3ab35b35b3410f33f0d158642f7f398935979f5db0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 1. 完整错误信息\n\n日志只有两行：\n```\nbash: line 1: cd: /root/dreamerv3-torch: No such file or directory\nEXIT_CODE=1\n```\n\n### 2. 根因\n\n**工作目录不存在。** 实验启动脚本试图 `cd /root/dreamerv3-torch`，但 `bjb1-40020` 上根本没有这个目录。该服务器的 `/root/autodl-tmp/` 下只有 `event-gated-adaptive-horizon/`，代码仓库从未被 clone 到这台机器上。\n\n这不是代码 bug、依赖问题或 GPU 问题——实验还没跑到 Python 就挂了。\n\n### 3. 修复方案\n\n在 `bjb1-40020` 上把 dreamerv3-torch 代码 clone 到 `/root/dreamerv3-torch`（或 `/root/autodl-tmp/dreamerv3-torch` 然后软链接），安装依赖后重跑。或者把实验调度到已经有代码的 `bjb1-45299` 上执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-066-timeseries-rssm-fidelity.md"
+}

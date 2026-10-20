@@ -1,0 +1,4072 @@
+# analysis nve threshold
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_nve_threshold_20260525T195512.log`
+- **Structured JSON:** [`c41e70dcc1635d9c3a02.json`](../../sessions/c4/c41e70dcc1635d9c3a02.json)
+
+## Before a recorded user message
+
+56 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c0ac8b9c-1383-4c97-a806-d4e9610c9e67",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779752400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "39feec16-fe60-4fcf-8bf3-4a83218ecd51",
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the registry to get all experiment data, then perform the NVE threshold sensitivity analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "1f6ad6a5-e737-4f2a-9eaf-0b432e2f515b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jQaFK6gDXsy6M75DtY2t6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11687,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11687
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取 registry 数据并执行 NVE threshold 分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "6bdfb613-21d4-4878-9765-f91f4d9009cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jQaFK6gDXsy6M75DtY2t6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11687,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11687
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01L8HmwmrjUVeevB8ULH2gTF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "d6abab13-5aae-4340-b569-6f9e96a8c753",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015jQaFK6gDXsy6M75DtY2t6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11687,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11687
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-25T19:55:23.157Z_
+
+<details><summary>↩ Tool result · `toolu_01L8HmwmrjUVeevB8ULH2gTF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "1f49f26e-4b83-4cde-928f-92ab03e87cc9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Po5HsStZuLY4frjYzTHskY`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b5c6ad54-121d-42c4-830d-f4335b3fd319",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNbHuapMoqM1pBSZjahLZn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 23528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T19:55:26.592Z_
+
+<details><summary>↩ Tool result · `toolu_01Po5HsStZuLY4frjYzTHskY`</summary>
+
+```text
+Error: result (373,220 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "ccf77acc-d62b-4565-9ea4-d9a5f2059b6a",
+  "tool_use_result": {
+    "content": "Error: result (373,220 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_009b_008d_walker_s2\": {\"account\": \"root\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 sustained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x→2.09x→4.12x) and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold (at 35K+ steps) is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T18:51:00Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:17:25.186Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T18:47:21.873692+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic collapse 的跨 seed 可复现性。plan_011。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log\", \"metrics\": {\"ve_ratio_peak\": 0.5703, \"ve_ratio_peak_step\": 55000, \"ve_ratio_final\": 0.25, \"ve_ratio_final_step\": 105000, \"nve_peak\": 1.62, \"nve_peak_step\": 45000, \"nve_peak_note\": \"step-matched s1 baseline @45K = 0.331; arithmetic peak @25K=2.04x excluded (baseline<0.1)\", \"nve_classification\": \"onset_self_correcting\"}, \"notes\": \"D032: Collapse NOT reproduced in seed 2. nve peaked 2.05x@25K (transient) then self-corrected to 0.38x@105K. Eval rose to 268. Contrast: seed 1 had SUSTAINED nve>1.5x at 35K+ (1.71x→2.09x→4.12x) → collapse to 83. Key finding: nve>1.5x threshold (35K+ steps) is reliable trained dt_emb marker (2/2 seeds), but collapse is stochastic (1/2). Framing proposal submitted to Director.\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": \"887053\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-14T18:47:20.636Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)\", \"seed\": 2, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T19:54:21.605Z\"}, \"exp_009e_008d_walker_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T11:26:52.478Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T11:09:15.367Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic collapse 的跨 seed 可复现性。plan_011。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/metrics.jsonl\", \"metrics\": {\"ve_ratio_peak\": 1.6663, \"ve_ratio_peak_step\": 55000, \"ve_ratio_final\": 1.03, \"ve_ratio_final_step\": 105000, \"nve_peak\": 4.13, \"nve_peak_step\": 55000, \"nve_peak_note\": \"step-matched s1 baseline @55K = 0.4035; paper onset NVE @45K = 2.09x\", \"nve_classification\": \"onset_collapse\"}, \"notes\": \"008d extended replication (same seed=1, 009e extends 008d from 55K to 105K). Eval trajectory 5K-55K identical to 008d (deterministic). Collapse confirmed at 105K: eval 131.08, nve@55K=4.12x (normalized). 65K bounce to 250 was transient, not recovery. actor_loss flipped positive @85K. Independent collapse rate = 1/2 (seed 1 collapsed, seed 2 self-corrected), NOT 2/3 — 008d and 009e are the same seed.\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": 119108, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.43, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009e_008d_walker_s1.log\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8\", \"pid\": \"119108\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T06:01:00Z\", \"wall_clock_seconds\": 19552.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T19:54:20.393Z\"}, \"exp_085_frozen_dt_emb_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:17:10.446Z\", \"updated_at\": \"2026-05-25T19:52:18.635Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"296781\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\", \"submitted_at\": \"2026-05-25T16:17:29.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt\", \"wall_clock_seconds\": 12139.0, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:38.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:47.198579+00:00\"}]}, \"metrics\": {\"eval_return_final\": 69.26, \"eval_return_best\": 281.53, \"best_step\": 65000, \"total_steps\": 105000, \"NVE_final\": 0.08, \"NVE_peak\": 0.31, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:48.059Z\"}, \"exp_084_frozen_dt_emb_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:58:38.310Z\", \"updated_at\": \"2026-05-25T19:52:17.020Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"296484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T16:17:20.106Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt\", \"wall_clock_seconds\": 12145.7, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:18.394Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:26.293176+00:00\"}]}, \"metrics\": {\"eval_return_final\": 281.48, \"eval_return_best\": 334.06, \"best_step\": 95000, \"total_steps\": 112000, \"NVE_final\": 0.31, \"NVE_peak\": 0.37, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:45.775Z\"}, \"exp_088_cheetah_008d_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T18:50:48.276Z\", \"updated_at\": \"2026-05-25T18:51:30.295Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_088_cheetah_008d_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"42804\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"submitted_at\": \"2026-05-25T18:50:47.731Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [1], \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger config, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}, \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed)。预期触发 CIVO，验证 Cheetah CIVO onset 的跨 seed 可复现性。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\"}, \"exp_082_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T13:12:29.199Z\", \"updated_at\": \"2026-05-25T18:49:20.158Z\", \"hypothesis\": \"Cheetah Run causal control: dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=0。移除 dt_embedding 后预期无 CIVO，证明 trained dt_emb 是 Cheetah CIVO 的必要条件。与 exp_078 (trained dt_emb, CIVO trigger) 构成因果对。plan_022。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_082_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu_ids\": [0], \"pid\": \"N/A\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, Cheetah causal control)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}, \"pid\": \"29479\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_082_cheetah_no_dt_emb_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_082_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"finished_at\": \"2026-05-25T16:21:37.237Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T16:21:43.091656+00:00\"}]}, \"metrics\": {\"eval_return_final\": 83.2, \"eval_return_peak\": 239.3, \"eval_return_peak_step\": 45000, \"eval_trajectory\": {\"5K\": 6.8, \"15K\": 32.2, \"25K\": 108.4, \"35K\": 119.4, \"45K\": 239.3, \"55K\": 157, \"65K\": 180.1, \"75K\": 178.6, \"85K\": 84.2, \"95K\": 57.7, \"105K\": 83.2}, \"ve_ratio_final\": 0.616, \"ve_ratio_peak\": 0.955, \"ve_ratio_peak_step\": 95000, \"ve_ratio_trajectory\": {\"15K\": 0.038, \"25K\": 0.069, \"35K\": 0.132, \"45K\": 0.103, \"55K\": 0.237, \"65K\": 0.268, \"75K\": 0.311, \"85K\": 0.724, \"95K\": 0.955, \"105K\": 0.616}, \"nve_peak\": 1.58, \"nve_peak_step\": 95000, \"nve_peak_note\": \"eval-variance-driven (eval=57.7, value=55.1, ve_ratio<1.0), NOT value overestimation\", \"nve_trajectory_35Kplus\": {\"35K\": 1.49, \"45K\": 0.59, \"55K\": 0.96, \"65K\": 0.55, \"75K\": 0.55, \"85K\": 0.98, \"95K\": 1.58, \"105K\": 1.02}, \"nve_classification\": \"no_civo\", \"civo\": false, \"civo_alert\": 0, \"civo_alert_steps\": [], \"value_mean_final\": 51.3, \"value_mean_95K\": 55.1, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_077_cheetah_baseline_s0\", \"baseline_eval_105K\": 448.1, \"eval_pct_baseline\": \"18.6%\", \"causal_pair\": \"exp_078_cheetah_008d_s0\", \"causal_variable\": \"dt_embed_dim (082=0 vs 078=trained)\", \"total_steps\": 112000, \"total_env_steps\": 105000}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_082_cheetah_no_dt_emb_s0\", \"completed_at\": \"2026-05-25T16:27:45.939Z\"}, \"exp_087_frozen_dt_emb_cheetah_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:29:59.272Z\", \"updated_at\": \"2026-05-25T18:45:37.694Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_086 (frozen s0) and exp_078 (trained, NVE=4.1×).\", \"parent\": \"exp_086_frozen_dt_emb_cheetah_s0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_087_frozen_dt_emb_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"36195\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\", \"submitted_at\": \"2026-05-25T16:30:22.662Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3+FrozenDtEmb_SubsampleON_Dt2_H8\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 8115.0, \"gpu_hours\": 2.25}, \"reproduce\": {\"finished_at\": \"2026-05-25T18:42:02.488Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:42:10.415795+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_087_frozen_dt_emb_cheetah_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\", \"metrics\": {\"eval_return_105K\": 186.9, \"eval_return_peak\": 310.1, \"eval_return_peak_step\": \"75K\", \"eval_trajectory\": {\"5K\": 13.5, \"15K\": 90.2, \"25K\": 199.3, \"35K\": 165.7, \"45K\": 299.2, \"55K\": 207.2, \"65K\": 196.8, \"75K\": 310.1, \"85K\": 246.8, \"95K\": 57.9, \"105K\": 186.9}, \"ve_ratio_105K\": 0.1, \"ve_ratio_peak\": 0.2, \"ve_ratio_peak_step\": \"95K\", \"civo_alert\": 0, \"NVE\": 0.33, \"NVE_baseline\": \"exp_083_cheetah_baseline_s1\", \"NVE_baseline_ve_ratio_peak\": 0.6, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"total_steps\": 112000, \"model_loss_105K\": 2.4}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T18:45:37.694Z\"}, \"exp_086_frozen_dt_emb_cheetah_s0\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-25T16:24:01.866Z\", \"updated_at\": \"2026-05-25T18:11:30.876Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_078 (trained dt_emb, NVE=4.1×). Re-run after orphan process incident.\", \"parent\": \"exp_078_cheetah_008d_s0\", \"completed_at\": \"2026-05-25T18:08:31.088Z\", \"reproduce\": {\"finished_at\": \"2026-05-25T18:08:35.426Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:08:47.611867+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_086_frozen_dt_emb_cheetah_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"westd-19154\", \"gpu_ids\": [0], \"pid\": \"40743\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FrozenDtEmb_SubsampleON_Dt2_H8\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}}, \"exp_083_cheetah_baseline_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T14:14:00.361Z\", \"updated_at\": \"2026-05-25T18:09:32.066Z\", \"hypothesis\": \"Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_083_cheetah_baseline_s1 --steps 105000 --seed 1 --compile False --device cuda:0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"30581\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_083_cheetah_baseline_s1.log\", \"submitted_at\": \"2026-05-25T14:28:23.155Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3_baseline_dt1\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"wall_clock_seconds\": 7365.2, \"gpu_hours\": 2.05}, \"reproduce\": {\"finished_at\": \"2026-05-25T16:28:26.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T16:28:32.490600+00:00\"}]}, \"metrics\": {\"eval_return_105K\": 444, \"eval_trajectory\": {\"5K\": 11.6, \"15K\": 76.4, \"25K\": 300.2, \"35K\": 372.3, \"45K\": 384.2, \"55K\": 395.4, \"65K\": 446.1, \"75K\": 440.5, \"85K\": 409, \"95K\": 466, \"105K\": 444}, \"ve_ratio_105K\": 0.6, \"ve_ratio_peak\": 0.6, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"model_loss_105K\": 1.6}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_083_cheetah_baseline_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_083_cheetah_baseline_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T16:31:08.314Z\", \"parent\": \"exp_077_cheetah_baseline_s0\"}, \"exp_078_cheetah_008d_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:24.844Z\", \"updated_at\": \"2026-05-25T18:06:40.922Z\", \"hypothesis\": \"Trained dt_embedding with subsample ON + dt=2 + H=8 on Cheetah Run triggers CIVO — cross-environment validation (C2) that CIVO is not Walker-specific. Paired with exp_077 (baseline) for NVE calculation.\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_078_cheetah_008d_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"21846\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_078_cheetah_008d_s0.log\", \"submitted_at\": \"2026-05-25T11:21:50.283Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11948.1, \"gpu_hours\": 3.32}, \"pid\": \"21846\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_078_cheetah_008d_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_078_cheetah_008d_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-25T14:27:13.393Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T14:27:19.359689+00:00\"}]}, \"metrics\": {\"eval_return_final\": 119.5, \"eval_return_peak\": 213.7, \"eval_return_peak_step\": 35000, \"eval_trajectory\": {\"5K\": 8.3, \"15K\": 41.3, \"25K\": 170, \"35K\": 213.7, \"45K\": 148.9, \"55K\": 64.5, \"65K\": 36.8, \"75K\": 26.1, \"85K\": 26.7, \"95K\": 32.5, \"105K\": 119.5}, \"ve_ratio_final\": 0.291, \"ve_ratio_peak\": 2.318, \"ve_ratio_peak_step\": 75000, \"ve_ratio_trajectory\": {\"15K\": 0.039, \"25K\": 0.056, \"35K\": 0.11, \"45K\": 0.295, \"55K\": 0.908, \"65K\": 1.72, \"75K\": 2.318, \"85K\": 2.022, \"95K\": 1.366, \"105K\": 0.291}, \"nve_peak\": 4.1, \"nve_peak_step\": 75000, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.7, \"nve_trajectory_35Kplus\": {\"35K\": 1.24, \"45K\": 1.7, \"55K\": 3.66, \"65K\": 3.55, \"75K\": 4.1, \"85K\": 2.74, \"95K\": 2.26, \"105K\": 0.48}, \"nve_classification\": \"onset_self_correcting\", \"civo\": true, \"civo_alert\": 1, \"civo_alert_steps\": [55000, 65000], \"civo_sustained_range\": \"45K-95K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 105000, \"value_mean_peak\": 63.3, \"value_mean_peak_step\": 65000, \"value_mean_final\": 34.8, \"delta_ve_peak\": 0.814, \"delta_ve_peak_step\": 65000, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_077_cheetah_baseline_s0\", \"baseline_eval_105K\": 448.1, \"eval_pct_baseline\": \"26.7%\", \"total_steps\": 112000, \"total_env_steps\": 105000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_078_cheetah_008d_s0/latest.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T14:40:58.408Z\"}, \"exp_077_cheetah_baseline_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:21.685Z\", \"updated_at\": \"2026-05-25T18:06:38.886Z\", \"hypothesis\": \"Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO trigger) and exp_083 (baseline seed=1).\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"21683\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log\", \"submitted_at\": \"2026-05-25T11:21:44.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10257.0, \"gpu_hours\": 2.85}, \"pid\": \"21683\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\\\"\", \"finished_at\": \"2026-05-25T14:07:47.479Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T14:07:53.264245+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 448.1, \"eval_trajectory\": {\"5K\": 12.2, \"15K\": 18.4, \"25K\": 182.9, \"35K\": 356, \"45K\": 377.2, \"55K\": 441, \"65K\": 317.3, \"75K\": 340.9, \"85K\": 309.3, \"95K\": 418.4, \"105K\": 448.1}, \"ve_ratio_105K\": 0.611, \"ve_ratio_peak\": 0.739, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"model_loss_105K\": 1.83, \"total_steps\": 112000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_077_cheetah_baseline_s0/latest.pt\", \"completed_at\": \"2026-05-25T14:12:41.181Z\"}, \"exp_079_frozen_dt_emb_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:27.865Z\", \"updated_at\": \"2026-05-25T18:06:36.594Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING is the necessary condition for CIVO onset. Duplicate of exp_067, killed before completion.\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"parent\": \"exp_067_frozen_dt_emb_walker_plan015\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_079_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"283090\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_079_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T11:21:37.918Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 392.1, \"gpu_hours\": 0.11}, \"pid\": \"283090\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_079_frozen_dt_emb_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_079_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T11:28:10.029Z\"}, \"exp_081_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T12:09:44.566Z\", \"updated_at\": \"2026-05-25T15:49:23.869Z\", \"hypothesis\": \"Trained dt_emb with dt=1 imagination + subsample ON (max_dt=2) + H=15 does not trigger CIVO on Walker Walk — multi-seed validation seed=2 of C6 mitigation config 008e_v3\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_081_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"285949\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"submitted_at\": \"2026-05-25T12:10:38.467Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 2, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 13125.4, \"gpu_hours\": 3.65}, \"reproduce\": {\"finished_at\": \"2026-05-25T15:37:00.120Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T15:37:06.073794+00:00\"}]}, \"metrics\": {\"eval_return_105k\": 597.1, \"ve_ratio_105k\": 0.5, \"civo_alert\": 0, \"gate_dt_1_frac\": 1, \"baseline_pct\": 64.2, \"train_return_112k_mean\": 583.8}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_081_008e_v3_walker_s2/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-25T15:49:23.870Z\"}, \"exp_080_008e_v3_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:30:20.594Z\", \"updated_at\": \"2026-05-25T15:49:21.640Z\", \"hypothesis\": \"Trained dt_emb with dt=1 imagination + subsample ON (max_dt=2) + H=15 does not trigger CIVO on Walker Walk — multi-seed validation seed=1 of C6 mitigation config 008e_v3\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_080_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"283925\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log\", \"submitted_at\": \"2026-05-25T11:30:51.090Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 15510.5, \"gpu_hours\": 4.31}, \"reproduce\": {\"finished_at\": \"2026-05-25T15:44:00.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T15:44:06.170688+00:00\"}]}, \"metrics\": {\"eval_return_105k\": 876.7, \"ve_ratio_105k\": 0.6, \"civo_alert\": 0, \"gate_dt_1_frac\": 1, \"baseline_pct\": 94.3, \"train_return_112k_mean\": 926.8}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_080_008e_v3_walker_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T15:49:21.640Z\"}, \"exp_074_008a_walker_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:08:57.028Z\", \"updated_at\": \"2026-05-25T12:08:22.221Z\", \"hypothesis\": \"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_074_008a_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"274730\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_074_008a_walker_s3.log\", \"submitted_at\": \"2026-05-25T09:09:28.652Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10733.6, \"gpu_hours\": 2.98}, \"pid\": \"274730\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_074_008a_walker_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_074_008a_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T12:04:22.816Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T12:04:34.186555+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 855.9, \"civo_ve_ratio_final\": 0.3, \"civo_alert\": 0, \"value_mean_105K\": 295.2, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"model_loss_105K\": 3.8, \"eval_trajectory\": {\"5K\": 36.1, \"15K\": 281, \"25K\": 389.8, \"35K\": 303.8, \"45K\": 437.3, \"55K\": 411.3, \"65K\": 566.4, \"75K\": 513.9, \"85K\": 645.9, \"95K\": 776.6, \"105K\": 855.9}, \"four_seed_summary\": {\"mean_eval_return\": 791, \"std_eval_return\": 102.2, \"all_civo_alert_0\": true, \"seeds_completed\": 4}}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_074_008a_walker_s3/latest.pt\", \"completed_at\": \"2026-05-25T12:08:22.221Z\"}, \"exp_076_cheetah_civo_trigger_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:03:42.328Z\", \"updated_at\": \"2026-05-25T10:48:15.566Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=2: trained dt_emb + subsample ON + dt=2 + H=8。将 Cheetah CIVO trigger 扩展到第 3 个独立 seed，巩固跨环境 claim 统计力度。来源: plan_021 扩展。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_076_cheetah_civo_trigger_s3 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"19953\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_076_cheetah_civo_trigger_s3.log\", \"submitted_at\": \"2026-05-25T10:44:40.370Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 215.2, \"gpu_hours\": 0.06}, \"pid\": \"19953\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_076_cheetah_civo_trigger_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_076_cheetah_civo_trigger_s3 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T10:48:15.566Z\"}, \"exp_075_cheetah_civo_trigger_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:03:40.222Z\", \"updated_at\": \"2026-05-25T10:48:13.465Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=1: trained dt_emb + subsample ON + dt=2 + H=8 on westd-19154。复现 exp_010b 配置（原 seed=1 在 bjb1-45299），跨服务器验证 Cheetah CIVO 可复现性。来源: plan_021 扩展。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_075_cheetah_civo_trigger_s2 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"19788\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_075_cheetah_civo_trigger_s2.log\", \"submitted_at\": \"2026-05-25T10:44:34.345Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 219.1, \"gpu_hours\": 0.06}, \"pid\": \"19788\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_075_cheetah_civo_trigger_s2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_075_cheetah_civo_trigger_s2 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T10:48:13.465Z\"}, \"exp_071_008f_walker_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:03:48.097Z\", \"updated_at\": \"2026-05-25T10:42:39.889Z\", \"hypothesis\": \"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"265628\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log\", \"submitted_at\": \"2026-05-25T07:04:24.723Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13095.2, \"gpu_hours\": 3.64}, \"pid\": \"265628\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T10:05:58.573Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T10:06:05.930693+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 311.9, \"eval_return_peak\": 457.7, \"ve_ratio_final\": 0.4, \"ve_ratio_peak\": 0.7, \"gate_dt_mean_final\": 2, \"civo_alert\": 0, \"value_loss_final\": 1, \"actor_entropy_final\": -4.6, \"model_loss_final\": 4.5}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_071_008f_walker_s3\", \"completed_at\": \"2026-05-25T10:42:39.889Z\"}, \"exp_073_008f_walker_s4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:30:42.251Z\", \"updated_at\": \"2026-05-25T10:00:42.604Z\", \"hypothesis\": \"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_073_008f_walker_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"11670\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"submitted_at\": \"2026-05-25T07:31:11.391Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8971.2, \"gpu_hours\": 2.49}, \"pid\": \"11670\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_073_008f_walker_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-25T09:48:03.882Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T09:48:13.191417+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 289.3, \"eval_return_peak\": 486.5, \"eval_return_peak_step\": 75000, \"ve_ratio_final\": 0.5, \"ve_ratio_peak\": 0.5, \"nve_peak\": 0.76, \"civo_alert\": 0, \"civo\": false, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"gate_empirical_entropy\": 0, \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 33.2}, {\"step\": 15000, \"eval_return\": 128.3}, {\"step\": 25000, \"eval_return\": 165.3}, {\"step\": 35000, \"eval_return\": 284.5}, {\"step\": 45000, \"eval_return\": 272.5}, {\"step\": 55000, \"eval_return\": 406.7}, {\"step\": 65000, \"eval_return\": 379.5}, {\"step\": 75000, \"eval_return\": 486.5}, {\"step\": 85000, \"eval_return\": 352.6}, {\"step\": 95000, \"eval_return\": 297.7}, {\"step\": 105000, \"eval_return\": 289.3}]}, \"completed_at\": \"2026-05-25T10:00:42.604Z\"}, \"exp_072_008e_v3_walker_s5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:24:08.174Z\", \"updated_at\": \"2026-05-25T10:00:39.306Z\", \"hypothesis\": \"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_072_008e_v3_walker_s5 --steps 105000 --seed 5 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"11116\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"submitted_at\": \"2026-05-25T07:24:40.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 9358.6, \"gpu_hours\": 2.6}, \"pid\": \"11116\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_072_008e_v3_walker_s5 --steps 105000 --seed 5 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"finished_at\": \"2026-05-25T09:47:34.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T09:47:39.804739+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 853.1, \"eval_return_peak\": 853.1, \"eval_return_peak_step\": 105000, \"ve_ratio_final\": 0.6, \"nve_final\": 0.61, \"nve_peak\": 0.61, \"nve_peak_step\": 105000, \"civo_alert\": 0, \"civo\": false, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"actor_entropy_final\": -5.1, \"value_mean_final\": 520.8, \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 29.4}, {\"step\": 15000, \"eval_return\": 251.1}, {\"step\": 25000, \"eval_return\": 423}, {\"step\": 35000, \"eval_return\": 511}, {\"step\": 45000, \"eval_return\": 600.1}, {\"step\": 55000, \"eval_return\": 649}, {\"step\": 65000, \"eval_return\": 697.2}, {\"step\": 75000, \"eval_return\": 727.3}, {\"step\": 85000, \"eval_return\": 710.3}, {\"step\": 95000, \"eval_return\": 803.9}, {\"step\": 105000, \"eval_return\": 853.1}]}, \"completed_at\": \"2026-05-25T10:00:39.306Z\"}, \"exp_070_008e_v3_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T05:07:49.050Z\", \"updated_at\": \"2026-05-25T08:54:47.019Z\", \"hypothesis\": \"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"260999\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log\", \"submitted_at\": \"2026-05-25T05:29:11.281Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12335.7, \"gpu_hours\": 3.43}, \"pid\": \"260999\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T08:50:11.463Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T08:50:17.078252+00:00\"}]}, \"metrics\": {\"eval_return\": 148, \"peak_eval_return\": 232.5, \"peak_eval_step\": 55000, \"ve_ratio_105k\": 0.8, \"nve_peak\": 0.8, \"nve_peak_step\": 95000, \"civo\": false, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"actor_entropy_final\": -3.7, \"value_mean_final\": 122.1, \"failure_mode\": \"non-CIVO learning failure (never reached baseline performance)\", \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 37.4}, {\"step\": 15000, \"eval_return\": 93.2}, {\"step\": 25000, \"eval_return\": 178.8}, {\"step\": 35000, \"eval_return\": 221.6}, {\"step\": 45000, \"eval_return\": 230.9}, {\"step\": 55000, \"eval_return\": 232.5}, {\"step\": 65000, \"eval_return\": 194}, {\"step\": 75000, \"eval_return\": 175.2}, {\"step\": 85000, \"eval_return\": 218.6}, {\"step\": 95000, \"eval_return\": 139.6}, {\"step\": 105000, \"eval_return\": 148}], \"ve_ratio_trajectory\": [{\"step\": 15000, \"ve\": 0}, {\"step\": 25000, \"ve\": 0.1}, {\"step\": 35000, \"ve\": 0.2}, {\"step\": 45000, \"ve\": 0.3}, {\"step\": 55000, \"ve\": 0.4}, {\"step\": 65000, \"ve\": 0.5}, {\"step\": 75000, \"ve\": 0.6}, {\"step\": 85000, \"ve\": 0.5}, {\"step\": 95000, \"ve\": 0.8}, {\"step\": 105000, \"ve\": 0.8}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_070_008e_v3_walker_s0/latest.pt\", \"conclusion\": \"negative\", \"notes\": \"Seed 0 FAILED but NOT via CIVO. eval_return peaked at 232.5@55K (far below baseline ~500+), declined to 148@105K. ve_ratio stayed healthy throughout (max 0.8, never triggered CIVO alert). Gate locked dt=1. This is a distinct failure mode from seeds 2,3 (which had CIVO collapse with NVE>3.7x). Agent never reached high performance — learning stagnated early. Cross-seed 008e_v3 summary: 5 seeds tested, 2 success (s1=870, s4=899), 2 CIVO collapse (s2=137 NVE=3.78, s3=93 NVE=4.02), 1 non-CIVO failure (s0=148 NVE=0.8). CIVO collapse rate: 2/5=40%. Overall failure rate: 3/5=60%.\", \"completed_at\": \"2026-05-25T08:54:47.019Z\"}, \"exp_069_008f_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T03:49:41.282Z\", \"updated_at\": \"2026-05-25T07:28:33.676Z\", \"hypothesis\": \"Reproducing 008f config (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will NOT trigger CIVO (NVE < 1.5x) because removing dt_emb eliminates the temporal abstraction mismatch that drives value error amplification\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"failure_reason\": \"bjb1-40020 服务器不可达（SSH 连接 port 40020 on 106.120.183.117 失败），进程无法监控，未产生有效 W&B metrics\", \"completed_at\": \"2026-05-25T04:17:38.829Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:17:43.081459+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T07:17:09.809673+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_069_008f_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"4590\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"submitted_at\": \"2026-05-25T05:04:10.980Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8662.7, \"gpu_hours\": 2.41}, \"pid\": \"4590\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_069_008f_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-25T07:17:02.903Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_069_008f_walker_repro_s1/latest.pt\", \"metrics\": {\"eval_return_final\": 237.8, \"eval_return_peak\": 390.1, \"eval_return_peak_step\": 95000, \"ve_ratio_final\": 0.4, \"ve_ratio_peak\": 0.4, \"ve_ratio_peak_step\": 105000, \"nve_final_105k\": 0.61, \"nve_peak\": 0.66, \"nve_peak_step\": 75000, \"civo_alert\": false, \"gate_dt_2_frac\": 1, \"eval_trajectory\": {\"5k\": 30.5, \"15k\": 158.7, \"25k\": 180.8, \"35k\": 250.3, \"45k\": 293.6, \"55k\": 272.2, \"65k\": 328.1, \"75k\": 244.8, \"85k\": 382.5, \"95k\": 390.1, \"105k\": 237.8}, \"ve_ratio_trajectory\": {\"15k\": 0, \"25k\": 0.1, \"35k\": 0.2, \"45k\": 0.2, \"55k\": 0.3, \"65k\": 0.3, \"75k\": 0.4, \"85k\": 0.3, \"95k\": 0.3, \"105k\": 0.4}}, \"conclusion\": \"success\"}, \"exp_068_008d_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T03:49:39.539Z\", \"updated_at\": \"2026-05-25T07:28:31.319Z\", \"hypothesis\": \"Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enables value error amplification through temporal abstraction mismatch\", \"parent\": \"exp_008d_subsample_on_h8\", \"failure_reason\": \"SSH check failed 5x — last error: [Errno None] Unable to connect to port 40020 on 106.120.183.117\", \"completed_at\": \"2026-05-25T04:18:15.954Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:18:20.002698+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T07:23:04.341146+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"4425\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log\", \"submitted_at\": \"2026-05-25T05:04:05.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8666.2, \"gpu_hours\": 2.41}, \"pid\": \"4425\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-25T07:22:57.100Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_068_008d_walker_repro_s1/latest.pt\", \"metrics\": {\"eval_return_final\": 39.1, \"eval_return_peak\": 192.4, \"eval_return_peak_step\": 55000, \"ve_ratio_final\": 2.7, \"ve_ratio_peak\": 4.6, \"ve_ratio_peak_step\": 85000, \"nve_final_105k\": 4.12, \"nve_peak_85k\": 6.57, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.81, \"civo_alert\": true, \"civo_alert_step\": 85000, \"gate_dt_2_frac\": 1, \"eval_trajectory\": {\"5k\": 31, \"15k\": 146.5, \"25k\": 174.1, \"35k\": 189.6, \"45k\": 142.2, \"55k\": 192.4, \"65k\": 114.4, \"75k\": 106.6, \"85k\": 33.4, \"95k\": 26.9, \"105k\": 39.1}, \"ve_ratio_trajectory\": {\"15k\": 0, \"25k\": 0.2, \"35k\": 0.3, \"45k\": 0.6, \"55k\": 0.6, \"65k\": 1.3, \"75k\": 1.6, \"85k\": 4.6, \"95k\": 4.6, \"105k\": 2.7}}, \"conclusion\": \"success\"}, \"exp_067_frozen_dt_emb_walker_plan015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T03:49:37.736Z\", \"updated_at\": \"2026-05-25T06:59:24.006Z\", \"hypothesis\": \"Frozen (requires_grad=False) dt_embedding + subsample ON + dt=2 + H=8 在 Walker Walk 上不触发 CIVO，验证 dt_emb 的 TRAINING 是 CIVO 的必要条件（而非 dt_emb 的存在本身）。来源: plan_015。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-25T03:51:43.628Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T06:54:52.150Z\", \"training_hours\": 3.05}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"255883\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_067_frozen_dt_emb_walker_plan015.log\", \"submitted_at\": \"2026-05-25T03:52:29.860Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11214.1, \"gpu_hours\": 3.12}, \"pid\": \"255883\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_067_frozen_dt_emb_walker_plan015.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T06:54:57.723176+00:00\"}]}, \"metrics\": {\"eval_final\": 281.5, \"eval_peak\": 334.1, \"eval_peak_step\": 95000, \"nve_peak\": 0.4, \"nve_final\": 0.2, \"civo_alert\": 0, \"total_env_steps\": 112000, \"update_count\": 25099, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_067_frozen_dt_emb_walker_plan015/latest.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T06:59:24.006Z\"}, \"exp_066b_timeseries_rssm_fidelity_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T02:34:14.574Z\", \"updated_at\": \"2026-05-25T04:35:12.673Z\", \"hypothesis\": \"RSSM fidelity gap (dt=2 prediction error > dt=1) emerges before value overestimation in seed=1, replicating the causal chain found in exp_066 seed=0 and confirming cross-seed robustness of the fidelity→VE mechanism.\", \"parent\": \"exp_066_timeseries_rssm_fidelity\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066b_timeseries_rssm_fidelity_s1 --steps 60000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"252133\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_066b_timeseries_rssm_fidelity_s1.log\", \"submitted_at\": \"2026-05-25T02:38:44.421Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6988.3, \"gpu_hours\": 1.94}, \"pid\": \"252133\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_066b_timeseries_rssm_fidelity_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066b_timeseries_rssm_fidelity_s1 --steps 60000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T04:18:02.308Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:18:10.617905+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066b_timeseries_rssm_fidelity_s1/checkpoint_65000.pt\", \"metrics\": {\"seed\": 1, \"steps_completed\": 65000, \"eval_return_peak\": 201.9, \"eval_return_peak_step\": 45000, \"eval_return_final\": 160.7, \"civo_alert_step\": 55000, \"ve_ratio_final\": 0.724, \"fidelity_gap_timeseries\": {\"ss_ratio_10K\": 0.887, \"ss_ratio_15K\": 1.017, \"ss_ratio_20K\": 1.216, \"ss_ratio_25K\": 1.532, \"ss_ratio_30K\": 1.374, \"ss_ratio_35K\": 1.486, \"ss_ratio_40K\": 1.428, \"ss_ratio_45K\": 1.38, \"ss_ratio_50K\": 1.468, \"ss_ratio_55K\": 1.517, \"ss_ratio_60K\": 1.799, \"ss_ratio_65K\": 1.756}, \"ve_ratio_timeseries\": {\"12K\": 0.012, \"15K\": 0.033, \"24K\": 0.118, \"25K\": 0.193, \"35K\": 0.269, \"45K\": 0.358, \"52K\": 0.495, \"55K\": 0.71, \"64K\": 0.724}, \"fidelity_gap_onset_step\": 15000, \"ve_onset_step\": 24000, \"temporal_lead_steps\": 9000, \"causal_direction\": \"fidelity_gap_leads_ve\", \"cross_seed_comparison\": {\"s0_ss_ratio_65K\": 1.678, \"s1_ss_ratio_65K\": 1.756, \"s0_fidelity_onset\": 20000, \"s1_fidelity_onset\": 15000, \"s0_ve_onset\": 30000, \"s1_ve_onset\": 24000, \"s0_temporal_lead\": 10000, \"s1_temporal_lead\": 9000, \"pattern_consistent\": true}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T04:35:12.673Z\"}, \"exp_062_cartpole_control\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:01:08.858Z\", \"updated_at\": \"2026-05-25T03:45:35.194Z\", \"hypothesis\": \"dt_embed_dim=0 + subsample ON + H=8 在 Cartpole Swingup 上不触发 CIVO（NVE < 1.5x），因果控制实验验证移除 dt_emb 是否阻止 CIVO 在第三个环境中泛化。与 exp_061 配对形成因果对比。\", \"spec\": {\"command\": \"bash -c 'for SEED in 0 1 2; do python -u dreamer.py --configs defaults dmc_proprio --task dmc_cartpole_swingup --logdir logdir/exp_062_cartpole_control_s${SEED} --steps 105000 --seed $SEED --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000; done'\", \"server\": \"bjb1-40020\", \"gpu\": [\"cuda:0\"], \"pid\": \"473913\", \"log_path\": \"bjb1-40020:~/runs/event-gated-adaptive-horizon/exp_062_cartpole_control.log\", \"submitted_at\": \"2026-05-24T16:26:50.780Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, control, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [0], \"checkpoint_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_062_cartpole_control_s0/checkpoint.pt\", \"wall_clock_seconds\": 40686.6, \"gpu_hours\": 11.3}, \"metrics\": {\"seeds\": {\"s0\": {\"eval_return\": 230.4, \"ve_ratio_peak\": 0.069, \"ve_ratio_final\": 0.056, \"value_mean\": 12.9, \"civo_detected\": false}, \"s1\": {\"eval_return\": 255.3, \"ve_ratio_peak\": 0.079, \"ve_ratio_final\": 0.04, \"value_mean\": 10.2, \"civo_detected\": false}, \"s2\": {\"eval_return\": 248.8, \"ve_ratio_peak\": 0.065, \"ve_ratio_final\": 0.048, \"value_mean\": 11.8, \"civo_detected\": false}}, \"mean_eval_return\": 244.8, \"mean_ve_ratio_peak\": 0.071, \"civo_detected_any\": false, \"steps_completed\": 112000}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-25T03:44:57.338Z\"}, \"exp_061_cartpole_civo_trigger\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-24T16:01:07.009Z\", \"updated_at\": \"2026-05-25T03:18:38.759Z\", \"hypothesis\": \"Trained dt_emb (d=32) + subsample ON + H=8 + dt=2 imagination 在 Cartpole Swingup 上触发 CIVO（NVE > 1.5x），验证 CIVO 是否跨 locomotion 子类环境泛化（Walker/Cheetah 已确认，Cartpole 是第三个 DMC locomotion 环境）。与 exp_062 配对形成因果对比。\", \"spec\": {\"command\": \"bash -c '... --device cuda:0 ...'\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"226158\", \"log_path\": \"bjb1-45299:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_061_cartpole_civo_trigger_s{0,1,2}/\", \"submitted_at\": \"2026-05-24T16:50:56.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [1], \"checkpoint_path\": \"bjb1-45299:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_061_cartpole_civo_trigger_s{0,1,2}/latest.pt\", \"wall_clock_seconds\": 39600, \"gpu_hours\": 11}, \"conclusion\": \"negative\", \"metrics\": {\"seeds\": 3, \"steps_per_seed\": 112000, \"s0_eval_return_final\": 211.1, \"s0_eval_return_peak\": 247.8, \"s0_value_mean_final\": 9.229, \"s0_ve_ratio_peak\": 0.058, \"s0_train_return_final\": 199.2, \"s1_eval_return_final\": 269, \"s1_eval_return_peak\": 328.1, \"s1_value_mean_final\": 9.323, \"s1_ve_ratio_peak\": 0.04, \"s1_train_return_final\": 188.7, \"s2_eval_return_final\": 228.9, \"s2_eval_return_peak\": 245.9, \"s2_value_mean_final\": 9.46, \"s2_ve_ratio_peak\": 0.043, \"s2_train_return_final\": 258.9, \"civo_detected\": false, \"civo_alert_any_seed\": false, \"ve_ratio_max_all_seeds\": 0.058, \"vs_baseline_eval_mean\": \"-56.3%\", \"baseline_exp060_eval_s2_105K\": 557}, \"completed_at\": \"2026-05-25T03:18:38.759Z\"}, \"exp_008d_subsample_on_h8\": {\"completed_at\": \"2026-05-14T04:50:52.439Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T01:46:57.960Z\", \"hypothesis\": \"Trained dt-embedding with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) causes critic value function to overestimate through dt-conditioned representation co-adaptation, leading to policy collapse.\", \"metrics\": {\"actor_loss_25K\": -0.195, \"actor_loss_35K\": -0.17, \"baseline_35K\": 400, \"baseline_45K\": 443, \"data_source_45K\": \"from training logs metrics.jsonl\", \"eval_return_25K\": 167.22, \"eval_return_35K\": 146.34, \"eval_return_45K\": 140.8, \"eval_return_55K\": 82.75, \"model_loss_25K\": 5.33, \"model_loss_35K\": 5.07, \"step\": 55000, \"trend\": \"eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\", \"value_eval_ratio_25K\": 0.155, \"value_eval_ratio_35K\": 0.411, \"value_eval_ratio_45K\": 0.693, \"value_eval_ratio_55K\": 1.666, \"value_mean_25K\": 25.86, \"value_mean_35K\": 60.2, \"value_mean_45K\": 97.5, \"value_mean_55K\": 137.88, \"verdict_35K\": \"WARN_COLLAPSE\", \"verdict_45K\": \"COLLAPSE_CONFIRMED\", \"vs_baseline_35K\": \"-63.4%\", \"vs_baseline_45K\": \"-68.2%\"}, \"parent\": \"exp_005_event_gated_v4\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8/checkpoint.ckpt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008d_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.48, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8)\", \"pid\": \"109519\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T02:21:59.852Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 8932.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T02:41:05.620Z\", \"notes\": \"RSSM fidelity analysis (exp_063, 55K checkpoint only): dt=2/dt=1 single-step reward MAE ratio = 2.695x (vs exp_066 s0's 1.37x at same step). Larger fidelity gap correlates with worse VE (1.666 vs 0.621). No intermediate checkpoints exist — cannot directly verify 25K fidelity gap for this seed. Cross-seed pattern consistent: VE trajectory matches s0 (low at 25K, collapse by 55K). See artifact art_20260525_e45921.\"}, \"exp_066_timeseries_rssm_fidelity\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-24T21:07:53.125Z\", \"updated_at\": \"2026-05-25T02:33:00.783Z\", \"hypothesis\": \"Trained dt_embedding causes RSSM fidelity degradation (dt=2 vs dt=1 reward MAE gap) that progressively worsens during training, and its temporal evolution precedes or synchronizes with NVE (value overestimation) rise, establishing a temporal causal chain: RSSM fidelity gap → value overestimation.\", \"parent\": \"exp_063_rssm_fidelity\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T22:27:54.087Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/dreamerv3-torch && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066_timeseries_rssm_fidelity_s0 --steps 60000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 999999\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-24T22:28:15.966Z\", \"training_hours\": 0.01}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-24T22:28:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T22:28:24.279787+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066_timeseries_rssm_fidelity_s0 --steps 60000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000'\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"pid\": 490622, \"fix_note\": \"eval_every changed from 999999 to 5000 — checkpoint saving is coupled to eval loop, 999999 prevented checkpoints from being saved\", \"checkpoint_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066_timeseries_rssm_fidelity_s0/checkpoint.pt\", \"log_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066_timeseries_rssm_fidelity_s0/\"}, \"conclusion\": \"success\", \"metrics\": {\"ss_ratio_10K\": 1.047, \"ss_ratio_30K\": 1.247, \"ss_ratio_65K\": 1.678, \"ol_ratio_30K_peak\": 1.446, \"ol_ratio_35K_peak\": 1.509, \"ve_ratio_final\": 1.399, \"fidelity_gap_onset_step\": 20000, \"ve_onset_step\": 30000, \"temporal_lead_steps\": 10000, \"pearson_ss_ve\": 0.807, \"pearson_ss_ve_p\": 0.0015, \"pearson_ol_ve\": 0.425, \"pearson_ol_ve_p\": 0.169, \"ss_monotonicity\": 0.73, \"ol_monotonicity\": 0.73, \"ve_monotonicity\": 0.82, \"causal_direction\": \"fidelity_gap_leads_ve\", \"conclusion\": \"success\"}}, \"exp_060_cartpole_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:01:05.099Z\", \"updated_at\": \"2026-05-25T01:25:39.711Z\", \"hypothesis\": \"Cartpole Swingup (DMC) baseline dt=1 建立 v/e ratio 校准基线，用于 CIVO 诊断阈值在第三个 DMC 环境的验证。预期 NVE 保持在 1.0x 附近，无 CIVO 现象。\", \"spec\": {\"command\": \"bash -c 'for SEED in 0 1 2; do python -u dreamer.py --configs defaults dmc_proprio --task dmc_cartpole_swingup --logdir logdir/exp_060_cartpole_baseline_s${SEED} --steps 105000 --seed $SEED --compile False --device cuda:0 --checkpoint_every 25000; done'\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"223294\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_060_cartpole_baseline.log\", \"submitted_at\": \"2026-05-24T16:26:42.610Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (vanilla baseline, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [0], \"wall_clock_seconds\": 32337.1, \"gpu_hours\": 8.98}, \"conclusion\": \"success\", \"metrics\": {\"seeds\": 3, \"steps_per_seed\": 112000, \"train_return_s0\": 809.4, \"train_return_s1\": 684.4, \"train_return_s2\": 526.1, \"eval_return_s2_105K\": 557}, \"checkpoint_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_060_cartpole_baseline_s{0,1,2}/latest.pt\", \"log_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_060_cartpole_baseline_s{0,1,2}/metrics.jsonl\", \"completed_at\": \"2026-05-25T01:25:39.711Z\"}, \"exp_065_dt_emb_cosine\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T20:48:47.693Z\", \"updated_at\": \"2026-05-24T20:54:51.678Z\", \"hypothesis\": \"分析 trained dt_embedding 中 dt=1 vs dt=2 向量的 cosine similarity 及其训练过程演化。如果 cosine sim 高（接近 1）→ dt_emb 未学到有意义区分，CIVO 来自微小差异被 downstream 放大；如果 cosine sim 低 → dt_emb 学到了显著不同的表征，CIVO 来自 dt=2 表征本身的偏差。\", \"conclusion\": \"success\", \"checkpoint_path\": \"logdir/exp_065_dt_emb_cosine/results.json\", \"log_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_065_dt_emb_cosine/\", \"completed_at\": \"2026-05-24T20:52:24.863Z\", \"metrics\": {\"trained_cosine_sim_range\": \"-0.94 to -0.70\", \"frozen_cosine_sim_range\": \"-0.15 to +0.07\", \"trained_trend\": \"strong negative (near-opposite directions)\", \"frozen_trend\": \"near-zero constant\", \"conclusion\": \"dt=1 and dt=2 embeddings learn nearly opposite representations; CIVO from dt=2 representation bias, not amplified micro-differences\"}}, \"exp_064_value_distribution\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T19:23:05.483Z\", \"updated_at\": \"2026-05-24T20:14:50.460Z\", \"hypothesis\": \"V(s) vs Monte Carlo return 分布对比：trained dt_emb (exp_008d collapsed) 的 value estimate 在 dt=2 imagination 步骤系统性高估，而 untrained/absent dt_emb (exp_008f control) 和 baseline (exp_001) 的 value 分布与 MC return 紧密跟踪。直观展示 CIVO 的 value divergence 位置和形态。\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T19:56:27.179Z\"}, \"spec\": {\"command\": \"python scripts/value_distribution_analysis.py --device cuda:0\", \"server\": \"bjb1-40020\", \"data_path\": \"logdir/exp_001_baseline + logdir/exp_008d + logdir/exp_008f\", \"data_count\": 500, \"model_name\": \"DreamerV3 (baseline + collapsed + control checkpoints)\", \"seed\": 0, \"gpu_ids\": [1], \"checkpoint_path\": \"logdir/exp_064_value_distribution/\", \"log_path\": \"logdir/exp_064_value_distribution/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_bias\": 344.85, \"baseline_rmse\": 371.73, \"baseline_overest_pct\": 100, \"baseline_v_mc_ratio\": 3.31, \"civo_bias\": 108.99, \"civo_rmse\": 112.36, \"civo_overest_pct\": 100, \"civo_v_mc_ratio\": 7.8, \"civo_v_mc_median\": 3.4, \"control_bias\": -6.51, \"control_rmse\": 57.93, \"control_overest_pct\": 52.5, \"control_v_mc_ratio\": 2.58, \"control_v_mc_median\": 1.05}, \"completed_at\": \"2026-05-24T20:14:50.460Z\"}, \"exp_063_rssm_fidelity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:12:47.163Z\", \"updated_at\": \"2026-05-24T19:21:37.837Z\", \"hypothesis\": \"RSSM 在 dt=2 transitions 上的 observation/reward reconstruction loss 显著高于 dt=1，量化 fidelity gap 作为 trained dt_emb 导致 delusional critic 的机械性基础。从 exp_001 (baseline) 和 exp_008d (collapsed) 的已有 checkpoint 提取，对比 dt=1 vs dt=2 prediction quality。\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T18:53:48.781Z\"}, \"spec\": {\"command\": \"python scripts/rssm_fidelity_analysis.py --device cuda:0\", \"server\": \"bjb1-40020\", \"data_path\": \"logdir/exp_001_baseline + logdir/exp_008d_subsample_on_h8\", \"data_count\": 500, \"model_name\": \"DreamerV3 RSSM (baseline + collapsed checkpoints)\", \"seed\": 0, \"gpu_ids\": [1], \"checkpoint_path\": \"logdir/exp_063_rssm_fidelity/results.json\", \"log_path\": \"logdir/exp_063_rssm_fidelity/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_dt1_obs_mse\": 13.7, \"baseline_dt2_obs_mse\": 20.62, \"baseline_dt2_dt1_ratio_obs\": 1.505, \"baseline_dt2_dt1_ratio_reward\": 1.483, \"collapsed_dt1_obs_mse\": 26.93, \"collapsed_dt2_single_obs_mse\": 42.02, \"collapsed_dt2_single_reward_mae\": 0.146, \"collapsed_dt2_dt1_ratio_obs\": 1.56, \"collapsed_dt2_dt1_ratio_reward\": 2.695, \"collapsed_single_vs_chained_obs\": 1.138, \"collapsed_single_vs_chained_reward\": 1.926}, \"completed_at\": \"2026-05-24T19:21:37.837Z\"}, \"exp_051_stackcube_frozen_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:30:00.000Z\", \"updated_at\": \"2026-05-24T16:53:23.046Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks. If frozen prevents CIVO → extends Walker/Cheetah frozen finding to manipulation; if not → domain-specific factors override dt_emb mechanism.\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 305974, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_051_stackcube_frozen_dt_emb_s0.log\", \"checkpoint_path\": \"logdir/exp_051_stackcube_frozen_dt_emb_s0/checkpoint_202500.pt\"}, \"metrics\": {\"eval_final\": 45.3, \"eval_final_step\": 212500, \"eval_peak\": 45.3, \"eval_peak_step\": 212500, \"ve_ratio_final\": 0.1, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 4.3, \"ve_ratio_peak_step\": 42500, \"total_steps\": 222400, \"nve_classification\": \"onset_self_correcting\", \"civo_transient\": true, \"civo_sustained\": false, \"civo_transient_range\": \"22K-62K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 82500, \"gate_dt_mean\": 2, \"gate_dt_variation\": false, \"eval_dip_during_civo\": 7.1, \"eval_dip_step\": 42500}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-23T08:48:40.404Z\"}, \"exp_049_stackcube_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:14:38.578Z\", \"updated_at\": \"2026-05-24T16:53:19.032Z\", \"hypothesis\": \"CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack）。如果触发 → 扩展跨域证据；如果不触发 → 支持 locomotion-specific scope。\", \"parent\": \"exp_048_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigger_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 91395, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_049_stackcube_civo_trigger_s0/train.log\"}, \"metrics\": {\"eval_final\": 34.88, \"eval_final_step\": 212500, \"eval_peak\": 35.89, \"eval_peak_step\": 182500, \"ve_ratio_final\": 0.186, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 5.048, \"ve_ratio_peak_step\": 42500, \"total_steps\": 222400, \"total_episodes\": 1112, \"nve_classification\": \"onset_self_correcting\", \"civo_transient\": true, \"civo_sustained\": false, \"civo_transient_range\": \"22K-72K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 112500, \"gate_dt_mean\": 2, \"gate_dt_variation\": false, \"eval_dip_during_civo\": 4.93, \"eval_dip_step\": 62500}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_049_stackcube_civo_trigger_s0/checkpoint_202500.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_049_stackcube_civo_trigger_s0/metrics.jsonl\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T04:23:01.339Z\"}, \"exp_057\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:49:35.310Z\", \"updated_at\": \"2026-05-24T16:50:44.968Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker seed=2, n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3 验证稳健性。\", \"parent\": \"\", \"spec\": {\"command\": \"python train.py --env walker --frozen_dt_emb --seed 2\", \"server\": \"bjb1-45299\", \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"data_count\": 225000, \"seed\": 2, \"model_name\": \"dreamer_frozen_dt_emb\"}, \"log_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/train.log\", \"checkpoint_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/checkpoint_225000.pt\", \"metrics\": {\"eval_return_peak\": 221.7, \"eval_return_peak_step\": 195000, \"eval_return_final\": 123.9, \"eval_return_final_step\": 215000, \"nve_peak\": 1.3, \"nve_peak_step\": 115000, \"nve_final\": 0.2, \"civo_alert\": 0, \"civo_sustained\": false, \"civo_transient\": true, \"civo_transient_range\": \"115k-145k\", \"train_steps\": 225000, \"gate_dt_mean\": 2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T16:50:44.968Z\"}, \"exp_008d_civo_trigger_s4\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/latest.pt\", \"completed_at\": \"2026-05-18T05:17:45.132Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T02:02:43.972Z\", \"hypothesis\": \"Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/metrics.jsonl\", \"metrics\": {\"ve_ratio_peak\": 3.0294, \"ve_ratio_peak_step\": 105000, \"ve_ratio_final\": 3.0294, \"ve_ratio_final_step\": 105000, \"nve_peak\": 4.62, \"nve_peak_step\": 105000, \"nve_peak_note\": \"step-matched s1 baseline @105K = 0.6564\", \"nve_classification\": \"onset_collapse\"}, \"parent\": \"exp_008d_civo_trigger_s3\", \"retry_count\": 0, \"spec\": {\"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_008d_civo_trigger_s4\", \"data_count\": 0, \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"eval_data\": \"dmc_walker_walk_online\", \"gpu\": \"cuda:0\", \"model_name\": \"DreamerV3-walker-civo-trigger\", \"pid\": \"715124\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-24T08:56:41.239Z\"}, \"exp_059_walker_trained_s5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:08:46.842Z\", \"updated_at\": \"2026-05-24T07:46:59.075Z\", \"hypothesis\": \"Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。\", \"parent\": \"exp_008d_civo_trigger_s3\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"186176\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log\", \"submitted_at\": \"2026-05-24T03:15:40.649Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11526.3, \"gpu_hours\": 3.2}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"pid\": \"186176\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-24T06:20:56.680Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T06:21:01.777871+00:00\"}]}, \"metrics\": {\"ve_ratio_peak\": 3.3075, \"ve_ratio_peak_step\": \"85K\", \"nve_peak\": 4.72, \"nve_peak_note\": \"step-matched s1 baseline @85K = 0.7007\", \"nve_classification\": \"onset_collapse\", \"nve_classification_note\": \"Reclassified from onset_self_correcting: NVE self-corrected but eval=95.8 (10.5% of baseline 913) indicates irreversible policy damage. Collapse†.\", \"nve_final\": 1.22, \"nve_final_note\": \"0.8/0.656 (step-matched s1 baseline @105K)\", \"eval_final\": 95.8, \"eval_baseline\": 913, \"eval_pct_baseline\": \"10.5%\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_059_walker_trained_s5/checkpoint.pt\", \"completed_at\": \"2026-05-24T06:27:46.992Z\", \"notes\": \"CIVO-positive under step-matched NVE (peak ≈ 5.0×). Self-correcting outcome (ve_ratio 3.3@85K → 0.8@105K in ~10K steps). Supports 5/5 Walker trained CIVO onset. Gate locked at dt=2 throughout (entropy=0).\"}, \"exp_057_frozen_dt_emb_walker_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:25:00.000Z\", \"updated_at\": \"2026-05-24T02:17:41.318Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_057_frozen_dt_emb_walker_s2\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 157775, \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s2)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/train.log\", \"checkpoint_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/checkpoint_225000.pt\"}, \"completed_at\": \"2026-05-23T23:30:00.000Z\", \"metrics\": {\"total_steps\": 225000, \"ve_ratio_peak\": 1.283, \"ve_ratio_peak_step\": 115000, \"ve_ratio_final\": 0.177, \"ve_ratio_final_step\": 215000, \"nve_peak\": 1.88, \"nve_peak_step\": 115000, \"nve_classification\": \"transient\", \"eval_return_final\": 123.94, \"eval_return_final_step\": 215000, \"eval_return_peak\": 221.72, \"eval_return_peak_step\": 195000}}, \"exp_058_frozen_dt_emb_cheetah_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:10:49.773Z\", \"updated_at\": \"2026-05-24T00:30:00.000Z\", \"hypothesis\": \"Cheetah frozen dt_emb 跨 seed 可复现性验证。exp_046 (s0) 显示 frozen 将 NVE 从 ~70-108（trained）降至 1.35。s1 验证阻止效应是否可复现。如果 s1 也阻止 → Cheetah frozen n=2 增强极端 CIVO 场景下 frozen diagnostic 的统计基础。\", \"parent\": \"exp_046_frozen_dt_emb_cheetah\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_058_frozen_dt_emb_cheetah_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 164830, \"data_path\": \"dmc_cheetah_run\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_058_frozen_dt_emb_cheetah_s1/train.log\", \"checkpoint_path\": \"logdir/exp_058_frozen_dt_emb_cheetah_s1/checkpoint_225000.pt\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:30:00.000Z\", \"metrics\": {\"total_steps\": 224000, \"ve_ratio_peak\": 0.231, \"ve_ratio_peak_step\": 45000, \"ve_ratio_final\": 0.107, \"ve_ratio_final_step\": 215000, \"eval_return_final\": 80.46, \"eval_return_final_step\": 215000, \"eval_return_peak\": 191.74, \"eval_return_peak_step\": 25000, \"nve_peak\": 0.78, \"nve_peak_step\": 45000, \"nve_classification\": \"no_civo\", \"note\": \"Cheetah frozen s1. NVE=0.78× (raw 0.231 / baseline 0.296 @45K). Cheetah frozen n=2: s0 NVE=1.35, s1 NVE=0.78 — both clean, frozen 稳健阻止 extreme CIVO (trained NVE 70-108).\"}}, \"exp_056_peginsertion_frozen_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T09:02:23.683Z\", \"updated_at\": \"2026-05-24T00:00:00.000Z\", \"hypothesis\": \"D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健阻止 dt_emb 放大；如果不回落 → seed-dependent。\", \"parent\": \"exp_053_peginsertion_frozen_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_056_peginsertion_frozen_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 346430, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, fixed dt=2, ManiSkill PegInsertion s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_056_peginsertion_frozen_s1/train.log\", \"checkpoint_path\": \"logdir/exp_056_peginsertion_frozen_s1/checkpoint_202500.pt\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:00:00.000Z\", \"metrics\": {\"total_steps\": 222500, \"ve_ratio_peak\": 11.321, \"ve_ratio_peak_step\": 82500, \"ve_ratio_final\": 1.193, \"ve_ratio_final_step\": 212500, \"eval_return_final\": 4.37, \"eval_return_final_step\": 212500, \"eval_return_peak\": 24.42, \"eval_return_peak_step\": 132500, \"nve_classification\": \"burst\", \"note\": \"Ordering reversal vs s0 confirms D146 seed-dependent noise. Frozen s1 burst 11.32 > trained s1 peak 3.08 — frozen does NOT suppress ManiSkill transients.\", \"ve_ratio_trajectory\": {\"12500\": 0.316, \"22500\": 0.975, \"32500\": 1.839, \"42500\": 1.966, \"52500\": 5.422, \"62500\": 4.047, \"72500\": 8.408, \"82500\": 11.321, \"92500\": 3.724, \"102500\": 3.034, \"112500\": 2.204, \"122500\": 2.425, \"132500\": 0.842, \"142500\": 2.194, \"152500\": 2.203, \"162500\": 0.651, \"172500\": 1.085, \"182500\": 1.07, \"192500\": 0.467, \"202500\": 0.708, \"212500\": 1.193}}}, \"exp_055_peginsertion_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T08:50:00.000Z\", \"updated_at\": \"2026-05-23T23:38:30.000Z\", \"hypothesis\": \"PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发 → seed-specific 异常。\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginsertion_civo_trigger_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [0], \"pid\": 345223, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, PegInsertion)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/train.log\"}, \"ve_ratio_peak\": \"3.08@92500\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T23:38:25.428Z\", \"metrics\": {\"total_steps\": 222400, \"ve_ratio_peak\": 3.08, \"ve_ratio_peak_step\": 92500, \"ve_ratio_final\": 0.498, \"ve_ratio_final_step\": 212500, \"eval_return_final\": 11.44, \"eval_return_final_step\": 212500, \"eval_return_peak\": 24.05, \"eval_return_peak_step\": 112500, \"nve_classification\": \"transient\", \"civo_triggered\": true, \"civo_self_corrected\": \"partial\", \"note\": \"CIVO triggered (peak 3.08@92.5K, less severe than s0=10.05). Partial self-correction to 0.498. PegInsertion trained cross-seed: s0=10.05, s1=3.08 — severity seed-dependent.\", \"ve_ratio_trajectory\": {\"12500\": 0.19, \"22500\": 0.81, \"32500\": 1.35, \"42500\": 2.0, \"52500\": 2.39, \"62500\": 2.85, \"72500\": 2.28, \"82500\": 2.48, \"92500\": 3.08, \"102500\": 2.51, \"112500\": 0.91, \"122500\": 1.21, \"132500\": 1.36, \"142500\": 0.75, \"152500\": 0.55, \"162500\": 1.17, \"172500\": 0.96, \"182500\": 0.94, \"192500\": 0.9, \"202500\": 0.73, \"212500\": 0.5}}, \"checkpoint_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/checkpoint_222500.pt\"}, \"exp_054_pickcube_frozen_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:47:24.310Z\", \"updated_at\": \"2026-05-23T18:08:00.000Z\", \"hypothesis\": \"PickCube frozen dt_emb baseline (fixed_dt=2, subsample ON, H=8)。验证 CIVO frozen 配置在最简单 manipulation task 上的表现。如果 eval return 稳定高于 random → frozen dt_emb 在 easy task 上不影响学习；如果性能差 → frozen dt_emb 有问题。\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --seed 0 --steps 210000 --compile False --device cuda:0 --checkpoint_every 25000 --logdir logdir/exp_054_pickcube_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 133956, \"data_path\": \"ManiSkill PickCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, CIVO config, ManiSkill PickCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PickCube-v1 (online eval)\", \"log_path\": \"logdir/exp_054_pickcube_frozen_s0/metrics.jsonl\", \"checkpoint_path\": \"logdir/exp_054_pickcube_frozen_s0/checkpoint.ckpt\"}, \"ve_ratio_peak\": \"8.81@62500\", \"eval_final\": 10.26, \"eval_final_step\": 212500, \"ve_ratio_final\": 0.583, \"ve_ratio_final_step\": 212500}, \"exp_053_peginsertion_frozen_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:23:10.381Z\", \"updated_at\": \"2026-05-23T15:00:00.000Z\", \"hypothesis\": \"Freezing dt_emb in PegInsertionSide-v1 (contact-rich manipulation) prevents CIVO while maintaining task performance, establishing that dt_emb freezing generalizes as CIVO prevention across task domains. If frozen prevents CIVO here → extends StackCube/locomotion frozen finding to insertion tasks; if CIVO still appears → freezing insufficient for contact-rich tasks.\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_053_peginsertion_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 123495, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, fixed dt=2, ManiSkill PegInsertion)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_053_peginsertion_frozen_s0.log\", \"checkpoint_path\": \"logdir/exp_053_peginsertion_frozen_s0/checkpoint.ckpt\"}, \"ve_ratio_peak\": \"8.10@52500\", \"eval_final\": 5.89, \"ve_ratio_final\": 0.202, \"ve_ratio_final_step\": 212500}, \"exp_050_peginsertion_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:38:33.441Z\", \"updated_at\": \"2026-05-23T08:51:11.592Z\", \"hypothesis\": \"Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond locomotion to precise insertion tasks, where event-gated horizons can skip redundant approach phases while preserving fine-grained control near contact.\", \"spec\": {\"command\": \"LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_050_peginsertion_civo_trigger_s0\", \"server\": \"bjb1-40020\", \"data_path\": \"ManiSkill PegInsertionSide-v1 (state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 + CIVO trigger (gate_fixed_dt=2)\", \"seed\": 0, \"pid\": 304736, \"gpu_ids\": [0], \"log_path\": \"logdir/exp_050_peginsertion_civo_trigger_s0/train.log\", \"checkpoint_path\": \"logdir/exp_050_peginsertion_civo_trigger_s0\"}, \"metrics\": {\"ve_ratio_peak\": 10.05, \"ve_ratio_peak_step\": 82500, \"ve_ratio_final\": 0.379, \"ve_ratio_final_step\": 212500, \"civo_self_corrected\": true, \"civo_correction_delay_steps\": 130000, \"eval_final\": 20.86, \"eval_final_step\": 212500, \"eval_peak\": 20.86, \"eval_peak_step\": 212500, \"total_steps\": 222400}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T08:30:00.000Z\"}, \"exp_052_stackcube_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T21:26:49.825Z\", \"updated_at\": \"2026-05-23T07:45:47.966Z\", \"hypothesis\": \"StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多 seeds。\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigger_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 103781, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/train.log\"}, \"metrics\": {\"eval_final\": 29.458, \"eval_final_step\": 212500, \"eval_peak\": 39.873, \"eval_peak_step\": 162500, \"ve_ratio_final\": 0.133, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 4.67, \"ve_ratio_peak_step\": 52500, \"total_steps\": 222400}, \"conclusion\": \"success\", \"checkpoint_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/checkpoint_202500.pt\", \"log_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/metrics.jsonl\", \"completed_at\": \"2026-05-23T07:45:47.966Z\"}, \"exp_048_cheetah_civo_extension\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:30:40.050Z\", \"updated_at\": \"2026-05-22T21:18:00.000Z\", \"hypothesis\": \"Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 4.91→0.05 over 170K steps). If Cheetah does NOT self-correct → severity determines recoverability narrative. If it does → CIVO is universally transient regardless of severity.\", \"parent\": \"exp_010b_cheetah_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_048_cheetah_civo_extension\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 88654, \"data_path\": \"dmc_cheetah_run (online RL)\", \"data_count\": 300000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, Cheetah)\", \"seed\": 0, \"checkpoint_source\": \"exp_010b_cheetah_civo_trigger_s0/latest.pt (step 105K, NVE=70.64)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_048_cheetah_civo_extension/train.log\"}, \"metrics\": {\"eval_final\": 23.4, \"eval_final_step\": 302000, \"eval_peak\": 32.8, \"eval_peak_step\": 252000, \"ve_ratio_initial\": 46.3, \"ve_ratio_peak\": 24.112, \"ve_ratio_peak_step\": 162000, \"ve_ratio_final\": 1.803, \"nve_initial\": 70.64, \"nve_peak_secondary\": 36.76, \"nve_final\": 2.75, \"total_steps\": 312000, \"civo_self_corrected\": false, \"civo_correction_pct\": 96, \"secondary_burst_step\": 152000, \"secondary_burst_nve\": 36.47, \"gate_collapsed\": true}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_048_cheetah_civo_extension/checkpoint_300000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_048_cheetah_civo_extension/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T21:18:00.000Z\"}, \"exp_047_frozen_dt_emb_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:03:31.428Z\", \"updated_at\": \"2026-05-22T19:01:30.894Z\", \"hypothesis\": \"Frozen dt_emb Walker seed 1: 增强 exp_042 (s0, NVE=0.19) 的统计力度。 如果 s1 也 NVE<1.5 且无持续 CIVO → frozen dt_emb mitigation 跨 seed robust。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"dreamer_gated_frozen_dt_emb\", \"seed\": 1, \"eval_data\": \"dmc_walker_walk (online eval)\", \"checkpoint_source\": \"N/A (training from scratch)\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T18:56:07.648Z\"}, \"metrics\": {\"eval_final\": 144.22, \"eval_final_step\": 215000, \"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T19:01:30.894Z\"}, \"exp_046_frozen_dt_emb_cheetah\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:41:53.934Z\", \"updated_at\": \"2026-05-22T18:32:34.105Z\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"hypothesis\": \"Cross-environment validation: frozen dt_emb (random init, requires_grad=False) prevents CIVO on Cheetah Run, extending the Walker Walk finding (exp_042 NVE=0.19, exp_015b NVE=0.47) to a second environment. Cheetah has stronger CIVO (NVE 8.27-70.64× in exp_010b) so this is a harder test of the frozen mitigation.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T10:42:06.985Z\", \"finished_at\": \"2026-05-22T18:27:00.000Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_046_frozen_dt_emb_cheetah\", \"server\": \"bjb1-40020\", \"seed\": 0, \"model_name\": \"dreamerv3-cheetah-frozen-dt-emb\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 210000, \"eval_data\": \"dmc_cheetah_run (online eval)\", \"checkpoint_source\": \"N/A (training from scratch)\"}, \"metrics\": {\"eval_final\": 150.5, \"eval_peak\": 207.4, \"eval_peak_step\": 145000, \"ve_ratio_peak\": 0.4, \"ve_ratio_final\": 0.1, \"nve_peak\": 1.35, \"nve_peak_step\": 45000, \"nve_final\": 0.17, \"total_steps\": 224000, \"civo_alert_count\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_046_frozen_dt_emb_cheetah/checkpoint_225000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_046_frozen_dt_emb_cheetah/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:31:00.933Z\"}, \"exp_044_gradient_stop_walker\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:03:45.656Z\", \"updated_at\": \"2026-05-22T16:08:22.684Z\", \"hypothesis\": \"Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsample ON + H=8），仅阻断 dt_emb→reward_head 梯度路径。如果 gradient stopping 有效（NVE<1.5）→ 最简干预方案成立，推翻我们之前 SGS 1/17 的结论（SGS 阻断所有梯度 vs 这里只阻断 dt_emb→reward 路径）。如果无效 → 直接证据证明 gradient-level intervention 不足以解决 CIVO，支撑 Intervention Hierarchy 中 gradient-level 最弱的结论。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True --logdir logdir/exp_044_gradient_stop_walker\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"68371\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_044_gradient_stop_walker.log\", \"submitted_at\": \"2026-05-22T09:08:10.295Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"DMC Walker Walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 + reward_dt_emb_detach\", \"seed\": 0, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"dmc_walker_walk\", \"wall_clock_seconds\": 25212.4, \"gpu_hours\": 7.0}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:04:32.082Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:04:36.793540+00:00\"}]}, \"metrics\": {\"eval_final\": 538.6, \"eval_peak\": 561.2, \"eval_peak_step\": 185000, \"eval_civo_trough\": 44.3, \"eval_civo_trough_step\": 95000, \"ve_ratio_peak\": 4.4, \"ve_ratio_peak_step\": 95000, \"ve_ratio_final\": 0.1, \"civo_onset_step\": 85000, \"civo_resolved_step\": 125000, \"civo_duration_steps\": 40000, \"total_steps\": 224000, \"pre_civo_peak\": 545.6, \"pre_civo_peak_step\": 75000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_044_gradient_stop_walker/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_044_gradient_stop_walker.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T16:08:22.684Z\"}, \"exp_045_treatment_extension_008d_s3\": {\"created_at\": \"2026-05-22T09:40:52.894Z\", \"updated_at\": \"2026-05-22T15:41:43.036Z\", \"status\": \"DONE\", \"retry_count\": 0, \"hypothesis\": \"CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamics data for the treatment extension analysis (Reviewer Q: does CIVO self-correct or persist?)\", \"parent\": \"exp_008d_civo_trigger_s3\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s3\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": \"70945\", \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 300000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config)\", \"seed\": 3, \"checkpoint_source\": \"exp_008d_civo_trigger_s3/latest.pt (step 112K)\", \"eval_data\": \"dmc_walker_walk (online eval, same as training env)\", \"log_path\": \"logdir/exp_045_treatment_extension_008d_s3/train.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_final\": 867.6, \"eval_peak\": 869.7, \"eval_peak_step\": 242000, \"nve_peak\": 4.91, \"nve_peak_step\": 132000, \"nve_final\": 0.052, \"ve_ratio_final\": 0.052, \"total_steps\": 312000, \"civo_alerts\": 0, \"civo_self_corrected\": true, \"civo_correction_step\": 142000, \"eval_trajectory\": {\"112000\": 58.5, \"122000\": 41.8, \"132000\": 35.1, \"142000\": 350.2, \"152000\": 646.4, \"162000\": 482.3, \"172000\": 600.4, \"182000\": 600.5, \"192000\": 699.5, \"202000\": 684.3, \"212000\": 758.6, \"222000\": 744.6, \"232000\": 745.4, \"242000\": 869.7, \"252000\": 721.6, \"262000\": 820.6, \"272000\": 716.2, \"282000\": 755.6, \"292000\": 843, \"302000\": 867.6}, \"ve_ratio_trajectory\": {\"122000\": 4.77, \"132000\": 4.91, \"142000\": 0.43, \"152000\": 0.21, \"162000\": 0.25, \"172000\": 0.18, \"182000\": 0.16, \"192000\": 0.13, \"202000\": 0.12, \"212000\": 0.1, \"222000\": 0.1, \"232000\": 0.09, \"242000\": 0.07, \"252000\": 0.08, \"262000\": 0.07, \"272000\": 0.08, \"282000\": 0.07, \"292000\": 0.06, \"302000\": 0.05}}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_045_treatment_extension_008d_s3/checkpoint_302000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_045_treatment_extension_008d_s3/train.log\", \"completed_at\": \"2026-05-22T15:41:43.036Z\"}, \"exp_043_008f_walker_s1\": {\"created_at\": \"2026-05-22T02:35:37.558Z\", \"hypothesis\": \"Plan_012 / Claim C2 seed 1：复现 008f 因果控制（dt_embed_dim=0, subsample ON, H=8）。目前只有 seed 0 数据。如果 s1 也显示无 CIVO → 确认 dt_emb absence prevents CIVO 是 robust 的跨 seed 结论，支撑因果链 \\\"trained dt_emb → CIVO\\\"。\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --logdir logdir/exp_043_008f_walker_s1\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1\", \"model_name\": \"DreamerV3 (no dt_emb, 008f control)\", \"pid\": \"250627\", \"seed\": 1, \"server\": \"bjb1-40020\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T10:38:36.474Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1\", \"metrics\": {\"eval_final\": 673.73, \"eval_peak\": 673.73, \"eval_peak_step\": 215000, \"nve_peak\": 0.808, \"nve_peak_step\": 105000, \"nve_final\": 0.123, \"civo_alert\": false, \"total_steps\": 224000, \"gate_dt_2_frac\": 1, \"gate_entropy\": 0, \"note\": \"No CIVO (peak NVE 0.808, well below 1.5). Gate fixed at dt=2. Seed 1 replicates seed 0 finding: dt_emb absence prevents CIVO.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:38:36.474Z\"}, \"exp_042_frozen_dt_emb_walker\": {\"created_at\": \"2026-05-22T02:13:59.183Z\", \"hypothesis\": \"dt_embedding training (not its mere existence) is a necessary condition for CIVO collapse. Freezing dt_emb (random init, requires_grad=False) should prevent the reward-value divergence observed in exp_008d with trained dt_emb.\", \"parent\": \"\", \"retry_count\": 0, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --logdir logdir/exp_042_frozen_dt_emb_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker\", \"model_name\": \"DreamerV3 + frozen dt_emb\", \"pid\": \"251336\", \"seed\": 0, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T10:29:26.337Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker\", \"metrics\": {\"eval_final\": 612.45, \"eval_peak\": 682.38, \"eval_peak_step\": 205000, \"nve_peak\": 0.194, \"nve_final\": 0.051, \"civo_alert\": false, \"total_steps\": 224000, \"total_train_episodes\": 224}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:29:26.337Z\"}, \"exp_040_wide_dual_critic_cheetah\": {\"created_at\": \"2026-05-21T19:50:49.909Z\", \"hypothesis\": \"Cheetah dual-critic seed 1：exp_034 (s0) 显示 dual-critic 在 Cheetah 上 NVE 1.8, eval 97.5（部分恢复 31%）。s1 确认此 pattern 是否 robust。如果 s1 也部分恢复 → Cheetah dual-critic 效果一致但弱于 Walker；如果 s1 完全不恢复 → s0 的部分恢复是偶发。\", \"parent\": \"exp_032_dual_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_040_wide_dual_critic_cheetah\\\"\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_040_wide_dual_critic_cheetah.log\", \"pid\": \"52397\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T19:51:11.519Z\", \"submitted_via\": \"submit_training_job\", \"seed\": 1, \"wall_clock_seconds\": 49438.9, \"gpu_hours\": 13.73}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T09:37:44.547Z\", \"reproduce\": {\"finished_at\": \"2026-05-22T09:35:07.693Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:35:10.404Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:35:14.583680+00:00\"}]}}, \"exp_041_dual_critic_walker_s3\": {\"created_at\": \"2026-05-21T19:50:54.290Z\", \"hypothesis\": \"D128 推导：exp_038 s2 出现非 CIVO 崩溃 (eval 354→121, NVE≤0.3)，当前 collapse 频率 1/3。s3 确定崩溃是偶发 (1/4) 还是系统性 (2/4)。如果 s3 正常 → 非 CIVO 崩溃为低频偶发事件，dual-critic CIVO prevention 仍 robust；如果 s3 也崩 → 50% 系统性问题需进一步诊断。\", \"parent\": \"exp_032_dual_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_041_dual_critic_walker_s3\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_041_dual_critic_walker_s3.log\", \"pid\": \"51103\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-22T02:38:20.728Z\", \"submitted_via\": \"submit_training_job\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_041_dual_critic_walker_s3/checkpoint.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"dmc_walker_walk\", \"wall_clock_seconds\": 23112.0, \"gpu_hours\": 6.42}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T09:04:44.715Z\", \"reproduce\": {\"finished_at\": \"2026-05-22T09:00:53.721Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:00:58.393731+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_peak\": 761.1, \"eval_return_final\": 544, \"eval_return_peak_step\": 165000, \"nve_peak\": 1.5, \"nve_final\": 0.1, \"civo_prevented\": true, \"gate_dt_2_frac\": 1, \"non_civo_collapse\": false, \"steps\": 215000, \"note\": \"CIVO prevented (NVE≤1.5), no non-CIVO collapse. Eval stays 486-761 after peak. Non-CIVO collapse rate confirmed 1/4 (only s2).\"}, \"completed_at\": \"2026-05-22T09:03:32.751Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_041_dual_critic_walker_s3/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_041_dual_critic_walker_s3.log\"}, \"exp_039_narrow_dual_critic_walker_s1\": {\"completed_at\": \"2026-05-22T02:35:33.617Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T16:31:40.055Z\", \"hypothesis\": \"Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 recovery 是偶发事件。\", \"metrics\": {\"civo_recovery\": true, \"eval_return_final\": 592.7, \"note\": \"Narrow dual Walker s1: CIVO triggered then recovered. s0=697.8, s1=592.7, mean≈645. Recovery 2/2.\", \"nve_peak\": 2.19, \"recovery_confirmed\": true}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --narrow_dual_critic True --logdir logdir/exp_039_narrow_dual_critic_walker_s1\\\"\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 10.06, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_039_narrow_dual_critic_walker_s1.log\", \"pid\": \"198771\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T16:31:39.634Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 36234.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:35:33.617Z\"}, \"exp_038_dual_critic_walker_s2\": {\"completed_at\": \"2026-05-22T02:11:36.842Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:18:35.293Z\", \"hypothesis\": \"Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.\", \"metrics\": {\"civo_alert\": 0, \"civo_prevented\": true, \"eval_return_collapse\": 99.6, \"eval_return_collapse_step\": 175000, \"eval_return_final\": 120.9, \"eval_return_peak\": 354, \"eval_return_peak_step\": 155000, \"gate_dt_2_frac\": 1, \"non_civo_collapse\": true, \"note\": \"CIVO prevented (NVE≤0.3) but non-CIVO eval collapse at 175k (354→99.6). Different failure mode from value overestimation.\", \"nve_final\": 0.248, \"nve_peak\": 0.3, \"steps\": 224000}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-22T02:07:51.177Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...dual_critic walker s2...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 13.88, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2\", \"model_name\": \"DreamerV3 + Dual Critic (wide)\", \"pid\": \"175633\", \"seed\": 2, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T12:18:34.859Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 49982.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:11:36.842Z\"}, \"exp_037_wide_critic_cheetah\": {\"completed_at\": \"2026-05-21T19:45:52.311Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:18:33.040Z\", \"hypothesis\": \"Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_final\": 146.1, \"eval_return_peak\": 350.1, \"gate_dt_2_frac\": 1, \"nve_final\": 0.1, \"nve_peak\": 3.6, \"steps\": 224000}, \"parent\": \"exp_033_wide_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...wide_critic cheetah...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 7.46, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\", \"model_name\": \"DreamerV3 + Wide Single Critic\", \"pid\": \"14487\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T12:18:32.619Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 26839.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T19:45:52.311Z\"}, \"exp_036_dual_critic_pickcube\": {\"completed_at\": \"2026-05-21T19:45:31.290Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T08:43:18.481296+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T19:38:29.196731+00:00\"}]}, \"hypothesis\": \"Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_final\": 27.7, \"eval_return_peak\": 27.7, \"gate_dt_2_frac\": 1, \"nve_final\": 0.2, \"nve_peak\": 2.3, \"steps\": 212447}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T19:38:24.346Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\\\"\", \"data_count\": 200000, \"data_path\": \"ManiSkill PickCube-v1\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 11.03, \"gpu_id\": 0, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\", \"model_name\": \"DreamerV3 + Dual Critic\", \"pid\": \"2476\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T08:43:44.544357+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 39706.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T19:45:31.290Z\"}, \"exp_035_narrow_dual_critic_walker\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_035_narrow_dual_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T16:11:39.130025+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T07:47:55.131429+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T16:08:03.906985+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestimation cascade. If CIVO persists → parameter count is the key factor. Combined with exp_033 (wide single critic) forms 2×2 factorial: {single,dual} × {normal,scaled} → mechanism decomposition.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_035_narrow_dual_critic_walker.log\", \"metrics\": {\"actor_entropy_final\": -0.19, \"civo_alert_window\": \"65K-85K\", \"civo_prevented\": false, \"civo_recovery\": true, \"director_override\": \"Director ruled success: CIVO recovery (33.8→697.8) is the success criterion, not prevention\", \"eval_at_215K\": 697.8, \"eval_at_85K\": 33.8, \"eval_final\": 697.8, \"eval_peak\": 697.8, \"eval_trough\": 33.8, \"nve_final\": 0.066, \"nve_peak\": 2.75, \"nve_peak_step\": 85000, \"recovery_from\": 33.8, \"recovery_to\": 697.8, \"total_steps\": 215000, \"train_return_final_range\": \"708-806\", \"v1_v2_gap_max\": 0.08, \"v1_v2_gap_typical\": 0.01}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T16:07:58.973Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-40020\", \"started_at\": \"2026-05-21T07:48:17.595Z\", \"training_hours\": 8.33}, \"retry_count\": 0, \"server\": \"bjb1-40020\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --narrow_dual_critic True --logdir logdir/exp_035_narrow_dual_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 8.31, \"gpu_id\": 1, \"hyperparams\": {\"critic_hidden\": 256, \"critic_layers\": 2, \"critic_params_each\": 525000, \"critic_params_total\": 1050000, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"narrow_dual_critic\": true}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_035_narrow_dual_critic_walker.log\", \"model_name\": \"DreamerV3 + Narrow Dual Critic (2×256 hidden, 1.05M total)\", \"pid\": \"162900\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T07:56:05.926445+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29900.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T16:14:26.099Z\"}, \"exp_034\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah/\", \"completed_at\": \"2026-05-21T12:18:09.552Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:17:29.760Z\", \"hypothesis\": \"Dual-critic (min of two independent critics) will prevent CIVO in Cheetah Run by providing pessimistic value estimates, as it did in Walker Walk (exp_032). If value overestimation is environment-universal, the same mechanism should work across DMC tasks.\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"metrics\": {\"CIVO_prevented\": false, \"civo_trigger_steps\": [55000, 105000], \"final_NVE\": 0.144, \"final_eval_return\": 97.5, \"max_NVE\": 1.753, \"peak_eval_return\": 315.7, \"total_steps\": 215000, \"v1_v2_max_divergence\": 0.004}, \"retry_count\": 0, \"spec\": {\"command\": \"python train.py --configs dmc_cheetah_run --dual_critic True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --steps 210000 --seed 0\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:18:09.552Z\"}, \"exp_034_dual_critic_cheetah\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah\", \"completed_at\": \"2026-05-21T12:14:19.189109+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T05:50:59.612345+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T12:02:46.032647+00:00\"}]}, \"hypothesis\": \"Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level intervention that works across environments. Strengthens Intervention Hierarchy: architecture-level > representation-level.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"metrics\": {\"baseline_eval_final\": 0.83, \"baseline_nve_peak\": 70.64, \"civo_alert_steps\": [95000, 105000], \"civo_alerts\": 2, \"civo_prevented\": false, \"dual_wave_civo\": true, \"eval_final\": 97.5, \"eval_final_step\": 215000, \"eval_peak\": 315.7, \"eval_peak_step\": 45000, \"eval_vs_peak_pct\": 31, \"gate_dt2_frac\": 1, \"gate_entropy\": 0, \"v1_v2_gap\": \"<0.2 (min operation has no pessimism effect)\", \"value_mean_final\": 14.2, \"value_mean_peak\": 60.5, \"ve_ratio_final\": 0.1, \"ve_ratio_peak\": 1.8, \"ve_ratio_peak_step\": 55000}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T12:02:37.929Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_034_dual_critic_cheetah\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_id\": 1, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"model_name\": \"DreamerV3 + Dual Critic\", \"pid\": \"993925\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T05:51:51.325323+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:15:03.481Z\"}, \"exp_033_wide_critic_walker\": {\"account\": \"root\", \"checkpoint_path\": \"logdir/exp_033_wide_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T12:08:15.252Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T03:45:53.644963+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T12:02:31.184962+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should also suppress CIVO. If wide-critic fails (CIVO persists) but dual-critic succeeds → min operation has implicit regularization effect beyond pessimism.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\", \"metrics\": {\"civo_alert_step\": 105000, \"civo_alert_ve_ratio\": 1.958, \"civo_instability_duration_steps\": 75000, \"critic_params\": 2886911, \"eval_reward_final\": 407.9, \"eval_reward_peak\": 194.8, \"eval_reward_trough\": 31.8, \"value_loss_final\": 1.4, \"ve_ratio_final\": 0.1, \"ve_ratio_peak\": 4.7}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T12:02:26.400Z\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-40020\", \"started_at\": \"2026-05-21T03:46:14.882Z\", \"training_hours\": 8.27}, \"retry_count\": 0, \"server\": \"bjb1-40020\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_033_wide_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 8.25, \"gpu_id\": 0, \"hyperparams\": {\"critic_hidden\": 1024, \"critic_layers\": 2, \"critic_params\": 2886911, \"dual_critic\": false, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"wide_critic\": true}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\", \"model_name\": \"DreamerV3 + Wide Critic (1024 hidden, 2.89M params, 2.44× normal)\", \"pid\": \"151860\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T03:52:59.702597+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29715.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:08:15.252Z\"}, \"exp_031b_tcn_pickcube_s0_sigma05\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_031b_tcn_pickcube_s0_sigma05/latest.pt\", \"completed_at\": \"2026-05-21T08:43:18.481253+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T19:46:39.136363+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T08:41:51.310620+00:00\"}]}, \"failure_reason\": \"NVE late-stage decline is floor effect (value signal collapse), not CIVO recovery. Eval flat 25-29 throughout — agent never learned meaningful manipulation. Confirmed by Reviewer. TCN PickCube: 0/2 (σ=0.2 and σ=0.5 both failed).\", \"hypothesis\": \"PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, establishes dose-response curve for robotics manipulation domain.\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_031b_tcn_pickcube_s0_sigma05.log\", \"metrics\": {\"eval_reward_final\": 25.5, \"eval_reward_last5_avg\": 25.9, \"eval_reward_peak\": 29.1, \"nve_final\": 0.2, \"nve_peak\": 3.3, \"nve_peak_step\": 42500, \"nve_suppressed_from_step\": 72500, \"total_episodes\": 1062, \"total_steps\": 212400}, \"parent\": \"exp_031_tcn_pickcube_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-21T08:41:45.929Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.5 --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_031b_tcn_pickcube_s0_sigma05\\\"\", \"data_count\": 200000, \"data_path\": \"ManiSkill PickCube-v1\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_031b_tcn_pickcube_s0_sigma05.log\", \"model_name\": \"DreamerV3 + TCN σ=0.5\", \"pid\": \"968495\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T22:33:14.695383+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T08:50:22.853581+00:00\"}, \"exp_032_dual_critic_walker\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T07:47:55.131382+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T22:58:31.008200+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T07:45:13.742811+00:00\"}]}, \"hypothesis\": \"Dual-critic (min of two independent critics for actor loss) will suppress CIVO by preventing critic overestimation. Uses 008d CIVO-trigger config (trained dt_emb + multi-rate exposure). If NVE stays below 1.5× and eval matches baseline, dual-critic is an effective architecture-level intervention.\", \"metrics\": {\"baseline_eval\": 900, \"civo_prevented\": true, \"eval_final\": 739.7, \"eval_final_step\": 215000, \"eval_peak\": 787.7, \"eval_peak_step\": 205000, \"eval_vs_baseline_pct\": 87.5, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"note\": \"CIVO prevented 2/2 seeds. v1≈v2 → mechanism is implicit value regularization, not min-of-two pessimism.\", \"nve_final\": 0.1, \"nve_peak\": 1.1, \"nve_peak_step\": 95000, \"v1_v2_gap\": \"<0.1% (min operation has no pessimism effect)\"}, \"parent\": \"exp_008d_civo_trigger_s2\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:45:08.395Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_032_dual_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_id\": 1, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_032_dual_critic_walker.log\", \"model_name\": \"DreamerV3 + Dual Critic (min of two independent critics)\", \"pid\": \"124556\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T23:19:57.690519+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T07:52:13.265445+00:00\"}, \"exp_032b_dual_critic_walker_s1\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032b_dual_critic_walker_s1/latest.pt\", \"completed_at\": \"2026-05-21T05:50:59.612299+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T23:22:08.787456+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T05:48:16.069863+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Dual-critic seed=1 replication: if both s0 and s1 show NVE<1.5× and eval matches baseline → dual-critic is a robust architecture-level CIVO intervention, strengthening Intervention Hierarchy evidence.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_032b_dual_critic_walker_s1.log\", \"metrics\": {\"actor_loss_late\": \"≈0 (gradient signal weak)\", \"baseline_eval\": 900, \"director_override\": \"CIVO suppressed (NVE<1.5 throughout) = success for intervention evaluation. Eval 57% of vanilla baseline is due to gate collapse (dt=2 locked), not dual-critic failure.\", \"eval_criterion_pass\": false, \"eval_trajectory\": \"75K=241, 105K=228, 155K=361, 195K=544, 205K=552(peak), 215K=516\", \"eval_vs_baseline_pct\": 57, \"final_eval_return\": 516, \"final_nve\": 0.1, \"gate_dt2_frac\": 1.0, \"nve_criterion_pass\": true, \"nve_trajectory\": \"15K=0.0, 25K=0.2, 35K=0.4, 45K=0.8, 55K=0.7, 65K=0.7, 75K=0.7, 85K=1.4(peak), 95K=0.7, 105K=0.5, 135K=0.4, 215K=0.1\", \"peak_eval_return\": 551.8, \"peak_nve\": 1.4, \"total_steps\": 224000, \"total_updates\": 52599, \"training_hours\": 6.42, \"value1_value2_gap\": \"<0.5 (min operation has no pessimism effect)\"}, \"notes\": \"NVE well controlled (peak 1.4 < 1.5, no CIVO), but eval only 57% of baseline (516 vs ~900). Dual-critic suppresses value overestimation at cost of policy performance. Gate collapsed to dt=2 throughout. Two critics converge to near-identical values, min operation ineffective.\", \"parent\": \"exp_032_dual_critic_walker\", \"pid\": \"973387\", \"reproduce\": {\"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_032b_dual_critic_walker_s1\\\"\", \"finished_at\": \"2026-05-21T05:48:11.173Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-20T23:22:55.338Z\", \"training_hours\": 6.42}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0}, \"model_name\": \"DreamerV3 + Dual Critic (min of two independent critics)\", \"seed\": 1}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T05:55:05.353975+00:00\"}, \"exp_029d_tcn_walker_s3_sigma02\": {\"completed_at\": \"2026-05-21T03:39:24.356918+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T19:33:03.633Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T03:32:52.751412+00:00\"}]}, \"failure_reason\": \"Sudden CIVO blowup: NVE appeared healthy at 95K (0.666, declining from 0.855@85K), then catastrophic spike to 3.0@105K. Eval collapsed 349.6→71.8. Late-stage NVE recovery to 0.4@215K = value adaptation (eval stayed at 104.5, never recovered). TCN σ=0.2 Walker: 2/4 seeds CIVO failure (s2: NVE 2.77, s3: NVE 3.0).\", \"hypothesis\": \"Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 2021.\", \"metrics\": {\"civo_onset_step\": 105000, \"civo_pattern\": \"sudden blowup (healthy 0.67@95K → 3.0@105K)\", \"eval_final\": 104.5, \"eval_last_step\": 215000, \"eval_peak\": 349.6, \"eval_peak_step\": 95000, \"eval_return_105K\": 71.8, \"eval_return_115K\": 69.8, \"eval_return_125K\": 61.5, \"eval_return_135K\": 141.8, \"eval_return_145K\": 98.66, \"eval_return_155K\": 88.86, \"eval_return_15K\": 159.1, \"eval_return_165K\": 86.22, \"eval_return_175K\": 123.53, \"eval_return_185K\": 153.71, \"eval_return_195K\": 68.84, \"eval_return_205K\": 63.71, \"eval_return_215K\": 104.5, \"eval_return_25K\": 155.7, \"eval_return_35K\": 190.8, \"eval_return_45K\": 137.1, \"eval_return_55K\": 210.7, \"eval_return_5K\": 31.7, \"eval_return_65K\": 189.5, \"eval_return_75K\": 253.2, \"eval_return_85K\": 259.5, \"eval_return_95K\": 349.6, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"nve_peak\": 3.0, \"nve_peak_step\": 105000, \"step\": 224000, \"value_mean_105K\": 218.37, \"value_mean_215K\": 42.55, \"value_mean_95K\": 232.74, \"ve_ratio_105K\": 3.0, \"ve_ratio_115K\": 2.5, \"ve_ratio_125K\": 2.4, \"ve_ratio_135K\": 0.9, \"ve_ratio_145K\": 1.141, \"ve_ratio_155K\": 1.06, \"ve_ratio_165K\": 0.91, \"ve_ratio_175K\": 0.556, \"ve_ratio_185K\": 0.396, \"ve_ratio_195K\": 0.78, \"ve_ratio_205K\": 0.747, \"ve_ratio_215K\": 0.4, \"ve_ratio_45K\": 0.695, \"ve_ratio_55K\": 0.598, \"ve_ratio_65K\": 0.863, \"ve_ratio_75K\": 0.791, \"ve_ratio_85K\": 0.9, \"ve_ratio_95K\": 0.7}, \"parent\": \"exp_029b_tcn_walker_s2_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-21T03:32:47.021Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029d_tcn_walker_s3_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_029d_tcn_walker_s3_sigma02\\\"\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029d_tcn_walker_s3_sigma02.log\", \"pid\": \"109826\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T19:33:48.032Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T03:39:24.356963+00:00\"}, \"exp_031_tcn_pickcube_s0_sigma02\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_031_tcn_pickcube_s0_sigma02\", \"completed_at\": \"2026-05-20T23:52:48.308Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T12:09:56.923Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T23:50:00.801433+00:00\"}]}, \"hypothesis\": \"TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfitting to fixed dt signals.\", \"metrics\": {\"eval_peak\": 28.6, \"eval_peak_step\": 162500, \"eval_return_132K\": 23.45, \"eval_return_152K\": 23.1, \"eval_return_192K\": 11.6, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"step\": 195600, \"train_return_range\": \"18-25\", \"ve_ratio_latest\": 0.18, \"ve_ratio_peak\": 3.71}, \"parent\": \"exp_019b_pickcube_civo_trigger\", \"reproduce\": {\"finished_at\": \"2026-05-20T23:49:56.649Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"none(train_from_scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_031_tcn_pickcube_s0_sigma02\\\"\", \"data_count\": \"200000(online)\", \"data_path\": \"maniskill_PickCube-v1\", \"eval_data\": \"maniskill_PickCube-v1(online_eval)\", \"gpu\": \"cuda:1\", \"gpu_hours\": 11.17, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_031_tcn_pickcube_s0_sigma02.log\", \"model_name\": \"dreamerv3\", \"pid\": \"908459\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T12:42:41.707Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 40206.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T23:52:48.308Z\"}, \"exp_029b_tcn_walker_s2_sigma02\": {\"completed_at\": \"2026-05-20T22:58:31.008151+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T16:55:13.731Z\", \"failure_reason\": \"CIVO confirmed: NVE accelerated 1.01→1.65→2.77@105K (008d-like pattern), eval collapsed 177.7→32.0. Late-stage NVE decline to 1.06@155K = value adaptation to collapsed policy, NOT CIVO self-recovery (eval remained at 56.5, never recovered). Killed at 156K to free GPU for dual-critic experiment.\", \"hypothesis\": \"TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.\", \"metrics\": {\"civo_onset_step\": 65000, \"eval_last_step\": 165000, \"eval_peak\": 177.67, \"eval_peak_step\": 55000, \"eval_return_105K\": 31.97, \"eval_return_115K\": 35.45, \"eval_return_125K\": 33.04, \"eval_return_135K\": 42.47, \"eval_return_145K\": 51.66, \"eval_return_155K\": 56.5, \"eval_return_15K\": 168.41, \"eval_return_165K\": 44.9, \"eval_return_25K\": 159.56, \"eval_return_35K\": 168.05, \"eval_return_45K\": 171.51, \"eval_return_55K\": 177.67, \"eval_return_5K\": 30.46, \"eval_return_65K\": 106.57, \"eval_return_75K\": 64.01, \"eval_return_85K\": 62.82, \"eval_return_95K\": 44.66, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"late_stage_nve_decline\": \"value adaptation (value_mean 108→55), not recovery (eval stayed 32-57)\", \"nve_peak\": 2.765, \"nve_peak_step\": 105000, \"step\": 168000, \"value_mean_105K\": 88.38, \"value_mean_165K\": 55.03, \"value_mean_55K\": 103.62, \"ve_ratio_105K\": 2.765, \"ve_ratio_115K\": 2.326, \"ve_ratio_125K\": 2.278, \"ve_ratio_135K\": 1.648, \"ve_ratio_145K\": 1.234, \"ve_ratio_155K\": 1.061, \"ve_ratio_15K\": 0.03, \"ve_ratio_165K\": 1.226, \"ve_ratio_25K\": 0.174, \"ve_ratio_35K\": 0.335, \"ve_ratio_45K\": 0.477, \"ve_ratio_55K\": 0.583, \"ve_ratio_65K\": 1.014, \"ve_ratio_75K\": 1.65, \"ve_ratio_85K\": 1.623, \"ve_ratio_95K\": 2.109}, \"parent\": \"exp_029a_tcn_walker_s1_sigma02\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029b_tcn_walker_s2_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_029b_tcn_walker_s2_sigma02\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029b_tcn_walker_s2_sigma02.log\", \"pid\": \"75543\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T16:56:24.781Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T22:58:31.008195+00:00\"}, \"exp_030c_tcn_cheetah_s0_sigma10\": {\"completed_at\": \"2026-05-20T22:34:07.916411+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T16:26:11.800Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T22:28:30.207347+00:00\"}]}, \"hypothesis\": \"TCN σ=1.0 on Cheetah tests whether higher noise amplitude further suppresses CIVO. σ=0.5 (exp_030b) was negative with NVE peaking at 10.67@55K then declining. σ=1.0 should provide stronger temporal regularization. If NVE stays below 1.5 throughout training and eval_return ≥ baseline → TCN generalizes to Cheetah with appropriate σ scaling.\", \"metrics\": {\"baseline_eval_avg\": 548, \"eval_final\": 47.2, \"eval_peak\": 371.7, \"eval_peak_step\": 35000, \"eval_return_105K\": 122.5, \"eval_return_115K\": 162.2, \"eval_return_125K\": 148.5, \"eval_return_135K\": 138.4, \"eval_return_145K\": 100.4, \"eval_return_155K\": 144.3, \"eval_return_15K\": 87.5, \"eval_return_165K\": 130.9, \"eval_return_175K\": 66.4, \"eval_return_185K\": 47.2, \"eval_return_195K\": 56.5, \"eval_return_205K\": 49.7, \"eval_return_215K\": 47.2, \"eval_return_25K\": 166.3, \"eval_return_35K\": 371.7, \"eval_return_45K\": 144.0, \"eval_return_55K\": 266.0, \"eval_return_5K\": 8.3, \"eval_return_65K\": 197.0, \"eval_return_75K\": 107.8, \"eval_return_85K\": 95.8, \"eval_return_95K\": 72.8, \"eval_vs_baseline\": \"8.6%\", \"gate_dt2_frac\": 1.0, \"gate_dt_mean\": 2.0, \"gate_entropy\": 0.0, \"step\": 224000, \"ve_ratio_max\": 0.4}, \"parent\": \"\", \"reproduce\": {\"finished_at\": \"2026-05-20T22:28:26.022Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030c_tcn_cheetah_s0_sigma10\", \"command\": \"dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --tcn_sigma 1.0\", \"data_count\": 210000, \"data_path\": \"dmc_cheetah_run\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log\", \"model_name\": \"dreamerv3\", \"pid\": \"920968\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T16:49:48.464Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T22:34:07.916452+00:00\"}, \"exp_029c_tcn_walker_s0_sigma01\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-20T11:09:50.913Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T19:30:34.687287+00:00\"}]}, \"hypothesis\": \"σ=0.1 tests the lower bound of effective TCN noise; if Walker σ=0.2 prevents CIVO and σ=0.1 does not, establishes minimum effective dose. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8). Three-point dose-response: σ=0.1 (this), σ=0.2 (success), σ=0.5 (oscillatory failure).\", \"metrics\": {\"eval_final\": 328.3, \"eval_peak\": 490.7, \"eval_peak_step\": \"165K\", \"eval_return_105K\": 204.7, \"eval_return_115K\": 296.4, \"eval_return_125K\": 232.3, \"eval_return_135K\": 247.4, \"eval_return_145K\": 323.1, \"eval_return_155K\": 359.7, \"eval_return_15K\": 99.1, \"eval_return_165K\": 490.7, \"eval_return_175K\": 246.2, \"eval_return_185K\": 220.6, \"eval_return_195K\": 212.8, \"eval_return_205K\": 256.9, \"eval_return_215K\": 328.3, \"eval_return_25K\": 140.7, \"eval_return_35K\": 155.7, \"eval_return_45K\": 160.9, \"eval_return_55K\": 254.8, \"eval_return_5K\": 35.6, \"eval_return_65K\": 268.7, \"eval_return_75K\": 295.5, \"eval_return_85K\": 220.8, \"eval_return_95K\": 188.6, \"nve_final\": 0.1, \"nve_max\": 1.0218, \"nve_max_step\": \"95K\", \"total_steps\": 224000, \"ve_ratio_105K\": 0.761, \"ve_ratio_115K\": 0.4514, \"ve_ratio_125K\": 0.4899, \"ve_ratio_135K\": 0.3995, \"ve_ratio_145K\": 0.2667, \"ve_ratio_155K\": 0.2, \"ve_ratio_15K\": 0.0306, \"ve_ratio_165K\": 0.1, \"ve_ratio_175K\": 0.3, \"ve_ratio_185K\": 0.3, \"ve_ratio_195K\": 0.3, \"ve_ratio_205K\": 0.2, \"ve_ratio_215K\": 0.1, \"ve_ratio_25K\": 0.1606, \"ve_ratio_35K\": 0.3162, \"ve_ratio_45K\": 0.4807, \"ve_ratio_55K\": 0.4368, \"ve_ratio_65K\": 0.5432, \"ve_ratio_75K\": 0.6211, \"ve_ratio_85K\": 0.9533, \"ve_ratio_95K\": 1.0218}, \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-20T19:30:28.923Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029c_tcn_walker_s0_sigma01/latest.pt\", \"checkpoint_source\": \"from_scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.1 --logdir logdir/exp_029c_tcn_walker_s0_sigma01\\\"\", \"data_count\": 210000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029c_tcn_walker_s0_sigma01.log\", \"model_name\": \"dreamer\", \"pid\": \"59395\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T11:42:56.447Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T19:53:26.097Z\"}, \"exp_029a_tcn_walker_s1_sigma02\": {\"completed_at\": \"2026-05-20T16:47:18.789Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T08:31:29.514Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-20T16:47:29.902718+00:00\"}]}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"hypothesis\": \"TCN σ=0.2 multi-seed validation (seed=1): replication of exp_027_tcn_walker_s0_sigma02 which shows NVE<1.0× and eval reaching baseline at 135K. Tests whether CIVO suppression is reproducible across seeds. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.2. If s1 also shows NVE<1.0× → TCN σ=0.2 is a robust intervention.\", \"metrics\": {\"current_step\": 215000, \"eval_last10_mean\": 282.15, \"eval_peak\": 401, \"eval_peak_step\": \"125K\", \"eval_return_105K\": 319.4, \"eval_return_115K\": 345.5, \"eval_return_125K\": 401, \"eval_return_135K\": 307.8, \"eval_return_145K\": 380.8, \"eval_return_155K\": 307.3, \"eval_return_15K\": 137.7, \"eval_return_165K\": 320.3, \"eval_return_175K\": 159, \"eval_return_185K\": 278.2, \"eval_return_195K\": 301.2, \"eval_return_205K\": 204.6, \"eval_return_215K\": 161.3, \"eval_return_25K\": 180.9, \"eval_return_35K\": 124, \"eval_return_45K\": 124.2, \"eval_return_55K\": 133.9, \"eval_return_5K\": 36.7, \"eval_return_65K\": 169.7, \"eval_return_75K\": 171.2, \"eval_return_85K\": 151.8, \"eval_return_95K\": 180.3, \"nve_final\": 0.1864, \"nve_max\": 0.6428, \"nve_max_step\": \"55K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.1554, \"ve_ratio_115K\": 0.1348, \"ve_ratio_125K\": 0.116, \"ve_ratio_135K\": 0.1449, \"ve_ratio_145K\": 0.1088, \"ve_ratio_155K\": 0.1287, \"ve_ratio_15K\": 0.0248, \"ve_ratio_165K\": 0.1142, \"ve_ratio_175K\": 0.2138, \"ve_ratio_185K\": 0.121, \"ve_ratio_195K\": 0.1075, \"ve_ratio_205K\": 0.1503, \"ve_ratio_215K\": 0.1864, \"ve_ratio_25K\": 0.1165, \"ve_ratio_35K\": 0.3574, \"ve_ratio_45K\": 0.5147, \"ve_ratio_55K\": 0.6428, \"ve_ratio_65K\": 0.4777, \"ve_ratio_75K\": 0.398, \"ve_ratio_85K\": 0.4033, \"ve_ratio_95K\": 0.3007}, \"notes\": \"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\", \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:47:17.713Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02/latest.pt\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir ~/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02\", \"data_count\": 210000, \"data_path\": \"dmc_walker_walk\", \"gpu\": \"cuda:1\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02.log\", \"model_name\": \"dreamerv3\", \"pid\": \"50924\", \"seed\": 1, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T16:53:36.867Z\"}, \"exp_030b_tcn_cheetah_s0_sigma05\": {\"completed_at\": \"2026-05-20T16:49:02.778Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T11:07:53.975Z\", \"hypothesis\": \"Cheetah CIVO intensity requires higher TCN noise; σ=0.5 may be the environment-appropriate dose (Walker σ=0.5 = overdose causing oscillatory CIVO, Cheetah σ=0.2 = underdose with NVE 1.903@55K). Tests whether TCN effectiveness is environment-dependent with σ scaling to CIVO severity. If NVE<1.5× and eval maintained → TCN is generalizable with environment-tuned σ.\", \"metrics\": {\"current_step\": 195000, \"eval_return_105K\": 104.4, \"eval_return_115K\": 137.7, \"eval_return_125K\": 211.7, \"eval_return_135K\": 97.2, \"eval_return_145K\": 79.4, \"eval_return_155K\": 76.8, \"eval_return_15K\": 78.3, \"eval_return_165K\": 77.5, \"eval_return_175K\": 85.7, \"eval_return_185K\": 68.7, \"eval_return_195K\": 77.6, \"eval_return_25K\": 219.3, \"eval_return_35K\": 296.5, \"eval_return_45K\": 32.8, \"eval_return_55K\": 6, \"eval_return_5K\": 8.3, \"eval_return_65K\": 71.2, \"eval_return_75K\": 23.3, \"eval_return_85K\": 34, \"eval_return_95K\": 143.6, \"nve_final\": 0.1534, \"nve_max\": 10.6657, \"nve_max_step\": \"55K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.2686, \"ve_ratio_115K\": 0.1789, \"ve_ratio_125K\": 0.1037, \"ve_ratio_135K\": 0.2153, \"ve_ratio_145K\": 0.2478, \"ve_ratio_155K\": 0.2392, \"ve_ratio_15K\": 0.0202, \"ve_ratio_165K\": 0.202, \"ve_ratio_175K\": 0.1591, \"ve_ratio_185K\": 0.1834, \"ve_ratio_195K\": 0.1534, \"ve_ratio_25K\": 0.0636, \"ve_ratio_35K\": 0.1238, \"ve_ratio_45K\": 1.9141, \"ve_ratio_55K\": 10.6657, \"ve_ratio_65K\": 0.8371, \"ve_ratio_75K\": 1.9823, \"ve_ratio_85K\": 1.0946, \"ve_ratio_95K\": 0.2253}, \"parent\": \"\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030b_tcn_cheetah_s0_sigma05/latest.pt\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030b_tcn_cheetah_s0_sigma05/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T16:49:02.778Z\"}, \"exp_027_tcn_walker_s1\": {\"completed_at\": \"2026-05-20T12:38:02.085Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T05:51:53.479Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T12:35:42.576855+00:00\"}]}, \"hypothesis\": \"TCN σ=0.5 seed=1: Replication of exp_027_tcn_walker_s0 with different seed to verify that the NVE self-correction phenomenon (transient CIVO at 55K → NVE recovery to 0.83 by 75K) is reproducible across seeds, not a stochastic artifact. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.5.\", \"metrics\": {\"eval_last10_mean\": 233.1, \"eval_peak\": 364.9, \"eval_peak_step\": 75000, \"eval_return\": {\"105000\": 216.7, \"115000\": 318.9, \"125000\": 309.1, \"135000\": 216.1, \"145000\": 175.4, \"15000\": 140.5, \"155000\": 171, \"165000\": 209.5, \"175000\": 120.4, \"185000\": 355.4, \"195000\": 183.3, \"205000\": 240.2, \"215000\": 350.8, \"25000\": 163.6, \"35000\": 153, \"45000\": 136.8, \"5000\": 31, \"55000\": 158.3, \"65000\": 298.5, \"75000\": 364.9, \"85000\": 134, \"95000\": 94.6}, \"nve_final\": 0.1476, \"nve_max\": 1.6367, \"nve_max_step\": 95000, \"total_steps\": 215000, \"ve_ratio\": {\"105000\": 0.6444, \"115000\": 0.4021, \"125000\": 0.38, \"135000\": 0.5078, \"145000\": 0.8469, \"15000\": 0.0246, \"155000\": 0.8568, \"165000\": 0.5393, \"175000\": 0.7355, \"185000\": 0.211, \"195000\": 0.3513, \"205000\": 0.2376, \"215000\": 0.1476, \"25000\": 0.1416, \"35000\": 0.3585, \"45000\": 0.6101, \"55000\": 0.7092, \"65000\": 0.4875, \"75000\": 0.4902, \"85000\": 1.4104, \"95000\": 1.6367}}, \"parent\": \"exp_027_tcn_walker_s0\", \"reproduce\": {\"finished_at\": \"2026-05-20T12:35:38.092Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_027_tcn_walker_s1/\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s1.log\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T12:45:31.028Z\"}, \"exp_027_tcn_walker_s0_sigma02\": {\"completed_at\": \"2026-05-20T11:19:31.331Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T03:25:32.533Z\", \"hypothesis\": \"TCN σ sensitivity test: same as exp_027 (Gaussian noise on dt_embedding during imagination) but with σ=0.2 instead of 0.5. Tests whether smaller noise magnitude is sufficient to disrupt dt-specific value bias. If σ=0.5 works but σ=0.2 doesn't → noise magnitude matters; if both work → method is robust to σ choice.\", \"metrics\": {\"eval_last10_mean\": 587.1, \"eval_peak\": 821.1, \"eval_peak_step\": \"175K\", \"eval_return_105K\": 236.4, \"eval_return_115K\": 543.8, \"eval_return_125K\": 458.4, \"eval_return_135K\": 496.7, \"eval_return_145K\": 542.7, \"eval_return_155K\": 660.5, \"eval_return_15K\": 150.6, \"eval_return_165K\": 653.3, \"eval_return_175K\": 821.1, \"eval_return_185K\": 560.5, \"eval_return_195K\": 567.9, \"eval_return_205K\": 558.7, \"eval_return_215K\": 551, \"eval_return_25K\": 199.4, \"eval_return_35K\": 278.2, \"eval_return_45K\": 315.6, \"eval_return_55K\": 278.6, \"eval_return_5K\": 35.6, \"eval_return_65K\": 331, \"eval_return_75K\": 293.1, \"eval_return_85K\": 363.9, \"eval_return_95K\": 171.4, \"nve_final\": 0.0955, \"nve_max\": 0.9081, \"nve_max_step\": \"95K\", \"total_steps\": 215000, \"ve_ratio_105K\": 0.5625, \"ve_ratio_115K\": 0.2105, \"ve_ratio_125K\": 0.2182, \"ve_ratio_135K\": 0.1764, \"ve_ratio_145K\": 0.143, \"ve_ratio_155K\": 0.106, \"ve_ratio_15K\": 0.0192, \"ve_ratio_165K\": 0.0979, \"ve_ratio_175K\": 0.0729, \"ve_ratio_185K\": 0.1048, \"ve_ratio_195K\": 0.1026, \"ve_ratio_205K\": 0.0995, \"ve_ratio_215K\": 0.0955, \"ve_ratio_25K\": 0.0961, \"ve_ratio_35K\": 0.1875, \"ve_ratio_45K\": 0.3009, \"ve_ratio_55K\": 0.5231, \"ve_ratio_65K\": 0.5654, \"ve_ratio_75K\": 0.611, \"ve_ratio_85K\": 0.4665, \"ve_ratio_95K\": 0.9081}, \"parent\": \"exp_027_tcn_walker_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0_sigma02/latest.pt\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_027_tcn_walker_s0_sigma02\", \"data_count\": 215000, \"data_path\": \"dmc_walker_walk\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0_sigma02.log\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T12:06:21.855Z\"}, \"exp_030a_tcn_cheetah_s0_sigma02\": {\"completed_at\": \"2026-05-20T11:10:00.827Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T09:24:38.711Z\", \"hypothesis\": \"TCN σ=0.2 cross-environment validation on Cheetah Run: tests whether CIVO suppression generalizes beyond Walker Walk. Cheetah exhibits stronger CIVO (NVE 8.27-70.64× in exp_010b) so this is a harder test. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) + TCN σ=0.2. If NVE<1.5× and eval maintained → TCN is environment-agnostic intervention.\", \"metrics\": {\"current_step\": 64000, \"eval_return_35K\": 299.5, \"eval_return_55K\": 31.9, \"note\": \"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\", \"target_steps\": 210000, \"ve_ratio_55K\": 1.903}, \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_030a_tcn_cheetah_s0_sigma02/\", \"checkpoint_source\": \"from_scratch\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_enabled True --tcn_sigma 0.2 --logdir logdir/exp_030a_tcn_cheetah_s0_sigma02\", \"data_count\": \"210000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run\", \"gpu\": \"cuda:0\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_030a_tcn_cheetah_s0_sigma02.log\", \"model_name\": \"dreamerv3_tcn_sigma02_cheetah\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T11:10:00.827Z\"}, \"exp_027_tcn_walker_s0\": {\"analysis_summary\": \"TCN (σ=0.5 noise on dt_embedding) FAILED to suppress CIVO. NVE breached 1.5× threshold 3 times: 55K(1.68×), 65K(1.54×), 85K(3.97×). Peak NVE 3.97× at 85K is HIGHER than typical CIVO, suggesting TCN destabilizes value learning. Eval peaked at 240 (35K), then collapsed to avg 117 in latter half — far below 450 target. Gate remained fixed at dt=2 throughout (zero entropy). The noise magnitude was insufficient to decorrelate critic estimates from dt conditioning. Training reached 120K/210K planned. Hypothesis falsified: forward-pass noise at σ=0.5 does not prevent critic from exploiting dt-specific value structure.\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_027_tcn_walker_s0/latest.pt\", \"completed_at\": \"2026-05-20T09:24:09.016Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T02:44:51.820Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T06:06:34.898602+00:00\"}]}, \"hypothesis\": \"Temporal Conditioning Noise (TCN): adding Gaussian noise (sigma=0.5) to dt_embedding during imagination rollouts reduces dt conditioning precision, preventing critic from learning dt-specific value bias. Predicts CIVO suppression (NVE < 1.5×) with eval > 50% baseline (~450+). Based on obs-decoder SGS failure (gradient-level intervention insufficient) → need forward-pass/representation-level intervention.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0.log\", \"metrics\": {\"eval_return_105K\": 95.5, \"eval_return_112K\": 99.5, \"eval_return_15K\": 154.6, \"eval_return_25K\": 223.6, \"eval_return_35K\": 240, \"eval_return_45K\": 101.2, \"eval_return_55K\": 70, \"eval_return_5K\": 37.4, \"eval_return_65K\": 95.1, \"eval_return_75K\": 189.2, \"eval_return_85K\": 36, \"eval_return_95K\": 166.4, \"final_step\": 120000, \"gate_dt_entropy\": 0, \"gate_dt_mean\": 2, \"last_5_eval_avg\": 117.3, \"nve_breach_count\": 3, \"nve_breach_steps\": \"55K(1.68), 65K(1.54), 85K(3.97)\", \"peak_eval\": 240, \"peak_eval_step\": \"35K\", \"peak_nve\": 3.965, \"peak_nve_step\": \"85K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.916, \"ve_ratio_15K\": 0.02, \"ve_ratio_25K\": 0.11, \"ve_ratio_35K\": 0.235, \"ve_ratio_45K\": 0.86, \"ve_ratio_55K\": 1.679, \"ve_ratio_65K\": 1.544, \"ve_ratio_75K\": 0.831, \"ve_ratio_85K\": 3.965, \"ve_ratio_95K\": 0.675}, \"parent\": \"exp_025_obs_sgs_walker_s1\", \"reproduce\": {\"finished_at\": \"2026-05-20T06:06:30.806Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.5 --logdir logdir/exp_027_tcn_walker_s0\\\"\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 3.18, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0.log\", \"pid\": \"888715\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T06:13:35.505Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11433.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T09:24:09.016Z\"}, \"exp_028_rave_walker_s0_ceil15\": {\"completed_at\": \"2026-05-20T08:31:12.389Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T03:25:34.045Z\", \"hypothesis\": \"RAVE ceiling sensitivity test: same as exp_028 (EMA-anchored value cap) but with ceiling=1.5 instead of 2.0. Tighter constraint tests whether more aggressive capping improves CIVO suppression without harming learning. If ceiling=2.0 works and 1.5 also works → method robust; if 1.5 hurts eval → ceiling choice is critical.\", \"metrics\": {\"current_step\": 135000, \"eval_return_105K\": 76.2, \"eval_return_115K\": 41.2, \"eval_return_125K\": 36.6, \"eval_return_135K\": 39.1, \"eval_return_15K\": 99.4, \"eval_return_25K\": 155.3, \"eval_return_35K\": 180.1, \"eval_return_45K\": 166.9, \"eval_return_55K\": 131, \"eval_return_5K\": 31.6, \"eval_return_65K\": 91.5, \"eval_return_75K\": 120.9, \"eval_return_85K\": 137.3, \"eval_return_95K\": 70.2, \"target_steps\": 210000, \"ve_ratio_105K\": 0.984, \"ve_ratio_115K\": 1.513, \"ve_ratio_125K\": 1.462, \"ve_ratio_135K\": 1.171, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.128, \"ve_ratio_35K\": 0.247, \"ve_ratio_45K\": 0.428, \"ve_ratio_55K\": 0.737, \"ve_ratio_65K\": 1.294, \"ve_ratio_75K\": 0.937, \"ve_ratio_85K\": 0.727, \"ve_ratio_95K\": 1.28}, \"parent\": \"exp_028_rave_walker_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15/\", \"checkpoint_source\": \"N/A (trained from scratch, hyperparameter variant of exp_028_rave_walker_s0)\", \"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --rave_enabled True --rave_ceiling 1.5 --rave_ema_decay 0.99 --logdir ~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15'\", \"data_count\": \"210000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15.log\", \"model_name\": \"dreamerv3_rave_ceil15\", \"note\": \"CUDA_VISIBLE_DEVICES=1 set by submit_training_job, device=cuda:0 within process\", \"pid\": \"38372\", \"seed\": 0, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_028_rave_walker_s0_ceil15\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T08:31:12.389Z\"}, \"exp_028_rave_walker_s0\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_028_rave_walker_s0/checkpoint.ckpt\", \"completed_at\": \"2026-05-20T06:14:31.720Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T02:44:53.882Z\", \"hypothesis\": \"Reality-Anchored Value Estimation (RAVE): cap imagination critic values at ceiling*v_anchor (ceiling=2.0, v_anchor=EMA of real-state critic values). Directly prevents pathological value inflation (NVE>1.5×) by bounding imagination/reality value ratio. Based on CIVO core mechanism being imagination value explosion → this directly caps the ratio without modifying gradients or training dynamics.\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_028_rave_walker_s0/\", \"metrics\": {\"current_steps\": 105000, \"eval_trajectory\": {\"105K\": {\"eval_return\": 29, \"value_mean\": 92.2, \"ve_ratio\": 3.183}, \"15K\": {\"eval_return\": 105.3, \"value_mean\": 2.93, \"ve_ratio\": 0.028}, \"25K\": {\"eval_return\": 191.9, \"value_mean\": 24.4, \"ve_ratio\": 0.127}, \"35K\": {\"eval_return\": 204.6, \"ve_ratio\": 0.267}, \"45K\": {\"eval_return\": 197.7, \"ve_ratio\": 0.439}, \"55K\": {\"eval_return\": 193, \"ve_ratio\": 0.62}, \"5K\": {\"eval_return\": 37.4, \"value_mean\": 0.001}, \"65K\": {\"eval_return\": 79.8, \"ve_ratio\": 1.832}, \"75K\": {\"eval_return\": 44.5, \"ve_ratio\": 3.415}, \"85K\": {\"eval_return\": 57.7, \"ve_ratio\": 2.126}, \"95K\": {\"eval_return\": 25.9, \"value_mean\": 105.87, \"ve_ratio\": 4.086}}, \"note\": \"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\"}, \"parent\": \"exp_025_obs_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A (trained from scratch, derives from SGS failure line)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --rave_ceiling 2.0 --logdir logdir/exp_028_rave_walker_s0\\\"\", \"data_count\": \"105000 env steps (52.5K agent steps, action_repeat=2)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.33, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0.log\", \"model_name\": \"dreamerv3_rave_ceil20\", \"pid\": \"879636\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T02:54:26.022Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 12005.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T06:14:31.720Z\"}, \"exp_025_obs_sgs_walker_s2\": {\"completed_at\": \"2026-05-20T03:14:06.591Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-19T16:39:26.941Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-20T03:14:13.011509+00:00\"}]}, \"failure_reason\": \"Reclassified: experiment completed 224K/210K steps normally. Cron misclassified as failed due to missing W&B sentinel. Actual result is negative — obs-decoder SGS suppressed CIVO (ve_ratio 0.8-1.4) but eval collapsed to ~90 (baseline ~930).\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"metrics\": {\"eval_return_215K\": 89.6, \"target_steps\": 210000, \"train_steps_completed\": 224000, \"ve_ratio_175K\": 1.2, \"ve_ratio_185K\": 1.4, \"ve_ratio_215K\": 0.8}, \"notes\": \"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:14:07.466Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s2/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s2\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s2/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"7989\", \"seed\": 2, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_025_s2\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:17:26.061Z\"}, \"exp_026_obs_sgs_cheetah_s1\": {\"completed_at\": \"2026-05-20T03:02:46.556Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T20:19:29.171Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_026_obs_sgs_cheetah_s1/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 105000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_026_obs_sgs_cheetah_s1\", \"data_count\": \"105000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_026_obs_sgs_cheetah_s1/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs_cheetah\", \"pid\": \"16346\", \"seed\": 1, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_026_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:46.556Z\"}, \"exp_026_obs_sgs_cheetah_s0\": {\"completed_at\": \"2026-05-20T03:02:43.170Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T20:19:27.608Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_026_obs_sgs_cheetah_s0/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 105000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_026_obs_sgs_cheetah_s0\", \"data_count\": \"105000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_026_obs_sgs_cheetah_s0/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs_cheetah\", \"pid\": \"16208\", \"seed\": 0, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_026_s0\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:43.170Z\"}, \"exp_025_obs_sgs_walker_s4\": {\"completed_at\": \"2026-05-20T03:02:39.948Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:29.810Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s4/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 4 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s4\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s4/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"851593\", \"seed\": 4, \"server\": \"bjb1-45299\", \"tmux_session\": \"exp_025_s4\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:39.948Z\"}, \"exp_025_obs_sgs_walker_s3\": {\"completed_at\": \"2026-05-20T03:02:36.670Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:28.402Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s3/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s3\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s3/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"847597\", \"seed\": 3, \"server\": \"bjb1-45299\", \"tmux_session\": \"exp_025_s3\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:36.670Z\"}, \"exp_025_obs_sgs_walker_s1\": {\"completed_at\": \"2026-05-20T03:02:32.583Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:25.583Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s1/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s1\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s1/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"7833\", \"seed\": 1, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_025_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:32.583Z\"}, \"exp_001_baseline_s4_extended\": {\"completed_at\": \"2026-05-19T23:06:42.122Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T09:02:31.737Z\", \"hypothesis\": \"Walker Walk baseline seed=4 extended to 505K. Third long-run baseline seed for multi-seed NVE normalization. s4@105K=922.8 (highest), obtaining full ve_ratio profile.\", \"metrics\": {\"convergence_mean_250k_plus\": 935, \"final_eval_return\": 938.86, \"final_step\": 520000, \"peak_eval_return\": 960.6}, \"parent\": \"exp_001_baseline_s4\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s4/\", \"checkpoint_source\": \"logdir/exp_001_baseline_s4/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 4 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s4\", \"data_count\": \"505000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": \"cuda:1\", \"log_path\": \"logdir/exp_001_baseline_s4/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 112000, \"seed\": 4, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s4_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T23:06:42.122Z\"}, \"exp_001_baseline_s3_extended\": {\"completed_at\": \"2026-05-19T21:23:44.025Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T09:02:30.382Z\", \"hypothesis\": \"Walker Walk baseline seed=3 extended to 505K. Second long-run baseline seed (alongside s2_ext) for multi-seed NVE normalization robustness. s3@105K=869.0, testing convergence to 920+ level.\", \"metrics\": {\"eval_profile\": {\"102000\": 869.03, \"112000\": 898.89, \"120000\": 898.38, \"130000\": 837.74, \"140000\": 876.64, \"15000\": 224.27, \"150000\": 899.47, \"160000\": 922.77, \"170000\": 925.77, \"180000\": 912.89, \"190000\": 915.07, \"200000\": 894.77, \"210000\": 899.79, \"220000\": 951.18, \"230000\": 930.56, \"240000\": 910.47, \"25000\": 329.99, \"250000\": 914.02, \"260000\": 931.33, \"270000\": 954.65, \"280000\": 928.01, \"290000\": 947.4, \"300000\": 853.32, \"310000\": 906.35, \"320000\": 847.16, \"330000\": 934.78, \"340000\": 921.08, \"35000\": 413.12, \"350000\": 922.63, \"360000\": 844.99, \"370000\": 911.36, \"380000\": 917.73, \"390000\": 937.21, \"400000\": 928, \"410000\": 945.88, \"420000\": 897.2, \"430000\": 949.45, \"440000\": 937.28, \"45000\": 332.69, \"450000\": 924.24, \"460000\": 967.25, \"470000\": 940.55, \"480000\": 936.24, \"490000\": 944.67, \"5000\": 42.15, \"500000\": 957.09, \"510000\": 947.68, \"55000\": 519.91, \"65000\": 667.42, \"72000\": 771.33, \"82000\": 772.88, \"92000\": 854.6}, \"final_eval_return\": 947.68, \"final_step\": 520000, \"final_train_return_avg\": 945.4}, \"parent\": \"exp_001_baseline_s3\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s3/\", \"checkpoint_source\": \"logdir/exp_001_baseline_s3/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 3 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s3\", \"data_count\": \"505000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": \"cuda:0\", \"log_path\": \"logdir/exp_001_baseline_s3/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 120000, \"seed\": 3, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s3_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T21:23:44.025Z\"}, \"exp_001_baseline_s2_extended\": {\"completed_at\": \"2026-05-19T17:44:27.212Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T04:10:10.948Z\", \"hypothesis\": \"Walker Walk baseline seed=2 extended to 505K. Tests whether low eval (443.5 @105K) is due to slow convergence or seed-level difference. s1=915.7, s3=869.0 at 105K.\", \"metrics\": {\"eval_return_at_105K\": 443.5, \"eval_return_final\": 945.7, \"eval_return_peak\": 962.6, \"total_steps\": 512000, \"value_mean_at_105K\": 329.16, \"value_mean_plateau\": 665, \"ve_ratio_at_105K\": 0.7422, \"ve_ratio_converged_range\": \"0.69-0.77\"}, \"parent\": \"exp_001_baseline_s2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s2/latest.pt\", \"checkpoint_source\": \"logdir/exp_001_baseline_s2/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 2 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s2\", \"data_count\": 0, \"data_path\": \"logdir/exp_001_baseline_s2\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"gpu\": \"cuda:1\", \"log_path\": \"logdir/exp_001_baseline_s2/train_extended.log\", \"model_name\": \"dreamerv3\", \"resumed_from_step\": 112000, \"seed\": 2, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s2_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T17:44:27.212Z\"}, \"exp_023_cheetah_baseline_s4_extended\": {\"completed_at\": \"2026-05-19T09:02:40.466Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T06:27:42.161Z\", \"hypothesis\": \"Cheetah Run baseline seed=4 extended to 300K. Tests whether eval drop at 194K→204K (537→302) is transient fluctuation or permanent collapse. Informs baseline stability and NVE normalization robustness.\", \"metrics\": {\"eval_302k\": 580, \"eval_peak_ext\": 642.3, \"eval_peak_ext_step\": 272000, \"note\": \"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\"}, \"parent\": \"exp_023_cheetah_baseline_s4\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_023_cheetah_baseline_s4/\", \"checkpoint_source\": \"logdir/exp_023_cheetah_baseline_s4/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 4 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s4\", \"data_count\": \"300000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": \"cuda:0\", \"log_path\": \"logdir/exp_023_cheetah_baseline_s4/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 212000, \"seed\": 4, \"server\": \"bjb1-45299\", \"target_steps\": 300000, \"tmux_session\": \"exp_023_s4_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T09:02:40.466Z\"}, \"exp_001_baseline_s4\": {\"completed_at\": \"2026-05-19T09:00:10.632Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T04:47:01.105Z\", \"hypothesis\": \"Walker Walk baseline seed=4. Fourth seed for 4-seed baseline CI. Tests whether s2 (443.5) is outlier or bimodal distribution (s1=915.7, s3=869.0).\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 922.8, \"peak_eval\": 922.8, \"peak_eval_step\": 105000, \"target_steps\": 105000, \"value_mean_final\": 576.1, \"ve_ratio_105k\": 0.624}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s4\", \"checkpoint_source\": \"N/A\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 4 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s4\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s4/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T09:00:10.632Z\"}, \"exp_023_cheetah_baseline_s4\": {\"completed_at\": \"2026-05-19T06:26:03.295Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T23:54:02.288Z\", \"hypothesis\": \"Cheetah Run baseline seed=4. Fourth seed for tighter eval return CI and NVE normalization robustness.\", \"metrics\": {\"current_step\": 212000, \"eval_return_194k\": 537.03, \"eval_return_204k\": 301.69, \"note\": \"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\", \"peak_eval\": 537.03, \"peak_eval_step\": 194000, \"target_steps\": 200000, \"value_mean_204k\": 339.14, \"ve_ratio_204k\": 1.124}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s4\", \"checkpoint_source\": \"N/A (train from scratch)\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 4 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s4\", \"data_count\": \"200K env steps\", \"data_path\": \"dmc_cheetah_run (online RL)\", \"eval_data\": \"dmc_cheetah_run eval episodes\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s4/metrics.jsonl\", \"model_name\": \"DreamerV3 (default)\", \"pid\": 774033, \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T06:26:03.295Z\"}, \"exp_023_cheetah_baseline_s3\": {\"completed_at\": \"2026-05-19T04:08:47.459Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T21:49:33.229Z\", \"hypothesis\": \"Cheetah Run baseline seed=3. Extends 023a/023b/023_s2 (3 seeds) to 4 seeds for tighter eval return CI.\", \"metrics\": {\"current_step\": 204000, \"eval_return_202k\": 642.13, \"peak_eval\": 685.93, \"peak_eval_step\": 172000, \"target_steps\": 200000, \"value_mean_final\": 445.42, \"ve_ratio_final\": 0.694}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s3\", \"checkpoint_source\": \"N/A\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 3 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s3\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s3/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"pid\": \"768897\", \"seed\": 3, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T04:08:47.459Z\"}, \"exp_001_baseline_s3\": {\"completed_at\": \"2026-05-19T04:08:45.989Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T23:54:03.635Z\", \"hypothesis\": \"Walker Walk baseline seed=3. Third seed for tighter baseline eval CI.\", \"metrics\": {\"current_step\": 120000, \"eval_return_102k\": 869.03, \"peak_eval\": 898.89, \"peak_eval_step\": 112000, \"target_steps\": 105000, \"value_mean_final\": 622.2, \"ve_ratio_final\": 0.692}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s3\", \"checkpoint_source\": \"N/A (train from scratch)\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 3 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s3\", \"data_count\": \"105K env steps\", \"data_path\": \"dmc_walker_walk (online RL)\", \"eval_data\": \"dmc_walker_walk eval episodes\", \"gpu\": \"cuda:1\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s3/metrics.jsonl\", \"model_name\": \"DreamerV3 (default)\", \"pid\": 774106, \"seed\": 3, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T04:08:45.989Z\"}, \"exp_023_cheetah_baseline_s2\": {\"completed_at\": \"2026-05-19T00:13:55.909Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T16:05:14.249Z\", \"hypothesis\": \"Cheetah Run baseline additional seed for tighter CI. Extends 023a/023b (2 seeds) to 3 seeds.\", \"metrics\": {\"current_step\": 205000, \"eval_return_final\": 645.4, \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\", \"target_steps\": 200000}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s2\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 2 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s2\\\"\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 8.13, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s2/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"pid\": \"753786\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T16:05:57.478Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29278.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T00:13:55.909Z\"}, \"exp_008f_s4\": {\"completed_at\": \"2026-05-18T23:18:51.672Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-18T18:41:00.894Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=4. Additional independent seed for 008f control (existing seeds: 1/008f, 2/009c, 3/008f_s3). C2 causal contrast robustness.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_105k\": 306.5, \"note\": \"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\", \"nve_105k\": 0.58, \"peak_eval\": 487.5, \"peak_eval_step\": 55000, \"peak_nve\": 1.41, \"peak_nve_step\": 85000}, \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_emb_s4\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_emb_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_emb_s4/metrics.jsonl\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T23:18:51.672Z\"}, \"exp_009c_s3\": {\"completed_at\": \"2026-05-18T21:40:10.763Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T17:12:00.539Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=3. Additional seed for 009c (seed=2 NVE 1.14x at 105K on upward trajectory); tests whether NVE rise is reproducible across independent seeds or stochastic.\", \"metrics\": {\"current_step\": 108000, \"eval_return_105k\": 311.92, \"note\": \"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\", \"nve_105k\": 0.52, \"target_steps\": 105000, \"value_mean_105k\": 120.27, \"ve_ratio_105k\": 0.386}, \"parent\": \"exp_009c_008f_walker_s2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_no_dt_emb_s3\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_no_dt_emb_s3/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T21:40:10.762Z\"}, \"exp_001_baseline_s2\": {\"completed_at\": \"2026-05-18T21:40:09.329Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T16:05:17.571Z\", \"hypothesis\": \"Walker Walk baseline additional seed for tighter evaluation return CI.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 443.46, \"target_steps\": 105000, \"value_mean_105k\": 329.16, \"ve_ratio_105k\": 0.742}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s2\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s2/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T21:40:09.329Z\"}, \"exp_008f_s2\": {\"completed_at\": \"2026-05-18T18:41:05.369Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-18T16:05:16.527Z\", \"hypothesis\": \"No-dt-emb control additional seed. Extends 008f (1 seed, NVE 0.97x) for C2 causal contrast robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.58, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008f_s2.log\", \"model_name\": \"dreamerv3\", \"pid\": \"754063\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T16:06:00.248Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 9305.1}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:41:05.369Z\"}, \"exp_008a_cheetah_unexposed_s1\": {\"completed_at\": \"2026-05-18T18:20:00.278Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T14:23:13.377Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=1. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 504.38, \"nve_105k\": 0.478, \"target_steps\": 105000, \"value_mean_105k\": 156.97, \"ve_ratio_105k\": 0.3112}, \"parent\": \"exp_008a_no_subsample_dt2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s1\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s1/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:20:00.278Z\"}, \"exp_008a_cheetah_unexposed_s0\": {\"completed_at\": \"2026-05-18T18:19:58.491Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T14:23:12.052Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=0. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 532.35, \"nve_105k\": 0.49, \"target_steps\": 105000, \"value_mean_105k\": 169.98, \"ve_ratio_105k\": 0.3193}, \"parent\": \"exp_008a_no_subsample_dt2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s0/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:19:58.491Z\"}, \"exp_009c_s2\": {\"completed_at\": \"2026-05-18T17:12:05.307Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-18T16:05:19.850Z\", \"hypothesis\": \"No-dt-emb H=15 additional seed. 009c seed=2 showed NVE 1.14x at 105K on upward trajectory; additional seed tests if this is reproducible or stochastic.\", \"parent\": \"exp_009c_008f_walker_s2\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009c_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 1.1, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009c_s2.log\", \"model_name\": \"dreamerv3\", \"pid\": \"754639\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T16:06:05.850Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 3959.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T17:12:05.307Z\"}, \"exp_008e_v3_s4\": {\"completed_at\": \"2026-05-18T11:33:57.033Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T02:54:56.392Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-18T11:31:45.212576+00:00\"}]}, \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\", \"metrics\": {\"civo\": false, \"eval_return\": 899.3, \"nve_note\": \"Corrected: was 0.61 (raw V/E ratio). Correct formula: max(V/E_exp / V/E_baseline_at_same_step) over [35K+]. 0.627/0.632=0.99 at 95K\", \"nve_peak\": 0.99, \"nve_peak_step\": 95000, \"ve_ratio_105k\": 0.609}, \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"reproduce\": {\"finished_at\": \"2026-05-18T11:31:41.800Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s4/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s4.log\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T11:48:45.880Z\"}, \"exp_008e_v3_s3\": {\"completed_at\": \"2026-05-18T11:24:41.197Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-18T02:54:54.691Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-18T11:20:58.896484+00:00\"}]}, \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\", \"metrics\": {\"actor_entropy_final\": -4.892, \"collapse_onset\": \"85K-95K\", \"eval_return\": 92.7, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"nve_note\": \"Corrected: was 5.00 (worker used wrong baseline). Correct formula: V/E_exp / V/E_baseline_at_same_step. 2.635/0.656=4.02\", \"nve_peak\": 4.02, \"nve_peak_step\": 105000, \"peak_eval\": 520.4, \"peak_step\": 85000, \"ve_ratio_105k\": 2.635}, \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"reproduce\": {\"finished_at\": \"2026-05-18T11:20:55.020Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s3/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T11:48:43.665Z\"}, \"exp_008a_unexposed_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_unexposed_s1/latest.pt\", \"completed_at\": \"2026-05-18T08:16:42.716Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T05:13:56.020Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-18T08:12:12.866455+00:00\"}]}, \"hypothesis\": \"Walker Walk unexposed trained dt_emb + subsample OFF (gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15 (default), seed=1. 直接复现 008a_no_subsample_dt2 配置（eval=778, V-recovery, no CIVO）。C3 reproducibility rebuttal 储备。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_unexposed_s1/metrics.jsonl\", \"metrics\": {\"civo_alert\": 0, \"civo_delta_ve_final\": -0.0028, \"civo_ve_ratio_final\": 0.43, \"eval_return_15k\": 167.12, \"eval_return_25k\": 139.94, \"eval_return_35k\": 394.15, \"eval_return_45k\": 414.32, \"eval_return_55k\": 441.48, \"eval_return_5k\": 31, \"eval_return_65k\": 491.74, \"eval_return_75k\": 452.34, \"eval_return_85k\": 546.82, \"eval_return_95k\": 628.57, \"eval_return_final\": 630.91, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"target_mean_final\": 272.13, \"total_steps\": 105000, \"value_mean_final\": 271.36}, \"parent\": \"exp_008a_no_subsample_dt2\", \"reproduce\": {\"finished_at\": \"2026-05-18T08:12:09.402Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_unexposed_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --checkpoint_every 25000\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk (online RL)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.03, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008a_unexposed_s1.log\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (unexposed trained dt_emb, H=15)\", \"pid\": \"724312\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T05:15:06.654Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10896.1}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T08:16:42.716Z\"}, \"exp_008a_unexposed_s2\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_unexposed_s2/latest.pt\", \"completed_at\": \"2026-05-18T08:10:06.059Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T05:13:57.340Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-18T08:07:33.602043+00:00\"}]}, \"hypothesis\": \"Walker Walk unexposed trained dt_emb + subsample OFF (gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15 (default), seed=2. 008a 新 seed 验证 protection 是否 reproducible。C3 rebuttal 储备。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_unexposed_s2/metrics.jsonl\", \"metrics\": {\"civo_alert\": 0, \"civo_delta_ve_final\": -0.003, \"civo_ve_ratio_final\": 0.333, \"eval_return_55k\": 607.5, \"eval_return_65k\": 653.8, \"eval_return_75k\": 534.4, \"eval_return_85k\": 605.4, \"eval_return_95k\": 819.4, \"eval_return_final\": 899.4, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"target_mean_final\": 300.3, \"total_steps\": 105000, \"value_mean_final\": 299.4}, \"parent\": \"exp_008a_no_subsample_dt2\", \"reproduce\": {\"finished_at\": \"2026-05-18T08:07:27.087Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_unexposed_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --checkpoint_every 25000\", \"data_count\": 0, \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.84, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008a_unexposed_s2.log\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (unexposed trained dt_emb, H=15)\", \"pid\": \"724965\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T05:19:26.303Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10239.8}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T08:10:17.263Z\"}, \"exp_008a_untrained_s1\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-18T02:54:51.398Z\", \"hypothesis\": \"(cancelled) 原为 015b 模板 frozen dt_emb 多 seed，Director 修正为 008a unexposed 模板\", \"notes\": \"Director 修正：C3 rebuttal 应复现 008a (unexposed trained dt_emb, subsample OFF) 而非 015b (frozen)。替换为 exp_008a_unexposed_s1/s2。\", \"parent\": \"exp_015b_frozen_dt_emb\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:13:30.000Z\"}, \"exp_008a_untrained_s2\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-18T02:54:53.011Z\", \"hypothesis\": \"(cancelled) 原为 015b 模板 frozen dt_emb 多 seed，Director 修正为 008a unexposed 模板\", \"notes\": \"Director 修正：同上。\", \"parent\": \"exp_015b_frozen_dt_emb\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:13:30.000Z\"}, \"exp_010b_cheetah_civo_trigger_s0\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger_s0/latest.pt\", \"completed_at\": \"2026-05-18T05:11:15.900Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T02:02:47.702Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=0: trained dt_emb + subsample ON + H=8. 第二 seed 复现 Cheetah CIVO (NVE>1.5×)，加强跨环境因果论证统计力度。Rebuttal 储备。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger_s0/metrics.jsonl\", \"metrics\": {\"civo\": true, \"civo_onset_step\": \"65K\", \"detector_alert_step\": \"95K\", \"eval_return_105K\": 0.83, \"eval_return_peak\": 247.77, \"eval_return_peak_step\": \"35K\", \"gate_dt_mean\": 2, \"gate_entropy\": 0, \"nve_105K\": 70.64, \"nve_95K\": 6.34}, \"parent\": \"exp_010b_cheetah_civo_trigger\", \"retry_count\": 0, \"spec\": {\"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010b_cheetah_civo_trigger_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"data_count\": 0, \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"eval_data\": \"dmc_cheetah_run (online RL)\", \"gpu\": \"cuda:1\", \"model_name\": \"DreamerV3-cheetah-civo-trigger\", \"pid\": \"715412\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T05:11:15.900Z\"}, \"exp_024b_cheetah_no_dt_emb_s0\": {\"completed_at\": \"2026-05-18T02:00:15.236Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T22:50:34.104Z\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角。\", \"metrics\": {\"civo\": false, \"eval_return_final\": 96.5, \"nve_peak\": 0.2}, \"notes\": \"No CIVO (NVE peak <0.2×). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. eval 96.5 = 17.6% of baseline (548.3). Cheetah causal triangle seed 1 complete. Director confirmed results in D089.\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s0/latest.pt\", \"checkpoint_source\": \"N/A-training-from-scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_024b_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"data_count\": 0, \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"eval_data\": \"dmc_cheetah_run-online-eval\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 3.13, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_024b_cheetah_no_dt_emb_s0.log\", \"model_name\": \"DreamerV3-cheetah-no-dt-emb\", \"pid\": \"705742\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T22:52:15.808Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11279.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T02:00:17.832Z\"}, \"exp_024b_cheetah_no_dt_emb_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-18T01:56:17.025Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T22:51:53.604Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-18T01:52:09.175571+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control seed=1: gate_dt_embed_dim=0 + subsample ON + H=8. 第二 seed 验证 024 的结论（trained dt_emb 是 Cheetah CIVO 必要条件），加强因果三角的统计力度。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_024b_cheetah_no_dt_emb_s1.log\", \"metrics\": {\"baseline_pct\": 14.1, \"civo\": false, \"eval_return_final\": 77.3, \"eval_return_peak\": 129.6, \"gate_dt_2_frac\": 1, \"nve_peak\": 0.1, \"peak_step\": 15000}, \"notes\": \"No CIVO (NVE peak 0.10×, civo_alert=0 throughout). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. Gate locked at dt=2 (gate_dt_2_frac=1.0), eval 77.3 = 14% of baseline (548.3). Low performance expected: dt_embed_dim=0 removes temporal abstraction capability. Cheetah causal triangle seed 2 complete.\", \"parent\": \"exp_024_cheetah_no_dt_emb_s0\", \"pid\": \"706158\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_024b_cheetah_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"finished_at\": \"2026-05-18T01:52:05.296Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s1/latest.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_024b_cheetah_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.06, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_024b_cheetah_no_dt_emb_s1.log\", \"pid\": \"706158\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T22:52:30.631Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11026.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T01:56:17.025Z\"}, \"exp_024_cheetah_no_dt_emb_s0\": {\"account\": \"root\", \"completed_at\": \"2026-05-17T20:35:13.253Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-17T20:34:13.657Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-17T20:35:16.021173+00:00\"}, {\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-17T22:57:54.400584+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角（023a/b baseline健康 + 010b CIVO collapse + 本实验 no-emb 健康）。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_024_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"finished_at\": \"2026-05-17T22:57:48.608Z\"}, \"retry_count\": 2, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_024_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_cheetah_run (online RL)\", \"eval_data\": \"N/A (online RL)\", \"model_name\": \"DreamerV3-no-dt-emb\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T23:21:27.867Z\"}, \"exp_021_full_sgs_cheetah_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-17T22:49:15.021Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-16T20:24:30.695Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T22:45:35.442053+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Full-SGS Cheetah Run — 验证 SGS intervention 跨环境一致性。如果 CIVO mechanism 跨环境一致，Full-SGS 在 Cheetah 也应消除 NVE>1.5x (对比 010b: NVE 8.63×, collapse)。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_021_full_sgs_cheetah_s1.log\", \"metrics\": {\"baseline_pct\": 38.7, \"civo\": true, \"civo_type\": \"transient_self_correcting\", \"eval_return_final\": 221.5, \"nve_peak\": 9.94, \"nve_peak_step\": \"45K\", \"nve_sustained_55K_105K\": 0.338, \"vs_010b\": \"221.5 vs 51.7 (4.3x better)\"}, \"notes\": \"P0 priority (D070 最重要数据缺口). 018_s2 完成后立即上 cuda:0. 排序: 021 先 → 008d_s1 后. Director 2026-05-16 确认.\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"pid\": \"696201\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_021_full_sgs_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --full_sgs True --checkpoint_every 25000\\\"\", \"finished_at\": \"2026-05-17T22:45:32.093Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-17T19:28:08.484Z\", \"training_hours\": 3.29}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_021_full_sgs_cheetah_s1/checkpoint.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_021_full_sgs_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --full_sgs True --checkpoint_every 25000\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.32, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_021_full_sgs_cheetah_s1.log\", \"pid\": \"696201\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T19:30:02.581Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11952.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T22:57:30.295Z\"}, \"exp_023a_cheetah_baseline_s0\": {\"completed_at\": \"2026-05-17T20:34:04.841Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T11:53:19.690Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T20:31:37.915652+00:00\"}]}, \"hypothesis\": \"Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate). Establishes Cheetah-specific baseline for NVE normalization and cross-environment validation. Comparison target for 010b (Cheetah CIVO trigger, NVE 8.27×).\", \"metrics\": {\"civo\": false, \"eval_return_final\": 624.7, \"eval_return_peak\": 624.7, \"peak_step\": 205000}, \"notes\": \"Healthy baseline. Last-5 eval mean=554.4. 185K瞬态VE spike(0.906)触发警报但20K步内恢复(205K:624.7)，非CIVO。双seed baseline均值: last-5=548.3, peak=598.8。未接W&B。\", \"reproduce\": {\"finished_at\": \"2026-05-17T20:31:34.777Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023a_cheetah_baseline_s0/checkpoint.pt\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && bash scripts/exp_023a_cheetah_baseline_s0.sh\\\"\", \"data_count\": \"N/A (online RL)\", \"data_path\": \"dmc_cheetah_run\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 5.66, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_023a_cheetah_baseline_s0.log\", \"model_name\": \"DreamerV3\", \"pid\": \"683708\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T14:54:17.553Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 20387.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T20:41:57.147Z\"}, \"exp_010b_cheetah_civo_trigger\": {\"completed_at\": \"2026-05-16T16:16:00.478Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-16T13:04:55.508Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T16:11:35.101384+00:00\"}]}, \"hypothesis\": \"Cheetah Run CIVO trigger — trained dt_emb, subsample ON, dt=2, H=8, seed 1. 跨环境验证：Walker 上 008d 配置在 Cheetah 上是否同样触发 CIVO (NVE>1.5x)。若成立→回应 reviewer \\\"single environment\\\" concern。\", \"metrics\": {\"civo\": true, \"eval_return_final\": 51.7, \"eval_return_peak\": 321.9, \"nve_peak\": 8.27, \"nve_peak_step\": 65000, \"peak_step\": 35000}, \"parent\": \"exp_010a_cheetah_baseline_s1\", \"reproduce\": {\"finished_at\": \"2026-05-16T16:11:32.766Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger/latest.pt\", \"checkpoint_source\": \"N/A (training from scratch, parent is baseline reference)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010b_cheetah_civo_trigger --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dm_control cheetah_run (online RL)\", \"eval_data\": \"N/A (online RL, not eval experiment)\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 3.18, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010b_cheetah_civo_trigger.log\", \"model_name\": \"DreamerV3+dt_emb(trained)+subsample+H8\", \"pid\": \"585826\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T13:05:10.473Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11450.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T20:41:38.129Z\"}, \"exp_023b_cheetah_baseline_s1\": {\"completed_at\": \"2026-05-17T19:29:52.643Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T11:53:21.197Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T19:25:39.255677+00:00\"}]}, \"hypothesis\": \"Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate), seed=1. Second seed for Cheetah baseline to establish robust NVE normalization across seeds.\", \"metrics\": {\"civo\": false, \"eval_return_final\": 520.3, \"eval_return_peak\": 572.9, \"peak_step\": 195000, \"ve_ratio_range\": \"0.5-0.7\"}, \"notes\": \"Healthy baseline. Last-5 eval mean=542.2 (for NVE normalization). 125K后进入500-573区间震荡，无collapse。待023a完成后取双seed均值作为Cheetah baseline。未接W&B，数据在本地logdir。\", \"reproduce\": {\"finished_at\": \"2026-05-17T19:25:34.295Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023b_cheetah_baseline_s1/checkpoint.pt\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && bash scripts/exp_023b_cheetah_baseline_s1.sh\\\"\", \"data_count\": \"N/A (online RL)\", \"data_path\": \"dmc_cheetah_run\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.5, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_023b_cheetah_baseline_s1.log\", \"model_name\": \"DreamerV3\", \"pid\": \"680126\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T13:59:45.409Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 19807.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T19:30:46.627Z\"}, \"exp_019b_pickcube_civo_trigger\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_019b_pickcube_civo_trigger/checkpoint.ckpt\", \"completed_at\": \"2026-05-17T03:35:47.561Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-16T03:23:51.568Z\", \"error_summary\": \"KeyError in dreamer.py:421 — configs[\\\"maniskill\\\"] not found. Config block missing from dreamer.py.\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-17T03:35:50.727034+00:00\"}, {\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T14:49:42.379952+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-17 04:01: Registry shows DONE(failed) from first attempt (KeyError transient). Actual state: RUNNING (PID 646809, step 8400+, started 11:39 UTC). Cron monitoring via submit_on_allocated tmux session. Will need manual status correction when cron detects completion.\"}}, \"failure_reason\": \"Traceback → Traceback (most recent call last): File \\\"/root/autodl-tmp/event-gated-adaptive-horizon/dreamer.py\\\", line 421, in &lt;module> recursive_update(defaults, configs[name]) ~~~~~~~^^^^^^ KeyError: 'maniskill'\", \"gpu\": \"cuda:0\", \"hypothesis\": \"PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_019b_pickcube_civo_trigger.log\", \"metrics\": {\"baseline_eval_final\": 58.56, \"baseline_ratio\": 0.455, \"eval_return_final\": 26.64, \"eval_return_peak\": 26.9, \"eval_return_peak_step\": 132500, \"gate_dt_2_frac\": 1, \"gate_entropy\": 0, \"nve_final\": 0.065, \"nve_peak\": 3.78, \"nve_peak_step\": 52500, \"pattern\": \"transient_civo_then_value_collapse\", \"total_steps\": 200000, \"value_baseline_final\": 144.57, \"value_mean_final\": 4.26}, \"notes\": \"Cross-env CIVO confirmation + detector TN. Raw V/E peak=5.66 @52.5K (NVE=3.78× vs baseline). Transient CIVO: onset ~22.5K → peak 52.5K → deflation → eval partial recovery. Detector correctly doesn't trigger (oscillating V/E, max streak=2 < threshold=3). Eval final 26.64 vs baseline 58.56 = 45.5%. Value permanently collapsed (4.26 vs baseline 144.57). PickCube pattern: acute crisis + permanent damage, vs Walker sustained escalation.\", \"parent\": \"exp_019a_v2_pickcube_baseline\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --seed 1 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_019b_pickcube_civo_trigger\\\"\", \"finished_at\": \"2026-05-17T14:49:39.328Z\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-17T03:25:03.091Z\", \"training_hours\": 11.41}, \"retry_count\": 1, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_ID=0 bash scripts/exp_019b_pickcube_civo_trigger.sh\", \"data_count\": \"online\", \"data_path\": \"maniskill_PickCube-v1 (state-based, online RL)\", \"eval_data\": \"N/A (online RL, not eval)\", \"gpu_id\": \"cuda:0\", \"model_name\": \"DreamerV3 + trained dt_emb + gate (maniskill_state config)\", \"pid\": 649577, \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T15:20:38.182Z\"}, \"exp_022b_no_curriculum\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_022b_no_curriculum/checkpoint.ckpt\", \"completed_at\": \"2026-05-17T14:01:23.413Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T10:49:08.181Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T13:56:29.726988+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing the gate to learn meaningful temporal abstraction (gate_dt_1_frac < 1.0). exp_022 was inconclusive because curriculum locked gate for the entire run; this rerun removes that confound.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log\", \"metrics\": {\"civo_alert_max\": 0, \"eval_return_105K\": 300.7, \"gate_dt_1_frac_105K\": 0.145, \"gate_dt_mean_105K\": 3.41, \"gate_entropy_ratio_105K\": 0.912, \"gate_near_uniform\": true, \"nve_peak\": 1.22, \"ve_ratio_105K\": 0.075, \"ve_ratio_peak\": 0.218}, \"notes\": \"Frozen dt_emb (random init, no gradients) successfully prevents CIVO: ve_ratio peaked 0.218 (NVE≈1.22×), civo_alert=0 throughout. Confirms C2 (trained dt_emb is necessary for CIVO). Gate converges to near-uniform distribution (entropy_ratio=0.912, no temporal coherence), eval_return=300.7 (32.8% of baseline@105K=915.7). Frozen random dt_emb is sufficient CIVO fix but insufficient for meaningful temporal abstraction — multi-rate imagination's inherent performance limitation.\", \"parent\": \"exp_022_untrained_dt_emb_learned_gate\", \"pid\": \"670554\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"\", \"finished_at\": \"2026-05-17T13:56:27.483Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.16, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log\", \"pid\": \"670554\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T10:51:56.898Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11366.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T14:20:12.115Z\"}, \"exp_022_untrained_dt_emb_learned_gate\": {\"completed_at\": \"2026-05-17T07:44:38.596Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-17T04:16:57.150Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-17T07:44:42.334281+00:00\"}, {\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T10:47:17.307752+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"failure_reason\": \"Config error: used --configs dmc_vision (CNN+image, wrong modality) instead of dmc_proprio, and --compile True (torch.compile inductor crash). Killed and resubmitting with correct config.\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Frozen dt_emb (random init, no gradients) prevents CIVO by blocking the trained-embedding-driven value overestimation feedback loop, while the learned gate (Gumbel-softmax, receives gradients) retains adaptive horizon selection capability. If successful, this decouples temporal abstraction benefits from CIVO vulnerability.\", \"metrics\": {\"civo_alert\": 0, \"civo_ve_ratio_105K\": 0.4, \"eval_return_105K\": 189.1, \"eval_return_65K\": 493.1, \"eval_return_75K\": 573.8, \"final_eval_return\": 189.1, \"gate_collapsed\": true, \"gate_dt_1_frac\": 1, \"gate_entropy\": 0, \"peak_eval_return\": 573.8, \"train_return_112K\": 91.8}, \"notes\": \"INCONCLUSIVE: Gate never activated due to curriculum misconfiguration. phase1=50000 × action_repeat=2 = 100K logger steps, experiment only 105K total. gate_scale reached only 0.006, gate locked at dt=1 entire run. eval_return: 75K=573.8 → 105K=189.1 (collapsed without gate involvement). Rerun as exp_022b with curriculum disabled.\", \"parent\": \"exp_008f_s3_no_dt_embed_walker + exp_005_gate_arch (combines safe dt_emb from 008f with gate architecture from 005 series)\", \"reproduce\": {\"finished_at\": \"2026-05-17T10:47:12.534Z\"}, \"retry_count\": 1, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_022_untrained_dt_emb_learned_gate/checkpoint.ckpt\", \"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --imag_horizon 8 --logdir ./logdir/exp_022_untrained_dt_emb_learned_gate\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk (online RL, proprio obs)\", \"eval_data\": \"N/A (online RL, not eval)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.03, \"gpu_id\": \"cuda:1\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_022_untrained_dt_emb_learned_gate.log\", \"model_name\": \"DreamerV3 + frozen dt_emb (d=32) + learned gate (Gumbel-softmax)\", \"pid\": 661595, \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T07:47:20.391Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10901.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T10:56:34.274Z\"}, \"exp_019a_v2_pickcube_baseline\": {\"completed_at\": \"2026-05-16T21:07:12.193Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-16T20:12:22.372Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-16 22:54: Resubmitted with CVD fix (unset CUDA_VISIBLE_DEVICES inside bash -c). PID 629444. ManiSkill3/SAPIEN requires physical device access — CVD breaks resolve_physical_device(). Using MUJOCO_EGL_DEVICE_ID=1 + --device cuda:1 directly.\"}}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Vanilla DreamerV3 on ManiSkill3 PickCube establishes a cross-environment baseline; if stable, subsequent CIVO trigger experiment (019b) can test whether CIVO generalizes beyond DMC Walker Walk.\", \"metrics\": {\"eval_return_final\": 69.43, \"eval_return_peak\": 69.7, \"eval_return_peak_step\": 162500, \"steps_completed\": 200248, \"value_mean_final\": 143.4, \"ve_ratio_final\": 2.07, \"ve_ratio_range\": \"1.05-3.56\"}, \"notes\": \"2026-05-16 22:54: Resubmitted with CVD fix (unset CUDA_VISIBLE_DEVICES inside bash -c). PID 629444. ManiSkill3/SAPIEN requires physical device access — CVD breaks resolve_physical_device(). Using MUJOCO_EGL_DEVICE_ID=1 + --device cuda:1 directly.\", \"parent\": \"exp_001_baseline\", \"retry_count\": 1, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_019a_v2_pickcube_baseline/checkpoint.ckpt\", \"checkpoint_source\": \"auto-resume from logdir\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled False --seed 1 --steps 200000 --compile False --device cuda:1 --logdir ./logdir/exp_019a_v2_pickcube_baseline\\\"\", \"data_count\": 200000, \"data_path\": \"ManiSkill3 PickCube-v1 (online RL)\", \"eval_data\": \"N/A - training experiment\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_019a_v2_pickcube_baseline\", \"model_name\": \"DreamerV3-S\", \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T07:44:41.396Z\"}, \"exp_007_fixed_dt4\": {\"account\": \"root\", \"checkpoint_path\": \"N/A - killed, dt=4 confirmed too coarse for locomotion (D013)\", \"completed_at\": \"2026-05-13T22:32:00.591Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-13T22:15:44.218Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-13T22:32:01.413690+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\"}}, \"failure_reason\": \"dt=4 confirmed too coarse for locomotion: eval_return 127@35K vs baseline 389 (-67.4%). model_loss comparable to baseline — RSSM can learn 4-step dynamics, but action temporal resolution too coarse for Walker Walk. Confirms dt sweet spot ∈ {1,2}. See D013.\", \"gpu\": \"cuda:1\", \"hypothesis\": \"诊断实验：fixed dt=4 vs dt=2 vs learned gate。硬编码 dt=4，其余超参与 exp_006 完全一致。与 exp_006(dt=2) 对照：如果 dt=4 也不掉 return，说明跳步本身无害，问题在 learned gate 机制；如果 dt=4 掉但 dt=2 不掉，说明存在跳步边界。\", \"metrics\": {\"baseline_45K\": 443, \"eval_return_15K\": 129.6, \"eval_return_25K\": 176.9, \"eval_return_35K\": 126.7, \"eval_return_45K\": 144.41, \"eval_return_55K\": 152.49, \"eval_return_5K\": 31, \"model_loss_15K\": 6.337, \"model_loss_25K\": 5.089, \"model_loss_35K\": 4.755, \"model_loss_5K\": 17.927, \"peak_return\": 176.9, \"peak_step\": \"25K\", \"step\": 48000, \"trend\": \"peak 176.9@25K, low plateau ~127-152; value extremely suppressed (v/e 6-13%), NOT delusional critic but severe learning failure\", \"value_eval_ratio_45K\": 0.126, \"value_eval_ratio_55K\": 0.061, \"value_mean_45K\": 18.26, \"value_mean_55K\": 9.28, \"vs_baseline_45K\": \"-67.4%\"}, \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\", \"parent\": \"exp_006_fixed_dt2\", \"reproduce\": {\"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"finished_at\": \"2026-05-13T22:32:00.443Z\"}, \"retry_count\": 2, \"server\": \"bjb1-45299\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v2_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"data_count\": 150000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt4_v2_s1\", \"model_name\": \"DreamerV3+FixedDt4 (gate_fixed_dt=4, no learned gate, init_dt fix applied)\", \"pid\": \"90354\", \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:06:36.869Z\"}, \"exp_008c_no_subsample_dt2_h8\": {\"completed_at\": \"2026-05-14T04:09:46.829Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T01:33:31.413Z\", \"hypothesis\": \"隔离 compounding error 效应：subsample OFF + imagination dt=2 + H=8（物理覆盖 16 步 ≈ baseline H=15）。与 008a(H=15) 对照：008a 崩但 008c 不崩 → compounding error 是根因，H 需与 dt 反比补偿；两个都崩 → dt=2 RSSM 预测质量本身不足。\", \"metrics\": {\"actor_loss_55K\": -0.082, \"actor_loss_65K\": -0.053, \"baseline_65K\": 616, \"data_source_35K\": \"from training logs metrics.jsonl\", \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.55, \"eval_return_55K\": 241.87, \"eval_return_65K\": 240.86, \"step\": 68000, \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\", \"value_eval_ratio_35K\": 0.218, \"value_eval_ratio_55K\": 0.291, \"value_eval_ratio_65K\": 0.328, \"value_mean_35K\": 40.43, \"value_mean_55K\": 70.32, \"value_mean_65K\": 78.96, \"verdict_65K\": \"PLATEAU\", \"vs_baseline_65K\": \"-60.9%\"}, \"parent\": \"exp_006_fixed_dt2\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8/checkpoint.ckpt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008c_fixed_dt2_no_subsample_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 2.53, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=1, imag_horizon=8)\", \"pid\": \"107021\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T01:37:47.540Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 9119.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:06:36.359Z\"}, \"exp_003_event_gated_v2\": {\"completed_at\": \"2026-05-13T09:58:31.673Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-13T04:52:22.660Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-13T09:58:32.493437+00:00\"}]}, \"failure_reason\": \"Return 崩塌至 baseline 13%。根因：_imagine 中 gate dt 无约束（输出 dt∈{1,...,8}），而 subsample curriculum 限制训练数据 dt≤effective_max_dt。RSSM 对未训练的大 dt 预测为噪声，progressive poisoning 导致 actor/critic 不可恢复。需修复 dt clipping + logits masking 后从头训练。\", \"metrics\": {\"eval_return_105K\": 92.3, \"eval_return_115K\": 118.7, \"fps\": 6.52, \"gate_dt_1_frac_116K\": 0.218, \"gate_dt_mean_116K\": 2.67, \"gate_dt_std_116K\": 1.46, \"gate_empirical_entropy_116K\": 1.655, \"gate_entropy_ratio_116K\": 0.796, \"gate_scale_116K\": 0.61, \"mvp_C1_return\": \"FAIL (0.13)\", \"mvp_C2_entropy\": \"PASS (1.655)\", \"mvp_C3_heff\": \"PASS (2.667x)\", \"mvp_C4_structure\": \"PASS (autocorr=0.652)\", \"return_ratio_105K\": 0.1, \"return_ratio_115K\": 0.13, \"step\": 120000}, \"parent\": \"exp_001_baseline\", \"reproduce\": {\"finished_at\": \"2026-05-13T09:58:31.205Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_source\": \"logdir/event_gated_s1_v2/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1_v2 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"data_count\": 500000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu_id\": 1, \"hypothesis\": \"Subsample curriculum prevents early destabilization while event gate learns meaningful variable-rate stepping\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1_v2\", \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v2 (final fix: env step sync + threshold 25K/75K)\", \"pid\": 27009, \"seed\": 1, \"server\": \"autodl-rtx6000\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:06:35.459Z\"}, \"exp_004_event_gated_v3\": {\"completed_at\": \"2026-05-13T15:23:26.384Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-13T10:05:16.227Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-13T15:23:27.393422+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"eval_return_15K\": 153.86, \"fps\": 8.1, \"gate_dt_mean_15K\": 1, \"gate_scale_15K\": 0, \"step\": 20000}}}, \"failure_reason\": \"gate_loss 爆炸 bug：compute_gate_targets 使用 gate_max_dt=8 生成 target 分布但 logits masking 使用 effective_max_dt，cross-entropy loss ≈ 3e8。eval_return@125K=352 vs baseline@335K=942，ratio=0.37。第三次 train/imagine distribution mismatch。\", \"hypothesis\": \"修复 imagination dt 约束后（logits masking + clamp safety net），event gate 在 train/imagine 分布同步条件下能产生有意义的 variable-rate stepping 且 return ≥ 80% baseline\", \"parent\": \"exp_003_event_gated_v2\", \"retry_count\": 1, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A - killed due to gate_loss explosion bug\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v4_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"data_count\": 500000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.19, \"gpu_id\": 1, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_v4_s1\", \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v3 (dt clipping + logits masking + dt alignment fix)\", \"pid\": 36645, \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-13T10:12:04.157Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 18682.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:06:34.482Z\"}, \"exp_005_event_gated_v4\": {\"checkpoint_path\": \"N/A - killed due to structural failure of hard Gumbel gate\", \"completed_at\": \"2026-05-13T22:15:21.359Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-13T16:08:06.061Z\", \"failure_reason\": \"Hard Gumbel gate 结构性失败。3轮 bug 修复后仍崩塌：eval_return 峰值 541.18@55K → 持续下降 → 98.84@145K（baseline 同期 950.9）。Gate 机制有效（entropy/H_eff/structure 全 PASS），但 hard categorical gate + variable-rate imagination 与 actor-critic 优化存在结构性冲突。gate_scale>0.5 后 return 不可恢复。\", \"hypothesis\": \"Event-gated adaptive horizon (learned gate activation for dt selection) improves sample efficiency over fixed-horizon DreamerV3 by dynamically extending imagination when beneficial.\", \"latest_metrics\": {\"alert\": \"return_declining_at_phase2_onset\", \"baseline_at_65K\": 615.9, \"checked_at\": \"2026-05-13\", \"eval_return\": 465.67, \"eval_return_trajectory\": {\"15K\": 153.9, \"25K\": 254.2, \"35K\": 290.8, \"45K\": 443, \"55K\": 541.2, \"5K\": 31, \"65K\": 465.7}, \"fps\": 6.69, \"gap_vs_baseline\": -150.2, \"gate_dt_1_frac\": 0.965, \"gate_dt_2_frac\": 0.035, \"gate_dt_mean\": 1.035, \"gate_dt_std\": 0.036, \"gate_empirical_entropy\": 0.0499, \"gate_entropy_bonus\": 0.0865, \"gate_entropy_ratio\": 0.072, \"gate_loss\": 0.00663, \"gate_scale\": 0.10004, \"phase2_status\": \"gate刚进入phase2 (gate_scale=0.1), dt=1占比96.5%, gate几乎未激活。eval_return在55K→65K出现14%下降(541→466), 与phase2启动时机吻合, 类似exp_003崩塌前兆。但baseline同期也有小幅回调(626→616, -1.6%), 且gate尚未真正激活, 需继续观察75K数据确认是正常波动还是collapse。\", \"pid\": 51721, \"prev_eval_return\": 541.18, \"process_status\": \"running\", \"step\": 65000, \"train_return_latest\": 569.8, \"train_return_range\": [535.4, 602.1], \"uptime\": \"2h31m\"}, \"metrics\": {\"baseline_at_145K\": \"~950\", \"eval_return_105K\": 276.08, \"eval_return_145K\": 98.84, \"eval_return_15K\": 153.9, \"eval_return_35K\": 290.8, \"eval_return_55K\": 541.18, \"eval_return_5K\": 31, \"eval_return_65K\": 465.67, \"eval_return_85K\": 212.34, \"final_return\": 98.84, \"fps\": 6.69, \"gate_dt_mean_105K\": 2.054, \"gate_dt_std_105K\": 0.907, \"gate_entropy_105K\": 1.255, \"gate_scale_105K\": 0.5, \"note\": \"85K/105K metrics corrected from 319.3/337.8 to 212.34/276.08\", \"peak_return\": 541.18, \"peak_step\": \"55K\", \"return_ratio_final\": 0.104, \"step\": 145000}, \"parent\": \"exp_004_event_gated_v3\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v5_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"data_count\": 500000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 6.12, \"hypothesis\": \"修复 gate_target/masking 维度不匹配 + effective_max_dt 单一来源架构 + 全量审计后，event gate return >= 80% baseline\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_005_event_gated_v4.log\", \"model_name\": \"DreamerV3+EventGate_v4\", \"pid\": \"51721\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-13T16:08:11.913Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 22029.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T04:06:33.514Z\"}, \"exp_008d_civo_trigger_s3\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s3/checkpoint.ckpt\", \"completed_at\": \"2026-05-17T03:24:26.004Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-17T00:25:47.784Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-17T03:18:40.430236+00:00\"}]}, \"hypothesis\": \"Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (seed bug fix verification).\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008d_civo_trigger_s3.log\", \"metrics\": {\"baseline_eval_105K\": 915.67, \"collapse_onset_step\": 95000, \"collapse_type\": \"late-onset\", \"eval_return_final\": 267.6, \"eval_return_final_step\": 105000, \"eval_return_peak\": 451.7, \"eval_return_peak_step\": 95000, \"nve_final\": 1.53, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.5, \"nve_peak\": 1.53, \"nve_peak_step\": 105000, \"nve_sustained_45K_55K\": true, \"total_steps\": 112000, \"train_return_final_avg\": 138, \"train_return_final_range\": \"82-214\", \"value_mean_final\": 268.4, \"vs_baseline_105K\": \"-70.8%\"}, \"parent\": \"exp_008d_subsample_on_h8\", \"reproduce\": {\"finished_at\": \"2026-05-17T03:18:37.221Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"fresh_training (no checkpoint, new logdir)\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 3 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_008d_civo_trigger_s3\\\"\", \"data_count\": 105000, \"data_path\": \"DMC Walker Walk (online RL)\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.97, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008d_civo_trigger_s3.log\", \"model_name\": \"DreamerV3-S\", \"pid\": \"635744\", \"seed\": 3, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-17T00:25:59.245Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10706.8}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:24:26.004Z\"}, \"exp_018v2_full_sgs_walker_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018v2_full_sgs_walker_s1/latest.pt\", \"completed_at\": \"2026-05-16T17:24:44.481Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-16T13:42:15.786Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T17:17:46.576638+00:00\"}]}, \"hypothesis\": \"Full Selective Gradient Stopping (blocking obs+reward+cont decoder gradients to dt_emb) eliminates all gradient pathways creating dt-specific representations, thereby preventing CIVO onset and collapse.\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_018v2_full_sgs_walker_s1.log\", \"metrics\": {\"civo_reduction_pct\": 79, \"eval_return_final\": 448.3, \"eval_return_final_step\": 105000, \"eval_return_peak\": 499.6, \"eval_return_peak_step\": 75000, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"late_collapse_detected\": true, \"late_collapse_step\": 112000, \"nve_final\": 1.34, \"nve_mean_45k_105k\": 1.23, \"nve_peak\": 1.66, \"nve_peak_step\": 95000, \"total_steps\": 112000, \"total_updates\": 25099, \"value_loss_final\": 0.6}, \"parent\": \"exp_008d_subsample_on_h8\", \"reproduce\": {\"finished_at\": \"2026-05-16T17:17:44.050Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A (training from scratch, parent is predecessor not checkpoint source)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --full_sgs True --seed 1 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_018v2_full_sgs_walker_s1\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk (online RL, no static dataset)\", \"eval_data\": \"dmc_walker_walk eval episodes (online)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.49, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_018v2_full_sgs_walker_s1.log\", \"model_name\": \"DreamerV3\", \"pid\": \"589564\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T13:55:10.231Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 12574.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:57:18.423Z\"}, \"exp_018_full_sgs_s2\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_s2/checkpoint.pt\", \"completed_at\": \"2026-05-16T23:47:49.458Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-16T19:33:26.266Z\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Full-SGS reliably prevents CIVO across seeds; if seed=2 also survives without collapse, SGS is a robust intervention mechanism for deployment.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_018_full_sgs_s2.log\", \"notes\": \"CIVO collapse confirmed: eval 40.8@105K (from peak ~488@75K). NVE peaked 1.66× at 95K (35K+ window). Full-SGS did NOT prevent collapse in seed 2 — contradicts 018v2 (seed 1) which avoided collapse. This invalidates SGS_full as a reliable CIVO prevention method. Key difference from 018v2: 018_s2 collapsed while 018v2 sustained. n=2 for SGS_full now shows collapse_rate=0.5.\", \"parent\": \"exp_018v2_full_sgs_walker_s1\", \"pid\": \"612876\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --full_sgs True --seed 2 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_018_full_sgs_s2\\\"\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --full_sgs True --seed 2 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_018_full_sgs_s2\\\"\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 4.04, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_018_full_sgs_s2.log\", \"pid\": \"612876\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T19:45:40.838Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 14528.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:37.385Z\"}, \"exp_008f_no_dt_embed_subsample_on_h8\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/latest.pt\", \"completed_at\": \"2026-05-14T09:32:53.461Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T04:51:27.592Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T09:30:42.170428+00:00\"}]}, \"hypothesis\": \"Without trained dt-embedding, subsample mechanism alone does not induce value overestimation, isolating dt-embedding as the necessary causal factor for CIVO.\", \"metrics\": {\"baseline_105K\": 915.67, \"causal_conclusion\": \"trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.\", \"current_step\": 105000, \"eval_checkpoints\": {\"105K\": {\"eval_return\": 503, \"normalized_ve\": 0.3, \"value_mean\": 98.2}, \"15K\": {\"eval_return\": 182.03, \"value_mean\": 2.989, \"ve_ratio\": 0.01642}, \"25K\": {\"baseline_ve\": 0.087, \"eval_return\": 196.78, \"normalized_ve\": 1.02, \"value_mean\": 17.507, \"ve_ratio\": 0.089}, \"35K\": {\"baseline_ve\": 0.241, \"eval_return\": 206.67, \"normalized_ve\": 0.73, \"value_mean\": 36.279, \"ve_ratio\": 0.176}, \"45K\": {\"baseline_ve\": 0.331, \"eval_return\": 194.08, \"normalized_ve\": 0.83, \"value_mean\": 53.429, \"ve_ratio\": 0.275}, \"55K\": {\"baseline_ve\": 0.404, \"eval_return\": 173.45, \"normalized_ve\": 0.97, \"value_mean\": 67.899, \"ve_ratio\": 0.391}, \"5K\": {\"eval_return\": 30.49, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, \"65K\": {\"eval_return\": 375, \"normalized_ve\": 0.37}, \"75K\": {\"eval_return\": 324, \"normalized_ve\": 0.42}, \"85K\": {\"eval_return\": 246, \"normalized_ve\": 0.65, \"value_mean\": 111.8}, \"95K\": {\"eval_return\": 319, \"normalized_ve\": 0.54}}, \"last_updated\": \"2026-05-14T09:50:00\", \"target_steps\": 105000, \"trend\": \"Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.\", \"verdict\": \"SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed\", \"vs_baseline_105K\": \"-45.1%\"}, \"parent\": \"exp_008d_subsample_on_h8\", \"reproduce\": {\"finished_at\": \"2026-05-14T09:30:41.254Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch, parent is for genealogy only\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_embed_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment, not eval\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 4.68, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"pid\": \"127761\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T04:51:55.020Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 16858.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:33.517Z\"}, \"exp_016d_sgs_walker_s1\": {\"completed_at\": \"2026-05-15T19:35:10.508Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-15T19:29:41.130Z\", \"failure_reason\": \"Same hang as 016c — SummaryWriter.flush() deadlock after add_video with moviepy 2.x. try/except insufficient because flush() blocks on incomplete async video encode. Fix: Logger.video() → no-op.\", \"hypothesis\": \"Selective Gradient Stopping (reward_dt_emb_detach) blocks reward-gradient pathway to dt_emb, preventing CIVO-inducing co-adaptation while preserving task performance.\", \"parent\": \"exp_008d_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016d_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"model_name\": \"dreamerv3-sgs\", \"note\": \"第5次启动。两项修复生效：MUJOCO_EGL_DEVICE_ID=1 + logger.video注释。旧PID 526153已自行退出。\", \"pid\": 526939, \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:54:28.152Z\"}, \"exp_001_baseline\": {\"completed_at\": \"2026-05-13T15:23:24.593Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-13T02:09:53.875Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-13T15:23:25.663340+00:00\"}, {\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-13T21:47:19.804301+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"eval_return_205K\": 907.1, \"eval_return_215K\": 919.8, \"fps\": 8.3, \"step\": 245000, \"train_return_244K\": \"935-976\"}}}, \"failure_reason\": \"误报：cron 检测到进程退出但实际是正常完成（512K步）。已核实 checkpoint 229MB 有效。\", \"hypothesis\": \"Vanilla DreamerV3 on Walker Walk converges to stable high-return policy (>900) within 500K steps, establishing the performance ceiling for all gated variants.\", \"latest_metrics\": {\"checked_at\": \"2026-05-13\", \"eta_hours\": 1.8, \"eval_return\": 953.37, \"eval_step\": 445000, \"fps\": 7.29, \"pid\": 9409, \"prev_eval_return\": 964.96, \"process_status\": \"running\", \"step\": 452000, \"steps_remaining\": 48000, \"train_return_latest\": 958.07, \"train_return_range\": [917, 985.8], \"uptime\": \"16h35m\"}, \"metrics\": {\"data_source_ve\": \"from training logs metrics.jsonl\", \"eval_return_last10_mean\": 950.9, \"eval_return_peak\": 970.41, \"eval_return_peak_step\": 505000, \"eval_trajectory\": {\"105K\": 915.67, \"115K\": 919.81, \"125K\": 921.37, \"135K\": 900, \"145K\": 932.16, \"155K\": 933.34, \"15K\": 206.61, \"165K\": 907.98, \"175K\": 918.87, \"185K\": 954.69, \"195K\": 936.09, \"205K\": 949.24, \"215K\": 913.4, \"225K\": 962.44, \"235K\": 937.24, \"245K\": 934.42, \"255K\": 948.45, \"25K\": 395.27, \"265K\": 925.09, \"275K\": 931.51, \"285K\": 925.75, \"295K\": 936.3, \"305K\": 939.33, \"315K\": 948.42, \"325K\": 967.75, \"335K\": 942.41, \"345K\": 969.83, \"355K\": 941.11, \"35K\": 388.47, \"365K\": 935.76, \"375K\": 918.24, \"385K\": 937.98, \"395K\": 955.38, \"405K\": 937.83, \"415K\": 948.99, \"425K\": 954.64, \"435K\": 964.96, \"445K\": 953.37, \"455K\": 945.84, \"45K\": 513.77, \"465K\": 947.81, \"475K\": 947.66, \"485K\": 930.6, \"495K\": 944.73, \"505K\": 970.41, \"55K\": 625.73, \"5K\": 31.77, \"65K\": 615.86, \"75K\": 596.28, \"85K\": 713.93, \"95K\": 871.06}, \"final\": true, \"step\": 512000, \"value_eval_ratio_105K\": 0.656, \"value_eval_ratio_25K\": 0.087, \"value_eval_ratio_35K\": 0.241, \"value_eval_ratio_45K\": 0.331, \"value_eval_ratio_55K\": 0.404, \"value_eval_ratio_65K\": 0.563, \"value_eval_ratio_75K\": 0.719, \"value_eval_ratio_85K\": 0.701, \"value_eval_ratio_95K\": 0.632, \"value_eval_ratio_stable\": \"~69-72% from 135K+\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T21:47:18.966Z\"}, \"retry_count\": 1, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"data_count\": 500000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"hypothesis\": \"DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\", \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"pid\": 9409, \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:54:24.099Z\"}, \"exp_008d_civo_trigger_s2\": {\"completed_at\": \"2026-05-17T00:24:10.180Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-16T19:32:16.790Z\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed 1 — CIVO trigger 第 3 个独立 seed (D1)。预期 NVE>1.5× 触发 CIVO。用于 bootstrap CI 闭合 trained_dt_emb condition (现有: seed 0 = 008d, seed 2 = 009b)。注意: 原名 s2 但实际需跑 seed=1 (避免与 009b seed=2 重复)。\", \"notes\": \"Killed by Director order: seed bug confirmed. --seed 1 was parsed incorrectly, producing bit-for-bit identical results to seed=0. PID 628482 killed. Will resubmit after seed bug fix with seed=3.\", \"parent\": \"exp_008d_subsample_on_h8\", \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"fresh_training (no checkpoint loaded)\", \"command\": \"source /root/miniconda3/bin/activate && cd /root/event-gated-adaptive-horizon && python train.py --configs dmc_vision --task dmc_walker_walk --logdir ./logdir/008d_civo_trigger_s2 --seed 1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --steps 120000\", \"data_count\": 120000, \"data_path\": \"DMC Walker Walk (online RL)\", \"eval_data\": \"N/A - training experiment, not eval\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 1.57, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008d_civo_trigger_s2.log\", \"model_name\": \"DreamerV3-S\", \"pid\": \"628477\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T22:49:55.859Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 5654.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T00:24:10.180Z\"}, \"exp_008f_s3_no_dt_embed_walker\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_s3_no_dt_embed_walker/checkpoint.ckpt\", \"completed_at\": \"2026-05-16T20:09:51.135Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-16T16:04:28.878Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 3 — 008f 系列第 3 个独立 seed，闭合 no_dt_emb condition 的 bootstrap CI（当前 n=2，需 ≥3）。预期 NVE<1.5×，无 CIVO。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008f_s3_no_dt_embed_walker.log\", \"metrics\": {\"collapse\": false, \"eval_return_final\": 363.8, \"nve_peak\": \"< 1.5x\"}, \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"pid\": \"601233\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_s3_no_dt_embed_walker --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_s3_no_dt_embed_walker --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 2.81, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008f_s3_no_dt_embed_walker.log\", \"pid\": \"601233\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T17:21:24.538Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10106.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T20:09:51.135Z\"}, \"exp_020_vanilla_dreamerv3_s2\": {\"completed_at\": \"2026-05-16T19:43:57.604Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-16T13:23:55.837Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T19:40:49.938571+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Vanilla DreamerV3 (no dt_emb, no subsample, no gate) seed 2 — Pathway B 控制实验：验证 008e_v3_s2 的 eval-driven collapse 是否需要 trained dt_emb 作为必要条件。如果 vanilla s2 稳定 → C6 成立 (trained dt_emb 是 Pathway B 必要条件)。如果也崩溃 → Pathway B 是 DreamerV3 inherent fragility。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_020_vanilla_dreamerv3_s2.log\", \"metrics\": {\"collapse\": false, \"comparison_with_parent\": {\"c6_confirmed\": true, \"delta\": \"vanilla stable (836.5) vs trained dt_emb collapsed (136.96)\", \"parent_collapsed\": true, \"parent_eval_105K\": 136.96, \"parent_id\": \"exp_008e_v3_walker_s2\", \"parent_nve_105K\": 3.78}, \"eval_trajectory\": [{\"eval_return\": 41.2, \"step\": 5000}, {\"eval_return\": 534.1, \"step\": 55000}, {\"eval_return\": 688.9, \"step\": 65000}, {\"eval_return\": 596.2, \"step\": 95000}, {\"eval_return\": 836.5, \"step\": 105000}], \"final_eval_return\": 836.5, \"final_value_mean\": 539.3, \"peak_eval_return\": 836.5, \"peak_eval_step\": 105000, \"train_return_range_108K\": \"511-808\", \"ve_ratio_105K\": 0.645}, \"notes\": \"Pathway B 控制实验 (D6)。vanilla config: dt_embed_dim=0, subsample OFF, H=15, seed=2, 105K steps, Walker Walk。排队等 010b 完成后在 cuda:0 提交。命令: dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 2 --compile True --device cuda:0 --imag_horizon 15\", \"parent\": \"exp_008e_v3_walker_s2\", \"pid\": \"596344\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_020_vanilla_dreamerv3_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --imag_horizon 15\\\"\", \"finished_at\": \"2026-05-16T19:40:47.795Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"logdir/exp_020_vanilla_dreamerv3_s2/checkpoint.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_020_vanilla_dreamerv3_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --imag_horizon 15\\\"\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.97, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_020_vanilla_dreamerv3_s2.log\", \"pid\": \"596344\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T16:45:55.371Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 10682.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T19:43:57.604Z\"}, \"exp_019a_pickcube_baseline\": {\"account\": \"root\", \"completed_at\": \"2026-05-16T13:43:00.745Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-16T03:23:50.639Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"PickCube-v1 baseline — dt=1, no dt_emb (dim=0), subsample OFF. ManiSkill3 manipulation 环境稳定基线，验证 CIVO 诊断在 manipulation 中的适用性\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_019a_pickcube_baseline.log\", \"notes\": \"ManiSkill3 Phase 1. 排队等 cuda:1 (010a 完成后). --compile False --device cuda:1. maniskill_state config.\", \"pid\": \"586751\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults maniskill_state --task maniskill_PickCube-v1 --steps 200000 --seed 1 --device cuda:0 --compile False --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_019a_pickcube_baseline\\\"\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-16T12:00:04.473Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A (killed before completion)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults maniskill_state --task maniskill_PickCube-v1 --steps 200000 --seed 1 --device cuda:0 --compile False --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_019a_pickcube_baseline\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.37, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_019a_pickcube_baseline.log\", \"pid\": \"586751\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-16T13:20:56.230Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 1324.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T13:43:00.745Z\"}, \"exp_018_full_sgs_walker_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-16T12:43:09.226Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-15T23:30:39.991Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T12:40:17.132664+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_018_full_sgs_walker_s1.log\", \"metrics\": {\"eval_return_final\": 915.7, \"eval_return_final_step\": 105000, \"eval_return_peak\": 915.7, \"eval_return_peak_step\": 105000, \"nve_peak\": 0.72, \"nve_peak_step\": 75000, \"nve_sustained_avg\": 0.55, \"nve_sustained_max\": 0.72, \"total_steps\": 112000, \"train_return_final_avg\": 899.4, \"value_mean_final\": 601.1}, \"notes\": \"⚠️ INVALID: 训练命令缺失 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8。gate_enabled=false → dt_embedding 未创建 → full_sgs 是空操作 → 实际等同 vanilla baseline。所有基于此实验的 claim (CIVO elimination, gradient-level vulnerability) 需要 018v2 重新验证。\", \"parent\": \"exp_016e_sgs_walker_s1\", \"pid\": \"577467\", \"reproduce\": {\"code_commit\": \"3328f53cb32cda27e85b099d560256aeb01db998\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_018_full_sgs_walker_s1 --steps 105000 --full_sgs True --seed 1 --compile False --device cuda:0\\\"\", \"finished_at\": \"2026-05-16T12:40:14.687Z\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-16T09:50:18.238Z\", \"training_hours\": 2.83}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1/checkpoint.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T13:42:11.339Z\"}, \"exp_010a_cheetah_baseline_s1\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010a_cheetah_baseline_s1/latest.pt\", \"completed_at\": \"2026-05-16T12:01:01.080Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T07:17:27.101Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T11:59:12.312213+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"metrics\": {\"eval_return_final\": 849.8, \"eval_return_final_step\": 515000, \"eval_return_peak\": 849.8, \"eval_return_peak_step\": 515000, \"final_step\": 524000, \"total_eval_episodes\": 52, \"train_return_last\": 716}, \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"pid\": \"536890\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"finished_at\": \"2026-05-16T11:59:09.914Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-15T22:48:05.456Z\", \"training_hours\": 13.18}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010a_cheetah_baseline_s1/checkpoint.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010a_cheetah_baseline_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T12:01:11.169Z\"}, \"exp_009d_baseline_walker_s0\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T12:10:01.788Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-15T11:55:00.039Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T12:10:04.203907+00:00\"}, {\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T12:24:17.652463+00:00\"}, {\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-16T09:48:44.475703+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\"}}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）\", \"metrics\": {\"eval_return\": 927.6, \"eval_return_at_508K\": 927.6, \"eval_return_peak\": 950.96, \"eval_return_peak_step\": 398000, \"note\": \"COMPLETED 508K/500K, final eval 927.6, peak 950.96@398K\", \"step\": 508000}, \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\", \"parent\": \"exp_001_baseline\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"finished_at\": \"2026-05-16T09:48:42.388Z\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-15T12:06:19.592Z\", \"training_hours\": 21.71}, \"retry_count\": 2, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0/checkpoint.ckpt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"data_count\": 500000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0/metrics.jsonl\", \"model_name\": \"DreamerV3_baseline\", \"pid\": \"149703\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T09:50:34.506Z\"}, \"exp_017_subsample_off_trained_dt_emb\": {\"completed_at\": \"2026-05-16T04:46:30.361Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-15T10:44:24.756Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2）\", \"notes\": \"D044: 取消。008a 配置验证确认 017 与 008a 完全重复（trained dt_emb + subsample OFF + H=15 + seed 1）。008a 的\\\"untrained\\\"含义是\\\"dt_emb 存在但未接触 dt>1 数据\\\"，不是 frozen/absent。2×2 矩阵已由 008a/008d/008f/015b 闭合。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T04:46:30.361Z\"}, \"016e\": {\"completed_at\": \"2026-05-16T01:39:17.916Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-15T22:21:09.251Z\", \"notes\": \"重复条目，权威数据在 exp_016e_sgs_walker_s1 (DONE/negative)。此条目为 NVE 诊断过程中误创建的冗余记录。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-16T01:39:17.916Z\"}, \"exp_016e_sgs_walker_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_016e_sgs_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T22:31:16.457Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-15T19:35:20.242Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第五次重试，修复 Logger.video() → no-op 彻底消除 SummaryWriter.add_video/flush 死锁\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_016e_sgs_walker_s1/\", \"metrics\": {\"actor_loss_sign_flip_step\": 95000, \"civo_catastrophic_step\": 95000, \"civo_detected\": true, \"civo_nve_peak\": 10.42, \"civo_nve_peak_step\": 95000, \"civo_onset_step\": 85000, \"civo_severity\": \"catastrophic\", \"current_step\": 100000, \"data_source\": \"metrics.jsonl from logdir/exp_016e_sgs_walker_s1/, completed 100K steps, SSH 2026-05-16T06:25\", \"deep_analysis\": {\"016e_vs_008d_entropy_comparison\": {\"15K\": {\"008d\": 0.481, \"016e\": 1.049, \"delta\": 0.568}, \"25K\": {\"008d\": -1.862, \"016e\": -1.554, \"delta\": 0.308}, \"35K\": {\"008d\": -3.465, \"016e\": -2.118, \"delta\": 1.347}, \"45K\": {\"008d\": -4.575, \"016e\": -3.455, \"delta\": 1.12}, \"55K\": {\"008d\": -4.879, \"016e\": -3.617, \"delta\": 1.262}, \"interpretation\": \"SGS preserves ~1.0-1.3 nats higher entropy through 35-55K, enabling better exploration\"}, \"016e_vs_008d_value_at_crash\": {\"008d\": {\"disconnect_ratio\": 1.67, \"eval_return\": 82.75, \"value_mean\": 137.88}, \"016e\": {\"disconnect_ratio\": 6.58, \"eval_return\": 31.73, \"value_mean\": 208.88}, \"interpretation\": \"016e value completely decoupled from reality; 008d still weakly correlated\"}, \"actor_loss_sign_flip\": {\"008d_min_actor_loss\": -0.073, \"008d_never_flipped\": true, \"016e_flip_step\": 95000, \"016e_flip_value\": 0.014, \"interpretation\": \"sign flip = value critic drives actor toward worse actions, triggering catastrophic collapse\"}, \"train_return_collapse_timeline\": {\"100K\": [109, 111, 102, 108], \"88K\": [140, 145, 116, 116], \"92K\": [50, 29, 34, 75], \"96K\": [86, 41, 50, 101], \"interpretation\": \"collapse visible in train_return by 92K; partial recovery by 100K but far below peak\"}}, \"eval_checkpoints\": [{\"eval_return\": 31, \"step\": 5000, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, {\"eval_return\": 140.3, \"step\": 15000, \"value_mean\": 3.1, \"ve_ratio\": 0.022}, {\"baseline_ve\": 0.087, \"eval_return\": 141.75, \"nve\": 1.86, \"step\": 25000, \"value_mean\": 22.97, \"ve_ratio\": 0.162}, {\"baseline_ve\": 0.241, \"eval_return\": 173.01, \"nve\": 1.28, \"step\": 35000, \"value_mean\": 53.55, \"ve_ratio\": 0.309}, {\"baseline_ve\": 0.331, \"eval_return\": 184.03, \"nve\": 1.4, \"step\": 45000, \"value_mean\": 85.32, \"ve_ratio\": 0.464}, {\"baseline_ve\": 0.404, \"eval_return\": 153.79, \"nve\": 1.86, \"step\": 55000, \"value_mean\": 115.63, \"ve_ratio\": 0.752}, {\"baseline_ve\": 0.563, \"eval_return\": 324.3, \"nve\": 0.83, \"step\": 65000, \"value_mean\": 152.3, \"ve_ratio\": 0.469}, {\"baseline_ve\": 0.719, \"eval_return\": 326.67, \"nve\": 0.81, \"step\": 75000, \"value_mean\": 190.04, \"ve_ratio\": 0.582}, {\"baseline_ve\": 0.701, \"eval_return\": 256.21, \"nve\": 1.2, \"step\": 85000, \"value_mean\": 215.39, \"ve_ratio\": 0.841}, {\"baseline_ve\": 0.632, \"eval_return\": 31.73, \"nve\": 10.42, \"step\": 95000, \"value_mean\": 208.88, \"ve_ratio\": 6.583}], \"final_eval_return\": 31.73, \"final_eval_step\": 95000, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"peak_eval_return\": 326.67, \"peak_eval_step\": 75000, \"reward_dt_emb_detach\": true, \"sgs_verdict\": \"SGS delays CIVO onset ~50K steps by preserving entropy, yields 2x higher peak (327 vs 167), but does NOT prevent collapse. Collapse is more severe (NVE 10.42x vs 4.12x) due to accumulated value overestimation. Root cause is value dynamics, not reward-head gradient contamination.\", \"target_steps\": 105000}, \"notes\": \"logdir 路径修正：实际数据在 logdir/exp_016e_sgs_walker_s1（非 spec 中的 exp_016d）。SGS 崩溃确认@95K: eval 31.7, ve_ratio=6.59x, NVE=10.42x。\\n\\n**⚠️ 关键发现（Full-SGS 梯度验证）：reward loss 对 dt_emb.weight 的梯度贡献为 0。016e 的 reward_dt_emb_detach 实际上是 no-op——完全无效干预。** 真正的 dt_emb 梯度来源是 decoder heads（orientations=1.11, velocity=0.90, height=0.76, cont=0.27）。016e 与 008d 的差异（onset 延迟、更高峰值）应归因于随机变异或其他实验条件差异，不是 SGS 干预效果。\\n\\nFull-SGS（detach 所有 non-KL head 梯度）移除 93% dt_emb 梯度（1.624→0.119），是真正的测试。\", \"parent\": \"exp_008d_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016e_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"logdir\": \"logdir/exp_016e_sgs_walker_s1\", \"model_name\": \"dreamerv3-sgs\", \"note\": \"logdir 修正: 实际数据在 exp_016e（非 016d）\", \"pid\": 527392, \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T23:30:11.433Z\"}, \"exp_016c_sgs_walker_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T19:26:05.863Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-15T19:12:09.799Z\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer). EGL fix confirmed working: eval at step 5000 completed successfully (eval_return=31.0). OOM occurred during training loop startup after eval. Likely system RAM OOM (replay buffer + model + eval concurrent memory peak).\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk SGS (reward_dt_emb_detach=True) + subsample ON + H=8 seed 1 — 论文 method section 核心。GPU 1 清理+验证通过后重启（plan_016）\", \"metrics\": {\"egl_fix_verified\": true, \"eval_return_5K\": 31, \"step\": 5000}, \"parent\": \"exp_008d_subsample_on_h8\", \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A - training from scratch, parent is for genealogy only\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment, not eval\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_SGS_Subsample_H8 (reward_dt_emb_detach=True)\", \"note\": \"GPU 1 cleanup + CUDA/dm_control verification passed. logdir shared with 016b (fresh start).\", \"pid\": \"524244\", \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:27:24.104Z\"}, \"exp_009h_008f_walker_s0\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T19:08:12.013Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-15T19:03:10.534Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T19:08:15.731787+00:00\"}]}, \"failure_reason\": \"误杀: Director 基于 Reviewer 错误诊断下令 kill（认为 zombie PID 522009 导致 eval deadlock），但日志证明 EGL fix (MUJOCO_EGL_DEVICE_ID=1) 已生效，eval 正常运行中 (iter=500, t=95.9s)。EGL fix 确认有效。\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009g（EGL device mismatch 修复：+MUJOCO_EGL_DEVICE_ID=1）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009h_008f_walker_s0.log\", \"notes\": \"日志显示进程正常完成 prefill → 到达 step 5000 → eval 正在运行（500 iter, 96s, 正常产出 debug 行）→ 被外部 SIGHUP (EXIT_CODE=129) 终止。非渲染死锁，非 OOM。诊断 Worker 排查外部终止原因中。009f/009g/009h 连续 3 次失败，分别因 seed 重复、EGL mismatch、外部 SIGHUP。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"pid\": \"522450\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009h_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-15T19:08:09.836Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009h_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8\", \"note\": \"EGL fix: MUJOCO_EGL_DEVICE_ID=1 to match physical GPU 1. 008f series seeds: 1(008f), 2(009c), 0(009h)\", \"pid\": \"522450\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:18:24.685Z\"}, \"exp_016b_sgs_walker_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T19:10:52.235Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-15T19:08:00.667Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T19:10:53.928926+00:00\"}]}, \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016, 论文 method section 核心）。重跑 016_sgs，修复 EGL device mismatch（+MUJOCO_EGL_DEVICE_ID=1）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016b_sgs_walker_s1.log\", \"notes\": \"Restarted after GPU 1 cleanup. Old PID 523536 killed during GPU reset attempt. New PID 524244. GPU 1 diagnostics: no ECC/Xid errors, reset not supported (AutoDL container) but cleanup successful. CUDA + dm_control verification passed in 3s.\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": 524244, \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"finished_at\": \"2026-05-15T19:10:51.013Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_SGS_Subsample_H8 (reward_dt_emb_detach=True)\", \"note\": \"Rerun of 016_sgs with EGL fix (MUJOCO_EGL_DEVICE_ID=1). Original 016 failed due to EGL device mismatch, not SGS code issue.\", \"pid\": \"523536\", \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:11:46.897Z\"}, \"exp_009g_008f_walker_s0\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T18:59:55.315Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-15T18:54:23.385Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T18:59:59.820061+00:00\"}]}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM). Root cause: MUJOCO_GL=egl defaults to EGL device 0 while CUDA_VISIBLE_DEVICES=1 binds CUDA to GPU 1, causing cross-GPU context conflict and eval deadlock at step 5000.\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009f（seed=1 与 parent 008f 重复）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009g_008f_walker_s0.log\", \"notes\": \"Hung at first eval (step 5000) due to osmesa rendering deadlock in dm_control render_executor thread. Same root cause as exp_016. Fixed by switching MUJOCO_GL to egl in dreamer.py.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"pid\": \"517413\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-15T18:59:53.840Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"note\": \"Replaces exp_009f which had seed=1 duplicating parent 008f. 008f series seeds: 1(008f), 2(009c), 0(009g)\", \"pid\": \"517413\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:03:53.591Z\"}, \"exp_009f_008f_walker_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T18:46:03.293Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-14T11:09:15.806Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T18:46:05.155411+00:00\"}, {\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T18:52:15.790170+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"failure_reason\": \"Seed duplication: 009f used seed=1 same as parent 008f, producing deterministic repeat (prefill returns identical). Killed by Director order.\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009f_008f_walker_s1.log\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"pid\": \"516110\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009f_008f_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-15T18:52:12.322Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-15T18:44:58.143Z\", \"training_hours\": 0.12}, \"retry_count\": 1, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009f_008f_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.07, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009f_008f_walker_s1.log\", \"pid\": \"516110\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T18:47:48.525Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 265.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T18:54:04.806Z\"}, \"exp_016_sgs_walker_s1\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T18:43:52.455Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-15T14:30:32.999Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T18:43:57.605618+00:00\"}]}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路。预期：不崩溃，nve < 1.5x baseline；imagination dt=2/dt=1 reward ratio 从 008d 的 2.90x 大幅下降（plan_016, 论文 method section 核心）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016_sgs_walker_s1.log\", \"notes\": \"Director 调整优先级：017 先于 016。cuda:1 释放后先跑 017，017 完成后再跑 016。SGS 诊断 bug 已修复（models.py L388-417 删除），dry-run 通过。[2026-05-15 18:43] PID 514422 hung: GPU 1 利用率 0%, 显存 794 MiB, metrics.jsonl 停 step=5000 持续 2.5h+。已 kill，Worker 诊断根因+修复+重启中。\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": \"514417\", \"reproduce\": {\"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"finished_at\": \"2026-05-15T18:43:51.025Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.13, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016_sgs_walker_s1.log\", \"pid\": \"514417\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T18:36:15.693Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 456.8}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T18:43:52.455Z\"}, \"exp_015b_frozen_dt_emb\": {\"completed_at\": \"2026-05-15T12:12:25.846Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-15T10:21:05.572Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-15T18:27:09.189680+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第二次提交。首次失败原因: --device cuda:1 但 CUDA_VISIBLE_DEVICES=1 后进程内只有 cuda:0。已修正为 --device cuda:0。PID 144831, 从头开始 (step=0)。预计 ~5h 完成 105K steps。\"}}, \"hypothesis\": \"Walker Walk frozen dt_emb + subsample ON + dt=2 imagination + H=8 seed 1 — 2×2 消融矩阵: 隔离 dt_emb 训练 vs 存在的因果效应。如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在（plan_015B, D041）\", \"metrics\": {\"actor_entropy_105K\": -4.855, \"actor_loss_105K\": 0.000179, \"collapse_mechanism\": \"gradient_starvation_from_frozen_dt_emb\", \"data_source\": \"worker SSH final analysis 2026-05-15T18:30\", \"eval_return_105K\": 204.2, \"eval_return_15K\": 167.9, \"eval_return_25K\": 171.8, \"eval_return_35K\": 201.6, \"eval_return_45K\": 122.3, \"eval_return_55K\": 105.8, \"eval_return_5K\": 31, \"eval_return_65K\": 160.3, \"eval_return_75K\": 80, \"eval_return_85K\": 183.5, \"eval_return_95K\": 238.4, \"final_eval\": 204.2, \"final_step\": 112000, \"gate_dt_1_frac\": 0, \"gate_dt_mean\": 2, \"nve_105K\": 0.42, \"nve_85K\": 0.467, \"nve_95K\": 0.394, \"summary\": \"NVE 0.39-0.47 (far below 1.0, critic under-estimates), actor_loss→0 (gradient starvation), gate locked dt=2 100%, eval volatile 80-238 no stable convergence\", \"value_mean_105K\": 56.212, \"value_std_105K\": 13.818}, \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD + MUJOCO_GL=egl + --device cuda:0 (CUDA_VISIBLE_DEVICES=1 隔离)。cuda:1, seed=1, 105K steps ~5h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\", \"parent\": \"exp_008d_subsample_on_h8\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:27:07.138Z\"}, \"retry_count\": 1, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_015b_frozen_dt_emb --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_015b_frozen_dt_emb.log\", \"pid\": \"149991\", \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T18:38:42.380Z\"}, \"exp_008a_no_subsample_dt2\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/latest.pt\", \"completed_at\": \"2026-05-14T06:16:58.196Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T01:33:27.311Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T06:15:01.796655+00:00\"}]}, \"hypothesis\": \"隔离 subsample 效应：trained dt_emb (unexposed to dt>1 data due to subsample OFF) + subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample 混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。\", \"metrics\": {\"baseline_105K\": 915.67, \"baseline_55K\": 625.7, \"baseline_65K\": 616, \"data_source\": \"from training logs metrics.jsonl\", \"eval_return_105K\": 777.66, \"eval_return_35K\": 500.84, \"eval_return_45K\": 563.41, \"eval_return_55K\": 487.92, \"eval_return_65K\": 608, \"eval_return_75K\": 469.93, \"eval_return_85K\": 583.73, \"eval_return_95K\": 572.24, \"nan_count\": 0, \"normalized_ve_105K\": 0.59, \"normalized_ve_55K\": 0.93, \"normalized_ve_65K\": 0.66, \"normalized_ve_75K\": 0.75, \"normalized_ve_85K\": 0.68, \"normalized_ve_95K\": 0.79, \"step\": 112000, \"trend\": \"Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K\", \"value_eval_ratio_105K\": 0.386, \"value_eval_ratio_55K\": 0.376, \"value_eval_ratio_65K\": 0.372, \"value_eval_ratio_75K\": 0.536, \"value_eval_ratio_85K\": 0.475, \"value_eval_ratio_95K\": 0.497, \"value_mean_105K\": 300.27, \"value_mean_55K\": 183.5, \"value_mean_65K\": 226.1, \"value_mean_75K\": 251.78, \"value_mean_85K\": 277.36, \"value_mean_95K\": 284.28, \"verdict_105K\": \"NEW_PEAK_V_RECOVERY\", \"verdict_65K\": \"RECOVERED_NEW_HIGH\", \"vs_baseline_105K\": \"-15.1%\", \"vs_baseline_65K\": \"-1.3%\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:15:00.119Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_fixed_dt2_no_subsample --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 4.65, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (gate_fixed_dt=2, gate_subsample_max_dt=1, H=15)\", \"pid\": \"106942\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T01:37:46.034Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 16752.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T14:50:59.046Z\"}, \"exp_009d_baseline_walker_s1\": {\"completed_at\": \"2026-05-15T11:54:55.153Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-14T11:09:14.363Z\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"notes\": \"⚠️ seed=1 与 exp_001_baseline 相同，eval 轨迹确定性复现。不构成独立 seed。如需第三 baseline seed 应 kill 并用 --seed 0 或 --seed 3 重跑。待 Director 决策。\", \"parent\": \"exp_001_baseline\", \"pid\": 122271, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"data_count\": 500000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 5.33, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s1.log\", \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T06:35:00Z\", \"wall_clock_seconds\": 19195.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T11:54:55.153Z\"}, \"exp_009a_baseline_walker_s2\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:33:12.892Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T07:17:24.247Z\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/\", \"metrics\": {\"cross_seed_ve_stable\": \"seed 2 v/e = 0.69-0.72 matches seed 0/1 = 0.69-0.72\", \"eval_return_peak\": 966.94, \"eval_return_peak_step\": 395000, \"eval_trajectory\": [{\"eval_return\": 41.21, \"step\": 5000}, {\"eval_return\": 106.01, \"step\": 15000}, {\"eval_return\": 325.33, \"step\": 25000}, {\"eval_return\": 354.49, \"step\": 35000}, {\"eval_return\": 498.01, \"step\": 45000}, {\"eval_return\": 534.13, \"step\": 55000}, {\"eval_return\": 688.87, \"step\": 65000}, {\"eval_return\": 656.85, \"step\": 75000}, {\"eval_return\": 618.73, \"step\": 85000}, {\"eval_return\": 596.24, \"step\": 95000}, {\"eval_return\": 836.51, \"step\": 105000}, {\"eval_return\": 804.79, \"step\": 115000}, {\"eval_return\": 865.48, \"step\": 125000}, {\"eval_return\": 876.08, \"step\": 135000}, {\"eval_return\": 869.18, \"step\": 145000}, {\"eval_return\": 778.99, \"step\": 155000}, {\"eval_return\": 864.03, \"step\": 165000}, {\"eval_return\": 850.53, \"step\": 175000}, {\"eval_return\": 907.31, \"step\": 185000}, {\"eval_return\": 873.49, \"step\": 195000}, {\"eval_return\": 887.02, \"step\": 205000}, {\"eval_return\": 956.04, \"step\": 215000}, {\"eval_return\": 892.09, \"step\": 225000}, {\"eval_return\": 914.78, \"step\": 235000}, {\"eval_return\": 950.32, \"step\": 245000}, {\"eval_return\": 936.9, \"step\": 255000}, {\"eval_return\": 937.27, \"step\": 265000}, {\"eval_return\": 934.78, \"step\": 275000}, {\"eval_return\": 960.2, \"step\": 285000}, {\"eval_return\": 947.46, \"step\": 295000}, {\"eval_return\": 937.8, \"step\": 305000}, {\"eval_return\": 948.66, \"step\": 315000}, {\"eval_return\": 930.61, \"step\": 325000}, {\"eval_return\": 919.23, \"step\": 335000}, {\"eval_return\": 816.18, \"step\": 345000}, {\"eval_return\": 932.45, \"step\": 355000}, {\"eval_return\": 943.13, \"step\": 365000}, {\"eval_return\": 952.86, \"step\": 375000}, {\"eval_return\": 942.31, \"step\": 385000}, {\"eval_return\": 966.94, \"step\": 395000}, {\"eval_return\": 948.01, \"step\": 405000}, {\"eval_return\": 957.06, \"step\": 415000}, {\"eval_return\": 939.37, \"step\": 425000}, {\"eval_return\": 963.65, \"step\": 435000}, {\"eval_return\": 948.42, \"step\": 445000}, {\"eval_return\": 937.72, \"step\": 455000}, {\"eval_return\": 939.54, \"step\": 465000}, {\"eval_return\": 965.94, \"step\": 475000}, {\"eval_return\": 916.74, \"step\": 485000}, {\"eval_return\": 945.58, \"step\": 495000}, {\"eval_return\": 957.87, \"step\": 505000}], \"final_eval_return\": 957.87, \"final_eval_step\": 505000, \"final_value_mean\": 665.17, \"final_ve_ratio\": 0.694, \"last10_mean\": 947.19, \"n_evals\": 51, \"total_steps\": 505000, \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 25000, \"value_mean\": 45.78}, {\"step\": 55000, \"value_mean\": 253.49}, {\"step\": 105000, \"value_mean\": 539.34}, {\"step\": 155000, \"value_mean\": 633.42}, {\"step\": 205000, \"value_mean\": 658.92}, {\"step\": 255000, \"value_mean\": 663.87}, {\"step\": 305000, \"value_mean\": 663.86}, {\"step\": 355000, \"value_mean\": 663.78}, {\"step\": 405000, \"value_mean\": 663.95}, {\"step\": 455000, \"value_mean\": 664.42}, {\"step\": 505000, \"value_mean\": 665.17}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.141}, {\"step\": 55000, \"ve\": 0.475}, {\"step\": 105000, \"ve\": 0.645}, {\"step\": 155000, \"ve\": 0.813}, {\"step\": 205000, \"ve\": 0.743}, {\"step\": 255000, \"ve\": 0.709}, {\"step\": 305000, \"ve\": 0.708}, {\"step\": 355000, \"ve\": 0.712}, {\"step\": 405000, \"ve\": 0.7}, {\"step\": 455000, \"ve\": 0.709}, {\"step\": 505000, \"ve\": 0.694}], \"ve_stable_range\": \"0.69-0.72 from 235K+\", \"vs_exp001_105K\": \"836.51 vs 915.67 (-8.6%)\", \"vs_exp001_final\": \"957.87 vs 970.41 (-1.3%)\", \"vs_exp001_last10\": \"947.19 vs 950.90 (-0.4%)\", \"vs_exp001_peak\": \"966.94 vs 970.41 (-0.4%)\"}, \"notes\": \"Baseline seed 2 完成。与 exp_001 (seed 0/1) 高度一致: peak 966.94 vs 970.41 (-0.4%), last10 mean 947.19 vs 950.90 (-0.4%), v/e stable 0.69-0.72 匹配。105K 处 836.51 比 seed 0/1 的 915.67 低 8.6%，但 215K+ 后完全收敛。345K 有一个 dip 到 816 但迅速恢复。baseline 跨 seed 一致性确认。\", \"pid\": \"142508\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\\\"\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-14T07:19:08.969Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"data_count\": 500000, \"data_path\": \"dmc_walker_walk\", \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T06:33:16.385Z\"}, \"exp_008e_v3_walker_s2\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:00:20.816Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T14:29:53.738Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — crown jewel C6 seed 2 验证\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/\", \"metrics\": {\"actor_entropy_collapse_signature\": \"entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)\", \"actor_entropy_trajectory\": [{\"actor_entropy\": 8.239, \"step\": 5000}, {\"actor_entropy\": 2.352, \"step\": 15000}, {\"actor_entropy\": 0.17, \"step\": 25000}, {\"actor_entropy\": -3.498, \"step\": 35000}, {\"actor_entropy\": -4.915, \"step\": 45000}, {\"actor_entropy\": -5.121, \"step\": 55000}, {\"actor_entropy\": -5.135, \"step\": 65000}, {\"actor_entropy\": -5.224, \"step\": 75000}, {\"actor_entropy\": -5.208, \"step\": 85000}, {\"actor_entropy\": -4.529, \"step\": 95000}, {\"actor_entropy\": -3.828, \"step\": 105000}], \"baseline_105K\": 915.67, \"collapse_confirmed\": \"105K (nve=3.78x, eval 715→137)\", \"collapse_onset\": \"95K (nve jumped from 0.68x to 1.34x)\", \"eval_trajectory\": [{\"eval_return\": 39.27, \"step\": 5000}, {\"eval_return\": 180.85, \"step\": 15000}, {\"eval_return\": 211.82, \"step\": 25000}, {\"eval_return\": 320.39, \"step\": 35000}, {\"eval_return\": 356.93, \"step\": 45000}, {\"eval_return\": 418.32, \"step\": 55000}, {\"eval_return\": 435.09, \"step\": 65000}, {\"eval_return\": 576.54, \"step\": 75000}, {\"eval_return\": 715.21, \"step\": 85000}, {\"eval_return\": 452.43, \"step\": 95000}, {\"eval_return\": 136.96, \"step\": 105000}], \"final_eval_return\": 136.96, \"final_nve\": 3.78, \"final_value_mean\": 339.84, \"final_ve_ratio\": 2.481, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"peak_eval_return\": 715.21, \"peak_eval_step\": 85000, \"train_return_108K\": \"19-23 (random policy level)\", \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 15000, \"value_mean\": 3.91}, {\"step\": 25000, \"value_mean\": 30.27}, {\"step\": 35000, \"value_mean\": 79.75}, {\"step\": 45000, \"value_mean\": 125.25}, {\"step\": 55000, \"value_mean\": 172.89}, {\"step\": 65000, \"value_mean\": 220.47}, {\"step\": 75000, \"value_mean\": 272.64}, {\"step\": 85000, \"value_mean\": 339.3}, {\"step\": 95000, \"value_mean\": 384.39}, {\"step\": 105000, \"value_mean\": 339.84}], \"ve_ratio_trajectory\": [{\"nve\": 1.64, \"step\": 25000, \"ve\": 0.143}, {\"nve\": 1.03, \"step\": 35000, \"ve\": 0.249}, {\"nve\": 1.06, \"step\": 45000, \"ve\": 0.351}, {\"nve\": 1.02, \"step\": 55000, \"ve\": 0.413}, {\"nve\": 0.9, \"step\": 65000, \"ve\": 0.507}, {\"nve\": 0.66, \"step\": 75000, \"ve\": 0.473}, {\"nve\": 0.68, \"step\": 85000, \"ve\": 0.474}, {\"nve\": 1.34, \"step\": 95000, \"ve\": 0.85}, {\"nve\": 3.78, \"step\": 105000, \"ve\": 2.481}], \"vs_baseline_105K\": \"-85.0%\"}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"notes\": \"C6 seed 2 COLLAPSED. Delusional critic collapse at 85K→105K despite gate_dt_mean=1.0 locked throughout. eval peaked 715@85K then crashed to 137@105K (v/e=2.48, nve=3.78x). Cross-seed: seed 0=869.9 (healthy), seed 1=869.9 (healthy), seed 2=137 (collapsed). Collapse is stochastic (1/3 seeds) even in dt=1 imagination config. Subsample ON training data (dt=2 transitions) appears sufficient to trigger delusional critic in some seeds. Train returns at 108K=19-23 (random policy).\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"pid\": \"43437\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.23, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s2.log\", \"pid\": \"43437\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T00:46:45.424Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 18815.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T06:24:21.709Z\"}, \"exp_008e_v3_walker_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T00:44:53.439Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T14:29:53.120Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证：trained dt_emb 在 dt=1 imagination 下不触发 delusional critic（plan_014）\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/\", \"metrics\": {\"eval_trajectory\": [{\"eval_return\": 31, \"step\": 5000}, {\"eval_return\": 131.2, \"step\": 15000}, {\"eval_return\": 155.7, \"step\": 25000}, {\"eval_return\": 276.5, \"step\": 35000}, {\"eval_return\": 382.2, \"step\": 45000}, {\"eval_return\": 486.8, \"step\": 55000}, {\"eval_return\": 580.7, \"step\": 65000}, {\"eval_return\": 574.1, \"step\": 75000}, {\"eval_return\": 657.3, \"step\": 85000}, {\"eval_return\": 851.9, \"step\": 95000}, {\"eval_return\": 869.9, \"step\": 105000}], \"exit_code\": 0, \"final_eval_return\": 869.9, \"final_value_mean\": 457.9, \"gate_dt_1_frac\": 1, \"total_steps\": 112000, \"ve_ratio_105k\": 0.527}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"notes\": \"Crown jewel C6 seed 1 SUCCESS. eval_return=869.9@105K, v/e=0.527 (healthy, no delusional critic). Gate locked dt=1 throughout. Trajectory: 31→131→156→276→382→487→581→574→657→852→870. Consistent with seed 0, confirms trained dt_emb + dt=1 imagination is safe.\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"pid\": \"898127\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.92, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s1.log\", \"pid\": \"898127\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T18:49:27.945Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 21325.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T00:44:53.439Z\"}, \"exp_006\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T00:49:02.944Z\", \"metrics\": {\"baseline_return_at_55k\": 625.7, \"deficit_pct\": -42.4, \"deficit_vs_baseline_at_55k\": -265.3, \"eval_return\": {\"15000\": 256.9, \"25000\": 321.4, \"35000\": 485.3, \"45000\": 477, \"5000\": 31, \"55000\": 360.4}, \"gate_dt_mean\": 2, \"latest_return\": 360.4, \"latest_step\": 55000, \"model_loss_at_55k\": 4.853, \"peak_return\": 485.3, \"peak_step\": 35000}, \"notes\": \"早期条目，权威数据在 exp_006_fixed_dt2。conclusion=killed（D034 registry 清理）。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:54.922Z\"}, \"exp_008a\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:07:59.793Z\", \"metrics\": {\"eval_return_15K\": 167.2, \"eval_return_25K\": 230.8, \"eval_return_35K\": 500.8, \"eval_return_45K\": 563.4, \"eval_return_55K\": 487.9, \"eval_return_5K\": 31, \"eval_return_65K\": \"pending (eval in progress)\", \"step\": 65000, \"train_return_64K_avg\": 556.6, \"trend\": \"peaked @45K=563, dipped to @55K=488, 65K eval in progress; train returns @64K healthy (~557)\", \"value_eval_ratio_55K\": \"37.6%\", \"value_mean_55K\": 183.5}, \"notes\": \"早期条目，权威数据在 exp_008a_no_subsample_dt2。conclusion=killed（D034 registry 清理）。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:54.075Z\"}, \"exp_008c\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:08:02.608Z\", \"metrics\": {\"eval_return_15K\": 171.3, \"eval_return_25K\": 192.4, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.6, \"eval_return_55K\": 241.9, \"eval_return_5K\": 31, \"eval_return_65K\": 240.9, \"step\": 68000, \"train_return_68K_avg\": 245.1, \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\", \"value_eval_ratio_65K\": \"32.8%\", \"value_mean_65K\": 79}, \"notes\": \"早期条目，权威数据在正式命名实验中。conclusion=killed（D034 registry 清理）。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:52.611Z\"}, \"exp_008d\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:08:05.136Z\", \"metrics\": {\"eval_return_15K\": 153.7, \"eval_return_25K\": 167.2, \"eval_return_35K\": 146.3, \"eval_return_5K\": 31, \"step\": 40000, \"train_return_40K_avg\": 119.3, \"trend\": \"declining — train_return @40K avg=119 below @35K eval=146, value/eval=41.1% not yet >50% but train performance dropping\", \"value_eval_ratio_35K\": \"41.1%\", \"value_mean_35K\": 60.2}, \"notes\": \"早期条目，权威数据在 exp_008d_subsample_on_h8。conclusion=killed（D034 registry 清理）。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:51.696Z\"}, \"exp_008e_v2_subsample_on_dt1_h15\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:26:39.732Z\", \"notes\": \"已被 exp_008e_v3_subsample_on_dt1_h15 取代，进程已死。conclusion=killed（D034 registry 清理）。\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v2_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v2_subsample_on_dt1_h15.log\", \"pid\": \"125392\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T04:27:30.720Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:49.814Z\"}, \"exp_rssm_fidelity_analysis\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-14T11:09:52.237Z\", \"hypothesis\": \"RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)\", \"metrics\": {\"008d_trained_dtEmb\": {\"dt1_obs_mse\": 41.31, \"dt1_reward_mae\": 0.0568, \"dt2_obs_mse\": 53.67, \"dt2_reward_mae\": 0.1579, \"obs_gap\": 1.3, \"reward_gap\": 2.78}, \"008f_no_dtEmb\": {\"dt1_obs_mse\": 8.01, \"dt1_reward_mae\": 0.7469, \"dt2_obs_mse\": 22.04, \"dt2_reward_mae\": 0.7526, \"obs_gap\": 2.75, \"reward_gap\": 1.01}, \"baseline\": {\"dt1_obs_mse\": 13.49, \"dt1_reward_mae\": 0.0102, \"dt2_obs_mse\": 27.5, \"dt2_reward_mae\": 0.0159, \"obs_gap\": 2.04, \"reward_gap\": 1.56}}, \"notes\": \"分析实验，非训练实验。conclusion=success，状态从 PREPARING 修正为 DONE（D034 registry 清理）。\", \"retry_count\": 0, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T22:31:48.642Z\"}, \"exp_008e_v3_subsample_on_dt1_h15\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15/latest.pt\", \"completed_at\": \"2026-05-14T09:07:47.319Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T04:29:31.656Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T09:05:44.288431+00:00\"}]}, \"hypothesis\": \"B+ confound control：subsample ON + untrained dt_emb + dt=1 imagination + H=15。验证 subsample ON 训练数据（含 dt=2 transitions）是否本身导致性能下降，即使 imagination 只用 dt=1。对照 008a（subsample OFF）和 baseline。如果 008e_v3 性能接近 baseline → subsample ON 本身无害。如果下降 → subsample ON 改变了 RSSM dynamics。\", \"metrics\": {\"baseline_105K\": 915.67, \"current_step\": 112000, \"eval_return\": {\"105K\": 869.88, \"15K\": 131.2, \"25K\": 155.69, \"35K\": 276.47, \"45K\": 382.22, \"55K\": 486.84, \"5K\": 31, \"65K\": 580.67, \"75K\": 574.09, \"85K\": 657.31, \"95K\": 851.86}, \"fps\": 7.01, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"last_updated\": \"2026-05-14T09:09:00\", \"normalized_ve\": {\"105K\": 0.8, \"25K\": 1.93, \"35K\": 0.94, \"45K\": 0.88, \"55K\": 0.87, \"65K\": 0.72, \"75K\": 0.73, \"85K\": 0.76, \"95K\": 0.75}, \"target_steps\": 105000, \"value_eval_ratio\": {\"105K\": 0.527, \"25K\": 0.168, \"35K\": 0.227, \"45K\": 0.29, \"55K\": 0.35, \"65K\": 0.405, \"75K\": 0.523, \"85K\": 0.534, \"95K\": 0.476}, \"value_mean\": {\"105K\": 457.93, \"25K\": 26.19, \"35K\": 62.76, \"45K\": 110.67, \"55K\": 170.09, \"65K\": 235.05, \"75K\": 300.51, \"85K\": 351.33, \"95K\": 405.25}, \"verdict\": \"SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed\", \"vs_baseline_105K\": \"-5.0%\"}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"reproduce\": {\"finished_at\": \"2026-05-14T09:05:42.563Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 4.64, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, untrained dt_emb)\", \"pid\": \"126110\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T04:29:31.600Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 16695.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T19:46:00.840Z\"}, \"exp_009c_008f_walker_s2\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T22:15:00Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:17:26.154Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T14:15:58.982844+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009c_008f_walker_s2.log\", \"metrics\": {\"baseline_105K\": 915.67, \"causal_conclusion\": \"Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.\", \"current_step\": 105000, \"eval_checkpoints\": [{\"baseline_ve\": null, \"eval_return\": 30.37, \"normalized_ve\": null, \"step\": 5000, \"value_mean\": 0.0013, \"ve_ratio\": null}, {\"baseline_ve\": null, \"eval_return\": 157.15, \"normalized_ve\": null, \"step\": 15000, \"value_mean\": 3.057, \"ve_ratio\": 0.019}, {\"baseline_ve\": 0.087, \"eval_return\": 168.75, \"normalized_ve\": 1.26, \"step\": 25000, \"value_mean\": 18.536, \"ve_ratio\": 0.11}, {\"baseline_ve\": 0.241, \"eval_return\": 178.94, \"normalized_ve\": 0.79, \"step\": 35000, \"value_mean\": 34.263, \"ve_ratio\": 0.191}, {\"baseline_ve\": 0.331, \"eval_return\": 211.08, \"normalized_ve\": 0.72, \"step\": 45000, \"value_mean\": 50.099, \"ve_ratio\": 0.237}, {\"baseline_ve\": 0.404, \"eval_return\": 238.91, \"normalized_ve\": 0.66, \"step\": 55000, \"value_mean\": 63.267, \"ve_ratio\": 0.265}, {\"baseline_ve\": 0.563, \"eval_return\": 244.15, \"normalized_ve\": 0.53, \"step\": 65000, \"value_mean\": 72.717, \"ve_ratio\": 0.298}, {\"baseline_ve\": 0.719, \"eval_return\": 359.14, \"normalized_ve\": 0.33, \"step\": 75000, \"value_mean\": 83.91, \"ve_ratio\": 0.234}, {\"baseline_ve\": 0.701, \"eval_return\": 227.43, \"normalized_ve\": 0.6, \"step\": 85000, \"value_mean\": 96.071, \"ve_ratio\": 0.422}, {\"baseline_ve\": 0.632, \"eval_return\": 190.94, \"normalized_ve\": 0.9, \"step\": 95000, \"value_mean\": 108.29, \"ve_ratio\": 0.567}, {\"baseline_ve\": 0.656, \"eval_return\": 148.34, \"normalized_ve\": 1.14, \"step\": 105000, \"value_mean\": 111.247, \"ve_ratio\": 0.75}], \"target_steps\": 105000, \"trend\": \"Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503\", \"verdict\": \"NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed\", \"vs_baseline_105K\": \"-83.8%\"}, \"notes\": \"D031 排期修正: 009c 延长 200K 降优先级，排在 009e/009f 之后。cuda:1 排期: 009b → 008e_v3_s1 → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060。105K 指标: eval=148.34, value=111.25, nve=1.14x。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"pid\": \"140980\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009c_008f_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-14T14:15:57.425Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-14T07:19:10.835Z\", \"training_hours\": 6.95}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/metrics.jsonl\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"seed\": 2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T14:34:24.161Z\"}, \"exp_006_fixed_dt2\": {\"account\": \"root\", \"completed_at\": \"2026-05-14T01:13:11.533Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-13T21:10:58.851Z\", \"extra\": {\"audit_commit\": \"6159e46\", \"bugs_fixed\": \"_effective_max_dt not synced in fixed_dt mode; hardcoded curriculum phases ignoring config\", \"curriculum_audit\": \"Curriculum does NOT apply in fixed_dt mode (models.py:200-205). gate_fixed_dt>0 bypasses _update_gate_schedule(). subsample_variable_dt receives effective_max_dt=2.0 from step 0, training data is 58.5% dt=1 + 41.5% dt=2 throughout. Actual train/imagine mismatch: mixed dt training vs pure dt=2 imagination.\"}, \"gpu\": \"cuda:0\", \"hypothesis\": \"诊断实验：fixed dt=2 vs learned gate。去掉 Gumbel-Softmax gate，硬编码 dt=2，其余超参与 exp_005 完全一致。量化 learned gate 的价值——如果 fixed dt=2 也掉 return，说明跳步本身有害；如果不掉，问题在 gate 学习机制。\", \"latest_metrics\": {\"checked_at\": \"2026-05-14\", \"eval_return\": 485.3, \"eval_return_trajectory\": {\"15K\": 256.9, \"25K\": 321.4, \"35K\": 485.3, \"5K\": 31}, \"eval_step\": 35000, \"fps\": 6.6, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"grad_norm\": 8.6, \"pid\": 85029, \"prev_eval_return\": 321.4, \"process_status\": \"running\", \"step\": 36000}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_006_fixed_dt2.log\", \"metrics\": {\"baseline_35K\": 388.5, \"baseline_45K\": 513.8, \"baseline_55K\": 625.7, \"data_source_ve\": \"from training logs metrics.jsonl\", \"eval_return_15K\": 256.9, \"eval_return_25K\": 321.4, \"eval_return_35K\": 485.3, \"eval_return_45K\": 477, \"eval_return_55K\": 360.4, \"eval_return_5K\": 31, \"eval_return_65K\": 132.86, \"fps\": 6.5, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"model_loss_15K\": 7.593, \"model_loss_25K\": 5.633, \"model_loss_35K\": 5.229, \"model_loss_45K\": 5.023, \"model_loss_55K\": 4.9, \"model_loss_5K\": 20.738, \"peak_return\": 485.3, \"peak_step\": \"35K\", \"step\": 65000, \"trend\": \"inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)\", \"value_eval_ratio_35K\": 0.311, \"value_eval_ratio_45K\": 0.533, \"value_eval_ratio_55K\": 0.933, \"value_eval_ratio_65K\": 2.722, \"value_mean_35K\": 151.1, \"value_mean_45K\": 254.29, \"value_mean_55K\": 336.44, \"value_mean_65K\": 361.69, \"vs_baseline_55K\": \"-42.4%\"}, \"parent\": \"exp_005_event_gated_v4\", \"pid\": \"85029\", \"reproduce\": {\"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\\\"\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-13T22:12:00.446Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"checkpoint_path\": \"N/A - negative result, fixed dt=2 collapsed to 132.9@65K (21.6% baseline)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\", \"data_count\": 150000, \"data_path\": \"dmc_walker_walk\", \"failure_reason\": \"fixed dt=2 崩塌：训练分布混合（58.5% dt=1 + 41.5% dt=2 log-uniform）+ 想象纯 dt=2 条件下，eval_return 从 peak 485@35K 持续下降至 132.9@65K（baseline 同期 615.9）。与 learned gate 变体一致的崩塌模式。代码审计确认 curriculum 不生效（gate_fixed_dt>0 跳过 _update_gate_schedule）。\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt2_v1_s1\", \"model_name\": \"DreamerV3+FixedDt2 (gate_fixed_dt=2, no learned gate)\", \"pid\": \"85029\", \"seed\": 1, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T10:20:11.722Z\"}, \"exp_008e_subsample_on_fixed_dt1\": {\"checkpoint_path\": \"N/A - killed, duplicate registry entry, logdir contaminated by dual-process write\", \"completed_at\": \"2026-05-14T04:21:47.956Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:10:07.303Z\", \"failure_reason\": \"重复 registry 条目 + logdir 被两个进程交叉写入导致 tfevents/metrics.jsonl 损坏。Director 指令清理后以 exp_008e_subsample_on_dt1_h15 为准重跑。\", \"hypothesis\": \"验证 Reviewer D020 因果假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（delusional critic），即使 actor 不用 dt=2 imagination。对照：008a (subsample OFF, dt=2 imag) value/eval=37.6%@55K vs exp_006 (subsample ON, dt=2 imag) 53.3%。\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.19, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"pid\": \"121636\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T04:10:22.915Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 685.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:24:58.056Z\"}, \"exp_008e_subsample_on_dt1_h15\": {\"checkpoint_path\": \"N/A - killed, logdir contaminated by duplicate process cross-write\", \"completed_at\": \"2026-05-14T04:21:48.584Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-14T04:10:37.655Z\", \"hypothesis\": \"验证 Reviewer D020 delusional critic 假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（即使 actor 不用 dt=2 imagination）。对照：008a（subsample OFF，dt=2 imagination）和 006（subsample ON，dt=2 imagination）。\", \"notes\": \"重复进程：与 exp_008e_subsample_on_fixed_dt1 命令完全相同，共享同一 logdir，导致 tfevents 文件互相污染。Kill PID 122038，保留 PID 121636。\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.18, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"pid\": \"122038\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T04:10:46.045Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 662.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:24:57.658Z\"}, \"exp_002_event_gated\": {\"completed_at\": \"2026-05-13T04:50:14.987Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-13T02:09:54.240Z\", \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"kill_reason\": \"Phase 1 subsample 设计缺陷：subsample_variable_dt 在 Phase 1 (gate_scale=0) 也生效，RSSM 用 variable-Δt 数据训练但 imagination 只用 Δt=1，return 恶化到 baseline 的 25%。手动 kill 后部署 subsample curriculum 补丁并重启为 exp_003。\", \"retry_count\": 0, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True\", \"data_count\": 500000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu_id\": 1, \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\", \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM (K=8, τ=5→0.5, λ_H=0.1→0.01)\", \"pid\": 9769, \"seed\": 1, \"server\": \"autodl-rtx6000\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T04:52:18.089Z\"}}, \"count\": 164, \"total\": 164, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6057}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry data is very large (373K characters). Let me read it in chunks to extract the relevant NVE data for all experiments.
+
+Let me first get a sense of the structure, then use jq/grep to extract just the fields I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "d5454ddb-4a45-428e-87dd-1d3a151d065e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3drdGQGnW6jux8BHCbEtJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Registry 数据量大，用 jq 提取关键字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "de2f4f55-5450-4f44-ad29-cd145c45fd9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3drdGQGnW6jux8BHCbEtJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0125ixSWfXE7UMxRvMsASrXm`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n\n# List all experiment IDs and their key info\nfor exp_id, exp in sorted(result.items()):\n    metrics = exp.get('metrics', {}) or {}\n    config = exp.get('config', {}) or {}\n    conclusion = exp.get('conclusion', '')\n    status = exp.get('status', '')\n    env = config.get('env', '') or exp.get('env', '') or ''\n    \n    # Look for NVE-related fields\n    nve_fields = {k: v for k, v in metrics.items() if 'nve' in k.lower() or 've_ratio' in k.lower() or 'NVE' in k}\n    \n    # Look for experiment type indicators\n    dt_emb = config.get('dt_embed_dim', '')\n    subsample = config.get('subsample', '')\n    frozen = config.get('frozen', '')\n    \n    print(f'=== {exp_id} ===')\n    print(f'  status: {status}')\n    print(f'  env: {env}')\n    print(f'  conclusion: {str(conclusion)[:200]}')\n    print(f'  NVE fields: {nve_fields}')\n    print(f'  dt_embed_dim: {dt_emb}, subsample: {subsample}, frozen: {frozen}')\n    print()\n\" 2>&1 | head -500",
+  "description": "Extract experiment IDs and NVE-related fields from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "bd12b9e0-cc75-43e4-9c07-0b12b2a1a929",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3drdGQGnW6jux8BHCbEtJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-25T19:55:36.859Z_
+
+<details><summary>↩ Tool result · `toolu_0125ixSWfXE7UMxRvMsASrXm`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 9, in &lt;module>
+    metrics = exp.get('metrics', {}) or {}
+              ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+=== data ===
+  status: 
+  env: 
+  conclusion: 
+  NVE fields: {}
+  dt_embed_dim: , subsample: , frozen:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "2c859117-ab9f-4ded-9e80-bdb3a7639c8c",
+  "tool_use_result": {
+    "stdout": "Traceback (most recent call last):\n  File \"&lt;string>\", line 9, in &lt;module>\n    metrics = exp.get('metrics', {}) or {}\n              ^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'get'\n=== data ===\n  status: \n  env: \n  conclusion: \n  NVE fields: {}\n  dt_embed_dim: , subsample: , frozen:",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014JHjb5ep5sP7m6BN5bZWjP`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nresult = json.loads(result_str)\n\n# Check top-level structure\nprint('Type:', type(result))\nif isinstance(result, dict):\n    print('Keys:', list(result.keys())[:10])\n    # Check first entry\n    for k, v in list(result.items())[:2]:\n        print(f'\\nKey: {k}')\n        print(f'Type: {type(v)}')\n        if isinstance(v, dict):\n            print(f'Sub-keys: {list(v.keys())[:20]}')\n        elif isinstance(v, list):\n            print(f'Length: {len(v)}')\n            if v:\n                print(f'First item type: {type(v[0])}')\n                if isinstance(v[0], dict):\n                    print(f'First item keys: {list(v[0].keys())[:20]}')\nelif isinstance(result, list):\n    print('Length:', len(result))\n    if result:\n        print('First item:', type(result[0]))\n        if isinstance(result[0], dict):\n            print('Keys:', list(result[0].keys())[:20])\n\" 2>&1",
+  "description": "Inspect registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "0f5ce402-dab8-4353-8561-bd3241278eef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rw9VtHPTvu6dbmgGFJvkco",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 25128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 757
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T19:55:42.780Z_
+
+<details><summary>↩ Tool result · `toolu_014JHjb5ep5sP7m6BN5bZWjP`</summary>
+
+```text
+Type: &lt;class 'dict'>
+Keys: ['success', 'data', 'error', 'metadata']
+
+Key: success
+Type: &lt;class 'bool'>
+
+Key: data
+Type: &lt;class 'dict'>
+Sub-keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b9a0b25a-fab0-4e3b-8f95-50dbb1361961",
+  "tool_use_result": {
+    "stdout": "Type: &lt;class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']\n\nKey: success\nType: &lt;class 'bool'>\n\nKey: data\nType: &lt;class 'dict'>\nSub-keys: ['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Jkb7TysEuXhqG18E6PUpUT`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\nprint(f'Total experiments: {len(experiments)}')\nprint()\n\n# Check first experiment structure\nif experiments:\n    first = experiments[0]\n    print('First experiment keys:', list(first.keys()))\n    print('exp_id:', first.get('exp_id', 'N/A'))\n    print()\n    # Print metrics keys\n    metrics = first.get('metrics', {})\n    if metrics:\n        print('Metrics keys:', list(metrics.keys())[:30])\n\" 2>&1",
+  "description": "Inspect experiments structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "d00a668e-cb4b-4ba5-89c8-006e2209c346",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KrRgRuw6s1bQyZYznzM7Jh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 565,
+      "cache_read_input_tokens": 25885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 565
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T19:55:47.307Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Jkb7TysEuXhqG18E6PUpUT`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 13, in &lt;module>
+    first = experiments[0]
+            ~~~~~~~~~~~^^^
+KeyError: 0
+Total experiments: 164
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "fea2b727-c0b8-4ff7-a310-e20526a7ec59",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 13, in &lt;module>\n    first = experiments[0]\n            ~~~~~~~~~~~^^^\nKeyError: 0\nTotal experiments: 164"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KZ1K7Wi5j7w8CSPmjuGcPe`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# It's a dict, not a list\nprint('Type:', type(experiments))\nfirst_key = list(experiments.keys())[0]\nfirst = experiments[first_key]\nprint(f'First key: {first_key}')\nprint(f'First exp keys: {list(first.keys())}')\nprint()\n\nmetrics = first.get('metrics', {}) or {}\nprint(f'Metrics keys: {list(metrics.keys())[:30]}')\nprint()\n\nconfig = first.get('config', {}) or {}\nprint(f'Config keys: {list(config.keys())[:30]}')\n\" 2>&1",
+  "description": "Inspect experiment dict structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "66da03d5-4304-4bd6-8bc3-af4ae56b554f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3ZpTPQw92RhBQVUdF4iXn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 406,
+      "cache_read_input_tokens": 26450,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 406
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-25T19:55:55.438Z_
+
+<details><summary>↩ Tool result · `toolu_01KZ1K7Wi5j7w8CSPmjuGcPe`</summary>
+
+```text
+Type: &lt;class 'dict'>
+First key: exp_009b_008d_walker_s2
+First exp keys: ['account', 'causal_conclusion', 'checkpoint_path', 'completed_at', 'conclusion', 'created_at', 'extra', 'gpu', 'hypothesis', 'log_path', 'metrics', 'notes', 'parent', 'pid', 'reproduce', 'retry_count', 'server', 'spec', 'status', 'updated_at']
+
+Metrics keys: ['ve_ratio_peak', 've_ratio_peak_step', 've_ratio_final', 've_ratio_final_step', 'nve_peak', 'nve_peak_step', 'nve_peak_note', 'nve_classification']
+
+Config keys: []
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "a3bca875-28e5-4217-9c44-5fb1fc6c23a9",
+  "tool_use_result": {
+    "stdout": "Type: &lt;class 'dict'>\nFirst key: exp_009b_008d_walker_s2\nFirst exp keys: ['account', 'causal_conclusion', 'checkpoint_path', 'completed_at', 'conclusion', 'created_at', 'extra', 'gpu', 'hypothesis', 'log_path', 'metrics', 'notes', 'parent', 'pid', 'reproduce', 'retry_count', 'server', 'spec', 'status', 'updated_at']\n\nMetrics keys: ['ve_ratio_peak', 've_ratio_peak_step', 've_ratio_final', 've_ratio_final_step', 'nve_peak', 'nve_peak_step', 'nve_peak_note', 'nve_classification']\n\nConfig keys: []",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+有 `nve_peak` 字段。现在提取所有实验的 NVE 数据和分类标签。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "83ac92ee-e3ac-412e-9342-1c0da5edcf28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Phv8AMfjw9T6MLFGX5wybv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 26856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PptANUyv7gDNhCrvqCrJhR`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Dump all experiments with NVE data\nfor exp_id, exp in sorted(experiments.items()):\n    metrics = exp.get('metrics', {}) or {}\n    nve_peak = metrics.get('nve_peak') or metrics.get('NVE_peak')\n    ve_ratio_peak = metrics.get('ve_ratio_peak')\n    nve_classification = metrics.get('nve_classification', '')\n    nve_step = metrics.get('nve_peak_step') or metrics.get('NVE_peak_step', '')\n    nve_note = metrics.get('nve_peak_note', '')\n    status = exp.get('status', '')\n    spec = exp.get('spec', {}) or {}\n    hypothesis = exp.get('hypothesis', '') or ''\n    conclusion = exp.get('conclusion', '') or ''\n    causal = exp.get('causal_conclusion', '') or ''\n    \n    # Only print experiments that have NVE data\n    if nve_peak is not None or ve_ratio_peak is not None:\n        print(f'=== {exp_id} ===')\n        print(f'  status: {status}')\n        print(f'  nve_peak: {nve_peak}')\n        print(f'  nve_peak_step: {nve_step}')\n        print(f'  ve_ratio_peak: {ve_ratio_peak}')\n        print(f'  nve_classification: {nve_classification}')\n        print(f'  nve_note: {nve_note}')\n        print(f'  hypothesis: {str(hypothesis)[:200]}')\n        print(f'  conclusion: {str(conclusion)[:300]}')\n        print(f'  causal: {str(causal)[:200]}')\n        print(f'  spec: {json.dumps(spec)[:300] if spec else \\\"None\\\"}')\n        print()\n\" 2>&1",
+  "description": "Extract all experiments with NVE data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "aac9f8b5-8947-4127-9d57-d697583fc5e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Phv8AMfjw9T6MLFGX5wybv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 26856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 571
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T19:56:04.762Z_
+
+<details><summary>↩ Tool result · `toolu_01PptANUyv7gDNhCrvqCrJhR`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (41.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/bd4aqpmoq.txt
+
+Preview (first 2KB):
+=== exp_008d_civo_trigger_s3 ===
+  status: DONE
+  nve_peak: 1.53
+  nve_peak_step: 105000
+  ve_ratio_peak: None
+  nve_classification: 
+  nve_note: 
+  hypothesis: Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (see
+  conclusion: success
+  causal: 
+  spec: {"account": "root", "backend": "tmux", "checkpoint_source": "fresh_training (no checkpoint, new logdir)", "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l
+
+=== exp_008d_civo_trigger_s4 ===
+  status: DONE
+  nve_peak: 4.62
+  nve_peak_step: 105000
+  ve_ratio_peak: 3.0294
+  nve_classification: onset_collapse
+  nve_note: step-matched s1 baseline @105K = 0.6564
+  hypothesis: Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。
+  conclusion: success
+  causal: 
+  spec: {"checkpoint_source": "train_from_scratch", "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile Fal
+
+=== exp_008e_v3_s3 ===
+  status: DONE
+  nve_peak: 4.02
+  nve_peak_step: 105000
+  ve_ratio_peak: None
+  nve_classification: 
+  nve_note: 
+  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。
+  conclusion: negative
+  causal: 
+  spec: {"checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s3/latest.pt", "log_path": "~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log"}
+
+=== exp_008e_v3_s4 ===
+  status: DONE
+  nve_peak: 0.99
+  nve_peak_step: 95000
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "c12ecf69-8bbb-4474-adc1-295bbd5cd623",
+  "tool_use_result": {
+    "stdout": "=== exp_008d_civo_trigger_s3 ===\n  status: DONE\n  nve_peak: 1.53\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (see\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"fresh_training (no checkpoint, new logdir)\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l\n\n=== exp_008d_civo_trigger_s4 ===\n  status: DONE\n  nve_peak: 4.62\n  nve_peak_step: 105000\n  ve_ratio_peak: 3.0294\n  nve_classification: onset_collapse\n  nve_note: step-matched s1 baseline @105K = 0.6564\n  hypothesis: Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile Fal\n\n=== exp_008e_v3_s3 ===\n  status: DONE\n  nve_peak: 4.02\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\n  conclusion: negative\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s3/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log\"}\n\n=== exp_008e_v3_s4 ===\n  status: DONE\n  nve_peak: 0.99\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s4/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s4.log\"}\n\n=== exp_008f_s3_no_dt_embed_walker ===\n  status: DONE\n  nve_peak: < 1.5x\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 3 — 008f 系列第 3 个独立 seed，闭合 no_dt_emb condition 的 bootstrap CI（当前 n=2，需 ≥3）。预期 NVE<1.5×，无 CIVO。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_009b_008d_walker_s2 ===\n  status: DONE\n  nve_peak: 1.62\n  nve_peak_step: 45000\n  ve_ratio_peak: 0.5703\n  nve_classification: onset_self_correcting\n  nve_note: step-matched s1 baseline @45K = 0.331; arithmetic peak @25K=2.04x excluded (baseline<0.1)\n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic\n  conclusion: negative\n  causal: Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 su\n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs \n\n=== exp_009e_008d_walker_s1 ===\n  status: DONE\n  nve_peak: 4.13\n  nve_peak_step: 55000\n  ve_ratio_peak: 1.6663\n  nve_classification: onset_collapse\n  nve_note: step-matched s1 baseline @55K = 0.4035; paper onset NVE @45K = 2.09x\n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fi\n\n=== exp_010b_cheetah_civo_trigger ===\n  status: DONE\n  nve_peak: 8.27\n  nve_peak_step: 65000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run CIVO trigger — trained dt_emb, subsample ON, dt=2, H=8, seed 1. 跨环境验证：Walker 上 008d 配置在 Cheetah 上是否同样触发 CIVO (NVE>1.5x)。若成立→回应 reviewer \"single environment\" concern。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger/latest.pt\", \"checkpoint_source\": \"N/A (training from scratch, parent is baseline reference)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/cond\n\n=== exp_018_full_sgs_walker_s1 ===\n  status: DONE\n  nve_peak: 0.72\n  nve_peak_step: 75000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.\n  conclusion: killed\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1/checkpoint.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1\"}\n\n=== exp_018v2_full_sgs_walker_s1 ===\n  status: DONE\n  nve_peak: 1.66\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full Selective Gradient Stopping (blocking obs+reward+cont decoder gradients to dt_emb) eliminates all gradient pathways creating dt-specific representations, thereby preventing CIVO onset and collaps\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A (training from scratch, parent is predecessor not checkpoint source)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l\n\n=== exp_019b_pickcube_civo_trigger ===\n  status: DONE\n  nve_peak: 3.78\n  nve_peak_step: 52500\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_ID=0 bash scripts/exp_019b_pickcube_civo_trigger.sh\", \"data_count\": \"online\", \"data_path\": \"maniskill_PickCube-v1 (state-based, online RL)\", \"eval_data\": \"N/A (online RL, not eva\n\n=== exp_021_full_sgs_cheetah_s1 ===\n  status: DONE\n  nve_peak: 9.94\n  nve_peak_step: 45K\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full-SGS Cheetah Run — 验证 SGS intervention 跨环境一致性。如果 CIVO mechanism 跨环境一致，Full-SGS 在 Cheetah 也应消除 NVE>1.5x (对比 010b: NVE 8.63×, collapse)。\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_021_full_sgs_cheetah_s1/checkpoint.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon \n\n=== exp_022b_no_curriculum ===\n  status: DONE\n  nve_peak: 1.22\n  nve_peak_step: \n  ve_ratio_peak: 0.218\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL\n\n=== exp_024b_cheetah_no_dt_emb_s0 ===\n  status: DONE\n  nve_peak: 0.2\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s0/latest.pt\", \"checkpoint_source\": \"N/A-training-from-scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && c\n\n=== exp_024b_cheetah_no_dt_emb_s1 ===\n  status: DONE\n  nve_peak: 0.1\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run no-dt-emb causal control seed=1: gate_dt_embed_dim=0 + subsample ON + H=8. 第二 seed 验证 024 的结论（trained dt_emb 是 Cheetah CIVO 必要条件），加强因果三角的统计力度。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s1/latest.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon &&\n\n=== exp_029b_tcn_walker_s2_sigma02 ===\n  status: DONE\n  nve_peak: 2.765\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029b_tcn_walker_s2_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G\n\n=== exp_029d_tcn_walker_s3_sigma02 ===\n  status: DONE\n  nve_peak: 3.0\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 202\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029d_tcn_walker_s3_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G\n\n=== exp_031_tcn_pickcube_s0_sigma02 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 3.71\n  nve_classification: \n  nve_note: \n  hypothesis: TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfittin\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"none(train_from_scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl\n\n=== exp_031b_tcn_pickcube_s0_sigma05 ===\n  status: DONE\n  nve_peak: 3.3\n  nve_peak_step: 42500\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, e\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --co\n\n=== exp_032_dual_critic_walker ===\n  status: DONE\n  nve_peak: 1.1\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic (min of two independent critics for actor loss) will suppress CIVO by preventing critic overestimation. Uses 008d CIVO-trigger config (trained dt_emb + multi-rate exposure). If NVE stays b\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=eg\n\n=== exp_033_wide_critic_walker ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.7\n  nve_classification: \n  nve_note: \n  hypothesis: Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --\n\n=== exp_034_dual_critic_cheetah ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 1.8\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level int\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_035_narrow_dual_critic_walker ===\n  status: DONE\n  nve_peak: 2.75\n  nve_peak_step: 85000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestima\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --\n\n=== exp_036_dual_critic_pickcube ===\n  status: DONE\n  nve_peak: 2.3\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+P\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0\n\n=== exp_037_wide_critic_cheetah ===\n  status: DONE\n  nve_peak: 3.6\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across \n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...wide_critic cheetah...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 7.4\n\n=== exp_038_dual_critic_walker_s2 ===\n  status: DONE\n  nve_peak: 0.3\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO preven\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...dual_critic walker s2...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC \n\n=== exp_039_narrow_dual_critic_walker_s1 ===\n  status: DONE\n  nve_peak: 2.19\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 reco\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate \n\n=== exp_041_dual_critic_walker_s3 ===\n  status: DONE\n  nve_peak: 1.5\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: D128 推导：exp_038 s2 出现非 CIVO 崩溃 (eval 354→121, NVE≤0.3)，当前 collapse 频率 1/3。s3 确定崩溃是偶发 (1/4) 还是系统性 (2/4)。如果 s3 正常 → 非 CIVO 崩溃为低频偶发事件，dual-critic CIVO prevention 仍 robust；如果 s3 也崩 → 50% 系统性问题需进一步诊断。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc\n\n=== exp_042_frozen_dt_emb_walker ===\n  status: DONE\n  nve_peak: 0.194\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: dt_embedding training (not its mere existence) is a necessary condition for CIVO collapse. Freezing dt_emb (random init, requires_grad=False) should prevent the reward-value divergence observed in exp\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -\n\n=== exp_043_008f_walker_s1 ===\n  status: DONE\n  nve_peak: 0.808\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Plan_012 / Claim C2 seed 1：复现 008f 因果控制（dt_embed_dim=0, subsample ON, H=8）。目前只有 seed 0 数据。如果 s1 也显示无 CIVO → 确认 dt_emb absence prevents CIVO 是 robust 的跨 seed 结论，支撑因果链 \"trained dt_emb → CIVO\"。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_044_gradient_stop_walker ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.4\n  nve_classification: \n  nve_note: \n  hypothesis: Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsample ON + H=8），仅阻断 dt_emb→reward_head 梯度路径。如果 gradien\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -\n\n=== exp_045_treatment_extension_008d_s3 ===\n  status: DONE\n  nve_peak: 4.91\n  nve_peak_step: 132000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamic\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s\n\n=== exp_046_frozen_dt_emb_cheetah ===\n  status: DONE\n  nve_peak: 1.35\n  nve_peak_step: 45000\n  ve_ratio_peak: 0.4\n  nve_classification: \n  nve_note: \n  hypothesis: Cross-environment validation: frozen dt_emb (random init, requires_grad=False) prevents CIVO on Cheetah Run, extending the Walker Walk finding (exp_042 NVE=0.19, exp_015b NVE=0.47) to a second environ\n  conclusion: success\n  causal: \n  spec: {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_ru\n\n=== exp_047_frozen_dt_emb_walker_s1 ===\n  status: DONE\n  nve_peak: 1.71\n  nve_peak_step: 95000\n  ve_ratio_peak: 1.099\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb Walker seed 1: 增强 exp_042 (s0, NVE=0.19) 的统计力度。 如果 s1 也 NVE<1.5 且无持续 CIVO → frozen dt_emb mitigation 跨 seed robust。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate\n\n=== exp_048_cheetah_civo_extension ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 24.112\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 4.91→0.05 over 170K steps). If Cheetah does NOT se\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_048_cheetah_civo_extension\", \"\n\n=== exp_049_stackcube_civo_trigger_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 5.048\n  nve_classification: onset_self_correcting\n  nve_note: \n  hypothesis: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack）。如果触发 → 扩展跨域证据；如果不触发 → 支持\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigg\n\n=== exp_050_peginsertion_civo_trigger_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 10.05\n  nve_classification: \n  nve_note: \n  hypothesis: Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond locomotion to precise insertion tasks, where even\n  conclusion: success\n  causal: \n  spec: {\"command\": \"LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsam\n\n=== exp_051_stackcube_frozen_dt_emb_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.3\n  nve_classification: onset_self_correcting\n  nve_note: \n  hypothesis: Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation\n  conclusion: negative\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051\n\n=== exp_052_stackcube_civo_trigger_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.67\n  nve_classification: \n  nve_note: \n  hypothesis: StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigg\n\n=== exp_055_peginsertion_civo_trigger_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 3.08\n  nve_classification: transient\n  nve_note: \n  hypothesis: PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发 → seed-specific 异常。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginserti\n\n=== exp_056_peginsertion_frozen_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 11.321\n  nve_classification: burst\n  nve_note: \n  hypothesis: D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健阻止 dt_emb 放大；如果不回落 → seed-dependent。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_f\n\n=== exp_057 ===\n  status: DONE\n  nve_peak: 1.3\n  nve_peak_step: 115000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb 跨 seed 可复现",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/bd4aqpmoq.txt",
+    "persistedOutputSize": 42796
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MRKtoPvsTfhTyxmZizUFQg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/bd4aqpmoq.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "2fc68f7c-4066-4ce1-a9b0-c4df2ebe7621",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LV26veczQpbpeF7Dvsq8P7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1795,
+      "cache_read_input_tokens": 27427,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1795
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T19:56:08.754Z_
+
+<details><summary>↩ Tool result · `toolu_01MRKtoPvsTfhTyxmZizUFQg`</summary>
+
+```text
+1	=== exp_008d_civo_trigger_s3 ===
+2	  status: DONE
+3	  nve_peak: 1.53
+4	  nve_peak_step: 105000
+5	  ve_ratio_peak: None
+6	  nve_classification: 
+7	  nve_note: 
+8	  hypothesis: Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (see
+9	  conclusion: success
+10	  causal: 
+11	  spec: {"account": "root", "backend": "tmux", "checkpoint_source": "fresh_training (no checkpoint, new logdir)", "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l
+12	
+13	=== exp_008d_civo_trigger_s4 ===
+14	  status: DONE
+15	  nve_peak: 4.62
+16	  nve_peak_step: 105000
+17	  ve_ratio_peak: 3.0294
+18	  nve_classification: onset_collapse
+19	  nve_note: step-matched s1 baseline @105K = 0.6564
+20	  hypothesis: Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。
+21	  conclusion: success
+22	  causal: 
+23	  spec: {"checkpoint_source": "train_from_scratch", "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile Fal
+24	
+25	=== exp_008e_v3_s3 ===
+26	  status: DONE
+27	  nve_peak: 4.02
+28	  nve_peak_step: 105000
+29	  ve_ratio_peak: None
+30	  nve_classification: 
+31	  nve_note: 
+32	  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。
+33	  conclusion: negative
+34	  causal: 
+35	  spec: {"checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s3/latest.pt", "log_path": "~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log"}
+36	
+37	=== exp_008e_v3_s4 ===
+38	  status: DONE
+39	  nve_peak: 0.99
+40	  nve_peak_step: 95000
+41	  ve_ratio_peak: None
+42	  nve_classification: 
+43	  nve_note: 
+44	  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。
+45	  conclusion: success
+46	  causal: 
+47	  spec: {"checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s4/latest.pt", "log_path": "~/runs/event-gated-adaptive-horizon/exp_008e_v3_s4.log"}
+48	
+49	=== exp_008f_s3_no_dt_embed_walker ===
+50	  status: DONE
+51	  nve_peak: < 1.5x
+52	  nve_peak_step: 
+53	  ve_ratio_peak: None
+54	  nve_classification: 
+55	  nve_note: 
+56	  hypothesis: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 3 — 008f 系列第 3 个独立 seed，闭合 no_dt_emb condition 的 bootstrap CI（当前 n=2，需 ≥3）。预期 NVE<1.5×，无 CIVO。
+57	  conclusion: success
+58	  causal: 
+59	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co
+60	
+61	=== exp_009b_008d_walker_s2 ===
+62	  status: DONE
+63	  nve_peak: 1.62
+64	  nve_peak_step: 45000
+65	  ve_ratio_peak: 0.5703
+66	  nve_classification: onset_self_correcting
+67	  nve_note: step-matched s1 baseline @45K = 0.331; arithmetic peak @25K=2.04x excluded (baseline<0.1)
+68	  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic
+69	  conclusion: negative
+70	  causal: Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 su
+71	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs 
+72	
+73	=== exp_009e_008d_walker_s1 ===
+74	  status: DONE
+75	  nve_peak: 4.13
+76	  nve_peak_step: 55000
+77	  ve_ratio_peak: 1.6663
+78	  nve_classification: onset_collapse
+79	  nve_note: step-matched s1 baseline @55K = 0.4035; paper onset NVE @45K = 2.09x
+80	  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic
+81	  conclusion: negative
+82	  causal: 
+83	  spec: {"account": "root", "backend": "tmux", "checkpoint_source": "N/A - training from scratch", "command": "python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fi
+84	
+85	=== exp_010b_cheetah_civo_trigger ===
+86	  status: DONE
+87	  nve_peak: 8.27
+88	  nve_peak_step: 65000
+89	  ve_ratio_peak: None
+90	  nve_classification: 
+91	  nve_note: 
+92	  hypothesis: Cheetah Run CIVO trigger — trained dt_emb, subsample ON, dt=2, H=8, seed 1. 跨环境验证：Walker 上 008d 配置在 Cheetah 上是否同样触发 CIVO (NVE>1.5x)。若成立→回应 reviewer "single environment" concern。
+93	  conclusion: success
+94	  causal: 
+95	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger/latest.pt", "checkpoint_source": "N/A (training from scratch, parent is baseline reference)", "command": "bash -c \"source /root/miniconda3/etc/profile.d/cond
+96	
+97	=== exp_018_full_sgs_walker_s1 ===
+98	  status: DONE
+99	  nve_peak: 0.72
+100	  nve_peak_step: 75000
+101	  ve_ratio_peak: None
+102	  nve_classification: 
+103	  nve_note: 
+104	  hypothesis: Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.
+105	  conclusion: killed
+106	  causal: 
+107	  spec: {"checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1/checkpoint.pt", "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1"}
+108	
+109	=== exp_018v2_full_sgs_walker_s1 ===
+110	  status: DONE
+111	  nve_peak: 1.66
+112	  nve_peak_step: 95000
+113	  ve_ratio_peak: None
+114	  nve_classification: 
+115	  nve_note: 
+116	  hypothesis: Full Selective Gradient Stopping (blocking obs+reward+cont decoder gradients to dt_emb) eliminates all gradient pathways creating dt-specific representations, thereby preventing CIVO onset and collaps
+117	  conclusion: negative
+118	  causal: 
+119	  spec: {"account": "root", "backend": "tmux", "checkpoint_source": "N/A (training from scratch, parent is predecessor not checkpoint source)", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l
+120	
+121	=== exp_019b_pickcube_civo_trigger ===
+122	  status: DONE
+123	  nve_peak: 3.78
+124	  nve_peak_step: 52500
+125	  ve_ratio_peak: None
+126	  nve_classification: 
+127	  nve_note: 
+128	  hypothesis: PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立
+129	  conclusion: success
+130	  causal: 
+131	  spec: {"checkpoint_source": "N/A (training from scratch)", "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_ID=0 bash scripts/exp_019b_pickcube_civo_trigger.sh", "data_count": "online", "data_path": "maniskill_PickCube-v1 (state-based, online RL)", "eval_data": "N/A (online RL, not eva
+132	
+133	=== exp_021_full_sgs_cheetah_s1 ===
+134	  status: DONE
+135	  nve_peak: 9.94
+136	  nve_peak_step: 45K
+137	  ve_ratio_peak: None
+138	  nve_classification: 
+139	  nve_note: 
+140	  hypothesis: Full-SGS Cheetah Run — 验证 SGS intervention 跨环境一致性。如果 CIVO mechanism 跨环境一致，Full-SGS 在 Cheetah 也应消除 NVE>1.5x (对比 010b: NVE 8.63×, collapse)。
+141	  conclusion: negative
+142	  causal: 
+143	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_021_full_sgs_cheetah_s1/checkpoint.pt", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon 
+144	
+145	=== exp_022b_no_curriculum ===
+146	  status: DONE
+147	  nve_peak: 1.22
+148	  nve_peak_step: 
+149	  ve_ratio_peak: 0.218
+150	  nve_classification: 
+151	  nve_note: 
+152	  hypothesis: Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing
+153	  conclusion: success
+154	  causal: 
+155	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL
+156	
+157	=== exp_024b_cheetah_no_dt_emb_s0 ===
+158	  status: DONE
+159	  nve_peak: 0.2
+160	  nve_peak_step: 
+161	  ve_ratio_peak: None
+162	  nve_classification: 
+163	  nve_note: 
+164	  hypothesis: Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角。
+165	  conclusion: success
+166	  causal: 
+167	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s0/latest.pt", "checkpoint_source": "N/A-training-from-scratch", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && c
+168	
+169	=== exp_024b_cheetah_no_dt_emb_s1 ===
+170	  status: DONE
+171	  nve_peak: 0.1
+172	  nve_peak_step: 
+173	  ve_ratio_peak: None
+174	  nve_classification: 
+175	  nve_note: 
+176	  hypothesis: Cheetah Run no-dt-emb causal control seed=1: gate_dt_embed_dim=0 + subsample ON + H=8. 第二 seed 验证 024 的结论（trained dt_emb 是 Cheetah CIVO 必要条件），加强因果三角的统计力度。
+177	  conclusion: success
+178	  causal: 
+179	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s1/latest.pt", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon &&
+180	
+181	=== exp_029b_tcn_walker_s2_sigma02 ===
+182	  status: DONE
+183	  nve_peak: 2.765
+184	  nve_peak_step: 105000
+185	  ve_ratio_peak: None
+186	  nve_classification: 
+187	  nve_note: 
+188	  hypothesis: TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.
+189	  conclusion: negative
+190	  causal: 
+191	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029b_tcn_walker_s2_sigma02", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G
+192	
+193	=== exp_029d_tcn_walker_s3_sigma02 ===
+194	  status: DONE
+195	  nve_peak: 3.0
+196	  nve_peak_step: 105000
+197	  ve_ratio_peak: None
+198	  nve_classification: 
+199	  nve_note: 
+200	  hypothesis: Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 202
+201	  conclusion: negative
+202	  causal: 
+203	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029d_tcn_walker_s3_sigma02", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G
+204	
+205	=== exp_031_tcn_pickcube_s0_sigma02 ===
+206	  status: DONE
+207	  nve_peak: None
+208	  nve_peak_step: 
+209	  ve_ratio_peak: 3.71
+210	  nve_classification: 
+211	  nve_note: 
+212	  hypothesis: TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfittin
+213	  conclusion: negative
+214	  causal: 
+215	  spec: {"account": "root", "backend": "tmux", "checkpoint_source": "none(train_from_scratch)", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl
+216	
+217	=== exp_031b_tcn_pickcube_s0_sigma05 ===
+218	  status: DONE
+219	  nve_peak: 3.3
+220	  nve_peak_step: 42500
+221	  ve_ratio_peak: None
+222	  nve_classification: 
+223	  nve_note: 
+224	  hypothesis: PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, e
+225	  conclusion: negative
+226	  causal: 
+227	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --co
+228	
+229	=== exp_032_dual_critic_walker ===
+230	  status: DONE
+231	  nve_peak: 1.1
+232	  nve_peak_step: 95000
+233	  ve_ratio_peak: None
+234	  nve_classification: 
+235	  nve_note: 
+236	  hypothesis: Dual-critic (min of two independent critics for actor loss) will suppress CIVO by preventing critic overestimation. Uses 008d CIVO-trigger config (trained dt_emb + multi-rate exposure). If NVE stays b
+237	  conclusion: success
+238	  causal: 
+239	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=eg
+240	
+241	=== exp_033_wide_critic_walker ===
+242	  status: DONE
+243	  nve_peak: None
+244	  nve_peak_step: 
+245	  ve_ratio_peak: 4.7
+246	  nve_classification: 
+247	  nve_note: 
+248	  hypothesis: Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should
+249	  conclusion: success
+250	  causal: 
+251	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --
+252	
+253	=== exp_034_dual_critic_cheetah ===
+254	  status: DONE
+255	  nve_peak: None
+256	  nve_peak_step: 
+257	  ve_ratio_peak: 1.8
+258	  nve_classification: 
+259	  nve_note: 
+260	  hypothesis: Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level int
+261	  conclusion: negative
+262	  causal: 
+263	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co
+264	
+265	=== exp_035_narrow_dual_critic_walker ===
+266	  status: DONE
+267	  nve_peak: 2.75
+268	  nve_peak_step: 85000
+269	  ve_ratio_peak: None
+270	  nve_classification: 
+271	  nve_note: 
+272	  hypothesis: Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestima
+273	  conclusion: success
+274	  causal: 
+275	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --
+276	
+277	=== exp_036_dual_critic_pickcube ===
+278	  status: DONE
+279	  nve_peak: 2.3
+280	  nve_peak_step: 
+281	  ve_ratio_peak: None
+282	  nve_classification: 
+283	  nve_note: 
+284	  hypothesis: Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+P
+285	  conclusion: negative
+286	  causal: 
+287	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "N/A", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0
+288	
+289	=== exp_037_wide_critic_cheetah ===
+290	  status: DONE
+291	  nve_peak: 3.6
+292	  nve_peak_step: 
+293	  ve_ratio_peak: None
+294	  nve_classification: 
+295	  nve_note: 
+296	  hypothesis: Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across 
+297	  conclusion: negative
+298	  causal: 
+299	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "N/A", "checkpoint_source": "N/A - training from scratch", "command": "bash -c \"...wide_critic cheetah...\"", "data_count": 210000, "data_path": "DMC Cheetah Run", "eval_data": "N/A - training experiment", "gpu": ["cuda:1"], "gpu_hours": 7.4
+300	
+301	=== exp_038_dual_critic_walker_s2 ===
+302	  status: DONE
+303	  nve_peak: 0.3
+304	  nve_peak_step: 
+305	  ve_ratio_peak: None
+306	  nve_classification: 
+307	  nve_note: 
+308	  hypothesis: Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO preven
+309	  conclusion: negative
+310	  causal: 
+311	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt", "checkpoint_source": "N/A - training from scratch", "command": "bash -c \"...dual_critic walker s2...\"", "data_count": 210000, "data_path": "DMC 
+312	
+313	=== exp_039_narrow_dual_critic_walker_s1 ===
+314	  status: DONE
+315	  nve_peak: 2.19
+316	  nve_peak_step: 
+317	  ve_ratio_peak: None
+318	  nve_classification: 
+319	  nve_note: 
+320	  hypothesis: Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 reco
+321	  conclusion: success
+322	  causal: 
+323	  spec: {"account": "root", "backend": "tmux", "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt", "checkpoint_source": "N/A - training from scratch", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate 
+324	
+325	=== exp_041_dual_critic_walker_s3 ===
+326	  status: DONE
+327	  nve_peak: 1.5
+328	  nve_peak_step: 
+329	  ve_ratio_peak: None
+330	  nve_classification: 
+331	  nve_note: 
+332	  hypothesis: D128 推导：exp_038 s2 出现非 CIVO 崩溃 (eval 354→121, NVE≤0.3)，当前 collapse 频率 1/3。s3 确定崩溃是偶发 (1/4) 还是系统性 (2/4)。如果 s3 正常 → 非 CIVO 崩溃为低频偶发事件，dual-critic CIVO prevention 仍 robust；如果 s3 也崩 → 50% 系统性问题需进一步诊断。
+333	  conclusion: success
+334	  causal: 
+335	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc
+336	
+337	=== exp_042_frozen_dt_emb_walker ===
+338	  status: DONE
+339	  nve_peak: 0.194
+340	  nve_peak_step: 
+341	  ve_ratio_peak: None
+342	  nve_classification: 
+343	  nve_note: 
+344	  hypothesis: dt_embedding training (not its mere existence) is a necessary condition for CIVO collapse. Freezing dt_emb (random init, requires_grad=False) should prevent the reward-value divergence observed in exp
+345	  conclusion: success
+346	  causal: 
+347	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -
+348	
+349	=== exp_043_008f_walker_s1 ===
+350	  status: DONE
+351	  nve_peak: 0.808
+352	  nve_peak_step: 105000
+353	  ve_ratio_peak: None
+354	  nve_classification: 
+355	  nve_note: 
+356	  hypothesis: Plan_012 / Claim C2 seed 1：复现 008f 因果控制（dt_embed_dim=0, subsample ON, H=8）。目前只有 seed 0 数据。如果 s1 也显示无 CIVO → 确认 dt_emb absence prevents CIVO 是 robust 的跨 seed 结论，支撑因果链 "trained dt_emb → CIVO"。
+357	  conclusion: success
+358	  causal: 
+359	  spec: {"account": "root", "backend": "tmux", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co
+360	
+361	=== exp_044_gradient_stop_walker ===
+362	  status: DONE
+363	  nve_peak: None
+364	  nve_peak_step: 
+365	  ve_ratio_peak: 4.4
+366	  nve_classification: 
+367	  nve_note: 
+368	  hypothesis: Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsample ON + H=8），仅阻断 dt_emb→reward_head 梯度路径。如果 gradien
+369	  conclusion: success
+370	  causal: 
+371	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -
+372	
+373	=== exp_045_treatment_extension_008d_s3 ===
+374	  status: DONE
+375	  nve_peak: 4.91
+376	  nve_peak_step: 132000
+377	  ve_ratio_peak: None
+378	  nve_classification: 
+379	  nve_note: 
+380	  hypothesis: CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamic
+381	  conclusion: success
+382	  causal: 
+383	  spec: {"command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s
+384	
+385	=== exp_046_frozen_dt_emb_cheetah ===
+386	  status: DONE
+387	  nve_peak: 1.35
+388	  nve_peak_step: 45000
+389	  ve_ratio_peak: 0.4
+390	  nve_classification: 
+391	  nve_note: 
+392	  hypothesis: Cross-environment validation: frozen dt_emb (random init, requires_grad=False) prevents CIVO on Cheetah Run, extending the Walker Walk finding (exp_042 NVE=0.19, exp_015b NVE=0.47) to a second environ
+393	  conclusion: success
+394	  causal: 
+395	  spec: {"command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_ru
+396	
+397	=== exp_047_frozen_dt_emb_walker_s1 ===
+398	  status: DONE
+399	  nve_peak: 1.71
+400	  nve_peak_step: 95000
+401	  ve_ratio_peak: 1.099
+402	  nve_classification: 
+403	  nve_note: 
+404	  hypothesis: Frozen dt_emb Walker seed 1: 增强 exp_042 (s0, NVE=0.19) 的统计力度。 如果 s1 也 NVE<1.5 且无持续 CIVO → frozen dt_emb mitigation 跨 seed robust。
+405	  conclusion: success
+406	  causal: 
+407	  spec: {"command": "CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate
+408	
+409	=== exp_048_cheetah_civo_extension ===
+410	  status: DONE
+411	  nve_peak: None
+412	  nve_peak_step: 
+413	  ve_ratio_peak: 24.112
+414	  nve_classification: 
+415	  nve_note: 
+416	  hypothesis: Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 4.91→0.05 over 170K steps). If Cheetah does NOT se
+417	  conclusion: success
+418	  causal: 
+419	  spec: {"command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_048_cheetah_civo_extension", "
+420	
+421	=== exp_049_stackcube_civo_trigger_s0 ===
+422	  status: DONE
+423	  nve_peak: None
+424	  nve_peak_step: 
+425	  ve_ratio_peak: 5.048
+426	  nve_classification: onset_self_correcting
+427	  nve_note: 
+428	  hypothesis: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack）。如果触发 → 扩展跨域证据；如果不触发 → 支持
+429	  conclusion: success
+430	  causal: 
+431	  spec: {"command": "python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigg
+432	
+433	=== exp_050_peginsertion_civo_trigger_s0 ===
+434	  status: DONE
+435	  nve_peak: None
+436	  nve_peak_step: 
+437	  ve_ratio_peak: 10.05
+438	  nve_classification: 
+439	  nve_note: 
+440	  hypothesis: Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond locomotion to precise insertion tasks, where even
+441	  conclusion: success
+442	  causal: 
+443	  spec: {"command": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsam
+444	
+445	=== exp_051_stackcube_frozen_dt_emb_s0 ===
+446	  status: DONE
+447	  nve_peak: None
+448	  nve_peak_step: 
+449	  ve_ratio_peak: 4.3
+450	  nve_classification: onset_self_correcting
+451	  nve_note: 
+452	  hypothesis: Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation
+453	  conclusion: negative
+454	  causal: 
+455	  spec: {"command": "python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051
+456	
+457	=== exp_052_stackcube_civo_trigger_s1 ===
+458	  status: DONE
+459	  nve_peak: None
+460	  nve_peak_step: 
+461	  ve_ratio_peak: 4.67
+462	  nve_classification: 
+463	  nve_note: 
+464	  hypothesis: StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多
+465	  conclusion: success
+466	  causal: 
+467	  spec: {"command": "python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigg
+468	
+469	=== exp_055_peginsertion_civo_trigger_s1 ===
+470	  status: DONE
+471	  nve_peak: None
+472	  nve_peak_step: 
+473	  ve_ratio_peak: 3.08
+474	  nve_classification: transient
+475	  nve_note: 
+476	  hypothesis: PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发 → seed-specific 异常。
+477	  conclusion: success
+478	  causal: 
+479	  spec: {"command": "python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginserti
+480	
+481	=== exp_056_peginsertion_frozen_s1 ===
+482	  status: DONE
+483	  nve_peak: None
+484	  nve_peak_step: 
+485	  ve_ratio_peak: 11.321
+486	  nve_classification: burst
+487	  nve_note: 
+488	  hypothesis: D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健阻止 dt_emb 放大；如果不回落 → seed-dependent。
+489	  conclusion: success
+490	  causal: 
+491	  spec: {"command": "CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_f
+492	
+493	=== exp_057 ===
+494	  status: DONE
+495	  nve_peak: 1.3
+496	  nve_peak_step: 115000
+497	  ve_ratio_peak: None
+498	  nve_classification: 
+499	  nve_note: 
+500	  hypothesis: Frozen dt_emb 跨 seed 可复现性验证（Walker seed=2, n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3 验证稳健性。
+501	  conclusion: success
+502	  causal: 
+503	  spec: {"command": "python train.py --env walker --frozen_dt_emb --seed 2", "server": "bjb1-45299", "data_path": "/root/autodl-tmp/event-gated-adaptive-horizon", "data_count": 225000, "seed": 2, "model_name": "dreamer_frozen_dt_emb"}
+504	
+505	=== exp_057_frozen_dt_emb_walker_s2 ===
+506	  status: DONE
+507	  nve_peak: 1.88
+508	  nve_peak_step: 115000
+509	  ve_ratio_peak: 1.283
+510	  nve_classification: transient
+511	  nve_note: 
+512	  hypothesis: Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。
+513	  conclusion: success
+514	  causal: 
+515	  spec: {"command": "CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate
+516	
+517	=== exp_058_frozen_dt_emb_cheetah_s1 ===
+518	  status: DONE
+519	  nve_peak: 0.78
+520	  nve_peak_step: 45000
+521	  ve_ratio_peak: 0.231
+522	  nve_classification: no_civo
+523	  nve_note: 
+524	  hypothesis: Cheetah frozen dt_emb 跨 seed 可复现性验证。exp_046 (s0) 显示 frozen 将 NVE 从 ~70-108（trained）降至 1.35。s1 验证阻止效应是否可复现。如果 s1 也阻止 → Cheetah frozen n=2 增强极端 CIVO 场景下 frozen diagnostic 的统计基础。
+525	  conclusion: success
+526	  causal: 
+527	  spec: {"command": "CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate
+528	
+529	=== exp_059_walker_trained_s5 ===
+530	  status: DONE
+531	  nve_peak: 4.72
+532	  nve_peak_step: 
+533	  ve_ratio_peak: 3.3075
+534	  nve_classification: onset_collapse
+535	  nve_note: step-matched s1 baseline @85K = 0.7007
+536	  hypothesis: Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。
+537	  conclusion: success
+538	  causal: 
+539	  spec: {"command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults 
+540	
+541	=== exp_067_frozen_dt_emb_walker_plan015 ===
+542	  status: DONE
+543	  nve_peak: 0.4
+544	  nve_peak_step: 
+545	  ve_ratio_peak: None
+546	  nve_classification: 
+547	  nve_note: 
+548	  hypothesis: Frozen (requires_grad=False) dt_embedding + subsample ON + dt=2 + H=8 在 Walker Walk 上不触发 CIVO，验证 dt_emb 的 TRAINING 是 CIVO 的必要条件（而非 dt_emb 的存在本身）。来源: plan_015。
+549	  conclusion: success
+550	  causal: 
+551	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 
+552	
+553	=== exp_068_008d_walker_repro_s1 ===
+554	  status: DONE
+555	  nve_peak: None
+556	  nve_peak_step: 
+557	  ve_ratio_peak: 4.6
+558	  nve_classification: 
+559	  nve_note: 
+560	  hypothesis: Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enables value error amplification through temporal abst
+561	  conclusion: success
+562	  causal: 
+563	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0
+564	
+565	=== exp_069_008f_walker_repro_s1 ===
+566	  status: DONE
+567	  nve_peak: 0.66
+568	  nve_peak_step: 75000
+569	  ve_ratio_peak: 0.4
+570	  nve_classification: 
+571	  nve_note: 
+572	  hypothesis: Reproducing 008f config (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will NOT trigger CIVO (NVE < 1.5x) because removing dt_emb eliminates the temporal abstraction mis
+573	  conclusion: success
+574	  causal: 
+575	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0
+576	
+577	=== exp_070_008e_v3_walker_s0 ===
+578	  status: DONE
+579	  nve_peak: 0.8
+580	  nve_peak_step: 95000
+581	  ve_ratio_peak: None
+582	  nve_classification: 
+583	  nve_note: 
+584	  hypothesis: Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。
+585	  conclusion: negative
+586	  causal: 
+587	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile F
+588	
+589	=== exp_071_008f_walker_s3 ===
+590	  status: DONE
+591	  nve_peak: None
+592	  nve_peak_step: 
+593	  ve_ratio_peak: 0.7
+594	  nve_classification: 
+595	  nve_note: 
+596	  hypothesis: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。
+597	  conclusion: success
+598	  causal: 
+599	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile Fals
+600	
+601	=== exp_072_008e_v3_walker_s5 ===
+602	  status: DONE
+603	  nve_peak: 0.61
+604	  nve_peak_step: 105000
+605	  ve_ratio_peak: None
+606	  nve_classification: 
+607	  nve_note: 
+608	  hypothesis: Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。
+609	  conclusion: success
+610	  causal: 
+611	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0
+612	
+613	=== exp_073_008f_walker_s4 ===
+614	  status: DONE
+615	  nve_peak: 0.76
+616	  nve_peak_step: 
+617	  ve_ratio_peak: 0.5
+618	  nve_classification: 
+619	  nve_note: 
+620	  hypothesis: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。
+621	  conclusion: success
+622	  causal: 
+623	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0
+624	
+625	=== exp_077_cheetah_baseline_s0 ===
+626	  status: DONE
+627	  nve_peak: None
+628	  nve_peak_step: 
+629	  ve_ratio_peak: 0.739
+630	  nve_classification: 
+631	  nve_note: 
+632	  hypothesis: Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO trigger) and exp_083 (baseline seed=1).
+633	  conclusion: success
+634	  causal: 
+635	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_
+636	
+637	=== exp_078_cheetah_008d_s0 ===
+638	  status: DONE
+639	  nve_peak: 4.1
+640	  nve_peak_step: 75000
+641	  ve_ratio_peak: 2.318
+642	  nve_classification: onset_self_correcting
+643	  nve_note: 
+644	  hypothesis: Trained dt_embedding with subsample ON + dt=2 + H=8 on Cheetah Run triggers CIVO — cross-environment validation (C2) that CIVO is not Walker-specific. Paired with exp_077 (baseline) for NVE calculatio
+645	  conclusion: success
+646	  causal: 
+647	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_
+648	
+649	=== exp_082_cheetah_no_dt_emb_s0 ===
+650	  status: DONE
+651	  nve_peak: 1.58
+652	  nve_peak_step: 95000
+653	  ve_ratio_peak: 0.955
+654	  nve_classification: no_civo
+655	  nve_note: eval-variance-driven (eval=57.7, value=55.1, ve_ratio<1.0), NOT value overestimation
+656	  hypothesis: Cheetah Run causal control: dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=0。移除 dt_embedding 后预期无 CIVO，证明 trained dt_emb 是 Cheetah CIVO 的必要条件。与 exp_078 (trained dt_emb, CIVO trigger) 构成因果对。plan_022。
+657	  conclusion: success
+658	  causal: 
+659	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_
+660	
+661	=== exp_083_cheetah_baseline_s1 ===
+662	  status: DONE
+663	  nve_peak: None
+664	  nve_peak_step: 
+665	  ve_ratio_peak: 0.6
+666	  nve_classification: 
+667	  nve_note: 
+668	  hypothesis: Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。
+669	  conclusion: success
+670	  causal: 
+671	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_
+672	
+673	=== exp_084_frozen_dt_emb_walker_s0 ===
+674	  status: DONE
+675	  nve_peak: 0.37
+676	  nve_peak_step: 
+677	  ve_ratio_peak: None
+678	  nve_classification: 
+679	  nve_note: 
+680	  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for 
+681	  conclusion: success
+682	  causal: 
+683	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --
+684	
+685	=== exp_085_frozen_dt_emb_walker_s1 ===
+686	  status: DONE
+687	  nve_peak: 0.31
+688	  nve_peak_step: 
+689	  ve_ratio_peak: None
+690	  nve_classification: 
+691	  nve_note: 
+692	  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary conditio
+693	  conclusion: success
+694	  causal: 
+695	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --com
+696	
+697	=== exp_087_frozen_dt_emb_cheetah_s1 ===
+698	  status: DONE
+699	  nve_peak: None
+700	  nve_peak_step: 
+701	  ve_ratio_peak: 0.2
+702	  nve_classification: no_civo
+703	  nve_note: 
+704	  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-environment validation that dt_emb TRAINING is CIVO
+705	  conclusion: success
+706	  causal: 
+707	  spec: {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_
+708	
+709	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "08a7fa06-1226-4360-a0fb-17667ad5475b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/bd4aqpmoq.txt",
+      "content": "=== exp_008d_civo_trigger_s3 ===\n  status: DONE\n  nve_peak: 1.53\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (see\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"fresh_training (no checkpoint, new logdir)\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l\n\n=== exp_008d_civo_trigger_s4 ===\n  status: DONE\n  nve_peak: 4.62\n  nve_peak_step: 105000\n  ve_ratio_peak: 3.0294\n  nve_classification: onset_collapse\n  nve_note: step-matched s1 baseline @105K = 0.6564\n  hypothesis: Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile Fal\n\n=== exp_008e_v3_s3 ===\n  status: DONE\n  nve_peak: 4.02\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\n  conclusion: negative\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s3/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s3.log\"}\n\n=== exp_008e_v3_s4 ===\n  status: DONE\n  nve_peak: 0.99\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_s4/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_s4.log\"}\n\n=== exp_008f_s3_no_dt_embed_walker ===\n  status: DONE\n  nve_peak: < 1.5x\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 3 — 008f 系列第 3 个独立 seed，闭合 no_dt_emb condition 的 bootstrap CI（当前 n=2，需 ≥3）。预期 NVE<1.5×，无 CIVO。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_009b_008d_walker_s2 ===\n  status: DONE\n  nve_peak: 1.62\n  nve_peak_step: 45000\n  ve_ratio_peak: 0.5703\n  nve_classification: onset_self_correcting\n  nve_note: step-matched s1 baseline @45K = 0.331; arithmetic peak @25K=2.04x excluded (baseline<0.1)\n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic\n  conclusion: negative\n  causal: Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 su\n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs \n\n=== exp_009e_008d_walker_s1 ===\n  status: DONE\n  nve_peak: 4.13\n  nve_peak_step: 55000\n  ve_ratio_peak: 1.6663\n  nve_classification: onset_collapse\n  nve_note: step-matched s1 baseline @55K = 0.4035; paper onset NVE @45K = 2.09x\n  hypothesis: Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fi\n\n=== exp_010b_cheetah_civo_trigger ===\n  status: DONE\n  nve_peak: 8.27\n  nve_peak_step: 65000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run CIVO trigger — trained dt_emb, subsample ON, dt=2, H=8, seed 1. 跨环境验证：Walker 上 008d 配置在 Cheetah 上是否同样触发 CIVO (NVE>1.5x)。若成立→回应 reviewer \"single environment\" concern。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger/latest.pt\", \"checkpoint_source\": \"N/A (training from scratch, parent is baseline reference)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/cond\n\n=== exp_018_full_sgs_walker_s1 ===\n  status: DONE\n  nve_peak: 0.72\n  nve_peak_step: 75000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.\n  conclusion: killed\n  causal: \n  spec: {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1/checkpoint.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1\"}\n\n=== exp_018v2_full_sgs_walker_s1 ===\n  status: DONE\n  nve_peak: 1.66\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full Selective Gradient Stopping (blocking obs+reward+cont decoder gradients to dt_emb) eliminates all gradient pathways creating dt-specific representations, thereby preventing CIVO onset and collaps\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A (training from scratch, parent is predecessor not checkpoint source)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/l\n\n=== exp_019b_pickcube_civo_trigger ===\n  status: DONE\n  nve_peak: 3.78\n  nve_peak_step: 52500\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立\n  conclusion: success\n  causal: \n  spec: {\"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_ID=0 bash scripts/exp_019b_pickcube_civo_trigger.sh\", \"data_count\": \"online\", \"data_path\": \"maniskill_PickCube-v1 (state-based, online RL)\", \"eval_data\": \"N/A (online RL, not eva\n\n=== exp_021_full_sgs_cheetah_s1 ===\n  status: DONE\n  nve_peak: 9.94\n  nve_peak_step: 45K\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Full-SGS Cheetah Run — 验证 SGS intervention 跨环境一致性。如果 CIVO mechanism 跨环境一致，Full-SGS 在 Cheetah 也应消除 NVE>1.5x (对比 010b: NVE 8.63×, collapse)。\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_021_full_sgs_cheetah_s1/checkpoint.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon \n\n=== exp_022b_no_curriculum ===\n  status: DONE\n  nve_peak: 1.22\n  nve_peak_step: \n  ve_ratio_peak: 0.218\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL\n\n=== exp_024b_cheetah_no_dt_emb_s0 ===\n  status: DONE\n  nve_peak: 0.2\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s0/latest.pt\", \"checkpoint_source\": \"N/A-training-from-scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && c\n\n=== exp_024b_cheetah_no_dt_emb_s1 ===\n  status: DONE\n  nve_peak: 0.1\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run no-dt-emb causal control seed=1: gate_dt_embed_dim=0 + subsample ON + H=8. 第二 seed 验证 024 的结论（trained dt_emb 是 Cheetah CIVO 必要条件），加强因果三角的统计力度。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_024b_cheetah_no_dt_emb_s1/latest.pt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon &&\n\n=== exp_029b_tcn_walker_s2_sigma02 ===\n  status: DONE\n  nve_peak: 2.765\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029b_tcn_walker_s2_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G\n\n=== exp_029d_tcn_walker_s3_sigma02 ===\n  status: DONE\n  nve_peak: 3.0\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 202\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029d_tcn_walker_s3_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_G\n\n=== exp_031_tcn_pickcube_s0_sigma02 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 3.71\n  nve_classification: \n  nve_note: \n  hypothesis: TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfittin\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"none(train_from_scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl\n\n=== exp_031b_tcn_pickcube_s0_sigma05 ===\n  status: DONE\n  nve_peak: 3.3\n  nve_peak_step: 42500\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, e\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --co\n\n=== exp_032_dual_critic_walker ===\n  status: DONE\n  nve_peak: 1.1\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic (min of two independent critics for actor loss) will suppress CIVO by preventing critic overestimation. Uses 008d CIVO-trigger config (trained dt_emb + multi-rate exposure). If NVE stays b\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=eg\n\n=== exp_033_wide_critic_walker ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.7\n  nve_classification: \n  nve_note: \n  hypothesis: Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --\n\n=== exp_034_dual_critic_cheetah ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 1.8\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level int\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_035_narrow_dual_critic_walker ===\n  status: DONE\n  nve_peak: 2.75\n  nve_peak_step: 85000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestima\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --\n\n=== exp_036_dual_critic_pickcube ===\n  status: DONE\n  nve_peak: 2.3\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+P\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0\n\n=== exp_037_wide_critic_cheetah ===\n  status: DONE\n  nve_peak: 3.6\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across \n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...wide_critic cheetah...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 7.4\n\n=== exp_038_dual_critic_walker_s2 ===\n  status: DONE\n  nve_peak: 0.3\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO preven\n  conclusion: negative\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...dual_critic walker s2...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC \n\n=== exp_039_narrow_dual_critic_walker_s1 ===\n  status: DONE\n  nve_peak: 2.19\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 reco\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate \n\n=== exp_041_dual_critic_walker_s3 ===\n  status: DONE\n  nve_peak: 1.5\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: D128 推导：exp_038 s2 出现非 CIVO 崩溃 (eval 354→121, NVE≤0.3)，当前 collapse 频率 1/3。s3 确定崩溃是偶发 (1/4) 还是系统性 (2/4)。如果 s3 正常 → 非 CIVO 崩溃为低频偶发事件，dual-critic CIVO prevention 仍 robust；如果 s3 也崩 → 50% 系统性问题需进一步诊断。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc\n\n=== exp_042_frozen_dt_emb_walker ===\n  status: DONE\n  nve_peak: 0.194\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: dt_embedding training (not its mere existence) is a necessary condition for CIVO collapse. Freezing dt_emb (random init, requires_grad=False) should prevent the reward-value divergence observed in exp\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -\n\n=== exp_043_008f_walker_s1 ===\n  status: DONE\n  nve_peak: 0.808\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Plan_012 / Claim C2 seed 1：复现 008f 因果控制（dt_embed_dim=0, subsample ON, H=8）。目前只有 seed 0 数据。如果 s1 也显示无 CIVO → 确认 dt_emb absence prevents CIVO 是 robust 的跨 seed 结论，支撑因果链 \"trained dt_emb → CIVO\"。\n  conclusion: success\n  causal: \n  spec: {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --co\n\n=== exp_044_gradient_stop_walker ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.4\n  nve_classification: \n  nve_note: \n  hypothesis: Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsample ON + H=8），仅阻断 dt_emb→reward_head 梯度路径。如果 gradien\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 -\n\n=== exp_045_treatment_extension_008d_s3 ===\n  status: DONE\n  nve_peak: 4.91\n  nve_peak_step: 132000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamic\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s\n\n=== exp_046_frozen_dt_emb_cheetah ===\n  status: DONE\n  nve_peak: 1.35\n  nve_peak_step: 45000\n  ve_ratio_peak: 0.4\n  nve_classification: \n  nve_note: \n  hypothesis: Cross-environment validation: frozen dt_emb (random init, requires_grad=False) prevents CIVO on Cheetah Run, extending the Walker Walk finding (exp_042 NVE=0.19, exp_015b NVE=0.47) to a second environ\n  conclusion: success\n  causal: \n  spec: {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_ru\n\n=== exp_047_frozen_dt_emb_walker_s1 ===\n  status: DONE\n  nve_peak: 1.71\n  nve_peak_step: 95000\n  ve_ratio_peak: 1.099\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb Walker seed 1: 增强 exp_042 (s0, NVE=0.19) 的统计力度。 如果 s1 也 NVE<1.5 且无持续 CIVO → frozen dt_emb mitigation 跨 seed robust。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate\n\n=== exp_048_cheetah_civo_extension ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 24.112\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 4.91→0.05 over 170K steps). If Cheetah does NOT se\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_048_cheetah_civo_extension\", \"\n\n=== exp_049_stackcube_civo_trigger_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 5.048\n  nve_classification: onset_self_correcting\n  nve_note: \n  hypothesis: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack）。如果触发 → 扩展跨域证据；如果不触发 → 支持\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigg\n\n=== exp_050_peginsertion_civo_trigger_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 10.05\n  nve_classification: \n  nve_note: \n  hypothesis: Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond locomotion to precise insertion tasks, where even\n  conclusion: success\n  causal: \n  spec: {\"command\": \"LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsam\n\n=== exp_051_stackcube_frozen_dt_emb_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.3\n  nve_classification: onset_self_correcting\n  nve_note: \n  hypothesis: Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation\n  conclusion: negative\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051\n\n=== exp_052_stackcube_civo_trigger_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.67\n  nve_classification: \n  nve_note: \n  hypothesis: StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigg\n\n=== exp_055_peginsertion_civo_trigger_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 3.08\n  nve_classification: transient\n  nve_note: \n  hypothesis: PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发 → seed-specific 异常。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginserti\n\n=== exp_056_peginsertion_frozen_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 11.321\n  nve_classification: burst\n  nve_note: \n  hypothesis: D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健阻止 dt_emb 放大；如果不回落 → seed-dependent。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_f\n\n=== exp_057 ===\n  status: DONE\n  nve_peak: 1.3\n  nve_peak_step: 115000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_emb 跨 seed 可复现性验证（Walker seed=2, n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3 验证稳健性。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"python train.py --env walker --frozen_dt_emb --seed 2\", \"server\": \"bjb1-45299\", \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"data_count\": 225000, \"seed\": 2, \"model_name\": \"dreamer_frozen_dt_emb\"}\n\n=== exp_057_frozen_dt_emb_walker_s2 ===\n  status: DONE\n  nve_peak: 1.88\n  nve_peak_step: 115000\n  ve_ratio_peak: 1.283\n  nve_classification: transient\n  nve_note: \n  hypothesis: Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate\n\n=== exp_058_frozen_dt_emb_cheetah_s1 ===\n  status: DONE\n  nve_peak: 0.78\n  nve_peak_step: 45000\n  ve_ratio_peak: 0.231\n  nve_classification: no_civo\n  nve_note: \n  hypothesis: Cheetah frozen dt_emb 跨 seed 可复现性验证。exp_046 (s0) 显示 frozen 将 NVE 从 ~70-108（trained）降至 1.35。s1 验证阻止效应是否可复现。如果 s1 也阻止 → Cheetah frozen n=2 增强极端 CIVO 场景下 frozen diagnostic 的统计基础。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate\n\n=== exp_059_walker_trained_s5 ===\n  status: DONE\n  nve_peak: 4.72\n  nve_peak_step: \n  ve_ratio_peak: 3.3075\n  nve_classification: onset_collapse\n  nve_note: step-matched s1 baseline @85K = 0.7007\n  hypothesis: Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults \n\n=== exp_067_frozen_dt_emb_walker_plan015 ===\n  status: DONE\n  nve_peak: 0.4\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen (requires_grad=False) dt_embedding + subsample ON + dt=2 + H=8 在 Walker Walk 上不触发 CIVO，验证 dt_emb 的 TRAINING 是 CIVO 的必要条件（而非 dt_emb 的存在本身）。来源: plan_015。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 \n\n=== exp_068_008d_walker_repro_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 4.6\n  nve_classification: \n  nve_note: \n  hypothesis: Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enables value error amplification through temporal abst\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0\n\n=== exp_069_008f_walker_repro_s1 ===\n  status: DONE\n  nve_peak: 0.66\n  nve_peak_step: 75000\n  ve_ratio_peak: 0.4\n  nve_classification: \n  nve_note: \n  hypothesis: Reproducing 008f config (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will NOT trigger CIVO (NVE < 1.5x) because removing dt_emb eliminates the temporal abstraction mis\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0\n\n=== exp_070_008e_v3_walker_s0 ===\n  status: DONE\n  nve_peak: 0.8\n  nve_peak_step: 95000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\n  conclusion: negative\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile F\n\n=== exp_071_008f_walker_s3 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 0.7\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile Fals\n\n=== exp_072_008e_v3_walker_s5 ===\n  status: DONE\n  nve_peak: 0.61\n  nve_peak_step: 105000\n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0\n\n=== exp_073_008f_walker_s4 ===\n  status: DONE\n  nve_peak: 0.76\n  nve_peak_step: \n  ve_ratio_peak: 0.5\n  nve_classification: \n  nve_note: \n  hypothesis: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_0\n\n=== exp_077_cheetah_baseline_s0 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 0.739\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO trigger) and exp_083 (baseline seed=1).\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_\n\n=== exp_078_cheetah_008d_s0 ===\n  status: DONE\n  nve_peak: 4.1\n  nve_peak_step: 75000\n  ve_ratio_peak: 2.318\n  nve_classification: onset_self_correcting\n  nve_note: \n  hypothesis: Trained dt_embedding with subsample ON + dt=2 + H=8 on Cheetah Run triggers CIVO — cross-environment validation (C2) that CIVO is not Walker-specific. Paired with exp_077 (baseline) for NVE calculatio\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_\n\n=== exp_082_cheetah_no_dt_emb_s0 ===\n  status: DONE\n  nve_peak: 1.58\n  nve_peak_step: 95000\n  ve_ratio_peak: 0.955\n  nve_classification: no_civo\n  nve_note: eval-variance-driven (eval=57.7, value=55.1, ve_ratio<1.0), NOT value overestimation\n  hypothesis: Cheetah Run causal control: dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=0。移除 dt_embedding 后预期无 CIVO，证明 trained dt_emb 是 Cheetah CIVO 的必要条件。与 exp_078 (trained dt_emb, CIVO trigger) 构成因果对。plan_022。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_\n\n=== exp_083_cheetah_baseline_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 0.6\n  nve_classification: \n  nve_note: \n  hypothesis: Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_\n\n=== exp_084_frozen_dt_emb_walker_s0 ===\n  status: DONE\n  nve_peak: 0.37\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for \n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --\n\n=== exp_085_frozen_dt_emb_walker_s1 ===\n  status: DONE\n  nve_peak: 0.31\n  nve_peak_step: \n  ve_ratio_peak: None\n  nve_classification: \n  nve_note: \n  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary conditio\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --com\n\n=== exp_087_frozen_dt_emb_cheetah_s1 ===\n  status: DONE\n  nve_peak: None\n  nve_peak_step: \n  ve_ratio_peak: 0.2\n  nve_classification: no_civo\n  nve_note: \n  hypothesis: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-environment validation that dt_emb TRAINING is CIVO\n  conclusion: success\n  causal: \n  spec: {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_\n\n",
+      "numLines": 709,
+      "startLine": 1,
+      "totalLines": 709
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Now I have all the data. Let me also check for experiments that have NVE data but were not captured, and look for any remaining experiments with ve_ratio but no nve_peak that need normalization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "18b2ea8c-ab16-454b-94eb-36eb74eddd5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbsbWuV8RyYPLvkbJjM6Kt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18443,
+      "cache_read_input_tokens": 29222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18443
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CZ1Y2fACEcoSSeBSnqJEtf`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Find all experiments with ve_ratio but NO nve_peak - these need normalization\nfor exp_id, exp in sorted(experiments.items()):\n    metrics = exp.get('metrics', {}) or {}\n    nve_peak = metrics.get('nve_peak') or metrics.get('NVE_peak')\n    ve_ratio_peak = metrics.get('ve_ratio_peak')\n    \n    if ve_ratio_peak is not None and nve_peak is None:\n        hypothesis = (exp.get('hypothesis', '') or '')[:150]\n        conclusion = exp.get('conclusion', '')\n        status = exp.get('status', '')\n        print(f'{exp_id}: ve_ratio_peak={ve_ratio_peak}, status={status}, conclusion={conclusion}')\n        print(f'  hyp: {hypothesis}')\n        print()\n\" 2>&1",
+  "description": "Find experiments with ve_ratio but no nve_peak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "63f00784-34d6-44e5-8432-d6789a4f91b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QbsbWuV8RyYPLvkbJjM6Kt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18443,
+      "cache_read_input_tokens": 29222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18443
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-25T19:56:18.816Z_
+
+<details><summary>↩ Tool result · `toolu_01CZ1Y2fACEcoSSeBSnqJEtf`</summary>
+
+```text
+exp_031_tcn_pickcube_s0_sigma02: ve_ratio_peak=3.71, status=DONE, conclusion=negative
+  hyp: TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker W
+
+exp_033_wide_critic_walker: ve_ratio_peak=4.7, status=DONE, conclusion=success
+  hyp: Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operati
+
+exp_034_dual_critic_cheetah: ve_ratio_peak=1.8, status=DONE, conclusion=negative
+  hyp: Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → du
+
+exp_044_gradient_stop_walker: ve_ratio_peak=4.4, status=DONE, conclusion=success
+  hyp: Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsampl
+
+exp_048_cheetah_civo_extension: ve_ratio_peak=24.112, status=DONE, conclusion=success
+  hyp: Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 
+
+exp_049_stackcube_civo_trigger_s0: ve_ratio_peak=5.048, status=DONE, conclusion=success
+  hyp: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。Sta
+
+exp_050_peginsertion_civo_trigger_s0: ve_ratio_peak=10.05, status=DONE, conclusion=success
+  hyp: Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond
+
+exp_051_stackcube_frozen_dt_emb_s0: ve_ratio_peak=4.3, status=DONE, conclusion=negative
+  hyp: Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish
+
+exp_052_stackcube_civo_trigger_s1: ve_ratio_peak=4.67, status=DONE, conclusion=success
+  hyp: StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulatio
+
+exp_055_peginsertion_civo_trigger_s1: ve_ratio_peak=3.08, status=DONE, conclusion=success
+  hyp: PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发
+
+exp_056_peginsertion_frozen_s1: ve_ratio_peak=11.321, status=DONE, conclusion=success
+  hyp: D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健
+
+exp_068_008d_walker_repro_s1: ve_ratio_peak=4.6, status=DONE, conclusion=success
+  hyp: Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enabl
+
+exp_071_008f_walker_s3: ve_ratio_peak=0.7, status=DONE, conclusion=success
+  hyp: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 
+
+exp_077_cheetah_baseline_s0: ve_ratio_peak=0.739, status=DONE, conclusion=success
+  hyp: Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO tri
+
+exp_083_cheetah_baseline_s1: ve_ratio_peak=0.6, status=DONE, conclusion=success
+  hyp: Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。
+
+exp_087_frozen_dt_emb_cheetah_s1: ve_ratio_peak=0.2, status=DONE, conclusion=success
+  hyp: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-e
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "5850542d-8581-43e6-8d66-98320a41f90c",
+  "tool_use_result": {
+    "stdout": "exp_031_tcn_pickcube_s0_sigma02: ve_ratio_peak=3.71, status=DONE, conclusion=negative\n  hyp: TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker W\n\nexp_033_wide_critic_walker: ve_ratio_peak=4.7, status=DONE, conclusion=success\n  hyp: Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operati\n\nexp_034_dual_critic_cheetah: ve_ratio_peak=1.8, status=DONE, conclusion=negative\n  hyp: Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → du\n\nexp_044_gradient_stop_walker: ve_ratio_peak=4.4, status=DONE, conclusion=success\n  hyp: Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsampl\n\nexp_048_cheetah_civo_extension: ve_ratio_peak=24.112, status=DONE, conclusion=success\n  hyp: Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio \n\nexp_049_stackcube_civo_trigger_s0: ve_ratio_peak=5.048, status=DONE, conclusion=success\n  hyp: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。Sta\n\nexp_050_peginsertion_civo_trigger_s0: ve_ratio_peak=10.05, status=DONE, conclusion=success\n  hyp: Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond\n\nexp_051_stackcube_frozen_dt_emb_s0: ve_ratio_peak=4.3, status=DONE, conclusion=negative\n  hyp: Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish\n\nexp_052_stackcube_civo_trigger_s1: ve_ratio_peak=4.67, status=DONE, conclusion=success\n  hyp: StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulatio\n\nexp_055_peginsertion_civo_trigger_s1: ve_ratio_peak=3.08, status=DONE, conclusion=success\n  hyp: PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发\n\nexp_056_peginsertion_frozen_s1: ve_ratio_peak=11.321, status=DONE, conclusion=success\n  hyp: D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健\n\nexp_068_008d_walker_repro_s1: ve_ratio_peak=4.6, status=DONE, conclusion=success\n  hyp: Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enabl\n\nexp_071_008f_walker_s3: ve_ratio_peak=0.7, status=DONE, conclusion=success\n  hyp: Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 \n\nexp_077_cheetah_baseline_s0: ve_ratio_peak=0.739, status=DONE, conclusion=success\n  hyp: Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO tri\n\nexp_083_cheetah_baseline_s1: ve_ratio_peak=0.6, status=DONE, conclusion=success\n  hyp: Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。\n\nexp_087_frozen_dt_emb_cheetah_s1: ve_ratio_peak=0.2, status=DONE, conclusion=success\n  hyp: Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-e",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view of all experiments. Let me organize them by category:
+
+**Walker & Cheetah experiments only** (as specified in the task), focusing on the CIVO trigger vs control classification.
+
+Let me build the analysis. I need to:
+
+1. Identify which experiments are Walker and Cheetah
+2. Classify them as CIVO positive (label=1) or CIVO negative (label=0)
+3. Extract NVE_peak values (or compute from ve_ratio_peak using baseline normalization)
+
+Let me categorize:
+
+**CIVO Positive (label=1): trained dt_emb + subsample ON**
+
+
+For Walker, I'm pulling the NVE_peak values across the CIVO trigger experiments and the trained walker variants, with one entry where I'll need to normalize the ve_ratio_peak metric to get the comparable NVE_peak value. I see the issue now—the normalization constants 915.67 and 446.1 are actually baseline evaluation scores, not ve_ratios. When I look at exp_009b, it has ve_ratio_peak=0.5703 and nve_peak=1.62, with a note about the step-matched baseline at 0.331, which gives NVE ≈ 0.5703/0.331 ≈ 1.72—close but not exact, suggesting there might be some rounding or different calculation method involved. The note also mentions excluding an arithmetic peak at 25K because the baseline was too low, so I need to be careful about which baseline value to use for each experiment.
+
+For exp_008d_walker_repro_s1, the ve_ratio_peak is 4.6 but there's no nve_peak listed, and without the step-matched baseline ve_ratio I can't compute the exact NVE. However, looking at exp_008d_civo_trigger_s4, I can verify the calculation: nve_peak=4.62 with ve_ratio_peak=3.0294 and baseline=0.6564 gives 3.0294/0.6564 ≈ 4.62, which confirms the formula. For exp_009e, the nve_peak=4.13 with ve_ratio_peak=1.6 suggests a different baseline value is being used.
+
+Now I'm checking the task description more carefully—it mentions using baseline NVE normalization values of 915.67 for Walker and 446.1 for Cheetah, but I'm trying to figure out whether these are eval scores or ve_ratios themselves, since the calculation method requires knowing the baseline ve_ratio at the matching step. I think the most reliable approach is to focus on experiments where nve_peak is directly available, and for those with only ve_ratio_peak, I'll attempt to normalize them but acknowledge the uncertainty. Looking at Walker specifically, baseline ve_ratio typically ranges from 0.3-0.7, so exp_068's ve_ratio_peak of 4.6 would give an NVE around 9.2, indicating strong CIVO positive results. Now examining exp_033_wide_critic_walker with a similar ve_ratio of 4.7...
+
+Continuing through the other experiments: exp_033 shows NVE ≈ 9.4 with its wide single critic ablation, exp_044 with gradient stopping yields NVE ≈ 8.8, while exp_071 without dt_emb control drops to NVE ≈ 1.4. For the Cheetah baselines, both exp_077 and exp_083 normalize to NVE ≈ 1.0 as expected since they define the baseline themselves.
+
+Looking at the remaining experiments, exp_034 with dual critics gives NVE ≈ 2.7 relative to the Cheetah baseline, exp_048 shows an extremely high NVE at 24.112, exp_078 peaks at NVE ≈ 4.1, and exp_087 with frozen weights drops to NVE ≈ 0.3. This is getting unwieldy, so I need to write a script that systematically categorizes each experiment, prioritizes nve_peak values where available, and computes the rest from the ve_ratio data.
+
+For Walker, I should use the baseline mean eval of 915.67 as the reference point, but the real challenge is that different experiments peak at different training steps, so I need either step-matched baselines or a reasonable average baseline ve_ratio to normalize against. Since I don't have complete step-matched data, I'll use a consistent baseline ve_ratio across experiments and focus on the ones where I have direct nve_peak measurements. Now I'm systematically going through all the Walker and Cheetah experiments to categorize them by CIVO status and extract their NVE values, being careful to normalize any ve_ratio measurements using the baseline averages I calculated. I need to figure out whether exp_008e_v3 should count as CIVO positive. It has trained dt_emb + subsample ON like the others, but with different imagination settings (dt=1, H=15 instead of dt=2, H=8). The task definition says CIVO positive means "trained dt_emb + subsample ON," so technically it should qualify, but these 008e_v3 configs are labeled as mitigations where the shorter imagination horizon is supposed to prevent CIVO, which complicates the classification. experiments with the full CIVO trigger configuration need trained dt_emb, subsample ON, dt=2 imagination, and H=8 all together. But 008e_v3 only has dt=1 imagination instead, making it a partial mitigation rather than a pure trigger or control. I should probably exclude these intervention experiments from the classification and focus only on the clear-cut cases: the full 008d series as positive and the frozen/baseline controls as negative. of these interventions fail to prevent CIVO (like TCN on Cheetah, or gradient stopping). Should those be CIVO positive?
+
+Actually, re-reading the task again: the classification is about the EXPERIMENTAL CONDITION, not the outcome. The key question is: "does NVE_peak > threshold correctly separate CIVO trigger experiments from control experiments?"
+
+CIVO positive (label=1) = experiments designed to TRIGGER CIVO (trained dt_emb + subsample ON, the "treatment" group)
+CIVO negative (label=0) = experiments designed as CONTROLS (frozen/no dt_emb, baselines)
+
+Interventions (dual-critic, TCN, gradient stopping, SGS) are neither - they're MITIGATION experiments. The task explicitly lists which experiments count as positive and which as negative based on their setup.
+
+Now I'm going through the Walker experiments to categorize them properly. The positive cases all have trained dt_emb with subsampling enabled and dt=2, H=8, showing NVE peaks ranging from 1.53 to 4.72. I need to check which ones have complete NVE_peak measurements versus those missing that metric. Looking at the Walker control experiments, I'm seeing a pattern where frozen dt_emb configurations consistently underperform with nve values mostly under 2.0, though a couple reach around 1.7-1.9. The data trails off partway through the last entry, but the overall trend shows these negative controls are substantially weaker than the Cheetah positive cases. I need to clarify what baseline dt=1 actually represents here—these experiments are the reference point for computing NVE, so by definition they have nve≈1.0, not separate nve_peak values. The real controls for the CIVO trigger test are the ones with identical configs except frozen or removed dt_emb. I'm also noticing some edge cases like exp_047_frozen_dt_emb_walker_s1 with nve=1.71 that need careful categorization.
+
+Looking at the false positives and exclusions: experiments with frozen dt_emb or no dt_emb sometimes show nve>1.5 but the notes indicate eval-variance issues rather than true value overestimation, while SGS interventions like exp_018, exp_021, and exp_029b should be excluded entirely since they're neither triggers nor proper controls.
+
+I'm also filtering out the dual-critic and gradient-stopping experiments since those are interventions, plus the 008e_v3 variants which are mitigations, and removing PickCube/StackCube/PegInsertion per the task requirements. One edge case to handle: exp_008f_s3_no_dt_embed_walker has nve listed as "< 1.5x" which isn't a numeric value, so I'll need to account for that when parsing the data.
+
+For experiments missing nve_peak but having ve_ratio_peak, I can estimate NVE using the baseline ratio—like exp_068 with ve_ratio=4.6 compared to Walker's baseline mean of 0.523 gives roughly 8.8. I should also check whether exp_009e and exp_068 are actually duplicates since both are seed=1 runs, though they appear to be registered separately so I'll include both.
+
+Moving through the remaining experiments: exp_071 has no ve_ratio data, exp_071_008f_dt_emb shows ve_ratio=0.7 yielding NVE≈1.34, exp_087_frozen_cheetah has ve_ratio=0.2 giving NVE≈0.3, the Cheetah baselines (exp_077 and exp_083) are normalized to 1.0 by definition, and exp_048 with ve_ratio=24.112 produces an extremely high NVE≈36. Now I'm ready to write the comprehensive script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "a61f9080-ace1-4242-a1d6-0e62ba2e0a0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7BrNmBtRzwN2Kzj7zz1M4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2144,
+      "cache_read_input_tokens": 47665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+Now I have all the data. Let me write the full analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "5cb6eb19-975e-4f4f-bb06-9173ae1e3585",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7BrNmBtRzwN2Kzj7zz1M4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2144,
+      "cache_read_input_tokens": 47665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016mdVRwG9Hn1dRPbSz9aASy`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt | python3 << 'PYEOF'\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Define classification\n# CIVO positive: trained dt_emb + subsample ON (008d series, 009e, 009b, 078, etc.)\ncivo_positive_ids = {\n    # Walker triggers\n    'exp_008d_civo_trigger_s3', 'exp_008d_civo_trigger_s4',\n    'exp_009b_008d_walker_s2', 'exp_009e_008d_walker_s1',\n    'exp_059_walker_trained_s5', 'exp_068_008d_walker_repro_s1',\n    'exp_045_treatment_extension_008d_s3',\n    # Cheetah triggers\n    'exp_010b_cheetah_civo_trigger', 'exp_078_cheetah_008d_s0',\n    'exp_048_cheetah_civo_extension',\n}\n\n# CIVO negative: frozen dt_emb, dt_embed_dim=0, baseline dt=1\ncivo_negative_ids = {\n    # Walker frozen dt_emb\n    'exp_042_frozen_dt_emb_walker', 'exp_067_frozen_dt_emb_walker_plan015',\n    'exp_084_frozen_dt_emb_walker_s0', 'exp_085_frozen_dt_emb_walker_s1',\n    'exp_047_frozen_dt_emb_walker_s1', 'exp_057_frozen_dt_emb_walker_s2',\n    'exp_057',  # also frozen walker s2\n    # Walker no dt_emb (dt_embed_dim=0)\n    'exp_008f_s3_no_dt_embed_walker', 'exp_043_008f_walker_s1',\n    'exp_069_008f_walker_repro_s1', 'exp_071_008f_walker_s3',\n    'exp_073_008f_walker_s4',\n    # Walker frozen+gate\n    'exp_022b_no_curriculum',\n    # Cheetah controls\n    'exp_024b_cheetah_no_dt_emb_s0', 'exp_024b_cheetah_no_dt_emb_s1',\n    'exp_046_frozen_dt_emb_cheetah', 'exp_058_frozen_dt_emb_cheetah_s1',\n    'exp_082_cheetah_no_dt_emb_s0', 'exp_087_frozen_dt_emb_cheetah_s1',\n    # Cheetah baselines\n    'exp_077_cheetah_baseline_s0', 'exp_083_cheetah_baseline_s1',\n}\n\n# Baseline ve_ratio means for NVE computation\n# Walker: from step-matched data points: 0.331, 0.6564, 0.4035, 0.7007\nwalker_baseline_ve_mean = (0.331 + 0.6564 + 0.4035 + 0.7007) / 4  # ≈ 0.523\n# Cheetah: from baseline experiments (077=0.739, 083=0.6)\ncheetah_baseline_ve_mean = (0.739 + 0.6) / 2  # ≈ 0.670\n\ndataset = []\n\nfor exp_id in sorted(set(civo_positive_ids | civo_negative_ids)):\n    if exp_id not in experiments:\n        print(f\"WARNING: {exp_id} not found in registry\", file=sys.stderr)\n        continue\n    \n    exp = experiments[exp_id]\n    metrics = exp.get('metrics', {}) or {}\n    label = 1 if exp_id in civo_positive_ids else 0\n    \n    nve_peak = metrics.get('nve_peak') or metrics.get('NVE_peak')\n    ve_ratio_peak = metrics.get('ve_ratio_peak')\n    nve_step = metrics.get('nve_peak_step') or metrics.get('NVE_peak_step', '')\n    nve_note = metrics.get('nve_peak_note', '')\n    hypothesis = (exp.get('hypothesis', '') or '')[:80]\n    \n    # Determine environment\n    env = 'walker' if 'walker' in exp_id.lower() or '008d' in exp_id or '008f' in exp_id or '009' in exp_id or '022b' in exp_id or exp_id == 'exp_057' else 'cheetah'\n    if 'cheetah' in exp_id.lower():\n        env = 'cheetah'\n    \n    # Determine type\n    if label == 1:\n        exp_type = 'CIVO_trigger'\n    elif 'frozen' in exp_id or 'frozen' in hypothesis.lower():\n        exp_type = 'frozen_dt_emb'\n    elif 'no_dt_emb' in exp_id or '008f' in exp_id or 'dt_embed_dim=0' in hypothesis:\n        exp_type = 'no_dt_emb'\n    elif 'baseline' in exp_id:\n        exp_type = 'baseline'\n    elif 'no_curriculum' in exp_id:\n        exp_type = 'frozen_dt_emb'\n    else:\n        exp_type = 'control'\n    \n    # Get or compute NVE\n    nve_value = None\n    nve_source = ''\n    \n    if nve_peak is not None:\n        try:\n            nve_value = float(nve_peak)\n            nve_source = 'direct'\n        except (ValueError, TypeError):\n            # Handle \"< 1.5x\" type values\n            if '< 1.5' in str(nve_peak):\n                nve_value = 1.0  # conservative estimate\n                nve_source = 'estimated (<1.5x)'\n    \n    if nve_value is None and ve_ratio_peak is not None:\n        try:\n            ve_ratio = float(ve_ratio_peak)\n            if env == 'walker':\n                nve_value = ve_ratio / walker_baseline_ve_mean\n                nve_source = f've_ratio/{walker_baseline_ve_mean:.3f}'\n            elif env == 'cheetah':\n                if 'baseline' in exp_id:\n                    nve_value = 1.0  # baselines ARE the reference\n                    nve_source = 'baseline (NVE=1.0 by def)'\n                else:\n                    nve_value = ve_ratio / cheetah_baseline_ve_mean\n                    nve_source = f've_ratio/{cheetah_baseline_ve_mean:.3f}'\n        except (ValueError, TypeError):\n            pass\n    \n    if nve_value is not None:\n        dataset.append({\n            'exp_id': exp_id,\n            'env': env,\n            'type': exp_type,\n            'label': label,\n            'nve_peak': round(nve_value, 3),\n            'nve_step': nve_step,\n            'nve_source': nve_source,\n            'seed': '',\n        })\n    else:\n        print(f\"WARNING: {exp_id} has no usable NVE data\", file=sys.stderr)\n\n# Sort by label desc, then env, then nve_peak\ndataset.sort(key=lambda x: (-x['label'], x['env'], -x['nve_peak']))\n\nprint(f\"\\nTotal data points: {len(dataset)}\")\nprint(f\"CIVO positive: {sum(1 for d in dataset if d['label']==1)}\")\nprint(f\"CIVO negative: {sum(1 for d in dataset if d['label']==0)}\")\nprint()\n\n# Print dataset table\nprint(\"| exp_id | type | env | NVE_peak | NVE_source | label |\")\nprint(\"|--------|------|-----|----------|------------|-------|\")\nfor d in dataset:\n    print(f\"| {d['exp_id']} | {d['type']} | {d['env']} | {d['nve_peak']:.3f} | {d['nve_source']} | {d['label']} |\")\n\nprint(\"\\n\\n=== Threshold Analysis ===\")\nthresholds = [1.3, 1.5, 1.7, 2.0]\n\nfor theta in thresholds:\n    tp, fp, tn, fn = 0, 0, 0, 0\n    fp_list, fn_list = [], []\n    \n    for d in dataset:\n        predicted = 1 if d['nve_peak'] > theta else 0\n        actual = d['label']\n        \n        if predicted == 1 and actual == 1:\n            tp += 1\n        elif predicted == 1 and actual == 0:\n            fp += 1\n            fp_list.append(f\"{d['exp_id']}(NVE={d['nve_peak']:.2f})\")\n        elif predicted == 0 and actual == 0:\n            tn += 1\n        elif predicted == 0 and actual == 1:\n            fn += 1\n            fn_list.append(f\"{d['exp_id']}(NVE={d['nve_peak']:.2f})\")\n    \n    total = tp + fp + tn + fn\n    accuracy = (tp + tn) / total if total > 0 else 0\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0\n    \n    print(f\"\\n### θ = {theta}×\")\n    print(f\"  TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n    print(f\"  Accuracy:  {accuracy:.1%} ({tp+tn}/{total})\")\n    print(f\"  Precision: {precision:.1%}\")\n    print(f\"  Recall:    {recall:.1%}\")\n    print(f\"  F1:        {f1:.3f}\")\n    print(f\"  FP: {fp_list if fp_list else 'none'}\")\n    print(f\"  FN: {fn_list if fn_list else 'none'}\")\n\n# AUROC\nprint(f\"\\n\\n=== AUROC ===\")\nprint(f\"Total data points: {len(dataset)} (≥8, computing AUROC)\")\n\n# Manual AUROC computation (no sklearn needed)\n# Sort by NVE descending\nsorted_data = sorted(dataset, key=lambda x: -x['nve_peak'])\nn_pos = sum(1 for d in dataset if d['label'] == 1)\nn_neg = sum(1 for d in dataset if d['label'] == 0)\n\n# Wilcoxon-Mann-Whitney statistic\nconcordant = 0\nfor d1 in dataset:\n    if d1['label'] == 1:\n        for d2 in dataset:\n            if d2['label'] == 0:\n                if d1['nve_peak'] > d2['nve_peak']:\n                    concordant += 1\n                elif d1['nve_peak'] == d2['nve_peak']:\n                    concordant += 0.5\n\nauroc = concordant / (n_pos * n_neg) if n_pos * n_neg > 0 else 0\nprint(f\"AUROC = {auroc:.4f}\")\nprint(f\"  Positive samples: {n_pos}\")\nprint(f\"  Negative samples: {n_neg}\")\n\n# Find optimal threshold (maximize Youden's J = sensitivity + specificity - 1)\nprint(\"\\n=== Optimal Threshold (Youden's J) ===\")\nbest_j = -1\nbest_theta = 0\nnve_values = sorted(set(d['nve_peak'] for d in dataset))\nfor nve_cut in nve_values:\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > nve_cut)\n    fn = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= nve_cut)\n    fp = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > nve_cut)\n    tn = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= nve_cut)\n    sens = tp/(tp+fn) if (tp+fn) > 0 else 0\n    spec = tn/(tn+fp) if (tn+fp) > 0 else 0\n    j = sens + spec - 1\n    if j > best_j:\n        best_j = j\n        best_theta = nve_cut\n\nprint(f\"Optimal threshold: {best_theta:.3f}\")\nprint(f\"Youden's J: {best_j:.4f}\")\n\n# Also check between each pair of adjacent NVE values\nall_nves = sorted(d['nve_peak'] for d in dataset)\nfor i in range(len(all_nves)-1):\n    mid = (all_nves[i] + all_nves[i+1]) / 2\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > mid)\n    fn = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= mid)\n    fp = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > mid)\n    tn = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= mid)\n    sens = tp/(tp+fn) if (tp+fn) > 0 else 0\n    spec = tn/(tn+fp) if (tn+fp) > 0 else 0\n    j = sens + spec - 1\n    if j > best_j:\n        best_j = j\n        best_theta = mid\n\nprint(f\"Refined optimal threshold (midpoint search): {best_theta:.3f}\")\nprint(f\"Youden's J: {best_j:.4f}\")\n\n# Print the detailed score distribution\nprint(\"\\n=== NVE Score Distribution ===\")\nprint(\"Positives (CIVO trigger):\", sorted([d['nve_peak'] for d in dataset if d['label']==1]))\nprint(\"Negatives (controls):\", sorted([d['nve_peak'] for d in dataset if d['label']==0]))\n\nPYEOF\n",
+  "description": "Full NVE threshold sensitivity analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "178f3911-414d-4442-830a-e37796af03b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N7BrNmBtRzwN2Kzj7zz1M4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2144,
+      "cache_read_input_tokens": 47665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-25T19:58:48.140Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016mdVRwG9Hn1dRPbSz9aASy`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;stdin>", line 3, in &lt;module>
+  File "/usr/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "e6a9343b-6b18-4e67-bc2a-761d3b251bb7",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;stdin>\", line 3, in &lt;module>\n  File \"/usr/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 363, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01L6chthSkPYPwBUuwMhMDt7`</summary>
+
+```json
+{
+  "command": "head -c 200 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt",
+  "description": "Check file format"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "1a500882-aa8a-4f2a-b837-4d6c6dd1d4d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NC7hV7C2riYScTa6XQjxaH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10043,
+      "cache_read_input_tokens": 49809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10043
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T19:58:55.176Z_
+
+<details><summary>↩ Tool result · `toolu_01L6chthSkPYPwBUuwMhMDt7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_009b_008d_walker_s2\": {\"account\": \"root\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confi
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b5da0548-436f-4738-be50-654d76b5c028",
+  "tool_use_result": {
+    "stdout": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_009b_008d_walker_s2\\\": {\\\"account\\\": \\\"root\\\", \\\"causal_conclusion\\\": \\\"Seed 2 nve transiently reached 2.05x@25K (pathological), confi",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0195Y9FxaNTEKMu55JBqQRgc`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt\") as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Define classification\ncivo_positive_ids = {\n    'exp_008d_civo_trigger_s3', 'exp_008d_civo_trigger_s4',\n    'exp_009b_008d_walker_s2', 'exp_009e_008d_walker_s1',\n    'exp_059_walker_trained_s5', 'exp_068_008d_walker_repro_s1',\n    'exp_045_treatment_extension_008d_s3',\n    'exp_010b_cheetah_civo_trigger', 'exp_078_cheetah_008d_s0',\n    'exp_048_cheetah_civo_extension',\n}\n\ncivo_negative_ids = {\n    'exp_042_frozen_dt_emb_walker', 'exp_067_frozen_dt_emb_walker_plan015',\n    'exp_084_frozen_dt_emb_walker_s0', 'exp_085_frozen_dt_emb_walker_s1',\n    'exp_047_frozen_dt_emb_walker_s1', 'exp_057_frozen_dt_emb_walker_s2',\n    'exp_057',\n    'exp_008f_s3_no_dt_embed_walker', 'exp_043_008f_walker_s1',\n    'exp_069_008f_walker_repro_s1', 'exp_071_008f_walker_s3',\n    'exp_073_008f_walker_s4',\n    'exp_022b_no_curriculum',\n    'exp_024b_cheetah_no_dt_emb_s0', 'exp_024b_cheetah_no_dt_emb_s1',\n    'exp_046_frozen_dt_emb_cheetah', 'exp_058_frozen_dt_emb_cheetah_s1',\n    'exp_082_cheetah_no_dt_emb_s0', 'exp_087_frozen_dt_emb_cheetah_s1',\n    'exp_077_cheetah_baseline_s0', 'exp_083_cheetah_baseline_s1',\n}\n\nwalker_baseline_ve_mean = (0.331 + 0.6564 + 0.4035 + 0.7007) / 4\ncheetah_baseline_ve_mean = (0.739 + 0.6) / 2\n\ndataset = []\n\nfor exp_id in sorted(set(civo_positive_ids | civo_negative_ids)):\n    if exp_id not in experiments:\n        print(f\"WARNING: {exp_id} not found in registry\")\n        continue\n    \n    exp = experiments[exp_id]\n    metrics = exp.get('metrics', {}) or {}\n    label = 1 if exp_id in civo_positive_ids else 0\n    \n    nve_peak = metrics.get('nve_peak') or metrics.get('NVE_peak')\n    ve_ratio_peak = metrics.get('ve_ratio_peak')\n    nve_step = metrics.get('nve_peak_step') or metrics.get('NVE_peak_step', '')\n    hypothesis = (exp.get('hypothesis', '') or '')[:80]\n    \n    # Determine environment\n    if 'cheetah' in exp_id.lower():\n        env = 'cheetah'\n    elif any(k in exp_id.lower() for k in ['walker', '008d', '008f', '009', '022b']) or exp_id == 'exp_057':\n        env = 'walker'\n    else:\n        env = 'unknown'\n    \n    # Determine type\n    if label == 1:\n        exp_type = 'CIVO_trigger'\n    elif 'frozen' in exp_id or 'frozen' in hypothesis.lower() or 'no_curriculum' in exp_id:\n        exp_type = 'frozen_dt_emb'\n    elif 'no_dt_emb' in exp_id or '008f' in exp_id or 'dt_embed_dim=0' in hypothesis:\n        exp_type = 'no_dt_emb'\n    elif 'baseline' in exp_id:\n        exp_type = 'baseline_dt1'\n    else:\n        exp_type = 'control'\n    \n    # Get or compute NVE\n    nve_value = None\n    nve_source = ''\n    \n    if nve_peak is not None:\n        try:\n            nve_value = float(nve_peak)\n            nve_source = 'direct'\n        except (ValueError, TypeError):\n            if '< 1.5' in str(nve_peak):\n                nve_value = 1.0\n                nve_source = 'estimated(<1.5x)'\n    \n    if nve_value is None and ve_ratio_peak is not None:\n        try:\n            ve_ratio = float(ve_ratio_peak)\n            if env == 'walker':\n                nve_value = ve_ratio / walker_baseline_ve_mean\n                nve_source = f've_ratio/{walker_baseline_ve_mean:.3f}'\n            elif env == 'cheetah':\n                if 'baseline' in exp_id:\n                    nve_value = 1.0\n                    nve_source = 'baseline(NVE=1.0)'\n                else:\n                    nve_value = ve_ratio / cheetah_baseline_ve_mean\n                    nve_source = f've_ratio/{cheetah_baseline_ve_mean:.3f}'\n        except (ValueError, TypeError):\n            pass\n    \n    if nve_value is not None:\n        dataset.append({\n            'exp_id': exp_id,\n            'env': env,\n            'type': exp_type,\n            'label': label,\n            'nve_peak': round(nve_value, 3),\n            'nve_step': str(nve_step),\n            'nve_source': nve_source,\n        })\n    else:\n        print(f\"WARNING: {exp_id} has no usable NVE data (nve_peak={nve_peak}, ve_ratio={ve_ratio_peak})\")\n\n# Check for exp_057 duplicate issue\nexp_057_entries = [d for d in dataset if d['exp_id'].startswith('exp_057')]\nprint(f\"\\nexp_057 entries: {[(d['exp_id'], d['nve_peak']) for d in exp_057_entries]}\")\n\n# Remove exact duplicate (exp_057 and exp_057_frozen_dt_emb_walker_s2 may be the same)\nseen = set()\ndeduped = []\nfor d in dataset:\n    key = d['exp_id']\n    if key not in seen:\n        seen.add(key)\n        deduped.append(d)\ndataset = deduped\n\n# Sort\ndataset.sort(key=lambda x: (-x['label'], x['env'], -x['nve_peak']))\n\nprint(f\"\\nTotal data points: {len(dataset)}\")\nprint(f\"CIVO positive: {sum(1 for d in dataset if d['label']==1)}\")\nprint(f\"CIVO negative: {sum(1 for d in dataset if d['label']==0)}\")\n\n# Print dataset table\nprint(\"\\n| exp_id | type | env | NVE_peak | NVE_source | label |\")\nprint(\"|--------|------|-----|----------|------------|-------|\")\nfor d in dataset:\n    print(f\"| {d['exp_id']} | {d['type']} | {d['env']} | {d['nve_peak']:.3f} | {d['nve_source']} | {d['label']} |\")\n\n# Threshold analysis\nprint(\"\\n\\n=== Threshold Analysis ===\")\nthresholds = [1.3, 1.5, 1.7, 2.0]\n\nresults = {}\nfor theta in thresholds:\n    tp, fp, tn, fn = 0, 0, 0, 0\n    fp_list, fn_list = [], []\n    \n    for d in dataset:\n        predicted = 1 if d['nve_peak'] > theta else 0\n        actual = d['label']\n        \n        if predicted == 1 and actual == 1:\n            tp += 1\n        elif predicted == 1 and actual == 0:\n            fp += 1\n            fp_list.append(f\"{d['exp_id']}(NVE={d['nve_peak']:.2f})\")\n        elif predicted == 0 and actual == 0:\n            tn += 1\n        elif predicted == 0 and actual == 1:\n            fn += 1\n            fn_list.append(f\"{d['exp_id']}(NVE={d['nve_peak']:.2f})\")\n    \n    total = tp + fp + tn + fn\n    accuracy = (tp + tn) / total if total > 0 else 0\n    precision = tp / (tp + fp) if (tp + fp) > 0 else 0\n    recall = tp / (tp + fn) if (tp + fn) > 0 else 0\n    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0\n    \n    results[theta] = {'accuracy': accuracy, 'precision': precision, 'recall': recall, 'f1': f1,\n                      'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn, 'fp_list': fp_list, 'fn_list': fn_list}\n    \n    print(f\"\\n### θ = {theta}×\")\n    print(f\"  TP={tp}, FP={fp}, TN={tn}, FN={fn}\")\n    print(f\"  Accuracy:  {accuracy:.1%} ({tp+tn}/{total})\")\n    print(f\"  Precision: {precision:.1%}\")\n    print(f\"  Recall:    {recall:.1%}\")\n    print(f\"  F1:        {f1:.3f}\")\n    if fp_list:\n        print(f\"  FP: {fp_list}\")\n    else:\n        print(f\"  FP: none\")\n    if fn_list:\n        print(f\"  FN: {fn_list}\")\n    else:\n        print(f\"  FN: none\")\n\n# AUROC\nn_pos = sum(1 for d in dataset if d['label'] == 1)\nn_neg = sum(1 for d in dataset if d['label'] == 0)\n\nconcordant = 0\nfor d1 in dataset:\n    if d1['label'] == 1:\n        for d2 in dataset:\n            if d2['label'] == 0:\n                if d1['nve_peak'] > d2['nve_peak']:\n                    concordant += 1\n                elif d1['nve_peak'] == d2['nve_peak']:\n                    concordant += 0.5\n\nauroc = concordant / (n_pos * n_neg) if n_pos * n_neg > 0 else 0\n\nprint(f\"\\n\\n=== AUROC ===\")\nprint(f\"AUROC = {auroc:.4f}\")\nprint(f\"Positive samples: {n_pos}, Negative samples: {n_neg}\")\n\n# Optimal threshold via Youden's J\nall_nves = sorted(set(d['nve_peak'] for d in dataset))\nbest_j = -1\nbest_theta = 0\nbest_stats = {}\n\nfor i in range(len(all_nves)):\n    for cut in [all_nves[i] - 0.001]:  # just below each value\n        tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > cut)\n        fn_count = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= cut)\n        fp_count = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > cut)\n        tn_count = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= cut)\n        sens = tp/(tp+fn_count) if (tp+fn_count) > 0 else 0\n        spec = tn_count/(tn_count+fp_count) if (tn_count+fp_count) > 0 else 0\n        j = sens + spec - 1\n        if j > best_j:\n            best_j = j\n            best_theta = cut\n            best_stats = {'sens': sens, 'spec': spec, 'tp': tp, 'fp': fp_count, 'tn': tn_count, 'fn': fn_count}\n\n# Also check midpoints between adjacent values\nfor i in range(len(all_nves)-1):\n    mid = (all_nves[i] + all_nves[i+1]) / 2\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > mid)\n    fn_count = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= mid)\n    fp_count = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > mid)\n    tn_count = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= mid)\n    sens = tp/(tp+fn_count) if (tp+fn_count) > 0 else 0\n    spec = tn_count/(tn_count+fp_count) if (tn_count+fp_count) > 0 else 0\n    j = sens + spec - 1\n    if j > best_j:\n        best_j = j\n        best_theta = mid\n        best_stats = {'sens': sens, 'spec': spec, 'tp': tp, 'fp': fp_count, 'tn': tn_count, 'fn': fn_count}\n\nprint(f\"\\n=== Optimal Threshold (Youden's J) ===\")\nprint(f\"Optimal θ = {best_theta:.3f}\")\nprint(f\"Youden's J = {best_j:.4f}\")\nprint(f\"Sensitivity = {best_stats['sens']:.3f}, Specificity = {best_stats['spec']:.3f}\")\nprint(f\"TP={best_stats['tp']}, FP={best_stats['fp']}, TN={best_stats['tn']}, FN={best_stats['fn']}\")\n\n# Score distribution\nprint(\"\\n=== NVE Score Distribution ===\")\nprint(f\"Positives: {sorted([d['nve_peak'] for d in dataset if d['label']==1])}\")\nprint(f\"Negatives: {sorted([d['nve_peak'] for d in dataset if d['label']==0])}\")\n\n# Best recommended threshold\nprint(f\"\\n=== Recommendation ===\")\nbest_f1_theta = max(results.keys(), key=lambda t: results[t]['f1'])\nprint(f\"Best F1 among tested thresholds: θ={best_f1_theta}× (F1={results[best_f1_theta]['f1']:.3f})\")\nprint(f\"Data-optimal threshold: θ≈{best_theta:.2f}×\")\nPYEOF\n",
+  "description": "Run full NVE threshold sensitivity analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "6c2e0009-ac18-45e2-9d2a-ec82d72ae106",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SM6cmVd2yzTSGtU6U2Ah17",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 258,
+      "cache_read_input_tokens": 59852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 258
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-25T19:59:48.080Z_
+
+<details><summary>↩ Tool result · `toolu_0195Y9FxaNTEKMu55JBqQRgc`</summary>
+
+```text
+exp_057 entries: [('exp_057', 1.3), ('exp_057_frozen_dt_emb_walker_s2', 1.88)]
+
+Total data points: 31
+CIVO positive: 10
+CIVO negative: 21
+
+| exp_id | type | env | NVE_peak | NVE_source | label |
+|--------|------|-----|----------|------------|-------|
+| exp_048_cheetah_civo_extension | CIVO_trigger | cheetah | 36.015 | ve_ratio/0.669 | 1 |
+| exp_010b_cheetah_civo_trigger | CIVO_trigger | cheetah | 8.270 | direct | 1 |
+| exp_078_cheetah_008d_s0 | CIVO_trigger | cheetah | 4.100 | direct | 1 |
+| exp_068_008d_walker_repro_s1 | CIVO_trigger | walker | 8.797 | ve_ratio/0.523 | 1 |
+| exp_045_treatment_extension_008d_s3 | CIVO_trigger | walker | 4.910 | direct | 1 |
+| exp_059_walker_trained_s5 | CIVO_trigger | walker | 4.720 | direct | 1 |
+| exp_008d_civo_trigger_s4 | CIVO_trigger | walker | 4.620 | direct | 1 |
+| exp_009e_008d_walker_s1 | CIVO_trigger | walker | 4.130 | direct | 1 |
+| exp_009b_008d_walker_s2 | CIVO_trigger | walker | 1.620 | direct | 1 |
+| exp_008d_civo_trigger_s3 | CIVO_trigger | walker | 1.530 | direct | 1 |
+| exp_082_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 1.580 | direct | 0 |
+| exp_046_frozen_dt_emb_cheetah | frozen_dt_emb | cheetah | 1.350 | direct | 0 |
+| exp_077_cheetah_baseline_s0 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |
+| exp_083_cheetah_baseline_s1 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |
+| exp_058_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.780 | direct | 0 |
+| exp_087_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.299 | ve_ratio/0.669 | 0 |
+| exp_024b_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 0.200 | direct | 0 |
+| exp_024b_cheetah_no_dt_emb_s1 | no_dt_emb | cheetah | 0.100 | direct | 0 |
+| exp_057_frozen_dt_emb_walker_s2 | frozen_dt_emb | walker | 1.880 | direct | 0 |
+| exp_047_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 1.710 | direct | 0 |
+| exp_071_008f_walker_s3 | no_dt_emb | walker | 1.339 | ve_ratio/0.523 | 0 |
+| exp_057 | frozen_dt_emb | walker | 1.300 | direct | 0 |
+| exp_022b_no_curriculum | frozen_dt_emb | walker | 1.220 | direct | 0 |
+| exp_008f_s3_no_dt_embed_walker | no_dt_emb | walker | 1.000 | estimated(<1.5x) | 0 |
+| exp_043_008f_walker_s1 | no_dt_emb | walker | 0.808 | direct | 0 |
+| exp_073_008f_walker_s4 | no_dt_emb | walker | 0.760 | direct | 0 |
+| exp_069_008f_walker_repro_s1 | no_dt_emb | walker | 0.660 | direct | 0 |
+| exp_067_frozen_dt_emb_walker_plan015 | frozen_dt_emb | walker | 0.400 | direct | 0 |
+| exp_084_frozen_dt_emb_walker_s0 | frozen_dt_emb | walker | 0.370 | direct | 0 |
+| exp_085_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 0.310 | direct | 0 |
+| exp_042_frozen_dt_emb_walker | frozen_dt_emb | walker | 0.194 | direct | 0 |
+
+
+=== Threshold Analysis ===
+
+### θ = 1.3×
+  TP=10, FP=5, TN=16, FN=0
+  Accuracy:  83.9% (26/31)
+  Precision: 66.7%
+  Recall:    100.0%
+  F1:        0.800
+  FP: ['exp_082_cheetah_no_dt_emb_s0(NVE=1.58)', 'exp_046_frozen_dt_emb_cheetah(NVE=1.35)', 'exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)', 'exp_071_008f_walker_s3(NVE=1.34)']
+  FN: none
+
+### θ = 1.5×
+  TP=10, FP=3, TN=18, FN=0
+  Accuracy:  90.3% (28/31)
+  Precision: 76.9%
+  Recall:    100.0%
+  F1:        0.870
+  FP: ['exp_082_cheetah_no_dt_emb_s0(NVE=1.58)', 'exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)']
+  FN: none
+
+### θ = 1.7×
+  TP=8, FP=2, TN=19, FN=2
+  Accuracy:  87.1% (27/31)
+  Precision: 80.0%
+  Recall:    80.0%
+  F1:        0.800
+  FP: ['exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)']
+  FN: ['exp_009b_008d_walker_s2(NVE=1.62)', 'exp_008d_civo_trigger_s3(NVE=1.53)']
+
+### θ = 2.0×
+  TP=8, FP=0, TN=21, FN=2
+  Accuracy:  93.5% (29/31)
+  Precision: 100.0%
+  Recall:    80.0%
+  F1:        0.889
+  FP: none
+  FN: ['exp_009b_008d_walker_s2(NVE=1.62)', 'exp_008d_civo_trigger_s3(NVE=1.53)']
+
+
+=== AUROC ===
+AUROC = 0.9762
+Positive samples: 10, Negative samples: 21
+
+=== Optimal Threshold (Youden's J) ===
+Optimal θ = 1.529
+Youden's J = 0.8571
+Sensitivity = 1.000, Specificity = 0.857
+TP=10, FP=3, TN=18, FN=0
+
+=== NVE Score Distribution ===
+Positives: [1.53, 1.62, 4.1, 4.13, 4.62, 4.72, 4.91, 8.27, 8.797, 36.015]
+Negatives: [0.1, 0.194, 0.2, 0.299, 0.31, 0.37, 0.4, 0.66, 0.76, 0.78, 0.808, 1.0, 1.0, 1.0, 1.22, 1.3, 1.339, 1.35, 1.58, 1.71, 1.88]
+
+=== Recommendation ===
+Best F1 among tested thresholds: θ=2.0× (F1=0.889)
+Data-optimal threshold: θ≈1.53×
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "d4c7c118-d95e-447c-9e9d-f6ee5bb1c406",
+  "tool_use_result": {
+    "stdout": "exp_057 entries: [('exp_057', 1.3), ('exp_057_frozen_dt_emb_walker_s2', 1.88)]\n\nTotal data points: 31\nCIVO positive: 10\nCIVO negative: 21\n\n| exp_id | type | env | NVE_peak | NVE_source | label |\n|--------|------|-----|----------|------------|-------|\n| exp_048_cheetah_civo_extension | CIVO_trigger | cheetah | 36.015 | ve_ratio/0.669 | 1 |\n| exp_010b_cheetah_civo_trigger | CIVO_trigger | cheetah | 8.270 | direct | 1 |\n| exp_078_cheetah_008d_s0 | CIVO_trigger | cheetah | 4.100 | direct | 1 |\n| exp_068_008d_walker_repro_s1 | CIVO_trigger | walker | 8.797 | ve_ratio/0.523 | 1 |\n| exp_045_treatment_extension_008d_s3 | CIVO_trigger | walker | 4.910 | direct | 1 |\n| exp_059_walker_trained_s5 | CIVO_trigger | walker | 4.720 | direct | 1 |\n| exp_008d_civo_trigger_s4 | CIVO_trigger | walker | 4.620 | direct | 1 |\n| exp_009e_008d_walker_s1 | CIVO_trigger | walker | 4.130 | direct | 1 |\n| exp_009b_008d_walker_s2 | CIVO_trigger | walker | 1.620 | direct | 1 |\n| exp_008d_civo_trigger_s3 | CIVO_trigger | walker | 1.530 | direct | 1 |\n| exp_082_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 1.580 | direct | 0 |\n| exp_046_frozen_dt_emb_cheetah | frozen_dt_emb | cheetah | 1.350 | direct | 0 |\n| exp_077_cheetah_baseline_s0 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |\n| exp_083_cheetah_baseline_s1 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |\n| exp_058_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.780 | direct | 0 |\n| exp_087_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.299 | ve_ratio/0.669 | 0 |\n| exp_024b_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 0.200 | direct | 0 |\n| exp_024b_cheetah_no_dt_emb_s1 | no_dt_emb | cheetah | 0.100 | direct | 0 |\n| exp_057_frozen_dt_emb_walker_s2 | frozen_dt_emb | walker | 1.880 | direct | 0 |\n| exp_047_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 1.710 | direct | 0 |\n| exp_071_008f_walker_s3 | no_dt_emb | walker | 1.339 | ve_ratio/0.523 | 0 |\n| exp_057 | frozen_dt_emb | walker | 1.300 | direct | 0 |\n| exp_022b_no_curriculum | frozen_dt_emb | walker | 1.220 | direct | 0 |\n| exp_008f_s3_no_dt_embed_walker | no_dt_emb | walker | 1.000 | estimated(<1.5x) | 0 |\n| exp_043_008f_walker_s1 | no_dt_emb | walker | 0.808 | direct | 0 |\n| exp_073_008f_walker_s4 | no_dt_emb | walker | 0.760 | direct | 0 |\n| exp_069_008f_walker_repro_s1 | no_dt_emb | walker | 0.660 | direct | 0 |\n| exp_067_frozen_dt_emb_walker_plan015 | frozen_dt_emb | walker | 0.400 | direct | 0 |\n| exp_084_frozen_dt_emb_walker_s0 | frozen_dt_emb | walker | 0.370 | direct | 0 |\n| exp_085_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 0.310 | direct | 0 |\n| exp_042_frozen_dt_emb_walker | frozen_dt_emb | walker | 0.194 | direct | 0 |\n\n\n=== Threshold Analysis ===\n\n### θ = 1.3×\n  TP=10, FP=5, TN=16, FN=0\n  Accuracy:  83.9% (26/31)\n  Precision: 66.7%\n  Recall:    100.0%\n  F1:        0.800\n  FP: ['exp_082_cheetah_no_dt_emb_s0(NVE=1.58)', 'exp_046_frozen_dt_emb_cheetah(NVE=1.35)', 'exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)', 'exp_071_008f_walker_s3(NVE=1.34)']\n  FN: none\n\n### θ = 1.5×\n  TP=10, FP=3, TN=18, FN=0\n  Accuracy:  90.3% (28/31)\n  Precision: 76.9%\n  Recall:    100.0%\n  F1:        0.870\n  FP: ['exp_082_cheetah_no_dt_emb_s0(NVE=1.58)', 'exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)']\n  FN: none\n\n### θ = 1.7×\n  TP=8, FP=2, TN=19, FN=2\n  Accuracy:  87.1% (27/31)\n  Precision: 80.0%\n  Recall:    80.0%\n  F1:        0.800\n  FP: ['exp_057_frozen_dt_emb_walker_s2(NVE=1.88)', 'exp_047_frozen_dt_emb_walker_s1(NVE=1.71)']\n  FN: ['exp_009b_008d_walker_s2(NVE=1.62)', 'exp_008d_civo_trigger_s3(NVE=1.53)']\n\n### θ = 2.0×\n  TP=8, FP=0, TN=21, FN=2\n  Accuracy:  93.5% (29/31)\n  Precision: 100.0%\n  Recall:    80.0%\n  F1:        0.889\n  FP: none\n  FN: ['exp_009b_008d_walker_s2(NVE=1.62)', 'exp_008d_civo_trigger_s3(NVE=1.53)']\n\n\n=== AUROC ===\nAUROC = 0.9762\nPositive samples: 10, Negative samples: 21\n\n=== Optimal Threshold (Youden's J) ===\nOptimal θ = 1.529\nYouden's J = 0.8571\nSensitivity = 1.000, Specificity = 0.857\nTP=10, FP=3, TN=18, FN=0\n\n=== NVE Score Distribution ===\nPositives: [1.53, 1.62, 4.1, 4.13, 4.62, 4.72, 4.91, 8.27, 8.797, 36.015]\nNegatives: [0.1, 0.194, 0.2, 0.299, 0.31, 0.37, 0.4, 0.66, 0.76, 0.78, 0.808, 1.0, 1.0, 1.0, 1.22, 1.3, 1.339, 1.35, 1.58, 1.71, 1.88]\n\n=== Recommendation ===\nBest F1 among tested thresholds: θ=2.0× (F1=0.889)\nData-optimal threshold: θ≈1.53×",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the analysis results. Let me create the report file.
+
+Key findings:
+- AUROC = 0.9762 (excellent)
+- Best F1 at θ=2.0× (0.889) with 100% precision, 80% recall
+- θ=1.5× gives best recall (100%) with F1=0.870
+- Data-optimal threshold ≈ 1.53× (Youden's J = 0.8571)
+- The 3 FPs at θ=1.5× are frozen dt_emb experiments with transient NVE spikes (exp_047, exp_057_frozen_s2, exp_082)
+
+
+- The 2 FNs at θ=2.0× are Walker seeds with lower CIVO severity (exp_009b s2 and exp_008d s3)
+
+Now I'm writing the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "d1ed7e82-d761-45bf-8d86-cb688c78304f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WMvLTpEBaYcyz2dfrwxFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6488,
+      "cache_read_input_tokens": 60110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6488
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now let me write the analysis report and register it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b4fb827e-24f4-4d56-956b-294d9158839a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WMvLTpEBaYcyz2dfrwxFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6488,
+      "cache_read_input_tokens": 60110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6488
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Y5mmzD4gjyRaabXjQPEiav`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "cb989274-7048-4338-b77c-da523d2a8dc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WMvLTpEBaYcyz2dfrwxFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6488,
+      "cache_read_input_tokens": 60110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6488
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-25T19:59:57.123Z_
+
+<details><summary>↩ Tool result · `toolu_01Y5mmzD4gjyRaabXjQPEiav`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "c2793dbd-e993-4ee7-8ecb-b43da77dbc9d",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01P3CYYP3tjRLTB3PHF3Z5hi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+  "content": "# NVE Threshold Sensitivity Analysis\n\n## 数据集\n\nN=31 (10 CIVO positive, 21 CIVO negative)。Walker 和 Cheetah 环境。\n\n**标签定义:**\n- **label=1 (CIVO positive)**: trained dt_emb + subsample ON + dt=2 + H=8 (008d 系列, 009e, 009b, 078, 048, 068, 045, 059)\n- **label=0 (CIVO negative)**: frozen dt_emb, dt_embed_dim=0, baseline dt=1\n\n**NVE 来源:** 优先使用 registry 中的 `nve_peak` 字段 (direct)。无 `nve_peak` 时用 `ve_ratio_peak / baseline_ve_ratio_mean` 计算 (Walker baseline ve_ratio mean=0.523, Cheetah=0.669)。\n\n| exp_id | type | env | NVE_peak | NVE_source | label |\n|--------|------|-----|----------|------------|-------|\n| exp_048_cheetah_civo_extension | CIVO_trigger | cheetah | 36.015 | ve_ratio/0.669 | 1 |\n| exp_010b_cheetah_civo_trigger | CIVO_trigger | cheetah | 8.270 | direct | 1 |\n| exp_078_cheetah_008d_s0 | CIVO_trigger | cheetah | 4.100 | direct | 1 |\n| exp_068_008d_walker_repro_s1 | CIVO_trigger | walker | 8.797 | ve_ratio/0.523 | 1 |\n| exp_045_treatment_extension_008d_s3 | CIVO_trigger | walker | 4.910 | direct | 1 |\n| exp_059_walker_trained_s5 | CIVO_trigger | walker | 4.720 | direct | 1 |\n| exp_008d_civo_trigger_s4 | CIVO_trigger | walker | 4.620 | direct | 1 |\n| exp_009e_008d_walker_s1 | CIVO_trigger | walker | 4.130 | direct | 1 |\n| exp_009b_008d_walker_s2 | CIVO_trigger | walker | 1.620 | direct | 1 |\n| exp_008d_civo_trigger_s3 | CIVO_trigger | walker | 1.530 | direct | 1 |\n| exp_082_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 1.580 | direct | 0 |\n| exp_046_frozen_dt_emb_cheetah | frozen_dt_emb | cheetah | 1.350 | direct | 0 |\n| exp_077_cheetah_baseline_s0 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |\n| exp_083_cheetah_baseline_s1 | baseline_dt1 | cheetah | 1.000 | baseline(NVE=1.0) | 0 |\n| exp_058_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.780 | direct | 0 |\n| exp_087_frozen_dt_emb_cheetah_s1 | frozen_dt_emb | cheetah | 0.299 | ve_ratio/0.669 | 0 |\n| exp_024b_cheetah_no_dt_emb_s0 | no_dt_emb | cheetah | 0.200 | direct | 0 |\n| exp_024b_cheetah_no_dt_emb_s1 | no_dt_emb | cheetah | 0.100 | direct | 0 |\n| exp_057_frozen_dt_emb_walker_s2 | frozen_dt_emb | walker | 1.880 | direct | 0 |\n| exp_047_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 1.710 | direct | 0 |\n| exp_071_008f_walker_s3 | no_dt_emb | walker | 1.339 | ve_ratio/0.523 | 0 |\n| exp_057 | frozen_dt_emb | walker | 1.300 | direct | 0 |\n| exp_022b_no_curriculum | frozen_dt_emb | walker | 1.220 | direct | 0 |\n| exp_008f_s3_no_dt_embed_walker | no_dt_emb | walker | 1.000 | estimated(<1.5x) | 0 |\n| exp_043_008f_walker_s1 | no_dt_emb | walker | 0.808 | direct | 0 |\n| exp_073_008f_walker_s4 | no_dt_emb | walker | 0.760 | direct | 0 |\n| exp_069_008f_walker_repro_s1 | no_dt_emb | walker | 0.660 | direct | 0 |\n| exp_067_frozen_dt_emb_walker_plan015 | frozen_dt_emb | walker | 0.400 | direct | 0 |\n| exp_084_frozen_dt_emb_walker_s0 | frozen_dt_emb | walker | 0.370 | direct | 0 |\n| exp_085_frozen_dt_emb_walker_s1 | frozen_dt_emb | walker | 0.310 | direct | 0 |\n| exp_042_frozen_dt_emb_walker | frozen_dt_emb | walker | 0.194 | direct | 0 |\n\n## Threshold Analysis\n\n### θ = 1.3×\n- **Accuracy: 83.9%** (26/31)\n- Precision: 66.7% | Recall: 100.0% | **F1: 0.800**\n- TP=10, FP=5, TN=16, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_071_008f_walker_s3 (1.34)\n- FN: none\n\n### θ = 1.5×\n- **Accuracy: 90.3%** (28/31)\n- Precision: 76.9% | Recall: 100.0% | **F1: 0.870**\n- TP=10, FP=3, TN=18, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: none\n- 注: 3 个 FP 均为 frozen dt_emb 的 transient NVE spike，非持续性 value overestimation。exp_082 的 nve_classification=\"no_civo\" 注释为 \"eval-variance-driven, NOT value overestimation\"。\n\n### θ = 1.7×\n- **Accuracy: 87.1%** (27/31)\n- Precision: 80.0% | Recall: 80.0% | **F1: 0.800**\n- TP=8, FP=2, TN=19, FN=2\n- FP: exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n- 注: 2 个 FN 是 self-correcting CIVO seed，NVE peak 在 1.5-1.7 范围（exp_009b 分类为 onset_self_correcting）。\n\n### θ = 2.0×\n- **Accuracy: 93.5%** (29/31)\n- Precision: 100.0% | Recall: 80.0% | **F1: 0.889**\n- TP=8, FP=0, TN=21, FN=2\n- FP: none\n- FN: exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n- 注: 0 个 FP，但漏掉 2 个真实 CIVO trigger 实验（均为 self-correcting seeds，NVE 峰值较低）。\n\n### 汇总\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 83.9% | 66.7% | 100% | 0.800 | 5 | 0 |\n| **1.5×** | **90.3%** | **76.9%** | **100%** | **0.870** | 3 | 0 |\n| 1.7× | 87.1% | 80.0% | 80.0% | 0.800 | 2 | 2 |\n| 2.0× | 93.5% | 100% | 80.0% | 0.889 | 0 | 2 |\n\n## AUROC\n\n**AUROC = 0.9762** (N=31, 10 positive, 21 negative)\n\nNVE_peak 作为连续分数对 CIVO trigger vs control 的区分力极强。\n\n**Score distribution:**\n- Positives: [1.53, 1.62, 4.10, 4.13, 4.62, 4.72, 4.91, 8.27, 8.80, 36.02]\n- Negatives: [0.10, 0.19, 0.20, 0.30, 0.31, 0.37, 0.40, 0.66, 0.76, 0.78, 0.81, 1.00, 1.00, 1.00, 1.22, 1.30, 1.34, 1.35, 1.58, 1.71, 1.88]\n\n**Overlap zone:** NVE ∈ [1.53, 1.88]，共 4 个数据点 (2 positive: 1.53/1.62; 2 negative: 1.71/1.88)。其余 27/31 数据点完全可分。\n\n## Data-optimal Threshold (Youden's J)\n\n**Optimal θ ≈ 1.53×** (Youden's J = 0.8571)\n- Sensitivity = 1.000, Specificity = 0.857\n- 等价于 θ=1.5× 的性能（两个 threshold 在离散数据上给出相同分类）\n\n## 推荐 threshold\n\n**推荐 θ = 1.5×**，理由：\n\n1. **100% recall**: 不漏掉任何 CIVO trigger 实验，这对诊断工具至关重要——漏检比误报代价更高\n2. **F1=0.870**: 四个候选中第二高（仅次于 2.0× 的 0.889）\n3. **3 个 FP 均可解释**: 2 个是 Walker frozen dt_emb transient spike（非持续性 CIVO），1 个是 Cheetah no_dt_emb 的 eval-variance-driven 假阳性（已被 registry 标注为 no_civo）\n4. **Data-optimal (Youden's J)**: 统计最优切分点也在 ~1.53×，与 1.5× 一致\n5. **与论文一致**: 原论文使用 NVE≥1.5× 作为 CIVO 诊断标准\n\n如果需要 **零误报** 的保守诊断（如自动化 pipeline），推荐 θ=2.0×（precision=100%, recall=80%）。漏检的 2 个 seed 均为 self-correcting CIVO，临床意义较低。\n\n**Decision rule:**\n- θ=1.5× for **screening** (maximize sensitivity)\n- θ=2.0× for **confirmation** (maximize specificity)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "77ecd622-a2cc-4761-9da9-511dc626ec91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AD1orxZWWuae6R3V8tNmo8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 371,
+      "cache_read_input_tokens": 66598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 371
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-25T20:00:51.168Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01P3CYYP3tjRLTB3PHF3Z5hi`</summary>
+
+```text
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "9c217e46-d815-40ac-8991-1b4f9ace46cf",
+  "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TGJgJ79AaW2sc2gtX4cDPe`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/",
+  "description": "Check directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "3ab75398-e63a-4c98-a6e4-3e589f15011a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MGWKHh6F9KvPFRnrABDND",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3609,
+      "cache_read_input_tokens": 66969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3609
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-25T20:00:55.735Z_
+
+<details><summary>↩ Tool result · `toolu_01TGJgJ79AaW2sc2gtX4cDPe`</summary>
+
+```text
+analysis.md
+fig_roc_curve.pdf
+fig_roc_curve.png
+fig_threshold_prf.pdf
+fig_threshold_prf.png
+loco_cv_analysis.py
+loco_cv_results.md
+nve_threshold_analysis.py
+plot_nve_figures.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "603c3679-c68c-49e2-9bca-127851f4c07d",
+  "tool_use_result": {
+    "stdout": "analysis.md\nfig_roc_curve.pdf\nfig_roc_curve.png\nfig_threshold_prf.pdf\nfig_threshold_prf.png\nloco_cv_analysis.py\nloco_cv_results.md\nnve_threshold_analysis.py\nplot_nve_figures.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MtH3vmFjK2rpU6vRpT2T2K`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "122f4b0b-d028-4288-b077-633fbcc59a79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHHFz9pWo2HPYUopt6SKj7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 200,
+      "cache_read_input_tokens": 70578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 200
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-25T20:00:58.464Z_
+
+<details><summary>↩ Tool result · `toolu_01MtH3vmFjK2rpU6vRpT2T2K`</summary>
+
+```text
+1	# NVE Threshold Sensitivity Analysis
+2	
+3	## 数据集
+4	
+5	样本总数: 56 (Collapsed: 24, Healthy: 32)
+6	
+7	| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |
+8	|--------|-----|--------|------|-------------|----------|------------|
+9	| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |
+10	| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |
+11	| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |
+12	| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |
+13	| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |
+14	| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |
+15	| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |
+16	| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |
+17	| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |
+18	| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |
+19	| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |
+20	| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |
+21	| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |
+22	| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |
+23	| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |
+24	| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |
+25	| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |
+26	| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |
+27	| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |
+28	| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |
+29	| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |
+30	| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |
+31	| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |
+32	| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |
+33	| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |
+34	| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |
+35	| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |
+36	| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |
+37	| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |
+38	| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |
+39	| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |
+40	| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |
+41	| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |
+42	| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |
+43	| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |
+44	| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |
+45	| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |
+46	| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |
+47	| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |
+48	| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |
+49	| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |
+50	| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |
+51	| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |
+52	| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |
+53	| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |
+54	| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |
+55	| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |
+56	| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |
+57	| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |
+58	| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |
+59	| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |
+60	| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |
+61	| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |
+62	| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |
+63	| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |
+64	| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |
+65	
+66	## 分类结果
+67	
+68	| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |
+69	|-----------|----|----|----|----|-----------|--------|-----|----------|
+70	| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |
+71	| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |
+72	| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |
+73	| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |
+74	| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |
+75	| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |
+76	| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |
+77	
+78	## AUROC
+79	
+80	**AUROC = 0.9902**
+81	
+82	Computed from 24 positive + 32 negative samples using 33 ROC points
+83	
+84	ROC 关键点 (FPR, TPR):
+85	
+86	| Threshold | FPR | TPR |
+87	|-----------|-----|-----|
+88	| 1.0 | 0.281 | 1.000 |
+89	| 1.1 | 0.250 | 1.000 |
+90	| 1.2 | 0.219 | 1.000 |
+91	| 1.3 | 0.219 | 1.000 |
+92	| 1.5 | 0.094 | 1.000 |
+93	| 1.7 | 0.094 | 0.875 |
+94	| 2.0 | 0.000 | 0.875 |
+95	
+96	## 推荐阈值
+97	
+98	**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)
+99	
+100	- Precision = 0.889, Recall = 1.000, Accuracy = 0.946
+101	- TP=24, FP=3, TN=29, FN=0
+102	
+103	### 阈值选择权衡
+104	
+105	- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。
+106	- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。
+107	- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。
+108	
+109	### 最佳阈值 (1.5) 下的分类细节
+110	
+111	**False Positives (误报为CIVO):**
+112	
+113	- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker
+114	- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker
+115	- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker
+116	
+117	### 阈值 1.5 下的分类细节
+118	
+119	**False Positives (误报为CIVO):**
+120	
+121	- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker
+122	- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker
+123	- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker
+124	
+125	## 方法论说明
+126	
+127	### NVE 计算方法
+128	
+129	NVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step
+130	
+131	- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656
+132	- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65
+133	- 取 peak NVE (训练过程中最大 NVE) 作为分类特征
+134	- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline
+135	- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除
+136	
+137	### Ground Truth 标注
+138	
+139	- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)
+140	- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)
+141	- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊
+142	
+143	### 排除实验 (98 个)
+144	
+145	- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more
+146	- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more
+147	- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger
+148	- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more
+149	- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1
+150	- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more
+151	
+152	### NVE 分布
+153	
+154	- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073
+155	- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870
+156	- 类间间距 (min_collapsed - max_healthy): -0.400
+157	  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内
+158	  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)
+159	  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)
+160	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b5b13c2b-9865-4079-93e1-32c02bcca946",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+      "content": "# NVE Threshold Sensitivity Analysis\n\n## 数据集\n\n样本总数: 56 (Collapsed: 24, Healthy: 32)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n\n## 分类结果\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |\n| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |\n| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |\n| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |\n| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |\n\n## AUROC\n\n**AUROC = 0.9902**\n\nComputed from 24 positive + 32 negative samples using 33 ROC points\n\nROC 关键点 (FPR, TPR):\n\n| Threshold | FPR | TPR |\n|-----------|-----|-----|\n| 1.0 | 0.281 | 1.000 |\n| 1.1 | 0.250 | 1.000 |\n| 1.2 | 0.219 | 1.000 |\n| 1.3 | 0.219 | 1.000 |\n| 1.5 | 0.094 | 1.000 |\n| 1.7 | 0.094 | 0.875 |\n| 2.0 | 0.000 | 0.875 |\n\n## 推荐阈值\n\n**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)\n\n- Precision = 0.889, Recall = 1.000, Accuracy = 0.946\n- TP=24, FP=3, TN=29, FN=0\n\n### 阈值选择权衡\n\n- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。\n- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。\n- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。\n\n### 最佳阈值 (1.5) 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n### 阈值 1.5 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊\n\n### 排除实验 (98 个)\n\n- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more\n- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more\n- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger\n- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more\n- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1\n- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more\n\n### NVE 分布\n\n- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073\n- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870\n- 类间间距 (min_collapsed - max_healthy): -0.400\n  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内\n  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)\n  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)\n",
+      "numLines": 160,
+      "startLine": 1,
+      "totalLines": 160
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's already an existing analysis.md with a more comprehensive analysis (56 data points vs my 31). The existing analysis was done more carefully with more experiments included. Let me update it with the latest data rather than overwriting with my smaller dataset.
+
+Actually, looking more carefully, the existing analysis includes:
+- More experiments I missed (exp_006, exp_008a variants, exp_015b, exp_020, TCN experiments, dual-critic, etc.)
+- N=56 (24 collapsed, 32 healthy)
+- AUROC = 0.9902
+- Same recommendation: θ=1.5×
+
+
+The existing analysis already covers the dataset table with all required fields, threshold analysis across the requested range, and the AUROC metric, so it appears to fulfill what was asked for. I notice the registry has several newer experiments (exp_077 through exp_087) that weren't included in the existing analysis, though some are marked as incomplete. Since the task asks for analysis using all available experiment data, I should update the existing results by incorporating these new experiments and recalculating the metrics to get a more comprehensive picture. Looking at the complete dataset now, I'm adding these six new control experiments to my analysis, which brings the totals to 25 positive cases and 38 negatives for a total of 63 experiments. Let me compile the comprehensive updated analysis with all this data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "20ca1475-c719-4b48-8c86-47cfe7ef2534",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKmRoJfrY7crQWqZD5LH3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5757,
+      "cache_read_input_tokens": 70778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5757
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+已有一份更全面的 analysis.md（N=56），但缺少近期实验。我来更新它加入新数据点并重算。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "0ed6cbc1-a558-4888-aba2-f140408b2d57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKmRoJfrY7crQWqZD5LH3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5757,
+      "cache_read_input_tokens": 70778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5757
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01F8amWrrBAgnGSuvnoTDifJ`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt\") as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Build the complete dataset from the existing analysis + new experiments\n# The existing analysis has 56 data points. We need to add experiments that were\n# previously excluded as \"not completed\" but are now DONE.\n\n# First, let's reproduce the existing 56-experiment dataset as-is, then add new ones.\n# The existing dataset is the ground truth from the prior analysis.\n# New experiments to add: exp_077, exp_078, exp_082, exp_083, exp_084, exp_085, exp_087\n\nexisting_dataset = [\n    # From the existing analysis.md table, all 56 entries\n    (\"exp_006_fixed_dt2\", \"walker\", \"006_fixed_dt2\", 1, 1, 4.835, \"computed\"),\n    (\"exp_008a_cheetah_unexposed_s0\", \"cheetah\", \"008a_unexposed\", 0, 0, 0.490, \"max(nve_105k)\"),\n    (\"exp_008a_cheetah_unexposed_s1\", \"cheetah\", \"008a_unexposed\", 1, 0, 0.478, \"max(nve_105k)\"),\n    (\"exp_008a_no_subsample_dt2\", \"walker\", \"008a_unexposed\", 1, 0, 0.930, \"max(normalized_ve)\"),\n    (\"exp_008a_unexposed_s1\", \"walker\", \"008a_unexposed\", 1, 0, 0.598, \"computed\"),\n    (\"exp_008a_unexposed_s2\", \"walker\", \"008a_unexposed\", 2, 0, 0.463, \"computed\"),\n    (\"exp_008d_civo_trigger_s3\", \"walker\", \"008d_civo_trigger\", 3, 1, 1.530, \"metrics.nve_peak\"),\n    (\"exp_008d_civo_trigger_s4\", \"walker\", \"008d_civo_trigger\", 4, 1, 4.620, \"metrics.nve_peak\"),\n    (\"exp_008d_subsample_on_h8\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.124, \"computed\"),\n    (\"exp_008e_v3_s3\", \"walker\", \"008e_v3_mitigation\", 3, 1, 4.020, \"metrics.nve_peak\"),\n    (\"exp_008e_v3_s4\", \"walker\", \"008e_v3_mitigation\", 4, 0, 0.990, \"metrics.nve_peak\"),\n    (\"exp_008e_v3_subsample_on_dt1_h15\", \"walker\", \"008e_v3_mitigation\", 1, 0, 1.930, \"max(normalized_ve)\"),\n    (\"exp_008e_v3_walker_s1\", \"walker\", \"008e_v3_mitigation\", 1, 0, 0.803, \"computed\"),\n    (\"exp_008e_v3_walker_s2\", \"walker\", \"008e_v3_mitigation\", 2, 1, 3.780, \"max(final_nve)\"),\n    (\"exp_008f_no_dt_embed_subsample_on_h8\", \"walker\", \"008f_no_dt_emb\", 1, 0, 1.020, \"max(normalized_ve)\"),\n    (\"exp_008f_s3_no_dt_embed_walker\", \"walker\", \"008f_no_dt_emb\", 3, 0, 1.490, \"metrics.nve_peak\"),\n    (\"exp_008f_s4\", \"walker\", \"008f_no_dt_emb\", 4, 0, 1.410, \"metrics.peak_nve\"),\n    (\"exp_009b_008d_walker_s2\", \"walker\", \"008d_civo_trigger\", 2, 1, 1.620, \"metrics.nve_peak\"),\n    (\"exp_009c_s3\", \"walker\", \"other\", 3, 0, 0.520, \"max(nve_105k)\"),\n    (\"exp_009e_008d_walker_s1\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.130, \"metrics.nve_peak\"),\n    (\"exp_010b_cheetah_civo_trigger\", \"cheetah\", \"008d_civo_trigger\", 1, 1, 8.270, \"metrics.nve_peak\"),\n    (\"exp_010b_cheetah_civo_trigger_s0\", \"cheetah\", \"008d_civo_trigger\", 0, 1, 70.640, \"max(nve_105K)\"),\n    (\"exp_015b_frozen_dt_emb\", \"walker\", \"frozen_dt_emb\", 1, 0, 0.467, \"max(nve_85K)\"),\n    (\"exp_020_vanilla_dreamerv3_s2\", \"walker\", \"baseline\", 2, 0, 0.983, \"computed\"),\n    (\"exp_021_full_sgs_cheetah_s1\", \"cheetah\", \"sgs\", 1, 1, 9.940, \"metrics.nve_peak\"),\n    (\"exp_024b_cheetah_no_dt_emb_s0\", \"cheetah\", \"008f_no_dt_emb\", 0, 0, 0.200, \"metrics.nve_peak\"),\n    (\"exp_024b_cheetah_no_dt_emb_s1\", \"cheetah\", \"008f_no_dt_emb\", 1, 0, 0.100, \"metrics.nve_peak\"),\n    (\"exp_027_tcn_walker_s0\", \"walker\", \"tcn\", 0, 1, 3.965, \"metrics.peak_nve\"),\n    (\"exp_027_tcn_walker_s0_sigma02\", \"walker\", \"tcn\", 0, 0, 0.908, \"metrics.nve_max\"),\n    (\"exp_027_tcn_walker_s1\", \"walker\", \"tcn\", 1, 1, 1.637, \"metrics.nve_max\"),\n    (\"exp_029a_tcn_walker_s1_sigma02\", \"walker\", \"tcn\", 1, 0, 0.643, \"metrics.nve_max\"),\n    (\"exp_029b_tcn_walker_s2_sigma02\", \"walker\", \"tcn\", 2, 1, 2.765, \"metrics.nve_peak\"),\n    (\"exp_029d_tcn_walker_s3_sigma02\", \"walker\", \"tcn\", 3, 1, 3.000, \"metrics.nve_peak\"),\n    (\"exp_030b_tcn_cheetah_s0_sigma05\", \"cheetah\", \"tcn\", 0, 1, 10.666, \"metrics.nve_max\"),\n    (\"exp_031b_tcn_pickcube_s0_sigma05\", \"pickcube\", \"tcn\", 0, 1, 3.300, \"metrics.nve_peak\"),\n    (\"exp_032_dual_critic_walker\", \"walker\", \"dual_critic\", 0, 0, 1.100, \"metrics.nve_peak\"),\n    (\"exp_032b_dual_critic_walker_s1\", \"walker\", \"dual_critic\", 1, 0, 1.400, \"metrics.peak_nve\"),\n    (\"exp_034_dual_critic_cheetah\", \"cheetah\", \"dual_critic\", 0, 1, 4.500, \"computed\"),\n    (\"exp_036_dual_critic_pickcube\", \"cheetah\", \"dual_critic\", 0, 1, 2.300, \"metrics.nve_peak\"),\n    (\"exp_037_wide_critic_cheetah\", \"cheetah\", \"other\", 0, 1, 3.600, \"metrics.nve_peak\"),\n    (\"exp_042_frozen_dt_emb_walker\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.194, \"metrics.nve_peak\"),\n    (\"exp_043_008f_walker_s1\", \"walker\", \"008f_no_dt_emb\", 1, 0, 0.808, \"metrics.nve_peak\"),\n    (\"exp_045_treatment_extension_008d_s3\", \"walker\", \"008d_civo_trigger\", 3, 1, 4.910, \"metrics.nve_peak\"),\n    (\"exp_046_frozen_dt_emb_cheetah\", \"cheetah\", \"frozen_dt_emb\", 0, 0, 1.350, \"metrics.nve_peak\"),\n    (\"exp_047_frozen_dt_emb_walker_s1\", \"walker\", \"frozen_dt_emb\", 1, 0, 1.710, \"metrics.nve_peak\"),\n    (\"exp_048_cheetah_civo_extension\", \"cheetah\", \"other\", 0, 1, 2.750, \"max(nve_final)\"),\n    (\"exp_057_frozen_dt_emb_walker_s2\", \"walker\", \"frozen_dt_emb\", 2, 0, 1.880, \"metrics.nve_peak\"),\n    (\"exp_058_frozen_dt_emb_cheetah_s1\", \"cheetah\", \"frozen_dt_emb\", 1, 0, 0.780, \"metrics.nve_peak\"),\n    (\"exp_059_walker_trained_s5\", \"walker\", \"trained_dt_emb\", 5, 1, 4.720, \"metrics.nve_peak\"),\n    (\"exp_067_frozen_dt_emb_walker_plan015\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.400, \"metrics.nve_peak\"),\n    (\"exp_068_008d_walker_repro_s1\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.120, \"max(nve_final_105k)\"),\n    (\"exp_069_008f_walker_repro_s1\", \"walker\", \"008f_no_dt_emb\", 1, 0, 0.660, \"metrics.nve_peak\"),\n    (\"exp_070_008e_v3_walker_s0\", \"walker\", \"008e_v3_mitigation\", 0, 0, 0.800, \"metrics.nve_peak\"),\n    (\"exp_071_008f_walker_s3\", \"walker\", \"008f_no_dt_emb\", 3, 0, 0.974, \"computed\"),\n    (\"exp_072_008e_v3_walker_s5\", \"walker\", \"008e_v3_mitigation\", 5, 0, 0.610, \"metrics.nve_peak\"),\n    (\"exp_073_008f_walker_s4\", \"walker\", \"008f_no_dt_emb\", 4, 0, 0.760, \"metrics.nve_peak\"),\n]\n\n# New experiments to add (previously excluded as \"not completed\" but now DONE)\nnew_experiments = [\n    (\"exp_078_cheetah_008d_s0\", \"cheetah\", \"008d_civo_trigger\", 0, 1, 4.100, \"metrics.nve_peak\"),\n    (\"exp_082_cheetah_no_dt_emb_s0\", \"cheetah\", \"008f_no_dt_emb\", 0, 0, 1.580, \"metrics.nve_peak (eval-variance-driven)\"),\n    (\"exp_084_frozen_dt_emb_walker_s0\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.370, \"metrics.nve_peak\"),\n    (\"exp_085_frozen_dt_emb_walker_s1\", \"walker\", \"frozen_dt_emb\", 1, 0, 0.310, \"metrics.nve_peak\"),\n    (\"exp_087_frozen_dt_emb_cheetah_s1\", \"cheetah\", \"frozen_dt_emb\", 1, 0, 0.299, \"computed ve_ratio/baseline\"),\n]\n# Note: exp_077 and exp_083 are baselines used for NVE normalization, not classified experiments\n# Note: exp_082 nve_classification=\"no_civo\", eval-variance-driven not value overestimation\n\nall_data = existing_dataset + new_experiments\n\n# Convert to dicts\ndataset = []\nfor row in all_data:\n    dataset.append({\n        'exp_id': row[0],\n        'env': row[1],\n        'config': row[2],\n        'seed': row[3],\n        'label': row[4],\n        'nve_peak': row[5],\n        'nve_source': row[6],\n    })\n\n# Sort by label desc, env, nve desc\ndataset.sort(key=lambda x: (-x['label'], x['env'], -x['nve_peak']))\n\nn_pos = sum(1 for d in dataset if d['label'] == 1)\nn_neg = sum(1 for d in dataset if d['label'] == 0)\nprint(f\"Total: {len(dataset)} (CIVO: {n_pos}, Healthy: {n_neg})\")\n\n# Threshold analysis\nthresholds = [1.3, 1.5, 1.7, 2.0]\nprint(\"\\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\")\nprint(\"|-----------|----|----|----|----|-----------|--------|-----|----------|\")\n\nresults = {}\nfor theta in thresholds:\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > theta)\n    fp = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > theta)\n    tn = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= theta)\n    fn = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= theta)\n    total = tp+fp+tn+fn\n    prec = tp/(tp+fp) if (tp+fp)>0 else 0\n    rec = tp/(tp+fn) if (tp+fn)>0 else 0\n    f1 = 2*prec*rec/(prec+rec) if (prec+rec)>0 else 0\n    acc = (tp+tn)/total\n    \n    mark = \" **\" if theta == 1.5 else \"\"\n    print(f\"| {theta}{mark} | {tp} | {fp} | {tn} | {fn} | {prec:.3f} | {rec:.3f} | {f1:.3f} | {acc:.3f} |\")\n    \n    results[theta] = {\n        'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn,\n        'prec': prec, 'rec': rec, 'f1': f1, 'acc': acc,\n        'fp_list': [d for d in dataset if d['label']==0 and d['nve_peak'] > theta],\n        'fn_list': [d for d in dataset if d['label']==1 and d['nve_peak'] <= theta],\n    }\n\n# AUROC\nconcordant = 0\nfor d1 in dataset:\n    if d1['label'] == 1:\n        for d2 in dataset:\n            if d2['label'] == 0:\n                if d1['nve_peak'] > d2['nve_peak']:\n                    concordant += 1\n                elif d1['nve_peak'] == d2['nve_peak']:\n                    concordant += 0.5\n\nauroc = concordant / (n_pos * n_neg)\nprint(f\"\\nAUROC = {auroc:.4f} (N={len(dataset)}, {n_pos}+, {n_neg}-)\")\n\n# Youden's J optimal\nall_nves = sorted(set(d['nve_peak'] for d in dataset))\nbest_j = -1\nbest_theta_opt = 0\nfor i in range(len(all_nves)-1):\n    mid = (all_nves[i] + all_nves[i+1]) / 2\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > mid)\n    fn_ = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= mid)\n    fp_ = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > mid)\n    tn_ = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= mid)\n    sens = tp/(tp+fn_) if (tp+fn_)>0 else 0\n    spec = tn_/(tn_+fp_) if (tn_+fp_)>0 else 0\n    j = sens + spec - 1\n    if j > best_j:\n        best_j = j\n        best_theta_opt = mid\n\nprint(f\"Optimal θ (Youden's J) = {best_theta_opt:.3f}, J = {best_j:.4f}\")\n\n# Detail FP/FN at each threshold\nfor theta in thresholds:\n    r = results[theta]\n    print(f\"\\n--- θ={theta}× ---\")\n    if r['fp_list']:\n        print(f\"  FP ({len(r['fp_list'])}):\")\n        for d in r['fp_list']:\n            print(f\"    {d['exp_id']} (NVE={d['nve_peak']:.3f}, config={d['config']}, env={d['env']})\")\n    else:\n        print(\"  FP: none\")\n    if r['fn_list']:\n        print(f\"  FN ({len(r['fn_list'])}):\")\n        for d in r['fn_list']:\n            print(f\"    {d['exp_id']} (NVE={d['nve_peak']:.3f}, config={d['config']}, env={d['env']})\")\n    else:\n        print(\"  FN: none\")\n\n# Score distributions\npos_nves = sorted([d['nve_peak'] for d in dataset if d['label']==1])\nneg_nves = sorted([d['nve_peak'] for d in dataset if d['label']==0])\nprint(f\"\\nPositives ({len(pos_nves)}): min={min(pos_nves):.3f}, median={pos_nves[len(pos_nves)//2]:.3f}, max={max(pos_nves):.3f}, mean={sum(pos_nves)/len(pos_nves):.3f}\")\nprint(f\"Negatives ({len(neg_nves)}): min={min(neg_nves):.3f}, median={neg_nves[len(neg_nves)//2]:.3f}, max={max(neg_nves):.3f}, mean={sum(neg_nves)/len(neg_nves):.3f}\")\nprint(f\"Overlap zone: [{min(pos_nves):.3f}, {max(neg_nves):.3f}]\")\noverlap_pos = [n for n in pos_nves if n <= max(neg_nves)]\noverlap_neg = [n for n in neg_nves if n >= min(pos_nves)]\nprint(f\"  Overlapping positives: {overlap_pos}\")\nprint(f\"  Overlapping negatives: {overlap_neg}\")\n\nPYEOF\n",
+  "description": "Compute updated analysis with all 61 data points"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "e9f1b81b-4fa6-4cd9-8794-afa71b3216a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKmRoJfrY7crQWqZD5LH3B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5757,
+      "cache_read_input_tokens": 70778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5757
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-25T20:02:32.169Z_
+
+<details><summary>↩ Tool result · `toolu_01F8amWrrBAgnGSuvnoTDifJ`</summary>
+
+```text
+Total: 61 (CIVO: 25, Healthy: 36)
+
+| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |
+|-----------|----|----|----|----|-----------|--------|-----|----------|
+| 1.3 | 25 | 8 | 28 | 0 | 0.758 | 1.000 | 0.862 | 0.869 |
+| 1.5 ** | 25 | 4 | 32 | 0 | 0.862 | 1.000 | 0.926 | 0.934 |
+| 1.7 | 22 | 3 | 33 | 3 | 0.880 | 0.880 | 0.880 | 0.902 |
+| 2.0 | 22 | 0 | 36 | 3 | 1.000 | 0.880 | 0.936 | 0.951 |
+
+AUROC = 0.9889 (N=61, 25+, 36-)
+Optimal θ (Youden's J) = 1.510, J = 0.8889
+
+--- θ=1.3× ---
+  FP (8):
+    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)
+    exp_046_frozen_dt_emb_cheetah (NVE=1.350, config=frozen_dt_emb, env=cheetah)
+    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)
+    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)
+    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)
+    exp_008f_s3_no_dt_embed_walker (NVE=1.490, config=008f_no_dt_emb, env=walker)
+    exp_008f_s4 (NVE=1.410, config=008f_no_dt_emb, env=walker)
+    exp_032b_dual_critic_walker_s1 (NVE=1.400, config=dual_critic, env=walker)
+  FN: none
+
+--- θ=1.5× ---
+  FP (4):
+    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)
+    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)
+    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)
+    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)
+  FN: none
+
+--- θ=1.7× ---
+  FP (3):
+    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)
+    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)
+    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)
+  FN (3):
+    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)
+    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)
+    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)
+
+--- θ=2.0× ---
+  FP: none
+  FN (3):
+    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)
+    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)
+    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)
+
+Positives (25): min=1.530, median=4.100, max=70.640, mean=6.954
+Negatives (36): min=0.100, median=0.800, max=1.930, mean=0.845
+Overlap zone: [1.530, 1.930]
+  Overlapping positives: [1.53, 1.62, 1.637]
+  Overlapping negatives: [1.58, 1.71, 1.88, 1.93]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "7cde3650-f3b2-4bd2-b8c1-64c7c562fba4",
+  "tool_use_result": {
+    "stdout": "Total: 61 (CIVO: 25, Healthy: 36)\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.3 | 25 | 8 | 28 | 0 | 0.758 | 1.000 | 0.862 | 0.869 |\n| 1.5 ** | 25 | 4 | 32 | 0 | 0.862 | 1.000 | 0.926 | 0.934 |\n| 1.7 | 22 | 3 | 33 | 3 | 0.880 | 0.880 | 0.880 | 0.902 |\n| 2.0 | 22 | 0 | 36 | 3 | 1.000 | 0.880 | 0.936 | 0.951 |\n\nAUROC = 0.9889 (N=61, 25+, 36-)\nOptimal θ (Youden's J) = 1.510, J = 0.8889\n\n--- θ=1.3× ---\n  FP (8):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_046_frozen_dt_emb_cheetah (NVE=1.350, config=frozen_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n    exp_008f_s3_no_dt_embed_walker (NVE=1.490, config=008f_no_dt_emb, env=walker)\n    exp_008f_s4 (NVE=1.410, config=008f_no_dt_emb, env=walker)\n    exp_032b_dual_critic_walker_s1 (NVE=1.400, config=dual_critic, env=walker)\n  FN: none\n\n--- θ=1.5× ---\n  FP (4):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN: none\n\n--- θ=1.7× ---\n  FP (3):\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\n--- θ=2.0× ---\n  FP: none\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\nPositives (25): min=1.530, median=4.100, max=70.640, mean=6.954\nNegatives (36): min=0.100, median=0.800, max=1.930, mean=0.845\nOverlap zone: [1.530, 1.930]\n  Overlapping positives: [1.53, 1.62, 1.637]\n  Overlapping negatives: [1.58, 1.71, 1.88, 1.93]",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Now I have the complete updated results. Let me write the final report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "18486219-26ee-49de-9679-b58e4ee15139",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Hk6CmKFkq1CKM2gE9hRGj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7655,
+      "cache_read_input_tokens": 76535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7655
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Wn8akwYMm7agruFbUdqQ9e`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+  "content": "# NVE Threshold Sensitivity Analysis\n\n**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)\n\n## 数据集\n\n样本总数: 61 (Collapsed: 25, Healthy: 36)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |\n| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |\n| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |\n| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |\n| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |\n\n## Threshold Analysis\n\n### θ = 1.3×\n- **Accuracy: 86.9%** (53/61)\n- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**\n- TP=25, FP=8, TN=28, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)\n- FN: none\n\n### θ = 1.5× (recommended)\n- **Accuracy: 93.4%** (57/61)\n- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**\n- TP=25, FP=4, TN=32, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n- FN: none\n\n### θ = 1.7×\n- **Accuracy: 90.2%** (55/61)\n- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**\n- TP=22, FP=3, TN=33, FN=3\n- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### θ = 2.0×\n- **Accuracy: 95.1%** (58/61)\n- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**\n- TP=22, FP=0, TN=36, FN=3\n- FP: none\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### 汇总\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n## AUROC\n\n**AUROC = 0.9889** (N=61, 25 positive, 36 negative)\n\nNVE_peak 作为连续分数对 CIVO 的区分力极强。\n\n**NVE 分布:**\n- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845\n\n**Overlap zone:** NVE ∈ [1.530, 1.930]\n- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)\n- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)\n\n**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889\n\n## 推荐 threshold\n\n**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)\n\n理由：\n1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。\n2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。\n3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。\n4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。\n5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。\n\n**Decision rule:**\n- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)\n- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "04a032f0-8cf9-4218-96cb-eb1af64c92a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Hk6CmKFkq1CKM2gE9hRGj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7655,
+      "cache_read_input_tokens": 76535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7655
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-25T20:04:05.768Z_
+
+<details><summary>↩ Tool result · `toolu_01Wn8akwYMm7agruFbUdqQ9e`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "f5f33939-33f3-4ea6-a410-88a44834b247",
+  "tool_use_result": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+    "content": "# NVE Threshold Sensitivity Analysis\n\n**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)\n\n## 数据集\n\n样本总数: 61 (Collapsed: 25, Healthy: 36)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |\n| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |\n| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |\n| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |\n| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |\n\n## Threshold Analysis\n\n### θ = 1.3×\n- **Accuracy: 86.9%** (53/61)\n- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**\n- TP=25, FP=8, TN=28, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)\n- FN: none\n\n### θ = 1.5× (recommended)\n- **Accuracy: 93.4%** (57/61)\n- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**\n- TP=25, FP=4, TN=32, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n- FN: none\n\n### θ = 1.7×\n- **Accuracy: 90.2%** (55/61)\n- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**\n- TP=22, FP=3, TN=33, FN=3\n- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### θ = 2.0×\n- **Accuracy: 95.1%** (58/61)\n- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**\n- TP=22, FP=0, TN=36, FN=3\n- FP: none\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### 汇总\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n## AUROC\n\n**AUROC = 0.9889** (N=61, 25 positive, 36 negative)\n\nNVE_peak 作为连续分数对 CIVO 的区分力极强。\n\n**NVE 分布:**\n- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845\n\n**Overlap zone:** NVE ∈ [1.530, 1.930]\n- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)\n- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)\n\n**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889\n\n## 推荐 threshold\n\n**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)\n\n理由：\n1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。\n2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。\n3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。\n4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。\n5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。\n\n**Decision rule:**\n- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)\n- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 26,
+        "newStart": 1,
+        "newLines": 28,
+        "lines": [
+          " # NVE Threshold Sensitivity Analysis",
+          " ",
+          "+**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)",
+          "+",
+          " ## 数据集",
+          " ",
+          "-样本总数: 56 (Collapsed: 24, Healthy: 32)",
+          "+样本总数: 61 (Collapsed: 25, Healthy: 36)",
+          " ",
+          " | exp_id | env | config | seed | ground_truth | peak_nve | nve_source |",
+          " |--------|-----|--------|------|-------------|----------|------------|",
+          " | exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |",
+          " | exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |",
+          " | exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |",
+          "-| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |",
+          "-| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |",
+          "-| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |",
+          "+| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |",
+          "+| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |",
+          "+| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |",
+          " | exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |",
+          " | exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |",
+          "-| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |",
+          "+| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |",
+          " | exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |",
+          " | exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |",
+          "-| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |",
+          "-| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |",
+          "+| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |",
+          "+| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |",
+          " | exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |",
+          "-| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |",
+          "+| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |",
+          " | exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |",
+          " | exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |",
+          " | exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |"
+        ]
+      },
+      {
+        "oldStart": 29,
+        "oldLines": 7,
+        "newStart": 31,
+        "newLines": 7,
+        "lines": [
+          " | exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |",
+          " | exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |",
+          " | exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |",
+          "-| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |",
+          "+| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |",
+          " | exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |",
+          " | exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |",
+          " | exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |"
+        ]
+      },
+      {
+        "oldStart": 43,
+        "oldLines": 9,
+        "newStart": 45,
+        "newLines": 9,
+        "lines": [
+          " | exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |",
+          " | exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |",
+          " | exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |",
+          "-| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |",
+          "+| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |",
+          " | exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |",
+          "-| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |",
+          "+| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |",
+          " | exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |",
+          " | exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |",
+          " | exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |"
+        ]
+      },
+      {
+        "oldStart": 59,
+        "oldLines": 69,
+        "newStart": 61,
+        "newLines": 85,
+        "lines": [
+          " | exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |",
+          " | exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |",
+          " | exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |",
+          "-| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |",
+          "+| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |",
+          " | exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |",
+          " | exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |",
+          "+| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |",
+          "+| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |",
+          "+| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |",
+          "+| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |",
+          "+| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |",
+          " ",
+          "-## 分类结果",
+          "+## Threshold Analysis",
+          " ",
+          "-| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |",
+          "-|-----------|----|----|----|----|-----------|--------|-----|----------|",
+          "-| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |",
+          "-| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |",
+          "-| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |",
+          "-| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |",
+          "-| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |",
+          "-| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |",
+          "-| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |",
+          "+### θ = 1.3×",
+          "+- **Accuracy: 86.9%** (53/61)",
+          "+- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**",
+          "+- TP=25, FP=8, TN=28, FN=0",
+          "+- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)",
+          "+- FN: none",
+          " ",
+          "-## AUROC",
+          "+### θ = 1.5× (recommended)",
+          "+- **Accuracy: 93.4%** (57/61)",
+          "+- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**",
+          "+- TP=25, FP=4, TN=32, FN=0",
+          "+- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)",
+          "+- FN: none",
+          " ",
+          "-**AUROC = 0.9902**",
+          "+### θ = 1.7×",
+          "+- **Accuracy: 90.2%** (55/61)",
+          "+- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**",
+          "+- TP=22, FP=3, TN=33, FN=3",
+          "+- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)",
+          "+- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)",
+          " ",
+          "-Computed from 24 positive + 32 negative samples using 33 ROC points",
+          "+### θ = 2.0×",
+          "+- **Accuracy: 95.1%** (58/61)",
+          "+- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**",
+          "+- TP=22, FP=0, TN=36, FN=3",
+          "+- FP: none",
+          "+- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)",
+          " ",
+          "-ROC 关键点 (FPR, TPR):",
+          "+### 汇总",
+          " ",
+          "-| Threshold | FPR | TPR |",
+          "-|-----------|-----|-----|",
+          "-| 1.0 | 0.281 | 1.000 |",
+          "-| 1.1 | 0.250 | 1.000 |",
+          "-| 1.2 | 0.219 | 1.000 |",
+          "-| 1.3 | 0.219 | 1.000 |",
+          "-| 1.5 | 0.094 | 1.000 |",
+          "-| 1.7 | 0.094 | 0.875 |",
+          "-| 2.0 | 0.000 | 0.875 |",
+          "+| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |",
+          "+|-----------|----------|-----------|--------|------|-----|-----|",
+          "+| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |",
+          "+| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |",
+          "+| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |",
+          "+| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |",
+          " ",
+          "-## 推荐阈值",
+          "+## AUROC",
+          " ",
+          "-**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)",
+          "+**AUROC = 0.9889** (N=61, 25 positive, 36 negative)",
+          " ",
+          "-- Precision = 0.889, Recall = 1.000, Accuracy = 0.946",
+          "-- TP=24, FP=3, TN=29, FN=0",
+          "+NVE_peak 作为连续分数对 CIVO 的区分力极强。",
+          " ",
+          "-### 阈值选择权衡",
+          "+**NVE 分布:**",
+          "+- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954",
+          "+- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845",
+          " ",
+          "-- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。",
+          "-- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。",
+          "-- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。",
+          "+**Overlap zone:** NVE ∈ [1.530, 1.930]",
+          "+- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)",
+          "+- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)",
+          " ",
+          "-### 最佳阈值 (1.5) 下的分类细节",
+          "+**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889",
+          " ",
+          "-**False Positives (误报为CIVO):**",
+          "+## 推荐 threshold",
+          " ",
+          "-- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker",
+          "-- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker",
+          "-- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker",
+          "+**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)",
+          " ",
+          "-### 阈值 1.5 下的分类细节",
+          "+理由：",
+          "+1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。",
+          "+2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。",
+          "+3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。",
+          "+4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。",
+          "+5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。",
+          " ",
+          "-**False Positives (误报为CIVO):**",
+          "+**Decision rule:**",
+          "+- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)",
+          "+- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)",
+          " ",
+          "-- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker",
+          "-- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker",
+          "-- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker",
+          "-",
+          " ## 方法论说明",
+          " ",
+          " ### NVE 计算方法"
+        ]
+      },
+      {
+        "oldStart": 132,
+        "oldLines": 28,
+        "newStart": 150,
+        "newLines": 9,
+        "lines": [
+          " - Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65",
+          " - 取 peak NVE (训练过程中最大 NVE) 作为分类特征",
+          " - NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline",
+          "-- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除",
+          " ",
+          " ### Ground Truth 标注",
+          " ",
+          "-- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)",
+          "-- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)",
+          "-- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊",
+          "-",
+          "-### 排除实验 (98 个)",
+          "-",
+          "-- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more",
+          "-- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more",
+          "-- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger",
+          "-- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more",
+          "-- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1",
+          "-- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more",
+          "-",
+          "-### NVE 分布",
+          "-",
+          "-- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073",
+          "-- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870",
+          "-- 类间间距 (min_collapsed - max_healthy): -0.400",
+          "-  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内",
+          "-  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)",
+          "-  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)",
+          "+- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)",
+          "+- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)",
+          "+- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊"
+        ]
+      }
+    ],
+    "originalFile": "# NVE Threshold Sensitivity Analysis\n\n## 数据集\n\n样本总数: 56 (Collapsed: 24, Healthy: 32)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n\n## 分类结果\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |\n| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |\n| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |\n| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |\n| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |\n\n## AUROC\n\n**AUROC = 0.9902**\n\nComputed from 24 positive + 32 negative samples using 33 ROC points\n\nROC 关键点 (FPR, TPR):\n\n| Threshold | FPR | TPR |\n|-----------|-----|-----|\n| 1.0 | 0.281 | 1.000 |\n| 1.1 | 0.250 | 1.000 |\n| 1.2 | 0.219 | 1.000 |\n| 1.3 | 0.219 | 1.000 |\n| 1.5 | 0.094 | 1.000 |\n| 1.7 | 0.094 | 0.875 |\n| 2.0 | 0.000 | 0.875 |\n\n## 推荐阈值\n\n**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)\n\n- Precision = 0.889, Recall = 1.000, Accuracy = 0.946\n- TP=24, FP=3, TN=29, FN=0\n\n### 阈值选择权衡\n\n- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。\n- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。\n- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。\n\n### 最佳阈值 (1.5) 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n### 阈值 1.5 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊\n\n### 排除实验 (98 个)\n\n- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more\n- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more\n- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger\n- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more\n- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1\n- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more\n\n### NVE 分布\n\n- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073\n- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870\n- 类间间距 (min_collapsed - max_healthy): -0.400\n  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内\n  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)\n  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)\n",
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01CLRmemfvH8SSmyYCxza2Tp`</summary>
+
+```json
+{
+  "name": "plan_034_nve_threshold_analysis_v2",
+  "type": "report",
+  "description": "NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.",
+  "project": "event-gated-adaptive-horizon",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+  "tags": [
+    "plan_034",
+    "nve",
+    "threshold",
+    "auroc",
+    "diagnostics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "af6a4f60-f928-4420-b357-3dd426948d56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZL5LMyveiKVWrXqmSaSUN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5569,
+      "cache_read_input_tokens": 84190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5569
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-25T20:04:12.167Z_
+
+<details><summary>↩ Tool result · `toolu_01CLRmemfvH8SSmyYCxza2Tp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_811ba6\", \"name\": \"plan_034_nve_threshold_analysis_v2\", \"type\": \"report\", \"description\": \"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T20:04:11.724428+00:00\", \"tags\": [\"plan_034\", \"nve\", \"threshold\", \"auroc\", \"diagnostics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "af9c1645-9b3d-4491-aa05-cde3f9260477",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_811ba6\\\", \\\"name\\\": \\\"plan_034_nve_threshold_analysis_v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T20:04:11.724428+00:00\\\", \\\"tags\\\": [\\\"plan_034\\\", \\\"nve\\\", \\\"threshold\\\", \\\"auroc\\\", \\\"diagnostics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_811ba6\", \"name\": \"plan_034_nve_threshold_analysis_v2\", \"type\": \"report\", \"description\": \"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T20:04:11.724428+00:00\", \"tags\": [\"plan_034\", \"nve\", \"threshold\", \"auroc\", \"diagnostics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+完成。结果摘要：
+
+**N=61** (25 CIVO, 36 Healthy)，**AUROC = 0.989**
+
+| Threshold | Accuracy | Precision | Recall | F1 |
+|-----------|----------|-----------|--------|------|
+| 1.3× | 86.9% | 75.8% | 100% | 0.862 |
+| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** |
+| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 |
+| 2.0× | 95.1% | 100% | 88.0% | 0.936 |
+
+**推荐 θ=1.5×**: 100% recall，4个 FP 均可解释（frozen transient spike + eval-variance-driven），Youden's J 最优点也在 ~1.51×。θ=2.0× 适用于需要零误报的场景，但会漏掉 3 个 self-correcting CIVO seed。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "uuid": "b2cd97b7-be75-4139-b414-ba28911d2f6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7x3jCtkS1UDosmoEQJ4Rs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 89759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 654
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 56_
+
+完成。结果摘要：
+
+**N=61** (25 CIVO, 36 Healthy)，**AUROC = 0.989**
+
+| Threshold | Accuracy | Precision | Recall | F1 |
+|-----------|----------|-----------|--------|------|
+| 1.3× | 86.9% | 75.8% | 100% | 0.862 |
+| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** |
+| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 |
+| 2.0× | 95.1% | 100% | 88.0% | 0.936 |
+
+**推荐 θ=1.5×**: 100% recall，4个 FP 均可解释（frozen transient spike + eval-variance-driven），Youden's J 最优点也在 ~1.51×。θ=2.0× 适用于需要零误报的场景，但会漏掉 3 个 self-correcting CIVO seed。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 539672,
+  "duration_api_ms": 537946,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+  "total_cost_usd": 1.823104,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 78572,
+    "cache_read_input_tokens": 963826,
+    "output_tokens": 33939,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 78572,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 297,
+        "cache_read_input_tokens": 89759,
+        "cache_creation_input_tokens": 654,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 654
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1456,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001526,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 33939,
+      "cacheReadInputTokens": 963826,
+      "cacheCreationInputTokens": 78572,
+      "webSearchRequests": 0,
+      "costUSD": 1.8215780000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "61b87e33-e4cc-40f1-9c73-a45b9c9ac3d0"
+}
+```
+
+</details>
+
+---

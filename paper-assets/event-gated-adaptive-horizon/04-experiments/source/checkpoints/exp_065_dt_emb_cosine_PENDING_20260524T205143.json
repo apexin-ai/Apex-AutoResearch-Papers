@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_065_dt_emb_cosine",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T20:48:47.693Z",
+    "updated_at": "2026-05-24T20:51:43.601Z",
+    "hypothesis": "分析 trained dt_embedding 中 dt=1 vs dt=2 向量的 cosine similarity 及其训练过程演化。如果 cosine sim 高（接近 1）→ dt_emb 未学到有意义区分，CIVO 来自微小差异被 downstream 放大；如果 cosine sim 低 → dt_emb 学到了显著不同的表征，CIVO 来自 dt=2 表征本身的偏差。"
+  },
+  "timestamp": "2026-05-24T20:51:43.967992+00:00",
+  "trigger": "update_registry"
+}

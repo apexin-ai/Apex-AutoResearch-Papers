@@ -1,0 +1,75 @@
+{
+  "analysis": "RSSM prediction quality: dt=1 vs dt=2",
+  "description": "Measures observation reconstruction MSE/MAE and reward prediction MAE from RSSM posterior states at varying temporal gaps. For models WITH dt_embedding, img_step is conditioned on dt. For models WITHOUT, prediction is always dt=1 style (dt param ignored). Fidelity gap = dt2_error / dt1_error.",
+  "models_analyzed": ["baseline_s1", "exp_008d_subsample_on_h8", "exp_008f_no_dt_embed_subsample_on_h8"],
+  "results": {
+    "baseline_s1": {
+      "dt1": {
+        "obs_mse": {"height": 0.00164, "orientations": 0.02101, "velocity": 40.455},
+        "obs_mse_total": 13.493,
+        "obs_mae_total": 1.086,
+        "obs_nll_total": 4.380,
+        "reward_mae": 0.0102
+      },
+      "dt2": {
+        "obs_mse": {"height": 0.00265, "orientations": 0.08946, "velocity": 82.402},
+        "obs_mse_total": 27.498,
+        "obs_mae_total": 1.768,
+        "obs_nll_total": 9.427,
+        "reward_mae": 0.0159
+      },
+      "dt3": {"obs_mse_total": 32.596, "reward_mae": 0.0227},
+      "dt4": {"obs_mse_total": 33.980, "reward_mae": 0.0290},
+      "fidelity_gap": {
+        "obs_mse_ratio_dt2_over_dt1": 2.038,
+        "obs_nll_ratio_dt2_over_dt1": 2.152,
+        "reward_mae_ratio_dt2_over_dt1": 1.560,
+        "per_key_mse_ratio": {"height": 1.613, "orientations": 4.257, "velocity": 2.037}
+      },
+      "config": {"gate_enabled": false, "dt_embed_dim": 32}
+    },
+    "exp_008d_subsample_on_h8": {
+      "dt1": {
+        "obs_mse": {"height": 0.00771, "orientations": 0.05646, "velocity": 123.877},
+        "obs_mse_total": 41.314,
+        "obs_mae_total": 1.836,
+        "reward_mae": 0.0568
+      },
+      "dt2": {
+        "obs_mse_total": 53.671,
+        "reward_mae": 0.1579
+      },
+      "dt3": {"obs_mse_total": 65.365, "reward_mae": 0.1569},
+      "dt4": {"obs_mse_total": 65.409, "reward_mae": 0.1956},
+      "fidelity_gap": {
+        "obs_mse_ratio_dt2_over_dt1": 1.299,
+        "obs_nll_ratio_dt2_over_dt1": 1.403,
+        "reward_mae_ratio_dt2_over_dt1": 2.780,
+        "per_key_mse_ratio": {"height": 1.312, "orientations": 2.023, "velocity": 1.299}
+      },
+      "config": {"gate_enabled": true, "dt_embed_dim": 32}
+    },
+    "exp_008f_no_dt_embed_subsample_on_h8": {
+      "dt1": {
+        "obs_mse": {"height": 0.00786, "orientations": 0.02669, "velocity": 23.985},
+        "obs_mse_total": 8.007,
+        "obs_mae_total": 0.862,
+        "reward_mae": 0.7469
+      },
+      "dt2": {
+        "obs_mse_total": 22.040,
+        "reward_mae": 0.7526
+      },
+      "dt3": {"obs_mse_total": 27.813, "reward_mae": 0.7607},
+      "dt4": {"obs_mse_total": 29.373, "reward_mae": 0.7671},
+      "fidelity_gap": {
+        "obs_mse_ratio_dt2_over_dt1": 2.753,
+        "obs_nll_ratio_dt2_over_dt1": 2.684,
+        "reward_mae_ratio_dt2_over_dt1": 1.008,
+        "per_key_mse_ratio": {"height": 1.769, "orientations": 2.938, "velocity": 2.753}
+      },
+      "config": {"gate_enabled": true, "dt_embed_dim": 0}
+    }
+  },
+  "conclusion": "baseline_s1: dt2/dt1 obs MSE ratio = 2.04x\nexp_008d_subsample_on_h8: dt2/dt1 obs MSE ratio = 1.30x\nexp_008f_no_dt_embed_subsample_on_h8: dt2/dt1 obs MSE ratio = 2.75x\ndt_embedding reduces fidelity gap (1.30x vs baseline 2.04x), but dt=2 prediction is still worse than dt=1.\ndt_embed ablation: with=1.30x, without=2.75x\nRSSM prediction quality degrades for dt>1 transitions. This supports C2 (delusional critic): the world model is less accurate at multi-step transitions, leading to value overestimation when the critic trusts dt>1 imagined trajectories."
+}

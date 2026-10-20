@@ -1,0 +1,49 @@
+{
+  "008d (CIVO trigger)": [
+    {"step": 5000, "actor_entropy": 8.158404350280762, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 15000, "actor_entropy": 0.48064881563186646, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 25000, "actor_entropy": -1.8624058961868286, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 35000, "actor_entropy": -3.4653077125549316, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 45000, "actor_entropy": -4.575044631958008, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 55000, "actor_entropy": -4.879063129425049, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0}
+  ],
+  "008f (no dt_emb)": [
+    {"step": 5000, "actor_entropy": 8.107826232910156, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 15000, "actor_entropy": 0.6090443134307861, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 25000, "actor_entropy": -1.8516017198562622, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 35000, "actor_entropy": -2.737259864807129, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 45000, "actor_entropy": -4.3142523765563965, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 55000, "actor_entropy": -4.7706298828125, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 65000, "actor_entropy": -4.560074806213379, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 75000, "actor_entropy": -4.523036003112793, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 85000, "actor_entropy": -4.701274871826172, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 95000, "actor_entropy": -4.86356258392334, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 105000, "actor_entropy": -4.851817607879639, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0}
+  ],
+  "018v2 (Full-SGS)": [
+    {"step": 5000, "actor_entropy": 8.1939115524292, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 15000, "actor_entropy": 1.1457624435424805, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 25000, "actor_entropy": -2.6226694583892822, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 35000, "actor_entropy": -3.6492836475372314, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 45000, "actor_entropy": -4.276796817779541, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 55000, "actor_entropy": -5.237514972686768, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 65000, "actor_entropy": -5.237514972686768, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 75000, "actor_entropy": -5.2536468505859375, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 85000, "actor_entropy": -5.261725902557373, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 95000, "actor_entropy": -5.260532855987549, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 105000, "actor_entropy": -5.273259162902832, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0}
+  ],
+  "008e_v3_s2 (Pathway B)": [
+    {"step": 5000, "actor_entropy": 8.239392280578613, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 15000, "actor_entropy": 2.351621150970459, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 25000, "actor_entropy": 0.16993200778961182, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 35000, "actor_entropy": -3.49769926071167, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 45000, "actor_entropy": -4.914888858795166, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 55000, "actor_entropy": -5.121275901794434, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 65000, "actor_entropy": -5.135470867156982, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 75000, "actor_entropy": -5.223882675170898, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 85000, "actor_entropy": -5.208174228668213, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 95000, "actor_entropy": -4.529224872589111, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0},
+    {"step": 105000, "actor_entropy": -3.827657461166382, "gate_empirical_entropy": 0.0, "gate_entropy_ratio": 0.0}
+  ]
+}

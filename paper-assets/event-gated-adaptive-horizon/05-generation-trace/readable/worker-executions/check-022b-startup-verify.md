@@ -1,0 +1,882 @@
+# check 022b startup verify
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_check_022b-startup-verify_20260517T111024.log`
+- **Structured JSON:** [`4e3e789861c43dc380a7.json`](../../sessions/4e/4e3e789861c43dc380a7.json)
+
+## Before a recorded user message
+
+17 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "94f1026e-f86e-40c9-b07f-88d764c37e87",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779034200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9b1ef884-5065-43b2-9bbf-646050fef899",
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify that exp_022b_no_curriculum is running properly on the bjb1-45299 server on cuda:1. Let me SSH in and check the process, GPU usage, logs, and logdir.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "2bc97592-beff-4c4b-aa57-57b4ad213f76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBEJ2jcY1RjJKfiUoqsYFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12910,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12910
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01M6Nfpn2cVd685yWKcw7y6o`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "822eea06-7844-42c9-bcd3-02e0a890cd8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UBEJ2jcY1RjJKfiUoqsYFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12910,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12910
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T11:10:36.871Z_
+
+<details><summary>↩ Tool result · `toolu_01M6Nfpn2cVd685yWKcw7y6o`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "e8aa0275-ce70-48f8-aa05-ff51c94ca7e0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the process, GPU usage, and logs in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "7ab743c7-97ad-42f6-9b96-2e78bbe167f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdvZaYyEg42fKUQghvD1Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 24357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014wzp3TjBFfGKxLZRXuZrhy`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ps aux | grep exp_022b | grep -v grep",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "28d572d7-5f1e-4e35-bc63-485b982ec13f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdvZaYyEg42fKUQghvD1Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 24357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01683HkMpUR6N8efkx3LqxeV`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "02f33dee-2f82-442d-aa8d-6f02df7009de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdvZaYyEg42fKUQghvD1Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 24357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016ictTQngHGGFQbm7aDPAqA`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -30 ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "5966f258-c76b-40e6-8ffd-9a050105896f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MdvZaYyEg42fKUQghvD1Je",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 24357,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T11:10:44.233Z_
+
+<details><summary>↩ Tool result · `toolu_014wzp3TjBFfGKxLZRXuZrhy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root     670554  0.0  0.0   4496  3504 pts/0    Ss+  18:51   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_022b_no_curriculum.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_022b_no_curriculum.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/event-gated-adaptive-horizon && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"'; } > ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log 2>&1\\nroot     670558  0.0  0.0   2800  1012 pts/0    S    18:51   0:00 timeout 21600 env bash -c bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"\\nroot     670559 1291  0.2 60333796 2929076 pts/0 Rl  18:51 242:52 python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "50510fe4-89cc-45da-a192-e76bfb4736b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     670554  0.0  0.0   4496  3504 pts/0    Ss+  18:51   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_022b_no_curriculum.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_022b_no_curriculum.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/event-gated-adaptive-horizon && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\\\\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\\\\\"'; } > ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log 2>&1\\\\nroot     670558  0.0  0.0   2800  1012 pts/0    S    18:51   0:00 timeout 21600 env bash -c bash -c \\\\\\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\\\\\"\\\\nroot     670559 1291  0.2 60333796 2929076 pts/0 Rl  18:51 242:52 python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root     670554  0.0  0.0   4496  3504 pts/0    Ss+  18:51   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_022b_no_curriculum.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_022b_no_curriculum.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/event-gated-adaptive-horizon && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"'; } > ~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log 2>&1\\nroot     670558  0.0  0.0   2800  1012 pts/0    S    18:51   0:00 timeout 21600 env bash -c bash -c \\\"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\\"\\nroot     670559 1291  0.2 60333796 2929076 pts/0 Rl  18:51 242:52 python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T11:10:45.280Z_
+
+<details><summary>↩ Tool result · `toolu_01683HkMpUR6N8efkx3LqxeV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 19:10:45 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   38C    P0            120W /  600W |    3435MiB /  97887MiB |     25%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   40C    P0            113W /  600W |    3284MiB /  97887MiB |     21%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          649577    C+G   python                                 2849MiB |\\n|    0   N/A  N/A          649577      C   python                                 2849MiB |\\n|    0   N/A  N/A          670559      C   python                                  552MiB |\\n|    1   N/A  N/A          670559    C+G   python                                 3265MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "1cfafa10-75bf-446a-b0e0-8114e4d4e8ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 19:10:45 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   38C    P0            120W /  600W |    3435MiB /  97887MiB |     25%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   40C    P0            113W /  600W |    3284MiB /  97887MiB |     21%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          649577    C+G   python                                 2849MiB |\\\\n|    0   N/A  N/A          649577      C   python                                 2849MiB |\\\\n|    0   N/A  N/A          670559      C   python                                  552MiB |\\\\n|    1   N/A  N/A          670559    C+G   python                                 3265MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 19:10:45 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   38C    P0            120W /  600W |    3435MiB /  97887MiB |     25%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   40C    P0            113W /  600W |    3284MiB /  97887MiB |     21%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          649577    C+G   python                                 2849MiB |\\n|    0   N/A  N/A          649577      C   python                                 2849MiB |\\n|    0   N/A  N/A          670559      C   python                                  552MiB |\\n|    1   N/A  N/A          670559    C+G   python                                 3265MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T11:10:45.698Z_
+
+<details><summary>↩ Tool result · `toolu_016ictTQngHGGFQbm7aDPAqA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\nOptimizer model_opt has 16948256 variables.\\nOptimizer actor_opt has 1056780 variables.\\nOptimizer value_opt has 1181439 variables.\\n[5000] \\nStart evaluation.\\n[5000] eval_return 37.4 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:232: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:390: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:538: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:569: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n[5000] model_loss 21.5 / model_grad_norm 108.3 / height_loss 0.1 / orientations_loss 2.2 / velocity_loss 9.1 / reward_loss 3.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 105.7 / post_ent 97.9 / gate_loss 1.8 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.1 / normed_target_std 0.0 / normed_target_min 0.0 / normed_target_max 0.1 / EMA_005 0.0 / EMA_095 0.0 / value_mean 0.0 / value_std 0.0 / value_min 0.0 / value_max 0.0 / target_mean 0.1 / target_std 0.0 / target_min 0.0 / target_max 0.1 / imag_reward_mean 0.0 / imag_reward_std 0.0 / imag_reward_min 0.0 / imag_reward_max 0.0 / imag_action_mean -0.2 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 8.2 / gate_dt_mean 4.4 / gate_dt_std 1.9 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.2 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.1 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 1.0 / gate_dt_autocorr -0.1 / actor_loss -0.1 / actor_grad_norm 0.0 / value_loss 9.1 / value_grad_norm 18.1 / update_count 100.0 / fps 0.0\\n[8000] dataset_size 4000.0 / train_return 39.1 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 41.2 / train_length 500.0 / train_episodes 8.0\\n[12000] dataset_size 6000.0 / train_return 150.0 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 159.5 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 159.4 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 141.0 / train_length 500.0 / train_episodes 12.0\\n[15000] \\nStart evaluation.\\n[15000] eval_return 167.3 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 9.1 / model_grad_norm 10.3 / height_loss 0.0 / orientations_loss 0.4 / velocity_loss 1.5 / reward_loss 0.7 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 53.2 / post_ent 44.5 / gate_loss 1.5 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 0.2 / EMA_095 4.0 / value_mean 2.3 / value_std 1.0 / value_min 0.2 / value_max 2.9 / target_mean 2.9 / target_std 1.4 / target_min 0.2 / target_max 5.7 / imag_reward_mean 0.2 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.7 / imag_action_mean 0.2 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 1.0 / gate_dt_mean 4.6 / gate_dt_std 1.8 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.1 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.2 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 0.9 / gate_dt_autocorr -0.1 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 2.8 / value_grad_norm 4.0 / update_count 2599.0 / fps 10.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "0af18b4c-19c1-4673-bab4-d90c2284a3e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\\\nOptimizer model_opt has 16948256 variables.\\\\nOptimizer actor_opt has 1056780 variables.\\\\nOptimizer value_opt has 1181439 variables.\\\\n[5000] \\\\nStart evaluation.\\\\n[5000] eval_return 37.4 / eval_length 500.0 / eval_episodes 10.0\\\\nStart training.\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:232: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\\\n  with torch.cuda.amp.autocast(self._use_amp):\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:390: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\\\n  with torch.cuda.amp.autocast(self._use_amp):\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:538: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\\\n  with torch.cuda.amp.autocast(self._use_amp):\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:569: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\\\n  with torch.cuda.amp.autocast(self._use_amp):\\\\n[5000] model_loss 21.5 / model_grad_norm 108.3 / height_loss 0.1 / orientations_loss 2.2 / velocity_loss 9.1 / reward_loss 3.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 105.7 / post_ent 97.9 / gate_loss 1.8 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.1 / normed_target_std 0.0 / normed_target_min 0.0 / normed_target_max 0.1 / EMA_005 0.0 / EMA_095 0.0 / value_mean 0.0 / value_std 0.0 / value_min 0.0 / value_max 0.0 / target_mean 0.1 / target_std 0.0 / target_min 0.0 / target_max 0.1 / imag_reward_mean 0.0 / imag_reward_std 0.0 / imag_reward_min 0.0 / imag_reward_max 0.0 / imag_action_mean -0.2 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 8.2 / gate_dt_mean 4.4 / gate_dt_std 1.9 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.2 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.1 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 1.0 / gate_dt_autocorr -0.1 / actor_loss -0.1 / actor_grad_norm 0.0 / value_loss 9.1 / value_grad_norm 18.1 / update_count 100.0 / fps 0.0\\\\n[8000] dataset_size 4000.0 / train_return 39.1 / train_length 500.0 / train_episodes 8.0\\\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\\\n[8000] dataset_size 4000.0 / train_return 41.2 / train_length 500.0 / train_episodes 8.0\\\\n[12000] dataset_size 6000.0 / train_return 150.0 / train_length 500.0 / train_episodes 12.0\\\\n[12000] dataset_size 6000.0 / train_return 159.5 / train_length 500.0 / train_episodes 12.0\\\\n[12000] dataset_size 6000.0 / train_return 159.4 / train_length 500.0 / train_episodes 12.0\\\\n[12000] dataset_size 6000.0 / train_return 141.0 / train_length 500.0 / train_episodes 12.0\\\\n[15000] \\\\nStart evaluation.\\\\n[15000] eval_return 167.3 / eval_length 500.0 / eval_episodes 10.0\\\\nStart training.\\\\n[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 9.1 / model_grad_norm 10.3 / height_loss 0.0 / orientations_loss 0.4 / velocity_loss 1.5 / reward_loss 0.7 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 53.2 / post_ent 44.5 / gate_loss 1.5 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 0.2 / EMA_095 4.0 / value_mean 2.3 / value_std 1.0 / value_min 0.2 / value_max 2.9 / target_mean 2.9 / target_std 1.4 / target_min 0.2 / target_max 5.7 / imag_reward_mean 0.2 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.7 / imag_action_mean 0.2 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 1.0 / gate_dt_mean 4.6 / gate_dt_std 1.8 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.1 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.2 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 0.9 / gate_dt_autocorr -0.1 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 2.8 / value_grad_norm 4.0 / update_count 2599.0 / fps 10.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\nOptimizer model_opt has 16948256 variables.\\nOptimizer actor_opt has 1056780 variables.\\nOptimizer value_opt has 1181439 variables.\\n[5000] \\nStart evaluation.\\n[5000] eval_return 37.4 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:232: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:390: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:538: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:569: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n[5000] model_loss 21.5 / model_grad_norm 108.3 / height_loss 0.1 / orientations_loss 2.2 / velocity_loss 9.1 / reward_loss 3.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 105.7 / post_ent 97.9 / gate_loss 1.8 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.1 / normed_target_std 0.0 / normed_target_min 0.0 / normed_target_max 0.1 / EMA_005 0.0 / EMA_095 0.0 / value_mean 0.0 / value_std 0.0 / value_min 0.0 / value_max 0.0 / target_mean 0.1 / target_std 0.0 / target_min 0.0 / target_max 0.1 / imag_reward_mean 0.0 / imag_reward_std 0.0 / imag_reward_min 0.0 / imag_reward_max 0.0 / imag_action_mean -0.2 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 8.2 / gate_dt_mean 4.4 / gate_dt_std 1.9 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.2 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.1 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 1.0 / gate_dt_autocorr -0.1 / actor_loss -0.1 / actor_grad_norm 0.0 / value_loss 9.1 / value_grad_norm 18.1 / update_count 100.0 / fps 0.0\\n[8000] dataset_size 4000.0 / train_return 39.1 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 39.6 / train_length 500.0 / train_episodes 8.0\\n[8000] dataset_size 4000.0 / train_return 41.2 / train_length 500.0 / train_episodes 8.0\\n[12000] dataset_size 6000.0 / train_return 150.0 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 159.5 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 159.4 / train_length 500.0 / train_episodes 12.0\\n[12000] dataset_size 6000.0 / train_return 141.0 / train_length 500.0 / train_episodes 12.0\\n[15000] \\nStart evaluation.\\n[15000] eval_return 167.3 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 9.1 / model_grad_norm 10.3 / height_loss 0.0 / orientations_loss 0.4 / velocity_loss 1.5 / reward_loss 0.7 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 8.4 / rep_loss 8.4 / kl 8.4 / prior_ent 53.2 / post_ent 44.5 / gate_loss 1.5 / gate_scale 1.0 / gate_entropy_bonus 0.1 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 0.2 / EMA_095 4.0 / value_mean 2.3 / value_std 1.0 / value_min 0.2 / value_max 2.9 / target_mean 2.9 / target_std 1.4 / target_min 0.2 / target_max 5.7 / imag_reward_mean 0.2 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.7 / imag_action_mean 0.2 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 1.0 / gate_dt_mean 4.6 / gate_dt_std 1.8 / gate_dt_min 1.0 / gate_dt_max 8.0 / gate_dt_1_frac 0.1 / gate_dt_2_frac 0.1 / gate_dt_3_frac 0.1 / gate_dt_4_frac 0.2 / gate_dt_5_frac 0.2 / gate_dt_6_frac 0.2 / gate_dt_7_frac 0.1 / gate_dt_8_frac 0.1 / gate_empirical_entropy 2.0 / gate_entropy_ratio 0.9 / gate_dt_autocorr -0.1 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 2.8 / value_grad_norm 4.0 / update_count 2599.0 / fps 10.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U8tzekJVzvjMUCi2EkX1i7`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_022b_no_curriculum/ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "729ed11d-f4e9-448a-9c49-c2b9f294b1f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8G4gZbTZ6ReZdUKm3jyD8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4447,
+      "cache_read_input_tokens": 24769,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4447
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T11:10:51.500Z_
+
+<details><summary>↩ Tool result · `toolu_01U8tzekJVzvjMUCi2EkX1i7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 229644\\ndrwxr-xr-x  4 root root       185 May 17 19:09 .\\ndrwxr-xr-x 54 root root      4096 May 17 18:52 ..\\ndrwxr-xr-x  2 root root      4096 May 17 19:09 eval_eps\\n-rw-r--r--  1 root root     10743 May 17 19:09 events.out.tfevents.1779015121.autodl-container-k9z16fn7md-3a522761.670559.0\\n-rw-r--r--  1 root root 235121380 May 17 19:09 latest.pt\\n-rw-r--r--  1 root root      6048 May 17 19:09 metrics.jsonl\\ndrwxr-xr-x  2 root root      4096 May 17 19:04 train_eps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "ae7e709a-6585-47e1-a05e-223b7d85d3e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 229644\\\\ndrwxr-xr-x  4 root root       185 May 17 19:09 .\\\\ndrwxr-xr-x 54 root root      4096 May 17 18:52 ..\\\\ndrwxr-xr-x  2 root root      4096 May 17 19:09 eval_eps\\\\n-rw-r--r--  1 root root     10743 May 17 19:09 events.out.tfevents.1779015121.autodl-container-k9z16fn7md-3a522761.670559.0\\\\n-rw-r--r--  1 root root 235121380 May 17 19:09 latest.pt\\\\n-rw-r--r--  1 root root      6048 May 17 19:09 metrics.jsonl\\\\ndrwxr-xr-x  2 root root      4096 May 17 19:04 train_eps\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 229644\\ndrwxr-xr-x  4 root root       185 May 17 19:09 .\\ndrwxr-xr-x 54 root root      4096 May 17 18:52 ..\\ndrwxr-xr-x  2 root root      4096 May 17 19:09 eval_eps\\n-rw-r--r--  1 root root     10743 May 17 19:09 events.out.tfevents.1779015121.autodl-container-k9z16fn7md-3a522761.670559.0\\n-rw-r--r--  1 root root 235121380 May 17 19:09 latest.pt\\n-rw-r--r--  1 root root      6048 May 17 19:09 metrics.jsonl\\ndrwxr-xr-x  2 root root      4096 May 17 19:04 train_eps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+## exp_022b_no_curriculum 状态报告
+
+**启动成功** ✓
+
+| 检查项 | 状态 |
+|--------|------|
+| 进程存活 | PID 670559，运行中，已累计 242 分钟 CPU 时间 |
+| GPU 占用 | cuda:1 占用 3265 MiB，GPU-Util 21% |
+| 训练进度 | 已到 step 15000（目标 105000），eval_return 从 37.4→167.3 |
+| logdir | 已创建，含 latest.pt (235MB)、metrics.jsonl、tfevents |
+| 报错 | 仅 FutureWarning（torch.cuda.amp.autocast 弃用警告），无实际错误 |
+
+### Gate 参数验证
+
+| 指标 | 期望 | 实际 (step 15000) | 判定 |
+|------|------|-------------------|------|
+| gate_scale | 1.0 | 1.0 | ✓ curriculum 关闭，gate 全程激活 |
+| gate_empirical_entropy | > 0 | 2.0 | ✓ gate 在主动学习 |
+| gate_dt_1_frac | < 1.0 | 0.1 | ✓ 仅 10% 选择 dt=1，gate 积极探索长步长 |
+| gate_dt_mean | — | 4.6 | gate 偏好中等步长 |
+| gate_dt 分布 | 非退化 | dt1~dt8 均匀分布 (0.1~0.2) | ✓ 探索充分 |
+
+### 早期表现
+
+- eval_return: 37.4 (5K) → 167.3 (15K)，学习曲线正常上升
+- gate 无退化迹象，entropy_ratio=0.9 接近最大熵，gate 仍在充分探索
+
+**结论：exp_022b 启动正常，gate 行为符合预期（无 curriculum 约束下自由探索多种 dt），训练在正常推进。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "uuid": "62bff16e-4cda-4df4-850f-e7ea4fea1a7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbgY2tZaS78ByQ1NuE1PQZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 458,
+      "cache_read_input_tokens": 29216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 458
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 17_
+
+## exp_022b_no_curriculum 状态报告
+
+**启动成功** ✓
+
+| 检查项 | 状态 |
+|--------|------|
+| 进程存活 | PID 670559，运行中，已累计 242 分钟 CPU 时间 |
+| GPU 占用 | cuda:1 占用 3265 MiB，GPU-Util 21% |
+| 训练进度 | 已到 step 15000（目标 105000），eval_return 从 37.4→167.3 |
+| logdir | 已创建，含 latest.pt (235MB)、metrics.jsonl、tfevents |
+| 报错 | 仅 FutureWarning（torch.cuda.amp.autocast 弃用警告），无实际错误 |
+
+### Gate 参数验证
+
+| 指标 | 期望 | 实际 (step 15000) | 判定 |
+|------|------|-------------------|------|
+| gate_scale | 1.0 | 1.0 | ✓ curriculum 关闭，gate 全程激活 |
+| gate_empirical_entropy | > 0 | 2.0 | ✓ gate 在主动学习 |
+| gate_dt_1_frac | < 1.0 | 0.1 | ✓ 仅 10% 选择 dt=1，gate 积极探索长步长 |
+| gate_dt_mean | — | 4.6 | gate 偏好中等步长 |
+| gate_dt 分布 | 非退化 | dt1~dt8 均匀分布 (0.1~0.2) | ✓ 探索充分 |
+
+### 早期表现
+
+- eval_return: 37.4 (5K) → 167.3 (15K)，学习曲线正常上升
+- gate 无退化迹象，entropy_ratio=0.9 接近最大熵，gate 仍在充分探索
+
+**结论：exp_022b 启动正常，gate 行为符合预期（无 curriculum 约束下自由探索多种 dt），训练在正常推进。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 36458,
+  "duration_api_ms": 36173,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "0962227c-eeff-4331-ab78-7da5a81f2a8f",
+  "total_cost_usd": 0.19121325000000003,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 18227,
+    "cache_read_input_tokens": 89789,
+    "output_tokens": 1247,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18227,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 588,
+        "cache_read_input_tokens": 29216,
+        "cache_creation_input_tokens": 458,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 458
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1085,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001185,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1247,
+      "cacheReadInputTokens": 89789,
+      "cacheCreationInputTokens": 18227,
+      "webSearchRequests": 0,
+      "costUSD": 0.19002824999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d50ee0b7-295b-4c34-8dcb-23cbc7a05ddc"
+}
+```
+
+</details>
+
+---

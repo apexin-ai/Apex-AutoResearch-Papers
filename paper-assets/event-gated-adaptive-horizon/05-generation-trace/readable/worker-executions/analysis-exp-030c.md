@@ -1,0 +1,2534 @@
+# analysis exp 030c
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_analysis_exp_030c_20260520T223021.log`
+- **Structured JSON:** [`97c6de3b52991045d468.json`](../../sessions/97/97c6de3b52991045d468.json)
+
+## Before a recorded user message
+
+50 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "69585005-bc35-4a87-8ff2-8d3c611a5ab4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779328800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b33d6921-1b89-4554-afae-c162dec27cd9",
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by gathering data from multiple sources in parallel: SSH logs, W&B metrics, and registry data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "41c0b239-0dd2-4ad4-bce4-181f02b2a6f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjKxouBRMF5uXaYeosamgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12050,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12050
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+并行获取日志、W&B 指标和 registry 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "f0cd7426-1dc7-4354-9129-d8aa95655fd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjKxouBRMF5uXaYeosamgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12050,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12050
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DyUsjTj3rHiMNeMFCpq3sG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__list_wandb_runs",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "f09cc154-0f38-4bd2-91b5-3fb062e4062b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjKxouBRMF5uXaYeosamgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12050,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12050
+      },
+      "output_tokens": 20,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T22:30:31.729Z_
+
+<details><summary>↩ Tool result · `toolu_01DyUsjTj3rHiMNeMFCpq3sG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_wandb_runs"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "44dff7ed-8fd6-4992-a227-230feb4727e5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__list_wandb_runs"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__list_wandb_runs",
+    "total_deferred_tools": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012ZxbKrJNsjbGm6sSQ7REC7`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -200 ~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "d7451a32-6495-43ac-b132-b6395e9554d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wsVdnS1uABpEDbJFZxXe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1497,
+      "cache_read_input_tokens": 23497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1497
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_01DNbwWU6hYy93jFXJhvvPvL`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": {
+    "display_name": {
+      "$regex": "exp_030c"
+    }
+  },
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "182060ce-6aec-42bd-bb9d-be051096f877",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wsVdnS1uABpEDbJFZxXe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1497,
+      "cache_read_input_tokens": 23497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1497
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01WXQPFHV6Lb6fdPf4b5N9jZ`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "41a2a601-35dc-4fff-b49a-b8c16c94160a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wsVdnS1uABpEDbJFZxXe5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1497,
+      "cache_read_input_tokens": 23497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1497
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T22:30:36.283Z_
+
+<details><summary>↩ Tool result · `toolu_012ZxbKrJNsjbGm6sSQ7REC7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[92000] dataset_size 46000.0 / train_return 70.8 / train_length 500.0 / train_episodes 92.0\\n[92000] dataset_size 46000.0 / train_return 72.4 / train_length 500.0 / train_episodes 92.0\\n[95000] \\nStart evaluation.\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[95000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.6 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.1 / post_ent 33.4 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 17.3 / EMA_095 51.8 / value_mean 29.5 / value_std 10.6 / value_min 16.9 / value_max 67.7 / target_mean 29.4 / target_std 10.7 / target_min 16.4 / target_max 68.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.2 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 22599.0 / fps 11.0\\n[96000] dataset_size 48000.0 / train_return 76.8 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 97.5 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 48.1 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 105.9 / train_length 500.0 / train_episodes 96.0\\n[100000] dataset_size 50000.0 / train_return 50.5 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 69.8 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 68.4 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 104.3 / train_length 500.0 / train_episodes 100.0\\n[104000] dataset_size 52000.0 / train_return 92.5 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 121.3 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 109.1 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 69.9 / train_length 500.0 / train_episodes 104.0\\n[105000] \\nStart evaluation.\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[105000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.4 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.3 / post_ent 33.5 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 13.8 / EMA_095 48.1 / value_mean 25.6 / value_std 10.7 / value_min 13.5 / value_max 65.2 / target_mean 25.6 / target_std 10.8 / target_min 13.1 / target_max 65.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 25099.0 / fps 11.0\\n[108000] dataset_size 54000.0 / train_return 106.9 / train_length 500.0 / train_e\\n\\n... [截断: 输出过长，省略 21607 字符] ...\\n\\nA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\n[208000] dataset_size 104000.0 / train_return 77.5 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 71.7 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 74.0 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 63.3 / train_length 500.0 / train_episodes 208.0\\n[212000] dataset_size 106000.0 / train_return 56.0 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 49.7 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 46.1 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 58.9 / train_length 500.0 / train_episodes 212.0\\n[215000] \\nStart evaluation.\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\n[216000] dataset_size 108000.0 / train_return 49.7 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 51.4 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 65.6 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 58.5 / train_length 500.0 / train_episodes 216.0\\n[220000] dataset_size 110000.0 / train_return 61.2 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 68.7 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 59.1 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 51.0 / train_length 500.0 / train_episodes 220.0\\n[224000] dataset_size 112000.0 / train_return 68.0 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 56.7 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 52.3 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 51.2 / train_length 500.0 / train_episodes 224.0\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "dbe486f6-f57d-4d08-9966-1ebd2aa6928f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[92000] dataset_size 46000.0 / train_return 70.8 / train_length 500.0 / train_episodes 92.0\\\\n[92000] dataset_size 46000.0 / train_return 72.4 / train_length 500.0 / train_episodes 92.0\\\\n[95000] \\\\nStart evaluation.\\\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\\\nStart training.\\\\n[95000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.6 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.1 / post_ent 33.4 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 17.3 / EMA_095 51.8 / value_mean 29.5 / value_std 10.6 / value_min 16.9 / value_max 67.7 / target_mean 29.4 / target_std 10.7 / target_min 16.4 / target_max 68.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.2 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 22599.0 / fps 11.0\\\\n[96000] dataset_size 48000.0 / train_return 76.8 / train_length 500.0 / train_episodes 96.0\\\\n[96000] dataset_size 48000.0 / train_return 97.5 / train_length 500.0 / train_episodes 96.0\\\\n[96000] dataset_size 48000.0 / train_return 48.1 / train_length 500.0 / train_episodes 96.0\\\\n[96000] dataset_size 48000.0 / train_return 105.9 / train_length 500.0 / train_episodes 96.0\\\\n[100000] dataset_size 50000.0 / train_return 50.5 / train_length 500.0 / train_episodes 100.0\\\\n[100000] dataset_size 50000.0 / train_return 69.8 / train_length 500.0 / train_episodes 100.0\\\\n[100000] dataset_size 50000.0 / train_return 68.4 / train_length 500.0 / train_episodes 100.0\\\\n[100000] dataset_size 50000.0 / train_return 104.3 / train_length 500.0 / train_episodes 100.0\\\\n[104000] dataset_size 52000.0 / train_return 92.5 / train_length 500.0 / train_episodes 104.0\\\\n[104000] dataset_size 52000.0 / train_return 121.3 / train_length 500.0 / train_episodes 104.0\\\\n[104000] dataset_size 52000.0 / train_return 109.1 / train_length 500.0 / train_episodes 104.0\\\\n[104000] dataset_size 52000.0 / train_return 69.9 / train_length 500.0 / train_episodes 104.0\\\\n[105000] \\\\nStart evaluation.\\\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\\\nStart training.\\\\n[105000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.4 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.3 / post_ent 33.5 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 13.8 / EMA_095 48.1 / value_mean 25.6 / value_std 10.7 / value_min 13.5 / value_max 65.2 / target_mean 25.6 / target_std 10.8 / target_min 13.1 / target_max 65.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 25099.0 / fps 11.0\\\\n[108000] dataset_size 54000.0 / train_return 106.9 / train_length 500.0 / train_e\\\\n\\\\n... [截断: 输出过长，省略 21607 字符] ...\\\\n\\\\nA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\\\n[208000] dataset_size 104000.0 / train_return 77.5 / train_length 500.0 / train_episodes 208.0\\\\n[208000] dataset_size 104000.0 / train_return 71.7 / train_length 500.0 / train_episodes 208.0\\\\n[208000] dataset_size 104000.0 / train_return 74.0 / train_length 500.0 / train_episodes 208.0\\\\n[208000] dataset_size 104000.0 / train_return 63.3 / train_length 500.0 / train_episodes 208.0\\\\n[212000] dataset_size 106000.0 / train_return 56.0 / train_length 500.0 / train_episodes 212.0\\\\n[212000] dataset_size 106000.0 / train_return 49.7 / train_length 500.0 / train_episodes 212.0\\\\n[212000] dataset_size 106000.0 / train_return 46.1 / train_length 500.0 / train_episodes 212.0\\\\n[212000] dataset_size 106000.0 / train_return 58.9 / train_length 500.0 / train_episodes 212.0\\\\n[215000] \\\\nStart evaluation.\\\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\\\nStart training.\\\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\\\n[216000] dataset_size 108000.0 / train_return 49.7 / train_length 500.0 / train_episodes 216.0\\\\n[216000] dataset_size 108000.0 / train_return 51.4 / train_length 500.0 / train_episodes 216.0\\\\n[216000] dataset_size 108000.0 / train_return 65.6 / train_length 500.0 / train_episodes 216.0\\\\n[216000] dataset_size 108000.0 / train_return 58.5 / train_length 500.0 / train_episodes 216.0\\\\n[220000] dataset_size 110000.0 / train_return 61.2 / train_length 500.0 / train_episodes 220.0\\\\n[220000] dataset_size 110000.0 / train_return 68.7 / train_length 500.0 / train_episodes 220.0\\\\n[220000] dataset_size 110000.0 / train_return 59.1 / train_length 500.0 / train_episodes 220.0\\\\n[220000] dataset_size 110000.0 / train_return 51.0 / train_length 500.0 / train_episodes 220.0\\\\n[224000] dataset_size 112000.0 / train_return 68.0 / train_length 500.0 / train_episodes 224.0\\\\n[224000] dataset_size 112000.0 / train_return 56.7 / train_length 500.0 / train_episodes 224.0\\\\n[224000] dataset_size 112000.0 / train_return 52.3 / train_length 500.0 / train_episodes 224.0\\\\n[224000] dataset_size 112000.0 / train_return 51.2 / train_length 500.0 / train_episodes 224.0\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[92000] dataset_size 46000.0 / train_return 70.8 / train_length 500.0 / train_episodes 92.0\\n[92000] dataset_size 46000.0 / train_return 72.4 / train_length 500.0 / train_episodes 92.0\\n[95000] \\nStart evaluation.\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[95000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.6 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.1 / post_ent 33.4 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 17.3 / EMA_095 51.8 / value_mean 29.5 / value_std 10.6 / value_min 16.9 / value_max 67.7 / target_mean 29.4 / target_std 10.7 / target_min 16.4 / target_max 68.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.2 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 22599.0 / fps 11.0\\n[96000] dataset_size 48000.0 / train_return 76.8 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 97.5 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 48.1 / train_length 500.0 / train_episodes 96.0\\n[96000] dataset_size 48000.0 / train_return 105.9 / train_length 500.0 / train_episodes 96.0\\n[100000] dataset_size 50000.0 / train_return 50.5 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 69.8 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 68.4 / train_length 500.0 / train_episodes 100.0\\n[100000] dataset_size 50000.0 / train_return 104.3 / train_length 500.0 / train_episodes 100.0\\n[104000] dataset_size 52000.0 / train_return 92.5 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 121.3 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 109.1 / train_length 500.0 / train_episodes 104.0\\n[104000] dataset_size 52000.0 / train_return 69.9 / train_length 500.0 / train_episodes 104.0\\n[105000] \\nStart evaluation.\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[105000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 2.2 / model_grad_norm 3.4 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 36.3 / post_ent 33.5 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 13.8 / EMA_095 48.1 / value_mean 25.6 / value_std 10.7 / value_min 13.5 / value_max 65.2 / target_mean 25.6 / target_std 10.8 / target_min 13.1 / target_max 65.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.7 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 25099.0 / fps 11.0\\n[108000] dataset_size 54000.0 / train_return 106.9 / train_length 500.0 / train_e\\n\\n... [截断: 输出过长，省略 21607 字符] ...\\n\\nA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\n[208000] dataset_size 104000.0 / train_return 77.5 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 71.7 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 74.0 / train_length 500.0 / train_episodes 208.0\\n[208000] dataset_size 104000.0 / train_return 63.3 / train_length 500.0 / train_episodes 208.0\\n[212000] dataset_size 106000.0 / train_return 56.0 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 49.7 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 46.1 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 58.9 / train_length 500.0 / train_episodes 212.0\\n[215000] \\nStart evaluation.\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\n[216000] dataset_size 108000.0 / train_return 49.7 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 51.4 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 65.6 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 58.5 / train_length 500.0 / train_episodes 216.0\\n[220000] dataset_size 110000.0 / train_return 61.2 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 68.7 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 59.1 / train_length 500.0 / train_episodes 220.0\\n[220000] dataset_size 110000.0 / train_return 51.0 / train_length 500.0 / train_episodes 220.0\\n[224000] dataset_size 112000.0 / train_return 68.0 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 56.7 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 52.3 / train_length 500.0 / train_episodes 224.0\\n[224000] dataset_size 112000.0 / train_return 51.2 / train_length 500.0 / train_episodes 224.0\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T22:30:36.296Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01DNbwWU6hYy93jFXJhvvPvL`</summary>
+
+```text
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "ca70b378-7efd-4fa9-a197-def78c7021a6",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T22:30:37.004Z_
+
+<details><summary>↩ Tool result · `toolu_01WXQPFHV6Lb6fdPf4b5N9jZ`</summary>
+
+```text
+Error: result (106,243 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/0680b755-23c6-4a74-93c4-ecf25d31eae8/tool-results/mcp-agent-ml-research-read_registry-1779316236958.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/0680b755-23c6-4a74-93c4-ecf25d31eae8/tool-results/mcp-agent-ml-research-read_registry-1779316236958.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "7e634cdd-6108-4cba-b231-88ba2083ecdc",
+  "tool_use_result": {
+    "content": "Error: result (106,243 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/0680b755-23c6-4a74-93c4-ecf25d31eae8/tool-results/mcp-agent-ml-research-read_registry-1779316236958.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/0680b755-23c6-4a74-93c4-ecf25d31eae8/tool-results/mcp-agent-ml-research-read_registry-1779316236958.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_030c_tcn_cheetah_s0_sigma10\": {\"status\": \"ANALYZING\", \"created_at\": \"2026-05-20T16:26:11.800Z\", \"updated_at\": \"2026-05-20T22:28:26.621Z\", \"hypothesis\": \"TCN σ=1.0 on Cheetah tests whether higher noise amplitude further suppresses CIVO. σ=0.5 (exp_030b) was negative with NVE peaking at 10.67@55K then declining. σ=1.0 should provide stronger temporal regularization. If NVE stays below 1.5 throughout training and eval_return ≥ baseline → TCN generalizes to Cheetah with appropriate σ scaling.\", \"parent\": \"\", \"metrics\": {\"step\": 172000, \"eval_return_5K\": 8, \"eval_return_15K\": 88, \"eval_return_25K\": 166, \"eval_return_35K\": 372, \"eval_return_45K\": 144, \"eval_return_55K\": 266, \"eval_return_65K\": 197, \"eval_return_75K\": 108, \"eval_return_85K\": 96, \"eval_return_95K\": 73, \"eval_return_105K\": 123, \"eval_return_115K\": 162.2, \"eval_peak\": 372, \"eval_peak_step\": 35000, \"ve_ratio_latest\": 0.115, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_116K\": 95, \"eval_return_125K\": null, \"eval_return_165K\": 130.9}}, \"exp_029c_tcn_walker_s0_sigma01\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T11:09:50.913Z\", \"updated_at\": \"2026-05-20T19:53:26.097Z\", \"hypothesis\": \"σ=0.1 tests the lower bound of effective TCN noise; if Walker σ=0.2 prevents CIVO and σ=0.1 does not, establishes minimum effective dose. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8). Three-point dose-response: σ=0.1 (this), σ=0.2 (success), σ=0.5 (oscillatory failure).\", \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 99.1, \"eval_return_25K\": 140.7, \"eval_return_35K\": 155.7, \"eval_return_45K\": 160.9, \"eval_return_55K\": 254.8, \"eval_return_65K\": 268.7, \"eval_return_75K\": 295.5, \"eval_return_85K\": 220.8, \"eval_return_95K\": 188.6, \"eval_return_105K\": 204.7, \"eval_return_115K\": 296.4, \"eval_return_125K\": 232.3, \"eval_return_135K\": 247.4, \"eval_return_145K\": 323.1, \"eval_return_155K\": 359.7, \"eval_return_165K\": 490.7, \"eval_return_175K\": 246.2, \"eval_return_185K\": 220.6, \"eval_return_195K\": 212.8, \"eval_return_205K\": 256.9, \"eval_return_215K\": 328.3, \"ve_ratio_15K\": 0.0306, \"ve_ratio_25K\": 0.1606, \"ve_ratio_35K\": 0.3162, \"ve_ratio_45K\": 0.4807, \"ve_ratio_55K\": 0.4368, \"ve_ratio_65K\": 0.5432, \"ve_ratio_75K\": 0.6211, \"ve_ratio_85K\": 0.9533, \"ve_ratio_95K\": 1.0218, \"ve_ratio_105K\": 0.761, \"ve_ratio_115K\": 0.4514, \"ve_ratio_125K\": 0.4899, \"ve_ratio_135K\": 0.3995, \"ve_ratio_145K\": 0.2667, \"ve_ratio_155K\": 0.2, \"ve_ratio_165K\": 0.1, \"ve_ratio_175K\": 0.3, \"ve_ratio_185K\": 0.3, \"ve_ratio_195K\": 0.3, \"ve_ratio_205K\": 0.2, \"ve_ratio_215K\": 0.1, \"eval_peak\": 490.7, \"eval_peak_step\": \"165K\", \"eval_final\": 328.3, \"nve_max\": 1.0218, \"nve_max_step\": \"95K\", \"nve_final\": 0.1, \"total_steps\": 224000}, \"conclusion\": \"negative\"}, \"exp_031b_tcn_pickcube_s0_sigma05\": {\"status\": \"QUEUED\", \"created_at\": \"2026-05-20T19:46:39.136363+00:00\", \"updated_at\": \"2026-05-20T19:46:39.136405+00:00\", \"hypothesis\": \"PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, establishes dose-response curve for robotics manipulation domain.\", \"parent\": \"exp_031_tcn_pickcube_s0_sigma02\", \"metrics\": {}}, \"exp_029d_tcn_walker_s3_sigma02\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T19:33:03.633Z\", \"updated_at\": \"2026-05-20T19:33:48.441Z\", \"hypothesis\": \"Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 2021.\", \"parent\": \"exp_029b_tcn_walker_s2_sigma02\", \"metrics\": {\"step\": 36000, \"eval_return_5K\": 31.7, \"eval_return_15K\": 159.1, \"eval_return_25K\": 155.7, \"eval_return_35K\": 190.8, \"ve_ratio_15K\": 0.021, \"ve_ratio_25K\": 0.171, \"ve_ratio_35K\": 0.312, \"value_mean_35K\": 59.6}}, \"exp_029b_tcn_walker_s2_sigma02\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T16:55:13.731Z\", \"updated_at\": \"2026-05-20T16:56:25.130Z\", \"hypothesis\": \"TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.\", \"parent\": \"exp_029a_tcn_walker_s1_sigma02\", \"metrics\": {\"step\": 108000, \"eval_return_5K\": 30.5, \"eval_return_15K\": 168.4, \"eval_return_25K\": 159.6, \"eval_return_35K\": 168.1, \"eval_return_45K\": 171.5, \"eval_return_55K\": 177.7, \"eval_return_65K\": 106.6, \"eval_return_75K\": 64.0, \"eval_return_85K\": 62.8, \"eval_return_95K\": 44.7, \"eval_return_105K\": 32.0, \"eval_peak\": 177.7, \"eval_peak_step\": 55000, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.174, \"ve_ratio_35K\": 0.335, \"ve_ratio_45K\": 0.477, \"ve_ratio_55K\": 0.583, \"ve_ratio_65K\": 1.014, \"ve_ratio_75K\": 1.65, \"ve_ratio_85K\": 1.623, \"ve_ratio_95K\": 2.109, \"ve_ratio_105K\": 2.765, \"value_mean_105K\": 88.4, \"civo_onset_step\": 65000, \"civo_pattern\": \"acceleration (1.01→1.65→1.62→2.11→2.77)\"}}, \"exp_029a_tcn_walker_s1_sigma02\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T08:31:29.514Z\", \"updated_at\": \"2026-05-20T16:53:36.867Z\", \"hypothesis\": \"TCN σ=0.2 multi-seed validation (seed=1): replication of exp_027_tcn_walker_s0_sigma02 which shows NVE<1.0× and eval reaching baseline at 135K. Tests whether CIVO suppression is reproducible across seeds. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.2. If s1 also shows NVE<1.0× → TCN σ=0.2 is a robust intervention.\", \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"metrics\": {\"eval_return_5K\": 36.7, \"eval_return_15K\": 137.7, \"eval_return_25K\": 180.9, \"eval_return_35K\": 124, \"eval_return_45K\": 124.2, \"eval_return_55K\": 133.9, \"eval_return_65K\": 169.7, \"eval_return_75K\": 171.2, \"eval_return_85K\": 151.8, \"eval_return_95K\": 180.3, \"eval_return_105K\": 319.4, \"eval_return_115K\": 345.5, \"eval_return_125K\": 401, \"eval_return_135K\": 307.8, \"eval_return_145K\": 380.8, \"eval_return_155K\": 307.3, \"eval_return_165K\": 320.3, \"eval_return_175K\": 159, \"eval_return_185K\": 278.2, \"eval_return_195K\": 301.2, \"eval_return_205K\": 204.6, \"eval_return_215K\": 161.3, \"ve_ratio_15K\": 0.0248, \"ve_ratio_25K\": 0.1165, \"ve_ratio_35K\": 0.3574, \"ve_ratio_45K\": 0.5147, \"ve_ratio_55K\": 0.6428, \"ve_ratio_65K\": 0.4777, \"ve_ratio_75K\": 0.398, \"ve_ratio_85K\": 0.4033, \"ve_ratio_95K\": 0.3007, \"ve_ratio_105K\": 0.1554, \"ve_ratio_115K\": 0.1348, \"ve_ratio_125K\": 0.116, \"ve_ratio_135K\": 0.1449, \"ve_ratio_145K\": 0.1088, \"ve_ratio_155K\": 0.1287, \"ve_ratio_165K\": 0.1142, \"ve_ratio_175K\": 0.2138, \"ve_ratio_185K\": 0.121, \"ve_ratio_195K\": 0.1075, \"ve_ratio_205K\": 0.1503, \"ve_ratio_215K\": 0.1864, \"eval_peak\": 401, \"eval_peak_step\": \"125K\", \"nve_max\": 0.6428, \"nve_max_step\": \"55K\", \"nve_final\": 0.1864, \"current_step\": 215000, \"target_steps\": 210000, \"eval_last10_mean\": 282.15}, \"conclusion\": \"success\", \"notes\": \"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\"}, \"exp_031_tcn_pickcube_s0_sigma02\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-20T12:09:56.923Z\", \"updated_at\": \"2026-05-20T16:52:26.158Z\", \"hypothesis\": \"TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfitting to fixed dt signals.\", \"parent\": \"exp_019b_pickcube_civo_trigger\", \"metrics\": {\"step\": 158000, \"eval_return_132K\": 23.45, \"eval_peak\": 23.5, \"eval_peak_step\": 132500, \"ve_ratio_peak\": 3.71, \"ve_ratio_latest\": 0.18, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_range\": \"18-25\", \"eval_return_152K\": 23.1}}, \"exp_030b_tcn_cheetah_s0_sigma05\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T11:07:53.975Z\", \"updated_at\": \"2026-05-20T16:49:02.778Z\", \"hypothesis\": \"Cheetah CIVO intensity requires higher TCN noise; σ=0.5 may be the environment-appropriate dose (Walker σ=0.5 = overdose causing oscillatory CIVO, Cheetah σ=0.2 = underdose with NVE 1.903@55K). Tests whether TCN effectiveness is environment-dependent with σ scaling to CIVO severity. If NVE<1.5× and eval maintained → TCN is generalizable with environment-tuned σ.\", \"parent\": \"\", \"metrics\": {\"eval_return_5K\": 8.3, \"eval_return_15K\": 78.3, \"eval_return_25K\": 219.3, \"eval_return_35K\": 296.5, \"eval_return_45K\": 32.8, \"eval_return_55K\": 6, \"eval_return_65K\": 71.2, \"eval_return_75K\": 23.3, \"eval_return_85K\": 34, \"eval_return_95K\": 143.6, \"eval_return_105K\": 104.4, \"eval_return_115K\": 137.7, \"eval_return_125K\": 211.7, \"eval_return_135K\": 97.2, \"eval_return_145K\": 79.4, \"eval_return_155K\": 76.8, \"eval_return_165K\": 77.5, \"eval_return_175K\": 85.7, \"eval_return_185K\": 68.7, \"eval_return_195K\": 77.6, \"ve_ratio_15K\": 0.0202, \"ve_ratio_25K\": 0.0636, \"ve_ratio_35K\": 0.1238, \"ve_ratio_45K\": 1.9141, \"ve_ratio_55K\": 10.6657, \"ve_ratio_65K\": 0.8371, \"ve_ratio_75K\": 1.9823, \"ve_ratio_85K\": 1.0946, \"ve_ratio_95K\": 0.2253, \"ve_ratio_105K\": 0.2686, \"ve_ratio_115K\": 0.1789, \"ve_ratio_125K\": 0.1037, \"ve_ratio_135K\": 0.2153, \"ve_ratio_145K\": 0.2478, \"ve_ratio_155K\": 0.2392, \"ve_ratio_165K\": 0.202, \"ve_ratio_175K\": 0.1591, \"ve_ratio_185K\": 0.1834, \"ve_ratio_195K\": 0.1534, \"nve_max\": 10.6657, \"nve_max_step\": \"55K\", \"nve_final\": 0.1534, \"current_step\": 195000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T05:51:53.479Z\", \"updated_at\": \"2026-05-20T12:45:31.028Z\", \"hypothesis\": \"TCN σ=0.5 seed=1: Replication of exp_027_tcn_walker_s0 with different seed to verify that the NVE self-correction phenomenon (transient CIVO at 55K → NVE recovery to 0.83 by 75K) is reproducible across seeds, not a stochastic artifact. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.5.\", \"parent\": \"exp_027_tcn_walker_s0\", \"metrics\": {\"total_steps\": 215000, \"eval_return\": {\"5000\": 31, \"15000\": 140.5, \"25000\": 163.6, \"35000\": 153, \"45000\": 136.8, \"55000\": 158.3, \"65000\": 298.5, \"75000\": 364.9, \"85000\": 134, \"95000\": 94.6, \"105000\": 216.7, \"115000\": 318.9, \"125000\": 309.1, \"135000\": 216.1, \"145000\": 175.4, \"155000\": 171, \"165000\": 209.5, \"175000\": 120.4, \"185000\": 355.4, \"195000\": 183.3, \"205000\": 240.2, \"215000\": 350.8}, \"ve_ratio\": {\"15000\": 0.0246, \"25000\": 0.1416, \"35000\": 0.3585, \"45000\": 0.6101, \"55000\": 0.7092, \"65000\": 0.4875, \"75000\": 0.4902, \"85000\": 1.4104, \"95000\": 1.6367, \"105000\": 0.6444, \"115000\": 0.4021, \"125000\": 0.38, \"135000\": 0.5078, \"145000\": 0.8469, \"155000\": 0.8568, \"165000\": 0.5393, \"175000\": 0.7355, \"185000\": 0.211, \"195000\": 0.3513, \"205000\": 0.2376, \"215000\": 0.1476}, \"eval_peak\": 364.9, \"eval_peak_step\": 75000, \"eval_last10_mean\": 233.1, \"nve_max\": 1.6367, \"nve_max_step\": 95000, \"nve_final\": 0.1476}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0_sigma02\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:25:32.533Z\", \"updated_at\": \"2026-05-20T12:06:21.855Z\", \"hypothesis\": \"TCN σ sensitivity test: same as exp_027 (Gaussian noise on dt_embedding during imagination) but with σ=0.2 instead of 0.5. Tests whether smaller noise magnitude is sufficient to disrupt dt-specific value bias. If σ=0.5 works but σ=0.2 doesn't → noise magnitude matters; if both work → method is robust to σ choice.\", \"parent\": \"exp_027_tcn_walker_s0\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 150.6, \"eval_return_25K\": 199.4, \"eval_return_35K\": 278.2, \"eval_return_45K\": 315.6, \"eval_return_55K\": 278.6, \"eval_return_65K\": 331, \"eval_return_75K\": 293.1, \"eval_return_85K\": 363.9, \"eval_return_95K\": 171.4, \"eval_return_105K\": 236.4, \"eval_return_115K\": 543.8, \"eval_return_125K\": 458.4, \"eval_return_135K\": 496.7, \"eval_return_145K\": 542.7, \"eval_return_155K\": 660.5, \"eval_return_165K\": 653.3, \"eval_return_175K\": 821.1, \"eval_return_185K\": 560.5, \"eval_return_195K\": 567.9, \"eval_return_205K\": 558.7, \"eval_return_215K\": 551, \"ve_ratio_15K\": 0.0192, \"ve_ratio_25K\": 0.0961, \"ve_ratio_35K\": 0.1875, \"ve_ratio_45K\": 0.3009, \"ve_ratio_55K\": 0.5231, \"ve_ratio_65K\": 0.5654, \"ve_ratio_75K\": 0.611, \"ve_ratio_85K\": 0.4665, \"ve_ratio_95K\": 0.9081, \"ve_ratio_105K\": 0.5625, \"ve_ratio_115K\": 0.2105, \"ve_ratio_125K\": 0.2182, \"ve_ratio_135K\": 0.1764, \"ve_ratio_145K\": 0.143, \"ve_ratio_155K\": 0.106, \"ve_ratio_165K\": 0.0979, \"ve_ratio_175K\": 0.0729, \"ve_ratio_185K\": 0.1048, \"ve_ratio_195K\": 0.1026, \"ve_ratio_205K\": 0.0995, \"ve_ratio_215K\": 0.0955, \"eval_peak\": 821.1, \"eval_peak_step\": \"175K\", \"eval_last10_mean\": 587.1, \"nve_max\": 0.9081, \"nve_max_step\": \"95K\", \"nve_final\": 0.0955, \"total_steps\": 215000}, \"conclusion\": \"success\"}, \"exp_030a_tcn_cheetah_s0_sigma02\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T09:24:38.711Z\", \"updated_at\": \"2026-05-20T11:10:00.827Z\", \"hypothesis\": \"TCN σ=0.2 cross-environment validation on Cheetah Run: tests whether CIVO suppression generalizes beyond Walker Walk. Cheetah exhibits stronger CIVO (NVE 8.27-70.64× in exp_010b) so this is a harder test. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) + TCN σ=0.2. If NVE<1.5× and eval maintained → TCN is environment-agnostic intervention.\", \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"metrics\": {\"eval_return_35K\": 299.5, \"eval_return_55K\": 31.9, \"ve_ratio_55K\": 1.903, \"current_step\": 64000, \"target_steps\": 210000, \"note\": \"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\"}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T02:44:51.820Z\", \"updated_at\": \"2026-05-20T09:24:09.016Z\", \"hypothesis\": \"Temporal Conditioning Noise (TCN): adding Gaussian noise (sigma=0.5) to dt_embedding during imagination rollouts reduces dt conditioning precision, preventing critic from learning dt-specific value bias. Predicts CIVO suppression (NVE < 1.5×) with eval > 50% baseline (~450+). Based on obs-decoder SGS failure (gradient-level intervention insufficient) → need forward-pass/representation-level intervention.\", \"parent\": \"exp_025_obs_sgs_walker_s1\", \"metrics\": {\"eval_return_5K\": 37.4, \"eval_return_15K\": 154.6, \"eval_return_25K\": 223.6, \"eval_return_35K\": 240, \"eval_return_45K\": 101.2, \"eval_return_55K\": 70, \"eval_return_65K\": 95.1, \"eval_return_75K\": 189.2, \"eval_return_85K\": 36, \"eval_return_95K\": 166.4, \"eval_return_105K\": 95.5, \"eval_return_112K\": 99.5, \"ve_ratio_15K\": 0.02, \"ve_ratio_25K\": 0.11, \"ve_ratio_35K\": 0.235, \"ve_ratio_45K\": 0.86, \"ve_ratio_55K\": 1.679, \"ve_ratio_65K\": 1.544, \"ve_ratio_75K\": 0.831, \"ve_ratio_85K\": 3.965, \"ve_ratio_95K\": 0.675, \"ve_ratio_105K\": 0.916, \"peak_eval\": 240, \"peak_eval_step\": \"35K\", \"peak_nve\": 3.965, \"peak_nve_step\": \"85K\", \"last_5_eval_avg\": 117.3, \"nve_breach_count\": 3, \"nve_breach_steps\": \"55K(1.68), 65K(1.54), 85K(3.97)\", \"final_step\": 120000, \"target_steps\": 210000, \"gate_dt_mean\": 2, \"gate_dt_entropy\": 0}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0_ceil15\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T03:25:34.045Z\", \"updated_at\": \"2026-05-20T08:31:12.389Z\", \"hypothesis\": \"RAVE ceiling sensitivity test: same as exp_028 (EMA-anchored value cap) but with ceiling=1.5 instead of 2.0. Tighter constraint tests whether more aggressive capping improves CIVO suppression without harming learning. If ceiling=2.0 works and 1.5 also works → method robust; if 1.5 hurts eval → ceiling choice is critical.\", \"parent\": \"exp_028_rave_walker_s0\", \"metrics\": {\"eval_return_5K\": 31.6, \"eval_return_15K\": 99.4, \"eval_return_25K\": 155.3, \"eval_return_35K\": 180.1, \"eval_return_45K\": 166.9, \"eval_return_55K\": 131, \"eval_return_65K\": 91.5, \"eval_return_75K\": 120.9, \"eval_return_85K\": 137.3, \"eval_return_95K\": 70.2, \"eval_return_105K\": 76.2, \"eval_return_115K\": 41.2, \"eval_return_125K\": 36.6, \"eval_return_135K\": 39.1, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.128, \"ve_ratio_35K\": 0.247, \"ve_ratio_45K\": 0.428, \"ve_ratio_55K\": 0.737, \"ve_ratio_65K\": 1.294, \"ve_ratio_75K\": 0.937, \"ve_ratio_85K\": 0.727, \"ve_ratio_95K\": 1.28, \"ve_ratio_105K\": 0.984, \"ve_ratio_115K\": 1.513, \"ve_ratio_125K\": 1.462, \"ve_ratio_135K\": 1.171, \"current_step\": 135000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T02:44:53.882Z\", \"updated_at\": \"2026-05-20T06:14:31.720Z\", \"hypothesis\": \"Reality-Anchored Value Estimation (RAVE): cap imagination critic values at ceiling*v_anchor (ceiling=2.0, v_anchor=EMA of real-state critic values). Directly prevents pathological value inflation (NVE>1.5×) by bounding imagination/reality value ratio. Based on CIVO core mechanism being imagination value explosion → this directly caps the ratio without modifying gradients or training dynamics.\", \"parent\": \"exp_025_obs_sgs_walker_s1\", \"metrics\": {\"current_steps\": 105000, \"eval_trajectory\": {\"5K\": {\"eval_return\": 37.4, \"value_mean\": 0.001}, \"15K\": {\"eval_return\": 105.3, \"ve_ratio\": 0.028, \"value_mean\": 2.93}, \"25K\": {\"eval_return\": 191.9, \"ve_ratio\": 0.127, \"value_mean\": 24.4}, \"35K\": {\"eval_return\": 204.6, \"ve_ratio\": 0.267}, \"45K\": {\"eval_return\": 197.7, \"ve_ratio\": 0.439}, \"55K\": {\"eval_return\": 193, \"ve_ratio\": 0.62}, \"65K\": {\"eval_return\": 79.8, \"ve_ratio\": 1.832}, \"75K\": {\"eval_return\": 44.5, \"ve_ratio\": 3.415}, \"85K\": {\"eval_return\": 57.7, \"ve_ratio\": 2.126}, \"95K\": {\"eval_return\": 25.9, \"ve_ratio\": 4.086, \"value_mean\": 105.87}, \"105K\": {\"eval_return\": 29, \"ve_ratio\": 3.183, \"value_mean\": 92.2}}, \"note\": \"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\"}, \"conclusion\": \"negative\"}, \"exp_025_obs_sgs_walker_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:39:26.941Z\", \"updated_at\": \"2026-05-20T03:17:26.061Z\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_215K\": 89.6, \"ve_ratio_215K\": 0.8, \"ve_ratio_185K\": 1.4, \"ve_ratio_175K\": 1.2, \"train_steps_completed\": 224000, \"target_steps\": 210000}, \"notes\": \"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\"}, \"exp_026_obs_sgs_cheetah_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T20:19:29.171Z\", \"updated_at\": \"2026-05-20T03:02:46.556Z\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"conclusion\": \"failed\"}, \"exp_026_obs_sgs_cheetah_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T20:19:27.608Z\", \"updated_at\": \"2026-05-20T03:02:43.170Z\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger_s0\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:39:29.810Z\", \"updated_at\": \"2026-05-20T03:02:39.948Z\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:39:28.402Z\", \"updated_at\": \"2026-05-20T03:02:36.670Z\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:39:25.583Z\", \"updated_at\": \"2026-05-20T03:02:32.583Z\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"conclusion\": \"failed\"}, \"exp_001_baseline_s4_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:02:31.737Z\", \"updated_at\": \"2026-05-19T23:06:42.122Z\", \"hypothesis\": \"Walker Walk baseline seed=4 extended to 505K. Third long-run baseline seed for multi-seed NVE normalization. s4@105K=922.8 (highest), obtaining full ve_ratio profile.\", \"parent\": \"exp_001_baseline_s4\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 938.86, \"peak_eval_return\": 960.6, \"convergence_mean_250k_plus\": 935}}, \"exp_001_baseline_s3_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T09:02:30.382Z\", \"updated_at\": \"2026-05-19T21:23:44.025Z\", \"hypothesis\": \"Walker Walk baseline seed=3 extended to 505K. Second long-run baseline seed (alongside s2_ext) for multi-seed NVE normalization robustness. s3@105K=869.0, testing convergence to 920+ level.\", \"parent\": \"exp_001_baseline_s3\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 947.68, \"final_train_return_avg\": 945.4, \"eval_profile\": {\"5000\": 42.15, \"15000\": 224.27, \"25000\": 329.99, \"35000\": 413.12, \"45000\": 332.69, \"55000\": 519.91, \"65000\": 667.42, \"72000\": 771.33, \"82000\": 772.88, \"92000\": 854.6, \"102000\": 869.03, \"112000\": 898.89, \"120000\": 898.38, \"130000\": 837.74, \"140000\": 876.64, \"150000\": 899.47, \"160000\": 922.77, \"170000\": 925.77, \"180000\": 912.89, \"190000\": 915.07, \"200000\": 894.77, \"210000\": 899.79, \"220000\": 951.18, \"230000\": 930.56, \"240000\": 910.47, \"250000\": 914.02, \"260000\": 931.33, \"270000\": 954.65, \"280000\": 928.01, \"290000\": 947.4, \"300000\": 853.32, \"310000\": 906.35, \"320000\": 847.16, \"330000\": 934.78, \"340000\": 921.08, \"350000\": 922.63, \"360000\": 844.99, \"370000\": 911.36, \"380000\": 917.73, \"390000\": 937.21, \"400000\": 928, \"410000\": 945.88, \"420000\": 897.2, \"430000\": 949.45, \"440000\": 937.28, \"450000\": 924.24, \"460000\": 967.25, \"470000\": 940.55, \"480000\": 936.24, \"490000\": 944.67, \"500000\": 957.09, \"510000\": 947.68}}}, \"exp_001_baseline_s2_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:10:10.948Z\", \"updated_at\": \"2026-05-19T17:44:27.212Z\", \"hypothesis\": \"Walker Walk baseline seed=2 extended to 505K. Tests whether low eval (443.5 @105K) is due to slow convergence or seed-level difference. s1=915.7, s3=869.0 at 105K.\", \"parent\": \"exp_001_baseline_s2\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 945.7, \"eval_return_peak\": 962.6, \"eval_return_at_105K\": 443.5, \"ve_ratio_at_105K\": 0.7422, \"value_mean_at_105K\": 329.16, \"ve_ratio_converged_range\": \"0.69-0.77\", \"value_mean_plateau\": 665, \"total_steps\": 512000}}, \"exp_023_cheetah_baseline_s4_extended\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T06:27:42.161Z\", \"updated_at\": \"2026-05-19T09:02:40.466Z\", \"hypothesis\": \"Cheetah Run baseline seed=4 extended to 300K. Tests whether eval drop at 194K→204K (537→302) is transient fluctuation or permanent collapse. Informs baseline stability and NVE normalization robustness.\", \"parent\": \"exp_023_cheetah_baseline_s4\", \"conclusion\": \"success\", \"metrics\": {\"note\": \"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\", \"eval_peak_ext\": 642.3, \"eval_peak_ext_step\": 272000, \"eval_302k\": 580}}, \"exp_001_baseline_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:47:01.105Z\", \"updated_at\": \"2026-05-19T09:00:10.632Z\", \"hypothesis\": \"Walker Walk baseline seed=4. Fourth seed for 4-seed baseline CI. Tests whether s2 (443.5) is outlier or bimodal distribution (s1=915.7, s3=869.0).\", \"parent\": \"exp_001_baseline\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 922.8, \"peak_eval\": 922.8, \"peak_eval_step\": 105000, \"value_mean_final\": 576.1, \"ve_ratio_105k\": 0.624}}, \"exp_023_cheetah_baseline_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:54:02.288Z\", \"updated_at\": \"2026-05-19T06:26:03.295Z\", \"hypothesis\": \"Cheetah Run baseline seed=4. Fourth seed for tighter eval return CI and NVE normalization robustness.\", \"parent\": \"exp_023a_cheetah_baseline_s0\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 212000, \"target_steps\": 200000, \"eval_return_194k\": 537.03, \"eval_return_204k\": 301.69, \"peak_eval\": 537.03, \"peak_eval_step\": 194000, \"value_mean_204k\": 339.14, \"ve_ratio_204k\": 1.124, \"note\": \"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\"}}, \"exp_023_cheetah_baseline_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T21:49:33.229Z\", \"updated_at\": \"2026-05-19T04:08:47.459Z\", \"hypothesis\": \"Cheetah Run baseline seed=3. Extends 023a/023b/023_s2 (3 seeds) to 4 seeds for tighter eval return CI.\", \"parent\": \"exp_023a_cheetah_baseline_s0\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 204000, \"target_steps\": 200000, \"eval_return_202k\": 642.13, \"peak_eval\": 685.93, \"peak_eval_step\": 172000, \"value_mean_final\": 445.42, \"ve_ratio_final\": 0.694}}, \"exp_001_baseline_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T23:54:03.635Z\", \"updated_at\": \"2026-05-19T04:08:45.989Z\", \"hypothesis\": \"Walker Walk baseline seed=3. Third seed for tighter baseline eval CI.\", \"parent\": \"exp_001_baseline\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 120000, \"target_steps\": 105000, \"eval_return_102k\": 869.03, \"peak_eval\": 898.89, \"peak_eval_step\": 112000, \"value_mean_final\": 622.2, \"ve_ratio_final\": 0.692}}, \"exp_023_cheetah_baseline_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:05:14.249Z\", \"updated_at\": \"2026-05-19T00:13:55.909Z\", \"hypothesis\": \"Cheetah Run baseline additional seed for tighter CI. Extends 023a/023b (2 seeds) to 3 seeds.\", \"parent\": \"exp_023a_cheetah_baseline_s0\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 205000, \"target_steps\": 200000, \"eval_return_final\": 645.4, \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\"}}, \"exp_008f_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T18:41:00.894Z\", \"updated_at\": \"2026-05-18T23:18:51.672Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=4. Additional independent seed for 008f control (existing seeds: 1/008f, 2/009c, 3/008f_s3). C2 causal contrast robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_105k\": 306.5, \"peak_eval\": 487.5, \"peak_eval_step\": 55000, \"peak_nve\": 1.41, \"peak_nve_step\": 85000, \"nve_105k\": 0.58, \"civo_alert\": 0, \"note\": \"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\"}}, \"exp_009c_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T17:12:00.539Z\", \"updated_at\": \"2026-05-18T21:40:10.762Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=3. Additional seed for 009c (seed=2 NVE 1.14x at 105K on upward trajectory); tests whether NVE rise is reproducible across independent seeds or stochastic.\", \"parent\": \"exp_009c_008f_walker_s2\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 108000, \"target_steps\": 105000, \"eval_return_105k\": 311.92, \"value_mean_105k\": 120.27, \"ve_ratio_105k\": 0.386, \"nve_105k\": 0.52, \"note\": \"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\"}}, \"exp_001_baseline_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:05:17.571Z\", \"updated_at\": \"2026-05-18T21:40:09.329Z\", \"hypothesis\": \"Walker Walk baseline additional seed for tighter evaluation return CI.\", \"parent\": \"exp_001_baseline\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 443.46, \"value_mean_105k\": 329.16, \"ve_ratio_105k\": 0.742}}, \"exp_008f_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:05:16.527Z\", \"updated_at\": \"2026-05-18T18:41:05.369Z\", \"hypothesis\": \"No-dt-emb control additional seed. Extends 008f (1 seed, NVE 0.97x) for C2 causal contrast robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"conclusion\": \"killed\"}, \"exp_008a_cheetah_unexposed_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:23:13.377Z\", \"updated_at\": \"2026-05-18T18:20:00.278Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=1. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"parent\": \"exp_008a_no_subsample_dt2\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 504.38, \"value_mean_105k\": 156.97, \"ve_ratio_105k\": 0.3112, \"nve_105k\": 0.478}}, \"exp_008a_cheetah_unexposed_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T14:23:12.052Z\", \"updated_at\": \"2026-05-18T18:19:58.491Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=0. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"parent\": \"exp_008a_no_subsample_dt2\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 532.35, \"value_mean_105k\": 169.98, \"ve_ratio_105k\": 0.3193, \"nve_105k\": 0.49}}, \"exp_009c_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:05:19.850Z\", \"updated_at\": \"2026-05-18T17:12:05.307Z\", \"hypothesis\": \"No-dt-emb H=15 additional seed. 009c seed=2 showed NVE 1.14x at 105K on upward trajectory; additional seed tests if this is reproducible or stochastic.\", \"parent\": \"exp_009c_008f_walker_s2\", \"conclusion\": \"killed\"}, \"exp_008e_v3_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:54:56.392Z\", \"updated_at\": \"2026-05-18T11:48:45.880Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"conclusion\": \"success\", \"metrics\": {\"eval_return\": 899.3, \"nve_peak\": 0.99, \"nve_peak_step\": 95000, \"ve_ratio_105k\": 0.609, \"civo\": false, \"nve_note\": \"Corrected: was 0.61 (raw V/E ratio). Correct formula: max(V/E_exp / V/E_baseline_at_same_step) over [35K+]. 0.627/0.632=0.99 at 95K\"}}, \"exp_008e_v3_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:54:54.691Z\", \"updated_at\": \"2026-05-18T11:48:43.665Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=3. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return\": 92.7, \"peak_eval\": 520.4, \"peak_step\": 85000, \"nve_peak\": 4.02, \"nve_peak_step\": 105000, \"ve_ratio_105k\": 2.635, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"collapse_onset\": \"85K-95K\", \"actor_entropy_final\": -4.892, \"nve_note\": \"Corrected: was 5.00 (worker used wrong baseline). Correct formula: V/E_exp / V/E_baseline_at_same_step. 2.635/0.656=4.02\"}}, \"exp_008a_unexposed_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:13:56.020Z\", \"updated_at\": \"2026-05-18T08:16:42.716Z\", \"hypothesis\": \"Walker Walk unexposed trained dt_emb + subsample OFF (gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15 (default), seed=1. 直接复现 008a_no_subsample_dt2 配置（eval=778, V-recovery, no CIVO）。C3 reproducibility rebuttal 储备。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"metrics\": {\"eval_return_5k\": 31, \"eval_return_15k\": 167.12, \"eval_return_25k\": 139.94, \"eval_return_35k\": 394.15, \"eval_return_45k\": 414.32, \"eval_return_55k\": 441.48, \"eval_return_65k\": 491.74, \"eval_return_75k\": 452.34, \"eval_return_85k\": 546.82, \"eval_return_95k\": 628.57, \"eval_return_final\": 630.91, \"value_mean_final\": 271.36, \"target_mean_final\": 272.13, \"civo_ve_ratio_final\": 0.43, \"civo_delta_ve_final\": -0.0028, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"total_steps\": 105000}, \"conclusion\": \"success\"}, \"exp_008a_unexposed_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:13:57.340Z\", \"updated_at\": \"2026-05-18T08:10:17.263Z\", \"hypothesis\": \"Walker Walk unexposed trained dt_emb + subsample OFF (gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15 (default), seed=2. 008a 新 seed 验证 protection 是否 reproducible。C3 rebuttal 储备。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 899.4, \"eval_return_95k\": 819.4, \"eval_return_85k\": 605.4, \"eval_return_75k\": 534.4, \"eval_return_65k\": 653.8, \"eval_return_55k\": 607.5, \"civo_ve_ratio_final\": 0.333, \"civo_delta_ve_final\": -0.003, \"civo_alert\": 0, \"value_mean_final\": 299.4, \"target_mean_final\": 300.3, \"total_steps\": 105000, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008d_civo_trigger_s4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:02:43.972Z\", \"updated_at\": \"2026-05-18T05:17:45.132Z\", \"hypothesis\": \"Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。\", \"parent\": \"exp_008d_civo_trigger_s3\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 112000, \"target_step\": 105000, \"eval_return_trajectory\": {\"5K\": 30.9, \"15K\": 171.4, \"25K\": 189.5, \"35K\": 153.8, \"45K\": 158.2, \"55K\": 229.3, \"65K\": 333.6, \"75K\": 302.4, \"85K\": 383.3, \"95K\": 240.3, \"105K\": 63.6}, \"peak_eval_return\": 383.3, \"peak_eval_step\": 85000, \"final_eval_return_105K\": 63.6, \"ve_ratio_105K\": 3.03, \"civo_alert_105K\": 1, \"delta_ve_105K\": 2.05, \"value_mean_105K\": 192.65, \"value_mean_95K\": 235.42, \"civo_confirmed\": true, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008a_untrained_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:54:51.398Z\", \"updated_at\": \"2026-05-18T05:13:30.000Z\", \"hypothesis\": \"(cancelled) 原为 015b 模板 frozen dt_emb 多 seed，Director 修正为 008a unexposed 模板\", \"parent\": \"exp_015b_frozen_dt_emb\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：C3 rebuttal 应复现 008a (unexposed trained dt_emb, subsample OFF) 而非 015b (frozen)。替换为 exp_008a_unexposed_s1/s2。\"}, \"exp_008a_untrained_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:54:53.011Z\", \"updated_at\": \"2026-05-18T05:13:30.000Z\", \"hypothesis\": \"(cancelled) 原为 015b 模板 frozen dt_emb 多 seed，Director 修正为 008a unexposed 模板\", \"parent\": \"exp_015b_frozen_dt_emb\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：同上。\"}, \"exp_010b_cheetah_civo_trigger_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T02:02:47.702Z\", \"updated_at\": \"2026-05-18T05:11:15.900Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=0: trained dt_emb + subsample ON + H=8. 第二 seed 复现 Cheetah CIVO (NVE>1.5×)，加强跨环境因果论证统计力度。Rebuttal 储备。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_peak\": 247.77, \"eval_return_peak_step\": \"35K\", \"eval_return_105K\": 0.83, \"nve_95K\": 6.34, \"nve_105K\": 70.64, \"civo\": true, \"civo_onset_step\": \"65K\", \"detector_alert_step\": \"95K\", \"gate_dt_mean\": 2, \"gate_entropy\": 0}}, \"exp_024b_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T22:50:34.104Z\", \"updated_at\": \"2026-05-18T02:00:17.832Z\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"metrics\": {\"eval_return_final\": 96.5, \"civo\": false, \"nve_peak\": 0.2}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak <0.2×). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. eval 96.5 = 17.6% of baseline (548.3). Cheetah causal triangle seed 1 complete. Director confirmed results in D089.\"}, \"exp_024b_cheetah_no_dt_emb_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T22:51:53.604Z\", \"updated_at\": \"2026-05-18T01:56:17.025Z\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control seed=1: gate_dt_embed_dim=0 + subsample ON + H=8. 第二 seed 验证 024 的结论（trained dt_emb 是 Cheetah CIVO 必要条件），加强因果三角的统计力度。\", \"parent\": \"exp_024_cheetah_no_dt_emb_s0\", \"metrics\": {\"eval_return_final\": 77.3, \"eval_return_peak\": 129.6, \"peak_step\": 15000, \"nve_peak\": 0.1, \"civo\": false, \"baseline_pct\": 14.1, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak 0.10×, civo_alert=0 throughout). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. Gate locked at dt=2 (gate_dt_2_frac=1.0), eval 77.3 = 14% of baseline (548.3). Low performance expected: dt_embed_dim=0 removes temporal abstraction capability. Cheetah causal triangle seed 2 complete.\"}, \"exp_024_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T20:34:13.657Z\", \"updated_at\": \"2026-05-17T23:21:27.867Z\", \"hypothesis\": \"Cheetah Run no-dt-emb causal control: dt_embed_dim=0 + subsample ON + H=8. 预期无CIVO（健康基线水平），证明trained dt_emb是Cheetah CIVO的必要条件。对应Walker的008f逻辑，完成Cheetah因果三角（023a/b baseline健康 + 010b CIVO collapse + 本实验 no-emb 健康）。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"conclusion\": \"killed\"}, \"exp_021_full_sgs_cheetah_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:24:30.695Z\", \"updated_at\": \"2026-05-17T22:57:30.295Z\", \"hypothesis\": \"Full-SGS Cheetah Run — 验证 SGS intervention 跨环境一致性。如果 CIVO mechanism 跨环境一致，Full-SGS 在 Cheetah 也应消除 NVE>1.5x (对比 010b: NVE 8.63×, collapse)。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"notes\": \"P0 priority (D070 最重要数据缺口). 018_s2 完成后立即上 cuda:0. 排序: 021 先 → 008d_s1 后. Director 2026-05-16 确认.\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 221.5, \"nve_peak\": 9.94, \"nve_peak_step\": \"45K\", \"nve_sustained_55K_105K\": 0.338, \"civo\": true, \"civo_type\": \"transient_self_correcting\", \"baseline_pct\": 38.7, \"vs_010b\": \"221.5 vs 51.7 (4.3x better)\"}}, \"exp_023a_cheetah_baseline_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T11:53:19.690Z\", \"updated_at\": \"2026-05-17T20:41:57.147Z\", \"hypothesis\": \"Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate). Establishes Cheetah-specific baseline for NVE normalization and cross-environment validation. Comparison target for 010b (Cheetah CIVO trigger, NVE 8.27×).\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 624.7, \"eval_return_peak\": 624.7, \"peak_step\": 205000, \"civo\": false}, \"notes\": \"Healthy baseline. Last-5 eval mean=554.4. 185K瞬态VE spike(0.906)触发警报但20K步内恢复(205K:624.7)，非CIVO。双seed baseline均值: last-5=548.3, peak=598.8。未接W&B。\"}, \"exp_010b_cheetah_civo_trigger\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T13:04:55.508Z\", \"updated_at\": \"2026-05-17T20:41:38.129Z\", \"hypothesis\": \"Cheetah Run CIVO trigger — trained dt_emb, subsample ON, dt=2, H=8, seed 1. 跨环境验证：Walker 上 008d 配置在 Cheetah 上是否同样触发 CIVO (NVE>1.5x)。若成立→回应 reviewer \\\"single environment\\\" concern。\", \"parent\": \"exp_010a_cheetah_baseline_s1\", \"metrics\": {\"eval_return_final\": 51.7, \"eval_return_peak\": 321.9, \"peak_step\": 35000, \"nve_peak\": 8.27, \"nve_peak_step\": 65000, \"civo\": true}, \"conclusion\": \"success\"}, \"exp_023b_cheetah_baseline_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T11:53:21.197Z\", \"updated_at\": \"2026-05-17T19:30:46.627Z\", \"hypothesis\": \"Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate), seed=1. Second seed for Cheetah baseline to establish robust NVE normalization across seeds.\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 520.3, \"eval_return_peak\": 572.9, \"peak_step\": 195000, \"ve_ratio_range\": \"0.5-0.7\", \"civo\": false}, \"notes\": \"Healthy baseline. Last-5 eval mean=542.2 (for NVE normalization). 125K后进入500-573区间震荡，无collapse。待023a完成后取双seed均值作为Cheetah baseline。未接W&B，数据在本地logdir。\"}, \"exp_019b_pickcube_civo_trigger\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T03:23:51.568Z\", \"updated_at\": \"2026-05-17T15:20:38.182Z\", \"hypothesis\": \"PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立\", \"notes\": \"Cross-env CIVO confirmation + detector TN. Raw V/E peak=5.66 @52.5K (NVE=3.78× vs baseline). Transient CIVO: onset ~22.5K → peak 52.5K → deflation → eval partial recovery. Detector correctly doesn't trigger (oscillating V/E, max streak=2 < threshold=3). Eval final 26.64 vs baseline 58.56 = 45.5%. Value permanently collapsed (4.26 vs baseline 144.57). PickCube pattern: acute crisis + permanent damage, vs Walker sustained escalation.\", \"parent\": \"exp_019a_v2_pickcube_baseline\", \"metrics\": {\"total_steps\": 200000, \"eval_return_final\": 26.64, \"eval_return_peak\": 26.9, \"eval_return_peak_step\": 132500, \"baseline_eval_final\": 58.56, \"baseline_ratio\": 0.455, \"nve_peak\": 3.78, \"nve_peak_step\": 52500, \"nve_final\": 0.065, \"value_mean_final\": 4.26, \"value_baseline_final\": 144.57, \"gate_dt_2_frac\": 1, \"gate_entropy\": 0, \"pattern\": \"transient_civo_then_value_collapse\"}, \"conclusion\": \"success\"}, \"exp_022b_no_curriculum\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T10:49:08.181Z\", \"updated_at\": \"2026-05-17T14:20:12.115Z\", \"hypothesis\": \"Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing the gate to learn meaningful temporal abstraction (gate_dt_1_frac < 1.0). exp_022 was inconclusive because curriculum locked gate for the entire run; this rerun removes that confound.\", \"parent\": \"exp_022_untrained_dt_emb_learned_gate\", \"metrics\": {\"eval_return_105K\": 300.7, \"ve_ratio_peak\": 0.218, \"ve_ratio_105K\": 0.075, \"nve_peak\": 1.22, \"civo_alert_max\": 0, \"gate_dt_mean_105K\": 3.41, \"gate_dt_1_frac_105K\": 0.145, \"gate_entropy_ratio_105K\": 0.912, \"gate_near_uniform\": true}, \"conclusion\": \"success\", \"notes\": \"Frozen dt_emb (random init, no gradients) successfully prevents CIVO: ve_ratio peaked 0.218 (NVE≈1.22×), civo_alert=0 throughout. Confirms C2 (trained dt_emb is necessary for CIVO). Gate converges to near-uniform distribution (entropy_ratio=0.912, no temporal coherence), eval_return=300.7 (32.8% of baseline@105K=915.7). Frozen random dt_emb is sufficient CIVO fix but insufficient for meaningful temporal abstraction — multi-rate imagination's inherent performance limitation.\"}, \"exp_022_untrained_dt_emb_learned_gate\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T04:16:57.150Z\", \"updated_at\": \"2026-05-17T10:56:34.274Z\", \"hypothesis\": \"Frozen dt_emb (random init, no gradients) prevents CIVO by blocking the trained-embedding-driven value overestimation feedback loop, while the learned gate (Gumbel-softmax, receives gradients) retains adaptive horizon selection capability. If successful, this decouples temporal abstraction benefits from CIVO vulnerability.\", \"parent\": \"exp_008f_s3_no_dt_embed_walker + exp_005_gate_arch (combines safe dt_emb from 008f with gate architecture from 005 series)\", \"conclusion\": \"killed\", \"metrics\": {\"eval_return_65K\": 493.1, \"eval_return_75K\": 573.8, \"eval_return_105K\": 189.1, \"peak_eval_return\": 573.8, \"final_eval_return\": 189.1, \"civo_ve_ratio_105K\": 0.4, \"civo_alert\": 0, \"gate_dt_1_frac\": 1, \"gate_entropy\": 0, \"gate_collapsed\": true, \"train_return_112K\": 91.8}, \"notes\": \"INCONCLUSIVE: Gate never activated due to curriculum misconfiguration. phase1=50000 × action_repeat=2 = 100K logger steps, experiment only 105K total. gate_scale reached only 0.006, gate locked at dt=1 entire run. eval_return: 75K=573.8 → 105K=189.1 (collapsed without gate involvement). Rerun as exp_022b with curriculum disabled.\"}, \"exp_019a_v2_pickcube_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T20:12:22.372Z\", \"updated_at\": \"2026-05-17T07:44:41.396Z\", \"notes\": \"2026-05-16 22:54: Resubmitted with CVD fix (unset CUDA_VISIBLE_DEVICES inside bash -c). PID 629444. ManiSkill3/SAPIEN requires physical device access — CVD breaks resolve_physical_device(). Using MUJOCO_EGL_DEVICE_ID=1 + --device cuda:1 directly.\", \"hypothesis\": \"Vanilla DreamerV3 on ManiSkill3 PickCube establishes a cross-environment baseline; if stable, subsequent CIVO trigger experiment (019b) can test whether CIVO generalizes beyond DMC Walker Walk.\", \"parent\": \"exp_001_baseline\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 69.43, \"eval_return_peak\": 69.7, \"eval_return_peak_step\": 162500, \"value_mean_final\": 143.4, \"ve_ratio_final\": 2.07, \"ve_ratio_range\": \"1.05-3.56\", \"steps_completed\": 200248}}, \"exp_007_fixed_dt4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:15:44.218Z\", \"updated_at\": \"2026-05-17T04:06:36.869Z\", \"hypothesis\": \"诊断实验：fixed dt=4 vs dt=2 vs learned gate。硬编码 dt=4，其余超参与 exp_006 完全一致。与 exp_006(dt=2) 对照：如果 dt=4 也不掉 return，说明跳步本身无害，问题在 learned gate 机制；如果 dt=4 掉但 dt=2 不掉，说明存在跳步边界。\", \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\", \"metrics\": {\"step\": 48000, \"eval_return_5K\": 31, \"eval_return_15K\": 129.6, \"eval_return_25K\": 176.9, \"eval_return_35K\": 126.7, \"eval_return_45K\": 144.41, \"eval_return_55K\": 152.49, \"peak_return\": 176.9, \"peak_step\": \"25K\", \"model_loss_5K\": 17.927, \"model_loss_15K\": 6.337, \"model_loss_25K\": 5.089, \"model_loss_35K\": 4.755, \"value_mean_45K\": 18.26, \"value_mean_55K\": 9.28, \"value_eval_ratio_45K\": 0.126, \"value_eval_ratio_55K\": 0.061, \"baseline_45K\": 443, \"vs_baseline_45K\": \"-67.4%\", \"trend\": \"peak 176.9@25K, low plateau ~127-152; value extremely suppressed (v/e 6-13%), NOT delusional critic but severe learning failure\"}, \"conclusion\": \"negative\", \"parent\": \"exp_006_fixed_dt2\"}, \"exp_008c_no_subsample_dt2_h8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:33:31.413Z\", \"updated_at\": \"2026-05-17T04:06:36.359Z\", \"hypothesis\": \"隔离 compounding error 效应：subsample OFF + imagination dt=2 + H=8（物理覆盖 16 步 ≈ baseline H=15）。与 008a(H=15) 对照：008a 崩但 008c 不崩 → compounding error 是根因，H 需与 dt 反比补偿；两个都崩 → dt=2 RSSM 预测质量本身不足。\", \"metrics\": {\"step\": 68000, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.55, \"eval_return_55K\": 241.87, \"eval_return_65K\": 240.86, \"value_mean_35K\": 40.43, \"value_mean_55K\": 70.32, \"value_mean_65K\": 78.96, \"value_eval_ratio_35K\": 0.218, \"value_eval_ratio_55K\": 0.291, \"value_eval_ratio_65K\": 0.328, \"actor_loss_55K\": -0.082, \"actor_loss_65K\": -0.053, \"baseline_65K\": 616, \"vs_baseline_65K\": \"-60.9%\", \"verdict_65K\": \"PLATEAU\", \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\", \"data_source_35K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\", \"parent\": \"exp_006_fixed_dt2\"}, \"exp_003_event_gated_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T04:52:22.660Z\", \"updated_at\": \"2026-05-17T04:06:35.459Z\", \"metrics\": {\"step\": 120000, \"gate_scale_116K\": 0.61, \"gate_dt_mean_116K\": 2.67, \"gate_dt_std_116K\": 1.46, \"gate_empirical_entropy_116K\": 1.655, \"gate_entropy_ratio_116K\": 0.796, \"gate_dt_1_frac_116K\": 0.218, \"eval_return_105K\": 92.3, \"eval_return_115K\": 118.7, \"return_ratio_105K\": 0.1, \"return_ratio_115K\": 0.13, \"mvp_C1_return\": \"FAIL (0.13)\", \"mvp_C2_entropy\": \"PASS (1.655)\", \"mvp_C3_heff\": \"PASS (2.667x)\", \"mvp_C4_structure\": \"PASS (autocorr=0.652)\", \"fps\": 6.52}, \"conclusion\": \"negative\", \"parent\": \"exp_001_baseline\"}, \"exp_004_event_gated_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T10:05:16.227Z\", \"updated_at\": \"2026-05-17T04:06:34.482Z\", \"hypothesis\": \"修复 imagination dt 约束后（logits masking + clamp safety net），event gate 在 train/imagine 分布同步条件下能产生有意义的 variable-rate stepping 且 return ≥ 80% baseline\", \"conclusion\": \"negative\", \"parent\": \"exp_003_event_gated_v2\"}, \"exp_005_event_gated_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T16:08:06.061Z\", \"updated_at\": \"2026-05-17T04:06:33.514Z\", \"metrics\": {\"step\": 145000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.9, \"eval_return_35K\": 290.8, \"eval_return_55K\": 541.18, \"eval_return_65K\": 465.67, \"eval_return_85K\": 212.34, \"eval_return_105K\": 276.08, \"eval_return_145K\": 98.84, \"peak_return\": 541.18, \"peak_step\": \"55K\", \"final_return\": 98.84, \"baseline_at_145K\": \"~950\", \"return_ratio_final\": 0.104, \"gate_scale_105K\": 0.5, \"gate_dt_mean_105K\": 2.054, \"gate_dt_std_105K\": 0.907, \"gate_entropy_105K\": 1.255, \"fps\": 6.69, \"note\": \"85K/105K metrics corrected from 319.3/337.8 to 212.34/276.08\"}, \"conclusion\": \"negative\", \"hypothesis\": \"Event-gated adaptive horizon (learned gate activation for dt selection) improves sample efficiency over fixed-horizon DreamerV3 by dynamically extending imagination when beneficial.\", \"parent\": \"exp_004_event_gated_v3\"}, \"exp_008d_civo_trigger_s3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T00:25:47.784Z\", \"updated_at\": \"2026-05-17T03:24:26.004Z\", \"hypothesis\": \"Trained dt-emb with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) induces CIVO (NVE≥1.5×) on seed=3, confirming CIVO onset is systematic across seeds regardless of replay sampling sequence (seed bug fix verification).\", \"parent\": \"exp_008d_subsample_on_h8\", \"metrics\": {\"eval_return_peak\": 451.7, \"eval_return_peak_step\": 95000, \"eval_return_final\": 267.6, \"eval_return_final_step\": 105000, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.5, \"nve_peak\": 1.53, \"nve_peak_step\": 105000, \"nve_sustained_45K_55K\": true, \"nve_final\": 1.53, \"collapse_type\": \"late-onset\", \"collapse_onset_step\": 95000, \"train_return_final_avg\": 138, \"train_return_final_range\": \"82-214\", \"value_mean_final\": 268.4, \"vs_baseline_105K\": \"-70.8%\", \"baseline_eval_105K\": 915.67, \"total_steps\": 112000}, \"conclusion\": \"success\"}, \"exp_018v2_full_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T13:42:15.786Z\", \"updated_at\": \"2026-05-17T02:57:18.423Z\", \"hypothesis\": \"Full Selective Gradient Stopping (blocking obs+reward+cont decoder gradients to dt_emb) eliminates all gradient pathways creating dt-specific representations, thereby preventing CIVO onset and collapse.\", \"parent\": \"exp_008d_subsample_on_h8\", \"metrics\": {\"eval_return_peak\": 499.6, \"eval_return_peak_step\": 75000, \"eval_return_final\": 448.3, \"eval_return_final_step\": 105000, \"nve_peak\": 1.66, \"nve_peak_step\": 95000, \"nve_final\": 1.34, \"nve_mean_45k_105k\": 1.23, \"total_steps\": 112000, \"total_updates\": 25099, \"value_loss_final\": 0.6, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"late_collapse_detected\": true, \"late_collapse_step\": 112000, \"civo_reduction_pct\": 79}, \"conclusion\": \"negative\"}, \"exp_008d_subsample_on_h8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:46:57.960Z\", \"updated_at\": \"2026-05-17T02:57:04.661Z\", \"metrics\": {\"step\": 55000, \"eval_return_25K\": 167.22, \"eval_return_35K\": 146.34, \"eval_return_45K\": 140.8, \"eval_return_55K\": 82.75, \"value_mean_25K\": 25.86, \"value_mean_35K\": 60.2, \"value_mean_45K\": 97.5, \"value_mean_55K\": 137.88, \"value_eval_ratio_25K\": 0.155, \"value_eval_ratio_35K\": 0.411, \"value_eval_ratio_45K\": 0.693, \"value_eval_ratio_55K\": 1.666, \"actor_loss_25K\": -0.195, \"actor_loss_35K\": -0.17, \"model_loss_25K\": 5.33, \"model_loss_35K\": 5.07, \"baseline_35K\": 400, \"baseline_45K\": 443, \"vs_baseline_35K\": \"-63.4%\", \"vs_baseline_45K\": \"-68.2%\", \"verdict_35K\": \"WARN_COLLAPSE\", \"verdict_45K\": \"COLLAPSE_CONFIRMED\", \"trend\": \"eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\", \"data_source_45K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"success\", \"hypothesis\": \"Trained dt-embedding with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) causes critic value function to overestimate through dt-conditioned representation co-adaptation, leading to policy collapse.\", \"parent\": \"exp_005_event_gated_v4\"}, \"exp_018_full_sgs_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:33:26.266Z\", \"updated_at\": \"2026-05-17T02:56:37.385Z\", \"hypothesis\": \"Full-SGS reliably prevents CIVO across seeds; if seed=2 also survives without collapse, SGS is a robust intervention mechanism for deployment.\", \"parent\": \"exp_018v2_full_sgs_walker_s1\", \"conclusion\": \"negative\", \"notes\": \"CIVO collapse confirmed: eval 40.8@105K (from peak ~488@75K). NVE peaked 1.66× at 95K (35K+ window). Full-SGS did NOT prevent collapse in seed 2 — contradicts 018v2 (seed 1) which avoided collapse. This invalidates SGS_full as a reliable CIVO prevention method. Key difference from 018v2: 018_s2 collapsed while 018v2 sustained. n=2 for SGS_full now shows collapse_rate=0.5.\"}, \"exp_009b_008d_walker_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:17:25.186Z\", \"updated_at\": \"2026-05-17T02:56:34.989Z\", \"hypothesis\": \"CIVO onset (NVE≥1.5×) reproduces on seed=2 with identical architecture, confirming the phenomenon is systematic rather than seed-specific. Collapse outcome may be stochastic.\", \"parent\": \"exp_008d_subsample_on_h8\", \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 39.27, \"value_mean\": 0, \"ve_ratio\": 0, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 144.31, \"value_mean\": 4.47, \"ve_ratio\": 0.031, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 141.12, \"value_mean\": 25.14, \"ve_ratio\": 0.178, \"baseline_ve\": 0.087, \"normalized_ve\": 2.05}, {\"step\": 35000, \"eval_return\": 164.14, \"value_mean\": 49.02, \"ve_ratio\": 0.299, \"baseline_ve\": 0.241, \"normalized_ve\": 1.24}, {\"step\": 45000, \"eval_return\": 141.04, \"value_mean\": 75.59, \"ve_ratio\": 0.536, \"baseline_ve\": 0.331, \"normalized_ve\": 1.62}, {\"step\": 55000, \"eval_return\": 172.33, \"value_mean\": 98.28, \"ve_ratio\": 0.57, \"baseline_ve\": 0.404, \"normalized_ve\": 1.41}, {\"step\": 65000, \"eval_return\": 209.16, \"value_mean\": 110.91, \"ve_ratio\": 0.53, \"baseline_ve\": 0.563, \"normalized_ve\": 0.94}, {\"step\": 75000, \"eval_return\": 197.46, \"value_mean\": 93.49, \"ve_ratio\": 0.474, \"baseline_ve\": 0.719, \"normalized_ve\": 0.66}, {\"step\": 85000, \"eval_return\": 236.49, \"value_mean\": 83.86, \"ve_ratio\": 0.355, \"baseline_ve\": 0.701, \"normalized_ve\": 0.51}, {\"step\": 95000, \"eval_return\": 278.54, \"value_mean\": 75.72, \"ve_ratio\": 0.272, \"baseline_ve\": 0.632, \"normalized_ve\": 0.43}, {\"step\": 105000, \"eval_return\": 267.93, \"value_mean\": 67.27, \"ve_ratio\": 0.251, \"baseline_ve\": 0.656, \"normalized_ve\": 0.38}], \"trend\": \"Eval rising throughout: 39→144→141→164→141→172→209→197→236→279→268. Value peaks at 110.91@65K then self-corrects downward to 67.27@105K. v/e ratio peaks 0.57@55K then monotonically declines to 0.25@105K. NO delusional critic collapse — value self-corrects while eval improves.\", \"verdict\": \"NEGATIVE — hypothesis was to replicate collapse, collapse NOT reproduced. However, pathological nve>1.5x episode confirmed (2.05x@25K, 1.62x@45K), consistent with trained dt_emb inducing pathological overestimation. Self-correction to 0.38x@105K distinguishes from seed 0's sustained overestimation → collapse.\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-70.8%\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 0 sustained nve>1.5x across 4 consecutive checkpoints and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\"}, \"conclusion\": \"negative\", \"notes\": \"D032: Collapse NOT reproduced in seed 2. nve peaked 2.05x@25K (transient) then self-corrected to 0.38x@105K. Eval rose to 268. Contrast: seed 1 had SUSTAINED nve>1.5x at 35K+ (1.71x→2.09x→4.12x) → collapse to 83. Key finding: nve>1.5x threshold (35K+ steps) is reliable trained dt_emb marker (2/2 seeds), but collapse is stochastic (1/2). Framing proposal submitted to Director.\"}, \"exp_008f_no_dt_embed_subsample_on_h8\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:51:27.592Z\", \"updated_at\": \"2026-05-17T02:56:33.517Z\", \"hypothesis\": \"Without trained dt-embedding, subsample mechanism alone does not induce value overestimation, isolating dt-embedding as the necessary causal factor for CIVO.\", \"parent\": \"exp_008d_subsample_on_h8\", \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": {\"5K\": {\"eval_return\": 30.49, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, \"15K\": {\"eval_return\": 182.03, \"value_mean\": 2.989, \"ve_ratio\": 0.01642}, \"25K\": {\"eval_return\": 196.78, \"value_mean\": 17.507, \"ve_ratio\": 0.089, \"baseline_ve\": 0.087, \"normalized_ve\": 1.02}, \"35K\": {\"eval_return\": 206.67, \"value_mean\": 36.279, \"ve_ratio\": 0.176, \"baseline_ve\": 0.241, \"normalized_ve\": 0.73}, \"45K\": {\"eval_return\": 194.08, \"value_mean\": 53.429, \"ve_ratio\": 0.275, \"baseline_ve\": 0.331, \"normalized_ve\": 0.83}, \"55K\": {\"eval_return\": 173.45, \"value_mean\": 67.899, \"ve_ratio\": 0.391, \"baseline_ve\": 0.404, \"normalized_ve\": 0.97}, \"65K\": {\"eval_return\": 375, \"normalized_ve\": 0.37}, \"75K\": {\"eval_return\": 324, \"normalized_ve\": 0.42}, \"85K\": {\"eval_return\": 246, \"value_mean\": 111.8, \"normalized_ve\": 0.65}, \"95K\": {\"eval_return\": 319, \"normalized_ve\": 0.54}, \"105K\": {\"eval_return\": 503, \"value_mean\": 98.2, \"normalized_ve\": 0.3}}, \"trend\": \"Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.\", \"verdict\": \"SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed\", \"last_updated\": \"2026-05-14T09:50:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-45.1%\", \"causal_conclusion\": \"trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.\"}, \"conclusion\": \"success\"}, \"exp_016d_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:29:41.130Z\", \"updated_at\": \"2026-05-17T02:54:28.152Z\", \"hypothesis\": \"Selective Gradient Stopping (reward_dt_emb_detach) blocks reward-gradient pathway to dt_emb, preventing CIVO-inducing co-adaptation while preserving task performance.\", \"parent\": \"exp_008d_subsample_on_h8\", \"conclusion\": \"failed\"}, \"exp_001_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T02:09:53.875Z\", \"updated_at\": \"2026-05-17T02:54:24.099Z\", \"hypothesis\": \"Vanilla DreamerV3 on Walker Walk converges to stable high-return policy (>900) within 500K steps, establishing the performance ceiling for all gated variants.\", \"metrics\": {\"step\": 512000, \"eval_trajectory\": {\"5K\": 31.77, \"15K\": 206.61, \"25K\": 395.27, \"35K\": 388.47, \"45K\": 513.77, \"55K\": 625.73, \"65K\": 615.86, \"75K\": 596.28, \"85K\": 713.93, \"95K\": 871.06, \"105K\": 915.67, \"115K\": 919.81, \"125K\": 921.37, \"135K\": 900, \"145K\": 932.16, \"155K\": 933.34, \"165K\": 907.98, \"175K\": 918.87, \"185K\": 954.69, \"195K\": 936.09, \"205K\": 949.24, \"215K\": 913.4, \"225K\": 962.44, \"235K\": 937.24, \"245K\": 934.42, \"255K\": 948.45, \"265K\": 925.09, \"275K\": 931.51, \"285K\": 925.75, \"295K\": 936.3, \"305K\": 939.33, \"315K\": 948.42, \"325K\": 967.75, \"335K\": 942.41, \"345K\": 969.83, \"355K\": 941.11, \"365K\": 935.76, \"375K\": 918.24, \"385K\": 937.98, \"395K\": 955.38, \"405K\": 937.83, \"415K\": 948.99, \"425K\": 954.64, \"435K\": 964.96, \"445K\": 953.37, \"455K\": 945.84, \"465K\": 947.81, \"475K\": 947.66, \"485K\": 930.6, \"495K\": 944.73, \"505K\": 970.41}, \"eval_return_peak\": 970.41, \"eval_return_peak_step\": 505000, \"eval_return_last10_mean\": 950.9, \"final\": true, \"value_eval_ratio_25K\": 0.087, \"value_eval_ratio_35K\": 0.241, \"value_eval_ratio_45K\": 0.331, \"value_eval_ratio_55K\": 0.404, \"value_eval_ratio_65K\": 0.563, \"value_eval_ratio_75K\": 0.719, \"value_eval_ratio_85K\": 0.701, \"value_eval_ratio_95K\": 0.632, \"value_eval_ratio_105K\": 0.656, \"value_eval_ratio_stable\": \"~69-72% from 135K+\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"success\"}, \"exp_008d_civo_trigger_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T19:32:16.790Z\", \"updated_at\": \"2026-05-17T00:24:10.180Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed 1 — CIVO trigger 第 3 个独立 seed (D1)。预期 NVE>1.5× 触发 CIVO。用于 bootstrap CI 闭合 trained_dt_emb condition (现有: seed 0 = 008d, seed 2 = 009b)。注意: 原名 s2 但实际需跑 seed=1 (避免与 009b seed=2 重复)。\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"Killed by Director order: seed bug confirmed. --seed 1 was parsed incorrectly, producing bit-for-bit identical results to seed=0. PID 628482 killed. Will resubmit after seed bug fix with seed=3.\", \"conclusion\": \"killed\"}, \"exp_008f_s3_no_dt_embed_walker\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T16:04:28.878Z\", \"updated_at\": \"2026-05-16T20:09:51.135Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 3 — 008f 系列第 3 个独立 seed，闭合 no_dt_emb condition 的 bootstrap CI（当前 n=2，需 ≥3）。预期 NVE<1.5×，无 CIVO。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 363.8, \"nve_peak\": \"< 1.5x\", \"collapse\": false}}, \"exp_020_vanilla_dreamerv3_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T13:23:55.837Z\", \"updated_at\": \"2026-05-16T19:43:57.604Z\", \"hypothesis\": \"Vanilla DreamerV3 (no dt_emb, no subsample, no gate) seed 2 — Pathway B 控制实验：验证 008e_v3_s2 的 eval-driven collapse 是否需要 trained dt_emb 作为必要条件。如果 vanilla s2 稳定 → C6 成立 (trained dt_emb 是 Pathway B 必要条件)。如果也崩溃 → Pathway B 是 DreamerV3 inherent fragility。\", \"parent\": \"exp_008e_v3_walker_s2\", \"notes\": \"Pathway B 控制实验 (D6)。vanilla config: dt_embed_dim=0, subsample OFF, H=15, seed=2, 105K steps, Walker Walk。排队等 010b 完成后在 cuda:0 提交。命令: dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 2 --compile True --device cuda:0 --imag_horizon 15\", \"conclusion\": \"success\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 41.2}, {\"step\": 55000, \"eval_return\": 534.1}, {\"step\": 65000, \"eval_return\": 688.9}, {\"step\": 95000, \"eval_return\": 596.2}, {\"step\": 105000, \"eval_return\": 836.5}], \"final_eval_return\": 836.5, \"peak_eval_return\": 836.5, \"peak_eval_step\": 105000, \"final_value_mean\": 539.3, \"ve_ratio_105K\": 0.645, \"collapse\": false, \"train_return_range_108K\": \"511-808\", \"comparison_with_parent\": {\"parent_id\": \"exp_008e_v3_walker_s2\", \"parent_eval_105K\": 136.96, \"parent_nve_105K\": 3.78, \"parent_collapsed\": true, \"delta\": \"vanilla stable (836.5) vs trained dt_emb collapsed (136.96)\", \"c6_confirmed\": true}}}, \"exp_019a_pickcube_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T03:23:50.639Z\", \"updated_at\": \"2026-05-16T13:43:00.745Z\", \"hypothesis\": \"PickCube-v1 baseline — dt=1, no dt_emb (dim=0), subsample OFF. ManiSkill3 manipulation 环境稳定基线，验证 CIVO 诊断在 manipulation 中的适用性\", \"notes\": \"ManiSkill3 Phase 1. 排队等 cuda:1 (010a 完成后). --compile False --device cuda:1. maniskill_state config.\", \"conclusion\": \"killed\"}, \"exp_018_full_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T23:30:39.991Z\", \"updated_at\": \"2026-05-16T13:42:11.339Z\", \"hypothesis\": \"Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.\", \"parent\": \"exp_016e_sgs_walker_s1\", \"notes\": \"⚠️ INVALID: 训练命令缺失 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8。gate_enabled=false → dt_embedding 未创建 → full_sgs 是空操作 → 实际等同 vanilla baseline。所有基于此实验的 claim (CIVO elimination, gradient-level vulnerability) 需要 018v2 重新验证。\", \"metrics\": {\"eval_return_peak\": 915.7, \"eval_return_peak_step\": 105000, \"eval_return_final\": 915.7, \"eval_return_final_step\": 105000, \"nve_peak\": 0.72, \"nve_peak_step\": 75000, \"nve_sustained_max\": 0.72, \"nve_sustained_avg\": 0.55, \"total_steps\": 112000, \"value_mean_final\": 601.1, \"train_return_final_avg\": 899.4}, \"conclusion\": \"killed\"}, \"exp_010a_cheetah_baseline_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:17:27.101Z\", \"updated_at\": \"2026-05-16T12:01:11.169Z\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"metrics\": {\"final_step\": 524000, \"eval_return_final\": 849.8, \"eval_return_final_step\": 515000, \"eval_return_peak\": 849.8, \"eval_return_peak_step\": 515000, \"train_return_last\": 716, \"total_eval_episodes\": 52}, \"conclusion\": \"success\"}, \"exp_009d_baseline_walker_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T11:55:00.039Z\", \"updated_at\": \"2026-05-16T09:50:34.506Z\", \"hypothesis\": \"Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\", \"metrics\": {\"step\": 508000, \"eval_return\": 927.6, \"eval_return_at_508K\": 927.6, \"eval_return_peak\": 950.96, \"eval_return_peak_step\": 398000, \"note\": \"COMPLETED 508K/500K, final eval 927.6, peak 950.96@398K\"}, \"conclusion\": \"success\"}, \"exp_017_subsample_off_trained_dt_emb\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:44:24.756Z\", \"updated_at\": \"2026-05-16T04:46:30.361Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2）\", \"parent\": \"exp_008a_no_subsample_dt2\", \"notes\": \"D044: 取消。008a 配置验证确认 017 与 008a 完全重复（trained dt_emb + subsample OFF + H=15 + seed 1）。008a 的\\\"untrained\\\"含义是\\\"dt_emb 存在但未接触 dt>1 数据\\\"，不是 frozen/absent。2×2 矩阵已由 008a/008d/008f/015b 闭合。\", \"conclusion\": \"killed\"}, \"016e\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T22:21:09.251Z\", \"updated_at\": \"2026-05-16T01:39:17.916Z\", \"notes\": \"重复条目，权威数据在 exp_016e_sgs_walker_s1 (DONE/negative)。此条目为 NVE 诊断过程中误创建的冗余记录。\", \"conclusion\": \"killed\"}, \"exp_016e_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:35:20.242Z\", \"updated_at\": \"2026-05-15T23:30:11.433Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第五次重试，修复 Logger.video() → no-op 彻底消除 SummaryWriter.add_video/flush 死锁\", \"parent\": \"exp_008d_subsample_on_h8\", \"metrics\": {\"current_step\": 100000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, {\"step\": 15000, \"eval_return\": 140.3, \"value_mean\": 3.1, \"ve_ratio\": 0.022}, {\"step\": 25000, \"eval_return\": 141.75, \"value_mean\": 22.97, \"ve_ratio\": 0.162, \"baseline_ve\": 0.087, \"nve\": 1.86}, {\"step\": 35000, \"eval_return\": 173.01, \"value_mean\": 53.55, \"ve_ratio\": 0.309, \"baseline_ve\": 0.241, \"nve\": 1.28}, {\"step\": 45000, \"eval_return\": 184.03, \"value_mean\": 85.32, \"ve_ratio\": 0.464, \"baseline_ve\": 0.331, \"nve\": 1.4}, {\"step\": 55000, \"eval_return\": 153.79, \"value_mean\": 115.63, \"ve_ratio\": 0.752, \"baseline_ve\": 0.404, \"nve\": 1.86}, {\"step\": 65000, \"eval_return\": 324.3, \"value_mean\": 152.3, \"ve_ratio\": 0.469, \"baseline_ve\": 0.563, \"nve\": 0.83}, {\"step\": 75000, \"eval_return\": 326.67, \"value_mean\": 190.04, \"ve_ratio\": 0.582, \"baseline_ve\": 0.719, \"nve\": 0.81}, {\"step\": 85000, \"eval_return\": 256.21, \"value_mean\": 215.39, \"ve_ratio\": 0.841, \"baseline_ve\": 0.701, \"nve\": 1.2}, {\"step\": 95000, \"eval_return\": 31.73, \"value_mean\": 208.88, \"ve_ratio\": 6.583, \"baseline_ve\": 0.632, \"nve\": 10.42}], \"deep_analysis\": {\"016e_vs_008d_entropy_comparison\": {\"15K\": {\"016e\": 1.049, \"008d\": 0.481, \"delta\": 0.568}, \"25K\": {\"016e\": -1.554, \"008d\": -1.862, \"delta\": 0.308}, \"35K\": {\"016e\": -2.118, \"008d\": -3.465, \"delta\": 1.347}, \"45K\": {\"016e\": -3.455, \"008d\": -4.575, \"delta\": 1.12}, \"55K\": {\"016e\": -3.617, \"008d\": -4.879, \"delta\": 1.262}, \"interpretation\": \"SGS preserves ~1.0-1.3 nats higher entropy through 35-55K, enabling better exploration\"}, \"016e_vs_008d_value_at_crash\": {\"016e\": {\"value_mean\": 208.88, \"eval_return\": 31.73, \"disconnect_ratio\": 6.58}, \"008d\": {\"value_mean\": 137.88, \"eval_return\": 82.75, \"disconnect_ratio\": 1.67}, \"interpretation\": \"016e value completely decoupled from reality; 008d still weakly correlated\"}, \"actor_loss_sign_flip\": {\"016e_flip_step\": 95000, \"016e_flip_value\": 0.014, \"008d_min_actor_loss\": -0.073, \"008d_never_flipped\": true, \"interpretation\": \"sign flip = value critic drives actor toward worse actions, triggering catastrophic collapse\"}, \"train_return_collapse_timeline\": {\"88K\": [140, 145, 116, 116], \"92K\": [50, 29, 34, 75], \"96K\": [86, 41, 50, 101], \"100K\": [109, 111, 102, 108], \"interpretation\": \"collapse visible in train_return by 92K; partial recovery by 100K but far below peak\"}}, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"reward_dt_emb_detach\": true, \"peak_eval_return\": 326.67, \"peak_eval_step\": 75000, \"final_eval_return\": 31.73, \"final_eval_step\": 95000, \"civo_detected\": true, \"civo_onset_step\": 85000, \"civo_catastrophic_step\": 95000, \"civo_severity\": \"catastrophic\", \"civo_nve_peak\": 10.42, \"civo_nve_peak_step\": 95000, \"actor_loss_sign_flip_step\": 95000, \"sgs_verdict\": \"SGS delays CIVO onset ~50K steps by preserving entropy, yields 2x higher peak (327 vs 167), but does NOT prevent collapse. Collapse is more severe (NVE 10.42x vs 4.12x) due to accumulated value overestimation. Root cause is value dynamics, not reward-head gradient contamination.\", \"data_source\": \"metrics.jsonl from logdir/exp_016e_sgs_walker_s1/, completed 100K steps, SSH 2026-05-16T06:25\"}, \"notes\": \"logdir 路径修正：实际数据在 logdir/exp_016e_sgs_walker_s1（非 spec 中的 exp_016d）。SGS 崩溃确认@95K: eval 31.7, ve_ratio=6.59x, NVE=10.42x。\\n\\n**⚠️ 关键发现（Full-SGS 梯度验证）：reward loss 对 dt_emb.weight 的梯度贡献为 0。016e 的 reward_dt_emb_detach 实际上是 no-op——完全无效干预。** 真正的 dt_emb 梯度来源是 decoder heads（orientations=1.11, velocity=0.90, height=0.76, cont=0.27）。016e 与 008d 的差异（onset 延迟、更高峰值）应归因于随机变异或其他实验条件差异，不是 SGS 干预效果。\\n\\nFull-SGS（detach 所有 non-KL head 梯度）移除 93% dt_emb 梯度（1.624→0.119），是真正的测试。\", \"conclusion\": \"negative\"}, \"exp_016c_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:12:09.799Z\", \"updated_at\": \"2026-05-15T19:27:24.104Z\", \"hypothesis\": \"Walker Walk SGS (reward_dt_emb_detach=True) + subsample ON + H=8 seed 1 — 论文 method section 核心。GPU 1 清理+验证通过后重启（plan_016）\", \"parent\": \"exp_008d_subsample_on_h8\", \"conclusion\": \"failed\", \"metrics\": {\"step\": 5000, \"eval_return_5K\": 31, \"egl_fix_verified\": true}}, \"exp_009h_008f_walker_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:03:10.534Z\", \"updated_at\": \"2026-05-15T19:18:24.685Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009g（EGL device mismatch 修复：+MUJOCO_EGL_DEVICE_ID=1）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"notes\": \"日志显示进程正常完成 prefill → 到达 step 5000 → eval 正在运行（500 iter, 96s, 正常产出 debug 行）→ 被外部 SIGHUP (EXIT_CODE=129) 终止。非渲染死锁，非 OOM。诊断 Worker 排查外部终止原因中。009f/009g/009h 连续 3 次失败，分别因 seed 重复、EGL mismatch、外部 SIGHUP。\", \"conclusion\": \"failed\"}, \"exp_016b_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T19:08:00.667Z\", \"updated_at\": \"2026-05-15T19:11:46.897Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016, 论文 method section 核心）。重跑 016_sgs，修复 EGL device mismatch（+MUJOCO_EGL_DEVICE_ID=1）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"Restarted after GPU 1 cleanup. Old PID 523536 killed during GPU reset attempt. New PID 524244. GPU 1 diagnostics: no ECC/Xid errors, reset not supported (AutoDL container) but cleanup successful. CUDA + dm_control verification passed in 3s.\", \"conclusion\": \"failed\"}, \"exp_009g_008f_walker_s0\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T18:54:23.385Z\", \"updated_at\": \"2026-05-15T19:03:53.591Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009f（seed=1 与 parent 008f 重复）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"conclusion\": \"killed\", \"notes\": \"Hung at first eval (step 5000) due to osmesa rendering deadlock in dm_control render_executor thread. Same root cause as exp_016. Fixed by switching MUJOCO_GL to egl in dreamer.py.\"}, \"exp_009f_008f_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:09:15.806Z\", \"updated_at\": \"2026-05-15T18:54:04.806Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"conclusion\": \"killed\"}, \"exp_016_sgs_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T14:30:32.999Z\", \"updated_at\": \"2026-05-15T18:43:52.455Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路。预期：不崩溃，nve < 1.5x baseline；imagination dt=2/dt=1 reward ratio 从 008d 的 2.90x 大幅下降（plan_016, 论文 method section 核心）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"Director 调整优先级：017 先于 016。cuda:1 释放后先跑 017，017 完成后再跑 016。SGS 诊断 bug 已修复（models.py L388-417 删除），dry-run 通过。[2026-05-15 18:43] PID 514422 hung: GPU 1 利用率 0%, 显存 794 MiB, metrics.jsonl 停 step=5000 持续 2.5h+。已 kill，Worker 诊断根因+修复+重启中。\", \"conclusion\": \"failed\"}, \"exp_015b_frozen_dt_emb\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T10:21:05.572Z\", \"updated_at\": \"2026-05-15T18:38:42.380Z\", \"hypothesis\": \"Walker Walk frozen dt_emb + subsample ON + dt=2 imagination + H=8 seed 1 — 2×2 消融矩阵: 隔离 dt_emb 训练 vs 存在的因果效应。如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在（plan_015B, D041）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD + MUJOCO_GL=egl + --device cuda:0 (CUDA_VISIBLE_DEVICES=1 隔离)。cuda:1, seed=1, 105K steps ~5h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\", \"metrics\": {\"eval_return_5K\": 31, \"eval_return_15K\": 167.9, \"eval_return_25K\": 171.8, \"eval_return_35K\": 201.6, \"eval_return_45K\": 122.3, \"eval_return_55K\": 105.8, \"eval_return_65K\": 160.3, \"eval_return_75K\": 80, \"eval_return_85K\": 183.5, \"eval_return_95K\": 238.4, \"eval_return_105K\": 204.2, \"final_step\": 112000, \"final_eval\": 204.2, \"nve_85K\": 0.467, \"nve_95K\": 0.394, \"nve_105K\": 0.42, \"actor_loss_105K\": 0.000179, \"actor_entropy_105K\": -4.855, \"value_mean_105K\": 56.212, \"value_std_105K\": 13.818, \"gate_dt_mean\": 2, \"gate_dt_1_frac\": 0, \"collapse_mechanism\": \"gradient_starvation_from_frozen_dt_emb\", \"summary\": \"NVE 0.39-0.47 (far below 1.0, critic under-estimates), actor_loss→0 (gradient starvation), gate locked dt=2 100%, eval volatile 80-238 no stable convergence\", \"data_source\": \"worker SSH final analysis 2026-05-15T18:30\"}, \"conclusion\": \"negative\"}, \"exp_008a_no_subsample_dt2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:33:27.311Z\", \"updated_at\": \"2026-05-15T14:50:59.046Z\", \"hypothesis\": \"隔离 subsample 效应：trained dt_emb (unexposed to dt>1 data due to subsample OFF) + subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample 混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。\", \"metrics\": {\"step\": 112000, \"eval_return_35K\": 500.84, \"eval_return_45K\": 563.41, \"eval_return_55K\": 487.92, \"eval_return_65K\": 608, \"eval_return_75K\": 469.93, \"eval_return_85K\": 583.73, \"eval_return_95K\": 572.24, \"eval_return_105K\": 777.66, \"value_mean_55K\": 183.5, \"value_mean_65K\": 226.1, \"value_mean_75K\": 251.78, \"value_mean_85K\": 277.36, \"value_mean_95K\": 284.28, \"value_mean_105K\": 300.27, \"value_eval_ratio_55K\": 0.376, \"value_eval_ratio_65K\": 0.372, \"value_eval_ratio_75K\": 0.536, \"value_eval_ratio_85K\": 0.475, \"value_eval_ratio_95K\": 0.497, \"value_eval_ratio_105K\": 0.386, \"normalized_ve_55K\": 0.93, \"normalized_ve_65K\": 0.66, \"normalized_ve_75K\": 0.75, \"normalized_ve_85K\": 0.68, \"normalized_ve_95K\": 0.79, \"normalized_ve_105K\": 0.59, \"baseline_55K\": 625.7, \"baseline_65K\": 616, \"baseline_105K\": 915.67, \"vs_baseline_65K\": \"-1.3%\", \"vs_baseline_105K\": \"-15.1%\", \"verdict_65K\": \"RECOVERED_NEW_HIGH\", \"verdict_105K\": \"NEW_PEAK_V_RECOVERY\", \"trend\": \"Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K\", \"nan_count\": 0, \"data_source\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"success\"}, \"exp_009d_baseline_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:09:14.363Z\", \"updated_at\": \"2026-05-15T11:54:55.153Z\", \"hypothesis\": \"Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"⚠️ seed=1 与 exp_001_baseline 相同，eval 轨迹确定性复现。不构成独立 seed。如需第三 baseline seed 应 kill 并用 --seed 0 或 --seed 3 重跑。待 Director 决策。\", \"conclusion\": \"killed\"}, \"exp_009e_008d_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:09:15.367Z\", \"updated_at\": \"2026-05-15T11:31:04.722Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"008d extended replication (same seed=1, 009e extends 008d from 55K to 105K). Eval trajectory 5K-55K identical to 008d (deterministic). Collapse confirmed at 105K: eval 131.08, nve@55K=4.12x (normalized). 65K bounce to 250 was transient, not recovery. actor_loss flipped positive @85K. Independent collapse rate = 1/2 (seed 1 collapsed, seed 2 self-corrected), NOT 2/3 — 008d and 009e are the same seed.\", \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0, \"ve_ratio\": 0}, {\"step\": 15000, \"eval_return\": 153.7, \"value_mean\": 3.4, \"ve_ratio\": 0.022}, {\"step\": 25000, \"eval_return\": 167.2, \"value_mean\": 25.9, \"ve_ratio\": 0.155, \"baseline_ve\": 0.087, \"normalized_ve\": 1.78}, {\"step\": 35000, \"eval_return\": 146.3, \"value_mean\": 60.2, \"ve_ratio\": 0.411, \"baseline_ve\": 0.241, \"normalized_ve\": 1.71}, {\"step\": 45000, \"eval_return\": 140.8, \"value_mean\": 97.5, \"ve_ratio\": 0.693, \"baseline_ve\": 0.331, \"normalized_ve\": 2.09}, {\"step\": 55000, \"eval_return\": 82.7, \"value_mean\": 137.9, \"ve_ratio\": 1.666, \"baseline_ve\": 0.404, \"normalized_ve\": 4.12}, {\"step\": 65000, \"eval_return\": 250, \"value_mean\": 173.8, \"ve_ratio\": 0.695, \"baseline_ve\": 0.563, \"normalized_ve\": 1.23}, {\"step\": 75000, \"eval_return\": 178.1, \"value_mean\": 189.9, \"ve_ratio\": 1.066, \"baseline_ve\": 0.719, \"normalized_ve\": 1.48}, {\"step\": 85000, \"eval_return\": 201.93, \"value_mean\": 163.08, \"ve_ratio\": 0.808, \"baseline_ve\": 0.701, \"normalized_ve\": 1.15}, {\"step\": 95000, \"eval_return\": 132.79, \"value_mean\": 144.82, \"ve_ratio\": 1.091, \"baseline_ve\": 0.632, \"normalized_ve\": 1.73}, {\"step\": 105000, \"eval_return\": 131.08, \"value_mean\": 135.37, \"ve_ratio\": 1.033, \"baseline_ve\": 0.656, \"normalized_ve\": 1.57}], \"final_eval_return\": 131.08, \"final_value_mean\": 135.37, \"final_ve_ratio\": 1.033, \"final_nve\": 1.57, \"peak_nve\": 4.12, \"peak_nve_step\": 55000, \"actor_loss_sign_flip\": 85000, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.7%\", \"collapse_rate_note\": \"Independent rate = 1/2 (seed 1 collapsed, seed 2 self-corrected). 008d and 009e share seed=1, count as one independent observation.\"}, \"conclusion\": \"negative\"}, \"exp_009a_baseline_walker_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:17:24.247Z\", \"updated_at\": \"2026-05-15T06:33:16.385Z\", \"hypothesis\": \"Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 41.21}, {\"step\": 15000, \"eval_return\": 106.01}, {\"step\": 25000, \"eval_return\": 325.33}, {\"step\": 35000, \"eval_return\": 354.49}, {\"step\": 45000, \"eval_return\": 498.01}, {\"step\": 55000, \"eval_return\": 534.13}, {\"step\": 65000, \"eval_return\": 688.87}, {\"step\": 75000, \"eval_return\": 656.85}, {\"step\": 85000, \"eval_return\": 618.73}, {\"step\": 95000, \"eval_return\": 596.24}, {\"step\": 105000, \"eval_return\": 836.51}, {\"step\": 115000, \"eval_return\": 804.79}, {\"step\": 125000, \"eval_return\": 865.48}, {\"step\": 135000, \"eval_return\": 876.08}, {\"step\": 145000, \"eval_return\": 869.18}, {\"step\": 155000, \"eval_return\": 778.99}, {\"step\": 165000, \"eval_return\": 864.03}, {\"step\": 175000, \"eval_return\": 850.53}, {\"step\": 185000, \"eval_return\": 907.31}, {\"step\": 195000, \"eval_return\": 873.49}, {\"step\": 205000, \"eval_return\": 887.02}, {\"step\": 215000, \"eval_return\": 956.04}, {\"step\": 225000, \"eval_return\": 892.09}, {\"step\": 235000, \"eval_return\": 914.78}, {\"step\": 245000, \"eval_return\": 950.32}, {\"step\": 255000, \"eval_return\": 936.9}, {\"step\": 265000, \"eval_return\": 937.27}, {\"step\": 275000, \"eval_return\": 934.78}, {\"step\": 285000, \"eval_return\": 960.2}, {\"step\": 295000, \"eval_return\": 947.46}, {\"step\": 305000, \"eval_return\": 937.8}, {\"step\": 315000, \"eval_return\": 948.66}, {\"step\": 325000, \"eval_return\": 930.61}, {\"step\": 335000, \"eval_return\": 919.23}, {\"step\": 345000, \"eval_return\": 816.18}, {\"step\": 355000, \"eval_return\": 932.45}, {\"step\": 365000, \"eval_return\": 943.13}, {\"step\": 375000, \"eval_return\": 952.86}, {\"step\": 385000, \"eval_return\": 942.31}, {\"step\": 395000, \"eval_return\": 966.94}, {\"step\": 405000, \"eval_return\": 948.01}, {\"step\": 415000, \"eval_return\": 957.06}, {\"step\": 425000, \"eval_return\": 939.37}, {\"step\": 435000, \"eval_return\": 963.65}, {\"step\": 445000, \"eval_return\": 948.42}, {\"step\": 455000, \"eval_return\": 937.72}, {\"step\": 465000, \"eval_return\": 939.54}, {\"step\": 475000, \"eval_return\": 965.94}, {\"step\": 485000, \"eval_return\": 916.74}, {\"step\": 495000, \"eval_return\": 945.58}, {\"step\": 505000, \"eval_return\": 957.87}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 25000, \"value_mean\": 45.78}, {\"step\": 55000, \"value_mean\": 253.49}, {\"step\": 105000, \"value_mean\": 539.34}, {\"step\": 155000, \"value_mean\": 633.42}, {\"step\": 205000, \"value_mean\": 658.92}, {\"step\": 255000, \"value_mean\": 663.87}, {\"step\": 305000, \"value_mean\": 663.86}, {\"step\": 355000, \"value_mean\": 663.78}, {\"step\": 405000, \"value_mean\": 663.95}, {\"step\": 455000, \"value_mean\": 664.42}, {\"step\": 505000, \"value_mean\": 665.17}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.141}, {\"step\": 55000, \"ve\": 0.475}, {\"step\": 105000, \"ve\": 0.645}, {\"step\": 155000, \"ve\": 0.813}, {\"step\": 205000, \"ve\": 0.743}, {\"step\": 255000, \"ve\": 0.709}, {\"step\": 305000, \"ve\": 0.708}, {\"step\": 355000, \"ve\": 0.712}, {\"step\": 405000, \"ve\": 0.7}, {\"step\": 455000, \"ve\": 0.709}, {\"step\": 505000, \"ve\": 0.694}], \"final_eval_return\": 957.87, \"final_eval_step\": 505000, \"eval_return_peak\": 966.94, \"eval_return_peak_step\": 395000, \"last10_mean\": 947.19, \"final_value_mean\": 665.17, \"final_ve_ratio\": 0.694, \"ve_stable_range\": \"0.69-0.72 from 235K+\", \"total_steps\": 505000, \"n_evals\": 51, \"vs_exp001_105K\": \"836.51 vs 915.67 (-8.6%)\", \"vs_exp001_peak\": \"966.94 vs 970.41 (-0.4%)\", \"vs_exp001_last10\": \"947.19 vs 950.90 (-0.4%)\", \"vs_exp001_final\": \"957.87 vs 970.41 (-1.3%)\", \"cross_seed_ve_stable\": \"seed 2 v/e = 0.69-0.72 matches seed 0/1 = 0.69-0.72\"}, \"notes\": \"Baseline seed 2 完成。与 exp_001 (seed 0/1) 高度一致: peak 966.94 vs 970.41 (-0.4%), last10 mean 947.19 vs 950.90 (-0.4%), v/e stable 0.69-0.72 匹配。105K 处 836.51 比 seed 0/1 的 915.67 低 8.6%，但 215K+ 后完全收敛。345K 有一个 dip 到 816 但迅速恢复。baseline 跨 seed 一致性确认。\", \"conclusion\": \"success\"}, \"exp_008e_v3_walker_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:29:53.738Z\", \"updated_at\": \"2026-05-15T06:24:21.709Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — crown jewel C6 seed 2 验证\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"C6 seed 2 COLLAPSED. Delusional critic collapse at 85K→105K despite gate_dt_mean=1.0 locked throughout. eval peaked 715@85K then crashed to 137@105K (v/e=2.48, nve=3.78x). Cross-seed: seed 0=869.9 (healthy), seed 1=869.9 (healthy), seed 2=137 (collapsed). Collapse is stochastic (1/3 seeds) even in dt=1 imagination config. Subsample ON training data (dt=2 transitions) appears sufficient to trigger delusional critic in some seeds. Train returns at 108K=19-23 (random policy).\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 39.27}, {\"step\": 15000, \"eval_return\": 180.85}, {\"step\": 25000, \"eval_return\": 211.82}, {\"step\": 35000, \"eval_return\": 320.39}, {\"step\": 45000, \"eval_return\": 356.93}, {\"step\": 55000, \"eval_return\": 418.32}, {\"step\": 65000, \"eval_return\": 435.09}, {\"step\": 75000, \"eval_return\": 576.54}, {\"step\": 85000, \"eval_return\": 715.21}, {\"step\": 95000, \"eval_return\": 452.43}, {\"step\": 105000, \"eval_return\": 136.96}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 15000, \"value_mean\": 3.91}, {\"step\": 25000, \"value_mean\": 30.27}, {\"step\": 35000, \"value_mean\": 79.75}, {\"step\": 45000, \"value_mean\": 125.25}, {\"step\": 55000, \"value_mean\": 172.89}, {\"step\": 65000, \"value_mean\": 220.47}, {\"step\": 75000, \"value_mean\": 272.64}, {\"step\": 85000, \"value_mean\": 339.3}, {\"step\": 95000, \"value_mean\": 384.39}, {\"step\": 105000, \"value_mean\": 339.84}], \"actor_entropy_trajectory\": [{\"step\": 5000, \"actor_entropy\": 8.239}, {\"step\": 15000, \"actor_entropy\": 2.352}, {\"step\": 25000, \"actor_entropy\": 0.17}, {\"step\": 35000, \"actor_entropy\": -3.498}, {\"step\": 45000, \"actor_entropy\": -4.915}, {\"step\": 55000, \"actor_entropy\": -5.121}, {\"step\": 65000, \"actor_entropy\": -5.135}, {\"step\": 75000, \"actor_entropy\": -5.224}, {\"step\": 85000, \"actor_entropy\": -5.208}, {\"step\": 95000, \"actor_entropy\": -4.529}, {\"step\": 105000, \"actor_entropy\": -3.828}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.143, \"nve\": 1.64}, {\"step\": 35000, \"ve\": 0.249, \"nve\": 1.03}, {\"step\": 45000, \"ve\": 0.351, \"nve\": 1.06}, {\"step\": 55000, \"ve\": 0.413, \"nve\": 1.02}, {\"step\": 65000, \"ve\": 0.507, \"nve\": 0.9}, {\"step\": 75000, \"ve\": 0.473, \"nve\": 0.66}, {\"step\": 85000, \"ve\": 0.474, \"nve\": 0.68}, {\"step\": 95000, \"ve\": 0.85, \"nve\": 1.34}, {\"step\": 105000, \"ve\": 2.481, \"nve\": 3.78}], \"final_eval_return\": 136.96, \"peak_eval_return\": 715.21, \"peak_eval_step\": 85000, \"final_value_mean\": 339.84, \"final_ve_ratio\": 2.481, \"final_nve\": 3.78, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.0%\", \"collapse_onset\": \"95K (nve jumped from 0.68x to 1.34x)\", \"collapse_confirmed\": \"105K (nve=3.78x, eval 715→137)\", \"train_return_108K\": \"19-23 (random policy level)\", \"actor_entropy_collapse_signature\": \"entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)\"}, \"conclusion\": \"negative\"}, \"exp_008e_v3_walker_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:29:53.120Z\", \"updated_at\": \"2026-05-15T00:44:53.439Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证：trained dt_emb 在 dt=1 imagination 下不触发 delusional critic（plan_014）\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"Crown jewel C6 seed 1 SUCCESS. eval_return=869.9@105K, v/e=0.527 (healthy, no delusional critic). Gate locked dt=1 throughout. Trajectory: 31→131→156→276→382→487→581→574→657→852→870. Consistent with seed 0, confirms trained dt_emb + dt=1 imagination is safe.\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 31}, {\"step\": 15000, \"eval_return\": 131.2}, {\"step\": 25000, \"eval_return\": 155.7}, {\"step\": 35000, \"eval_return\": 276.5}, {\"step\": 45000, \"eval_return\": 382.2}, {\"step\": 55000, \"eval_return\": 486.8}, {\"step\": 65000, \"eval_return\": 580.7}, {\"step\": 75000, \"eval_return\": 574.1}, {\"step\": 85000, \"eval_return\": 657.3}, {\"step\": 95000, \"eval_return\": 851.9}, {\"step\": 105000, \"eval_return\": 869.9}], \"final_eval_return\": 869.9, \"final_value_mean\": 457.9, \"ve_ratio_105k\": 0.527, \"total_steps\": 112000, \"gate_dt_1_frac\": 1, \"exit_code\": 0}, \"conclusion\": \"success\"}, \"exp_006\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:49:02.944Z\", \"updated_at\": \"2026-05-14T22:31:54.922Z\", \"metrics\": {\"eval_return\": {\"5000\": 31, \"15000\": 256.9, \"25000\": 321.4, \"35000\": 485.3, \"45000\": 477, \"55000\": 360.4}, \"peak_return\": 485.3, \"peak_step\": 35000, \"latest_step\": 55000, \"latest_return\": 360.4, \"model_loss_at_55k\": 4.853, \"gate_dt_mean\": 2, \"baseline_return_at_55k\": 625.7, \"deficit_vs_baseline_at_55k\": -265.3, \"deficit_pct\": -42.4}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_006_fixed_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008a\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:07:59.793Z\", \"updated_at\": \"2026-05-14T22:31:54.075Z\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 167.2, \"eval_return_25K\": 230.8, \"eval_return_35K\": 500.8, \"eval_return_45K\": 563.4, \"eval_return_55K\": 487.9, \"eval_return_65K\": \"pending (eval in progress)\", \"value_mean_55K\": 183.5, \"value_eval_ratio_55K\": \"37.6%\", \"train_return_64K_avg\": 556.6, \"trend\": \"peaked @45K=563, dipped to @55K=488, 65K eval in progress; train returns @64K healthy (~557)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008a_no_subsample_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:08:02.608Z\", \"updated_at\": \"2026-05-14T22:31:52.611Z\", \"metrics\": {\"step\": 68000, \"eval_return_5K\": 31, \"eval_return_15K\": 171.3, \"eval_return_25K\": 192.4, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.6, \"eval_return_55K\": 241.9, \"eval_return_65K\": 240.9, \"value_mean_65K\": 79, \"value_eval_ratio_65K\": \"32.8%\", \"train_return_68K_avg\": 245.1, \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在正式命名实验中。conclusion=killed（D034 registry 清理）。\"}, \"exp_008d\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:08:05.136Z\", \"updated_at\": \"2026-05-14T22:31:51.696Z\", \"metrics\": {\"step\": 40000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.7, \"eval_return_25K\": 167.2, \"eval_return_35K\": 146.3, \"value_mean_35K\": 60.2, \"value_eval_ratio_35K\": \"41.1%\", \"train_return_40K_avg\": 119.3, \"trend\": \"declining — train_return @40K avg=119 below @35K eval=146, value/eval=41.1% not yet >50% but train performance dropping\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008d_subsample_on_h8。conclusion=killed（D034 registry 清理）。\"}, \"exp_008e_v2_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:26:39.732Z\", \"updated_at\": \"2026-05-14T22:31:49.814Z\", \"conclusion\": \"killed\", \"notes\": \"已被 exp_008e_v3_subsample_on_dt1_h15 取代，进程已死。conclusion=killed（D034 registry 清理）。\"}, \"exp_rssm_fidelity_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:09:52.237Z\", \"updated_at\": \"2026-05-14T22:31:48.642Z\", \"metrics\": {\"baseline\": {\"dt1_obs_mse\": 13.49, \"dt2_obs_mse\": 27.5, \"obs_gap\": 2.04, \"dt1_reward_mae\": 0.0102, \"dt2_reward_mae\": 0.0159, \"reward_gap\": 1.56}, \"008d_trained_dtEmb\": {\"dt1_obs_mse\": 41.31, \"dt2_obs_mse\": 53.67, \"obs_gap\": 1.3, \"dt1_reward_mae\": 0.0568, \"dt2_reward_mae\": 0.1579, \"reward_gap\": 2.78}, \"008f_no_dtEmb\": {\"dt1_obs_mse\": 8.01, \"dt2_obs_mse\": 22.04, \"obs_gap\": 2.75, \"dt1_reward_mae\": 0.7469, \"dt2_reward_mae\": 0.7526, \"reward_gap\": 1.01}}, \"conclusion\": \"success\", \"hypothesis\": \"RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)\", \"notes\": \"分析实验，非训练实验。conclusion=success，状态从 PREPARING 修正为 DONE（D034 registry 清理）。\"}, \"exp_008e_v3_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:29:31.656Z\", \"updated_at\": \"2026-05-14T19:46:00.840Z\", \"hypothesis\": \"B+ confound control：subsample ON + untrained dt_emb + dt=1 imagination + H=15。验证 subsample ON 训练数据（含 dt=2 transitions）是否本身导致性能下降，即使 imagination 只用 dt=1。对照 008a（subsample OFF）和 baseline。如果 008e_v3 性能接近 baseline → subsample ON 本身无害。如果下降 → subsample ON 改变了 RSSM dynamics。\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"fps\": 7.01, \"eval_return\": {\"5K\": 31, \"15K\": 131.2, \"25K\": 155.69, \"35K\": 276.47, \"45K\": 382.22, \"55K\": 486.84, \"65K\": 580.67, \"75K\": 574.09, \"85K\": 657.31, \"95K\": 851.86, \"105K\": 869.88}, \"value_mean\": {\"25K\": 26.19, \"35K\": 62.76, \"45K\": 110.67, \"55K\": 170.09, \"65K\": 235.05, \"75K\": 300.51, \"85K\": 351.33, \"95K\": 405.25, \"105K\": 457.93}, \"value_eval_ratio\": {\"25K\": 0.168, \"35K\": 0.227, \"45K\": 0.29, \"55K\": 0.35, \"65K\": 0.405, \"75K\": 0.523, \"85K\": 0.534, \"95K\": 0.476, \"105K\": 0.527}, \"normalized_ve\": {\"25K\": 1.93, \"35K\": 0.94, \"45K\": 0.88, \"55K\": 0.87, \"65K\": 0.72, \"75K\": 0.73, \"85K\": 0.76, \"95K\": 0.75, \"105K\": 0.8}, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"last_updated\": \"2026-05-14T09:09:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-5.0%\", \"verdict\": \"SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed\"}, \"conclusion\": \"success\"}, \"exp_009c_008f_walker_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:17:26.154Z\", \"updated_at\": \"2026-05-14T14:34:24.161Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 30.37, \"value_mean\": 0.0013, \"ve_ratio\": null, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 157.15, \"value_mean\": 3.057, \"ve_ratio\": 0.019, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 168.75, \"value_mean\": 18.536, \"ve_ratio\": 0.11, \"baseline_ve\": 0.087, \"normalized_ve\": 1.26}, {\"step\": 35000, \"eval_return\": 178.94, \"value_mean\": 34.263, \"ve_ratio\": 0.191, \"baseline_ve\": 0.241, \"normalized_ve\": 0.79}, {\"step\": 45000, \"eval_return\": 211.08, \"value_mean\": 50.099, \"ve_ratio\": 0.237, \"baseline_ve\": 0.331, \"normalized_ve\": 0.72}, {\"step\": 55000, \"eval_return\": 238.91, \"value_mean\": 63.267, \"ve_ratio\": 0.265, \"baseline_ve\": 0.404, \"normalized_ve\": 0.66}, {\"step\": 65000, \"eval_return\": 244.15, \"value_mean\": 72.717, \"ve_ratio\": 0.298, \"baseline_ve\": 0.563, \"normalized_ve\": 0.53}, {\"step\": 75000, \"eval_return\": 359.14, \"value_mean\": 83.91, \"ve_ratio\": 0.234, \"baseline_ve\": 0.719, \"normalized_ve\": 0.33}, {\"step\": 85000, \"eval_return\": 227.43, \"value_mean\": 96.071, \"ve_ratio\": 0.422, \"baseline_ve\": 0.701, \"normalized_ve\": 0.6}, {\"step\": 95000, \"eval_return\": 190.94, \"value_mean\": 108.29, \"ve_ratio\": 0.567, \"baseline_ve\": 0.632, \"normalized_ve\": 0.9}, {\"step\": 105000, \"eval_return\": 148.34, \"value_mean\": 111.247, \"ve_ratio\": 0.75, \"baseline_ve\": 0.656, \"normalized_ve\": 1.14}], \"trend\": \"Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503\", \"verdict\": \"NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-83.8%\", \"causal_conclusion\": \"Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.\"}, \"conclusion\": \"negative\", \"notes\": \"D031 排期修正: 009c 延长 200K 降优先级，排在 009e/009f 之后。cuda:1 排期: 009b → 008e_v3_s1 → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060。105K 指标: eval=148.34, value=111.25, nve=1.14x。\"}, \"exp_006_fixed_dt2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:10:58.851Z\", \"updated_at\": \"2026-05-14T10:20:11.722Z\", \"hypothesis\": \"诊断实验：fixed dt=2 vs learned gate。去掉 Gumbel-Softmax gate，硬编码 dt=2，其余超参与 exp_005 完全一致。量化 learned gate 的价值——如果 fixed dt=2 也掉 return，说明跳步本身有害；如果不掉，问题在 gate 学习机制。\", \"parent\": \"exp_005_event_gated_v4\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 256.9, \"eval_return_25K\": 321.4, \"eval_return_35K\": 485.3, \"eval_return_45K\": 477, \"eval_return_55K\": 360.4, \"eval_return_65K\": 132.86, \"peak_return\": 485.3, \"peak_step\": \"35K\", \"model_loss_5K\": 20.738, \"model_loss_15K\": 7.593, \"model_loss_25K\": 5.633, \"model_loss_35K\": 5.229, \"model_loss_45K\": 5.023, \"model_loss_55K\": 4.9, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"fps\": 6.5, \"value_mean_35K\": 151.1, \"value_mean_45K\": 254.29, \"value_mean_55K\": 336.44, \"value_mean_65K\": 361.69, \"value_eval_ratio_35K\": 0.311, \"value_eval_ratio_45K\": 0.533, \"value_eval_ratio_55K\": 0.933, \"value_eval_ratio_65K\": 2.722, \"baseline_35K\": 388.5, \"baseline_45K\": 513.8, \"baseline_55K\": 625.7, \"vs_baseline_55K\": \"-42.4%\", \"trend\": \"inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\"}, \"exp_008e_subsample_on_fixed_dt1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:10:07.303Z\", \"updated_at\": \"2026-05-14T04:24:58.056Z\", \"hypothesis\": \"验证 Reviewer D020 因果假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（delusional critic），即使 actor 不用 dt=2 imagination。对照：008a (subsample OFF, dt=2 imag) value/eval=37.6%@55K vs exp_006 (subsample ON, dt=2 imag) 53.3%。\", \"conclusion\": \"killed\"}, \"exp_008e_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:10:37.655Z\", \"updated_at\": \"2026-05-14T04:24:57.658Z\", \"hypothesis\": \"验证 Reviewer D020 delusional critic 假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（即使 actor 不用 dt=2 imagination）。对照：008a（subsample OFF，dt=2 imagination）和 006（subsample ON，dt=2 imagination）。\", \"conclusion\": \"killed\", \"notes\": \"重复进程：与 exp_008e_subsample_on_fixed_dt1 命令完全相同，共享同一 logdir，导致 tfevents 文件互相污染。Kill PID 122038，保留 PID 121636。\"}, \"exp_002_event_gated\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T02:09:54.240Z\", \"updated_at\": \"2026-05-13T04:52:18.089Z\", \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"conclusion\": \"failed\"}}, \"count\": 103, \"total\": 103, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.396}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log was truncated in the middle. I need to get the full eval points. Let me:
+1. Extract all eval_return lines from the log
+2. Extract all ve_ratio lines
+3. Search the registry for cheetah experiments
+
+The log shows the last eval at step 215000 with eval_return 47.2. The exit code was 0.
+
+Let me grep for all eval_return and ve_ratio data points from the log, and also search the registry for cheetah experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "5a495d4a-aa97-4118-a4ff-fadebb46a4f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+日志被截断了，需要提取完整的 eval 数据点。同时搜索 registry 中的 cheetah 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "d9f8b445-965c-4ee3-bbc9-2bd5ff7f96b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011v72NDKR6xfAHucJZ4r1Xv`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"eval_return\" ~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "89129e9f-14d6-40e7-818e-48a5d8d2a7d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T22:30:45.189Z_
+
+<details><summary>↩ Tool result · `toolu_011v72NDKR6xfAHucJZ4r1Xv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[5000] eval_return 8.3 / eval_length 500.0 / eval_episodes 10.0\\n[15000] eval_return 87.5 / eval_length 500.0 / eval_episodes 10.0\\n[25000] eval_return 166.3 / eval_length 500.0 / eval_episodes 10.0\\n[35000] eval_return 371.7 / eval_length 500.0 / eval_episodes 10.0\\n[45000] eval_return 144.0 / eval_length 500.0 / eval_episodes 10.0\\n[55000] eval_return 266.0 / eval_length 500.0 / eval_episodes 10.0\\n[65000] eval_return 197.0 / eval_length 500.0 / eval_episodes 10.0\\n[75000] eval_return 107.8 / eval_length 500.0 / eval_episodes 10.0\\n[85000] eval_return 95.8 / eval_length 500.0 / eval_episodes 10.0\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\n[115000] eval_return 162.2 / eval_length 500.0 / eval_episodes 10.0\\n[125000] eval_return 148.5 / eval_length 500.0 / eval_episodes 10.0\\n[135000] eval_return 138.4 / eval_length 500.0 / eval_episodes 10.0\\n[145000] eval_return 100.4 / eval_length 500.0 / eval_episodes 10.0\\n[155000] eval_return 144.3 / eval_length 500.0 / eval_episodes 10.0\\n[165000] eval_return 130.9 / eval_length 500.0 / eval_episodes 10.0\\n[175000] eval_return 66.4 / eval_length 500.0 / eval_episodes 10.0\\n[185000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\n[195000] eval_return 56.5 / eval_length 500.0 / eval_episodes 10.0\\n[205000] eval_return 49.7 / eval_length 500.0 / eval_episodes 10.0\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "bd9be13a-bd73-4f59-9eee-3a1bbae3a158",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[5000] eval_return 8.3 / eval_length 500.0 / eval_episodes 10.0\\\\n[15000] eval_return 87.5 / eval_length 500.0 / eval_episodes 10.0\\\\n[25000] eval_return 166.3 / eval_length 500.0 / eval_episodes 10.0\\\\n[35000] eval_return 371.7 / eval_length 500.0 / eval_episodes 10.0\\\\n[45000] eval_return 144.0 / eval_length 500.0 / eval_episodes 10.0\\\\n[55000] eval_return 266.0 / eval_length 500.0 / eval_episodes 10.0\\\\n[65000] eval_return 197.0 / eval_length 500.0 / eval_episodes 10.0\\\\n[75000] eval_return 107.8 / eval_length 500.0 / eval_episodes 10.0\\\\n[85000] eval_return 95.8 / eval_length 500.0 / eval_episodes 10.0\\\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\\\n[115000] eval_return 162.2 / eval_length 500.0 / eval_episodes 10.0\\\\n[125000] eval_return 148.5 / eval_length 500.0 / eval_episodes 10.0\\\\n[135000] eval_return 138.4 / eval_length 500.0 / eval_episodes 10.0\\\\n[145000] eval_return 100.4 / eval_length 500.0 / eval_episodes 10.0\\\\n[155000] eval_return 144.3 / eval_length 500.0 / eval_episodes 10.0\\\\n[165000] eval_return 130.9 / eval_length 500.0 / eval_episodes 10.0\\\\n[175000] eval_return 66.4 / eval_length 500.0 / eval_episodes 10.0\\\\n[185000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\\\n[195000] eval_return 56.5 / eval_length 500.0 / eval_episodes 10.0\\\\n[205000] eval_return 49.7 / eval_length 500.0 / eval_episodes 10.0\\\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[5000] eval_return 8.3 / eval_length 500.0 / eval_episodes 10.0\\n[15000] eval_return 87.5 / eval_length 500.0 / eval_episodes 10.0\\n[25000] eval_return 166.3 / eval_length 500.0 / eval_episodes 10.0\\n[35000] eval_return 371.7 / eval_length 500.0 / eval_episodes 10.0\\n[45000] eval_return 144.0 / eval_length 500.0 / eval_episodes 10.0\\n[55000] eval_return 266.0 / eval_length 500.0 / eval_episodes 10.0\\n[65000] eval_return 197.0 / eval_length 500.0 / eval_episodes 10.0\\n[75000] eval_return 107.8 / eval_length 500.0 / eval_episodes 10.0\\n[85000] eval_return 95.8 / eval_length 500.0 / eval_episodes 10.0\\n[95000] eval_return 72.8 / eval_length 500.0 / eval_episodes 10.0\\n[105000] eval_return 122.5 / eval_length 500.0 / eval_episodes 10.0\\n[115000] eval_return 162.2 / eval_length 500.0 / eval_episodes 10.0\\n[125000] eval_return 148.5 / eval_length 500.0 / eval_episodes 10.0\\n[135000] eval_return 138.4 / eval_length 500.0 / eval_episodes 10.0\\n[145000] eval_return 100.4 / eval_length 500.0 / eval_episodes 10.0\\n[155000] eval_return 144.3 / eval_length 500.0 / eval_episodes 10.0\\n[165000] eval_return 130.9 / eval_length 500.0 / eval_episodes 10.0\\n[175000] eval_return 66.4 / eval_length 500.0 / eval_episodes 10.0\\n[185000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\n[195000] eval_return 56.5 / eval_length 500.0 / eval_episodes 10.0\\n[205000] eval_return 49.7 / eval_length 500.0 / eval_episodes 10.0\\n[215000] eval_return 47.2 / eval_length 500.0 / eval_episodes 10.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F7xuxUtjrMJnP7ukDtXmAs`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"ve_ratio\" ~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "27ff2ba7-e864-4f9c-bd5a-459facbbaf21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T22:30:45.750Z_
+
+<details><summary>↩ Tool result · `toolu_01F7xuxUtjrMJnP7ukDtXmAs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 3.4 / model_grad_norm 7.3 / position_loss 0.0 / velocity_loss 0.7 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.9 / rep_loss 3.9 / kl 3.8 / prior_ent 46.4 / post_ent 42.6 / normed_target_mean 0.4 / normed_target_std 0.2 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 1.3 / EMA_095 2.4 / value_mean 1.6 / value_std 0.1 / value_min 1.1 / value_max 1.7 / target_mean 2.0 / target_std 0.4 / target_min 1.3 / target_max 3.4 / imag_reward_mean 0.1 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.3 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.3 / actor_grad_norm 0.1 / value_loss 2.6 / value_grad_norm 4.3 / update_count 2599.0 / fps 11.1\\n[25000] civo/ve_ratio 0.1 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.5 / model_grad_norm 5.3 / position_loss 0.0 / velocity_loss 0.4 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.0 / rep_loss 3.0 / kl 2.8 / prior_ent 35.9 / post_ent 33.1 / normed_target_mean 0.7 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.7 / EMA_005 10.6 / EMA_095 15.4 / value_mean 12.7 / value_std 0.9 / value_min 8.8 / value_max 13.7 / target_mean 13.7 / target_std 1.5 / target_min 9.9 / target_max 18.7 / imag_reward_mean 0.2 / imag_reward_std 0.3 / imag_reward_min -0.0 / imag_reward_max 1.0 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.6 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 1.6 / value_grad_norm 0.8 / update_count 5099.0 / fps 11.1\\n[35000] civo/ve_ratio 0.1 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 4.8 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.7 / rep_loss 2.7 / kl 2.6 / prior_ent 34.5 / post_ent 31.6 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.6 / EMA_005 30.7 / EMA_095 39.9 / value_mean 35.1 / value_std 2.3 / value_min 14.6 / value_max 38.5 / target_mean 36.4 / target_std 2.7 / target_min 29.0 / target_max 45.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.5 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.1 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.4 / update_count 7599.0 / fps 11.1\\n[45000] civo/ve_ratio 0.4 / civo/delta_ve 0.3 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 5.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 34.5 / post_ent 31.9 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.4 / EMA_005 47.6 / EMA_095 67.2 / value_mean\\n\\n... [截断: 输出过长，省略 17057 字符] ...\\n\\nan 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.1 / update_count 45099.0 / fps 10.3\\n[195000] civo/ve_ratio 0.2 / civo/delta_ve -0.1 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 3.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.8 / post_ent 34.1 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 2.2 / EMA_095 36.5 / value_mean 13.5 / value_std 11.4 / value_min 2.2 / value_max 51.9 / target_mean 13.5 / target_std 11.4 / target_min 2.2 / target_max 53.0 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 47599.0 / fps 10.4\\n[205000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.8 / EMA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "acaabb07-6899-45ff-a354-ecff6f16fff6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 3.4 / model_grad_norm 7.3 / position_loss 0.0 / velocity_loss 0.7 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.9 / rep_loss 3.9 / kl 3.8 / prior_ent 46.4 / post_ent 42.6 / normed_target_mean 0.4 / normed_target_std 0.2 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 1.3 / EMA_095 2.4 / value_mean 1.6 / value_std 0.1 / value_min 1.1 / value_max 1.7 / target_mean 2.0 / target_std 0.4 / target_min 1.3 / target_max 3.4 / imag_reward_mean 0.1 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.3 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.3 / actor_grad_norm 0.1 / value_loss 2.6 / value_grad_norm 4.3 / update_count 2599.0 / fps 11.1\\\\n[25000] civo/ve_ratio 0.1 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.5 / model_grad_norm 5.3 / position_loss 0.0 / velocity_loss 0.4 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.0 / rep_loss 3.0 / kl 2.8 / prior_ent 35.9 / post_ent 33.1 / normed_target_mean 0.7 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.7 / EMA_005 10.6 / EMA_095 15.4 / value_mean 12.7 / value_std 0.9 / value_min 8.8 / value_max 13.7 / target_mean 13.7 / target_std 1.5 / target_min 9.9 / target_max 18.7 / imag_reward_mean 0.2 / imag_reward_std 0.3 / imag_reward_min -0.0 / imag_reward_max 1.0 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.6 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 1.6 / value_grad_norm 0.8 / update_count 5099.0 / fps 11.1\\\\n[35000] civo/ve_ratio 0.1 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 4.8 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.7 / rep_loss 2.7 / kl 2.6 / prior_ent 34.5 / post_ent 31.6 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.6 / EMA_005 30.7 / EMA_095 39.9 / value_mean 35.1 / value_std 2.3 / value_min 14.6 / value_max 38.5 / target_mean 36.4 / target_std 2.7 / target_min 29.0 / target_max 45.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.5 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.1 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.4 / update_count 7599.0 / fps 11.1\\\\n[45000] civo/ve_ratio 0.4 / civo/delta_ve 0.3 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 5.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 34.5 / post_ent 31.9 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.4 / EMA_005 47.6 / EMA_095 67.2 / value_mean\\\\n\\\\n... [截断: 输出过长，省略 17057 字符] ...\\\\n\\\\nan 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.1 / update_count 45099.0 / fps 10.3\\\\n[195000] civo/ve_ratio 0.2 / civo/delta_ve -0.1 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 3.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.8 / post_ent 34.1 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 2.2 / EMA_095 36.5 / value_mean 13.5 / value_std 11.4 / value_min 2.2 / value_max 51.9 / target_mean 13.5 / target_std 11.4 / target_min 2.2 / target_max 53.0 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 47599.0 / fps 10.4\\\\n[205000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.8 / EMA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[15000] civo/ve_ratio 0.0 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 3.4 / model_grad_norm 7.3 / position_loss 0.0 / velocity_loss 0.7 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.9 / rep_loss 3.9 / kl 3.8 / prior_ent 46.4 / post_ent 42.6 / normed_target_mean 0.4 / normed_target_std 0.2 / normed_target_min 0.0 / normed_target_max 1.3 / EMA_005 1.3 / EMA_095 2.4 / value_mean 1.6 / value_std 0.1 / value_min 1.1 / value_max 1.7 / target_mean 2.0 / target_std 0.4 / target_min 1.3 / target_max 3.4 / imag_reward_mean 0.1 / imag_reward_std 0.1 / imag_reward_min 0.0 / imag_reward_max 0.3 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.3 / actor_grad_norm 0.1 / value_loss 2.6 / value_grad_norm 4.3 / update_count 2599.0 / fps 11.1\\n[25000] civo/ve_ratio 0.1 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 2.5 / model_grad_norm 5.3 / position_loss 0.0 / velocity_loss 0.4 / reward_loss 0.3 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 3.0 / rep_loss 3.0 / kl 2.8 / prior_ent 35.9 / post_ent 33.1 / normed_target_mean 0.7 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.7 / EMA_005 10.6 / EMA_095 15.4 / value_mean 12.7 / value_std 0.9 / value_min 8.8 / value_max 13.7 / target_mean 13.7 / target_std 1.5 / target_min 9.9 / target_max 18.7 / imag_reward_mean 0.2 / imag_reward_std 0.3 / imag_reward_min -0.0 / imag_reward_max 1.0 / imag_action_mean 0.3 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.6 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.2 / actor_grad_norm 0.1 / value_loss 1.6 / value_grad_norm 0.8 / update_count 5099.0 / fps 11.1\\n[35000] civo/ve_ratio 0.1 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 4.8 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.7 / rep_loss 2.7 / kl 2.6 / prior_ent 34.5 / post_ent 31.6 / normed_target_mean 0.6 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.6 / EMA_005 30.7 / EMA_095 39.9 / value_mean 35.1 / value_std 2.3 / value_min 14.6 / value_max 38.5 / target_mean 36.4 / target_std 2.7 / target_min 29.0 / target_max 45.4 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min 0.0 / imag_reward_max 1.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.5 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.1 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.4 / update_count 7599.0 / fps 11.1\\n[45000] civo/ve_ratio 0.4 / civo/delta_ve 0.3 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 5.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.6 / rep_loss 2.6 / kl 2.4 / prior_ent 34.5 / post_ent 31.9 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.2 / normed_target_max 1.4 / EMA_005 47.6 / EMA_095 67.2 / value_mean\\n\\n... [截断: 输出过长，省略 17057 字符] ...\\n\\nan 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.1 / update_count 45099.0 / fps 10.3\\n[195000] civo/ve_ratio 0.2 / civo/delta_ve -0.1 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 3.0 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.8 / post_ent 34.1 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 2.2 / EMA_095 36.5 / value_mean 13.5 / value_std 11.4 / value_min 2.2 / value_max 51.9 / target_mean 13.5 / target_std 11.4 / target_min 2.2 / target_max 53.0 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 47599.0 / fps 10.4\\n[205000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.8 / EMA_095 36.0 / value_mean 12.9 / value_std 11.4 / value_min 1.8 / value_max 51.3 / target_mean 12.9 / target_std 11.4 / target_min 1.8 / target_max 52.5 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -0.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.2 / value_grad_norm 1.1 / update_count 50099.0 / fps 10.4\\n[215000] civo/ve_ratio 0.3 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 2.3 / model_grad_norm 2.9 / position_loss 0.0 / velocity_loss 0.3 / reward_loss 0.4 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 2.8 / rep_loss 2.8 / kl 2.6 / prior_ent 36.9 / post_ent 34.2 / normed_target_mean 0.3 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.5 / EMA_005 1.5 / EMA_095 35.6 / value_mean 12.4 / value_std 11.4 / value_min 1.5 / value_max 50.6 / target_mean 12.4 / target_std 11.5 / target_min 1.4 / target_max 51.7 / imag_reward_mean 0.3 / imag_reward_std 0.4 / imag_reward_min -0.0 / imag_reward_max 1.8 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -1.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.0 / value_loss 1.3 / value_grad_norm 1.2 / update_count 52599.0 / fps 10.4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Nu2dYQ1e4icxkENcpe8vX9`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/0680b755-23c6-4a74-93c4-ecf25d31eae8/tool-results/mcp-agent-ml-research-read_registry-1779316236958.txt | python3 -c \"\nimport sys, json\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# Filter for cheetah experiments\nfor exp in result:\n    name = exp.get('name', '') or exp.get('experiment_id', '') or ''\n    if 'cheetah' in name.lower() or 'cheetah' in str(exp.get('config', '')).lower() or 'cheetah' in str(exp.get('notes', '')).lower() or 'cheetah' in str(exp).lower():\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n        print('---')\n\" 2>/dev/null | head -500",
+  "description": "Filter registry for cheetah experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "579db5a1-bc5e-4ee0-b154-7be7cffb9e0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T22:30:49.460Z_
+
+<details><summary>↩ Tool result · `toolu_01Nu2dYQ1e4icxkENcpe8vX9`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "0335b044-8ac2-4d54-861c-91c4d63a6df1",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_01Qqs4xNWZthFef1QC8KCNLa`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{\"display_name\": {\"$regex\": \"exp_030\"}",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "c511d31b-b059-495d-9abc-120c958b0783",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXxFvsXzoZ2sgaR6UgcAMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4922,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4922
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T22:30:49.730Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Qqs4xNWZthFef1QC8KCNLa`</summary>
+
+```text
+Error executing tool list_wandb_runs: 1 validation error for list_wandb_runsArguments
+filters
+  Input should be a valid dictionary [type=dict_type, input_value='{"display_name": {"$regex": "exp_030"}', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/dict_type
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "8c7bb182-f9ee-489b-9a6e-5a8370abb4e0",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: 1 validation error for list_wandb_runsArguments\nfilters\n  Input should be a valid dictionary [type=dict_type, input_value='{\"display_name\": {\"$regex\": \"exp_030\"}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/dict_type"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me extract the ve_ratio values properly and search for cheetah experiments in the registry. The ve_ratio output was truncated, but I got some data. Let me also try to get the registry data filtered for cheetah.
+
+From eval_return data I have all points:
+- 5K: 8.3
+- 15K: 87.5
+- 25K: 166.3
+- 35K: 371.7 (PEAK)
+- 45K: 144.0
+
+
+- 55K: 266.0
+- 65K: 197.0
+- 75K: 107.8
+- 85K: 95.8
+- 95K: 72.8
+- 105K: 122.5
+- 115K: 162.2
+- 125K: 148.5
+- 135K: 138.4
+- 145K: 100.4
+- 155K: 144.3
+- 165K: 130.9
+- 175K: 66.4
+- 185K: 47.2
+- 195K: 56.5
+- 205K: 49.7
+- 215K: 47.2
+
+Looking at the adaptive ratio metrics, I'm seeing values that start low and gradually increase across the range. The gate mechanism appears completely frozen at dt=2 with zero entropy, indicating the TCN gating never activated to change the horizon. Now I need to search the registry for the cheetah baseline and other exp_030 experiments to compare.
+
+The registry query returned too much data for the bash filter to parse effectively, likely due to a different JSON structure than expected. Let me try a different approach to extract the relevant experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "09ab4127-c38d-43f1-837b-8c209378a97a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9rh3kVBZpA1yU7gk392xG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6507,
+      "cache_read_input_tokens": 29916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6507
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Registry 输出太大，换个方式搜索 cheetah 实验。同时提取中间被截断的 ve_ratio 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "1ad84291-916a-486e-b989-c02f24da7560",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9rh3kVBZpA1yU7gk392xG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6507,
+      "cache_read_input_tokens": 29916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6507
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MhTeAfLC5Fc71b7pXxswPm`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -oP \"\\[\\d+\\] civo/ve_ratio \\S+\" ~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "be0bf219-6313-455e-b70b-610a093bede9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9rh3kVBZpA1yU7gk392xG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6507,
+      "cache_read_input_tokens": 29916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6507
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T22:31:05.356Z_
+
+<details><summary>↩ Tool result · `toolu_01MhTeAfLC5Fc71b7pXxswPm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[15000] civo/ve_ratio 0.0\\n[25000] civo/ve_ratio 0.1\\n[35000] civo/ve_ratio 0.1\\n[45000] civo/ve_ratio 0.4\\n[55000] civo/ve_ratio 0.2\\n[65000] civo/ve_ratio 0.2\\n[75000] civo/ve_ratio 0.4\\n[85000] civo/ve_ratio 0.4\\n[95000] civo/ve_ratio 0.4\\n[105000] civo/ve_ratio 0.2\\n[115000] civo/ve_ratio 0.1\\n[125000] civo/ve_ratio 0.1\\n[135000] civo/ve_ratio 0.1\\n[145000] civo/ve_ratio 0.2\\n[155000] civo/ve_ratio 0.1\\n[165000] civo/ve_ratio 0.1\\n[175000] civo/ve_ratio 0.2\\n[185000] civo/ve_ratio 0.3\\n[195000] civo/ve_ratio 0.2\\n[205000] civo/ve_ratio 0.3\\n[215000] civo/ve_ratio 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "86c94c25-6f93-4499-b796-cbd6fa778738",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[15000] civo/ve_ratio 0.0\\\\n[25000] civo/ve_ratio 0.1\\\\n[35000] civo/ve_ratio 0.1\\\\n[45000] civo/ve_ratio 0.4\\\\n[55000] civo/ve_ratio 0.2\\\\n[65000] civo/ve_ratio 0.2\\\\n[75000] civo/ve_ratio 0.4\\\\n[85000] civo/ve_ratio 0.4\\\\n[95000] civo/ve_ratio 0.4\\\\n[105000] civo/ve_ratio 0.2\\\\n[115000] civo/ve_ratio 0.1\\\\n[125000] civo/ve_ratio 0.1\\\\n[135000] civo/ve_ratio 0.1\\\\n[145000] civo/ve_ratio 0.2\\\\n[155000] civo/ve_ratio 0.1\\\\n[165000] civo/ve_ratio 0.1\\\\n[175000] civo/ve_ratio 0.2\\\\n[185000] civo/ve_ratio 0.3\\\\n[195000] civo/ve_ratio 0.2\\\\n[205000] civo/ve_ratio 0.3\\\\n[215000] civo/ve_ratio 0.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[15000] civo/ve_ratio 0.0\\n[25000] civo/ve_ratio 0.1\\n[35000] civo/ve_ratio 0.1\\n[45000] civo/ve_ratio 0.4\\n[55000] civo/ve_ratio 0.2\\n[65000] civo/ve_ratio 0.2\\n[75000] civo/ve_ratio 0.4\\n[85000] civo/ve_ratio 0.4\\n[95000] civo/ve_ratio 0.4\\n[105000] civo/ve_ratio 0.2\\n[115000] civo/ve_ratio 0.1\\n[125000] civo/ve_ratio 0.1\\n[135000] civo/ve_ratio 0.1\\n[145000] civo/ve_ratio 0.2\\n[155000] civo/ve_ratio 0.1\\n[165000] civo/ve_ratio 0.1\\n[175000] civo/ve_ratio 0.2\\n[185000] civo/ve_ratio 0.3\\n[195000] civo/ve_ratio 0.2\\n[205000] civo/ve_ratio 0.3\\n[215000] civo/ve_ratio 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01J5u7683Tca1LCMG9Tr6jyJ`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": {
+    "name": {
+      "$regex": "cheetah"
+    }
+  },
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "df4df651-4f97-4334-9a06-5056459f4cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9rh3kVBZpA1yU7gk392xG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6507,
+      "cache_read_input_tokens": 29916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6507
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T22:31:06.349Z_
+
+<details><summary>↩ Tool result · `toolu_01J5u7683Tca1LCMG9Tr6jyJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3951}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "7d088d6b-4924-43e4-bfa9-c5262c60bb97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3951}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3951}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_01Gj3NgAJWKk31VwZ7Vc1qnJ`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": {
+    "display_name": {
+      "$regex": "exp_030"
+    }
+  },
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "5f094d9a-5e68-42ae-8338-b4e67c232885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F9rh3kVBZpA1yU7gk392xG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6507,
+      "cache_read_input_tokens": 29916,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6507
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T22:31:06.547Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Gj3NgAJWKk31VwZ7Vc1qnJ`</summary>
+
+```text
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "1caf9eaf-ba60-4039-919a-758b020e0054",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry filter didn't find anything with the name regex "cheetah". Let me try a broader search and also fix the W&B call. Let me search the registry without filters but with a smaller limit, and also try the W&B runs list differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "415e4302-6797-461b-b04c-58645800034b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3FZw48cMWKgKSEkcrdbGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1518,
+      "cache_read_input_tokens": 36423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+Registry 的 name filter 没匹配到。换方式搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "d89e7b7a-9f3f-4672-93f9-d723e572a115",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3FZw48cMWKgKSEkcrdbGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1518,
+      "cache_read_input_tokens": 36423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014wfCG3Pbg2xfuTwLfonBed`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": {
+    "experiment_id": {
+      "$regex": "cheetah"
+    }
+  },
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "74585f1c-3756-47ea-9efd-06065a99f5f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3FZw48cMWKgKSEkcrdbGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1518,
+      "cache_read_input_tokens": 36423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T22:31:12.266Z_
+
+<details><summary>↩ Tool result · `toolu_014wfCG3Pbg2xfuTwLfonBed`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4062}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "037423ab-1de2-4ce4-b8f3-316b269ed50a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4062}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4062}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MvWQrJqSsAHWkmvg59Uhgh`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": {
+    "experiment_id": {
+      "$regex": "030"
+    }
+  },
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "118518c3-8c65-4cb3-b053-513dc760b93d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3FZw48cMWKgKSEkcrdbGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1518,
+      "cache_read_input_tokens": 36423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_0196UFTmMZiuCW4AgZhQpA87`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "826cccf5-ce6d-46c2-ba1a-6740f49d175c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P3FZw48cMWKgKSEkcrdbGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1518,
+      "cache_read_input_tokens": 36423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1518
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T22:31:13.374Z_
+
+<details><summary>↩ Tool result · `toolu_01MvWQrJqSsAHWkmvg59Uhgh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6262}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "4f284479-0de6-4d48-947e-8639904c599f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6262}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6262}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T22:31:13.387Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0196UFTmMZiuCW4AgZhQpA87`</summary>
+
+```text
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "551a7732-cb9d-4909-8058-b4e04ad5c1bc",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry filters aren't working for regex on experiment_id. The list_wandb_runs is failing due to a parameter issue. Let me try without any filters for the registry, and try list_wandb_runs without extra params. Also let me check if there are exp_030a/b logs on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "cecbca24-1a22-4d84-8b80-8e47c2844cb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBNbW7rdQLfTLqw6pzf4kB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 37941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Registry regex 不支持这些字段。换用全量读取 + 本地过滤，同时查看服务器上其他 exp_030 日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "a701f967-3a12-43af-a296-f456e705dbd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBNbW7rdQLfTLqw6pzf4kB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 37941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013uYydNbfLQRA1Nh7UuHHQg`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ls -la ~/runs/event-gated-adaptive-horizon/exp_030*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "83d42a18-1499-46cd-aa43-84fe3bdaccfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBNbW7rdQLfTLqw6pzf4kB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 37941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T22:31:19.829Z_
+
+<details><summary>↩ Tool result · `toolu_013uYydNbfLQRA1Nh7UuHHQg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 51778 May 21 06:27 /root/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "5d9f94d4-7fa9-4bec-ac1f-00e15f5b7514",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 51778 May 21 06:27 /root/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 51778 May 21 06:27 /root/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Hhfk9Z1FB6VM24X4A3FgkR`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": 50,
+  "fields": [
+    "experiment_id",
+    "status",
+    "conclusion",
+    "metrics",
+    "notes"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "8364daab-5195-4eab-8be9-c0557871a8e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBNbW7rdQLfTLqw6pzf4kB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 37941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_wandb_runs · `toolu_014wM1u22ykUADDZkbey972u`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "4be1198c-8c98-4751-8772-8ccf93c41d69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBNbW7rdQLfTLqw6pzf4kB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 37941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 653
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T22:31:20.763Z_
+
+<details><summary>↩ Tool result · `toolu_01Hhfk9Z1FB6VM24X4A3FgkR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_030c_tcn_cheetah_s0_sigma10\": {\"status\": \"ANALYZING\", \"metrics\": {\"step\": 172000, \"eval_return_5K\": 8, \"eval_return_15K\": 88, \"eval_return_25K\": 166, \"eval_return_35K\": 372, \"eval_return_45K\": 144, \"eval_return_55K\": 266, \"eval_return_65K\": 197, \"eval_return_75K\": 108, \"eval_return_85K\": 96, \"eval_return_95K\": 73, \"eval_return_105K\": 123, \"eval_return_115K\": 162.2, \"eval_peak\": 372, \"eval_peak_step\": 35000, \"ve_ratio_latest\": 0.115, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_116K\": 95, \"eval_return_125K\": null, \"eval_return_165K\": 130.9}}, \"exp_029c_tcn_walker_s0_sigma01\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 99.1, \"eval_return_25K\": 140.7, \"eval_return_35K\": 155.7, \"eval_return_45K\": 160.9, \"eval_return_55K\": 254.8, \"eval_return_65K\": 268.7, \"eval_return_75K\": 295.5, \"eval_return_85K\": 220.8, \"eval_return_95K\": 188.6, \"eval_return_105K\": 204.7, \"eval_return_115K\": 296.4, \"eval_return_125K\": 232.3, \"eval_return_135K\": 247.4, \"eval_return_145K\": 323.1, \"eval_return_155K\": 359.7, \"eval_return_165K\": 490.7, \"eval_return_175K\": 246.2, \"eval_return_185K\": 220.6, \"eval_return_195K\": 212.8, \"eval_return_205K\": 256.9, \"eval_return_215K\": 328.3, \"ve_ratio_15K\": 0.0306, \"ve_ratio_25K\": 0.1606, \"ve_ratio_35K\": 0.3162, \"ve_ratio_45K\": 0.4807, \"ve_ratio_55K\": 0.4368, \"ve_ratio_65K\": 0.5432, \"ve_ratio_75K\": 0.6211, \"ve_ratio_85K\": 0.9533, \"ve_ratio_95K\": 1.0218, \"ve_ratio_105K\": 0.761, \"ve_ratio_115K\": 0.4514, \"ve_ratio_125K\": 0.4899, \"ve_ratio_135K\": 0.3995, \"ve_ratio_145K\": 0.2667, \"ve_ratio_155K\": 0.2, \"ve_ratio_165K\": 0.1, \"ve_ratio_175K\": 0.3, \"ve_ratio_185K\": 0.3, \"ve_ratio_195K\": 0.3, \"ve_ratio_205K\": 0.2, \"ve_ratio_215K\": 0.1, \"eval_peak\": 490.7, \"eval_peak_step\": \"165K\", \"eval_final\": 328.3, \"nve_max\": 1.0218, \"nve_max_step\": \"95K\", \"nve_final\": 0.1, \"total_steps\": 224000}, \"conclusion\": \"negative\"}, \"exp_031b_tcn_pickcube_s0_sigma05\": {\"status\": \"QUEUED\", \"metrics\": {}}, \"exp_029d_tcn_walker_s3_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 36000, \"eval_return_5K\": 31.7, \"eval_return_15K\": 159.1, \"eval_return_25K\": 155.7, \"eval_return_35K\": 190.8, \"ve_ratio_15K\": 0.021, \"ve_ratio_25K\": 0.171, \"ve_ratio_35K\": 0.312, \"value_mean_35K\": 59.6}}, \"exp_029b_tcn_walker_s2_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 108000, \"eval_return_5K\": 30.5, \"eval_return_15K\": 168.4, \"eval_return_25K\": 159.6, \"eval_return_35K\": 168.1, \"eval_return_45K\": 171.5, \"eval_return_55K\": 177.7, \"eval_return_65K\": 106.6, \"eval_return_75K\": 64.0, \"eval_return_85K\": 62.8, \"eval_return_95K\": 44.7, \"eval_return_105K\": 32.0, \"eval_peak\": 177.7, \"eval_peak_step\": 55000, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.174, \"ve_ratio_35K\": 0.335, \"ve_ratio_45K\": 0.477, \"ve_ratio_55K\": 0.583, \"ve_ratio_65K\": 1.014, \"ve_ratio_75K\": 1.65, \"ve_ratio_85K\": 1.623, \"ve_ratio_95K\": 2.109, \"ve_ratio_105K\": 2.765, \"value_mean_105K\": 88.4, \"civo_onset_step\": 65000, \"civo_pattern\": \"acceleration (1.01→1.65→1.62→2.11→2.77)\"}}, \"exp_029a_tcn_walker_s1_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 36.7, \"eval_return_15K\": 137.7, \"eval_return_25K\": 180.9, \"eval_return_35K\": 124, \"eval_return_45K\": 124.2, \"eval_return_55K\": 133.9, \"eval_return_65K\": 169.7, \"eval_return_75K\": 171.2, \"eval_return_85K\": 151.8, \"eval_return_95K\": 180.3, \"eval_return_105K\": 319.4, \"eval_return_115K\": 345.5, \"eval_return_125K\": 401, \"eval_return_135K\": 307.8, \"eval_return_145K\": 380.8, \"eval_return_155K\": 307.3, \"eval_return_165K\": 320.3, \"eval_return_175K\": 159, \"eval_return_185K\": 278.2, \"eval_return_195K\": 301.2, \"eval_return_205K\": 204.6, \"eval_return_215K\": 161.3, \"ve_ratio_15K\": 0.0248, \"ve_ratio_25K\": 0.1165, \"ve_ratio_35K\": 0.3574, \"ve_ratio_45K\": 0.5147, \"ve_ratio_55K\": 0.6428, \"ve_ratio_65K\": 0.4777, \"ve_ratio_75K\": 0.398, \"ve_ratio_85K\": 0.4033, \"ve_ratio_95K\": 0.3007, \"ve_ratio_105K\": 0.1554, \"ve_ratio_115K\": 0.1348, \"ve_ratio_125K\": 0.116, \"ve_ratio_135K\": 0.1449, \"ve_ratio_145K\": 0.1088, \"ve_ratio_155K\": 0.1287, \"ve_ratio_165K\": 0.1142, \"ve_ratio_175K\": 0.2138, \"ve_ratio_185K\": 0.121, \"ve_ratio_195K\": 0.1075, \"ve_ratio_205K\": 0.1503, \"ve_ratio_215K\": 0.1864, \"eval_peak\": 401, \"eval_peak_step\": \"125K\", \"nve_max\": 0.6428, \"nve_max_step\": \"55K\", \"nve_final\": 0.1864, \"current_step\": 215000, \"target_steps\": 210000, \"eval_last10_mean\": 282.15}, \"conclusion\": \"success\", \"notes\": \"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\"}, \"exp_031_tcn_pickcube_s0_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 158000, \"eval_return_132K\": 23.45, \"eval_peak\": 23.5, \"eval_peak_step\": 132500, \"ve_ratio_peak\": 3.71, \"ve_ratio_latest\": 0.18, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_range\": \"18-25\", \"eval_return_152K\": 23.1}}, \"exp_030b_tcn_cheetah_s0_sigma05\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 8.3, \"eval_return_15K\": 78.3, \"eval_return_25K\": 219.3, \"eval_return_35K\": 296.5, \"eval_return_45K\": 32.8, \"eval_return_55K\": 6, \"eval_return_65K\": 71.2, \"eval_return_75K\": 23.3, \"eval_return_85K\": 34, \"eval_return_95K\": 143.6, \"eval_return_105K\": 104.4, \"eval_return_115K\": 137.7, \"eval_return_125K\": 211.7, \"eval_return_135K\": 97.2, \"eval_return_145K\": 79.4, \"eval_return_155K\": 76.8, \"eval_return_165K\": 77.5, \"eval_return_175K\": 85.7, \"eval_return_185K\": 68.7, \"eval_return_195K\": 77.6, \"ve_ratio_15K\": 0.0202, \"ve_ratio_25K\": 0.0636, \"ve_ratio_35K\": 0.1238, \"ve_ratio_45K\": 1.9141, \"ve_ratio_55K\": 10.6657, \"ve_ratio_65K\": 0.8371, \"ve_ratio_75K\": 1.9823, \"ve_ratio_85K\": 1.0946, \"ve_ratio_95K\": 0.2253, \"ve_ratio_105K\": 0.2686, \"ve_ratio_115K\": 0.1789, \"ve_ratio_125K\": 0.1037, \"ve_ratio_135K\": 0.2153, \"ve_ratio_145K\": 0.2478, \"ve_ratio_155K\": 0.2392, \"ve_ratio_165K\": 0.202, \"ve_ratio_175K\": 0.1591, \"ve_ratio_185K\": 0.1834, \"ve_ratio_195K\": 0.1534, \"nve_max\": 10.6657, \"nve_max_step\": \"55K\", \"nve_final\": 0.1534, \"current_step\": 195000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s1\": {\"status\": \"DONE\", \"metrics\": {\"total_steps\": 215000, \"eval_return\": {\"5000\": 31, \"15000\": 140.5, \"25000\": 163.6, \"35000\": 153, \"45000\": 136.8, \"55000\": 158.3, \"65000\": 298.5, \"75000\": 364.9, \"85000\": 134, \"95000\": 94.6, \"105000\": 216.7, \"115000\": 318.9, \"125000\": 309.1, \"135000\": 216.1, \"145000\": 175.4, \"155000\": 171, \"165000\": 209.5, \"175000\": 120.4, \"185000\": 355.4, \"195000\": 183.3, \"205000\": 240.2, \"215000\": 350.8}, \"ve_ratio\": {\"15000\": 0.0246, \"25000\": 0.1416, \"35000\": 0.3585, \"45000\": 0.6101, \"55000\": 0.7092, \"65000\": 0.4875, \"75000\": 0.4902, \"85000\": 1.4104, \"95000\": 1.6367, \"105000\": 0.6444, \"115000\": 0.4021, \"125000\": 0.38, \"135000\": 0.5078, \"145000\": 0.8469, \"155000\": 0.8568, \"165000\": 0.5393, \"175000\": 0.7355, \"185000\": 0.211, \"195000\": 0.3513, \"205000\": 0.2376, \"215000\": 0.1476}, \"eval_peak\": 364.9, \"eval_peak_step\": 75000, \"eval_last10_mean\": 233.1, \"nve_max\": 1.6367, \"nve_max_step\": 95000, \"nve_final\": 0.1476}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 150.6, \"eval_return_25K\": 199.4, \"eval_return_35K\": 278.2, \"eval_return_45K\": 315.6, \"eval_return_55K\": 278.6, \"eval_return_65K\": 331, \"eval_return_75K\": 293.1, \"eval_return_85K\": 363.9, \"eval_return_95K\": 171.4, \"eval_return_105K\": 236.4, \"eval_return_115K\": 543.8, \"eval_return_125K\": 458.4, \"eval_return_135K\": 496.7, \"eval_return_145K\": 542.7, \"eval_return_155K\": 660.5, \"eval_return_165K\": 653.3, \"eval_return_175K\": 821.1, \"eval_return_185K\": 560.5, \"eval_return_195K\": 567.9, \"eval_return_205K\": 558.7, \"eval_return_215K\": 551, \"ve_ratio_15K\": 0.0192, \"ve_ratio_25K\": 0.0961, \"ve_ratio_35K\": 0.1875, \"ve_ratio_45K\": 0.3009, \"ve_ratio_55K\": 0.5231, \"ve_ratio_65K\": 0.5654, \"ve_ratio_75K\": 0.611, \"ve_ratio_85K\": 0.4665, \"ve_ratio_95K\": 0.9081, \"ve_ratio_105K\": 0.5625, \"ve_ratio_115K\": 0.2105, \"ve_ratio_125K\": 0.2182, \"ve_ratio_135K\": 0.1764, \"ve_ratio_145K\": 0.143, \"ve_ratio_155K\": 0.106, \"ve_ratio_165K\": 0.0979, \"ve_ratio_175K\": 0.0729, \"ve_ratio_185K\": 0.1048, \"ve_ratio_195K\": 0.1026, \"ve_ratio_205K\": 0.0995, \"ve_ratio_215K\": 0.0955, \"eval_peak\": 821.1, \"eval_peak_step\": \"175K\", \"eval_last10_mean\": 587.1, \"nve_max\": 0.9081, \"nve_max_step\": \"95K\", \"nve_final\": 0.0955, \"total_steps\": 215000}, \"conclusion\": \"success\"}, \"exp_030a_tcn_cheetah_s0_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_35K\": 299.5, \"eval_return_55K\": 31.9, \"ve_ratio_55K\": 1.903, \"current_step\": 64000, \"target_steps\": 210000, \"note\": \"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\"}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 37.4, \"eval_return_15K\": 154.6, \"eval_return_25K\": 223.6, \"eval_return_35K\": 240, \"eval_return_45K\": 101.2, \"eval_return_55K\": 70, \"eval_return_65K\": 95.1, \"eval_return_75K\": 189.2, \"eval_return_85K\": 36, \"eval_return_95K\": 166.4, \"eval_return_105K\": 95.5, \"eval_return_112K\": 99.5, \"ve_ratio_15K\": 0.02, \"ve_ratio_25K\": 0.11, \"ve_ratio_35K\": 0.235, \"ve_ratio_45K\": 0.86, \"ve_ratio_55K\": 1.679, \"ve_ratio_65K\": 1.544, \"ve_ratio_75K\": 0.831, \"ve_ratio_85K\": 3.965, \"ve_ratio_95K\": 0.675, \"ve_ratio_105K\": 0.916, \"peak_eval\": 240, \"peak_eval_step\": \"35K\", \"peak_nve\": 3.965, \"peak_nve_step\": \"85K\", \"last_5_eval_avg\": 117.3, \"nve_breach_count\": 3, \"nve_breach_steps\": \"55K(1.68), 65K(1.54), 85K(3.97)\", \"final_step\": 120000, \"target_steps\": 210000, \"gate_dt_mean\": 2, \"gate_dt_entropy\": 0}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0_ceil15\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 31.6, \"eval_return_15K\": 99.4, \"eval_return_25K\": 155.3, \"eval_return_35K\": 180.1, \"eval_return_45K\": 166.9, \"eval_return_55K\": 131, \"eval_return_65K\": 91.5, \"eval_return_75K\": 120.9, \"eval_return_85K\": 137.3, \"eval_return_95K\": 70.2, \"eval_return_105K\": 76.2, \"eval_return_115K\": 41.2, \"eval_return_125K\": 36.6, \"eval_return_135K\": 39.1, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.128, \"ve_ratio_35K\": 0.247, \"ve_ratio_45K\": 0.428, \"ve_ratio_55K\": 0.737, \"ve_ratio_65K\": 1.294, \"ve_ratio_75K\": 0.937, \"ve_ratio_85K\": 0.727, \"ve_ratio_95K\": 1.28, \"ve_ratio_105K\": 0.984, \"ve_ratio_115K\": 1.513, \"ve_ratio_125K\": 1.462, \"ve_ratio_135K\": 1.171, \"current_step\": 135000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0\": {\"status\": \"DONE\", \"metrics\": {\"current_steps\": 105000, \"eval_trajectory\": {\"5K\": {\"eval_return\": 37.4, \"value_mean\": 0.001}, \"15K\": {\"eval_return\": 105.3, \"ve_ratio\": 0.028, \"value_mean\": 2.93}, \"25K\": {\"eval_return\": 191.9, \"ve_ratio\": 0.127, \"value_mean\": 24.4}, \"35K\": {\"eval_return\": 204.6, \"ve_ratio\": 0.267}, \"45K\": {\"eval_return\": 197.7, \"ve_ratio\": 0.439}, \"55K\": {\"eval_return\": 193, \"ve_ratio\": 0.62}, \"65K\": {\"eval_return\": 79.8, \"ve_ratio\": 1.832}, \"75K\": {\"eval_return\": 44.5, \"ve_ratio\": 3.415}, \"85K\": {\"eval_return\": 57.7, \"ve_ratio\": 2.126}, \"95K\": {\"eval_return\": 25.9, \"ve_ratio\": 4.086, \"value_mean\": 105.87}, \"105K\": {\"eval_return\": 29, \"ve_ratio\": 3.183, \"value_mean\": 92.2}}, \"note\": \"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\"}, \"conclusion\": \"negative\"}, \"exp_025_obs_sgs_walker_s2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_215K\": 89.6, \"ve_ratio_215K\": 0.8, \"ve_ratio_185K\": 1.4, \"ve_ratio_175K\": 1.2, \"train_steps_completed\": 224000, \"target_steps\": 210000}, \"notes\": \"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\"}, \"exp_026_obs_sgs_cheetah_s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_026_obs_sgs_cheetah_s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s4\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_001_baseline_s4_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 938.86, \"peak_eval_return\": 960.6, \"convergence_mean_250k_plus\": 935}}, \"exp_001_baseline_s3_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 947.68, \"final_train_return_avg\": 945.4, \"eval_profile\": {\"5000\": 42.15, \"15000\": 224.27, \"25000\": 329.99, \"35000\": 413.12, \"45000\": 332.69, \"55000\": 519.91, \"65000\": 667.42, \"72000\": 771.33, \"82000\": 772.88, \"92000\": 854.6, \"102000\": 869.03, \"112000\": 898.89, \"120000\": 898.38, \"130000\": 837.74, \"140000\": 876.64, \"150000\": 899.47, \"160000\": 922.77, \"170000\": 925.77, \"180000\": 912.89, \"190000\": 915.07, \"200000\": 894.77, \"210000\": 899.79, \"220000\": 951.18, \"230000\": 930.56, \"240000\": 910.47, \"250000\": 914.02, \"260000\": 931.33, \"270000\": 954.65, \"280000\": 928.01, \"290000\": 947.4, \"300000\": 853.32, \"310000\": 906.35, \"320000\": 847.16, \"330000\": 934.78, \"340000\": 921.08, \"350000\": 922.63, \"360000\": 844.99, \"370000\": 911.36, \"380000\": 917.73, \"390000\": 937.21, \"400000\": 928, \"410000\": 945.88, \"420000\": 897.2, \"430000\": 949.45, \"440000\": 937.28, \"450000\": 924.24, \"460000\": 967.25, \"470000\": 940.55, \"480000\": 936.24, \"490000\": 944.67, \"500000\": 957.09, \"510000\": 947.68}}}, \"exp_001_baseline_s2_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 945.7, \"eval_return_peak\": 962.6, \"eval_return_at_105K\": 443.5, \"ve_ratio_at_105K\": 0.7422, \"value_mean_at_105K\": 329.16, \"ve_ratio_converged_range\": \"0.69-0.77\", \"value_mean_plateau\": 665, \"total_steps\": 512000}}, \"exp_023_cheetah_baseline_s4_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"note\": \"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\", \"eval_peak_ext\": 642.3, \"eval_peak_ext_step\": 272000, \"eval_302k\": 580}}, \"exp_001_baseline_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 922.8, \"peak_eval\": 922.8, \"peak_eval_step\": 105000, \"value_mean_final\": 576.1, \"ve_ratio_105k\": 0.624}}, \"exp_023_cheetah_baseline_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 212000, \"target_steps\": 200000, \"eval_return_194k\": 537.03, \"eval_return_204k\": 301.69, \"peak_eval\": 537.03, \"peak_eval_step\": 194000, \"value_mean_204k\": 339.14, \"ve_ratio_204k\": 1.124, \"note\": \"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\"}}, \"exp_023_cheetah_baseline_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 204000, \"target_steps\": 200000, \"eval_return_202k\": 642.13, \"peak_eval\": 685.93, \"peak_eval_step\": 172000, \"value_mean_final\": 445.42, \"ve_ratio_final\": 0.694}}, \"exp_001_baseline_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 120000, \"target_steps\": 105000, \"eval_return_102k\": 869.03, \"peak_eval\": 898.89, \"peak_eval_step\": 112000, \"value_mean_final\": 622.2, \"ve_ratio_final\": 0.692}}, \"exp_023_cheetah_baseline_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 205000, \"target_steps\": 200000, \"eval_return_final\": 645.4, \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\"}}, \"exp_008f_s4\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_105k\": 306.5, \"peak_eval\": 487.5, \"peak_eval_step\": 55000, \"peak_nve\": 1.41, \"peak_nve_step\": 85000, \"nve_105k\": 0.58, \"civo_alert\": 0, \"note\": \"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\"}}, \"exp_009c_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 108000, \"target_steps\": 105000, \"eval_return_105k\": 311.92, \"value_mean_105k\": 120.27, \"ve_ratio_105k\": 0.386, \"nve_105k\": 0.52, \"note\": \"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\"}}, \"exp_001_baseline_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 443.46, \"value_mean_105k\": 329.16, \"ve_ratio_105k\": 0.742}}, \"exp_008f_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_008a_cheetah_unexposed_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 504.38, \"value_mean_105k\": 156.97, \"ve_ratio_105k\": 0.3112, \"nve_105k\": 0.478}}, \"exp_008a_cheetah_unexposed_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 532.35, \"value_mean_105k\": 169.98, \"ve_ratio_105k\": 0.3193, \"nve_105k\": 0.49}}, \"exp_009c_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_008e_v3_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return\": 899.3, \"nve_peak\": 0.99, \"nve_peak_step\": 95000, \"ve_ratio_105k\": 0.609, \"civo\": false, \"nve_note\": \"Corrected: was 0.61 (raw V/E ratio). Correct formula: max(V/E_exp / V/E_baseline_at_same_step) over [35K+]. 0.627/0.632=0.99 at 95K\"}}, \"exp_008e_v3_s3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return\": 92.7, \"peak_eval\": 520.4, \"peak_step\": 85000, \"nve_peak\": 4.02, \"nve_peak_step\": 105000, \"ve_ratio_105k\": 2.635, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"collapse_onset\": \"85K-95K\", \"actor_entropy_final\": -4.892, \"nve_note\": \"Corrected: was 5.00 (worker used wrong baseline). Correct formula: V/E_exp / V/E_baseline_at_same_step. 2.635/0.656=4.02\"}}, \"exp_008a_unexposed_s1\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5k\": 31, \"eval_return_15k\": 167.12, \"eval_return_25k\": 139.94, \"eval_return_35k\": 394.15, \"eval_return_45k\": 414.32, \"eval_return_55k\": 441.48, \"eval_return_65k\": 491.74, \"eval_return_75k\": 452.34, \"eval_return_85k\": 546.82, \"eval_return_95k\": 628.57, \"eval_return_final\": 630.91, \"value_mean_final\": 271.36, \"target_mean_final\": 272.13, \"civo_ve_ratio_final\": 0.43, \"civo_delta_ve_final\": -0.0028, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"total_steps\": 105000}, \"conclusion\": \"success\"}, \"exp_008a_unexposed_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 899.4, \"eval_return_95k\": 819.4, \"eval_return_85k\": 605.4, \"eval_return_75k\": 534.4, \"eval_return_65k\": 653.8, \"eval_return_55k\": 607.5, \"civo_ve_ratio_final\": 0.333, \"civo_delta_ve_final\": -0.003, \"civo_alert\": 0, \"value_mean_final\": 299.4, \"target_mean_final\": 300.3, \"total_steps\": 105000, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008d_civo_trigger_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 112000, \"target_step\": 105000, \"eval_return_trajectory\": {\"5K\": 30.9, \"15K\": 171.4, \"25K\": 189.5, \"35K\": 153.8, \"45K\": 158.2, \"55K\": 229.3, \"65K\": 333.6, \"75K\": 302.4, \"85K\": 383.3, \"95K\": 240.3, \"105K\": 63.6}, \"peak_eval_return\": 383.3, \"peak_eval_step\": 85000, \"final_eval_return_105K\": 63.6, \"ve_ratio_105K\": 3.03, \"civo_alert_105K\": 1, \"delta_ve_105K\": 2.05, \"value_mean_105K\": 192.65, \"value_mean_95K\": 235.42, \"civo_confirmed\": true, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008a_untrained_s1\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：C3 rebuttal 应复现 008a (unexposed trained dt_emb, subsample OFF) 而非 015b (frozen)。替换为 exp_008a_unexposed_s1/s2。\"}, \"exp_008a_untrained_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：同上。\"}, \"exp_010b_cheetah_civo_trigger_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_peak\": 247.77, \"eval_return_peak_step\": \"35K\", \"eval_return_105K\": 0.83, \"nve_95K\": 6.34, \"nve_105K\": 70.64, \"civo\": true, \"civo_onset_step\": \"65K\", \"detector_alert_step\": \"95K\", \"gate_dt_mean\": 2, \"gate_entropy\": 0}}, \"exp_024b_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 96.5, \"civo\": false, \"nve_peak\": 0.2}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak <0.2×). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. eval 96.5 = 17.6% of baseline (548.3). Cheetah causal triangle seed 1 complete. Director confirmed results in D089.\"}, \"exp_024b_cheetah_no_dt_emb_s1\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 77.3, \"eval_return_peak\": 129.6, \"peak_step\": 15000, \"nve_peak\": 0.1, \"civo\": false, \"baseline_pct\": 14.1, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak 0.10×, civo_alert=0 throughout). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. Gate locked at dt=2 (gate_dt_2_frac=1.0), eval 77.3 = 14% of baseline (548.3). Low performance expected: dt_embed_dim=0 removes temporal abstraction capability. Cheetah causal triangle seed 2 complete.\"}, \"exp_024_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_021_full_sgs_cheetah_s1\": {\"status\": \"DONE\", \"notes\": \"P0 priority (D070 最重要数据缺口). 018_s2 完成后立即上 cuda:0. 排序: 021 先 → 008d_s1 后. Director 2026-05-16 确认.\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 221.5, \"nve_peak\": 9.94, \"nve_peak_step\": \"45K\", \"nve_sustained_55K_105K\": 0.338, \"civo\": true, \"civo_type\": \"transient_self_correcting\", \"baseline_pct\": 38.7, \"vs_010b\": \"221.5 vs 51.7 (4.3x better)\"}}, \"exp_023a_cheetah_baseline_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 624.7, \"eval_return_peak\": 624.7, \"peak_step\": 205000, \"civo\": false}, \"notes\": \"Healthy baseline. Last-5 eval mean=554.4. 185K瞬态VE spike(0.906)触发警报但20K步内恢复(205K:624.7)，非CIVO。双seed baseline均值: last-5=548.3, peak=598.8。未接W&B。\"}, \"exp_010b_cheetah_civo_trigger\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 51.7, \"eval_return_peak\": 321.9, \"peak_step\": 35000, \"nve_peak\": 8.27, \"nve_peak_step\": 65000, \"civo\": true}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 103, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4441}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "5d6ae9d0-2a2e-4e39-9fe7-53051c4bf067",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_030c_tcn_cheetah_s0_sigma10\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"metrics\\\": {\\\"step\\\": 172000, \\\"eval_return_5K\\\": 8, \\\"eval_return_15K\\\": 88, \\\"eval_return_25K\\\": 166, \\\"eval_return_35K\\\": 372, \\\"eval_return_45K\\\": 144, \\\"eval_return_55K\\\": 266, \\\"eval_return_65K\\\": 197, \\\"eval_return_75K\\\": 108, \\\"eval_return_85K\\\": 96, \\\"eval_return_95K\\\": 73, \\\"eval_return_105K\\\": 123, \\\"eval_return_115K\\\": 162.2, \\\"eval_peak\\\": 372, \\\"eval_peak_step\\\": 35000, \\\"ve_ratio_latest\\\": 0.115, \\\"gate_dt2_frac\\\": 1.0, \\\"gate_entropy\\\": 0, \\\"train_return_116K\\\": 95, \\\"eval_return_125K\\\": null, \\\"eval_return_165K\\\": 130.9}}, \\\"exp_029c_tcn_walker_s0_sigma01\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 35.6, \\\"eval_return_15K\\\": 99.1, \\\"eval_return_25K\\\": 140.7, \\\"eval_return_35K\\\": 155.7, \\\"eval_return_45K\\\": 160.9, \\\"eval_return_55K\\\": 254.8, \\\"eval_return_65K\\\": 268.7, \\\"eval_return_75K\\\": 295.5, \\\"eval_return_85K\\\": 220.8, \\\"eval_return_95K\\\": 188.6, \\\"eval_return_105K\\\": 204.7, \\\"eval_return_115K\\\": 296.4, \\\"eval_return_125K\\\": 232.3, \\\"eval_return_135K\\\": 247.4, \\\"eval_return_145K\\\": 323.1, \\\"eval_return_155K\\\": 359.7, \\\"eval_return_165K\\\": 490.7, \\\"eval_return_175K\\\": 246.2, \\\"eval_return_185K\\\": 220.6, \\\"eval_return_195K\\\": 212.8, \\\"eval_return_205K\\\": 256.9, \\\"eval_return_215K\\\": 328.3, \\\"ve_ratio_15K\\\": 0.0306, \\\"ve_ratio_25K\\\": 0.1606, \\\"ve_ratio_35K\\\": 0.3162, \\\"ve_ratio_45K\\\": 0.4807, \\\"ve_ratio_55K\\\": 0.4368, \\\"ve_ratio_65K\\\": 0.5432, \\\"ve_ratio_75K\\\": 0.6211, \\\"ve_ratio_85K\\\": 0.9533, \\\"ve_ratio_95K\\\": 1.0218, \\\"ve_ratio_105K\\\": 0.761, \\\"ve_ratio_115K\\\": 0.4514, \\\"ve_ratio_125K\\\": 0.4899, \\\"ve_ratio_135K\\\": 0.3995, \\\"ve_ratio_145K\\\": 0.2667, \\\"ve_ratio_155K\\\": 0.2, \\\"ve_ratio_165K\\\": 0.1, \\\"ve_ratio_175K\\\": 0.3, \\\"ve_ratio_185K\\\": 0.3, \\\"ve_ratio_195K\\\": 0.3, \\\"ve_ratio_205K\\\": 0.2, \\\"ve_ratio_215K\\\": 0.1, \\\"eval_peak\\\": 490.7, \\\"eval_peak_step\\\": \\\"165K\\\", \\\"eval_final\\\": 328.3, \\\"nve_max\\\": 1.0218, \\\"nve_max_step\\\": \\\"95K\\\", \\\"nve_final\\\": 0.1, \\\"total_steps\\\": 224000}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_031b_tcn_pickcube_s0_sigma05\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"metrics\\\": {}}, \\\"exp_029d_tcn_walker_s3_sigma02\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"metrics\\\": {\\\"step\\\": 36000, \\\"eval_return_5K\\\": 31.7, \\\"eval_return_15K\\\": 159.1, \\\"eval_return_25K\\\": 155.7, \\\"eval_return_35K\\\": 190.8, \\\"ve_ratio_15K\\\": 0.021, \\\"ve_ratio_25K\\\": 0.171, \\\"ve_ratio_35K\\\": 0.312, \\\"value_mean_35K\\\": 59.6}}, \\\"exp_029b_tcn_walker_s2_sigma02\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"metrics\\\": {\\\"step\\\": 108000, \\\"eval_return_5K\\\": 30.5, \\\"eval_return_15K\\\": 168.4, \\\"eval_return_25K\\\": 159.6, \\\"eval_return_35K\\\": 168.1, \\\"eval_return_45K\\\": 171.5, \\\"eval_return_55K\\\": 177.7, \\\"eval_return_65K\\\": 106.6, \\\"eval_return_75K\\\": 64.0, \\\"eval_return_85K\\\": 62.8, \\\"eval_return_95K\\\": 44.7, \\\"eval_return_105K\\\": 32.0, \\\"eval_peak\\\": 177.7, \\\"eval_peak_step\\\": 55000, \\\"ve_ratio_15K\\\": 0.03, \\\"ve_ratio_25K\\\": 0.174, \\\"ve_ratio_35K\\\": 0.335, \\\"ve_ratio_45K\\\": 0.477, \\\"ve_ratio_55K\\\": 0.583, \\\"ve_ratio_65K\\\": 1.014, \\\"ve_ratio_75K\\\": 1.65, \\\"ve_ratio_85K\\\": 1.623, \\\"ve_ratio_95K\\\": 2.109, \\\"ve_ratio_105K\\\": 2.765, \\\"value_mean_105K\\\": 88.4, \\\"civo_onset_step\\\": 65000, \\\"civo_pattern\\\": \\\"acceleration (1.01→1.65→1.62→2.11→2.77)\\\"}}, \\\"exp_029a_tcn_walker_s1_sigma02\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 36.7, \\\"eval_return_15K\\\": 137.7, \\\"eval_return_25K\\\": 180.9, \\\"eval_return_35K\\\": 124, \\\"eval_return_45K\\\": 124.2, \\\"eval_return_55K\\\": 133.9, \\\"eval_return_65K\\\": 169.7, \\\"eval_return_75K\\\": 171.2, \\\"eval_return_85K\\\": 151.8, \\\"eval_return_95K\\\": 180.3, \\\"eval_return_105K\\\": 319.4, \\\"eval_return_115K\\\": 345.5, \\\"eval_return_125K\\\": 401, \\\"eval_return_135K\\\": 307.8, \\\"eval_return_145K\\\": 380.8, \\\"eval_return_155K\\\": 307.3, \\\"eval_return_165K\\\": 320.3, \\\"eval_return_175K\\\": 159, \\\"eval_return_185K\\\": 278.2, \\\"eval_return_195K\\\": 301.2, \\\"eval_return_205K\\\": 204.6, \\\"eval_return_215K\\\": 161.3, \\\"ve_ratio_15K\\\": 0.0248, \\\"ve_ratio_25K\\\": 0.1165, \\\"ve_ratio_35K\\\": 0.3574, \\\"ve_ratio_45K\\\": 0.5147, \\\"ve_ratio_55K\\\": 0.6428, \\\"ve_ratio_65K\\\": 0.4777, \\\"ve_ratio_75K\\\": 0.398, \\\"ve_ratio_85K\\\": 0.4033, \\\"ve_ratio_95K\\\": 0.3007, \\\"ve_ratio_105K\\\": 0.1554, \\\"ve_ratio_115K\\\": 0.1348, \\\"ve_ratio_125K\\\": 0.116, \\\"ve_ratio_135K\\\": 0.1449, \\\"ve_ratio_145K\\\": 0.1088, \\\"ve_ratio_155K\\\": 0.1287, \\\"ve_ratio_165K\\\": 0.1142, \\\"ve_ratio_175K\\\": 0.2138, \\\"ve_ratio_185K\\\": 0.121, \\\"ve_ratio_195K\\\": 0.1075, \\\"ve_ratio_205K\\\": 0.1503, \\\"ve_ratio_215K\\\": 0.1864, \\\"eval_peak\\\": 401, \\\"eval_peak_step\\\": \\\"125K\\\", \\\"nve_max\\\": 0.6428, \\\"nve_max_step\\\": \\\"55K\\\", \\\"nve_final\\\": 0.1864, \\\"current_step\\\": 215000, \\\"target_steps\\\": 210000, \\\"eval_last10_mean\\\": 282.15}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\\\"}, \\\"exp_031_tcn_pickcube_s0_sigma02\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"metrics\\\": {\\\"step\\\": 158000, \\\"eval_return_132K\\\": 23.45, \\\"eval_peak\\\": 23.5, \\\"eval_peak_step\\\": 132500, \\\"ve_ratio_peak\\\": 3.71, \\\"ve_ratio_latest\\\": 0.18, \\\"gate_dt2_frac\\\": 1.0, \\\"gate_entropy\\\": 0, \\\"train_return_range\\\": \\\"18-25\\\", \\\"eval_return_152K\\\": 23.1}}, \\\"exp_030b_tcn_cheetah_s0_sigma05\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 8.3, \\\"eval_return_15K\\\": 78.3, \\\"eval_return_25K\\\": 219.3, \\\"eval_return_35K\\\": 296.5, \\\"eval_return_45K\\\": 32.8, \\\"eval_return_55K\\\": 6, \\\"eval_return_65K\\\": 71.2, \\\"eval_return_75K\\\": 23.3, \\\"eval_return_85K\\\": 34, \\\"eval_return_95K\\\": 143.6, \\\"eval_return_105K\\\": 104.4, \\\"eval_return_115K\\\": 137.7, \\\"eval_return_125K\\\": 211.7, \\\"eval_return_135K\\\": 97.2, \\\"eval_return_145K\\\": 79.4, \\\"eval_return_155K\\\": 76.8, \\\"eval_return_165K\\\": 77.5, \\\"eval_return_175K\\\": 85.7, \\\"eval_return_185K\\\": 68.7, \\\"eval_return_195K\\\": 77.6, \\\"ve_ratio_15K\\\": 0.0202, \\\"ve_ratio_25K\\\": 0.0636, \\\"ve_ratio_35K\\\": 0.1238, \\\"ve_ratio_45K\\\": 1.9141, \\\"ve_ratio_55K\\\": 10.6657, \\\"ve_ratio_65K\\\": 0.8371, \\\"ve_ratio_75K\\\": 1.9823, \\\"ve_ratio_85K\\\": 1.0946, \\\"ve_ratio_95K\\\": 0.2253, \\\"ve_ratio_105K\\\": 0.2686, \\\"ve_ratio_115K\\\": 0.1789, \\\"ve_ratio_125K\\\": 0.1037, \\\"ve_ratio_135K\\\": 0.2153, \\\"ve_ratio_145K\\\": 0.2478, \\\"ve_ratio_155K\\\": 0.2392, \\\"ve_ratio_165K\\\": 0.202, \\\"ve_ratio_175K\\\": 0.1591, \\\"ve_ratio_185K\\\": 0.1834, \\\"ve_ratio_195K\\\": 0.1534, \\\"nve_max\\\": 10.6657, \\\"nve_max_step\\\": \\\"55K\\\", \\\"nve_final\\\": 0.1534, \\\"current_step\\\": 195000, \\\"target_steps\\\": 210000}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_027_tcn_walker_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"total_steps\\\": 215000, \\\"eval_return\\\": {\\\"5000\\\": 31, \\\"15000\\\": 140.5, \\\"25000\\\": 163.6, \\\"35000\\\": 153, \\\"45000\\\": 136.8, \\\"55000\\\": 158.3, \\\"65000\\\": 298.5, \\\"75000\\\": 364.9, \\\"85000\\\": 134, \\\"95000\\\": 94.6, \\\"105000\\\": 216.7, \\\"115000\\\": 318.9, \\\"125000\\\": 309.1, \\\"135000\\\": 216.1, \\\"145000\\\": 175.4, \\\"155000\\\": 171, \\\"165000\\\": 209.5, \\\"175000\\\": 120.4, \\\"185000\\\": 355.4, \\\"195000\\\": 183.3, \\\"205000\\\": 240.2, \\\"215000\\\": 350.8}, \\\"ve_ratio\\\": {\\\"15000\\\": 0.0246, \\\"25000\\\": 0.1416, \\\"35000\\\": 0.3585, \\\"45000\\\": 0.6101, \\\"55000\\\": 0.7092, \\\"65000\\\": 0.4875, \\\"75000\\\": 0.4902, \\\"85000\\\": 1.4104, \\\"95000\\\": 1.6367, \\\"105000\\\": 0.6444, \\\"115000\\\": 0.4021, \\\"125000\\\": 0.38, \\\"135000\\\": 0.5078, \\\"145000\\\": 0.8469, \\\"155000\\\": 0.8568, \\\"165000\\\": 0.5393, \\\"175000\\\": 0.7355, \\\"185000\\\": 0.211, \\\"195000\\\": 0.3513, \\\"205000\\\": 0.2376, \\\"215000\\\": 0.1476}, \\\"eval_peak\\\": 364.9, \\\"eval_peak_step\\\": 75000, \\\"eval_last10_mean\\\": 233.1, \\\"nve_max\\\": 1.6367, \\\"nve_max_step\\\": 95000, \\\"nve_final\\\": 0.1476}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_027_tcn_walker_s0_sigma02\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 35.6, \\\"eval_return_15K\\\": 150.6, \\\"eval_return_25K\\\": 199.4, \\\"eval_return_35K\\\": 278.2, \\\"eval_return_45K\\\": 315.6, \\\"eval_return_55K\\\": 278.6, \\\"eval_return_65K\\\": 331, \\\"eval_return_75K\\\": 293.1, \\\"eval_return_85K\\\": 363.9, \\\"eval_return_95K\\\": 171.4, \\\"eval_return_105K\\\": 236.4, \\\"eval_return_115K\\\": 543.8, \\\"eval_return_125K\\\": 458.4, \\\"eval_return_135K\\\": 496.7, \\\"eval_return_145K\\\": 542.7, \\\"eval_return_155K\\\": 660.5, \\\"eval_return_165K\\\": 653.3, \\\"eval_return_175K\\\": 821.1, \\\"eval_return_185K\\\": 560.5, \\\"eval_return_195K\\\": 567.9, \\\"eval_return_205K\\\": 558.7, \\\"eval_return_215K\\\": 551, \\\"ve_ratio_15K\\\": 0.0192, \\\"ve_ratio_25K\\\": 0.0961, \\\"ve_ratio_35K\\\": 0.1875, \\\"ve_ratio_45K\\\": 0.3009, \\\"ve_ratio_55K\\\": 0.5231, \\\"ve_ratio_65K\\\": 0.5654, \\\"ve_ratio_75K\\\": 0.611, \\\"ve_ratio_85K\\\": 0.4665, \\\"ve_ratio_95K\\\": 0.9081, \\\"ve_ratio_105K\\\": 0.5625, \\\"ve_ratio_115K\\\": 0.2105, \\\"ve_ratio_125K\\\": 0.2182, \\\"ve_ratio_135K\\\": 0.1764, \\\"ve_ratio_145K\\\": 0.143, \\\"ve_ratio_155K\\\": 0.106, \\\"ve_ratio_165K\\\": 0.0979, \\\"ve_ratio_175K\\\": 0.0729, \\\"ve_ratio_185K\\\": 0.1048, \\\"ve_ratio_195K\\\": 0.1026, \\\"ve_ratio_205K\\\": 0.0995, \\\"ve_ratio_215K\\\": 0.0955, \\\"eval_peak\\\": 821.1, \\\"eval_peak_step\\\": \\\"175K\\\", \\\"eval_last10_mean\\\": 587.1, \\\"nve_max\\\": 0.9081, \\\"nve_max_step\\\": \\\"95K\\\", \\\"nve_final\\\": 0.0955, \\\"total_steps\\\": 215000}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_030a_tcn_cheetah_s0_sigma02\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_35K\\\": 299.5, \\\"eval_return_55K\\\": 31.9, \\\"ve_ratio_55K\\\": 1.903, \\\"current_step\\\": 64000, \\\"target_steps\\\": 210000, \\\"note\\\": \\\"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_027_tcn_walker_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 37.4, \\\"eval_return_15K\\\": 154.6, \\\"eval_return_25K\\\": 223.6, \\\"eval_return_35K\\\": 240, \\\"eval_return_45K\\\": 101.2, \\\"eval_return_55K\\\": 70, \\\"eval_return_65K\\\": 95.1, \\\"eval_return_75K\\\": 189.2, \\\"eval_return_85K\\\": 36, \\\"eval_return_95K\\\": 166.4, \\\"eval_return_105K\\\": 95.5, \\\"eval_return_112K\\\": 99.5, \\\"ve_ratio_15K\\\": 0.02, \\\"ve_ratio_25K\\\": 0.11, \\\"ve_ratio_35K\\\": 0.235, \\\"ve_ratio_45K\\\": 0.86, \\\"ve_ratio_55K\\\": 1.679, \\\"ve_ratio_65K\\\": 1.544, \\\"ve_ratio_75K\\\": 0.831, \\\"ve_ratio_85K\\\": 3.965, \\\"ve_ratio_95K\\\": 0.675, \\\"ve_ratio_105K\\\": 0.916, \\\"peak_eval\\\": 240, \\\"peak_eval_step\\\": \\\"35K\\\", \\\"peak_nve\\\": 3.965, \\\"peak_nve_step\\\": \\\"85K\\\", \\\"last_5_eval_avg\\\": 117.3, \\\"nve_breach_count\\\": 3, \\\"nve_breach_steps\\\": \\\"55K(1.68), 65K(1.54), 85K(3.97)\\\", \\\"final_step\\\": 120000, \\\"target_steps\\\": 210000, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_entropy\\\": 0}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028_rave_walker_s0_ceil15\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5K\\\": 31.6, \\\"eval_return_15K\\\": 99.4, \\\"eval_return_25K\\\": 155.3, \\\"eval_return_35K\\\": 180.1, \\\"eval_return_45K\\\": 166.9, \\\"eval_return_55K\\\": 131, \\\"eval_return_65K\\\": 91.5, \\\"eval_return_75K\\\": 120.9, \\\"eval_return_85K\\\": 137.3, \\\"eval_return_95K\\\": 70.2, \\\"eval_return_105K\\\": 76.2, \\\"eval_return_115K\\\": 41.2, \\\"eval_return_125K\\\": 36.6, \\\"eval_return_135K\\\": 39.1, \\\"ve_ratio_15K\\\": 0.03, \\\"ve_ratio_25K\\\": 0.128, \\\"ve_ratio_35K\\\": 0.247, \\\"ve_ratio_45K\\\": 0.428, \\\"ve_ratio_55K\\\": 0.737, \\\"ve_ratio_65K\\\": 1.294, \\\"ve_ratio_75K\\\": 0.937, \\\"ve_ratio_85K\\\": 0.727, \\\"ve_ratio_95K\\\": 1.28, \\\"ve_ratio_105K\\\": 0.984, \\\"ve_ratio_115K\\\": 1.513, \\\"ve_ratio_125K\\\": 1.462, \\\"ve_ratio_135K\\\": 1.171, \\\"current_step\\\": 135000, \\\"target_steps\\\": 210000}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_028_rave_walker_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"current_steps\\\": 105000, \\\"eval_trajectory\\\": {\\\"5K\\\": {\\\"eval_return\\\": 37.4, \\\"value_mean\\\": 0.001}, \\\"15K\\\": {\\\"eval_return\\\": 105.3, \\\"ve_ratio\\\": 0.028, \\\"value_mean\\\": 2.93}, \\\"25K\\\": {\\\"eval_return\\\": 191.9, \\\"ve_ratio\\\": 0.127, \\\"value_mean\\\": 24.4}, \\\"35K\\\": {\\\"eval_return\\\": 204.6, \\\"ve_ratio\\\": 0.267}, \\\"45K\\\": {\\\"eval_return\\\": 197.7, \\\"ve_ratio\\\": 0.439}, \\\"55K\\\": {\\\"eval_return\\\": 193, \\\"ve_ratio\\\": 0.62}, \\\"65K\\\": {\\\"eval_return\\\": 79.8, \\\"ve_ratio\\\": 1.832}, \\\"75K\\\": {\\\"eval_return\\\": 44.5, \\\"ve_ratio\\\": 3.415}, \\\"85K\\\": {\\\"eval_return\\\": 57.7, \\\"ve_ratio\\\": 2.126}, \\\"95K\\\": {\\\"eval_return\\\": 25.9, \\\"ve_ratio\\\": 4.086, \\\"value_mean\\\": 105.87}, \\\"105K\\\": {\\\"eval_return\\\": 29, \\\"ve_ratio\\\": 3.183, \\\"value_mean\\\": 92.2}}, \\\"note\\\": \\\"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_025_obs_sgs_walker_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return_215K\\\": 89.6, \\\"ve_ratio_215K\\\": 0.8, \\\"ve_ratio_185K\\\": 1.4, \\\"ve_ratio_175K\\\": 1.2, \\\"train_steps_completed\\\": 224000, \\\"target_steps\\\": 210000}, \\\"notes\\\": \\\"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\\\"}, \\\"exp_026_obs_sgs_cheetah_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_026_obs_sgs_cheetah_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_025_obs_sgs_walker_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_025_obs_sgs_walker_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_025_obs_sgs_walker_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_baseline_s4_extended\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 520000, \\\"final_eval_return\\\": 938.86, \\\"peak_eval_return\\\": 960.6, \\\"convergence_mean_250k_plus\\\": 935}}, \\\"exp_001_baseline_s3_extended\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 520000, \\\"final_eval_return\\\": 947.68, \\\"final_train_return_avg\\\": 945.4, \\\"eval_profile\\\": {\\\"5000\\\": 42.15, \\\"15000\\\": 224.27, \\\"25000\\\": 329.99, \\\"35000\\\": 413.12, \\\"45000\\\": 332.69, \\\"55000\\\": 519.91, \\\"65000\\\": 667.42, \\\"72000\\\": 771.33, \\\"82000\\\": 772.88, \\\"92000\\\": 854.6, \\\"102000\\\": 869.03, \\\"112000\\\": 898.89, \\\"120000\\\": 898.38, \\\"130000\\\": 837.74, \\\"140000\\\": 876.64, \\\"150000\\\": 899.47, \\\"160000\\\": 922.77, \\\"170000\\\": 925.77, \\\"180000\\\": 912.89, \\\"190000\\\": 915.07, \\\"200000\\\": 894.77, \\\"210000\\\": 899.79, \\\"220000\\\": 951.18, \\\"230000\\\": 930.56, \\\"240000\\\": 910.47, \\\"250000\\\": 914.02, \\\"260000\\\": 931.33, \\\"270000\\\": 954.65, \\\"280000\\\": 928.01, \\\"290000\\\": 947.4, \\\"300000\\\": 853.32, \\\"310000\\\": 906.35, \\\"320000\\\": 847.16, \\\"330000\\\": 934.78, \\\"340000\\\": 921.08, \\\"350000\\\": 922.63, \\\"360000\\\": 844.99, \\\"370000\\\": 911.36, \\\"380000\\\": 917.73, \\\"390000\\\": 937.21, \\\"400000\\\": 928, \\\"410000\\\": 945.88, \\\"420000\\\": 897.2, \\\"430000\\\": 949.45, \\\"440000\\\": 937.28, \\\"450000\\\": 924.24, \\\"460000\\\": 967.25, \\\"470000\\\": 940.55, \\\"480000\\\": 936.24, \\\"490000\\\": 944.67, \\\"500000\\\": 957.09, \\\"510000\\\": 947.68}}}, \\\"exp_001_baseline_s2_extended\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 945.7, \\\"eval_return_peak\\\": 962.6, \\\"eval_return_at_105K\\\": 443.5, \\\"ve_ratio_at_105K\\\": 0.7422, \\\"value_mean_at_105K\\\": 329.16, \\\"ve_ratio_converged_range\\\": \\\"0.69-0.77\\\", \\\"value_mean_plateau\\\": 665, \\\"total_steps\\\": 512000}}, \\\"exp_023_cheetah_baseline_s4_extended\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"note\\\": \\\"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\\\", \\\"eval_peak_ext\\\": 642.3, \\\"eval_peak_ext_step\\\": 272000, \\\"eval_302k\\\": 580}}, \\\"exp_001_baseline_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 112000, \\\"target_steps\\\": 105000, \\\"eval_return_105k\\\": 922.8, \\\"peak_eval\\\": 922.8, \\\"peak_eval_step\\\": 105000, \\\"value_mean_final\\\": 576.1, \\\"ve_ratio_105k\\\": 0.624}}, \\\"exp_023_cheetah_baseline_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 212000, \\\"target_steps\\\": 200000, \\\"eval_return_194k\\\": 537.03, \\\"eval_return_204k\\\": 301.69, \\\"peak_eval\\\": 537.03, \\\"peak_eval_step\\\": 194000, \\\"value_mean_204k\\\": 339.14, \\\"ve_ratio_204k\\\": 1.124, \\\"note\\\": \\\"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\\\"}}, \\\"exp_023_cheetah_baseline_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 204000, \\\"target_steps\\\": 200000, \\\"eval_return_202k\\\": 642.13, \\\"peak_eval\\\": 685.93, \\\"peak_eval_step\\\": 172000, \\\"value_mean_final\\\": 445.42, \\\"ve_ratio_final\\\": 0.694}}, \\\"exp_001_baseline_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 120000, \\\"target_steps\\\": 105000, \\\"eval_return_102k\\\": 869.03, \\\"peak_eval\\\": 898.89, \\\"peak_eval_step\\\": 112000, \\\"value_mean_final\\\": 622.2, \\\"ve_ratio_final\\\": 0.692}}, \\\"exp_023_cheetah_baseline_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 205000, \\\"target_steps\\\": 200000, \\\"eval_return_final\\\": 645.4, \\\"note\\\": \\\"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\\\"}}, \\\"exp_008f_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return_105k\\\": 306.5, \\\"peak_eval\\\": 487.5, \\\"peak_eval_step\\\": 55000, \\\"peak_nve\\\": 1.41, \\\"peak_nve_step\\\": 85000, \\\"nve_105k\\\": 0.58, \\\"civo_alert\\\": 0, \\\"note\\\": \\\"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\\\"}}, \\\"exp_009c_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 108000, \\\"target_steps\\\": 105000, \\\"eval_return_105k\\\": 311.92, \\\"value_mean_105k\\\": 120.27, \\\"ve_ratio_105k\\\": 0.386, \\\"nve_105k\\\": 0.52, \\\"note\\\": \\\"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\\\"}}, \\\"exp_001_baseline_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 112000, \\\"target_steps\\\": 105000, \\\"eval_return_105k\\\": 443.46, \\\"value_mean_105k\\\": 329.16, \\\"ve_ratio_105k\\\": 0.742}}, \\\"exp_008f_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_008a_cheetah_unexposed_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 112000, \\\"target_steps\\\": 105000, \\\"eval_return_105k\\\": 504.38, \\\"value_mean_105k\\\": 156.97, \\\"ve_ratio_105k\\\": 0.3112, \\\"nve_105k\\\": 0.478}}, \\\"exp_008a_cheetah_unexposed_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"current_step\\\": 112000, \\\"target_steps\\\": 105000, \\\"eval_return_105k\\\": 532.35, \\\"value_mean_105k\\\": 169.98, \\\"ve_ratio_105k\\\": 0.3193, \\\"nve_105k\\\": 0.49}}, \\\"exp_009c_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_008e_v3_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return\\\": 899.3, \\\"nve_peak\\\": 0.99, \\\"nve_peak_step\\\": 95000, \\\"ve_ratio_105k\\\": 0.609, \\\"civo\\\": false, \\\"nve_note\\\": \\\"Corrected: was 0.61 (raw V/E ratio). Correct formula: max(V/E_exp / V/E_baseline_at_same_step) over [35K+]. 0.627/0.632=0.99 at 95K\\\"}}, \\\"exp_008e_v3_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return\\\": 92.7, \\\"peak_eval\\\": 520.4, \\\"peak_step\\\": 85000, \\\"nve_peak\\\": 4.02, \\\"nve_peak_step\\\": 105000, \\\"ve_ratio_105k\\\": 2.635, \\\"gate_dt_mean\\\": 1, \\\"gate_dt_1_frac\\\": 1, \\\"collapse_onset\\\": \\\"85K-95K\\\", \\\"actor_entropy_final\\\": -4.892, \\\"nve_note\\\": \\\"Corrected: was 5.00 (worker used wrong baseline). Correct formula: V/E_exp / V/E_baseline_at_same_step. 2.635/0.656=4.02\\\"}}, \\\"exp_008a_unexposed_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_5k\\\": 31, \\\"eval_return_15k\\\": 167.12, \\\"eval_return_25k\\\": 139.94, \\\"eval_return_35k\\\": 394.15, \\\"eval_return_45k\\\": 414.32, \\\"eval_return_55k\\\": 441.48, \\\"eval_return_65k\\\": 491.74, \\\"eval_return_75k\\\": 452.34, \\\"eval_return_85k\\\": 546.82, \\\"eval_return_95k\\\": 628.57, \\\"eval_return_final\\\": 630.91, \\\"value_mean_final\\\": 271.36, \\\"target_mean_final\\\": 272.13, \\\"civo_ve_ratio_final\\\": 0.43, \\\"civo_delta_ve_final\\\": -0.0028, \\\"civo_alert\\\": 0, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"total_steps\\\": 105000}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_008a_unexposed_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 899.4, \\\"eval_return_95k\\\": 819.4, \\\"eval_return_85k\\\": 605.4, \\\"eval_return_75k\\\": 534.4, \\\"eval_return_65k\\\": 653.8, \\\"eval_return_55k\\\": 607.5, \\\"civo_ve_ratio_final\\\": 0.333, \\\"civo_delta_ve_final\\\": -0.003, \\\"civo_alert\\\": 0, \\\"value_mean_final\\\": 299.4, \\\"target_mean_final\\\": 300.3, \\\"total_steps\\\": 105000, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1}}, \\\"exp_008d_civo_trigger_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_step\\\": 112000, \\\"target_step\\\": 105000, \\\"eval_return_trajectory\\\": {\\\"5K\\\": 30.9, \\\"15K\\\": 171.4, \\\"25K\\\": 189.5, \\\"35K\\\": 153.8, \\\"45K\\\": 158.2, \\\"55K\\\": 229.3, \\\"65K\\\": 333.6, \\\"75K\\\": 302.4, \\\"85K\\\": 383.3, \\\"95K\\\": 240.3, \\\"105K\\\": 63.6}, \\\"peak_eval_return\\\": 383.3, \\\"peak_eval_step\\\": 85000, \\\"final_eval_return_105K\\\": 63.6, \\\"ve_ratio_105K\\\": 3.03, \\\"civo_alert_105K\\\": 1, \\\"delta_ve_105K\\\": 2.05, \\\"value_mean_105K\\\": 192.65, \\\"value_mean_95K\\\": 235.42, \\\"civo_confirmed\\\": true, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1}}, \\\"exp_008a_untrained_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Director 修正：C3 rebuttal 应复现 008a (unexposed trained dt_emb, subsample OFF) 而非 015b (frozen)。替换为 exp_008a_unexposed_s1/s2。\\\"}, \\\"exp_008a_untrained_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Director 修正：同上。\\\"}, \\\"exp_010b_cheetah_civo_trigger_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_peak\\\": 247.77, \\\"eval_return_peak_step\\\": \\\"35K\\\", \\\"eval_return_105K\\\": 0.83, \\\"nve_95K\\\": 6.34, \\\"nve_105K\\\": 70.64, \\\"civo\\\": true, \\\"civo_onset_step\\\": \\\"65K\\\", \\\"detector_alert_step\\\": \\\"95K\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_entropy\\\": 0}}, \\\"exp_024b_cheetah_no_dt_emb_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 96.5, \\\"civo\\\": false, \\\"nve_peak\\\": 0.2}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"No CIVO (NVE peak <0.2×). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. eval 96.5 = 17.6% of baseline (548.3). Cheetah causal triangle seed 1 complete. Director confirmed results in D089.\\\"}, \\\"exp_024b_cheetah_no_dt_emb_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 77.3, \\\"eval_return_peak\\\": 129.6, \\\"peak_step\\\": 15000, \\\"nve_peak\\\": 0.1, \\\"civo\\\": false, \\\"baseline_pct\\\": 14.1, \\\"gate_dt_2_frac\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"No CIVO (NVE peak 0.10×, civo_alert=0 throughout). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. Gate locked at dt=2 (gate_dt_2_frac=1.0), eval 77.3 = 14% of baseline (548.3). Low performance expected: dt_embed_dim=0 removes temporal abstraction capability. Cheetah causal triangle seed 2 complete.\\\"}, \\\"exp_024_cheetah_no_dt_emb_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_021_full_sgs_cheetah_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"P0 priority (D070 最重要数据缺口). 018_s2 完成后立即上 cuda:0. 排序: 021 先 → 008d_s1 后. Director 2026-05-16 确认.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 221.5, \\\"nve_peak\\\": 9.94, \\\"nve_peak_step\\\": \\\"45K\\\", \\\"nve_sustained_55K_105K\\\": 0.338, \\\"civo\\\": true, \\\"civo_type\\\": \\\"transient_self_correcting\\\", \\\"baseline_pct\\\": 38.7, \\\"vs_010b\\\": \\\"221.5 vs 51.7 (4.3x better)\\\"}}, \\\"exp_023a_cheetah_baseline_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 624.7, \\\"eval_return_peak\\\": 624.7, \\\"peak_step\\\": 205000, \\\"civo\\\": false}, \\\"notes\\\": \\\"Healthy baseline. Last-5 eval mean=554.4. 185K瞬态VE spike(0.906)触发警报但20K步内恢复(205K:624.7)，非CIVO。双seed baseline均值: last-5=548.3, peak=598.8。未接W&B。\\\"}, \\\"exp_010b_cheetah_civo_trigger\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 51.7, \\\"eval_return_peak\\\": 321.9, \\\"peak_step\\\": 35000, \\\"nve_peak\\\": 8.27, \\\"nve_peak_step\\\": 65000, \\\"civo\\\": true}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 50, \\\"total\\\": 103, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4441}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_030c_tcn_cheetah_s0_sigma10\": {\"status\": \"ANALYZING\", \"metrics\": {\"step\": 172000, \"eval_return_5K\": 8, \"eval_return_15K\": 88, \"eval_return_25K\": 166, \"eval_return_35K\": 372, \"eval_return_45K\": 144, \"eval_return_55K\": 266, \"eval_return_65K\": 197, \"eval_return_75K\": 108, \"eval_return_85K\": 96, \"eval_return_95K\": 73, \"eval_return_105K\": 123, \"eval_return_115K\": 162.2, \"eval_peak\": 372, \"eval_peak_step\": 35000, \"ve_ratio_latest\": 0.115, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_116K\": 95, \"eval_return_125K\": null, \"eval_return_165K\": 130.9}}, \"exp_029c_tcn_walker_s0_sigma01\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 99.1, \"eval_return_25K\": 140.7, \"eval_return_35K\": 155.7, \"eval_return_45K\": 160.9, \"eval_return_55K\": 254.8, \"eval_return_65K\": 268.7, \"eval_return_75K\": 295.5, \"eval_return_85K\": 220.8, \"eval_return_95K\": 188.6, \"eval_return_105K\": 204.7, \"eval_return_115K\": 296.4, \"eval_return_125K\": 232.3, \"eval_return_135K\": 247.4, \"eval_return_145K\": 323.1, \"eval_return_155K\": 359.7, \"eval_return_165K\": 490.7, \"eval_return_175K\": 246.2, \"eval_return_185K\": 220.6, \"eval_return_195K\": 212.8, \"eval_return_205K\": 256.9, \"eval_return_215K\": 328.3, \"ve_ratio_15K\": 0.0306, \"ve_ratio_25K\": 0.1606, \"ve_ratio_35K\": 0.3162, \"ve_ratio_45K\": 0.4807, \"ve_ratio_55K\": 0.4368, \"ve_ratio_65K\": 0.5432, \"ve_ratio_75K\": 0.6211, \"ve_ratio_85K\": 0.9533, \"ve_ratio_95K\": 1.0218, \"ve_ratio_105K\": 0.761, \"ve_ratio_115K\": 0.4514, \"ve_ratio_125K\": 0.4899, \"ve_ratio_135K\": 0.3995, \"ve_ratio_145K\": 0.2667, \"ve_ratio_155K\": 0.2, \"ve_ratio_165K\": 0.1, \"ve_ratio_175K\": 0.3, \"ve_ratio_185K\": 0.3, \"ve_ratio_195K\": 0.3, \"ve_ratio_205K\": 0.2, \"ve_ratio_215K\": 0.1, \"eval_peak\": 490.7, \"eval_peak_step\": \"165K\", \"eval_final\": 328.3, \"nve_max\": 1.0218, \"nve_max_step\": \"95K\", \"nve_final\": 0.1, \"total_steps\": 224000}, \"conclusion\": \"negative\"}, \"exp_031b_tcn_pickcube_s0_sigma05\": {\"status\": \"QUEUED\", \"metrics\": {}}, \"exp_029d_tcn_walker_s3_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 36000, \"eval_return_5K\": 31.7, \"eval_return_15K\": 159.1, \"eval_return_25K\": 155.7, \"eval_return_35K\": 190.8, \"ve_ratio_15K\": 0.021, \"ve_ratio_25K\": 0.171, \"ve_ratio_35K\": 0.312, \"value_mean_35K\": 59.6}}, \"exp_029b_tcn_walker_s2_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 108000, \"eval_return_5K\": 30.5, \"eval_return_15K\": 168.4, \"eval_return_25K\": 159.6, \"eval_return_35K\": 168.1, \"eval_return_45K\": 171.5, \"eval_return_55K\": 177.7, \"eval_return_65K\": 106.6, \"eval_return_75K\": 64.0, \"eval_return_85K\": 62.8, \"eval_return_95K\": 44.7, \"eval_return_105K\": 32.0, \"eval_peak\": 177.7, \"eval_peak_step\": 55000, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.174, \"ve_ratio_35K\": 0.335, \"ve_ratio_45K\": 0.477, \"ve_ratio_55K\": 0.583, \"ve_ratio_65K\": 1.014, \"ve_ratio_75K\": 1.65, \"ve_ratio_85K\": 1.623, \"ve_ratio_95K\": 2.109, \"ve_ratio_105K\": 2.765, \"value_mean_105K\": 88.4, \"civo_onset_step\": 65000, \"civo_pattern\": \"acceleration (1.01→1.65→1.62→2.11→2.77)\"}}, \"exp_029a_tcn_walker_s1_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 36.7, \"eval_return_15K\": 137.7, \"eval_return_25K\": 180.9, \"eval_return_35K\": 124, \"eval_return_45K\": 124.2, \"eval_return_55K\": 133.9, \"eval_return_65K\": 169.7, \"eval_return_75K\": 171.2, \"eval_return_85K\": 151.8, \"eval_return_95K\": 180.3, \"eval_return_105K\": 319.4, \"eval_return_115K\": 345.5, \"eval_return_125K\": 401, \"eval_return_135K\": 307.8, \"eval_return_145K\": 380.8, \"eval_return_155K\": 307.3, \"eval_return_165K\": 320.3, \"eval_return_175K\": 159, \"eval_return_185K\": 278.2, \"eval_return_195K\": 301.2, \"eval_return_205K\": 204.6, \"eval_return_215K\": 161.3, \"ve_ratio_15K\": 0.0248, \"ve_ratio_25K\": 0.1165, \"ve_ratio_35K\": 0.3574, \"ve_ratio_45K\": 0.5147, \"ve_ratio_55K\": 0.6428, \"ve_ratio_65K\": 0.4777, \"ve_ratio_75K\": 0.398, \"ve_ratio_85K\": 0.4033, \"ve_ratio_95K\": 0.3007, \"ve_ratio_105K\": 0.1554, \"ve_ratio_115K\": 0.1348, \"ve_ratio_125K\": 0.116, \"ve_ratio_135K\": 0.1449, \"ve_ratio_145K\": 0.1088, \"ve_ratio_155K\": 0.1287, \"ve_ratio_165K\": 0.1142, \"ve_ratio_175K\": 0.2138, \"ve_ratio_185K\": 0.121, \"ve_ratio_195K\": 0.1075, \"ve_ratio_205K\": 0.1503, \"ve_ratio_215K\": 0.1864, \"eval_peak\": 401, \"eval_peak_step\": \"125K\", \"nve_max\": 0.6428, \"nve_max_step\": \"55K\", \"nve_final\": 0.1864, \"current_step\": 215000, \"target_steps\": 210000, \"eval_last10_mean\": 282.15}, \"conclusion\": \"success\", \"notes\": \"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\"}, \"exp_031_tcn_pickcube_s0_sigma02\": {\"status\": \"RUNNING\", \"metrics\": {\"step\": 158000, \"eval_return_132K\": 23.45, \"eval_peak\": 23.5, \"eval_peak_step\": 132500, \"ve_ratio_peak\": 3.71, \"ve_ratio_latest\": 0.18, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"train_return_range\": \"18-25\", \"eval_return_152K\": 23.1}}, \"exp_030b_tcn_cheetah_s0_sigma05\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 8.3, \"eval_return_15K\": 78.3, \"eval_return_25K\": 219.3, \"eval_return_35K\": 296.5, \"eval_return_45K\": 32.8, \"eval_return_55K\": 6, \"eval_return_65K\": 71.2, \"eval_return_75K\": 23.3, \"eval_return_85K\": 34, \"eval_return_95K\": 143.6, \"eval_return_105K\": 104.4, \"eval_return_115K\": 137.7, \"eval_return_125K\": 211.7, \"eval_return_135K\": 97.2, \"eval_return_145K\": 79.4, \"eval_return_155K\": 76.8, \"eval_return_165K\": 77.5, \"eval_return_175K\": 85.7, \"eval_return_185K\": 68.7, \"eval_return_195K\": 77.6, \"ve_ratio_15K\": 0.0202, \"ve_ratio_25K\": 0.0636, \"ve_ratio_35K\": 0.1238, \"ve_ratio_45K\": 1.9141, \"ve_ratio_55K\": 10.6657, \"ve_ratio_65K\": 0.8371, \"ve_ratio_75K\": 1.9823, \"ve_ratio_85K\": 1.0946, \"ve_ratio_95K\": 0.2253, \"ve_ratio_105K\": 0.2686, \"ve_ratio_115K\": 0.1789, \"ve_ratio_125K\": 0.1037, \"ve_ratio_135K\": 0.2153, \"ve_ratio_145K\": 0.2478, \"ve_ratio_155K\": 0.2392, \"ve_ratio_165K\": 0.202, \"ve_ratio_175K\": 0.1591, \"ve_ratio_185K\": 0.1834, \"ve_ratio_195K\": 0.1534, \"nve_max\": 10.6657, \"nve_max_step\": \"55K\", \"nve_final\": 0.1534, \"current_step\": 195000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s1\": {\"status\": \"DONE\", \"metrics\": {\"total_steps\": 215000, \"eval_return\": {\"5000\": 31, \"15000\": 140.5, \"25000\": 163.6, \"35000\": 153, \"45000\": 136.8, \"55000\": 158.3, \"65000\": 298.5, \"75000\": 364.9, \"85000\": 134, \"95000\": 94.6, \"105000\": 216.7, \"115000\": 318.9, \"125000\": 309.1, \"135000\": 216.1, \"145000\": 175.4, \"155000\": 171, \"165000\": 209.5, \"175000\": 120.4, \"185000\": 355.4, \"195000\": 183.3, \"205000\": 240.2, \"215000\": 350.8}, \"ve_ratio\": {\"15000\": 0.0246, \"25000\": 0.1416, \"35000\": 0.3585, \"45000\": 0.6101, \"55000\": 0.7092, \"65000\": 0.4875, \"75000\": 0.4902, \"85000\": 1.4104, \"95000\": 1.6367, \"105000\": 0.6444, \"115000\": 0.4021, \"125000\": 0.38, \"135000\": 0.5078, \"145000\": 0.8469, \"155000\": 0.8568, \"165000\": 0.5393, \"175000\": 0.7355, \"185000\": 0.211, \"195000\": 0.3513, \"205000\": 0.2376, \"215000\": 0.1476}, \"eval_peak\": 364.9, \"eval_peak_step\": 75000, \"eval_last10_mean\": 233.1, \"nve_max\": 1.6367, \"nve_max_step\": 95000, \"nve_final\": 0.1476}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 35.6, \"eval_return_15K\": 150.6, \"eval_return_25K\": 199.4, \"eval_return_35K\": 278.2, \"eval_return_45K\": 315.6, \"eval_return_55K\": 278.6, \"eval_return_65K\": 331, \"eval_return_75K\": 293.1, \"eval_return_85K\": 363.9, \"eval_return_95K\": 171.4, \"eval_return_105K\": 236.4, \"eval_return_115K\": 543.8, \"eval_return_125K\": 458.4, \"eval_return_135K\": 496.7, \"eval_return_145K\": 542.7, \"eval_return_155K\": 660.5, \"eval_return_165K\": 653.3, \"eval_return_175K\": 821.1, \"eval_return_185K\": 560.5, \"eval_return_195K\": 567.9, \"eval_return_205K\": 558.7, \"eval_return_215K\": 551, \"ve_ratio_15K\": 0.0192, \"ve_ratio_25K\": 0.0961, \"ve_ratio_35K\": 0.1875, \"ve_ratio_45K\": 0.3009, \"ve_ratio_55K\": 0.5231, \"ve_ratio_65K\": 0.5654, \"ve_ratio_75K\": 0.611, \"ve_ratio_85K\": 0.4665, \"ve_ratio_95K\": 0.9081, \"ve_ratio_105K\": 0.5625, \"ve_ratio_115K\": 0.2105, \"ve_ratio_125K\": 0.2182, \"ve_ratio_135K\": 0.1764, \"ve_ratio_145K\": 0.143, \"ve_ratio_155K\": 0.106, \"ve_ratio_165K\": 0.0979, \"ve_ratio_175K\": 0.0729, \"ve_ratio_185K\": 0.1048, \"ve_ratio_195K\": 0.1026, \"ve_ratio_205K\": 0.0995, \"ve_ratio_215K\": 0.0955, \"eval_peak\": 821.1, \"eval_peak_step\": \"175K\", \"eval_last10_mean\": 587.1, \"nve_max\": 0.9081, \"nve_max_step\": \"95K\", \"nve_final\": 0.0955, \"total_steps\": 215000}, \"conclusion\": \"success\"}, \"exp_030a_tcn_cheetah_s0_sigma02\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_35K\": 299.5, \"eval_return_55K\": 31.9, \"ve_ratio_55K\": 1.903, \"current_step\": 64000, \"target_steps\": 210000, \"note\": \"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\"}, \"conclusion\": \"negative\"}, \"exp_027_tcn_walker_s0\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 37.4, \"eval_return_15K\": 154.6, \"eval_return_25K\": 223.6, \"eval_return_35K\": 240, \"eval_return_45K\": 101.2, \"eval_return_55K\": 70, \"eval_return_65K\": 95.1, \"eval_return_75K\": 189.2, \"eval_return_85K\": 36, \"eval_return_95K\": 166.4, \"eval_return_105K\": 95.5, \"eval_return_112K\": 99.5, \"ve_ratio_15K\": 0.02, \"ve_ratio_25K\": 0.11, \"ve_ratio_35K\": 0.235, \"ve_ratio_45K\": 0.86, \"ve_ratio_55K\": 1.679, \"ve_ratio_65K\": 1.544, \"ve_ratio_75K\": 0.831, \"ve_ratio_85K\": 3.965, \"ve_ratio_95K\": 0.675, \"ve_ratio_105K\": 0.916, \"peak_eval\": 240, \"peak_eval_step\": \"35K\", \"peak_nve\": 3.965, \"peak_nve_step\": \"85K\", \"last_5_eval_avg\": 117.3, \"nve_breach_count\": 3, \"nve_breach_steps\": \"55K(1.68), 65K(1.54), 85K(3.97)\", \"final_step\": 120000, \"target_steps\": 210000, \"gate_dt_mean\": 2, \"gate_dt_entropy\": 0}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0_ceil15\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5K\": 31.6, \"eval_return_15K\": 99.4, \"eval_return_25K\": 155.3, \"eval_return_35K\": 180.1, \"eval_return_45K\": 166.9, \"eval_return_55K\": 131, \"eval_return_65K\": 91.5, \"eval_return_75K\": 120.9, \"eval_return_85K\": 137.3, \"eval_return_95K\": 70.2, \"eval_return_105K\": 76.2, \"eval_return_115K\": 41.2, \"eval_return_125K\": 36.6, \"eval_return_135K\": 39.1, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.128, \"ve_ratio_35K\": 0.247, \"ve_ratio_45K\": 0.428, \"ve_ratio_55K\": 0.737, \"ve_ratio_65K\": 1.294, \"ve_ratio_75K\": 0.937, \"ve_ratio_85K\": 0.727, \"ve_ratio_95K\": 1.28, \"ve_ratio_105K\": 0.984, \"ve_ratio_115K\": 1.513, \"ve_ratio_125K\": 1.462, \"ve_ratio_135K\": 1.171, \"current_step\": 135000, \"target_steps\": 210000}, \"conclusion\": \"negative\"}, \"exp_028_rave_walker_s0\": {\"status\": \"DONE\", \"metrics\": {\"current_steps\": 105000, \"eval_trajectory\": {\"5K\": {\"eval_return\": 37.4, \"value_mean\": 0.001}, \"15K\": {\"eval_return\": 105.3, \"ve_ratio\": 0.028, \"value_mean\": 2.93}, \"25K\": {\"eval_return\": 191.9, \"ve_ratio\": 0.127, \"value_mean\": 24.4}, \"35K\": {\"eval_return\": 204.6, \"ve_ratio\": 0.267}, \"45K\": {\"eval_return\": 197.7, \"ve_ratio\": 0.439}, \"55K\": {\"eval_return\": 193, \"ve_ratio\": 0.62}, \"65K\": {\"eval_return\": 79.8, \"ve_ratio\": 1.832}, \"75K\": {\"eval_return\": 44.5, \"ve_ratio\": 3.415}, \"85K\": {\"eval_return\": 57.7, \"ve_ratio\": 2.126}, \"95K\": {\"eval_return\": 25.9, \"ve_ratio\": 4.086, \"value_mean\": 105.87}, \"105K\": {\"eval_return\": 29, \"ve_ratio\": 3.183, \"value_mean\": 92.2}}, \"note\": \"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\"}, \"conclusion\": \"negative\"}, \"exp_025_obs_sgs_walker_s2\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_215K\": 89.6, \"ve_ratio_215K\": 0.8, \"ve_ratio_185K\": 1.4, \"ve_ratio_175K\": 1.2, \"train_steps_completed\": 224000, \"target_steps\": 210000}, \"notes\": \"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\"}, \"exp_026_obs_sgs_cheetah_s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_026_obs_sgs_cheetah_s0\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s4\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s3\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_025_obs_sgs_walker_s1\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"exp_001_baseline_s4_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 938.86, \"peak_eval_return\": 960.6, \"convergence_mean_250k_plus\": 935}}, \"exp_001_baseline_s3_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 520000, \"final_eval_return\": 947.68, \"final_train_return_avg\": 945.4, \"eval_profile\": {\"5000\": 42.15, \"15000\": 224.27, \"25000\": 329.99, \"35000\": 413.12, \"45000\": 332.69, \"55000\": 519.91, \"65000\": 667.42, \"72000\": 771.33, \"82000\": 772.88, \"92000\": 854.6, \"102000\": 869.03, \"112000\": 898.89, \"120000\": 898.38, \"130000\": 837.74, \"140000\": 876.64, \"150000\": 899.47, \"160000\": 922.77, \"170000\": 925.77, \"180000\": 912.89, \"190000\": 915.07, \"200000\": 894.77, \"210000\": 899.79, \"220000\": 951.18, \"230000\": 930.56, \"240000\": 910.47, \"250000\": 914.02, \"260000\": 931.33, \"270000\": 954.65, \"280000\": 928.01, \"290000\": 947.4, \"300000\": 853.32, \"310000\": 906.35, \"320000\": 847.16, \"330000\": 934.78, \"340000\": 921.08, \"350000\": 922.63, \"360000\": 844.99, \"370000\": 911.36, \"380000\": 917.73, \"390000\": 937.21, \"400000\": 928, \"410000\": 945.88, \"420000\": 897.2, \"430000\": 949.45, \"440000\": 937.28, \"450000\": 924.24, \"460000\": 967.25, \"470000\": 940.55, \"480000\": 936.24, \"490000\": 944.67, \"500000\": 957.09, \"510000\": 947.68}}}, \"exp_001_baseline_s2_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 945.7, \"eval_return_peak\": 962.6, \"eval_return_at_105K\": 443.5, \"ve_ratio_at_105K\": 0.7422, \"value_mean_at_105K\": 329.16, \"ve_ratio_converged_range\": \"0.69-0.77\", \"value_mean_plateau\": 665, \"total_steps\": 512000}}, \"exp_023_cheetah_baseline_s4_extended\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"note\": \"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\", \"eval_peak_ext\": 642.3, \"eval_peak_ext_step\": 272000, \"eval_302k\": 580}}, \"exp_001_baseline_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 922.8, \"peak_eval\": 922.8, \"peak_eval_step\": 105000, \"value_mean_final\": 576.1, \"ve_ratio_105k\": 0.624}}, \"exp_023_cheetah_baseline_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 212000, \"target_steps\": 200000, \"eval_return_194k\": 537.03, \"eval_return_204k\": 301.69, \"peak_eval\": 537.03, \"peak_eval_step\": 194000, \"value_mean_204k\": 339.14, \"ve_ratio_204k\": 1.124, \"note\": \"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\"}}, \"exp_023_cheetah_baseline_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 204000, \"target_steps\": 200000, \"eval_return_202k\": 642.13, \"peak_eval\": 685.93, \"peak_eval_step\": 172000, \"value_mean_final\": 445.42, \"ve_ratio_final\": 0.694}}, \"exp_001_baseline_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 120000, \"target_steps\": 105000, \"eval_return_102k\": 869.03, \"peak_eval\": 898.89, \"peak_eval_step\": 112000, \"value_mean_final\": 622.2, \"ve_ratio_final\": 0.692}}, \"exp_023_cheetah_baseline_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 205000, \"target_steps\": 200000, \"eval_return_final\": 645.4, \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\"}}, \"exp_008f_s4\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_105k\": 306.5, \"peak_eval\": 487.5, \"peak_eval_step\": 55000, \"peak_nve\": 1.41, \"peak_nve_step\": 85000, \"nve_105k\": 0.58, \"civo_alert\": 0, \"note\": \"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\"}}, \"exp_009c_s3\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 108000, \"target_steps\": 105000, \"eval_return_105k\": 311.92, \"value_mean_105k\": 120.27, \"ve_ratio_105k\": 0.386, \"nve_105k\": 0.52, \"note\": \"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\"}}, \"exp_001_baseline_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 443.46, \"value_mean_105k\": 329.16, \"ve_ratio_105k\": 0.742}}, \"exp_008f_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_008a_cheetah_unexposed_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 504.38, \"value_mean_105k\": 156.97, \"ve_ratio_105k\": 0.3112, \"nve_105k\": 0.478}}, \"exp_008a_cheetah_unexposed_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"eval_return_105k\": 532.35, \"value_mean_105k\": 169.98, \"ve_ratio_105k\": 0.3193, \"nve_105k\": 0.49}}, \"exp_009c_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_008e_v3_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return\": 899.3, \"nve_peak\": 0.99, \"nve_peak_step\": 95000, \"ve_ratio_105k\": 0.609, \"civo\": false, \"nve_note\": \"Corrected: was 0.61 (raw V/E ratio). Correct formula: max(V/E_exp / V/E_baseline_at_same_step) over [35K+]. 0.627/0.632=0.99 at 95K\"}}, \"exp_008e_v3_s3\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return\": 92.7, \"peak_eval\": 520.4, \"peak_step\": 85000, \"nve_peak\": 4.02, \"nve_peak_step\": 105000, \"ve_ratio_105k\": 2.635, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"collapse_onset\": \"85K-95K\", \"actor_entropy_final\": -4.892, \"nve_note\": \"Corrected: was 5.00 (worker used wrong baseline). Correct formula: V/E_exp / V/E_baseline_at_same_step. 2.635/0.656=4.02\"}}, \"exp_008a_unexposed_s1\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_5k\": 31, \"eval_return_15k\": 167.12, \"eval_return_25k\": 139.94, \"eval_return_35k\": 394.15, \"eval_return_45k\": 414.32, \"eval_return_55k\": 441.48, \"eval_return_65k\": 491.74, \"eval_return_75k\": 452.34, \"eval_return_85k\": 546.82, \"eval_return_95k\": 628.57, \"eval_return_final\": 630.91, \"value_mean_final\": 271.36, \"target_mean_final\": 272.13, \"civo_ve_ratio_final\": 0.43, \"civo_delta_ve_final\": -0.0028, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"total_steps\": 105000}, \"conclusion\": \"success\"}, \"exp_008a_unexposed_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 899.4, \"eval_return_95k\": 819.4, \"eval_return_85k\": 605.4, \"eval_return_75k\": 534.4, \"eval_return_65k\": 653.8, \"eval_return_55k\": 607.5, \"civo_ve_ratio_final\": 0.333, \"civo_delta_ve_final\": -0.003, \"civo_alert\": 0, \"value_mean_final\": 299.4, \"target_mean_final\": 300.3, \"total_steps\": 105000, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008d_civo_trigger_s4\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_step\": 112000, \"target_step\": 105000, \"eval_return_trajectory\": {\"5K\": 30.9, \"15K\": 171.4, \"25K\": 189.5, \"35K\": 153.8, \"45K\": 158.2, \"55K\": 229.3, \"65K\": 333.6, \"75K\": 302.4, \"85K\": 383.3, \"95K\": 240.3, \"105K\": 63.6}, \"peak_eval_return\": 383.3, \"peak_eval_step\": 85000, \"final_eval_return_105K\": 63.6, \"ve_ratio_105K\": 3.03, \"civo_alert_105K\": 1, \"delta_ve_105K\": 2.05, \"value_mean_105K\": 192.65, \"value_mean_95K\": 235.42, \"civo_confirmed\": true, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}}, \"exp_008a_untrained_s1\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：C3 rebuttal 应复现 008a (unexposed trained dt_emb, subsample OFF) 而非 015b (frozen)。替换为 exp_008a_unexposed_s1/s2。\"}, \"exp_008a_untrained_s2\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"notes\": \"Director 修正：同上。\"}, \"exp_010b_cheetah_civo_trigger_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_peak\": 247.77, \"eval_return_peak_step\": \"35K\", \"eval_return_105K\": 0.83, \"nve_95K\": 6.34, \"nve_105K\": 70.64, \"civo\": true, \"civo_onset_step\": \"65K\", \"detector_alert_step\": \"95K\", \"gate_dt_mean\": 2, \"gate_entropy\": 0}}, \"exp_024b_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 96.5, \"civo\": false, \"nve_peak\": 0.2}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak <0.2×). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. eval 96.5 = 17.6% of baseline (548.3). Cheetah causal triangle seed 1 complete. Director confirmed results in D089.\"}, \"exp_024b_cheetah_no_dt_emb_s1\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 77.3, \"eval_return_peak\": 129.6, \"peak_step\": 15000, \"nve_peak\": 0.1, \"civo\": false, \"baseline_pct\": 14.1, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"notes\": \"No CIVO (NVE peak 0.10×, civo_alert=0 throughout). Confirms C2: trained dt_emb is necessary for Cheetah CIVO. Gate locked at dt=2 (gate_dt_2_frac=1.0), eval 77.3 = 14% of baseline (548.3). Low performance expected: dt_embed_dim=0 removes temporal abstraction capability. Cheetah causal triangle seed 2 complete.\"}, \"exp_024_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"exp_021_full_sgs_cheetah_s1\": {\"status\": \"DONE\", \"notes\": \"P0 priority (D070 最重要数据缺口). 018_s2 完成后立即上 cuda:0. 排序: 021 先 → 008d_s1 后. Director 2026-05-16 确认.\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 221.5, \"nve_peak\": 9.94, \"nve_peak_step\": \"45K\", \"nve_sustained_55K_105K\": 0.338, \"civo\": true, \"civo_type\": \"transient_self_correcting\", \"baseline_pct\": 38.7, \"vs_010b\": \"221.5 vs 51.7 (4.3x better)\"}}, \"exp_023a_cheetah_baseline_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 624.7, \"eval_return_peak\": 624.7, \"peak_step\": 205000, \"civo\": false}, \"notes\": \"Healthy baseline. Last-5 eval mean=554.4. 185K瞬态VE spike(0.906)触发警报但20K步内恢复(205K:624.7)，非CIVO。双seed baseline均值: last-5=548.3, peak=598.8。未接W&B。\"}, \"exp_010b_cheetah_civo_trigger\": {\"status\": \"DONE\", \"metrics\": {\"eval_return_final\": 51.7, \"eval_return_peak\": 321.9, \"peak_step\": 35000, \"nve_peak\": 8.27, \"nve_peak_step\": 65000, \"civo\": true}, \"conclusion\": \"success\"}}, \"count\": 50, \"total\": 103, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4441}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-20T22:31:20.776Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014wM1u22ykUADDZkbey972u`</summary>
+
+```text
+Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "6255eaab-24df-48e1-8fcb-b07c49da74b6",
+  "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compile the report.
+
+## exp_030c eval_return full trajectory:
+| Step | eval_return |
+|------|------------|
+| 5K | 8.3 |
+| 15K | 87.5 |
+| 25K | 166.3 |
+| 35K | 371.7 |
+| 45K | 144.0 |
+| 55K | 266.0 |
+| 65K | 197.0 |
+| 75K | 107.8 |
+| 85K | 95.8 |
+
+
+| 95K | 72.8 |
+| 105K | 122.5 |
+| 115K | 162.2 |
+| 125K | 148.5 |
+| 135K | 138.4 |
+| 145K | 100.4 |
+| 155K | 144.3 |
+| 165K | 130.9 |
+| 175K | 66.4 |
+| 185K | 47.2 |
+| 195K | 56.5 |
+| 205K | 49.7 |
+| 215K | 47.0 |
+
+Generating markdown table... Generating metrics table... Looking at the rest of the TCN experiments, exp_030b recovers somewhat in the later stages but never stabilizes, while exp_030c shows a steady decline despite keeping NVE controlled—the noise level is so high that the signal becomes useless. The takeaway is consistent: all three noise settings fail on Cheetah because higher noise either triggers catastrophic NVE spikes or degrades learning so much that performance collapses anyway. Now I'm calculating how the baseline compares percentage-wise.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "94322a31-83d3-49d1-9e03-5bdf7529c8e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8oZ6kiu4RigbqtYoMYWke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12313,
+      "cache_read_input_tokens": 38594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+数据全部到手。以下是汇总报告。
+
+---
+
+## exp_030c 最终结果
+
+- **最终 step**: 224K (train) / 215K (eval)，EXIT_CODE=0 正常退出
+- **最终 eval_return**: **47.2** @215K
+- **最终 NVE (ve_ratio)**: **0.3** @215K
+- **eval_peak**: **371.7** @35K
+- **NVE_max**: **0.4** @45K/75K/85K/95K
+
+### eval_return 完整轨迹
+
+| Step | eval_return | ve_ratio |
+|------|------------|----------|
+| 5K | 8.3 | — |
+| 15K | 87.5 | 0.0 |
+| 25K | 166.3 | 0.1 |
+| 35K | **371.7** | 0.1 |
+| 45K | 144.0 | 0.4 |
+| 55K | 266.0 | 0.2 |
+| 65K | 197.0 | 0.2 |
+| 75K | 107.8 | 0.4 |
+| 85K | 95.8 | 0.4 |
+| 95K | 72.8 | 0.4 |
+| 105K | 122.5 | 0.2 |
+| 115K | 162.2 | 0.1 |
+| 125K | 148.5 | 0.1 |
+| 135K | 138.4 | 0.1 |
+| 145K | 100.4 | 0.2 |
+| 155K | 144.3 | 0.1 |
+| 165K | 130.9 | 0.1 |
+| 175K | 66.4 | 0.2 |
+| 185K | 47.2 | 0.3 |
+| 195K | 56.5 | 0.2 |
+| 205K | 49.7 | 0.3 |
+| 215K | 47.2 | 0.3 |
+
+### Gate 状态
+- gate_dt_mean=**2.0** 全程不变，gate_dt_2_frac=**1.0**，gate_entropy=**0.0**
+- Gate 完全坍缩在 dt=2，TCN 从未激活 horizon 调整
+
+### Cheetah 基线对比
+- **Baseline eval (多 seed 平均)**: ~548 (last-5 mean), peak ~624-686
+- exp_030c peak 371.7 = baseline 的 **67.8%**
+- exp_030c final 47.2 = baseline 的 **8.6%**
+
+### 结论: **negative**
+
+σ=1.0 的高噪声完全抑制了 NVE 飙升（max 仅 0.4，远低于 CIVO 阈值），但代价是性能持续崩坏。35K 之后 eval 单调下行，175K 后跌至 ~50 区间再未恢复。Gate 全程锁死 dt=2，TCN 机制完全无效。
+
+---
+
+## Cheetah TCN 全系列对比 (exp_030a/b/c)
+
+| 实验 | σ | eval_peak | peak_step | eval_final | NVE_max | NVE_max_step | 结论 |
+|------|---|-----------|-----------|------------|---------|--------------|------|
+| **030a** | 0.2 | 299.5 | 35K | ~32 (stopped@64K) | **1.90** | 55K | negative — NVE 突破致 crash |
+| **030b** | 0.5 | 296.5 | 35K | 77.6 @195K | **10.67** | 55K | negative — 极端 NVE spike |
+| **030c** | 1.0 | 371.7 | 35K | 47.2 @215K | **0.4** | 45K | negative — NVE 低但性能崩坏 |
+| **Baseline** | — | 624-686 | 172-205K | ~548 avg | ~0.7-0.9 | — | success |
+
+**规律**: 三个 σ 全部 negative。σ 越小 NVE 越容易爆（0.2→1.9, 0.5→10.7），σ 越大 NVE 被压平但 eval 也被压死。没有一个 σ 能同时抑制 CIVO 且保持性能。TCN 在 Cheetah 上全面失败，gate 始终锁 dt=2 从不自适应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "uuid": "b563656a-8e0c-47be-9709-ba6e76b36697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8oZ6kiu4RigbqtYoMYWke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12313,
+      "cache_read_input_tokens": 38594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12313
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 50_
+
+数据全部到手。以下是汇总报告。
+
+---
+
+## exp_030c 最终结果
+
+- **最终 step**: 224K (train) / 215K (eval)，EXIT_CODE=0 正常退出
+- **最终 eval_return**: **47.2** @215K
+- **最终 NVE (ve_ratio)**: **0.3** @215K
+- **eval_peak**: **371.7** @35K
+- **NVE_max**: **0.4** @45K/75K/85K/95K
+
+### eval_return 完整轨迹
+
+| Step | eval_return | ve_ratio |
+|------|------------|----------|
+| 5K | 8.3 | — |
+| 15K | 87.5 | 0.0 |
+| 25K | 166.3 | 0.1 |
+| 35K | **371.7** | 0.1 |
+| 45K | 144.0 | 0.4 |
+| 55K | 266.0 | 0.2 |
+| 65K | 197.0 | 0.2 |
+| 75K | 107.8 | 0.4 |
+| 85K | 95.8 | 0.4 |
+| 95K | 72.8 | 0.4 |
+| 105K | 122.5 | 0.2 |
+| 115K | 162.2 | 0.1 |
+| 125K | 148.5 | 0.1 |
+| 135K | 138.4 | 0.1 |
+| 145K | 100.4 | 0.2 |
+| 155K | 144.3 | 0.1 |
+| 165K | 130.9 | 0.1 |
+| 175K | 66.4 | 0.2 |
+| 185K | 47.2 | 0.3 |
+| 195K | 56.5 | 0.2 |
+| 205K | 49.7 | 0.3 |
+| 215K | 47.2 | 0.3 |
+
+### Gate 状态
+- gate_dt_mean=**2.0** 全程不变，gate_dt_2_frac=**1.0**，gate_entropy=**0.0**
+- Gate 完全坍缩在 dt=2，TCN 从未激活 horizon 调整
+
+### Cheetah 基线对比
+- **Baseline eval (多 seed 平均)**: ~548 (last-5 mean), peak ~624-686
+- exp_030c peak 371.7 = baseline 的 **67.8%**
+- exp_030c final 47.2 = baseline 的 **8.6%**
+
+### 结论: **negative**
+
+σ=1.0 的高噪声完全抑制了 NVE 飙升（max 仅 0.4，远低于 CIVO 阈值），但代价是性能持续崩坏。35K 之后 eval 单调下行，175K 后跌至 ~50 区间再未恢复。Gate 全程锁死 dt=2，TCN 机制完全无效。
+
+---
+
+## Cheetah TCN 全系列对比 (exp_030a/b/c)
+
+| 实验 | σ | eval_peak | peak_step | eval_final | NVE_max | NVE_max_step | 结论 |
+|------|---|-----------|-----------|------------|---------|--------------|------|
+| **030a** | 0.2 | 299.5 | 35K | ~32 (stopped@64K) | **1.90** | 55K | negative — NVE 突破致 crash |
+| **030b** | 0.5 | 296.5 | 35K | 77.6 @195K | **10.67** | 55K | negative — 极端 NVE spike |
+| **030c** | 1.0 | 371.7 | 35K | 47.2 @215K | **0.4** | 45K | negative — NVE 低但性能崩坏 |
+| **Baseline** | — | 624-686 | 172-205K | ~548 avg | ~0.7-0.9 | — | success |
+
+**规律**: 三个 σ 全部 negative。σ 越小 NVE 越容易爆（0.2→1.9, 0.5→10.7），σ 越大 NVE 被压平但 eval 也被压死。没有一个 σ 能同时抑制 CIVO 且保持性能。TCN 在 Cheetah 上全面失败，gate 始终锁 dt=2 从不自适应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 98792,
+  "duration_api_ms": 98653,
+  "num_turns": 18,
+  "stop_reason": "end_turn",
+  "session_id": "0680b755-23c6-4a74-93c4-ecf25d31eae8",
+  "total_cost_usd": 0.49015500000000006,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 39460,
+    "cache_read_input_tokens": 202812,
+    "output_tokens": 5628,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39460,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2572,
+        "cache_read_input_tokens": 38594,
+        "cache_creation_input_tokens": 12313,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 12313
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1264,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001374,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 5628,
+      "cacheReadInputTokens": 202812,
+      "cacheCreationInputTokens": 39460,
+      "webSearchRequests": 0,
+      "costUSD": 0.4887810000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7fd53a90-896c-44c4-8ecb-c1d3e84d0c80"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,741 @@
+# cron hook exp 018v2 full sgs walker s1
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/cron_hook_exp_018v2_full_sgs_walker_s1.jsonl`
+- **Structured JSON:** [`84918b9145d618d0c528.json`](../../sessions/84/84918b9145d618d0c528.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+25 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T17:17:46.996793+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_018v2_full_sgs_walker_s1
+- project: event-gated-adaptive-horizon
+- server: bjb1-45299
+- log_path: /root/runs/event-gated-adaptive-horizon/exp_018v2_full_sgs_walker_s1.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T17:17:58.064362+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T17:17:58.115007+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T17:18:00.877981+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T17:18:01.331846+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T17:18:01.839681+00:00_
+
+Error: result (54,522 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 961
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T17:18:01.840208+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T17:18:01.840485+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T17:18:03.599084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_020_vanilla_dreamerv3_s2\", \"success\": true, \"actions\": [\"Job still running (pid=596344)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2267
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T17:18:03.599727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T17:17:45Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 47 个实验 — ANALYZING 1, DONE 43, PREPARING 1, QUEUED 1, RUNNING 1\\n**DONE 分布**: failed 6, killed 14, negative 13, success 10\\n\\n### GPU 占用\\n- **分配**: 2 张 — bjb1-45299:cuda:0, bjb1-45299:cuda:1\\n- **实际运行**: 1 张 — bjb1-45299:cuda:0(exp_020_vanilla_dreamerv3_s2)\\n- **空闲（分配了没跑）**: bjb1-45299:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_020_vanilla_dreamerv3_s2` | bjb1-45299 | cuda:0 | 596344 | `…ent-gated-adaptive-horizon/exp_020_vanilla_dreamerv3_s2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_010b_cheetah_civo_trigger` [success] — 2026-05-16T16:16:00\\n- `exp_019a_pickcube_baseline` [killed] — 2026-05-16T13:43:00\\n- `exp_018_full_sgs_walker_s1` [killed] — 2026-05-16T13:42:11\\n- `exp_010a_cheetah_baseline_s1` [success] — 2026-05-16T12:01:11\\n- `exp_009d_baseline_walker_s0` [success] — 2026-05-16T09:50:34 — EXIT_CODE=129 (non-zero)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_019a_pickcube_baseline`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `exp_018_full_sgs_walker_s1`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_020_vanilla_dreamerv3_s2 | Vanilla DreamerV3 (no dt_emb, no subsample, no gate) seed 2 — Pathway B 控制实验：验证 008e_v3_s2 的 eval-driven collapse 是否需要 trained dt_emb 作为必要条件。如果 vanilla s2 稳定 → C6 成立 (trained dt_emb 是 Pathway B 必要条件)。如果也崩溃 → Pathway B 是 DreamerV3 inherent fragility。 | — | — | — |\\n| exp_018v2_full_sgs_walker_s1 | Full-SGS 修正版: trained dt_emb + subsamp
+…[truncated 2621 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1759
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T17:18:03.650611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-16 13:21 UTC | 更新原因: D064 Dream 审稿分析行动项更新 + 实验状态修正\\n\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 13 天)\\n\\n## 核心方向\\n**Diagnostic Analysis of Temporal Abstraction in World-Model RL**\\n核心因果链：**Trained dt_emb 是 CIVO 的必要条件**。018 Full-SGS 确认 CIVO 是 gradient-level 现象：移除 93% obs decoder 梯度 → NVE 1.00×（完全消除）。\\n论文定位：**Framing B — 诊断论文 + SGS 作为 informative negative result + Full-SGS 作为 proof-of-concept intervention**。\\n\\n## 阶段\\n**Research + Writing** — 2×2 消融矩阵闭合 (D049)。018 Full-SGS 成功 (D063)。Dream 审稿分析完成 (D064)。ManiSkill3 管线就绪，等提交。\\n\\n## 当前实验\\n\\n| 实验 | GPU | 状态 | 备注 |\\n|------|-----|------|------|\\n| (空) | cuda:0 | **空闲** | 已派 Agent 检查 010b/提交实验 |\\n| (空) | cuda:1 | **空闲** | 019a 已分配未提交，催 Agent |\\n\\n## 排队实验\\n\\n| 实验 | GPU | 用途 |\\n|------|-----|------|\\n| **019a PickCube baseline** | cuda:1 | ManiSkill3 dt=1 基线 (~1-2h) |\\n| **019b PickCube CIVO trigger** | cuda:0 | trained dt_emb → ManiSkill3 CIVO 验证 (~1-2h) |\\n| **010b Cheetah CIVO trigger** | cuda:0 | Cheetah 跨环境 CIVO 验证 (若未完成) |\\n| **Pathway B 控制实验** | TBD | vanilla DreamerV3 + matched seeds → 验证 Pathway B 是否需要 trained dt_emb (D064) |\\n| **019c-f StackCube/PegInsertion** | cuda:1 | ManiSkill3 扩展 tasks |\\n\\n## 已完成关键实验\\n\\n| 实验 | 结论 | 关键指标 |\\n|------|------|----------|\\n| 018 Full-SGS | ✅ CIVO 是 gradient-level 现象 | NVE 1.00×, eval 915.7@105K |\\n| 016e reward-only SGS | ❌ no-op (reward gradient=0) | NVE 10.42×, collapse |\\n| 008d trained dt_emb | ❌ CIVO 触发 | NVE 4.12×@55K, collapse |\\n| 008f dt_embed_dim=0 | ✅ 因果控制 | NVE ≤1.02×, no CIVO |\\n| 010a Cheetah baseline | ✅ 基线建立 | 完成 |\\n\\n## Dream 审稿分析 (D064) — 行动项\\n\\n**三档一致的结构性问题（已确认行动项）：**\\n- [ ] D1: 加 seeds — key conditions 需 4-5 seeds (当前 2-3)\\n- [ ] D3: 去掉 \\\"necessary and sufficient\\\" → \\\"necess
+…[truncated 2559 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1810
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T17:18:11.750018+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find exp_018v2\nfor exp in exps:\n    if exp.get('exp_id') == 'exp_018v2_full_sgs_walker_s1':\n        print(json.dumps(exp, indent=2))\n        break\n\"",
+  "description": "Extract exp_018v2_full_sgs_walker_s1 from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Find exp_018v2\nfor exp in exps:\n    if exp.get('exp_id') == 'exp_018v2_full_sgs_walker_s1':\n        print(json.dumps(exp, indent=2))\n        break\n\"",
+    "description": "Extract exp_018v2_full_sgs_walker_s1 from registry JSON"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T17:18:12.153145+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    if exp.get('exp_id') == 'exp_018v2_full_sgs_walker_s1':
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T17:18:19.925019+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Check structure\nprint(type(registry))\nif isinstance(registry, dict):\n    print(list(registry.keys())[:5])\n    if 'data' in registry:\n        d = registry['data']\n        print(type(d), list(d.keys()) if isinstance(d, dict) else 'not dict')\n\" 2>&1 | head -20",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Check structure\nprint(type(registry))\nif isinstance(registry, dict):\n    print(list(registry.keys())[:5])\n    if 'data' in registry:\n        d = registry['data']\n        print(type(d), list(d.keys()) if isinstance(d, dict) else 'not dict')\n\" 2>&1 | head -20",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T17:18:20.077341+00:00_
+
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+&lt;class 'dict'> ['experiments', 'count', 'total', 'baseline']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T17:18:26.625036+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\nprint(f'Type: {type(exps)}, keys sample: {list(exps.keys())[:5]}' if isinstance(exps, dict) else f'Type: list, len={len(exps)}')\nif isinstance(exps, dict):\n    if 'exp_018v2_full_sgs_walker_s1' in exps:\n        print(json.dumps(exps['exp_018v2_full_sgs_walker_s1'], indent=2))\nelif isinstance(exps, list):\n    for e in exps:\n        if isinstance(e, dict) and e.get('exp_id') == 'exp_018v2_full_sgs_walker_s1':\n            print(json.dumps(e, indent=2))\n            break\n        elif isinstance(e, str) and 'exp_018v2' in e:\n            print(e[:500])\n            break\n\"",
+  "description": "Find exp_018v2 in registry experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-1548a100/bc763a72-b910-497f-8182-f687b255d4ec/tool-results/mcp-agent-ml-research-read_registry-1778951881446.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\nprint(f'Type: {type(exps)}, keys sample: {list(exps.keys())[:5]}' if isinstance(exps, dict) else f'Type: list, len={len(exps)}')\nif isinstance(exps, dict):\n    if 'exp_018v2_full_sgs_walker_s1' in exps:\n        print(json.dumps(exps['exp_018v2_full_sgs_walker_s1'], indent=2))\nelif isinstance(exps, list):\n    for e in exps:\n        if isinstance(e, dict) and e.get('exp_id') == 'exp_018v2_full_sgs_walker_s1':\n            print(json.dumps(e, indent=2))\n            break\n        elif isinstance(e, str) and 'exp_018v2' in e:\n            print(e[:500])\n            break\n\"",
+    "description": "Find exp_018v2 in registry experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T17:18:26.726084+00:00_
+
+Type: &lt;class 'dict'>, keys sample: ['exp_018v2_full_sgs_walker_s1', 'exp_020_vanilla_dreamerv3_s2', 'exp_010b_cheetah_civo_trigger', 'exp_008f_s3_no_dt_embed_walker', 'exp_019a_pickcube_baseline']
+{
+  "status": "ANALYZING",
+  "created_at": "2026-05-16T13:42:15.786Z",
+  "updated_at": "2026-05-16T17:17:44.385Z",
+  "hypothesis": "Full-SGS \u4fee\u6b63\u7248: trained dt_emb + subsample ON + dt=2 + H=8 + full_sgs=True (detach all non-KL gradients from dt_emb). \u4fee\u590d 018 \u914d\u7f6e\u9519\u8bef\uff08\u7f3a\u5931 gate \u53c2\u6570\uff09\u3002\u5982\u679c CIVO \u88ab\u6d88\u9664 (NVE<1.5\u00d7) \u2192 \u786e\u8ba4 obs decoder gradient \u662f CIVO root cause \u2192 C5 \u6210\u7acb\u3002",
+  "parent": "exp_016e_sgs_walker_s1"
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T17:18:31.951645+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T17:18:31.952073+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T17:19:08.301741+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "analysis:exp_018v2_full_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "## 任务：分析 exp_018v2_full_sgs_walker_s1 实验结果\n\n### 背景\n实验已正常退出，进入 ANALYZING 状态。需要确定 conclusion。\n\n**假设**: Full-SGS 修正版: trained dt_emb + subsample ON + dt=2 + H=8 + full_sgs=True (detach all non-KL gradients from dt_emb). 修复 018 配置错误（缺失 gate 参数）。如果 CIVO 被消除 (NVE<1.5×) → 确认 obs decoder gradient 是 CIVO root cause → C5 成立。\n\n**前序实验**: exp_016e_sgs_walker_s1 (reward-only SGS, NVE 10.42×, collapse — 失败)\n**对照**: exp_018_full_sgs_walker_s1 (配置错误版本, gate_enabled=false 导致 full_sgs 未生效, 被 kill)\n\n**判断标准**:\n- NVE < 1.5× 且训练稳定（无 collapse）→ conclusion = success（CIVO 被消除，C5 成立）\n- NVE ≥ 1.5× 或出现 collapse → conclusion = negative（Full-SGS 未能消除 CIVO）\n\n### 服务器信息\n- server: bjb1-45299\n- log_path: /root/runs/event-gated-adaptive-horizon/exp_018v2_full_sgs_walker_s1.log\n\n### 需要做的事\n\n1. **SSH 查看日志**：读取 log 文件尾部，确认训练正常完成（无 crash/error）、总 step 数、最终 metrics\n2. **W&B 查看 metrics**：\n   - 在 W&B 项目 event-gated-adaptive-horizon 中找到这个 run（run name 可能含 exp_018v2 或 full_sgs）\n   - 关键指标：eval/episode_return（峰值和最终值）、train/value_error 或 NVE 相关指标、是否有 collapse 迹象\n   - 如果 W&B 里有 NVE 或 value_error/baseline_value_error 比值，直接计算 NVE\n3. **计算 NVE**：如果 W&B 没有直接的 NVE，需要对比 baseline（exp_009d_baseline_walker_s0 或 008f 系列的 value error）。NVE = 本实验 value_error_peak / baseline value_error_peak\n4. **判断 conclusion**：按上述标准判断\n5. **产出分析报告**：写到 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_018v2_full_sgs_walker_s1/analysis_report.md，包含：\n   - 训练概况（总 steps、训练时长、是否正常完成）\n   - 关键 metrics 表格（eval_return peak/final、value_error、NVE）\n   - 与前序实验对比（016e: NVE 10.42×; 018 原版: gate 未生效被 kill）\n   - Conclusion 判断及理由\n   - 对论文的意义\n\n6. **更新 registry**：用 update_registry 设置：\n   - status: DONE\n   - conclusion: success 或 negative（根据分析）\n   - metrics: {eval_return_peak, eval_return_peak_step, nve_peak, total_steps}\n   - checkpoint_path 和 log_path\n   - 如果 success，spec 里补充关键配置确认（full_sgs=True, gate_enabled=True）\n\n### 注意\n- 先 SSH 查日志确认训练完成状态，再查 W&B\n- NVE 计算要准确，这是核心判断依据\n- 018 原版因配置错误被 kill（gate_enabled=false），018v2 修复了这个问题——需要确认 gate 确实生效了",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "context": "项目: event-gated-adaptive-horizon\nW&B entity/project: 从项目配置加载\n服务器: bjb1-45299\nbaseline NVE 参考: exp_008f (dt_embed_dim=0) NVE≤1.02×, exp_008d (trained dt_emb) NVE 4.12×\n018 原版结果: gate_enabled=false 导致 full_sgs 未实际生效，NVE 1.00× 但那是因为没有 trained dt_emb exposure（配置错误）\n016e 结果: reward-only SGS, NVE 10.42×, collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_018v2_full_sgs_walker_s1",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "## 任务：分析 exp_018v2_full_sgs_walker_s1 实验结果\n\n### 背景\n实验已正常退出，进入 ANALYZING 状态。需要确定 conclusion。\n\n**假设**: Full-SGS 修正版: trained dt_emb + subsample ON + dt=2 + H=8 + full_sgs=True (detach all non-KL gradients from dt_emb). 修复 018 配置错误（缺失 gate 参数）。如果 CIVO 被消除 (NVE<1.5×) → 确认 obs decoder gradient 是 CIVO root cause → C5 成立。\n\n**前序实验**: exp_016e_sgs_walker_s1 (reward-only SGS, NVE 10.42×, collapse — 失败)\n**对照**: exp_018_full_sgs_walker_s1 (配置错误版本, gate_enabled=false 导致 full_sgs 未生效, 被 kill)\n\n**判断标准**:\n- NVE < 1.5× 且训练稳定（无 collapse）→ conclusion = success（CIVO 被消除，C5 成立）\n- NVE ≥ 1.5× 或出现 collapse → conclusion = negative（Full-SGS 未能消除 CIVO）\n\n### 服务器信息\n- server: bjb1-45299\n- log_path: /root/runs/event-gated-adaptive-horizon/exp_018v2_full_sgs_walker_s1.log\n\n### 需要做的事\n\n1. **SSH 查看日志**：读取 log 文件尾部，确认训练正常完成（无 crash/error）、总 step 数、最终 metrics\n2. **W&B 查看 metrics**：\n   - 在 W&B 项目 event-gated-adaptive-horizon 中找到这个 run（run name 可能含 exp_018v2 或 full_sgs）\n   - 关键指标：eval/episode_return（峰值和最终值）、train/value_error 或 NVE 相关指标、是否有 collapse 迹象\n   - 如果 W&B 里有 NVE 或 value_error/baseline_value_error 比值，直接计算 NVE\n3. **计算 NVE**：如果 W&B 没有直接的 NVE，需要对比 baseline（exp_009d_baseline_walker_s0 或 008f 系列的 value error）。NVE = 本实验 value_error_peak / baseline value_error_peak\n4. **判断 conclusion**：按上述标准判断\n5. **产出分析报告**：写到 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_018v2_full_sgs_walker_s1/analysis_report.md，包含：\n   - 训练概况（总 steps、训练时长、是否正常完成）\n   - 关键 metrics 表格（eval_return peak/final、value_error、NVE）\n   - 与前序实验对比（016e: NVE 10.42×; 018 原版: gate 未生效被 kill）\n   - Conclusion 判断及理由\n   - 对论文的意义\n\n6. **更新 registry**：用 update_registry 设置：\n   - status: DONE\n   - conclusion: success 或 negative（根据分析）\n   - metrics: {eval_return_peak, eval_return_peak_step, nve_peak, total_steps}\n   - checkpoint_path 和 log_path\n   - 如果 success，spec 里补充关键配置确认（full_sgs=True, gate_enabled=True）\n\n### 注意\n- 先 SSH 查日志确认训练完成状态，再查 W&B\n- NVE 计算要准确，这是核心判断依据\n- 018 原版因配置错误被 kill（gate_enabled=false），018v2 修复了这个问题——需要确认 gate 确实生效了",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "context": "项目: event-gated-adaptive-horizon\nW&B entity/project: 从项目配置加载\n服务器: bjb1-45299\nbaseline NVE 参考: exp_008f (dt_embed_dim=0) NVE≤1.02×, exp_008d (trained dt_emb) NVE 4.12×\n018 原版结果: gate_enabled=false 导致 full_sgs 未实际生效，NVE 1.00× 但那是因为没有 trained dt_emb exposure（配置错误）\n016e 结果: reward-only SGS, NVE 10.42×, collapse"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T17:19:11.116667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_018v2_full_sgs_walker_s1_20260516T171908\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_exp_018v2_full_sgs_walker_s1_20260516T171908.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_018v2_full_sgs_walker_s1_20260516T171908 started. Use get_worker_status('worker_analysis_exp_018v2_full_sgs_walker_s1_20260516T171908') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2814
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T17:19:17.447994+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'exp_id': 'exp_019b_pickcube_civo_trigger'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'exp_id': 'exp_019b_pickcube_civo_trigger'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T17:19:17.699434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2148}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T17:19:20.359929+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'QUEUED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'QUEUED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-16T17:37:47.406409+00:00_
+
+Worker 已派出分析 exp_018v2_full_sgs_walker_s1 结果。
+
+同时检查资源饱和度——cuda:1 当前空闲，应确认是否有实验可以提交。根据 ROADMAP，exp_019b_pickcube_civo_trigger 在排队，exp_008f_s3 在准备中。让我检查这些实验的状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_018v2_full_sgs_walker_s1"
+}
+```
+
+</details>
+
+---

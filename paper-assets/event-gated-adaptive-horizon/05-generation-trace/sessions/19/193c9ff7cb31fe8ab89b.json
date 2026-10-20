@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "193c9ff7cb31fe8ab89b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper results nve bound fix",
+  "task_key": "worker_paper_results_nve_bound_fix_20260525T165218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_nve_bound_fix_20260525T165218_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "4e515828daf17ccad4da9a912defebf444a2eb34ab68642eec97c8cc9ddd450a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全文无遗留旧 bound。\n\n**Diff 汇总：**\n\n| 文件 | 行 | Before | After |\n|------|-----|--------|-------|\n| `results.tex` | 112 | `peak NVE ${\\leq}0.6\\times$` | `peak NVE ${\\leq}0.8\\times$` |\n| `appendix.tex` | 111 | `NVE $\\leq 0.6\\times$, no value overestimation` | `NVE $\\leq 0.8\\times$, no value overestimation` |\n| `appendix.tex` | 143 | `healthy with NVE $\\leq 0.6\\times$` | `healthy with NVE $\\leq 0.8\\times$` |\n| `appendix.tex` | 797 | `NVE $\\leq 0.6\\times$, well below` | `NVE $\\leq 0.8\\times$, well below` |\n| `appendix.tex` | 950 | `(NVE $\\leq 0.6\\times$)` | `(NVE $\\leq 0.8\\times$)` |\n\n5 处 bound 声明已全部修正为 0.8×。\"no CIVO onset\" 结论不变（0.8× 仍远低于 1.5× threshold）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-nve-bound-fix.md"
+}

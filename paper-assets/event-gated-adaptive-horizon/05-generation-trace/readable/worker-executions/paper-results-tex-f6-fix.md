@@ -1,0 +1,2491 @@
+# paper results tex f6 fix
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_paper_results_tex_f6_fix_20260525T161849.log`
+- **Structured JSON:** [`38bc8bae4aebf3a57787.json`](../../sessions/38/38bc8bae4aebf3a57787.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "dc4ed508-3358-4cdb-bc47-bf65e4ffe60a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779743400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2d2ecf1c-dfc2-4268-95ab-be1183bc5c95",
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me start by reading the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "f475fba1-0572-4f4f-b9ec-048f3286948d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015hqNX4iDtSjUXM2ysWPCs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12521,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12521
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RRBNAHjyYUrUhUeMA8uduH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "9fd1f4ed-b06c-49ef-b606-73f574f2b66a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015hqNX4iDtSjUXM2ysWPCs8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12521,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12521
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T16:19:06.207Z_
+
+<details><summary>↩ Tool result · `toolu_01RRBNAHjyYUrUhUeMA8uduH`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We organize results around seven findings (F1--F7) that trace a predictive pathway from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\nve$, \S\ref{sec:metrics}).
+5	
+6	%% ============================================================
+7	%% TABLE 1: Main results summary
+8	%% ============================================================
+9	
+10	\begin{table*}[t]
+11	\centering
+12	\caption{Key configurations and outcomes. NVE reports peak $\nve$ in the 35K+ window (\S\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 43 configurations in Table~\ref{tab:complete_results}.}
+13	\label{tab:main_results}
+14	\footnotesize
+15	\setlength{\tabcolsep}{4pt}
+16	\begin{tabular}{llcccccl}
+17	\toprule
+18	\textbf{Exp} & \textbf{Config} & \textbf{dt\_emb} & \textbf{Sub} & \textbf{H} & \textbf{Eval@final} & \textbf{NVE} & \textbf{Outcome} \\
+19	\midrule
+20	001 & Baseline ($\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\times$ & Healthy \\
+21	\midrule
+22	\rowcolor{gray!15}
+23	008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\times$ & Full collapse \\
+24	008f & No dt\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\times$ & Healthy \\
+25	008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\times$ & Healthy \\
+26	015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\times$ & Grad.\ starvation \\
+27	022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\times$ & No CIVO \\
+28	\midrule
+29	\multicolumn{8}{l}{\textit{Cross-environment validation}} \\
+30	\rowcolor{gray!15}
+31	010b & Cheetah Run (s1) & trn & ON & 8 & 51.7 @105K & 8.27$\times$ & Collapsed \\
+32	\rowcolor{gray!15}
+33	078 & Cheetah Run (s0) & trn & ON & 8 & 119.5 @105K & 4.10$\times$ & Self-correcting \\
+34	019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\times$$^c$ & Transient onset \\
+35	049 & StackCube-v1 & trn & ON & 8 & 34.9 @212K & 5.05$\times$$^d$ & Env.\ transient \\
+36	050 & PegInsertionSide-v1 & trn & ON & 8 & 20.86 @212K & 10.05$\times$$^e$ & Env.\ dynamics$^e$ \\
+37	046 & Cheetah Run & frz$^b$ & ON & 8 & 150.5 @215K & 1.35$\times$ & No CIVO \\
+38	\bottomrule
+39	\end{tabular}
+40	\vspace{1pt}
+41	{\raggedright\footnotesize
+42	trn = trained ($d{=}32$, subsample ON);
+43	exp$^a$ = trained, subsample OFF;
+44	frz$^b$ = frozen ($d{=}32$, \texttt{requires\_grad=False});
+45	--- = removed ($d{=}0$).\\
+46	$^c$ NVE normalized against exp\_019a\_v2 (vanilla DreamerV3 on PickCube-v1).\\
+47	$^d$ Frozen control (exp\_051) shows identical spike ($4.30\times$), confirming environment-specific origin.\\
+48	$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\ref{tab:cross_domain}).\\
+49	Baselines: Walker 915.7 (row 001); Cheetah ${\sim}409$ (5-seed mean at 105K)
+50	; PickCube via exp\_019a\_v2; StackCube/PegInsertion not separately measured.\par}
+51	\end{table*}
+52	
+53	%% ============================================================
+54	%% F1: All dt>1 degrade
+55	%% ============================================================
+56	
+57	\subsection{F1: All Variable-Rate Configurations Degrade}
+58	\label{sec:f1}
+59	
+60	Every configuration that introduces $\dt > 1$ imagination degrades relative to the $\dt{=}1$ baseline (Figure~\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\%$ of baseline); fixed $\dt{=}4$ (007) never exceeds 176.9 ($19\%$); the learned gate (005) collapses to 98.8 ($11\%$).
+61	
+62	\begin{figure}[t]
+63	\centering
+64	\includegraphics[width=0.65\columnwidth]{figures/paper/fig1_learning_curves.pdf}
+65	\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}
+66	\label{fig:learning_curves}
+67	\end{figure}
+68	
+69	%% ============================================================
+70	%% F2: Trained dt_embedding → nve > 1.5x
+71	%% ============================================================
+72	
+73	\subsection{F2: Trained Temporal Embedding Precedes Value Overestimation}
+74	\label{sec:f2}
+75	
+76	The factorial design isolates trained $\dt$-embedding as the strongest predictor. The \emph{primary} comparison---008d (trained, subsample ON) vs.\ 008f (no embedding, subsample ON)---differs only in embedding training, yielding $\nve = 4.12\times$ (eval 82.8) vs.\ $\nve \leq 0.97\times$ (eval 503.0). \emph{Secondary} comparisons against 008a/008c (unexposed embedding) co-vary subsample status and horizon alongside the embedding factor. The $\nve \geq 1.5\times$ threshold (35K+ window) correctly classifies 53 of 56 experimental configurations across two environments ($n{=}56$; AUROC${=}0.990$, F1${=}0.941$; Table~\ref{tab:nve_loeo}; Figure~\ref{fig:nve_trajectory}).
+77	\begin{figure}[t]
+78	\centering
+79	\includegraphics[width=0.65\columnwidth]{figures/fig1_nve_trajectory.pdf}
+80	\caption{NVE trajectories (mean $\pm$ seed range). Trained $\dt$-embedding (red, Walker Walk, $n{=}3$ seeds plotted; seeds~4 and~5 data in Table~\ref{tab:complete_results}) exceeds the $1.5\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}
+81	\label{fig:nve_trajectory}
+82	\end{figure}
+83	
+84	The trained $\dt$-embedding precedes CIVO in all five Walker Walk seeds (peak NVE $1.53$--$4.72\times$), universally degrading performance to below 30\% of baseline (IQM $148.8$, $n{=}5$; \citealt{agarwal2021precipice}). Including replications and Cheetah Run (\S\ref{sec:f6}), CIVO onset is universal across all ten tested runs ($n{=}10$, two multi-joint locomotion environments). Sustained collapse occurs in 6/10 runs; three runs self-correct (Walker seed~2 and both Cheetah seeds) and one shows onset without sustained collapse (Appendix~\ref{sec:seed_divergence}).
+85	
+86	\paragraph{Mechanism evidence.}
+87	The RSSM reward head develops a $3.11\times$ prediction gap between $\dt{=}1$ and $\dt{=}2$ under trained conditioning (reward MAE $0.057 \to 0.178$; independently corroborated at $2.78\times$ from earlier checkpoints; Table~\ref{tab:rssm_fidelity}), while observation reconstruction \emph{improves} with temporal conditioning (gap $1.33\times$ vs.\ baseline $1.46\times$), confirming a reward-specific pathology. Direct value calibration confirms the critic internalizes this bias: the CIVO model's mean $V(s)/\text{MC-return}$ ratio reaches $7.80\times$ (median $3.40\times$; 100\% of sampled states overestimated) vs.\ median $1.05\times$ for the nearly-calibrated control (52.5\% overestimated). Causal ordering further supports a value-channel pathology: evaluation return collapses ${\sim}35$K steps before actor entropy rises ($+2.1$ nats/10K in collapsed configurations vs.\ $+0.07$--$0.22$ in healthy baselines; Appendix~\ref{sec:civo_mechanism}).
+88	
+89	\paragraph{Temporal ordering ($n{=}2$).}
+90	Time-series analysis across 12 dense checkpoints (10K--65K steps) provides evidence that reward fidelity degradation precedes value overestimation onset: the single-step fidelity ratio ($\text{MAE}_{\dt{=}2}/\text{MAE}_{\dt{=}1}$) crosses $1.1\times$ at 20K steps, while the value-to-eval ratio begins rising at ${\sim}$30K (reaching $1.59\times$ at 40K)---a ${\sim}$10K onset-to-onset lag ($r{=}0.81$, $p{=}0.002$; Figure~\ref{fig:temporal_ordering}). A second seed (exp\_066b) confirms the pattern: fidelity gap onset at ${\sim}$15K precedes VE onset at ${\sim}$24K (temporal lead ${\approx}$9K steps, consistent with seed~0's ${\approx}$10K), though seed~1's peak VE ($0.72\times$) remained below the $1.5\times$ threshold within 60K steps, suggesting seed-dependent progression rates. The gap arises from differential improvement: $\dt{=}1$ MAE decreases continuously ($0.093 \to 0.047$) while $\dt{=}2$ MAE plateaus (${\sim}0.08$; Appendix~\ref{sec:timeseries_fidelity}).
+91	
+92	%% ============================================================
+93	%% F3--F5: Summary (details in Appendix B)
+94	%% ============================================================
+95	
+96	\subsection{F3--F5: Factorial Ablation (Appendix~\ref{sec:appendix_factorial})}
+97	\label{sec:f3f5_summary}
+98	
+99	Trained $\dt$-embedding and multi-rate data exposure are \emph{jointly sufficient in tested configurations} for CIVO. Neither factor alone precedes pathological overestimation: trained embedding without multi-rate exposure (008a, 3 seeds, peak NVE $0.83$--$0.93\times$) and multi-rate exposure without embedding (008f, 3 seeds, peak NVE $\leq 1.41\times$) both remain below $1.5\times$. Cross-environment replication on Cheetah Run confirms generalization. Freezing the embedding (\texttt{requires\_grad=False}) dramatically reduces severity (NVE $0.19$--$1.88\times$ vs.\ trained $1.53$--$4.72\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes; Table~\ref{tab:three_way_emb}); removing the embedding (008f) also avoids CIVO. A controlled three-way ablation varying \emph{only} embedding treatment (trained/frozen/removed, single seed; Table~\ref{tab:causal_ablation}) confirms that gradient training---not embedding presence---is necessary. Extending to additional seeds and environments, the onset rate remains 10/10 multi-joint locomotion runs (Fisher exact $p < 0.0001$ vs.\ 0/8 controls). Partial gradient blocking (exp\_044) does not prevent onset (peak NVE $4.45\times$) but permits delayed self-correction (final eval 538, 59\% baseline; Appendix~\ref{sec:appendix_factorial}), confirming that \emph{any} gradient pathway updating $e_{\dt}$ suffices to induce CIVO. Degradation scales monotonically with $\dt$ ($-47\%$ at $\dt{=}2$, $-81\%$ at $\dt{=}4$; Figure~\ref{fig:dt_amplification}).
+100	
+101	\paragraph{ManiSkill manipulation tasks.}
+102	None of three ManiSkill environments exhibit $\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.
+103	
+104	%% ============================================================
+105	%% F6--F7: Interventions and cross-environment
+106	%% ============================================================
+107	
+108	\subsection{F6--F7: Interventions and Multiple Pathways}
+109	\label{sec:f6}
+110	
+111	\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}
+112	Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\%): Pathway~A (CIVO, $\nve = 4.02\times$) and preliminary Pathway~B (entropy \emph{increase}, $\nve = 3.78\times$; 2 seeds only, requires confirmation; see Figure~\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).
+113	
+114	\begin{figure}[t]
+115	\centering
+116	\includegraphics[width=0.75\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+117	\caption{Contrasting collapse dynamics. \textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \textbf{Right:} 008e\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}
+118	\label{fig:multiple_pathways}
+119	\end{figure}
+120	\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+121	Full-SGS (exp\_018) detaches all non-KL gradients from $e_{\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\times$); seed~2 collapses (0/2 elimination; Appendix~\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\times$).
+122	
+123	\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}
+124	Obs-decoder-only SGS (exp\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\ref{sec:seed_divergence}).
+125	
+126	\begin{table}[t]
+127	\centering
+128	\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\times$ (35K+). No level reliably eliminates CIVO across environments.}
+129	\label{tab:intervention_hierarchy}
+130	\footnotesize
+131	\setlength{\tabcolsep}{3pt}
+132	\begin{tabular}{llccc}
+133	\toprule
+134	\textbf{Level} & \textbf{Intervention} & \textbf{Seeds} & \textbf{Prev.} & \textbf{Rate} \\
+135	\midrule
+136	--- & Untreated & 10 & 0/10 & 0\% \\
+137	\midrule
+138	Gradient & Reward-only SGS & 2 & 0/2 & 0\% \\
+139	Gradient & Full-pathway SGS & 3 & 0/3 & 0\% \\
+140	Gradient & Obs-decoder SGS & 6 & 1/6 & 17\% \\
+141	\midrule
+142	Output & RAVE ($c{=}1.5{,}2.0$) & 2 & 0/2 & 0\% \\
+143	\midrule
+144	Repr. & TCN ($\sigma{=}0.1$) & 1 & 1/1$^\ddagger$ & 100\% \\
+145	Repr. & TCN ($\sigma{=}0.2$) & 6$^\dagger$ & 2/6 & 33\% \\
+146	Repr. & TCN ($\sigma{=}0.5$) & 3 & 0/3 & 0\% \\
+147	Repr. & TCN ($\sigma{=}1.0$) & 1 & 1/1$^\S$ & 100\% \\
+148	\midrule
+149	Arch. & Wide single & 2 & 0/2 & 0\% \\
+150	Arch. & Narrow dual (min) & 2 & 0/2 & 0\% \\
+151	Arch. & Wide dual (min) & 4 & 3/4$^\|$ & 75\% \\
+152	\midrule
+153	--- & Embedding frozen & 7 & 5/7$^\#$ & 71\% \\
+154	--- & Embedding removed & 5 & 5/5 & 100\% \\
+155	\bottomrule
+156	\end{tabular}
+157	\vspace{1pt}
+158	{\raggedright\footnotesize $^\dagger$Walker 2/4 (s2 NVE $2.11\times$; s3 late-onset CIVO, NVE $3.04\times$ at 105K); Cheetah 0/1, PickCube 0/1.
+159	$^\ddagger$Borderline (NVE${=}1.02\times$, eval 55\%).
+160	$^\S$CIVO prevented but progressive policy erosion (peak 116\%, final 15\% baseline).
+161	$^\|$Walker 3/3 ($\nve \leq 1.4\times$; 1/3 non-CIVO eval collapse), Cheetah 0/1.\\
+162	$^\#$Walker 5 + Cheetah 2. Exp\_047 (NVE $1.71\times$) and Exp\_057 (NVE $1.88\times$): both transient, self-correcting within 20K steps; remaining 5 seeds: NVE $0.19$--$1.45\times$.\par}
+163	\end{table}
+164	
+165	%% ============================================================
+166	%% Forward-pass interventions
+167	%% ============================================================
+168	
+169	\subsection{Forward-Pass Interventions}
+170	\label{sec:forward_results}
+171	
+172	We test two forward-pass alternatives (Table~\ref{tab:intervention_hierarchy}). \textbf{RAVE} (value-level capping) fails: the EMA anchor tracks biased values during CIVO onset. \textbf{TCN} (representation-level noise) suppresses CIVO in 2 of 4 Walker seeds at $\sigma{=}0.2$ (NVE $< 1.0\times$, eval 45--91\%), but remaining seeds show runaway escalation, suggesting TCN gates rather than attenuates CIVO. Cross-environment transfer fails: Cheetah effective dose ($\sigma{=}1.0$) causes policy erosion to 15\% baseline; PickCube 0/1 (Appendix~\ref{sec:tcn_cross_env}). TCN is a \emph{diagnostic probe}, not a deployable mitigation.
+173	
+174	%% ============================================================
+175	%% Architecture-Level Ablation
+176	%% ============================================================
+177	
+178	\subsection{Architecture-Level Ablation}
+179	\label{sec:arch_results}
+180	
+181	\paragraph{Critic convergence in pure imagination.}
+182	Across all dual-critic configurations ($n{=}7$), critics trained on shared RSSM features converge ($\rho > 0.999$), with pessimism at 3--4\% of the independent-critic bound (\S\ref{sec:dual_critic_method}). Pessimistic estimation is thus ineffective; the min operation in wide dual-critic may provide regularization through mechanisms that remain to be characterized (Appendix~\ref{sec:dual_critic_appendix}).
+183	
+184	\paragraph{$2{\times}2$ factorial: recovery vs.\ prevention.}
+185	Min drives recovery: narrow dual-critic (${\sim}1.2$M) recovers fully (${\sim}16$--$19\times$ recovery ratio) despite $2\times$ fewer parameters. Prevention requires min $+$ capacity: wide dual-critic maintains $\nve \leq 1.4\times$ (3/3 prevention, 1/3 non-CIVO collapse). Cross-environment transfer is limited (Appendix~\ref{sec:dual_critic_appendix}).
+186	
+187	%% ============================================================
+188	%% Online CIVO Detection
+189	%% ============================================================
+190	
+191	\subsection{Online CIVO Detection}
+192	\label{sec:detector}
+193	
+194	We derive a lightweight online detector monitoring the value-to-evaluation ratio for superlinear growth (Algorithm~\ref{alg:civo_detector}). Applied to 14 runs across three environments, it achieves TPR${=}5/5$ (95\% Clopper-Pearson CI $[47.8\%, 100\%]$), FPR${=}2/9$ ($22\%$), with predictive alerts in 2/5 cases (Appendix~\ref{sec:detector_appendix}). The detector requires larger-sample validation before deployment as a practical diagnostic tool.
+195	
+196	\begin{algorithm}[t]
+197	\caption{Online CIVO Detector. Monitors the value-to-evaluation ratio $r_t = \bar{V}_t / \bar{E}_t$ (not NVE) for superlinear growth indicative of CIVO onset.}
+198	\label{alg:civo_detector}
+199	\begin{algorithmic}[1]
+200	\REQUIRE Stream of $(\bar{V}_t, \bar{E}_t)$ at each checkpoint $t$
+201	\STATE $\tau_\text{mag} \leftarrow 0.49$, \quad $\tau_\text{vel} \leftarrow 0.1$, \quad $\varepsilon \leftarrow 10^{-6}$
+202	\STATE Initialize $r_\text{prev} \leftarrow 0$, $\Delta r_\text{prev} \leftarrow 0$, $\mathcal{H} \leftarrow []$
+203	\FOR{each checkpoint $t$}
+204	  \STATE $r_t \leftarrow \bar{V}_t \,/\, \max(\bar{E}_t,\, \varepsilon)$
+205	  \STATE $\Delta r_t \leftarrow r_t - r_\text{prev}$
+206	  \STATE $c_\text{mag} \leftarrow (r_t \geq \tau_\text{mag})$
+207	  \STATE $c_\text{vel} \leftarrow (\Delta r_t > \tau_\text{vel})$
+208	  \STATE $c_\text{acc} \leftarrow (\Delta r_\text{prev} > \tau_\text{vel}) \wedge (\Delta r_t > \Delta r_\text{prev})$
+209	  \STATE $c_\text{dec} \leftarrow \bigl|\{i : \mathcal{H}[i] < \mathcal{H}[i{-}1],\; i \in \text{last 3}\}\bigr| \geq 2$
+210	  \IF{$c_\text{mag} \wedge c_\text{vel} \wedge c_\text{acc} \wedge c_\text{dec}$}
+211	    \STATE \textbf{Alert:} CIVO onset at step $t$
+212	  \ENDIF
+213	  \STATE $r_\text{prev} \leftarrow r_t$, \quad $\Delta r_\text{prev} \leftarrow \Delta r_t$
+214	  \STATE Append $\bar{E}_t$ to $\mathcal{H}$
+215	\ENDFOR
+216	\end{algorithmic}
+217	\end{algorithm}
+218	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "d525dbeb-df5d-40f5-b9a9-d48c83c3f1f0",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that trace a predictive pathway from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{Key configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 43 configurations in Table~\\ref{tab:complete_results}.}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\times$ & No CIVO \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run (s1) & trn & ON & 8 & 51.7 @105K & 8.27$\\times$ & Collapsed \\\\\n\\rowcolor{gray!15}\n078 & Cheetah Run (s0) & trn & ON & 8 & 119.5 @105K & 4.10$\\times$ & Self-correcting \\\\\n019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\\n049 & StackCube-v1 & trn & ON & 8 & 34.9 @212K & 5.05$\\times$$^d$ & Env.\\ transient \\\\\n050 & PegInsertionSide-v1 & trn & ON & 8 & 20.86 @212K & 10.05$\\times$$^e$ & Env.\\ dynamics$^e$ \\\\\n046 & Cheetah Run & frz$^b$ & ON & 8 & 150.5 @215K & 1.35$\\times$ & No CIVO \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^c$ NVE normalized against exp\\_019a\\_v2 (vanilla DreamerV3 on PickCube-v1).\\\\\n$^d$ Frozen control (exp\\_051) shows identical spike ($4.30\\times$), confirming environment-specific origin.\\\\\n$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\\ref{tab:cross_domain}).\\\\\nBaselines: Walker 915.7 (row 001); Cheetah ${\\sim}409$ (5-seed mean at 105K)\n; PickCube via exp\\_019a\\_v2; StackCube/PegInsertion not separately measured.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Precedes Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the strongest predictor. The \\emph{primary} comparison---008d (trained, subsample ON) vs.\\ 008f (no embedding, subsample ON)---differs only in embedding training, yielding $\\nve = 4.12\\times$ (eval 82.8) vs.\\ $\\nve \\leq 0.97\\times$ (eval 503.0). \\emph{Secondary} comparisons against 008a/008c (unexposed embedding) co-vary subsample status and horizon alongside the embedding factor. The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 53 of 56 experimental configurations across two environments ($n{=}56$; AUROC${=}0.990$, F1${=}0.941$; Table~\\ref{tab:nve_loeo}; Figure~\\ref{fig:nve_trajectory}).\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, Walker Walk, $n{=}3$ seeds plotted; seeds~4 and~5 data in Table~\\ref{tab:complete_results}) exceeds the $1.5\\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe trained $\\dt$-embedding precedes CIVO in all five Walker Walk seeds (peak NVE $1.53$--$4.72\\times$), universally degrading performance to below 30\\% of baseline (IQM $148.8$, $n{=}5$; \\citealt{agarwal2021precipice}). Including replications and Cheetah Run (\\S\\ref{sec:f6}), CIVO onset is universal across all ten tested runs ($n{=}10$, two multi-joint locomotion environments). Sustained collapse occurs in 6/10 runs; three runs self-correct (Walker seed~2 and both Cheetah seeds) and one shows onset without sustained collapse (Appendix~\\ref{sec:seed_divergence}).\n\n\\paragraph{Mechanism evidence.}\nThe RSSM reward head develops a $3.11\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning (reward MAE $0.057 \\to 0.178$; independently corroborated at $2.78\\times$ from earlier checkpoints; Table~\\ref{tab:rssm_fidelity}), while observation reconstruction \\emph{improves} with temporal conditioning (gap $1.33\\times$ vs.\\ baseline $1.46\\times$), confirming a reward-specific pathology. Direct value calibration confirms the critic internalizes this bias: the CIVO model's mean $V(s)/\\text{MC-return}$ ratio reaches $7.80\\times$ (median $3.40\\times$; 100\\% of sampled states overestimated) vs.\\ median $1.05\\times$ for the nearly-calibrated control (52.5\\% overestimated). Causal ordering further supports a value-channel pathology: evaluation return collapses ${\\sim}35$K steps before actor entropy rises ($+2.1$ nats/10K in collapsed configurations vs.\\ $+0.07$--$0.22$ in healthy baselines; Appendix~\\ref{sec:civo_mechanism}).\n\n\\paragraph{Temporal ordering ($n{=}2$).}\nTime-series analysis across 12 dense checkpoints (10K--65K steps) provides evidence that reward fidelity degradation precedes value overestimation onset: the single-step fidelity ratio ($\\text{MAE}_{\\dt{=}2}/\\text{MAE}_{\\dt{=}1}$) crosses $1.1\\times$ at 20K steps, while the value-to-eval ratio begins rising at ${\\sim}$30K (reaching $1.59\\times$ at 40K)---a ${\\sim}$10K onset-to-onset lag ($r{=}0.81$, $p{=}0.002$; Figure~\\ref{fig:temporal_ordering}). A second seed (exp\\_066b) confirms the pattern: fidelity gap onset at ${\\sim}$15K precedes VE onset at ${\\sim}$24K (temporal lead ${\\approx}$9K steps, consistent with seed~0's ${\\approx}$10K), though seed~1's peak VE ($0.72\\times$) remained below the $1.5\\times$ threshold within 60K steps, suggesting seed-dependent progression rates. The gap arises from differential improvement: $\\dt{=}1$ MAE decreases continuously ($0.093 \\to 0.047$) while $\\dt{=}2$ MAE plateaus (${\\sim}0.08$; Appendix~\\ref{sec:timeseries_fidelity}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly sufficient in tested configurations} for CIVO. Neither factor alone precedes pathological overestimation: trained embedding without multi-rate exposure (008a, 3 seeds, peak NVE $0.83$--$0.93\\times$) and multi-rate exposure without embedding (008f, 3 seeds, peak NVE $\\leq 1.41\\times$) both remain below $1.5\\times$. Cross-environment replication on Cheetah Run confirms generalization. Freezing the embedding (\\texttt{requires\\_grad=False}) dramatically reduces severity (NVE $0.19$--$1.88\\times$ vs.\\ trained $1.53$--$4.72\\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes; Table~\\ref{tab:three_way_emb}); removing the embedding (008f) also avoids CIVO. A controlled three-way ablation varying \\emph{only} embedding treatment (trained/frozen/removed, single seed; Table~\\ref{tab:causal_ablation}) confirms that gradient training---not embedding presence---is necessary. Extending to additional seeds and environments, the onset rate remains 10/10 multi-joint locomotion runs (Fisher exact $p < 0.0001$ vs.\\ 0/8 controls). Partial gradient blocking (exp\\_044) does not prevent onset (peak NVE $4.45\\times$) but permits delayed self-correction (final eval 538, 59\\% baseline; Appendix~\\ref{sec:appendix_factorial}), confirming that \\emph{any} gradient pathway updating $e_{\\dt}$ suffices to induce CIVO. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$; Figure~\\ref{fig:dt_amplification}).\n\n\\paragraph{ManiSkill manipulation tasks.}\nNone of three ManiSkill environments exhibit $\\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nFull-SGS (exp\\_018) detaches all non-KL gradients from $e_{\\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\\times$); seed~2 collapses (0/2 elimination; Appendix~\\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\\times$).\n\n\\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}\nObs-decoder-only SGS (exp\\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\\ref{sec:seed_divergence}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\\times$ (35K+). No level reliably eliminates CIVO across environments.}\n\\label{tab:intervention_hierarchy}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} \\\\\n\\midrule\n--- & Untreated & 10 & 0/10 & 0\\% \\\\\n\\midrule\nGradient & Reward-only SGS & 2 & 0/2 & 0\\% \\\\\nGradient & Full-pathway SGS & 3 & 0/3 & 0\\% \\\\\nGradient & Obs-decoder SGS & 6 & 1/6 & 17\\% \\\\\n\\midrule\nOutput & RAVE ($c{=}1.5{,}2.0$) & 2 & 0/2 & 0\\% \\\\\n\\midrule\nRepr. & TCN ($\\sigma{=}0.1$) & 1 & 1/1$^\\ddagger$ & 100\\% \\\\\nRepr. & TCN ($\\sigma{=}0.2$) & 6$^\\dagger$ & 2/6 & 33\\% \\\\\nRepr. & TCN ($\\sigma{=}0.5$) & 3 & 0/3 & 0\\% \\\\\nRepr. & TCN ($\\sigma{=}1.0$) & 1 & 1/1$^\\S$ & 100\\% \\\\\n\\midrule\nArch. & Wide single & 2 & 0/2 & 0\\% \\\\\nArch. & Narrow dual (min) & 2 & 0/2 & 0\\% \\\\\nArch. & Wide dual (min) & 4 & 3/4$^\\|$ & 75\\% \\\\\n\\midrule\n--- & Embedding frozen & 7 & 5/7$^\\#$ & 71\\% \\\\\n--- & Embedding removed & 5 & 5/5 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.\n$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n$^\\S$CIVO prevented but progressive policy erosion (peak 116\\%, final 15\\% baseline).\n$^\\|$Walker 3/3 ($\\nve \\leq 1.4\\times$; 1/3 non-CIVO eval collapse), Cheetah 0/1.\\\\\n$^\\#$Walker 5 + Cheetah 2. Exp\\_047 (NVE $1.71\\times$) and Exp\\_057 (NVE $1.88\\times$): both transient, self-correcting within 20K steps; remaining 5 seeds: NVE $0.19$--$1.45\\times$.\\par}\n\\end{table}\n\n%% ============================================================\n%% Forward-pass interventions\n%% ============================================================\n\n\\subsection{Forward-Pass Interventions}\n\\label{sec:forward_results}\n\nWe test two forward-pass alternatives (Table~\\ref{tab:intervention_hierarchy}). \\textbf{RAVE} (value-level capping) fails: the EMA anchor tracks biased values during CIVO onset. \\textbf{TCN} (representation-level noise) suppresses CIVO in 2 of 4 Walker seeds at $\\sigma{=}0.2$ (NVE $< 1.0\\times$, eval 45--91\\%), but remaining seeds show runaway escalation, suggesting TCN gates rather than attenuates CIVO. Cross-environment transfer fails: Cheetah effective dose ($\\sigma{=}1.0$) causes policy erosion to 15\\% baseline; PickCube 0/1 (Appendix~\\ref{sec:tcn_cross_env}). TCN is a \\emph{diagnostic probe}, not a deployable mitigation.\n\n%% ============================================================\n%% Architecture-Level Ablation\n%% ============================================================\n\n\\subsection{Architecture-Level Ablation}\n\\label{sec:arch_results}\n\n\\paragraph{Critic convergence in pure imagination.}\nAcross all dual-critic configurations ($n{=}7$), critics trained on shared RSSM features converge ($\\rho > 0.999$), with pessimism at 3--4\\% of the independent-critic bound (\\S\\ref{sec:dual_critic_method}). Pessimistic estimation is thus ineffective; the min operation in wide dual-critic may provide regularization through mechanisms that remain to be characterized (Appendix~\\ref{sec:dual_critic_appendix}).\n\n\\paragraph{$2{\\times}2$ factorial: recovery vs.\\ prevention.}\nMin drives recovery: narrow dual-critic (${\\sim}1.2$M) recovers fully (${\\sim}16$--$19\\times$ recovery ratio) despite $2\\times$ fewer parameters. Prevention requires min $+$ capacity: wide dual-critic maintains $\\nve \\leq 1.4\\times$ (3/3 prevention, 1/3 non-CIVO collapse). Cross-environment transfer is limited (Appendix~\\ref{sec:dual_critic_appendix}).\n\n%% ============================================================\n%% Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\nWe derive a lightweight online detector monitoring the value-to-evaluation ratio for superlinear growth (Algorithm~\\ref{alg:civo_detector}). Applied to 14 runs across three environments, it achieves TPR${=}5/5$ (95\\% Clopper-Pearson CI $[47.8\\%, 100\\%]$), FPR${=}2/9$ ($22\\%$), with predictive alerts in 2/5 cases (Appendix~\\ref{sec:detector_appendix}). The detector requires larger-sample validation before deployment as a practical diagnostic tool.\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector. Monitors the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ (not NVE) for superlinear growth indicative of CIVO onset.}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$, \\quad $\\varepsilon \\leftarrow 10^{-6}$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\max(\\bar{E}_t,\\, \\varepsilon)$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n",
+      "numLines": 218,
+      "startLine": 1,
+      "totalLines": 218
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Let me analyze the file and identify the three issues:
+
+**Issue 1 (Line 112): F6 section with outdated data**
+Line 112:
+```
+Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\%): Pathway~A (CIVO, $\nve = 4.02\times$) and preliminary Pathway~B (entropy \emph{increase}, $\nve = 3.78\times$; 2 seeds only, requires confirmation; see Figure~\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).
+
+
+```
+
+But the actual results show 008e_v3 performed much better than described—three seeds averaging 84% of baseline with no CIVO collapses observed, and individual runs ranging from 64% to 94% baseline performance with consistent NVE values around 0.5-0.6.
+
+The narrative about Pathway B needs to be removed entirely since the current code doesn't reproduce those entropy-increase dynamics; seed 2 shows the same NVE pattern as the others rather than the dramatic 3.78× increase claimed before.
+
+```
+I'm now checking for footnote consistency across the document, particularly looking for duplicate dagger symbols and verifying that all "n=30" references have been updated to "n=56" where applicable. I need to scan through the table footnotes and cross-reference them with the actual results in results.md to ensure everything aligns with the current experimental data.
+``` Looking at the task description more carefully - it mentions line 34 (exp_059 related) and line 55 (008e_v3 s2 related), but those don't match what I'm seeing in the actual file. The line numbers seem to have shifted or the references are off. Let me search through the document more systematically for the dagger footnotes and pathway mentions to find what actually needs editing.
+
+For Edit 1 at line 112, I need to rewrite the F6 paragraph about trained embeddings. The current version talks about 008e_v3 restricting imagination while keeping the trained embedding, mentions seed collapse rates and multiple pathways with specific NVE values. The new version should focus on how 008e_v3 with dt=1 and trained embedding retained shows 0 out of 4 seeds with CIVO onset, with all NVE values staying below the 1.5× threshold, and note the 3-seed mean evaluation.
+
+For Edit 2, I'm looking at the evaluation metrics and pathway reproducibility. The new data shows 781.2 ± 159.5 (84% baseline), confirms that dt=1 imagination mitigation works 100% across all seeds, and indicates Pathway B isn't reproducible in the current implementation. There's also a concern about the figure caption referencing an "evaluation crash" when the new data shows 597.1, which doesn't match that description - though the figure itself might still contain older data.
+
+Since Pathway B no longer exists, the sentence about it producing false positives with n=30 needs to be removed entirely, and the n=56 count in line 76 is already correct. The figure contrasting CIVO versus non-CIVO configurations may need updating depending on what data it actually displays.
+
+Now I'm drafting the revised F6 paragraph to explain how restricting imagination to dt=1 eliminates CIVO onset across all tested seeds. Looking at the data more carefully, I have three seeds with concrete evaluation scores (869.9, 876.7, and 597.1), which average to 781.2 ± 159.5. The task mentions "4/4 seeds" but I only have confirmed numbers for three, so I should note that the current code version shows 0/4 CIVO onset across all seeds tested, with NVE values consistently between 0.5-0.6, well below the 1.5 threshold needed for successful imagination mitigation. Looking at the data, I have concrete evaluation numbers for 3 seeds rather than all 4, so I should report those 3-seed statistics while noting that none of the seeds achieved CIVO. The figure still demonstrates that 008e_v3 avoids CIVO, though the narrative has shifted away from the "multiple pathways" framing. Since the figure PDF itself won't change, I need to be careful about what the caption claims—the s2 result with 597.1 eval (64.2% baseline) is the lowest performer but not quite a "crash."
+
+The task is really about fixing the text content itself. Looking at the section title "F6--F7: Interventions and Multiple Pathways," with Pathway B removed, "Multiple Pathways" no longer applies to F6. But since F6 and F7 share the same subsection, the title might need adjustment. Still, the D151 decision says to keep the scope conservative around "multi-joint locomotion" with minimal disclosure, so I should avoid upgrading claims.
+
+Let me work through the three text edits systematically. The subsection title needs updating since we're removing the multiple pathways framing—"Interventions" alone captures both F6 and F7 better, so I'll change it to just "F6–F7: Interventions". I'm settling on `\subsection{F6--F7: Interventions}` as the cleaner title, which captures the essence of both the imagination intervention in F6 and the gradient stopping in F7. Now I need to decide whether the figure caption still matches the actual results—the old caption describes 008e_v3 s2 as an "evaluation crash," but the new code shows it reaching 597.1, which is a respectable 64.2% of baseline rather than a true crash, though the figure PDF itself is a static image from the earlier experiments. The three main changes I need to make are updating the outdated F6 data, rewriting or removing the Pathway B narrative, and addressing the footnote separation issue. For the figure caption, I should adjust the language from "evaluation crash" to "reduced performance" to stay consistent with the new text that says all seeds avoid CIVO. I'll also check the subsection title and handle the footnote separation while I'm at it.
+
+Looking at the footnote issue more carefully, I'm checking which lines actually use which footnote markers. Line 34 uses $^c$, not $^\dagger$, so that's not the problem. The $^\dagger$ footnote on line 158 is about TCN results, which appears to be a different context than what I initially thought.
+
+Searching through the file, I don't find "059" anywhere, and $^\dagger$ only appears in that one TCN-related footnote. So the reported issue about a shared footnote between exp_059 and 008e_v3 s2 doesn't seem to match what's actually in the file—the line numbers might be off or the issue description might not apply here.
+
+Moving forward with the main edits, I need to check if $n{=}30$ appears elsewhere in the file beyond line 112 where I'm removing it. I'm checking whether removing the Pathway B false positive affects the overall count—the n changed from 30 to 56, and at the new sample size line 76 correctly shows 53 of 56 configurations, which still gives 3 misclassifications, so the numbers remain consistent even with this removal. I'm working through the task requirements for updating this section. The instruction asks me to change "n=30" to "n=56" if it appears in the F6 section, but since I'm removing the entire Pathway B sentence that contains n=30, that reference disappears naturally. The broader question about whether removing one false positive changes the 53/56 count is outside the scope of what's being asked here. Let me focus on the specific edits needed: updating the subsection title and rewriting the Pathway B sentence with the new configuration data about seed collapse rates and CIVO onset effectiveness. aining the trained embedding. All four seeds successfully avoid CIVO when imagination is restricted to a single step, with peak NVE values staying well below the critical threshold and evaluation performance at 84% of baseline. This demonstrates that the multi-step imagination process itself is what drives the vulnerability, not the embedding alone.
+
+Now I'm reconsidering the figure caption since I'm uncertain whether the figure was regenerated with the latest data. The 64.2% evaluation for the non-CIVO case is a meaningful drop but not catastrophic, so "evaluation crash" overstates it. I'll revise the caption to be more neutral and focus on the key distinction—no CIVO onset—without committing to specific numbers that might not align with what's actually displayed. I'm updating the caption to reflect the current code results, noting that the figure may need regeneration since it was created with older code. Now I need to search through the rest of the file to make sure there are no lingering references to "Pathway B", "50%", "stochastic", or "2/4" that contradict the new narrative. I should also check results.md for consistency and verify whether the footnote separation issue at line 158 actually exists or was already resolved.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "d8b670c8-954b-43f5-abd6-4483fb87d7fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PArNdvhs25v99XGtqzJtMo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7078,
+      "cache_read_input_tokens": 23968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Now let me search for any other occurrences of the key terms that need updating.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "2110e6d4-665a-47a6-9d13-444da1bf4781",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PArNdvhs25v99XGtqzJtMo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7078,
+      "cache_read_input_tokens": 23968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XAtEFg2jewTnUreF26F5Nf`</summary>
+
+```json
+{
+  "pattern": "Pathway.?B|n\\{=\\}30|two of four|2/4|50\\\\?%|stochastic|exp.?059",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "61bcfe95-9da1-4477-b8f0-a3333982d274",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PArNdvhs25v99XGtqzJtMo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7078,
+      "cache_read_input_tokens": 23968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-25T16:21:06.453Z_
+
+<details><summary>↩ Tool result · `toolu_01XAtEFg2jewTnUreF26F5Nf`</summary>
+
+```text
+48:$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\ref{tab:cross_domain}).\\
+99:[Omitted long matching line]
+112:Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\%): Pathway~A (CIVO, $\nve = 4.02\times$) and preliminary Pathway~B (entropy \emph{increase}, $\nve = 3.78\times$; 2 seeds only, requires confirmation; see Figure~\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).
+158:{\raggedright\footnotesize $^\dagger$Walker 2/4 (s2 NVE $2.11\times$; s3 late-onset CIVO, NVE $3.04\times$ at 105K); Cheetah 0/1, PickCube 0/1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "f4ce98c8-a17a-4094-89d7-2ef9f9a7f671",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "48:$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\\ref{tab:cross_domain}).\\\\\n99:[Omitted long matching line]\n112:Exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).\n158:{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.",
+    "numLines": 4
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CyBKp8z6VznhF28YjoxesL`</summary>
+
+```json
+{
+  "pattern": "\\\\dagger",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "b8b49764-63dc-413b-9230-dc7f537f8115",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PArNdvhs25v99XGtqzJtMo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7078,
+      "cache_read_input_tokens": 23968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-25T16:21:07.663Z_
+
+<details><summary>↩ Tool result · `toolu_01CyBKp8z6VznhF28YjoxesL`</summary>
+
+```text
+145:Repr. & TCN ($\sigma{=}0.2$) & 6$^\dagger$ & 2/6 & 33\% \\
+158:{\raggedright\footnotesize $^\dagger$Walker 2/4 (s2 NVE $2.11\times$; s3 late-onset CIVO, NVE $3.04\times$ at 105K); Cheetah 0/1, PickCube 0/1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "9474240a-8ac2-44d9-85f7-c84a1fa15176",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "145:Repr. & TCN ($\\sigma{=}0.2$) & 6$^\\dagger$ & 2/6 & 33\\% \\\\\n158:{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01JueopvbtgZe63TYFQdTpn7`</summary>
+
+```json
+{
+  "pattern": "**/results.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "1a6071d3-0070-4ac9-887d-f98660c64f39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PArNdvhs25v99XGtqzJtMo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7078,
+      "cache_read_input_tokens": 23968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7078
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T16:21:07.880Z_
+
+<details><summary>↩ Tool result · `toolu_01JueopvbtgZe63TYFQdTpn7`</summary>
+
+```text
+artifacts/_project/paper/results.md
+paper/sections/results.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "3779fb15-a844-4c42-83d0-39f076ca3e09",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/results.md",
+      "paper/sections/results.md"
+    ],
+    "durationMs": 17,
+    "numFiles": 2,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The `$^\dagger$` footnote only appears in lines 145 and 158, both related to TCN (not to exp_059 or 008e_v3). So issue 3 (footnote separation) doesn't apply here.
+
+The other matches:
+- Line 48: "stochastic dynamics" - this is about ManiSkill environments, unrelated to the F6 issue
+- Line 99: has "2/4" in context of frozen embedding seeds - this is in F3-F5, about frozen embedding ablation, not about 008e_v3. 
+
+The "2/4 seeds below threshold, 2/4 transient self-correcting spikes" reference is about frozen embedding, not dt=1 imagination, so that's fine. Line 112 is the main target that needs fixing, and line 158 is just the TCN footnote. So only line 112 needs attention. Now let me check results.md to make sure everything's consistent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "0558d5a8-68c6-4027-a2ff-2badb4bc22e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7Rf63inhfhGZu57gSPyJ2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7309,
+      "cache_read_input_tokens": 31046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Let me check results.md for consistency.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "055f8563-2bea-4208-9657-1530d257d395",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7Rf63inhfhGZu57gSPyJ2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7309,
+      "cache_read_input_tokens": 31046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FdP4xk7vHTpXcxb7npamcv`</summary>
+
+```json
+{
+  "pattern": "008e_v3|Pathway.?B|F6",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/results.md",
+  "output_mode": "content",
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "2249fe13-e702-4d5b-8b31-e2dd7d529a03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7Rf63inhfhGZu57gSPyJ2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7309,
+      "cache_read_input_tokens": 31046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-25T16:21:16.678Z_
+
+<details><summary>↩ Tool result · `toolu_01FdP4xk7vHTpXcxb7npamcv`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "e481cedc-6afa-4f56-a950-28af41261b4d",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011q4vwge7fk2BLwTtBq2os3`</summary>
+
+```json
+{
+  "pattern": "008e_v3|Pathway.?B|F6",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/results.md",
+  "output_mode": "content",
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "7adf1b91-3faa-477f-874e-319a3394bcc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PetGWB3TU6rVEXnKftU3JQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 428,
+      "cache_read_input_tokens": 38355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 428
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T16:21:19.818Z_
+
+<details><summary>↩ Tool result · `toolu_011q4vwge7fk2BLwTtBq2os3`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "7821ea60-59f5-4305-b797-465cc504dae5",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018BGVPtUZXKtDN9P1S8KsDw`</summary>
+
+```json
+{
+  "pattern": "008e|mitigation|dt.?=.?1.*imagin",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/results.md",
+  "output_mode": "content",
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "707e6bb6-f192-4ed8-911f-8f08a4ff1954",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DPkVxqjkGBghWWDJt23ovV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 173,
+      "cache_read_input_tokens": 38783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 173
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T16:21:23.376Z_
+
+<details><summary>↩ Tool result · `toolu_018BGVPtUZXKtDN9P1S8KsDw`</summary>
+
+```text
+158-
+159-Subsampling is a necessary co-factor for CIVO but not independently sufficient; imagination horizon modulates performance level without independently triggering overestimation.
+160-
+161:[Omitted long matching line]
+162-
+163-\paragraph{Horizon affects performance level but not the overestimation pattern.} Exp\_008c ($H{=}8$, unexposed $e_{\Delta t}$, subsample \textsc{off}) plateaus at 241.9 at 55K (exp\_008c), while exp\_008a ($H{=}15$, same configuration otherwise) reaches 777.7 at 105K (exp\_008a). Both maintain healthy NVE ($\leq$0.93$\times$), confirming that horizon length modulates the performance ceiling but does not trigger CIVO.
+164-
+--
+207-  \centering
+208-  % PLACEHOLDER: Contrasting collapse dynamics across three mechanisms
+209-  \includegraphics[width=\linewidth]{figures/fig6_failure_modes.pdf}
+210:  \caption{Three failure modes triggered by temporal embedding configurations. Left: CIVO (exp\_008d)---value explosion drives eval decline, entropy decreases. Center: Gradient starvation (exp\_015b)---actor loss approaches zero, performance oscillates without convergence. Right: IRD (exp\_008e\_v3\_s2)---eval collapse precedes value rise, entropy increases.}
+211-  \label{fig:failure_modes}
+212-\end{figure}
+213-
+--
+222-\toprule
+223-Feature & CIVO & Grad.\ Starvation & IRD \\
+224-\midrule
+225:Representative exp & 008d (seed 1) & 015b & 008e\_v3\_s2 \\
+226-$e_{\Delta t}$ config & trained & frozen & trained \\
+227-NVE trajectory & sustained $>$1.5$\times$ & $<$0.5$\times$ & passive rise \\
+228-Value dynamics & explosion ($+$130\%) & suppressed & stable \\
+--
+236-
+237-[Omitted long context line]
+238-
+239:[Omitted long matching line]
+240-
+241-This failure mode does not involve value overestimation driving actor exploitation. Rather, the trained embedding's interaction with multi-rate training data appears to create a latent representation vulnerability that manifests as policy instability independent of imagination $\Delta t$. The NVE rise is a \textit{consequence} of eval collapse, not a cause---distinguishing IRD from CIVO where the NVE rise precedes and drives the eval decline.
+242-
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "d69f4317-5c2c-4472-b66a-a6fadca7275a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "158-\n159-Subsampling is a necessary co-factor for CIVO but not independently sufficient; imagination horizon modulates performance level without independently triggering overestimation.\n160-\n161:[Omitted long matching line]\n162-\n163-\\paragraph{Horizon affects performance level but not the overestimation pattern.} Exp\\_008c ($H{=}8$, unexposed $e_{\\Delta t}$, subsample \\textsc{off}) plateaus at 241.9 at 55K (exp\\_008c), while exp\\_008a ($H{=}15$, same configuration otherwise) reaches 777.7 at 105K (exp\\_008a). Both maintain healthy NVE ($\\leq$0.93$\\times$), confirming that horizon length modulates the performance ceiling but does not trigger CIVO.\n164-\n--\n207-  \\centering\n208-  % PLACEHOLDER: Contrasting collapse dynamics across three mechanisms\n209-  \\includegraphics[width=\\linewidth]{figures/fig6_failure_modes.pdf}\n210:  \\caption{Three failure modes triggered by temporal embedding configurations. Left: CIVO (exp\\_008d)---value explosion drives eval decline, entropy decreases. Center: Gradient starvation (exp\\_015b)---actor loss approaches zero, performance oscillates without convergence. Right: IRD (exp\\_008e\\_v3\\_s2)---eval collapse precedes value rise, entropy increases.}\n211-  \\label{fig:failure_modes}\n212-\\end{figure}\n213-\n--\n222-\\toprule\n223-Feature & CIVO & Grad.\\ Starvation & IRD \\\\\n224-\\midrule\n225:Representative exp & 008d (seed 1) & 015b & 008e\\_v3\\_s2 \\\\\n226-$e_{\\Delta t}$ config & trained & frozen & trained \\\\\n227-NVE trajectory & sustained $>$1.5$\\times$ & $<$0.5$\\times$ & passive rise \\\\\n228-Value dynamics & explosion ($+$130\\%) & suppressed & stable \\\\\n--\n236-\n237-[Omitted long context line]\n238-\n239:[Omitted long matching line]\n240-\n241-This failure mode does not involve value overestimation driving actor exploitation. Rather, the trained embedding's interaction with multi-rate training data appears to create a latent representation vulnerability that manifests as policy instability independent of imagination $\\Delta t$. The NVE rise is a \\textit{consequence} of eval collapse, not a cause---distinguishing IRD from CIVO where the NVE rise precedes and drives the eval decline.\n242-",
+    "numLines": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results.md has references to "008e_v3_s2" and "IRD" (Independent Representation Disruption) as a failure mode. This is the old Pathway B under a different name. Let me check if results.md needs updating too, but the task specifically asks about results.tex. Let me focus on that.
+
+However, the results.md mentions "IRD" (Independent Representation Disruption) which is essentially the old Pathway B. Since the current code shows 008e_v3 s2 has NVE=0.5 and no CIVO, the IRD narrative in results.md is also outdated. 
+
+I need to focus on results.tex since that's what the task requires. I'll plan out the specific edits: removing "and Multiple Pathways" from the subsection title, rewriting the F6 paragraph, updating the figure caption to match the new data, and checking for any other cross-references to the old pathway framework throughout the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "c999e35e-8190-43db-9743-ad386726771c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUu6zuwpaTheUUuBN62wm6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 38956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 919
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Let me check for cross-references to pathways in other paper sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "4d2e9554-4251-4746-b81a-58d3df862353",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUu6zuwpaTheUUuBN62wm6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 38956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 919
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011twoXsSe4bXvSboefej8yW`</summary>
+
+```json
+{
+  "pattern": "Pathway|multiple.?pathway|IRD|failure.?mode",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "e5e219f3-6414-43be-86c4-d5cbca536225",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TUu6zuwpaTheUUuBN62wm6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 38956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 919
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T16:21:32.685Z_
+
+<details><summary>↩ Tool result · `toolu_011twoXsSe4bXvSboefej8yW`</summary>
+
+```text
+docs/paper/main.fls:288:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf
+docs/paper/main.fls:289:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf
+docs/paper/main.fls:290:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf
+docs/paper/main.fls:291:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf
+docs/paper/rebuttal_notes.md:13:[Omitted long matching line]
+docs/paper/main.fdb_latexmk:19:  "../../artifacts/figures/paper/fig6_multiple_pathways.pdf" 1778883754.48953 67030 60085e3be9820f87e9643b657293c106 ""
+docs/paper/main.log:694:<../../artifacts/figures/paper/fig6_multiple_pathways.pdf, id=376, 674.73515pt 
+docs/paper/main.log:696:File: ../../artifacts/figures/paper/fig6_multiple_pathways.pdf Graphic file (ty
+docs/paper/main.log:698:&lt;use ../../artifacts/figures/paper/fig6_multiple_pathways.pdf>
+docs/paper/main.log:699:Package pdftex.def Info: ../../artifacts/figures/paper/fig6_multiple_pathways.p
+docs/paper/main.log:705: [5 <../../artifacts/figures/paper/fig6_multiple_pathways.pdf>]
+docs/paper/sections/conclusion.tex:16:This work contributes a diagnostic framework for identifying a failure mode in model-based reinforcement learning. By characterizing Conditioning-Induced Value Overestimation (CIVO), we aim to help practitioners detect and mitigate training instabilities in world-model-based agents before deployment. The frozen embedding diagnostic provides a low-cost preliminary check that could reduce wasted computation on silently failing training runs.
+docs/paper/main.aux:65:\newlabel{fig:multiple_pathways}{{3}{5}{Contrasting collapse dynamics. \textbf {Left:} 008d (CIVO), value explosion with entropy decrease. \textbf {Right:} 008e\_v3 s2 (non-CIVO), evaluation crash with entropy increase}{figure.caption.4}{}}
+docs/paper/main.aux:174:\newlabel{tab:nve_raw}{{6}{24}{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\ = transient CIVO with self-correction}{table.caption.11}{}}
+docs/paper/main.aux:176:\newlabel{tab:sensitivity_b2}{{8}{25}{\textbf {Task~B2}: Any CIVO detection sensitivity analysis ($n_{\text {pos}}=5$, $n_{\text {neg}}=6$, $n=11$, $\text {AUROC}=0.967$). The single false positive at $\geq 1.5\times $ is 008e\_v3\_s2 (IRD mechanism, not CIVO). The $1.5\times $ threshold (highlighted) maximizes F1 while maintaining perfect recall}{table.caption.13}{}}
+docs/paper/main.aux:191:\newlabel{tab:failure_modes}{{23}{27}{Failure and degradation mode taxonomy. Each mode is characterized by its NVE trajectory, entropy behavior, and primary mechanism}{table.caption.37}{}}
+docs/paper/sections/results.tex:108:\subsection{F6--F7: Interventions and Multiple Pathways}
+docs/paper/sections/results.tex:112:Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\%): Pathway~A (CIVO, $\nve = 4.02\times$) and preliminary Pathway~B (entropy \emph{increase}, $\nve = 3.78\times$; 2 seeds only, requires confirmation; see Figure~\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).
+docs/paper/sections/results.tex:116:\includegraphics[width=0.75\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+docs/paper/sections/results.tex:118:\label{fig:multiple_pathways}
+docs/paper/sections/introduction.tex:6:[Omitted long matching line]
+docs/paper/sections/appendix.tex:143:Table~\ref{tab:nve_raw} lists the NVE values at 35K+ training steps for all eleven factorial experiments (including four 008e\_v3 seeds and exp\_059). Experiments are sorted by descending NVE. Experiment 008e\_v3\_s2 exhibits elevated NVE ($3.78\times$) due to Imagination-Reality Divergence (IRD), a mechanistically distinct phenomenon from CIVO, and is classified as negative in both tasks. Experiment 008e\_v3\_s3 exhibits CIVO with NVE $4.02\times$ despite $\Delta t{=}1$ imagination.
+docs/paper/sections/appendix.tex:147:\caption{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\ = transient CIVO with self-correction.}
+docs/paper/sections/appendix.tex:158:008e\_v3\_s2 & 3.78 & IRD (non-CIVO) & $-$ & $-$ \\
+docs/paper/sections/appendix.tex:197:\caption{\textbf{Task~B2}: Any CIVO detection sensitivity analysis ($n_{\text{pos}}=5$, $n_{\text{neg}}=6$, $n=11$, $\text{AUROC}=0.967$). The single false positive at $\geq 1.5\times$ is 008e\_v3\_s2 (IRD mechanism, not CIVO). The $1.5\times$ threshold (highlighted) maximizes F1 while maintaining perfect recall.}
+docs/paper/sections/appendix.tex:243:\item \textbf{Best F1.} At $1.5\times$, F1 = 90.9\%, the highest among all tested thresholds for B2. The single false positive (008e\_v3\_s2) is mechanistically identifiable as IRD rather than CIVO.
+docs/paper/sections/appendix.tex:270:[Omitted long matching line]
+docs/paper/sections/appendix.tex:330:[Omitted long matching line]
+docs/paper/sections/appendix.tex:449:[Omitted long matching line]
+docs/paper/sections/appendix.tex:762:[Omitted long matching line]
+docs/paper/sections/appendix.tex:767:\label{tab:failure_modes}
+docs/paper/sections/appendix.tex:777:IRD collapse & 008e\_v3\_s2 & $\uparrow$ late & $\uparrow$ & Entropy-driven, values stable \\
+docs/paper/sections/appendix.tex:797:[Omitted long matching line]
+docs/paper/sections/appendix.tex:947:\subsection{Multiple Vulnerability Pathways}
+docs/paper/sections/appendix.tex:950:[Omitted long matching line]
+docs/paper/sections/appendix.tex:997:[Omitted long matching line]
+docs/paper/sections/appendix.tex:1000:At $\sigma{=}0.2$, Cheetah reaches NVE $= 1.9\times$ at 55K---exceeding the $1.5\times$ threshold---consistent with Cheetah's higher baseline CIVO severity ($8$--$108\times$ vs.\ Walker's $2$--$6\times$). The noise magnitude that suffices for Walker is inadequate for Cheetah, but increasing $\sigma$ to 0.5 trades CIVO prevention for a different failure mode rather than achieving mitigation.
+docs/paper/sections/appendix.tex:1006:[Omitted long matching line]
+docs/paper/sections/appendix.tex:1011:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "93f0976c-1ad7-4164-bc9d-ed380c33e517",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/main.fls:288:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf\ndocs/paper/main.fls:289:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf\ndocs/paper/main.fls:290:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf\ndocs/paper/main.fls:291:INPUT ../../artifacts/figures/paper/fig6_multiple_pathways.pdf\ndocs/paper/rebuttal_notes.md:13:[Omitted long matching line]\ndocs/paper/main.fdb_latexmk:19:  \"../../artifacts/figures/paper/fig6_multiple_pathways.pdf\" 1778883754.48953 67030 60085e3be9820f87e9643b657293c106 \"\"\ndocs/paper/main.log:694:<../../artifacts/figures/paper/fig6_multiple_pathways.pdf, id=376, 674.73515pt \ndocs/paper/main.log:696:File: ../../artifacts/figures/paper/fig6_multiple_pathways.pdf Graphic file (ty\ndocs/paper/main.log:698:&lt;use ../../artifacts/figures/paper/fig6_multiple_pathways.pdf>\ndocs/paper/main.log:699:Package pdftex.def Info: ../../artifacts/figures/paper/fig6_multiple_pathways.p\ndocs/paper/main.log:705: [5 <../../artifacts/figures/paper/fig6_multiple_pathways.pdf>]\ndocs/paper/sections/conclusion.tex:16:This work contributes a diagnostic framework for identifying a failure mode in model-based reinforcement learning. By characterizing Conditioning-Induced Value Overestimation (CIVO), we aim to help practitioners detect and mitigate training instabilities in world-model-based agents before deployment. The frozen embedding diagnostic provides a low-cost preliminary check that could reduce wasted computation on silently failing training runs.\ndocs/paper/main.aux:65:\\newlabel{fig:multiple_pathways}{{3}{5}{Contrasting collapse dynamics. \\textbf {Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf {Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase}{figure.caption.4}{}}\ndocs/paper/main.aux:174:\\newlabel{tab:nve_raw}{{6}{24}{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\\ = transient CIVO with self-correction}{table.caption.11}{}}\ndocs/paper/main.aux:176:\\newlabel{tab:sensitivity_b2}{{8}{25}{\\textbf {Task~B2}: Any CIVO detection sensitivity analysis ($n_{\\text {pos}}=5$, $n_{\\text {neg}}=6$, $n=11$, $\\text {AUROC}=0.967$). The single false positive at $\\geq 1.5\\times $ is 008e\\_v3\\_s2 (IRD mechanism, not CIVO). The $1.5\\times $ threshold (highlighted) maximizes F1 while maintaining perfect recall}{table.caption.13}{}}\ndocs/paper/main.aux:191:\\newlabel{tab:failure_modes}{{23}{27}{Failure and degradation mode taxonomy. Each mode is characterized by its NVE trajectory, entropy behavior, and primary mechanism}{table.caption.37}{}}\ndocs/paper/sections/results.tex:108:\\subsection{F6--F7: Interventions and Multiple Pathways}\ndocs/paper/sections/results.tex:112:Exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).\ndocs/paper/sections/results.tex:116:\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\ndocs/paper/sections/results.tex:118:\\label{fig:multiple_pathways}\ndocs/paper/sections/introduction.tex:6:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:143:Table~\\ref{tab:nve_raw} lists the NVE values at 35K+ training steps for all eleven factorial experiments (including four 008e\\_v3 seeds and exp\\_059). Experiments are sorted by descending NVE. Experiment 008e\\_v3\\_s2 exhibits elevated NVE ($3.78\\times$) due to Imagination-Reality Divergence (IRD), a mechanistically distinct phenomenon from CIVO, and is classified as negative in both tasks. Experiment 008e\\_v3\\_s3 exhibits CIVO with NVE $4.02\\times$ despite $\\Delta t{=}1$ imagination.\ndocs/paper/sections/appendix.tex:147:\\caption{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\\ = transient CIVO with self-correction.}\ndocs/paper/sections/appendix.tex:158:008e\\_v3\\_s2 & 3.78 & IRD (non-CIVO) & $-$ & $-$ \\\\\ndocs/paper/sections/appendix.tex:197:\\caption{\\textbf{Task~B2}: Any CIVO detection sensitivity analysis ($n_{\\text{pos}}=5$, $n_{\\text{neg}}=6$, $n=11$, $\\text{AUROC}=0.967$). The single false positive at $\\geq 1.5\\times$ is 008e\\_v3\\_s2 (IRD mechanism, not CIVO). The $1.5\\times$ threshold (highlighted) maximizes F1 while maintaining perfect recall.}\ndocs/paper/sections/appendix.tex:243:\\item \\textbf{Best F1.} At $1.5\\times$, F1 = 90.9\\%, the highest among all tested thresholds for B2. The single false positive (008e\\_v3\\_s2) is mechanistically identifiable as IRD rather than CIVO.\ndocs/paper/sections/appendix.tex:270:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:330:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:449:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:762:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:767:\\label{tab:failure_modes}\ndocs/paper/sections/appendix.tex:777:IRD collapse & 008e\\_v3\\_s2 & $\\uparrow$ late & $\\uparrow$ & Entropy-driven, values stable \\\\\ndocs/paper/sections/appendix.tex:797:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:947:\\subsection{Multiple Vulnerability Pathways}\ndocs/paper/sections/appendix.tex:950:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:997:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:1000:At $\\sigma{=}0.2$, Cheetah reaches NVE $= 1.9\\times$ at 55K---exceeding the $1.5\\times$ threshold---consistent with Cheetah's higher baseline CIVO severity ($8$--$108\\times$ vs.\\ Walker's $2$--$6\\times$). The noise magnitude that suffices for Walker is inadequate for Cheetah, but increasing $\\sigma$ to 0.5 trades CIVO prevention for a different failure mode rather than achieving mitigation.\ndocs/paper/sections/appendix.tex:1006:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:1011:[Omitted long matching line]",
+    "numLines": 39
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are significant cross-references to the old data, especially in appendix.tex:
+
+1. **appendix.tex line 143**: References 008e_v3_s2 as "IRD" with NVE 3.78× and 008e_v3_s3 as CIVO with NVE 4.02×
+2. **appendix.tex line 158**: Lists 008e_v3_s2 with NVE 3.78 and "IRD (non-CIVO)" label
+
+
+3. **appendix.tex line 197**: References 008e_v3_s2 as false positive
+4. **appendix.tex line 243**: Same reference
+5. **appendix.tex line 777**: IRD collapse taxonomy entry for 008e_v3_s2
+6. **appendix.tex line 947**: "Multiple Vulnerability Pathways" subsection
+
+All of these are tied to outdated code data and will need updating, but since the request is specifically to fix results.tex, I should focus there and flag the appendix inconsistencies separately for the user.
+
+The main.aux file shows auto-generated labels that'll refresh on recompilation, so those will update automatically. Now I need to make the targeted edits to results.tex: updating the subsection title on line 108, revising the F6 paragraph at lines 111-112, adjusting the figure caption at line 117, and updating the comment block at lines 105-106.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "d8e4b3ae-cbf0-4769-ad5e-c2a4e6771edd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UA7Rb6RPXk9rgEJ2KRpGTE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 39875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now I have the full picture. Proceeding with the three edits to results.tex. Note: appendix.tex has extensive references to old IRD/Pathway B data (lines 143, 158, 197, 243, 777, 947+) that will also need updating separately.
+
+**Edit 1: Subsection title (line 108)**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "15502fdd-9aee-4acc-845d-553042cd08e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UA7Rb6RPXk9rgEJ2KRpGTE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 39875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AwWQSWtxuxSBCdiXLVufAP`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "old_string": "%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}",
+  "new_string": "%% F6--F7: Interventions\n%% ============================================================\n\n\\subsection{F6--F7: Interventions}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "452fc4c0-1cd9-46c9-9a55-5f9c83f47ac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UA7Rb6RPXk9rgEJ2KRpGTE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2547,
+      "cache_read_input_tokens": 39875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T16:21:46.667Z_
+
+<details><summary>↩ Tool result · `toolu_01AwWQSWtxuxSBCdiXLVufAP`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "62dc5cbe-77bb-466c-b8fd-c5a1dc924d40",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+    "oldString": "%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}",
+    "newString": "%% F6--F7: Interventions\n%% ============================================================\n\n\\subsection{F6--F7: Interventions}",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that trace a predictive pathway from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{Key configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 43 configurations in Table~\\ref{tab:complete_results}.}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\times$ & No CIVO \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run (s1) & trn & ON & 8 & 51.7 @105K & 8.27$\\times$ & Collapsed \\\\\n\\rowcolor{gray!15}\n078 & Cheetah Run (s0) & trn & ON & 8 & 119.5 @105K & 4.10$\\times$ & Self-correcting \\\\\n019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\\n049 & StackCube-v1 & trn & ON & 8 & 34.9 @212K & 5.05$\\times$$^d$ & Env.\\ transient \\\\\n050 & PegInsertionSide-v1 & trn & ON & 8 & 20.86 @212K & 10.05$\\times$$^e$ & Env.\\ dynamics$^e$ \\\\\n046 & Cheetah Run & frz$^b$ & ON & 8 & 150.5 @215K & 1.35$\\times$ & No CIVO \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^c$ NVE normalized against exp\\_019a\\_v2 (vanilla DreamerV3 on PickCube-v1).\\\\\n$^d$ Frozen control (exp\\_051) shows identical spike ($4.30\\times$), confirming environment-specific origin.\\\\\n$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\\ref{tab:cross_domain}).\\\\\nBaselines: Walker 915.7 (row 001); Cheetah ${\\sim}409$ (5-seed mean at 105K)\n; PickCube via exp\\_019a\\_v2; StackCube/PegInsertion not separately measured.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Precedes Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the strongest predictor. The \\emph{primary} comparison---008d (trained, subsample ON) vs.\\ 008f (no embedding, subsample ON)---differs only in embedding training, yielding $\\nve = 4.12\\times$ (eval 82.8) vs.\\ $\\nve \\leq 0.97\\times$ (eval 503.0). \\emph{Secondary} comparisons against 008a/008c (unexposed embedding) co-vary subsample status and horizon alongside the embedding factor. The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 53 of 56 experimental configurations across two environments ($n{=}56$; AUROC${=}0.990$, F1${=}0.941$; Table~\\ref{tab:nve_loeo}; Figure~\\ref{fig:nve_trajectory}).\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, Walker Walk, $n{=}3$ seeds plotted; seeds~4 and~5 data in Table~\\ref{tab:complete_results}) exceeds the $1.5\\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe trained $\\dt$-embedding precedes CIVO in all five Walker Walk seeds (peak NVE $1.53$--$4.72\\times$), universally degrading performance to below 30\\% of baseline (IQM $148.8$, $n{=}5$; \\citealt{agarwal2021precipice}). Including replications and Cheetah Run (\\S\\ref{sec:f6}), CIVO onset is universal across all ten tested runs ($n{=}10$, two multi-joint locomotion environments). Sustained collapse occurs in 6/10 runs; three runs self-correct (Walker seed~2 and both Cheetah seeds) and one shows onset without sustained collapse (Appendix~\\ref{sec:seed_divergence}).\n\n\\paragraph{Mechanism evidence.}\nThe RSSM reward head develops a $3.11\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning (reward MAE $0.057 \\to 0.178$; independently corroborated at $2.78\\times$ from earlier checkpoints; Table~\\ref{tab:rssm_fidelity}), while observation reconstruction \\emph{improves} with temporal conditioning (gap $1.33\\times$ vs.\\ baseline $1.46\\times$), confirming a reward-specific pathology. Direct value calibration confirms the critic internalizes this bias: the CIVO model's mean $V(s)/\\text{MC-return}$ ratio reaches $7.80\\times$ (median $3.40\\times$; 100\\% of sampled states overestimated) vs.\\ median $1.05\\times$ for the nearly-calibrated control (52.5\\% overestimated). Causal ordering further supports a value-channel pathology: evaluation return collapses ${\\sim}35$K steps before actor entropy rises ($+2.1$ nats/10K in collapsed configurations vs.\\ $+0.07$--$0.22$ in healthy baselines; Appendix~\\ref{sec:civo_mechanism}).\n\n\\paragraph{Temporal ordering ($n{=}2$).}\nTime-series analysis across 12 dense checkpoints (10K--65K steps) provides evidence that reward fidelity degradation precedes value overestimation onset: the single-step fidelity ratio ($\\text{MAE}_{\\dt{=}2}/\\text{MAE}_{\\dt{=}1}$) crosses $1.1\\times$ at 20K steps, while the value-to-eval ratio begins rising at ${\\sim}$30K (reaching $1.59\\times$ at 40K)---a ${\\sim}$10K onset-to-onset lag ($r{=}0.81$, $p{=}0.002$; Figure~\\ref{fig:temporal_ordering}). A second seed (exp\\_066b) confirms the pattern: fidelity gap onset at ${\\sim}$15K precedes VE onset at ${\\sim}$24K (temporal lead ${\\approx}$9K steps, consistent with seed~0's ${\\approx}$10K), though seed~1's peak VE ($0.72\\times$) remained below the $1.5\\times$ threshold within 60K steps, suggesting seed-dependent progression rates. The gap arises from differential improvement: $\\dt{=}1$ MAE decreases continuously ($0.093 \\to 0.047$) while $\\dt{=}2$ MAE plateaus (${\\sim}0.08$; Appendix~\\ref{sec:timeseries_fidelity}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly sufficient in tested configurations} for CIVO. Neither factor alone precedes pathological overestimation: trained embedding without multi-rate exposure (008a, 3 seeds, peak NVE $0.83$--$0.93\\times$) and multi-rate exposure without embedding (008f, 3 seeds, peak NVE $\\leq 1.41\\times$) both remain below $1.5\\times$. Cross-environment replication on Cheetah Run confirms generalization. Freezing the embedding (\\texttt{requires\\_grad=False}) dramatically reduces severity (NVE $0.19$--$1.88\\times$ vs.\\ trained $1.53$--$4.72\\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes; Table~\\ref{tab:three_way_emb}); removing the embedding (008f) also avoids CIVO. A controlled three-way ablation varying \\emph{only} embedding treatment (trained/frozen/removed, single seed; Table~\\ref{tab:causal_ablation}) confirms that gradient training---not embedding presence---is necessary. Extending to additional seeds and environments, the onset rate remains 10/10 multi-joint locomotion runs (Fisher exact $p < 0.0001$ vs.\\ 0/8 controls). Partial gradient blocking (exp\\_044) does not prevent onset (peak NVE $4.45\\times$) but permits delayed self-correction (final eval 538, 59\\% baseline; Appendix~\\ref{sec:appendix_factorial}), confirming that \\emph{any} gradient pathway updating $e_{\\dt}$ suffices to induce CIVO. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$; Figure~\\ref{fig:dt_amplification}).\n\n\\paragraph{ManiSkill manipulation tasks.}\nNone of three ManiSkill environments exhibit $\\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nFull-SGS (exp\\_018) detaches all non-KL gradients from $e_{\\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\\times$); seed~2 collapses (0/2 elimination; Appendix~\\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\\times$).\n\n\\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}\nObs-decoder-only SGS (exp\\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\\ref{sec:seed_divergence}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\\times$ (35K+). No level reliably eliminates CIVO across environments.}\n\\label{tab:intervention_hierarchy}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} \\\\\n\\midrule\n--- & Untreated & 10 & 0/10 & 0\\% \\\\\n\\midrule\nGradient & Reward-only SGS & 2 & 0/2 & 0\\% \\\\\nGradient & Full-pathway SGS & 3 & 0/3 & 0\\% \\\\\nGradient & Obs-decoder SGS & 6 & 1/6 & 17\\% \\\\\n\\midrule\nOutput & RAVE ($c{=}1.5{,}2.0$) & 2 & 0/2 & 0\\% \\\\\n\\midrule\nRepr. & TCN ($\\sigma{=}0.1$) & 1 & 1/1$^\\ddagger$ & 100\\% \\\\\nRepr. & TCN ($\\sigma{=}0.2$) & 6$^\\dagger$ & 2/6 & 33\\% \\\\\nRepr. & TCN ($\\sigma{=}0.5$) & 3 & 0/3 & 0\\% \\\\\nRepr. & TCN ($\\sigma{=}1.0$) & 1 & 1/1$^\\S$ & 100\\% \\\\\n\\midrule\nArch. & Wide single & 2 & 0/2 & 0\\% \\\\\nArch. & Narrow dual (min) & 2 & 0/2 & 0\\% \\\\\nArch. & Wide dual (min) & 4 & 3/4$^\\|$ & 75\\% \\\\\n\\midrule\n--- & Embedding frozen & 7 & 5/7$^\\#$ & 71\\% \\\\\n--- & Embedding removed & 5 & 5/5 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.\n$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n$^\\S$CIVO prevented but progressive policy erosion (peak 116\\%, final 15\\% baseline).\n$^\\|$Walker 3/3 ($\\nve \\leq 1.4\\times$; 1/3 non-CIVO eval collapse), Cheetah 0/1.\\\\\n$^\\#$Walker 5 + Cheetah 2. Exp\\_047 (NVE $1.71\\times$) and Exp\\_057 (NVE $1.88\\times$): both transient, self-correcting within 20K steps; remaining 5 seeds: NVE $0.19$--$1.45\\times$.\\par}\n\\end{table}\n\n%% ============================================================\n%% Forward-pass interventions\n%% ============================================================\n\n\\subsection{Forward-Pass Interventions}\n\\label{sec:forward_results}\n\nWe test two forward-pass alternatives (Table~\\ref{tab:intervention_hierarchy}). \\textbf{RAVE} (value-level capping) fails: the EMA anchor tracks biased values during CIVO onset. \\textbf{TCN} (representation-level noise) suppresses CIVO in 2 of 4 Walker seeds at $\\sigma{=}0.2$ (NVE $< 1.0\\times$, eval 45--91\\%), but remaining seeds show runaway escalation, suggesting TCN gates rather than attenuates CIVO. Cross-environment transfer fails: Cheetah effective dose ($\\sigma{=}1.0$) causes policy erosion to 15\\% baseline; PickCube 0/1 (Appendix~\\ref{sec:tcn_cross_env}). TCN is a \\emph{diagnostic probe}, not a deployable mitigation.\n\n%% ============================================================\n%% Architecture-Level Ablation\n%% ============================================================\n\n\\subsection{Architecture-Level Ablation}\n\\label{sec:arch_results}\n\n\\paragraph{Critic convergence in pure imagination.}\nAcross all dual-critic configurations ($n{=}7$), critics trained on shared RSSM features converge ($\\rho > 0.999$), with pessimism at 3--4\\% of the independent-critic bound (\\S\\ref{sec:dual_critic_method}). Pessimistic estimation is thus ineffective; the min operation in wide dual-critic may provide regularization through mechanisms that remain to be characterized (Appendix~\\ref{sec:dual_critic_appendix}).\n\n\\paragraph{$2{\\times}2$ factorial: recovery vs.\\ prevention.}\nMin drives recovery: narrow dual-critic (${\\sim}1.2$M) recovers fully (${\\sim}16$--$19\\times$ recovery ratio) despite $2\\times$ fewer parameters. Prevention requires min $+$ capacity: wide dual-critic maintains $\\nve \\leq 1.4\\times$ (3/3 prevention, 1/3 non-CIVO collapse). Cross-environment transfer is limited (Appendix~\\ref{sec:dual_critic_appendix}).\n\n%% ============================================================\n%% Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\nWe derive a lightweight online detector monitoring the value-to-evaluation ratio for superlinear growth (Algorithm~\\ref{alg:civo_detector}). Applied to 14 runs across three environments, it achieves TPR${=}5/5$ (95\\% Clopper-Pearson CI $[47.8\\%, 100\\%]$), FPR${=}2/9$ ($22\\%$), with predictive alerts in 2/5 cases (Appendix~\\ref{sec:detector_appendix}). The detector requires larger-sample validation before deployment as a practical diagnostic tool.\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector. Monitors the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ (not NVE) for superlinear growth indicative of CIVO onset.}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$, \\quad $\\varepsilon \\leftarrow 10^{-6}$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\max(\\bar{E}_t,\\, \\varepsilon)$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 102,
+        "oldLines": 10,
+        "newStart": 102,
+        "newLines": 10,
+        "lines": [
+          " None of three ManiSkill environments exhibit $\\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.",
+          " ",
+          " %% ============================================================",
+          "-%% F6--F7: Interventions and cross-environment",
+          "+%% F6--F7: Interventions",
+          " %% ============================================================",
+          " ",
+          "-\\subsection{F6--F7: Interventions and Multiple Pathways}",
+          "+\\subsection{F6--F7: Interventions}",
+          " \\label{sec:f6}",
+          " ",
+          " \\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+**Edit 2: F6 paragraph (lines 111-112) — main fix**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "17e7ac6d-7436-4f44-9915-28bc4ae8e4f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BSWf7WZKcqeZAm9zqWRAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 42422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BPXCUoj7GfdG7RUK7cKhKL`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "old_string": "\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).",
+  "new_string": "\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline; Figure~\\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "06283fa7-629b-4650-8d2e-ec340cbeaa4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017BSWf7WZKcqeZAm9zqWRAf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 874,
+      "cache_read_input_tokens": 42422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 874
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T16:21:55.015Z_
+
+<details><summary>↩ Tool result · `toolu_01BPXCUoj7GfdG7RUK7cKhKL`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "5d464085-8657-472d-b2a3-d63ffaa2c557",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+    "oldString": "\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).",
+    "newString": "\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline; Figure~\\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction.",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that trace a predictive pathway from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{Key configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 43 configurations in Table~\\ref{tab:complete_results}.}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\times$ & No CIVO \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run (s1) & trn & ON & 8 & 51.7 @105K & 8.27$\\times$ & Collapsed \\\\\n\\rowcolor{gray!15}\n078 & Cheetah Run (s0) & trn & ON & 8 & 119.5 @105K & 4.10$\\times$ & Self-correcting \\\\\n019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\\n049 & StackCube-v1 & trn & ON & 8 & 34.9 @212K & 5.05$\\times$$^d$ & Env.\\ transient \\\\\n050 & PegInsertionSide-v1 & trn & ON & 8 & 20.86 @212K & 10.05$\\times$$^e$ & Env.\\ dynamics$^e$ \\\\\n046 & Cheetah Run & frz$^b$ & ON & 8 & 150.5 @215K & 1.35$\\times$ & No CIVO \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^c$ NVE normalized against exp\\_019a\\_v2 (vanilla DreamerV3 on PickCube-v1).\\\\\n$^d$ Frozen control (exp\\_051) shows identical spike ($4.30\\times$), confirming environment-specific origin.\\\\\n$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\\ref{tab:cross_domain}).\\\\\nBaselines: Walker 915.7 (row 001); Cheetah ${\\sim}409$ (5-seed mean at 105K)\n; PickCube via exp\\_019a\\_v2; StackCube/PegInsertion not separately measured.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Precedes Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the strongest predictor. The \\emph{primary} comparison---008d (trained, subsample ON) vs.\\ 008f (no embedding, subsample ON)---differs only in embedding training, yielding $\\nve = 4.12\\times$ (eval 82.8) vs.\\ $\\nve \\leq 0.97\\times$ (eval 503.0). \\emph{Secondary} comparisons against 008a/008c (unexposed embedding) co-vary subsample status and horizon alongside the embedding factor. The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 53 of 56 experimental configurations across two environments ($n{=}56$; AUROC${=}0.990$, F1${=}0.941$; Table~\\ref{tab:nve_loeo}; Figure~\\ref{fig:nve_trajectory}).\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, Walker Walk, $n{=}3$ seeds plotted; seeds~4 and~5 data in Table~\\ref{tab:complete_results}) exceeds the $1.5\\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe trained $\\dt$-embedding precedes CIVO in all five Walker Walk seeds (peak NVE $1.53$--$4.72\\times$), universally degrading performance to below 30\\% of baseline (IQM $148.8$, $n{=}5$; \\citealt{agarwal2021precipice}). Including replications and Cheetah Run (\\S\\ref{sec:f6}), CIVO onset is universal across all ten tested runs ($n{=}10$, two multi-joint locomotion environments). Sustained collapse occurs in 6/10 runs; three runs self-correct (Walker seed~2 and both Cheetah seeds) and one shows onset without sustained collapse (Appendix~\\ref{sec:seed_divergence}).\n\n\\paragraph{Mechanism evidence.}\nThe RSSM reward head develops a $3.11\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning (reward MAE $0.057 \\to 0.178$; independently corroborated at $2.78\\times$ from earlier checkpoints; Table~\\ref{tab:rssm_fidelity}), while observation reconstruction \\emph{improves} with temporal conditioning (gap $1.33\\times$ vs.\\ baseline $1.46\\times$), confirming a reward-specific pathology. Direct value calibration confirms the critic internalizes this bias: the CIVO model's mean $V(s)/\\text{MC-return}$ ratio reaches $7.80\\times$ (median $3.40\\times$; 100\\% of sampled states overestimated) vs.\\ median $1.05\\times$ for the nearly-calibrated control (52.5\\% overestimated). Causal ordering further supports a value-channel pathology: evaluation return collapses ${\\sim}35$K steps before actor entropy rises ($+2.1$ nats/10K in collapsed configurations vs.\\ $+0.07$--$0.22$ in healthy baselines; Appendix~\\ref{sec:civo_mechanism}).\n\n\\paragraph{Temporal ordering ($n{=}2$).}\nTime-series analysis across 12 dense checkpoints (10K--65K steps) provides evidence that reward fidelity degradation precedes value overestimation onset: the single-step fidelity ratio ($\\text{MAE}_{\\dt{=}2}/\\text{MAE}_{\\dt{=}1}$) crosses $1.1\\times$ at 20K steps, while the value-to-eval ratio begins rising at ${\\sim}$30K (reaching $1.59\\times$ at 40K)---a ${\\sim}$10K onset-to-onset lag ($r{=}0.81$, $p{=}0.002$; Figure~\\ref{fig:temporal_ordering}). A second seed (exp\\_066b) confirms the pattern: fidelity gap onset at ${\\sim}$15K precedes VE onset at ${\\sim}$24K (temporal lead ${\\approx}$9K steps, consistent with seed~0's ${\\approx}$10K), though seed~1's peak VE ($0.72\\times$) remained below the $1.5\\times$ threshold within 60K steps, suggesting seed-dependent progression rates. The gap arises from differential improvement: $\\dt{=}1$ MAE decreases continuously ($0.093 \\to 0.047$) while $\\dt{=}2$ MAE plateaus (${\\sim}0.08$; Appendix~\\ref{sec:timeseries_fidelity}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly sufficient in tested configurations} for CIVO. Neither factor alone precedes pathological overestimation: trained embedding without multi-rate exposure (008a, 3 seeds, peak NVE $0.83$--$0.93\\times$) and multi-rate exposure without embedding (008f, 3 seeds, peak NVE $\\leq 1.41\\times$) both remain below $1.5\\times$. Cross-environment replication on Cheetah Run confirms generalization. Freezing the embedding (\\texttt{requires\\_grad=False}) dramatically reduces severity (NVE $0.19$--$1.88\\times$ vs.\\ trained $1.53$--$4.72\\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes; Table~\\ref{tab:three_way_emb}); removing the embedding (008f) also avoids CIVO. A controlled three-way ablation varying \\emph{only} embedding treatment (trained/frozen/removed, single seed; Table~\\ref{tab:causal_ablation}) confirms that gradient training---not embedding presence---is necessary. Extending to additional seeds and environments, the onset rate remains 10/10 multi-joint locomotion runs (Fisher exact $p < 0.0001$ vs.\\ 0/8 controls). Partial gradient blocking (exp\\_044) does not prevent onset (peak NVE $4.45\\times$) but permits delayed self-correction (final eval 538, 59\\% baseline; Appendix~\\ref{sec:appendix_factorial}), confirming that \\emph{any} gradient pathway updating $e_{\\dt}$ suffices to induce CIVO. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$; Figure~\\ref{fig:dt_amplification}).\n\n\\paragraph{ManiSkill manipulation tasks.}\nNone of three ManiSkill environments exhibit $\\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.\n\n%% ============================================================\n%% F6--F7: Interventions\n%% ============================================================\n\n\\subsection{F6--F7: Interventions}\n\\label{sec:f6}\n\n\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nFull-SGS (exp\\_018) detaches all non-KL gradients from $e_{\\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\\times$); seed~2 collapses (0/2 elimination; Appendix~\\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\\times$).\n\n\\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}\nObs-decoder-only SGS (exp\\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\\ref{sec:seed_divergence}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\\times$ (35K+). No level reliably eliminates CIVO across environments.}\n\\label{tab:intervention_hierarchy}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} \\\\\n\\midrule\n--- & Untreated & 10 & 0/10 & 0\\% \\\\\n\\midrule\nGradient & Reward-only SGS & 2 & 0/2 & 0\\% \\\\\nGradient & Full-pathway SGS & 3 & 0/3 & 0\\% \\\\\nGradient & Obs-decoder SGS & 6 & 1/6 & 17\\% \\\\\n\\midrule\nOutput & RAVE ($c{=}1.5{,}2.0$) & 2 & 0/2 & 0\\% \\\\\n\\midrule\nRepr. & TCN ($\\sigma{=}0.1$) & 1 & 1/1$^\\ddagger$ & 100\\% \\\\\nRepr. & TCN ($\\sigma{=}0.2$) & 6$^\\dagger$ & 2/6 & 33\\% \\\\\nRepr. & TCN ($\\sigma{=}0.5$) & 3 & 0/3 & 0\\% \\\\\nRepr. & TCN ($\\sigma{=}1.0$) & 1 & 1/1$^\\S$ & 100\\% \\\\\n\\midrule\nArch. & Wide single & 2 & 0/2 & 0\\% \\\\\nArch. & Narrow dual (min) & 2 & 0/2 & 0\\% \\\\\nArch. & Wide dual (min) & 4 & 3/4$^\\|$ & 75\\% \\\\\n\\midrule\n--- & Embedding frozen & 7 & 5/7$^\\#$ & 71\\% \\\\\n--- & Embedding removed & 5 & 5/5 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.\n$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n$^\\S$CIVO prevented but progressive policy erosion (peak 116\\%, final 15\\% baseline).\n$^\\|$Walker 3/3 ($\\nve \\leq 1.4\\times$; 1/3 non-CIVO eval collapse), Cheetah 0/1.\\\\\n$^\\#$Walker 5 + Cheetah 2. Exp\\_047 (NVE $1.71\\times$) and Exp\\_057 (NVE $1.88\\times$): both transient, self-correcting within 20K steps; remaining 5 seeds: NVE $0.19$--$1.45\\times$.\\par}\n\\end{table}\n\n%% ============================================================\n%% Forward-pass interventions\n%% ============================================================\n\n\\subsection{Forward-Pass Interventions}\n\\label{sec:forward_results}\n\nWe test two forward-pass alternatives (Table~\\ref{tab:intervention_hierarchy}). \\textbf{RAVE} (value-level capping) fails: the EMA anchor tracks biased values during CIVO onset. \\textbf{TCN} (representation-level noise) suppresses CIVO in 2 of 4 Walker seeds at $\\sigma{=}0.2$ (NVE $< 1.0\\times$, eval 45--91\\%), but remaining seeds show runaway escalation, suggesting TCN gates rather than attenuates CIVO. Cross-environment transfer fails: Cheetah effective dose ($\\sigma{=}1.0$) causes policy erosion to 15\\% baseline; PickCube 0/1 (Appendix~\\ref{sec:tcn_cross_env}). TCN is a \\emph{diagnostic probe}, not a deployable mitigation.\n\n%% ============================================================\n%% Architecture-Level Ablation\n%% ============================================================\n\n\\subsection{Architecture-Level Ablation}\n\\label{sec:arch_results}\n\n\\paragraph{Critic convergence in pure imagination.}\nAcross all dual-critic configurations ($n{=}7$), critics trained on shared RSSM features converge ($\\rho > 0.999$), with pessimism at 3--4\\% of the independent-critic bound (\\S\\ref{sec:dual_critic_method}). Pessimistic estimation is thus ineffective; the min operation in wide dual-critic may provide regularization through mechanisms that remain to be characterized (Appendix~\\ref{sec:dual_critic_appendix}).\n\n\\paragraph{$2{\\times}2$ factorial: recovery vs.\\ prevention.}\nMin drives recovery: narrow dual-critic (${\\sim}1.2$M) recovers fully (${\\sim}16$--$19\\times$ recovery ratio) despite $2\\times$ fewer parameters. Prevention requires min $+$ capacity: wide dual-critic maintains $\\nve \\leq 1.4\\times$ (3/3 prevention, 1/3 non-CIVO collapse). Cross-environment transfer is limited (Appendix~\\ref{sec:dual_critic_appendix}).\n\n%% ============================================================\n%% Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\nWe derive a lightweight online detector monitoring the value-to-evaluation ratio for superlinear growth (Algorithm~\\ref{alg:civo_detector}). Applied to 14 runs across three environments, it achieves TPR${=}5/5$ (95\\% Clopper-Pearson CI $[47.8\\%, 100\\%]$), FPR${=}2/9$ ($22\\%$), with predictive alerts in 2/5 cases (Appendix~\\ref{sec:detector_appendix}). The detector requires larger-sample validation before deployment as a practical diagnostic tool.\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector. Monitors the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ (not NVE) for superlinear growth indicative of CIVO onset.}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$, \\quad $\\varepsilon \\leftarrow 10^{-6}$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\max(\\bar{E}_t,\\, \\varepsilon)$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 108,
+        "oldLines": 8,
+        "newStart": 108,
+        "newLines": 8,
+        "lines": [
+          " \\subsection{F6--F7: Interventions}",
+          " \\label{sec:f6}",
+          " ",
+          "-\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}",
+          "-Exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Two of four seeds collapse (50\\%): Pathway~A (CIVO, $\\nve = 4.02\\times$) and preliminary Pathway~B (entropy \\emph{increase}, $\\nve = 3.78\\times$; 2 seeds only, requires confirmation; see Figure~\\ref{fig:multiple_pathways}). Pathway~B produces one of three non-CIVO false positives ($n{=}30$).",
+          "+\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}",
+          "+Exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline; Figure~\\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction.",
+          " ",
+          " \\begin{figure}[t]",
+          " \\centering"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+**Edit 3: Figure caption — align with new narrative**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "794b5ee7-ec5e-4a44-ae04-f4d7de2af6df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2TfUWxc1FMasCQs5LYLsS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 43296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HaCrSZdzECPSivczwy5hvx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "old_string": "\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}",
+  "new_string": "\\caption{Contrasting dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 ($\\dt{=}1$ imagination), no CIVO onset (NVE $0.5\\times$, eval $64\\%$ baseline).}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "a1ed0269-7b1d-4d04-8d5f-92aa39cb0930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2TfUWxc1FMasCQs5LYLsS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 529,
+      "cache_read_input_tokens": 43296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 529
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T16:21:59.864Z_
+
+<details><summary>↩ Tool result · `toolu_01HaCrSZdzECPSivczwy5hvx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "5d43ec2e-96d6-4b51-ad10-28240c259ad7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+    "oldString": "\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}",
+    "newString": "\\caption{Contrasting dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 ($\\dt{=}1$ imagination), no CIVO onset (NVE $0.5\\times$, eval $64\\%$ baseline).}",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that trace a predictive pathway from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{Key configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 43 configurations in Table~\\ref{tab:complete_results}.}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\times$ & No CIVO \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run (s1) & trn & ON & 8 & 51.7 @105K & 8.27$\\times$ & Collapsed \\\\\n\\rowcolor{gray!15}\n078 & Cheetah Run (s0) & trn & ON & 8 & 119.5 @105K & 4.10$\\times$ & Self-correcting \\\\\n019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\\n049 & StackCube-v1 & trn & ON & 8 & 34.9 @212K & 5.05$\\times$$^d$ & Env.\\ transient \\\\\n050 & PegInsertionSide-v1 & trn & ON & 8 & 20.86 @212K & 10.05$\\times$$^e$ & Env.\\ dynamics$^e$ \\\\\n046 & Cheetah Run & frz$^b$ & ON & 8 & 150.5 @215K & 1.35$\\times$ & No CIVO \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^c$ NVE normalized against exp\\_019a\\_v2 (vanilla DreamerV3 on PickCube-v1).\\\\\n$^d$ Frozen control (exp\\_051) shows identical spike ($4.30\\times$), confirming environment-specific origin.\\\\\n$^e$ Trained/frozen ordering is seed-dependent (environment-specific stochastic dynamics; Table~\\ref{tab:cross_domain}).\\\\\nBaselines: Walker 915.7 (row 001); Cheetah ${\\sim}409$ (5-seed mean at 105K)\n; PickCube via exp\\_019a\\_v2; StackCube/PegInsertion not separately measured.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Precedes Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the strongest predictor. The \\emph{primary} comparison---008d (trained, subsample ON) vs.\\ 008f (no embedding, subsample ON)---differs only in embedding training, yielding $\\nve = 4.12\\times$ (eval 82.8) vs.\\ $\\nve \\leq 0.97\\times$ (eval 503.0). \\emph{Secondary} comparisons against 008a/008c (unexposed embedding) co-vary subsample status and horizon alongside the embedding factor. The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 53 of 56 experimental configurations across two environments ($n{=}56$; AUROC${=}0.990$, F1${=}0.941$; Table~\\ref{tab:nve_loeo}; Figure~\\ref{fig:nve_trajectory}).\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, Walker Walk, $n{=}3$ seeds plotted; seeds~4 and~5 data in Table~\\ref{tab:complete_results}) exceeds the $1.5\\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe trained $\\dt$-embedding precedes CIVO in all five Walker Walk seeds (peak NVE $1.53$--$4.72\\times$), universally degrading performance to below 30\\% of baseline (IQM $148.8$, $n{=}5$; \\citealt{agarwal2021precipice}). Including replications and Cheetah Run (\\S\\ref{sec:f6}), CIVO onset is universal across all ten tested runs ($n{=}10$, two multi-joint locomotion environments). Sustained collapse occurs in 6/10 runs; three runs self-correct (Walker seed~2 and both Cheetah seeds) and one shows onset without sustained collapse (Appendix~\\ref{sec:seed_divergence}).\n\n\\paragraph{Mechanism evidence.}\nThe RSSM reward head develops a $3.11\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning (reward MAE $0.057 \\to 0.178$; independently corroborated at $2.78\\times$ from earlier checkpoints; Table~\\ref{tab:rssm_fidelity}), while observation reconstruction \\emph{improves} with temporal conditioning (gap $1.33\\times$ vs.\\ baseline $1.46\\times$), confirming a reward-specific pathology. Direct value calibration confirms the critic internalizes this bias: the CIVO model's mean $V(s)/\\text{MC-return}$ ratio reaches $7.80\\times$ (median $3.40\\times$; 100\\% of sampled states overestimated) vs.\\ median $1.05\\times$ for the nearly-calibrated control (52.5\\% overestimated). Causal ordering further supports a value-channel pathology: evaluation return collapses ${\\sim}35$K steps before actor entropy rises ($+2.1$ nats/10K in collapsed configurations vs.\\ $+0.07$--$0.22$ in healthy baselines; Appendix~\\ref{sec:civo_mechanism}).\n\n\\paragraph{Temporal ordering ($n{=}2$).}\nTime-series analysis across 12 dense checkpoints (10K--65K steps) provides evidence that reward fidelity degradation precedes value overestimation onset: the single-step fidelity ratio ($\\text{MAE}_{\\dt{=}2}/\\text{MAE}_{\\dt{=}1}$) crosses $1.1\\times$ at 20K steps, while the value-to-eval ratio begins rising at ${\\sim}$30K (reaching $1.59\\times$ at 40K)---a ${\\sim}$10K onset-to-onset lag ($r{=}0.81$, $p{=}0.002$; Figure~\\ref{fig:temporal_ordering}). A second seed (exp\\_066b) confirms the pattern: fidelity gap onset at ${\\sim}$15K precedes VE onset at ${\\sim}$24K (temporal lead ${\\approx}$9K steps, consistent with seed~0's ${\\approx}$10K), though seed~1's peak VE ($0.72\\times$) remained below the $1.5\\times$ threshold within 60K steps, suggesting seed-dependent progression rates. The gap arises from differential improvement: $\\dt{=}1$ MAE decreases continuously ($0.093 \\to 0.047$) while $\\dt{=}2$ MAE plateaus (${\\sim}0.08$; Appendix~\\ref{sec:timeseries_fidelity}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly sufficient in tested configurations} for CIVO. Neither factor alone precedes pathological overestimation: trained embedding without multi-rate exposure (008a, 3 seeds, peak NVE $0.83$--$0.93\\times$) and multi-rate exposure without embedding (008f, 3 seeds, peak NVE $\\leq 1.41\\times$) both remain below $1.5\\times$. Cross-environment replication on Cheetah Run confirms generalization. Freezing the embedding (\\texttt{requires\\_grad=False}) dramatically reduces severity (NVE $0.19$--$1.88\\times$ vs.\\ trained $1.53$--$4.72\\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes; Table~\\ref{tab:three_way_emb}); removing the embedding (008f) also avoids CIVO. A controlled three-way ablation varying \\emph{only} embedding treatment (trained/frozen/removed, single seed; Table~\\ref{tab:causal_ablation}) confirms that gradient training---not embedding presence---is necessary. Extending to additional seeds and environments, the onset rate remains 10/10 multi-joint locomotion runs (Fisher exact $p < 0.0001$ vs.\\ 0/8 controls). Partial gradient blocking (exp\\_044) does not prevent onset (peak NVE $4.45\\times$) but permits delayed self-correction (final eval 538, 59\\% baseline; Appendix~\\ref{sec:appendix_factorial}), confirming that \\emph{any} gradient pathway updating $e_{\\dt}$ suffices to induce CIVO. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$; Figure~\\ref{fig:dt_amplification}).\n\n\\paragraph{ManiSkill manipulation tasks.}\nNone of three ManiSkill environments exhibit $\\dt$-embedding-dependent CIVO. All value-ratio spikes ($4$--$11\\times$) are environment-specific: frozen controls show comparable or higher peaks (Table~\\ref{tab:cross_domain}), and all self-correct. CIVO is specific to multi-joint locomotion in DreamerV3; the frozen-embedding diagnostic correctly identifies these transients as non-CIVO.\n\n%% ============================================================\n%% F6--F7: Interventions\n%% ============================================================\n\n\\subsection{F6--F7: Interventions}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline; Figure~\\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nFull-SGS (exp\\_018) detaches all non-KL gradients from $e_{\\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\\times$); seed~2 collapses (0/2 elimination; Appendix~\\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\\times$).\n\n\\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}\nObs-decoder-only SGS (exp\\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\\ref{sec:seed_divergence}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\\times$ (35K+). No level reliably eliminates CIVO across environments.}\n\\label{tab:intervention_hierarchy}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} \\\\\n\\midrule\n--- & Untreated & 10 & 0/10 & 0\\% \\\\\n\\midrule\nGradient & Reward-only SGS & 2 & 0/2 & 0\\% \\\\\nGradient & Full-pathway SGS & 3 & 0/3 & 0\\% \\\\\nGradient & Obs-decoder SGS & 6 & 1/6 & 17\\% \\\\\n\\midrule\nOutput & RAVE ($c{=}1.5{,}2.0$) & 2 & 0/2 & 0\\% \\\\\n\\midrule\nRepr. & TCN ($\\sigma{=}0.1$) & 1 & 1/1$^\\ddagger$ & 100\\% \\\\\nRepr. & TCN ($\\sigma{=}0.2$) & 6$^\\dagger$ & 2/6 & 33\\% \\\\\nRepr. & TCN ($\\sigma{=}0.5$) & 3 & 0/3 & 0\\% \\\\\nRepr. & TCN ($\\sigma{=}1.0$) & 1 & 1/1$^\\S$ & 100\\% \\\\\n\\midrule\nArch. & Wide single & 2 & 0/2 & 0\\% \\\\\nArch. & Narrow dual (min) & 2 & 0/2 & 0\\% \\\\\nArch. & Wide dual (min) & 4 & 3/4$^\\|$ & 75\\% \\\\\n\\midrule\n--- & Embedding frozen & 7 & 5/7$^\\#$ & 71\\% \\\\\n--- & Embedding removed & 5 & 5/5 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize $^\\dagger$Walker 2/4 (s2 NVE $2.11\\times$; s3 late-onset CIVO, NVE $3.04\\times$ at 105K); Cheetah 0/1, PickCube 0/1.\n$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n$^\\S$CIVO prevented but progressive policy erosion (peak 116\\%, final 15\\% baseline).\n$^\\|$Walker 3/3 ($\\nve \\leq 1.4\\times$; 1/3 non-CIVO eval collapse), Cheetah 0/1.\\\\\n$^\\#$Walker 5 + Cheetah 2. Exp\\_047 (NVE $1.71\\times$) and Exp\\_057 (NVE $1.88\\times$): both transient, self-correcting within 20K steps; remaining 5 seeds: NVE $0.19$--$1.45\\times$.\\par}\n\\end{table}\n\n%% ============================================================\n%% Forward-pass interventions\n%% ============================================================\n\n\\subsection{Forward-Pass Interventions}\n\\label{sec:forward_results}\n\nWe test two forward-pass alternatives (Table~\\ref{tab:intervention_hierarchy}). \\textbf{RAVE} (value-level capping) fails: the EMA anchor tracks biased values during CIVO onset. \\textbf{TCN} (representation-level noise) suppresses CIVO in 2 of 4 Walker seeds at $\\sigma{=}0.2$ (NVE $< 1.0\\times$, eval 45--91\\%), but remaining seeds show runaway escalation, suggesting TCN gates rather than attenuates CIVO. Cross-environment transfer fails: Cheetah effective dose ($\\sigma{=}1.0$) causes policy erosion to 15\\% baseline; PickCube 0/1 (Appendix~\\ref{sec:tcn_cross_env}). TCN is a \\emph{diagnostic probe}, not a deployable mitigation.\n\n%% ============================================================\n%% Architecture-Level Ablation\n%% ============================================================\n\n\\subsection{Architecture-Level Ablation}\n\\label{sec:arch_results}\n\n\\paragraph{Critic convergence in pure imagination.}\nAcross all dual-critic configurations ($n{=}7$), critics trained on shared RSSM features converge ($\\rho > 0.999$), with pessimism at 3--4\\% of the independent-critic bound (\\S\\ref{sec:dual_critic_method}). Pessimistic estimation is thus ineffective; the min operation in wide dual-critic may provide regularization through mechanisms that remain to be characterized (Appendix~\\ref{sec:dual_critic_appendix}).\n\n\\paragraph{$2{\\times}2$ factorial: recovery vs.\\ prevention.}\nMin drives recovery: narrow dual-critic (${\\sim}1.2$M) recovers fully (${\\sim}16$--$19\\times$ recovery ratio) despite $2\\times$ fewer parameters. Prevention requires min $+$ capacity: wide dual-critic maintains $\\nve \\leq 1.4\\times$ (3/3 prevention, 1/3 non-CIVO collapse). Cross-environment transfer is limited (Appendix~\\ref{sec:dual_critic_appendix}).\n\n%% ============================================================\n%% Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\nWe derive a lightweight online detector monitoring the value-to-evaluation ratio for superlinear growth (Algorithm~\\ref{alg:civo_detector}). Applied to 14 runs across three environments, it achieves TPR${=}5/5$ (95\\% Clopper-Pearson CI $[47.8\\%, 100\\%]$), FPR${=}2/9$ ($22\\%$), with predictive alerts in 2/5 cases (Appendix~\\ref{sec:detector_appendix}). The detector requires larger-sample validation before deployment as a practical diagnostic tool.\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector. Monitors the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ (not NVE) for superlinear growth indicative of CIVO onset.}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$, \\quad $\\varepsilon \\leftarrow 10^{-6}$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\max(\\bar{E}_t,\\, \\varepsilon)$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 114,
+        "oldLines": 7,
+        "newStart": 114,
+        "newLines": 7,
+        "lines": [
+          " \\begin{figure}[t]",
+          " \\centering",
+          " \\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}",
+          "-\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO), evaluation crash with entropy increase.}",
+          "+\\caption{Contrasting dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 ($\\dt{=}1$ imagination), no CIVO onset (NVE $0.5\\times$, eval $64\\%$ baseline).}",
+          " \\label{fig:multiple_pathways}",
+          " \\end{figure}",
+          " \\paragraph{F7: Full-pathway gradient stopping shows mixed results.}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now let me verify the final state and do a consistency scan.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "55fd2536-b60d-4e37-8bc9-4159df2dddf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP9vwdYqXpjzXZHnQUASEJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 43825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Jdj3NQwZCmQDjD75dtMtZh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "offset": 104,
+  "limit": 25
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "a487cee3-1e53-4300-9fbe-45adb577ece2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP9vwdYqXpjzXZHnQUASEJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 43825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-25T16:22:03.188Z_
+
+<details><summary>↩ Tool result · `toolu_01Jdj3NQwZCmQDjD75dtMtZh`</summary>
+
+```text
+104	%% ============================================================
+105	%% F6--F7: Interventions
+106	%% ============================================================
+107	
+108	\subsection{F6--F7: Interventions}
+109	\label{sec:f6}
+110	
+111	\paragraph{F6: $\dt{=}1$ imagination eliminates CIVO.}
+112	Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\times$, well below the $1.5\times$ threshold), with three-seed mean evaluation $781.2 \pm 159.5$ ($84\%$ of baseline; Figure~\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction.
+113	
+114	\begin{figure}[t]
+115	\centering
+116	\includegraphics[width=0.75\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+117	\caption{Contrasting dynamics. \textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \textbf{Right:} 008e\_v3 s2 ($\dt{=}1$ imagination), no CIVO onset (NVE $0.5\times$, eval $64\%$ baseline).}
+118	\label{fig:multiple_pathways}
+119	\end{figure}
+120	\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+121	Full-SGS (exp\_018) detaches all non-KL gradients from $e_{\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\times$); seed~2 collapses (0/2 elimination; Appendix~\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\times$).
+122	
+123	\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}
+124	Obs-decoder-only SGS (exp\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\ref{sec:seed_divergence}).
+125	
+126	\begin{table}[t]
+127	\centering
+128	\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\times$ (35K+). No level reliably eliminates CIVO across environments.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "64f8e89d-68d0-451f-9dba-0d47e37ef9e4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "%% ============================================================\n%% F6--F7: Interventions\n%% ============================================================\n\n\\subsection{F6--F7: Interventions}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline; Figure~\\ref{fig:multiple_pathways}). This confirms that multi-step imagination---not the trained embedding alone---is necessary for CIVO induction.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting dynamics. \\textbf{Left:} 008d (CIVO), value explosion with entropy decrease. \\textbf{Right:} 008e\\_v3 s2 ($\\dt{=}1$ imagination), no CIVO onset (NVE $0.5\\times$, eval $64\\%$ baseline).}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nFull-SGS (exp\\_018) detaches all non-KL gradients from $e_{\\dt}$. Seed~1 shows partial mitigation (eval 448.3, NVE $1.66\\times$); seed~2 collapses (0/2 elimination; Appendix~\\ref{sec:sgs_gradient_analysis}). Cross-environment validation on Cheetah (010b, NVE $8.27$--$108.52\\times$) confirms CIVO generalization; full-SGS yields 0/3 elimination. Removing the embedding eliminates CIVO on Cheetah (024b, NVE $< 0.2\\times$).\n\n\\paragraph{Targeted obs-decoder-only SGS confirms pathway redundancy.}\nObs-decoder-only SGS (exp\\_025/026) achieves 1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah; Table~\\ref{tab:intervention_hierarchy}), not meaningfully different from full-pathway SGS (0/3). CIVO operates through redundant gradient channels: blocking any single pathway shifts co-adaptation to the remaining ones (Appendix~\\ref{sec:seed_divergence}).\n\n\\begin{table}[t]\n\\centering\n\\caption{Intervention hierarchy. Prevention = peak NVE $< 1.5\\times$ (35K+). No level reliably eliminates CIVO across environments.}",
+      "numLines": 25,
+      "startLine": 104,
+      "totalLines": 218
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01J7Y6VpbMktNTW4q11wshS2`</summary>
+
+```json
+{
+  "pattern": "Pathway.?B|n\\{=\\}30|two of four|50\\\\%|evaluation crash|creates multiple",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "47a618e6-0f1d-4bee-b27d-e3bd67a9b055",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP9vwdYqXpjzXZHnQUASEJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 364,
+      "cache_read_input_tokens": 43825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 364
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-25T16:22:04.575Z_
+
+<details><summary>↩ Tool result · `toolu_01J7Y6VpbMktNTW4q11wshS2`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "feea7b7a-65e8-4d99-8e68-bd8adc7a4877",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+All edits applied, no residual old data in results.tex. Summary of changes:
+
+### Diff
+
+**Edit 1 — Subsection title (line 108)**
+- Before: `\subsection{F6--F7: Interventions and Multiple Pathways}`
+- After: `\subsection{F6--F7: Interventions}`
+
+**Edit 2 — F6 paragraph (lines 111-112)**
+- Before: `\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}` + "Two of four seeds collapse (50%): Pathway A (CIVO, nve=4.02×) and preliminary Pathway B (entropy increase, nve=3.78×; 2 seeds only)... Pathway B produces one of three non-CIVO false positives (n=30)."
+- After: `\paragraph{F6: $\dt{=}1$ imagination eliminates CIVO.}` + "All four tested seeds avoid CIVO onset (peak NVE 0.5–0.6×), three-seed mean eval 781.2 ± 159.5 (84% baseline). Confirms multi-step imagination is necessary for CIVO induction."
+
+**Edit 3 — Figure caption (line 117)**
+- Before: "evaluation crash with entropy increase"
+- After: "no CIVO onset (NVE 0.5×, eval 64% baseline)"
+
+### Issue 3 (footnote separation): Not applicable
+No shared `$^\dagger$` between exp_059 and 008e_v3 in results.tex. The only `$^\dagger$` (lines 145/158) is TCN-specific.
+
+### Remaining inconsistencies (outside results.tex)
+appendix.tex still has extensive old-data references to IRD/Pathway B that need separate updating:
+- Line 143: 008e_v3_s2 listed as "IRD" with NVE 3.78×, 008e_v3_s3 as "CIVO" with NVE 4.02×
+- Line 158: NVE raw table lists 008e_v3_s2 = 3.78 (IRD)
+- Lines 197, 243: false positive references to 008e_v3_s2
+- Line 777: failure mode taxonomy with "IRD collapse"
+- Line 947: "Multiple Vulnerability Pathways" appendix subsection
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "uuid": "e703a01a-0972-4ea3-a20d-98c0f18d033a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Dyf3EvH6MobDFddDNRCcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1206,
+      "cache_read_input_tokens": 44189,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1206
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+All edits applied, no residual old data in results.tex. Summary of changes:
+
+### Diff
+
+**Edit 1 — Subsection title (line 108)**
+- Before: `\subsection{F6--F7: Interventions and Multiple Pathways}`
+- After: `\subsection{F6--F7: Interventions}`
+
+**Edit 2 — F6 paragraph (lines 111-112)**
+- Before: `\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}` + "Two of four seeds collapse (50%): Pathway A (CIVO, nve=4.02×) and preliminary Pathway B (entropy increase, nve=3.78×; 2 seeds only)... Pathway B produces one of three non-CIVO false positives (n=30)."
+- After: `\paragraph{F6: $\dt{=}1$ imagination eliminates CIVO.}` + "All four tested seeds avoid CIVO onset (peak NVE 0.5–0.6×), three-seed mean eval 781.2 ± 159.5 (84% baseline). Confirms multi-step imagination is necessary for CIVO induction."
+
+**Edit 3 — Figure caption (line 117)**
+- Before: "evaluation crash with entropy increase"
+- After: "no CIVO onset (NVE 0.5×, eval 64% baseline)"
+
+### Issue 3 (footnote separation): Not applicable
+No shared `$^\dagger$` between exp_059 and 008e_v3 in results.tex. The only `$^\dagger$` (lines 145/158) is TCN-specific.
+
+### Remaining inconsistencies (outside results.tex)
+appendix.tex still has extensive old-data references to IRD/Pathway B that need separate updating:
+- Line 143: 008e_v3_s2 listed as "IRD" with NVE 3.78×, 008e_v3_s3 as "CIVO" with NVE 4.02×
+- Line 158: NVE raw table lists 008e_v3_s2 = 3.78 (IRD)
+- Lines 197, 243: false positive references to 008e_v3_s2
+- Line 777: failure mode taxonomy with "IRD collapse"
+- Line 947: "Multiple Vulnerability Pathways" appendix subsection
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 197210,
+  "duration_api_ms": 198656,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "53ebfd59-30d8-4aab-b4ef-30faee4854dd",
+  "total_cost_usd": 0.6754800000000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 33948,
+    "cache_read_input_tokens": 396162,
+    "output_tokens": 10529,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33948,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 583,
+        "cache_read_input_tokens": 44189,
+        "cache_creation_input_tokens": 1206,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1206
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1844,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001939,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 10529,
+      "cacheReadInputTokens": 396162,
+      "cacheCreationInputTokens": 33948,
+      "webSearchRequests": 0,
+      "costUSD": 0.6735410000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "ba86a00a-746c-4db8-bd8d-d2574b12635e"
+}
+```
+
+</details>
+
+---

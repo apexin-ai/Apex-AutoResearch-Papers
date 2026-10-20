@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2511c0e010ef5ce80c06",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper figure fig2 nve trajectory",
+  "task_key": "worker_paper_figure_fig2_nve_trajectory_20260515T102507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_nve_trajectory_20260515T102507_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "619817569d8b1aa9c6683c9cf0df030ca37b18fe1f0de3a12eb7cedcc6ba5cf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Done.** Generated `fig2_nve_trajectory` — top panel only.\n\n**Outputs:**\n- PDF: `artifacts/figures/paper/fig2_nve_trajectory.pdf`\n- PNG: `artifacts/figures/paper/fig2_nve_trajectory.png`\n- Script: `artifacts/figures/paper/fig2_nve_trajectory.py`\n- Artifact: `art_20260515_993076` registered\n\n**Bottom panel (actor_loss) skipped** — the SSH data extraction worker is stuck loading tools and couldn't connect to bjb1-45299. No data fabricated. The script is already wired to auto-detect `actor_loss_data.json` and render the two-panel layout when data becomes available — just drop the JSON file next to the script and re-run.\n\n**Top panel shows the key result**: all 3 trained dt_emb experiments (008d, 009b, 009e — solid lines) cross the 1.5× threshold at some point, while both untrained controls (008f, 009c — dashed) stay below. 4/4 separating power. Mitigation experiments (008e_v3 — dash-dot) show mixed behavior."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-nve-trajectory.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ab79682fe7b1a79bffa",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check 022b startup verify",
+  "task_key": "worker_check_022b-startup-verify_20260517T111024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_022b-startup-verify_20260517T111024_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "9fed028c93d466819782f49012ad88f6e1dfed51ba8422aa2fa129ea9b99bb09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_022b_no_curriculum 状态报告\n\n**启动成功** ✓\n\n| 检查项 | 状态 |\n|--------|------|\n| 进程存活 | PID 670559，运行中，已累计 242 分钟 CPU 时间 |\n| GPU 占用 | cuda:1 占用 3265 MiB，GPU-Util 21% |\n| 训练进度 | 已到 step 15000（目标 105000），eval_return 从 37.4→167.3 |\n| logdir | 已创建，含 latest.pt (235MB)、metrics.jsonl、tfevents |\n| 报错 | 仅 FutureWarning（torch.cuda.amp.autocast 弃用警告），无实际错误 |\n\n### Gate 参数验证\n\n| 指标 | 期望 | 实际 (step 15000) | 判定 |\n|------|------|-------------------|------|\n| gate_scale | 1.0 | 1.0 | ✓ curriculum 关闭，gate 全程激活 |\n| gate_empirical_entropy | > 0 | 2.0 | ✓ gate 在主动学习 |\n| gate_dt_1_frac | < 1.0 | 0.1 | ✓ 仅 10% 选择 dt=1，gate 积极探索长步长 |\n| gate_dt_mean | — | 4.6 | gate 偏好中等步长 |\n| gate_dt 分布 | 非退化 | dt1~dt8 均匀分布 (0.1~0.2) | ✓ 探索充分 |\n\n### 早期表现\n\n- eval_return: 37.4 (5K) → 167.3 (15K)，学习曲线正常上升\n- gate 无退化迹象，entropy_ratio=0.9 接近最大熵，gate 仍在充分探索\n\n**结论：exp_022b 启动正常，gate 行为符合预期（无 curriculum 约束下自由探索多种 dt），训练在正常推进。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-022b-startup-verify.md"
+}

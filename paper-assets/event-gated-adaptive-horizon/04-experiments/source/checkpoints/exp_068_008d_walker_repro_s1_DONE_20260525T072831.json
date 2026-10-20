@@ -1,0 +1,100 @@
+{
+  "exp_id": "exp_068_008d_walker_repro_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-25T03:49:39.539Z",
+    "updated_at": "2026-05-25T07:28:31.319Z",
+    "hypothesis": "Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enables value error amplification through temporal abstraction mismatch",
+    "parent": "exp_008d_subsample_on_h8",
+    "failure_reason": "SSH check failed 5x — last error: [Errno None] Unable to connect to port 40020 on 106.120.183.117",
+    "completed_at": "2026-05-25T04:18:15.954Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-25T04:18:20.002698+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T07:23:04.341146+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "server": "westd-19154",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "server": "westd-19154",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "4425",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log",
+      "submitted_at": "2026-05-25T05:04:05.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8666.2,
+      "gpu_hours": 2.41
+    },
+    "pid": "4425",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "finished_at": "2026-05-25T07:22:57.100Z"
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_068_008d_walker_repro_s1/latest.pt",
+    "metrics": {
+      "eval_return_final": 39.1,
+      "eval_return_peak": 192.4,
+      "eval_return_peak_step": 55000,
+      "ve_ratio_final": 2.7,
+      "ve_ratio_peak": 4.6,
+      "ve_ratio_peak_step": 85000,
+      "nve_final_105k": 4.12,
+      "nve_peak_85k": 6.57,
+      "nve_onset_step": 45000,
+      "nve_onset_value": 1.81,
+      "civo_alert": true,
+      "civo_alert_step": 85000,
+      "gate_dt_2_frac": 1,
+      "eval_trajectory": {
+        "5k": 31,
+        "15k": 146.5,
+        "25k": 174.1,
+        "35k": 189.6,
+        "45k": 142.2,
+        "55k": 192.4,
+        "65k": 114.4,
+        "75k": 106.6,
+        "85k": 33.4,
+        "95k": 26.9,
+        "105k": 39.1
+      },
+      "ve_ratio_trajectory": {
+        "15k": 0,
+        "25k": 0.2,
+        "35k": 0.3,
+        "45k": 0.6,
+        "55k": 0.6,
+        "65k": 1.3,
+        "75k": 1.6,
+        "85k": 4.6,
+        "95k": 4.6,
+        "105k": 2.7
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-25T07:28:31.967158+00:00",
+  "trigger": "update_registry"
+}

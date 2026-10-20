@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_039_narrow_dual_critic_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-21T16:31:40.055Z",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --narrow_dual_critic True --logdir logdir/exp_039_narrow_dual_critic_walker_s1\"",
+      "gpu": [
+        "cuda:1"
+      ],
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_039_narrow_dual_critic_walker_s1.log",
+      "pid": "198771",
+      "server": "bjb1-40020",
+      "submitted_at": "2026-05-21T16:31:39.634Z",
+      "submitted_via": "submit_training_job",
+      "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt",
+      "checkpoint_source": "N/A - training from scratch",
+      "eval_data": "N/A - training experiment",
+      "wall_clock_seconds": 36234.0,
+      "gpu_hours": 10.06
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-22T02:35:33.617Z",
+    "conclusion": "success",
+    "metrics": {
+      "eval_return_final": 592.7,
+      "nve_peak": 2.19,
+      "civo_recovery": true,
+      "recovery_confirmed": true,
+      "note": "Narrow dual Walker s1: CIVO triggered then recovered. s0=697.8, s1=592.7, mean≈645. Recovery 2/2."
+    },
+    "hypothesis": "Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 recovery 是偶发事件。",
+    "completed_at": "2026-05-22T02:35:33.617Z"
+  },
+  "timestamp": "2026-05-22T02:35:33.926054+00:00",
+  "trigger": "update_registry"
+}

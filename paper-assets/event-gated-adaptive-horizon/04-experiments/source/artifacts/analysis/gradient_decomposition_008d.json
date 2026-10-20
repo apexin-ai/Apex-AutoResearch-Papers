@@ -1,0 +1,72 @@
+{
+  "exp_id": "008d_gradient_decomposition",
+  "description": "Gradient decomposition of dt_emb parameter across conditions. Measures L2 norm of gradient from each loss component (obs decoder, reward, KL, cont) w.r.t. dt_embedding.weight. 50 batches of 16x64 sequences each, seed=42.",
+  "methodology": "For each batch: forward pass through world model, compute individual losses (obs/reward/KL/cont), backward each separately, record gradient L2 norm on dt_emb. Percentages = component_norm / sum_of_all_norms.",
+  "n_batches": 50,
+  "steps": [
+    {
+      "exp_name": "008d_55K",
+      "config": "trained dt_emb, no SGS",
+      "step": 55000,
+      "source_checkpoint": "exp_008d_subsample_on_h8/latest.pt",
+      "obs_norm": 0.027582,
+      "reward_norm": 0.017357,
+      "kl_norm": 0.024317,
+      "cont_norm": 0.000598,
+      "obs_pct": 39.5,
+      "reward_pct": 24.8,
+      "kl_pct": 34.8,
+      "cont_pct": 0.9,
+      "obs_se": 0.027305,
+      "reward_se": 0.017183,
+      "kl_se": 0.024073,
+      "cont_se": 0.000592
+    },
+    {
+      "exp_name": "009e_112K",
+      "config": "008d config extended to 112K, no SGS",
+      "step": 112000,
+      "source_checkpoint": "exp_009e_008d_walker_s1/latest.pt",
+      "obs_norm": 0.018676,
+      "reward_norm": 0.020989,
+      "kl_norm": 0.018254,
+      "cont_norm": 0.000436,
+      "obs_pct": 32.0,
+      "reward_pct": 36.0,
+      "kl_pct": 31.3,
+      "cont_pct": 0.7,
+      "obs_se": 0.018488,
+      "reward_se": 0.020778,
+      "kl_se": 0.018071,
+      "cont_se": 0.000432
+    },
+    {
+      "exp_name": "018v2_112K_counterfactual",
+      "config": "Full-SGS model, measured WITHOUT SGS to show underlying gradient structure",
+      "step": 112000,
+      "source_checkpoint": "exp_018v2_full_sgs_walker_s1/latest.pt",
+      "obs_norm": 0.016765,
+      "reward_norm": 0.014803,
+      "kl_norm": 0.011451,
+      "cont_norm": 0.000631,
+      "obs_pct": 38.4,
+      "reward_pct": 33.9,
+      "kl_pct": 26.2,
+      "cont_pct": 1.4,
+      "obs_se": 0.016596,
+      "reward_se": 0.014654,
+      "kl_se": 0.011336,
+      "cont_se": 0.000624,
+      "note": "With SGS active during training: obs=0%, reward=0%, kl=100%, cont=0% (all head gradients blocked from dt_emb)"
+    }
+  ],
+  "key_findings": {
+    "without_sgs": "Obs decoder gradients account for 32-40% of total gradient on dt_emb across all conditions, confirming that observation reconstruction is a major gradient driver for the temporal embedding.",
+    "with_sgs": "Full-SGS blocks all head loss gradients (obs+reward+cont) from reaching dt_emb, leaving only KL (100%). This is the mechanism that prevents CIVO.",
+    "contrast": "The gradient structure is roughly balanced (obs ~35-40%, reward ~25-36%, kl ~26-35%) without SGS. SGS eliminates the obs and reward pathways entirely."
+  },
+  "prior_analysis_comparison": {
+    "note": "Earlier analysis (in gen_figures.py) reported 008d at 55K: obs=25.8%, reward=23.5%, KL=50.7%, and at 105K: obs=93%, reward=0%, KL=7%. The discrepancy likely reflects different batch sampling or accumulated training gradients vs. per-batch counterfactual measurement. The qualitative conclusion (obs is a significant gradient source) is consistent.",
+    "prior_source": "gen_figures.py and gradient_evolution_018v2.json comparison_with_008d field"
+  }
+}

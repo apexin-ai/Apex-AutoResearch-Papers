@@ -1,0 +1,71 @@
+{
+  "exp_id": "exp_hopper_frozen_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:34:34.615Z",
+    "updated_at": "2026-05-27T08:57:25.460Z",
+    "conclusion": "negative",
+    "hypothesis": "Frozen dt_emb + subsample ON in Hopper Hop will NOT show CIVO (NVE stays below 1.5×), confirming trained dt_emb is the necessary condition for CIVO across a third multi-joint locomotion environment",
+    "plan_id": "plan_040",
+    "server": "westd-51268",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-51268",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-27T05:51:11.281Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_frozen_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\"",
+      "finished_at": "2026-05-27T08:49:59.215Z",
+      "training_hours": 2.98
+    },
+    "spec": {
+      "data_path": "dmc_hopper_hop",
+      "data_count": 105000,
+      "model_name": "dreamerv3",
+      "seed": 0,
+      "checkpoint_source": "none (fresh training)",
+      "eval_data": "dmc_hopper_hop"
+    },
+    "pid": "612905",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_hopper_frozen_s0.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-27T08:50:05.781559+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "step": 105000,
+      "eval_return_final": 0,
+      "eval_return_peak": 3.6,
+      "eval_return_peak_step": 85000,
+      "ve_ratio_final": 4335664.3,
+      "ve_ratio_peak": 4335664.3,
+      "ve_ratio_peak_step": 105000,
+      "nve_value_vs_target_max": 0.059,
+      "civo_alert": 1,
+      "civo_alert_steps": [
+        65000,
+        105000
+      ],
+      "value_mean_final": 4.337,
+      "target_mean_final": 4.389,
+      "actor_entropy_final": -1.55,
+      "wall_clock_hours": 2.95,
+      "nve_105K_vs_baseline": "eval_return 0.0 vs 96.43 (0.0% of baseline); ve_ratio 4335664 vs 0.559 (7,756,109x worse)",
+      "pattern": "degenerate_civo_value_reality_divergence",
+      "notes": "CIVO alerts at 65K and 105K. NVE (value vs target) stays <0.06 (no classic value-target divergence), but civo/ve_ratio explodes because value_mean grows monotonically (0.04→4.34) while eval_return≈0. Complete learning failure with internally consistent but fictional value estimates. Worse than both baseline and trained_s0."
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_hopper_frozen_s0/latest.pt",
+    "completed_at": "2026-05-27T08:57:25.460Z"
+  },
+  "timestamp": "2026-05-27T08:57:25.920850+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,125 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sutton1999options}
+\citation{hafner2020dreamerv1}
+\citation{hafner2021dreamerv2}
+\citation{hafner2023dreamerv3}
+\citation{nhu2025tawm}
+\citation{janner2019mbpo}
+\citation{lu2018nondelusional}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal Abstraction in RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-Model RL.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variable-Rate Planning.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value Overestimation in MBRL.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}DreamerV3 with Variable-Rate Imagination}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Factorial Experiment Design}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Diagnostic Metrics}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalized Value-Eval Ratio (NVE).}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gradient Decomposition.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Environments}{2}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Walker Walk: CIVO Trigger and Causal Control}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:walker-civo}{{4.1}{2}{Walker Walk: CIVO Trigger and Causal Control}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trained dt-embedding triggers high NVE (008d, 2 seeds).}{2}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Walker Walk 008d: trained dt-embedding cross-seed comparison.}}{2}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:008d}{{1}{2}{Walker Walk 008d: trained dt-embedding cross-seed comparison}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal control: removing dt-embedding (008f, 3 seeds).}{3}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Walker Walk 008f (no dt-embedding): NVE summary.}}{3}{table.caption.11}\protected@file@percent }
+\newlabel{tab:008f}{{2}{3}{Walker Walk 008f (no dt-embedding): NVE summary}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Walker Walk: Mitigation Attempts}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:walker-mitigation}{{4.2}{3}{Walker Walk: Mitigation Attempts}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{dt=1 imagination (008e\_v3, 4 seeds).}{3}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Walker Walk 008e\_v3 (dt=1 imagination): all seeds.}}{3}{table.caption.13}\protected@file@percent }
+\newlabel{tab:008e_v3}{{3}{3}{Walker Walk 008e\_v3 (dt=1 imagination): all seeds}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Untrained dt-embedding (008a, 3 seeds).}{3}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Walker Walk 008a (untrained dt-embedding): cross-seed summary.}}{3}{table.caption.15}\protected@file@percent }
+\newlabel{tab:008a}{{4}{3}{Walker Walk 008a (untrained dt-embedding): cross-seed summary}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Frozen dt-embedding (015b).}{3}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Walker Walk: frozen vs.\ trained vs.\ absent dt-embedding.}}{3}{table.caption.17}\protected@file@percent }
+\newlabel{tab:frozen}{{5}{3}{Walker Walk: frozen vs.\ trained vs.\ absent dt-embedding}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty-gated truncation pilot.}{3}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Uncertainty-gated truncation pilot results.}}{3}{table.caption.19}\protected@file@percent }
+\newlabel{tab:truncation}{{6}{3}{Uncertainty-gated truncation pilot results}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cheetah Run: Cross-Environment Validation}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cheetah}{{4.3}{3}{Cheetah Run: Cross-Environment Validation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baseline (3 seeds).}{3}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Trained dt-embedding triggers CIVO (3 seeds).}{3}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cheetah Run baseline.}}{4}{table.caption.21}\protected@file@percent }
+\newlabel{tab:cheetah-base}{{7}{4}{Cheetah Run baseline}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cheetah Run: trained dt-embedding (CIVO trigger).}}{4}{table.caption.23}\protected@file@percent }
+\newlabel{tab:cheetah-civo}{{8}{4}{Cheetah Run: trained dt-embedding (CIVO trigger)}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal control FAILS: no dt-embedding still shows high NVE (3 seeds).}{4}{section*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cheetah Run: no dt-embedding --- \textbf  {control failed}.}}{4}{table.caption.25}\protected@file@percent }
+\newlabel{tab:cheetah-control}{{9}{4}{Cheetah Run: no dt-embedding --- \textbf {control failed}}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Untrained dt-embedding provides partial protection (3 seeds).}{4}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cartpole Swingup: Partial Replication}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:cartpole}{{4.4}{4}{Cartpole Swingup: Partial Replication}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baseline (3 seeds).}{4}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cheetah Run: untrained dt-embedding (no subsample).}}{4}{table.caption.27}\protected@file@percent }
+\newlabel{tab:cheetah-untrained}{{10}{4}{Cheetah Run: untrained dt-embedding (no subsample)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trained dt-embedding (3 seeds).}{4}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cartpole Swingup: trained dt-embedding.}}{4}{table.caption.30}\protected@file@percent }
+\newlabel{tab:cartpole-civo}{{11}{4}{Cartpole Swingup: trained dt-embedding}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal control holds (3 seeds).}{4}{section*.31}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cartpole Swingup: no dt-embedding (control).}}{4}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cartpole-control}{{12}{4}{Cartpole Swingup: no dt-embedding (control)}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Hopper Hop: Second Control Failure}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:hopper}{{4.5}{4}{Hopper Hop: Second Control Failure}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Environment Causal Control Summary}{4}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Hopper Hop summary (worst tier).}}{5}{table.caption.33}\protected@file@percent }
+\newlabel{tab:hopper}{{13}{5}{Hopper Hop summary (worst tier)}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Cross-environment causal control: does removing dt-embedding prevent NVE $>1.5\times $?}}{5}{table.caption.34}\protected@file@percent }
+\newlabel{tab:cross-env-control}{{14}{5}{Cross-environment causal control: does removing dt-embedding prevent NVE $>1.5\times $?}{table.caption.34}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}RSSM Fidelity Analysis}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:rssm-fidelity}{{4.7}{5}{RSSM Fidelity Analysis}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-environment RSSM fidelity: observation and reward prediction gaps ($dt=2$ / $dt=1$).}}{5}{table.caption.35}\protected@file@percent }
+\newlabel{tab:rssm-fidelity}{{15}{5}{Cross-environment RSSM fidelity: observation and reward prediction gaps ($dt=2$ / $dt=1$)}{table.caption.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Actor Entropy Analysis}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:entropy}{{4.8}{5}{Actor Entropy Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Entropy trajectory classification across environments.}}{5}{table.caption.36}\protected@file@percent }
+\newlabel{tab:entropy}{{16}{5}{Entropy trajectory classification across environments}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Value Calibration Analysis}{5}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:value-calib}{{4.9}{5}{Value Calibration Analysis}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Value calibration: $V(s)$ vs.\ Monte Carlo return.}}{5}{table.caption.37}\protected@file@percent }
+\newlabel{tab:value-calib}{{17}{5}{Value calibration: $V(s)$ vs.\ Monte Carlo return}{table.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}dt-Embedding Cosine Similarity}{5}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:cosine}{{4.10}{5}{dt-Embedding Cosine Similarity}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces dt-embedding cosine similarity (dt=1 vs.\ dt=2 vectors) evolution.}}{5}{table.caption.38}\protected@file@percent }
+\newlabel{tab:cosine}{{18}{5}{dt-embedding cosine similarity (dt=1 vs.\ dt=2 vectors) evolution}{table.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}NVE Threshold Sensitivity Analysis}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:threshold}{{4.11}{6}{NVE Threshold Sensitivity Analysis}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces NVE threshold classification accuracy by environment.}}{6}{table.caption.39}\protected@file@percent }
+\newlabel{tab:threshold}{{19}{6}{NVE threshold classification accuracy by environment}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces AUROC by evaluation scope.}}{6}{table.caption.40}\protected@file@percent }
+\newlabel{tab:auroc}{{20}{6}{AUROC by evaluation scope}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Bootstrap statistics across all environments.}}{6}{table.caption.41}\protected@file@percent }
+\newlabel{tab:bootstrap}{{21}{6}{Bootstrap statistics across all environments}{table.caption.41}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Gradient Decomposition}{6}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:gradient}{{4.12}{6}{Gradient Decomposition}{subsection.4.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces dt-embedding gradient decomposition by loss component.}}{6}{table.caption.42}\protected@file@percent }
+\newlabel{tab:gradient}{{22}{6}{dt-embedding gradient decomposition by loss component}{table.caption.42}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Mechanism is Environment-Specific}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Mitigation Failure}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Methodological Contribution}{6}{subsection.5.3}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{hafner2023dreamerv3}{1}
+\bibcite{hafner2020dreamerv1}{2}
+\bibcite{hafner2021dreamerv2}{3}
+\bibcite{nhu2025tawm}{4}
+\bibcite{sutton1999options}{5}
+\bibcite{lu2018nondelusional}{6}
+\bibcite{janner2019mbpo}{7}
+\bibcite{agarwal2021deep}{8}
+\bibcite{henderson2018deep}{9}
+\bibcite{bjorck2022high}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\gdef \@abspage@last{7}

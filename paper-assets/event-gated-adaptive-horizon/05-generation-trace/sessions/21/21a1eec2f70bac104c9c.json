@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a1eec2f70bac104c9c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis bootstrap cis",
+  "task_key": "worker_analysis_bootstrap_cis_20260516T184812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_cis_20260516T184812_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "5104b69f6db7d77541d5a7154097c6c771283726f7b06f8b3c2cd7d8c3f5bb0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**NVE Peak CIs (35K+ window, 10000 bootstraps):**\n\n| Condition | Mean | 95% CI | n |\n|-----------|------|--------|---|\n| no_dt_emb | 1.06× | [0.97, 1.14] | 2 |\n| trained_dt_emb | 3.29× | [1.62, 4.13] | 3* |\n| SGS_full (018v2) | 1.66× | — | 1 |\n| Cheetah cross-env | 8.65× | — | 1 |\n| SGS_partial (016e) | 10.42× | — | 1 |\n| dt1_imag | 2.36× | [0.94, 3.78] | 2 |\n\n*trained_dt_emb 注：008d/009e 共享前 55K 数据（NVE peak 在 55K），有效独立 n=2。\n\n**Collapse Rate CIs:**\n\n| Condition | Rate | 95% CI | n |\n|-----------|------|--------|---|\n| no_dt_emb | 0% | [0, 0] | 2 |\n| trained_dt_emb | 67% | [0, 100%] | 3 |\n| All CIVO conditions (pooled) | 71% | [43%, 100%] | 7 |\n| All control conditions (pooled) | 0% | [0, 0] | 3 |\n\n**Effect Size:**\n- trained_dt_emb − no_dt_emb NVE: Δ = +2.24, CI [+0.56, +3.16]（排除 0，显著）\n\n输出文件：`artifacts/bootstrap_cis.json`，已注册 (`art_20260516_8db708`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-cis-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23f4ceddedf08cf3611e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu0 cleanup and frozen ext",
+  "task_key": "worker_ops_gpu0-cleanup-and-frozen-ext_20260527T085423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0-cleanup-and-frozen-ext_20260527T085423_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "f255d42121f43da86573bfe1981a93f415a01ba2e7be37af918a4e3c28e8a232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| GPU | 显存占用 | 空闲 | 总量 | 利用率 |\n|-----|---------|------|------|--------|\n| 0 | 49176 MiB | **48077 MiB** | 97887 MiB | 0% |\n| 1 | 3276 MiB | 93977 MiB | 97887 MiB | 22% |\n\n**GPU 0 状况：**\n- 49176 MiB 显存被驱动级泄漏占用（无进程持有），PID 612905 已不存在，无 tmux session `exp_hopper_frozen_s0`\n- GPU reset 和 persistence mode 切换均被 AutoDL 阻止，无法释放泄漏显存\n- 剩余 **48077 MiB (47 GB) 可用且已验证**（成功分配 37.3 GB 测试张量）\n\nGPU 0 可正常使用，可用显存 47 GB 足够运行实验。如需完全释放 49 GB 泄漏显存，需重启 AutoDL 实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-cleanup-and-frozen-ext.md"
+}

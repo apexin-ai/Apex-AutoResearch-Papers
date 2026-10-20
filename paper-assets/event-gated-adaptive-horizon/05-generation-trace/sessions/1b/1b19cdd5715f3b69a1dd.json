@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b19cdd5715f3b69a1dd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code narrow dual critic implementation",
+  "task_key": "worker_code_narrow_dual_critic_implementation_20260521T074733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_narrow_dual_critic_implementation_20260521T074733_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "7d6650889700156590f26e19b265ff54b715715fca1c6e72da76a217d5bec8dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nNARROW_DUAL_CRITIC: hidden=256, 2× critics, each ~0.525M params, total ~1.050M params\nBASELINE_CRITIC: hidden=512, 1× critic, ~1.181M params\nRATIO: narrow_dual / baseline = 0.89×\nDRYRUN: pass (value1/value2 独立训练，min操作生效，metrics正常)\nSYNC_45299: done (md5 一致: f5ad0d44...models.py, 4c009d15...configs.yaml)\nSTATUS: ready_for_035\n```\n\n实现细节：\n- `configs.yaml` L65: `narrow_dual_critic: false`\n- `models.py`: `self._use_dual_critic` 统一控制 `dual_critic` 和 `narrow_dual_critic` 两条路径\n- `narrow_dual_critic=True` 时 `critic_units = config.units // 2 = 256`，两个 critic 均用 256 hidden\n- 三组互斥断言：narrow_dual_critic vs wide_critic vs dual_critic\n- CLI 用法：`--narrow_dual_critic True`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-narrow-dual-critic-implementation.md"
+}

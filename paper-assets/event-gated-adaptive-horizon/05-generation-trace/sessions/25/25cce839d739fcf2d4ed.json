@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25cce839d739fcf2d4ed",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 101 rssm prediction quality",
+  "task_key": "worker_code_exp_101_rssm_prediction_quality_20260526T041155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_101_rssm_prediction_quality_20260526T041155_result.json",
+    "occurrence": 1,
+    "bytes": 1594,
+    "sha256": "7bf12cf2b38274d911923046253a54c30f17a9ad89efcfea101cfed78c2c5963"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 产出\n\n### 1. 分析脚本\n**`scripts/analyze_rssm_exp101.py`** — 单 checkpoint RSSM prediction quality 分析\n- 参数：`--checkpoint_dir`, `--task`, `--label`, `--seed`, `--n_episodes`, `--device`, `--output`\n- 自动检测 obs 维度和 model label\n- 从 train_eps 加载 episode，采样 transitions\n- 对每个 transition 做 dt=1 (一步 img_step) 和 dt=2 (两步连续 img_step) 预测\n- 输出 JSON 带完整 provenance metadata\n\n### 2. 批量运行脚本\n**`scripts/run_exp101_all.sh`** — 遍历所有可用 checkpoint\n- 用法：`bash scripts/run_exp101_all.sh cuda:1`\n- 输出目录：`analysis_exp101/`\n\n### 3. Dry-run 结果 (PASSED)\n| 指标 | dt=1 | dt=2 | ratio |\n|------|------|------|-------|\n| obs_mse | 6.664 | 12.252 | **1.84x** |\n| reward_mae | 0.035 | 0.047 | **1.32x** |\n\nexp_008d (trained_dt_emb), 5 episodes, 200 transitions, 49.1s on cuda:1\n\n### 4. 可用 checkpoint（全部 6 个存在）\n| Checkpoint | Label | Task |\n|---|---|---|\n| exp_008d_civo_trigger_s4 | trained_dt_emb | walker |\n| exp_009d_baseline_walker_s1 | baseline | walker |\n| exp_009c_no_dt_emb_s2 | no_dt_emb | walker |\n| exp_084_frozen_dt_emb_walker_s0 | frozen_dt_emb | walker |\n| exp_092_cheetah_no_dt_emb_s1 | no_dt_emb | cheetah |\n| exp_093_cheetah_no_dt_emb_s2 | no_dt_emb | cheetah |\n\n### 5. 运行时间预估\n- 单模型 5 ep (dry-run): ~50s GPU\n- 单模型 n=1000 (约 112 个可用 episode): 受 `static_scan` O(n²) 拼接限制，预估 **15-20 min/model** on GPU\n- 全部 6 模型: **~1.5-2h** on GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-101-rssm-prediction-quality.md"
+}

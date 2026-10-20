@@ -1,0 +1,356 @@
+{
+  "exp_id": "exp_009a_baseline_walker_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:17:24.247Z",
+    "updated_at": "2026-05-15T06:33:12.892Z",
+    "hypothesis": "Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）",
+    "server": "bjb1-45299",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T07:19:08.969Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\"",
+      "code_commit": "09876d7080affdb0fb329e24753a46d998da9d8e"
+    },
+    "spec": {
+      "model_name": "DreamerV3 (original, gate_enabled=false)",
+      "seed": 2,
+      "data_path": "dmc_walker_walk",
+      "data_count": 500000
+    },
+    "pid": "142508",
+    "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/",
+    "metrics": {
+      "eval_trajectory": [
+        {
+          "step": 5000,
+          "eval_return": 41.21
+        },
+        {
+          "step": 15000,
+          "eval_return": 106.01
+        },
+        {
+          "step": 25000,
+          "eval_return": 325.33
+        },
+        {
+          "step": 35000,
+          "eval_return": 354.49
+        },
+        {
+          "step": 45000,
+          "eval_return": 498.01
+        },
+        {
+          "step": 55000,
+          "eval_return": 534.13
+        },
+        {
+          "step": 65000,
+          "eval_return": 688.87
+        },
+        {
+          "step": 75000,
+          "eval_return": 656.85
+        },
+        {
+          "step": 85000,
+          "eval_return": 618.73
+        },
+        {
+          "step": 95000,
+          "eval_return": 596.24
+        },
+        {
+          "step": 105000,
+          "eval_return": 836.51
+        },
+        {
+          "step": 115000,
+          "eval_return": 804.79
+        },
+        {
+          "step": 125000,
+          "eval_return": 865.48
+        },
+        {
+          "step": 135000,
+          "eval_return": 876.08
+        },
+        {
+          "step": 145000,
+          "eval_return": 869.18
+        },
+        {
+          "step": 155000,
+          "eval_return": 778.99
+        },
+        {
+          "step": 165000,
+          "eval_return": 864.03
+        },
+        {
+          "step": 175000,
+          "eval_return": 850.53
+        },
+        {
+          "step": 185000,
+          "eval_return": 907.31
+        },
+        {
+          "step": 195000,
+          "eval_return": 873.49
+        },
+        {
+          "step": 205000,
+          "eval_return": 887.02
+        },
+        {
+          "step": 215000,
+          "eval_return": 956.04
+        },
+        {
+          "step": 225000,
+          "eval_return": 892.09
+        },
+        {
+          "step": 235000,
+          "eval_return": 914.78
+        },
+        {
+          "step": 245000,
+          "eval_return": 950.32
+        },
+        {
+          "step": 255000,
+          "eval_return": 936.9
+        },
+        {
+          "step": 265000,
+          "eval_return": 937.27
+        },
+        {
+          "step": 275000,
+          "eval_return": 934.78
+        },
+        {
+          "step": 285000,
+          "eval_return": 960.2
+        },
+        {
+          "step": 295000,
+          "eval_return": 947.46
+        },
+        {
+          "step": 305000,
+          "eval_return": 937.8
+        },
+        {
+          "step": 315000,
+          "eval_return": 948.66
+        },
+        {
+          "step": 325000,
+          "eval_return": 930.61
+        },
+        {
+          "step": 335000,
+          "eval_return": 919.23
+        },
+        {
+          "step": 345000,
+          "eval_return": 816.18
+        },
+        {
+          "step": 355000,
+          "eval_return": 932.45
+        },
+        {
+          "step": 365000,
+          "eval_return": 943.13
+        },
+        {
+          "step": 375000,
+          "eval_return": 952.86
+        },
+        {
+          "step": 385000,
+          "eval_return": 942.31
+        },
+        {
+          "step": 395000,
+          "eval_return": 966.94
+        },
+        {
+          "step": 405000,
+          "eval_return": 948.01
+        },
+        {
+          "step": 415000,
+          "eval_return": 957.06
+        },
+        {
+          "step": 425000,
+          "eval_return": 939.37
+        },
+        {
+          "step": 435000,
+          "eval_return": 963.65
+        },
+        {
+          "step": 445000,
+          "eval_return": 948.42
+        },
+        {
+          "step": 455000,
+          "eval_return": 937.72
+        },
+        {
+          "step": 465000,
+          "eval_return": 939.54
+        },
+        {
+          "step": 475000,
+          "eval_return": 965.94
+        },
+        {
+          "step": 485000,
+          "eval_return": 916.74
+        },
+        {
+          "step": 495000,
+          "eval_return": 945.58
+        },
+        {
+          "step": 505000,
+          "eval_return": 957.87
+        }
+      ],
+      "value_trajectory": [
+        {
+          "step": 5000,
+          "value_mean": 0
+        },
+        {
+          "step": 25000,
+          "value_mean": 45.78
+        },
+        {
+          "step": 55000,
+          "value_mean": 253.49
+        },
+        {
+          "step": 105000,
+          "value_mean": 539.34
+        },
+        {
+          "step": 155000,
+          "value_mean": 633.42
+        },
+        {
+          "step": 205000,
+          "value_mean": 658.92
+        },
+        {
+          "step": 255000,
+          "value_mean": 663.87
+        },
+        {
+          "step": 305000,
+          "value_mean": 663.86
+        },
+        {
+          "step": 355000,
+          "value_mean": 663.78
+        },
+        {
+          "step": 405000,
+          "value_mean": 663.95
+        },
+        {
+          "step": 455000,
+          "value_mean": 664.42
+        },
+        {
+          "step": 505000,
+          "value_mean": 665.17
+        }
+      ],
+      "ve_ratio_trajectory": [
+        {
+          "step": 25000,
+          "ve": 0.141
+        },
+        {
+          "step": 55000,
+          "ve": 0.475
+        },
+        {
+          "step": 105000,
+          "ve": 0.645
+        },
+        {
+          "step": 155000,
+          "ve": 0.813
+        },
+        {
+          "step": 205000,
+          "ve": 0.743
+        },
+        {
+          "step": 255000,
+          "ve": 0.709
+        },
+        {
+          "step": 305000,
+          "ve": 0.708
+        },
+        {
+          "step": 355000,
+          "ve": 0.712
+        },
+        {
+          "step": 405000,
+          "ve": 0.7
+        },
+        {
+          "step": 455000,
+          "ve": 0.709
+        },
+        {
+          "step": 505000,
+          "ve": 0.694
+        }
+      ],
+      "final_eval_return": 957.87,
+      "final_eval_step": 505000,
+      "eval_return_peak": 966.94,
+      "eval_return_peak_step": 395000,
+      "last10_mean": 947.19,
+      "final_value_mean": 665.17,
+      "final_ve_ratio": 0.694,
+      "ve_stable_range": "0.69-0.72 from 235K+",
+      "total_steps": 505000,
+      "n_evals": 51,
+      "vs_exp001_105K": "836.51 vs 915.67 (-8.6%)",
+      "vs_exp001_peak": "966.94 vs 970.41 (-0.4%)",
+      "vs_exp001_last10": "947.19 vs 950.90 (-0.4%)",
+      "vs_exp001_final": "957.87 vs 970.41 (-1.3%)",
+      "cross_seed_ve_stable": "seed 2 v/e = 0.69-0.72 matches seed 0/1 = 0.69-0.72"
+    },
+    "notes": "D032 排期确认: cuda:0 排期: 009a (RUNNING, 368K/500K=73.6%) → 009d → 010a。进度: eval stable 900-960 from 215K+, brief dip 816@345K recovered to 943@365K. Spec补全: server=bjb1-45299, gpu=cuda:0, pid=142508.",
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/latest.pt",
+    "completed_at": "2026-05-15T06:33:12.892Z"
+  },
+  "timestamp": "2026-05-15T06:33:12.987406+00:00",
+  "trigger": "update_registry"
+}

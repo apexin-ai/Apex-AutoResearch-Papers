@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d610d72894aa487e96",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check 084 085 status",
+  "task_key": "worker_ops_check_084_085_status_20260525T162524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_084_085_status_20260525T162524_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "e38aa420b00c466130e60462e0dee607a615ba82ff3213d34d13710de336b016"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修复。汇总：\n\n## 结果\n\n| 实验 | PID | 状态 | 运行时间 | GPU | VRAM | Registry |\n|------|-----|------|---------|-----|------|----------|\n| exp_084 (seed=0) | 296484 | 运行中 | ~8h20m | GPU 0, 15% util | 3.8GB/98GB | PREPARING → RUNNING ✓ |\n| exp_085 (seed=1) | 296781 | 运行中 | ~8h11m | GPU 1, 30% util | 2.8GB/98GB | PREPARING → RUNNING ✓ |\n\n**日志最新状态**（均在 step 8000）：\n- exp_084: train_return 29.6~55.1, gate_dt_mean=2.0, gate_dt_2_frac=1.0\n- exp_085: train_return 30.1~101.7, gate_dt_mean=2.0, gate_dt_2_frac=1.0\n\ngate_dt 始终锁定在 2.0（100% dt=2），符合 frozen dt_emb 不触发 CIVO 的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-084-085-status.md"
+}

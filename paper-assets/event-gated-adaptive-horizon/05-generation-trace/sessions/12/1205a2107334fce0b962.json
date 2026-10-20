@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1205a2107334fce0b962",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra check tmux 093 094",
+  "task_key": "worker_infra_check_tmux_093_094_20260525T230435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_tmux_093_094_20260525T230435_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "b487aa99fbb473ba933723ff902e6b47f6cf2ef6eab2d690e70512e5e1055a2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 实验 | 服务器 | PID | 当前步数 | eval_return@5k | 状态 |\n|------|--------|-----|---------|----------------|------|\n| exp_093 (no_dt_emb, s2) | bjb1-45299, cuda:1 | 313815 | ~8000 | 9.1 | RUNNING ✓ |\n| exp_094 (008d, s3) | westd-19154, cuda:0 | 53581 | ~8000 | 8.7 | RUNNING ✓ |\n\n附带确认：\n- **exp_092** (bjb1-45299, cuda:0, PID 313538) 也在跑，同步到 step 8000\n- **exp_095** (westd-19154, cuda:1, PID 54124) 也已启动并在跑\n\n两个 registry 已从 PREPARING → QUEUED → RUNNING 更新完毕。\"duplicate session\" 错误确认是因为之前的提交已成功创建了 tmux session，训练正常进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-tmux-093-094.md"
+}

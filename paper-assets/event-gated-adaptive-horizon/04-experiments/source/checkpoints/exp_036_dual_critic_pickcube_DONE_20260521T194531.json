@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_036_dual_critic_pickcube",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:43:18.481296+00:00",
+    "updated_at": "2026-05-21T19:45:31.290Z",
+    "hypothesis": "Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.",
+    "parent": "exp_032_dual_critic_walker",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "gpu_id": 0,
+      "pid": "2476",
+      "data_path": "ManiSkill PickCube-v1",
+      "data_count": 200000,
+      "model_name": "DreamerV3 + Dual Critic",
+      "seed": 0,
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log",
+      "submitted_at": "2026-05-21T08:43:44.544357+00:00",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hyperparams": {
+        "gate_enabled": true,
+        "gate_fixed_dt": 2,
+        "gate_subsample_max_dt": 2,
+        "imag_horizon": 8,
+        "dual_critic": true,
+        "tcn_sigma": 0.0
+      },
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 39706.7,
+      "gpu_hours": 11.03
+    },
+    "metrics": {
+      "eval_return_final": 27.7,
+      "eval_return_peak": 27.7,
+      "nve_final": 0.2,
+      "nve_peak": 2.3,
+      "civo_alert": 0,
+      "gate_dt_2_frac": 1,
+      "steps": 212447
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T19:38:24.346Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T19:38:29.196731+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T19:45:31.290Z"
+  },
+  "timestamp": "2026-05-21T19:45:31.617654+00:00",
+  "trigger": "update_registry"
+}

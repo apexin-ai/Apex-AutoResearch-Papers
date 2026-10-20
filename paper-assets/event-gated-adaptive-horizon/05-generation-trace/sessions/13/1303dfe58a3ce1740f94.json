@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1303dfe58a3ce1740f94",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper icml template switch",
+  "task_key": "worker_paper_icml_template_switch_20260524T095808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_icml_template_switch_20260524T095808_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "af59b3a510915e4fb489a6e6ccdd7a82eb1a4bcdcc1c45232e1ae5c38f05041a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Appendix agent also confirmed — MD5 matches between local and server. All files synced and compilation clean."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-icml-template-switch.md"
+}

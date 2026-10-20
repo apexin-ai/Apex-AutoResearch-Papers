@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_095_cheetah_008a_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T23:05:17.077Z",
+    "updated_at": "2026-05-25T23:31:42.647Z",
+    "hypothesis": "Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF) + gate_fixed_dt=2 + H=15, seed=0 — Cheetah 版 Walker 008a 配置。Subsample OFF 意味着训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练。预期无 CIVO（value growth suppression），验证 C3 cross-env。plan_023。",
+    "parent": "exp_008a_no_subsample_dt2",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_095_cheetah_008a_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --imag_horizon 15\"",
+      "server": "westd-19154",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "54457",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_095_cheetah_008a_s0.log",
+      "submitted_at": "2026-05-25T23:05:28.832Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "dmc_cheetah_run",
+      "data_count": 105000,
+      "model_name": "DreamerV3 (trained dt_emb, subsample OFF, H=15, Cheetah 008a)",
+      "seed": 0,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "dmc_cheetah_run (online eval)",
+      "wall_clock_seconds": 1573.8,
+      "gpu_hours": 0.44
+    },
+    "conclusion": "killed",
+    "notes": "RENAMED to exp_096_cheetah_008a_s0 — 因 exp_095 编号已被 exp_095_cheetah_no_dt_emb_s3 (plan_022, C2 control) 占用。实际进程仍在 westd cuda:0 以 tmux session \"exp_095_cheetah_008a_s0\" 运行，cron 回调时需映射到 exp_096。",
+    "completed_at": "2026-05-25T23:31:42.647Z"
+  },
+  "timestamp": "2026-05-25T23:31:43.128758+00:00",
+  "trigger": "update_registry"
+}

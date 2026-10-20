@@ -1,0 +1,500 @@
+{
+  "schema_version": "1.0",
+  "id": "0c7696579102ab7f3c4e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper appendix nve sensitivity table",
+  "task_key": "worker_paper_appendix_nve_sensitivity_table_20260515T183716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_nve_sensitivity_table_20260515T183716.log",
+    "occurrence": 1,
+    "bytes": 11376,
+    "sha256": "af69243a41d67c616899b0f6513e47e4fb9ede61bda4ee47e9760c020c51259c"
+  },
+  "statistics": {
+    "messages": 10,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+                "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f3370278-818e-4af1-90cb-69b9a00346eb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778887200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "2e80dd19-8983-4203-8d06-e6eaf44eb766",
+                "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to generate a LaTeX table for NVE sensitivity analysis and save it to a specific path. Let me create the table and save it.",
+              "signature": "EskCClkIDRgCKkBbLJ99VbFOZ4K9Eai3iZgMxVVHWkSJr11q9534lACGZgEXXuYDlIqzl+h/h7en08SssHy2o7Gex5qO/QSdIUquMg9jbGF1ZGUtb3B1cy00LTY4ABIMwXxJ9MJA0Rq681KuGgwSa2p7VHW9NDLX5iQiMPtE9KOVzOn37ZwIEsmwaYc5DdmnDP5R6mlYNAHt1dPPcGPNHT8vb9WxXAG2ke6QDiqdAc+TaQTkknPFB/LdxvL0vcYO1eFgcCmOllFBeZqeV0ukFj/sH38PaOHCaN9okyw2Wh2/Op+lnFUbActOAjq+ejOGq1AoXsxCl06S8jbbk7cySnMBQ+ItlX6t6BAAR21nsIDhhz32EDGUvuDFMBXR2IH5QUKNoGNyAtd40vnPwLODe4nl108axrCAPPLEXJEJwyAQXVnP3SJnyZQxJ0QYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "e5b87574-8a79-41e6-b2e9-9c63719f7673",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PiCigYqTsdkRigLdvTnEq1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12303,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12303
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QJ9z65nviDqhLEfKYXqkcH",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables",
+                "description": "Create paper/tables directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "494b825d-33c9-4b10-9b38-7fa5602c1059",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PiCigYqTsdkRigLdvTnEq1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12303,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12303
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T18:37:26.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QJ9z65nviDqhLEfKYXqkcH",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "493a4b36-e906-47a2-8d5c-96f1fe7a6e83",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QZRFZHiYCUmfhU1Upywrmp",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables/nve_sensitivity_table.tex",
+                "content": "\\begin{table}[h]\n\\centering\n\\caption{NVE threshold sensitivity analysis for CIVO detection. Task~B2 (main text) uses a 1.5$\\times$ threshold yielding one false positive (008e\\_v3\\_s2, identified as non-CIVO Imagination-Reality Divergence). Task~B1 uses a stricter 1.7$\\times$ threshold achieving perfect separation but with only 2 positive samples. All CIs are two-sided Clopper-Pearson exact binomial ($\\alpha/2 = 0.025$).}\n\\label{tab:nve_sensitivity}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccccl@{}}\n\\toprule\nTask & Threshold & $n$ & Pos/Neg & AUROC & Accuracy & CP 95\\% CI & Margin & Note \\\\\n\\midrule\nB2 (main) & $\\geq 1.5\\times$ & 8 & 3\\,/\\,5 & 0.933 & 87.5\\% & [0.474, 0.997] & $-2.16$ & 1 FP (008e\\_v3\\_s2: IRD) \\\\\nB1 (sens.) & $\\geq 1.7\\times$ & 8 & 2\\,/\\,6 & 1.000 & 100\\% & [0.631, 1.000] & $+0.35$ & $n_{\\text{pos}}=2$, low power \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{4pt}\n\\noindent\\small\\textit{The stricter 1.7$\\times$ threshold (B1) achieves perfect separation but with only $n_{\\text{pos}}=2$, limiting statistical power. The 1.5$\\times$ threshold (B2) increases recall at the cost of one false positive driven by non-CIVO Imagination-Reality Divergence.}\n\\end{table}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "ab39d6f5-2a7e-4a8f-a369-1e69b338a2d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XPZb2SLM8T3eNMnL2QQesb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 23750,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 176
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T18:37:38.638Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QZRFZHiYCUmfhU1Upywrmp",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables/nve_sensitivity_table.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "50184f61-1740-4a87-9056-f24b2f7ecd52",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables/nve_sensitivity_table.tex",
+              "content": "\\begin{table}[h]\n\\centering\n\\caption{NVE threshold sensitivity analysis for CIVO detection. Task~B2 (main text) uses a 1.5$\\times$ threshold yielding one false positive (008e\\_v3\\_s2, identified as non-CIVO Imagination-Reality Divergence). Task~B1 uses a stricter 1.7$\\times$ threshold achieving perfect separation but with only 2 positive samples. All CIs are two-sided Clopper-Pearson exact binomial ($\\alpha/2 = 0.025$).}\n\\label{tab:nve_sensitivity}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccccl@{}}\n\\toprule\nTask & Threshold & $n$ & Pos/Neg & AUROC & Accuracy & CP 95\\% CI & Margin & Note \\\\\n\\midrule\nB2 (main) & $\\geq 1.5\\times$ & 8 & 3\\,/\\,5 & 0.933 & 87.5\\% & [0.474, 0.997] & $-2.16$ & 1 FP (008e\\_v3\\_s2: IRD) \\\\\nB1 (sens.) & $\\geq 1.7\\times$ & 8 & 2\\,/\\,6 & 1.000 & 100\\% & [0.631, 1.000] & $+0.35$ & $n_{\\text{pos}}=2$, low power \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{4pt}\n\\noindent\\small\\textit{The stricter 1.7$\\times$ threshold (B1) achieves perfect separation but with only $n_{\\text{pos}}=2$, limiting statistical power. The 1.5$\\times$ threshold (B2) increases recall at the cost of one false positive driven by non-CIVO Imagination-Reality Divergence.}\n\\end{table}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已保存到 `paper/tables/nve_sensitivity_table.tex`。\n\n要点：\n- 使用 booktabs，`\\setlength{\\tabcolsep}{4pt}` + `@{}` 压缩至单栏宽度\n- CI 值保留 3 位小数，与全文 Clopper-Pearson 双侧格式一致\n- 表尾 italic 注释对比两个阈值的 trade-off"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "uuid": "2f4c7cfe-91b7-4ae4-82b0-d53667d6e0a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UKz7eN73EV2iQhcDWvbXvG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 682,
+                "cache_read_input_tokens": 23926,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 682
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已保存到 `paper/tables/nve_sensitivity_table.tex`。\n\n要点：\n- 使用 booktabs，`\\setlength{\\tabcolsep}{4pt}` + `@{}` 压缩至单栏宽度\n- CI 值保留 3 位小数，与全文 Clopper-Pearson 双侧格式一致\n- 表尾 italic 注释对比两个阈值的 trade-off"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 20153,
+            "duration_api_ms": 20789,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "9520f0a1-73a4-4819-846e-0619aaf4ffdc",
+            "total_cost_usd": 0.13635175,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 13161,
+              "cache_read_input_tokens": 59123,
+              "output_tokens": 907,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 13161,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 127,
+                  "cache_read_input_tokens": 23926,
+                  "cache_creation_input_tokens": 682,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 682
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1754,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001839,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4,
+                "outputTokens": 907,
+                "cacheReadInputTokens": 59123,
+                "cacheCreationInputTokens": 13161,
+                "webSearchRequests": 0,
+                "costUSD": 0.13451275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7d0108e3-99b3-4a84-869c-d8e48f9471c6"
+          },
+          "id": "event-000010"
+        }
+      ],
+      "message_count": 10
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-appendix-nve-sensitivity-table.md"
+}

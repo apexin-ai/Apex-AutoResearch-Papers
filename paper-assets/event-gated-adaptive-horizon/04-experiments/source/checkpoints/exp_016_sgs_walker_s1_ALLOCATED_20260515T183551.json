@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_016_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:30:32.999Z",
+    "updated_at": "2026-05-15T18:35:50.923Z",
+    "hypothesis": "Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路。预期：不崩溃，nve < 1.5x baseline；imagination dt=2/dt=1 reward ratio 从 008d 的 2.90x 大幅下降（plan_016, 论文 method section 核心）",
+    "parent": "exp_008d_subsample_on_h8",
+    "notes": "Director 调整优先级：017 先于 016。cuda:1 释放后先跑 017，017 完成后再跑 016。SGS 诊断 bug 已修复（models.py L388-417 删除），dry-run 通过。",
+    "spec": {
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T18:35:51.030780+00:00",
+  "trigger": "update_registry"
+}

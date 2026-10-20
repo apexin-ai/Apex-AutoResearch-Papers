@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a9720848a9cea6a4eb7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper latex compilation check",
+  "task_key": "worker_paper_latex-compilation-check_20260518T142453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_latex-compilation-check_20260518T142453_result.json",
+    "occurrence": 1,
+    "bytes": 1835,
+    "sha256": "905e6037a46772978978b46b3e231ae478c55d7967d632ec65febf86c8fd1e88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。以下是完整报告：\n\n---\n\n## 编译结果汇报\n\nPDF 成功生成（26 页），但存在以下问题：\n\n### ERRORS（1 处，严重）\n\n**`sections/results.tex:110`** — `\\footnotemark` 在 `\\caption{}` 内导致解析错误：\n```\n! Argument of \\caption@ydblarg has an extra }.\n! Paragraph ended before \\caption@ydblarg was complete.\n```\n`\\caption` 是 moving argument，`\\footnotemark` 是 fragile 命令。**修复：改为 `\\protect\\footnotemark`**。\n\n### WARNINGS — Overfull hbox（1 处，影响排版）\n\n| 位置 | 超出宽度 | 原因 |\n|------|---------|------|\n| `appendix.tex:14-67` | 18.66pt | Complete Results 表格（8 列）过宽 |\n\n### WARNINGS — Float specifier（6 处）\n\n`appendix.tex` 中 6 个 float 使用了 `[h]`（仅 here），LaTeX 会自动改为 `[ht]`。建议统一改为 `[ht]` 或 `[htbp]`：\n- 第 83, 200, 277, 332, 375 行（`\\begin{table}[h]`）\n- 第 317 行（`\\begin{figure}[h]`）\n\n### WARNINGS — Underfull boxes（8 处，轻微）\n\n主要是页面布局松散导致的 vbox badness 和段落排版的 hbox badness，多出现在 appendix 区域。非关键问题。\n\n### 无问题项\n\n- **所有 `\\ref{}` 都有匹配的 `\\label{}`** — 0 个 undefined reference\n- **所有 `\\cite{}` 都有匹配的 bib key** — 0 个 undefined citation\n- **所有 `\\input` 文件存在** — 8 个 section 文件 + references.bib + corl_2026.sty 均在\n- **图片文件均存在** — 5 个 PDF 图片正常加载\n\n### 优先修复顺序\n\n1. `results.tex:110`：`\\footnotemark` → `\\protect\\footnotemark`（消除 error）\n2. `appendix.tex:14-67`：缩减表格宽度或用 `\\resizebox`（消除 18.66pt overfull）\n3. `appendix.tex` 6 处 `[h]` → `[ht]`（消除 float specifier warning）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-latex-compilation-check.md"
+}

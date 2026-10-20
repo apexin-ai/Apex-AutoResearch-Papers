@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "048a5e230725d895a84a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops exp 029a finalize",
+  "task_key": "worker_ops_exp_029a_finalize_20260520T164631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_029a_finalize_20260520T164631_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "b12f55339a6e642d056b9e24710d1a4be98318c513bb8c11ae3a6328ee34d24d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修复。Cron 不存在（可能已被清除或未在当前 session 注册）。\n\n```\n日志最后记录: step 224K, 训练正常结束，最后 eval@215K return=161.3, NVE=0.1864\ncheckpoint_path: /root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02/latest.pt\nlog_path: /root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02/metrics.jsonl\neval_last10_mean: 282.15\nRegistry: DONE/success ✓\nCron: 不存在（已清除）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-029a-finalize.md"
+}

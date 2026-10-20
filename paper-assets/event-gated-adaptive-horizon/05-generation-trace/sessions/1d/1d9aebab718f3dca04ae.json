@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d9aebab718f3dca04ae",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops p0 bjb1 45299 snapshot",
+  "task_key": "worker_ops_p0_bjb1_45299_snapshot_20260520T114438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0_bjb1_45299_snapshot_20260520T114438_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "5ef28aeb7717d7bd908debabc194427c9e5866cf59fd3e4a725e4328275e44ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== exp_027_tcn_walker_s1 (σ=0.5 s1) ===\nPID: 888926, 状态: running (cuda:1)\n当前 step: ~195K / 210K\n\neval_return 完整轨迹:\n  5K=31.0, 15K=140.5, 25K=163.6, 35K=153.0, 45K=136.8, 55K=158.3,\n  65K=298.5, 75K=364.9, 85K=134.0, 95K=94.6, 105K=216.7, 115K=318.9,\n  125K=309.1, 135K=216.1, 145K=175.4, 155K=171.0, 165K=209.5, 175K=120.4,\n  185K=355.4, 195K=183.3\n\nve_ratio 完整轨迹:\n  15K=0.025, 25K=0.142, 35K=0.359, 45K=0.610, 55K=0.709, 65K=0.488,\n  75K=0.490, 85K=1.410, 95K=1.637, 105K=0.644, 115K=0.402, 125K=0.380,\n  135K=0.508, 145K=0.847, 155K=0.857, 165K=0.539, 175K=0.735, 185K=0.211,\n  195K=0.351\n\n汇总: eval_peak=364.9@75K, ve_ratio_max=1.637@95K\n注意: gate_dt 全程锁定在 2.0 (dt_2_frac=100%, entropy=0.0)\n\n=== exp_030b_tcn_cheetah_s0_sigma05 (Cheetah σ=0.5) ===\nPID: 903247, 状态: running (cuda:0)\n当前 step: ~15K / 210K (刚启动不久)\n\neval_return: 5K=8.3, 15K=78.3\nve_ratio: 15K=0.020\ngate_dt: 锁定 2.0 (dt_2_frac=100%)\n\n=== GPU ===\ncuda:0: 21% util, 3801 / 97887 MiB  ← PID 903247 (exp_030b, 3257 MiB)\ncuda:1: 23% util, 2753 / 97887 MiB  ← PID 888926 (exp_027, 2744 MiB)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-bjb1-45299-snapshot.md"
+}

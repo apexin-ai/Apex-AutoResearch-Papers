@@ -1,0 +1,19 @@
+{
+  "exp_id": "exp_016c_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:12:09.799Z",
+    "updated_at": "2026-05-15T19:12:27.566Z",
+    "hypothesis": "Walker Walk SGS (reward_dt_emb_detach=True) + subsample ON + H=8 seed 1 — 论文 method section 核心。GPU 1 清理+验证通过后重启（plan_016）",
+    "parent": "exp_008d_subsample_on_h8",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root"
+  },
+  "timestamp": "2026-05-15T19:12:27.689404+00:00",
+  "trigger": "update_registry"
+}

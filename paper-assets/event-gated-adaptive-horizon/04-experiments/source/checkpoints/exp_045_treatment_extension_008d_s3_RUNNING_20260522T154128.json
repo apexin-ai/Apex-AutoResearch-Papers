@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_045_treatment_extension_008d_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-22T09:40:52.894Z",
+    "updated_at": "2026-05-22T15:41:28.277Z",
+    "status": "RUNNING",
+    "retry_count": 0,
+    "hypothesis": "CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamics data for the treatment extension analysis (Reviewer Q: does CIVO self-correct or persist?)",
+    "parent": "exp_008d_civo_trigger_s3",
+    "spec": {
+      "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s3",
+      "server": "bjb1-45299",
+      "gpu_ids": [
+        0
+      ],
+      "pid": "70945",
+      "data_path": "dmc_walker_walk (online RL)",
+      "data_count": 300000,
+      "model_name": "DreamerV3 (trained dt_emb, CIVO config)",
+      "seed": 3,
+      "checkpoint_source": "exp_008d_civo_trigger_s3/latest.pt (step 112K)",
+      "eval_data": "dmc_walker_walk (online eval, same as training env)",
+      "log_path": "logdir/exp_045_treatment_extension_008d_s3/train.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T15:41:28.584796+00:00",
+  "trigger": "update_registry"
+}

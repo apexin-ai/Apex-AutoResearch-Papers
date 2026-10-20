@@ -1,0 +1,1888 @@
+tier: median
+narrative_guidance: 'Median 档核心叙事：C1-C7 诊断主线完全成立（31+ 配置、2+ 环境），C8 降级为 "exploratory
+  forward-pass intervention"。
+
+  TCN σ=0.2 在 Walker Walk 上是项目首个完全预防 CIVO 的干预（s0 NVE 全程 < 1.0×，eval peak 821），
+
+  但 s1 eval peak 显著低于 s0（< 500），Cheetah σ=0.5 失败（NVE 3-20×）。
+
+  最优 σ 是 environment-specific 且 narrow band（σ=0.1 不足、σ=0.5 过量、σ=0.2 仅 Walker 有效），
+
+  无 universal σ 存在。Forward-pass principle 方向正确但实现需要 adaptive calibration（超出本文 scope）。
+
+
+  叙事重心移回诊断：SGS 全面失败（C7, 1/17 across 3 variants）+ TCN Walker 成功 + TCN Cheetah 失败
+
+  共同构成 "干预难度梯度"——backward-pass (SGS) < forward-pass uniform noise (TCN) < (future)
+  adaptive forward-pass。
+
+  C8 标题从 "forward-pass intervention" 改为 "exploratory forward-pass intervention"，
+
+  所有 TCN 结论加 "Walker Walk only" scope 限定，Cheetah 失败作为 "calibration challenge" 呈现。
+
+
+  Running experiments 预测：
+
+  - exp_029a (TCN Walker s1 σ=0.2)：NVE 保持 < 1.5×，eval peak ~450（远低于 s0 的 821），prevention
+  成功但性能不可泛化
+
+  - exp_030b (TCN Cheetah s0 σ=0.5)：NVE 3-15×，eval peak ~120-200，Cheetah severity
+  gap 无法被 σ=0.5 覆盖
+
+  - exp_029c (TCN Walker s0 σ=0.1)：NVE 可能 breach 1.5×（噪声不足），eval peak ~300-500
+
+  - exp_031 (TCN PickCube s0 σ=0.2)：预计 negative——PickCube 动力学与 locomotion 差异大，σ=0.2
+  未必适用
+
+
+  Paper claims：C1-C7 fully supported (7 claims)，C8 partial (scoped to Walker proof-of-concept)。
+
+  CoRL reviewer 可能要求补充 environment 或 challenge robustness——准备 rebuttal 强调诊断贡献独立于 C8。
+
+  '
+imagined_experiments:
+- name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+  plan_id: plan_011
+  description: 'Replicate CIVO trigger with 2 additional independent seeds. 008d config:
+    dt=2, subsample ON, trained dt_emb, H=8.'
+  expected_results:
+    seed1:
+      eval_trajectory:
+        5K: 31
+        15K: 155
+        25K: 170
+        35K: 150
+        45K: 143
+        55K: 85
+        65K: 245
+        75K: 180
+        85K: 200
+        95K: 135
+        105K: 130
+      eval_peak: 245
+      eval_peak_step: 65K
+      eval_final: 130
+      nve_25K: 1.78
+      nve_35K: 1.71
+      nve_45K: 2.09
+      nve_55K: 4.12
+      nve_peak: 4.12
+      nve_peak_step: 55K
+      collapse: true
+      collapse_type: classic CIVO (value-driven, entropy decreasing)
+      collapse_onset: 25K
+    seed2:
+      eval_trajectory:
+        5K: 39
+        15K: 144
+        25K: 141
+        35K: 164
+        45K: 141
+        55K: 172
+        65K: 209
+        75K: 197
+        85K: 236
+        95K: 279
+        105K: 268
+      eval_peak: 279
+      eval_peak_step: 95K
+      eval_final: 268
+      nve_25K: 2.05
+      nve_35K: 1.24
+      nve_45K: 1.62
+      nve_55K: 1.41
+      nve_65K: 0.94
+      nve_75K: 0.66
+      nve_85K: 0.51
+      nve_95K: 0.43
+      nve_105K: 0.38
+      nve_peak: 2.05
+      nve_peak_step: 25K
+      collapse: false
+      collapse_type: transient CIVO, self-correction
+    cross_seed_summary:
+      nve_exceeds_1_5x: 2/2 seeds
+      collapse_rate: 1/2 (50%)
+      nve_threshold_separating_power: maintained — both seeds exceed 1.5× at some
+        point
+  result_rationale: 'Trained dt_emb 可靠地诱导 NVE > 1.5×（2/2 seeds），因为 RSSM 在 dt>1 的 fidelity
+    gap
+
+    通过精确的 dt_embedding conditioning 被放大为系统性 reward overestimation。
+
+    Collapse 是 stochastic 的（1/2），取决于训练早期的随机性（权重初始化、mini-batch 采样序列）
+
+    是否让 NVE 跨过 "point of no return" threshold 从而锁定正反馈循环。
+
+    Seed 2 在 45K 后 NVE 开始下降（1.62→0.38），展示了 value self-correction——
+
+    early stochasticity 使其避开了持续 overestimation 的轨迹。
+
+    '
+  tables:
+  - title: 008d cross-seed NVE comparison
+    columns:
+    - step
+    - seed1_nve
+    - seed2_nve
+    - pathological_threshold
+    rows:
+    - - 25K
+      - 1.78
+      - 2.05
+      - 1.5
+    - - 35K
+      - 1.71
+      - 1.24
+      - 1.5
+    - - 45K
+      - 2.09
+      - 1.62
+      - 1.5
+    - - 55K
+      - 4.12
+      - 1.41
+      - 1.5
+    - - 105K
+      - collapsed
+      - 0.38
+      - 1.5
+  figures_description:
+  - 'Fig A: 008d seed 1 vs seed 2 eval trajectory — seed 1 collapses at 55K while
+    seed 2 shows slow recovery to 268'
+  - 'Fig B: NVE trajectory overlay — both exceed 1.5× early, seed 1 accelerates (sustained),
+    seed 2 self-corrects (transient)'
+  analysis: 'C2 因果方向在两个独立 seed 上复现。NVE > 1.5× threshold 的 separating power
+
+    从 4/4 (原始) 维持。关键新增发现：value self-correction mechanism (seed 2)
+
+    的存在说明 CIVO 不是 deterministic collapse 而是 stochastic bifurcation——
+
+    early training dynamics 决定 sustained vs transient 轨迹。
+
+    '
+- name: Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2
+  plan_id: plan_012
+  description: Replicate causal control (no dt_embedding → no CIVO) with additional
+    seeds.
+  expected_results:
+    seed1:
+      eval_trajectory:
+        5K: 30
+        15K: 165
+        25K: 195
+        35K: 210
+        45K: 190
+        55K: 175
+        65K: 370
+        75K: 320
+        85K: 250
+        95K: 320
+        105K: 500
+      eval_peak: 500
+      eval_peak_step: 105K
+      eval_final: 500
+      nve_max_35kplus: 1.02
+      nve_105K: 0.3
+      collapse: false
+      reward_MAE: 0.75
+    seed2:
+      eval_trajectory:
+        5K: 30
+        15K: 157
+        25K: 169
+        35K: 179
+        45K: 211
+        55K: 239
+        65K: 244
+        75K: 359
+        85K: 227
+        95K: 191
+        105K: 148
+      eval_peak: 359
+      eval_peak_step: 75K
+      eval_final: 148
+      nve_max_35kplus: 1.26
+      nve_105K: 1.14
+      collapse: false
+      pattern: peak-then-decline, no CIVO but poor late performance
+    seed3:
+      eval_trajectory:
+        5K: 31
+        15K: 148
+        25K: 180
+        35K: 220
+        45K: 255
+        55K: 300
+        65K: 280
+        75K: 310
+        85K: 350
+        95K: 290
+        105K: 312
+      eval_peak: 350
+      eval_peak_step: 85K
+      eval_final: 312
+      nve_max_35kplus: 0.85
+      nve_105K: 0.52
+      collapse: false
+    seed4:
+      eval_peak: 488
+      eval_final: 307
+      nve_peak: 1.41
+      nve_105K: 0.58
+      collapse: false
+    cross_seed_summary:
+      nve_exceeds_1_5x: 0/4 seeds
+      collapse_rate: 0/4
+      eval_range_105K: '[148, 500]'
+      mean_nve_105K: 0.64
+  result_rationale: '去掉 dt_embedding 后 reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01×
+    vs 008d 的 2.78×），
+
+    reward_MAE 升至 baseline 75×。CIVO 反馈循环被完全阻断——critic 无法利用精确的 dt 信号
+
+    进行 value exploitation。所有 seed 的 NVE 保持 < 1.5×（最高 1.26×，瞬态）。
+
+    但性能受限（eval 148-500 vs baseline 916）因为模型丧失了所有时间信息编码能力。
+
+    Seed 间高 variance（148-500）反映了无时间信息条件下的学习不稳定性。
+
+    '
+  tables:
+  - title: 'No-dt-emb causal control: 4-seed summary'
+    columns:
+    - seed
+    - eval_peak
+    - eval_105K
+    - nve_peak
+    - nve_105K
+    - CIVO
+    rows:
+    - - 1
+      - 500
+      - 500
+      - 1.02
+      - 0.3
+      - 'No'
+    - - 2
+      - 359
+      - 148
+      - 1.26
+      - 1.14
+      - 'No'
+    - - 3
+      - 350
+      - 312
+      - 0.85
+      - 0.52
+      - 'No'
+    - - 4
+      - 488
+      - 307
+      - 1.41
+      - 0.58
+      - 'No'
+  figures_description:
+  - 'Fig: 008f 4-seed NVE overlay — all seeds remain below 1.5× threshold (dashed
+    line), contrasting sharply with 008d''s 2/2 breaches'
+  analysis: '因果控制在 4 seeds 上 100% 复现（0/4 CIVO）。与 008d 的对比：trained dt_emb 2/2 exceed
+    1.5×，
+
+    no dt_emb 0/4 exceed 1.5× → 6/6 perfect classification on this pair。
+
+    008f 的角色是因果控制实验（非推荐方案），证明 dt_embedding conditioning 是 CIVO 的 necessary condition。
+
+    '
+- name: Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2
+  plan_id: plan_013
+  description: Replicate value growth suppression with unexposed dt_emb (trained but
+    only on dt=1 data). Subsample OFF + H=15.
+  expected_results:
+    seed1:
+      eval_trajectory:
+        5K: 31
+        15K: 167
+        25K: 140
+        35K: 394
+        45K: 414
+        55K: 441
+        65K: 492
+        75K: 452
+        85K: 547
+        95K: 629
+        105K: 631
+      eval_peak: 631
+      eval_peak_step: 105K
+      eval_final: 631
+      nve_105K: 0.43
+      civo_alert: 0
+      pattern: slow but steady climb, no zigzag
+    seed2:
+      eval_trajectory:
+        5K: 31
+        15K: 175
+        25K: 280
+        35K: 410
+        45K: 380
+        55K: 608
+        65K: 654
+        75K: 534
+        85K: 605
+        95K: 819
+        105K: 899
+      eval_peak: 899
+      eval_peak_step: 105K
+      eval_final: 899
+      nve_105K: 0.33
+      civo_alert: 0
+      pattern: strong recovery, near-baseline performance
+    cross_seed_summary:
+      nve_exceeds_1_5x: 0/2
+      collapse_rate: 0/2
+      eval_range_105K: '[631, 899]'
+      mean_eval_105K: 765
+      vs_baseline_105K: -5% to -31%
+  result_rationale: 'Unexposed dt_emb（trained 但仅见过 dt=1 数据）保留了有用的时间表征但无法被 dt>1 exploitation。
+
+    因为 subsample OFF 意味着训练数据全部是 dt=1 transitions，dt_embedding 学到的是 dt=1 的表征——
+
+    当 imagination 用 dt=2 时，embedding 提供的是不精确的（dt=1-tuned）信号，
+
+    critic 无法建立精确 dt>1 conditioning → CIVO 反馈循环无法启动。
+
+    Value growth 被抑制在 baseline 水平以下（NVE 0.33-0.43×），性能保留 69-98% baseline。
+
+    '
+  tables:
+  - title: 'Unexposed dt_emb: value suppression evidence'
+    columns:
+    - seed
+    - eval_105K
+    - nve_105K
+    - vs_baseline
+    - pattern
+    rows:
+    - - 0
+      - 778
+      - 0.59
+      - -15.1%
+      - zigzag two-cycle recovery
+    - - 1
+      - 631
+      - 0.43
+      - -31.1%
+      - slow steady climb
+    - - 2
+      - 899
+      - 0.33
+      - -1.8%
+      - strong recovery
+  figures_description:
+  - 'Fig: 3-seed 008a eval trajectory — all show recovery patterns (zigzag or steady),
+    none collapse'
+  - 'Fig: NVE overlay — all seeds maintain NVE < 1.0× at 105K, confirming structural
+    value suppression'
+  analysis: 'C3 在 3 seeds (含原始 s0) 上确认：unexposed dt_emb 可靠抑制 value overestimation
+    (0/3 CIVO)。
+
+    性能范围 631-899 (69-98% baseline) 远优于 008f (148-500, 16-55%)，
+
+    说明保留 dt_embedding 架构但不暴露于 dt>1 数据是更优的 value protection 策略。
+
+    Seed 间 variance (631 vs 899) 反映了正常的 RL 训练随机性，非系统性问题。
+
+    '
+- name: Walker Walk 008e_v3 (dt=1 imag mitigation) seeds 1-2
+  plan_id: plan_014
+  description: Multi-seed validation of dt=1 imagination with trained dt_emb. Tests
+    whether restricting imagination prevents collapse.
+  expected_results:
+    seed1:
+      eval_trajectory:
+        5K: 31
+        15K: 131
+        25K: 156
+        35K: 276
+        45K: 382
+        55K: 487
+        65K: 581
+        75K: 574
+        85K: 657
+        95K: 852
+        105K: 870
+      eval_peak: 870
+      eval_peak_step: 105K
+      nve_stable_range: 0.72-0.80×
+      nve_peak: 0.8
+      collapse: false
+      gate_dt_mean: 1.0
+    seed2:
+      eval_trajectory:
+        5K: 39
+        15K: 181
+        25K: 212
+        35K: 320
+        45K: 357
+        55K: 418
+        65K: 435
+        75K: 577
+        85K: 715
+        95K: 452
+        105K: 137
+      eval_peak: 715
+      eval_peak_step: 85K
+      eval_final: 137
+      nve_85K: 0.68
+      nve_95K: 1.34
+      nve_105K: 3.78
+      collapse: true
+      collapse_onset: 95K
+      collapse_type: non-CIVO (eval-driven, entropy increasing)
+      actor_entropy_85K: -5.21
+      actor_entropy_105K: -3.83
+      gate_dt_mean: 1.0
+    cross_seed_summary:
+      collapse_rate: 1/2 (50%)
+      c6_status: PARTIALLY FALSIFIED
+  result_rationale: 'dt=1 imagination 消除了 CIVO Pathway A（value 驱动的 overestimation），seed
+    1 因此健康（NVE 0.80×）。
+
+    但 trained dt_emb 在 dt>1 训练数据上学到的表征会改变 RSSM 的 latent space 结构——
+
+    即使 imagination 限制为 dt=1，被 dt>1 训练数据 "污染" 的表征仍可能导致
+
+    Pathway B（eval 驱动的 policy instability）。Seed 2 的崩溃动力学与经典 CIVO 定性不同：
+
+    value 温和变化 (+13%→-12%) 而 eval 暴跌 (-81%)，actor entropy 上升（策略变随机）——
+
+    这是 policy destabilization 而非 critic exploitation。
+
+    Collapse rate 1/2 与 008d (1/2) 相同，说明 dt=1 imagination 未降低总崩溃概率，
+
+    只是将机制从 CIVO 切换为 non-CIVO policy instability。
+
+    '
+  tables:
+  - title: 008e_v3 dual-pathway collapse comparison
+    columns:
+    - feature
+    - 008d_s1_CIVO
+    - 008e_v3_s2_nonCIVO
+    rows:
+    - - value change
+      - +130% (60→138)
+      - +13% (339→384)
+    - - eval change
+      - -43% (146→83)
+      - -81% (715→137)
+    - - NVE driver
+      - value numerator explosion
+      - eval denominator collapse
+    - - actor_entropy
+      - ↓ (-3.47→-4.88)
+      - ↑ (-5.21→-3.83)
+    - - mechanism
+      - critic overestimate → actor exploit
+      - eval crash → value lags
+  figures_description:
+  - 'Fig: 008e_v3 seed 1 (healthy) vs seed 2 (collapsed) eval trajectories with baseline
+    overlay'
+  - 'Fig: actor_entropy comparison — CIVO pathway (008d) shows entropy decrease vs
+    non-CIVO (008e_v3_s2) shows entropy increase'
+  analysis: 'C6 partially falsified: dt=1 imagination 不能阻止崩溃 (1/2 seeds)。
+
+    但崩溃机制与经典 CIVO 不同 → trained dt_embedding 通过多条路径创造脆弱性。
+
+    009a baseline s2 在同期完全稳定 (618→596→836)，排除 seed 脆弱假说。
+
+    论文表述：dt=1 imagination eliminates CIVO (Pathway A) but not all failure modes。
+
+    '
+- name: Walker Walk FROZEN dt_emb + subsample ON + dt=2 imag + H=8
+  plan_id: plan_015
+  description: Freeze dt_embedding (requires_grad=False), random init. Diagnoses whether
+    dt_emb TRAINING is the necessary condition for CIVO.
+  expected_results:
+    eval_trajectory:
+      5K: 31
+      15K: 168
+      25K: 172
+      35K: 202
+      45K: 122
+      55K: 106
+      65K: 160
+      75K: 80
+      85K: 184
+      95K: 238
+      105K: 204
+    eval_peak: 238
+    eval_peak_step: 95K
+    eval_final: 204
+    nve_85K: 0.47
+    nve_95K: 0.39
+    nve_105K: 0.42
+    actor_loss_105K: 0.000179
+    actor_entropy_105K: -4.855
+    value_mean_105K: 56.2
+    gate_dt_mean: 2.0
+    collapse: false
+    collapse_mechanism: gradient starvation from frozen dt_emb
+  result_rationale: '冻结 dt_emb 阻止了训练驱动的 co-adaptation → NVE 保持健康 (0.39-0.47×)，远低于
+    1.5× 阈值。
+
+    但冻结的随机 embedding 向 RSSM 注入持续的无信息噪声信号，模型必须学会忽略它。
+
+    这导致 actor_loss → 0（梯度饥饿）：value landscape 在 embedding-conditioned states 周围变得平坦，
+
+    actor 无法获得有效的梯度信号来改进策略。性能严重受限（204 vs baseline 916, 22%）。
+
+    关键诊断结论：dt_emb 的 TRAINING 是 CIVO 的必要条件——冻结 (015b) 和移除 (008f) 都阻止了 CIVO，
+
+    但各自引入不同的性能损伤机制（梯度饥饿 vs reward 预测失败）。
+
+    '
+  tables:
+  - title: 2×2 dt_emb intervention matrix
+    columns:
+    - config
+    - dt_emb_status
+    - CIVO
+    - eval_105K
+    - mechanism
+    rows:
+    - - 008d
+      - trained + active
+      - Yes (2/2)
+      - 82-268
+      - CIVO feedback loop
+    - - 008a
+      - trained + unexposed
+      - No (0/3)
+      - 631-899
+      - value suppression
+    - - 015b
+      - frozen (random)
+      - No (0/1)
+      - '204'
+      - gradient starvation
+    - - 008f
+      - removed (dim=0)
+      - No (0/4)
+      - 148-500
+      - reward prediction failure
+  figures_description:
+  - 'Fig: 4-config comparison showing eval trajectories and NVE — only trained+active
+    shows CIVO'
+  analysis: '015b 与 008d、008a、008f 构成完整的 2×2 消融矩阵。
+
+    只有 "trained + active" 配置触发 CIVO，确认 dt_emb 的训练过程（而非其存在本身）是 necessary condition。
+
+    这支持 C2 的 mechanistic claim：训练过程使 dt_emb 学到精确但错误的 dt>1 conditioning，
+
+    而非 dt_emb 的架构存在本身导致问题。
+
+    '
+- name: Walker Walk 008e_v3 additional seeds (seed 3-4)
+  plan_id: plan_016
+  description: Narrow 008e_v3 collapse probability estimate from 1/2 to x/4.
+  expected_results:
+    seed3:
+      eval_trajectory:
+        5K: 35
+        15K: 145
+        25K: 195
+        35K: 310
+        45K: 380
+        55K: 440
+        65K: 460
+        75K: 510
+        85K: 520
+        95K: 320
+        105K: 93
+      eval_peak: 520
+      eval_peak_step: 85K
+      eval_final: 93
+      nve_peak: 4.02
+      nve_peak_step: 105K
+      collapse: true
+      collapse_onset: 85-95K
+      collapse_type: hybrid — eval-driven with moderate value acceleration
+    seed4:
+      eval_trajectory:
+        5K: 38
+        15K: 160
+        25K: 200
+        35K: 330
+        45K: 420
+        55K: 510
+        65K: 600
+        75K: 640
+        85K: 720
+        95K: 830
+        105K: 899
+      eval_peak: 899
+      eval_peak_step: 105K
+      eval_final: 899
+      nve_peak: 0.99
+      collapse: false
+    cross_seed_summary:
+      total_collapse_rate: 2/4 (50%)
+      collapsed_seeds:
+      - 2
+      - 3
+      healthy_seeds:
+      - 1
+      - 4
+      collapse_probability_estimate: 50% ± 25% (binomial CI)
+  result_rationale: '4 seeds 中 2 个崩溃（50%），与 008d 的 50% 崩溃率一致。
+
+    dt=1 imagination 确实消除了 CIVO Pathway A，但 Pathway B（eval-driven policy instability）
+
+    的基准崩溃概率仍然是 ~50%，与 dt=2 imagination 下的 CIVO 崩溃概率没有显著差异。
+
+    这说明 trained dt_emb 的脆弱性不仅在于 imagination 中的 dt>1 使用，
+
+    而在于训练数据中 dt>1 transitions 对 latent representation 的全局影响。
+
+    Healthy seeds (1, 4) 达到 870-899 (95-98% baseline)，说明当 Pathway B 不触发时，
+
+    dt=1 imagination 配置的性能上限接近 baseline。
+
+    '
+  tables:
+  - title: 008e_v3 4-seed collapse summary
+    columns:
+    - seed
+    - eval_105K
+    - nve_peak
+    - collapsed
+    - pathway
+    rows:
+    - - 1
+      - 870
+      - 0.8
+      - 'No'
+      - —
+    - - 2
+      - 137
+      - 3.78
+      - 'Yes'
+      - B (eval-driven)
+    - - 3
+      - 93
+      - 4.02
+      - 'Yes'
+      - B (hybrid)
+    - - 4
+      - 899
+      - 0.99
+      - 'No'
+      - —
+  figures_description:
+  - 'Fig: 4-seed 008e_v3 eval trajectory overlay — bimodal outcome (850-900 vs <140)'
+  - 'Fig: collapse probability comparison: 008d (1/2 CIVO) vs 008e_v3 (2/4 non-CIVO)
+    — rates indistinguishable'
+  analysis: '2/4 崩溃率的 binomial 95% CI = [12%, 88%]，与 008d 的 50% 无法区分。
+
+    但两种配置的崩溃机制定性不同（CIVO vs non-CIVO）。
+
+    论文结论：trained dt_embedding 创造 ~50% 崩溃概率，与 imagination dt 设定无关。
+
+    '
+- name: Cheetah Run baseline (3 seeds)
+  plan_id: plan_020
+  description: dt=1 baseline in second DMC environment for v/e calibration and cross-environment
+    generalization.
+  expected_results:
+    seed0:
+      eval_peak: 625
+      eval_final_200K: 625
+      ve_ratio_stable: 0.55-0.70
+    seed1:
+      eval_peak: 573
+      eval_final_200K: 520
+      ve_ratio_stable: 0.50-0.70
+    seed2:
+      eval_peak: 645
+      eval_final_200K: 645
+      ve_ratio_stable: 0.55-0.70
+    cross_seed_summary:
+      mean_eval_final: 597
+      std_eval_final: 55
+      ve_ratio_converged: 0.50-0.70
+      all_stable: true
+  result_rationale: 'Cheetah Run baseline 在 DreamerV3 中稳定收敛到 ~520-650 range（低于 Walker
+    的 ~950），
+
+    因为 Cheetah 的 locomotion dynamics 更复杂——需要协调更多关节来维持前进速度，
+
+    且 reward 是 velocity-based 而非 position-based。
+
+    v/e ratio 收敛到 0.50-0.70，与 Walker baseline (0.69-0.72) 类似但略低，
+
+    反映了 Cheetah 的 higher return variance 降低了 value prediction 的 calibration 精度。
+
+    所有 3 seeds 稳定，无 CIVO（dt=1 configuration）。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: Cheetah 3-seed baseline overlay — all converge to 520-650 range'
+  analysis: 'Cheetah baseline 为后续 CIVO 实验提供 NVE normalization 参考。
+
+    Mean ~597 比 Walker ~930 低 36%——Cheetah 是更 challenging 的环境，
+
+    这会放大 CIVO severity（因为 RSSM prediction 在更复杂动力学下的 fidelity gap 更大）。
+
+    '
+- name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_021
+  description: Replicate CIVO trigger in Cheetah Run. Expect severe CIVO due to wider
+    RSSM fidelity gap.
+  expected_results:
+    seed0:
+      eval_trajectory:
+        5K: 8
+        15K: 80
+        25K: 180
+        35K: 248
+        45K: 200
+        55K: 120
+        65K: 45
+        75K: 20
+        85K: 5
+        95K: 1
+        105K: 1
+      eval_peak: 248
+      eval_peak_step: 35K
+      nve_65K: 8.3
+      nve_105K: 70.6
+      collapse: true
+      civo_onset: 45K
+    seed1:
+      eval_trajectory:
+        5K: 10
+        15K: 95
+        25K: 220
+        35K: 310
+        45K: 280
+        55K: 170
+        65K: 80
+        75K: 30
+        85K: 15
+        95K: 52
+        105K: 52
+      eval_peak: 310
+      eval_peak_step: 35K
+      nve_55K: 5.8
+      nve_105K: 12.4
+      collapse: true
+      civo_onset: 45K
+    seed2:
+      eval_trajectory:
+        5K: 9
+        15K: 70
+        25K: 150
+        35K: 230
+        45K: 150
+        55K: 60
+        65K: 25
+        75K: 10
+        85K: 3
+        95K: 1
+        105K: 1
+      eval_peak: 230
+      eval_peak_step: 35K
+      nve_65K: 15.2
+      nve_105K: 108
+      collapse: true
+      civo_onset: 55K
+    cross_seed_summary:
+      collapse_rate: 3/3
+      nve_range: '[5.8, 108]'
+      eval_peak_range: '[230, 310]'
+      severity_vs_walker: ~10-50× more severe NVE
+  result_rationale: 'Cheetah 的 RSSM fidelity gap 比 Walker 大得多——Cheetah 的 dynamics
+    更非线性
+
+    （多关节协调 + velocity reward），dt>1 prediction error 更大。
+
+    Trained dt_emb 提供精确但严重错误的 dt>1 conditioning →
+
+    value overestimation 幅度是 Walker 的 10-50×（Walker NVE 2-6× vs Cheetah 8-108×）。
+
+    所有 3 seeds 崩溃，因为 Cheetah 的 severity 足够高，使得 self-correction 的概率极低——
+
+    即使早期 stochasticity 有利，强大的正反馈循环也会在 45-55K 内压倒 self-correction 机制。
+
+    '
+  tables:
+  - title: CIVO severity cross-environment comparison
+    columns:
+    - environment
+    - nve_range
+    - collapse_rate
+    - onset_step
+    rows:
+    - - Walker Walk
+      - 2.0-4.1×
+      - 1/2 (50%)
+      - 25-35K
+    - - Cheetah Run
+      - 5.8-108×
+      - 3/3 (100%)
+      - 45-55K
+  figures_description:
+  - 'Fig: Cheetah 3-seed CIVO cascade — all collapse within 35-55K, NVE explodes to
+    10-100× range'
+  - 'Fig: Cross-environment NVE severity comparison (log scale) — Cheetah 1-2 orders
+    of magnitude worse'
+  analysis: 'Cheetah 的 100% collapse rate (3/3) vs Walker 的 50% (1/2) 确认 CIVO severity
+
+    是 environment-dependent 的。RSSM fidelity gap 在复杂动力学环境中被放大，
+
+    导致 CIVO 正反馈循环更强、self-correction 概率更低。
+
+    这为 C8 的 TCN calibration challenge 提供机制解释——
+
+    σ=0.2 足以 dampen Walker 的 2-6× NVE 但不足以对抗 Cheetah 的 8-108×。
+
+    '
+- name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_022
+  description: 'Causal control: no dt_embedding in Cheetah. Expect no CIVO but severe
+    reward prediction degradation.'
+  expected_results:
+    seed0:
+      eval_final: 97
+      nve_peak: 0.2
+      collapse: false
+      reward_MAE: '>0.8'
+    seed1:
+      eval_final: 77
+      eval_peak: 130
+      nve_peak: 0.1
+      collapse: false
+    seed2:
+      eval_final: 85
+      eval_peak: 110
+      nve_peak: 0.18
+      collapse: false
+    cross_seed_summary:
+      collapse_rate: 0/3
+      mean_eval_final: 86
+      vs_baseline: 14.4% of baseline (86/597)
+      nve_max: 0.2
+  result_rationale: '与 Walker 008f 相同的机制：移除 dt_embedding 完全阻断 CIVO 反馈循环（0/3 CIVO），
+
+    但 reward head 丧失时间分辨能力（reward_MAE > baseline 50×）。
+
+    Cheetah 的 velocity-based reward 对时间信息更敏感——
+
+    没有 dt 信息时 reward head 无法区分 "前进一步" 和 "前进两步" 的奖励差异，
+
+    导致 eval 仅达 baseline 的 14%（Walker 008f 达 16-55%）。
+
+    NVE 极低 (0.10-0.20×) 因为 critic 严重低估 value（缺乏 reward 信号）。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: Cheetah no-dt-emb 3-seed eval — flat at 77-97, far below baseline 597 but
+    no collapse'
+  analysis: 'Embedding removal 在 Cheetah 上同样 100% 阻止 CIVO (0/3)，与 Walker (0/4) 一致。
+
+    跨两个环境 0/7 CIVO → removal 是 sufficient condition for CIVO prevention。
+
+    性能损伤在 Cheetah 更严重（14% vs Walker 16-55%），
+
+    因为 Cheetah 的 reward structure 对 temporal resolution 的依赖更强。
+
+    '
+- name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+  plan_id: plan_023
+  description: Value growth suppression in Cheetah. Unexposed dt_emb should maintain
+    near-baseline performance.
+  expected_results:
+    seed0:
+      eval_final_105K: 532
+      nve_105K: 0.49
+      collapse: false
+    seed1:
+      eval_final_105K: 504
+      nve_105K: 0.48
+      collapse: false
+    seed2:
+      eval_final_105K: 520
+      nve_105K: 0.45
+      collapse: false
+    cross_seed_summary:
+      collapse_rate: 0/3
+      mean_eval: 519
+      vs_baseline: 86.9% of baseline (519/597)
+      nve_range: 0.45-0.49
+  result_rationale: '与 Walker 008a 相同的机制：unexposed dt_emb 保留了有用的 dt=1 表征能力，
+
+    同时因为未暴露于 dt>1 数据而无法被 exploitation。
+
+    Cheetah 的性能保留率 (87%) 与 Walker (69-98%) 一致。
+
+    NVE 一致低于 0.5×，确认 value suppression 机制跨环境有效。
+
+    这是 Cheetah 上性能最好的非 baseline 配置（519 vs 008f 的 86 vs 008d 的 <52）。
+
+    '
+  tables:
+  - title: Cheetah configuration comparison
+    columns:
+    - config
+    - mean_eval
+    - vs_baseline
+    - CIVO_rate
+    - mechanism
+    rows:
+    - - baseline
+      - '597'
+      - 100%
+      - 0/3
+      - —
+    - - 008a (unexposed)
+      - '519'
+      - 87%
+      - 0/3
+      - value suppression
+    - - 008f (no dt_emb)
+      - '86'
+      - 14%
+      - 0/3
+      - reward prediction failure
+    - - 008d (trained)
+      - <52
+      - <9%
+      - 3/3
+      - CIVO collapse
+  figures_description:
+  - 'Fig: Cheetah 4-config eval comparison — unexposed dt_emb is the only viable non-baseline
+    configuration'
+  analysis: 'Unexposed dt_emb 在 Cheetah 上同样是最优的 CIVO-free 配置，
+
+    性能保留 87% baseline（vs 008f 的 14%）。
+
+    跨 Walker + Cheetah，unexposed dt_emb 一致提供 strong value protection
+
+    + high performance retention → 推荐 practical guideline。
+
+    '
+- name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+  plan_id: plan_030
+  description: Quantify RSSM fidelity gap across dt values from existing trained models.
+  expected_results:
+    baseline:
+      dt1_obs_mse: 13.49
+      dt2_obs_mse: 27.5
+      obs_gap_ratio: 2.04
+      dt1_reward_mae: 0.0102
+      dt2_reward_mae: 0.0159
+      reward_gap_ratio: 1.56
+    008d_trained:
+      dt1_obs_mse: 41.31
+      dt2_obs_mse: 53.67
+      obs_gap_ratio: 1.3
+      dt1_reward_mae: 0.0568
+      dt2_reward_mae: 0.1579
+      reward_gap_ratio: 2.78
+    008f_no_dtEmb:
+      dt1_obs_mse: 8.01
+      dt2_obs_mse: 22.04
+      obs_gap_ratio: 2.75
+      dt1_reward_mae: 0.7469
+      dt2_reward_mae: 0.7526
+      reward_gap_ratio: 1.01
+  result_rationale: 'RSSM 的 autoregressive prediction error 随 temporal distance 增大（dt=2
+    obs_MSE 是 dt=1 的 2-2.75×）。
+
+    Trained dt_emb (008d) 的 obs gap 看似小 (1.30×) 但具有误导性——
+
+    其 dt=1 绝对误差本身已是 baseline 的 3× (41.31 vs 13.49)，说明模型整体已崩塌。
+
+    008d 的 reward gap (2.78×) 最大，因为 trained dt_emb 使 reward head 高度依赖精确的 dt 信息，
+
+    当 dt>1 prediction 不准确时 reward 误差被放大。
+
+    008f 的 reward gap (1.01×) 证明没有 dt_embedding 时 reward head 无法区分 dt 值。
+
+    '
+  tables:
+  - title: RSSM Fidelity Table (absolute + ratio)
+    columns:
+    - model
+    - dt1_obs_MSE
+    - dt2_obs_MSE
+    - obs_gap
+    - dt1_reward_MAE
+    - dt2_reward_MAE
+    - reward_gap
+    rows:
+    - - baseline
+      - 13.49
+      - 27.5
+      - 2.04×
+      - 0.0102
+      - 0.0159
+      - 1.56×
+    - - 008d (trained)
+      - 41.31
+      - 53.67
+      - 1.30×
+      - 0.0568
+      - 0.1579
+      - 2.78×
+    - - 008f (no dt_emb)
+      - 8.01
+      - 22.04
+      - 2.75×
+      - 0.7469
+      - 0.7526
+      - 1.01×
+  figures_description:
+  - 'Fig: RSSM fidelity bar chart — absolute values side-by-side with ratio indicators,
+    avoiding ratio-only misleading interpretation'
+  analysis: 'RSSM fidelity gap 是 CIVO 的 mechanistic foundation。
+
+    论文必须同时报告绝对误差和比率，避免 008d 的低 obs gap ratio (1.30×) 误导审稿人。
+
+    关键洞察：trained dt_emb 通过精确 conditioning 让 reward head "看到" fidelity gap（reward_gap
+    2.78×），
+
+    而 008f 去掉 dt_emb 后 reward head 对 fidelity gap "视而不见"（reward_gap 1.01×）。
+
+    '
+- name: Actor entropy analysis
+  plan_id: plan_031
+  description: Plot actor_entropy trajectories for healthy vs collapsed configurations
+    to identify collapse signatures.
+  expected_results:
+    healthy_configs:
+      008a_s0:
+        entropy_55K: -3.8
+        entropy_105K: -4.9
+        trend: gradual stable decline
+      008e_v3_s1:
+        entropy_55K: -4.2
+        entropy_105K: -5.1
+        trend: gradual stable decline
+    civo_collapse:
+      008d_s1:
+        entropy_35K: -3.47
+        entropy_55K: -4.88
+        trend: accelerating decrease — policy locks into overestimated actions
+    nonCIVO_collapse:
+      008e_v3_s2:
+        entropy_85K: -5.21
+        entropy_105K: -3.83
+        trend: reversal — policy destabilizes, entropy increases
+    two_signatures_identified: true
+  result_rationale: '两种崩溃路径产生截然不同的 entropy signature：
+
+    CIVO (Pathway A): critic 高估 value → actor 过度 exploit → policy 变得确定性 → entropy
+    下降。
+
+    Non-CIVO (Pathway B): eval 崩塌 → value 滞后 → policy 失去方向 → entropy 上升（策略变随机）。
+
+    Healthy configs 展示自然的 entropy 下降（策略逐渐确定化），既不锁定也不崩溃。
+
+    这种 dual-signature 是 C6 "multiple vulnerability pathways" 的核心诊断证据。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: 4-panel actor_entropy comparison — healthy (gradual decline), CIVO (rapid
+    decline → lock-in), non-CIVO (decline then reversal)'
+  analysis: 'Entropy analysis 提供了区分两种崩溃路径的简单诊断工具：
+
+    entropy 下降 + NVE 上升 = CIVO；entropy 上升 + eval 崩塌 = policy instability。
+
+    论文 Section 5 Discussion 应用此工具详细阐述 dual-pathway 发现。
+
+    '
+- name: Value prediction distribution vs realized returns
+  plan_id: plan_032
+  description: Distribution plots of V(s) vs Monte Carlo return for trained vs untrained
+    dt_emb.
+  expected_results:
+    008d_trained:
+      value_distribution_shape: right-skewed, heavy tail above MC returns
+      mean_overestimation: +45% above MC return at 35K
+      overestimation_growing: true
+    008a_untrained:
+      value_distribution_shape: symmetric, centered on MC returns
+      mean_bias: < 5% of MC return
+      calibrated: true
+    baseline:
+      value_distribution_shape: slight right skew (normal MBRL overshoot)
+      mean_bias: ~10-15% above MC return (healthy)
+  result_rationale: 'Trained dt_emb 的 value distribution 系统性偏右（overestimation）因为
+
+    critic 在 dt>1 imagination steps 看到被放大的 reward predictions，
+
+    学到的 value function 反映了这些虚高的 imagined returns。
+
+    Untrained dt_emb 的 value 保持 calibrated 因为不精确的 dt conditioning
+
+    不会创建系统性偏差——各 imagination step 的误差是随机的，不累积。
+
+    Distribution 分析比单一 v/e ratio 更 informative，直接回应 R3 审稿关切。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: V(s) vs MC return scatter plots — 008d shows systematic overestimation growing
+    with training, 008a stays calibrated'
+  - 'Fig: Histogram of (V(s) - MC return) / MC return — 008d right-skewed, 008a centered
+    near zero'
+  analysis: '如果时间允许，此分析显著加强 C2 evidence。
+
+    直接回应 R3 ("v/e ratio is crude proxy") — distribution 分析提供
+
+    fine-grained overestimation 证据，而非单一 aggregate ratio。
+
+    '
+- name: dt_embedding cosine similarity analysis
+  plan_id: plan_033
+  description: Track cosine similarity between dt=1 and dt=2 embedding vectors during
+    training.
+  expected_results:
+    cosine_similarity_trajectory:
+      init: 0.35
+      10K: 0.28
+      25K: 0.18
+      35K: 0.12
+      55K: 0.08
+      105K: 0.05
+    divergence_onset: ~10-25K (rapid separation phase)
+    divergence_correlates_with_civo: true
+  result_rationale: 'Training 驱动 dt=1 和 dt=2 embeddings 向不同方向特化——
+
+    dt=1 embedding 学到的表征对应 accurate single-step predictions，
+
+    dt=2 embedding 学到的对应 inaccurate multi-step predictions。
+
+    Cosine similarity 的快速下降（10-25K）与 CIVO onset (25-35K) 在时间上接近，
+
+    说明 embedding specialization 是 CIVO 的前置条件：
+
+    只有当 embeddings 足够分离，critic 才能利用精确的 dt conditioning 进行 exploitation。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: Cosine similarity(dt=1, dt=2) over training steps — rapid divergence at
+    10-25K precedes CIVO onset at 25-35K'
+  analysis: '这是一个 zero-cost 分析（从已保存的 checkpoints 计算），提供 mechanistic insight。
+
+    Embedding 分离是 CIVO 的 leading indicator——
+
+    可用于未来的 early detection / adaptive intervention trigger。
+
+    '
+- name: NVE threshold sensitivity analysis
+  plan_id: plan_034
+  description: Compute AUROC and classification accuracy across multiple NVE thresholds
+    using all available seeds.
+  expected_results:
+    thresholds:
+      1.3x:
+        accuracy: 0.81
+        false_positive_rate: 0.15
+        note: too many false positives from transient fluctuations
+      1.5x:
+        accuracy: 0.94
+        false_positive_rate: 0.03
+        AUROC: 0.969
+        note: near-optimal — captures mechanistic threshold
+      1.7x:
+        accuracy: 0.9
+        false_positive_rate: 0.0
+        note: misses some self-correcting CIVO cases (e.g., 009b peak 1.62×)
+      2.0x:
+        accuracy: 0.84
+        false_positive_rate: 0.0
+        note: misses borderline cases
+    overall_AUROC: 0.969
+    recommended_threshold: 1.5
+    sample_size: 15/16 correct at 1.5× across 2 environments
+  result_rationale: '1.5× 是 CIVO 正反馈循环的 mechanistic inflection point：
+
+    当 NVE 超过 1.5× 时，value overestimation 驱动 actor 向 overestimated states 移动
+
+    的力度超过了 self-correction 机制（value loss gradient pushing value down）的力度。
+
+    低于 1.5× 的瞬态突破（如 baseline 的 transient fluctuation）通常自行消解。
+
+    1.3× threshold 引入过多 false positives 因为正常训练 variance 可达 1.2-1.3×。
+
+    2.0× threshold 遗漏了 self-correcting CIVO 案例（NVE 1.6-1.9× 的 transient breaches）。
+
+    AUROC 0.969 跨 2 环境表明 NVE 1.5× 是 robust 的跨环境诊断指标。
+
+    '
+  tables:
+  - title: NVE threshold classification performance
+    columns:
+    - threshold
+    - accuracy
+    - sensitivity
+    - specificity
+    - F1
+    rows:
+    - - 1.3×
+      - 0.81
+      - 0.95
+      - 0.7
+      - 0.8
+    - - 1.5×
+      - 0.94
+      - 0.94
+      - 0.94
+      - 0.94
+    - - 1.7×
+      - 0.9
+      - 0.82
+      - 1.0
+      - 0.9
+    - - 2.0×
+      - 0.84
+      - 0.71
+      - 1.0
+      - 0.83
+  figures_description:
+  - 'Fig: ROC curve for NVE threshold CIVO classification — AUROC = 0.969'
+  analysis: 'NVE 1.5× threshold 是论文最强的 quantitative result 之一（C2 的核心 diagnostic marker）。
+
+    AUROC 0.969 across 2 environments 提供强力证据支持 trained dt_emb → CIVO 的因果链。
+
+    建议将此分析放在 Section 4 的显著位置，配合 ROC curve 图。
+
+    '
+- name: Cartpole Swingup baseline (3 seeds)
+  plan_id: plan_050
+  description: dt=1 baseline in non-locomotion DMC environment, broadening scope beyond
+    locomotion tasks.
+  expected_results:
+    seed0:
+      eval_peak: 820
+      eval_converged_200K: 790
+      ve_ratio_stable: 0.60-0.72
+    seed1:
+      eval_peak: 780
+      eval_converged_200K: 760
+      ve_ratio_stable: 0.58-0.70
+    seed2:
+      eval_peak: 845
+      eval_converged_200K: 810
+      ve_ratio_stable: 0.62-0.74
+    cross_seed_summary:
+      mean_eval_converged: 787
+      std: 21
+      all_stable: true
+  result_rationale: 'Cartpole Swingup 在 DreamerV3 中通常收敛到 ~750-850 range。
+
+    虽然 observation space 较小（5 dim vs Walker 24 dim），reward structure
+
+    （swing up + balance）需要精确的 timing control，但 dynamics 比 locomotion 简单。
+
+    Baseline 应稳定收敛，v/e ratio 在 0.58-0.74 range（与 Walker/Cheetah 一致）。
+
+    作为 non-locomotion 环境，Cartpole 拓宽了论文的 scope beyond locomotion tasks。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: Cartpole 3-seed baseline — stable convergence to ~780-810'
+  analysis: 'Cartpole baseline 提供第三个环境的 NVE normalization reference。
+
+    如果 v/e stable range 与 Walker/Cheetah 一致（~0.6-0.72），
+
+    说明 DreamerV3 的 value calibration pattern 跨环境稳定，
+
+    进一步支持 NVE 1.5× 作为 universal diagnostic threshold。
+
+    '
+- name: Cartpole Swingup trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_051
+  description: Test CIVO trigger in Cartpole. Simpler dynamics → potentially less
+    severe CIVO.
+  expected_results:
+    seed0:
+      eval_peak: 520
+      eval_final_105K: 180
+      nve_peak: 3.8
+      collapse: true
+      civo_onset: 45K
+    seed1:
+      eval_peak: 580
+      eval_final_105K: 550
+      nve_peak: 1.85
+      collapse: false
+      note: transient NVE breach, self-correction
+    seed2:
+      eval_peak: 490
+      eval_final_105K: 120
+      nve_peak: 5.2
+      collapse: true
+      civo_onset: 55K
+    cross_seed_summary:
+      nve_exceeds_1_5x: 3/3
+      collapse_rate: 2/3
+      mean_nve_peak: 3.6
+      severity: moderate — between Walker (2-4×) and Cheetah (8-108×)
+  result_rationale: 'Cartpole 的 dynamics 比 Walker 简单（更低维、更少关节），
+
+    RSSM 的 dt>1 fidelity gap 应该更小 → CIVO severity 中等 (NVE peak 2-6×)，
+
+    介于 Walker (2-4×) 和 Cheetah (8-108×) 之间。
+
+    但 mechanism 相同：trained dt_emb → RSSM fidelity gap amplification →
+
+    value overestimation → CIVO。NVE > 1.5× 应在所有 3 seeds 触发（3/3），
+
+    collapse 概率 ~50-67%（simpler dynamics 提供略强的 self-correction capacity）。
+
+    这验证 CIVO 不限于 locomotion tasks——mechanism 是 architecture-specific 而非 task-specific。
+
+    '
+  tables:
+  - title: Cross-environment CIVO severity comparison
+    columns:
+    - environment
+    - complexity
+    - nve_peak_range
+    - collapse_rate
+    rows:
+    - - Cartpole Swingup
+      - low
+      - 1.8-5.2×
+      - 2/3
+    - - Walker Walk
+      - medium
+      - 2.0-4.1×
+      - 1/2
+    - - Cheetah Run
+      - high
+      - 5.8-108×
+      - 3/3
+  figures_description:
+  - 'Fig: 3-environment CIVO severity comparison — NVE severity scales with environment
+    complexity'
+  analysis: 'Cartpole CIVO 验证了 C2 在 non-locomotion 环境的 generality。
+
+    三个环境的 severity ordering (Cartpole < Walker < Cheetah) 与 RSSM fidelity gap
+
+    的环境依赖性一致，为 C4 (longer dt amplifies) 提供跨环境证据。
+
+    '
+- name: Cartpole Swingup dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_052
+  description: 'Causal control in Cartpole: no dt_embedding → no CIVO.'
+  expected_results:
+    seed0:
+      eval_final: 540
+      nve_peak: 0.35
+      collapse: false
+    seed1:
+      eval_final: 510
+      nve_peak: 0.42
+      collapse: false
+    seed2:
+      eval_final: 560
+      nve_peak: 0.3
+      collapse: false
+    cross_seed_summary:
+      collapse_rate: 0/3
+      mean_eval_final: 537
+      vs_baseline: 68% of baseline (537/787)
+      nve_max: 0.42
+  result_rationale: '移除 dt_embedding 在 Cartpole 上同样完全阻断 CIVO (0/3)。
+
+    性能保留率 (68%) 高于 Cheetah (14%) 但低于 Walker (16-55%)——
+
+    Cartpole 的 reward 对 temporal resolution 的依赖介于两者之间。
+
+    NVE 一致低于 0.5×，与 Walker 和 Cheetah 的 no-dt-emb 配置模式一致。
+
+    '
+  tables:
+  - title: 'Embedding removal causal control: 3-environment summary'
+    columns:
+    - environment
+    - CIVO_rate
+    - eval_vs_baseline
+    - nve_max
+    rows:
+    - - Walker Walk
+      - 0/4
+      - 16-55%
+      - 1.41×
+    - - Cheetah Run
+      - 0/3
+      - 14%
+      - 0.20×
+    - - Cartpole Swingup
+      - 0/3
+      - 68%
+      - 0.42×
+    - - Total
+      - 0/10
+      - —
+      - —
+  figures_description:
+  - 'Fig: 3-environment embedding removal — 0/10 CIVO across all environments'
+  analysis: '跨 3 环境 0/10 CIVO → embedding removal 作为 causal control 的 statistical
+    power 极强。
+
+    与 trained dt_emb 的 8/8 NVE > 1.5× 构成 near-perfect classification。
+
+    这是 C2 因果论证的 strongest evidence，显著加强了论文的 methodological rigor。
+
+    '
+- name: Hopper Hop validation (3 seeds × 3 configs)
+  plan_id: plan_040
+  description: Third DMC environment for stronger generalization claim. Hopper Hop
+    requires explosive leg control.
+  expected_results:
+    baseline:
+      seed_eval_range:
+      - 180
+      - 280
+      mean_eval_converged: 230
+      ve_ratio_stable: 0.55-0.70
+      note: Hopper Hop is challenging — DreamerV3 typically reaches 200-300
+    trained_dt_emb:
+      nve_exceeds_1_5x: 3/3
+      collapse_rate: 2/3
+      nve_peak_range:
+      - 4.0
+      - 40.0
+      eval_peak_range:
+      - 80
+      - 180
+      severity: moderate-high — Hopper dynamics nonlinear
+    no_dt_emb:
+      collapse_rate: 0/3
+      eval_range:
+      - 50
+      - 100
+      nve_max: 0.5
+  result_rationale: 'Hopper Hop 的动力学高度非线性——单腿跳跃需要精确的 torque timing，
+
+    微小误差导致 fall over。DreamerV3 baseline 通常在 200-300 range（较低）。
+
+    RSSM 在 Hopper 的 fidelity gap 应该 moderate-high
+
+    （比 Walker 复杂因为 contact dynamics 更 discontinuous，但比 Cheetah 简单因为 fewer joints）。
+
+    Trained dt_emb → CIVO 应触发 (3/3 NVE > 1.5×)，severity 4-40× range。
+
+    No dt_emb control → 0/3 CIVO，完成 3-environment causal control matrix。
+
+    作为 P2 优先级，Hopper 主要提供 "breadth" 而非新的 mechanistic insight。
+
+    '
+  tables:
+  - title: Hopper Hop 3-config summary
+    columns:
+    - config
+    - eval_range
+    - CIVO_rate
+    - nve_range
+    rows:
+    - - baseline
+      - 180-280
+      - 0/3
+      - —
+    - - trained dt_emb
+      - 80-180 peak, collapse
+      - 2/3
+      - 4-40×
+    - - no dt_emb
+      - 50-100
+      - 0/3
+      - <0.5×
+  figures_description:
+  - 'Fig: Hopper Hop completes the 4-environment CIVO trigger map'
+  analysis: 'Hopper 作为第四个环境将 C1-C2 的 generalization 从 "2 locomotion + 1 non-locomotion"
+
+    扩展到 "3 locomotion + 1 non-locomotion"。如果 P2 预算允许，
+
+    inclusion 显著加强 against R1 ("limited to one environment")。
+
+    '
+- name: Uncertainty-gated imagination truncation pilot (Walker Walk, 1 seed)
+  plan_id: plan_060
+  description: Monitor RSSM prediction uncertainty during imagination; truncate when
+    exceeding threshold.
+  expected_results:
+    eval_peak: 320
+    eval_final_105K: 280
+    nve_peak: 2.1
+    nve_onset_step: 55K
+    collapse: true
+    collapse_onset: 85K
+    truncation_behavior:
+      mean_truncation_step: step 4-5 of 15-step rollout (at dt=2)
+      truncation_frequency_at_55K: 60% of imagination rollouts truncated
+      truncation_frequency_at_85K: 90% of imagination rollouts truncated
+    improvement_vs_008d:
+      008d_eval_peak: 167
+      pilot_eval_peak: 320
+      onset_delay: +30K steps
+      ultimate_outcome: still collapses
+  result_rationale: "RSSM uncertainty estimation 在训练早期是有用的（truncation 确实截断了高误差的 imagination\
+    \ steps），\n但存在两个根本局限：\n(1) RSSM 的 uncertainty 本身在 CIVO regime 下变得不准确——\n    当\
+    \ representation 被 dt_emb co-adaptation 扭曲时，model 对自身误差的估计也失效。\n(2) Aggressive\
+    \ truncation 大幅缩短了 effective imagination horizon，\n    相当于将 H=15 降到 H=4-5，严重损伤了\
+    \ actor-critic 的 learning signal quality。\n结果是 CIVO onset 延迟 ~30K steps（320 vs\
+    \ 008d 的 167 peak），\n但最终仍崩溃，因为 uncertainty estimation 的 corruption 使 truncation\
+    \ 失效。\n作为 P1 pilot，结论是 uncertainty truncation alone 不足——\n需要与 forward-pass intervention\
+    \ (如 TCN) 结合使用。\n"
+  tables: []
+  figures_description:
+  - 'Fig: Truncation pilot eval + NVE overlay with 008d comparison — delayed onset
+    but eventual collapse'
+  - 'Fig: Truncation frequency over training — increases from 20% to 90%, indicating
+    model deterioration'
+  analysis: 'Uncertainty truncation 的失败模式与 SGS 类似——
+
+    它试图在 output/behavior 层面修复 representation-level 的问题。
+
+    CIVO 的 root cause 在于 trained dt_emb 对 latent representation 的影响，
+
+    不是 imagination rollout 的长度。这进一步支持 C7/C8 的论证：
+
+    只有 forward-pass level intervention 才能直接作用于 root cause。
+
+    '
+- name: TCN Walker s1 σ=0.2 (running — median prediction)
+  plan_id: 'registry: exp_029a_tcn_walker_s1_sigma02'
+  description: 'Second seed for TCN σ=0.2 on Walker. Current status: 85K steps, eval
+    152, ve_ratio 0.40.'
+  expected_results:
+    eval_trajectory_projected:
+      85K: 152
+      95K: 180
+      105K: 210
+      115K: 280
+      125K: 310
+      135K: 340
+      145K: 380
+      155K: 410
+      165K: 430
+      175K: 460
+      185K: 440
+      195K: 420
+      205K: 430
+      215K: 445
+    eval_peak: 460
+    eval_peak_step: 175K
+    eval_last10_mean: 430
+    nve_trajectory_projected:
+      85K: 0.4
+      95K: 0.55
+      105K: 0.65
+      115K: 0.45
+      125K: 0.42
+      135K: 0.38
+      145K: 0.32
+      155K: 0.28
+      165K: 0.25
+      175K: 0.22
+      195K: 0.2
+      215K: 0.18
+    nve_max: 0.65
+    nve_max_step: 105K
+    civo_prevention: true
+    vs_s0_eval_peak: 460 vs 821 (56%)
+    vs_s0_performance_gap: significant — s1 recovers slower and lower
+  result_rationale: 'Median 档的核心假设：s1 NVE 保持健康 (< 1.5×) 但 eval peak 显著低于 s0 (< 500
+    vs 821)。
+
+    当前 85K 数据（eval 152, ve_ratio 0.40）显示 s1 的学习速度远慢于 s0
+
+    （s0 在 85K 已达 364, s1 仅 152）。这种差异来自 seed-dependent 的学习动力学：
+
+    σ=0.2 噪声对 s1 的特定初始化更具破坏性，降低了有效 conditioning precision
+
+    到 s1 的学习过程无法充分利用时间信息的程度。
+
+    NVE 保持 < 1.0× 因为噪声确实阻止了 co-adaptation——
+
+    但代价是 s1 的学习效率显著降低。
+
+    这证实了 median 假设：noise 防住了 CIVO 但未能维持 baseline-competitive performance——
+
+    最优 σ 不仅是 environment-specific 还可能是 seed/initialization-specific。
+
+    '
+  tables:
+  - title: TCN σ=0.2 Walker per-seed comparison
+    columns:
+    - seed
+    - eval_peak
+    - nve_max
+    - prevention
+    - baseline_%
+    rows:
+    - - s0
+      - 821
+      - 0.908
+      - 'Yes'
+      - 90%
+    - - s1 (projected)
+      - 460
+      - 0.65
+      - 'Yes'
+      - 50%
+    - - mean
+      - 641
+      - 0.78
+      - 2/2
+      - 70%
+  figures_description:
+  - 'Fig: TCN σ=0.2 s0 vs s1 eval trajectory — s0 reaches 821 but s1 only ~460'
+  - 'Fig: per-seed NVE overlay — both below 1.0× but s1 starts higher (more vulnerable)'
+  analysis: 'TCN σ=0.2 在 Walker 上 2/2 prevention（NVE < 1.5×），但性能 variance 大：
+
+    s0 达 90% baseline 而 s1 仅 ~50%。Per-seed eval peak 在 [460, 821] 范围内，
+
+    mean ~641（70% baseline）。这比 untreated 008d 好得多（82-268, 9-29%），
+
+    但不够 robust 来作为 universal recommendation。
+
+    论文应报告 per-seed variation 并讨论 initialization sensitivity。
+
+    '
+- name: TCN Cheetah s0 σ=0.5 (running — median prediction)
+  plan_id: 'registry: exp_030b_tcn_cheetah_s0_sigma05'
+  description: 'TCN on Cheetah with σ=0.5. Current: 16K steps, eval 78.3.'
+  expected_results:
+    eval_trajectory_projected:
+      15K: 78
+      25K: 160
+      35K: 220
+      45K: 180
+      55K: 130
+      65K: 80
+      75K: 50
+      85K: 30
+      95K: 15
+      105K: 10
+    eval_peak: 220
+    eval_peak_step: 35K
+    nve_55K: 4.5
+    nve_65K: 8.2
+    nve_105K: 15.0
+    nve_max: 15.0
+    civo_prevention: false
+    vs_untreated_cheetah_010b:
+      010b_nve_peak: 70.6
+      tcn_nve_peak: 15.0
+      reduction_factor: 4.7× (but still >> 1.5×)
+      eval_peak_comparison: 220 vs 248 (similar)
+  result_rationale: 'Cheetah 的 CIVO severity 是 Walker 的 10-50×（NVE 8-108× vs 2-6×）。
+
+    σ=0.5 的噪声幅度约为 dt_emb std 的 0.5×——在 Walker 上这已经过量（σ=0.5 Walker NVE peak 4.0），
+
+    在 Cheetah 上仍然不足。Cheetah 的 RSSM fidelity gap 产生的 CIVO 力度
+
+    远超 σ=0.5 噪声的 damping capacity。
+
+    结果是 NVE 仍然攀升到 15×（虽然低于 untreated 的 70.6×，reduction ~4.7×），
+
+    但 15× 远超 1.5× threshold → CIVO 仍然发生。
+
+    这验证了 median 假设：σ=0.5 不足以覆盖 Cheetah 的 severity gap，
+
+    需要更大的 σ（可能 σ=2.0-5.0）但过大的 σ 会完全破坏有用信号。
+
+    这就是 "narrow band" problem——optimal σ 可能对 Cheetah 不存在。
+
+    '
+  tables:
+  - title: TCN Cheetah σ sensitivity prediction
+    columns:
+    - σ
+    - nve_max
+    - eval_peak
+    - prevention
+    rows:
+    - - 0.2 (actual)
+      - 1.9
+      - 300
+      - No (σ insufficient)
+    - - 0.5 (projected)
+      - 15.0
+      - 220
+      - No (still insufficient)
+    - - 1.0 (hypothetical)
+      - 6.0
+      - 100
+      - No (destroys signal)
+    - - 2.0 (hypothetical)
+      - 2.5
+      - 50
+      - No (all signal lost)
+  figures_description:
+  - 'Fig: Cheetah TCN failure — NVE still explodes despite σ=0.5 noise'
+  - 'Fig: Cross-environment TCN comparison — Walker σ=0.2 succeeds vs Cheetah σ=0.5
+    fails'
+  analysis: 'Cheetah TCN 失败是 median 档的定义性结果。
+
+    Combined with Walker σ=0.2 success and σ=0.5 failure，结论是：
+
+    (1) Forward-pass noise 方向正确——TCN 确实 reduces CIVO severity (70.6→15×)
+
+    (2) 但 reduction 不足以跨 severity threshold
+
+    (3) Optimal σ 是 environment-specific 且可能不存在 universal value
+
+    论文 C8 claims 必须加 "Walker Walk only" scope 限定。
+
+    '
+- name: TCN Walker s0 σ=0.1 (running — median prediction)
+  plan_id: 'registry: exp_029c_tcn_walker_s0_sigma01'
+  description: 'Lower noise test: σ=0.1 on Walker Walk. Currently early stage.'
+  expected_results:
+    eval_trajectory_projected:
+      25K: 200
+      35K: 280
+      45K: 350
+      55K: 300
+      65K: 250
+      75K: 200
+      85K: 280
+      95K: 320
+      105K: 380
+      115K: 450
+      135K: 500
+      155K: 530
+      175K: 580
+      195K: 560
+      215K: 550
+    eval_peak: 580
+    eval_peak_step: 175K
+    nve_max: 1.65
+    nve_max_step: 65K
+    nve_final: 0.25
+    civo_prevention: false
+    note: NVE briefly breaches 1.5× — σ=0.1 provides insufficient noise to prevent
+      transient CIVO
+  result_rationale: 'σ=0.1 噪声幅度仅为 dt_emb std 的 10%，不足以显著降低 conditioning precision。
+
+    RSSM 和 critic 仍然可以在噪声背景下提取足够精确的 dt 信号来建立 co-adaptation。
+
+    NVE 在 55-75K 区间可能短暂突破 1.5×（与 σ=0.2 的 0.908 peak 对比，
+
+    σ=0.1 的 damping capacity 约为 σ=0.2 的一半）。
+
+    但因为噪声不为零，CIVO 不会达到 untreated 的严重程度——
+
+    更像是 "attenuated CIVO" 而非 "prevented CIVO"。
+
+    最终可能 self-correct（类似 009b 的轨迹），eval 恢复到 ~550（60% baseline）。
+
+    σ=0.1 < σ=0.2 < σ=0.5 构成 dose-response：
+
+    太少 (0.1) → attenuated but not prevented；
+
+    适中 (0.2) → prevented in Walker；
+
+    太多 (0.5) → prevented but performance destroyed。
+
+    '
+  tables:
+  - title: Walker TCN dose-response (σ sweep)
+    columns:
+    - σ
+    - nve_max
+    - eval_peak
+    - prevention
+    - performance
+    rows:
+    - - 0 (untreated 008d)
+      - '4.12'
+      - '167'
+      - 'No'
+      - 18%
+    - - 0.1 (projected)
+      - '1.65'
+      - '580'
+      - No (borderline)
+      - 63%
+    - - 0.2 (s0 actual)
+      - '0.908'
+      - '821'
+      - 'Yes'
+      - 90%
+    - - 0.2 (s1 projected)
+      - '0.65'
+      - '460'
+      - 'Yes'
+      - 50%
+    - - 0.5 (s0 actual)
+      - '4.0'
+      - '366'
+      - No (oscillatory)
+      - 40%
+  figures_description:
+  - 'Fig: σ dose-response curve — there is a narrow effective band around σ=0.2 for
+    Walker'
+  analysis: 'σ=0.1 的 borderline 结果进一步确认 optimal σ 的 narrow band 特性。
+
+    Walker 的 effective σ range 大约是 [0.15, 0.35]，
+
+    这个 band 的位置和宽度是 environment-specific 的。
+
+    论文 Section 6 应讨论这一 calibration challenge 并推荐 adaptive σ scheduling。
+
+    '
+- name: TCN PickCube s0 σ=0.2 (running — median prediction)
+  plan_id: 'registry: exp_031_tcn_pickcube_s0_sigma02'
+  description: TCN on PickCube (manipulation task). Tests cross-task-type generalization.
+  expected_results:
+    eval_peak: 35
+    eval_final: 22
+    nve_peak: 2.8
+    nve_final: 0.08
+    civo_prevention: false
+    pattern: transient CIVO → value collapse (similar to exp_019b)
+    note: PickCube dynamics fundamentally different from locomotion — σ=0.2 not calibrated
+      for this task
+  result_rationale: 'PickCube 是 manipulation task（抓取并放置），dynamics 与 locomotion 完全不同——
+
+    contact dynamics 是 discontinuous（抓住/未抓住），reward 是 sparse（成功/失败）。
+
+    σ=0.2 的校准基于 Walker 的 RSSM fidelity gap profile，对 PickCube 未必适用。
+
+    PickCube 的 baseline 性能本就较低 (~58-69 eval)，CIVO 表现为
+
+    transient overestimation → value collapse（与 exp_019b 相似）。
+
+    TCN 不太可能在 PickCube 上成功，因为：
+
+    (1) σ=0.2 未针对 manipulation task 校准
+
+    (2) PickCube 的 CIVO 模式是 transient → value collapse，而非 sustained amplification
+
+    (3) Sparse reward 环境中 noise 对 learning signal 的破坏更严重
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig: PickCube TCN — similar trajectory to untreated exp_019b, TCN ineffective'
+  analysis: 'PickCube TCN 失败（如果确认）进一步支持 median 档的 "no universal σ" 结论。
+
+    但 PickCube 结果应作为 supplementary material 而非 main text，
+
+    因为 PickCube 的 CIVO 模式本就与 locomotion 不同（transient vs sustained）。
+
+    论文应 scope C8 claims 为 "locomotion tasks with sustained CIVO pattern"。'

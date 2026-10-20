@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_hopper_frozen_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:34:37.319Z",
+    "updated_at": "2026-05-27T02:55:24.661Z",
+    "conclusion": "killed",
+    "hypothesis": "Frozen dt_emb + subsample ON in Hopper Hop will NOT show CIVO (NVE stays below 1.5×), confirming trained dt_emb is the necessary condition for CIVO across a third multi-joint locomotion environment (seed 1 replication)",
+    "plan_id": "plan_040"
+  },
+  "timestamp": "2026-05-27T02:55:25.584278+00:00",
+  "trigger": "update_registry"
+}

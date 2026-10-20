@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_008a_unexposed_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:13:57.340Z",
+    "updated_at": "2026-05-18T05:20:00.771Z",
+    "hypothesis": "Walker Walk unexposed trained dt_emb + subsample OFF (gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15 (default), seed=2. 008a 新 seed 验证 protection 是否 reproducible。C3 rebuttal 储备。",
+    "parent": "exp_008a_no_subsample_dt2",
+    "spec": {
+      "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_unexposed_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --checkpoint_every 25000",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "724965",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_008a_unexposed_s2.log",
+      "submitted_at": "2026-05-18T05:19:26.303Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/event-gated-adaptive-horizon",
+      "data_count": 0,
+      "model_name": "DreamerV3+FixedDt2_NoSubsample (unexposed trained dt_emb, H=15)",
+      "seed": 2,
+      "checkpoint_source": "train_from_scratch",
+      "eval_data": "dmc_walker_walk (online eval during training)"
+    }
+  },
+  "timestamp": "2026-05-18T05:20:00.987689+00:00",
+  "trigger": "update_registry"
+}

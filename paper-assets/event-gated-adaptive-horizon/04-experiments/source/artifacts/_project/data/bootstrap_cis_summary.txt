@@ -1,0 +1,1 @@
+008d NVE: mean=2.64 [1.71, 4.13] (n=3 checkpoints, 35K-55K)\n018 NVE: 1.0 at all checkpoints (CIVO eliminated)\nSeed variability (s1-s0) full: 183.8 [136.2, 234.0]\nSeed variability last 10 checkpoints: 21.6 [11.5, 31.4]\n010a Cheetah ve_ratio last10: 0.722 [0.705, 0.742]\n010a Cheetah eval_return last10: 803.2 [779.0, 826.3]

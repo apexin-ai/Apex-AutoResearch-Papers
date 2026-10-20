@@ -1,0 +1,3206 @@
+# deploy exp 047 completion and exp 051
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 105
+- **Recorded user turns:** 0
+- **Tool calls:** 52
+- **Original source:** `logs/chats/worker_deploy_exp_047_completion_and_exp_051_20260522T184320.jsonl`
+- **Structured JSON:** [`d1f174019aa136d99c2d.json`](../../sessions/d1/d1f174019aa136d99c2d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+105 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T18:52:39.899071+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T18:52:39.899436+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T18:52:39.899642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 282452 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ps -p 282452 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T18:52:39.899793+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T18:52:39.900013+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "tail -50 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/train.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "tail -50 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/train.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T18:52:39.900174+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/train.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T18:52:39.900332+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_*.pt 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_*.pt 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T18:52:39.900459+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T18:52:39.900576+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'exp_047_frozen_dt_emb_walker_s1'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'exp_047_frozen_dt_emb_walker_s1'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T18:52:39.900700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0699}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T18:52:39.900856+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'exp_051_stackcube_frozen_dt_emb_s0'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'exp_051_stackcube_frozen_dt_emb_s0'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T18:52:39.901032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.071}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T18:52:39.901189+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 282452 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ps -p 282452 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T18:52:39.901319+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"282452    07:41:03 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T18:52:39.901509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir -maxdepth 1 -type d -name \"exp_047*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir -maxdepth 1 -type d -name \"exp_047*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T18:52:39.901641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T18:52:39.901761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T18:52:39.901940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp_025_obs_sgs_walker_s1\\nexp_025_obs_sgs_walker_s2\\nexp_026_obs_sgs_cheetah_s0\\nexp_026_obs_sgs_cheetah_s1\\nexp_029b_tcn_walker_s2_sigma02\\nexp_029c_tcn_walker_s0_sigma01\\nexp_029d_tcn_walker_s3_sigma02\\nexp_032_dual_critic_walker\\nexp_033_wide_critic_walker\\nexp_035_narrow_dual_critic_walker\\nexp_038_dual_critic_walker_s2\\nexp_039_narrow_dual_critic_walker_s1\\nexp_042_frozen_dt_emb_walker\\nexp_042_frozen_dt_emb_walker.log\\nexp_043_008f_walker_s1\\nexp_043_008f_walker_s1.log\\nexp_046_frozen_dt_emb_cheetah\\nexp_047_frozen_dt_emb_walker_s1\\nexp_050_peginsertion_civo_trigger_s0\\ntest_narrow_dual_critic_dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T18:52:39.902115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T18:52:39.902247+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoint_125000.pt\\ncheckpoint_175000.pt\\ncheckpoint_25000.pt\\ncheckpoint_75000.pt\\neval_eps\\nevents.out.tfevents.1779447774.autodl-container-2e984fa248-568e58ca.282452.0\\nlatest.pt\\nmetrics.jsonl\\ntrain_eps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T18:52:39.902367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T18:52:39.902491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090, 2600 MiB, 24564 MiB, 17 %\\n1, NVIDIA GeForce RTX 4090, 3043 MiB, 24564 MiB, 17 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T18:52:39.902636+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon && python3 -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\n# Get last line for current step\nlast = json.loads(lines[-1].strip())\nprint('LAST:', json.dumps({k:v for k,v in last.items() if any(x in k for x in ['step','eval','value','critic','ve_ratio','civo'])}, indent=2))\nprint('---')\n# Get eval and ve_ratio trajectory\nfor l in lines:\n    d = json.loads(l.strip())\n    step = d.get('step', 0)\n    if step % 10000 == 0:\n        filtered = {k:round(v,4) if isinstance(v,float) else v for k,v in d.items() if any(x in k for x in ['step','eval','value','ve_ratio','civo'])}\n        if filtered:\n            print(json.dumps(filtered))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon && python3 -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\n# Get last line for current step\nlast = json.loads(lines[-1].strip())\nprint('LAST:', json.dumps({k:v for k,v in last.items() if any(x in k for x in ['step','eval','value','critic','ve_ratio','civo'])}, indent=2))\nprint('---')\n# Get eval and ve_ratio trajectory\nfor l in lines:\n    d = json.loads(l.strip())\n    step = d.get('step', 0)\n    if step % 10000 == 0:\n        filtered = {k:round(v,4) if isinstance(v,float) else v for k,v in d.items() if any(x in k for x in ['step','eval','value','ve_ratio','civo'])}\n        if filtered:\n            print(json.dumps(filtered))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T18:52:39.902783+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/event-gated-adaptive-horizon && python3 -c \\\"\\\\nimport json\\\\nlines = open(\\\\'logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl\\\\').readlines()\\\\n# Get last line for current step\\\\nlast = json.loads(lines[-1].strip())\\\\nprint(\\\\'LAST:\\\\', json.dumps({k:v for k,v in last.items() if any(x in k for x in [\\\\'step\\\\',\\\\'eval\\\\',\\\\'value\\\\',\\\\'critic\\\\',\\\\'ve_ratio\\\\',\\\\'civo\\\\'])}, indent=2))\\\\nprint(\\\\'---\\\\')\\\\n# Get eval and ve_ratio trajectory\\\\nfor l in lines:\\\\n    d = json.loads(l.strip())\\\\n    step = d.get(\\\\'step\\\\', 0)\\\\n    if step % 10000 == 0:\\\\n        filtered = {k:round(v,4) if isinstance(v,float) else v for k,v in d.items() if any(x in k for x in [\\\\'step\\\\',\\\\'eval\\\\',\\\\'value\\\\',\\\\'ve_ratio\\\\',\\\\'civo\\\\'])}\\\\n        if filtered:\\\\n            print(json.dumps(filtered))\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T18:52:39.902944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "tail -20 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "tail -20 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T18:52:39.903090+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[212000] dataset_size 106000.0 / train_return 293.9 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 251.2 / train_length 500.0 / train_episodes 212.0\\n[212000] dataset_size 106000.0 / train_return 231.5 / train_length 500.0 / train_episodes 212.0\\n[215000] \\nStart evaluation.\\n[215000] eval_return 612.4 / eval_length 500.0 / eval_episodes 10.0\\nStart training.\\n[215000] civo/ve_ratio 0.1 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 5.1 / model_grad_norm 6.8 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 6.3 / rep_loss 6.3 / kl 6.2 / prior_ent 39.6 / post_ent 33.7 / normed_target_mean 0.4 / normed_target_std 0.4 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 2.6 / EMA_095 83.9 / value_mean 31.2 / value_std 29.1 / value_min 2.5 / value_max 104.2 / target_mean 31.3 / target_std 29.3 / target_min 2.5 / target_max 106.1 / imag_reward_mean 0.9 / imag_reward_std 1.2 / imag_reward_min -0.0 / imag_reward_max 4.1 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy 0.3 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.5 / value_grad_norm 1.3 / update_count 52599.0 / fps 7.9\\n[216000] dataset_size 108000.0 / train_return 316.6 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 292.7 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_size 108000.0 / train_return 410.0 / train_length 500.0 / train_episodes 216.0\\n[216000] dataset_s
+…[truncated 968 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T18:52:39.903271+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\nlast = json.loads(lines[-1].strip())\nstep = last.get('step', 0)\nprint(f'CURRENT_STEP: {step}')\nprint(f'TOTAL_LINES: {len(lines)}')\n# Print key fields from last entry\nfor k in ['step','eval/return','eval/length','civo/ve_ratio','civo/delta_ve','civo/alert']:\n    if k in last:\n        print(f'{k}: {last[k]}')\nprint('---TRAJECTORY---')\nfor l in lines:\n    d = json.loads(l.strip())\n    s = d.get('step', 0)\n    if 'eval/return' in d:\n        print(json.dumps({'step': s, 'eval_return': round(d['eval/return'],1), 've_ratio': round(d.get('civo/ve_ratio',0),4)}))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\nlast = json.loads(lines[-1].strip())\nstep = last.get('step', 0)\nprint(f'CURRENT_STEP: {step}')\nprint(f'TOTAL_LINES: {len(lines)}')\n# Print key fields from last entry\nfor k in ['step','eval/return','eval/length','civo/ve_ratio','civo/delta_ve','civo/alert']:\n    if k in last:\n        print(f'{k}: {last[k]}')\nprint('---TRAJECTORY---')\nfor l in lines:\n    d = json.loads(l.strip())\n    s = d.get('step', 0)\n    if 'eval/return' in d:\n        print(json.dumps({'step': s, 'eval_return': round(d['eval/return'],1), 've_ratio': round(d.get('civo/ve_ratio',0),4)}))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T18:52:39.903415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"CURRENT_STEP: 220000\\nTOTAL_LINES: 286\\nstep: 220000\\n---TRAJECTORY---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T18:52:39.903537+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir -name \"*.log\" -path \"*exp_047*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir -name \"*.log\" -path \"*exp_047*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T18:52:39.903659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T18:52:39.903832+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\n# Show all keys from a line that has eval\nfor l in lines:\n    d = json.loads(l.strip())\n    keys = [k for k in d.keys() if 'eval' in k.lower() or 'return' in k.lower() or 've_ratio' in k.lower()]\n    if keys:\n        print(f'step={d.get(\\\"step\\\",\\\"?\\\")}, eval_keys={keys}')\n        break\n# If no eval keys found, show all keys from last line\nlast = json.loads(lines[-1].strip())\nprint('ALL_KEYS:', sorted(last.keys()))\n# Show first 3 and last 3 lines condensed\nfor i, l in enumerate(lines):\n    d = json.loads(l.strip())\n    if i < 3 or i >= len(lines)-3:\n        print(f'LINE {i}: step={d.get(\\\"step\\\")}, keys_count={len(d)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nimport json\nlines = open('logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl').readlines()\n# Show all keys from a line that has eval\nfor l in lines:\n    d = json.loads(l.strip())\n    keys = [k for k in d.keys() if 'eval' in k.lower() or 'return' in k.lower() or 've_ratio' in k.lower()]\n    if keys:\n        print(f'step={d.get(\\\"step\\\",\\\"?\\\")}, eval_keys={keys}')\n        break\n# If no eval keys found, show all keys from last line\nlast = json.loads(lines[-1].strip())\nprint('ALL_KEYS:', sorted(last.keys()))\n# Show first 3 and last 3 lines condensed\nfor i, l in enumerate(lines):\n    d = json.loads(l.strip())\n    if i < 3 or i >= len(lines)-3:\n        print(f'LINE {i}: step={d.get(\\\"step\\\")}, keys_count={len(d)}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T18:52:39.903980+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step=0, eval_keys=['train_return']\\nALL_KEYS: ['dataset_size', 'step', 'train_episodes', 'train_length', 'train_return']\\nLINE 0: step=0, keys_count=5\\nLINE 1: step=0, keys_count=5\\nLINE 2: step=0, keys_count=5\\nLINE 283: step=220000, keys_count=5\\nLINE 284: step=220000, keys_count=5\\nLINE 285: step=220000, keys_count=5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T18:52:39.904138+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom tensorboard.backend.event_processing.event_accumulator import EventAccumulator\nea = EventAccumulator('logdir/exp_047_frozen_dt_emb_walker_s1')\nea.Reload()\ntags = ea.Tags()\nscalar_tags = tags.get('scalars', [])\neval_tags = [t for t in scalar_tags if 'eval' in t.lower() or 've_ratio' in t.lower()]\nprint('EVAL_TAGS:', eval_tags)\n# Get eval_return trajectory\nfor tag in eval_tags:\n    events = ea.Scalars(tag)\n    print(f'\\\\n--- {tag} ({len(events)} points) ---')\n    for e in events:\n        print(f'step={e.step}, value={round(e.value,2)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom tensorboard.backend.event_processing.event_accumulator import EventAccumulator\nea = EventAccumulator('logdir/exp_047_frozen_dt_emb_walker_s1')\nea.Reload()\ntags = ea.Tags()\nscalar_tags = tags.get('scalars', [])\neval_tags = [t for t in scalar_tags if 'eval' in t.lower() or 've_ratio' in t.lower()]\nprint('EVAL_TAGS:', eval_tags)\n# Get eval_return trajectory\nfor tag in eval_tags:\n    events = ea.Scalars(tag)\n    print(f'\\\\n--- {tag} ({len(events)} points) ---')\n    for e in events:\n        print(f'step={e.step}, value={round(e.value,2)}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-22T18:52:39.904432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EVAL_TAGS: ['scalars/eval_return', 'scalars/eval_length', 'scalars/eval_episodes', 'civo/ve_ratio']\\n\\n--- scalars/eval_return (22 points) ---\\nstep=5000, value=36.66\\nstep=15000, value=180.78\\nstep=25000, value=158.37\\nstep=35000, value=206.57\\nstep=45000, value=182.39\\nstep=55000, value=199.4\\nstep=65000, value=226.94\\nstep=75000, value=97.23\\nstep=85000, value=109.83\\nstep=95000, value=80.94\\nstep=105000, value=248.56\\nstep=115000, value=233.23\\nstep=125000, value=408.79\\nstep=135000, value=225.83\\nstep=145000, value=304.44\\nstep=155000, value=217.32\\nstep=165000, value=335.89\\nstep=175000, value=314.38\\nstep=185000, value=326.18\\nstep=195000, value=303.37\\nstep=205000, value=263.58\\nstep=215000, value=144.22\\n\\n--- scalars/eval_length (22 points) ---\\nstep=5000, value=500.0\\nstep=15000, value=500.0\\nstep=25000, value=500.0\\nstep=35000, value=500.0\\nstep=45000, value=500.0\\nstep=55000, value=500.0\\nstep=65000, value=500.0\\nstep=75000, value=500.0\\nstep=85000, value=500.0\\nstep=95000, value=500.0\\nstep=105000, value=500.0\\nstep=115000, value=500.0\\nstep=125000, value=500.0\\nstep=135000, value=500.0\\nstep=145000, value=500.0\\nstep=155000, value=500.0\\nstep=165000, value=500.0\\nstep=175000, value=500.0\\nstep=185000, value=500.0\\nstep=195000, value=500.0\\nstep=205000, value=500.0\\nstep=215000, value=500.0\\n\\n--- scalars/eval_episodes (22 points) ---\\nstep=5000, value=10.0\\nstep=15000, value=10.0\\nstep=25000, value=10.0\\nstep=35000, value=10.0\\nstep=45000, value=10.0\\nstep=55000, value=10.0\\nstep=65000, value=10.0\\nstep=75000, value=10.0\\nstep=85000, value=10.0\\nstep=95000, value=10.0\\nstep=105000, value=10.0\\nstep=115000, value=10.0\\nstep=125000, value=10.0\\nstep=135000, value=10.0\\nstep=145000, value=10.0\\nstep=155000, value=10.0\\nstep=165000, value=10.0\\nstep=175000, value=10.0\\nstep=185000, value=10.0\\nstep=195000, value=10.0\\nstep=205000,
+…[truncated 718 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T18:52:39.904652+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,uuid --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; echo \"---\"; nvidia-smi --query-gpu=index,uuid --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-22T18:52:39.904787+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "cat /proc/282452/environ",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "cat /proc/282452/environ",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T18:52:39.904941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n282452, GPU-720589c0-02fe-8d6f-2e67-131bea702949, 3025 MiB\\n---\\n0, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d\\n1, GPU-720589c0-02fe-8d6f-2e67-131bea702949\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T18:52:39.905087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MUJOCO_EGL_DEVICE_ID=1\\u0000MUJOCO_GL=egl\\u0000LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6\\u0000SHELL=/bin/bash\\u0000TERM_PROGRAM_VERSION=3.2a\\u0000CONDA_EXE=/root/miniconda3/bin/conda\\u0000_CE_M=\\u0000TMUX=/tmp/tmux-0/default,282440,0\\u0000PWD=/root/autodl-tmp/event-gated-adaptive-horizon\\u0000LOGNAME=root\\u0000CONDA_PREFIX=/root/miniconda3\\u0000TZ=Asia/Shanghai\\u0000MOTD_SHOWN=pam\\u0000HOME=/root\\u0000CONDA_PROMPT_MODIFIER=(base) \\u0000SSH_CONNECTION=127.0.0.1 55990 127.0.0.1 22\\u0000CUDA_VISIBLE_DEVICES=1\\u0000TERM=screen\\u0000_CE_CONDA=\\u0000USER=root\\u0000TMUX_PANE=%0\\u0000CONDA_SHLVL=1\\u0000SHLVL=1\\u0000CONDA_PYTHON_EXE=/root/miniconda3/bin/python\\u0000SSH_CLIENT=127.0.0.1 55990 22\\u0000CONDA_DEFAULT_ENV=base\\u0000PATH=/root/miniconda3/bin:/root/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\\u0000OLDPWD=/root\\u0000TERM_PROGRAM=tmux\\u0000_=/root/miniconda3/bin/python\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T18:52:39.905267+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 304736 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ps -p 304736 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T18:52:39.905398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"304736       09:26 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_050_peginsertion_civo_trigger_s0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T18:52:39.905521+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon -maxdepth 1 -name \"nohup*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "find /root/autodl-tmp/event-gated-adaptive-horizon -maxdepth 1 -name \"nohup*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T18:52:39.905642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T18:52:39.905763+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root -maxdepth 1 -name \"nohup*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "find /root -maxdepth 1 -name \"nohup*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T18:52:39.905903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T18:52:39.906054+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "stat --format=\"%Y %n\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "stat --format=\"%Y %n\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T18:52:39.906179+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1779475518 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T18:52:39.906295+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "stat --format=\"%Y %n\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "stat --format=\"%Y %n\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T18:52:39.906411+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1779474427 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T18:52:39.906524+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill_stackcube.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill_stackcube.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T18:52:39.906640+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill_stackcube.yaml: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T18:52:39.906787+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "date +%s; echo \"---\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill*.yaml 2>/dev/null; echo \"---\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/*.yaml 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "date +%s; echo \"---\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill*.yaml 2>/dev/null; echo \"---\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/*.yaml 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T18:52:39.906945+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'date +%s; echo \\\"---\\\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/maniskill*.yaml 2>/dev/null; echo \\\"---\\\"; ls /root/autodl-tmp/event-gated-adaptive-horizon/configs/*.yaml 2>/dev/null'\\n\\nExit code: 2\\n\\nStdout:\\n\\n1779475631\\n---\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T18:52:39.907102+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon && grep -rn \"maniskill_stackcube\\|maniskill_peginsertion\\|maniskill\" configs.yaml 2>/dev/null | head -20; echo \"---\"; ls configs.yaml 2>/dev/null || echo \"NO_configs.yaml\"; echo \"---\"; find . -name \"configs*\" -maxdepth 2 -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon && grep -rn \"maniskill_stackcube\\|maniskill_peginsertion\\|maniskill\" configs.yaml 2>/dev/null | head -20; echo \"---\"; ls configs.yaml 2>/dev/null || echo \"NO_configs.yaml\"; echo \"---\"; find . -name \"configs*\" -maxdepth 2 -type f 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T18:52:39.907235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"220:maniskill:\\n221:  task: maniskill_PickCube-v1\\n231:maniskill_state:\\n232:  task: maniskill_PickCube-v1\\n242:maniskill_stackcube:\\n243:  task: maniskill_StackCube-v1\\n253:maniskill_peginsertion:\\n254:  task: maniskill_PegInsertionSide-v1\\n---\\nconfigs.yaml\\n---\\n./configs.yaml.bak.pre_plan015\\n./configs.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T18:52:39.907400+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "baseline.*ve_ratio|NVE|walker.*baseline",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "-i": "True",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "baseline.*ve_ratio|NVE|walker.*baseline",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+    "-i": "True",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T18:52:39.907616+00:00_
+
+&lt;persisted-output>
+Output too large (25.4KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/6a9ca543-5201-4cc5-a23d-2154d8e659b2/tool-results/toolu_01NZCMbru44KgWWgCeHqhVn6.txt
+
+Preview (first 2KB):
+paper_framing.md:20:This is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*
+paper_framing.md:36:| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |
+paper_framing.md:45:**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**
+paper_framing.md:49:- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)
+paper_framing.md:50:- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)
+paper_framing.md:53:**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。
+paper_framing.md:55:[Omitted long matching line]
+paper_framing.md:57:The trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).
+paper_framing.md:65:| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: *
+…[truncated 219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T18:52:39.907797+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "baseline.*ve_ratio.*0\\.|walker.*baseline.*0\\.|nve.*=.*ve_ratio.*\\/|normali.*ve_ratio",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "-i": "True",
+  "output_mode": "content",
+  "head_limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "baseline.*ve_ratio.*0\\.|walker.*baseline.*0\\.|nve.*=.*ve_ratio.*\\/|normali.*ve_ratio",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+    "-i": "True",
+    "output_mode": "content",
+    "head_limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T18:52:39.907974+00:00_
+
+paper_framing.md:184:| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |
+decisions.yaml:2235:    CIVO 强度远高于 Walker（baseline NVE 8-70× vs 1.5-4×），σ=0.2 噪声不足。关键判断：这不是 TCN 失败，是剂量不足。Cheetah
+artifacts/analysis/pickcube_ve_trajectory.json:45:        "description": "NVE = 019b_ve_ratio / 019a_ve_ratio at same step",
+artifacts/analysis/detector_table.md:9:| exp_009a_baseline_walker_s2 | vanilla DreamerV3 baseline, walker, seed=2 | FP | 85K | predictive | 967 | 0.73 |
+artifacts/analysis/detector_formal_validation_v3.json:216:      "note": "Long healthy baseline run (505K steps). Max ve_ratio=0.728. Acceleration condition never met simultaneously with eval decline.",
+artifacts/analysis/detector_formal_validation_v3.json:257:      "note": "Shorter baseline run (115K steps). Steady improvement throughout. Max ve_ratio=0.72 but no sustained acceleration.",
+artifacts/analysis/detector_table.tex:16:  exp\_009a\_baseline\_walker\_s2 & vanilla DreamerV3 baseline, .. & FP & 85K & predictive & 967 & 0.73 \\
+artifacts/exp_034_dual_critic_cheetah/report/exp_034_analysis.md:112:- Dual-critic 提供了 **显著的部分缓解**（vs baseline: eval 97.5 vs 0.83, ve_ratio 1.8 vs NVE 70.64）
+artifacts/exp_023a_cheetah_baseline_s0/report/analysis.md:79:The baseline is healthy. Despite the transient CIVO alert at 185K (ve_ratio spike to 0.9 with eval dip to 425), the agent recovered strongly and reached a new peak of 624.7. Performance is consistent with and slightly exceeds seed=1 results. No sustained value overestimation collapse occurred.
+artifacts/figures_data/generate_csvs.py:272:            # Compute normalized_ve if we have ve_ratio and baseline_ve but not nve_val
+artifacts/figures_data/generate_csvs.py:274:                nve_val = ve_ratio / baseline_ve
+artifacts/figures_data/generate_csvs.py:369:                final_nve = round(final_ve_ratio / bve, 4)
+artifacts/figures_data/summary_table.csv:3:exp_009a_baseline_walker_s2,ba
+…[truncated 1152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T18:52:39.908137+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures_data/generate_csvs.py",
+  "offset": "260",
+  "limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures_data/generate_csvs.py",
+    "offset": "260",
+    "limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T18:52:39.908290+00:00_
+
+260	        ve_ratios = extract_ve_ratios(metrics)
+261	        nve_data = extract_nve(metrics)
+262	        label = LABELS[eid]
+263	
+264	        # Collect all steps from ve_ratios and nve_data
+265	        all_steps = sorted(set(list(ve_ratios.keys()) + list(nve_data.keys())))
+266	
+267	        for step in all_steps:
+268	            ve_ratio = ve_ratios.get(step, '')
+269	            baseline_ve = BASELINE_VE.get(step, '')
+270	            nve_val = nve_data.get(step, '')
+271	
+272	            # Compute normalized_ve if we have ve_ratio and baseline_ve but not nve_val
+273	            if nve_val == '' and isinstance(ve_ratio, (int, float)) and isinstance(baseline_ve, (int, float)) and baseline_ve > 0:
+274	                nve_val = ve_ratio / baseline_ve
+275	
+276	            nve_rows.append({
+277	                'exp_id': eid,
+278	                'step': step,
+279	                've_ratio': ve_ratio,
+280	                'baseline_ve': baseline_ve,
+281	                'normalized_ve': round(nve_val, 4) if isinstance(nve_val, (int, float)) else nve_val,
+282	                'config_label': label,
+283	            })
+284	
+285	    nve_path = os.path.join(OUTPUT_DIR, 'nve_trajectories.csv')
+286	    with open(nve_path, 'w', newline='', encoding='utf-8') as f:
+287	        writer = csv.DictWriter(f, fieldnames=['exp_id', 'step', 've_ratio', 'baseline_ve', 'normalized_ve', 'config_label'])
+288	        writer.writeheader()
+289	        writer.writerows(nve_rows)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T18:52:39.908427+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "BASELINE_VE",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures_data/generate_csvs.py",
+  "output_mode": "content",
+  "-B": "2",
+  "-A": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "BASELINE_VE",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures_data/generate_csvs.py",
+    "output_mode": "content",
+    "-B": "2",
+    "-A": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T18:52:39.908570+00:00_
+
+30-
+31-# Baseline v/e trajectory
+32:BASELINE_VE = {
+33-    25000: 0.087,
+34-    35000: 0.241,
+35-    45000: 0.331,
+36-    55000: 0.404,
+37-    65000: 0.563,
+38-    75000: 0.719,
+39-    85000: 0.701,
+40-    95000: 0.632,
+41-    105000: 0.656,
+42-}
+43-
+44-
+45-def parse_step_key(key):
+46-    """Parse step from key like 'eval_return_35K' or '35K' or '35k' -> 35000."""
+47-    m = re.search(r'(\d+)[Kk]', key)
+48-    if m:
+49-        return int(m.group(1)) * 1000
+50-    m = re.search(r'(\d+)', key)
+51-    if m:
+52-        return int(m.group(1))
+--
+267-        for step in all_steps:
+268-            ve_ratio = ve_ratios.get(step, '')
+269:            baseline_ve = BASELINE_VE.get(step, '')
+270-            nve_val = nve_data.get(step, '')
+271-
+272-            # Compute normalized_ve if we have ve_ratio and baseline_ve but not nve_val
+273-            if nve_val == '' and isinstance(ve_ratio, (int, float)) and isinstance(baseline_ve, (int, float)) and baseline_ve > 0:
+274-                nve_val = ve_ratio / baseline_ve
+275-
+276-            nve_rows.append({
+277-                'exp_id': eid,
+278-                'step': step,
+279-                've_ratio': ve_ratio,
+280-                'baseline_ve': baseline_ve,
+281-                'normalized_ve': round(nve_val, 4) if isinstance(nve_val, (int, float)) else nve_val,
+282-                'config_label': label,
+283-            })
+284-
+285-    nve_path = os.path.join(OUTPUT_DIR, 'nve_trajectories.csv')
+286-    with open(nve_path, 'w', newline='', encoding='utf-8') as f:
+287-        writer = csv.DictWriter(f, fieldnames=['exp_id', 'step', 've_ratio', 'baseline_ve', 'normalized_ve', 'config_label'])
+288-        writer.writeheader()
+289-        writer.writerows(nve_rows)
+--
+365-            # Try to find baseline_ve at the final_ve step
+366-            fvs = max(ve_ratios.keys()) if ve_ratios else None
+367:            bve = BASELINE_VE.get(fvs, None) if fvs else None
+368-            if bve and bve > 0:
+369-                final_nve = 
+…[truncated 781 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T18:52:39.908773+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 282452 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ps -p 282452 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"PID_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T18:52:39.908928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID_DEAD\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T18:52:39.909079+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom tensorboard.backend.event_processing.event_accumulator import EventAccumulator\nea = EventAccumulator('logdir/exp_047_frozen_dt_emb_walker_s1')\nea.Reload()\nprint('--- eval_return ---')\nfor e in ea.Scalars('scalars/eval_return'):\n    print(f'step={e.step}, value={round(e.value,2)}')\nprint('--- ve_ratio ---')\nfor e in ea.Scalars('civo/ve_ratio'):\n    print(f'step={e.step}, value={round(e.value,4)}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom tensorboard.backend.event_processing.event_accumulator import EventAccumulator\nea = EventAccumulator('logdir/exp_047_frozen_dt_emb_walker_s1')\nea.Reload()\nprint('--- eval_return ---')\nfor e in ea.Scalars('scalars/eval_return'):\n    print(f'step={e.step}, value={round(e.value,2)}')\nprint('--- ve_ratio ---')\nfor e in ea.Scalars('civo/ve_ratio'):\n    print(f'step={e.step}, value={round(e.value,4)}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T18:52:39.909224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- eval_return ---\\nstep=5000, value=36.66\\nstep=15000, value=180.78\\nstep=25000, value=158.37\\nstep=35000, value=206.57\\nstep=45000, value=182.39\\nstep=55000, value=199.4\\nstep=65000, value=226.94\\nstep=75000, value=97.23\\nstep=85000, value=109.83\\nstep=95000, value=80.94\\nstep=105000, value=248.56\\nstep=115000, value=233.23\\nstep=125000, value=408.79\\nstep=135000, value=225.83\\nstep=145000, value=304.44\\nstep=155000, value=217.32\\nstep=165000, value=335.89\\nstep=175000, value=314.38\\nstep=185000, value=326.18\\nstep=195000, value=303.37\\nstep=205000, value=263.58\\nstep=215000, value=144.22\\n--- ve_ratio ---\\nstep=15000, value=0.0176\\nstep=25000, value=0.1201\\nstep=35000, value=0.1869\\nstep=45000, value=0.3512\\nstep=55000, value=0.4531\\nstep=65000, value=0.465\\nstep=75000, value=1.0993\\nstep=85000, value=0.9033\\nstep=95000, value=1.0817\\nstep=105000, value=0.3652\\nstep=115000, value=0.366\\nstep=125000, value=0.1933\\nstep=135000, value=0.3265\\nstep=145000, value=0.2193\\nstep=155000, value=0.2912\\nstep=165000, value=0.1711\\nstep=175000, value=0.1686\\nstep=185000, value=0.1491\\nstep=195000, value=0.1501\\nstep=205000, value=0.1606\\nstep=215000, value=0.2772\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T18:52:39.909351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ls -lh /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_*.pt /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ls -lh /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_*.pt /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T18:52:39.909485+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 221M May 22 23:17 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_125000.pt\\n-rw-r--r-- 1 root root 221M May 23 01:02 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_175000.pt\\n-rw-r--r-- 1 root root 221M May 23 02:47 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\\n-rw-r--r-- 1 root root 221M May 22 19:44 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_25000.pt\\n-rw-r--r-- 1 root root 221M May 22 21:30 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_75000.pt\\n-rw-r--r-- 1 root root 221M May 23 02:47 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_047_frozen_dt_emb_walker_s1/latest.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T18:52:39.909608+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T18:52:39.909727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T18:52:39.909916+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "hypothesis",
+  "value": "Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "hypothesis",
+    "value": "Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T18:52:39.910111+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:11.044Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1167}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T18:52:39.910284+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "parent",
+  "value": "exp_042_frozen_dt_emb_walker"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "parent",
+    "value": "exp_042_frozen_dt_emb_walker"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T18:52:39.910429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:12.044Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1566}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T18:52:39.910564+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "metrics",
+  "value": "{'eval_peak': 408.79, 'eval_peak_step': 125000, 'eval_final': 144.22, 'eval_final_step': 215000, 've_ratio_peak': 1.099, 've_ratio_peak_step': 75000, 've_ratio_final': 0.277, 'nve_peak': 1.71, 'nve_peak_step': 95000, 'nve_final_105k': 0.56, 'total_steps': 225000, 'note': 'Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "metrics",
+    "value": "{'eval_peak': 408.79, 'eval_peak_step': 125000, 'eval_final': 144.22, 'eval_final_step': 215000, 've_ratio_peak': 1.099, 've_ratio_peak_step': 75000, 've_ratio_final': 0.277, 'nve_peak': 1.71, 'nve_peak_step': 95000, 'nve_final_105k': 0.56, 'total_steps': 225000, 'note': 'Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T18:52:39.910727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:14.838Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}, \"metrics\": {\"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"eval_final\": 144.22, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000, \"note\": \"Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1474}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T18:52:39.910910+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "checkpoint_path",
+  "value": "logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "checkpoint_path",
+    "value": "logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T18:52:39.911085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:15.919Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}, \"metrics\": {\"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"eval_final\": 144.22, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000, \"note\": \"Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.\"}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1171}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T18:52:39.911221+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "log_path",
+  "value": "logdir/exp_047_frozen_dt_emb_walker_s1/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "log_path",
+    "value": "logdir/exp_047_frozen_dt_emb_walker_s1/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T18:52:39.911373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:16.641Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}, \"metrics\": {\"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"eval_final\": 144.22, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000, \"note\": \"Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.\"}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1202}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T18:52:39.911548+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "submit_training_job",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "submit_training_job",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T18:52:39.911668+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-22T18:52:39.911788+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "conclusion",
+  "value": "success — frozen dt_emb prevented sustained CIVO collapse. Transient NVE>1.5x at 75K-95K self-corrected by 105K. Late eval decline (408→144) at ve_ratio=0.28 is NOT CIVO. Replicates exp_042 finding with additional insight: frozen dt_emb permits transient spikes but system retains self-correction capacity."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "conclusion",
+    "value": "success — frozen dt_emb prevented sustained CIVO collapse. Transient NVE>1.5x at 75K-95K self-corrected by 105K. Late eval decline (408→144) at ve_ratio=0.28 is NOT CIVO. Replicates exp_042 finding with additional insight: frozen dt_emb permits transient spikes but system retains self-correction capacity."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T18:52:39.911948+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'success — frozen dt_emb prevented sustained CIVO collapse. Transient NVE>1.5x at 75K-95K self-corrected by 105K. Late eval decline (408→144) at ve_ratio=0.28 is NOT CIVO. Replicates exp_042 finding with additional insight: frozen dt_emb permits transient spikes but system retains self-correction capacity.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.0938}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-22T18:52:39.912098+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "conclusion",
+  "value": "success"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "conclusion",
+    "value": "success"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T18:52:39.912256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:45.847Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}, \"metrics\": {\"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"eval_final\": 144.22, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000, \"note\": \"Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.\"}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1235}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T18:52:39.912390+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+  "field": "status",
+  "value": "DONE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_047_frozen_dt_emb_walker_s1",
+    "field": "status",
+    "value": "DONE"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T18:52:39.912564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_047_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:42:12.914Z\", \"updated_at\": \"2026-05-22T18:50:46.948Z\", \"hypothesis\": \"Freezing dt_emb in Walker Walk (seed 1) prevents sustained CIVO collapse, replicating exp_042 (seed 0, NVE=0.19) finding that removing dt conditioning blocks the overestimation feedback loop\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 282452, \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\"}, \"metrics\": {\"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"eval_final\": 144.22, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000, \"note\": \"Transient NVE>1.5x at 75K-95K with full self-correction by 105K. Late eval decline (408->144) NOT CIVO-driven (ve_ratio=0.28). No sustained collapse.\"}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:50:46.948Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_se
+…[truncated 19 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-22T18:52:39.912725+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup env CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0 > logdir/exp_051_stackcube_frozen_dt_emb_s0.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup env CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0 > logdir/exp_051_stackcube_frozen_dt_emb_s0.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T18:52:39.912877+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup env CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0 > logdir/exp_051_stackcube_frozen_dt_emb_s0.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=305969\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-22T18:52:39.913040+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 305969 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "ps -p 305969 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-22T18:52:39.913176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"305969       00:38 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup env CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0 > logdir/exp_051_stackcube_frozen_dt_emb_s0.log 2>&1 & echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-22T18:52:39.913304+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-22T18:52:39.913426+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n304736, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 2575 MiB\\n305974, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 435 MiB\\n305974, GPU-3b545e45-14ae-7547-a3da-66baa7ef530d, 435 MiB\\n305974, GPU-720589c0-02fe-8d6f-2e67-131bea702949, 2526 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-22T18:52:39.913543+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "tail -20 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_051_stackcube_frozen_dt_emb_s0.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-40020",
+    "command": "tail -20 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_051_stackcube_frozen_dt_emb_s0.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-22T18:52:39.913675+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Encoder MLP shapes: {'state': (48,)}\\nDecoder CNN shapes: {}\\nDecoder MLP shapes: {'state': (48,)}\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:860: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\nOptimizer model_opt has 16998456 variables.\\nOptimizer actor_opt has 1058832 variables.\\nOptimizer value_opt has 1181439 variables.\\n[2500] \\nStart evaluation.\\n[2500] eval_return 2.0 / eval_length 200.0 / eval_episodes 10.0\\nStart training.\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:232: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:406: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:595: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n/root/autodl-tmp/event-gated-adaptive-horizon/models.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\\n  with torch.cuda.amp.autocast(self._use_amp):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-22T18:52:39.913864+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+  "field": "hypothesis",
+  "value": "Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+    "field": "hypothesis",
+    "value": "Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-22T18:52:39.914009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_051_stackcube_frozen_dt_emb_s0\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:42:39.309Z\", \"updated_at\": \"2026-05-22T18:51:55.060Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.117}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-22T18:52:39.914131+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+  "field": "parent",
+  "value": "exp_049"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+    "field": "parent",
+    "value": "exp_049"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-22T18:52:39.914254+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_051_stackcube_frozen_dt_emb_s0\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:42:39.309Z\", \"updated_at\": \"2026-05-22T18:51:55.953Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\", \"parent\": \"exp_049\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2345}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-22T18:52:39.914376+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0', 'server': 'bjb1-40020', 'gpu_ids': [1], 'pid': 305974, 'data_path': 'maniskill_StackCube-v1 (online RL)', 'data_count': 210000, 'model_name': 'DreamerV3 (frozen dt_emb, StackCube s0)', 'seed': 0, 'log_path': 'logdir/exp_051_stackcube_frozen_dt_emb_s0.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0', 'server': 'bjb1-40020', 'gpu_ids': [1], 'pid': 305974, 'data_path': 'maniskill_StackCube-v1 (online RL)', 'data_count': 210000, 'model_name': 'DreamerV3 (frozen dt_emb, StackCube s0)', 'seed': 0, 'log_path': 'logdir/exp_051_stackcube_frozen_dt_emb_s0.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-22T18:52:39.914513+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.0693}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-22T18:52:39.914653+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0', 'server': 'bjb1-40020', 'gpu_ids': [1], 'pid': 305974, 'data_path': 'maniskill_StackCube-v1 (online RL)', 'data_count': 210000, 'model_name': 'DreamerV3 (frozen dt_emb, StackCube s0)', 'seed': 0, 'log_path': 'logdir/exp_051_stackcube_frozen_dt_emb_s0.log', 'checkpoint_source': 'N/A (training from scratch)', 'eval_data': 'maniskill_StackCube-v1 (online eval)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+    "field": "status",
+    "value": "RUNNING",
+    "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0', 'server': 'bjb1-40020', 'gpu_ids': [1], 'pid': 305974, 'data_path': 'maniskill_StackCube-v1 (online RL)', 'data_count': 210000, 'model_name': 'DreamerV3 (frozen dt_emb, StackCube s0)', 'seed': 0, 'log_path': 'logdir/exp_051_stackcube_frozen_dt_emb_s0.log', 'checkpoint_source': 'N/A (training from scratch)', 'eval_data': 'maniskill_StackCube-v1 (online eval)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-22T18:52:39.914804+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_051_stackcube_frozen_dt_emb_s0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:42:39.309Z\", \"updated_at\": \"2026-05-22T18:52:10.688Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\", \"parent\": \"exp_049\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 305974, \"data_path\": \"maniskill_StackCube-v1 (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, StackCube s0)\", \"seed\": 0, \"log_path\": \"logdir/exp_051_stackcube_frozen_dt_emb_s0.log\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"maniskill_StackCube-v1 (online eval)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2019}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-22T18:52:39.915002+00:00_
+
+两个任务完成。
+
+---
+
+## 任务 1: exp_047 完成分析
+
+**状态**: DONE (success) — PID 282452 已退出，训练跑到 ~225K steps
+
+| 指标 | 值 |
+|------|-----|
+| eval_peak | **408.79** @ 125K |
+| eval_final | 144.22 @ 215K |
+| ve_ratio_peak | 1.099 @ 75K |
+| ve_ratio_final | 0.277 @ 215K |
+| NVE_peak (≥35K) | **1.71x @ 95K** |
+| NVE @ 105K | 0.56x (自修正) |
+
+**NVE 轨迹** (normalized by Walker baseline ve_ratio):
+- 35K: 0.78x → 45K: 1.06x → 55K: 1.12x → 65K: 0.83x → **75K: 1.53x** → 85K: 1.29x → **95K: 1.71x** → 105K: 0.56x
+
+**需注意**: NVE 在 75K-95K 短暂超过 1.5x 阈值（与 exp_042 s0 不同），但 105K 完全自修正。这是 "transient spike with self-correction" 模式，类似 exp_009b。末期 eval 下降 (408→144) 发生在 ve_ratio=0.28 的低位，确认非 CIVO。
+
+**vs exp_042 (s0)**: s0 的 NVE=0.19 全程安全，s1 出现了瞬时 spike。frozen dt_emb 没有完全消除瞬时过估，但保障了系统的自修正能力，阻止了持续性 collapse。
+
+## 任务 2: exp_051 部署
+
+**状态**: RUNNING — PID 305974, GPU 1 (2526 MiB)
+- 首次 eval @ 2500 steps: eval_return=2.0（StackCube 正常起点）
+- Log: `logdir/exp_051_stackcube_frozen_dt_emb_s0.log`
+- Registry: RUNNING, hypothesis/parent/spec 已设置
+
+**GPU 分布**:
+- GPU 0: exp_050 (PID 304736, PegInsertion, 2575 MiB) + exp_051 EGL 渲染溢出 (435 MiB)
+- GPU 1: exp_051 (PID 305974, StackCube, 2526 MiB)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_deploy_exp_047_completion_and_exp_051_20260522T184320"
+}
+```
+
+</details>
+
+---

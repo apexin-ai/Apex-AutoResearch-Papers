@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_hopper_trained_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:34:29.841Z",
+    "updated_at": "2026-05-27T02:37:29.268Z",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-27T02:37:29.726386+00:00",
+  "trigger": "update_registry"
+}

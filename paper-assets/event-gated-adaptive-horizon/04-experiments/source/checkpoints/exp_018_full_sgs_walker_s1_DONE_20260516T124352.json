@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_018_full_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:30:39.991Z",
+    "updated_at": "2026-05-16T12:43:52.394Z",
+    "hypothesis": "Full-SGS: detach all non-KL gradients from dt_emb (removes 93% obs decoder contribution). If CIVO persists → vulnerability is representation-level; if eliminated → obs decoder gradient is root cause.",
+    "parent": "exp_016e_sgs_walker_s1",
+    "notes": "Full-SGS 代码就绪。Bug fix committed (06ab285): restore dt_emb.weight.requires_grad_(True) after imagination. 提交就绪验证通过 (2026-05-16T01:43): 代码版本✅ 配置✅ 环境✅。验证命令: cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py --task dmc_walker_walk --steps 105000 --full_sgs True --seed 1 --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1 --device cuda:0。等 009d 完成释放 cuda:0 后提交。",
+    "server": "bjb1-45299",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T09:50:18.238Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_018_full_sgs_walker_s1 --steps 105000 --full_sgs True --seed 1 --compile False --device cuda:0\"",
+      "code_commit": "3328f53cb32cda27e85b099d560256aeb01db998",
+      "finished_at": "2026-05-16T12:40:14.687Z",
+      "training_hours": 2.83
+    },
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1/checkpoint.pt",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1"
+    },
+    "pid": "577467",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_018_full_sgs_walker_s1.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T12:40:17.132664+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_return_peak": 915.7,
+      "eval_return_peak_step": 105000,
+      "eval_return_final": 915.7,
+      "eval_return_final_step": 105000,
+      "nve_peak": 0.72,
+      "nve_peak_step": 75000,
+      "nve_sustained_max": 0.72,
+      "nve_sustained_avg": 0.55,
+      "total_steps": 112000,
+      "value_mean_final": 601.1,
+      "train_return_final_avg": 899.4
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T12:43:09.226Z"
+  },
+  "timestamp": "2026-05-16T12:43:52.526491+00:00",
+  "trigger": "update_registry"
+}

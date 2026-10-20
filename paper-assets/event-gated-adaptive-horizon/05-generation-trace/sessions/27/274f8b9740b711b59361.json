@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "274f8b9740b711b59361",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "research code correction history",
+  "task_key": "worker_research_code-correction-history_20260528T010710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_code-correction-history_20260528T010710.log",
+    "occurrence": 1,
+    "bytes": 623433,
+    "sha256": "ddaf7cdb57869ab37d8d5990bcc06b51e838fbb5741f0e11e989ef81bdf73b1a"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "274f8b9740b711b59361-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "274f8b9740b711b59361-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-code-correction-history.md"
+}

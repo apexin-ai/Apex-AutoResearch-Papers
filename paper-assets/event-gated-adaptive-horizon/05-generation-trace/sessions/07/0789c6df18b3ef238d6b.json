@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0789c6df18b3ef238d6b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper results tex f6 fix",
+  "task_key": "worker_paper_results_tex_f6_fix_20260525T161849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_tex_f6_fix_20260525T161849_result.json",
+    "occurrence": 1,
+    "bytes": 1696,
+    "sha256": "c4470d824fd74f265f8424a7054bc5460de82771f7062fecc52b25b23c5edd7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied, no residual old data in results.tex. Summary of changes:\n\n### Diff\n\n**Edit 1 — Subsection title (line 108)**\n- Before: `\\subsection{F6--F7: Interventions and Multiple Pathways}`\n- After: `\\subsection{F6--F7: Interventions}`\n\n**Edit 2 — F6 paragraph (lines 111-112)**\n- Before: `\\paragraph{F6: Trained embedding creates multiple vulnerability pathways.}` + \"Two of four seeds collapse (50%): Pathway A (CIVO, nve=4.02×) and preliminary Pathway B (entropy increase, nve=3.78×; 2 seeds only)... Pathway B produces one of three non-CIVO false positives (n=30).\"\n- After: `\\paragraph{F6: $\\dt{=}1$ imagination eliminates CIVO.}` + \"All four tested seeds avoid CIVO onset (peak NVE 0.5–0.6×), three-seed mean eval 781.2 ± 159.5 (84% baseline). Confirms multi-step imagination is necessary for CIVO induction.\"\n\n**Edit 3 — Figure caption (line 117)**\n- Before: \"evaluation crash with entropy increase\"\n- After: \"no CIVO onset (NVE 0.5×, eval 64% baseline)\"\n\n### Issue 3 (footnote separation): Not applicable\nNo shared `$^\\dagger$` between exp_059 and 008e_v3 in results.tex. The only `$^\\dagger$` (lines 145/158) is TCN-specific.\n\n### Remaining inconsistencies (outside results.tex)\nappendix.tex still has extensive old-data references to IRD/Pathway B that need separate updating:\n- Line 143: 008e_v3_s2 listed as \"IRD\" with NVE 3.78×, 008e_v3_s3 as \"CIVO\" with NVE 4.02×\n- Line 158: NVE raw table lists 008e_v3_s2 = 3.78 (IRD)\n- Lines 197, 243: false positive references to 008e_v3_s2\n- Line 777: failure mode taxonomy with \"IRD collapse\"\n- Line 947: \"Multiple Vulnerability Pathways\" appendix subsection"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-tex-f6-fix.md"
+}

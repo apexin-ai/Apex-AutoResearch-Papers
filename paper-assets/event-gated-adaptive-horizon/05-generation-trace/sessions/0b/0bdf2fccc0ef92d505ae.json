@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bdf2fccc0ef92d505ae",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops snapshot 95k and 031b check",
+  "task_key": "worker_ops_snapshot_95k_and_031b_check_20260520T225846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_snapshot_95k_and_031b_check_20260520T225846_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "676470710943df5298d57c8df4166732f991308db16f33165e67895b8a682ce9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== bjb1-40020 ===\nexp_029d: step=100K (已完成), eval=349.6 @95K, NVE=0.666 @95K (峰值0.855 @85K)\n  eval 轨迹: 5K→31.7, 15K→159.1, 25K→155.7, 35K→190.8, 45K→137.1,\n             55K→210.7, 65K→189.5, 75K→253.2, 85K→259.5, 95K→349.6\n  NVE 轨迹:  15K→0.02, 25K→0.17, 35K→0.31, ..., 85K→0.86, 95K→0.67\n  gate: dt=2 固定（dt_2_frac=1.0 全程，未学到自适应）\nGPU: cuda:0=20%/3GB  cuda:1=24%/3GB  (两卡均空闲，exp_029b 已释放确认)\n\n=== bjb1-45299 ===\nexp_031b: step=9.6K, eval=2.4 @2.5K (早期，无 ve_ratio 数据)\nexp_031:  step=195.6K, eval=11.6 @192.5K (峰值28.6 @162.5K，近期下滑)\nGPU: cuda:0=97%/8.6GB  cuda:1=18%/2.8GB\n```\n\n**要点**：\n- exp_029d 训练完成100K，eval @95K 达到 349.6 表现不错，但 gate 全程锁在 dt=2 没有分化\n- exp_031b 刚起步，还在初始化阶段\n- exp_031 跑了 195K 但 PickCube eval 在低位震荡（峰值仅 28.6），效果不理想"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-snapshot-95k-and-031b-check.md"
+}

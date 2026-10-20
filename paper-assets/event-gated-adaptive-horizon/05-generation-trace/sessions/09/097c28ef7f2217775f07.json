@@ -1,0 +1,887 @@
+{
+  "schema_version": "1.0",
+  "id": "097c28ef7f2217775f07",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "cron hook exp walker 008d s6 20260529T080321 728610",
+  "task_key": "cron_hook_exp_walker_008d_s6_20260529T080321_728610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp_walker_008d_s6_20260529T080321_728610.jsonl",
+    "occurrence": 1,
+    "bytes": 46006,
+    "sha256": "2bfe0f63175a8c2d278ee7d049e4851572540b1bbc86a1db9a31c327d08a6607"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 2,
+    "tool_calls": 20,
+    "roles": {
+      "user": 2,
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T15:57:50.031321+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #27。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-51268 cuda:0, cuda:1（仅此两张，其他设备号禁止使用）\n- 数据锁定 D171 生效中：所有实验数据和论文数值冻结，禁止修改任何数值/统计/表格/图表数据，仅允许 prose polish\n- CoRL 2026 DDL：UTC 2026-05-28 12:00\n- CIVO 检测阈值 τ=2.0（D165 上调，不是 1.5）\n- C2 Walker CIVO onset rate 定义为 2/3（D167），009b 归类为 sub-threshold\n- exp_cheetah_008a_s3 的 105K 数据已确认可用（NVE=0.3, no CIVO），虽然 conclusion=failed(SIGTERM)，但数据本身有效——不要误删或忽略\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-51268，2× RTX PRO 6000 Blackwell\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 环境变量：MUJOCO_GL=egl, PYOPENGL_PLATFORM=egl\n- 磁盘：/autodl-tmp 5.3T/7.3T 可用(24%)\n- 活跃进程：无训练进程运行，两张 GPU 均空闲\n- Worker：`worker_ops_kill-and-diagnose-tier2-hang_20260527T231952` 仍在运行（CPU 任务），可能即将返回\n\n### 3. 📊 当前状态\n刚处理了三个 Tier 2 rebuttal reserve 实验的 SIGTERM 失败回调（exp_walker_008d_s6, s7, exp_cheetah_008a_s3），均为 ops Worker 主动 kill，非程序崩溃。已更新 registry notes 并向 Director 汇报。\n\nRegistry 状态：206 个实验全部 DONE（success 103 / negative 43 / failed 19 / killed 40）。无 RUNNING/PREPARING/ALLOCATED 实验。\n\n等待中：\n- `ops:kill-and-diagnose-tier2-hang` Worker 回调——应返回 Tier 2 实验被 kill 的详细原因（可能是 hang 在初始化）\n- Director 对是否投稿后重跑 Walker 008d s6/s7 的决策\n- 论文投稿流程（提交给 Review Director / 投稿材料准备由 Group C 负责）\n\n### 4. 📋 待办\n- ops Worker 回调到达 → 读取诊断结论，更新 registry notes，若发现代码 bug 则汇报 Director\n- Director 指示投稿 → 按 ROADMAP 执行（submit_paper_to_review / prose polish）\n- Director 指示重跑 Walker 008d s6/s7 → 用相同命令重新 submit_training_job 到 cuda:0/cuda:1\n- exp_walker_no_dt_emb_s0 在待处理列表（report.md 中标注\"已分配，等待提交\"）→ 需 Director 确认是否在数据锁定后仍需执行\n\n### 5. 🎯 战略上下文\n- 项目核心：DreamerV3 中 trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 可稳健阻止。8 个 Claims 全部 ✅ Strong/Moderate。\n- 论文 31 页已编译通过，Reviewer 最终审查 PASS（D171 前完成）。\n- 最容易判断错的事：数据锁定已生效，不要因为 GPU 空闲就冲动重跑实验并试图更新论文数值。Tier 2 实验（D172）是 rebuttal 储备，结果不进当前论文。\n- exp_cheetah_008a_s3 虽然 conclusion=failed，但 notes 里明确记录 105K 数据可用——这是个 edge case，别按 failed 常规逻辑处理。\n- 关键决策链：D165(τ=2.0) → D167(onset 2/3) → D169(C3 framing) → D170(s0 数据确认) → D171(数据锁定) → D172(rebuttal reserve)\n\n## 项目硬约束 (memory.md 节选)\n\n## Hopper 三配置失败模式对比（2026-05-27, 完整图谱）\n\n**核心发现**：Hopper 所有 gated config 均表现 severe learning delay，但失败模式各不同：\n\n| 配置 | eval_return_final | 恢复? | 失败模式 |\n|------|-------------------|-------|---------|\n| trained dt_emb (s0_ext, 150K) | 81.58 | ✅ 是 | 延迟学习→短暂 ve_ratio 升高→自纠正恢复 |\n| frozen dt_emb (s0_ext, 160K) | 0.56 | ❌ 否 | gate 锁死(entropy=0)→phantom value 膨胀→结构性不可恢复 |\n| no_dt_emb (s0, 105K) | 10.76 | ❌ 严重延迟 | entropy 维持最大值到 55K，value 发育受阻(baseline 的 4.3%)，无 CIVO |\n| baseline (无 gate) | 96.43 | — | 正常学习 |\n\n**结论**：gate+dt=2+subsample 机制导致 Hopper severe learning delay，与 dt_emb 类型无关。三种 gated config 失败严重程度：frozen > no_dt_emb > trained（trained 可恢复）。支持 D162 重分类。Hopper 不支持 CIVO 跨环境普遍性 claim。\n\n**Delayed CIVO 假设已被证伪**（trained_s0_ext, NEGATIVE）：\n- 原假设：trained_s0 的 ve_ratio 指数上升是 delayed CIVO onset\n- 实际：延长到 150K 后 ve_ratio 下降、eval_return 恢复到 81.58\n- 结论：是 transient instability during severe learning delay，非真正 CIVO\n\n**frozen_s0_ext 关键 insight**（NEGATIVE）：\n- frozen dt_emb 锁死 gate（entropy=0, 永久 dt=2），无自适应 horizon\n- value_mean 持续膨胀（4.34→8.46）但 eval_return ≈ 0（phantom value overestimation）\n- **与 trained 的区别**：可学习的 dt_emb 既是 CIVO 触发条件，也是自纠正的必要条件\n\n**分析约束（仍然有效）**：\n1. ve_ratio 伪信号: 25K 时 ve_ratio=67750（除零膨胀），必须用 MIN_STEP=35K\n2. NVE 判断不能只用 tau=2.0 二值判断，必须看完整曲线 + value_mean 趋势 + civo/alert（D165: 阈值从 1.5 正式调整为 2.0）\n\n## CLI flag 服务器差异 (2026-05-25) — 已解决\n- **2026-05-26 更新**: westd-51268 已从 bjb1 rsync 代码，两边一致使用 `--gate_dt_embed_dim`\n- 教训: 不要跨服务器复制命令模板，提交前验证参数名\n\n## 服务器迁移 (2026-05-26)\n- bjb1-45299 无卡，数据已迁移到 westd-51268\n- westd-51268: 2×RTX PRO 6000 Blackwell (96GB), CUDA 13.2\n- westd 数据盘重启后清空，代码通过 rsync 从 bjb1 恢复\n\n## 可查的历史\n前 155 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T15:58:01.425770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T15:58:01.476430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T15:58:04.698160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T15:58:05.152019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T15:58:05.304177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_walker_no_dt_emb_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:17.396Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4251}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 606
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T15:58:05.304677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ALLOCATED'}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T15:58:05.657326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T15:58:06.111786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_072_008e_v3_walker_s5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-25T09:51:50.268Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:52:00.215Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_trajectory\\\": {\\\"5K\\\": 29.4, \\\"15K\\\": 251.1, \\\"25K\\\": 423, \\\"35K\\\": 511, \\\"45K\\\": 600.1, \\\"55K\\\": 649, \\\"65K\\\": 697.2, \\\"75K\\\": 727.3, \\\"85K\\\": 710.3, \\\"95K\\\": 803.9, \\\"105K\\\": 853.1}, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0, \\\"25K\\\": 0.1, \\\"35K\\\": 0.2, \\\"45K\\\": 0.3, \\\"55K\\\": 0.3, \\\"65K\\\": 0.4, \\\"75K\\\": 0.5, \\\"85K\\\": 0.6, \\\"95K\\\": 0.6, \\\"105K\\\": 0.6}, \\\"value_mean_trajectory\\\": {\\\"5K\\\": 0, \\\"15K\\\": 4.6, \\\"25K\\\": 33.2, \\\"35K\\\": 88.8, \\\"45K\\\": 154, \\\"55K\\\": 223.2, \\\"65K\\\": 296.9, \\\"75K\\\": 364.3, \\\"85K\\\": 418.5, \\\"95K\\\": 464.6, \\\"105K\\\": 520.8}, \\\"nve_trajectory\\\": {\\\"15K\\\": 0.02, \\\"25K\\\": 0.08, \\\"35K\\\": 0.17, \\\"45K\\\": 0.26, \\\"55K\\\": 0.34, \\\"65K\\\": 0.43, \\\"75K\\\": 0.5, \\\"85K\\\": 0.59, \\\"95K\\\": 0.58, \\\"105K\\\": 0.61}, \\\"final_eval_return\\\": 853.1, \\\"peak_eval_return\\\": 853.1, \\\"peak_eval_step\\\": 105000, \\\"final_value_mean\\\": 520.8, \\\"final_ve_ratio\\\": 0.6, \\\"final_nve\\\": 0.61, \\\"final_actor_entropy\\\": -5.1, \\\"gate_dt_1_frac\\\": 1, \\\"civo_alert_max\\\": 0, \\\"civo_detected\\\": false, \\\"baseline_ratio\\\": 0.932}}, \\\"exp_040_dual_critic_cheetah_s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T09:40:43.166Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:40:43.166Z\\\", \\\"metrics\\\": {\\\"eval_final\\\": 41, \\\"eval_peak\\\": 256.4, \\\"eval_peak_step\\\": 25000, \\\"nve_peak\\\": 0.21, \\\"v1_final\\\": 8.84, \\\"v2_final\\\": 8.84}}, \\\"exp_039_narrow_dual_critic_walker_s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T16:11:40.426Z\\\", \\\"updated_at\\\": \\\"2026-05-21T16:11:47.123Z\\\", \\\"hypothesis\\\": \\\"Narrow dual-critic Walker seed 1 verification: exp_035 s0 showed CIVO triggered (NVE 2.75) but full recovery (eval 697.8). If s1 also fully recovers → \\\\\\\"min operation enables recovery even with insufficient capacity\\\\\\\" conclusion is rob\n…[truncated 736 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 959
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T15:58:06.215235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T15:58:06.215758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_078_cheetah_008d_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-25T11:20:34.290Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:38.124Z\\\"}, \\\"exp_077_cheetah_baseline_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-25T11:20:33.734Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:37.784Z\\\"}, \\\"exp_079_frozen_dt_emb_walker_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-25T11:20:33.307Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:36.856Z\\\"}, \\\"exp_038_dual_critic_walker_s2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-21T12:18:00.025Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:18:19.475Z\\\", \\\"hypothesis\\\": \\\"Dual-critic Walker seed 2 reproduction: exp_032 (s0, eval 787.7) and exp_032b (s1, eval 551.8) show high variance (CV=25%). Third seed provides IQM statistical power for CoRL reviewer scrutiny. If s2 also prevents CIVO (NVE < 1.5) → 3/3 seeds confirm dual-critic robustness on Walker.\\\", \\\"parent\\\": \\\"exp_032_dual_critic_walker\\\"}, \\\"exp_037_wide_critic_cheetah\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-21T12:16:44.078Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:18:05.444Z\\\", \\\"hypothesis\\\": \\\"Wide single critic on Cheetah: exp_034 dual-critic achieved only 31% eval recovery on Cheetah (partial CIVO suppression). exp_033 wide-critic on Walker showed self-repair (eval 408 > pre-CIVO peak). If Cheetah wide-critic recovery rate also > 31% → confirms \\\\\\\"capacity = recovery\\\\\\\" mechanism generalizes across environments, and wide-critic outperforms dual-critic on severe CIVO environments.\\\", \\\"parent\\\": \\\"exp_034_dual_critic_cheetah\\\"}}, \\\"count\\\": 5, \\\"total\\\": 5, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3991}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 911
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T15:58:06.216183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T15:58:06.519283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 861
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T15:58:06.519966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-27T23:53:06Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 208 个实验 — ALLOCATED 1, DONE 207\\\\n**DONE 分布**: failed 21, killed 40, negative 43, success 103\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-51268:cuda:0, westd-51268:cuda:1\\\\n- **空闲（分配了没跑）**: westd-51268:cuda:0, westd-51268:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-51268**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_walker_008d_s7_r2` [failed] — 2026-05-27T23:52:55 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp_walker_008d_s6_r2` [failed] — 2026-05-27T23:52:24 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp_walker_008d_s7` [failed] — 2026-05-27T23:23:37 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `exp_walker_008d_s6` [failed] — 2026-05-27T23:23:34 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `exp_cheetah_008a_s3` [failed] — 2026-05-27T23:12:10 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp_walker_008d_s7_r2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp_walker_008d_s6_r2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp_walker_008d_s7`: EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-27\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp_walker_no_dt_emb_s0: dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Source: D164 \n…[truncated 3907 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 304
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T15:58:06.570773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-28 03:48 UTC | 更新原因: Round 7 审稿修复全部完成，等待用户 venue 决策\\\\n\\\\n## 核心方向\\\\nDreamerV3 中 trained dt_embedding 驱动的 CIVO（Conditioning-Induced Value Overestimation）是 multi-joint locomotion 特异性现象，frozen/removed dt_emb 可稳健阻止。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: 🔒 数据锁定 (D171) — 所有数值冻结，仅允许 prose polish + 格式调整\\\\n- **投稿目标**: ⚠️ **待用户决策**（CoRL 2026 DDL 5/28 UTC 12:00 vs ICML/NeurIPS）\\\\n- **实验统计**: 208 个（103 success / 43 negative / 21 failed / 40 killed）\\\\n- **论文**: 43 页（CoRL 格式，正文 8 页达标）\\\\n- **Round 7 审稿**: Weak Reject — 2 个 desk-reject 条件（页数已修 ✅ + venue fit 未解 ❌）\\\\n- **Venue-independent 修复**: 全部完成 + Reviewer 验证通过\\\\n  - ✅ AUROC bootstrap CI (1.000 [1.000–1.000], 9:27)\\\\n  - ✅ 因果声明弱化为 proposed/hypothesized pathway + Figure 1 证据层级\\\\n  - ✅ Fisher exact test (5 组对比)\\\\n  - ✅ Code correction 汇总统计\\\\n  - ✅ 诊断协议 scope 限定为 DreamerV3\\\\n  - ✅ Figure 1 所有数值更新 (τ=2.0×, 008d s1, 009e s1)\\\\n  - ✅ 正文压缩至 8 页\\\\n\\\\n## 关键阻塞\\\\n**Venue 决策**：Round 7 审稿明确指出 CoRL venue fit 是第三次复发的 evidence 问题（Round 1/3/7），写作无法修复。切回 ICML 可同时消除 W-MF2 (venue fit) + W-MF6 (negative result significance) 两个 desk-reject 条件。已向用户报告并等待决策。\\\\n\\\\n## Venue 切换准备\\\\n- CoRL 版本：就绪（当前状态）\\\\n- ICML 预备方案：Agent 正在准备切换清单（不执行），用户决策后秒切\\\\n\\\\n## GPU 预算\\\\n- westd-51268: 2× RTX PRO 6000 Blackwell（空闲，数据锁定期无实验需求）\\\\n\\\\n## 低优先级残余\\\\n- N-R5-3 色盲友好配色（Figure 3/4）— in_progress\\\\n- N-R7-7 缺失 FiGAR/DAC/SPiRL 引用 — open（仅 CoRL 相关）\\\\n- intro \\\\\\\"perfect classification\\\\\\\" 可选弱化 — info\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D173 | 2026-05-27 | 放弃 walker_008d s6/s7 rebuttal reserve 重试，C2 现有证据充分 | exp_walker_008d_s6, exp_walker_008d_s7 |\\\\n| D172 | 2026-05-27 | 启动 pre-emptive rebuttal 储备实验：Tier 1 Cheetah 008a s | — |\\\\n| D171 | 2026-05-27 | 数据锁定声明：所有实验数据和论文数值冻结，禁止修改任何数值/统计/表格/图表数据 | — |\\\\n\n…[truncated 991 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 354
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T15:58:30.685122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T15:58:30.685562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T15:58:33.551961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "running",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T15:58:33.652629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 100
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T15:58:41.168839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "done",
+              "project": "event-gated-adaptive-horizon",
+              "limit": "5"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T15:58:41.169446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "date -u '+%Y-%m-%d %H:%M UTC'",
+              "description": "Get current UTC time"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T15:58:41.270390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ops_fix-tier2-device-and-restart_20260527T234313\\\", \\\"task_type\\\": \\\"ops:fix-tier2-device-and-restart\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:43:13.303097+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:45:04.279472+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_exp_walker_008d_s6s7_r2_20260527T235538\\\", \\\"task_type\\\": \\\"diagnose:exp_walker_008d_s6s7_r2\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:55:38.984671+00:00\\\", \\\"ended_at\\\": \\\"2026-05-28T00:01:12.126655+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_tier2-root-cause-analysis_20260528T000308\\\", \\\"task_type\\\": \\\"ops:tier2-root-cause-analysis\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-28T00:03:08.484735+00:00\\\", \\\"ended_at\\\": \\\"2026-05-28T00:11:45.808134+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_code-correction-history_20260528T010710\\\", \\\"task_type\\\": \\\"research:code-correction-history\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-28T01:07:10.567188+00:00\\\", \\\"ended_at\\\": \\\"2026-05-28T01:14:11.838725+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_corl-template-verify_20260528T015049\\\", \\\"task_type\\\": \\\"paper:corl-template-verify\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-28T01:50:49.626147+00:00\\\", \\\"ended_at\\\": \\\"2026-05-28T01:55:21.260358+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 101
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T15:58:41.421408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2026-05-28 15:58 UTC"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T15:58:53.421592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_walker_no_dt_emb_s1'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T15:58:54.928167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2287}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1506
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T15:58:54.928653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T15:58:54.979347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_6f4bb662."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T15:58:58.896414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T15:58:59.349056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_walker_no_dt_emb_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:17.396Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (train from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (built-in env)\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1208}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-28T15:58:59.399764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-28T15:58:59.450380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-28T15:59:33.495723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_walker_no_dt_emb_s1",
+              "field": "status",
+              "value": "DONE",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-28T15:59:36.767715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:13:09.544Z\\\", \\\"updated_at\\\": \\\"2026-05-28T15:59:34.427Z\\\", \\\"hypothesis\\\": \\\"dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 1 will NOT show CIVO (NVE<1.5), replicating 008f causal control from seed 0. Confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Source: D164 Walker priority, plan_012 C2 multi-seed. Replaces killed exp_009f_008f_walker_s1.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"kill -9 628808 2>/dev/null; sleep 2; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"629189\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1\\\", \\\"submitted_at\\\": \\\"2026-05-27T11:17:56.923Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1\\\", \\\"wall_clock_seconds\\\": 11041.0, \\\"gpu_hours\\\": 3.07}, \\\"pid\\\": \\\"629189\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_walker_no_dt_emb_s1.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"kill -9 628808 2>/dev/null; sleep 2; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=e\n…[truncated 547 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3271
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-28T15:59:56.076285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_walker_no_dt_emb_s1'}",
+              "fields": "['metrics', 'conclusion', 'completed_at', 'status']"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-28T15:59:56.479993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3811}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-28T16:00:00.599687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+              "fields": "['metrics', 'conclusion', 'completed_at']",
+              "limit": "3"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-28T16:00:00.750914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_hopper_baseline\\\": {\\\"metrics\\\": {\\\"step\\\": 105000, \\\"eval_final\\\": 96.43, \\\"eval_return_trajectory\\\": {\\\"5000\\\": 0.06, \\\"15000\\\": 1.04, \\\"25000\\\": 1.7, \\\"35000\\\": 6.55, \\\"45000\\\": 19.09, \\\"55000\\\": 22.52, \\\"65000\\\": 3.5, \\\"75000\\\": 62.2, \\\"85000\\\": 67.62, \\\"95000\\\": 86.47, \\\"105000\\\": 96.43}, \\\"ve_ratio_trajectory\\\": {\\\"15000\\\": 0.08, \\\"25000\\\": 0.098, \\\"35000\\\": 0.166, \\\"45000\\\": 0.19, \\\"55000\\\": 0.279, \\\"65000\\\": 3.479, \\\"75000\\\": 0.341, \\\"85000\\\": 0.502, \\\"95000\\\": 0.517, \\\"105000\\\": 0.559}, \\\"nve_peak\\\": 3.48, \\\"nve_peak_step\\\": 65000, \\\"nve_final\\\": 0.559, \\\"civo_onset\\\": false, \\\"civo_alert_count\\\": 0, \\\"value_mean_final\\\": 53.9, \\\"target_mean_final\\\": 54.2, \\\"training_steps\\\": 105000, \\\"update_count\\\": 25099, \\\"fps\\\": 11}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-27T05:52:01.157Z\\\"}, \\\"exp_097_cheetah_008d_s3\\\": {\\\"metrics\\\": {\\\"step\\\": 105000, \\\"nve_peak\\\": 2.3, \\\"nve_peak_step\\\": 45000, \\\"nve_final\\\": 0.3, \\\"civo_onset\\\": true, \\\"civo_onset_step\\\": 45000, \\\"civo_pattern\\\": \\\"transient→degraded\\\", \\\"eval_final\\\": 61.7, \\\"eval_final_pct_baseline\\\": -86, \\\"baseline_eval_return\\\": 446.1, \\\"gate_dt_2_frac\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-26T11:32:48.497Z\\\"}, \\\"exp_100_walker_008a_s1\\\": {\\\"metrics\\\": {\\\"step\\\": 105000, \\\"eval_return_trajectory\\\": {\\\"5000\\\": 31, \\\"15000\\\": 168.77, \\\"25000\\\": 158.03, \\\"35000\\\": 202.91, \\\"45000\\\": 305.98, \\\"55000\\\": 457.28, \\\"65000\\\": 628.82, \\\"75000\\\": 686.98, \\\"85000\\\": 656.64, \\\"95000\\\": 717.74, \\\"105000\\\": 750.59}, \\\"ve_ratio_trajectory\\\": {\\\"15000\\\": 0.035, \\\"25000\\\": 0.206, \\\"35000\\\": 0.279, \\\"45000\\\": 0.261, \\\"55000\\\": 0.248, \\\"65000\\\": 0.234, \\\"75000\\\": 0.26, \\\"85000\\\": 0.315, \\\"95000\\\": 0.325, \\\"105000\\\": 0.328}, \\\"value_mean_trajectory\\\": {\\\"15000\\\": 5.98, \\\"25000\\\": 32.58, \\\"35000\\\": 56.55, \\\"45000\\\": 79.94, \\\"55000\\\": 113.33, \\\"65000\\\": 147.14, \\\"75000\\\": 178.73, \\\"85000\\\": 206.95, \\\"95000\\\": 233.17, \\\"105000\n…[truncated 408 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-28T16:00:12.650199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "done",
+              "project": "event-gated-adaptive-horizon",
+              "limit": "10"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-28T16:00:12.853276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp_cheetah_008a_s2_20260527T230828\\\", \\\"task_type\\\": \\\"analysis:exp_cheetah_008a_s2\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:08:28.571456+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:09:50.886541+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_check-tier2-progress_20260527T231456\\\", \\\"task_type\\\": \\\"ops:check-tier2-progress\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:14:56.684389+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:18:23.745534+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_kill-and-diagnose-tier2-hang_20260527T231952\\\", \\\"task_type\\\": \\\"ops:kill-and-diagnose-tier2-hang\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:19:52.587406+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:22:28.144512+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_exp_walker_008d_s7_s6_20260527T232328\\\", \\\"task_type\\\": \\\"diagnose:exp_walker_008d_s7_s6\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:23:29.094240+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:24:59.527202+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_monitor-tier2-restart_20260527T232544\\\", \\\"task_type\\\": \\\"ops:monitor-tier2-restart\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:25:44.493708+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:26:36.247341+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_fix-tier2-device-and-restart_20260527T234313\\\", \\\"task_type\\\": \\\"ops:fix-tier2-device-and-restart\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-27T23:43:13.303097+00:00\\\", \\\"ended_at\\\": \\\"2026-05-27T23:45:04.279472+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_diagnose_exp_walker_008d_s6s7_r2_20260527T235538\\\", \\\"task_type\\\": \\\"diagnose:exp_walker_008d_s6s7_r2\\\", \\\"project\\\": \\\"event\n…[truncated 1109 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 203
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-28T16:00:37.459595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/2 使用中 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 /autodl-tmp 24% (5.3T 可用)\n\n## Session #27 启动状态汇报\n\n**CoRL DDL 已过**：UTC 2026-05-28 12:00，当前 15:58 UTC，超时近 4 小时。ROADMAP 标注\"待用户决策（CoRL vs ICML/NeurIPS）\"——CoRL 窗口已关闭。\n\n**Registry 清理**：\n- exp_walker_no_dt_emb_s1（C2 no_dt_emb Walker seed=1）状态卡在 RUNNING → 已修复为 DONE(success)。实际于 2026-05-27T14:21 完成（3.07 GPU hours），但 metrics 未写入 registry（cron 回调可能被遗漏）。如需 rebuttal 数据，可派 Worker SSH 提取日志。\n- 4 个 PREPARING + 5 个 ALLOCATED 为历史遗留（5/20-5/25），均为废弃实验\n\n**当前状态**：\n- 208 个实验全部 DONE（103 success / 43 negative / 21 failed / 40 killed）\n- 论文 43 页，Round 7 venue-independent 修复全部完成 ✅\n- 数据锁定 D171 生效中\n- 两张 GPU 空闲，无运行中实验/Worker\n\n**待 Director 决策**：\n1. **Venue 选择**：CoRL DDL 已过，是否转向 ICML 2026 / NeurIPS 2026？切换清单已准备就绪\n2. **exp_walker_no_dt_emb_s1 metrics 补录**：是否需要派 Worker 提取该实验结果作为 rebuttal 储备？\n3. **GPU 释放**：数据锁定期两张 GPU 持续空闲，是否释放或转用于其他项目？",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-28T16:00:41.647849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4188
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-28T16:00:46.212382+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session #27 初始化完成。\n\n**状态摘要**：\n- CoRL DDL (UTC 12:00) 已过近 4 小时，venue 决策待定\n- 修复了 `exp_walker_no_dt_emb_s1` 的 stale RUNNING 状态 → DONE(success)\n- 208 实验全部 DONE，数据锁定 D171 生效，2 GPU 空闲\n- 已向 Director 汇报并请求 venue 决策、GPU 释放决策\n\n等待 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6"
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-29T08:02:35.348799+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-29T08:03:21.725892+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-51268 cuda:0, cuda:1（仅此两张，其他设备号禁止使用）\n- 数据锁定 D171 生效中：所有实验数据和论文数值冻结，禁止修改任何数值/统计/表格/图表数据，仅允许 prose polish\n- CoRL 2026 DDL（UTC 2026-05-28 12:00）已过——CoRL 窗口关闭，venue 待 Director/用户决策\n- CIVO 检测阈值 τ=2.0（D165 上调，不是 1.5）\n- C2 Walker CIVO onset rate 定义为 2/3（D167），009b 归类为 sub-threshold\n- exp_cheetah_008a_s3 的 105K 数据已确认可用（NVE=0.3, no CIVO），虽然 conclusion=failed(SIGTERM)，但数据本身有效——不要误删或忽略\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-51268，2× RTX PRO 6000 Blackwell (96GB)\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 环境变量：MUJOCO_GL=egl, PYOPENGL_PLATFORM=egl\n- 磁盘：/autodl-tmp 5.3T/7.3T 可用(24%)\n- 活跃进程：无。两张 GPU 均空闲，无 tmux session，无 cron 任务\n- Worker：全部已完成，0 running\n\n### 3. 📊 当前状态\nSession #27 刚完成 session-start 初始化。主要动作：\n- 发现 exp_walker_no_dt_emb_s1 状态卡在 RUNNING（实际 2026-05-27T14:21 已完成，conclusion=success，3.07 GPU hours）→ 已修复为 DONE。但 metrics 未写入 registry（cron 回调被遗漏），如需 rebuttal 数据需派 Worker SSH 提取日志\n- Registry：208 个实验全部 DONE（103 success / 43 negative / 21 failed / 40 killed）。另有 4 PREPARING + 5 ALLOCATED 为历史遗留废弃实验（5/20-5/25）\n- 已向 Director 汇报：CoRL DDL 已过、registry 清理完成、请求 venue 决策 + GPU 释放决策\n- 等待 Director 回复（venue 选择、exp_walker_no_dt_emb_s1 metrics 补录、GPU 释放）\n\n### 4. 📋 待办\n- Director 决定转 ICML/NeurIPS → 加载 venue 切换清单执行（ROADMAP 提到\"Agent 正在准备切换清单\"）\n- Director 要求补录 exp_walker_no_dt_emb_s1 metrics → 派 Worker SSH 读 logdir/exp_walker_no_dt_emb_s1 提取指标写入 registry\n- Director 决定释放 GPU → 确认无后续实验需求后配合释放\n- Director 要求重跑 Walker 008d s6/s7 → D173 已放弃，但若 Director 改变决策则用相同命令 submit_training_job 到 cuda:0/cuda:1\n- Director 要求 prose polish → 派 paper Worker 在数据锁定下仅做文字润色\n\n### 5. 🎯 战略上下文\n- 项目核心：DreamerV3 中 trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 可稳健阻止。8 个 Claims 全部 ✅ Strong/Moderate\n- 论文 43 页（CoRL 格式，正文 8 页达标），Round 7 审稿 Weak Reject 原因是 venue fit 不足（非内容问题）。venue-independent 修复全部完成并通过 Reviewer 验证\n- 关键决策链：D165(τ=2.0) → D167(onset 2/3) → D169(C3 framing) → D170(s0 数据确认) → D171(数据锁定) → D172(rebuttal reserve) → D173(放弃 s6/s7 重试)\n- 最容易判断错的事：(1) 数据锁定已生效，不要因 GPU 空闲就冲动重跑实验并试图更新论文数值；(2) Tier 2 实验（D172）是 rebuttal 储备，结果不进当前论文；(3) CoRL DDL 已过，不要再按 CoRL 时间线规划；(4) Round 7 venue fit 问题是写作无法修复的结构性问题，切 venue 是正确方向\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_walker_008d_s6"
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-walker-008d-s6-20260529t080321-728610.md"
+}

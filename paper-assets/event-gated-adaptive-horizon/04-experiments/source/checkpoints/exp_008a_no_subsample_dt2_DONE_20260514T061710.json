@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp_008a_no_subsample_dt2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:33:27.311Z",
+    "updated_at": "2026-05-14T06:17:09.970Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_fixed_dt2_no_subsample --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "106942",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample",
+      "submitted_at": "2026-05-14T01:37:46.034Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DreamerV3+FixedDt2_NoSubsample (gate_fixed_dt=2, gate_subsample_max_dt=1, H=15)",
+      "seed": 1,
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "wall_clock_seconds": 16752.2,
+      "gpu_hours": 4.65
+    },
+    "hypothesis": "隔离 subsample 效应：subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample 混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。",
+    "metrics": {
+      "step": 112000,
+      "eval_return_35K": 500.84,
+      "eval_return_45K": 563.41,
+      "eval_return_55K": 487.92,
+      "eval_return_65K": 608,
+      "eval_return_75K": 469.93,
+      "eval_return_85K": 583.73,
+      "eval_return_95K": 572.24,
+      "eval_return_105K": 777.66,
+      "value_mean_55K": 183.5,
+      "value_mean_65K": 226.1,
+      "value_mean_75K": 251.78,
+      "value_mean_85K": 277.36,
+      "value_mean_95K": 284.28,
+      "value_mean_105K": 300.27,
+      "value_eval_ratio_55K": 0.376,
+      "value_eval_ratio_65K": 0.372,
+      "value_eval_ratio_75K": 0.536,
+      "value_eval_ratio_85K": 0.475,
+      "value_eval_ratio_95K": 0.497,
+      "value_eval_ratio_105K": 0.386,
+      "normalized_ve_55K": 0.93,
+      "normalized_ve_65K": 0.66,
+      "normalized_ve_75K": 0.75,
+      "normalized_ve_85K": 0.68,
+      "normalized_ve_95K": 0.79,
+      "normalized_ve_105K": 0.59,
+      "baseline_55K": 625.7,
+      "baseline_65K": 616,
+      "baseline_105K": 915.67,
+      "vs_baseline_65K": "-1.3%",
+      "vs_baseline_105K": "-15.1%",
+      "verdict_65K": "RECOVERED_NEW_HIGH",
+      "verdict_105K": "NEW_PEAK_V_RECOVERY",
+      "trend": "Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K",
+      "nan_count": 0,
+      "data_source": "from training logs metrics.jsonl"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T06:15:00.119Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T06:15:01.796655+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/checkpoint.ckpt",
+    "completed_at": "2026-05-14T06:16:58.196Z"
+  },
+  "timestamp": "2026-05-14T06:17:10.121281+00:00",
+  "trigger": "update_registry"
+}

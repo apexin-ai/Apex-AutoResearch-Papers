@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19fd84c0a0fc098ef01d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 072 008e v3 walker s5",
+  "task_key": "worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "85a57ea6a80c53be707b5db138af81472c40c34e03ec93c8dca111be53d85989"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_072_008e_v3_walker_s5 分析完成\n\n**结论：SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| final eval_return | **853.1** @ 105K (93.2% of baseline) |\n| peak eval | 853.1 @ 105K (仍在上升) |\n| final NVE | 0.61x (远低于 1.5x CIVO 阈值) |\n| civo/alert | 0.0 全程 |\n| gate_dt_1_frac | 1.0 |\n| actor_entropy | -5.1 |\n\neval 轨迹单调上升（仅 85K 微幅回落 710→728 后恢复），NVE 从 0→0.61x 平稳增长，无任何 collapse 迹象。表现与 s1 (869.9) 接近，且 NVE 更健康（0.61x vs 0.80x）。\n\n**008e_v3 collapse rate 更新：2/5 = 40%**（s1=SUCCESS, s5=SUCCESS, s2=NEGATIVE/CIVO, s0=NEGATIVE/non-CIVO）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-072-008e-v3-walker-s5.md"
+}

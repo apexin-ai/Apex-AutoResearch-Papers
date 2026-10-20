@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03a15774e2909e76d5d2",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing method p0 edits",
+  "task_key": "worker_writing_method-p0-edits_20260516T015243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-p0-edits_20260516T015243_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "d4f17d8ba7ba7351039f061af3ba5fddb5aa8a67862c9e538d1e22a15c42f519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The remaining \"delusional\" references on line 43 are appropriate — they refer to Lu & Schuurmans' published terminology (\"delusional policies\") when explicitly contrasting their concept with CIVO. This is a citation-level reference, not our own usage of the term.\n\nAll 4 P0 edits applied:\n\n1. **DIFF-M2**: Title renamed to \"Conditioning-Induced Value Overestimation (CIVO)\"; Lu et al. contrast rewritten with \"analogous to\" and explicit policy-class-induced vs. model-induced distinction.\n\n2. **DIFF-M3**: \"Mitigation\" section replaced with \"Imagination Step Size as Causal Variable\" — includes 008e_v3_s2 collapse data (715→137, NVE=3.78x), dual-pathway analysis (Pathway A: CIVO/entropy↓ vs Pathway B: non-CIVO/entropy↑), 009a baseline s2 stability (911.2@105K), and explicit statement that dt=1 is a diagnostic control, not a mitigation.\n\n3. **DIFF-M4**: New \"Gradient Decomposition of the Temporal Embedding\" subsection after RSSM fidelity — gradient table (obs 93%, KL 7%, reward 0%), three implications (016e is no-op, obs reconstruction drives dt_emb, full SGS is correct intervention).\n\n4. **DIFF-M5**: New \"Stop-Gradient Surgery: An Informative Negative (exp\\_016e)\" subsection — configuration, collapse results (326.7→31.7, NVE 10.42x), architectural no-op explanation, intervention design implications."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-p0-edits.md"
+}

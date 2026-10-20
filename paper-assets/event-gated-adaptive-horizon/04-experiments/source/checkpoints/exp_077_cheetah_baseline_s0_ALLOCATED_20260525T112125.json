@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_077_cheetah_baseline_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:48:21.685Z",
+    "updated_at": "2026-05-25T11:21:24.793Z",
+    "hypothesis": "Cheetah Run dt=1 baseline seed=0。建立 v/e ratio 校准基线，用于归一化同时运行的 exp_078 (Cheetah 008d) 的 VE。plan_020 第一个 seed。",
+    "server": "westd-19154",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-25T11:21:25.157419+00:00",
+  "trigger": "update_registry"
+}

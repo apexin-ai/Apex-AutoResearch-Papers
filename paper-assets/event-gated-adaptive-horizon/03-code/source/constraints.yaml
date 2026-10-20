@@ -1,0 +1,7 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-27 19:09 UTC
+  summary: 数据锁定生效：禁止修改论文中任何数值、统计量、表格数据、图表数据。仅允许文字润色和排版修复。
+  scope: all
+  reason: D171 数据锁定声明。所有实验数据和论文数值已冻结，后续仅允许 prose polish 和 formatting 修复。

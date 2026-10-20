@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07bcc69afeee44fcca30",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops figure directory cleanup",
+  "task_key": "worker_ops_figure-directory-cleanup_20260515T104516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_figure-directory-cleanup_20260515T104516_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "c8d446a6f78c6b07f47d6f3144275adbf5e0c69acabaa08e66183305a373ad7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n### 1. 归档到 `artifacts/figures/archive/`\n- `fig1_nve_diagnostic.*` (被 fig2_nve_trajectory 替代)\n- `fig2_eval_curves.*` (被 fig1_learning_curves 替代)\n- `fig3_causal_chain.*` (被 fig4_mechanism_diagram 替代)\n- `fig4_multiseed.*` (被 fig3_factorial_grid 替代)\n- `fig6_mitigation.*` (被 fig6_multiple_pathways 替代)\n- `tab_rssm_fidelity.tex`\n\n### 2. 统一样式并重新渲染\n6 个脚本全部改为 `from fig_style import apply_style` — serif 字体、8pt 基准字号、无网格、300dpi。fig3 的 ✓/✗ 改为 LaTeX mathtext 以避免字体缺失。全部本地渲染成功。\n\n### 3. 权威目录最终清单 (`artifacts/figures/paper/`)\n`fig_style.py` + 6 个图 (fig1–fig6)，每图含 `.py` + `.pdf` + `.png` + `README.md`\n\n### 4. 缺失项\n- `fig2_nve_trajectory` 的下半面板 (actor_loss) 需要 `actor_loss_data.json`，当前跳过\n- `fig5_rssm_fidelity` (旧版的 RSSM fidelity 柱状图 + LaTeX 表) 已被 `fig5_dt_amplification` 替代，若仍需要原始版本可从 archive 恢复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-figure-directory-cleanup.md"
+}

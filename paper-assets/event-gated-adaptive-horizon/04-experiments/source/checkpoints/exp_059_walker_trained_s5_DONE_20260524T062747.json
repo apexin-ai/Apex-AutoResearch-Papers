@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_059_walker_trained_s5",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:08:46.842Z",
+    "updated_at": "2026-05-24T06:27:46.992Z",
+    "hypothesis": "Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。",
+    "parent": "exp_008d_civo_trigger_s3",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "186176",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log",
+      "submitted_at": "2026-05-24T03:15:40.649Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 11526.3,
+      "gpu_hours": 3.2
+    },
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "pid": "186176",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\"",
+      "code_commit": "fb56c860a88292ad60b6183effc1102a01205086",
+      "finished_at": "2026-05-24T06:20:56.680Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T06:21:01.777871+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ve_ratio_peak": 3.3,
+      "ve_ratio_peak_step": 85000,
+      "ve_ratio_final": 0.8,
+      "ve_ratio_final_step": 105000,
+      "eval_return_final": 95.8,
+      "eval_return_final_step": 105000,
+      "eval_return_peak": 188.3,
+      "eval_return_peak_step": 55000,
+      "nve_classification": "transient",
+      "nve_sustained_window": "85K only (single-step spike)",
+      "total_steps": 112000,
+      "civo_triggered": true,
+      "civo_sustained": false,
+      "civo_self_corrected": true,
+      "civo_correction_delay_steps": 10000,
+      "gate_dt_mean": 2,
+      "gate_dt_2_frac": 1,
+      "gate_entropy": 0
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_059_walker_trained_s5/checkpoint.pt",
+    "completed_at": "2026-05-24T06:27:46.992Z"
+  },
+  "timestamp": "2026-05-24T06:27:47.308521+00:00",
+  "trigger": "update_registry"
+}

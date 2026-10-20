@@ -1,0 +1,187 @@
+{
+  "nve_cis": {
+    "no_dt_emb": {
+      "mean": 0.9879,
+      "ci_lower": 0.8509,
+      "ci_upper": 1.1425,
+      "n_seeds": 3,
+      "seeds": [
+        "008f_s1",
+        "009c_s2",
+        "008f_s3"
+      ]
+    },
+    "trained_dt_emb": {
+      "mean": 3.085,
+      "ci_lower": 2.05,
+      "ci_upper": 4.12,
+      "n_seeds": 2,
+      "seeds": [
+        "008d_s0",
+        "009b_s2"
+      ],
+      "note": "Walker-only. 009e excluded (seed=0 duplicate of 008d). 010b excluded (Cheetah Run, cross-env validation). Effective n=2."
+    },
+    "SGS_full": {
+      "mean": 1.6613,
+      "ci_lower": 1.6613,
+      "ci_upper": 1.6613,
+      "n_seeds": 1,
+      "seeds": [
+        "018v2_s1"
+      ]
+    },
+    "SGS_partial": {
+      "mean": 10.4168,
+      "ci_lower": 10.4168,
+      "ci_upper": 10.4168,
+      "n_seeds": 1,
+      "seeds": [
+        "016e_s1"
+      ]
+    },
+    "cheetah_cross_env": {
+      "mean": 8.6534,
+      "ci_lower": 8.6534,
+      "ci_upper": 8.6534,
+      "n_seeds": 1,
+      "seeds": [
+        "010b_s1"
+      ]
+    },
+    "dt1_imag": {
+      "mean": 2.3607,
+      "ci_lower": 0.9412,
+      "ci_upper": 3.7802,
+      "n_seeds": 2,
+      "seeds": [
+        "008e_v3_s1",
+        "008e_v3_s2"
+      ]
+    }
+  },
+  "collapse_rate_cis": {
+    "no_dt_emb": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0,
+      "n_seeds": 3,
+      "seeds": [
+        "008f_s1",
+        "009c_s2",
+        "008f_s3"
+      ]
+    },
+    "trained_dt_emb": {
+      "mean": 0.6667,
+      "ci_lower": 0.0,
+      "ci_upper": 1.0,
+      "n_seeds": 3,
+      "seeds": [
+        "008d_s0",
+        "009e_s1",
+        "009b_s2"
+      ]
+    },
+    "SGS_full": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 1.0,
+      "n_seeds": 1,
+      "seeds": [
+        "018v2_s1"
+      ]
+    },
+    "SGS_partial": {
+      "mean": 1.0,
+      "ci_lower": 0.0,
+      "ci_upper": 1.0,
+      "n_seeds": 1,
+      "seeds": [
+        "016e_s1"
+      ]
+    },
+    "cheetah_cross_env": {
+      "mean": 1.0,
+      "ci_lower": 0.0,
+      "ci_upper": 1.0,
+      "n_seeds": 1,
+      "seeds": [
+        "010b_s1"
+      ]
+    },
+    "dt1_imag": {
+      "mean": 0.5,
+      "ci_lower": 0.0,
+      "ci_upper": 1.0,
+      "n_seeds": 2,
+      "seeds": [
+        "008e_v3_s1",
+        "008e_v3_s2"
+      ]
+    },
+    "all_civo_conditions": {
+      "mean": 0.7143,
+      "ci_lower": 0.4286,
+      "ci_upper": 1.0,
+      "n_seeds": 7,
+      "note": "Pooled: trained_dt_emb + SGS_partial + cheetah + dt1_imag"
+    },
+    "all_control_conditions": {
+      "mean": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0,
+      "n_seeds": 4,
+      "note": "Pooled: no_dt_emb + SGS_full"
+    }
+  },
+  "metadata": {
+    "computed_at": "2026-05-16T18:58:56Z",
+    "n_resamples": 10000,
+    "nve_definition": "NVE = (value_mean / eval_return) / baseline_VE_ratio",
+    "diagnostic_window": "35K+ steps",
+    "baseline_reference": "exp_001_baseline (vanilla DreamerV3 seed 1, 512K steps)",
+    "cheetah_baseline_reference": "exp_010a_cheetah_baseline_s1 (vanilla DreamerV3 cheetah, 515K steps)",
+    "collapse_definition": "final_eval < 50% of peak_eval, sustained to end"
+  },
+  "eval_return_peak_cis": {
+    "no_dt_emb": {
+      "mean": 485.51,
+      "ci_lower": 359.14,
+      "ci_upper": 594.18,
+      "n_seeds": 3
+    },
+    "trained_dt_emb": {
+      "mean": 231.92,
+      "ci_lower": 167.22,
+      "ci_upper": 278.54,
+      "n_seeds": 3
+    },
+    "SGS_full": {
+      "mean": 499.58,
+      "ci_lower": 499.58,
+      "ci_upper": 499.58,
+      "n_seeds": 1
+    },
+    "cheetah_cross_env": {
+      "mean": 321.89,
+      "ci_lower": 321.89,
+      "ci_upper": 321.89,
+      "n_seeds": 1
+    },
+    "baseline_walker": {
+      "mean": 962.77,
+      "ci_lower": 950.96,
+      "ci_upper": 970.41,
+      "n_seeds": 3
+    }
+  },
+  "effect_sizes": {
+    "trained_vs_no_dt_emb_nve": {
+      "diff_mean": 2.3048,
+      "ci_lower": 0.6489,
+      "ci_upper": 3.2388,
+      "note": "NVE_peak(trained_dt_emb) - NVE_peak(no_dt_emb)"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_078_cheetah_008d_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:48:24.844Z",
+    "updated_at": "2026-05-25T11:21:27.001Z",
+    "hypothesis": "Cheetah Run CIVO trigger seed=0: trained dt_emb + subsample ON + dt=2 + H=8。与 exp_077 baseline 同时运行以计算 step-matched normalized VE。plan_021 第一个 seed。",
+    "server": "westd-19154",
+    "gpu": "cuda:1",
+    "parent": "exp_010b_cheetah_civo_trigger"
+  },
+  "timestamp": "2026-05-25T11:21:27.369796+00:00",
+  "trigger": "update_registry"
+}

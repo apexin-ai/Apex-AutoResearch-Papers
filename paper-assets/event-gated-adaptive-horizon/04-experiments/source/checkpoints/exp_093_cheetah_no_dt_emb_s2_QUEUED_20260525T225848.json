@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_093_cheetah_no_dt_emb_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:52:27.267Z",
+    "updated_at": "2026-05-25T22:58:47.525Z",
+    "hypothesis": "Cheetah Run dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_082 (s0, NVE=0.33×, no CIVO, success)。dt_embedding 完全移除后预期无 CIVO，加强 C2 cross-env causal control 多 seed 证据基础。plan_022。（重提交 exp_090，修正 CLI flag: --gate_dt_embed_dim 0）",
+    "parent": "exp_082_cheetah_no_dt_emb_s0",
+    "spec": {
+      "data_path": "dmc_cheetah_run",
+      "data_count": 105000,
+      "model_name": "DreamerV3 (gate_dt_embed_dim=0, Cheetah causal control)",
+      "seed": 2,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "dmc_cheetah_run (online eval)"
+    }
+  },
+  "timestamp": "2026-05-25T22:58:48.121268+00:00",
+  "trigger": "update_registry"
+}

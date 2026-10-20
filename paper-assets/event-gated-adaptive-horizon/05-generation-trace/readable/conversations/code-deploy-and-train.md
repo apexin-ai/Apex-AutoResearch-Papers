@@ -1,0 +1,3079 @@
+# code deploy and train
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 0
+- **Tool calls:** 47
+- **Original source:** `logs/chats/worker_code_deploy-and-train_20260513T015001.jsonl`
+- **Structured JSON:** [`db6d85c65ec739a9423c.json`](../../sessions/db/db6d85c65ec739a9423c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+95 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T02:05:43.230213+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/networks.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/networks.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T02:05:43.230936+00:00_
+
+1	# Event-Gated Adaptive-Horizon DreamerV3 — Network Definitions
+2	# Modified from NM512/dreamerv3-torch.
+3	# Changes: RSSM accepts variable dt via learned embedding; new EventGate class.
+4	
+5	import math
+6	import numpy as np
+7	import re
+8	
+9	import torch
+10	from torch import nn
+11	import torch.nn.functional as F
+12	from torch import distributions as torchd
+13	
+14	import tools
+15	
+16	
+17	class RSSM(nn.Module):
+18	    def __init__(
+19	        self,
+20	        stoch=30,
+21	        deter=200,
+22	        hidden=200,
+23	        rec_depth=1,
+24	        discrete=False,
+25	        act="SiLU",
+26	        norm=True,
+27	        mean_act="none",
+28	        std_act="softplus",
+29	        min_std=0.1,
+30	        unimix_ratio=0.01,
+31	        initial="learned",
+32	        num_actions=None,
+33	        embed=None,
+34	        device=None,
+35	        max_dt=1,
+36	        dt_embed_dim=32,
+37	    ):
+38	        super(RSSM, self).__init__()
+39	        self._stoch = stoch
+40	        self._deter = deter
+41	        self._hidden = hidden
+42	        self._min_std = min_std
+43	        self._rec_depth = rec_depth
+44	        self._discrete = discrete
+45	        act = getattr(torch.nn, act)
+46	        self._mean_act = mean_act
+47	        self._std_act = std_act
+48	        self._unimix_ratio = unimix_ratio
+49	        self._initial = initial
+50	        self._num_actions = num_actions
+51	        self._embed = embed
+52	        self._device = device
+53	
+54	        self._max_dt = max_dt
+55	        self._dt_embed_dim = dt_embed_dim
+56	        if self._max_dt > 1:
+57	            self._dt_embedding = nn.Embedding(max_dt, dt_embed_dim)
+58	            nn.init.normal_(self._dt_embedding.weight, std=0.01)
+59	        else:
+60	            self._dt_embedding = None
+61	
+62	        inp_layers = []
+63	        if self._discrete:
+64	            inp_dim = self._stoch * self._discrete + num_actions
+65	        else:
+66	            inp_dim = self._stoch + num_actions
+67	        if self._dt_embedding is not None:
+68	      
+…[truncated 34405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T02:05:43.231222+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/models.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/models.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-13T02:05:43.231555+00:00_
+
+1	# Event-Gated Adaptive-Horizon DreamerV3 — World Model & Behavior
+2	# Modified from NM512/dreamerv3-torch.
+3	# Changes: WorldModel integrates EventGate + variable-dt sub-sampling;
+4	#          ImagBehavior uses gate-driven dt in imagination + adapted lambda-returns.
+5	
+6	import copy
+7	import math
+8	
+9	import torch
+10	from torch import nn
+11	from torch.nn import functional as F
+12	
+13	import networks
+14	import tools
+15	
+16	to_np = lambda x: x.detach().cpu().numpy()
+17	
+18	
+19	def compute_gate_targets(feats, max_dt):
+20	    """Soft supervision target for the event gate derived from state deltas.
+21	
+22	    Large delta -> prefer small dt (index 0 = dt=1).
+23	    Small delta -> prefer large dt (index K-1 = dt=K).
+24	    """
+25	    feats = feats.detach()
+26	    deltas = torch.norm(feats[1:] - feats[:-1], dim=-1)  # (time-1, batch)
+27	    delta_min = deltas.min(dim=0, keepdim=True).values
+28	    delta_max = deltas.max(dim=0, keepdim=True).values
+29	    delta_norm = (deltas - delta_min) / (delta_max - delta_min + 1e-8)
+30	    preferred_dt = 1.0 + (max_dt - 1.0) * (1.0 - delta_norm)
+31	    dt_indices = torch.arange(1, max_dt + 1, dtype=torch.float32, device=feats.device)
+32	    sigma = 1.0
+33	    log_probs = -0.5 * ((preferred_dt.unsqueeze(-1) - dt_indices) / sigma) ** 2
+34	    target_dist = F.softmax(log_probs, dim=-1)
+35	    return target_dist
+36	
+37	
+38	def gate_loss_fn(gate_logits, target_dist):
+39	    """Cross-entropy between gate predictions and supervision target."""
+40	    log_probs = F.log_softmax(gate_logits, dim=-1)
+41	    return -(target_dist * log_probs).sum(dim=-1)
+42	
+43	
+44	class RewardEMA:
+45	    """running mean and std"""
+46	
+47	    def __init__(self, device, alpha=1e-2):
+48	        self.device = device
+49	        self.alpha = alpha
+50	        self.range = torch.tensor([0.05, 0.95], device=device)
+51	
+52	    def __call__(self, x, ema_vals):
+53	        flat_x = torch.flatten(x.detach())
+54	        x_quantile = torch.quantile(input=flat_x, q=self.range)
+55
+…[truncated 26797 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T02:05:43.231783+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/tools.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/tools.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T02:05:43.232220+00:00_
+
+1	# Event-Gated Adaptive-Horizon DreamerV3 — Utility Functions
+2	# Modified from NM512/dreamerv3-torch.
+3	# Changes: added lambda_return_variable_dt and subsample_variable_dt.
+4	
+5	import datetime
+6	import collections
+7	import io
+8	import os
+9	import json
+10	import math
+11	import pathlib
+12	import re
+13	import time
+14	import random
+15	
+16	import numpy as np
+17	
+18	import torch
+19	from torch import nn
+20	from torch.nn import functional as F
+21	from torch import distributions as torchd
+22	from torch.utils.tensorboard import SummaryWriter
+23	
+24	
+25	to_np = lambda x: x.detach().cpu().numpy()
+26	
+27	
+28	def symlog(x):
+29	    return torch.sign(x) * torch.log(torch.abs(x) + 1.0)
+30	
+31	
+32	def symexp(x):
+33	    return torch.sign(x) * (torch.exp(torch.abs(x)) - 1.0)
+34	
+35	
+36	class RequiresGrad:
+37	    def __init__(self, model):
+38	        self._model = model
+39	
+40	    def __enter__(self):
+41	        self._model.requires_grad_(requires_grad=True)
+42	
+43	    def __exit__(self, *args):
+44	        self._model.requires_grad_(requires_grad=False)
+45	
+46	
+47	class TimeRecording:
+48	    def __init__(self, comment):
+49	        self._comment = comment
+50	
+51	    def __enter__(self):
+52	        self._st = torch.cuda.Event(enable_timing=True)
+53	        self._nd = torch.cuda.Event(enable_timing=True)
+54	        self._st.record()
+55	
+56	    def __exit__(self, *args):
+57	        self._nd.record()
+58	        torch.cuda.synchronize()
+59	        print(self._comment, self._st.elapsed_time(self._nd) / 1000)
+60	
+61	
+62	class Logger:
+63	    def __init__(self, logdir, step):
+64	        self._logdir = logdir
+65	        self._writer = SummaryWriter(log_dir=str(logdir), max_queue=1000)
+66	        self._last_step = None
+67	        self._last_time = None
+68	        self._scalars = {}
+69	        self._images = {}
+70	        self._videos = {}
+71	        self.step = step
+72	
+73	    def scalar(self, name, value):
+74	        self._scalars[name] = float(value)
+75	
+76	    def image(self, name, value):
+7
+…[truncated 39389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T02:05:43.232408+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/configs.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/code/configs.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T02:05:43.232596+00:00_
+
+1	# Event-Gated Adaptive-Horizon DreamerV3 Configuration
+2	# Modified from NM512/dreamerv3-torch to add variable-rate temporal abstraction.
+3	# gate_* parameters control the event gate; gate_enabled=false preserves original behavior.
+4	
+5	defaults:
+6	
+7	  logdir: null
+8	  traindir: null
+9	  evaldir: null
+10	  offline_traindir: ''
+11	  offline_evaldir: ''
+12	  seed: 0
+13	  deterministic_run: False
+14	  steps: 1e6
+15	  parallel: False
+16	  eval_every: 1e4
+17	  eval_episode_num: 10
+18	  log_every: 1e4
+19	  reset_every: 0
+20	  device: 'cuda:0'
+21	  compile: True
+22	  precision: 32
+23	  debug: False
+24	  video_pred_log: True
+25	
+26	  # Environment
+27	  task: 'dmc_walker_walk'
+28	  size: [64, 64]
+29	  envs: 1
+30	  action_repeat: 2
+31	  time_limit: 1000
+32	  grayscale: False
+33	  prefill: 2500
+34	  reward_EMA: True
+35	
+36	  # Model
+37	  dyn_hidden: 512
+38	  dyn_deter: 512
+39	  dyn_stoch: 32
+40	  dyn_discrete: 32
+41	  dyn_rec_depth: 1
+42	  dyn_mean_act: 'none'
+43	  dyn_std_act: 'sigmoid2'
+44	  dyn_min_std: 0.1
+45	  grad_heads: ['decoder', 'reward', 'cont']
+46	  units: 512
+47	  act: 'SiLU'
+48	  norm: True
+49	  encoder:
+50	    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, symlog_inputs: True}
+51	  decoder:
+52	    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, cnn_sigmoid: False, image_dist: mse, vector_dist: symlog_mse, outscale: 1.0}
+53	  actor:
+54	    {layers: 2, dist: 'normal', entropy: 3e-4, unimix_ratio: 0.01, std: 'learned', min_std: 0.1, max_std: 1.0, temp: 0.1, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 1.0}
+55	  critic:
+56	    {layers: 2, dist: 'symlog_disc', slow_target: True, slow_target_update: 1, slow_target_fraction: 0.02, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 0.0}
+57	  reward_head:
+58	    {layers: 2, dist: 'symlog_disc', loss_scale: 1.0, outscale: 0.0}
+59	  cont_head:
+60
+…[truncated 3780 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T02:05:43.232744+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T02:05:43.232890+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T02:05:43.233054+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T02:05:43.233176+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T02:05:43.233392+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/networks.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — Network Definitions\n# Modified from NM512/dreamerv3-torch.\n# Changes: RSSM accepts variable dt via learned embedding; new EventGate class.\n\nimport math\nimport numpy as np\nimport re\n\nimport torch\nfrom torch import nn\nimport torch.nn.functional as F\nfrom torch import distributions as torchd\n\nimport tools\n\n\nclass RSSM(nn.Module):\n    def __init__(\n        self,\n        stoch=30,\n        deter=200,\n        hidden=200,\n        rec_depth=1,\n        discrete=False,\n        act=\"SiLU\",\n        norm=True,\n        mean_act=\"none\",\n        std_act=\"softplus\",\n        min_std=0.1,\n        unimix_ratio=0.01,\n        initial=\"learned\",\n        num_actions=None,\n        embed=None,\n        device=None,\n        max_dt=1,\n        dt_embed_dim=32,\n    ):\n        super(RSSM, self).__init__()\n        self._stoch = stoch\n        self._deter = deter\n        self._hidden = hidden\n        self._min_std = min_std\n        self._rec_depth = rec_depth\n        self._discrete = discrete\n        act = getattr(torch.nn, act)\n        self._mean_act = mean_act\n        self._std_act = std_act\n        self._unimix_ratio = unimix_ratio\n        self._initial = initial\n        self._num_actions = num_actions\n        self._embed = embed\n        self._device = device\n\n        self._max_dt = max_dt\n        self._dt_embed_dim = dt_embed_dim\n        if self._max_dt > 1:\n            self._dt_embedding = nn.Embedding(max_dt, dt_embed_dim)\n            nn.init.normal_(self._dt_embedding.weight, std=0.01)\n        else:\n            self._dt_embedding = None\n\n        inp_layers = []\n        if self._discrete:\n            inp_dim = self._stoch * self._discrete + num_actions\n        else:\n            inp_dim = self._stoch + num_actions\n        if self._dt_embedding is not None:\n            inp_dim += dt_embed_dim\n        inp_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            inp_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        inp_layers.append(act())\n        self._img_in_layers = nn.Sequential(*inp_layers)\n        self._img_in_layers.apply(tools.weight_init)\n        self._cell = GRUCell(self._hidden, self._deter, norm=norm)\n        self._cell.apply(tools.weight_init)\n\n        img_out_layers = []\n        inp_dim = self._deter\n        img_out_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            img_out_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        img_out_layers.append(act())\n        self._img_out_layers = nn.Sequential(*img_out_layers)\n        self._img_out_layers.apply(tools.weight_init)\n\n        obs_out_layers = []\n        inp_dim = self._deter + self._embed\n        obs_out_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            obs_out_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        obs_out_layers.append(act())\n        self._obs_out_layers = nn.Sequential(*obs_out_layers)\n        self._obs_out_layers.apply(tools.weight_init)\n\n        if self._discrete:\n            self._imgs_stat_layer = nn.Linear(\n                self._hidden, self._stoch * self._discrete\n            )\n            self._imgs_stat_layer.apply(tools.uniform_weight_init(1.0))\n            self._obs_stat_layer = nn.Linear(self._hidden, self._stoch * self._discrete)\n            self._obs_stat_layer.apply(tools.uniform_weight_init(1.0))\n        else:\n            self._imgs_stat_layer = nn.Linear(self._hidden, 2 * self._stoch)\n            self._imgs_stat_layer.apply(tools.uniform_weight_init(1.0))\n            self._obs_stat_layer = nn.Linear(self._hidden, 2 * self._stoch)\n            self._obs_stat_layer.apply(tools.uniform_weight_init(1.0))\n\n        if self._initial == \"learned\":\n            self.W = torch.nn.Parameter(\n                torch.zeros((1, self._deter), device=torch.device(self._device)),\n                requires_grad=True,\n            )\n\n    def initial(self, batch_size):\n        deter = torch.zeros(batch_size, self._deter, device=self._device)\n        if self._discrete:\n            state = dict(\n                logit=torch.zeros(\n                    [batch_size, self._stoch, self._discrete], device=self._device\n                ),\n                stoch=torch.zeros(\n                    [batch_size, self._stoch, self._discrete], device=self._device\n                ),\n                deter=deter,\n            )\n        else:\n            state = dict(\n                mean=torch.zeros([batch_size, self._stoch], device=self._device),\n                std=torch.zeros([batch_size, self._stoch], device=self._device),\n                stoch=torch.zeros([batch_size, self._stoch], device=self._device),\n                deter=deter,\n            )\n        if self._initial == \"zeros\":\n            return state\n        elif self._initial == \"learned\":\n            state[\"deter\"] = torch.tanh(self.W).repeat(batch_size, 1)\n            state[\"stoch\"] = self.get_stoch(state[\"deter\"])\n            return state\n        else:\n            raise NotImplementedError(self._initial)\n\n    def observe(self, embed, action, is_first, state=None, dt_labels=None):\n        swap = lambda x: x.permute([1, 0] + list(range(2, len(x.shape))))\n        # (batch, time, ch) -> (time, batch, ch)\n        embed, action, is_first = swap(embed), swap(action), swap(is_first)\n        # prev_state[0] means selecting posterior of return(posterior, prior) from obs_step\n        if dt_labels is not None:\n            dt_labels_t = swap(dt_labels)\n            post, prior = tools.static_scan(\n                lambda prev_state, prev_act, embed, is_first, dt: self.obs_step(\n                    prev_state[0], prev_act, embed, is_first, dt=dt\n                ),\n                (action, embed, is_first, dt_labels_t),\n                (state, state),\n            )\n        else:\n            post, prior = tools.static_scan(\n                lambda prev_state, prev_act, embed, is_first: self.obs_step(\n                    prev_state[0], prev_act, embed, is_first\n                ),\n                (action, embed, is_first),\n                (state, state),\n            )\n\n        # (batch, time, stoch, discrete_num) -> (batch, time, stoch, discrete_num)\n        post = {k: swap(v) for k, v in post.items()}\n        prior = {k: swap(v) for k, v in prior.items()}\n        return post, prior\n\n    def imagine_with_action(self, action, state, dt_sequence=None):\n        swap = lambda x: x.permute([1, 0] + list(range(2, len(x.shape))))\n        assert isinstance(state, dict), state\n        action = swap(action)\n        if dt_sequence is not None:\n            dt_sequence = swap(dt_sequence)\n            prior = tools.static_scan(\n                lambda s, a, dt: self.img_step(s, a, dt=dt),\n                [action, dt_sequence], state\n            )\n        else:\n            prior = tools.static_scan(self.img_step, [action], state)\n        prior = prior[0]\n        prior = {k: swap(v) for k, v in prior.items()}\n        return prior\n\n    def get_feat(self, state):\n        stoch = state[\"stoch\"]\n        if self._discrete:\n            shape = list(stoch.shape[:-2]) + [self._stoch * self._discrete]\n            stoch = stoch.reshape(shape)\n        return torch.cat([stoch, state[\"deter\"]], -1)\n\n    def get_dist(self, state, dtype=None):\n        if self._discrete:\n            logit = state[\"logit\"]\n            dist = torchd.independent.Independent(\n                tools.OneHotDist(logit, unimix_ratio=self._unimix_ratio), 1\n            )\n        else:\n            mean, std = state[\"mean\"], state[\"std\"]\n            dist = tools.ContDist(\n                torchd.independent.Independent(torchd.normal.Normal(mean, std), 1)\n            )\n        return dist\n\n    def obs_step(self, prev_state, prev_action, embed, is_first, dt=None, sample=True):\n        # initialize all prev_state\n        if prev_state == None or torch.sum(is_first) == len(is_first):\n            prev_state = self.initial(len(is_first))\n            prev_action = torch.zeros(\n                (len(is_first), self._num_actions), device=self._device\n            )\n        # overwrite the prev_state only where is_first=True\n        elif torch.sum(is_first) > 0:\n            is_first = is_first[:, None]\n            prev_action *= 1.0 - is_first\n            init_state = self.initial(len(is_first))\n            for key, val in prev_state.items():\n                is_first_r = torch.reshape(\n                    is_first,\n                    is_first.shape + (1,) * (len(val.shape) - len(is_first.shape)),\n                )\n                prev_state[key] = (\n                    val * (1.0 - is_first_r) + init_state[key] * is_first_r\n                )\n\n        prior = self.img_step(prev_state, prev_action, dt=dt)\n        x = torch.cat([prior[\"deter\"], embed], -1)\n        # (batch_size, prior_deter + embed) -> (batch_size, hidden)\n        x = self._obs_out_layers(x)\n        # (batch_size, hidden) -> (batch_size, stoch, discrete_num)\n        stats = self._suff_stats_layer(\"obs\", x)\n        if sample:\n            stoch = self.get_dist(stats).sample()\n        else:\n            stoch = self.get_dist(stats).mode()\n        post = {\"stoch\": stoch, \"deter\": prior[\"deter\"], **stats}\n        return post, prior\n\n    def img_step(self, prev_state, prev_action, dt=None, sample=True):\n        # (batch, stoch, discrete_num)\n        prev_stoch = prev_state[\"stoch\"]\n        if self._discrete:\n            shape = list(prev_stoch.shape[:-2]) + [self._stoch * self._discrete]\n            # (batch, stoch, discrete_num) -> (batch, stoch * discrete_num)\n            prev_stoch = prev_stoch.reshape(shape)\n\n        if self._dt_embedding is not None:\n            if dt is None:\n                dt = torch.ones(\n                    prev_stoch.shape[0], dtype=torch.long,\n                    device=prev_stoch.device\n                )\n            dt_emb = self._dt_embedding(dt - 1)\n            x = torch.cat([prev_stoch, prev_action, dt_emb], -1)\n        else:\n            x = torch.cat([prev_stoch, prev_action], -1)\n\n        # (batch, stoch * discrete_num + action [+ dt_emb]) -> (batch, hidden)\n        x = self._img_in_layers(x)\n        for _ in range(self._rec_depth):  # rec depth is not correctly implemented\n            deter = prev_state[\"deter\"]\n            # (batch, hidden), (batch, deter) -> (batch, deter), (batch, deter)\n            x, deter = self._cell(x, [deter])\n            deter = deter[0]  # Keras wraps the state in a list.\n        # (batch, deter) -> (batch, hidden)\n        x = self._img_out_layers(x)\n        # (batch, hidden) -> (batch_size, stoch, discrete_num)\n        stats = self._suff_stats_layer(\"ims\", x)\n        if sample:\n            stoch = self.get_dist(stats).sample()\n        else:\n            stoch = self.get_dist(stats).mode()\n        prior = {\"stoch\": stoch, \"deter\": deter, **stats}\n        return prior\n\n    def get_stoch(self, deter):\n        x = self._img_out_layers(deter)\n        stats = self._suff_stats_layer(\"ims\", x)\n        dist = self.get_dist(stats)\n        return dist.mode()\n\n    def _suff_stats_layer(self, name, x):\n        if self._discrete:\n            if name == \"ims\":\n                x = self._imgs_stat_layer(x)\n            elif name == \"obs\":\n                x = self._obs_stat_layer(x)\n            else:\n                raise NotImplementedError\n            logit = x.reshape(list(x.shape[:-1]) + [self._stoch, self._discrete])\n            return {\"logit\": logit}\n        else:\n            if name == \"ims\":\n                x = self._imgs_stat_layer(x)\n            elif name == \"obs\":\n                x = self._obs_stat_layer(x)\n            else:\n                raise NotImplementedError\n            mean, std = torch.split(x, [self._stoch] * 2, -1)\n            mean = {\n                \"none\": lambda: mean,\n                \"tanh5\": lambda: 5.0 * torch.tanh(mean / 5.0),\n            }[self._mean_act]()\n            std = {\n                \"softplus\": lambda: torch.softplus(std),\n                \"abs\": lambda: torch.abs(std + 1),\n                \"sigmoid\": lambda: torch.sigmoid(std),\n                \"sigmoid2\": lambda: 2 * torch.sigmoid(std / 2),\n            }[self._std_act]()\n            std = std + self._min_std\n            return {\"mean\": mean, \"std\": std}\n\n    def kl_loss(self, post, prior, free, dyn_scale, rep_scale):\n        kld = torchd.kl.kl_divergence\n        dist = lambda x: self.get_dist(x)\n        sg = lambda x: {k: v.detach() for k, v in x.items()}\n\n        rep_loss = value = kld(\n            dist(post) if self._discrete else dist(post)._dist,\n            dist(sg(prior)) if self._discrete else dist(sg(prior))._dist,\n        )\n        dyn_loss = kld(\n            dist(sg(post)) if self._discrete else dist(sg(post))._dist,\n            dist(prior) if self._discrete else dist(prior)._dist,\n        )\n        # this is implemented using maximum at the original repo as the gradients are not backpropagated for the out of limits.\n        rep_loss = torch.clip(rep_loss, min=free)\n        dyn_loss = torch.clip(dyn_loss, min=free)\n        loss = dyn_scale * dyn_loss + rep_scale * rep_loss\n\n        return loss, value, dyn_loss, rep_loss\n\n\nclass EventGate(nn.Module):\n    \"\"\"Learned event gate that decides per-step temporal stride dt in {1,...,K}.\"\"\"\n\n    def __init__(\n        self,\n        feat_size,\n        max_dt=8,\n        hidden_units=256,\n        hidden_layers=2,\n        act=\"SiLU\",\n        norm=True,\n        tau_init=5.0,\n        tau_final=0.5,\n        tau_anneal_steps=200000,\n    ):\n        super(EventGate, self).__init__()\n        self._max_dt = max_dt\n        self._tau_init = tau_init\n        self._tau_final = tau_final\n        self._tau_anneal_steps = tau_anneal_steps\n\n        act_fn = getattr(torch.nn, act)\n        layers = []\n        inp_dim = feat_size\n        for i in range(hidden_layers):\n            layers.append(nn.Linear(inp_dim, hidden_units, bias=False))\n            if norm:\n                layers.append(nn.LayerNorm(hidden_units, eps=1e-03))\n            layers.append(act_fn())\n            inp_dim = hidden_units\n        self.mlp = nn.Sequential(*layers)\n        self.mlp.apply(tools.weight_init)\n\n        self.logit_layer = nn.Linear(hidden_units, max_dt)\n        self.logit_layer.apply(tools.uniform_weight_init(0.01))\n\n    def get_tau(self, step):\n        \"\"\"Linear temperature annealing from tau_init to tau_final.\"\"\"\n        frac = min(step / max(self._tau_anneal_steps, 1), 1.0)\n        return self._tau_init + frac * (self._tau_final - self._tau_init)\n\n    def forward(self, feat, step, hard=False):\n        \"\"\"\n        Args:\n            feat: (batch, feat_size) — concatenated [stoch, deter]\n            step: int — current training step for temperature annealing\n            hard: bool — if True, use hard Gumbel-Softmax\n        Returns:\n            dt_onehot: (batch, max_dt) — one-hot or soft assignment\n            dt_index:  (batch,) — integer dt in {1,...,K}\n            logits:    (batch, max_dt) — raw logits for entropy computation\n        \"\"\"\n        x = self.mlp(feat)\n        logits = self.logit_layer(x)\n        tau = self.get_tau(step)\n        dt_onehot = F.gumbel_softmax(logits, tau=tau, hard=hard)\n        dt_index = torch.argmax(dt_onehot, dim=-1) + 1\n        return dt_onehot, dt_index, logits\n\n    def entropy(self, logits):\n        \"\"\"Categorical entropy of the gate distribution.\"\"\"\n        probs = F.softmax(logits, dim=-1)\n        log_probs = F.log_softmax(logits, dim=-1)\n        return -(probs * log_probs).sum(dim=-1)\n\n\nclass MultiEncoder(nn.Module):\n    def __init__(\n        self,\n        shapes,\n        mlp_keys,\n        cnn_keys,\n        act,\n        norm,\n        cnn_depth,\n        kernel_size,\n        minres,\n        mlp_layers,\n        mlp_units,\n        symlog_inputs,\n    ):\n        super(MultiEncoder, self).__init__()\n        excluded = (\"is_first\", \"is_last\", \"is_terminal\", \"reward\")\n        shapes = {\n            k: v\n            for k, v in shapes.items()\n            if k not in excluded and not k.startswith(\"log_\")\n        }\n        self.cnn_shapes = {\n            k: v for k, v in shapes.items() if len(v) == 3 and re.match(cnn_keys, k)\n        }\n        self.mlp_shapes = {\n            k: v\n            for k, v in shapes.items()\n            if len(v) in (1, 2) and re.match(mlp_keys, k)\n        }\n        print(\"Encoder CNN shapes:\", self.cnn_shapes)\n        print(\"Encoder MLP shapes:\", self.mlp_shapes)\n\n        self.outdim = 0\n        if self.cnn_shapes:\n            input_ch = sum([v[-1] for v in self.cnn_shapes.values()])\n            input_shape = tuple(self.cnn_shapes.values())[0][:2] + (input_ch,)\n            self._cnn = ConvEncoder(\n                input_shape, cnn_depth, act, norm, kernel_size, minres\n            )\n            self.outdim += self._cnn.outdim\n        if self.mlp_shapes:\n            input_size = sum([sum(v) for v in self.mlp_shapes.values()])\n            self._mlp = MLP(\n                input_size,\n                None,\n                mlp_layers,\n                mlp_units,\n                act,\n                norm,\n                symlog_inputs=symlog_inputs,\n                name=\"Encoder\",\n            )\n            self.outdim += mlp_units\n\n    def forward(self, obs):\n        outputs = []\n        if self.cnn_shapes:\n            inputs = torch.cat([obs[k] for k in self.cnn_shapes], -1)\n            outputs.append(self._cnn(inputs))\n        if self.mlp_shapes:\n            inputs = torch.cat([obs[k] for k in self.mlp_shapes], -1)\n            outputs.append(self._mlp(inputs))\n        outputs = torch.cat(outputs, -1)\n        return outputs\n\n\nclass MultiDecoder(nn.Module):\n    def __init__(\n        self,\n        feat_size,\n        shapes,\n        mlp_keys,\n        cnn_keys,\n        act,\n        norm,\n        cnn_depth,\n        kernel_size,\n        minres,\n        mlp_layers,\n        mlp_units,\n        cnn_sigmoid,\n        image_dist,\n        vector_dist,\n        outscale,\n    ):\n        super(MultiDecoder, self).__init__()\n        excluded = (\"is_first\", \"is_last\", \"is_terminal\")\n        shapes = {k: v for k, v in shapes.items() if k not in excluded}\n        self.cnn_shapes = {\n            k: v for k, v in shapes.items() if len(v) == 3 and re.match(cnn_keys, k)\n        }\n        self.mlp_shapes = {\n            k: v\n            for k, v in shapes.items()\n            if len(v) in (1, 2) and re.match(mlp_keys, k)\n        }\n        print(\"Decoder CNN shapes:\", self.cnn_shapes)\n        print(\"Decoder MLP shapes:\", self.mlp_shapes)\n\n        if self.cnn_shapes:\n            some_shape = list(self.cnn_shapes.values())[0]\n            shape = (sum(x[-1] for x in self.cnn_shapes.values()),) + some_shape[:-1]\n            self._cnn = ConvDecoder(\n                feat_size,\n                shape,\n                cnn_depth,\n                act,\n                norm,\n                kernel_size,\n                minres,\n                outscale=outscale,\n                cnn_sigmoid=cnn_sigmoid,\n            )\n        if self.mlp_shapes:\n            self._mlp = MLP(\n                feat_size,\n                self.mlp_shapes,\n                mlp_layers,\n                mlp_units,\n                act,\n                norm,\n                vector_dist,\n                outscale=outscale,\n                name=\"Decoder\",\n            )\n        self._image_dist = image_dist\n\n    def forward(self, features):\n        dists = {}\n        if self.cnn_shapes:\n            feat = features\n            outputs = self._cnn(feat)\n            split_sizes = [v[-1] for v in self.cnn_shapes.values()]\n            outputs = torch.split(outputs, split_sizes, -1)\n            dists.update(\n                {\n                    key: self._make_image_dist(output)\n                    for key, output in zip(self.cnn_shapes.keys(), outputs)\n                }\n            )\n        if self.mlp_shapes:\n            dists.update(self._mlp(features))\n        return dists\n\n    def _make_image_dist(self, mean):\n        if self._image_dist == \"normal\":\n            return tools.ContDist(\n                torchd.independent.Independent(torchd.normal.Normal(mean, 1), 3)\n            )\n        if self._image_dist == \"mse\":\n            return tools.MSEDist(mean)\n        raise NotImplementedError(self._image_dist)\n\n\nclass ConvEncoder(nn.Module):\n    def __init__(\n        self,\n        input_shape,\n        depth=32,\n        act=\"SiLU\",\n        norm=True,\n        kernel_size=4,\n        minres=4,\n    ):\n        super(ConvEncoder, self).__init__()\n        act = getattr(torch.nn, act)\n        h, w, input_ch = input_shape\n        stages = int(np.log2(h) - np.log2(minres))\n        in_dim = input_ch\n        out_dim = depth\n        layers = []\n        for i in range(stages):\n            layers.append(\n                Conv2dSamePad(\n                    in_channels=in_dim,\n                    out_channels=out_dim,\n                    kernel_size=kernel_size,\n                    stride=2,\n                    bias=False,\n                )\n            )\n            if norm:\n                layers.append(ImgChLayerNorm(out_dim))\n            layers.append(act())\n            in_dim = out_dim\n            out_dim *= 2\n            h, w = h // 2, w // 2\n\n        self.outdim = out_dim // 2 * h * w\n        self.layers = nn.Sequential(*layers)\n        self.layers.apply(tools.weight_init)\n\n    def forward(self, obs):\n        obs -= 0.5\n        # (batch, time, h, w, ch) -> (batch * time, h, w, ch)\n        x = obs.reshape((-1,) + tuple(obs.shape[-3:]))\n        # (batch * time, h, w, ch) -> (batch * time, ch, h, w)\n        x = x.permute(0, 3, 1, 2)\n        x = self.layers(x)\n        # (batch * time, ...) -> (batch * time, -1)\n        x = x.reshape([x.shape[0], np.prod(x.shape[1:])])\n        # (batch * time, -1) -> (batch, time, -1)\n        return x.reshape(list(obs.shape[:-3]) + [x.shape[-1]])\n\n\nclass ConvDecoder(nn.Module):\n    def __init__(\n        self,\n        feat_size,\n        shape=(3, 64, 64),\n        depth=32,\n        act=nn.ELU,\n        norm=True,\n        kernel_size=4,\n        minres=4,\n        outscale=1.0,\n        cnn_sigmoid=False,\n    ):\n        super(ConvDecoder, self).__init__()\n        act = getattr(torch.nn, act)\n        self._shape = shape\n        self._cnn_sigmoid = cnn_sigmoid\n        layer_num = int(np.log2(shape[1]) - np.log2(minres))\n        self._minres = minres\n        out_ch = minres**2 * depth * 2 ** (layer_num - 1)\n        self._embed_size = out_ch\n\n        self._linear_layer = nn.Linear(feat_size, out_ch)\n        self._linear_layer.apply(tools.uniform_weight_init(outscale))\n        in_dim = out_ch // (minres**2)\n        out_dim = in_dim // 2\n\n        layers = []\n        h, w = minres, minres\n        for i in range(layer_num):\n            bias = False\n            if i == layer_num - 1:\n                out_dim = self._shape[0]\n                act = False\n                bias = True\n                norm = False\n\n            if i != 0:\n                in_dim = 2 ** (layer_num - (i - 1) - 2) * depth\n            pad_h, outpad_h = self.calc_same_pad(k=kernel_size, s=2, d=1)\n            pad_w, outpad_w = self.calc_same_pad(k=kernel_size, s=2, d=1)\n            layers.append(\n                nn.ConvTranspose2d(\n                    in_dim,\n                    out_dim,\n                    kernel_size,\n                    2,\n                    padding=(pad_h, pad_w),\n                    output_padding=(outpad_h, outpad_w),\n                    bias=bias,\n                )\n            )\n            if norm:\n                layers.append(ImgChLayerNorm(out_dim))\n            if act:\n                layers.append(act())\n            in_dim = out_dim\n            out_dim //= 2\n            h, w = h * 2, w * 2\n        [m.apply(tools.weight_init) for m in layers[:-1]]\n        layers[-1].apply(tools.uniform_weight_init(outscale))\n        self.layers = nn.Sequential(*layers)\n\n    def calc_same_pad(self, k, s, d):\n        val = d * (k - 1) - s + 1\n        pad = math.ceil(val / 2)\n        outpad = pad * 2 - val\n        return pad, outpad\n\n    def forward(self, features, dtype=None):\n        x = self._linear_layer(features)\n        # (batch, time, -1) -> (batch * time, h, w, ch)\n        x = x.reshape(\n            [-1, self._minres, self._minres, self._embed_size // self._minres**2]\n        )\n        # (batch, time, -1) -> (batch * time, ch, h, w)\n        x = x.permute(0, 3, 1, 2)\n        x = self.layers(x)\n        # (batch, time, -1) -> (batch, time, ch, h, w)\n        mean = x.reshape(features.shape[:-1] + self._shape)\n        # (batch, time, ch, h, w) -> (batch, time, h, w, ch)\n        mean = mean.permute(0, 1, 3, 4, 2)\n        if self._cnn_sigmoid:\n            mean = F.sigmoid(mean)\n        else:\n            mean += 0.5\n        return mean\n\n\nclass MLP(nn.Module):\n    def __init__(\n        self,\n        inp_dim,\n        shape,\n        layers,\n        units,\n        act=\"SiLU\",\n        norm=True,\n        dist=\"normal\",\n        std=1.0,\n        min_std=0.1,\n        max_std=1.0,\n        absmax=None,\n        temp=0.1,\n        unimix_ratio=0.01,\n        outscale=1.0,\n        symlog_inputs=False,\n        device=\"cuda\",\n        name=\"NoName\",\n    ):\n        super(MLP, self).__init__()\n        self._shape = (shape,) if isinstance(shape, int) else shape\n        if self._shape is not None and len(self._shape) == 0:\n            self._shape = (1,)\n        act = getattr(torch.nn, act)\n        self._dist = dist\n        self._std = std if isinstance(std, str) else torch.tensor((std,), device=device)\n        self._min_std = min_std\n        self._max_std = max_std\n        self._absmax = absmax\n        self._temp = temp\n        self._unimix_ratio = unimix_ratio\n        self._symlog_inputs = symlog_inputs\n        self._device = device\n\n        self.layers = nn.Sequential()\n        for i in range(layers):\n            self.layers.add_module(\n                f\"{name}_linear{i}\", nn.Linear(inp_dim, units, bias=False)\n            )\n            if norm:\n                self.layers.add_module(\n                    f\"{name}_norm{i}\", nn.LayerNorm(units, eps=1e-03)\n                )\n            self.layers.add_module(f\"{name}_act{i}\", act())\n            if i == 0:\n                inp_dim = units\n        self.layers.apply(tools.weight_init)\n\n        if isinstance(self._shape, dict):\n            self.mean_layer = nn.ModuleDict()\n            for name, shape in self._shape.items():\n                self.mean_layer[name] = nn.Linear(inp_dim, np.prod(shape))\n            self.mean_layer.apply(tools.uniform_weight_init(outscale))\n            if self._std == \"learned\":\n                assert dist in (\"tanh_normal\", \"normal\", \"trunc_normal\", \"huber\"), dist\n                self.std_layer = nn.ModuleDict()\n                for name, shape in self._shape.items():\n                    self.std_layer[name] = nn.Linear(inp_dim, np.prod(shape))\n                self.std_layer.apply(tools.uniform_weight_init(outscale))\n        elif self._shape is not None:\n            self.mean_layer = nn.Linear(inp_dim, np.prod(self._shape))\n            self.mean_layer.apply(tools.uniform_weight_init(outscale))\n            if self._std == \"learned\":\n                assert dist in (\"tanh_normal\", \"normal\", \"trunc_normal\", \"huber\"), dist\n                self.std_layer = nn.Linear(units, np.prod(self._shape))\n                self.std_layer.apply(tools.uniform_weight_init(outscale))\n\n    def forward(self, features, dtype=None):\n        x = features\n        if self._symlog_inputs:\n            x = tools.symlog(x)\n        out = self.layers(x)\n        # Used for encoder output\n        if self._shape is None:\n            return out\n        if isinstance(self._shape, dict):\n            dists = {}\n            for name, shape in self._shape.items():\n                mean = self.mean_layer[name](out)\n                if self._std == \"learned\":\n                    std = self.std_layer[name](out)\n                else:\n                    std = self._std\n                dists.update({name: self.dist(self._dist, mean, std, shape)})\n            return dists\n        else:\n            mean = self.mean_layer(out)\n            if self._std == \"learned\":\n                std = self.std_layer(out)\n            else:\n                std = self._std\n            return self.dist(self._dist, mean, std, self._shape)\n\n    def dist(self, dist, mean, std, shape):\n        if dist == \"tanh_normal\":\n            mean = torch.tanh(mean)\n            std = F.softplus(std) + self._min_std\n            dist = torchd.normal.Normal(mean, std)\n            dist = torchd.transformed_distribution.TransformedDistribution(\n                dist, tools.TanhBijector()\n            )\n            dist = torchd.independent.Independent(dist, 1)\n            dist = tools.SampleDist(dist)\n        elif dist == \"normal\":\n            std = (self._max_std - self._min_std) * torch.sigmoid(\n                std + 2.0\n            ) + self._min_std\n            dist = torchd.normal.Normal(torch.tanh(mean), std)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"normal_std_fixed\":\n            dist = torchd.normal.Normal(mean, self._std)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"trunc_normal\":\n            mean = torch.tanh(mean)\n            std = 2 * torch.sigmoid(std / 2) + self._min_std\n            dist = tools.SafeTruncatedNormal(mean, std, -1, 1)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"onehot\":\n            dist = tools.OneHotDist(mean, unimix_ratio=self._unimix_ratio)\n        elif dist == \"onehot_gumble\":\n            dist = tools.ContDist(\n                torchd.gumbel.Gumbel(mean, 1 / self._temp), absmax=self._absmax\n            )\n        elif dist == \"huber\":\n            dist = tools.ContDist(\n                torchd.independent.Independent(\n                    tools.UnnormalizedHuber(mean, std, 1.0),\n                    len(shape),\n                    absmax=self._absmax,\n                )\n            )\n        elif dist == \"binary\":\n            dist = tools.Bernoulli(\n                torchd.independent.Independent(\n                    torchd.bernoulli.Bernoulli(logits=mean), len(shape)\n                )\n            )\n        elif dist == \"symlog_disc\":\n            dist = tools.DiscDist(logits=mean, device=self._device)\n        elif dist == \"symlog_mse\":\n            dist = tools.SymlogDist(mean)\n        else:\n            raise NotImplementedError(dist)\n        return dist\n\n\nclass GRUCell(nn.Module):\n    def __init__(self, inp_size, size, norm=True, act=torch.tanh, update_bias=-1):\n        super(GRUCell, self).__init__()\n        self._inp_size = inp_size\n        self._size = size\n        self._act = act\n        self._update_bias = update_bias\n        self.layers = nn.Sequential()\n        self.layers.add_module(\n            \"GRU_linear\", nn.Linear(inp_size + size, 3 * size, bias=False)\n        )\n        if norm:\n            self.layers.add_module(\"GRU_norm\", nn.LayerNorm(3 * size, eps=1e-03))\n\n    @property\n    def state_size(self):\n        return self._size\n\n    def forward(self, inputs, state):\n        state = state[0]  # Keras wraps the state in a list.\n        parts = self.layers(torch.cat([inputs, state], -1))\n        reset, cand, update = torch.split(parts, [self._size] * 3, -1)\n        reset = torch.sigmoid(reset)\n        cand = self._act(reset * cand)\n        update = torch.sigmoid(update + self._update_bias)\n        output = update * cand + (1 - update) * state\n        return output, [output]\n\n\nclass Conv2dSamePad(torch.nn.Conv2d):\n    def calc_same_pad(self, i, k, s, d):\n        return max((math.ceil(i / s) - 1) * s + (k - 1) * d + 1 - i, 0)\n\n    def forward(self, x):\n        ih, iw = x.size()[-2:]\n        pad_h = self.calc_same_pad(\n            i=ih, k=self.kernel_size[0], s=self.stride[0], d=self.dilation[0]\n        )\n        pad_w = self.calc_same_pad(\n            i=iw, k=self.kernel_size[1], s=self.stride[1], d=self.dilation[1]\n        )\n\n        if pad_h > 0 or pad_w > 0:\n            x = F.pad(\n                x, [pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2]\n            )\n\n        ret = F.conv2d(\n            x,\n            self.weight,\n            self.bias,\n            self.stride,\n            self.padding,\n            self.dilation,\n            self.groups,\n        )\n        return ret\n\n\nclass ImgChLayerNorm(nn.Module):\n    def __init__(self, ch, eps=1e-03):\n        super(ImgChLayerNorm, self).__init__()\n        self.norm = torch.nn.LayerNorm(ch, eps=eps)\n\n    def forward(self, x):\n        x = x.permute(0, 2, 3, 1)\n        x = self.norm(x)\n        x = x.permute(0, 3, 1, 2)\n        return x\nFILEEOF",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/networks.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — Network Definitions\n# Modified from NM512/dreamerv3-torch.\n# Changes: RSSM accepts variable dt via learned embedding; new EventGate class.\n\nimport math\nimport numpy as np\nimport re\n\nimport torch\nfrom torch import nn\nimport torch.nn.functional as F\nfrom torch import distributions as torchd\n\nimport tools\n\n\nclass RSSM(nn.Module):\n    def __init__(\n        self,\n        stoch=30,\n        deter=200,\n        hidden=200,\n        rec_depth=1,\n        discrete=False,\n        act=\"SiLU\",\n        norm=True,\n        mean_act=\"none\",\n        std_act=\"softplus\",\n        min_std=0.1,\n        unimix_ratio=0.01,\n        initial=\"learned\",\n        num_actions=None,\n        embed=None,\n        device=None,\n        max_dt=1,\n        dt_embed_dim=32,\n    ):\n        super(RSSM, self).__init__()\n        self._stoch = stoch\n        self._deter = deter\n        self._hidden = hidden\n        self._min_std = min_std\n        self._rec_depth = rec_depth\n        self._discrete = discrete\n        act = getattr(torch.nn, act)\n        self._mean_act = mean_act\n        self._std_act = std_act\n        self._unimix_ratio = unimix_ratio\n        self._initial = initial\n        self._num_actions = num_actions\n        self._embed = embed\n        self._device = device\n\n        self._max_dt = max_dt\n        self._dt_embed_dim = dt_embed_dim\n        if self._max_dt > 1:\n            self._dt_embedding = nn.Embedding(max_dt, dt_embed_dim)\n            nn.init.normal_(self._dt_embedding.weight, std=0.01)\n        else:\n            self._dt_embedding = None\n\n        inp_layers = []\n        if self._discrete:\n            inp_dim = self._stoch * self._discrete + num_actions\n        else:\n            inp_dim = self._stoch + num_actions\n        if self._dt_embedding is not None:\n            inp_dim += dt_embed_dim\n        inp_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            inp_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        inp_layers.append(act())\n        self._img_in_layers = nn.Sequential(*inp_layers)\n        self._img_in_layers.apply(tools.weight_init)\n        self._cell = GRUCell(self._hidden, self._deter, norm=norm)\n        self._cell.apply(tools.weight_init)\n\n        img_out_layers = []\n        inp_dim = self._deter\n        img_out_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            img_out_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        img_out_layers.append(act())\n        self._img_out_layers = nn.Sequential(*img_out_layers)\n        self._img_out_layers.apply(tools.weight_init)\n\n        obs_out_layers = []\n        inp_dim = self._deter + self._embed\n        obs_out_layers.append(nn.Linear(inp_dim, self._hidden, bias=False))\n        if norm:\n            obs_out_layers.append(nn.LayerNorm(self._hidden, eps=1e-03))\n        obs_out_layers.append(act())\n        self._obs_out_layers = nn.Sequential(*obs_out_layers)\n        self._obs_out_layers.apply(tools.weight_init)\n\n        if self._discrete:\n            self._imgs_stat_layer = nn.Linear(\n                self._hidden, self._stoch * self._discrete\n            )\n            self._imgs_stat_layer.apply(tools.uniform_weight_init(1.0))\n            self._obs_stat_layer = nn.Linear(self._hidden, self._stoch * self._discrete)\n            self._obs_stat_layer.apply(tools.uniform_weight_init(1.0))\n        else:\n            self._imgs_stat_layer = nn.Linear(self._hidden, 2 * self._stoch)\n            self._imgs_stat_layer.apply(tools.uniform_weight_init(1.0))\n            self._obs_stat_layer = nn.Linear(self._hidden, 2 * self._stoch)\n            self._obs_stat_layer.apply(tools.uniform_weight_init(1.0))\n\n        if self._initial == \"learned\":\n            self.W = torch.nn.Parameter(\n                torch.zeros((1, self._deter), device=torch.device(self._device)),\n                requires_grad=True,\n            )\n\n    def initial(self, batch_size):\n        deter = torch.zeros(batch_size, self._deter, device=self._device)\n        if self._discrete:\n            state = dict(\n                logit=torch.zeros(\n                    [batch_size, self._stoch, self._discrete], device=self._device\n                ),\n                stoch=torch.zeros(\n                    [batch_size, self._stoch, self._discrete], device=self._device\n                ),\n                deter=deter,\n            )\n        else:\n            state = dict(\n                mean=torch.zeros([batch_size, self._stoch], device=self._device),\n                std=torch.zeros([batch_size, self._stoch], device=self._device),\n                stoch=torch.zeros([batch_size, self._stoch], device=self._device),\n                deter=deter,\n            )\n        if self._initial == \"zeros\":\n            return state\n        elif self._initial == \"learned\":\n            state[\"deter\"] = torch.tanh(self.W).repeat(batch_size, 1)\n            state[\"stoch\"] = self.get_stoch(state[\"deter\"])\n            return state\n        else:\n            raise NotImplementedError(self._initial)\n\n    def observe(self, embed, action, is_first, state=None, dt_labels=None):\n        swap = lambda x: x.permute([1, 0] + list(range(2, len(x.shape))))\n        # (batch, time, ch) -> (time, batch, ch)\n        embed, action, is_first = swap(embed), swap(action), swap(is_first)\n        # prev_state[0] means selecting posterior of return(posterior, prior) from obs_step\n        if dt_labels is not None:\n            dt_labels_t = swap(dt_labels)\n            post, prior = tools.static_scan(\n                lambda prev_state, prev_act, embed, is_first, dt: self.obs_step(\n                    prev_state[0], prev_act, embed, is_first, dt=dt\n                ),\n                (action, embed, is_first, dt_labels_t),\n                (state, state),\n            )\n        else:\n            post, prior = tools.static_scan(\n                lambda prev_state, prev_act, embed, is_first: self.obs_step(\n                    prev_state[0], prev_act, embed, is_first\n                ),\n                (action, embed, is_first),\n                (state, state),\n            )\n\n        # (batch, time, stoch, discrete_num) -> (batch, time, stoch, discrete_num)\n        post = {k: swap(v) for k, v in post.items()}\n        prior = {k: swap(v) for k, v in prior.items()}\n        return post, prior\n\n    def imagine_with_action(self, action, state, dt_sequence=None):\n        swap = lambda x: x.permute([1, 0] + list(range(2, len(x.shape))))\n        assert isinstance(state, dict), state\n        action = swap(action)\n        if dt_sequence is not None:\n            dt_sequence = swap(dt_sequence)\n            prior = tools.static_scan(\n                lambda s, a, dt: self.img_step(s, a, dt=dt),\n                [action, dt_sequence], state\n            )\n        else:\n            prior = tools.static_scan(self.img_step, [action], state)\n        prior = prior[0]\n        prior = {k: swap(v) for k, v in prior.items()}\n        return prior\n\n    def get_feat(self, state):\n        stoch = state[\"stoch\"]\n        if self._discrete:\n            shape = list(stoch.shape[:-2]) + [self._stoch * self._discrete]\n            stoch = stoch.reshape(shape)\n        return torch.cat([stoch, state[\"deter\"]], -1)\n\n    def get_dist(self, state, dtype=None):\n        if self._discrete:\n            logit = state[\"logit\"]\n            dist = torchd.independent.Independent(\n                tools.OneHotDist(logit, unimix_ratio=self._unimix_ratio), 1\n            )\n        else:\n            mean, std = state[\"mean\"], state[\"std\"]\n            dist = tools.ContDist(\n                torchd.independent.Independent(torchd.normal.Normal(mean, std), 1)\n            )\n        return dist\n\n    def obs_step(self, prev_state, prev_action, embed, is_first, dt=None, sample=True):\n        # initialize all prev_state\n        if prev_state == None or torch.sum(is_first) == len(is_first):\n            prev_state = self.initial(len(is_first))\n            prev_action = torch.zeros(\n                (len(is_first), self._num_actions), device=self._device\n            )\n        # overwrite the prev_state only where is_first=True\n        elif torch.sum(is_first) > 0:\n            is_first = is_first[:, None]\n            prev_action *= 1.0 - is_first\n            init_state = self.initial(len(is_first))\n            for key, val in prev_state.items():\n                is_first_r = torch.reshape(\n                    is_first,\n                    is_first.shape + (1,) * (len(val.shape) - len(is_first.shape)),\n                )\n                prev_state[key] = (\n                    val * (1.0 - is_first_r) + init_state[key] * is_first_r\n                )\n\n        prior = self.img_step(prev_state, prev_action, dt=dt)\n        x = torch.cat([prior[\"deter\"], embed], -1)\n        # (batch_size, prior_deter + embed) -> (batch_size, hidden)\n        x = self._obs_out_layers(x)\n        # (batch_size, hidden) -> (batch_size, stoch, discrete_num)\n        stats = self._suff_stats_layer(\"obs\", x)\n        if sample:\n            stoch = self.get_dist(stats).sample()\n        else:\n            stoch = self.get_dist(stats).mode()\n        post = {\"stoch\": stoch, \"deter\": prior[\"deter\"], **stats}\n        return post, prior\n\n    def img_step(self, prev_state, prev_action, dt=None, sample=True):\n        # (batch, stoch, discrete_num)\n        prev_stoch = prev_state[\"stoch\"]\n        if self._discrete:\n            shape = list(prev_stoch.shape[:-2]) + [self._stoch * self._discrete]\n            # (batch, stoch, discrete_num) -> (batch, stoch * discrete_num)\n            prev_stoch = prev_stoch.reshape(shape)\n\n        if self._dt_embedding is not None:\n            if dt is None:\n                dt = torch.ones(\n                    prev_stoch.shape[0], dtype=torch.long,\n                    device=prev_stoch.device\n                )\n            dt_emb = self._dt_embedding(dt - 1)\n            x = torch.cat([prev_stoch, prev_action, dt_emb], -1)\n        else:\n            x = torch.cat([prev_stoch, prev_action], -1)\n\n        # (batch, stoch * discrete_num + action [+ dt_emb]) -> (batch, hidden)\n        x = self._img_in_layers(x)\n        for _ in range(self._rec_depth):  # rec depth is not correctly implemented\n            deter = prev_state[\"deter\"]\n            # (batch, hidden), (batch, deter) -> (batch, deter), (batch, deter)\n            x, deter = self._cell(x, [deter])\n            deter = deter[0]  # Keras wraps the state in a list.\n        # (batch, deter) -> (batch, hidden)\n        x = self._img_out_layers(x)\n        # (batch, hidden) -> (batch_size, stoch, discrete_num)\n        stats = self._suff_stats_layer(\"ims\", x)\n        if sample:\n            stoch = self.get_dist(stats).sample()\n        else:\n            stoch = self.get_dist(stats).mode()\n        prior = {\"stoch\": stoch, \"deter\": deter, **stats}\n        return prior\n\n    def get_stoch(self, deter):\n        x = self._img_out_layers(deter)\n        stats = self._suff_stats_layer(\"ims\", x)\n        dist = self.get_dist(stats)\n        return dist.mode()\n\n    def _suff_stats_layer(self, name, x):\n        if self._discrete:\n            if name == \"ims\":\n                x = self._imgs_stat_layer(x)\n            elif name == \"obs\":\n                x = self._obs_stat_layer(x)\n            else:\n                raise NotImplementedError\n            logit = x.reshape(list(x.shape[:-1]) + [self._stoch, self._discrete])\n            return {\"logit\": logit}\n        else:\n            if name == \"ims\":\n                x = self._imgs_stat_layer(x)\n            elif name == \"obs\":\n                x = self._obs_stat_layer(x)\n            else:\n                raise NotImplementedError\n            mean, std = torch.split(x, [self._stoch] * 2, -1)\n            mean = {\n                \"none\": lambda: mean,\n                \"tanh5\": lambda: 5.0 * torch.tanh(mean / 5.0),\n            }[self._mean_act]()\n            std = {\n                \"softplus\": lambda: torch.softplus(std),\n                \"abs\": lambda: torch.abs(std + 1),\n                \"sigmoid\": lambda: torch.sigmoid(std),\n                \"sigmoid2\": lambda: 2 * torch.sigmoid(std / 2),\n            }[self._std_act]()\n            std = std + self._min_std\n            return {\"mean\": mean, \"std\": std}\n\n    def kl_loss(self, post, prior, free, dyn_scale, rep_scale):\n        kld = torchd.kl.kl_divergence\n        dist = lambda x: self.get_dist(x)\n        sg = lambda x: {k: v.detach() for k, v in x.items()}\n\n        rep_loss = value = kld(\n            dist(post) if self._discrete else dist(post)._dist,\n            dist(sg(prior)) if self._discrete else dist(sg(prior))._dist,\n        )\n        dyn_loss = kld(\n            dist(sg(post)) if self._discrete else dist(sg(post))._dist,\n            dist(prior) if self._discrete else dist(prior)._dist,\n        )\n        # this is implemented using maximum at the original repo as the gradients are not backpropagated for the out of limits.\n        rep_loss = torch.clip(rep_loss, min=free)\n        dyn_loss = torch.clip(dyn_loss, min=free)\n        loss = dyn_scale * dyn_loss + rep_scale * rep_loss\n\n        return loss, value, dyn_loss, rep_loss\n\n\nclass EventGate(nn.Module):\n    \"\"\"Learned event gate that decides per-step temporal stride dt in {1,...,K}.\"\"\"\n\n    def __init__(\n        self,\n        feat_size,\n        max_dt=8,\n        hidden_units=256,\n        hidden_layers=2,\n        act=\"SiLU\",\n        norm=True,\n        tau_init=5.0,\n        tau_final=0.5,\n        tau_anneal_steps=200000,\n    ):\n        super(EventGate, self).__init__()\n        self._max_dt = max_dt\n        self._tau_init = tau_init\n        self._tau_final = tau_final\n        self._tau_anneal_steps = tau_anneal_steps\n\n        act_fn = getattr(torch.nn, act)\n        layers = []\n        inp_dim = feat_size\n        for i in range(hidden_layers):\n            layers.append(nn.Linear(inp_dim, hidden_units, bias=False))\n            if norm:\n                layers.append(nn.LayerNorm(hidden_units, eps=1e-03))\n            layers.append(act_fn())\n            inp_dim = hidden_units\n        self.mlp = nn.Sequential(*layers)\n        self.mlp.apply(tools.weight_init)\n\n        self.logit_layer = nn.Linear(hidden_units, max_dt)\n        self.logit_layer.apply(tools.uniform_weight_init(0.01))\n\n    def get_tau(self, step):\n        \"\"\"Linear temperature annealing from tau_init to tau_final.\"\"\"\n        frac = min(step / max(self._tau_anneal_steps, 1), 1.0)\n        return self._tau_init + frac * (self._tau_final - self._tau_init)\n\n    def forward(self, feat, step, hard=False):\n        \"\"\"\n        Args:\n            feat: (batch, feat_size) — concatenated [stoch, deter]\n            step: int — current training step for temperature annealing\n            hard: bool — if True, use hard Gumbel-Softmax\n        Returns:\n            dt_onehot: (batch, max_dt) — one-hot or soft assignment\n            dt_index:  (batch,) — integer dt in {1,...,K}\n            logits:    (batch, max_dt) — raw logits for entropy computation\n        \"\"\"\n        x = self.mlp(feat)\n        logits = self.logit_layer(x)\n        tau = self.get_tau(step)\n        dt_onehot = F.gumbel_softmax(logits, tau=tau, hard=hard)\n        dt_index = torch.argmax(dt_onehot, dim=-1) + 1\n        return dt_onehot, dt_index, logits\n\n    def entropy(self, logits):\n        \"\"\"Categorical entropy of the gate distribution.\"\"\"\n        probs = F.softmax(logits, dim=-1)\n        log_probs = F.log_softmax(logits, dim=-1)\n        return -(probs * log_probs).sum(dim=-1)\n\n\nclass MultiEncoder(nn.Module):\n    def __init__(\n        self,\n        shapes,\n        mlp_keys,\n        cnn_keys,\n        act,\n        norm,\n        cnn_depth,\n        kernel_size,\n        minres,\n        mlp_layers,\n        mlp_units,\n        symlog_inputs,\n    ):\n        super(MultiEncoder, self).__init__()\n        excluded = (\"is_first\", \"is_last\", \"is_terminal\", \"reward\")\n        shapes = {\n            k: v\n            for k, v in shapes.items()\n            if k not in excluded and not k.startswith(\"log_\")\n        }\n        self.cnn_shapes = {\n            k: v for k, v in shapes.items() if len(v) == 3 and re.match(cnn_keys, k)\n        }\n        self.mlp_shapes = {\n            k: v\n            for k, v in shapes.items()\n            if len(v) in (1, 2) and re.match(mlp_keys, k)\n        }\n        print(\"Encoder CNN shapes:\", self.cnn_shapes)\n        print(\"Encoder MLP shapes:\", self.mlp_shapes)\n\n        self.outdim = 0\n        if self.cnn_shapes:\n            input_ch = sum([v[-1] for v in self.cnn_shapes.values()])\n            input_shape = tuple(self.cnn_shapes.values())[0][:2] + (input_ch,)\n            self._cnn = ConvEncoder(\n                input_shape, cnn_depth, act, norm, kernel_size, minres\n            )\n            self.outdim += self._cnn.outdim\n        if self.mlp_shapes:\n            input_size = sum([sum(v) for v in self.mlp_shapes.values()])\n            self._mlp = MLP(\n                input_size,\n                None,\n                mlp_layers,\n                mlp_units,\n                act,\n                norm,\n                symlog_inputs=symlog_inputs,\n                name=\"Encoder\",\n            )\n            self.outdim += mlp_units\n\n    def forward(self, obs):\n        outputs = []\n        if self.cnn_shapes:\n            inputs = torch.cat([obs[k] for k in self.cnn_shapes], -1)\n            outputs.append(self._cnn(inputs))\n        if self.mlp_shapes:\n            inputs = torch.cat([obs[k] for k in self.mlp_shapes], -1)\n            outputs.append(self._mlp(inputs))\n        outputs = torch.cat(outputs, -1)\n        return outputs\n\n\nclass MultiDecoder(nn.Module):\n    def __init__(\n        self,\n        feat_size,\n        shapes,\n        mlp_keys,\n        cnn_keys,\n        act,\n        norm,\n        cnn_depth,\n        kernel_size,\n        minres,\n        mlp_layers,\n        mlp_units,\n        cnn_sigmoid,\n        image_dist,\n        vector_dist,\n        outscale,\n    ):\n        super(MultiDecoder, self).__init__()\n        excluded = (\"is_first\", \"is_last\", \"is_terminal\")\n        shapes = {k: v for k, v in shapes.items() if k not in excluded}\n        self.cnn_shapes = {\n            k: v for k, v in shapes.items() if len(v) == 3 and re.match(cnn_keys, k)\n        }\n        self.mlp_shapes = {\n            k: v\n            for k, v in shapes.items()\n            if len(v) in (1, 2) and re.match(mlp_keys, k)\n        }\n        print(\"Decoder CNN shapes:\", self.cnn_shapes)\n        print(\"Decoder MLP shapes:\", self.mlp_shapes)\n\n        if self.cnn_shapes:\n            some_shape = list(self.cnn_shapes.values())[0]\n            shape = (sum(x[-1] for x in self.cnn_shapes.values()),) + some_shape[:-1]\n            self._cnn = ConvDecoder(\n                feat_size,\n                shape,\n                cnn_depth,\n                act,\n                norm,\n                kernel_size,\n                minres,\n                outscale=outscale,\n                cnn_sigmoid=cnn_sigmoid,\n            )\n        if self.mlp_shapes:\n            self._mlp = MLP(\n                feat_size,\n                self.mlp_shapes,\n                mlp_layers,\n                mlp_units,\n                act,\n                norm,\n                vector_dist,\n                outscale=outscale,\n                name=\"Decoder\",\n            )\n        self._image_dist = image_dist\n\n    def forward(self, features):\n        dists = {}\n        if self.cnn_shapes:\n            feat = features\n            outputs = self._cnn(feat)\n            split_sizes = [v[-1] for v in self.cnn_shapes.values()]\n            outputs = torch.split(outputs, split_sizes, -1)\n            dists.update(\n                {\n                    key: self._make_image_dist(output)\n                    for key, output in zip(self.cnn_shapes.keys(), outputs)\n                }\n            )\n        if self.mlp_shapes:\n            dists.update(self._mlp(features))\n        return dists\n\n    def _make_image_dist(self, mean):\n        if self._image_dist == \"normal\":\n            return tools.ContDist(\n                torchd.independent.Independent(torchd.normal.Normal(mean, 1), 3)\n            )\n        if self._image_dist == \"mse\":\n            return tools.MSEDist(mean)\n        raise NotImplementedError(self._image_dist)\n\n\nclass ConvEncoder(nn.Module):\n    def __init__(\n        self,\n        input_shape,\n        depth=32,\n        act=\"SiLU\",\n        norm=True,\n        kernel_size=4,\n        minres=4,\n    ):\n        super(ConvEncoder, self).__init__()\n        act = getattr(torch.nn, act)\n        h, w, input_ch = input_shape\n        stages = int(np.log2(h) - np.log2(minres))\n        in_dim = input_ch\n        out_dim = depth\n        layers = []\n        for i in range(stages):\n            layers.append(\n                Conv2dSamePad(\n                    in_channels=in_dim,\n                    out_channels=out_dim,\n                    kernel_size=kernel_size,\n                    stride=2,\n                    bias=False,\n                )\n            )\n            if norm:\n                layers.append(ImgChLayerNorm(out_dim))\n            layers.append(act())\n            in_dim = out_dim\n            out_dim *= 2\n            h, w = h // 2, w // 2\n\n        self.outdim = out_dim // 2 * h * w\n        self.layers = nn.Sequential(*layers)\n        self.layers.apply(tools.weight_init)\n\n    def forward(self, obs):\n        obs -= 0.5\n        # (batch, time, h, w, ch) -> (batch * time, h, w, ch)\n        x = obs.reshape((-1,) + tuple(obs.shape[-3:]))\n        # (batch * time, h, w, ch) -> (batch * time, ch, h, w)\n        x = x.permute(0, 3, 1, 2)\n        x = self.layers(x)\n        # (batch * time, ...) -> (batch * time, -1)\n        x = x.reshape([x.shape[0], np.prod(x.shape[1:])])\n        # (batch * time, -1) -> (batch, time, -1)\n        return x.reshape(list(obs.shape[:-3]) + [x.shape[-1]])\n\n\nclass ConvDecoder(nn.Module):\n    def __init__(\n        self,\n        feat_size,\n        shape=(3, 64, 64),\n        depth=32,\n        act=nn.ELU,\n        norm=True,\n        kernel_size=4,\n        minres=4,\n        outscale=1.0,\n        cnn_sigmoid=False,\n    ):\n        super(ConvDecoder, self).__init__()\n        act = getattr(torch.nn, act)\n        self._shape = shape\n        self._cnn_sigmoid = cnn_sigmoid\n        layer_num = int(np.log2(shape[1]) - np.log2(minres))\n        self._minres = minres\n        out_ch = minres**2 * depth * 2 ** (layer_num - 1)\n        self._embed_size = out_ch\n\n        self._linear_layer = nn.Linear(feat_size, out_ch)\n        self._linear_layer.apply(tools.uniform_weight_init(outscale))\n        in_dim = out_ch // (minres**2)\n        out_dim = in_dim // 2\n\n        layers = []\n        h, w = minres, minres\n        for i in range(layer_num):\n            bias = False\n            if i == layer_num - 1:\n                out_dim = self._shape[0]\n                act = False\n                bias = True\n                norm = False\n\n            if i != 0:\n                in_dim = 2 ** (layer_num - (i - 1) - 2) * depth\n            pad_h, outpad_h = self.calc_same_pad(k=kernel_size, s=2, d=1)\n            pad_w, outpad_w = self.calc_same_pad(k=kernel_size, s=2, d=1)\n            layers.append(\n                nn.ConvTranspose2d(\n                    in_dim,\n                    out_dim,\n                    kernel_size,\n                    2,\n                    padding=(pad_h, pad_w),\n                    output_padding=(outpad_h, outpad_w),\n                    bias=bias,\n                )\n            )\n            if norm:\n                layers.append(ImgChLayerNorm(out_dim))\n            if act:\n                layers.append(act())\n            in_dim = out_dim\n            out_dim //= 2\n            h, w = h * 2, w * 2\n        [m.apply(tools.weight_init) for m in layers[:-1]]\n        layers[-1].apply(tools.uniform_weight_init(outscale))\n        self.layers = nn.Sequential(*layers)\n\n    def calc_same_pad(self, k, s, d):\n        val = d * (k - 1) - s + 1\n        pad = math.ceil(val / 2)\n        outpad = pad * 2 - val\n        return pad, outpad\n\n    def forward(self, features, dtype=None):\n        x = self._linear_layer(features)\n        # (batch, time, -1) -> (batch * time, h, w, ch)\n        x = x.reshape(\n            [-1, self._minres, self._minres, self._embed_size // self._minres**2]\n        )\n        # (batch, time, -1) -> (batch * time, ch, h, w)\n        x = x.permute(0, 3, 1, 2)\n        x = self.layers(x)\n        # (batch, time, -1) -> (batch, time, ch, h, w)\n        mean = x.reshape(features.shape[:-1] + self._shape)\n        # (batch, time, ch, h, w) -> (batch, time, h, w, ch)\n        mean = mean.permute(0, 1, 3, 4, 2)\n        if self._cnn_sigmoid:\n            mean = F.sigmoid(mean)\n        else:\n            mean += 0.5\n        return mean\n\n\nclass MLP(nn.Module):\n    def __init__(\n        self,\n        inp_dim,\n        shape,\n        layers,\n        units,\n        act=\"SiLU\",\n        norm=True,\n        dist=\"normal\",\n        std=1.0,\n        min_std=0.1,\n        max_std=1.0,\n        absmax=None,\n        temp=0.1,\n        unimix_ratio=0.01,\n        outscale=1.0,\n        symlog_inputs=False,\n        device=\"cuda\",\n        name=\"NoName\",\n    ):\n        super(MLP, self).__init__()\n        self._shape = (shape,) if isinstance(shape, int) else shape\n        if self._shape is not None and len(self._shape) == 0:\n            self._shape = (1,)\n        act = getattr(torch.nn, act)\n        self._dist = dist\n        self._std = std if isinstance(std, str) else torch.tensor((std,), device=device)\n        self._min_std = min_std\n        self._max_std = max_std\n        self._absmax = absmax\n        self._temp = temp\n        self._unimix_ratio = unimix_ratio\n        self._symlog_inputs = symlog_inputs\n        self._device = device\n\n        self.layers = nn.Sequential()\n        for i in range(layers):\n            self.layers.add_module(\n                f\"{name}_linear{i}\", nn.Linear(inp_dim, units, bias=False)\n            )\n            if norm:\n                self.layers.add_module(\n                    f\"{name}_norm{i}\", nn.LayerNorm(units, eps=1e-03)\n                )\n            self.layers.add_module(f\"{name}_act{i}\", act())\n            if i == 0:\n                inp_dim = units\n        self.layers.apply(tools.weight_init)\n\n        if isinstance(self._shape, dict):\n            self.mean_layer = nn.ModuleDict()\n            for name, shape in self._shape.items():\n                self.mean_layer[name] = nn.Linear(inp_dim, np.prod(shape))\n            self.mean_layer.apply(tools.uniform_weight_init(outscale))\n            if self._std == \"learned\":\n                assert dist in (\"tanh_normal\", \"normal\", \"trunc_normal\", \"huber\"), dist\n                self.std_layer = nn.ModuleDict()\n                for name, shape in self._shape.items():\n                    self.std_layer[name] = nn.Linear(inp_dim, np.prod(shape))\n                self.std_layer.apply(tools.uniform_weight_init(outscale))\n        elif self._shape is not None:\n            self.mean_layer = nn.Linear(inp_dim, np.prod(self._shape))\n            self.mean_layer.apply(tools.uniform_weight_init(outscale))\n            if self._std == \"learned\":\n                assert dist in (\"tanh_normal\", \"normal\", \"trunc_normal\", \"huber\"), dist\n                self.std_layer = nn.Linear(units, np.prod(self._shape))\n                self.std_layer.apply(tools.uniform_weight_init(outscale))\n\n    def forward(self, features, dtype=None):\n        x = features\n        if self._symlog_inputs:\n            x = tools.symlog(x)\n        out = self.layers(x)\n        # Used for encoder output\n        if self._shape is None:\n            return out\n        if isinstance(self._shape, dict):\n            dists = {}\n            for name, shape in self._shape.items():\n                mean = self.mean_layer[name](out)\n                if self._std == \"learned\":\n                    std = self.std_layer[name](out)\n                else:\n                    std = self._std\n                dists.update({name: self.dist(self._dist, mean, std, shape)})\n            return dists\n        else:\n            mean = self.mean_layer(out)\n            if self._std == \"learned\":\n                std = self.std_layer(out)\n            else:\n                std = self._std\n            return self.dist(self._dist, mean, std, self._shape)\n\n    def dist(self, dist, mean, std, shape):\n        if dist == \"tanh_normal\":\n            mean = torch.tanh(mean)\n            std = F.softplus(std) + self._min_std\n            dist = torchd.normal.Normal(mean, std)\n            dist = torchd.transformed_distribution.TransformedDistribution(\n                dist, tools.TanhBijector()\n            )\n            dist = torchd.independent.Independent(dist, 1)\n            dist = tools.SampleDist(dist)\n        elif dist == \"normal\":\n            std = (self._max_std - self._min_std) * torch.sigmoid(\n                std + 2.0\n            ) + self._min_std\n            dist = torchd.normal.Normal(torch.tanh(mean), std)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"normal_std_fixed\":\n            dist = torchd.normal.Normal(mean, self._std)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"trunc_normal\":\n            mean = torch.tanh(mean)\n            std = 2 * torch.sigmoid(std / 2) + self._min_std\n            dist = tools.SafeTruncatedNormal(mean, std, -1, 1)\n            dist = tools.ContDist(\n                torchd.independent.Independent(dist, 1), absmax=self._absmax\n            )\n        elif dist == \"onehot\":\n            dist = tools.OneHotDist(mean, unimix_ratio=self._unimix_ratio)\n        elif dist == \"onehot_gumble\":\n            dist = tools.ContDist(\n                torchd.gumbel.Gumbel(mean, 1 / self._temp), absmax=self._absmax\n            )\n        elif dist == \"huber\":\n            dist = tools.ContDist(\n                torchd.independent.Independent(\n                    tools.UnnormalizedHuber(mean, std, 1.0),\n                    len(shape),\n                    absmax=self._absmax,\n                )\n            )\n        elif dist == \"binary\":\n            dist = tools.Bernoulli(\n                torchd.independent.Independent(\n                    torchd.bernoulli.Bernoulli(logits=mean), len(shape)\n                )\n            )\n        elif dist == \"symlog_disc\":\n            dist = tools.DiscDist(logits=mean, device=self._device)\n        elif dist == \"symlog_mse\":\n            dist = tools.SymlogDist(mean)\n        else:\n            raise NotImplementedError(dist)\n        return dist\n\n\nclass GRUCell(nn.Module):\n    def __init__(self, inp_size, size, norm=True, act=torch.tanh, update_bias=-1):\n        super(GRUCell, self).__init__()\n        self._inp_size = inp_size\n        self._size = size\n        self._act = act\n        self._update_bias = update_bias\n        self.layers = nn.Sequential()\n        self.layers.add_module(\n            \"GRU_linear\", nn.Linear(inp_size + size, 3 * size, bias=False)\n        )\n        if norm:\n            self.layers.add_module(\"GRU_norm\", nn.LayerNorm(3 * size, eps=1e-03))\n\n    @property\n    def state_size(self):\n        return self._size\n\n    def forward(self, inputs, state):\n        state = state[0]  # Keras wraps the state in a list.\n        parts = self.layers(torch.cat([inputs, state], -1))\n        reset, cand, update = torch.split(parts, [self._size] * 3, -1)\n        reset = torch.sigmoid(reset)\n        cand = self._act(reset * cand)\n        update = torch.sigmoid(update + self._update_bias)\n        output = update * cand + (1 - update) * state\n        return output, [output]\n\n\nclass Conv2dSamePad(torch.nn.Conv2d):\n    def calc_same_pad(self, i, k, s, d):\n        return max((math.ceil(i / s) - 1) * s + (k - 1) * d + 1 - i, 0)\n\n    def forward(self, x):\n        ih, iw = x.size()[-2:]\n        pad_h = self.calc_same_pad(\n            i=ih, k=self.kernel_size[0], s=self.stride[0], d=self.dilation[0]\n        )\n        pad_w = self.calc_same_pad(\n            i=iw, k=self.kernel_size[1], s=self.stride[1], d=self.dilation[1]\n        )\n\n        if pad_h > 0 or pad_w > 0:\n            x = F.pad(\n                x, [pad_w // 2, pad_w - pad_w // 2, pad_h // 2, pad_h - pad_h // 2]\n            )\n\n        ret = F.conv2d(\n            x,\n            self.weight,\n            self.bias,\n            self.stride,\n            self.padding,\n            self.dilation,\n            self.groups,\n        )\n        return ret\n\n\nclass ImgChLayerNorm(nn.Module):\n    def __init__(self, ch, eps=1e-03):\n        super(ImgChLayerNorm, self).__init__()\n        self.norm = torch.nn.LayerNorm(ch, eps=eps)\n\n    def forward(self, x):\n        x = x.permute(0, 2, 3, 1)\n        x = self.norm(x)\n        x = x.permute(0, 3, 1, 2)\n        return x\nFILEEOF",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T02:05:43.233982+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T02:05:43.234187+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/configs.yaml << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 Configuration\n# Modified from NM512/dreamerv3-torch to add variable-rate temporal abstraction.\n# gate_* parameters control the event gate; gate_enabled=false preserves original behavior.\n\ndefaults:\n\n  logdir: null\n  traindir: null\n  evaldir: null\n  offline_traindir: ''\n  offline_evaldir: ''\n  seed: 0\n  deterministic_run: False\n  steps: 1e6\n  parallel: False\n  eval_every: 1e4\n  eval_episode_num: 10\n  log_every: 1e4\n  reset_every: 0\n  device: 'cuda:0'\n  compile: True\n  precision: 32\n  debug: False\n  video_pred_log: True\n\n  # Environment\n  task: 'dmc_walker_walk'\n  size: [64, 64]\n  envs: 1\n  action_repeat: 2\n  time_limit: 1000\n  grayscale: False\n  prefill: 2500\n  reward_EMA: True\n\n  # Model\n  dyn_hidden: 512\n  dyn_deter: 512\n  dyn_stoch: 32\n  dyn_discrete: 32\n  dyn_rec_depth: 1\n  dyn_mean_act: 'none'\n  dyn_std_act: 'sigmoid2'\n  dyn_min_std: 0.1\n  grad_heads: ['decoder', 'reward', 'cont']\n  units: 512\n  act: 'SiLU'\n  norm: True\n  encoder:\n    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, symlog_inputs: True}\n  decoder:\n    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, cnn_sigmoid: False, image_dist: mse, vector_dist: symlog_mse, outscale: 1.0}\n  actor:\n    {layers: 2, dist: 'normal', entropy: 3e-4, unimix_ratio: 0.01, std: 'learned', min_std: 0.1, max_std: 1.0, temp: 0.1, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 1.0}\n  critic:\n    {layers: 2, dist: 'symlog_disc', slow_target: True, slow_target_update: 1, slow_target_fraction: 0.02, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 0.0}\n  reward_head:\n    {layers: 2, dist: 'symlog_disc', loss_scale: 1.0, outscale: 0.0}\n  cont_head:\n    {layers: 2, loss_scale: 1.0, outscale: 1.0}\n  dyn_scale: 0.5\n  rep_scale: 0.1\n  kl_free: 1.0\n  weight_decay: 0.0\n  unimix_ratio: 0.01\n  initial: 'learned'\n\n  # Training\n  batch_size: 16\n  batch_length: 64\n  train_ratio: 512\n  pretrain: 100\n  model_lr: 1e-4\n  opt_eps: 1e-8\n  grad_clip: 1000\n  dataset_size: 1000000\n  opt: 'adam'\n\n  # Behavior.\n  discount: 0.997\n  discount_lambda: 0.95\n  imag_horizon: 15\n  imag_gradient: 'dynamics'\n  imag_gradient_mix: 0.0\n  eval_state_mean: False\n\n  # Exploration\n  expl_behavior: 'greedy'\n  expl_until: 0\n  expl_extr_scale: 0.0\n  expl_intr_scale: 1.0\n  disag_target: 'stoch'\n  disag_log: True\n  disag_models: 10\n  disag_offset: 1\n  disag_layers: 4\n  disag_units: 400\n  disag_action_cond: False\n\n  # Event-Gated Adaptive Horizon\n  gate_max_dt: 8\n  gate_dt_embed_dim: 32\n  gate_hidden_units: 256\n  gate_hidden_layers: 2\n  gate_tau_init: 5.0\n  gate_tau_final: 0.5\n  gate_tau_anneal_steps: 200000\n  gate_loss_weight: 1.0\n  gate_entropy_bonus_init: 0.1\n  gate_entropy_bonus_final: 0.01\n  gate_curriculum_phase1: 50000\n  gate_curriculum_phase2: 150000\n  gate_enabled: false\n\ndmc_proprio:\n  steps: 5e5\n  action_repeat: 2\n  envs: 4\n  train_ratio: 512\n  video_pred_log: false\n  encoder: {mlp_keys: '.*', cnn_keys: '$^'}\n  decoder: {mlp_keys: '.*', cnn_keys: '$^'}\n\ndmc_vision:\n  steps: 1e6\n  action_repeat: 2\n  envs: 4\n  train_ratio: 512\n  video_pred_log: true\n  encoder: {mlp_keys: '$^', cnn_keys: 'image'}\n  decoder: {mlp_keys: '$^', cnn_keys: 'image'}\n\ncrafter:\n  task: crafter_reward\n  step: 1e6\n  action_repeat: 1\n  envs: 1\n  train_ratio: 512\n  video_pred_log: true\n  dyn_hidden: 1024\n  dyn_deter: 4096\n  units: 1024\n  encoder: {mlp_keys: '$^', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  decoder: {mlp_keys: '$^', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  actor: {layers: 5, dist: 'onehot', std: 'none'}\n  value: {layers: 5}\n  reward_head: {layers: 5}\n  cont_head: {layers: 5}\n  imag_gradient: 'reinforce'\n\natari100k:\n  steps: 4e5\n  envs: 1\n  action_repeat: 4\n  train_ratio: 1024\n  video_pred_log: true\n  eval_episode_num: 100\n  actor: {dist: 'onehot', std: 'none'}\n  imag_gradient: 'reinforce'\n  stickey: False\n  lives: unused\n  noops: 30\n  resize: opencv\n  actions: needed\n  time_limit: 108000\n\nminecraft:\n  task: minecraft_diamond\n  step: 1e8\n  parallel: True\n  envs: 16\n  # no eval\n  eval_episode_num: 0\n  eval_every: 1e4\n  action_repeat: 1\n  train_ratio: 16\n  video_pred_log: true\n  dyn_hidden: 1024\n  dyn_deter: 4096\n  units: 1024\n  encoder: {mlp_keys: 'inventory|inventory_max|equipped|health|hunger|breath|obs_reward', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  decoder: {mlp_keys: 'inventory|inventory_max|equipped|health|hunger|breath', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  actor: {layers: 5, dist: 'onehot', std: 'none'}\n  value: {layers: 5}\n  reward_head: {layers: 5}\n  cont_head: {layers: 5}\n  imag_gradient: 'reinforce'\n  break_speed: 100.0\n  time_limit: 36000\n\nmemorymaze:\n  steps: 1e8\n  action_repeat: 2\n  actor: {dist: 'onehot', std: 'none'}\n  imag_gradient: 'reinforce'\n  task: 'memorymaze_9x9'\n\ndebug:\n  debug: True\n  pretrain: 1\n  prefill: 1\n  batch_size: 10\n  batch_length: 20\nFILEEOF",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/configs.yaml << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 Configuration\n# Modified from NM512/dreamerv3-torch to add variable-rate temporal abstraction.\n# gate_* parameters control the event gate; gate_enabled=false preserves original behavior.\n\ndefaults:\n\n  logdir: null\n  traindir: null\n  evaldir: null\n  offline_traindir: ''\n  offline_evaldir: ''\n  seed: 0\n  deterministic_run: False\n  steps: 1e6\n  parallel: False\n  eval_every: 1e4\n  eval_episode_num: 10\n  log_every: 1e4\n  reset_every: 0\n  device: 'cuda:0'\n  compile: True\n  precision: 32\n  debug: False\n  video_pred_log: True\n\n  # Environment\n  task: 'dmc_walker_walk'\n  size: [64, 64]\n  envs: 1\n  action_repeat: 2\n  time_limit: 1000\n  grayscale: False\n  prefill: 2500\n  reward_EMA: True\n\n  # Model\n  dyn_hidden: 512\n  dyn_deter: 512\n  dyn_stoch: 32\n  dyn_discrete: 32\n  dyn_rec_depth: 1\n  dyn_mean_act: 'none'\n  dyn_std_act: 'sigmoid2'\n  dyn_min_std: 0.1\n  grad_heads: ['decoder', 'reward', 'cont']\n  units: 512\n  act: 'SiLU'\n  norm: True\n  encoder:\n    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, symlog_inputs: True}\n  decoder:\n    {mlp_keys: '$^', cnn_keys: 'image', act: 'SiLU', norm: True, cnn_depth: 32, kernel_size: 4, minres: 4, mlp_layers: 5, mlp_units: 1024, cnn_sigmoid: False, image_dist: mse, vector_dist: symlog_mse, outscale: 1.0}\n  actor:\n    {layers: 2, dist: 'normal', entropy: 3e-4, unimix_ratio: 0.01, std: 'learned', min_std: 0.1, max_std: 1.0, temp: 0.1, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 1.0}\n  critic:\n    {layers: 2, dist: 'symlog_disc', slow_target: True, slow_target_update: 1, slow_target_fraction: 0.02, lr: 3e-5, eps: 1e-5, grad_clip: 100.0, outscale: 0.0}\n  reward_head:\n    {layers: 2, dist: 'symlog_disc', loss_scale: 1.0, outscale: 0.0}\n  cont_head:\n    {layers: 2, loss_scale: 1.0, outscale: 1.0}\n  dyn_scale: 0.5\n  rep_scale: 0.1\n  kl_free: 1.0\n  weight_decay: 0.0\n  unimix_ratio: 0.01\n  initial: 'learned'\n\n  # Training\n  batch_size: 16\n  batch_length: 64\n  train_ratio: 512\n  pretrain: 100\n  model_lr: 1e-4\n  opt_eps: 1e-8\n  grad_clip: 1000\n  dataset_size: 1000000\n  opt: 'adam'\n\n  # Behavior.\n  discount: 0.997\n  discount_lambda: 0.95\n  imag_horizon: 15\n  imag_gradient: 'dynamics'\n  imag_gradient_mix: 0.0\n  eval_state_mean: False\n\n  # Exploration\n  expl_behavior: 'greedy'\n  expl_until: 0\n  expl_extr_scale: 0.0\n  expl_intr_scale: 1.0\n  disag_target: 'stoch'\n  disag_log: True\n  disag_models: 10\n  disag_offset: 1\n  disag_layers: 4\n  disag_units: 400\n  disag_action_cond: False\n\n  # Event-Gated Adaptive Horizon\n  gate_max_dt: 8\n  gate_dt_embed_dim: 32\n  gate_hidden_units: 256\n  gate_hidden_layers: 2\n  gate_tau_init: 5.0\n  gate_tau_final: 0.5\n  gate_tau_anneal_steps: 200000\n  gate_loss_weight: 1.0\n  gate_entropy_bonus_init: 0.1\n  gate_entropy_bonus_final: 0.01\n  gate_curriculum_phase1: 50000\n  gate_curriculum_phase2: 150000\n  gate_enabled: false\n\ndmc_proprio:\n  steps: 5e5\n  action_repeat: 2\n  envs: 4\n  train_ratio: 512\n  video_pred_log: false\n  encoder: {mlp_keys: '.*', cnn_keys: '$^'}\n  decoder: {mlp_keys: '.*', cnn_keys: '$^'}\n\ndmc_vision:\n  steps: 1e6\n  action_repeat: 2\n  envs: 4\n  train_ratio: 512\n  video_pred_log: true\n  encoder: {mlp_keys: '$^', cnn_keys: 'image'}\n  decoder: {mlp_keys: '$^', cnn_keys: 'image'}\n\ncrafter:\n  task: crafter_reward\n  step: 1e6\n  action_repeat: 1\n  envs: 1\n  train_ratio: 512\n  video_pred_log: true\n  dyn_hidden: 1024\n  dyn_deter: 4096\n  units: 1024\n  encoder: {mlp_keys: '$^', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  decoder: {mlp_keys: '$^', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  actor: {layers: 5, dist: 'onehot', std: 'none'}\n  value: {layers: 5}\n  reward_head: {layers: 5}\n  cont_head: {layers: 5}\n  imag_gradient: 'reinforce'\n\natari100k:\n  steps: 4e5\n  envs: 1\n  action_repeat: 4\n  train_ratio: 1024\n  video_pred_log: true\n  eval_episode_num: 100\n  actor: {dist: 'onehot', std: 'none'}\n  imag_gradient: 'reinforce'\n  stickey: False\n  lives: unused\n  noops: 30\n  resize: opencv\n  actions: needed\n  time_limit: 108000\n\nminecraft:\n  task: minecraft_diamond\n  step: 1e8\n  parallel: True\n  envs: 16\n  # no eval\n  eval_episode_num: 0\n  eval_every: 1e4\n  action_repeat: 1\n  train_ratio: 16\n  video_pred_log: true\n  dyn_hidden: 1024\n  dyn_deter: 4096\n  units: 1024\n  encoder: {mlp_keys: 'inventory|inventory_max|equipped|health|hunger|breath|obs_reward', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  decoder: {mlp_keys: 'inventory|inventory_max|equipped|health|hunger|breath', cnn_keys: 'image', cnn_depth: 96, mlp_layers: 5, mlp_units: 1024}\n  actor: {layers: 5, dist: 'onehot', std: 'none'}\n  value: {layers: 5}\n  reward_head: {layers: 5}\n  cont_head: {layers: 5}\n  imag_gradient: 'reinforce'\n  break_speed: 100.0\n  time_limit: 36000\n\nmemorymaze:\n  steps: 1e8\n  action_repeat: 2\n  actor: {dist: 'onehot', std: 'none'}\n  imag_gradient: 'reinforce'\n  task: 'memorymaze_9x9'\n\ndebug:\n  debug: True\n  pretrain: 1\n  prefill: 1\n  batch_size: 10\n  batch_length: 20\nFILEEOF",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T02:05:43.234367+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T02:05:43.234599+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/models.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — World Model & Behavior\n# Modified from NM512/dreamerv3-torch.\n# Changes: WorldModel integrates EventGate + variable-dt sub-sampling;\n#          ImagBehavior uses gate-driven dt in imagination + adapted lambda-returns.\n\nimport copy\nimport math\n\nimport torch\nfrom torch import nn\nfrom torch.nn import functional as F\n\nimport networks\nimport tools\n\nto_np = lambda x: x.detach().cpu().numpy()\n\n\ndef compute_gate_targets(feats, max_dt):\n    \"\"\"Soft supervision target for the event gate derived from state deltas.\n\n    Large delta -> prefer small dt (index 0 = dt=1).\n    Small delta -> prefer large dt (index K-1 = dt=K).\n    \"\"\"\n    feats = feats.detach()\n    deltas = torch.norm(feats[1:] - feats[:-1], dim=-1)  # (time-1, batch)\n    delta_min = deltas.min(dim=0, keepdim=True).values\n    delta_max = deltas.max(dim=0, keepdim=True).values\n    delta_norm = (deltas - delta_min) / (delta_max - delta_min + 1e-8)\n    preferred_dt = 1.0 + (max_dt - 1.0) * (1.0 - delta_norm)\n    dt_indices = torch.arange(1, max_dt + 1, dtype=torch.float32, device=feats.device)\n    sigma = 1.0\n    log_probs = -0.5 * ((preferred_dt.unsqueeze(-1) - dt_indices) / sigma) ** 2\n    target_dist = F.softmax(log_probs, dim=-1)\n    return target_dist\n\n\ndef gate_loss_fn(gate_logits, target_dist):\n    \"\"\"Cross-entropy between gate predictions and supervision target.\"\"\"\n    log_probs = F.log_softmax(gate_logits, dim=-1)\n    return -(target_dist * log_probs).sum(dim=-1)\n\n\nclass RewardEMA:\n    \"\"\"running mean and std\"\"\"\n\n    def __init__(self, device, alpha=1e-2):\n        self.device = device\n        self.alpha = alpha\n        self.range = torch.tensor([0.05, 0.95], device=device)\n\n    def __call__(self, x, ema_vals):\n        flat_x = torch.flatten(x.detach())\n        x_quantile = torch.quantile(input=flat_x, q=self.range)\n        # this should be in-place operation\n        ema_vals[:] = self.alpha * x_quantile + (1 - self.alpha) * ema_vals\n        scale = torch.clip(ema_vals[1] - ema_vals[0], min=1.0)\n        offset = ema_vals[0]\n        return offset.detach(), scale.detach()\n\n\nclass WorldModel(nn.Module):\n    def __init__(self, obs_space, act_space, step, config):\n        super(WorldModel, self).__init__()\n        self._step = step\n        self._use_amp = True if config.precision == 16 else False\n        self._config = config\n        shapes = {k: tuple(v.shape) for k, v in obs_space.spaces.items()}\n        self.encoder = networks.MultiEncoder(shapes, **config.encoder)\n        self.embed_size = self.encoder.outdim\n        self.dynamics = networks.RSSM(\n            config.dyn_stoch,\n            config.dyn_deter,\n            config.dyn_hidden,\n            config.dyn_rec_depth,\n            config.dyn_discrete,\n            config.act,\n            config.norm,\n            config.dyn_mean_act,\n            config.dyn_std_act,\n            config.dyn_min_std,\n            config.unimix_ratio,\n            config.initial,\n            config.num_actions,\n            self.embed_size,\n            config.device,\n            max_dt=config.gate_max_dt if config.gate_enabled else 1,\n            dt_embed_dim=config.gate_dt_embed_dim,\n        )\n        self.heads = nn.ModuleDict()\n        if config.dyn_discrete:\n            feat_size = config.dyn_stoch * config.dyn_discrete + config.dyn_deter\n        else:\n            feat_size = config.dyn_stoch + config.dyn_deter\n        self.heads[\"decoder\"] = networks.MultiDecoder(\n            feat_size, shapes, **config.decoder\n        )\n        self.heads[\"reward\"] = networks.MLP(\n            feat_size,\n            (255,) if config.reward_head[\"dist\"] == \"symlog_disc\" else (),\n            config.reward_head[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            dist=config.reward_head[\"dist\"],\n            outscale=config.reward_head[\"outscale\"],\n            device=config.device,\n            name=\"Reward\",\n        )\n        self.heads[\"cont\"] = networks.MLP(\n            feat_size,\n            (),\n            config.cont_head[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            dist=\"binary\",\n            outscale=config.cont_head[\"outscale\"],\n            device=config.device,\n            name=\"Cont\",\n        )\n\n        if config.gate_enabled:\n            self.event_gate = networks.EventGate(\n                feat_size=feat_size,\n                max_dt=config.gate_max_dt,\n                hidden_units=config.gate_hidden_units,\n                hidden_layers=config.gate_hidden_layers,\n                act=config.act,\n                norm=config.norm,\n                tau_init=config.gate_tau_init,\n                tau_final=config.gate_tau_final,\n                tau_anneal_steps=config.gate_tau_anneal_steps,\n            )\n            self.register_buffer(\n                \"gate_step\", torch.tensor(0, dtype=torch.long)\n            )\n        else:\n            self.event_gate = None\n\n        for name in config.grad_heads:\n            assert name in self.heads, name\n        self._model_opt = tools.Optimizer(\n            \"model\",\n            self.parameters(),\n            config.model_lr,\n            config.opt_eps,\n            config.grad_clip,\n            config.weight_decay,\n            opt=config.opt,\n            use_amp=self._use_amp,\n        )\n        print(\n            f\"Optimizer model_opt has {sum(param.numel() for param in self.parameters())} variables.\"\n        )\n        # other losses are scaled by 1.0.\n        self._scales = dict(\n            reward=config.reward_head[\"loss_scale\"],\n            cont=config.cont_head[\"loss_scale\"],\n        )\n\n    def _train(self, data):\n        # action (batch_size, batch_length, act_dim)\n        # image (batch_size, batch_length, h, w, ch)\n        # reward (batch_size, batch_length)\n        # discount (batch_size, batch_length)\n        data = self.preprocess(data)\n\n        if self._config.gate_enabled:\n            self.gate_step += 1\n            data, dt_labels = tools.subsample_variable_dt(\n                data, self._config.gate_max_dt, self._config.discount,\n            )\n        else:\n            dt_labels = None\n\n        with tools.RequiresGrad(self):\n            with torch.cuda.amp.autocast(self._use_amp):\n                embed = self.encoder(data)\n                if dt_labels is not None:\n                    post, prior = self.dynamics.observe(\n                        embed, data[\"action\"], data[\"is_first\"],\n                        dt_labels=dt_labels,\n                    )\n                else:\n                    post, prior = self.dynamics.observe(\n                        embed, data[\"action\"], data[\"is_first\"]\n                    )\n                kl_free = self._config.kl_free\n                dyn_scale = self._config.dyn_scale\n                rep_scale = self._config.rep_scale\n                kl_loss, kl_value, dyn_loss, rep_loss = self.dynamics.kl_loss(\n                    post, prior, kl_free, dyn_scale, rep_scale\n                )\n                assert kl_loss.shape == embed.shape[:2], kl_loss.shape\n                preds = {}\n                for name, head in self.heads.items():\n                    grad_head = name in self._config.grad_heads\n                    feat = self.dynamics.get_feat(post)\n                    feat = feat if grad_head else feat.detach()\n                    pred = head(feat)\n                    if type(pred) is dict:\n                        preds.update(pred)\n                    else:\n                        preds[name] = pred\n                losses = {}\n                for name, pred in preds.items():\n                    loss = -pred.log_prob(data[name])\n                    assert loss.shape == embed.shape[:2], (name, loss.shape)\n                    losses[name] = loss\n                scaled = {\n                    key: value * self._scales.get(key, 1.0)\n                    for key, value in losses.items()\n                }\n                model_loss = sum(scaled.values()) + kl_loss\n                mean_model_loss = torch.mean(model_loss)\n\n                if self._config.gate_enabled and self.event_gate is not None:\n                    gate_feat = self.dynamics.get_feat(post).detach()\n                    B_g, T_g, D_g = gate_feat.shape\n                    gate_feat_flat = gate_feat.reshape(B_g * T_g, D_g)\n                    step = self.gate_step.item()\n                    _, _, gate_logits_flat = self.event_gate(\n                        gate_feat_flat, step, hard=False\n                    )\n                    gate_logits = gate_logits_flat.reshape(\n                        B_g, T_g, self._config.gate_max_dt\n                    )\n\n                    feat_time = gate_feat.permute(1, 0, 2)\n                    target_dist = compute_gate_targets(\n                        feat_time, self._config.gate_max_dt\n                    )\n\n                    g_logits = gate_logits[:, 1:, :].permute(1, 0, 2)\n                    g_loss = gate_loss_fn(g_logits, target_dist)\n\n                    g_entropy = self.event_gate.entropy(\n                        g_logits.reshape(-1, self._config.gate_max_dt)\n                    ).reshape(g_loss.shape)\n\n                    if step < self._config.gate_curriculum_phase1:\n                        gate_scale = 0.0\n                    elif step < self._config.gate_curriculum_phase2:\n                        progress = (step - self._config.gate_curriculum_phase1) / (\n                            self._config.gate_curriculum_phase2\n                            - self._config.gate_curriculum_phase1\n                        )\n                        gate_scale = progress\n                    else:\n                        gate_scale = 1.0\n\n                    entropy_frac = min(\n                        step / max(self._config.gate_tau_anneal_steps, 1), 1.0\n                    )\n                    effective_entropy_bonus = (\n                        self._config.gate_entropy_bonus_init\n                        + entropy_frac\n                        * (\n                            self._config.gate_entropy_bonus_final\n                            - self._config.gate_entropy_bonus_init\n                        )\n                    )\n\n                    total_gate_loss = gate_scale * (\n                        self._config.gate_loss_weight * g_loss.mean()\n                        - effective_entropy_bonus * g_entropy.mean()\n                    )\n                    mean_model_loss = mean_model_loss + total_gate_loss\n\n            metrics = self._model_opt(mean_model_loss, self.parameters())\n\n        # Store scalar metrics to avoid keeping (batch,time) arrays until the next log step.\n        metrics.update(\n            {f\"{name}_loss\": to_np(torch.mean(loss)) for name, loss in losses.items()}\n        )\n        metrics[\"kl_free\"] = kl_free\n        metrics[\"dyn_scale\"] = dyn_scale\n        metrics[\"rep_scale\"] = rep_scale\n        metrics[\"dyn_loss\"] = to_np(torch.mean(dyn_loss))\n        metrics[\"rep_loss\"] = to_np(torch.mean(rep_loss))\n        metrics[\"kl\"] = to_np(torch.mean(kl_value))\n        with torch.cuda.amp.autocast(self._use_amp):\n            metrics[\"prior_ent\"] = to_np(\n                torch.mean(self.dynamics.get_dist(prior).entropy())\n            )\n            metrics[\"post_ent\"] = to_np(\n                torch.mean(self.dynamics.get_dist(post).entropy())\n            )\n            context = dict(\n                embed=embed,\n                feat=self.dynamics.get_feat(post),\n                kl=kl_value,\n                postent=self.dynamics.get_dist(post).entropy(),\n            )\n\n        if self._config.gate_enabled and self.event_gate is not None:\n            metrics[\"gate_loss\"] = to_np(total_gate_loss)\n            metrics[\"gate_scale\"] = gate_scale\n            metrics[\"gate_entropy_bonus\"] = effective_entropy_bonus\n\n        post = {k: v.detach() for k, v in post.items()}\n        return post, context, metrics\n\n    # this function is called during both rollout and training\n    def preprocess(self, obs):\n        obs = {\n            k: torch.tensor(v, device=self._config.device, dtype=torch.float32)\n            for k, v in obs.items()\n        }\n        obs[\"image\"] = obs[\"image\"] / 255.0\n        if \"discount\" in obs:\n            obs[\"discount\"] *= self._config.discount\n            # (batch_size, batch_length) -> (batch_size, batch_length, 1)\n            obs[\"discount\"] = obs[\"discount\"].unsqueeze(-1)\n        # 'is_first' is necesarry to initialize hidden state at training\n        assert \"is_first\" in obs\n        # 'is_terminal' is necesarry to train cont_head\n        assert \"is_terminal\" in obs\n        obs[\"cont\"] = (1.0 - obs[\"is_terminal\"]).unsqueeze(-1)\n        return obs\n\n    def video_pred(self, data):\n        data = self.preprocess(data)\n        embed = self.encoder(data)\n\n        states, _ = self.dynamics.observe(\n            embed[:6, :5], data[\"action\"][:6, :5], data[\"is_first\"][:6, :5]\n        )\n        recon = self.heads[\"decoder\"](self.dynamics.get_feat(states))[\"image\"].mode()[\n            :6\n        ]\n        reward_post = self.heads[\"reward\"](self.dynamics.get_feat(states)).mode()[:6]\n        init = {k: v[:, -1] for k, v in states.items()}\n        prior = self.dynamics.imagine_with_action(data[\"action\"][:6, 5:], init)\n        openl = self.heads[\"decoder\"](self.dynamics.get_feat(prior))[\"image\"].mode()\n        reward_prior = self.heads[\"reward\"](self.dynamics.get_feat(prior)).mode()\n        # observed image is given until 5 steps\n        model = torch.cat([recon[:, :5], openl], 1)\n        truth = data[\"image\"][:6]\n        model = model\n        error = (model - truth + 1.0) / 2.0\n\n        return torch.cat([truth, model, error], 2)\n\n\nclass ImagBehavior(nn.Module):\n    def __init__(self, config, world_model):\n        super(ImagBehavior, self).__init__()\n        self._use_amp = True if config.precision == 16 else False\n        self._config = config\n        self._world_model = world_model\n        if config.dyn_discrete:\n            feat_size = config.dyn_stoch * config.dyn_discrete + config.dyn_deter\n        else:\n            feat_size = config.dyn_stoch + config.dyn_deter\n        self.actor = networks.MLP(\n            feat_size,\n            (config.num_actions,),\n            config.actor[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            config.actor[\"dist\"],\n            config.actor[\"std\"],\n            config.actor[\"min_std\"],\n            config.actor[\"max_std\"],\n            absmax=1.0,\n            temp=config.actor[\"temp\"],\n            unimix_ratio=config.actor[\"unimix_ratio\"],\n            outscale=config.actor[\"outscale\"],\n            name=\"Actor\",\n        )\n        self.value = networks.MLP(\n            feat_size,\n            (255,) if config.critic[\"dist\"] == \"symlog_disc\" else (),\n            config.critic[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            config.critic[\"dist\"],\n            outscale=config.critic[\"outscale\"],\n            device=config.device,\n            name=\"Value\",\n        )\n        if config.critic[\"slow_target\"]:\n            self._slow_value = copy.deepcopy(self.value)\n            self._updates = 0\n        kw = dict(wd=config.weight_decay, opt=config.opt, use_amp=self._use_amp)\n        self._actor_opt = tools.Optimizer(\n            \"actor\",\n            self.actor.parameters(),\n            config.actor[\"lr\"],\n            config.actor[\"eps\"],\n            config.actor[\"grad_clip\"],\n            **kw,\n        )\n        print(\n            f\"Optimizer actor_opt has {sum(param.numel() for param in self.actor.parameters())} variables.\"\n        )\n        self._value_opt = tools.Optimizer(\n            \"value\",\n            self.value.parameters(),\n            config.critic[\"lr\"],\n            config.critic[\"eps\"],\n            config.critic[\"grad_clip\"],\n            **kw,\n        )\n        print(\n            f\"Optimizer value_opt has {sum(param.numel() for param in self.value.parameters())} variables.\"\n        )\n        if self._config.reward_EMA:\n            # register ema_vals to nn.Module for enabling torch.save and torch.load\n            self.register_buffer(\n                \"ema_vals\", torch.zeros((2,), device=self._config.device)\n            )\n            self.reward_ema = RewardEMA(device=self._config.device)\n\n    def _train(\n        self,\n        start,\n        objective,\n    ):\n        self._update_slow_target()\n        metrics = {}\n\n        with tools.RequiresGrad(self.actor):\n            with torch.cuda.amp.autocast(self._use_amp):\n                if self._config.gate_enabled:\n                    imag_feat, imag_state, imag_action, dts = self._imagine(\n                        start, self.actor, self._config.imag_horizon\n                    )\n                else:\n                    imag_feat, imag_state, imag_action = self._imagine(\n                        start, self.actor, self._config.imag_horizon\n                    )\n                    dts = None\n                reward = objective(imag_feat, imag_state, imag_action)\n                actor_ent = self.actor(imag_feat).entropy()\n                state_ent = self._world_model.dynamics.get_dist(imag_state).entropy()\n                # this target is not scaled by ema or sym_log.\n                target, weights, base = self._compute_target(\n                    imag_feat, imag_state, reward, dts=dts\n                )\n                actor_loss, mets = self._compute_actor_loss(\n                    imag_feat,\n                    imag_action,\n                    target,\n                    weights,\n                    base,\n                )\n                actor_loss -= self._config.actor[\"entropy\"] * actor_ent[:-1, ..., None]\n                actor_loss = torch.mean(actor_loss)\n                metrics.update(mets)\n                value_input = imag_feat\n\n        with tools.RequiresGrad(self.value):\n            with torch.cuda.amp.autocast(self._use_amp):\n                value = self.value(value_input[:-1].detach())\n                target = torch.stack(target, dim=1)\n                # (time, batch, 1), (time, batch, 1) -> (time, batch)\n                value_loss = -value.log_prob(target.detach())\n                slow_target = self._slow_value(value_input[:-1].detach())\n                if self._config.critic[\"slow_target\"]:\n                    value_loss -= value.log_prob(slow_target.mode().detach())\n                # (time, batch, 1), (time, batch, 1) -> (1,)\n                value_loss = torch.mean(weights[:-1] * value_loss[:, :, None])\n\n        metrics.update(tools.tensorstats(value.mode(), \"value\"))\n        metrics.update(tools.tensorstats(target, \"target\"))\n        metrics.update(tools.tensorstats(reward, \"imag_reward\"))\n        if self._config.actor[\"dist\"] in [\"onehot\"]:\n            metrics.update(\n                tools.tensorstats(\n                    torch.argmax(imag_action, dim=-1).float(), \"imag_action\"\n                )\n            )\n        else:\n            metrics.update(tools.tensorstats(imag_action, \"imag_action\"))\n        metrics[\"actor_entropy\"] = to_np(torch.mean(actor_ent))\n\n        if self._config.gate_enabled and dts is not None:\n            dts_float = dts.float()\n            metrics[\"gate_dt_mean\"] = to_np(torch.mean(dts_float))\n            metrics[\"gate_dt_std\"] = to_np(torch.std(dts_float))\n            metrics[\"gate_dt_min\"] = to_np(torch.min(dts_float))\n            metrics[\"gate_dt_max\"] = to_np(torch.max(dts_float))\n            dt_counts = torch.bincount(\n                dts.reshape(-1).long(),\n                minlength=self._config.gate_max_dt + 1,\n            )[1:]\n            dt_dist = dt_counts.float() / dt_counts.sum()\n            for k in range(self._config.gate_max_dt):\n                metrics[f\"gate_dt_{k+1}_frac\"] = to_np(dt_dist[k])\n            emp_entropy = -(dt_dist * torch.log(dt_dist + 1e-8)).sum()\n            metrics[\"gate_empirical_entropy\"] = to_np(emp_entropy)\n            max_entropy = math.log(self._config.gate_max_dt)\n            metrics[\"gate_entropy_ratio\"] = to_np(emp_entropy) / max_entropy\n\n        with tools.RequiresGrad(self):\n            metrics.update(self._actor_opt(actor_loss, self.actor.parameters()))\n            metrics.update(self._value_opt(value_loss, self.value.parameters()))\n        return imag_feat, imag_state, imag_action, weights, metrics\n\n    def _imagine(self, start, policy, horizon):\n        dynamics = self._world_model.dynamics\n        flatten = lambda x: x.reshape([-1] + list(x.shape[2:]))\n        start = {k: flatten(v) for k, v in start.items()}\n\n        if self._config.gate_enabled:\n            gate = self._world_model.event_gate\n            config = self._config\n            step = self._world_model.gate_step.item() if hasattr(\n                self._world_model, \"gate_step\"\n            ) else 0\n            gate_active = (\n                gate is not None and step > config.gate_curriculum_phase1\n            )\n\n            def step_fn(prev, _):\n                state, _, _, prev_dt = prev\n                feat = dynamics.get_feat(state)\n                inp = feat.detach()\n                action = policy(inp).sample()\n                succ = dynamics.img_step(state, action, dt=prev_dt)\n                succ_feat = dynamics.get_feat(succ)\n                if gate_active:\n                    _, next_dt, _ = gate(succ_feat.detach(), step, hard=True)\n                else:\n                    batch_size = succ_feat.shape[0]\n                    next_dt = torch.ones(\n                        batch_size, dtype=torch.long, device=succ_feat.device\n                    )\n                return succ, feat, action, next_dt\n\n            init_dt = torch.ones(\n                start[list(start.keys())[0]].shape[0],\n                dtype=torch.long, device=config.device,\n            )\n            succ, feats, actions, dts = tools.static_scan(\n                step_fn, [torch.arange(horizon)],\n                (start, None, None, init_dt),\n            )\n            states = {\n                k: torch.cat([start[k][None], v[:-1]], 0)\n                for k, v in succ.items()\n            }\n            return feats, states, actions, dts\n        else:\n            def step(prev, _):\n                state, _, _ = prev\n                feat = dynamics.get_feat(state)\n                inp = feat.detach()\n                action = policy(inp).sample()\n                succ = dynamics.img_step(state, action)\n                return succ, feat, action\n\n            succ, feats, actions = tools.static_scan(\n                step, [torch.arange(horizon)], (start, None, None)\n            )\n            states = {\n                k: torch.cat([start[k][None], v[:-1]], 0)\n                for k, v in succ.items()\n            }\n            return feats, states, actions\n\n    def _compute_target(self, imag_feat, imag_state, reward, dts=None):\n        if \"cont\" in self._world_model.heads:\n            inp = self._world_model.dynamics.get_feat(imag_state)\n            discount = self._config.discount * self._world_model.heads[\"cont\"](inp).mean\n        else:\n            discount = self._config.discount * torch.ones_like(reward)\n        value = self.value(imag_feat).mode()\n\n        if dts is not None and self._config.gate_enabled:\n            target = tools.lambda_return_variable_dt(\n                reward[1:],\n                value[:-1],\n                discount[1:],\n                dts[1:],\n                bootstrap=value[-1],\n                lambda_=self._config.discount_lambda,\n                axis=0,\n            )\n            pcont_adj = discount ** dts.unsqueeze(-1).float()\n            weights = torch.cumprod(\n                torch.cat([torch.ones_like(pcont_adj[:1]), pcont_adj[:-1]], 0), 0\n            ).detach()\n        else:\n            target = tools.lambda_return(\n                reward[1:],\n                value[:-1],\n                discount[1:],\n                bootstrap=value[-1],\n                lambda_=self._config.discount_lambda,\n                axis=0,\n            )\n            weights = torch.cumprod(\n                torch.cat([torch.ones_like(discount[:1]), discount[:-1]], 0), 0\n            ).detach()\n        return target, weights, value[:-1]\n\n    def _compute_actor_loss(\n        self,\n        imag_feat,\n        imag_action,\n        target,\n        weights,\n        base,\n    ):\n        metrics = {}\n        inp = imag_feat.detach()\n        policy = self.actor(inp)\n        # Q-val for actor is not transformed using symlog\n        target = torch.stack(target, dim=1)\n        if self._config.reward_EMA:\n            offset, scale = self.reward_ema(target, self.ema_vals)\n            normed_target = (target - offset) / scale\n            normed_base = (base - offset) / scale\n            adv = normed_target - normed_base\n            metrics.update(tools.tensorstats(normed_target, \"normed_target\"))\n            metrics[\"EMA_005\"] = to_np(self.ema_vals[0])\n            metrics[\"EMA_095\"] = to_np(self.ema_vals[1])\n        else:\n            adv = target - base\n\n        if self._config.imag_gradient == \"dynamics\":\n            actor_target = adv\n        elif self._config.imag_gradient == \"reinforce\":\n            actor_target = (\n                policy.log_prob(imag_action)[:-1][:, :, None]\n                * (target - self.value(imag_feat[:-1]).mode()).detach()\n            )\n        elif self._config.imag_gradient == \"both\":\n            actor_target = (\n                policy.log_prob(imag_action)[:-1][:, :, None]\n                * (target - self.value(imag_feat[:-1]).mode()).detach()\n            )\n            mix = self._config.imag_gradient_mix\n            actor_target = mix * target + (1 - mix) * actor_target\n            metrics[\"imag_gradient_mix\"] = mix\n        else:\n            raise NotImplementedError(self._config.imag_gradient)\n        actor_loss = -weights[:-1] * actor_target\n        return actor_loss, metrics\n\n    def _update_slow_target(self):\n        if self._config.critic[\"slow_target\"]:\n            if self._updates % self._config.critic[\"slow_target_update\"] == 0:\n                mix = self._config.critic[\"slow_target_fraction\"]\n                for s, d in zip(self.value.parameters(), self._slow_value.parameters()):\n                    d.data = mix * s.data + (1 - mix) * d.data\n            self._updates += 1\nFILEEOF",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/models.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — World Model & Behavior\n# Modified from NM512/dreamerv3-torch.\n# Changes: WorldModel integrates EventGate + variable-dt sub-sampling;\n#          ImagBehavior uses gate-driven dt in imagination + adapted lambda-returns.\n\nimport copy\nimport math\n\nimport torch\nfrom torch import nn\nfrom torch.nn import functional as F\n\nimport networks\nimport tools\n\nto_np = lambda x: x.detach().cpu().numpy()\n\n\ndef compute_gate_targets(feats, max_dt):\n    \"\"\"Soft supervision target for the event gate derived from state deltas.\n\n    Large delta -> prefer small dt (index 0 = dt=1).\n    Small delta -> prefer large dt (index K-1 = dt=K).\n    \"\"\"\n    feats = feats.detach()\n    deltas = torch.norm(feats[1:] - feats[:-1], dim=-1)  # (time-1, batch)\n    delta_min = deltas.min(dim=0, keepdim=True).values\n    delta_max = deltas.max(dim=0, keepdim=True).values\n    delta_norm = (deltas - delta_min) / (delta_max - delta_min + 1e-8)\n    preferred_dt = 1.0 + (max_dt - 1.0) * (1.0 - delta_norm)\n    dt_indices = torch.arange(1, max_dt + 1, dtype=torch.float32, device=feats.device)\n    sigma = 1.0\n    log_probs = -0.5 * ((preferred_dt.unsqueeze(-1) - dt_indices) / sigma) ** 2\n    target_dist = F.softmax(log_probs, dim=-1)\n    return target_dist\n\n\ndef gate_loss_fn(gate_logits, target_dist):\n    \"\"\"Cross-entropy between gate predictions and supervision target.\"\"\"\n    log_probs = F.log_softmax(gate_logits, dim=-1)\n    return -(target_dist * log_probs).sum(dim=-1)\n\n\nclass RewardEMA:\n    \"\"\"running mean and std\"\"\"\n\n    def __init__(self, device, alpha=1e-2):\n        self.device = device\n        self.alpha = alpha\n        self.range = torch.tensor([0.05, 0.95], device=device)\n\n    def __call__(self, x, ema_vals):\n        flat_x = torch.flatten(x.detach())\n        x_quantile = torch.quantile(input=flat_x, q=self.range)\n        # this should be in-place operation\n        ema_vals[:] = self.alpha * x_quantile + (1 - self.alpha) * ema_vals\n        scale = torch.clip(ema_vals[1] - ema_vals[0], min=1.0)\n        offset = ema_vals[0]\n        return offset.detach(), scale.detach()\n\n\nclass WorldModel(nn.Module):\n    def __init__(self, obs_space, act_space, step, config):\n        super(WorldModel, self).__init__()\n        self._step = step\n        self._use_amp = True if config.precision == 16 else False\n        self._config = config\n        shapes = {k: tuple(v.shape) for k, v in obs_space.spaces.items()}\n        self.encoder = networks.MultiEncoder(shapes, **config.encoder)\n        self.embed_size = self.encoder.outdim\n        self.dynamics = networks.RSSM(\n            config.dyn_stoch,\n            config.dyn_deter,\n            config.dyn_hidden,\n            config.dyn_rec_depth,\n            config.dyn_discrete,\n            config.act,\n            config.norm,\n            config.dyn_mean_act,\n            config.dyn_std_act,\n            config.dyn_min_std,\n            config.unimix_ratio,\n            config.initial,\n            config.num_actions,\n            self.embed_size,\n            config.device,\n            max_dt=config.gate_max_dt if config.gate_enabled else 1,\n            dt_embed_dim=config.gate_dt_embed_dim,\n        )\n        self.heads = nn.ModuleDict()\n        if config.dyn_discrete:\n            feat_size = config.dyn_stoch * config.dyn_discrete + config.dyn_deter\n        else:\n            feat_size = config.dyn_stoch + config.dyn_deter\n        self.heads[\"decoder\"] = networks.MultiDecoder(\n            feat_size, shapes, **config.decoder\n        )\n        self.heads[\"reward\"] = networks.MLP(\n            feat_size,\n            (255,) if config.reward_head[\"dist\"] == \"symlog_disc\" else (),\n            config.reward_head[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            dist=config.reward_head[\"dist\"],\n            outscale=config.reward_head[\"outscale\"],\n            device=config.device,\n            name=\"Reward\",\n        )\n        self.heads[\"cont\"] = networks.MLP(\n            feat_size,\n            (),\n            config.cont_head[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            dist=\"binary\",\n            outscale=config.cont_head[\"outscale\"],\n            device=config.device,\n            name=\"Cont\",\n        )\n\n        if config.gate_enabled:\n            self.event_gate = networks.EventGate(\n                feat_size=feat_size,\n                max_dt=config.gate_max_dt,\n                hidden_units=config.gate_hidden_units,\n                hidden_layers=config.gate_hidden_layers,\n                act=config.act,\n                norm=config.norm,\n                tau_init=config.gate_tau_init,\n                tau_final=config.gate_tau_final,\n                tau_anneal_steps=config.gate_tau_anneal_steps,\n            )\n            self.register_buffer(\n                \"gate_step\", torch.tensor(0, dtype=torch.long)\n            )\n        else:\n            self.event_gate = None\n\n        for name in config.grad_heads:\n            assert name in self.heads, name\n        self._model_opt = tools.Optimizer(\n            \"model\",\n            self.parameters(),\n            config.model_lr,\n            config.opt_eps,\n            config.grad_clip,\n            config.weight_decay,\n            opt=config.opt,\n            use_amp=self._use_amp,\n        )\n        print(\n            f\"Optimizer model_opt has {sum(param.numel() for param in self.parameters())} variables.\"\n        )\n        # other losses are scaled by 1.0.\n        self._scales = dict(\n            reward=config.reward_head[\"loss_scale\"],\n            cont=config.cont_head[\"loss_scale\"],\n        )\n\n    def _train(self, data):\n        # action (batch_size, batch_length, act_dim)\n        # image (batch_size, batch_length, h, w, ch)\n        # reward (batch_size, batch_length)\n        # discount (batch_size, batch_length)\n        data = self.preprocess(data)\n\n        if self._config.gate_enabled:\n            self.gate_step += 1\n            data, dt_labels = tools.subsample_variable_dt(\n                data, self._config.gate_max_dt, self._config.discount,\n            )\n        else:\n            dt_labels = None\n\n        with tools.RequiresGrad(self):\n            with torch.cuda.amp.autocast(self._use_amp):\n                embed = self.encoder(data)\n                if dt_labels is not None:\n                    post, prior = self.dynamics.observe(\n                        embed, data[\"action\"], data[\"is_first\"],\n                        dt_labels=dt_labels,\n                    )\n                else:\n                    post, prior = self.dynamics.observe(\n                        embed, data[\"action\"], data[\"is_first\"]\n                    )\n                kl_free = self._config.kl_free\n                dyn_scale = self._config.dyn_scale\n                rep_scale = self._config.rep_scale\n                kl_loss, kl_value, dyn_loss, rep_loss = self.dynamics.kl_loss(\n                    post, prior, kl_free, dyn_scale, rep_scale\n                )\n                assert kl_loss.shape == embed.shape[:2], kl_loss.shape\n                preds = {}\n                for name, head in self.heads.items():\n                    grad_head = name in self._config.grad_heads\n                    feat = self.dynamics.get_feat(post)\n                    feat = feat if grad_head else feat.detach()\n                    pred = head(feat)\n                    if type(pred) is dict:\n                        preds.update(pred)\n                    else:\n                        preds[name] = pred\n                losses = {}\n                for name, pred in preds.items():\n                    loss = -pred.log_prob(data[name])\n                    assert loss.shape == embed.shape[:2], (name, loss.shape)\n                    losses[name] = loss\n                scaled = {\n                    key: value * self._scales.get(key, 1.0)\n                    for key, value in losses.items()\n                }\n                model_loss = sum(scaled.values()) + kl_loss\n                mean_model_loss = torch.mean(model_loss)\n\n                if self._config.gate_enabled and self.event_gate is not None:\n                    gate_feat = self.dynamics.get_feat(post).detach()\n                    B_g, T_g, D_g = gate_feat.shape\n                    gate_feat_flat = gate_feat.reshape(B_g * T_g, D_g)\n                    step = self.gate_step.item()\n                    _, _, gate_logits_flat = self.event_gate(\n                        gate_feat_flat, step, hard=False\n                    )\n                    gate_logits = gate_logits_flat.reshape(\n                        B_g, T_g, self._config.gate_max_dt\n                    )\n\n                    feat_time = gate_feat.permute(1, 0, 2)\n                    target_dist = compute_gate_targets(\n                        feat_time, self._config.gate_max_dt\n                    )\n\n                    g_logits = gate_logits[:, 1:, :].permute(1, 0, 2)\n                    g_loss = gate_loss_fn(g_logits, target_dist)\n\n                    g_entropy = self.event_gate.entropy(\n                        g_logits.reshape(-1, self._config.gate_max_dt)\n                    ).reshape(g_loss.shape)\n\n                    if step < self._config.gate_curriculum_phase1:\n                        gate_scale = 0.0\n                    elif step < self._config.gate_curriculum_phase2:\n                        progress = (step - self._config.gate_curriculum_phase1) / (\n                            self._config.gate_curriculum_phase2\n                            - self._config.gate_curriculum_phase1\n                        )\n                        gate_scale = progress\n                    else:\n                        gate_scale = 1.0\n\n                    entropy_frac = min(\n                        step / max(self._config.gate_tau_anneal_steps, 1), 1.0\n                    )\n                    effective_entropy_bonus = (\n                        self._config.gate_entropy_bonus_init\n                        + entropy_frac\n                        * (\n                            self._config.gate_entropy_bonus_final\n                            - self._config.gate_entropy_bonus_init\n                        )\n                    )\n\n                    total_gate_loss = gate_scale * (\n                        self._config.gate_loss_weight * g_loss.mean()\n                        - effective_entropy_bonus * g_entropy.mean()\n                    )\n                    mean_model_loss = mean_model_loss + total_gate_loss\n\n            metrics = self._model_opt(mean_model_loss, self.parameters())\n\n        # Store scalar metrics to avoid keeping (batch,time) arrays until the next log step.\n        metrics.update(\n            {f\"{name}_loss\": to_np(torch.mean(loss)) for name, loss in losses.items()}\n        )\n        metrics[\"kl_free\"] = kl_free\n        metrics[\"dyn_scale\"] = dyn_scale\n        metrics[\"rep_scale\"] = rep_scale\n        metrics[\"dyn_loss\"] = to_np(torch.mean(dyn_loss))\n        metrics[\"rep_loss\"] = to_np(torch.mean(rep_loss))\n        metrics[\"kl\"] = to_np(torch.mean(kl_value))\n        with torch.cuda.amp.autocast(self._use_amp):\n            metrics[\"prior_ent\"] = to_np(\n                torch.mean(self.dynamics.get_dist(prior).entropy())\n            )\n            metrics[\"post_ent\"] = to_np(\n                torch.mean(self.dynamics.get_dist(post).entropy())\n            )\n            context = dict(\n                embed=embed,\n                feat=self.dynamics.get_feat(post),\n                kl=kl_value,\n                postent=self.dynamics.get_dist(post).entropy(),\n            )\n\n        if self._config.gate_enabled and self.event_gate is not None:\n            metrics[\"gate_loss\"] = to_np(total_gate_loss)\n            metrics[\"gate_scale\"] = gate_scale\n            metrics[\"gate_entropy_bonus\"] = effective_entropy_bonus\n\n        post = {k: v.detach() for k, v in post.items()}\n        return post, context, metrics\n\n    # this function is called during both rollout and training\n    def preprocess(self, obs):\n        obs = {\n            k: torch.tensor(v, device=self._config.device, dtype=torch.float32)\n            for k, v in obs.items()\n        }\n        obs[\"image\"] = obs[\"image\"] / 255.0\n        if \"discount\" in obs:\n            obs[\"discount\"] *= self._config.discount\n            # (batch_size, batch_length) -> (batch_size, batch_length, 1)\n            obs[\"discount\"] = obs[\"discount\"].unsqueeze(-1)\n        # 'is_first' is necesarry to initialize hidden state at training\n        assert \"is_first\" in obs\n        # 'is_terminal' is necesarry to train cont_head\n        assert \"is_terminal\" in obs\n        obs[\"cont\"] = (1.0 - obs[\"is_terminal\"]).unsqueeze(-1)\n        return obs\n\n    def video_pred(self, data):\n        data = self.preprocess(data)\n        embed = self.encoder(data)\n\n        states, _ = self.dynamics.observe(\n            embed[:6, :5], data[\"action\"][:6, :5], data[\"is_first\"][:6, :5]\n        )\n        recon = self.heads[\"decoder\"](self.dynamics.get_feat(states))[\"image\"].mode()[\n            :6\n        ]\n        reward_post = self.heads[\"reward\"](self.dynamics.get_feat(states)).mode()[:6]\n        init = {k: v[:, -1] for k, v in states.items()}\n        prior = self.dynamics.imagine_with_action(data[\"action\"][:6, 5:], init)\n        openl = self.heads[\"decoder\"](self.dynamics.get_feat(prior))[\"image\"].mode()\n        reward_prior = self.heads[\"reward\"](self.dynamics.get_feat(prior)).mode()\n        # observed image is given until 5 steps\n        model = torch.cat([recon[:, :5], openl], 1)\n        truth = data[\"image\"][:6]\n        model = model\n        error = (model - truth + 1.0) / 2.0\n\n        return torch.cat([truth, model, error], 2)\n\n\nclass ImagBehavior(nn.Module):\n    def __init__(self, config, world_model):\n        super(ImagBehavior, self).__init__()\n        self._use_amp = True if config.precision == 16 else False\n        self._config = config\n        self._world_model = world_model\n        if config.dyn_discrete:\n            feat_size = config.dyn_stoch * config.dyn_discrete + config.dyn_deter\n        else:\n            feat_size = config.dyn_stoch + config.dyn_deter\n        self.actor = networks.MLP(\n            feat_size,\n            (config.num_actions,),\n            config.actor[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            config.actor[\"dist\"],\n            config.actor[\"std\"],\n            config.actor[\"min_std\"],\n            config.actor[\"max_std\"],\n            absmax=1.0,\n            temp=config.actor[\"temp\"],\n            unimix_ratio=config.actor[\"unimix_ratio\"],\n            outscale=config.actor[\"outscale\"],\n            name=\"Actor\",\n        )\n        self.value = networks.MLP(\n            feat_size,\n            (255,) if config.critic[\"dist\"] == \"symlog_disc\" else (),\n            config.critic[\"layers\"],\n            config.units,\n            config.act,\n            config.norm,\n            config.critic[\"dist\"],\n            outscale=config.critic[\"outscale\"],\n            device=config.device,\n            name=\"Value\",\n        )\n        if config.critic[\"slow_target\"]:\n            self._slow_value = copy.deepcopy(self.value)\n            self._updates = 0\n        kw = dict(wd=config.weight_decay, opt=config.opt, use_amp=self._use_amp)\n        self._actor_opt = tools.Optimizer(\n            \"actor\",\n            self.actor.parameters(),\n            config.actor[\"lr\"],\n            config.actor[\"eps\"],\n            config.actor[\"grad_clip\"],\n            **kw,\n        )\n        print(\n            f\"Optimizer actor_opt has {sum(param.numel() for param in self.actor.parameters())} variables.\"\n        )\n        self._value_opt = tools.Optimizer(\n            \"value\",\n            self.value.parameters(),\n            config.critic[\"lr\"],\n            config.critic[\"eps\"],\n            config.critic[\"grad_clip\"],\n            **kw,\n        )\n        print(\n            f\"Optimizer value_opt has {sum(param.numel() for param in self.value.parameters())} variables.\"\n        )\n        if self._config.reward_EMA:\n            # register ema_vals to nn.Module for enabling torch.save and torch.load\n            self.register_buffer(\n                \"ema_vals\", torch.zeros((2,), device=self._config.device)\n            )\n            self.reward_ema = RewardEMA(device=self._config.device)\n\n    def _train(\n        self,\n        start,\n        objective,\n    ):\n        self._update_slow_target()\n        metrics = {}\n\n        with tools.RequiresGrad(self.actor):\n            with torch.cuda.amp.autocast(self._use_amp):\n                if self._config.gate_enabled:\n                    imag_feat, imag_state, imag_action, dts = self._imagine(\n                        start, self.actor, self._config.imag_horizon\n                    )\n                else:\n                    imag_feat, imag_state, imag_action = self._imagine(\n                        start, self.actor, self._config.imag_horizon\n                    )\n                    dts = None\n                reward = objective(imag_feat, imag_state, imag_action)\n                actor_ent = self.actor(imag_feat).entropy()\n                state_ent = self._world_model.dynamics.get_dist(imag_state).entropy()\n                # this target is not scaled by ema or sym_log.\n                target, weights, base = self._compute_target(\n                    imag_feat, imag_state, reward, dts=dts\n                )\n                actor_loss, mets = self._compute_actor_loss(\n                    imag_feat,\n                    imag_action,\n                    target,\n                    weights,\n                    base,\n                )\n                actor_loss -= self._config.actor[\"entropy\"] * actor_ent[:-1, ..., None]\n                actor_loss = torch.mean(actor_loss)\n                metrics.update(mets)\n                value_input = imag_feat\n\n        with tools.RequiresGrad(self.value):\n            with torch.cuda.amp.autocast(self._use_amp):\n                value = self.value(value_input[:-1].detach())\n                target = torch.stack(target, dim=1)\n                # (time, batch, 1), (time, batch, 1) -> (time, batch)\n                value_loss = -value.log_prob(target.detach())\n                slow_target = self._slow_value(value_input[:-1].detach())\n                if self._config.critic[\"slow_target\"]:\n                    value_loss -= value.log_prob(slow_target.mode().detach())\n                # (time, batch, 1), (time, batch, 1) -> (1,)\n                value_loss = torch.mean(weights[:-1] * value_loss[:, :, None])\n\n        metrics.update(tools.tensorstats(value.mode(), \"value\"))\n        metrics.update(tools.tensorstats(target, \"target\"))\n        metrics.update(tools.tensorstats(reward, \"imag_reward\"))\n        if self._config.actor[\"dist\"] in [\"onehot\"]:\n            metrics.update(\n                tools.tensorstats(\n                    torch.argmax(imag_action, dim=-1).float(), \"imag_action\"\n                )\n            )\n        else:\n            metrics.update(tools.tensorstats(imag_action, \"imag_action\"))\n        metrics[\"actor_entropy\"] = to_np(torch.mean(actor_ent))\n\n        if self._config.gate_enabled and dts is not None:\n            dts_float = dts.float()\n            metrics[\"gate_dt_mean\"] = to_np(torch.mean(dts_float))\n            metrics[\"gate_dt_std\"] = to_np(torch.std(dts_float))\n            metrics[\"gate_dt_min\"] = to_np(torch.min(dts_float))\n            metrics[\"gate_dt_max\"] = to_np(torch.max(dts_float))\n            dt_counts = torch.bincount(\n                dts.reshape(-1).long(),\n                minlength=self._config.gate_max_dt + 1,\n            )[1:]\n            dt_dist = dt_counts.float() / dt_counts.sum()\n            for k in range(self._config.gate_max_dt):\n                metrics[f\"gate_dt_{k+1}_frac\"] = to_np(dt_dist[k])\n            emp_entropy = -(dt_dist * torch.log(dt_dist + 1e-8)).sum()\n            metrics[\"gate_empirical_entropy\"] = to_np(emp_entropy)\n            max_entropy = math.log(self._config.gate_max_dt)\n            metrics[\"gate_entropy_ratio\"] = to_np(emp_entropy) / max_entropy\n\n        with tools.RequiresGrad(self):\n            metrics.update(self._actor_opt(actor_loss, self.actor.parameters()))\n            metrics.update(self._value_opt(value_loss, self.value.parameters()))\n        return imag_feat, imag_state, imag_action, weights, metrics\n\n    def _imagine(self, start, policy, horizon):\n        dynamics = self._world_model.dynamics\n        flatten = lambda x: x.reshape([-1] + list(x.shape[2:]))\n        start = {k: flatten(v) for k, v in start.items()}\n\n        if self._config.gate_enabled:\n            gate = self._world_model.event_gate\n            config = self._config\n            step = self._world_model.gate_step.item() if hasattr(\n                self._world_model, \"gate_step\"\n            ) else 0\n            gate_active = (\n                gate is not None and step > config.gate_curriculum_phase1\n            )\n\n            def step_fn(prev, _):\n                state, _, _, prev_dt = prev\n                feat = dynamics.get_feat(state)\n                inp = feat.detach()\n                action = policy(inp).sample()\n                succ = dynamics.img_step(state, action, dt=prev_dt)\n                succ_feat = dynamics.get_feat(succ)\n                if gate_active:\n                    _, next_dt, _ = gate(succ_feat.detach(), step, hard=True)\n                else:\n                    batch_size = succ_feat.shape[0]\n                    next_dt = torch.ones(\n                        batch_size, dtype=torch.long, device=succ_feat.device\n                    )\n                return succ, feat, action, next_dt\n\n            init_dt = torch.ones(\n                start[list(start.keys())[0]].shape[0],\n                dtype=torch.long, device=config.device,\n            )\n            succ, feats, actions, dts = tools.static_scan(\n                step_fn, [torch.arange(horizon)],\n                (start, None, None, init_dt),\n            )\n            states = {\n                k: torch.cat([start[k][None], v[:-1]], 0)\n                for k, v in succ.items()\n            }\n            return feats, states, actions, dts\n        else:\n            def step(prev, _):\n                state, _, _ = prev\n                feat = dynamics.get_feat(state)\n                inp = feat.detach()\n                action = policy(inp).sample()\n                succ = dynamics.img_step(state, action)\n                return succ, feat, action\n\n            succ, feats, actions = tools.static_scan(\n                step, [torch.arange(horizon)], (start, None, None)\n            )\n            states = {\n                k: torch.cat([start[k][None], v[:-1]], 0)\n                for k, v in succ.items()\n            }\n            return feats, states, actions\n\n    def _compute_target(self, imag_feat, imag_state, reward, dts=None):\n        if \"cont\" in self._world_model.heads:\n            inp = self._world_model.dynamics.get_feat(imag_state)\n            discount = self._config.discount * self._world_model.heads[\"cont\"](inp).mean\n        else:\n            discount = self._config.discount * torch.ones_like(reward)\n        value = self.value(imag_feat).mode()\n\n        if dts is not None and self._config.gate_enabled:\n            target = tools.lambda_return_variable_dt(\n                reward[1:],\n                value[:-1],\n                discount[1:],\n                dts[1:],\n                bootstrap=value[-1],\n                lambda_=self._config.discount_lambda,\n                axis=0,\n            )\n            pcont_adj = discount ** dts.unsqueeze(-1).float()\n            weights = torch.cumprod(\n                torch.cat([torch.ones_like(pcont_adj[:1]), pcont_adj[:-1]], 0), 0\n            ).detach()\n        else:\n            target = tools.lambda_return(\n                reward[1:],\n                value[:-1],\n                discount[1:],\n                bootstrap=value[-1],\n                lambda_=self._config.discount_lambda,\n                axis=0,\n            )\n            weights = torch.cumprod(\n                torch.cat([torch.ones_like(discount[:1]), discount[:-1]], 0), 0\n            ).detach()\n        return target, weights, value[:-1]\n\n    def _compute_actor_loss(\n        self,\n        imag_feat,\n        imag_action,\n        target,\n        weights,\n        base,\n    ):\n        metrics = {}\n        inp = imag_feat.detach()\n        policy = self.actor(inp)\n        # Q-val for actor is not transformed using symlog\n        target = torch.stack(target, dim=1)\n        if self._config.reward_EMA:\n            offset, scale = self.reward_ema(target, self.ema_vals)\n            normed_target = (target - offset) / scale\n            normed_base = (base - offset) / scale\n            adv = normed_target - normed_base\n            metrics.update(tools.tensorstats(normed_target, \"normed_target\"))\n            metrics[\"EMA_005\"] = to_np(self.ema_vals[0])\n            metrics[\"EMA_095\"] = to_np(self.ema_vals[1])\n        else:\n            adv = target - base\n\n        if self._config.imag_gradient == \"dynamics\":\n            actor_target = adv\n        elif self._config.imag_gradient == \"reinforce\":\n            actor_target = (\n                policy.log_prob(imag_action)[:-1][:, :, None]\n                * (target - self.value(imag_feat[:-1]).mode()).detach()\n            )\n        elif self._config.imag_gradient == \"both\":\n            actor_target = (\n                policy.log_prob(imag_action)[:-1][:, :, None]\n                * (target - self.value(imag_feat[:-1]).mode()).detach()\n            )\n            mix = self._config.imag_gradient_mix\n            actor_target = mix * target + (1 - mix) * actor_target\n            metrics[\"imag_gradient_mix\"] = mix\n        else:\n            raise NotImplementedError(self._config.imag_gradient)\n        actor_loss = -weights[:-1] * actor_target\n        return actor_loss, metrics\n\n    def _update_slow_target(self):\n        if self._config.critic[\"slow_target\"]:\n            if self._updates % self._config.critic[\"slow_target_update\"] == 0:\n                mix = self._config.critic[\"slow_target_fraction\"]\n                for s, d in zip(self.value.parameters(), self._slow_value.parameters()):\n                    d.data = mix * s.data + (1 - mix) * d.data\n            self._updates += 1\nFILEEOF",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T02:05:43.235071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T02:05:43.235323+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/tools.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — Utility Functions\n# Modified from NM512/dreamerv3-torch.\n# Changes: added lambda_return_variable_dt and subsample_variable_dt.\n\nimport datetime\nimport collections\nimport io\nimport os\nimport json\nimport math\nimport pathlib\nimport re\nimport time\nimport random\n\nimport numpy as np\n\nimport torch\nfrom torch import nn\nfrom torch.nn import functional as F\nfrom torch import distributions as torchd\nfrom torch.utils.tensorboard import SummaryWriter\n\n\nto_np = lambda x: x.detach().cpu().numpy()\n\n\ndef symlog(x):\n    return torch.sign(x) * torch.log(torch.abs(x) + 1.0)\n\n\ndef symexp(x):\n    return torch.sign(x) * (torch.exp(torch.abs(x)) - 1.0)\n\n\nclass RequiresGrad:\n    def __init__(self, model):\n        self._model = model\n\n    def __enter__(self):\n        self._model.requires_grad_(requires_grad=True)\n\n    def __exit__(self, *args):\n        self._model.requires_grad_(requires_grad=False)\n\n\nclass TimeRecording:\n    def __init__(self, comment):\n        self._comment = comment\n\n    def __enter__(self):\n        self._st = torch.cuda.Event(enable_timing=True)\n        self._nd = torch.cuda.Event(enable_timing=True)\n        self._st.record()\n\n    def __exit__(self, *args):\n        self._nd.record()\n        torch.cuda.synchronize()\n        print(self._comment, self._st.elapsed_time(self._nd) / 1000)\n\n\nclass Logger:\n    def __init__(self, logdir, step):\n        self._logdir = logdir\n        self._writer = SummaryWriter(log_dir=str(logdir), max_queue=1000)\n        self._last_step = None\n        self._last_time = None\n        self._scalars = {}\n        self._images = {}\n        self._videos = {}\n        self.step = step\n\n    def scalar(self, name, value):\n        self._scalars[name] = float(value)\n\n    def image(self, name, value):\n        self._images[name] = np.array(value)\n\n    def video(self, name, value):\n        self._videos[name] = np.array(value)\n\n    def write(self, fps=False, step=False):\n        if not step:\n            step = self.step\n        scalars = list(self._scalars.items())\n        if fps:\n            scalars.append((\"fps\", self._compute_fps(step)))\n        print(f\"[{step}]\", \" / \".join(f\"{k} {v:.1f}\" for k, v in scalars))\n        with (self._logdir / \"metrics.jsonl\").open(\"a\") as f:\n            f.write(json.dumps({\"step\": step, **dict(scalars)}) + \"\\n\")\n        for name, value in scalars:\n            if \"/\" not in name:\n                self._writer.add_scalar(\"scalars/\" + name, value, step)\n            else:\n                self._writer.add_scalar(name, value, step)\n        for name, value in self._images.items():\n            self._writer.add_image(name, value, step)\n        for name, value in self._videos.items():\n            name = name if isinstance(name, str) else name.decode(\"utf-8\")\n            if np.issubdtype(value.dtype, np.floating):\n                value = np.clip(255 * value, 0, 255).astype(np.uint8)\n            B, T, H, W, C = value.shape\n            value = value.transpose(1, 4, 2, 0, 3).reshape((1, T, C, H, B * W))\n            self._writer.add_video(name, value, step, 16)\n\n        self._writer.flush()\n        self._scalars = {}\n        self._images = {}\n        self._videos = {}\n\n    def _compute_fps(self, step):\n        if self._last_step is None:\n            self._last_time = time.time()\n            self._last_step = step\n            return 0\n        steps = step - self._last_step\n        duration = time.time() - self._last_time\n        self._last_time += duration\n        self._last_step = step\n        return steps / duration\n\n    def offline_scalar(self, name, value, step):\n        self._writer.add_scalar(\"scalars/\" + name, value, step)\n\n    def offline_video(self, name, value, step):\n        if np.issubdtype(value.dtype, np.floating):\n            value = np.clip(255 * value, 0, 255).astype(np.uint8)\n        B, T, H, W, C = value.shape\n        value = value.transpose(1, 4, 2, 0, 3).reshape((1, T, C, H, B * W))\n        self._writer.add_video(name, value, step, 16)\n\n\ndef simulate(\n    agent,\n    envs,\n    cache,\n    directory,\n    logger,\n    is_eval=False,\n    limit=None,\n    steps=0,\n    episodes=0,\n    state=None,\n):\n    # initialize or unpack simulation state\n    if state is None:\n        step, episode = 0, 0\n        done = np.ones(len(envs), bool)\n        length = np.zeros(len(envs), np.int32)\n        obs = [None] * len(envs)\n        agent_state = None\n        reward = [0] * len(envs)\n    else:\n        step, episode, done, length, obs, agent_state, reward = state\n    while (steps and step < steps) or (episodes and episode < episodes):\n        # reset envs if necessary\n        if done.any():\n            indices = [index for index, d in enumerate(done) if d]\n            results = [envs[i].reset() for i in indices]\n            results = [r() for r in results]\n            for index, result in zip(indices, results):\n                t = result.copy()\n                t = {k: convert(v) for k, v in t.items()}\n                # action will be added to transition in add_to_cache\n                t[\"reward\"] = 0.0\n                t[\"discount\"] = 1.0\n                # initial state should be added to cache\n                add_to_cache(cache, envs[index].id, t)\n                # replace obs with done by initial state\n                obs[index] = result\n        # step agents\n        obs = {k: np.stack([o[k] for o in obs]) for k in obs[0] if \"log_\" not in k}\n        action, agent_state = agent(obs, done, agent_state)\n        if isinstance(action, dict):\n            action = [\n                {k: np.array(action[k][i].detach().cpu()) for k in action}\n                for i in range(len(envs))\n            ]\n        else:\n            action = np.array(action)\n        assert len(action) == len(envs)\n        # step envs\n        results = [e.step(a) for e, a in zip(envs, action)]\n        results = [r() for r in results]\n        obs, reward, done = zip(*[p[:3] for p in results])\n        obs = list(obs)\n        reward = list(reward)\n        done = np.stack(done)\n        episode += int(done.sum())\n        length += 1\n        step += len(envs)\n        length *= 1 - done\n        # add to cache\n        for a, result, env in zip(action, results, envs):\n            o, r, d, info = result\n            o = {k: convert(v) for k, v in o.items()}\n            transition = o.copy()\n            if isinstance(a, dict):\n                transition.update(a)\n            else:\n                transition[\"action\"] = a\n            transition[\"reward\"] = r\n            transition[\"discount\"] = info.get(\"discount\", np.array(1 - float(d)))\n            add_to_cache(cache, env.id, transition)\n\n        if done.any():\n            indices = [index for index, d in enumerate(done) if d]\n            # logging for done episode\n            for i in indices:\n                save_episodes(directory, {envs[i].id: cache[envs[i].id]})\n                length = len(cache[envs[i].id][\"reward\"]) - 1\n                score = float(np.array(cache[envs[i].id][\"reward\"]).sum())\n                video = cache[envs[i].id][\"image\"]\n                # record logs given from environments\n                for key in list(cache[envs[i].id].keys()):\n                    if \"log_\" in key:\n                        logger.scalar(\n                            key, float(np.array(cache[envs[i].id][key]).sum())\n                        )\n                        # log items won't be used later\n                        cache[envs[i].id].pop(key)\n\n                if not is_eval:\n                    step_in_dataset = erase_over_episodes(cache, limit)\n                    logger.scalar(f\"dataset_size\", step_in_dataset)\n                    logger.scalar(f\"train_return\", score)\n                    logger.scalar(f\"train_length\", length)\n                    logger.scalar(f\"train_episodes\", len(cache))\n                    logger.write(step=logger.step)\n                else:\n                    if not \"eval_lengths\" in locals():\n                        eval_lengths = []\n                        eval_scores = []\n                        eval_done = False\n                    # start counting scores for evaluation\n                    eval_scores.append(score)\n                    eval_lengths.append(length)\n\n                    score = sum(eval_scores) / len(eval_scores)\n                    length = sum(eval_lengths) / len(eval_lengths)\n                    logger.video(f\"eval_policy\", np.array(video)[None])\n\n                    if len(eval_scores) >= episodes and not eval_done:\n                        logger.scalar(f\"eval_return\", score)\n                        logger.scalar(f\"eval_length\", length)\n                        logger.scalar(f\"eval_episodes\", len(eval_scores))\n                        logger.write(step=logger.step)\n                        eval_done = True\n    if is_eval:\n        # keep only last item for saving memory. this cache is used for video_pred later\n        while len(cache) > 1:\n            # FIFO\n            cache.popitem(last=False)\n    return (step - steps, episode - episodes, done, length, obs, agent_state, reward)\n\n\ndef add_to_cache(cache, id, transition):\n    if id not in cache:\n        cache[id] = dict()\n        for key, val in transition.items():\n            cache[id][key] = [convert(val)]\n    else:\n        for key, val in transition.items():\n            if key not in cache[id]:\n                # fill missing data(action, etc.) at second time\n                cache[id][key] = [convert(0 * val)]\n                cache[id][key].append(convert(val))\n            else:\n                cache[id][key].append(convert(val))\n\n\ndef erase_over_episodes(cache, dataset_size):\n    step_in_dataset = 0\n    for key, ep in reversed(sorted(cache.items(), key=lambda x: x[0])):\n        if (\n            not dataset_size\n            or step_in_dataset + (len(ep[\"reward\"]) - 1) <= dataset_size\n        ):\n            step_in_dataset += len(ep[\"reward\"]) - 1\n        else:\n            del cache[key]\n    return step_in_dataset\n\n\ndef convert(value, precision=32):\n    value = np.array(value)\n    if np.issubdtype(value.dtype, np.floating):\n        dtype = {16: np.float16, 32: np.float32, 64: np.float64}[precision]\n    elif np.issubdtype(value.dtype, np.signedinteger):\n        dtype = {16: np.int16, 32: np.int32, 64: np.int64}[precision]\n    elif np.issubdtype(value.dtype, np.uint8):\n        dtype = np.uint8\n    elif np.issubdtype(value.dtype, bool):\n        dtype = bool\n    else:\n        raise NotImplementedError(value.dtype)\n    return value.astype(dtype)\n\n\ndef save_episodes(directory, episodes):\n    directory = pathlib.Path(directory).expanduser()\n    directory.mkdir(parents=True, exist_ok=True)\n    for filename, episode in episodes.items():\n        length = len(episode[\"reward\"])\n        filename = directory / f\"{filename}-{length}.npz\"\n        with io.BytesIO() as f1:\n            np.savez_compressed(f1, **episode)\n            f1.seek(0)\n            with filename.open(\"wb\") as f2:\n                f2.write(f1.read())\n    return True\n\n\ndef from_generator(generator, batch_size):\n    while True:\n        batch = []\n        for _ in range(batch_size):\n            batch.append(next(generator))\n        data = {}\n        for key in batch[0].keys():\n            data[key] = []\n            for i in range(batch_size):\n                data[key].append(batch[i][key])\n            data[key] = np.stack(data[key], 0)\n        yield data\n\n\ndef sample_episodes(episodes, length, seed=0):\n    np_random = np.random.RandomState(seed)\n    while True:\n        size = 0\n        ret = None\n        p = np.array(\n            [len(next(iter(episode.values()))) for episode in episodes.values()]\n        )\n        p = p / np.sum(p)\n        while size < length:\n            episode = np_random.choice(list(episodes.values()), p=p)\n            total = len(next(iter(episode.values())))\n            # make sure at least one transition included\n            if total < 2:\n                continue\n            if not ret:\n                index = int(np_random.randint(0, total - 1))\n                ret = {\n                    k: v[index : min(index + length, total)].copy()\n                    for k, v in episode.items()\n                    if \"log_\" not in k\n                }\n                if \"is_first\" in ret:\n                    ret[\"is_first\"][0] = True\n            else:\n                # 'is_first' comes after 'is_last'\n                index = 0\n                possible = length - size\n                ret = {\n                    k: np.append(\n                        ret[k], v[index : min(index + possible, total)].copy(), axis=0\n                    )\n                    for k, v in episode.items()\n                    if \"log_\" not in k\n                }\n                if \"is_first\" in ret:\n                    ret[\"is_first\"][size] = True\n            size = len(next(iter(ret.values())))\n        yield ret\n\n\ndef load_episodes(directory, limit=None, reverse=True):\n    directory = pathlib.Path(directory).expanduser()\n    episodes = collections.OrderedDict()\n    total = 0\n    if reverse:\n        for filename in reversed(sorted(directory.glob(\"*.npz\"))):\n            try:\n                with filename.open(\"rb\") as f:\n                    episode = np.load(f)\n                    episode = {k: episode[k] for k in episode.keys()}\n            except Exception as e:\n                print(f\"Could not load episode: {e}\")\n                continue\n            # extract only filename without extension\n            episodes[str(os.path.splitext(os.path.basename(filename))[0])] = episode\n            total += len(episode[\"reward\"]) - 1\n            if limit and total >= limit:\n                break\n    else:\n        for filename in sorted(directory.glob(\"*.npz\")):\n            try:\n                with filename.open(\"rb\") as f:\n                    episode = np.load(f)\n                    episode = {k: episode[k] for k in episode.keys()}\n            except Exception as e:\n                print(f\"Could not load episode: {e}\")\n                continue\n            episodes[str(filename)] = episode\n            total += len(episode[\"reward\"]) - 1\n            if limit and total >= limit:\n                break\n    return episodes\n\n\nclass SampleDist:\n    def __init__(self, dist, samples=100):\n        self._dist = dist\n        self._samples = samples\n\n    @property\n    def name(self):\n        return \"SampleDist\"\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def mean(self):\n        samples = self._dist.sample(self._samples)\n        return torch.mean(samples, 0)\n\n    def mode(self):\n        sample = self._dist.sample(self._samples)\n        logprob = self._dist.log_prob(sample)\n        return sample[torch.argmax(logprob)][0]\n\n    def entropy(self):\n        sample = self._dist.sample(self._samples)\n        logprob = self.log_prob(sample)\n        return -torch.mean(logprob, 0)\n\n\nclass OneHotDist(torchd.one_hot_categorical.OneHotCategorical):\n    def __init__(self, logits=None, probs=None, unimix_ratio=0.0):\n        if logits is not None and unimix_ratio > 0.0:\n            probs = F.softmax(logits, dim=-1)\n            probs = probs * (1.0 - unimix_ratio) + unimix_ratio / probs.shape[-1]\n            logits = torch.log(probs)\n            super().__init__(logits=logits, probs=None)\n        else:\n            super().__init__(logits=logits, probs=probs)\n\n    def mode(self):\n        _mode = F.one_hot(\n            torch.argmax(super().logits, axis=-1), super().logits.shape[-1]\n        )\n        return _mode.detach() + super().logits - super().logits.detach()\n\n    def sample(self, sample_shape=(), seed=None):\n        if seed is not None:\n            raise ValueError(\"need to check\")\n        sample = super().sample(sample_shape).detach()\n        probs = super().probs\n        while len(probs.shape) < len(sample.shape):\n            probs = probs[None]\n        sample += probs - probs.detach()\n        return sample\n\n\nclass DiscDist:\n    def __init__(\n        self,\n        logits,\n        low=-20.0,\n        high=20.0,\n        transfwd=symlog,\n        transbwd=symexp,\n        device=\"cuda\",\n    ):\n        self.logits = logits\n        self.probs = torch.softmax(logits, -1)\n        self.buckets = torch.linspace(low, high, steps=255, device=device)\n        self.width = (self.buckets[-1] - self.buckets[0]) / 255\n        self.transfwd = transfwd\n        self.transbwd = transbwd\n\n    def mean(self):\n        _mean = self.probs * self.buckets\n        return self.transbwd(torch.sum(_mean, dim=-1, keepdim=True))\n\n    def mode(self):\n        _mode = self.probs * self.buckets\n        return self.transbwd(torch.sum(_mode, dim=-1, keepdim=True))\n\n    # Inside OneHotCategorical, log_prob is calculated using only max element in targets\n    def log_prob(self, x):\n        x = self.transfwd(x)\n        # x(time, batch, 1)\n        below = torch.sum((self.buckets <= x[..., None]).to(torch.int32), dim=-1) - 1\n        above = len(self.buckets) - torch.sum(\n            (self.buckets > x[..., None]).to(torch.int32), dim=-1\n        )\n        # this is implemented using clip at the original repo as the gradients are not backpropagated for the out of limits.\n        below = torch.clip(below, 0, len(self.buckets) - 1)\n        above = torch.clip(above, 0, len(self.buckets) - 1)\n        equal = below == above\n\n        dist_to_below = torch.where(equal, 1, torch.abs(self.buckets[below] - x))\n        dist_to_above = torch.where(equal, 1, torch.abs(self.buckets[above] - x))\n        total = dist_to_below + dist_to_above\n        weight_below = dist_to_above / total\n        weight_above = dist_to_below / total\n        target = (\n            F.one_hot(below, num_classes=len(self.buckets)) * weight_below[..., None]\n            + F.one_hot(above, num_classes=len(self.buckets)) * weight_above[..., None]\n        )\n        log_pred = self.logits - torch.logsumexp(self.logits, -1, keepdim=True)\n        target = target.squeeze(-2)\n\n        return (target * log_pred).sum(-1)\n\n    def log_prob_target(self, target):\n        log_pred = super().logits - torch.logsumexp(super().logits, -1, keepdim=True)\n        return (target * log_pred).sum(-1)\n\n\nclass MSEDist:\n    def __init__(self, mode, agg=\"sum\"):\n        self._mode = mode\n        self._agg = agg\n\n    def mode(self):\n        return self._mode\n\n    def mean(self):\n        return self._mode\n\n    def log_prob(self, value):\n        assert self._mode.shape == value.shape, (self._mode.shape, value.shape)\n        distance = (self._mode - value) ** 2\n        if self._agg == \"mean\":\n            loss = distance.mean(list(range(len(distance.shape)))[2:])\n        elif self._agg == \"sum\":\n            loss = distance.sum(list(range(len(distance.shape)))[2:])\n        else:\n            raise NotImplementedError(self._agg)\n        return -loss\n\n\nclass SymlogDist:\n    def __init__(self, mode, dist=\"mse\", agg=\"sum\", tol=1e-8):\n        self._mode = mode\n        self._dist = dist\n        self._agg = agg\n        self._tol = tol\n\n    def mode(self):\n        return symexp(self._mode)\n\n    def mean(self):\n        return symexp(self._mode)\n\n    def log_prob(self, value):\n        assert self._mode.shape == value.shape\n        if self._dist == \"mse\":\n            distance = (self._mode - symlog(value)) ** 2.0\n            distance = torch.where(distance < self._tol, 0, distance)\n        elif self._dist == \"abs\":\n            distance = torch.abs(self._mode - symlog(value))\n            distance = torch.where(distance < self._tol, 0, distance)\n        else:\n            raise NotImplementedError(self._dist)\n        if self._agg == \"mean\":\n            loss = distance.mean(list(range(len(distance.shape)))[2:])\n        elif self._agg == \"sum\":\n            loss = distance.sum(list(range(len(distance.shape)))[2:])\n        else:\n            raise NotImplementedError(self._agg)\n        return -loss\n\n\nclass ContDist:\n    def __init__(self, dist=None, absmax=None):\n        super().__init__()\n        self._dist = dist\n        self.mean = dist.mean\n        self.absmax = absmax\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def entropy(self):\n        return self._dist.entropy()\n\n    def mode(self):\n        out = self._dist.mean\n        if self.absmax is not None:\n            out *= (self.absmax / torch.clip(torch.abs(out), min=self.absmax)).detach()\n        return out\n\n    def sample(self, sample_shape=()):\n        out = self._dist.rsample(sample_shape)\n        if self.absmax is not None:\n            out *= (self.absmax / torch.clip(torch.abs(out), min=self.absmax)).detach()\n        return out\n\n    def log_prob(self, x):\n        return self._dist.log_prob(x)\n\n\nclass Bernoulli:\n    def __init__(self, dist=None):\n        super().__init__()\n        self._dist = dist\n        self.mean = dist.mean\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def entropy(self):\n        return self._dist.entropy()\n\n    def mode(self):\n        _mode = torch.round(self._dist.mean)\n        return _mode.detach() + self._dist.mean - self._dist.mean.detach()\n\n    def sample(self, sample_shape=()):\n        return self._dist.rsample(sample_shape)\n\n    def log_prob(self, x):\n        _logits = self._dist.base_dist.logits\n        log_probs0 = -F.softplus(_logits)\n        log_probs1 = -F.softplus(-_logits)\n\n        return torch.sum(log_probs0 * (1 - x) + log_probs1 * x, -1)\n\n\nclass UnnormalizedHuber(torchd.normal.Normal):\n    def __init__(self, loc, scale, threshold=1, **kwargs):\n        super().__init__(loc, scale, **kwargs)\n        self._threshold = threshold\n\n    def log_prob(self, event):\n        return -(\n            torch.sqrt((event - self.mean) ** 2 + self._threshold**2) - self._threshold\n        )\n\n    def mode(self):\n        return self.mean\n\n\nclass SafeTruncatedNormal(torchd.normal.Normal):\n    def __init__(self, loc, scale, low, high, clip=1e-6, mult=1):\n        super().__init__(loc, scale)\n        self._low = low\n        self._high = high\n        self._clip = clip\n        self._mult = mult\n\n    def sample(self, sample_shape):\n        event = super().sample(sample_shape)\n        if self._clip:\n            clipped = torch.clip(event, self._low + self._clip, self._high - self._clip)\n            event = event - event.detach() + clipped.detach()\n        if self._mult:\n            event *= self._mult\n        return event\n\n\nclass TanhBijector(torchd.Transform):\n    def __init__(self, validate_args=False, name=\"tanh\"):\n        super().__init__()\n\n    def _forward(self, x):\n        return torch.tanh(x)\n\n    def _inverse(self, y):\n        y = torch.where(\n            (torch.abs(y) <= 1.0), torch.clamp(y, -0.99999997, 0.99999997), y\n        )\n        y = torch.atanh(y)\n        return y\n\n    def _forward_log_det_jacobian(self, x):\n        log2 = torch.math.log(2.0)\n        return 2.0 * (log2 - x - torch.softplus(-2.0 * x))\n\n\ndef static_scan_for_lambda_return(fn, inputs, start):\n    last = start\n    indices = range(inputs[0].shape[0])\n    indices = reversed(indices)\n    flag = True\n    for index in indices:\n        # (inputs, pcont) -> (inputs[index], pcont[index])\n        inp = lambda x: (_input[x] for _input in inputs)\n        last = fn(last, *inp(index))\n        if flag:\n            outputs = last\n            flag = False\n        else:\n            outputs = torch.cat([outputs, last], dim=-1)\n    outputs = torch.reshape(outputs, [outputs.shape[0], outputs.shape[1], 1])\n    outputs = torch.flip(outputs, [1])\n    outputs = torch.unbind(outputs, dim=0)\n    return outputs\n\n\ndef lambda_return(reward, value, pcont, bootstrap, lambda_, axis):\n    # Setting lambda=1 gives a discounted Monte Carlo return.\n    # Setting lambda=0 gives a fixed 1-step return.\n    # assert reward.shape.ndims == value.shape.ndims, (reward.shape, value.shape)\n    assert len(reward.shape) == len(value.shape), (reward.shape, value.shape)\n    if isinstance(pcont, (int, float)):\n        pcont = pcont * torch.ones_like(reward)\n    dims = list(range(len(reward.shape)))\n    dims = [axis] + dims[1:axis] + [0] + dims[axis + 1 :]\n    if axis != 0:\n        reward = reward.permute(dims)\n        value = value.permute(dims)\n        pcont = pcont.permute(dims)\n    if bootstrap is None:\n        bootstrap = torch.zeros_like(value[-1])\n    next_values = torch.cat([value[1:], bootstrap[None]], 0)\n    inputs = reward + pcont * next_values * (1 - lambda_)\n    # returns = static_scan(\n    #    lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg,\n    #    (inputs, pcont), bootstrap, reverse=True)\n    # reimplement to optimize performance\n    returns = static_scan_for_lambda_return(\n        lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg, (inputs, pcont), bootstrap\n    )\n    if axis != 0:\n        returns = returns.permute(dims)\n    return returns\n\n\ndef lambda_return_variable_dt(reward, value, pcont, dt, bootstrap, lambda_, axis):\n    \"\"\"Lambda-return with variable temporal strides.\n\n    Reward is assumed to be cumulative-discounted (pre-computed during sub-sampling).\n    Discount is raised to the power of dt: gamma^dt.\n    \"\"\"\n    assert len(reward.shape) == len(value.shape), (reward.shape, value.shape)\n    if isinstance(pcont, (int, float)):\n        pcont = pcont * torch.ones_like(reward)\n    if dt.dim() == 2:\n        dt = dt.unsqueeze(-1)\n    dt = dt.float()\n\n    dims = list(range(len(reward.shape)))\n    dims = [axis] + dims[1:axis] + [0] + dims[axis + 1:]\n    if axis != 0:\n        reward = reward.permute(dims)\n        value = value.permute(dims)\n        pcont = pcont.permute(dims)\n        dt = dt.permute(dims)\n\n    if bootstrap is None:\n        bootstrap = torch.zeros_like(value[-1])\n\n    pcont_adj = pcont ** dt\n\n    next_values = torch.cat([value[1:], bootstrap[None]], 0)\n    inputs = reward + pcont_adj * next_values * (1 - lambda_)\n\n    returns = static_scan_for_lambda_return(\n        lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg,\n        (inputs, pcont_adj), bootstrap\n    )\n    if axis != 0:\n        returns = returns.permute(dims)\n    return returns\n\n\ndef subsample_variable_dt(data, max_dt, discount):\n    \"\"\"Variable-dt sub-sampling of replay trajectories.\n\n    Samples per-element dt from log-uniform over [1, K]. Computes cumulative\n    discounted reward and minimum continuation for each gap.\n    \"\"\"\n    B, T = data[\"action\"].shape[:2]\n    device = data[\"action\"].device\n\n    log_dt = torch.zeros(B, device=device).uniform_(0, math.log(max_dt))\n    dt_per_elem = torch.clamp(torch.round(torch.exp(log_dt)).long(), 1, max_dt)\n\n    sub_len = torch.ceil(torch.tensor(T, dtype=torch.float) / dt_per_elem.float()).long()\n    T_sub = sub_len.max().item()\n\n    data_sub = {}\n    dt_labels = torch.ones(B, T_sub, dtype=torch.long, device=device)\n    reward_cum = torch.zeros(B, T_sub, *data[\"reward\"].shape[2:], device=device)\n    cont_min = torch.ones(B, T_sub, *data[\"cont\"].shape[2:], device=device)\n\n    for b in range(B):\n        dt_b = dt_per_elem[b].item()\n        indices = list(range(0, T, dt_b))\n        L = len(indices)\n\n        for key in data:\n            if key not in data_sub:\n                data_sub[key] = torch.zeros(\n                    B, T_sub, *data[key].shape[2:],\n                    dtype=data[key].dtype, device=device,\n                )\n            data_sub[key][b, :L] = data[key][b, indices]\n\n        for i, t_start in enumerate(indices[:-1]):\n            t_end = min(t_start + dt_b, T)\n            span = t_end - t_start\n            gamma_powers = discount ** torch.arange(\n                span, dtype=torch.float, device=device\n            )\n            r_slice = data[\"reward\"][b, t_start:t_end]\n            reward_cum[b, i] = (gamma_powers * r_slice).sum(dim=0)\n            cont_min[b, i] = data[\"cont\"][b, t_start:t_end].min(dim=0).values\n\n        dt_labels[b, :L] = dt_b\n\n    data_sub[\"reward\"] = reward_cum\n    data_sub[\"cont\"] = cont_min\n    return data_sub, dt_labels\n\n\nclass Optimizer:\n    def __init__(\n        self,\n        name,\n        parameters,\n        lr,\n        eps=1e-4,\n        clip=None,\n        wd=None,\n        wd_pattern=r\".*\",\n        opt=\"adam\",\n        use_amp=False,\n    ):\n        assert 0 <= wd < 1\n        assert not clip or 1 <= clip\n        self._name = name\n        self._parameters = parameters\n        self._clip = clip\n        self._wd = wd\n        self._wd_pattern = wd_pattern\n        self._opt = {\n            \"adam\": lambda: torch.optim.Adam(parameters, lr=lr, eps=eps),\n            \"nadam\": lambda: NotImplemented(f\"{opt} is not implemented\"),\n            \"adamax\": lambda: torch.optim.Adamax(parameters, lr=lr, eps=eps),\n            \"sgd\": lambda: torch.optim.SGD(parameters, lr=lr),\n            \"momentum\": lambda: torch.optim.SGD(parameters, lr=lr, momentum=0.9),\n        }[opt]()\n        self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\n\n    def __call__(self, loss, params, retain_graph=True):\n        assert len(loss.shape) == 0, loss.shape\n        metrics = {}\n        metrics[f\"{self._name}_loss\"] = loss.detach().cpu().numpy()\n        self._opt.zero_grad()\n        self._scaler.scale(loss).backward(retain_graph=retain_graph)\n        self._scaler.unscale_(self._opt)\n        # loss.backward(retain_graph=retain_graph)\n        norm = torch.nn.utils.clip_grad_norm_(params, self._clip)\n        if self._wd:\n            self._apply_weight_decay(params)\n        self._scaler.step(self._opt)\n        self._scaler.update()\n        # self._opt.step()\n        self._opt.zero_grad()\n        metrics[f\"{self._name}_grad_norm\"] = to_np(norm)\n        return metrics\n\n    def _apply_weight_decay(self, varibs):\n        nontrivial = self._wd_pattern != r\".*\"\n        if nontrivial:\n            raise NotImplementedError\n        for var in varibs:\n            var.data = (1 - self._wd) * var.data\n\n\ndef args_type(default):\n    def parse_string(x):\n        if default is None:\n            return x\n        if isinstance(default, bool):\n            return bool([\"False\", \"True\"].index(x))\n        if isinstance(default, int):\n            return float(x) if (\"e\" in x or \".\" in x) else int(x)\n        if isinstance(default, (list, tuple)):\n            return tuple(args_type(default[0])(y) for y in x.split(\",\"))\n        return type(default)(x)\n\n    def parse_object(x):\n        if isinstance(default, (list, tuple)):\n            return tuple(x)\n        return x\n\n    return lambda x: parse_string(x) if isinstance(x, str) else parse_object(x)\n\n\ndef static_scan(fn, inputs, start):\n    last = start\n    indices = range(inputs[0].shape[0])\n    flag = True\n    for index in indices:\n        inp = lambda x: (_input[x] for _input in inputs)\n        last = fn(last, *inp(index))\n        if flag:\n            if type(last) == type({}):\n                outputs = {\n                    key: value.clone().unsqueeze(0) for key, value in last.items()\n                }\n            else:\n                outputs = []\n                for _last in last:\n                    if type(_last) == type({}):\n                        outputs.append(\n                            {\n                                key: value.clone().unsqueeze(0)\n                                for key, value in _last.items()\n                            }\n                        )\n                    else:\n                        outputs.append(_last.clone().unsqueeze(0))\n            flag = False\n        else:\n            if type(last) == type({}):\n                for key in last.keys():\n                    outputs[key] = torch.cat(\n                        [outputs[key], last[key].unsqueeze(0)], dim=0\n                    )\n            else:\n                for j in range(len(outputs)):\n                    if type(last[j]) == type({}):\n                        for key in last[j].keys():\n                            outputs[j][key] = torch.cat(\n                                [outputs[j][key], last[j][key].unsqueeze(0)], dim=0\n                            )\n                    else:\n                        outputs[j] = torch.cat(\n                            [outputs[j], last[j].unsqueeze(0)], dim=0\n                        )\n    if type(last) == type({}):\n        outputs = [outputs]\n    return outputs\n\n\nclass Every:\n    def __init__(self, every):\n        self._every = every\n        self._last = None\n\n    def __call__(self, step):\n        if not self._every:\n            return 0\n        if self._last is None:\n            self._last = step\n            return 1\n        count = int((step - self._last) / self._every)\n        self._last += self._every * count\n        return count\n\n\nclass Once:\n    def __init__(self):\n        self._once = True\n\n    def __call__(self):\n        if self._once:\n            self._once = False\n            return True\n        return False\n\n\nclass Until:\n    def __init__(self, until):\n        self._until = until\n\n    def __call__(self, step):\n        if not self._until:\n            return True\n        return step < self._until\n\n\ndef weight_init(m):\n    if isinstance(m, nn.Linear):\n        in_num = m.in_features\n        out_num = m.out_features\n        denoms = (in_num + out_num) / 2.0\n        scale = 1.0 / denoms\n        std = np.sqrt(scale) / 0.87962566103423978\n        nn.init.trunc_normal_(\n            m.weight.data, mean=0.0, std=std, a=-2.0 * std, b=2.0 * std\n        )\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n    elif isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):\n        space = m.kernel_size[0] * m.kernel_size[1]\n        in_num = space * m.in_channels\n        out_num = space * m.out_channels\n        denoms = (in_num + out_num) / 2.0\n        scale = 1.0 / denoms\n        std = np.sqrt(scale) / 0.87962566103423978\n        nn.init.trunc_normal_(\n            m.weight.data, mean=0.0, std=std, a=-2.0 * std, b=2.0 * std\n        )\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n    elif isinstance(m, nn.LayerNorm):\n        m.weight.data.fill_(1.0)\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n\n\ndef uniform_weight_init(given_scale):\n    def f(m):\n        if isinstance(m, nn.Linear):\n            in_num = m.in_features\n            out_num = m.out_features\n            denoms = (in_num + out_num) / 2.0\n            scale = given_scale / denoms\n            limit = np.sqrt(3 * scale)\n            nn.init.uniform_(m.weight.data, a=-limit, b=limit)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n        elif isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):\n            space = m.kernel_size[0] * m.kernel_size[1]\n            in_num = space * m.in_channels\n            out_num = space * m.out_channels\n            denoms = (in_num + out_num) / 2.0\n            scale = given_scale / denoms\n            limit = np.sqrt(3 * scale)\n            nn.init.uniform_(m.weight.data, a=-limit, b=limit)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n        elif isinstance(m, nn.LayerNorm):\n            m.weight.data.fill_(1.0)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n\n    return f\n\n\ndef tensorstats(tensor, prefix=None):\n    metrics = {\n        \"mean\": to_np(torch.mean(tensor)),\n        \"std\": to_np(torch.std(tensor)),\n        \"min\": to_np(torch.min(tensor)),\n        \"max\": to_np(torch.max(tensor)),\n    }\n    if prefix:\n        metrics = {f\"{prefix}_{k}\": v for k, v in metrics.items()}\n    return metrics\n\n\ndef set_seed_everywhere(seed):\n    torch.manual_seed(seed)\n    if torch.cuda.is_available():\n        torch.cuda.manual_seed_all(seed)\n    np.random.seed(seed)\n    random.seed(seed)\n\n\ndef enable_deterministic_run():\n    os.environ[\"CUBLAS_WORKSPACE_CONFIG\"] = \":4096:8\"\n    torch.backends.cudnn.benchmark = False\n    torch.use_deterministic_algorithms(True)\n\n\ndef recursively_collect_optim_state_dict(\n    obj, path=\"\", optimizers_state_dicts=None, visited=None\n):\n    if optimizers_state_dicts is None:\n        optimizers_state_dicts = {}\n    if visited is None:\n        visited = set()\n    # avoid cyclic reference\n    if id(obj) in visited:\n        return optimizers_state_dicts\n    else:\n        visited.add(id(obj))\n    attrs = obj.__dict__\n    if isinstance(obj, torch.nn.Module):\n        attrs.update(\n            {k: attr for k, attr in obj.named_modules() if \".\" not in k and obj != attr}\n        )\n    for name, attr in attrs.items():\n        new_path = path + \".\" + name if path else name\n        if isinstance(attr, torch.optim.Optimizer):\n            optimizers_state_dicts[new_path] = attr.state_dict()\n        elif hasattr(attr, \"__dict__\"):\n            optimizers_state_dicts.update(\n                recursively_collect_optim_state_dict(\n                    attr, new_path, optimizers_state_dicts, visited\n                )\n            )\n    return optimizers_state_dicts\n\n\ndef recursively_load_optim_state_dict(obj, optimizers_state_dicts):\n    for path, state_dict in optimizers_state_dicts.items():\n        keys = path.split(\".\")\n        obj_now = obj\n        for key in keys:\n            obj_now = getattr(obj_now, key)\n        obj_now.load_state_dict(state_dict)\nFILEEOF",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "cat > /root/autodl-tmp/event-gated-adaptive-horizon/tools.py << 'FILEEOF'\n# Event-Gated Adaptive-Horizon DreamerV3 — Utility Functions\n# Modified from NM512/dreamerv3-torch.\n# Changes: added lambda_return_variable_dt and subsample_variable_dt.\n\nimport datetime\nimport collections\nimport io\nimport os\nimport json\nimport math\nimport pathlib\nimport re\nimport time\nimport random\n\nimport numpy as np\n\nimport torch\nfrom torch import nn\nfrom torch.nn import functional as F\nfrom torch import distributions as torchd\nfrom torch.utils.tensorboard import SummaryWriter\n\n\nto_np = lambda x: x.detach().cpu().numpy()\n\n\ndef symlog(x):\n    return torch.sign(x) * torch.log(torch.abs(x) + 1.0)\n\n\ndef symexp(x):\n    return torch.sign(x) * (torch.exp(torch.abs(x)) - 1.0)\n\n\nclass RequiresGrad:\n    def __init__(self, model):\n        self._model = model\n\n    def __enter__(self):\n        self._model.requires_grad_(requires_grad=True)\n\n    def __exit__(self, *args):\n        self._model.requires_grad_(requires_grad=False)\n\n\nclass TimeRecording:\n    def __init__(self, comment):\n        self._comment = comment\n\n    def __enter__(self):\n        self._st = torch.cuda.Event(enable_timing=True)\n        self._nd = torch.cuda.Event(enable_timing=True)\n        self._st.record()\n\n    def __exit__(self, *args):\n        self._nd.record()\n        torch.cuda.synchronize()\n        print(self._comment, self._st.elapsed_time(self._nd) / 1000)\n\n\nclass Logger:\n    def __init__(self, logdir, step):\n        self._logdir = logdir\n        self._writer = SummaryWriter(log_dir=str(logdir), max_queue=1000)\n        self._last_step = None\n        self._last_time = None\n        self._scalars = {}\n        self._images = {}\n        self._videos = {}\n        self.step = step\n\n    def scalar(self, name, value):\n        self._scalars[name] = float(value)\n\n    def image(self, name, value):\n        self._images[name] = np.array(value)\n\n    def video(self, name, value):\n        self._videos[name] = np.array(value)\n\n    def write(self, fps=False, step=False):\n        if not step:\n            step = self.step\n        scalars = list(self._scalars.items())\n        if fps:\n            scalars.append((\"fps\", self._compute_fps(step)))\n        print(f\"[{step}]\", \" / \".join(f\"{k} {v:.1f}\" for k, v in scalars))\n        with (self._logdir / \"metrics.jsonl\").open(\"a\") as f:\n            f.write(json.dumps({\"step\": step, **dict(scalars)}) + \"\\n\")\n        for name, value in scalars:\n            if \"/\" not in name:\n                self._writer.add_scalar(\"scalars/\" + name, value, step)\n            else:\n                self._writer.add_scalar(name, value, step)\n        for name, value in self._images.items():\n            self._writer.add_image(name, value, step)\n        for name, value in self._videos.items():\n            name = name if isinstance(name, str) else name.decode(\"utf-8\")\n            if np.issubdtype(value.dtype, np.floating):\n                value = np.clip(255 * value, 0, 255).astype(np.uint8)\n            B, T, H, W, C = value.shape\n            value = value.transpose(1, 4, 2, 0, 3).reshape((1, T, C, H, B * W))\n            self._writer.add_video(name, value, step, 16)\n\n        self._writer.flush()\n        self._scalars = {}\n        self._images = {}\n        self._videos = {}\n\n    def _compute_fps(self, step):\n        if self._last_step is None:\n            self._last_time = time.time()\n            self._last_step = step\n            return 0\n        steps = step - self._last_step\n        duration = time.time() - self._last_time\n        self._last_time += duration\n        self._last_step = step\n        return steps / duration\n\n    def offline_scalar(self, name, value, step):\n        self._writer.add_scalar(\"scalars/\" + name, value, step)\n\n    def offline_video(self, name, value, step):\n        if np.issubdtype(value.dtype, np.floating):\n            value = np.clip(255 * value, 0, 255).astype(np.uint8)\n        B, T, H, W, C = value.shape\n        value = value.transpose(1, 4, 2, 0, 3).reshape((1, T, C, H, B * W))\n        self._writer.add_video(name, value, step, 16)\n\n\ndef simulate(\n    agent,\n    envs,\n    cache,\n    directory,\n    logger,\n    is_eval=False,\n    limit=None,\n    steps=0,\n    episodes=0,\n    state=None,\n):\n    # initialize or unpack simulation state\n    if state is None:\n        step, episode = 0, 0\n        done = np.ones(len(envs), bool)\n        length = np.zeros(len(envs), np.int32)\n        obs = [None] * len(envs)\n        agent_state = None\n        reward = [0] * len(envs)\n    else:\n        step, episode, done, length, obs, agent_state, reward = state\n    while (steps and step < steps) or (episodes and episode < episodes):\n        # reset envs if necessary\n        if done.any():\n            indices = [index for index, d in enumerate(done) if d]\n            results = [envs[i].reset() for i in indices]\n            results = [r() for r in results]\n            for index, result in zip(indices, results):\n                t = result.copy()\n                t = {k: convert(v) for k, v in t.items()}\n                # action will be added to transition in add_to_cache\n                t[\"reward\"] = 0.0\n                t[\"discount\"] = 1.0\n                # initial state should be added to cache\n                add_to_cache(cache, envs[index].id, t)\n                # replace obs with done by initial state\n                obs[index] = result\n        # step agents\n        obs = {k: np.stack([o[k] for o in obs]) for k in obs[0] if \"log_\" not in k}\n        action, agent_state = agent(obs, done, agent_state)\n        if isinstance(action, dict):\n            action = [\n                {k: np.array(action[k][i].detach().cpu()) for k in action}\n                for i in range(len(envs))\n            ]\n        else:\n            action = np.array(action)\n        assert len(action) == len(envs)\n        # step envs\n        results = [e.step(a) for e, a in zip(envs, action)]\n        results = [r() for r in results]\n        obs, reward, done = zip(*[p[:3] for p in results])\n        obs = list(obs)\n        reward = list(reward)\n        done = np.stack(done)\n        episode += int(done.sum())\n        length += 1\n        step += len(envs)\n        length *= 1 - done\n        # add to cache\n        for a, result, env in zip(action, results, envs):\n            o, r, d, info = result\n            o = {k: convert(v) for k, v in o.items()}\n            transition = o.copy()\n            if isinstance(a, dict):\n                transition.update(a)\n            else:\n                transition[\"action\"] = a\n            transition[\"reward\"] = r\n            transition[\"discount\"] = info.get(\"discount\", np.array(1 - float(d)))\n            add_to_cache(cache, env.id, transition)\n\n        if done.any():\n            indices = [index for index, d in enumerate(done) if d]\n            # logging for done episode\n            for i in indices:\n                save_episodes(directory, {envs[i].id: cache[envs[i].id]})\n                length = len(cache[envs[i].id][\"reward\"]) - 1\n                score = float(np.array(cache[envs[i].id][\"reward\"]).sum())\n                video = cache[envs[i].id][\"image\"]\n                # record logs given from environments\n                for key in list(cache[envs[i].id].keys()):\n                    if \"log_\" in key:\n                        logger.scalar(\n                            key, float(np.array(cache[envs[i].id][key]).sum())\n                        )\n                        # log items won't be used later\n                        cache[envs[i].id].pop(key)\n\n                if not is_eval:\n                    step_in_dataset = erase_over_episodes(cache, limit)\n                    logger.scalar(f\"dataset_size\", step_in_dataset)\n                    logger.scalar(f\"train_return\", score)\n                    logger.scalar(f\"train_length\", length)\n                    logger.scalar(f\"train_episodes\", len(cache))\n                    logger.write(step=logger.step)\n                else:\n                    if not \"eval_lengths\" in locals():\n                        eval_lengths = []\n                        eval_scores = []\n                        eval_done = False\n                    # start counting scores for evaluation\n                    eval_scores.append(score)\n                    eval_lengths.append(length)\n\n                    score = sum(eval_scores) / len(eval_scores)\n                    length = sum(eval_lengths) / len(eval_lengths)\n                    logger.video(f\"eval_policy\", np.array(video)[None])\n\n                    if len(eval_scores) >= episodes and not eval_done:\n                        logger.scalar(f\"eval_return\", score)\n                        logger.scalar(f\"eval_length\", length)\n                        logger.scalar(f\"eval_episodes\", len(eval_scores))\n                        logger.write(step=logger.step)\n                        eval_done = True\n    if is_eval:\n        # keep only last item for saving memory. this cache is used for video_pred later\n        while len(cache) > 1:\n            # FIFO\n            cache.popitem(last=False)\n    return (step - steps, episode - episodes, done, length, obs, agent_state, reward)\n\n\ndef add_to_cache(cache, id, transition):\n    if id not in cache:\n        cache[id] = dict()\n        for key, val in transition.items():\n            cache[id][key] = [convert(val)]\n    else:\n        for key, val in transition.items():\n            if key not in cache[id]:\n                # fill missing data(action, etc.) at second time\n                cache[id][key] = [convert(0 * val)]\n                cache[id][key].append(convert(val))\n            else:\n                cache[id][key].append(convert(val))\n\n\ndef erase_over_episodes(cache, dataset_size):\n    step_in_dataset = 0\n    for key, ep in reversed(sorted(cache.items(), key=lambda x: x[0])):\n        if (\n            not dataset_size\n            or step_in_dataset + (len(ep[\"reward\"]) - 1) <= dataset_size\n        ):\n            step_in_dataset += len(ep[\"reward\"]) - 1\n        else:\n            del cache[key]\n    return step_in_dataset\n\n\ndef convert(value, precision=32):\n    value = np.array(value)\n    if np.issubdtype(value.dtype, np.floating):\n        dtype = {16: np.float16, 32: np.float32, 64: np.float64}[precision]\n    elif np.issubdtype(value.dtype, np.signedinteger):\n        dtype = {16: np.int16, 32: np.int32, 64: np.int64}[precision]\n    elif np.issubdtype(value.dtype, np.uint8):\n        dtype = np.uint8\n    elif np.issubdtype(value.dtype, bool):\n        dtype = bool\n    else:\n        raise NotImplementedError(value.dtype)\n    return value.astype(dtype)\n\n\ndef save_episodes(directory, episodes):\n    directory = pathlib.Path(directory).expanduser()\n    directory.mkdir(parents=True, exist_ok=True)\n    for filename, episode in episodes.items():\n        length = len(episode[\"reward\"])\n        filename = directory / f\"{filename}-{length}.npz\"\n        with io.BytesIO() as f1:\n            np.savez_compressed(f1, **episode)\n            f1.seek(0)\n            with filename.open(\"wb\") as f2:\n                f2.write(f1.read())\n    return True\n\n\ndef from_generator(generator, batch_size):\n    while True:\n        batch = []\n        for _ in range(batch_size):\n            batch.append(next(generator))\n        data = {}\n        for key in batch[0].keys():\n            data[key] = []\n            for i in range(batch_size):\n                data[key].append(batch[i][key])\n            data[key] = np.stack(data[key], 0)\n        yield data\n\n\ndef sample_episodes(episodes, length, seed=0):\n    np_random = np.random.RandomState(seed)\n    while True:\n        size = 0\n        ret = None\n        p = np.array(\n            [len(next(iter(episode.values()))) for episode in episodes.values()]\n        )\n        p = p / np.sum(p)\n        while size < length:\n            episode = np_random.choice(list(episodes.values()), p=p)\n            total = len(next(iter(episode.values())))\n            # make sure at least one transition included\n            if total < 2:\n                continue\n            if not ret:\n                index = int(np_random.randint(0, total - 1))\n                ret = {\n                    k: v[index : min(index + length, total)].copy()\n                    for k, v in episode.items()\n                    if \"log_\" not in k\n                }\n                if \"is_first\" in ret:\n                    ret[\"is_first\"][0] = True\n            else:\n                # 'is_first' comes after 'is_last'\n                index = 0\n                possible = length - size\n                ret = {\n                    k: np.append(\n                        ret[k], v[index : min(index + possible, total)].copy(), axis=0\n                    )\n                    for k, v in episode.items()\n                    if \"log_\" not in k\n                }\n                if \"is_first\" in ret:\n                    ret[\"is_first\"][size] = True\n            size = len(next(iter(ret.values())))\n        yield ret\n\n\ndef load_episodes(directory, limit=None, reverse=True):\n    directory = pathlib.Path(directory).expanduser()\n    episodes = collections.OrderedDict()\n    total = 0\n    if reverse:\n        for filename in reversed(sorted(directory.glob(\"*.npz\"))):\n            try:\n                with filename.open(\"rb\") as f:\n                    episode = np.load(f)\n                    episode = {k: episode[k] for k in episode.keys()}\n            except Exception as e:\n                print(f\"Could not load episode: {e}\")\n                continue\n            # extract only filename without extension\n            episodes[str(os.path.splitext(os.path.basename(filename))[0])] = episode\n            total += len(episode[\"reward\"]) - 1\n            if limit and total >= limit:\n                break\n    else:\n        for filename in sorted(directory.glob(\"*.npz\")):\n            try:\n                with filename.open(\"rb\") as f:\n                    episode = np.load(f)\n                    episode = {k: episode[k] for k in episode.keys()}\n            except Exception as e:\n                print(f\"Could not load episode: {e}\")\n                continue\n            episodes[str(filename)] = episode\n            total += len(episode[\"reward\"]) - 1\n            if limit and total >= limit:\n                break\n    return episodes\n\n\nclass SampleDist:\n    def __init__(self, dist, samples=100):\n        self._dist = dist\n        self._samples = samples\n\n    @property\n    def name(self):\n        return \"SampleDist\"\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def mean(self):\n        samples = self._dist.sample(self._samples)\n        return torch.mean(samples, 0)\n\n    def mode(self):\n        sample = self._dist.sample(self._samples)\n        logprob = self._dist.log_prob(sample)\n        return sample[torch.argmax(logprob)][0]\n\n    def entropy(self):\n        sample = self._dist.sample(self._samples)\n        logprob = self.log_prob(sample)\n        return -torch.mean(logprob, 0)\n\n\nclass OneHotDist(torchd.one_hot_categorical.OneHotCategorical):\n    def __init__(self, logits=None, probs=None, unimix_ratio=0.0):\n        if logits is not None and unimix_ratio > 0.0:\n            probs = F.softmax(logits, dim=-1)\n            probs = probs * (1.0 - unimix_ratio) + unimix_ratio / probs.shape[-1]\n            logits = torch.log(probs)\n            super().__init__(logits=logits, probs=None)\n        else:\n            super().__init__(logits=logits, probs=probs)\n\n    def mode(self):\n        _mode = F.one_hot(\n            torch.argmax(super().logits, axis=-1), super().logits.shape[-1]\n        )\n        return _mode.detach() + super().logits - super().logits.detach()\n\n    def sample(self, sample_shape=(), seed=None):\n        if seed is not None:\n            raise ValueError(\"need to check\")\n        sample = super().sample(sample_shape).detach()\n        probs = super().probs\n        while len(probs.shape) < len(sample.shape):\n            probs = probs[None]\n        sample += probs - probs.detach()\n        return sample\n\n\nclass DiscDist:\n    def __init__(\n        self,\n        logits,\n        low=-20.0,\n        high=20.0,\n        transfwd=symlog,\n        transbwd=symexp,\n        device=\"cuda\",\n    ):\n        self.logits = logits\n        self.probs = torch.softmax(logits, -1)\n        self.buckets = torch.linspace(low, high, steps=255, device=device)\n        self.width = (self.buckets[-1] - self.buckets[0]) / 255\n        self.transfwd = transfwd\n        self.transbwd = transbwd\n\n    def mean(self):\n        _mean = self.probs * self.buckets\n        return self.transbwd(torch.sum(_mean, dim=-1, keepdim=True))\n\n    def mode(self):\n        _mode = self.probs * self.buckets\n        return self.transbwd(torch.sum(_mode, dim=-1, keepdim=True))\n\n    # Inside OneHotCategorical, log_prob is calculated using only max element in targets\n    def log_prob(self, x):\n        x = self.transfwd(x)\n        # x(time, batch, 1)\n        below = torch.sum((self.buckets <= x[..., None]).to(torch.int32), dim=-1) - 1\n        above = len(self.buckets) - torch.sum(\n            (self.buckets > x[..., None]).to(torch.int32), dim=-1\n        )\n        # this is implemented using clip at the original repo as the gradients are not backpropagated for the out of limits.\n        below = torch.clip(below, 0, len(self.buckets) - 1)\n        above = torch.clip(above, 0, len(self.buckets) - 1)\n        equal = below == above\n\n        dist_to_below = torch.where(equal, 1, torch.abs(self.buckets[below] - x))\n        dist_to_above = torch.where(equal, 1, torch.abs(self.buckets[above] - x))\n        total = dist_to_below + dist_to_above\n        weight_below = dist_to_above / total\n        weight_above = dist_to_below / total\n        target = (\n            F.one_hot(below, num_classes=len(self.buckets)) * weight_below[..., None]\n            + F.one_hot(above, num_classes=len(self.buckets)) * weight_above[..., None]\n        )\n        log_pred = self.logits - torch.logsumexp(self.logits, -1, keepdim=True)\n        target = target.squeeze(-2)\n\n        return (target * log_pred).sum(-1)\n\n    def log_prob_target(self, target):\n        log_pred = super().logits - torch.logsumexp(super().logits, -1, keepdim=True)\n        return (target * log_pred).sum(-1)\n\n\nclass MSEDist:\n    def __init__(self, mode, agg=\"sum\"):\n        self._mode = mode\n        self._agg = agg\n\n    def mode(self):\n        return self._mode\n\n    def mean(self):\n        return self._mode\n\n    def log_prob(self, value):\n        assert self._mode.shape == value.shape, (self._mode.shape, value.shape)\n        distance = (self._mode - value) ** 2\n        if self._agg == \"mean\":\n            loss = distance.mean(list(range(len(distance.shape)))[2:])\n        elif self._agg == \"sum\":\n            loss = distance.sum(list(range(len(distance.shape)))[2:])\n        else:\n            raise NotImplementedError(self._agg)\n        return -loss\n\n\nclass SymlogDist:\n    def __init__(self, mode, dist=\"mse\", agg=\"sum\", tol=1e-8):\n        self._mode = mode\n        self._dist = dist\n        self._agg = agg\n        self._tol = tol\n\n    def mode(self):\n        return symexp(self._mode)\n\n    def mean(self):\n        return symexp(self._mode)\n\n    def log_prob(self, value):\n        assert self._mode.shape == value.shape\n        if self._dist == \"mse\":\n            distance = (self._mode - symlog(value)) ** 2.0\n            distance = torch.where(distance < self._tol, 0, distance)\n        elif self._dist == \"abs\":\n            distance = torch.abs(self._mode - symlog(value))\n            distance = torch.where(distance < self._tol, 0, distance)\n        else:\n            raise NotImplementedError(self._dist)\n        if self._agg == \"mean\":\n            loss = distance.mean(list(range(len(distance.shape)))[2:])\n        elif self._agg == \"sum\":\n            loss = distance.sum(list(range(len(distance.shape)))[2:])\n        else:\n            raise NotImplementedError(self._agg)\n        return -loss\n\n\nclass ContDist:\n    def __init__(self, dist=None, absmax=None):\n        super().__init__()\n        self._dist = dist\n        self.mean = dist.mean\n        self.absmax = absmax\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def entropy(self):\n        return self._dist.entropy()\n\n    def mode(self):\n        out = self._dist.mean\n        if self.absmax is not None:\n            out *= (self.absmax / torch.clip(torch.abs(out), min=self.absmax)).detach()\n        return out\n\n    def sample(self, sample_shape=()):\n        out = self._dist.rsample(sample_shape)\n        if self.absmax is not None:\n            out *= (self.absmax / torch.clip(torch.abs(out), min=self.absmax)).detach()\n        return out\n\n    def log_prob(self, x):\n        return self._dist.log_prob(x)\n\n\nclass Bernoulli:\n    def __init__(self, dist=None):\n        super().__init__()\n        self._dist = dist\n        self.mean = dist.mean\n\n    def __getattr__(self, name):\n        return getattr(self._dist, name)\n\n    def entropy(self):\n        return self._dist.entropy()\n\n    def mode(self):\n        _mode = torch.round(self._dist.mean)\n        return _mode.detach() + self._dist.mean - self._dist.mean.detach()\n\n    def sample(self, sample_shape=()):\n        return self._dist.rsample(sample_shape)\n\n    def log_prob(self, x):\n        _logits = self._dist.base_dist.logits\n        log_probs0 = -F.softplus(_logits)\n        log_probs1 = -F.softplus(-_logits)\n\n        return torch.sum(log_probs0 * (1 - x) + log_probs1 * x, -1)\n\n\nclass UnnormalizedHuber(torchd.normal.Normal):\n    def __init__(self, loc, scale, threshold=1, **kwargs):\n        super().__init__(loc, scale, **kwargs)\n        self._threshold = threshold\n\n    def log_prob(self, event):\n        return -(\n            torch.sqrt((event - self.mean) ** 2 + self._threshold**2) - self._threshold\n        )\n\n    def mode(self):\n        return self.mean\n\n\nclass SafeTruncatedNormal(torchd.normal.Normal):\n    def __init__(self, loc, scale, low, high, clip=1e-6, mult=1):\n        super().__init__(loc, scale)\n        self._low = low\n        self._high = high\n        self._clip = clip\n        self._mult = mult\n\n    def sample(self, sample_shape):\n        event = super().sample(sample_shape)\n        if self._clip:\n            clipped = torch.clip(event, self._low + self._clip, self._high - self._clip)\n            event = event - event.detach() + clipped.detach()\n        if self._mult:\n            event *= self._mult\n        return event\n\n\nclass TanhBijector(torchd.Transform):\n    def __init__(self, validate_args=False, name=\"tanh\"):\n        super().__init__()\n\n    def _forward(self, x):\n        return torch.tanh(x)\n\n    def _inverse(self, y):\n        y = torch.where(\n            (torch.abs(y) <= 1.0), torch.clamp(y, -0.99999997, 0.99999997), y\n        )\n        y = torch.atanh(y)\n        return y\n\n    def _forward_log_det_jacobian(self, x):\n        log2 = torch.math.log(2.0)\n        return 2.0 * (log2 - x - torch.softplus(-2.0 * x))\n\n\ndef static_scan_for_lambda_return(fn, inputs, start):\n    last = start\n    indices = range(inputs[0].shape[0])\n    indices = reversed(indices)\n    flag = True\n    for index in indices:\n        # (inputs, pcont) -> (inputs[index], pcont[index])\n        inp = lambda x: (_input[x] for _input in inputs)\n        last = fn(last, *inp(index))\n        if flag:\n            outputs = last\n            flag = False\n        else:\n            outputs = torch.cat([outputs, last], dim=-1)\n    outputs = torch.reshape(outputs, [outputs.shape[0], outputs.shape[1], 1])\n    outputs = torch.flip(outputs, [1])\n    outputs = torch.unbind(outputs, dim=0)\n    return outputs\n\n\ndef lambda_return(reward, value, pcont, bootstrap, lambda_, axis):\n    # Setting lambda=1 gives a discounted Monte Carlo return.\n    # Setting lambda=0 gives a fixed 1-step return.\n    # assert reward.shape.ndims == value.shape.ndims, (reward.shape, value.shape)\n    assert len(reward.shape) == len(value.shape), (reward.shape, value.shape)\n    if isinstance(pcont, (int, float)):\n        pcont = pcont * torch.ones_like(reward)\n    dims = list(range(len(reward.shape)))\n    dims = [axis] + dims[1:axis] + [0] + dims[axis + 1 :]\n    if axis != 0:\n        reward = reward.permute(dims)\n        value = value.permute(dims)\n        pcont = pcont.permute(dims)\n    if bootstrap is None:\n        bootstrap = torch.zeros_like(value[-1])\n    next_values = torch.cat([value[1:], bootstrap[None]], 0)\n    inputs = reward + pcont * next_values * (1 - lambda_)\n    # returns = static_scan(\n    #    lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg,\n    #    (inputs, pcont), bootstrap, reverse=True)\n    # reimplement to optimize performance\n    returns = static_scan_for_lambda_return(\n        lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg, (inputs, pcont), bootstrap\n    )\n    if axis != 0:\n        returns = returns.permute(dims)\n    return returns\n\n\ndef lambda_return_variable_dt(reward, value, pcont, dt, bootstrap, lambda_, axis):\n    \"\"\"Lambda-return with variable temporal strides.\n\n    Reward is assumed to be cumulative-discounted (pre-computed during sub-sampling).\n    Discount is raised to the power of dt: gamma^dt.\n    \"\"\"\n    assert len(reward.shape) == len(value.shape), (reward.shape, value.shape)\n    if isinstance(pcont, (int, float)):\n        pcont = pcont * torch.ones_like(reward)\n    if dt.dim() == 2:\n        dt = dt.unsqueeze(-1)\n    dt = dt.float()\n\n    dims = list(range(len(reward.shape)))\n    dims = [axis] + dims[1:axis] + [0] + dims[axis + 1:]\n    if axis != 0:\n        reward = reward.permute(dims)\n        value = value.permute(dims)\n        pcont = pcont.permute(dims)\n        dt = dt.permute(dims)\n\n    if bootstrap is None:\n        bootstrap = torch.zeros_like(value[-1])\n\n    pcont_adj = pcont ** dt\n\n    next_values = torch.cat([value[1:], bootstrap[None]], 0)\n    inputs = reward + pcont_adj * next_values * (1 - lambda_)\n\n    returns = static_scan_for_lambda_return(\n        lambda agg, cur0, cur1: cur0 + cur1 * lambda_ * agg,\n        (inputs, pcont_adj), bootstrap\n    )\n    if axis != 0:\n        returns = returns.permute(dims)\n    return returns\n\n\ndef subsample_variable_dt(data, max_dt, discount):\n    \"\"\"Variable-dt sub-sampling of replay trajectories.\n\n    Samples per-element dt from log-uniform over [1, K]. Computes cumulative\n    discounted reward and minimum continuation for each gap.\n    \"\"\"\n    B, T = data[\"action\"].shape[:2]\n    device = data[\"action\"].device\n\n    log_dt = torch.zeros(B, device=device).uniform_(0, math.log(max_dt))\n    dt_per_elem = torch.clamp(torch.round(torch.exp(log_dt)).long(), 1, max_dt)\n\n    sub_len = torch.ceil(torch.tensor(T, dtype=torch.float) / dt_per_elem.float()).long()\n    T_sub = sub_len.max().item()\n\n    data_sub = {}\n    dt_labels = torch.ones(B, T_sub, dtype=torch.long, device=device)\n    reward_cum = torch.zeros(B, T_sub, *data[\"reward\"].shape[2:], device=device)\n    cont_min = torch.ones(B, T_sub, *data[\"cont\"].shape[2:], device=device)\n\n    for b in range(B):\n        dt_b = dt_per_elem[b].item()\n        indices = list(range(0, T, dt_b))\n        L = len(indices)\n\n        for key in data:\n            if key not in data_sub:\n                data_sub[key] = torch.zeros(\n                    B, T_sub, *data[key].shape[2:],\n                    dtype=data[key].dtype, device=device,\n                )\n            data_sub[key][b, :L] = data[key][b, indices]\n\n        for i, t_start in enumerate(indices[:-1]):\n            t_end = min(t_start + dt_b, T)\n            span = t_end - t_start\n            gamma_powers = discount ** torch.arange(\n                span, dtype=torch.float, device=device\n            )\n            r_slice = data[\"reward\"][b, t_start:t_end]\n            reward_cum[b, i] = (gamma_powers * r_slice).sum(dim=0)\n            cont_min[b, i] = data[\"cont\"][b, t_start:t_end].min(dim=0).values\n\n        dt_labels[b, :L] = dt_b\n\n    data_sub[\"reward\"] = reward_cum\n    data_sub[\"cont\"] = cont_min\n    return data_sub, dt_labels\n\n\nclass Optimizer:\n    def __init__(\n        self,\n        name,\n        parameters,\n        lr,\n        eps=1e-4,\n        clip=None,\n        wd=None,\n        wd_pattern=r\".*\",\n        opt=\"adam\",\n        use_amp=False,\n    ):\n        assert 0 <= wd < 1\n        assert not clip or 1 <= clip\n        self._name = name\n        self._parameters = parameters\n        self._clip = clip\n        self._wd = wd\n        self._wd_pattern = wd_pattern\n        self._opt = {\n            \"adam\": lambda: torch.optim.Adam(parameters, lr=lr, eps=eps),\n            \"nadam\": lambda: NotImplemented(f\"{opt} is not implemented\"),\n            \"adamax\": lambda: torch.optim.Adamax(parameters, lr=lr, eps=eps),\n            \"sgd\": lambda: torch.optim.SGD(parameters, lr=lr),\n            \"momentum\": lambda: torch.optim.SGD(parameters, lr=lr, momentum=0.9),\n        }[opt]()\n        self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\n\n    def __call__(self, loss, params, retain_graph=True):\n        assert len(loss.shape) == 0, loss.shape\n        metrics = {}\n        metrics[f\"{self._name}_loss\"] = loss.detach().cpu().numpy()\n        self._opt.zero_grad()\n        self._scaler.scale(loss).backward(retain_graph=retain_graph)\n        self._scaler.unscale_(self._opt)\n        # loss.backward(retain_graph=retain_graph)\n        norm = torch.nn.utils.clip_grad_norm_(params, self._clip)\n        if self._wd:\n            self._apply_weight_decay(params)\n        self._scaler.step(self._opt)\n        self._scaler.update()\n        # self._opt.step()\n        self._opt.zero_grad()\n        metrics[f\"{self._name}_grad_norm\"] = to_np(norm)\n        return metrics\n\n    def _apply_weight_decay(self, varibs):\n        nontrivial = self._wd_pattern != r\".*\"\n        if nontrivial:\n            raise NotImplementedError\n        for var in varibs:\n            var.data = (1 - self._wd) * var.data\n\n\ndef args_type(default):\n    def parse_string(x):\n        if default is None:\n            return x\n        if isinstance(default, bool):\n            return bool([\"False\", \"True\"].index(x))\n        if isinstance(default, int):\n            return float(x) if (\"e\" in x or \".\" in x) else int(x)\n        if isinstance(default, (list, tuple)):\n            return tuple(args_type(default[0])(y) for y in x.split(\",\"))\n        return type(default)(x)\n\n    def parse_object(x):\n        if isinstance(default, (list, tuple)):\n            return tuple(x)\n        return x\n\n    return lambda x: parse_string(x) if isinstance(x, str) else parse_object(x)\n\n\ndef static_scan(fn, inputs, start):\n    last = start\n    indices = range(inputs[0].shape[0])\n    flag = True\n    for index in indices:\n        inp = lambda x: (_input[x] for _input in inputs)\n        last = fn(last, *inp(index))\n        if flag:\n            if type(last) == type({}):\n                outputs = {\n                    key: value.clone().unsqueeze(0) for key, value in last.items()\n                }\n            else:\n                outputs = []\n                for _last in last:\n                    if type(_last) == type({}):\n                        outputs.append(\n                            {\n                                key: value.clone().unsqueeze(0)\n                                for key, value in _last.items()\n                            }\n                        )\n                    else:\n                        outputs.append(_last.clone().unsqueeze(0))\n            flag = False\n        else:\n            if type(last) == type({}):\n                for key in last.keys():\n                    outputs[key] = torch.cat(\n                        [outputs[key], last[key].unsqueeze(0)], dim=0\n                    )\n            else:\n                for j in range(len(outputs)):\n                    if type(last[j]) == type({}):\n                        for key in last[j].keys():\n                            outputs[j][key] = torch.cat(\n                                [outputs[j][key], last[j][key].unsqueeze(0)], dim=0\n                            )\n                    else:\n                        outputs[j] = torch.cat(\n                            [outputs[j], last[j].unsqueeze(0)], dim=0\n                        )\n    if type(last) == type({}):\n        outputs = [outputs]\n    return outputs\n\n\nclass Every:\n    def __init__(self, every):\n        self._every = every\n        self._last = None\n\n    def __call__(self, step):\n        if not self._every:\n            return 0\n        if self._last is None:\n            self._last = step\n            return 1\n        count = int((step - self._last) / self._every)\n        self._last += self._every * count\n        return count\n\n\nclass Once:\n    def __init__(self):\n        self._once = True\n\n    def __call__(self):\n        if self._once:\n            self._once = False\n            return True\n        return False\n\n\nclass Until:\n    def __init__(self, until):\n        self._until = until\n\n    def __call__(self, step):\n        if not self._until:\n            return True\n        return step < self._until\n\n\ndef weight_init(m):\n    if isinstance(m, nn.Linear):\n        in_num = m.in_features\n        out_num = m.out_features\n        denoms = (in_num + out_num) / 2.0\n        scale = 1.0 / denoms\n        std = np.sqrt(scale) / 0.87962566103423978\n        nn.init.trunc_normal_(\n            m.weight.data, mean=0.0, std=std, a=-2.0 * std, b=2.0 * std\n        )\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n    elif isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):\n        space = m.kernel_size[0] * m.kernel_size[1]\n        in_num = space * m.in_channels\n        out_num = space * m.out_channels\n        denoms = (in_num + out_num) / 2.0\n        scale = 1.0 / denoms\n        std = np.sqrt(scale) / 0.87962566103423978\n        nn.init.trunc_normal_(\n            m.weight.data, mean=0.0, std=std, a=-2.0 * std, b=2.0 * std\n        )\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n    elif isinstance(m, nn.LayerNorm):\n        m.weight.data.fill_(1.0)\n        if hasattr(m.bias, \"data\"):\n            m.bias.data.fill_(0.0)\n\n\ndef uniform_weight_init(given_scale):\n    def f(m):\n        if isinstance(m, nn.Linear):\n            in_num = m.in_features\n            out_num = m.out_features\n            denoms = (in_num + out_num) / 2.0\n            scale = given_scale / denoms\n            limit = np.sqrt(3 * scale)\n            nn.init.uniform_(m.weight.data, a=-limit, b=limit)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n        elif isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):\n            space = m.kernel_size[0] * m.kernel_size[1]\n            in_num = space * m.in_channels\n            out_num = space * m.out_channels\n            denoms = (in_num + out_num) / 2.0\n            scale = given_scale / denoms\n            limit = np.sqrt(3 * scale)\n            nn.init.uniform_(m.weight.data, a=-limit, b=limit)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n        elif isinstance(m, nn.LayerNorm):\n            m.weight.data.fill_(1.0)\n            if hasattr(m.bias, \"data\"):\n                m.bias.data.fill_(0.0)\n\n    return f\n\n\ndef tensorstats(tensor, prefix=None):\n    metrics = {\n        \"mean\": to_np(torch.mean(tensor)),\n        \"std\": to_np(torch.std(tensor)),\n        \"min\": to_np(torch.min(tensor)),\n        \"max\": to_np(torch.max(tensor)),\n    }\n    if prefix:\n        metrics = {f\"{prefix}_{k}\": v for k, v in metrics.items()}\n    return metrics\n\n\ndef set_seed_everywhere(seed):\n    torch.manual_seed(seed)\n    if torch.cuda.is_available():\n        torch.cuda.manual_seed_all(seed)\n    np.random.seed(seed)\n    random.seed(seed)\n\n\ndef enable_deterministic_run():\n    os.environ[\"CUBLAS_WORKSPACE_CONFIG\"] = \":4096:8\"\n    torch.backends.cudnn.benchmark = False\n    torch.use_deterministic_algorithms(True)\n\n\ndef recursively_collect_optim_state_dict(\n    obj, path=\"\", optimizers_state_dicts=None, visited=None\n):\n    if optimizers_state_dicts is None:\n        optimizers_state_dicts = {}\n    if visited is None:\n        visited = set()\n    # avoid cyclic reference\n    if id(obj) in visited:\n        return optimizers_state_dicts\n    else:\n        visited.add(id(obj))\n    attrs = obj.__dict__\n    if isinstance(obj, torch.nn.Module):\n        attrs.update(\n            {k: attr for k, attr in obj.named_modules() if \".\" not in k and obj != attr}\n        )\n    for name, attr in attrs.items():\n        new_path = path + \".\" + name if path else name\n        if isinstance(attr, torch.optim.Optimizer):\n            optimizers_state_dicts[new_path] = attr.state_dict()\n        elif hasattr(attr, \"__dict__\"):\n            optimizers_state_dicts.update(\n                recursively_collect_optim_state_dict(\n                    attr, new_path, optimizers_state_dicts, visited\n                )\n            )\n    return optimizers_state_dicts\n\n\ndef recursively_load_optim_state_dict(obj, optimizers_state_dicts):\n    for path, state_dict in optimizers_state_dicts.items():\n        keys = path.split(\".\")\n        obj_now = obj\n        for key in keys:\n            obj_now = getattr(obj_now, key)\n        obj_now.load_state_dict(state_dict)\nFILEEOF",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T02:05:43.235923+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T02:05:43.236086+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "wc -l /root/autodl-tmp/event-gated-adaptive-horizon/networks.py /root/autodl-tmp/event-gated-adaptive-horizon/models.py /root/autodl-tmp/event-gated-adaptive-horizon/tools.py /root/autodl-tmp/event-gated-adaptive-horizon/configs.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "wc -l /root/autodl-tmp/event-gated-adaptive-horizon/networks.py /root/autodl-tmp/event-gated-adaptive-horizon/models.py /root/autodl-tmp/event-gated-adaptive-horizon/tools.py /root/autodl-tmp/event-gated-adaptive-horizon/configs.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T02:05:43.236222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   919 /root/autodl-tmp/event-gated-adaptive-horizon/networks.py\\n   653 /root/autodl-tmp/event-gated-adaptive-horizon/models.py\\n  1093 /root/autodl-tmp/event-gated-adaptive-horizon/tools.py\\n   203 /root/autodl-tmp/event-gated-adaptive-horizon/configs.yaml\\n  2868 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T02:05:43.236377+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom networks import RSSM, EventGate\nfrom tools import lambda_return_variable_dt, subsample_variable_dt\nfrom models import WorldModel, ImagBehavior\nprint('All imports OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -c \"\nfrom networks import RSSM, EventGate\nfrom tools import lambda_return_variable_dt, subsample_variable_dt\nfrom models import WorldModel, ImagBehavior\nprint('All imports OK')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T02:05:43.236505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All imports OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T02:05:43.236637+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False 2>&1 | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False 2>&1 | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T02:05:43.236757+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled true 2>&1 | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled true 2>&1 | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T02:05:43.236919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/event-gated-adaptive-horizon/dreamer.py\\\", line 365, in &lt;module>\\n    main(parser.parse_args(remaining))\\n  File \\\"/root/autodl-tmp/event-gated-adaptive-horizon/dreamer.py\\\", line 210, in main\\n    logdir = pathlib.Path(config.logdir).expanduser()\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/pathlib.py\\\", line 1162, in __init__\\n    super().__init__(*args)\\n  File \\\"/root/miniconda3/lib/python3.12/pathlib.py\\\", line 373, in __init__\\n    raise TypeError(\\nTypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T02:05:43.237071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                  [--gate_dt_embed_dim GATE_DT_EMBED_DIM]\\n                  [--gate_enabled GATE_ENABLED]\\n                  [--gate_entropy_bonus_final GATE_ENTROPY_BONUS_FINAL]\\n                  [--gate_entropy_bonus_init GATE_ENTROPY_BONUS_INIT]\\n                  [--gate_hidden_layers GATE_HIDDEN_LAYERS]\\n                  [--gate_hidden_units GATE_HIDDEN_UNITS]\\n                  [--gate_loss_weight GATE_LOSS_WEIGHT]\\n                  [--gate_max_dt GATE_MAX_DT]\\n                  [--gate_tau_anneal_steps GATE_TAU_ANNEAL_STEPS]\\n                  [--gate_tau_final GATE_TAU_FINAL]\\n                  [--gate_tau_init GATE_TAU_INIT] [--grad_clip GRAD_CLIP]\\n                  [--grad_heads GRAD_HEADS] [--grayscale GRAYSCALE]\\n                  [--imag_gradient IMAG_GRADIENT]\\n                  [--imag_gradient_mix IMAG_GRADIENT_MIX]\\n                  [--imag_horizon IMAG_HORIZON] [--initial INITIAL]\\n                  [--kl_free KL_FREE] [--log_every LOG_EVERY]\\n                  [--logdir LOGDIR] [--model_lr MODEL_LR] [--norm NORM]\\n                  [--offline_evaldir OFFLINE_EVALDIR]\\n                  [--offline_traindir OFFLINE_TRAINDIR] [--opt OPT]\\n                  [--opt_eps OPT_EPS] [--parallel PARALLEL]\\n                  [--precision PRECISION] [--prefill PREFILL]\\n                  [--pretrain PRETRAIN] [--rep_scale REP_SCALE]\\n                  [--reset_every RESET_EVERY] [--reward_EMA REWARD_EMA]\\n                  [--reward_head REWARD_HEAD] [--seed SEED] [--size SIZE]\\n                  [--steps STEPS] [--task TASK] [--time_limit TIME_LIMIT]\\n                  [--train_ratio TRAIN_RATIO] [--traindir TRAINDIR]\\n                  [--unimix_ratio UNIMIX_RATIO] [--units UNITS]\\n                  [--video_pred_log VIDEO_PRED_LOG]\\n                  [--weight_decay WEIGHT_DECAY]\\ndreamer.py: error: argument --gate_enabled: invalid &lt;lambda> value: 'true'\\n\", \"stder
+…[truncated 93 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T02:05:43.237245+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline 2>&1 | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline 2>&1 | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T02:05:43.237369+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated 2>&1 | tail -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated 2>&1 | tail -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T02:05:43.237497+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline 2>&1 | tail -30'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T02:05:43.237620+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated 2>&1 | tail -30'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T02:05:43.237766+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline > /tmp/dryrun_baseline.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline > /tmp/dryrun_baseline.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T02:05:43.237919+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated > /tmp/dryrun_gated.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated > /tmp/dryrun_gated.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T02:05:43.238046+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=8212\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 31.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T02:05:43.238165+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated > /tmp/dryrun_gated.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=8696\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T02:05:43.238308+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps -p 8212 -o pid= 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps -p 8212 -o pid= 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T02:05:43.238428+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T02:05:43.238541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps -p 8696 -o pid= 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps -p 8696 -o pid= 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T02:05:43.238654+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T02:05:43.238771+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps -p 8212,8696 -o pid,stat,etime,cmd --no-headers 2>/dev/null; echo \"---\"; tail -20 /tmp/dryrun_baseline.log 2>/dev/null; echo \"===\"; tail -20 /tmp/dryrun_gated.log 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps -p 8212,8696 -o pid,stat,etime,cmd --no-headers 2>/dev/null; echo \"---\"; tail -20 /tmp/dryrun_baseline.log 2>/dev/null; echo \"===\"; tail -20 /tmp/dryrun_gated.log 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T02:05:43.239134+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  8212 S          01:11 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:0 --compile False --logdir /tmp/dryrun_baseline > /tmp/dryrun_baseline.log 2>&1 & echo \\\"PID=$!\\\"\\n  8696 S          00:40 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated > /tmp/dryrun_gated.log 2>&1 & echo \\\"PID=$!\\\"\\n---\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda
+…[truncated 1006 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T02:05:43.239370+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "sleep 60 && echo \"---BASELINE---\" && tail -30 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -30 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep dreamer | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "sleep 60 && echo \"---BASELINE---\" && tail -30 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -30 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep dreamer | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T02:05:43.239519+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'sleep 60 && echo \\\"---BASELINE---\\\" && tail -30 /tmp/dryrun_baseline.log 2>/dev/null && echo \\\"---GATED---\\\" && tail -30 /tmp/dryrun_gated.log 2>/dev/null && echo \\\"---PROCS---\\\" && ps aux | grep dreamer | grep -v grep'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-13T02:05:43.239693+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "echo \"---BASELINE---\" && tail -30 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -30 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "echo \"---BASELINE---\" && tail -30 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -30 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T02:05:43.239866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---BASELINE---\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n---GATED---\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n---PROCS---\\n9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-13T02:05:43.240037+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sleep 45 && echo \"done waiting\"",
+  "description": "Wait 45 seconds before next check"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sleep 45 && echo \"done waiting\"",
+    "description": "Wait 45 seconds before next check"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-13T02:05:43.240158+00:00_
+
+&lt;tool_use_error>Blocked: sleep 45 followed by: echo "done waiting". To wait for a condition, use Monitor with an until-loop (e.g. `until &lt;check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T02:05:43.240276+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "echo \"---BASELINE---\" && tail -40 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -40 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "echo \"---BASELINE---\" && tail -40 /tmp/dryrun_baseline.log 2>/dev/null && echo \"---GATED---\" && tail -40 /tmp/dryrun_gated.log 2>/dev/null && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T02:05:43.240417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---BASELINE---\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n---GATED---\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n---PROCS---\\n9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-13T02:05:43.240561+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && ls -la /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"---\" && wc -l /tmp/dryrun_baseline.log /tmp/dryrun_gated.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && ls -la /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"---\" && wc -l /tmp/dryrun_baseline.log /tmp/dryrun_gated.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T02:05:43.240686+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 1917 MiB, 0 %\\n1, 1602 MiB, 1 %\\n---\\n-rw-r--r-- 1 root root 829 May 13 10:00 /tmp/dryrun_baseline.log\\n-rw-r--r-- 1 root root 829 May 13 10:00 /tmp/dryrun_gated.log\\n---\\n   7 /tmp/dryrun_baseline.log\\n   7 /tmp/dryrun_gated.log\\n  14 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-13T02:05:43.240849+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "tail -50 /tmp/dryrun_baseline.log && echo \"======\" && tail -50 /tmp/dryrun_gated.log && echo \"======\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "tail -50 /tmp/dryrun_baseline.log && echo \"======\" && tail -50 /tmp/dryrun_gated.log && echo \"======\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T02:05:43.241001+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n======\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n======\\n9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-13T02:05:43.241147+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ls -laR /tmp/dryrun_baseline/ 2>/dev/null | head -20 && echo \"===\" && ls -laR /tmp/dryrun_gated/ 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ls -laR /tmp/dryrun_baseline/ 2>/dev/null | head -20 && echo \"===\" && ls -laR /tmp/dryrun_gated/ 2>/dev/null | head -20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-13T02:05:43.241290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/tmp/dryrun_baseline/:\\ntotal 24\\ndrwxr-xr-x 4 root root 4096 May 13 10:00 .\\ndrwxrwxrwt 1 root root 4096 May 13 10:00 ..\\ndrwxr-xr-x 2 root root 4096 May 13 10:02 eval_eps\\n-rw-r--r-- 1 root root   88 May 13 09:58 events.out.tfevents.1778637535.autodl-container-k9z16fn7md-3a522761.7239.0\\n-rw-r--r-- 1 root root   88 May 13 10:00 events.out.tfevents.1778637604.autodl-container-k9z16fn7md-3a522761.8218.0\\n-rw-r--r-- 1 root root   26 May 13 10:00 metrics.jsonl\\ndrwxr-xr-x 2 root root    6 May 13 09:58 train_eps\\n\\n/tmp/dryrun_baseline/eval_eps:\\ntotal 10488\\ndrwxr-xr-x 2 root root    4096 May 13 10:02 .\\ndrwxr-xr-x 4 root root    4096 May 13 10:00 ..\\n-rw-r--r-- 1 root root 1364345 May 13 10:00 20260513T095900-1304dc4d635147aeb2313b77d861114a-501.npz\\n-rw-r--r-- 1 root root 1320193 May 13 10:00 20260513T095900-495196b06bb0433fbc7837a43d12346b-501.npz\\n-rw-r--r-- 1 root root 1295080 May 13 10:00 20260513T095900-7337b8a0ed704c1893ba85ec4fcf23e3-501.npz\\n-rw-r--r-- 1 root root 1375287 May 13 10:00 20260513T095900-9ec3448eae3e4ccdac5ceed0ccc1e63c-501.npz\\n-rw-r--r-- 1 root root 1375287 May 13 10:02 20260513T100009-4bca0f373022487bab97a32781560386-501.npz\\n-rw-r--r-- 1 root root 1295080 May 13 10:02 20260513T100009-c544936af7e944acb13cc2d75cc7571b-501.npz\\n===\\n/tmp/dryrun_gated/:\\ntotal 24\\ndrwxr-xr-x 4 root root 4096 May 13 10:00 .\\ndrwxrwxrwt 1 root root 4096 May 13 10:00 ..\\ndrwxr-xr-x 2 root root 4096 May 13 10:01 eval_eps\\n-rw-r--r-- 1 root root   88 May 13 09:59 events.out.tfevents.1778637566.autodl-container-k9z16fn7md-3a522761.7733.0\\n-rw-r--r-- 1 root root   88 May 13 10:00 events.out.tfevents.1778637635.autodl-container-k9z16fn7md-3a522761.8702.0\\n-rw-r--r-- 1 root root   26 May 13 10:00 metrics.jsonl\\ndrwxr-xr-x 2 root root   10 May 13 09:59 train_eps\\n\\n/tmp/dryrun_gated/eval_eps:\\ntotal 5192\\ndrwxr-xr-x 2 root root    4096 May 13 10:01 .\\ndrwxr-xr-x 4 root root    4096 M
+…[truncated 567 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-13T02:05:43.241462+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "cat /tmp/dryrun_baseline/metrics.jsonl && echo \"===\" && cat /tmp/dryrun_gated/metrics.jsonl && echo \"===\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "cat /tmp/dryrun_baseline/metrics.jsonl && echo \"===\" && cat /tmp/dryrun_gated/metrics.jsonl && echo \"===\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T02:05:43.241591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 60}\\n{\\\"step\\\": 60}\\n===\\n{\\\"step\\\": 60}\\n{\\\"step\\\": 60}\\n===\\n6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-13T02:05:43.241730+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "tail -5 /tmp/dryrun_baseline.log && echo \"===\" && tail -5 /tmp/dryrun_gated.log && echo \"===\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "tail -5 /tmp/dryrun_baseline.log && echo \"===\" && tail -5 /tmp/dryrun_gated.log && echo \"===\" && ps aux | grep \"dreamer.py\" | grep -v grep | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T02:05:43.241885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n===\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n/root/autodl-tmp/event-gated-adaptive-horizon/tools.py:840: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.\\n  self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)\\n===\\n6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-13T02:05:43.242048+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "pkill -f \"dryrun_baseline\" 2>/dev/null; pkill -f \"dryrun_gated\" 2>/dev/null; sleep 2; ps aux | grep dreamer | grep -v grep | wc -l && rm -rf /tmp/dryrun_baseline /tmp/dryrun_gated /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"Cleaned up\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "pkill -f \"dryrun_baseline\" 2>/dev/null; pkill -f \"dryrun_gated\" 2>/dev/null; sleep 2; ps aux | grep dreamer | grep -v grep | wc -l && rm -rf /tmp/dryrun_baseline /tmp/dryrun_gated /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"Cleaned up\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-13T02:05:43.242181+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pkill -f \\\"dryrun_baseline\\\" 2>/dev/null; pkill -f \\\"dryrun_gated\\\" 2>/dev/null; sleep 2; ps aux | grep dreamer | grep -v grep | wc -l && rm -rf /tmp/dryrun_baseline /tmp/dryrun_gated /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \\\"Cleaned up\\\"'\\n\\nExit code: -1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-13T02:05:43.242314+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "kill $(pgrep -f \"dryrun_baseline\") 2>/dev/null; kill $(pgrep -f \"dryrun_gated\") 2>/dev/null; echo \"kill sent\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "kill $(pgrep -f \"dryrun_baseline\") 2>/dev/null; kill $(pgrep -f \"dryrun_gated\") 2>/dev/null; echo \"kill sent\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-13T02:05:43.242432+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": -1}, \"error\": \"exit code -1\", \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-13T02:05:43.242544+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps aux | grep dreamer | grep -v grep | wc -l",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps aux | grep dreamer | grep -v grep | wc -l",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-13T02:05:43.242858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-13T02:05:43.243020+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps aux | grep dreamer | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps aux | grep dreamer | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-13T02:05:43.243149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root       8696  0.0  0.0   4364  2108 ?        S    10:00   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated > /tmp/dryrun_gated.log 2>&1 & echo \\\"PID=$!\\\"\\nroot       8701  0.0  0.0   6084  2000 ?        S    10:00   0:00 timeout 180 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated\\nroot       8702 1202  0.2 62290328 2641480 ?    Sl   10:00  32:40 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 50 --eval_every 1000000 --log_every 10 --prefill 30 --device cuda:1 --compile False --gate_enabled True --logdir /tmp/dryrun_gated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-13T02:05:43.243294+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "kill -9 8702 8701 8696 2>/dev/null; echo \"done\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "kill -9 8702 8701 8696 2>/dev/null; echo \"done\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-13T02:05:43.243414+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-13T02:05:43.243525+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "ps aux | grep dreamer | grep -v grep | wc -l && rm -rf /tmp/dryrun_baseline /tmp/dryrun_gated /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"Cleaned\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "ps aux | grep dreamer | grep -v grep | wc -l && rm -rf /tmp/dryrun_baseline /tmp/dryrun_gated /tmp/dryrun_baseline.log /tmp/dryrun_gated.log && echo \"Cleaned\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-13T02:05:43.243679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0\\nCleaned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-13T02:05:43.243834+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-13T02:05:43.243955+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-13T02:05:43.244098+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0 > /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>&1 & echo \"BASELINE_PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0 > /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>&1 & echo \"BASELINE_PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-13T02:05:43.244218+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True > /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>&1 & echo \"GATED_PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True > /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>&1 & echo \"GATED_PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-13T02:05:43.244346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"BASELINE_PID=9404\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-13T02:05:43.244466+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True > /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>&1 & echo \\\"GATED_PID=$!\\\"'\\n\\nStdout:\\n\\nGATED_PID=9764\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-13T02:05:43.244601+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | grep -c \"500000\" && echo \"---LOGDIRS---\" && ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1/ 2>/dev/null | head -10 && echo \"===\" && ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1/ 2>/dev/null | head -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---PROCS---\" && ps aux | grep \"dreamer.py\" | grep -v grep | grep -c \"500000\" && echo \"---LOGDIRS---\" && ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1/ 2>/dev/null | head -10 && echo \"===\" && ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1/ 2>/dev/null | head -10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-13T02:05:43.244732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 3 MiB, 0 %\\n1, 3 MiB, 0 %\\n---PROCS---\\n4\\n---LOGDIRS---\\ntotal 4\\ndrwxr-xr-x 4 root root 137 May 13 10:03 .\\ndrwxr-xr-x 4 root root 116 May 13 10:04 ..\\ndrwxr-xr-x 2 root root  10 May 13 10:03 eval_eps\\n-rw-r--r-- 1 root root  88 May 13 10:03 events.out.tfevents.1778637819.autodl-container-k9z16fn7md-3a522761.9409.0\\ndrwxr-xr-x 2 root root  10 May 13 10:03 train_eps\\n===\\ntotal 4\\ndrwxr-xr-x 4 root root 137 May 13 10:04 .\\ndrwxr-xr-x 4 root root 116 May 13 10:04 ..\\ndrwxr-xr-x 2 root root  10 May 13 10:04 eval_eps\\n-rw-r--r-- 1 root root  88 May 13 10:04 events.out.tfevents.1778637849.autodl-container-k9z16fn7md-3a522761.9769.0\\ndrwxr-xr-x 2 root root  10 May 13 10:04 train_eps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-13T02:05:43.244904+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "nvidia-smi --query-gpu=index,name,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && ps aux | grep \"dreamer.py\" | grep \"500000\" | grep -v grep | awk '{print $2, $11, $NF}'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "nvidia-smi --query-gpu=index,name,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && ps aux | grep \"dreamer.py\" | grep \"500000\" | grep -v grep | awk '{print $2, $11, $NF}'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-13T02:05:43.245044+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 0 %\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 3 MiB, 0 %\\n---\\n9404 bash \\\"BASELINE_PID=$!\\\"\\n9409 python cuda:0\\n9764 bash \\\"GATED_PID=$!\\\"\\n9769 python True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-13T02:05:43.245495+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "tail -10 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>/dev/null && echo \"===\" && tail -10 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "tail -10 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>/dev/null && echo \"===\" && tail -10 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-13T02:05:43.245652+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n===\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-13T02:05:43.245838+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000",
+  "account": "root",
+  "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && tail -3 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>/dev/null && echo \"===\" && tail -3 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>/dev/null && echo \"---\" && ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1/train_eps/ 2>/dev/null | wc -l && ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1/train_eps/ 2>/dev/null | wc -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000",
+    "account": "root",
+    "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && tail -3 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log 2>/dev/null && echo \"===\" && tail -3 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log 2>/dev/null && echo \"---\" && ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1/train_eps/ 2>/dev/null | wc -l && ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1/train_eps/ 2>/dev/null | wc -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-13T02:05:43.246535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 3 MiB, 0 %\\n1, 3 MiB, 0 %\\n---\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n===\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym/spaces/box.py:78: UserWarning: \\u001b[33mWARN: Box bound precision lowered by casting to float32\\u001b[0m\\n  logger.warn(f\\\"Box bound precision lowered by casting to {self.dtype}\\\")\\n---\\n4\\n0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-13T02:05:43.246755+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp_001_baseline_walker_s1",
+  "type": "data",
+  "description": "DreamerV3 baseline on DMC Walker Walk, 500K steps, seed=1, cuda:0. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1",
+  "project": "event-gated-adaptive-horizon",
+  "exp_id": "exp_001_baseline",
+  "tags": "['baseline', 'walker_walk', 'dmc_proprio', 'seed1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp_001_baseline_walker_s1",
+    "type": "data",
+    "description": "DreamerV3 baseline on DMC Walker Walk, 500K steps, seed=1, cuda:0. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1",
+    "project": "event-gated-adaptive-horizon",
+    "exp_id": "exp_001_baseline",
+    "tags": "['baseline', 'walker_walk', 'dmc_proprio', 'seed1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-13T02:05:43.246927+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-13T02:05:43.247056+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp_002_event_gated_walker_s1",
+  "type": "data",
+  "description": "Event-gated variable-rate RSSM on DMC Walker Walk, 500K steps, seed=1, cuda:1, gate_enabled=True. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1",
+  "project": "event-gated-adaptive-horizon",
+  "exp_id": "exp_002_event_gated",
+  "tags": "['event_gated', 'walker_walk', 'dmc_proprio', 'seed1']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp_002_event_gated_walker_s1",
+    "type": "data",
+    "description": "Event-gated variable-rate RSSM on DMC Walker Walk, 500K steps, seed=1, cuda:1, gate_enabled=True. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1",
+    "project": "event-gated-adaptive-horizon",
+    "exp_id": "exp_002_event_gated",
+    "tags": "['event_gated', 'walker_walk', 'dmc_proprio', 'seed1']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-13T02:05:43.247185+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-13T02:05:43.247306+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp_001_baseline_walker_s1",
+  "type": "data",
+  "description": "DreamerV3 baseline on DMC Walker Walk, 500K steps, seed=1, cuda:0. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1",
+  "project": "event-gated-adaptive-horizon",
+  "exp_id": "exp_001_baseline",
+  "tags": "['baseline', 'walker_walk', 'dmc_proprio', 'seed1']",
+  "content": "Experiment: DreamerV3 Baseline on DMC Walker Walk\nServer: autodl-rtx6000 (RTX PRO 6000 x2)\nGPU: cuda:0\nPID: 9404 (main), 9409 (python)\nLogdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\nLog file: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log\nSteps: 500000\nSeed: 1\nConfig: defaults + dmc_proprio\ngate_enabled: false (standard DreamerV3)\nStarted: 2026-05-13 10:03 UTC",
+  "content_filename": "exp_001_baseline.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp_001_baseline_walker_s1",
+    "type": "data",
+    "description": "DreamerV3 baseline on DMC Walker Walk, 500K steps, seed=1, cuda:0. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1",
+    "project": "event-gated-adaptive-horizon",
+    "exp_id": "exp_001_baseline",
+    "tags": "['baseline', 'walker_walk', 'dmc_proprio', 'seed1']",
+    "content": "Experiment: DreamerV3 Baseline on DMC Walker Walk\nServer: autodl-rtx6000 (RTX PRO 6000 x2)\nGPU: cuda:0\nPID: 9404 (main), 9409 (python)\nLogdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\nLog file: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1.log\nSteps: 500000\nSeed: 1\nConfig: defaults + dmc_proprio\ngate_enabled: false (standard DreamerV3)\nStarted: 2026-05-13 10:03 UTC",
+    "content_filename": "exp_001_baseline.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-13T02:05:43.247446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_4ef70d\", \"name\": \"exp_001_baseline_walker_s1\", \"type\": \"data\", \"description\": \"DreamerV3 baseline on DMC Walker Walk, 500K steps, seed=1, cuda:0. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/exp_001_baseline/data/exp_001_baseline.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": \"exp_001_baseline\", \"skill\": \"\", \"created_at\": \"2026-05-13T02:05:29.532454+00:00\", \"tags\": [\"baseline\", \"walker_walk\", \"dmc_proprio\", \"seed1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-13T02:05:43.247582+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp_002_event_gated_walker_s1",
+  "type": "data",
+  "description": "Event-gated variable-rate RSSM on DMC Walker Walk, 500K steps, seed=1, cuda:1, gate_enabled=True. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1",
+  "project": "event-gated-adaptive-horizon",
+  "exp_id": "exp_002_event_gated",
+  "tags": "['event_gated', 'walker_walk', 'dmc_proprio', 'seed1']",
+  "content": "Experiment: Event-Gated Adaptive Horizon on DMC Walker Walk\nServer: autodl-rtx6000 (RTX PRO 6000 x2)\nGPU: cuda:1\nPID: 9764 (main), 9769 (python)\nLogdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\nLog file: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log\nSteps: 500000\nSeed: 1\nConfig: defaults + dmc_proprio\ngate_enabled: True\ngate_max_dt: 8, tau annealing 5.0->0.5 over 200K steps\ncurriculum: phase1=50K (gate off), phase2=150K (ramp up)\nStarted: 2026-05-13 10:04 UTC",
+  "content_filename": "exp_002_event_gated.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp_002_event_gated_walker_s1",
+    "type": "data",
+    "description": "Event-gated variable-rate RSSM on DMC Walker Walk, 500K steps, seed=1, cuda:1, gate_enabled=True. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1",
+    "project": "event-gated-adaptive-horizon",
+    "exp_id": "exp_002_event_gated",
+    "tags": "['event_gated', 'walker_walk', 'dmc_proprio', 'seed1']",
+    "content": "Experiment: Event-Gated Adaptive Horizon on DMC Walker Walk\nServer: autodl-rtx6000 (RTX PRO 6000 x2)\nGPU: cuda:1\nPID: 9764 (main), 9769 (python)\nLogdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\nLog file: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1.log\nSteps: 500000\nSeed: 1\nConfig: defaults + dmc_proprio\ngate_enabled: True\ngate_max_dt: 8, tau annealing 5.0->0.5 over 200K steps\ncurriculum: phase1=50K (gate off), phase2=150K (ramp up)\nStarted: 2026-05-13 10:04 UTC",
+    "content_filename": "exp_002_event_gated.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-13T02:05:43.247805+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_ad6232\", \"name\": \"exp_002_event_gated_walker_s1\", \"type\": \"data\", \"description\": \"Event-gated variable-rate RSSM on DMC Walker Walk, 500K steps, seed=1, cuda:1, gate_enabled=True. Logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/exp_002_event_gated/data/exp_002_event_gated.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": \"exp_002_event_gated\", \"skill\": \"\", \"created_at\": \"2026-05-13T02:05:34.575066+00:00\", \"tags\": [\"event_gated\", \"walker_walk\", \"dmc_proprio\", \"seed1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_deploy-and-train_20260513T015001",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-13T02:05:43.248001+00:00_
+
+完成。总结：
+
+**Phase 1 - 代码同步**: 4 个文件（networks.py, models.py, tools.py, configs.yaml）已上传到服务器，行数验证通过。
+
+**Phase 2 - 代码验证**:
+- Import 测试通过
+- Baseline dry-run (gate_enabled=false): 成功运行到 step 60，无错误
+- Event-gated dry-run (gate_enabled=True): 成功运行到 step 60，无错误
+- 注意：`--gate_enabled` 参数需要大写 `True`（非 `true`），`--logdir` 必须显式指定
+
+**Phase 3 - 正式训练已启动**:
+| 实验 | GPU | PID | Logdir |
+|------|-----|-----|--------|
+| exp_001_baseline | cuda:0 | 9409 | `logdir/baseline_s1` |
+| exp_002_event_gated | cuda:1 | 9769 | `logdir/event_gated_s1` |
+
+两个训练各 500K steps，当前在 prefill 阶段（baseline 已收集 4 episodes）。预计 1-2 小时完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_deploy-and-train_20260513T015001"
+}
+```
+
+</details>
+
+---

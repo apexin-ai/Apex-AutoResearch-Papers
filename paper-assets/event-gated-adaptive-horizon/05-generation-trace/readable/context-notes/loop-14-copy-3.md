@@ -1,0 +1,76 @@
+# reviewer / loop_14.md
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_14.md`
+- **Structured JSON:** [`6a92f621a21e96ee018e.json`](../../sessions/6a/6a92f621a21e96ee018e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 14
+reason: max_messages
+updated: '2026-05-16T18:47:59+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0 和 cuda:1（物理卡）。脚本用 `CUDA_VISIBLE_DEVICES=0/1` + `--device cuda:0` 模式
+- 018v2 数据是真实 Full-SGS 结果（eval 448.3, NVE peak 1.66×）。旧 018 数据（eval 915.7, NVE 1.00×）全部作废——那是 buggy baseline
+- 论文中 "completely eliminates CIVO" 已被我标 warning 不成立——018v2 有 transient exceedances (1.61×@35K, 1.66×@95K)，正确措辞是 "substantially mitigates"
+- 梯度分解 "93%/0%/7%" 仅在 95K 成立。55K 实测：obs 25.8%, reward 23.5%, KL 50.7%。必须标注 step
+
+### 2. 🖥️ 基础设施快照
+- 服务器：bjb1-45299 (root)，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- W&B：未配置（本项目不查 W&B）
+- 活跃进程：018v2 已完成（105K done），010b 已完成（105K done）。当前 GPU 空闲待下一批实验
+- 关键 artifacts 路径：`artifacts/_project/data/nve_trajectories.csv`（NVE 权威数据源）
+
+### 3. 📊 当前状态
+**刚完成：**
+- 018v2 终审：NVE peak 1.66×（35K+ window），eval 448.3，SGS 有效但非"完全消除"
+- 010b 终审：Cheetah CIVO 确认（NVE 14.59×, collapse 93%），跨环境验证通过
+- 论文压缩后完整性审查已提交：发现 Conclusion 自相矛盾（"two environments" vs "single environment"）
+- 梯度分解 55K vs 95K 时间演化发现已提交
+- 两 Worker (decomposition vs full_analysis) 对 018v2 结论矛盾已裁决并报告
+
+**Registry RUNNING/PREPARING：**
+- exp_008f_s3（no_dt_embed seed 3）：脚本已就绪，未提交到服务器
+- exp_001_baseline_s2、exp_008d_civo_trigger_s2、exp_018_full_sgs_s2：s2 脚本已修复 compile flag，待启动
+
+**等待中：** 无活跃 Worker 回调。Director 尚未回复我提交的多条审查报告。
+
+### 4. 📋 待办
+- Director 回复 018v2 措辞决策 → 确认 `\sgsclaim` macro 填什么（"substantially mitigates" vs 其他）
+- s2 实验（001_s2, 008d_s2, 018_s2）启动 → 核实 GPU 白名单合规 + `--compile False`
+- 008f_s3 启动 → 确认 `CUDA_VISIBLE_DEVICES=1` + 等 GPU 空闲
+- 论文 Conclusion 矛盾修复后 → 确认 "single environment" 已改为 "primary analysis on Walker Walk; cross-env evidence limited to single Cheetah seed"
+- 如果 Director 要求重跑 008d with checkpoint_every → 核实脚本包含 `--checkpoint_every 25000` 以获取 25K/50K/75K 梯度数据
+
+### 5. 🎯 战略上下文
+**核心结论链：**
+- D063 (018 SGS confirms CIVO elimination) → SUSPENDED（018 buggy）
+- D065 (018 配置错误确认) → 018v2 重跑 → 已完成
+- 018v2 结果：SGS mitigates（非 eliminates），论文需从 "complete fix" 降级为 "primary mechanism confirmed + 35pp quantification"
+
+**最易判断错的事：**
+1. **NVE 计算方法**：NVE = ve_ratio / baseline_ve_at_same_step（不是简单 value/eval）。权威来源是 `nve_trajectories.csv`
+2. **018v2 ≠ baseline**：018v2 有 gate_enabled=True + gate_fixed_dt=2，它与 008d 对比才有意义（同条件±SGS），不应与 001 baseline（dt=1）直接比绝对 eval
+3. **梯度分解数字依赖 training step**：任何引用 "93%/0%/7%" 的地方必须标注 "at convergence (95K)"。55K 的分布完全不同
+4. **bootstrap CI summary 中 NVE peak=4.01 是噪声**：来自 pre-35K（论文标准窗口外），35K+ 内 peak 是 1.66
+
+
+---

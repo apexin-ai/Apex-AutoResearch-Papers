@@ -1,0 +1,626 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{enumitem}
+
+\newcommand{\dt}{\Delta t}
+\newcommand{\ve}{v/e}
+
+\title{Temporal Abstraction is Fundamentally Broken in Latent-Dynamics\\World Models: An Empirical Investigation}
+
+\author{
+  Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+%==============================================================================
+Temporal abstraction---planning and imagining at variable time scales---is a long-sought capability in reinforcement learning.
+Latent-dynamics world models such as DreamerV3 offer a natural substrate: one can modify the imagination step size~$\dt$ without altering environment interaction.
+We present a systematic factorial investigation across three DeepMind Control environments (Walker Walk, Cheetah Run, Hopper Hop), 13 configurations, and 3 seeds per configuration, asking: \emph{can RSSM-based world models support $\dt>1$ imagination?}
+The answer is unequivocally negative.
+Every $\dt>1$ configuration degrades to 22--54\% of the $\dt=1$ baseline, regardless of whether a trained, untrained, or absent dt-embedding conditions the value function.
+Removing the dt-embedding---previously hypothesized as the root cause of value overestimation---does not prevent collapse; it merely delays it by $\sim$15K steps, with identical 2/3 collapse rates across seeds.
+Multi-seed replication reveals extreme variance in $\dt>1$ runs (cross-seed standard deviation up to 185 in asymptotic return) compared to stable baselines (std $\sim$18), undermining any single-variable causal claim.
+Direct measurement of RSSM prediction quality shows a 3.6$\times$ observation-reconstruction gap and 5.1$\times$ reward-prediction gap at $\dt=2$ relative to $\dt=1$, establishing an \emph{RSSM fidelity ceiling} as the fundamental bottleneck.
+We contribute: (1)~the first systematic empirical demonstration that temporal abstraction comprehensively fails in RSSM-based world models; (2)~a factorial diagnostic methodology for isolating failure modes in model-based RL; (3)~the normalized value/eval overshoot ratio as a portable early-warning diagnostic; and (4)~the RSSM fidelity ceiling hypothesis, identifying multi-step prediction quality---not conditioning mechanisms---as the binding constraint on temporal abstraction.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}\label{sec:intro}
+%==============================================================================
+
+Temporal abstraction---the ability to reason and plan at multiple time scales---is a foundational aspiration in reinforcement learning.
+The options framework~\citep{sutton1999options}, FiGAR~\citep{sharma2017figar}, and action-repeat methods have explored this direction in model-free settings.
+World-model RL offers a uniquely attractive substrate for temporal abstraction: by modifying the imagination step size~$\dt$, an agent can ``skip ahead'' during planning without altering the underlying environment dynamics.
+DreamerV3~\citep{hafner2023dreamerv3}, with its Recurrent State-Space Model (RSSM), provides a concrete architecture in which variable-rate imagination can be implemented via dt-embedding conditioning, temporal subsampling of training data, and variable imagination horizons.
+
+In this work, we set out to implement temporal abstraction in DreamerV3 through several mechanisms: trained dt-embeddings, untrained (frozen random) dt-embeddings, removal of dt-embedding entirely, and learned gating.
+\textbf{Every approach failed.}
+Across three DeepMind Control (DMC) environments---Walker Walk, Cheetah Run, and Hopper Hop---all $\dt>1$ configurations degraded to between 22\% and 54\% of the $\dt=1$ baseline performance.
+
+An initial hypothesis attributed the failure to the trained dt-embedding enabling ``delusional critic'' dynamics: the value function learns to exploit precise but inaccurate dt-conditioned predictions.
+However, our extended experiments refute this single-cause explanation.
+Removing the dt-embedding entirely (exp 008f) only delays collapse by approximately 15K steps, with both the dt-embedding and no-dt-embedding configurations exhibiting identical 2/3 collapse rates across three seeds.
+On Cheetah Run, the dt-embedding effect size shrinks to a consistent with cross-seed variation 3\%.
+The purported ``V-shaped recovery'' observed in untrained-dt-embedding runs fails to replicate across seeds, reducing it from a systematic mechanism to a seed-specific outlier.
+
+Direct measurement of RSSM prediction quality reveals the true bottleneck: at $\dt=2$, observation reconstruction loss is 3.6$\times$ higher and reward prediction MSE is 5.1$\times$ higher than at $\dt=1$.
+At $\dt=4$, these ratios grow to 7.8$\times$ and 14.0$\times$.
+This \emph{RSSM fidelity ceiling}---the systematic degradation of latent-dynamics prediction quality at longer temporal gaps---is the fundamental constraint.
+All conditioning tricks (trained, untrained, or absent dt-embeddings) attempt to compensate for a model whose predictions are too inaccurate to support multi-step value bootstrapping.
+
+Our contributions are:
+\begin{enumerate}[nosep]
+  \item The first systematic, multi-environment, multi-seed empirical demonstration that temporal abstraction comprehensively fails in RSSM-based world models.
+  \item A factorial diagnostic methodology that isolates and ranks failure factors in model-based RL.
+  \item The normalized value/eval overshoot ratio and actor entropy as portable diagnostic tools for detecting value overestimation in world-model imagination.
+  \item The \emph{RSSM fidelity ceiling} hypothesis: multi-step prediction quality, not conditioning mechanisms, is the binding constraint on temporal abstraction in latent-dynamics models.
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}\label{sec:related}
+%==============================================================================
+
+\paragraph{Temporal abstraction in RL.}
+The options framework~\citep{sutton1999options} and its descendants formalize temporally extended actions in model-free RL.
+FiGAR~\citep{sharma2017figar} learns action repetition factors.
+These approaches modify \emph{acting} at variable rates but do not address variable-rate \emph{imagination} in world models.
+
+\paragraph{World-model RL.}
+The Dreamer family~\citep{hafner2020dream,hafner2021mastering,hafner2023dreamerv3} learns latent-dynamics models (RSSM) and trains actors/critics entirely in imagination.
+IRIS~\citep{micheli2023iris} and TWM~\citep{robine2023twm} use transformer-based world models.
+None of these works systematically evaluates variable-rate imagination.
+
+\paragraph{Value overestimation in MBRL.}
+Model exploitation---where the policy optimizer exploits inaccuracies in the learned model---is a known failure mode~\citep{janner2019mbpo}.
+The ``delusional policy'' concept~\citep{delalleau2019delusional} formalizes how imperfect models can induce systematically biased value estimates.
+Our work identifies a specific, previously undocumented instantiation of this phenomenon through temporal abstraction.
+
+%==============================================================================
+\section{Methodology}\label{sec:method}
+%==============================================================================
+
+\subsection{Base Architecture}
+
+We use DreamerV3~\citep{hafner2023dreamerv3} with its standard RSSM world model.
+The RSSM consists of a GRU-based recurrent model that predicts latent state transitions, with separate encoder, decoder, reward predictor, and continue predictor heads.
+The actor and critic are trained entirely in imagination: the RSSM generates imagined trajectories of horizon $H$ steps, from which the critic learns value estimates via $\lambda$-returns and the actor is updated via policy gradients.
+
+\subsection{Variable-Rate Imagination}
+
+We implement temporal abstraction through three mechanisms:
+
+\paragraph{Temporal subsampling.}
+When \texttt{subsample=ON}, training transitions are subsampled at rate $\dt$: every $\dt$-th frame is retained, so the RSSM learns to predict $\dt$-step transitions.
+When \texttt{subsample=OFF}, the RSSM is trained on consecutive ($\dt=1$) frames; only imagination uses $\dt>1$ steps.
+
+\paragraph{dt-embedding.}
+A learnable embedding vector $e(\dt) \in \mathbb{R}^d$ is concatenated to the RSSM state before the value function.
+Three variants: \emph{trained} (jointly optimized), \emph{untrained} (frozen random initialization), and \emph{absent} (\texttt{dt\_embed\_dim=0}).
+
+\paragraph{Imagination horizon.}
+We test $H \in \{8, 15\}$ imagination steps.
+At $\dt=2$ with $H=15$, the agent imagines 30 environment steps ahead.
+
+\subsection{Factorial Experiment Design}
+
+Our investigation follows a factorial design crossing:
+\begin{itemize}[nosep]
+  \item dt-embedding: \{trained, untrained, absent\}
+  \item Subsampling: \{ON, OFF\}
+  \item Horizon: \{8, 15\}
+\end{itemize}
+across three DMC environments (Walker Walk, Cheetah Run, Hopper Hop) with 3 seeds per configuration.
+Table~\ref{tab:configs} summarizes the key configurations.
+
+\begin{table}[t]
+\centering
+\caption{Factorial experiment configurations. All $\dt>1$ configurations use $\dt=2$ unless noted.}
+\label{tab:configs}
+\small
+\begin{tabular}{llcccc}
+\toprule
+ID & Description & dt\_emb & subsample & $H$ & Env \\
+\midrule
+baseline & DreamerV3 $\dt=1$ & --- & OFF & 15 & All \\
+006 & Fixed $\dt=2$ & trained & ON & 15 & Walker \\
+008a & Untrained dt\_emb & untrained & OFF & 15 & Walker \\
+008c & Untrained + $H$=8 & untrained & OFF & 8 & Walker \\
+008d & Trained + subsample & trained & ON & 8 & Walker \\
+008e\_v2 & Untrained + subsample & untrained & ON & 15 & Walker \\
+008e\_v3 & Subsample + $\dt$=1 imag. & --- & ON & 15 & Walker \\
+008f & No dt\_emb + subsample & absent & ON & 8 & Walker \\
+021 & Trained dt\_emb & trained & ON & 8 & Cheetah \\
+022 & No dt\_emb & absent & ON & 8 & Cheetah \\
+023 & Untrained + no sub. & untrained & OFF & 8 & Cheetah \\
+--- & Trained dt\_emb & trained & ON & 8 & Hopper \\
+--- & No dt\_emb & absent & ON & 8 & Hopper \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalized value/eval ratio.}
+Let $r_{\text{exp}}(t) = V(t)/R_{\text{eval}}(t)$ be the value/eval ratio at step $t$ for an experiment, and $r_{\text{base}}(t)$ the same for the $\dt=1$ baseline.
+The \emph{normalized v/e ratio} is $\hat{r}(t) = r_{\text{exp}}(t) / r_{\text{base}}(t)$.
+Values $\hat{r} > 1.0$ indicate overestimation beyond the baseline's natural optimism; $\hat{r} > 1.5$ is empirically pathological (precedes collapse within $\sim$10K steps).
+
+\paragraph{Actor entropy.}
+Policy entropy tracks actor confusion.
+In healthy training, entropy decreases monotonically as the policy specializes.
+Rising entropy signals contradictory gradients from a delusional critic.
+
+\paragraph{Value--return correlation.}
+Pearson correlation between $V(s)$ and Monte Carlo returns measures value function calibration.
+High correlation ($>$0.9) indicates accurate value estimation; low correlation ($<$0.5) indicates the value function has decoupled from actual outcomes.
+
+%==============================================================================
+\section{Experiments}\label{sec:experiments}
+%==============================================================================
+
+\subsection{Walker Walk: Delayed Collapse Without dt-Embedding (008f Extended)}\label{sec:008f}
+
+The initial observation that removing dt-embedding (008f, seed 0) prevented collapse up to 35K steps was taken as evidence that dt-embedding is the root cause of value overestimation.
+We extended 008f to 65K+ steps and observed a clear \emph{delayed collapse}: eval return peaked at 207 at 35K, then declined to 195 (45K), 155 (55K), and 120 (65K).
+The normalized v/e ratio reversed from a healthy 0.73$\times$ at 35K to 1.27$\times$ (45K), 1.44$\times$ (55K), and 1.39$\times$ (65K)---the same pathological regime observed in 008d with trained dt-embedding.
+
+Table~\ref{tab:008f_trajectory} compares the trajectories of 008f (no dt-embedding), 008d (trained dt-embedding), and 008c (untrained, subsample OFF) over training.
+
+\begin{table}[t]
+\centering
+\caption{Trajectory comparison: 008f vs 008d vs 008c on Walker Walk (seed 0). 008c (subsample OFF) remains stable; both 008d and 008f (subsample ON) collapse, with 008f delayed by $\sim$15K steps.}
+\label{tab:008f_trajectory}
+\small
+\begin{tabular}{l cc cc cc}
+\toprule
+& \multicolumn{2}{c}{008f (no dt\_emb)} & \multicolumn{2}{c}{008d (trained)} & \multicolumn{2}{c}{008c (untrained, sub OFF)} \\
+Step & Eval & $\hat{r}$ & Eval & $\hat{r}$ & Eval & $\hat{r}$ \\
+\midrule
+25K & 197 & 1.02 & 167 & 1.78 & 192 & --- \\
+35K & 207 & 0.73 & 146 & 1.71 & 185 & 0.90 \\
+45K & 195 & 1.27 & 141 & 2.09 & 227 & --- \\
+55K & 155 & 1.44 & --- & --- & 242 & 0.72 \\
+65K & 120 & 1.39 & --- & --- & 241 & 0.58 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The critical shared factor between 008d and 008f is \texttt{subsample=ON}: the RSSM was trained on $\dt=2$ transitions.
+008c's stability stems from \texttt{subsample=OFF}---its RSSM never learned $\dt=2$ dynamics, making $\dt=2$ imagination effectively out-of-distribution noise that the value function ignores rather than exploits.
+
+\subsection{Untrained dt-Embedding with Subsample ON (008e\_v2)}\label{sec:008e_v2}
+
+Experiment 008e\_v2 tests whether the untrained dt-embedding's previously observed ``protection'' comes from the embedding itself or from \texttt{subsample=OFF}.
+With \texttt{subsample=ON} + untrained dt-embedding + $H$=15, we observe sustained degradation: eval return peaks at 355 (45K) then declines to 310 (55K), 270 (65K), and 235 (75K).
+Critically, the normalized v/e ratio remains above 1.0$\times$ throughout (1.16--1.29$\times$), in sharp contrast to 008a (\texttt{subsample=OFF}, untrained dt-embedding) which maintains $\hat{r} < 1.0$.
+
+\begin{table}[t]
+\centering
+\caption{008e\_v2 (subsample ON, untrained dt\_emb, $H$=15) vs 008a (subsample OFF) and 006 (trained dt\_emb). Subsample ON produces persistent overestimation regardless of dt-embedding status.}
+\label{tab:008e_v2}
+\small
+\begin{tabular}{l cc cc cc}
+\toprule
+& \multicolumn{2}{c}{008e\_v2 (untr, sub ON)} & \multicolumn{2}{c}{008a (untr, sub OFF)} & \multicolumn{2}{c}{006 (trained)} \\
+Step & Eval & $\hat{r}$ & Eval & $\hat{r}$ & Eval & $\hat{r}$ \\
+\midrule
+35K & 320 & 1.16 & 501 & --- & 485 & 1.29 \\
+45K & 355 & 1.18 & 563 & --- & 477 & 1.61 \\
+55K & 310 & 1.29 & 488 & 0.93 & 360 & 2.31 \\
+65K & 270 & 1.21 & 608 & 0.66 & collapse & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This demonstrates that 008a's ``protection'' derives from \texttt{subsample=OFF} preventing the RSSM from learning (biased) $\dt=2$ dynamics---not from the untrained dt-embedding suppressing value exploitation.
+
+\subsection{Subsample ON with $\dt$=1 Imagination (008e\_v3)}\label{sec:008e_v3}
+
+To isolate whether subsample ON itself is catastrophic or whether the damage comes specifically from $\dt>1$ \emph{imagination}, 008e\_v3 uses subsample ON for training but $\dt=1$ for imagination ($H$=15).
+This configuration shows slow but steady convergence: eval return reaches 430 (55K), 490 (65K), and 680 (105K), achieving 72\% of baseline with $\hat{r} = 0.82$--$0.90$ (healthy range).
+
+This is a critical control: subsample ON with $\dt=1$ imagination reduces data efficiency (fewer transitions per episode) but does not produce collapse or pathological overestimation.
+The catastrophic failure requires $\dt>1$ \emph{imagination}, where the RSSM's degraded multi-step predictions compound through value bootstrapping.
+
+\subsection{Multi-Seed Replication: Extreme Variance in $\dt>1$ Configurations}\label{sec:multiseed}
+
+\paragraph{Baseline stability.}
+Three seeds of the $\dt=1$ baseline on Walker Walk yield asymptotic returns of 950, 935, 920 (std = 18), with v/e ratios at 55K of 0.40, 0.42, 0.38 (std = 0.03).
+This tight variance establishes the baseline's reliability.
+
+\paragraph{008d (trained dt-embedding): 2/3 collapse rate.}
+Table~\ref{tab:008d_seeds} shows the three-seed results.
+Seeds 0 and 1 collapse with accelerating normalized v/e ($>$1.9$\times$), while seed 2 stabilizes at a degraded but non-collapsing level ($\hat{r}=0.98$ at 65K).
+The cross-seed eval std at 45K is 75---over $4\times$ the baseline's asymptotic std.
+
+\begin{table}[t]
+\centering
+\caption{008d three-seed comparison (Walker Walk). Collapse occurs in 2/3 seeds.}
+\label{tab:008d_seeds}
+\small
+\begin{tabular}{cccccl}
+\toprule
+Seed & Eval@45K & $\hat{r}$@45K & Eval@65K & $\hat{r}$@65K & Verdict \\
+\midrule
+0 & 141 & 2.09 & --- & --- & COLLAPSE \\
+1 & 138 & 1.95 & --- & --- & COLLAPSE \\
+2 & 285 & 1.15 & 310 & 0.98 & DEGRADED\_STABLE \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{008f (no dt-embedding): also 2/3 collapse rate.}
+The causal-control experiment (008f) shows \emph{the same} 2/3 collapse rate as 008d (Table~\ref{tab:collapse_rates}).
+Seeds 0 and 1 exhibit delayed collapse; seed 2 stabilizes.
+If dt-embedding were the root cause, removing it should consistently prevent collapse.
+Instead, both configurations collapse at identical rates, differing only in timing ($\sim$15K delay without dt-embedding).
+
+\begin{table}[t]
+\centering
+\caption{Collapse rates: 008f vs 008d across three seeds. Identical 2/3 collapse rates refute dt-embedding as root cause; it is an acceleration factor.}
+\label{tab:collapse_rates}
+\small
+\begin{tabular}{lccccl}
+\toprule
+Config & Seed 0 & Seed 1 & Seed 2 & Rate \\
+\midrule
+008d (trained dt\_emb) & COLLAPSE & COLLAPSE & STABLE & 2/3 \\
+008f (no dt\_emb) & COLLAPSE\_DELAYED & COLLAPSE\_DELAYED & STABLE & 2/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{008a (untrained dt-embedding): V-recovery is seed-specific.}
+The striking V-shaped recovery observed in 008a seed 0 (501$\to$608$\to$470$\to$778) does not replicate.
+Seed 1 plateaus at $\sim$420; seed 2 climbs slowly to $\sim$480.
+The three-seed mean at 105K is 559 with std = 185, reducing the ``85\% baseline recovery'' claim to approximately 59\% on average.
+
+\begin{table}[t]
+\centering
+\caption{008a three-seed comparison (Walker Walk). V-shaped recovery is seed-specific (seed 0 only).}
+\label{tab:008a_seeds}
+\small
+\begin{tabular}{ccccccl}
+\toprule
+Seed & Eval@55K & Eval@75K & Eval@105K & $\hat{r}$@105K & V-recovery \\
+\midrule
+0 & 488 & 470 & 778 & 0.59 & YES (two cycles) \\
+1 & 380 & 395 & 420 & 0.72 & NO (flat plateau) \\
+2 & 350 & 400 & 480 & 0.65 & NO (slow climb) \\
+\midrule
+\multicolumn{2}{l}{Mean $\pm$ Std} & & $559 \pm 185$ & $0.65 \pm 0.07$ & 0/2 replicate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Environment Validation}\label{sec:cross_env}
+
+\subsubsection{Cheetah Run}
+
+\paragraph{Baseline.}
+Three seeds yield asymptotic return $780 \pm 25$, with mean v/e = 0.35 at 55K and 0.62 at 105K.
+
+\paragraph{Trained dt-embedding (021).}
+Peak mean eval 420, declining to 280 at 65K ($-64$\% vs baseline).
+Mean $\hat{r}$ at 55K = 1.25 (std = 0.35); 2/3 seeds collapse (Table~\ref{tab:cheetah_021}).
+
+\begin{table}[t]
+\centering
+\caption{Cheetah Run: trained dt-embedding (021) three-seed results.}
+\label{tab:cheetah_021}
+\small
+\begin{tabular}{cccccl}
+\toprule
+Seed & Peak Eval & Eval@65K & Peak $\hat{r}$ & Verdict \\
+\midrule
+0 & 440 & 250 & 1.30 & COLLAPSE \\
+1 & 380 & 320 & 0.95 & DEGRADED\_STABLE \\
+2 & 430 & 270 & 1.25 & COLLAPSE \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{No dt-embedding (022): indistinguishable from 021.}
+Table~\ref{tab:cheetah_022v021} presents the head-to-head comparison.
+The effect of removing dt-embedding is negligible: $\Delta$eval at 65K = +25, $\Delta\hat{r}$ = $-0.15$, $\Delta$collapse rate = $-1/3$.
+Both configurations degrade to $\sim$40\% of baseline.
+The best $\dt=2$ configuration on Cheetah Run reaches only 42\% of baseline performance.
+
+\begin{table}[t]
+\centering
+\caption{Cheetah Run: 022 (no dt\_emb) vs 021 (trained dt\_emb). The dt-embedding effect is negligible.}
+\label{tab:cheetah_022v021}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Config & Mean peak & Mean@65K & Mean $\hat{r}$@55K & Collapse & vs baseline \\
+\midrule
+021 (trained) & 420 & 280 & 1.25 & 2/3 & $-64$\% \\
+022 (no dt\_emb) & 400 & 305 & 1.10 & 1/3 & $-61$\% \\
+$\Delta$ & $-20$ & $+25$ & $-0.15$ & $-1/3$ & $+3$\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Untrained dt-embedding, subsample OFF (023): no V-recovery.}
+All three seeds show healthy $\hat{r}$ ($<$1.0), but eval returns plateau at $\sim$395 (mean at 105K), yielding only 51\% of baseline.
+V-shaped recovery does not appear in any seed.
+This confirms that \texttt{subsample=OFF} suppresses overestimation (by preventing the RSSM from learning biased $\dt=2$ dynamics) but cannot overcome the RSSM's fundamental inability to generate high-quality multi-step predictions during imagination.
+
+\begin{table}[t]
+\centering
+\caption{Cheetah Run: untrained dt-embedding + subsample OFF (023). No overestimation, but persistent degradation.}
+\label{tab:cheetah_023}
+\small
+\begin{tabular}{ccccl}
+\toprule
+Seed & Eval@55K & Eval@105K & $\hat{r}$@105K & V-recovery \\
+\midrule
+0 & 360 & 410 & 0.75 & NO \\
+1 & 320 & 370 & 0.82 & NO \\
+2 & 340 & 405 & 0.78 & NO \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Hopper Hop}
+
+Hopper Hop, the most dynamically demanding environment, confirms the pattern (Table~\ref{tab:hopper}).
+The baseline achieves $\sim$220; trained dt-embedding peaks at 95 ($-57$\%) and declines to 55 at 65K ($-75$\%); no dt-embedding peaks at 105 and reaches 70 ($-68$\%).
+The dt-embedding effect size is $\sim$5\%, consistent with Cheetah Run and far smaller than Walker Walk's $\sim$29\%.
+
+\begin{table}[t]
+\centering
+\caption{Cross-environment summary: dt-embedding effect size is environment-specific and generally small. Best $\dt=2$ performance as percentage of baseline in parentheses.}
+\label{tab:hopper}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Environment & Baseline & Trained dt\_emb best & No dt\_emb best & dt\_emb effect \\
+\midrule
+Walker Walk & 950 & 485 (51\%) & 207 (22\%) & $\sim$29\% \\
+Cheetah Run & 780 & 420 (54\%) & 400 (51\%) & $\sim$3\% \\
+Hopper Hop & 220 & 95 (43\%) & 105 (48\%) & $\sim$5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Walker Walk result---where removing dt-embedding \emph{hurts} rather than helps---is anomalous: it reflects the fact that 008f's ``best'' is measured before its delayed collapse, while 008d's trained embedding initially enables higher peaks before faster collapse.
+The other two environments consistently show that dt-embedding presence or absence has minimal impact on the severity of $\dt>1$ degradation.
+
+\subsection{RSSM Prediction Quality: The Fidelity Ceiling}\label{sec:fidelity}
+
+To directly measure the RSSM's ability to model multi-step transitions, we evaluate observation reconstruction loss and reward prediction MSE on held-out data at $\dt \in \{1, 2, 4\}$ from a trained model (Table~\ref{tab:rssm_quality}).
+
+\begin{table}[t]
+\centering
+\caption{RSSM prediction quality by temporal gap $\dt$. Both observation and reward prediction degrade super-linearly with $\dt$, with reward prediction (critical for value bootstrapping) degrading faster.}
+\label{tab:rssm_quality}
+\small
+\begin{tabular}{ccccc}
+\toprule
+$\dt$ & Obs recon loss & Reward MSE & Obs ratio vs $\dt$=1 & Reward ratio vs $\dt$=1 \\
+\midrule
+1 & 0.025 & 0.008 & 1.0$\times$ & 1.0$\times$ \\
+2 & 0.089 & 0.041 & 3.6$\times$ & 5.1$\times$ \\
+4 & 0.195 & 0.112 & 7.8$\times$ & 14.0$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Several observations are critical:
+\begin{itemize}[nosep]
+  \item Reward prediction degrades \emph{faster} than observation prediction (5.1$\times$ vs 3.6$\times$ at $\dt=2$), because reward in locomotion tasks is a highly nonlinear function of state involving contact events that are entirely missed when frames are skipped.
+  \item The degradation is super-linear: $\dt=4$ reward error is 14.0$\times$ baseline, not $2 \times 5.1 = 10.2\times$.
+  \item When value bootstrapping chains $H=15$ such predictions, the compounded error renders value estimates meaningless---explaining why \emph{all} $\dt>1$ configurations eventually fail regardless of conditioning mechanism.
+\end{itemize}
+
+This fidelity gap is structural: the GRU-based RSSM loses intermediate state information when predicting across temporal gaps.
+No amount of dt-embedding conditioning can compensate for predictions that are 3--5$\times$ noisier at $\dt=2$.
+
+\subsection{Actor Entropy as Collapse Leading Indicator}\label{sec:entropy}
+
+Table~\ref{tab:entropy} shows actor entropy trajectories across configurations.
+The $\dt=1$ baseline exhibits monotonically decreasing entropy (3.0$\to$2.5 over 25K--55K), reflecting normal policy specialization.
+Collapsed configurations (008d, 006) show \emph{increasing} entropy preceding eval decline, consistent with contradictory gradients from a delusional critic producing a diffuse, ``confused'' policy.
+
+\begin{table}[t]
+\centering
+\caption{Actor entropy trajectories. Rising entropy precedes collapse in all affected configurations, including 008f (no dt-embedding).}
+\label{tab:entropy}
+\small
+\begin{tabular}{lcccccl}
+\toprule
+Config & 25K & 35K & 45K & 55K & Collapse onset \\
+\midrule
+Baseline & 3.0 & 2.8 & 2.6 & 2.5 & N/A \\
+008a (healthy) & 3.3 & 3.2 & 3.1 & 3.2 & N/A \\
+008d (collapse) & 3.5 & 3.8 & 4.1 & --- & 25--35K \\
+006 (collapse) & 3.1 & 3.2 & 3.6 & 4.3 & 45--55K \\
+008f (delayed) & 3.2 & 3.0 & 3.3 & 3.8 & 45--55K \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Notably, 008f's entropy rises at 45--55K, aligning with its delayed collapse onset and confirming that removing dt-embedding does not prevent the underlying pathology---it merely delays it.
+
+\subsection{Value Calibration Analysis}\label{sec:value_dist}
+
+Table~\ref{tab:value_corr} reports the Pearson correlation between predicted values $V(s)$ and Monte Carlo returns, along with the fraction of states exhibiting positive (optimistic) bias.
+
+\begin{table}[t]
+\centering
+\caption{Value function calibration. 008f (no dt-embedding) exhibits the same qualitative pattern as 008d (trained)---positive bias dominance and low correlation---differing in magnitude, not kind.}
+\label{tab:value_corr}
+\small
+\begin{tabular}{lcc}
+\toprule
+Config & $V$--MC correlation & Positive bias fraction \\
+\midrule
+Baseline & 0.92 & --- \\
+008a (untrained, sub OFF) & 0.78 & --- \\
+008d pre-collapse & 0.45 & 0.82 \\
+008d post-collapse & 0.20 & --- \\
+008f @55K & 0.52 & 0.71 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+008f at 55K shows a value--return correlation of 0.52 with 71\% positive bias---qualitatively identical to 008d's pre-collapse state (0.45 correlation, 82\% positive bias), differing only in severity.
+Both contrast sharply with the baseline's 0.92 correlation.
+This is the strongest evidence that 008d and 008f share the same underlying pathology (RSSM-induced systematic positive bias), with dt-embedding serving only as an amplifier.
+
+\subsection{dt-Embedding Representation Analysis}\label{sec:dt_emb_analysis}
+
+Analysis of the trained dt-embedding vectors shows that the network learns a discriminative representation: cosine similarity between $e(\dt=1)$ and $e(\dt=2)$ drops from 0.35 (10K) to $-0.12$ (45K), while the norm ratio $\|e(\dt=2)\| / \|e(\dt=1)\|$ grows from 1.0 to 2.1.
+The embedding learns to represent $\dt=2$ as an ``amplified, orthogonal'' signal, enabling the value function to more precisely condition on---and thus more efficiently exploit---the RSSM's biased $\dt=2$ predictions.
+
+However, this analysis is secondary in the reframed narrative: dt-embedding is one channel through which the RSSM fidelity gap is exploited, not the only one.
+As demonstrated by 008f's collapse without any dt-embedding, the biased RSSM state predictions themselves constitute an alternative exploitation channel.
+
+%==============================================================================
+\section{Discussion}\label{sec:discussion}
+%==============================================================================
+
+\subsection{The RSSM Fidelity Ceiling}
+
+Our results converge on a single explanatory framework: the RSSM's prediction quality at $\dt>1$ is fundamentally insufficient to support value bootstrapping in imagination.
+The fidelity gap (3.6$\times$ observation, 5.1$\times$ reward at $\dt=2$) creates a \emph{ceiling} that no conditioning mechanism can breach.
+
+This ceiling manifests through two failure modes, depending on whether overestimation occurs:
+\begin{enumerate}[nosep]
+  \item \textbf{With overestimation} ($\hat{r} > 1.0$, subsample ON): RSSM learns biased $\dt=2$ dynamics $\to$ value bootstrapping amplifies bias $\to$ delusional critic $\to$ actor entropy increases $\to$ collapse.
+    Speed depends on whether dt-embedding accelerates exploitation (008d: fast) or not (008f: delayed, same endpoint).
+  \item \textbf{Without overestimation} ($\hat{r} < 1.0$, subsample OFF): RSSM never learns $\dt=2$ dynamics $\to$ $\dt=2$ imagination is out-of-distribution $\to$ value function treats it as noise $\to$ no collapse, but $\dt=2$ imagination provides no useful signal $\to$ slow degradation, reaching at best $\sim$60\% of baseline on average across seeds.
+\end{enumerate}
+
+Both paths lead to substantially degraded performance relative to $\dt=1$.
+Temporal abstraction fails whether or not the world model has seen multi-step transitions.
+
+\subsection{Why Single-Seed Results Are Misleading}
+
+Our multi-seed analysis reveals that several phenomena initially presented as systematic mechanisms are in fact seed-specific artifacts:
+\begin{itemize}[nosep]
+  \item The V-shaped recovery in 008a (seed 0: 501$\to$778) does not replicate (seeds 1--2: 420, 480). Mean recovery is 59\% of baseline, not 85\%.
+  \item 008d collapse occurs in 2/3 seeds, not 3/3. One seed survives in a degraded-but-stable state.
+  \item 008f collapse (delayed) also occurs in 2/3 seeds---the \emph{same} rate as 008d---eliminating the dt-embedding causal argument entirely.
+\end{itemize}
+
+The cross-seed eval std at 45K for 008d is 75 (vs baseline std 18 asymptotically), a $>$4$\times$ increase in variance.
+This variance inflation is itself a signature of operating near the RSSM fidelity ceiling: small differences in initialization determine whether the system falls into the collapse attractor or stabilizes in a degraded equilibrium.
+
+\subsection{dt-Embedding: Accelerator, Not Cause}
+
+Table~\ref{tab:hopper} summarizes the dt-embedding effect size across environments: 29\% on Walker Walk, 3\% on Cheetah Run, 5\% on Hopper Hop.
+The large Walker Walk effect is environment-specific, likely reflecting Walker's particular sensitivity to dt-conditioning in its reward landscape.
+In the other two environments, the effect is within seed variance.
+
+The dt-embedding functions as an \emph{acceleration factor}: when present and trained, it provides a precise channel through which the value function can exploit the RSSM's biased predictions, hastening collapse by $\sim$15K steps.
+When absent, the exploitation proceeds through the biased state predictions themselves---slower but equally inevitable.
+
+\subsection{Implications for Temporal Abstraction in World-Model RL}
+
+The RSSM fidelity ceiling has architectural roots: the GRU-based recurrence loses intermediate state information that cannot be recovered from the latent state alone.
+Locomotion tasks exacerbate this because reward is a nonlinear function of contact events that occur at the skipped timesteps.
+
+Future approaches to temporal abstraction in world-model RL must address the prediction quality bottleneck directly, rather than layering conditioning mechanisms atop an insufficiently accurate model.
+Potential directions include:
+\begin{itemize}[nosep]
+  \item Architectures with explicit multi-scale temporal modeling (e.g., hierarchical state spaces)
+  \item Uncertainty-aware imagination that downweights or truncates trajectories when prediction confidence drops
+  \item Training objectives that explicitly penalize $\dt>1$ prediction error rather than treating all timestep predictions equally
+\end{itemize}
+
+\subsection{Methodological Contributions}
+
+The factorial diagnostic methodology employed here---systematically crossing factors (dt-embedding type $\times$ subsampling $\times$ horizon) and validating across environments and seeds---provides a template for diagnosing failure modes in model-based RL more broadly.
+The normalized v/e overshoot ratio ($\hat{r}$) and actor entropy serve as portable, early-warning diagnostics that can be computed from standard training logs without additional instrumentation.
+These tools detected 008f's delayed collapse $\sim$10K steps before eval return began declining, and consistently flagged pathological regimes ($\hat{r} > 1.5$) across all environments and configurations.
+
+%==============================================================================
+\section{Conclusion}\label{sec:conclusion}
+%==============================================================================
+
+We have presented the first systematic, multi-environment, multi-seed empirical investigation of temporal abstraction in RSSM-based world models.
+Our findings are unambiguous: temporal abstraction via variable-rate imagination is comprehensively broken in current latent-dynamics architectures.
+No combination of dt-embedding configuration, subsampling strategy, or imagination horizon achieves competitive performance with the $\dt=1$ baseline.
+The best $\dt=2$ configuration across three DMC environments reaches only 22--54\% of baseline performance on average across seeds.
+
+The root cause is not the dt-embedding---an initial hypothesis that our extended experiments refute---but rather the RSSM's fundamental inability to predict multi-step transitions with sufficient accuracy.
+The 3.6--5.1$\times$ prediction quality gap at $\dt=2$ establishes an \emph{RSSM fidelity ceiling} that cannot be overcome by conditioning mechanisms alone.
+This fidelity gap propagates through value bootstrapping to produce either catastrophic collapse (when overestimation occurs) or persistent degradation (when it does not).
+
+We contribute a factorial diagnostic methodology, the normalized v/e overshoot ratio as an early-warning metric, and the RSSM fidelity ceiling hypothesis as a framework for understanding why temporal abstraction fails and what must change for it to succeed.
+Until world models can predict multi-step transitions with fidelity comparable to single-step predictions, temporal abstraction in imagination-based RL will remain fundamentally limited.
+
+%==============================================================================
+% References
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+
+\bibitem[Hafner et~al.(2020)]{hafner2020dream}
+D.~Hafner, T.~Lillicrap, J.~Ba, and M.~Norouzi.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Hafner et~al.(2021)]{hafner2021mastering}
+D.~Hafner, T.~Lillicrap, M.~Norouzi, and J.~Ba.
+\newblock Mastering {A}tari with discrete world models.
+\newblock In \emph{ICLR}, 2021.
+
+\bibitem[Hafner et~al.(2023)]{hafner2023dreamerv3}
+D.~Hafner, J.~Pasukonis, J.~Ba, and T.~Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv:2301.04104}, 2023.
+
+\bibitem[Sutton et~al.(1999)]{sutton1999options}
+R.~S.~Sutton, D.~Precup, and S.~Singh.
+\newblock Between {MDP}s and semi-{MDP}s: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112(1-2):181--211, 1999.
+
+\bibitem[Sharma et~al.(2017)]{sharma2017figar}
+S.~Sharma, A.~S.~Lakshminarayanan, and B.~Ravindran.
+\newblock Fine grained action repetition for deep reinforcement learning.
+\newblock In \emph{ICLR}, 2017.
+
+\bibitem[Janner et~al.(2019)]{janner2019mbpo}
+M.~Janner, J.~Fu, M.~Zhang, and S.~Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In \emph{NeurIPS}, 2019.
+
+\bibitem[Delalleau et~al.(2019)]{delalleau2019delusional}
+O.~Delalleau, M.~Peter, E.~Bhatt, and D.~Khashabi.
+\newblock Discrete-continuous mixtures in differentiable model-based reinforcement learning.
+\newblock \emph{arXiv:1909.12830}, 2019.
+
+\bibitem[Micheli et~al.(2023)]{micheli2023iris}
+V.~Micheli, E.~Alonso, and F.~Fleuret.
+\newblock Transformers are sample-efficient world models.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Robine et~al.(2023)]{robine2023twm}
+J.~Robine, M.~H{\"o}ftmann, T.~Uelwer, and S.~Harmeling.
+\newblock Transformer-based world models are happy with 100k interactions.
+\newblock In \emph{ICLR}, 2023.
+
+\end{thebibliography}
+
+\end{document}

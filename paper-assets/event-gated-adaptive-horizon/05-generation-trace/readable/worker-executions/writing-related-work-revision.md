@@ -1,0 +1,2986 @@
+# writing related work revision
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 5
+- **Tool calls:** 17
+- **Original source:** `logs/workers/worker_writing_related_work_revision_20260513T180340.log`
+- **Structured JSON:** [`b40f5ef7d6061301fb3e.json`](../../sessions/b4/b40f5ef7d6061301fb3e.json)
+
+## Before a recorded user message
+
+34 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3a888ac4-3a7c-43bc-ad58-1be07866e397",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778706600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e707d82d-c583-413d-8965-36ba34ef86c4",
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading both files and searching for ASI information in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "e9ecbf29-4dbb-46d0-bb31-e4cdb361f84d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUYJdyDcp6Sa6T5f9ZG7y1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11817
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016DN4kNYRDTw6nYiSDYsGxy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "fa1c7183-c29b-4138-93e8-73875dd911bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUYJdyDcp6Sa6T5f9ZG7y1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11817
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T18:03:54.236Z_
+
+<details><summary>↩ Tool result · `toolu_016DN4kNYRDTw6nYiSDYsGxy`</summary>
+
+```text
+1	## 2. Related Work
+2	
+3	**Fixed-horizon model-based RL.**
+4	Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.
+5	
+6	**Variable-rate and temporal abstraction in MBRL.**
+7	Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.
+8	
+9	**Event-based and adaptive stepping in RL.**
+10	Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.
+11	
+12	**Positioning of this work.**
+13	Our method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\Delta t \in \{1, \ldots, K\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \times K$ environment steps without additional latent computation. Unlike TAWM, where $\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "d353232c-6816-4053-a6c8-473786ebe6b9",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+      "content": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+      "numLines": 14,
+      "startLine": 1,
+      "totalLines": 14
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012uf71csXdJRrSXZBP76Avq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "da2395c9-9c2f-4b1d-a095-f34d59827b62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUYJdyDcp6Sa6T5f9ZG7y1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11817
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T18:03:54.763Z_
+
+<details><summary>↩ Tool result · `toolu_012uf71csXdJRrSXZBP76Avq`</summary>
+
+```text
+1	# 2. Related Work
+2	
+3	We situate our approach within five related lines of research: fixed-rate model-based RL, variable-rate and temporal abstraction, learned skipping for planning, imagination quality improvement, and event-aware world models.
+4	
+5	## 2.1 Model-Based RL with Fixed-Rate Imagination
+6	
+7	Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution.
+8	
+9	DreamerV3 \citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) that maintains deterministic and stochastic latent states, training an actor-critic purely through $H$-step imagined trajectories. It achieves strong performance across diverse domains but operates at a fixed one-environment-step-per-latent-step resolution, limiting the effective planning horizon to $H$ environment steps regardless of episode length. NE-Dreamer \citep{nedreamer2026} replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free latent world model that improves sample efficiency while retaining the fixed-rate imagination structure. R2-Dreamer \citep{r2dreamer2026} similarly eliminates the observation decoder by training with redundancy-reduced latent targets, accelerating training and improving robustness.
+10	These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks (e.g., 250-step manipulation episodes), a rollout of $H{=}15$ steps covers only 6\% of the episode, creating a credit assignment bottleneck. Our method addresses this by learning to skip uneventful timesteps, extending the effective horizon to $\sum \Delta t_i$ environment steps (up to $H \times K$) without additional latent computation.
+11	
+12	## 2.2 Variable-Rate and Temporal Abstraction
+13	
+14	Several works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.
+15	
+16	TAWM \citep{nhu2025tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\Delta t$ \emph{state-dependent} via a learned event gate. THICK \citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. ASI \citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.
+17	
+18	Our approach avoids the multi-model exploitation problem identified by \citet{schiewer2024hierarchical} in hierarchical world models by operating within a single RSSM, while offering finer temporal adaptation than two-level hierarchies through a continuous per-step stride selection.
+19	
+20	## 2.3 Learned Skipping for Planning
+21	
+22	A separate line of work learns explicit skip or jump decisions to extend planning horizons.
+23	
+24	LS-Imagine \citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps. I-TAP \citep{itap2026} learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL. It operates in a fundamentally different paradigm---offline and autoregressive---from our online RSSM-based approach.
+25	
+26	While both LS-Imagine and I-TAP demonstrate the value of temporal flexibility in planning, neither addresses the specific setting of online actor-critic training with variable-rate latent imagination. Our event gate fills this gap by integrating state-dependent stride selection directly into DreamerV3's imagination pipeline.
+27	
+28	## 2.4 Imagination Quality Improvement
+29	
+30	Rather than changing temporal resolution, several recent works improve the quality of fixed-rate imagination rollouts.
+31	
+32	DMWM \citep{wang2025dmwm} introduces a dual-mind architecture combining an RSSM-based System~1 for intuitive transitions with a logic-informed neural network (LINN) System~2 that provides logical reasoning feedback, improving long-horizon imagination coherence through logical constraints. It shares our motivation of extending effective RSSM imagination but addresses error accumulation at fixed temporal resolution rather than extending the temporal horizon. DyMoDreamer \citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, achieving strong results on visual benchmarks (Atari 100k, DMC). It operates at the observation/pixel level to improve per-step representation quality, whereas our method operates in latent space and changes the \emph{temporal resolution} of imagination rather than the attention quality of individual steps---the two approaches target complementary axes of improvement and could in principle be combined. ELVIS \citep{du2026elvis} introduces ensemble-calibrated uncertainty-aware $\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty. While ELVIS adapts \emph{how much} to trust each imagination step, it does not change \emph{how many} environment steps each imagination step covers---our gate modifies the temporal resolution itself.
+33	
+34	## 2.5 Event-Aware World Models
+35	
+36	Event-driven representations have recently been applied to world models, though primarily at the observation level.
+37	
+38	EA-WM \citep{eawm2026} introduces event-aware fusion via frame-difference supervision for video world models at the pixel level, using event signals to improve generation quality of dynamic regions. While both EA-WM and our method leverage event-like signals (frame differences vs. latent-state deltas), EA-WM applies them to improve pixel-level video prediction quality, whereas we use latent-state change magnitude to drive \emph{temporal stride selection} in the imagination loop for policy optimization. Our event gate operates entirely in the learned latent space, using state-delta magnitude as a proxy for dynamical significance to determine when fine-grained versus coarse-grained imagination is warranted.
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "147390c5-0046-4ef7-905e-81540157a054",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_draft.md",
+      "content": "# 2. Related Work\n\nWe situate our approach within five related lines of research: fixed-rate model-based RL, variable-rate and temporal abstraction, learned skipping for planning, imagination quality improvement, and event-aware world models.\n\n## 2.1 Model-Based RL with Fixed-Rate Imagination\n\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution.\n\nDreamerV3 \\citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) that maintains deterministic and stochastic latent states, training an actor-critic purely through $H$-step imagined trajectories. It achieves strong performance across diverse domains but operates at a fixed one-environment-step-per-latent-step resolution, limiting the effective planning horizon to $H$ environment steps regardless of episode length. NE-Dreamer \\citep{nedreamer2026} replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free latent world model that improves sample efficiency while retaining the fixed-rate imagination structure. R2-Dreamer \\citep{r2dreamer2026} similarly eliminates the observation decoder by training with redundancy-reduced latent targets, accelerating training and improving robustness.\nThese methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks (e.g., 250-step manipulation episodes), a rollout of $H{=}15$ steps covers only 6\\% of the episode, creating a credit assignment bottleneck. Our method addresses this by learning to skip uneventful timesteps, extending the effective horizon to $\\sum \\Delta t_i$ environment steps (up to $H \\times K$) without additional latent computation.\n\n## 2.2 Variable-Rate and Temporal Abstraction\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.\n\nTAWM \\citep{nhu2025tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\\Delta t$ \\emph{state-dependent} via a learned event gate. THICK \\citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \\citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.\n\nOur approach avoids the multi-model exploitation problem identified by \\citet{schiewer2024hierarchical} in hierarchical world models by operating within a single RSSM, while offering finer temporal adaptation than two-level hierarchies through a continuous per-step stride selection.\n\n## 2.3 Learned Skipping for Planning\n\nA separate line of work learns explicit skip or jump decisions to extend planning horizons.\n\nLS-Imagine \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps. I-TAP \\citep{itap2026} learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL. It operates in a fundamentally different paradigm---offline and autoregressive---from our online RSSM-based approach.\n\nWhile both LS-Imagine and I-TAP demonstrate the value of temporal flexibility in planning, neither addresses the specific setting of online actor-critic training with variable-rate latent imagination. Our event gate fills this gap by integrating state-dependent stride selection directly into DreamerV3's imagination pipeline.\n\n## 2.4 Imagination Quality Improvement\n\nRather than changing temporal resolution, several recent works improve the quality of fixed-rate imagination rollouts.\n\nDMWM \\citep{wang2025dmwm} introduces a dual-mind architecture combining an RSSM-based System~1 for intuitive transitions with a logic-informed neural network (LINN) System~2 that provides logical reasoning feedback, improving long-horizon imagination coherence through logical constraints. It shares our motivation of extending effective RSSM imagination but addresses error accumulation at fixed temporal resolution rather than extending the temporal horizon. DyMoDreamer \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, achieving strong results on visual benchmarks (Atari 100k, DMC). It operates at the observation/pixel level to improve per-step representation quality, whereas our method operates in latent space and changes the \\emph{temporal resolution} of imagination rather than the attention quality of individual steps---the two approaches target complementary axes of improvement and could in principle be combined. ELVIS \\citep{du2026elvis} introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty. While ELVIS adapts \\emph{how much} to trust each imagination step, it does not change \\emph{how many} environment steps each imagination step covers---our gate modifies the temporal resolution itself.\n\n## 2.5 Event-Aware World Models\n\nEvent-driven representations have recently been applied to world models, though primarily at the observation level.\n\nEA-WM \\citep{eawm2026} introduces event-aware fusion via frame-difference supervision for video world models at the pixel level, using event signals to improve generation quality of dynamic regions. While both EA-WM and our method leverage event-like signals (frame differences vs. latent-state deltas), EA-WM applies them to improve pixel-level video prediction quality, whereas we use latent-state change magnitude to drive \\emph{temporal stride selection} in the imagination loop for policy optimization. Our event gate operates entirely in the learned latent space, using state-delta magnitude as a proxy for dynamical significance to determine when fine-grained versus coarse-grained imagination is warranted.\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VN5cJ3e8c3sxjoQ3ju58Vr`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "b160a61c-4a6f-49d6-ad79-4f338f8f7978",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUYJdyDcp6Sa6T5f9ZG7y1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11817
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T18:03:54.966Z_
+
+<details><summary>↩ Tool result · `toolu_01VN5cJ3e8c3sxjoQ3ju58Vr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "1c41ac52-76f7-46b3-9092-2a857beb3ac2",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for ASI (Neitz et al., 2018) to verify the "min-pooling over reconstruction losses" description.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "ab0c2e62-19fd-4211-9981-b81dadc2da78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfJ1gz1kWjrg2XqGfNYezu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 23658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3777
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Now let me verify the ASI description.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "e6f3123d-ba02-4b96-979a-0eaf315d2fb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfJ1gz1kWjrg2XqGfNYezu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 23658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3777
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011761S6drZhhKvMzYA8Jd7U`</summary>
+
+```json
+{
+  "query": "ASI Neitz adaptive skip intervals reinforcement learning Neitz 2018"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "092c4075-9f22-44cf-a000-4f9df92bc0f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfJ1gz1kWjrg2XqGfNYezu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 23658,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3777
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T18:04:04.633Z_
+
+<details><summary>↩ Tool result · `toolu_011761S6drZhhKvMzYA8Jd7U`</summary>
+
+```text
+Web search results for query: "ASI Neitz adaptive skip intervals reinforcement learning Neitz 2018"
+
+Links: [{"title":"GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub","url":"https://github.com/neitzal/adaptive-skip-intervals"},{"title":"GitHub - neitzal/asi-tasks: Tasks for the paper Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://github.com/neitzal/asi-tasks"},{"title":"[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768"},{"title":"[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768v1"},{"title":"Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3327546.3327649"},{"title":"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://proceedings.neurips.cc/paper/2018/hash/0f0ee3310223fe38a989b2c818709393-Abstract.html"},{"title":"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models | MPI-IS","url":"https://is.mpg.de/en/publications/neiparbausch18"},{"title":"Papers with Code - Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://paperswithcode.com/paper/adaptive-skip-intervals-temporal-abstraction"},{"title":"Published as a conference paper at ICLR 2020","url":"https://openreview.net/pdf?id=SJexHkSFPS"},{"title":"Alexander Neitz - Google Scholar","url":"https://scholar.google.cat/citations?user=K1GoYW8AAAAJ&hl=ja"}]
+
+I found relevant information about the paper you're searching for. Here's what the search results show:
+
+The paper "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models" was authored by Alexander Neitz, Giambattista Parascandolo, Stefan Bauer, and Bernhard Schölkopf, and was presented at NIPS (Advances in Neural Information Processing Systems) in 2018.
+
+The paper introduces a method which enables a recurrent dynamics model to be temporally abstract, with an approach called Adaptive Skip Intervals (ASI) based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective.
+
+The paper notes that in many situations, there exist prediction intervals which result in particularly easy-to-predict transitions, and shows that there are prediction tasks for which computational efficiency and prediction accuracy can be gained by allowing the model to make predictions at a sampling rate which it can choose itself.
+
+The paper has an implementation available on GitHub (adaptive-skip-intervals repository), and the original arxiv preprint is available at arxiv.org/abs/1808.04768.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "1c71f8c0-d8fb-4b2c-8bf1-37aad5470b5c",
+  "tool_use_result": {
+    "query": "ASI Neitz adaptive skip intervals reinforcement learning Neitz 2018",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GNsJSqPQzgHi4GY9MGryS8",
+        "content": [
+          {
+            "title": "GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub",
+            "url": "https://github.com/neitzal/adaptive-skip-intervals"
+          },
+          {
+            "title": "GitHub - neitzal/asi-tasks: Tasks for the paper Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://github.com/neitzal/asi-tasks"
+          },
+          {
+            "title": "[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768"
+          },
+          {
+            "title": "[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768v1"
+          },
+          {
+            "title": "Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3327546.3327649"
+          },
+          {
+            "title": "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://proceedings.neurips.cc/paper/2018/hash/0f0ee3310223fe38a989b2c818709393-Abstract.html"
+          },
+          {
+            "title": "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models | MPI-IS",
+            "url": "https://is.mpg.de/en/publications/neiparbausch18"
+          },
+          {
+            "title": "Papers with Code - Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://paperswithcode.com/paper/adaptive-skip-intervals-temporal-abstraction"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2020",
+            "url": "https://openreview.net/pdf?id=SJexHkSFPS"
+          },
+          {
+            "title": "Alexander Neitz - Google Scholar",
+            "url": "https://scholar.google.cat/citations?user=K1GoYW8AAAAJ&hl=ja"
+          }
+        ]
+      },
+      "I found relevant information about the paper you're searching for. Here's what the search results show:\n\nThe paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" was authored by Alexander Neitz, Giambattista Parascandolo, Stefan Bauer, and Bernhard Schölkopf, and was presented at NIPS (Advances in Neural Information Processing Systems) in 2018.\n\nThe paper introduces a method which enables a recurrent dynamics model to be temporally abstract, with an approach called Adaptive Skip Intervals (ASI) based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective.\n\nThe paper notes that in many situations, there exist prediction intervals which result in particularly easy-to-predict transitions, and shows that there are prediction tasks for which computational efficiency and prediction accuracy can be gained by allowing the model to make predictions at a sampling rate which it can choose itself.\n\nThe paper has an implementation available on GitHub (adaptive-skip-intervals repository), and the original arxiv preprint is available at arxiv.org/abs/1808.04768."
+    ],
+    "durationSeconds": 5.895201433
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The search results mention "easy-to-predict transitions" and choosing intervals that are "particularly easy-to-predict". Let me get more details about the actual mechanism - specifically whether it uses "min-pooling over reconstruction losses". Let me search more specifically for the method details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "c0a5ff13-d732-44b9-967d-223aa268b325",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018mpEjFYv3YcSTV4U3yMbR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 27435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Let me get more details on the ASI mechanism.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "da485e20-01ae-4739-bc0f-ce6d8eecbb90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018mpEjFYv3YcSTV4U3yMbR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 27435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Svi6zn2X5bL8dzvqRTi8up`</summary>
+
+```json
+{
+  "query": "\"adaptive skip intervals\" Neitz NeurIPS 2018 min-pooling reconstruction loss method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "6aa6a22e-5df8-4a9d-b26a-9e3d2c8b8864",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018mpEjFYv3YcSTV4U3yMbR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 27435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GvzAtsoz1Fi8BuCk3V3Hz3`</summary>
+
+```json
+{
+  "query": "arxiv 1808.04768 adaptive skip intervals method prediction loss selection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "7762cdc5-c2e6-413c-819a-9df05379af0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018mpEjFYv3YcSTV4U3yMbR2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 954,
+      "cache_read_input_tokens": 27435,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T18:04:14.395Z_
+
+<details><summary>↩ Tool result · `toolu_01GvzAtsoz1Fi8BuCk3V3Hz3`</summary>
+
+```text
+Web search results for query: "arxiv 1808.04768 adaptive skip intervals method prediction loss selection"
+
+Links: [{"title":"[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768"},{"title":"[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768v1"},{"title":"Regression Trees for Fast and Adaptive Prediction Intervals","url":"https://arxiv.org/html/2402.07357v1"},{"title":"[1905.10634] Adaptive, Distribution-Free Prediction Intervals for Deep Networks","url":"https://arxiv.org/abs/1905.10634"},{"title":"[2402.07357] Regression Trees for Fast and Adaptive Prediction Intervals","url":"https://arxiv.org/abs/2402.07357"},{"title":"Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3327546.3327649"},{"title":"[2205.08698v1] Optimal Adaptive Prediction Intervals for Electricity Load Forecasting in Distribution Systems via Reinforcement Learning","url":"https://arxiv.org/abs/2205.08698v1"},{"title":"Adaptive Sampling to Reduce Epistemic Uncertainty Using Prediction Interval-Generation Neural Networks","url":"https://arxiv.org/html/2412.10570v1"},{"title":"Online Selective Conformal Prediction: Errors and Solutions","url":"https://arxiv.org/html/2503.16809"},{"title":"GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub","url":"https://github.com/neitzal/adaptive-skip-intervals"}]
+
+Based on the search results, I found the paper you're looking for:
+
+arXiv paper 1808.04768 is titled "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models," which introduces a method that enables a recurrent dynamics model to be temporally abstract.
+
+The approach, called Adaptive Skip Intervals (ASI), is based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective, and there exist prediction intervals which result in particularly easy-to-predict transitions. The method allows the model to make predictions at a sampling rate which it can choose itself, gaining both computational efficiency and prediction accuracy.
+
+The paper was authored by Alexander Neitz and colleagues, with versions released in August 2018, September 2018, and December 2018. There's also a GitHub implementation available at https://github.com/neitzal/adaptive-skip-intervals.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "b69eb7ad-cb65-4186-96cd-2afe9343037b",
+  "tool_use_result": {
+    "query": "arxiv 1808.04768 adaptive skip intervals method prediction loss selection",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WDzsGUSi72cZLCnnZUfFAZ",
+        "content": [
+          {
+            "title": "[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768"
+          },
+          {
+            "title": "[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768v1"
+          },
+          {
+            "title": "Regression Trees for Fast and Adaptive Prediction Intervals",
+            "url": "https://arxiv.org/html/2402.07357v1"
+          },
+          {
+            "title": "[1905.10634] Adaptive, Distribution-Free Prediction Intervals for Deep Networks",
+            "url": "https://arxiv.org/abs/1905.10634"
+          },
+          {
+            "title": "[2402.07357] Regression Trees for Fast and Adaptive Prediction Intervals",
+            "url": "https://arxiv.org/abs/2402.07357"
+          },
+          {
+            "title": "Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3327546.3327649"
+          },
+          {
+            "title": "[2205.08698v1] Optimal Adaptive Prediction Intervals for Electricity Load Forecasting in Distribution Systems via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2205.08698v1"
+          },
+          {
+            "title": "Adaptive Sampling to Reduce Epistemic Uncertainty Using Prediction Interval-Generation Neural Networks",
+            "url": "https://arxiv.org/html/2412.10570v1"
+          },
+          {
+            "title": "Online Selective Conformal Prediction: Errors and Solutions",
+            "url": "https://arxiv.org/html/2503.16809"
+          },
+          {
+            "title": "GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub",
+            "url": "https://github.com/neitzal/adaptive-skip-intervals"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\narXiv paper 1808.04768 is titled \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models,\" which introduces a method that enables a recurrent dynamics model to be temporally abstract.\n\nThe approach, called Adaptive Skip Intervals (ASI), is based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective, and there exist prediction intervals which result in particularly easy-to-predict transitions. The method allows the model to make predictions at a sampling rate which it can choose itself, gaining both computational efficiency and prediction accuracy.\n\nThe paper was authored by Alexander Neitz and colleagues, with versions released in August 2018, September 2018, and December 2018. There's also a GitHub implementation available at https://github.com/neitzal/adaptive-skip-intervals."
+    ],
+    "durationSeconds": 5.107175993000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T18:04:15.184Z_
+
+<details><summary>↩ Tool result · `toolu_01Svi6zn2X5bL8dzvqRTi8up`</summary>
+
+```text
+Web search results for query: ""adaptive skip intervals" Neitz NeurIPS 2018 min-pooling reconstruction loss method"
+
+Links: [{"title":"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://proceedings.neurips.cc/paper/2018/hash/0f0ee3310223fe38a989b2c818709393-Abstract.html"},{"title":"GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub","url":"https://github.com/neitzal/adaptive-skip-intervals"},{"title":"Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3327546.3327649"},{"title":"[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768"},{"title":"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models | MPI-IS","url":"https://is.mpg.de/en/publications/neiparbausch18"},{"title":"[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://arxiv.org/abs/1808.04768v1"},{"title":"GitHub - neitzal/asi-tasks: Tasks for the paper Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://github.com/neitzal/asi-tasks"},{"title":"Advances in Neural Information Processing Systems 31","url":"https://papers.nips.cc/paper_files/paper/2018"},{"title":"NIPS 2018","url":"https://nips.cc/Conferences/2018/ScheduleMultitrack?event=11932"},{"title":"Papers with Code - Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models","url":"https://paperswithcode.com/paper/adaptive-skip-intervals-temporal-abstraction"}]
+
+I found the paper! The paper "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models" introduces a method (ASI) which enables a recurrent dynamics model to be temporally abstract, based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective.
+
+The paper was published in Advances in Neural Information Processing Systems 31 (NeurIPS 2018) by Alexander Neitz, Giambattista Parascandolo, Stefan Bauer, and Bernhard Schölkopf.
+
+The search results confirm the existence of this paper and provide access to it through multiple sources including the NeurIPS proceedings, arXiv, and GitHub repositories with implementation code. However, the search results don't contain detailed information about the specific min-pooling reconstruction loss method you mentioned. To learn more about that specific technical aspect, you would need to access the full paper itself through one of these links.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "f8527479-89a2-4e8d-a530-165f0e290891",
+  "tool_use_result": {
+    "query": "\"adaptive skip intervals\" Neitz NeurIPS 2018 min-pooling reconstruction loss method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015uev9nDxX4z3QovdrXSYW9",
+        "content": [
+          {
+            "title": "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://proceedings.neurips.cc/paper/2018/hash/0f0ee3310223fe38a989b2c818709393-Abstract.html"
+          },
+          {
+            "title": "GitHub - neitzal/adaptive-skip-intervals: Implementation of the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" · GitHub",
+            "url": "https://github.com/neitzal/adaptive-skip-intervals"
+          },
+          {
+            "title": "Adaptive skip intervals | Proceedings of the 32nd International Conference on Neural Information Processing Systems",
+            "url": "https://dl.acm.org/doi/10.5555/3327546.3327649"
+          },
+          {
+            "title": "[1808.04768] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768"
+          },
+          {
+            "title": "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models | MPI-IS",
+            "url": "https://is.mpg.de/en/publications/neiparbausch18"
+          },
+          {
+            "title": "[1808.04768v1] Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://arxiv.org/abs/1808.04768v1"
+          },
+          {
+            "title": "GitHub - neitzal/asi-tasks: Tasks for the paper Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://github.com/neitzal/asi-tasks"
+          },
+          {
+            "title": "Advances in Neural Information Processing Systems 31",
+            "url": "https://papers.nips.cc/paper_files/paper/2018"
+          },
+          {
+            "title": "NIPS 2018",
+            "url": "https://nips.cc/Conferences/2018/ScheduleMultitrack?event=11932"
+          },
+          {
+            "title": "Papers with Code - Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models",
+            "url": "https://paperswithcode.com/paper/adaptive-skip-intervals-temporal-abstraction"
+          }
+        ]
+      },
+      "I found the paper! The paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\" introduces a method (ASI) which enables a recurrent dynamics model to be temporally abstract, based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective.\n\nThe paper was published in Advances in Neural Information Processing Systems 31 (NeurIPS 2018) by Alexander Neitz, Giambattista Parascandolo, Stefan Bauer, and Bernhard Schölkopf.\n\nThe search results confirm the existence of this paper and provide access to it through multiple sources including the NeurIPS proceedings, arXiv, and GitHub repositories with implementation code. However, the search results don't contain detailed information about the specific min-pooling reconstruction loss method you mentioned. To learn more about that specific technical aspect, you would need to access the full paper itself through one of these links."
+    ],
+    "durationSeconds": 6.290107213
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The search results confirm that ASI selects intervals that are "particularly easy to predict" — i.e., it optimizes for prediction ease. But I couldn't confirm the specific "min-pooling over reconstruction losses" mechanism from the search results alone. Let me try to fetch the actual paper or the GitHub repo to verify the specific mechanism.
+
+Let me try to fetch the arxiv abstract or the GitHub README for more details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "3aefa19f-8fec-40cd-8c5a-0f716276381c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kf699hn4Fdad7MvFebbiUB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 747,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 28389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Let me check the GitHub repo and arxiv abstract for the specific mechanism details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "39780787-e48f-4df1-9dbc-22da7ba555d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kf699hn4Fdad7MvFebbiUB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 747,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 28389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UVg8WnRiK87Fo8Um417Pt9`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "324c7ae7-1c92-46cf-97b2-081acc72cbb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kf699hn4Fdad7MvFebbiUB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 747,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 28389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1009
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T18:04:19.907Z_
+
+<details><summary>↩ Tool result · `toolu_01UVg8WnRiK87Fo8Um417Pt9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "750b2c60-23ec-498a-919d-94f018335cd5",
+  "tool_use_result": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011SzxuxFvD16KiNwvVS3ogr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/1808.04768",
+  "prompt": "Extract the detailed method description of ASI (Adaptive Skip Intervals). Specifically: How does the model select which timesteps to skip? Does it use \"min-pooling over reconstruction losses\"? What is the exact mechanism for choosing skip intervals? Quote any relevant sentences about the loss function and skip selection mechanism."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "8569c68d-4b0b-483a-918a-bd8abca0a2b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CXfe2WsK1Kjrs4Z9FJjec",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1564,
+      "cache_read_input_tokens": 29398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1564
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015JPYacxhXAEEb41jr2HvpS`</summary>
+
+```json
+{
+  "url": "https://github.com/neitzal/adaptive-skip-intervals",
+  "prompt": "Extract details about the ASI method mechanism. How does it select skip intervals? Does it use min-pooling over reconstruction losses? What is the loss function and skip selection mechanism?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "0d751edd-cbac-45c5-8f9f-4dc76778b86a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CXfe2WsK1Kjrs4Z9FJjec",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1564,
+      "cache_read_input_tokens": 29398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1564
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T18:04:27.839Z_
+
+<details><summary>↩ Tool result · `toolu_011SzxuxFvD16KiNwvVS3ogr`</summary>
+
+```text
+Based on the provided webpage content, I cannot extract the detailed method description you're requesting.
+
+The page only contains the abstract and metadata for the arXiv paper. The abstract states that ASI is "based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective" and that "the model...make predictions at a sampling rate which it can choose itself."
+
+However, the specific technical details you're asking about—including whether the method uses "min-pooling over reconstruction losses" and the exact mechanism for choosing skip intervals—are **not present** in this webpage content. These details would require accessing the full PDF paper itself, which is referenced but not included in the text provided.
+
+To answer your question comprehensively, you would need to review the complete paper available at `/pdf/1808.04768`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "bd3c83f6-a8fe-41e4-a6fe-37c80e79f687",
+  "tool_use_result": {
+    "bytes": 46213,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided webpage content, I cannot extract the detailed method description you're requesting.\n\nThe page only contains the abstract and metadata for the arXiv paper. The abstract states that ASI is \"based on the observation that in many sequential prediction tasks, the exact time at which events occur is irrelevant to the underlying objective\" and that \"the model...make predictions at a sampling rate which it can choose itself.\"\n\nHowever, the specific technical details you're asking about—including whether the method uses \"min-pooling over reconstruction losses\" and the exact mechanism for choosing skip intervals—are **not present** in this webpage content. These details would require accessing the full PDF paper itself, which is referenced but not included in the text provided.\n\nTo answer your question comprehensively, you would need to review the complete paper available at `/pdf/1808.04768`.",
+    "durationMs": 3324,
+    "url": "https://arxiv.org/abs/1808.04768"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T18:04:29.703Z_
+
+<details><summary>↩ Tool result · `toolu_015JPYacxhXAEEb41jr2HvpS`</summary>
+
+```text
+# ASI Method Mechanism
+
+Based on the provided GitHub repository content, I cannot find detailed technical information about how the Adaptive Skip Intervals method selects skip intervals, whether it uses min-pooling over reconstruction losses, or the specific loss function and skip selection mechanism.
+
+The page shows:
+- The repository implements the paper "Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models"
+- Training examples reference parameters like `z_loss_fn log_loss` and `delta_t_upper_bound 21`
+- Visualizations indicate "the model skips hard-to-predict frames" and uses "frame similarity" in a "temporal matching step"
+
+However, the actual algorithmic details of the skip selection mechanism are not explained in this README excerpt. To understand the precise methodology—including loss functions, pooling strategies, and frame selection logic—you would need to consult the original paper cited in the repository (arXiv:1808.04768) or examine the source code in the `asi/` directory, which isn't fully displayed here.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "d5f3811f-eb6d-435d-8583-c7f8202643f4",
+  "tool_use_result": {
+    "bytes": 259716,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ASI Method Mechanism\n\nBased on the provided GitHub repository content, I cannot find detailed technical information about how the Adaptive Skip Intervals method selects skip intervals, whether it uses min-pooling over reconstruction losses, or the specific loss function and skip selection mechanism.\n\nThe page shows:\n- The repository implements the paper \"Adaptive Skip Intervals: Temporal Abstraction for Recurrent Dynamical Models\"\n- Training examples reference parameters like `z_loss_fn log_loss` and `delta_t_upper_bound 21`\n- Visualizations indicate \"the model skips hard-to-predict frames\" and uses \"frame similarity\" in a \"temporal matching step\"\n\nHowever, the actual algorithmic details of the skip selection mechanism are not explained in this README excerpt. To understand the precise methodology—including loss functions, pooling strategies, and frame selection logic—you would need to consult the original paper cited in the repository (arXiv:1808.04768) or examine the source code in the `asi/` directory, which isn't fully displayed here.",
+    "durationMs": 4369,
+    "url": "https://github.com/neitzal/adaptive-skip-intervals"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The GitHub README mentions "the model skips hard-to-predict frames" and uses "frame similarity" in a "temporal matching step". This is interesting - it says "hard-to-predict frames" are skipped, which aligns with the idea of optimizing for prediction ease. But the specific "min-pooling over reconstruction losses" claim isn't directly confirmed.
+
+Let me try to fetch the PDF or look at the paper more carefully. Actually, let me try fetching the arxiv PDF.
+
+Wait, actually from the search results and the GitHub README, I found something important:
+- The search results say: "there exist prediction intervals which result in particularly easy-to-predict transitions"
+
+
+- The GitHub README says: "the model skips hard-to-predict frames"
+
+These align perfectly - the model selects intervals that are easy to predict by avoiding frames that are hard to predict. This is exactly what min-pooling over reconstruction losses would do: it picks the skip interval with the minimum loss, which corresponds to the easiest-to-predict transition.
+
+The description seems accurate based on the abstract and README, though I'm uncertain about whether "min-pooling" is the precise terminology they use. Let me check the actual paper to verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "ecce9c62-2ed7-4669-a25c-68b79c92d72e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wqg6qkeCWhifYFRqRDbUWe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 30962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VsMbDeyEw7RW3Bc5A8ExFX`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/1808.04768",
+  "prompt": "Find and extract the exact mechanism ASI uses to select skip intervals. Specifically: 1) Does it use min-pooling over reconstruction losses? 2) How exactly does the model choose which timestep to predict next? 3) What loss function is used for skip selection? Quote the relevant paragraphs about the temporal matching / skip selection mechanism."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "42cd871b-72e6-4cb3-8b38-ad679902e6ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wqg6qkeCWhifYFRqRDbUWe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 30962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T18:04:44.557Z_
+
+<details><summary>↩ Tool result · `toolu_01VsMbDeyEw7RW3Bc5A8ExFX`</summary>
+
+```text
+# ASI Skip Interval Selection Mechanism
+
+I cannot extract the requested information about ASI's skip selection mechanism from the provided content. The document appears to be a PDF file containing compressed binary data and PostScript code rather than readable text about machine learning methodology.
+
+The visible text fragments do not contain coherent paragraphs explaining:
+1. Min-pooling approaches for reconstruction losses
+2. Timestep prediction selection procedures
+3. Loss functions for skip selection
+4. Temporal matching mechanisms
+
+**To properly answer your question, I would need:**
+- A readable text or PDF document with clear explanations of the ASI model's architecture
+- Specific sections discussing the temporal matching or skip interval selection algorithm
+- Clear loss function definitions
+
+If you have access to the original research paper in a readable format, I'd be happy to extract and analyze the specific mechanisms you're asking about.
+
+[Binary content (application/pdf, 2MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/webfetch-1778695481158-qzw0f8.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "cb8a75a8-b982-4eb2-8986-717fe3113804",
+  "tool_use_result": {
+    "bytes": 2114629,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ASI Skip Interval Selection Mechanism\n\nI cannot extract the requested information about ASI's skip selection mechanism from the provided content. The document appears to be a PDF file containing compressed binary data and PostScript code rather than readable text about machine learning methodology.\n\nThe visible text fragments do not contain coherent paragraphs explaining:\n1. Min-pooling approaches for reconstruction losses\n2. Timestep prediction selection procedures\n3. Loss functions for skip selection\n4. Temporal matching mechanisms\n\n**To properly answer your question, I would need:**\n- A readable text or PDF document with clear explanations of the ASI model's architecture\n- Specific sections discussing the temporal matching or skip interval selection algorithm\n- Clear loss function definitions\n\nIf you have access to the original research paper in a readable format, I'd be happy to extract and analyze the specific mechanisms you're asking about.\n\n[Binary content (application/pdf, 2MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/webfetch-1778695481158-qzw0f8.pdf]",
+    "durationMs": 3427,
+    "url": "https://arxiv.org/pdf/1808.04768"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The PDF was saved. Let me try to read it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "e2c7fb2d-677c-469b-be4e-f6ff1e2ee3df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MpT375Gse1HvCY6knJFRRy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 31690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Mjg1NMm6qSMsN5PVDUQgEz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/webfetch-1778695481158-qzw0f8.pdf",
+  "pages": "1-5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "b1e99545-cb99-42b9-8b9b-dc9cea2654bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MpT375Gse1HvCY6knJFRRy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 31690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T18:04:48.956Z_
+
+<details><summary>↩ Tool result · `toolu_01Mjg1NMm6qSMsN5PVDUQgEz`</summary>
+
+```text
+PDF pages extracted: 5 page(s) from /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/webfetch-1778695481158-qzw0f8.pdf (2MB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "8f2e57fa-18f8-4b3b-8210-507fd96d576f",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/webfetch-1778695481158-qzw0f8.pdf",
+      "originalSize": 2114629,
+      "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/68344da9-4afb-43e1-9661-095b7ea8beac/tool-results/pdf-f8743654-27ed-4656-adc5-33e1849cde9e",
+      "count": 5
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 1
+
+1 recorded events
+
+### User
+
+_source line 35 · 2026-05-13T18:04:48.954Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "69ed7219-419c-46b7-b08a-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+1 recorded events
+
+### User
+
+_source line 36 · 2026-05-13T18:04:48.954Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "69ed7219-419c-46b7-b08a-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 37 · 2026-05-13T18:04:48.954Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "69ed7219-419c-46b7-b08a-000000000002",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+1 recorded events
+
+### User
+
+_source line 38 · 2026-05-13T18:04:48.954Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "69ed7219-419c-46b7-b08a-000000000003",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+18 recorded events
+
+### User
+
+_source line 39 · 2026-05-13T18:04:48.954Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "69ed7219-419c-46b7-b08a-000000000004",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full details of the ASI method from the paper. Let me analyze what it actually does:
+
+From Algorithm 1 on page 4:
+- The key line is: `t ← arg min_{t' ∈ {t+1..T}} L(x_u, x_{t'})` — this is the temporal matching step
+- During exploitation, the supervisor selects the best-fitting ground-truth frame: `argmin_{t ∈ {2..2+H}} L_x(x̂_b, x_t)` — minimizing the loss over a window of H frames
+
+So the mechanism is:
+1. The model predicts a next state x̂
+
+
+2. A "temporal matching" supervisor finds which ground-truth frame within a window of H frames best matches the prediction by minimizing the loss, essentially selecting the frame with the lowest reconstruction error rather than using a fixed temporal offset.
+
+3. The paper actually frames this as finding "robust transitions" — the easiest-to-predict frames aren't just convenient for the model, they represent the most consistent causal mechanisms. And importantly, this work focuses on uncontrolled classification tasks, not RL, so ASI operates purely on observation prediction without any integration into a reinforcement learning loop.
+
+The description in the section file is mostly accurate — "min-pooling over reconstruction losses" reasonably captures the argmin operation over the loss function, even though the paper technically calls it "prediction loss" rather than "reconstruction loss." The characterization of optimizing for prediction ease is spot-on.
+
+Now I need to plan out the four modifications to add the missing papers. Let me carefully map where each one should go based on the task requirements: HWM in the Variable-rate section, DyMoDreamer and DMWM in the Variable-rate/temporal abstraction group, and ELVIS in the Event-based/adaptive stepping category. I'm organizing the papers into the existing structure of the related work section. I need to add HWM, DyMoDreamer, and DMWM to the variable-rate temporal abstraction paragraph, and slot ELVIS into the event-based adaptive stepping section. Let me pull the key descriptions for each paper to integrate them smoothly into the narrative. I see the issue now—the task wants me to reorganize these papers into different sections than where they currently sit in the draft. ELVIS belongs in "Event-based / adaptive stepping in RL" since it's about adaptive weighting based on uncertainty, which is fundamentally about adjusting the stepping strategy. The current rewritten thinking already covers DyMoDreamer and DMWM being moved to "Variable-rate and temporal abstraction," so I need to note that ELVIS is being relocated to the event-based section, and I'm realizing the section structure in the task has only 4 groups while the draft has 5, so there's some consolidation happening here. I need to figure out where to place HWM, DyMoDreamer, and DMWM in the variable-rate paragraph since they fit the temporal abstraction theme. HWM goes after THICK since it's hierarchical, while DyMoDreamer and DMWM should follow ASI as they focus on improving imagination quality. For the event-based paragraph, ELVIS fits at the end since it's about uncertainty-aware gating for long-horizon planning. Now I'm looking at the LS-Imagine description and need to check if it should reference goal-conditioned jumpy state transitions based on the ICLR 2025 oral presentation. 我需要统一关于跳跃机制的表述，用"goal-conditioned jumpy state transitions"替换现有描述，并补充说明跳跃决策与当前动作无关。同时要更新计算成本的说法，从"without additional latent computation"改为"with the same number of latent dynamics steps"，这样更准确地反映了方法的计算效率。
+
+我还想验证ASI描述的准确性——通过时间匹配监督器在H帧窗口内选择最小预测损失的帧，这本质上是对损失的最小池化，模型收敛到最容易预测的转移。这个描述足够准确，虽然用"prediction losses"比"reconstruction losses"更精确，但两者在上下文中都说得通。现在我要列出所有具体的编辑修改。
+
+首先，在第二段THICK之后添加HWM的内容——HWM通过学习多尺度潜在世界模型和学习的动作编码器来实现时间压缩，扩展了分层结构，但同样依赖固定的两层规划器架构。然后在I-TAP之后添加DyMoDreamer和DMWM，它们虽然不完全符合"时间灵活性"的叙述框架，但任务要求将它们放在这里，所以我需要调整结尾句子来容纳这些新增内容。 then ASI.
+
+Actually, let me re-read the current paragraph 2 more carefully and see what else needs to be added. I should incorporate HWM after THICK since it extends that hierarchical approach with multi-scale latent world models and a learned action encoder, though it still relies on fixed two-level planning. Then I need to work in DyMoDreamer and DMWM—probably after I-TAP or near the end—and update the closing to emphasize imagination quality rather than just the diversity of approaches. Let me revise the whole section to flow better and capture these distinctions more precisely. I'm adding ELVIS to the paragraph on adaptive stepping in RL—it uses ensemble-calibrated uncertainty to gate lambda-returns in RSSM-based MPC, adaptively weighting how much to trust each imagination step rather than adjusting the temporal coverage of each step itself. Then I'll update the closing to clarify that these methods achieve temporal abstraction in policy execution but don't extend the planning horizon within the learned world model itself. I'm refining how to position ELVIS in this discussion—it operates in imagination like the model-based methods, but it's adjusting confidence in each rollout step rather than changing the temporal granularity itself. Let me integrate this more cleanly by noting that model-free approaches handle temporal abstraction at execution time, while ELVIS works within imagination but still doesn't fundamentally extend the planning horizon through variable temporal resolution. ASI learns to skip timesteps by optimizing for prediction ease rather than dynamical significance, while DyMoDreamer and DMWM take different approaches—one focusing on motion-relevant features at fixed resolution, the other combining RSSM and logic-based systems for coherence. These methods show promise but still require external specification, operate at fixed hierarchical levels, or target settings distinct from online actor-critic imagination.
+
+TempoRL achieves temporal abstraction in the policy execution loop, and ELVIS extends this by introducing ensemble-calibrated uncertainty into the model-based setting, though these still don't fundamentally extend the planning horizon within the learned world model itself. I'm checking where "without additional latent computation" appears in the document—it looks like it's in the positioning paragraph describing how the planning horizon extends from H to H × K environment steps. Let me verify if there are other occurrences in the closing sentences or elsewhere before making the replacement. Now I'm planning the execution strategy for these edits — I need to be careful about the order since several changes are in the same paragraph. I'll apply them sequentially to avoid line number shifts, making sure each string match is precise so the edits don't interfere with each other.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "a28c018f-2704-49a6-a95f-f182165ceef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+ASI paper confirms the mechanism: a "temporal matching" supervisor selects the ground-truth frame with minimum loss within a window (Algorithm 1: `argmin_{t'} L(x_u, x_{t'})`). The "min-pooling over reconstruction losses" description is substantially accurate — the only refinement is the paper calls it "prediction loss" not "reconstruction loss". I'll fix that as part of edit 4.
+
+Now applying all four modifications.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "fe52c29d-272b-46a3-9fcb-456feed57725",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01RMC4JP6xZDeZHLuBsMcntv`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+  "old_string": "but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine",
+  "new_string": "but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "8c5a77e4-20f7-49e3-80af-98c202ff81bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-13T18:06:52.779Z_
+
+<details><summary>↩ Tool result · `toolu_01RMC4JP6xZDeZHLuBsMcntv`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "8e0d4867-d2fa-458c-a0c5-67e168aff61c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+    "oldString": "but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine",
+    "newString": "but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine",
+    "originalFile": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.",
+          " ",
+          " **Variable-rate and temporal abstraction in MBRL.**",
+          "-Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+          "+Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+          " ",
+          " **Event-based and adaptive stepping in RL.**",
+          " Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_018ndiK8Y32ewKJHXF6U2Hxz`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+  "old_string": "LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training.",
+  "new_string": "LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "49ab90e8-a2b7-4a79-8496-ce55383340b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T18:06:53.783Z_
+
+<details><summary>↩ Tool result · `toolu_018ndiK8Y32ewKJHXF6U2Hxz`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "0ac1b0d1-f554-4f58-8cb3-3695a461a798",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+    "oldString": "LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training.",
+    "newString": "LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training.",
+    "originalFile": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.",
+          " ",
+          " **Variable-rate and temporal abstraction in MBRL.**",
+          "-Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) learns jumping flags based on affordance-map kurtosis for open-world exploration, enabling the agent to skip low-information states during imagination; the jumps are action-independent and designed for exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+          "+Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+          " ",
+          " **Event-based and adaptive stepping in RL.**",
+          " Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XSLar1ZdrmqFUUV25dxC2f`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+  "old_string": "ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+  "new_string": "ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "23639de3-8ed9-4b76-811c-e9bc6dc9153f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-13T18:06:56.610Z_
+
+<details><summary>↩ Tool result · `toolu_01XSLar1ZdrmqFUUV25dxC2f`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "bb16ae97-78b6-4f88-b6d6-401a27609fe7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+    "oldString": "ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+    "newString": "ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.",
+    "originalFile": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 4,
+        "oldLines": 7,
+        "newStart": 4,
+        "newLines": 7,
+        "lines": [
+          " Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.",
+          " ",
+          " **Variable-rate and temporal abstraction in MBRL.**",
+          "-Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over reconstruction losses, optimizing for prediction ease rather than dynamical significance. While these methods demonstrate the value of temporal flexibility, they either require external time-gap specification, operate with fixed hierarchical levels, or target settings distinct from online actor-critic imagination.",
+          "+Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.",
+          " ",
+          " **Event-based and adaptive stepping in RL.**",
+          " Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01GQBJfgRUXdvLHi7DwBetVo`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+  "old_string": "TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.",
+  "new_string": "TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "0f3a7695-5568-48c4-9b0c-2a5337e8eed7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T18:06:59.047Z_
+
+<details><summary>↩ Tool result · `toolu_01GQBJfgRUXdvLHi7DwBetVo`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "f06995b8-efa2-4cc7-9692-fd2234007982",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+    "oldString": "TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.",
+    "newString": "TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.",
+    "originalFile": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 7,
+        "oldLines": 7,
+        "newStart": 7,
+        "newLines": 7,
+        "lines": [
+          " Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.",
+          " ",
+          " **Event-based and adaptive stepping in RL.**",
+          "-Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. These approaches achieve temporal abstraction in the policy execution loop but do not extend the effective planning horizon within a learned world model---the temporal flexibility is in acting, not in imagining.",
+          "+Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.",
+          " ",
+          " **Positioning of this work.**",
+          " Our method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01VUFitjfbhrHQ7UhYL8Bggf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+  "old_string": "without additional latent computation",
+  "new_string": "with the same number of latent dynamics steps"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "a55c7a03-7f35-441b-a9b8-dce2480eb5d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PM8yLktFBzv5w5QSQiSptC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6521,
+      "cache_read_input_tokens": 32511,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6521
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-13T18:06:59.910Z_
+
+<details><summary>↩ Tool result · `toolu_01VUFitjfbhrHQ7UhYL8Bggf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "54ebba65-12b0-4696-bb2b-6de21ce706e5",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+    "oldString": "without additional latent computation",
+    "newString": "with the same number of latent dynamics steps",
+    "originalFile": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 10,
+        "oldLines": 4,
+        "newStart": 10,
+        "newLines": 4,
+        "lines": [
+          " Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.",
+          " ",
+          " **Positioning of this work.**",
+          "-Our method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps without additional latent computation. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.",
+          "+Our method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps with the same number of latent dynamics steps. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+All edits applied. Let me verify the final file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "a79be4fa-1816-42f1-850c-2f6ef35f0fce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiHF61Hmmu69UPfhW49jVz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8083,
+      "cache_read_input_tokens": 39032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8083
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MkVSCCCJSE9stvUR72oPnC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "b40583c4-5a0e-4e01-b73c-ae8eec95bd69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiHF61Hmmu69UPfhW49jVz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8083,
+      "cache_read_input_tokens": 39032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8083
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T18:07:03.976Z_
+
+<details><summary>↩ Tool result · `toolu_01MkVSCCCJSE9stvUR72oPnC`</summary>
+
+```text
+1	## 2. Related Work
+2	
+3	**Fixed-horizon model-based RL.**
+4	Modern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.
+5	
+6	**Variable-rate and temporal abstraction in MBRL.**
+7	Several recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.
+8	
+9	**Event-based and adaptive stepping in RL.**
+10	Temporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.
+11	
+12	**Positioning of this work.**
+13	Our method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\Delta t \in \{1, \ldots, K\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \times K$ environment steps with the same number of latent dynamics steps. Unlike TAWM, where $\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.
+14	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "c27dae19-4170-4fab-ae31-89ae76dfbaed",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md",
+      "content": "## 2. Related Work\n\n**Fixed-horizon model-based RL.**\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution. MBPO (Janner et al., 2019) uses short learned-model rollouts to augment a replay buffer, with the rollout horizon set by a conservative schedule. DreamerV3 (Hafner et al., 2023) trains an actor-critic purely through $H$-step imagined trajectories in a Recurrent State-Space Model (RSSM), achieving strong performance across diverse domains but operating at one environment step per latent step. NE-Dreamer (NE-Dreamer, 2026) replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free world model with improved sample efficiency while retaining the fixed-rate imagination structure; R2-Dreamer (R2-Dreamer, 2026) similarly eliminates the observation decoder via redundancy-reduced latent targets. These methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks a rollout of $H$ steps covers only a small fraction of the episode, creating a credit assignment bottleneck.\n\n**Variable-rate and temporal abstraction in MBRL.**\nSeveral recent works introduce temporal flexibility into world model dynamics. TAWM (Nhu, Son & Lin, ICML 2025) conditions latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling prediction across variable time scales; however, $\\Delta t$ must be externally specified rather than learned. THICK (Gumbsch et al., ICLR 2024) learns a two-level temporal hierarchy where the lower level forms invariant contexts and the upper level predicts context changes, but the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single level. HWM (Zhang et al., 2026) extends this hierarchical line by learning multi-scale latent world models with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. LS-Imagine (Li et al., ICLR 2025 Oral) introduces goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis to skip low-information states during open-world exploration; the jump decisions are action-independent and target exploration rather than online actor-critic training. I-TAP (I-TAP, 2026) learns temporal abstractions via discrete residual tokens with an RQ-VAE, performing MCTS planning in token space for offline RL---a fundamentally different paradigm from online imagination-based training. ASI (Neitz et al., 2018) learns to skip timesteps by min-pooling over prediction losses, optimizing for prediction ease rather than dynamical significance. DyMoDreamer (NeurIPS 2025) uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, improving per-step representation quality at the observation level rather than adjusting temporal resolution. DMWM (Wang et al., NeurIPS 2025) introduces a dual-mind architecture combining an RSSM-based System~1 with a logic-informed System~2, improving long-horizon imagination coherence through logical constraints at fixed temporal resolution. While these methods demonstrate the value of temporal flexibility or imagination quality, they either require external time-gap specification, operate with fixed hierarchical levels, improve per-step quality without changing temporal resolution, or target settings distinct from online actor-critic imagination.\n\n**Event-based and adaptive stepping in RL.**\nTemporal abstraction has been extensively studied in the model-free setting. The options framework (Sutton et al., 1999) formalizes temporally extended actions with initiation sets, internal policies, and termination conditions, enabling hierarchical decision-making over multiple time scales. FiGAR (Sharma et al., 2017) augments the action space with a discrete repetition factor, allowing the agent to repeat actions for variable durations. TempoRL (Biedenkapp et al., 2021) learns when to act by jointly optimizing action selection and action persistence through a skip network. In the model-based setting, ELVIS (Du et al., 2026) introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty---but it adapts how much to trust each imagination step rather than how many environment steps each step covers. The model-free approaches (options, FiGAR, TempoRL) achieve temporal abstraction in the policy execution loop but do not modify the planning horizon within a learned world model; ELVIS operates within imagination but adjusts trust weighting, not temporal resolution.\n\n**Positioning of this work.**\nOur method introduces an event gate directly into DreamerV3's imagination pipeline, bridging the gap between variable-rate MBRL and model-free temporal abstraction. Unlike THICK and LS-Imagine, which rely on fixed two-level hierarchies or binary jump flags, our gate selects a stride $\\Delta t \\in \\{1, \\ldots, K\\}$ at each imagination step based on the magnitude of latent-state change, treating large state deltas as events warranting fine-grained reasoning and small deltas as intervals that can be safely compressed. Unlike FiGAR and TempoRL, our variable-rate mechanism operates within the world model during imagination rather than in the environment during execution, extending the effective planning horizon from $H$ to up to $H \\times K$ environment steps with the same number of latent dynamics steps. Unlike TAWM, where $\\Delta t$ is externally specified, our gate learns state-dependent stride selection end-to-end. This single-model design avoids the multi-model exploitation problem identified in hierarchical world models (Schiewer et al., 2024), while offering finer temporal adaptation than fixed two-level hierarchies through per-step stride selection.\n",
+      "numLines": 14,
+      "startLine": 1,
+      "totalLines": 14
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+文件格式正确，四项修正结果：
+
+**修正 1：补回 4 篇论文** ✅
+- HWM — 插入 THICK 之后，描述 multi-scale latent world models + fixed two-level planner 局限
+- DyMoDreamer — 插入 ASI 之后，描述 inter-frame differencing masks + per-step quality（非 temporal resolution）
+- DMWM — 紧随 DyMoDreamer，描述 dual-mind RSSM + logic-informed reasoning
+- ELVIS — 插入 paragraph 3（Event-based），描述 uncertainty-aware λ-return gating，对比"trust weighting vs temporal resolution"
+
+**修正 2：LS-Imagine 描述统一** ✅
+- 改为 "goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis"
+- 保留 "jump decisions are action-independent" 补充说明
+
+**修正 3：computation claim 措辞** ✅
+- `"without additional latent computation"` → `"with the same number of latent dynamics steps"`
+
+**修正 4：ASI 描述验证** ✅
+- 读了 Neitz et al. NeurIPS 2018 原文（Algorithm 1, Section 3）：temporal matching supervisor 用 `argmin_{t'} L(x_u, x_{t'})` 选择 window 内 loss 最小的 ground-truth frame。"min-pooling over losses" 是准确的简述
+- 唯一修正：`"reconstruction losses"` → `"prediction losses"`（原文用 "prediction loss L_x"，不涉及 decoder reconstruction）
+- "optimizing for prediction ease rather than dynamical significance" 与原文一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "uuid": "ec5221c2-5eb1-4fb3-85b9-284c77df0661",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018abwXUTZEeodw3uPTw6Tao",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1540,
+      "cache_read_input_tokens": 47115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1540
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 56_
+
+文件格式正确，四项修正结果：
+
+**修正 1：补回 4 篇论文** ✅
+- HWM — 插入 THICK 之后，描述 multi-scale latent world models + fixed two-level planner 局限
+- DyMoDreamer — 插入 ASI 之后，描述 inter-frame differencing masks + per-step quality（非 temporal resolution）
+- DMWM — 紧随 DyMoDreamer，描述 dual-mind RSSM + logic-informed reasoning
+- ELVIS — 插入 paragraph 3（Event-based），描述 uncertainty-aware λ-return gating，对比"trust weighting vs temporal resolution"
+
+**修正 2：LS-Imagine 描述统一** ✅
+- 改为 "goal-conditioned jumpy state transitions, learning jump flags via affordance-map kurtosis"
+- 保留 "jump decisions are action-independent" 补充说明
+
+**修正 3：computation claim 措辞** ✅
+- `"without additional latent computation"` → `"with the same number of latent dynamics steps"`
+
+**修正 4：ASI 描述验证** ✅
+- 读了 Neitz et al. NeurIPS 2018 原文（Algorithm 1, Section 3）：temporal matching supervisor 用 `argmin_{t'} L(x_u, x_{t'})` 选择 window 内 loss 最小的 ground-truth frame。"min-pooling over losses" 是准确的简述
+- 唯一修正：`"reconstruction losses"` → `"prediction losses"`（原文用 "prediction loss L_x"，不涉及 decoder reconstruction）
+- "optimizing for prediction ease rather than dynamical significance" 与原文一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 204018,
+  "duration_api_ms": 211794,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "68344da9-4afb-43e1-9661-095b7ea8beac",
+  "total_cost_usd": 0.783551,
+  "usage": {
+    "input_tokens": 764,
+    "cache_creation_input_tokens": 36814,
+    "cache_read_input_tokens": 302031,
+    "output_tokens": 9833,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36814,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 466,
+        "cache_read_input_tokens": 47115,
+        "cache_creation_input_tokens": 1540,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1540
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 114798,
+      "outputTokens": 1601,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.152803,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 764,
+      "outputTokens": 9833,
+      "cacheReadInputTokens": 302031,
+      "cacheCreationInputTokens": 36814,
+      "webSearchRequests": 0,
+      "costUSD": 0.630748,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "739a2f08-008a-41ab-922c-2d1fe30423b6"
+}
+```
+
+</details>
+
+---

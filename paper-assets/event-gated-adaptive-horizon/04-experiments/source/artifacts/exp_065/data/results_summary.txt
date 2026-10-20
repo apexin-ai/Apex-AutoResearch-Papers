@@ -1,0 +1,4 @@
+Trained dt_emb cos(dt1,dt2): -0.94 to -0.70 (strong anti-correlation, meaningful separation learned)
+Frozen dt_emb cos(dt1,dt2): -0.15 (walker), +0.07 (cheetah) - constant across all steps
+Norms: trained dt1 grows 0.3→0.57, dt2 grows 0.5→0.64; frozen stays ~0.05
+Outputs: logdir/exp_065_dt_emb_cosine/{results.json, cosine_sim_evolution.png, pairwise_heatmap.png}

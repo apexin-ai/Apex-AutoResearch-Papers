@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_022_untrained_dt_emb_learned_gate",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:16:57.150Z",
+    "updated_at": "2026-05-17T04:16:57.150Z"
+  },
+  "timestamp": "2026-05-17T04:16:57.320006+00:00",
+  "trigger": "update_registry"
+}

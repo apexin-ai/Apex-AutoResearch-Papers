@@ -1,0 +1,204 @@
+{
+  "exp_id": "exp_016e_sgs_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:35:20.242Z",
+    "updated_at": "2026-05-15T22:31:04.090Z",
+    "hypothesis": "Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第五次重试，修复 Logger.video() → no-op 彻底消除 SummaryWriter.add_video/flush 死锁",
+    "parent": "exp_008d_subsample_on_h8",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016d_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True",
+      "server": "bjb1-45299",
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "model_name": "dreamerv3-sgs",
+      "seed": 1,
+      "pid": 527392,
+      "note": "PID 从 526939 变为 527392（submit_training_job 内部 tmux 重分配）。step 12000/105000 正常训练中。"
+    },
+    "metrics": {
+      "current_step": 100000,
+      "target_steps": 105000,
+      "eval_checkpoints": [
+        {
+          "step": 5000,
+          "eval_return": 31,
+          "value_mean": 0.001,
+          "ve_ratio": 4e-05
+        },
+        {
+          "step": 15000,
+          "eval_return": 140.3,
+          "value_mean": 3.1,
+          "ve_ratio": 0.022
+        },
+        {
+          "step": 25000,
+          "eval_return": 141.75,
+          "value_mean": 22.97,
+          "ve_ratio": 0.162,
+          "baseline_ve": 0.087,
+          "nve": 1.86
+        },
+        {
+          "step": 35000,
+          "eval_return": 173.01,
+          "value_mean": 53.55,
+          "ve_ratio": 0.309,
+          "baseline_ve": 0.241,
+          "nve": 1.28
+        },
+        {
+          "step": 45000,
+          "eval_return": 184.03,
+          "value_mean": 85.32,
+          "ve_ratio": 0.464,
+          "baseline_ve": 0.331,
+          "nve": 1.4
+        },
+        {
+          "step": 55000,
+          "eval_return": 153.79,
+          "value_mean": 115.63,
+          "ve_ratio": 0.752,
+          "baseline_ve": 0.404,
+          "nve": 1.86
+        },
+        {
+          "step": 65000,
+          "eval_return": 324.3,
+          "value_mean": 152.3,
+          "ve_ratio": 0.469,
+          "baseline_ve": 0.563,
+          "nve": 0.83
+        },
+        {
+          "step": 75000,
+          "eval_return": 326.67,
+          "value_mean": 190.04,
+          "ve_ratio": 0.582,
+          "baseline_ve": 0.719,
+          "nve": 0.81
+        },
+        {
+          "step": 85000,
+          "eval_return": 256.21,
+          "value_mean": 215.39,
+          "ve_ratio": 0.841,
+          "baseline_ve": 0.701,
+          "nve": 1.2
+        },
+        {
+          "step": 95000,
+          "eval_return": 31.73,
+          "value_mean": 208.88,
+          "ve_ratio": 6.583,
+          "baseline_ve": 0.632,
+          "nve": 10.42
+        }
+      ],
+      "deep_analysis": {
+        "016e_vs_008d_entropy_comparison": {
+          "15K": {
+            "016e": 1.049,
+            "008d": 0.481,
+            "delta": 0.568
+          },
+          "25K": {
+            "016e": -1.554,
+            "008d": -1.862,
+            "delta": 0.308
+          },
+          "35K": {
+            "016e": -2.118,
+            "008d": -3.465,
+            "delta": 1.347
+          },
+          "45K": {
+            "016e": -3.455,
+            "008d": -4.575,
+            "delta": 1.12
+          },
+          "55K": {
+            "016e": -3.617,
+            "008d": -4.879,
+            "delta": 1.262
+          },
+          "interpretation": "SGS preserves ~1.0-1.3 nats higher entropy through 35-55K, enabling better exploration"
+        },
+        "016e_vs_008d_value_at_crash": {
+          "016e": {
+            "value_mean": 208.88,
+            "eval_return": 31.73,
+            "disconnect_ratio": 6.58
+          },
+          "008d": {
+            "value_mean": 137.88,
+            "eval_return": 82.75,
+            "disconnect_ratio": 1.67
+          },
+          "interpretation": "016e value completely decoupled from reality; 008d still weakly correlated"
+        },
+        "actor_loss_sign_flip": {
+          "016e_flip_step": 95000,
+          "016e_flip_value": 0.014,
+          "008d_min_actor_loss": -0.073,
+          "008d_never_flipped": true,
+          "interpretation": "sign flip = value critic drives actor toward worse actions, triggering catastrophic collapse"
+        },
+        "train_return_collapse_timeline": {
+          "88K": [
+            140,
+            145,
+            116,
+            116
+          ],
+          "92K": [
+            50,
+            29,
+            34,
+            75
+          ],
+          "96K": [
+            86,
+            41,
+            50,
+            101
+          ],
+          "100K": [
+            109,
+            111,
+            102,
+            108
+          ],
+          "interpretation": "collapse visible in train_return by 92K; partial recovery by 100K but far below peak"
+        }
+      },
+      "gate_dt_mean": 2,
+      "gate_dt_2_frac": 1,
+      "reward_dt_emb_detach": true,
+      "peak_eval_return": 326.67,
+      "peak_eval_step": 75000,
+      "final_eval_return": 31.73,
+      "final_eval_step": 95000,
+      "civo_detected": true,
+      "civo_onset_step": 85000,
+      "civo_catastrophic_step": 95000,
+      "civo_severity": "catastrophic",
+      "civo_nve_peak": 10.42,
+      "civo_nve_peak_step": 95000,
+      "actor_loss_sign_flip_step": 95000,
+      "sgs_verdict": "SGS delays CIVO onset ~50K steps by preserving entropy, yields 2x higher peak (327 vs 167), but does NOT prevent collapse. Collapse is more severe (NVE 10.42x vs 4.12x) due to accumulated value overestimation. Root cause is value dynamics, not reward-head gradient contamination.",
+      "data_source": "metrics.jsonl from logdir/exp_016e_sgs_walker_s1/, completed 100K steps, SSH 2026-05-16T06:25"
+    },
+    "gpu": "cuda:1",
+    "notes": "[Deep Analysis] 崩溃对比 016e(SGS) vs 008d(baseline event-gated):\n\n1. Onset: 008d decline starts 25K→35K (eval 167→146), crash at 55K (83). 016e delayed — stable through 45K, brief dip 55K (154), RECOVERY to 324@65K, peak 327@75K, then catastrophic 256@85K→32@95K. SGS delays onset by ~50K steps.\n\n2. Value growth rate: Both similar ~30-40/10K in middle training. 008d value: 3.4→26→60→98→138 (15-55K). 016e value: 3.1→23→54→85→116→152→190→215→209 (15-95K). 008d slightly faster value growth per step but stops earlier. 016e value keeps climbing monotonically even through eval crash — at 95K value=209 while eval=32, complete decoupling.\n\n3. Actor loss flip: 016e crosses zero at 95K (+0.014), exact coincidence with catastrophic collapse. 008d never flips (stops at -0.073@55K). The sign flip means value critic actively pushes actor toward worse actions.\n\n4. SGS-specific — entropy preservation is key mechanism: 008d entropy drops faster (0.48@15K vs 1.05@15K, -3.47@35K vs -2.12@35K). SGS keeps actor ~1.3 nats higher entropy through 35K, enabling more exploration → higher peak (327 vs 167). reward_loss identical between experiments (~0.589), confirming SGS doesn't hurt reward prediction. Gate locked at dt=2 in both — SGS does NOT unlock temporal diversity.\n\n5. Conclusion: SGS acts as a \"collapse governor bypass\" — delays the CIVO feedback loop by preserving actor exploration budget, yielding 2x higher peak (327 vs 167). But the underlying value-overestimation instability is unchanged. The delayed onset allows value_mean to accumulate to 215 (vs 008d's 138), so when collapse finally triggers, it's catastrophic (NVE 10.42x) rather than gradual (008d NVE 4.12x). SGS treats a symptom (premature policy specialization) not the root cause (value overestimation driving actor exploitation). The \"delayed-but-deeper\" pattern confirms CIVO is driven by value dynamics, not reward-head gradient contamination.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T22:31:04.424930+00:00",
+  "trigger": "update_registry"
+}

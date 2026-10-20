@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12737a753567430ec2bb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp066 running",
+  "task_key": "worker_check_exp066-running_20260524T232739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp066-running_20260524T232739_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "8b27bb92f1b047a5919f404dbfaaf05b74636796946f3323be5c36e29b6f4042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_066 状态汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **进程状态** | **Alive** — 日志持续更新（最新 log 时间 07:28），metrics 有 38 条记录 |\n| **当前 step** | **32,000** / 60,000（约 53% 完成） |\n| **train_return** | ~137–178（step 32K），从 step 8K 的 ~45 稳步上升 |\n| **Checkpoint** | **无** — logdir 中没有 checkpoint_*.pt 或 latest.pt 文件 |\n| **GPU 利用率** | cuda:0: 12%, 3564 MiB / 24564 MiB; **cuda:1: 26%, 2521 MiB / 24564 MiB** |\n| **异常** | FutureWarning `torch.cuda.amp.autocast` 已弃用（不影响运行）；gate_dt 固定在 2.0（gate_dt_2_frac=1.0，无多尺度切换） |\n\n**需注意的问题：**\n\n1. **无 checkpoint 保存** — 配置了 checkpoint_every=5000 但已过 32K step 仍无 checkpoint 文件。可能 checkpoint 保存路径配置有误，或保存逻辑未触发。建议检查训练脚本中 checkpoint 保存的代码路径。\n\n2. **gate_dt 完全锁死在 dt=2** — gate_empirical_entropy=0.0，gate_entropy_ratio=0.0，所有 step 都是 dt_2_frac=1.0。gate 没有在探索不同时间尺度，这对 adaptive horizon 实验的意义需要评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp066-running.md"
+}

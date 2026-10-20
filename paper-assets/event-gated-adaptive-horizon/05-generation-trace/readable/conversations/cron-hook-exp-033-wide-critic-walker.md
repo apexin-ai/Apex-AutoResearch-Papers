@@ -1,0 +1,2096 @@
+# cron hook exp 033 wide critic walker
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 2
+- **Tool calls:** 34
+- **Original source:** `logs/chats/cron_hook_exp_033_wide_critic_walker.jsonl`
+- **Structured JSON:** [`7f2e4abd2f69eaa4bcde.json`](../../sessions/7f/7f2e4abd2f69eaa4bcde.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+19 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T12:02:32.164556+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_033_wide_critic_walker
+- project: event-gated-adaptive-horizon
+- server: bjb1-40020
+- log_path: ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T12:02:46.594295+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file",
+  "max_results": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file",
+    "max_results": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T12:02:46.687236+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "elapsed_ms": 92
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T12:02:50.978010+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": "['*']",
+  "filters": "{'exp_id': 'exp_033_wide_critic_walker'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "fields": "['*']",
+    "filters": "{'exp_id': 'exp_033_wide_critic_walker'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T12:02:50.978454+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T12:02:51.481003+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4239}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T12:02:51.883116+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T12:02:51.883514+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T12:02:56.098452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"exp_035_narrow_dual_critic_walker\", \"success\": true, \"actions\": [\"Job still running (pid=162900)\"]}, {\"exp_id\": \"exp_036_dual_critic_pickcube\", \"success\": true, \"actions\": [\"Job still running (pid=2476)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5119
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T12:02:56.149459+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T12:02:44Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 109 个实验 — ANALYZING 2, DONE 105, RUNNING 2\\n**DONE 分布**: failed 11, killed 21, negative 30, success 43\\n\\n### GPU 占用\\n- **分配**: 4 张 — bjb1-45299:cuda:0, bjb1-45299:cuda:1, bjb1-40020:cuda:0, bjb1-40020:cuda:1\\n- **实际运行**: 2 张 — bjb1-40020:cuda:1(exp_035_narrow_dual_critic_walker), bjb1-45299:cuda:0(exp_036_dual_critic_pickcube)\\n- **空闲（分配了没跑）**: bjb1-45299:cuda:1, bjb1-40020:cuda:0\\n\\n### 💾 磁盘余量\\n- **bjb1-45299**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\n- **bjb1-40020**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/root/autodl-pub`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 389G/438G 可用（已用 7%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_035_narrow_dual_critic_walker` | bjb1-40020 | cuda:1 | 162900 | `…ated-adaptive-horizon/exp_035_narrow_dual_critic_walker.log` |\\n| `exp_036_dual_critic_pickcube` | bjb1-45299 | cuda:0 | 2476 | `…ent-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_031b_tcn_pickcube_s0_sigma05` [negative] — 2026-05-21T08:50:22 — NVE late-stage decline is floor effect (value signal collapse), not CIVO recover\\n- `exp_032_dual_critic_walker` [success] — 2026-05-21T07:52:13\\n- `exp_032b_dual_critic_walker_s1` [success] — 2026-05-21T05:55:05\\n- `exp_029d_tcn_walker_s3_sigma02` [negative] — 2026-05-21T03:39:24 — Sudden CIVO blowup: NVE appeared healthy at 95K (0.666, declining from 0.855@85K\\n- `exp_031_tcn_pickcube_s0_sigma02` [negative] — 2026-05-20T23:52:48\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover 
+…[truncated 4537 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4266
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T12:02:56.150016+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-21 07:56 UTC | 更新原因: D122 exp_032 完成 (787.7), exp_035 narrow dual-critic 部署, 2×2 factorial 完整布局, 4/4 GPU 满载\\n\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 8 天)\\n\\n## 核心方向\\n**Intervention Hierarchy 论文 + Dual-critic 机制发现**\\n核心贡献：(1) 三层干预框架 (2) CIVO 因果诊断 (3) MPC vs imagination 架构边界 (4) dual-critic 抑制 CIVO 但非通过 pessimism\\n\\n## 评分轨迹\\n| 版本 | 评分 | 关键改进 |\\n|------|------|---------|\\n| Round 1 实际 | 4/10 | — |\\n| Dream 2 (post-fix) | 5-5.5/10 | 文本修复 |\\n| **Dual-critic 2/2** | **目标 6.5+** | **CIVO prevented + 2×2 mechanism ablation** |\\n\\n## ⭐ Dual-critic 结果 (Walker 2/2 CIVO prevented)\\n| Seed | eval peak | VE ratio final | v1≈v2 |\\n|------|-----------|---------------|--------|\\n| s0 | 787.7 | 0.059 | ρ>0.999 |\\n| s1 | 551.8 | 0.099 | ρ>0.999 |\\n\\n## 2×2 Mechanism Factorial (运行中)\\n| | Single critic | Dual critic (min) |\\n|--|--------------|-------------------|\\n| ~1.2M params | 008d baseline (**CIVO ❌**) | exp_035 narrow (🔄 running) |\\n| ~2.4-2.9M params | exp_033 wide (🔄 running) | exp_032 (**✅ prevented**) |\\n\\n## 运行中实验\\n| 实验 | Server:GPU | 进度 | 预计完成 |\\n|------|-----------|------|---------|\\n| exp_033 wide-critic | 40020:0 | ~25% | 5/21 晚-5/22 |\\n| exp_035 narrow dual | 40020:1 | 刚启动 | 5/22 |\\n| exp_031b PickCube σ=0.5 | 45299:0 | ~65% | 5/21 |\\n| exp_034 Cheetah dual | 45299:1 | ~10% | 5/22 |\\n\\n## 近期任务\\n- [x] exp_032 s0 完成 — eval 787.7 ✅\\n- [x] exp_032b s1 完成 — eval 551.8 ✅\\n- [x] exp_035 narrow dual-critic 部署\\n- [ ] ⭐ exp_033 wide-critic 结果 (参数量 vs min 分叉)\\n- [ ] ⭐ exp_035 narrow dual-critic 结果\\n- [ ] exp_034 Cheetah dual-critic 结果\\n- [ ] exp_031b PickCube σ=0.5 结果\\n- [ ] 论文 narrative 调整 (等 2×2 结果)\\n- [ ] 5/25 数据锁定\\n\\n## GPU 预算\\n- **bjb1-40020**: 2×RTX 4090 — exp_033 wide (cuda:0) + exp_0
+…[truncated 1679 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4266
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T12:03:08.200379+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": "['*']",
+  "filters": "{'status': 'ANALYZING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "fields": "['*']",
+    "filters": "{'status': 'ANALYZING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T12:03:08.652191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_034_dual_critic_cheetah\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:50:59.612345+00:00\", \"updated_at\": \"2026-05-21T12:02:39.261Z\", \"hypothesis\": \"Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level intervention that works across environments. Strengthens Intervention Hierarchy: architecture-level > representation-level.\", \"parent\": \"exp_032_dual_critic_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_034_dual_critic_cheetah\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"gpu_id\": 1, \"pid\": \"993925\", \"data_path\": \"DMC Cheetah Run (dm_control built-in)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 + Dual Critic\", \"seed\": 0, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"submitted_at\": \"2026-05-21T05:51:51.325323+00:00\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hyperparams\": {\"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"dual_critic\": true, \"tcn_sigma\": 0.0}}, \"metrics\": {}, \"reproduce\": {\"finished_at\": \"2026-05-21T12:02:37.929Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T12:02:46.032647+00:00\"}]}}, \"exp_
+…[truncated 2331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T12:03:32.238221+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T12:03:32.288872+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T12:04:08.315032+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:exp_033_wide_critic_walker",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "## 任务：分析 exp_033_wide_critic_walker 实验结果\n\n### 背景\nexp_033 是 2×2 mechanism factorial 的关键一格：**wide single critic**（单个 critic，但参数量 2.89M ≈ dual-critic 的总参数量）。目的是分离 \"参数量\" vs \"min 操作\" 对 CIVO 抑制的贡献。\n\n2×2 设计：\n| | Single critic | Dual critic (min) |\n|--|--------------|-------------------|\n| ~1.2M params | 008d baseline (CIVO ❌) | exp_035 narrow (running) |\n| ~2.4-2.9M params | **exp_033 wide (← 本实验)** | exp_032 (✅ CIVO prevented) |\n\n- exp_032 dual-critic (2 seeds): CIVO prevented, eval 787.7/551.8, VE ratio 0.059/0.099\n- 008d baseline single critic: CIVO triggered（NVE blowup）\n\n### 实验配置\n- Server: bjb1-40020\n- Log: ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\n- Task: DMC Walker Walk, 210K steps, seed 0\n- Config: wide_critic=True, critic_hidden=1024, 2 layers, ~2.89M params\n- dual_critic=False（单个 critic）\n- Training hours: ~8.27h\n\n### 分析步骤\n\n1. **SSH 读取日志**（用 ssh_read_only）：\n   - 读取训练 log 的最后 200 行，获取最终 metrics\n   - 特别关注：eval/episode_reward, train/critic_loss, NVE 相关指标\n   - 检查是否有 error/warning\n\n2. **W&B 数据**（用 fetch_wandb_metrics）：\n   - 先用 ssh_read_only 在服务器上找到 W&B run ID：\n     ```bash\n     cat /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_033_wide_critic_walker/wandb/latest-run/run-*.wandb 2>/dev/null || ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_033_wide_critic_walker/wandb/latest-run/ 2>/dev/null || grep -r \"wandb\" ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log | tail -5\n     ```\n   - 获取关键 metrics：\n     - eval/episode_reward（各 step 的 eval 分数）\n     - NVE 相关：scalability/nve_ratio 或 critic 相关指标\n     - critic loss 趋势\n\n3. **CIVO 分析**（核心）：\n   - 计算 NVE ratio（normalized value error）= |V_predicted - V_actual| / |V_actual|\n   - 判断 CIVO 是否发生：NVE ratio > 1.5× 且持续上升 = CIVO triggered\n   - 与 exp_032 dual-critic 对比（VE ratio 0.059/0.099 = CIVO prevented）\n   - 与 008d baseline 对比（CIVO triggered）\n\n4. **结论判定**：\n   - 如果 CIVO persists（NVE blowup）→ conclusion=success（验证了 hypothesis：min 操作是关键，不是参数量）\n   - 如果 CIVO prevented → conclusion=negative（hypothesis 被证伪：参数量就够了，min 操作不是必要的）\n   - 注意：这里 \"success\" 指 hypothesis 被验证，即使 wide-critic 的 eval 分数差\n\n5. **产出**：\n   - 写一份分析报告到 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_033_wide_critic_walker/report/report_exp_033_analysis.md`\n   - 报告结构：\n     - 实验配置摘要\n     - 关键 metrics（eval reward, NVE ratio, critic loss）\n     - CIVO 分析（是否 triggered，与 exp_032/008d 对比）\n     - 2×2 factorial 对应格的结论\n     - 对 intervention hierarchy 论文的意义\n   - 用 update_registry 更新：\n     - metrics（eval_reward, nve_ratio 等关键数字）\n     - conclusion（success 或 negative，带理由）\n     - status → DONE\n     - checkpoint_path 和 log_path\n   - 用 register_artifact 注册分析报告\n\n### 重要\n- 只用 ssh_read_only 读数据，不要 ssh_execute\n- 所有数字必须来自实际 log/W&B，不要猜测\n- 报告中标注数据来源\n",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "tools": "['register_artifact']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_033_wide_critic_walker",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "## 任务：分析 exp_033_wide_critic_walker 实验结果\n\n### 背景\nexp_033 是 2×2 mechanism factorial 的关键一格：**wide single critic**（单个 critic，但参数量 2.89M ≈ dual-critic 的总参数量）。目的是分离 \"参数量\" vs \"min 操作\" 对 CIVO 抑制的贡献。\n\n2×2 设计：\n| | Single critic | Dual critic (min) |\n|--|--------------|-------------------|\n| ~1.2M params | 008d baseline (CIVO ❌) | exp_035 narrow (running) |\n| ~2.4-2.9M params | **exp_033 wide (← 本实验)** | exp_032 (✅ CIVO prevented) |\n\n- exp_032 dual-critic (2 seeds): CIVO prevented, eval 787.7/551.8, VE ratio 0.059/0.099\n- 008d baseline single critic: CIVO triggered（NVE blowup）\n\n### 实验配置\n- Server: bjb1-40020\n- Log: ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\n- Task: DMC Walker Walk, 210K steps, seed 0\n- Config: wide_critic=True, critic_hidden=1024, 2 layers, ~2.89M params\n- dual_critic=False（单个 critic）\n- Training hours: ~8.27h\n\n### 分析步骤\n\n1. **SSH 读取日志**（用 ssh_read_only）：\n   - 读取训练 log 的最后 200 行，获取最终 metrics\n   - 特别关注：eval/episode_reward, train/critic_loss, NVE 相关指标\n   - 检查是否有 error/warning\n\n2. **W&B 数据**（用 fetch_wandb_metrics）：\n   - 先用 ssh_read_only 在服务器上找到 W&B run ID：\n     ```bash\n     cat /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_033_wide_critic_walker/wandb/latest-run/run-*.wandb 2>/dev/null || ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_033_wide_critic_walker/wandb/latest-run/ 2>/dev/null || grep -r \"wandb\" ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log | tail -5\n     ```\n   - 获取关键 metrics：\n     - eval/episode_reward（各 step 的 eval 分数）\n     - NVE 相关：scalability/nve_ratio 或 critic 相关指标\n     - critic loss 趋势\n\n3. **CIVO 分析**（核心）：\n   - 计算 NVE ratio（normalized value error）= |V_predicted - V_actual| / |V_actual|\n   - 判断 CIVO 是否发生：NVE ratio > 1.5× 且持续上升 = CIVO triggered\n   - 与 exp_032 dual-critic 对比（VE ratio 0.059/0.099 = CIVO prevented）\n   - 与 008d baseline 对比（CIVO triggered）\n\n4. **结论判定**：\n   - 如果 CIVO persists（NVE blowup）→ conclusion=success（验证了 hypothesis：min 操作是关键，不是参数量）\n   - 如果 CIVO prevented → conclusion=negative（hypothesis 被证伪：参数量就够了，min 操作不是必要的）\n   - 注意：这里 \"success\" 指 hypothesis 被验证，即使 wide-critic 的 eval 分数差\n\n5. **产出**：\n   - 写一份分析报告到 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_033_wide_critic_walker/report/report_exp_033_analysis.md`\n   - 报告结构：\n     - 实验配置摘要\n     - 关键 metrics（eval reward, NVE ratio, critic loss）\n     - CIVO 分析（是否 triggered，与 exp_032/008d 对比）\n     - 2×2 factorial 对应格的结论\n     - 对 intervention hierarchy 论文的意义\n   - 用 update_registry 更新：\n     - metrics（eval_reward, nve_ratio 等关键数字）\n     - conclusion（success 或 negative，带理由）\n     - status → DONE\n     - checkpoint_path 和 log_path\n   - 用 register_artifact 注册分析报告\n\n### 重要\n- 只用 ssh_read_only 读数据，不要 ssh_execute\n- 所有数字必须来自实际 log/W&B，不要猜测\n- 报告中标注数据来源\n",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "tools": "['register_artifact']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T12:04:11.181012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_033_wide_critic_walker_20260521T120408\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_exp_033_wide_critic_walker_20260521T120408.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_033_wide_critic_walker_20260521T120408 started. Use get_worker_status('worker_analysis_exp_033_wide_critic_walker_20260521T120408') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2865
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T12:04:45.357009+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:exp_034_dual_critic_cheetah",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "## 任务：分析 exp_034_dual_critic_cheetah 实验结果\n\n### 背景\nexp_034 是 dual-critic 跨环境泛化验证：在 Cheetah Run 上测试 dual-critic 是否能抑制 CIVO。之前 TCN 在 Cheetah 上完全失败（所有 σ 值），如果 dual-critic 在 Cheetah 上也能抑制 CIVO → 架构级干预比表示级干预更通用。\n\n已有结果：\n- exp_032 dual-critic Walker s0: eval 787.7, VE ratio 0.059, CIVO prevented ✅\n- exp_032b dual-critic Walker s1: eval 551.8, VE ratio 0.099, CIVO prevented ✅\n- TCN on Cheetah: 全部失败（σ=0.2/0.5/1.0）\n\n### 实验配置\n- Server: bjb1-45299\n- Log: 需要在服务器上查找，可能在 ~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\n- Task: DMC Cheetah Run, 210K steps, seed 0\n- Config: dual_critic=True, gate_fixed_dt=2, imag_horizon=8\n- Parent: exp_032_dual_critic_walker\n\n### 分析步骤\n\n1. **SSH 读取日志**（用 ssh_read_only）：\n   - 读取训练 log 的最后 200 行\n   - 关注：eval/episode_reward, NVE 相关指标, critic loss\n   - Cheetah Run baseline 通常 eval ~500-800\n\n2. **W&B 数据**（用 fetch_wandb_metrics）：\n   - 先找 W&B run ID：\n     ```bash\n     ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah/wandb/latest-run/ 2>/dev/null\n     grep -i \"wandb\" ~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log | tail -5\n     ```\n   - 获取 eval/episode_reward, NVE ratio, critic 指标\n\n3. **CIVO 分析**：\n   - NVE ratio 趋势：是否 blowup\n   - 与 Walker dual-critic 结果对比\n   - 与 Cheetah TCN 结果对比（TCN 全部失败）\n\n4. **结论判定**：\n   - CIVO prevented + eval 合理 → conclusion=success（dual-critic 跨环境泛化）\n   - CIVO triggered → conclusion=negative（dual-critic 不泛化到 Cheetah）\n\n5. **产出**：\n   - 分析报告：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_034_dual_critic_cheetah/report/report_exp_034_analysis.md`\n   - update_registry：metrics, conclusion, status→DONE, checkpoint_path, log_path\n   - register_artifact 注册报告\n\n### 重要\n- 只用 ssh_read_only\n- 数字必须来自实际 log/W&B\n- 注意：之前 D123 决策记录提到 \"Cheetah dual-critic CIVO triggered + v1≈v2\"，但需要你用实际数据确认具体情况\n",
+  "tool_groups": "['ssh', 'wandb', 'registry']",
+  "tools": "['register_artifact']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_034_dual_critic_cheetah",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "## 任务：分析 exp_034_dual_critic_cheetah 实验结果\n\n### 背景\nexp_034 是 dual-critic 跨环境泛化验证：在 Cheetah Run 上测试 dual-critic 是否能抑制 CIVO。之前 TCN 在 Cheetah 上完全失败（所有 σ 值），如果 dual-critic 在 Cheetah 上也能抑制 CIVO → 架构级干预比表示级干预更通用。\n\n已有结果：\n- exp_032 dual-critic Walker s0: eval 787.7, VE ratio 0.059, CIVO prevented ✅\n- exp_032b dual-critic Walker s1: eval 551.8, VE ratio 0.099, CIVO prevented ✅\n- TCN on Cheetah: 全部失败（σ=0.2/0.5/1.0）\n\n### 实验配置\n- Server: bjb1-45299\n- Log: 需要在服务器上查找，可能在 ~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\n- Task: DMC Cheetah Run, 210K steps, seed 0\n- Config: dual_critic=True, gate_fixed_dt=2, imag_horizon=8\n- Parent: exp_032_dual_critic_walker\n\n### 分析步骤\n\n1. **SSH 读取日志**（用 ssh_read_only）：\n   - 读取训练 log 的最后 200 行\n   - 关注：eval/episode_reward, NVE 相关指标, critic loss\n   - Cheetah Run baseline 通常 eval ~500-800\n\n2. **W&B 数据**（用 fetch_wandb_metrics）：\n   - 先找 W&B run ID：\n     ```bash\n     ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah/wandb/latest-run/ 2>/dev/null\n     grep -i \"wandb\" ~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log | tail -5\n     ```\n   - 获取 eval/episode_reward, NVE ratio, critic 指标\n\n3. **CIVO 分析**：\n   - NVE ratio 趋势：是否 blowup\n   - 与 Walker dual-critic 结果对比\n   - 与 Cheetah TCN 结果对比（TCN 全部失败）\n\n4. **结论判定**：\n   - CIVO prevented + eval 合理 → conclusion=success（dual-critic 跨环境泛化）\n   - CIVO triggered → conclusion=negative（dual-critic 不泛化到 Cheetah）\n\n5. **产出**：\n   - 分析报告：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_034_dual_critic_cheetah/report/report_exp_034_analysis.md`\n   - update_registry：metrics, conclusion, status→DONE, checkpoint_path, log_path\n   - register_artifact 注册报告\n\n### 重要\n- 只用 ssh_read_only\n- 数字必须来自实际 log/W&B\n- 注意：之前 D123 决策记录提到 \"Cheetah dual-critic CIVO triggered + v1≈v2\"，但需要你用实际数据确认具体情况\n",
+    "tool_groups": "['ssh', 'wandb', 'registry']",
+    "tools": "['register_artifact']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-21T12:22:32.568640+00:00_
+
+exp_034_dual_critic_cheetah 也在 ANALYZING 状态，一并派 Worker 分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_033_wide_critic_walker"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+52 recorded events
+
+### User
+
+_source line 20 · 2026-05-21T12:22:32.574880+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_033_wide_critic_walker
+- project: event-gated-adaptive-horizon
+- server: bjb1-40020
+- log_path: ~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T12:22:44.626619+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers",
+  "max_results": "11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers",
+    "max_results": "11"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T12:22:44.677251+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T12:22:48.804741+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T12:22:48.855427+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T12:22:49.457997+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T12:22:49.812450+00:00_
+
+Error: result (115,730 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-7d9e8366/b39a105f-5c01-4b1e-ba86-4d422a03f954/tool-results/mcp-agent-ml-research-read_registry-1779366169605.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-7d9e8366/b39a105f-5c01-4b1e-ba86-4d422a03f954/tool-results/mcp-agent-ml-research-read_registry-1779366169605.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-7d9e8366/b39a105f-5c01-4b1e-ba86-4d422a03f954/tool-results/mcp-agent-ml-research-read_registry-1779366169605.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1007
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T12:22:49.815372+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T12:22:50.267547+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T12:22:50.468526+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T12:22:54.629990+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"exp_035_narrow_dual_critic_walker\", \"success\": true, \"actions\": [\"Job still running (pid=162900)\"]}, {\"exp_id\": \"exp_036_dual_critic_pickcube\", \"success\": true, \"actions\": [\"Job still running (pid=2476)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5774
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T12:22:54.680993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_036_dual_critic_pickcube | Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy. | — | — | — |\\n| exp_035_narrow_dual_critic_walker | Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestimation cascade. If CIVO persists → parameter count is the key factor. Combined with exp_033 (wide single critic) forms 2×2 factorial: {single,dual} × {normal,scaled} → mechanism decomposition. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_034** (negative): Dual-critic (min of two independent critics) will prevent CIVO in Cheetah Run by providing pessimistic value estimates, as it did in Walker Walk (exp_032). If value overestimation is environment-universal, the same mechanism should work across DMC tasks.\\n  [report_exp_034_analysis](/api/workspace-files/projects/event-gated-adaptive-horizon/artifacts/exp_034/report/report_exp_034_analysis.md)\\n- **exp_034_dual_critic_cheetah** (negative): Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level intervention that works across environments. Strengthens Intervention Hierarchy: architecture-level > representation-level. ← 基于 exp_032_dual_critic_walker\\n  
+…[truncated 2394 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 5222
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T12:22:54.681664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-21 12:17 UTC | 更新原因: D125 部署 exp_037+038 占满 4 GPU + Cheetah NVE 数据更新\\n\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 7 天) | 5/25 数据锁定\\n\\n## 核心方向\\n**Intervention Hierarchy + Dual-critic Mechanism Decomposition**\\n核心贡献：(1) CIVO 因果诊断 (2) 三层干预框架 (3) Prevention vs Recovery 机制分解 (4) v1≈v2 pessimism breakdown (5) CIVO 严重度-环境依赖性\\n\\n## 2×2 Mechanism Factorial — Walker（CIVO 中等强度）\\n| | Single Critic | Dual Critic (min) |\\n|---|---|---|\\n| ~1.2M params | Baseline: CIVO → 永久崩溃 | exp_035 narrow (🔄 运行中) |\\n| ~2.4-2.9M params | **exp_033: CIVO(NVE 4.75) → 自修复 → eval 408** | **exp_032: CIVO 预防(NVE≤1.1) → eval 670-788** |\\n\\n**Key insight**: Capacity = Recovery, Min = Prevention, Prevention >> Recovery\\n⚠️ **环境依赖**: Min=Prevention 仅在 Walker(中等 CIVO)成立；Cheetah(高强度 CIVO, baseline NVE ~70.64) dual-critic 将 NVE 压缩 40×(70.64→1.75) 但仍超阈值\\n\\n## 跨环境验证\\n| 环境 | CIVO 强度 | Dual-critic 效果 | NVE 压缩 | eval |\\n|------|----------|-----------------|---------|------|\\n| Walker | 中等(NVE 2-4) | ✅ 预防(NVE≤1.1) | — | 670-788 |\\n| Cheetah | 高(NVE ~70.64) | ⚠️ 缓解(NVE 1.75) | 40× | 97.5 (31%, ↓) |\\n| PickCube | 高 | 🔄 exp_036 运行中 | — | — |\\n\\n## 运行中实验 (4/4 GPU 满载)\\n| 实验 | Server:GPU | 意义 |\\n|------|-----------|------|\\n| exp_035 narrow dual | 40020:1 | **完成 2×2 最后一格** |\\n| exp_036 PickCube dual | 45299:0 | 第三环境验证 |\\n| exp_037 Cheetah wide | 45299:1 | capacity=recovery 跨环境验证 |\\n| exp_038 Walker dual s2 | 40020:0 | 3rd seed IQM 统计力度 |\\n\\n## 已完成关键实验\\n| 实验 | 结果 | eval | 意义 |\\n|------|------|------|------|\\n| exp_032 dual-critic Walker s0 | ✅ CIVO prevented | 787.7 | Walker 2/2 |\\n| exp_032b dual-critic Walker s1 | ✅ CIVO prevented | 551.8 | Walker 2/2 |\\n| exp_033 wide-critic Walker | ⚠️ CIVO→self-repair | 408 | Capacity=Recovery |\\n| exp_03
+…[truncated 2159 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4866
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T12:22:55.184033+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"bjb1-45299\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"bjb1-45299\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"bjb1-40020\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"bjb1-40020\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [{\"server\": \"bjb1-40020\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_035_narrow_dual_critic_walker\"}, {\"server\": \"bjb1-45299\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp_036_dual_critic_pickcube\"}], \"allocated_but_idle\": [{\"server\": \"bjb1-45299\", \"gpu_id\": \"cuda:1\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"bjb1-40020\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"exp_035_narrow_dual_critic_walker\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"exp_036_dual_critic_pickcube\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 4 张, 实际跑 2 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 4916
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T12:22:55.284892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 4816
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T12:23:09.389708+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'exp_id': 'exp_033_wide_critic_walker'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'exp_id': 'exp_033_wide_critic_walker'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T12:23:09.891463+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3858}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T12:23:10.397776+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'exp_id': 'exp_037_wide_critic_cheetah'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'exp_id': 'exp_037_wide_critic_cheetah'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T12:23:10.944934+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'exp_id': 'exp_038_dual_critic_walker_s2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'exp_id': 'exp_038_dual_critic_walker_s2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T12:23:11.246099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8207}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 848
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T12:23:12.391929+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1268}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1446
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T12:23:17.483150+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'ANALYZING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'ANALYZING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T12:23:17.985115+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4316}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 501
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T12:23:18.085837+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T12:23:18.540603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_036_dual_critic_pickcube\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:43:18.481296+00:00\", \"updated_at\": \"2026-05-21T08:43:44.544309+00:00\", \"hypothesis\": \"Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.\", \"parent\": \"exp_032_dual_critic_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"pid\": \"2476\", \"data_path\": \"ManiSkill PickCube-v1\", \"data_count\": 200000, \"model_name\": \"DreamerV3 + Dual Critic\", \"seed\": 0, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\", \"submitted_at\": \"2026-05-21T08:43:44.544357+00:00\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hyperparams\": {\"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"dual_critic\": true, \"tcn_sigma\": 0.0}}, \"metrics\": {}}, \"exp_035_narrow_dual_critic_walker\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T07:47:55.131429+00:00\", \"updated_at\": \"2026-05-21T07:56:05.926392+00:00\", \"hypothes
+…[truncated 2016 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T12:23:24.112970+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T12:23:24.646287+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'ALLOCATED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'ALLOCATED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T12:23:25.048724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_034\": {\"status\": \"DONE\", \"hypothesis\": \"Dual-critic (min of two independent critics) will prevent CIVO in Cheetah Run by providing pessimistic value estimates, as it did in Walker Walk (exp_032). If value overestimation is environment-universal, the same mechanism should work across DMC tasks.\", \"conclusion\": \"negative\", \"metrics\": {\"final_eval_return\": 97.5, \"peak_eval_return\": 315.7, \"max_NVE\": 1.753, \"final_NVE\": 0.144, \"CIVO_prevented\": false, \"v1_v2_max_divergence\": 0.004, \"civo_trigger_steps\": [55000, 105000], \"total_steps\": 215000}}, \"exp_034_dual_critic_cheetah\": {\"status\": \"DONE\", \"hypothesis\": \"Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level intervention that works across environments. Strengthens Intervention Hierarchy: architecture-level > representation-level.\", \"metrics\": {\"eval_peak\": 315.7, \"eval_peak_step\": 45000, \"eval_final\": 97.5, \"eval_final_step\": 215000, \"ve_ratio_peak\": 1.8, \"ve_ratio_peak_step\": 55000, \"ve_ratio_final\": 0.1, \"civo_alerts\": 2, \"civo_alert_steps\": [95000, 105000], \"civo_prevented\": false, \"v1_v2_gap\": \"<0.2 (min operation has no pessimism effect)\", \"gate_dt2_frac\": 1, \"gate_entropy\": 0, \"baseline_eval_final\": 0.83, \"baseline_nve_peak\": 70.64, \"eval_vs_peak_pct\": 31, \"dual_wave_civo\": true, \"value_mean_peak\": 60.5, \"value_mean_final\": 14.2}, \"conclusion\": \"negative\"}, \"exp_033_wide_critic_walker\": {\"status\": \"DONE\", \"hypothesis\": \"Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should also suppress CIVO. If wide-critic fails (CIVO persists) but dual-critic succeeds → min operatio
+…[truncated 2051 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 935
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T12:23:25.199757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_038_dual_critic_walker_s2\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:35.293Z\", \"updated_at\": \"2026-05-21T12:18:35.293Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_038_dual_critic_walker_s2\\\"\", \"server\": \"bjb1-40020\", \"gpu\": [\"cuda:0\"], \"pid\": \"175633\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log\", \"submitted_at\": \"2026-05-21T12:18:34.859Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_037_wide_critic_cheetah\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:33.040Z\", \"updated_at\": \"2026-05-21T12:18:33.040Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_037_wide_critic_cheetah\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"14487\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\", \"submitted_at\": \"2026-05-21T12:18:32.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null},
+…[truncated 64 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T12:23:25.200290+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "filters": "{'status': 'QUEUED'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "filters": "{'status': 'QUEUED'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T12:23:25.601932+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3966}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T12:24:13.668967+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_037_wide_critic_cheetah",
+  "field": "hypothesis",
+  "value": "Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_037_wide_critic_cheetah",
+    "field": "hypothesis",
+    "value": "Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T12:24:14.622066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_037_wide_critic_cheetah\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:33.040Z\", \"updated_at\": \"2026-05-21T12:24:14.055Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_037_wide_critic_cheetah\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"14487\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\", \"submitted_at\": \"2026-05-21T12:18:32.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7159}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 953
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T12:24:14.622536+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_037_wide_critic_cheetah",
+  "field": "parent",
+  "value": "exp_033_wide_critic_walker",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_037_wide_critic_cheetah",
+    "field": "parent",
+    "value": "exp_033_wide_critic_walker",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T12:24:16.080062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_037_wide_critic_cheetah\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:33.040Z\", \"updated_at\": \"2026-05-21T12:24:15.010Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_037_wide_critic_cheetah\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"14487\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\", \"submitted_at\": \"2026-05-21T12:18:32.619Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.\", \"parent\": \"exp_033_wide_critic_walker\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6818}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T12:24:16.532733+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_038_dual_critic_walker_s2",
+  "field": "hypothesis",
+  "value": "Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_038_dual_critic_walker_s2",
+    "field": "hypothesis",
+    "value": "Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T12:24:17.187608+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_038_dual_critic_walker_s2",
+  "field": "parent",
+  "value": "exp_032_dual_critic_walker",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_038_dual_critic_walker_s2",
+    "field": "parent",
+    "value": "exp_032_dual_critic_walker",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T12:24:17.395596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_038_dual_critic_walker_s2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:35.293Z\", \"updated_at\": \"2026-05-21T12:24:16.992Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_038_dual_critic_walker_s2\\\"\", \"server\": \"bjb1-40020\", \"gpu\": [\"cuda:0\"], \"pid\": \"175633\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log\", \"submitted_at\": \"2026-05-21T12:18:34.859Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8017}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 862
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T12:24:18.098481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_038_dual_critic_walker_s2\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:35.293Z\", \"updated_at\": \"2026-05-21T12:24:17.819Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_038_dual_critic_walker_s2\\\"\", \"server\": \"bjb1-40020\", \"gpu\": [\"cuda:0\"], \"pid\": \"175633\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log\", \"submitted_at\": \"2026-05-21T12:18:34.859Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.\", \"parent\": \"exp_032_dual_critic_walker\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7315}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 910
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-21T12:24:34.770674+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "ops:check_exp037_038_status",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "检查 exp_037 和 exp_038 在服务器上的进程状态。\n\n## 任务\n\n1. SSH 到 bjb1-45299，检查 exp_037_wide_critic_cheetah:\n   - `ps -p 14487 -o pid,etime,cmd` 看进程是否存活\n   - `tail -20 ~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log` 看最新输出\n   - `nvidia-smi` 看 GPU 使用情况\n\n2. SSH 到 bjb1-40020，检查 exp_038_dual_critic_walker_s2:\n   - `ps -p 175633 -o pid,etime,cmd` 看进程是否存活\n   - `tail -20 ~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log` 看最新输出\n   - `nvidia-smi` 看 GPU 使用情况\n\n3. 在 bjb1-40020 上同时检查 tmux sessions: `tmux ls`，确认 exp_037 和 exp_038 的 tmux session 是否存在\n\n## 产出\n汇总每个实验的：\n- 进程是否存活 (PID alive/dead)\n- 训练到了第几步 (从日志最后几行提取 step 数)\n- GPU 显存占用\n- 如果进程已死，报告退出原因",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "ops:check_exp037_038_status",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "检查 exp_037 和 exp_038 在服务器上的进程状态。\n\n## 任务\n\n1. SSH 到 bjb1-45299，检查 exp_037_wide_critic_cheetah:\n   - `ps -p 14487 -o pid,etime,cmd` 看进程是否存活\n   - `tail -20 ~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log` 看最新输出\n   - `nvidia-smi` 看 GPU 使用情况\n\n2. SSH 到 bjb1-40020，检查 exp_038_dual_critic_walker_s2:\n   - `ps -p 175633 -o pid,etime,cmd` 看进程是否存活\n   - `tail -20 ~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log` 看最新输出\n   - `nvidia-smi` 看 GPU 使用情况\n\n3. 在 bjb1-40020 上同时检查 tmux sessions: `tmux ls`，确认 exp_037 和 exp_038 的 tmux session 是否存在\n\n## 产出\n汇总每个实验的：\n- 进程是否存活 (PID alive/dead)\n- 训练到了第几步 (从日志最后几行提取 step 数)\n- GPU 显存占用\n- 如果进程已死，报告退出原因",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-21T12:24:35.926395+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T12:24:37.636083+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_exp037_038_status_20260521T122435\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_ops_check_exp037_038_status_20260521T122435.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_exp037_038_status_20260521T122435 started. Use get_worker_status('worker_ops_check_exp037_038_status_20260521T122435') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2865
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T12:24:37.636485+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Read",
+  "elapsed_ms": 1710
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T12:24:40.498137+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T12:24:40.604035+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Glob",
+  "elapsed_ms": 105
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T12:24:43.063805+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T12:24:43.166168+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Glob",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T12:24:45.475628+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T12:24:45.526630+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-21T12:25:12.259860+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 分配 | 实际在跑 2 (exp_035 40020:1, exp_036 45299:0) ⚠️ 2 GPU 疑似空闲 | Worker 1 (GPU 0 / CPU 1)\n\n## 状态更新\n\n**exp_033_wide_critic_walker cron 重复通知**: 收到 cron 回调称 exp_033 进程退出需分析，但 registry 中该实验已是 DONE(success)，metrics 和分析报告均已存在。此为重复通知，无需操作。\n\n**⚠️ exp_037/038 状态异常**: ROADMAP 记录 exp_037 (Cheetah wide, 45299:1) 和 exp_038 (Walker dual s2, 40020:0) 应在运行，但 registry 状态为 ALLOCATED 而非 RUNNING，且资源系统未检测到 GPU 活动。已派 Worker SSH 检查两台服务器上的进程存活情况。\n\n- 若进程存活 → 补全 provenance 并转 RUNNING\n- 若进程已死 → 重新提交\n\n已为 exp_037/038 补全 hypothesis 和 parent 字段。等 Worker 回调后更新。\n\n**当前 4 实验进展**:\n| 实验 | Server:GPU | 状态 | 备注 |\n|------|-----------|------|------|\n| exp_035 narrow dual | 40020:1 | RUNNING ✅ | 2×2 最后一格 |\n| exp_036 PickCube dual | 45299:0 | RUNNING ✅ | 第三环境 |\n| exp_037 Cheetah wide | 45299:1 | ALLOCATED ⚠️ | 排查中 |\n| exp_038 Walker dual s2 | 40020:0 | ALLOCATED ⚠️ | 排查中 |",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 4/4 分配 | 实际在跑 2 (exp_035 40020:1, exp_036 45299:0) ⚠️ 2 GPU 疑似空闲 | Worker 1 (GPU 0 / CPU 1)\n\n## 状态更新\n\n**exp_033_wide_critic_walker cron 重复通知**: 收到 cron 回调称 exp_033 进程退出需分析，但 registry 中该实验已是 DONE(success)，metrics 和分析报告均已存在。此为重复通知，无需操作。\n\n**⚠️ exp_037/038 状态异常**: ROADMAP 记录 exp_037 (Cheetah wide, 45299:1) 和 exp_038 (Walker dual s2, 40020:0) 应在运行，但 registry 状态为 ALLOCATED 而非 RUNNING，且资源系统未检测到 GPU 活动。已派 Worker SSH 检查两台服务器上的进程存活情况。\n\n- 若进程存活 → 补全 provenance 并转 RUNNING\n- 若进程已死 → 重新提交\n\n已为 exp_037/038 补全 hypothesis 和 parent 字段。等 Worker 回调后更新。\n\n**当前 4 实验进展**:\n| 实验 | Server:GPU | 状态 | 备注 |\n|------|-----------|------|------|\n| exp_035 narrow dual | 40020:1 | RUNNING ✅ | 2×2 最后一格 |\n| exp_036 PickCube dual | 45299:0 | RUNNING ✅ | 第三环境 |\n| exp_037 Cheetah wide | 45299:1 | ALLOCATED ⚠️ | 排查中 |\n| exp_038 Walker dual s2 | 40020:0 | ALLOCATED ⚠️ | 排查中 |",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T12:25:13.668701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_033_wide_critic_walker",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1408
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-21T12:25:18.278967+00:00_
+
+已向 Director 汇报。等待 Worker 回调 exp_037/038 服务器检查结果。
+
+当前状态：
+- **exp_033** cron 通知是重复的，实验已 DONE(success)，无需操作
+- **exp_035/036** 正常 RUNNING
+- **exp_037/038** 处于 ALLOCATED 但资源系统未检测到 GPU 活动，已派 Worker 检查进程是否存活
+- 已补全 exp_037/038 的 hypothesis 和 parent 字段
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_033_wide_critic_walker"
+}
+```
+
+</details>
+
+---

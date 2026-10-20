@@ -1,0 +1,41 @@
+# research iris feasibility
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_iris-feasibility_20260529T204003_result.json`
+- **Structured JSON:** [`81044d7c845ec4b03830.json`](../../sessions/81/81044d7c845ec4b03830.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+报告已写入 `artifacts/transformer_wm_feasibility.md`。核心结论：
+
+**IRIS 直接改造不推荐。** 两个阻塞问题：
+1. **IRIS 仅支持 Atari**（VQ-VAE discrete image tokens + discrete actions），不支持 DMC proprioceptive 环境。改造为支持 DMC 需要重写 tokenizer/action embedding/actor-critic（~640 行），改造后本质上不再是 IRIS。
+2. **在 Atari 上做 dt-conditioning 无法触发 CIVO**——CIVO 是 6-DoF locomotion 特异性现象，Atari 的 low-DoF discrete control 几乎不可能重现。
+
+**推荐路径：STORM**（Zhang et al., 2023）——transformer WM + continuous latent + DMC proprioceptive + imagination-based actor-critic，架构最接近 "transformer 版 DreamerV3"。在 STORM 上加 dt-conditioning 估计 **8-12 AI worker hours, 10-20 GPU-h**，远低于改造 IRIS 的 ~20h。
+
+三条可选路径的工程量对比：
+
+| 路径 | 工程量 | 科学价值 |
+|------|--------|----------|
+| IRIS + Atari（dt-conditioning only） | 3-5h | 低（不触发 CIVO，但可作为 DoF 依赖性的补充证据） |
+| IRIS 改造 DMC + dt-conditioning | 15-25h | 中高（但改造后偏离原始 IRIS 架构） |
+| **STORM + dt-conditioning** | **8-12h** | **高（直接对标 DreamerV3 实验设置）** |
+
+下一步建议：对 STORM 做同样的代码调研，确认其 imagination training 实现和 DMC 环境覆盖后再做最终决策。
+
+---

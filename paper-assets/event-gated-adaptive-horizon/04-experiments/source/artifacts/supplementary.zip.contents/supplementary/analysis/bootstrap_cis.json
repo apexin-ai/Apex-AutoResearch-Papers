@@ -1,0 +1,137 @@
+{
+  "nve": {
+    "exp_008d_civo_trigger": {
+      "description": "NVE = ve_ratio(008d) / ve_ratio(baseline_s1), ve_ratio = value_mean / eval_return",
+      "step_range": "35000-55000",
+      "per_step": {
+        "35000": {
+          "nve": 1.70528,
+          "exp_ve": 0.411346,
+          "bl_ve": 0.241219
+        },
+        "45000": {
+          "nve": 2.093256,
+          "exp_ve": 0.692906,
+          "bl_ve": 0.331018
+        },
+        "55000": {
+          "nve": 4.129242,
+          "exp_ve": 1.666256,
+          "bl_ve": 0.403526
+        }
+      },
+      "bootstrap_ci": {
+        "mean": 2.642592694055372,
+        "ci_lower": 1.7052799558630118,
+        "ci_upper": 4.1292421269058925,
+        "n": 3
+      }
+    },
+    "exp_018_full_sgs": {
+      "description": "exp_018 shares identical metrics with baseline_s1 at all overlapping steps",
+      "note": "All 11/11 steps have identical ve_ratio to baseline \u2192 NVE=1.0 trivially",
+      "total_checkpoints": 11,
+      "per_step_ve_ratio": {
+        "35000": 0.241219,
+        "45000": 0.331018,
+        "55000": 0.403526,
+        "65000": 0.562928,
+        "75000": 0.719429,
+        "85000": 0.700652,
+        "95000": 0.632013,
+        "105000": 0.656413
+      }
+    },
+    "baseline_s1_ve_ratio_ref": {
+      "description": "baseline_s1 ve_ratio = value_mean / eval_return (reference denominator)",
+      "step_range": "35000-105000",
+      "per_step": {
+        "35000": 0.241219,
+        "45000": 0.331018,
+        "55000": 0.403526,
+        "65000": 0.562928,
+        "75000": 0.719429,
+        "85000": 0.700652,
+        "95000": 0.632013,
+        "105000": 0.656413
+      },
+      "bootstrap_ci": {
+        "mean": 0.5308996683047422,
+        "ci_lower": 0.410621611417031,
+        "ci_upper": 0.6410910487584308,
+        "n": 8
+      }
+    }
+  },
+  "seed_variability": {
+    "description": "eval_return: baseline_s1 (seed1) vs exp_009d_s0 (seed0), interpolated to common steps",
+    "method": "exp_009d_s0 linearly interpolated to baseline_s1's step grid",
+    "n_steps": 51,
+    "step_range": "5000-505000",
+    "mean_diff_ci": {
+      "mean_diff": 183.7555251813402,
+      "ci_lower": 136.1662158757378,
+      "ci_upper": 233.98682651407577,
+      "n": 51
+    },
+    "baseline_s1_eval_return_ci": {
+      "mean": 852.2664815005136,
+      "ci_lower": 791.0653386767706,
+      "ci_upper": 903.5127753210068,
+      "n": 51
+    },
+    "exp_009d_s0_eval_return_ci": {
+      "mean": 668.5109563191733,
+      "ci_lower": 592.4727215138978,
+      "ci_upper": 743.1471584326428,
+      "n": 51
+    },
+    "last_10_diff_ci": {
+      "mean_diff": 21.59512744140626,
+      "ci_lower": 11.486375477600104,
+      "ci_upper": 31.404520353698715,
+      "n": 10
+    },
+    "last_10_steps": "415000-505000"
+  },
+  "cheetah_baseline": {
+    "description": "exp_010a Cheetah baseline: ve_ratio = value_mean / eval_return",
+    "n_checkpoints": 52,
+    "step_range": "5000-515000",
+    "ve_ratio_all_ci": {
+      "mean": 0.6128869943946011,
+      "ci_lower": 0.5553605996680547,
+      "ci_upper": 0.6644348256066305,
+      "n": 52
+    },
+    "ve_ratio_last10_ci": {
+      "mean": 0.7222029305174884,
+      "ci_lower": 0.705344765474587,
+      "ci_upper": 0.7418098692079955,
+      "n": 10
+    },
+    "last10_steps": "425000-515000",
+    "eval_return_all_ci": {
+      "mean": 597.3400608361451,
+      "ci_lower": 540.0252722430035,
+      "ci_upper": 649.7697493060215,
+      "n": 52
+    },
+    "eval_return_last10_ci": {
+      "mean": 803.1783403216363,
+      "ci_lower": 778.9856841414048,
+      "ci_upper": 826.277029006373,
+      "n": 10
+    },
+    "per_step_ve_ratio_35K_105K": {
+      "35000": 0.091757,
+      "45000": 0.148203,
+      "55000": 0.412752,
+      "65000": 0.367815,
+      "75000": 0.41625,
+      "85000": 0.47551,
+      "95000": 0.567901,
+      "105000": 0.584327
+    }
+  }
+}

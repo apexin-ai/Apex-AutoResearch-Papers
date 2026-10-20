@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_104_hopper_baseline_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:55:00.720Z",
+    "updated_at": "2026-05-27T03:02:41.332Z",
+    "hypothesis": "Hopper Hop baseline (dt=1, no gate) establishes reference performance for third-environment CIVO verification. Expect stable training without value overestimation (NVE &lt; 1.5×). Source: C1/C2 third-environment verification (D160).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-27T03:02:41.836402+00:00",
+  "trigger": "update_registry"
+}

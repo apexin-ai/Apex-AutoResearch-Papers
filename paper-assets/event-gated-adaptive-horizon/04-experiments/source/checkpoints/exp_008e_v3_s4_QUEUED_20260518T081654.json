@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_008e_v3_s4",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:54:56.392Z",
+    "updated_at": "2026-05-18T08:16:53.717Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15, seed=4. C6 dual-pathway 多 seed 验证：当前 2 seeds 50% collapse rate（置信区间太宽），增加 seed 缩窄置信区间。Rebuttal 储备。",
+    "parent": "exp_008e_v3_subsample_on_dt1_h15",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15 --checkpoint_every 25000\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "733613",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_008e_v3_s4.log",
+      "submitted_at": "2026-05-18T08:16:37.455Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T08:16:54.095753+00:00",
+  "trigger": "update_registry"
+}

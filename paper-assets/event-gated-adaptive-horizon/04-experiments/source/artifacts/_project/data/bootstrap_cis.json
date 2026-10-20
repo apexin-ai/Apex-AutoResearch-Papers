@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "n_bootstrap": 10000,
+    "date": "2026-05-16",
+    "diagnostic_window": "35K+"
+  },
+  "SGS_full": {
+    "nve_peak": {"mean": 1.66, "n": 2, "note": "Both seeds peaked ~1.66× at 95K in 35K+ window"},
+    "nve_peak_step": 95000,
+    "nve_sustained_avg": {"mean": 1.34, "n": 1, "note": "Only 018v2 pre-collapse data; 018_s2 collapsed at 105K"},
+    "eval_return_peak": {"mean": 493.8, "ci_lower": 488.0, "ci_upper": 499.6, "n": 2},
+    "eval_return_final": {"mean": 244.57, "ci_lower": 40.8, "ci_upper": 448.34, "n": 2},
+    "collapse_rate": {"mean": 0.5, "ci_lower": 0.0, "ci_upper": 1.0, "n": 2},
+    "exceedance_rate": 0.25,
+    "exceedance_count": 2,
+    "exceedance_total": 8,
+    "exceedance_threshold": 1.5,
+    "nve_timeline_35K_plus_018v2": [1.61, 1.38, 1.27, 1.04, 0.83, 1.08, 1.66, 1.34],
+    "nve_timeline_steps": [35000, 45000, 55000, 65000, 75000, 85000, 95000, 105000],
+    "n_seeds": 2,
+    "seeds": ["018v2", "018_s2"],
+    "seed_outcomes": {"018v2": "no_collapse (eval_final=448.34)", "018_s2": "collapse (eval_final=40.8@105K, peak=488@75K)"},
+    "note": "Full-SGS does NOT reliably prevent CIVO. collapse_rate=0.5 invalidates C5 (SGS as reliable intervention)."
+  },
+  "trained_dt_emb": {
+    "nve_peak": {"mean": 3.085, "ci_lower": 2.05, "ci_upper": 4.12, "n": 2},
+    "nve_sustained_avg": {"mean": 1.595, "ci_lower": 1.03, "ci_upper": 2.16, "n": 2},
+    "eval_return_peak": {"mean": 222.88, "ci_lower": 167.22, "ci_upper": 278.54, "n": 2},
+    "eval_return_final": {"mean": 175.34, "ci_lower": 82.75, "ci_upper": 267.93, "n": 2},
+    "collapse_rate": {"mean": 0.5, "ci_lower": 0.0, "ci_upper": 1.0, "n": 2},
+    "note": "Walker-only. 009e excluded (seed=0 duplicate). 010b excluded (Cheetah, cross-env)."
+  },
+  "no_dt_emb": {
+    "nve_peak": {"mean": 1.05, "ci_lower": 0.87, "ci_upper": 1.26, "n": 3},
+    "nve_sustained_avg": {"mean": 0.663, "ci_lower": 0.57, "ci_upper": 0.77, "n": 3},
+    "eval_return_peak": {"mean": 485.44, "ci_lower": 359.14, "ci_upper": 594.18, "n": 3},
+    "eval_return_final": {"mean": 357.35, "ci_lower": 148.34, "ci_upper": 503.0, "n": 3},
+    "collapse_rate": {"mean": 0.0, "ci_lower": 0.0, "ci_upper": 0.0, "n": 3}
+  },
+  "SGS_partial": {
+    "nve_peak": {"mean": 10.42, "n": 1},
+    "nve_sustained_avg": {"mean": 2.46, "n": 1},
+    "eval_return_peak": {"mean": 326.67, "n": 1},
+    "eval_return_final": {"mean": 31.73, "n": 1},
+    "collapse_rate": {"mean": 1.0, "n": 1}
+  },
+  "frozen_dt_emb": {
+    "nve_peak": {"mean": 0.467, "n": 1},
+    "nve_sustained_avg": {"mean": 0.427, "n": 1},
+    "eval_return_peak": {"mean": 238.4, "n": 1},
+    "eval_return_final": {"mean": 204.2, "n": 1},
+    "collapse_rate": {"mean": 0.0, "n": 1}
+  },
+  "no_subsample": {
+    "nve_peak": {"mean": 0.93, "n": 1},
+    "nve_sustained_avg": {"mean": 0.73, "n": 1},
+    "eval_return_peak": {"mean": 777.66, "n": 1},
+    "eval_return_final": {"mean": 777.66, "n": 1},
+    "collapse_rate": {"mean": 0.0, "n": 1}
+  },
+  "dt1_imag": {
+    "nve_peak": {"mean": 3.78, "n": 1},
+    "nve_sustained_avg": {"mean": 1.35, "n": 1},
+    "eval_return_peak": {"mean": 792.555, "ci_lower": 715.21, "ci_upper": 869.9, "n": 2},
+    "eval_return_final": {"mean": 503.43, "ci_lower": 136.96, "ci_upper": 869.9, "n": 2},
+    "collapse_rate": {"mean": 0.5, "ci_lower": 0.0, "ci_upper": 1.0, "n": 2}
+  },
+  "baseline_walker": {
+    "eval_return_peak": {"mean": 962.77, "ci_lower": 950.96, "ci_upper": 970.41, "n": 3},
+    "eval_return_final": {"mean": 942.735, "ci_lower": 927.6, "ci_upper": 957.87, "n": 2}
+  }
+}

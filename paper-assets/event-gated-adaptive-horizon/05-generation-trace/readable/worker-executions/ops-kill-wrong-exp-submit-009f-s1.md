@@ -1,0 +1,2740 @@
+# ops kill wrong exp submit 009f s1
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_ops_kill-wrong-exp-submit-009f-s1_20260527T111343.log`
+- **Structured JSON:** [`deaa855ced93e5dcdcc3.json`](../../sessions/de/deaa855ced93e5dcdcc3.json)
+
+## Before a recorded user message
+
+58 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "509529c0-65b1-4a48-a833-ffb03cbb983a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779891600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "5d92fe03-ebd2-4a97-a76a-5a4d20b3d55e",
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down into steps:
+
+1. Kill the wrong experiment on cuda:0
+2. Update registry for the wrong experiment
+3. Submit the correct experiment (seed=1) to cuda:0
+4. Verify
+
+Let me start by loading the necessary MCP tools and killing the process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "8ed2c686-42b6-404f-ae31-9f1ae5c0d9aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8urTuL3Gxo5hSEe9zWxQc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12374,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12374
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先 kill 错误进程，同时加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "c1ac3f0a-4355-4f65-9bd7-0f4ad9d77466",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8urTuL3Gxo5hSEe9zWxQc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12374,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12374
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013aDZhPHrgWDFSTFESf38b3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__read_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "1ae5dd9a-70fa-42d8-a224-220c4d0338cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F8urTuL3Gxo5hSEe9zWxQc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12374,
+      "cache_read_input_tokens": 11451,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12374
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-27T11:13:59.518Z_
+
+<details><summary>↩ Tool result · `toolu_013aDZhPHrgWDFSTFESf38b3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "b66ba748-5bcb-444f-adb3-5873af5c0f09",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__kill_job,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me first check the current state - kill the wrong process and read the registry entries for both experiments in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "0907c76b-2159-407a-9110-75d561ec2536",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwk8W1D9H8qcpaH6rYdphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先查 GPU 状态、kill 错误进程、读 registry 状态，并行执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "801deab9-482f-45b3-b7d5-0c036ec396a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwk8W1D9H8qcpaH6rYdphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0181v4oQQ3SHtVZp44YTR4tM`</summary>
+
+```json
+{
+  "server": "westd-51268",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "c2090fd9-f41d-452c-9f80-d7c1ded2a1af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwk8W1D9H8qcpaH6rYdphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XVanTfRx5CHRjtcWdfbrLm`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_walker_no_dt_emb_s0"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "4ccccebc-433c-4925-a04d-f7fbdd35aca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwk8W1D9H8qcpaH6rYdphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-27T11:14:06.781Z_
+
+<details><summary>↩ Tool result · `toolu_0181v4oQQ3SHtVZp44YTR4tM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:14:06 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   41C    P0            126W /  600W |   52446MiB /  97887MiB |     23%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          628264    C+G   python                                 3255MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "970b4cc9-e93d-472e-883d-cad2635353ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 27 19:14:06 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   41C    P0            126W /  600W |   52446MiB /  97887MiB |     23%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          628264    C+G   python                                 3255MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:14:06 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   41C    P0            126W /  600W |   52446MiB /  97887MiB |     23%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          628264    C+G   python                                 3255MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T11:14:06.915Z_
+
+<details><summary>↩ Tool result · `toolu_01XVanTfRx5CHRjtcWdfbrLm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1205}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "d687dd66-ad95-41cf-9ca4-fe7634c45a89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1205}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1205}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01ShPUoXwxCNAgtWqTcf2zTG`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_walker_no_dt_emb_s1"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "9243917e-d959-423b-b11d-d28d866be027",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uwk8W1D9H8qcpaH6rYdphj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1847,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1847
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T11:14:07.058Z_
+
+<details><summary>↩ Tool result · `toolu_01ShPUoXwxCNAgtWqTcf2zTG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1238}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "dcbc83eb-dda9-47de-b3d0-275bf248bd65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1238}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1238}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+PID 628264 is still on cuda:0 using 3255MiB. The registry filter by exp_id didn't work - let me try without filters to see the experiments, and kill the process in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "4dc1919f-f5a2-4036-9402-e376c93ad1b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRtKAgu3xWnRjbfx2Gf6Yr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+PID 628264 仍在 cuda:0 上。Registry 按 exp_id 过滤返回空，可能需要用其他方式查。先 kill 进程，同时查全部 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "485f602f-5ff8-418d-8fc6-db95b5fd8e56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRtKAgu3xWnRjbfx2Gf6Yr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__kill_job · `toolu_0184nD6Nn2JqUbe8KRAP5WX2`</summary>
+
+```json
+{
+  "server": "westd-51268",
+  "pid": "628264",
+  "reason": "Wrong experiment: launched seed=0 instead of seed=1 for no_dt_emb Walker",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "1f5fa50b-ea66-473d-9dab-eda65c8f10a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRtKAgu3xWnRjbfx2Gf6Yr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XRFPb8Li81CFCJ27G1iA7i`</summary>
+
+```json
+{
+  "limit": 20,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "1c6908e3-cdac-4952-bb18-ef40755f84bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRtKAgu3xWnRjbfx2Gf6Yr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1118,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1118
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T11:14:16.509Z_
+
+<details><summary>↩ Tool result · `toolu_0184nD6Nn2JqUbe8KRAP5WX2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"628264\", \"reason\": \"Wrong experiment: launched seed=0 instead of seed=1 for no_dt_emb Walker\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "ad0312ab-462e-4ac0-a236-21e7e42c4c3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"628264\\\", \\\"reason\\\": \\\"Wrong experiment: launched seed=0 instead of seed=1 for no_dt_emb Walker\\\", \\\"force_killed\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"628264\", \"reason\": \"Wrong experiment: launched seed=0 instead of seed=1 for no_dt_emb Walker\", \"force_killed\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T11:14:16.639Z_
+
+<details><summary>↩ Tool result · `toolu_01XRFPb8Li81CFCJ27G1iA7i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_walker_no_dt_emb_s0\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:11:46.300Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}}, \"exp_hopper_frozen_s0_ext\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T10:47:14.544Z\", \"updated_at\": \"2026-05-27T10:48:10.979Z\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 0.56, \"eval_return_peak\": 3.58, \"eval_return_peak_step\": 85000, \"ve_ratio_final\": 15.08, \"ve_ratio_peak\": 4335664.27, \"ve_ratio_peak_step\": 105000, \"value_mean_final\": 8.46, \"civo_alerts\": 2, \"civo_alert_steps\": [65000, 105000], \"gate_dt_mean\": 2, \"gate_entropy\": 0, \"total_steps\": 160000, \"recovery\": false}, \"spec\": {\"checkpoint_path\": \"logdir/exp_hopper_frozen_s0/latest.pt\", \"log_path\": \"logdir/exp_hopper_frozen_s0/metrics.jsonl\", \"command\": \"python train.py --config hopper_frozen_s0 --steps 160000\", \"server\": \"westd-51268\", \"data_path\": \"Hopper-v4\", \"data_count\": 160000, \"model_name\": \"dreamer_v3_frozen_dt_emb\", \"seed\": 0}, \"hypothesis\": \"Extending frozen_s0 from 105K to 150K will show eval_return recovery with ve_ratio declining, confirming frozen_s0's degenerate CIVO at 95K is transient instability during severe learning delay rather than a permanent structural failure caused by the frozen dt_embedding.\", \"completed_at\": \"2026-05-27T10:48:10.979Z\"}, \"exp_hopper_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T05:51:24.680Z\", \"updated_at\": \"2026-05-27T05:52:01.157Z\", \"metrics\": {\"step\": 105000, \"eval_final\": 96.43, \"eval_return_trajectory\": {\"5000\": 0.06, \"15000\": 1.04, \"25000\": 1.7, \"35000\": 6.55, \"45000\": 19.09, \"55000\": 22.52, \"65000\": 3.5, \"75000\": 62.2, \"85000\": 67.62, \"95000\": 86.47, \"105000\": 96.43}, \"ve_ratio_trajectory\": {\"15000\": 0.08, \"25000\": 0.098, \"35000\": 0.166, \"45000\": 0.19, \"55000\": 0.279, \"65000\": 3.479, \"75000\": 0.341, \"85000\": 0.502, \"95000\": 0.517, \"105000\": 0.559}, \"nve_peak\": 3.48, \"nve_peak_step\": 65000, \"nve_final\": 0.559, \"civo_onset\": false, \"civo_alert_count\": 0, \"value_mean_final\": 53.9, \"target_mean_final\": 54.2, \"training_steps\": 105000, \"update_count\": 25099, \"fps\": 11}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_hopper_baseline/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_hopper_baseline.log\", \"hypothesis\": \"Hopper Hop baseline (dt=1, no gate) establishes reference performance for third-environment CIVO verification. Expect stable training without value overestimation (NVE < 1.5×). Source: C1/C2 third-environment verification (D160).\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_baseline --steps 105000 --seed 0 --compile False --device cuda:0\", \"server\": \"westd-51268\", \"data_path\": \"dmc_hopper_hop\", \"data_count\": 105000, \"model_name\": \"DreamerV3 baseline (dt=1, no gate)\", \"seed\": 0}, \"completed_at\": \"2026-05-27T05:52:01.157Z\"}, \"exp_097_cheetah_008d_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:03:25.871Z\", \"updated_at\": \"2026-05-26T11:32:48.497Z\", \"hypothesis\": \"C1 trigger seed 3: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 Cheetah 上的第四个 seed（s3）。当前 onset rate 2/3（s0 NVE=4.1×✓, s1 NVE=0.517✗, s2 NVE=138.7×✓）。s3 完成后可计算完整 onset rate（n=4）。如果 onset ≥3/4 → 高 onset rate 支持 CIVO 是 systematic phenomenon；如果 2/4 → 50% onset rate 仍有意义但需讨论。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"notes\": \"重新提交到 westd-51268 cuda:0。原 bjb1 提交 (PID 324959) 已死（服务器无卡）。exp_094 同配置在 westd 跑了 1.72h 后因 SSH 断连失败，检查其 checkpoint 是否可复用。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_097_cheetah_008d_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-51268\", \"gpu_ids\": [0], \"pid\": 3794, \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\", \"seed\": 3, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_097_cheetah_008d_s3/train.log\", \"checkpoint_path\": \"logdir/exp_097_cheetah_008d_s3/latest.pt\"}, \"metrics\": {\"step\": 105000, \"nve_peak\": 2.3, \"nve_peak_step\": 45000, \"nve_final\": 0.3, \"civo_onset\": true, \"civo_onset_step\": 45000, \"civo_pattern\": \"transient→degraded\", \"eval_final\": 61.7, \"eval_final_pct_baseline\": -86, \"baseline_eval_return\": 446.1, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T11:32:48.497Z\"}, \"exp_100_walker_008a_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:39:24.456Z\", \"updated_at\": \"2026-05-26T07:52:52.927Z\", \"hypothesis\": \"Walker Walk trained dt_emb (unexposed to dt>1, subsample OFF) + gate_fixed_dt=2 + H=15, seed=1 — C3 Walker 008a 第 2 seed。与 exp_008a_no_subsample_dt2 (s0) 和 exp_074_008a_walker_s3 (s3) 共同建立 C3 value suppression 多 seed 证据。训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练，预期无 CIVO。plan_013。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_100_walker_008a_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"westd-51268\", \"gpu_ids\": [1], \"pid\": 5591, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (trained dt_emb, unexposed)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_100_walker_008a_s1/metrics.jsonl\", \"checkpoint_path\": \"logdir/exp_100_walker_008a_s1/latest.pt\"}, \"metrics\": {\"step\": 105000, \"eval_return_trajectory\": {\"5000\": 31, \"15000\": 168.77, \"25000\": 158.03, \"35000\": 202.91, \"45000\": 305.98, \"55000\": 457.28, \"65000\": 628.82, \"75000\": 686.98, \"85000\": 656.64, \"95000\": 717.74, \"105000\": 750.59}, \"ve_ratio_trajectory\": {\"15000\": 0.035, \"25000\": 0.206, \"35000\": 0.279, \"45000\": 0.261, \"55000\": 0.248, \"65000\": 0.234, \"75000\": 0.26, \"85000\": 0.315, \"95000\": 0.325, \"105000\": 0.328}, \"value_mean_trajectory\": {\"15000\": 5.98, \"25000\": 32.58, \"35000\": 56.55, \"45000\": 79.94, \"55000\": 113.33, \"65000\": 147.14, \"75000\": 178.73, \"85000\": 206.95, \"95000\": 233.17, \"105000\": 246.06}, \"nve_peak\": 0.328, \"nve_final\": 0.328, \"civo_onset\": false, \"eval_final\": 750.59, \"eval_final_pct_baseline\": -18, \"baseline_eval_return\": 915.67, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T07:52:45.733Z\", \"notes\": \"C3 Walker 008a s1 完成。训练正常结束(105K steps)。eval_return@105K=750.59 (baseline 915.67, -18.0%)。ve_ratio 全程 0.035-0.328，NVE_peak=0.328，远低于 τ=1.5×，civo/alert 全程 0.0，无 CIVO onset。Value suppression 确认（value_mean 持续低于 eval_return）。与 parent s0 (eval@105K=777.66, -15.1%, ve_ratio 0.37-0.54) 一致：s1 性能略低但趋势相同，两个 seed 均无 CIVO 且呈现 value suppression，C3 Walker 008a 2-seed 证据闭合。gate_dt 全程固定为 2.0 (100% dt_2_frac)，符合 gate_fixed_dt=2 配置。\"}, \"rssm_fidelity_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:47:46.584Z\", \"updated_at\": \"2026-05-26T03:47:59.871Z\", \"hypothesis\": \"RSSM fidelity v2 分析：对比 4 类模型（baseline/trained_dt_emb/no_dt_emb/frozen）在 dt=1 vs dt=2 下的 observation/reward reconstruction loss。使用 Walker checkpoint (n=800)。结果：trained_dt_emb reward ratio 1.50×, obs ratio 1.44×; baseline obs ratio 1.55×; no_dt_emb gap 最小 (1.23×/1.16×)。\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python analyze_rssm_fidelity_v2.py --device cuda:0\", \"server\": \"westd-51268\", \"data_path\": \"Walker logdirs (exp_008d/009d/009c/084)\", \"data_count\": 800, \"model_name\": \"RSSM fidelity analysis v2\", \"seed\": 0, \"checkpoint_path\": \"analysis_rssm_fidelity_v2.json\", \"log_path\": \"N/A (analysis task)\"}, \"completed_at\": \"2026-05-26T03:47:59.871Z\"}, \"exp_057_frozen_dt_emb_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:26:00.391Z\", \"updated_at\": \"2026-05-26T03:03:45.406Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_057_frozen_dt_emb_walker_s2\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 157775, \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s2)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:45.406Z\"}, \"exp_051_stackcube_frozen_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:42:39.309Z\", \"updated_at\": \"2026-05-26T03:03:44.692Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\", \"parent\": \"exp_049\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 305974, \"data_path\": \"maniskill_StackCube-v1 (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, StackCube s0)\", \"seed\": 0, \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"maniskill_StackCube-v1 (online eval)\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:44.692Z\"}, \"exp_049_stackcube_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:14:38.578Z\", \"updated_at\": \"2026-05-26T03:03:42.946Z\", \"hypothesis\": \"CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion（Walker/Cheetah）推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack），比 PickCube 更难。如果触发 CIVO → 扩展跨域证据；如果不触发 → 支持 locomotion-specific scope。\", \"parent\": \"exp_048_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigger_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 91395, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:42.946Z\"}, \"exp_081_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:42:24.765Z\", \"updated_at\": \"2026-05-25T15:43:10.949Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 597.1, \"vs_baseline\": \"-34.8%\", \"vs_baseline_pct\": 65.2, \"baseline_105K\": 915.67, \"ve_ratio_peak\": 0.6, \"ve_ratio_final\": 0.5, \"NVE_est_peak\": 0.8, \"NVE_est_final\": 0.7, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"civo_alert_count\": 0, \"training_steps\": 105000, \"update_count\": 25099, \"value_mean_final\": 295}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_081_008e_v3_walker_s2/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"spec\": {\"command\": \"python train.py --config 008e_v3 --env walker_walk --seed 2\", \"server\": \"bjb1-45299\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"dreamerv3_008e_v3\", \"seed\": 2}, \"hypothesis\": \"Trained dt_emb with dt=1 imagination and subsample ON (max_dt=2) does not trigger CIVO in Walker Walk, as the value function sees only single-step predictions that match the world model's training distribution, preventing value inflation even with learned temporal embeddings.\", \"completed_at\": \"2026-05-25T15:43:10.949Z\"}, \"exp_078_cheetah_008d_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:34.290Z\", \"updated_at\": \"2026-05-25T11:20:38.124Z\"}, \"exp_077_cheetah_baseline_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:33.734Z\", \"updated_at\": \"2026-05-25T11:20:37.784Z\"}, \"exp_079_frozen_dt_emb_walker_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:33.307Z\", \"updated_at\": \"2026-05-25T11:20:36.856Z\"}, \"exp_073_008f_walker_s4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:52:07.413Z\", \"updated_at\": \"2026-05-25T09:52:34.845Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 289.3, \"eval_return_peak\": 486.5, \"eval_return_peak_step\": 75000, \"ve_ratio_max\": 0.5, \"civo_alert_max\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"total_env_steps\": 112000, \"total_updates\": 25099}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"spec\": {\"command\": \"python train.py --config 008f --seed 4\", \"server\": \"westd-19154\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"dreamer_v3_008f\", \"seed\": 4}, \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) in the 008f control config prevents CIVO onset because the agent cannot form temporally-conditioned value predictions that compound imagination-driven overestimation. With fixed dt=2 and no temporal embedding, value error ratio should remain below the 1.5x CIVO threshold across seeds.\", \"completed_at\": \"2026-05-25T09:52:34.845Z\"}, \"exp_072_008e_v3_walker_s5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:51:50.268Z\", \"updated_at\": \"2026-05-25T09:52:00.215Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_trajectory\": {\"5K\": 29.4, \"15K\": 251.1, \"25K\": 423, \"35K\": 511, \"45K\": 600.1, \"55K\": 649, \"65K\": 697.2, \"75K\": 727.3, \"85K\": 710.3, \"95K\": 803.9, \"105K\": 853.1}, \"ve_ratio_trajectory\": {\"15K\": 0, \"25K\": 0.1, \"35K\": 0.2, \"45K\": 0.3, \"55K\": 0.3, \"65K\": 0.4, \"75K\": 0.5, \"85K\": 0.6, \"95K\": 0.6, \"105K\": 0.6}, \"value_mean_trajectory\": {\"5K\": 0, \"15K\": 4.6, \"25K\": 33.2, \"35K\": 88.8, \"45K\": 154, \"55K\": 223.2, \"65K\": 296.9, \"75K\": 364.3, \"85K\": 418.5, \"95K\": 464.6, \"105K\": 520.8}, \"nve_trajectory\": {\"15K\": 0.02, \"25K\": 0.08, \"35K\": 0.17, \"45K\": 0.26, \"55K\": 0.34, \"65K\": 0.43, \"75K\": 0.5, \"85K\": 0.59, \"95K\": 0.58, \"105K\": 0.61}, \"final_eval_return\": 853.1, \"peak_eval_return\": 853.1, \"peak_eval_step\": 105000, \"final_value_mean\": 520.8, \"final_ve_ratio\": 0.6, \"final_nve\": 0.61, \"final_actor_entropy\": -5.1, \"gate_dt_1_frac\": 1, \"civo_alert_max\": 0, \"civo_detected\": false, \"baseline_ratio\": 0.932}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"server\": \"westd-19154\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"}}, \"exp_069_008f_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:20:25.632Z\", \"updated_at\": \"2026-05-25T07:21:13.407Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk. With no learned temporal embedding, the value network cannot develop the compounding overestimation pattern that causes CIVO collapse. This seed=1 run extends the evidence from exp_008f (seed=0).\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"spec\": {\"command\": \"python train.py --configs dmc_vision --task dmc_walker_walk --seed 1 --logdir logdir/exp_069_008f_walker_repro_s1\", \"server\": \"westd-19154\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 0, \"model_name\": \"dreamerv2_no_dt_embed_h8\", \"seed\": 1, \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"dmc_walker_walk_online\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_069_008f_walker_repro_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T07:20:58.159Z\", \"metrics\": {\"eval_return_final\": 237.8, \"eval_return_final_step\": 105000, \"eval_return_peak\": 390.1, \"eval_return_peak_step\": 95000, \"steps_completed\": 112000, \"eval_steps\": 105000, \"civo_triggered\": false, \"civo_alert_count\": 0, \"ve_ratio_max\": 0.447, \"ve_ratio_max_step\": 105000, \"ve_ratio_final\": 0.447, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"value_mean_final\": 106.3, \"target_mean_final\": 106.4, \"value_loss_final\": 0.99, \"seed\": 1, \"eval_return_trajectory\": {\"5K\": 30.5, \"15K\": 158.7, \"25K\": 180.8, \"35K\": 250.3, \"45K\": 293.6, \"55K\": 272.2, \"65K\": 328.1, \"75K\": 244.8, \"85K\": 382.5, \"95K\": 390.1, \"105K\": 237.8}, \"ve_ratio_trajectory\": {\"15K\": 0.021, \"25K\": 0.111, \"35K\": 0.171, \"95K\": 0.275, \"105K\": 0.447}, \"note\": \"C2 causal control: no dt_embedding, fixed dt=2. No CIVO triggered. ve_ratio stayed <0.5 throughout. Late eval dip (390→238) is normal Walker variance, not CIVO-driven (value_mean≈target_mean, no overestimation).\"}}, \"exp_055_peginsertion_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T05:16:11.755Z\", \"updated_at\": \"2026-05-23T23:34:24.080Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginsertion_civo_trigger_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, PegInsertion)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1.log\"}, \"hypothesis\": \"PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，162.5K 时仍 1.94）。如果 s1 也触发持续 CIVO → PegInsertion 是最严重的 CIVO 环境（比 StackCube 自修复更难），支持 severity-dependent narrative；如果不触发 → seed-specific 异常。\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"checkpoint_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/latest.pt\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1.log\", \"metrics\": {\"total_steps\": 222400, \"ve_ratio_max\": 3.08, \"ve_ratio_max_step\": 92500, \"ve_ratio_final\": 0.5, \"ve_ratio_final_step\": 212500, \"eval_peak\": 24.05, \"eval_peak_step\": 112500, \"eval_final\": 11.44, \"eval_final_step\": 212500, \"civo_triggered\": true, \"civo_self_corrected\": \"partial\", \"civo_onset_step\": 32500, \"civo_peak_step\": 92500, \"ve_ratio_trajectory\": {\"12500\": 0.19, \"22500\": 0.81, \"32500\": 1.35, \"42500\": 2, \"52500\": 2.39, \"62500\": 2.85, \"72500\": 2.28, \"82500\": 2.48, \"92500\": 3.08, \"102500\": 2.51, \"112500\": 0.91, \"122500\": 1.21, \"132500\": 1.36, \"142500\": 0.75, \"152500\": 0.55, \"162500\": 1.17, \"172500\": 0.96, \"182500\": 0.94, \"192500\": 0.9, \"202500\": 0.73, \"212500\": 0.5}, \"eval_trajectory\": {\"2500\": 2.01, \"12500\": 10.12, \"22500\": 11.47, \"32500\": 12.01, \"42500\": 10.13, \"52500\": 10.31, \"62500\": 9.02, \"72500\": 10.07, \"82500\": 8.78, \"92500\": 7.24, \"102500\": 9.2, \"112500\": 24.05, \"122500\": 16.46, \"132500\": 13.15, \"142500\": 20.44, \"152500\": 23.4, \"162500\": 9.07, \"172500\": 9.46, \"182500\": 8.51, \"192500\": 7.81, \"202500\": 8.58, \"212500\": 11.44}, \"note\": \"CIVO triggered (ve_ratio 3.08@92.5K), less severe than s0 (10.05). Partial self-correction to 0.50 by 212.5K. Eval poor throughout (~10-24), PegInsertion is hard task.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T23:34:24.080Z\"}, \"exp_054_pickcube_frozen_s0\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T05:16:08.927Z\", \"updated_at\": \"2026-05-23T05:16:21.605Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --seed 0 --steps 210000 --compile False --device cuda:0 --checkpoint_every 25000 --logdir logdir/exp_054_pickcube_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"data_path\": \"ManiSkill PickCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, PickCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PickCube-v1 (online eval)\"}, \"hypothesis\": \"Frozen dt_emb control for PickCube-v1 resolves circular classification problem. exp_019b showed NVE 3.78× but was classified as TN without frozen control to confirm. If frozen prevents value overestimation → confirms exp_019b was genuine CIVO (reclassify as TP); if frozen shows similar NVE → confirms TN classification (overestimation is task-intrinsic, not dt_emb-dependent).\", \"parent\": \"exp_019b_pickcube_civo_trigger\"}, \"exp_053_peginsertion_frozen_s0\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:44:48.898Z\", \"updated_at\": \"2026-05-23T03:44:56.702Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_053_peginsertion_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, PegInsertion)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\"}, \"hypothesis\": \"Frozen dt_emb prevents CIVO on PegInsertionSide-v1 (contact-rich manipulation), establishing dt_emb causality across all 3 ManiSkill tasks. exp_050 shows PegInsertion CIVO (ve_ratio 3.2@143K), exp_051 shows StackCube frozen prevents CIVO (ve_ratio 0.2). If PegInsertion frozen also prevents → complete manipulation-domain causal evidence; if not → contact-rich dynamics override frozen mitigation.\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\"}, \"exp_052_stackcube_civo_trigger_s1\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T21:26:49.825Z\", \"updated_at\": \"2026-05-22T21:26:59.557Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigger_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\"}, \"hypothesis\": \"StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多 seeds。\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\"}}, \"count\": 20, \"total\": 45, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1162}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "841fe90a-f08c-4b1a-8fbc-c3de9b7724e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_walker_no_dt_emb_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:10:24.895Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:11:46.300Z\\\", \\\"parent\\\": \\\"exp_008f\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (train from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (built-in env)\\\"}}, \\\"exp_hopper_frozen_s0_ext\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T10:47:14.544Z\\\", \\\"updated_at\\\": \\\"2026-05-27T10:48:10.979Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 0.56, \\\"eval_return_peak\\\": 3.58, \\\"eval_return_peak_step\\\": 85000, \\\"ve_ratio_final\\\": 15.08, \\\"ve_ratio_peak\\\": 4335664.27, \\\"ve_ratio_peak_step\\\": 105000, \\\"value_mean_final\\\": 8.46, \\\"civo_alerts\\\": 2, \\\"civo_alert_steps\\\": [65000, 105000], \\\"gate_dt_mean\\\": 2, \\\"gate_entropy\\\": 0, \\\"total_steps\\\": 160000, \\\"recovery\\\": false}, \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"logdir/exp_hopper_frozen_s0/latest.pt\\\", \\\"log_path\\\": \\\"logdir/exp_hopper_frozen_s0/metrics.jsonl\\\", \\\"command\\\": \\\"python train.py --config hopper_frozen_s0 --steps 160000\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"Hopper-v4\\\", \\\"data_count\\\": 160000, \\\"model_name\\\": \\\"dreamer_v3_frozen_dt_emb\\\", \\\"seed\\\": 0}, \\\"hypothesis\\\": \\\"Extending frozen_s0 from 105K to 150K will show eval_return recovery with ve_ratio declining, confirming frozen_s0's degenerate CIVO at 95K is transient instability during severe learning delay rather than a permanent structural failure caused by the frozen dt_embedding.\\\", \\\"completed_at\\\": \\\"2026-05-27T10:48:10.979Z\\\"}, \\\"exp_hopper_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T05:51:24.680Z\\\", \\\"updated_at\\\": \\\"2026-05-27T05:52:01.157Z\\\", \\\"metrics\\\": {\\\"step\\\": 105000, \\\"eval_final\\\": 96.43, \\\"eval_return_trajectory\\\": {\\\"5000\\\": 0.06, \\\"15000\\\": 1.04, \\\"25000\\\": 1.7, \\\"35000\\\": 6.55, \\\"45000\\\": 19.09, \\\"55000\\\": 22.52, \\\"65000\\\": 3.5, \\\"75000\\\": 62.2, \\\"85000\\\": 67.62, \\\"95000\\\": 86.47, \\\"105000\\\": 96.43}, \\\"ve_ratio_trajectory\\\": {\\\"15000\\\": 0.08, \\\"25000\\\": 0.098, \\\"35000\\\": 0.166, \\\"45000\\\": 0.19, \\\"55000\\\": 0.279, \\\"65000\\\": 3.479, \\\"75000\\\": 0.341, \\\"85000\\\": 0.502, \\\"95000\\\": 0.517, \\\"105000\\\": 0.559}, \\\"nve_peak\\\": 3.48, \\\"nve_peak_step\\\": 65000, \\\"nve_final\\\": 0.559, \\\"civo_onset\\\": false, \\\"civo_alert_count\\\": 0, \\\"value_mean_final\\\": 53.9, \\\"target_mean_final\\\": 54.2, \\\"training_steps\\\": 105000, \\\"update_count\\\": 25099, \\\"fps\\\": 11}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_hopper_baseline/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_hopper_baseline.log\\\", \\\"hypothesis\\\": \\\"Hopper Hop baseline (dt=1, no gate) establishes reference performance for third-environment CIVO verification. Expect stable training without value overestimation (NVE < 1.5×). Source: C1/C2 third-environment verification (D160).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_baseline --steps 105000 --seed 0 --compile False --device cuda:0\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_hopper_hop\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3 baseline (dt=1, no gate)\\\", \\\"seed\\\": 0}, \\\"completed_at\\\": \\\"2026-05-27T05:52:01.157Z\\\"}, \\\"exp_097_cheetah_008d_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T03:03:25.871Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:32:48.497Z\\\", \\\"hypothesis\\\": \\\"C1 trigger seed 3: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 Cheetah 上的第四个 seed（s3）。当前 onset rate 2/3（s0 NVE=4.1×✓, s1 NVE=0.517✗, s2 NVE=138.7×✓）。s3 完成后可计算完整 onset rate（n=4）。如果 onset ≥3/4 → 高 onset rate 支持 CIVO 是 systematic phenomenon；如果 2/4 → 50% onset rate 仍有意义但需讨论。\\\", \\\"parent\\\": \\\"exp_078_cheetah_008d_s0\\\", \\\"notes\\\": \\\"重新提交到 westd-51268 cuda:0。原 bjb1 提交 (PID 324959) 已死（服务器无卡）。exp_094 同配置在 westd 跑了 1.72h 后因 SSH 断连失败，检查其 checkpoint 是否可复用。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_097_cheetah_008d_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu_ids\\\": [0], \\\"pid\\\": 3794, \\\"data_path\\\": \\\"dmc_cheetah_run\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\\\", \\\"seed\\\": 3, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"dmc_cheetah_run (online eval)\\\", \\\"log_path\\\": \\\"logdir/exp_097_cheetah_008d_s3/train.log\\\", \\\"checkpoint_path\\\": \\\"logdir/exp_097_cheetah_008d_s3/latest.pt\\\"}, \\\"metrics\\\": {\\\"step\\\": 105000, \\\"nve_peak\\\": 2.3, \\\"nve_peak_step\\\": 45000, \\\"nve_final\\\": 0.3, \\\"civo_onset\\\": true, \\\"civo_onset_step\\\": 45000, \\\"civo_pattern\\\": \\\"transient→degraded\\\", \\\"eval_final\\\": 61.7, \\\"eval_final_pct_baseline\\\": -86, \\\"baseline_eval_return\\\": 446.1, \\\"gate_dt_2_frac\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-26T11:32:48.497Z\\\"}, \\\"exp_100_walker_008a_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T03:39:24.456Z\\\", \\\"updated_at\\\": \\\"2026-05-26T07:52:52.927Z\\\", \\\"hypothesis\\\": \\\"Walker Walk trained dt_emb (unexposed to dt>1, subsample OFF) + gate_fixed_dt=2 + H=15, seed=1 — C3 Walker 008a 第 2 seed。与 exp_008a_no_subsample_dt2 (s0) 和 exp_074_008a_walker_s3 (s3) 共同建立 C3 value suppression 多 seed 证据。训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练，预期无 CIVO。plan_013。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_100_walker_008a_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu_ids\\\": [1], \\\"pid\\\": 5591, \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3+FixedDt2_NoSubsample (trained dt_emb, unexposed)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (online eval)\\\", \\\"log_path\\\": \\\"logdir/exp_100_walker_008a_s1/metrics.jsonl\\\", \\\"checkpoint_path\\\": \\\"logdir/exp_100_walker_008a_s1/latest.pt\\\"}, \\\"metrics\\\": {\\\"step\\\": 105000, \\\"eval_return_trajectory\\\": {\\\"5000\\\": 31, \\\"15000\\\": 168.77, \\\"25000\\\": 158.03, \\\"35000\\\": 202.91, \\\"45000\\\": 305.98, \\\"55000\\\": 457.28, \\\"65000\\\": 628.82, \\\"75000\\\": 686.98, \\\"85000\\\": 656.64, \\\"95000\\\": 717.74, \\\"105000\\\": 750.59}, \\\"ve_ratio_trajectory\\\": {\\\"15000\\\": 0.035, \\\"25000\\\": 0.206, \\\"35000\\\": 0.279, \\\"45000\\\": 0.261, \\\"55000\\\": 0.248, \\\"65000\\\": 0.234, \\\"75000\\\": 0.26, \\\"85000\\\": 0.315, \\\"95000\\\": 0.325, \\\"105000\\\": 0.328}, \\\"value_mean_trajectory\\\": {\\\"15000\\\": 5.98, \\\"25000\\\": 32.58, \\\"35000\\\": 56.55, \\\"45000\\\": 79.94, \\\"55000\\\": 113.33, \\\"65000\\\": 147.14, \\\"75000\\\": 178.73, \\\"85000\\\": 206.95, \\\"95000\\\": 233.17, \\\"105000\\\": 246.06}, \\\"nve_peak\\\": 0.328, \\\"nve_final\\\": 0.328, \\\"civo_onset\\\": false, \\\"eval_final\\\": 750.59, \\\"eval_final_pct_baseline\\\": -18, \\\"baseline_eval_return\\\": 915.67, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-26T07:52:45.733Z\\\", \\\"notes\\\": \\\"C3 Walker 008a s1 完成。训练正常结束(105K steps)。eval_return@105K=750.59 (baseline 915.67, -18.0%)。ve_ratio 全程 0.035-0.328，NVE_peak=0.328，远低于 τ=1.5×，civo/alert 全程 0.0，无 CIVO onset。Value suppression 确认（value_mean 持续低于 eval_return）。与 parent s0 (eval@105K=777.66, -15.1%, ve_ratio 0.37-0.54) 一致：s1 性能略低但趋势相同，两个 seed 均无 CIVO 且呈现 value suppression，C3 Walker 008a 2-seed 证据闭合。gate_dt 全程固定为 2.0 (100% dt_2_frac)，符合 gate_fixed_dt=2 配置。\\\"}, \\\"rssm_fidelity_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T03:47:46.584Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:47:59.871Z\\\", \\\"hypothesis\\\": \\\"RSSM fidelity v2 分析：对比 4 类模型（baseline/trained_dt_emb/no_dt_emb/frozen）在 dt=1 vs dt=2 下的 observation/reward reconstruction loss。使用 Walker checkpoint (n=800)。结果：trained_dt_emb reward ratio 1.50×, obs ratio 1.44×; baseline obs ratio 1.55×; no_dt_emb gap 最小 (1.23×/1.16×)。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python analyze_rssm_fidelity_v2.py --device cuda:0\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"Walker logdirs (exp_008d/009d/009c/084)\\\", \\\"data_count\\\": 800, \\\"model_name\\\": \\\"RSSM fidelity analysis v2\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"analysis_rssm_fidelity_v2.json\\\", \\\"log_path\\\": \\\"N/A (analysis task)\\\"}, \\\"completed_at\\\": \\\"2026-05-26T03:47:59.871Z\\\"}, \\\"exp_057_frozen_dt_emb_walker_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:26:00.391Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:03:45.406Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_057_frozen_dt_emb_walker_s2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [1], \\\"pid\\\": 157775, \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (frozen dt_emb, Walker s2)\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (online eval)\\\", \\\"log_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"checkpoint_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"failure_reason\\\": \\\"bjb1-45299 server lost GPU allocation, experiment terminated\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T03:03:45.406Z\\\"}, \\\"exp_051_stackcube_frozen_dt_emb_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:42:39.309Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:03:44.692Z\\\", \\\"hypothesis\\\": \\\"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\\\", \\\"parent\\\": \\\"exp_049\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\\\", \\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_ids\\\": [1], \\\"pid\\\": 305974, \\\"data_path\\\": \\\"maniskill_StackCube-v1 (online RL)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (frozen dt_emb, StackCube s0)\\\", \\\"seed\\\": 0, \\\"log_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"maniskill_StackCube-v1 (online eval)\\\", \\\"checkpoint_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"failure_reason\\\": \\\"bjb1-45299 server lost GPU allocation, experiment terminated\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T03:03:44.692Z\\\"}, \\\"exp_049_stackcube_civo_trigger_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T17:14:38.578Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:03:42.946Z\\\", \\\"hypothesis\\\": \\\"CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion（Walker/Cheetah）推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack），比 PickCube 更难。如果触发 CIVO → 扩展跨域证据；如果不触发 → 支持 locomotion-specific scope。\\\", \\\"parent\\\": \\\"exp_048_stackcube_civo_trigger_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigger_s0\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [1], \\\"pid\\\": 91395, \\\"data_path\\\": \\\"ManiSkill StackCube-v1 (online RL, state obs)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"StackCube-v1 (online eval)\\\", \\\"log_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"checkpoint_path\\\": \\\"N/A - bjb1-45299 lost GPU\\\", \\\"failure_reason\\\": \\\"bjb1-45299 server lost GPU allocation, experiment terminated\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T03:03:42.946Z\\\"}, \\\"exp_081_008e_v3_walker_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:42:24.765Z\\\", \\\"updated_at\\\": \\\"2026-05-25T15:43:10.949Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_105K\\\": 597.1, \\\"vs_baseline\\\": \\\"-34.8%\\\", \\\"vs_baseline_pct\\\": 65.2, \\\"baseline_105K\\\": 915.67, \\\"ve_ratio_peak\\\": 0.6, \\\"ve_ratio_final\\\": 0.5, \\\"NVE_est_peak\\\": 0.8, \\\"NVE_est_final\\\": 0.7, \\\"gate_dt_mean\\\": 1, \\\"gate_dt_1_frac\\\": 1, \\\"civo_alert_count\\\": 0, \\\"training_steps\\\": 105000, \\\"update_count\\\": 25099, \\\"value_mean_final\\\": 295}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_081_008e_v3_walker_s2/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --config 008e_v3 --env walker_walk --seed 2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"dreamerv3_008e_v3\\\", \\\"seed\\\": 2}, \\\"hypothesis\\\": \\\"Trained dt_emb with dt=1 imagination and subsample ON (max_dt=2) does not trigger CIVO in Walker Walk, as the value function sees only single-step predictions that match the world model's training distribution, preventing value inflation even with learned temporal embeddings.\\\", \\\"completed_at\\\": \\\"2026-05-25T15:43:10.949Z\\\"}, \\\"exp_078_cheetah_008d_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:20:34.290Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:38.124Z\\\"}, \\\"exp_077_cheetah_baseline_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:20:33.734Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:37.784Z\\\"}, \\\"exp_079_frozen_dt_emb_walker_s0\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T11:20:33.307Z\\\", \\\"updated_at\\\": \\\"2026-05-25T11:20:36.856Z\\\"}, \\\"exp_073_008f_walker_s4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:52:07.413Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:52:34.845Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 289.3, \\\"eval_return_peak\\\": 486.5, \\\"eval_return_peak_step\\\": 75000, \\\"ve_ratio_max\\\": 0.5, \\\"civo_alert_max\\\": 0, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"gate_empirical_entropy\\\": 0, \\\"total_env_steps\\\": 112000, \\\"total_updates\\\": 25099}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --config 008f --seed 4\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"dreamer_v3_008f\\\", \\\"seed\\\": 4}, \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) in the 008f control config prevents CIVO onset because the agent cannot form temporally-conditioned value predictions that compound imagination-driven overestimation. With fixed dt=2 and no temporal embedding, value error ratio should remain below the 1.5x CIVO threshold across seeds.\\\", \\\"completed_at\\\": \\\"2026-05-25T09:52:34.845Z\\\"}, \\\"exp_072_008e_v3_walker_s5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:51:50.268Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:52:00.215Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_trajectory\\\": {\\\"5K\\\": 29.4, \\\"15K\\\": 251.1, \\\"25K\\\": 423, \\\"35K\\\": 511, \\\"45K\\\": 600.1, \\\"55K\\\": 649, \\\"65K\\\": 697.2, \\\"75K\\\": 727.3, \\\"85K\\\": 710.3, \\\"95K\\\": 803.9, \\\"105K\\\": 853.1}, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0, \\\"25K\\\": 0.1, \\\"35K\\\": 0.2, \\\"45K\\\": 0.3, \\\"55K\\\": 0.3, \\\"65K\\\": 0.4, \\\"75K\\\": 0.5, \\\"85K\\\": 0.6, \\\"95K\\\": 0.6, \\\"105K\\\": 0.6}, \\\"value_mean_trajectory\\\": {\\\"5K\\\": 0, \\\"15K\\\": 4.6, \\\"25K\\\": 33.2, \\\"35K\\\": 88.8, \\\"45K\\\": 154, \\\"55K\\\": 223.2, \\\"65K\\\": 296.9, \\\"75K\\\": 364.3, \\\"85K\\\": 418.5, \\\"95K\\\": 464.6, \\\"105K\\\": 520.8}, \\\"nve_trajectory\\\": {\\\"15K\\\": 0.02, \\\"25K\\\": 0.08, \\\"35K\\\": 0.17, \\\"45K\\\": 0.26, \\\"55K\\\": 0.34, \\\"65K\\\": 0.43, \\\"75K\\\": 0.5, \\\"85K\\\": 0.59, \\\"95K\\\": 0.58, \\\"105K\\\": 0.61}, \\\"final_eval_return\\\": 853.1, \\\"peak_eval_return\\\": 853.1, \\\"peak_eval_step\\\": 105000, \\\"final_value_mean\\\": 520.8, \\\"final_ve_ratio\\\": 0.6, \\\"final_nve\\\": 0.61, \\\"final_actor_entropy\\\": -5.1, \\\"gate_dt_1_frac\\\": 1, \\\"civo_alert_max\\\": 0, \\\"civo_detected\\\": false, \\\"baseline_ratio\\\": 0.932}, \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"command\\\": \\\"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"}}, \\\"exp_069_008f_walker_repro_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:20:25.632Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:21:13.407Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk. With no learned temporal embedding, the value network cannot develop the compounding overestimation pattern that causes CIVO collapse. This seed=1 run extends the evidence from exp_008f (seed=0).\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --configs dmc_vision --task dmc_walker_walk --seed 1 --logdir logdir/exp_069_008f_walker_repro_s1\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"dreamerv2_no_dt_embed_h8\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": \\\"dmc_walker_walk_online\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_069_008f_walker_repro_s1/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T07:20:58.159Z\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 237.8, \\\"eval_return_final_step\\\": 105000, \\\"eval_return_peak\\\": 390.1, \\\"eval_return_peak_step\\\": 95000, \\\"steps_completed\\\": 112000, \\\"eval_steps\\\": 105000, \\\"civo_triggered\\\": false, \\\"civo_alert_count\\\": 0, \\\"ve_ratio_max\\\": 0.447, \\\"ve_ratio_max_step\\\": 105000, \\\"ve_ratio_final\\\": 0.447, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"gate_empirical_entropy\\\": 0, \\\"value_mean_final\\\": 106.3, \\\"target_mean_final\\\": 106.4, \\\"value_loss_final\\\": 0.99, \\\"seed\\\": 1, \\\"eval_return_trajectory\\\": {\\\"5K\\\": 30.5, \\\"15K\\\": 158.7, \\\"25K\\\": 180.8, \\\"35K\\\": 250.3, \\\"45K\\\": 293.6, \\\"55K\\\": 272.2, \\\"65K\\\": 328.1, \\\"75K\\\": 244.8, \\\"85K\\\": 382.5, \\\"95K\\\": 390.1, \\\"105K\\\": 237.8}, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0.021, \\\"25K\\\": 0.111, \\\"35K\\\": 0.171, \\\"95K\\\": 0.275, \\\"105K\\\": 0.447}, \\\"note\\\": \\\"C2 causal control: no dt_embedding, fixed dt=2. No CIVO triggered. ve_ratio stayed <0.5 throughout. Late eval dip (390→238) is normal Walker variance, not CIVO-driven (value_mean≈target_mean, no overestimation).\\\"}}, \\\"exp_055_peginsertion_civo_trigger_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:16:11.755Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:34:24.080Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginsertion_civo_trigger_s1\\\", \\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_ids\\\": [1], \\\"data_path\\\": \\\"ManiSkill PegInsertionSide-v1 (online RL, state obs)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (trained dt_emb, CIVO config, PegInsertion)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"PegInsertionSide-v1 (online eval)\\\", \\\"log_path\\\": \\\"logdir/exp_055_peginsertion_civo_trigger_s1.log\\\"}, \\\"hypothesis\\\": \\\"PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，162.5K 时仍 1.94）。如果 s1 也触发持续 CIVO → PegInsertion 是最严重的 CIVO 环境（比 StackCube 自修复更难），支持 severity-dependent narrative；如果不触发 → seed-specific 异常。\\\", \\\"parent\\\": \\\"exp_050_peginsertion_civo_trigger_s0\\\", \\\"checkpoint_path\\\": \\\"logdir/exp_055_peginsertion_civo_trigger_s1/latest.pt\\\", \\\"log_path\\\": \\\"logdir/exp_055_peginsertion_civo_trigger_s1.log\\\", \\\"metrics\\\": {\\\"total_steps\\\": 222400, \\\"ve_ratio_max\\\": 3.08, \\\"ve_ratio_max_step\\\": 92500, \\\"ve_ratio_final\\\": 0.5, \\\"ve_ratio_final_step\\\": 212500, \\\"eval_peak\\\": 24.05, \\\"eval_peak_step\\\": 112500, \\\"eval_final\\\": 11.44, \\\"eval_final_step\\\": 212500, \\\"civo_triggered\\\": true, \\\"civo_self_corrected\\\": \\\"partial\\\", \\\"civo_onset_step\\\": 32500, \\\"civo_peak_step\\\": 92500, \\\"ve_ratio_trajectory\\\": {\\\"12500\\\": 0.19, \\\"22500\\\": 0.81, \\\"32500\\\": 1.35, \\\"42500\\\": 2, \\\"52500\\\": 2.39, \\\"62500\\\": 2.85, \\\"72500\\\": 2.28, \\\"82500\\\": 2.48, \\\"92500\\\": 3.08, \\\"102500\\\": 2.51, \\\"112500\\\": 0.91, \\\"122500\\\": 1.21, \\\"132500\\\": 1.36, \\\"142500\\\": 0.75, \\\"152500\\\": 0.55, \\\"162500\\\": 1.17, \\\"172500\\\": 0.96, \\\"182500\\\": 0.94, \\\"192500\\\": 0.9, \\\"202500\\\": 0.73, \\\"212500\\\": 0.5}, \\\"eval_trajectory\\\": {\\\"2500\\\": 2.01, \\\"12500\\\": 10.12, \\\"22500\\\": 11.47, \\\"32500\\\": 12.01, \\\"42500\\\": 10.13, \\\"52500\\\": 10.31, \\\"62500\\\": 9.02, \\\"72500\\\": 10.07, \\\"82500\\\": 8.78, \\\"92500\\\": 7.24, \\\"102500\\\": 9.2, \\\"112500\\\": 24.05, \\\"122500\\\": 16.46, \\\"132500\\\": 13.15, \\\"142500\\\": 20.44, \\\"152500\\\": 23.4, \\\"162500\\\": 9.07, \\\"172500\\\": 9.46, \\\"182500\\\": 8.51, \\\"192500\\\": 7.81, \\\"202500\\\": 8.58, \\\"212500\\\": 11.44}, \\\"note\\\": \\\"CIVO triggered (ve_ratio 3.08@92.5K), less severe than s0 (10.05). Partial self-correction to 0.50 by 212.5K. Eval poor throughout (~10-24), PegInsertion is hard task.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T23:34:24.080Z\\\"}, \\\"exp_054_pickcube_frozen_s0\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:16:08.927Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:16:21.605Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --seed 0 --steps 210000 --compile False --device cuda:0 --checkpoint_every 25000 --logdir logdir/exp_054_pickcube_frozen_s0\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [0], \\\"data_path\\\": \\\"ManiSkill PickCube-v1 (online RL, state obs)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (frozen dt_emb, PickCube)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"PickCube-v1 (online eval)\\\"}, \\\"hypothesis\\\": \\\"Frozen dt_emb control for PickCube-v1 resolves circular classification problem. exp_019b showed NVE 3.78× but was classified as TN without frozen control to confirm. If frozen prevents value overestimation → confirms exp_019b was genuine CIVO (reclassify as TP); if frozen shows similar NVE → confirms TN classification (overestimation is task-intrinsic, not dt_emb-dependent).\\\", \\\"parent\\\": \\\"exp_019b_pickcube_civo_trigger\\\"}, \\\"exp_053_peginsertion_frozen_s0\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:44:48.898Z\\\", \\\"updated_at\\\": \\\"2026-05-23T03:44:56.702Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_053_peginsertion_frozen_s0\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [1], \\\"data_path\\\": \\\"ManiSkill PegInsertionSide-v1 (online RL, state obs)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (frozen dt_emb, PegInsertion)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"PegInsertionSide-v1 (online eval)\\\"}, \\\"hypothesis\\\": \\\"Frozen dt_emb prevents CIVO on PegInsertionSide-v1 (contact-rich manipulation), establishing dt_emb causality across all 3 ManiSkill tasks. exp_050 shows PegInsertion CIVO (ve_ratio 3.2@143K), exp_051 shows StackCube frozen prevents CIVO (ve_ratio 0.2). If PegInsertion frozen also prevents → complete manipulation-domain causal evidence; if not → contact-rich dynamics override frozen mitigation.\\\", \\\"parent\\\": \\\"exp_050_peginsertion_civo_trigger_s0\\\"}, \\\"exp_052_stackcube_civo_trigger_s1\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T21:26:49.825Z\\\", \\\"updated_at\\\": \\\"2026-05-22T21:26:59.557Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigger_s1\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [0], \\\"data_path\\\": \\\"ManiSkill StackCube-v1 (online RL, state obs)\\\", \\\"data_count\\\": 210000, \\\"model_name\\\": \\\"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"StackCube-v1 (online eval)\\\"}, \\\"hypothesis\\\": \\\"StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多 seeds。\\\", \\\"parent\\\": \\\"exp_049_stackcube_civo_trigger_s0\\\"}}, \\\"count\\\": 20, \\\"total\\\": 45, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1162}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_walker_no_dt_emb_s0\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:11:46.300Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}}, \"exp_hopper_frozen_s0_ext\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T10:47:14.544Z\", \"updated_at\": \"2026-05-27T10:48:10.979Z\", \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 0.56, \"eval_return_peak\": 3.58, \"eval_return_peak_step\": 85000, \"ve_ratio_final\": 15.08, \"ve_ratio_peak\": 4335664.27, \"ve_ratio_peak_step\": 105000, \"value_mean_final\": 8.46, \"civo_alerts\": 2, \"civo_alert_steps\": [65000, 105000], \"gate_dt_mean\": 2, \"gate_entropy\": 0, \"total_steps\": 160000, \"recovery\": false}, \"spec\": {\"checkpoint_path\": \"logdir/exp_hopper_frozen_s0/latest.pt\", \"log_path\": \"logdir/exp_hopper_frozen_s0/metrics.jsonl\", \"command\": \"python train.py --config hopper_frozen_s0 --steps 160000\", \"server\": \"westd-51268\", \"data_path\": \"Hopper-v4\", \"data_count\": 160000, \"model_name\": \"dreamer_v3_frozen_dt_emb\", \"seed\": 0}, \"hypothesis\": \"Extending frozen_s0 from 105K to 150K will show eval_return recovery with ve_ratio declining, confirming frozen_s0's degenerate CIVO at 95K is transient instability during severe learning delay rather than a permanent structural failure caused by the frozen dt_embedding.\", \"completed_at\": \"2026-05-27T10:48:10.979Z\"}, \"exp_hopper_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T05:51:24.680Z\", \"updated_at\": \"2026-05-27T05:52:01.157Z\", \"metrics\": {\"step\": 105000, \"eval_final\": 96.43, \"eval_return_trajectory\": {\"5000\": 0.06, \"15000\": 1.04, \"25000\": 1.7, \"35000\": 6.55, \"45000\": 19.09, \"55000\": 22.52, \"65000\": 3.5, \"75000\": 62.2, \"85000\": 67.62, \"95000\": 86.47, \"105000\": 96.43}, \"ve_ratio_trajectory\": {\"15000\": 0.08, \"25000\": 0.098, \"35000\": 0.166, \"45000\": 0.19, \"55000\": 0.279, \"65000\": 3.479, \"75000\": 0.341, \"85000\": 0.502, \"95000\": 0.517, \"105000\": 0.559}, \"nve_peak\": 3.48, \"nve_peak_step\": 65000, \"nve_final\": 0.559, \"civo_onset\": false, \"civo_alert_count\": 0, \"value_mean_final\": 53.9, \"target_mean_final\": 54.2, \"training_steps\": 105000, \"update_count\": 25099, \"fps\": 11}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_hopper_baseline/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_hopper_baseline.log\", \"hypothesis\": \"Hopper Hop baseline (dt=1, no gate) establishes reference performance for third-environment CIVO verification. Expect stable training without value overestimation (NVE < 1.5×). Source: C1/C2 third-environment verification (D160).\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_baseline --steps 105000 --seed 0 --compile False --device cuda:0\", \"server\": \"westd-51268\", \"data_path\": \"dmc_hopper_hop\", \"data_count\": 105000, \"model_name\": \"DreamerV3 baseline (dt=1, no gate)\", \"seed\": 0}, \"completed_at\": \"2026-05-27T05:52:01.157Z\"}, \"exp_097_cheetah_008d_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:03:25.871Z\", \"updated_at\": \"2026-05-26T11:32:48.497Z\", \"hypothesis\": \"C1 trigger seed 3: CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 Cheetah 上的第四个 seed（s3）。当前 onset rate 2/3（s0 NVE=4.1×✓, s1 NVE=0.517✗, s2 NVE=138.7×✓）。s3 完成后可计算完整 onset rate（n=4）。如果 onset ≥3/4 → 高 onset rate 支持 CIVO 是 systematic phenomenon；如果 2/4 → 50% onset rate 仍有意义但需讨论。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"notes\": \"重新提交到 westd-51268 cuda:0。原 bjb1 提交 (PID 324959) 已死（服务器无卡）。exp_094 同配置在 westd 跑了 1.72h 后因 SSH 断连失败，检查其 checkpoint 是否可复用。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_097_cheetah_008d_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-51268\", \"gpu_ids\": [0], \"pid\": 3794, \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\", \"seed\": 3, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_097_cheetah_008d_s3/train.log\", \"checkpoint_path\": \"logdir/exp_097_cheetah_008d_s3/latest.pt\"}, \"metrics\": {\"step\": 105000, \"nve_peak\": 2.3, \"nve_peak_step\": 45000, \"nve_final\": 0.3, \"civo_onset\": true, \"civo_onset_step\": 45000, \"civo_pattern\": \"transient→degraded\", \"eval_final\": 61.7, \"eval_final_pct_baseline\": -86, \"baseline_eval_return\": 446.1, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T11:32:48.497Z\"}, \"exp_100_walker_008a_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:39:24.456Z\", \"updated_at\": \"2026-05-26T07:52:52.927Z\", \"hypothesis\": \"Walker Walk trained dt_emb (unexposed to dt>1, subsample OFF) + gate_fixed_dt=2 + H=15, seed=1 — C3 Walker 008a 第 2 seed。与 exp_008a_no_subsample_dt2 (s0) 和 exp_074_008a_walker_s3 (s3) 共同建立 C3 value suppression 多 seed 证据。训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练，预期无 CIVO。plan_013。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_100_walker_008a_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"westd-51268\", \"gpu_ids\": [1], \"pid\": 5591, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (trained dt_emb, unexposed)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_100_walker_008a_s1/metrics.jsonl\", \"checkpoint_path\": \"logdir/exp_100_walker_008a_s1/latest.pt\"}, \"metrics\": {\"step\": 105000, \"eval_return_trajectory\": {\"5000\": 31, \"15000\": 168.77, \"25000\": 158.03, \"35000\": 202.91, \"45000\": 305.98, \"55000\": 457.28, \"65000\": 628.82, \"75000\": 686.98, \"85000\": 656.64, \"95000\": 717.74, \"105000\": 750.59}, \"ve_ratio_trajectory\": {\"15000\": 0.035, \"25000\": 0.206, \"35000\": 0.279, \"45000\": 0.261, \"55000\": 0.248, \"65000\": 0.234, \"75000\": 0.26, \"85000\": 0.315, \"95000\": 0.325, \"105000\": 0.328}, \"value_mean_trajectory\": {\"15000\": 5.98, \"25000\": 32.58, \"35000\": 56.55, \"45000\": 79.94, \"55000\": 113.33, \"65000\": 147.14, \"75000\": 178.73, \"85000\": 206.95, \"95000\": 233.17, \"105000\": 246.06}, \"nve_peak\": 0.328, \"nve_final\": 0.328, \"civo_onset\": false, \"eval_final\": 750.59, \"eval_final_pct_baseline\": -18, \"baseline_eval_return\": 915.67, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-26T07:52:45.733Z\", \"notes\": \"C3 Walker 008a s1 完成。训练正常结束(105K steps)。eval_return@105K=750.59 (baseline 915.67, -18.0%)。ve_ratio 全程 0.035-0.328，NVE_peak=0.328，远低于 τ=1.5×，civo/alert 全程 0.0，无 CIVO onset。Value suppression 确认（value_mean 持续低于 eval_return）。与 parent s0 (eval@105K=777.66, -15.1%, ve_ratio 0.37-0.54) 一致：s1 性能略低但趋势相同，两个 seed 均无 CIVO 且呈现 value suppression，C3 Walker 008a 2-seed 证据闭合。gate_dt 全程固定为 2.0 (100% dt_2_frac)，符合 gate_fixed_dt=2 配置。\"}, \"rssm_fidelity_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:47:46.584Z\", \"updated_at\": \"2026-05-26T03:47:59.871Z\", \"hypothesis\": \"RSSM fidelity v2 分析：对比 4 类模型（baseline/trained_dt_emb/no_dt_emb/frozen）在 dt=1 vs dt=2 下的 observation/reward reconstruction loss。使用 Walker checkpoint (n=800)。结果：trained_dt_emb reward ratio 1.50×, obs ratio 1.44×; baseline obs ratio 1.55×; no_dt_emb gap 最小 (1.23×/1.16×)。\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python analyze_rssm_fidelity_v2.py --device cuda:0\", \"server\": \"westd-51268\", \"data_path\": \"Walker logdirs (exp_008d/009d/009c/084)\", \"data_count\": 800, \"model_name\": \"RSSM fidelity analysis v2\", \"seed\": 0, \"checkpoint_path\": \"analysis_rssm_fidelity_v2.json\", \"log_path\": \"N/A (analysis task)\"}, \"completed_at\": \"2026-05-26T03:47:59.871Z\"}, \"exp_057_frozen_dt_emb_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:26:00.391Z\", \"updated_at\": \"2026-05-26T03:03:45.406Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_057_frozen_dt_emb_walker_s2\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 157775, \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s2)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:45.406Z\"}, \"exp_051_stackcube_frozen_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:42:39.309Z\", \"updated_at\": \"2026-05-26T03:03:44.692Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks\", \"parent\": \"exp_049\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 305974, \"data_path\": \"maniskill_StackCube-v1 (online RL)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, StackCube s0)\", \"seed\": 0, \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"maniskill_StackCube-v1 (online eval)\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:44.692Z\"}, \"exp_049_stackcube_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:14:38.578Z\", \"updated_at\": \"2026-05-26T03:03:42.946Z\", \"hypothesis\": \"CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion（Walker/Cheetah）推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack），比 PickCube 更难。如果触发 CIVO → 扩展跨域证据；如果不触发 → 支持 locomotion-specific scope。\", \"parent\": \"exp_048_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigger_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 91395, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"N/A - bjb1-45299 lost GPU\", \"checkpoint_path\": \"N/A - bjb1-45299 lost GPU\", \"failure_reason\": \"bjb1-45299 server lost GPU allocation, experiment terminated\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T03:03:42.946Z\"}, \"exp_081_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:42:24.765Z\", \"updated_at\": \"2026-05-25T15:43:10.949Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 597.1, \"vs_baseline\": \"-34.8%\", \"vs_baseline_pct\": 65.2, \"baseline_105K\": 915.67, \"ve_ratio_peak\": 0.6, \"ve_ratio_final\": 0.5, \"NVE_est_peak\": 0.8, \"NVE_est_final\": 0.7, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"civo_alert_count\": 0, \"training_steps\": 105000, \"update_count\": 25099, \"value_mean_final\": 295}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_081_008e_v3_walker_s2/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"spec\": {\"command\": \"python train.py --config 008e_v3 --env walker_walk --seed 2\", \"server\": \"bjb1-45299\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"dreamerv3_008e_v3\", \"seed\": 2}, \"hypothesis\": \"Trained dt_emb with dt=1 imagination and subsample ON (max_dt=2) does not trigger CIVO in Walker Walk, as the value function sees only single-step predictions that match the world model's training distribution, preventing value inflation even with learned temporal embeddings.\", \"completed_at\": \"2026-05-25T15:43:10.949Z\"}, \"exp_078_cheetah_008d_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:34.290Z\", \"updated_at\": \"2026-05-25T11:20:38.124Z\"}, \"exp_077_cheetah_baseline_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:33.734Z\", \"updated_at\": \"2026-05-25T11:20:37.784Z\"}, \"exp_079_frozen_dt_emb_walker_s0\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:20:33.307Z\", \"updated_at\": \"2026-05-25T11:20:36.856Z\"}, \"exp_073_008f_walker_s4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:52:07.413Z\", \"updated_at\": \"2026-05-25T09:52:34.845Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 289.3, \"eval_return_peak\": 486.5, \"eval_return_peak_step\": 75000, \"ve_ratio_max\": 0.5, \"civo_alert_max\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"total_env_steps\": 112000, \"total_updates\": 25099}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"spec\": {\"command\": \"python train.py --config 008f --seed 4\", \"server\": \"westd-19154\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"dreamer_v3_008f\", \"seed\": 4}, \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) in the 008f control config prevents CIVO onset because the agent cannot form temporally-conditioned value predictions that compound imagination-driven overestimation. With fixed dt=2 and no temporal embedding, value error ratio should remain below the 1.5x CIVO threshold across seeds.\", \"completed_at\": \"2026-05-25T09:52:34.845Z\"}, \"exp_072_008e_v3_walker_s5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:51:50.268Z\", \"updated_at\": \"2026-05-25T09:52:00.215Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_trajectory\": {\"5K\": 29.4, \"15K\": 251.1, \"25K\": 423, \"35K\": 511, \"45K\": 600.1, \"55K\": 649, \"65K\": 697.2, \"75K\": 727.3, \"85K\": 710.3, \"95K\": 803.9, \"105K\": 853.1}, \"ve_ratio_trajectory\": {\"15K\": 0, \"25K\": 0.1, \"35K\": 0.2, \"45K\": 0.3, \"55K\": 0.3, \"65K\": 0.4, \"75K\": 0.5, \"85K\": 0.6, \"95K\": 0.6, \"105K\": 0.6}, \"value_mean_trajectory\": {\"5K\": 0, \"15K\": 4.6, \"25K\": 33.2, \"35K\": 88.8, \"45K\": 154, \"55K\": 223.2, \"65K\": 296.9, \"75K\": 364.3, \"85K\": 418.5, \"95K\": 464.6, \"105K\": 520.8}, \"nve_trajectory\": {\"15K\": 0.02, \"25K\": 0.08, \"35K\": 0.17, \"45K\": 0.26, \"55K\": 0.34, \"65K\": 0.43, \"75K\": 0.5, \"85K\": 0.59, \"95K\": 0.58, \"105K\": 0.61}, \"final_eval_return\": 853.1, \"peak_eval_return\": 853.1, \"peak_eval_step\": 105000, \"final_value_mean\": 520.8, \"final_ve_ratio\": 0.6, \"final_nve\": 0.61, \"final_actor_entropy\": -5.1, \"gate_dt_1_frac\": 1, \"civo_alert_max\": 0, \"civo_detected\": false, \"baseline_ratio\": 0.932}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"server\": \"westd-19154\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"}}, \"exp_069_008f_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:20:25.632Z\", \"updated_at\": \"2026-05-25T07:21:13.407Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk. With no learned temporal embedding, the value network cannot develop the compounding overestimation pattern that causes CIVO collapse. This seed=1 run extends the evidence from exp_008f (seed=0).\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"spec\": {\"command\": \"python train.py --configs dmc_vision --task dmc_walker_walk --seed 1 --logdir logdir/exp_069_008f_walker_repro_s1\", \"server\": \"westd-19154\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 0, \"model_name\": \"dreamerv2_no_dt_embed_h8\", \"seed\": 1, \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"dmc_walker_walk_online\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_069_008f_walker_repro_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T07:20:58.159Z\", \"metrics\": {\"eval_return_final\": 237.8, \"eval_return_final_step\": 105000, \"eval_return_peak\": 390.1, \"eval_return_peak_step\": 95000, \"steps_completed\": 112000, \"eval_steps\": 105000, \"civo_triggered\": false, \"civo_alert_count\": 0, \"ve_ratio_max\": 0.447, \"ve_ratio_max_step\": 105000, \"ve_ratio_final\": 0.447, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"value_mean_final\": 106.3, \"target_mean_final\": 106.4, \"value_loss_final\": 0.99, \"seed\": 1, \"eval_return_trajectory\": {\"5K\": 30.5, \"15K\": 158.7, \"25K\": 180.8, \"35K\": 250.3, \"45K\": 293.6, \"55K\": 272.2, \"65K\": 328.1, \"75K\": 244.8, \"85K\": 382.5, \"95K\": 390.1, \"105K\": 237.8}, \"ve_ratio_trajectory\": {\"15K\": 0.021, \"25K\": 0.111, \"35K\": 0.171, \"95K\": 0.275, \"105K\": 0.447}, \"note\": \"C2 causal control: no dt_embedding, fixed dt=2. No CIVO triggered. ve_ratio stayed <0.5 throughout. Late eval dip (390→238) is normal Walker variance, not CIVO-driven (value_mean≈target_mean, no overestimation).\"}}, \"exp_055_peginsertion_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T05:16:11.755Z\", \"updated_at\": \"2026-05-23T23:34:24.080Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginsertion_civo_trigger_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, PegInsertion)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1.log\"}, \"hypothesis\": \"PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，162.5K 时仍 1.94）。如果 s1 也触发持续 CIVO → PegInsertion 是最严重的 CIVO 环境（比 StackCube 自修复更难），支持 severity-dependent narrative；如果不触发 → seed-specific 异常。\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"checkpoint_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/latest.pt\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1.log\", \"metrics\": {\"total_steps\": 222400, \"ve_ratio_max\": 3.08, \"ve_ratio_max_step\": 92500, \"ve_ratio_final\": 0.5, \"ve_ratio_final_step\": 212500, \"eval_peak\": 24.05, \"eval_peak_step\": 112500, \"eval_final\": 11.44, \"eval_final_step\": 212500, \"civo_triggered\": true, \"civo_self_corrected\": \"partial\", \"civo_onset_step\": 32500, \"civo_peak_step\": 92500, \"ve_ratio_trajectory\": {\"12500\": 0.19, \"22500\": 0.81, \"32500\": 1.35, \"42500\": 2, \"52500\": 2.39, \"62500\": 2.85, \"72500\": 2.28, \"82500\": 2.48, \"92500\": 3.08, \"102500\": 2.51, \"112500\": 0.91, \"122500\": 1.21, \"132500\": 1.36, \"142500\": 0.75, \"152500\": 0.55, \"162500\": 1.17, \"172500\": 0.96, \"182500\": 0.94, \"192500\": 0.9, \"202500\": 0.73, \"212500\": 0.5}, \"eval_trajectory\": {\"2500\": 2.01, \"12500\": 10.12, \"22500\": 11.47, \"32500\": 12.01, \"42500\": 10.13, \"52500\": 10.31, \"62500\": 9.02, \"72500\": 10.07, \"82500\": 8.78, \"92500\": 7.24, \"102500\": 9.2, \"112500\": 24.05, \"122500\": 16.46, \"132500\": 13.15, \"142500\": 20.44, \"152500\": 23.4, \"162500\": 9.07, \"172500\": 9.46, \"182500\": 8.51, \"192500\": 7.81, \"202500\": 8.58, \"212500\": 11.44}, \"note\": \"CIVO triggered (ve_ratio 3.08@92.5K), less severe than s0 (10.05). Partial self-correction to 0.50 by 212.5K. Eval poor throughout (~10-24), PegInsertion is hard task.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T23:34:24.080Z\"}, \"exp_054_pickcube_frozen_s0\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T05:16:08.927Z\", \"updated_at\": \"2026-05-23T05:16:21.605Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --seed 0 --steps 210000 --compile False --device cuda:0 --checkpoint_every 25000 --logdir logdir/exp_054_pickcube_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"data_path\": \"ManiSkill PickCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, PickCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PickCube-v1 (online eval)\"}, \"hypothesis\": \"Frozen dt_emb control for PickCube-v1 resolves circular classification problem. exp_019b showed NVE 3.78× but was classified as TN without frozen control to confirm. If frozen prevents value overestimation → confirms exp_019b was genuine CIVO (reclassify as TP); if frozen shows similar NVE → confirms TN classification (overestimation is task-intrinsic, not dt_emb-dependent).\", \"parent\": \"exp_019b_pickcube_civo_trigger\"}, \"exp_053_peginsertion_frozen_s0\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:44:48.898Z\", \"updated_at\": \"2026-05-23T03:44:56.702Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_053_peginsertion_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, PegInsertion)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\"}, \"hypothesis\": \"Frozen dt_emb prevents CIVO on PegInsertionSide-v1 (contact-rich manipulation), establishing dt_emb causality across all 3 ManiSkill tasks. exp_050 shows PegInsertion CIVO (ve_ratio 3.2@143K), exp_051 shows StackCube frozen prevents CIVO (ve_ratio 0.2). If PegInsertion frozen also prevents → complete manipulation-domain causal evidence; if not → contact-rich dynamics override frozen mitigation.\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\"}, \"exp_052_stackcube_civo_trigger_s1\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T21:26:49.825Z\", \"updated_at\": \"2026-05-22T21:26:59.557Z\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigger_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\"}, \"hypothesis\": \"StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多 seeds。\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\"}}, \"count\": 20, \"total\": 45, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1162}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+PID 628264 killed successfully. Now I can see:
+
+1. `exp_walker_no_dt_emb_s0` is currently in `RUNNING` status in registry
+2. `exp_walker_no_dt_emb_s1` is not in the top 20 results - let me check if it exists
+
+I need to:
+1. Confirm cuda:0 is free now
+2. Update exp_walker_no_dt_emb_s0 status: RUNNING → DONE with conclusion=killed
+
+
+3. Check whether exp_walker_no_dt_emb_s1 exists, and if not, create it before progressing it forward
+4. Submit the correct experiment once everything is set up
+
+Let me verify the GPU is available and search for the second experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "be32ab79-f26a-4efd-89f8-fe5dd18f16d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Lck6G58MMHgvL5A1UBmuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12696,
+      "cache_read_input_tokens": 26790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12696
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+进程已 kill。exp_walker_no_dt_emb_s0 当前是 RUNNING 状态。验证 GPU 释放，同时查 s1 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "564aee8f-ed47-4b8a-948e-7e91ae547520",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Lck6G58MMHgvL5A1UBmuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12696,
+      "cache_read_input_tokens": 26790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12696
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017XWbmsZv7Qzon49DjdqZkf`</summary>
+
+```json
+{
+  "server": "westd-51268",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "8ce54305-aaaf-48f8-a578-6b6cdf6b5e50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Lck6G58MMHgvL5A1UBmuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12696,
+      "cache_read_input_tokens": 26790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12696
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011rkN4V5GtDjxrqUsGb2Dqt`</summary>
+
+```json
+{
+  "filters": {
+    "status": "PREPARING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "d8142659-06ed-4ec2-a769-eb66b3cb1197",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Lck6G58MMHgvL5A1UBmuP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12696,
+      "cache_read_input_tokens": 26790,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12696
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-27T11:14:27.199Z_
+
+<details><summary>↩ Tool result · `toolu_017XWbmsZv7Qzon49DjdqZkf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:14:27 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   37C    P8             37W /  600W |   49176MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "d21a80a0-e9d0-4fe2-ae4b-800969e3f434",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 27 19:14:27 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   37C    P8             37W /  600W |   49176MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   29C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes found                                                             |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:14:27 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   37C    P8             37W /  600W |   49176MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       0MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|  No running processes found                                                             |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T11:14:27.329Z_
+
+<details><summary>↩ Tool result · `toolu_011rkN4V5GtDjxrqUsGb2Dqt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_072_008e_v3_walker_s5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:51:50.268Z\", \"updated_at\": \"2026-05-25T09:52:00.215Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_trajectory\": {\"5K\": 29.4, \"15K\": 251.1, \"25K\": 423, \"35K\": 511, \"45K\": 600.1, \"55K\": 649, \"65K\": 697.2, \"75K\": 727.3, \"85K\": 710.3, \"95K\": 803.9, \"105K\": 853.1}, \"ve_ratio_trajectory\": {\"15K\": 0, \"25K\": 0.1, \"35K\": 0.2, \"45K\": 0.3, \"55K\": 0.3, \"65K\": 0.4, \"75K\": 0.5, \"85K\": 0.6, \"95K\": 0.6, \"105K\": 0.6}, \"value_mean_trajectory\": {\"5K\": 0, \"15K\": 4.6, \"25K\": 33.2, \"35K\": 88.8, \"45K\": 154, \"55K\": 223.2, \"65K\": 296.9, \"75K\": 364.3, \"85K\": 418.5, \"95K\": 464.6, \"105K\": 520.8}, \"nve_trajectory\": {\"15K\": 0.02, \"25K\": 0.08, \"35K\": 0.17, \"45K\": 0.26, \"55K\": 0.34, \"65K\": 0.43, \"75K\": 0.5, \"85K\": 0.59, \"95K\": 0.58, \"105K\": 0.61}, \"final_eval_return\": 853.1, \"peak_eval_return\": 853.1, \"peak_eval_step\": 105000, \"final_value_mean\": 520.8, \"final_ve_ratio\": 0.6, \"final_nve\": 0.61, \"final_actor_entropy\": -5.1, \"gate_dt_1_frac\": 1, \"civo_alert_max\": 0, \"civo_detected\": false, \"baseline_ratio\": 0.932}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"server\": \"westd-19154\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"}}, \"exp_040_dual_critic_cheetah_s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:40:43.166Z\", \"updated_at\": \"2026-05-22T09:40:43.166Z\", \"metrics\": {\"eval_final\": 41, \"eval_peak\": 256.4, \"eval_peak_step\": 25000, \"nve_peak\": 0.21, \"v1_final\": 8.84, \"v2_final\": 8.84}}, \"exp_039_narrow_dual_critic_walker_s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T16:11:40.426Z\", \"updated_at\": \"2026-05-21T16:11:47.123Z\", \"hypothesis\": \"Narrow dual-critic Walker seed 1 verification: exp_035 s0 showed CIVO triggered (NVE 2.75) but full recovery (eval 697.8). If s1 also fully recovers → \\\"min operation enables recovery even with insufficient capacity\\\" conclusion is robust across seeds. Critical for 2×2 factorial interpretation.\", \"parent\": \"exp_035_narrow_dual_critic_walker\"}, \"exp_029b_tcn_walker_s2_sigma02\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:43:04.635Z\", \"updated_at\": \"2026-05-20T19:43:04.636Z\", \"metrics\": {\"step\": 80000, \"eval_return_5K\": 30.5, \"eval_return_15K\": 168.4, \"eval_return_25K\": 159.6, \"eval_return_35K\": 168.1, \"eval_return_45K\": 171.5, \"eval_return_55K\": 177.7, \"eval_return_65K\": 106.6, \"eval_return_75K\": 64, \"ve_ratio_75K\": 1.65, \"ve_ratio_alert\": true, \"eval_peak\": 177.7, \"eval_peak_step\": 55000}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1198}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "bd0bc676-c520-4c35-b403-be0fe527f774",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_072_008e_v3_walker_s5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:51:50.268Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:52:00.215Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_trajectory\\\": {\\\"5K\\\": 29.4, \\\"15K\\\": 251.1, \\\"25K\\\": 423, \\\"35K\\\": 511, \\\"45K\\\": 600.1, \\\"55K\\\": 649, \\\"65K\\\": 697.2, \\\"75K\\\": 727.3, \\\"85K\\\": 710.3, \\\"95K\\\": 803.9, \\\"105K\\\": 853.1}, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0, \\\"25K\\\": 0.1, \\\"35K\\\": 0.2, \\\"45K\\\": 0.3, \\\"55K\\\": 0.3, \\\"65K\\\": 0.4, \\\"75K\\\": 0.5, \\\"85K\\\": 0.6, \\\"95K\\\": 0.6, \\\"105K\\\": 0.6}, \\\"value_mean_trajectory\\\": {\\\"5K\\\": 0, \\\"15K\\\": 4.6, \\\"25K\\\": 33.2, \\\"35K\\\": 88.8, \\\"45K\\\": 154, \\\"55K\\\": 223.2, \\\"65K\\\": 296.9, \\\"75K\\\": 364.3, \\\"85K\\\": 418.5, \\\"95K\\\": 464.6, \\\"105K\\\": 520.8}, \\\"nve_trajectory\\\": {\\\"15K\\\": 0.02, \\\"25K\\\": 0.08, \\\"35K\\\": 0.17, \\\"45K\\\": 0.26, \\\"55K\\\": 0.34, \\\"65K\\\": 0.43, \\\"75K\\\": 0.5, \\\"85K\\\": 0.59, \\\"95K\\\": 0.58, \\\"105K\\\": 0.61}, \\\"final_eval_return\\\": 853.1, \\\"peak_eval_return\\\": 853.1, \\\"peak_eval_step\\\": 105000, \\\"final_value_mean\\\": 520.8, \\\"final_ve_ratio\\\": 0.6, \\\"final_nve\\\": 0.61, \\\"final_actor_entropy\\\": -5.1, \\\"gate_dt_1_frac\\\": 1, \\\"civo_alert_max\\\": 0, \\\"civo_detected\\\": false, \\\"baseline_ratio\\\": 0.932}, \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"command\\\": \\\"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"}}, \\\"exp_040_dual_critic_cheetah_s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:40:43.166Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:40:43.166Z\\\", \\\"metrics\\\": {\\\"eval_final\\\": 41, \\\"eval_peak\\\": 256.4, \\\"eval_peak_step\\\": 25000, \\\"nve_peak\\\": 0.21, \\\"v1_final\\\": 8.84, \\\"v2_final\\\": 8.84}}, \\\"exp_039_narrow_dual_critic_walker_s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:11:40.426Z\\\", \\\"updated_at\\\": \\\"2026-05-21T16:11:47.123Z\\\", \\\"hypothesis\\\": \\\"Narrow dual-critic Walker seed 1 verification: exp_035 s0 showed CIVO triggered (NVE 2.75) but full recovery (eval 697.8). If s1 also fully recovers → \\\\\\\"min operation enables recovery even with insufficient capacity\\\\\\\" conclusion is robust across seeds. Critical for 2×2 factorial interpretation.\\\", \\\"parent\\\": \\\"exp_035_narrow_dual_critic_walker\\\"}, \\\"exp_029b_tcn_walker_s2_sigma02\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:43:04.635Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:43:04.636Z\\\", \\\"metrics\\\": {\\\"step\\\": 80000, \\\"eval_return_5K\\\": 30.5, \\\"eval_return_15K\\\": 168.4, \\\"eval_return_25K\\\": 159.6, \\\"eval_return_35K\\\": 168.1, \\\"eval_return_45K\\\": 171.5, \\\"eval_return_55K\\\": 177.7, \\\"eval_return_65K\\\": 106.6, \\\"eval_return_75K\\\": 64, \\\"ve_ratio_75K\\\": 1.65, \\\"ve_ratio_alert\\\": true, \\\"eval_peak\\\": 177.7, \\\"eval_peak_step\\\": 55000}}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1198}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_072_008e_v3_walker_s5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:51:50.268Z\", \"updated_at\": \"2026-05-25T09:52:00.215Z\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_trajectory\": {\"5K\": 29.4, \"15K\": 251.1, \"25K\": 423, \"35K\": 511, \"45K\": 600.1, \"55K\": 649, \"65K\": 697.2, \"75K\": 727.3, \"85K\": 710.3, \"95K\": 803.9, \"105K\": 853.1}, \"ve_ratio_trajectory\": {\"15K\": 0, \"25K\": 0.1, \"35K\": 0.2, \"45K\": 0.3, \"55K\": 0.3, \"65K\": 0.4, \"75K\": 0.5, \"85K\": 0.6, \"95K\": 0.6, \"105K\": 0.6}, \"value_mean_trajectory\": {\"5K\": 0, \"15K\": 4.6, \"25K\": 33.2, \"35K\": 88.8, \"45K\": 154, \"55K\": 223.2, \"65K\": 296.9, \"75K\": 364.3, \"85K\": 418.5, \"95K\": 464.6, \"105K\": 520.8}, \"nve_trajectory\": {\"15K\": 0.02, \"25K\": 0.08, \"35K\": 0.17, \"45K\": 0.26, \"55K\": 0.34, \"65K\": 0.43, \"75K\": 0.5, \"85K\": 0.59, \"95K\": 0.58, \"105K\": 0.61}, \"final_eval_return\": 853.1, \"peak_eval_return\": 853.1, \"peak_eval_step\": 105000, \"final_value_mean\": 520.8, \"final_ve_ratio\": 0.6, \"final_nve\": 0.61, \"final_actor_entropy\": -5.1, \"gate_dt_1_frac\": 1, \"civo_alert_max\": 0, \"civo_detected\": false, \"baseline_ratio\": 0.932}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"server\": \"westd-19154\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 5 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"}}, \"exp_040_dual_critic_cheetah_s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:40:43.166Z\", \"updated_at\": \"2026-05-22T09:40:43.166Z\", \"metrics\": {\"eval_final\": 41, \"eval_peak\": 256.4, \"eval_peak_step\": 25000, \"nve_peak\": 0.21, \"v1_final\": 8.84, \"v2_final\": 8.84}}, \"exp_039_narrow_dual_critic_walker_s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T16:11:40.426Z\", \"updated_at\": \"2026-05-21T16:11:47.123Z\", \"hypothesis\": \"Narrow dual-critic Walker seed 1 verification: exp_035 s0 showed CIVO triggered (NVE 2.75) but full recovery (eval 697.8). If s1 also fully recovers → \\\"min operation enables recovery even with insufficient capacity\\\" conclusion is robust across seeds. Critical for 2×2 factorial interpretation.\", \"parent\": \"exp_035_narrow_dual_critic_walker\"}, \"exp_029b_tcn_walker_s2_sigma02\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:43:04.635Z\", \"updated_at\": \"2026-05-20T19:43:04.636Z\", \"metrics\": {\"step\": 80000, \"eval_return_5K\": 30.5, \"eval_return_15K\": 168.4, \"eval_return_25K\": 159.6, \"eval_return_35K\": 168.1, \"eval_return_45K\": 171.5, \"eval_return_55K\": 177.7, \"eval_return_65K\": 106.6, \"eval_return_75K\": 64, \"ve_ratio_75K\": 1.65, \"ve_ratio_alert\": true, \"eval_peak\": 177.7, \"eval_peak_step\": 55000}}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1198}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+cuda:0 is now free (0 processes, 49GB still showing but clearing). exp_walker_no_dt_emb_s1 doesn't exist in PREPARING state. Let me check if it exists at all by searching more broadly.
+
+The registry shows exp_walker_no_dt_emb_s0 is in RUNNING state. I need to:
+1. Update s0: conclusion=killed, status needs to go RUNNING→DONE
+2. Create s1 if it doesn't exist, or find it
+
+Let me update s0 first and create/find s1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "128bf692-1497-4ae3-8ac7-1d921802cb1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015po9w1jYqfEoWRsmQ17QBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2632,
+      "cache_read_input_tokens": 39486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2632
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+cuda:0 已释放。exp_walker_no_dt_emb_s1 不在 PREPARING 列表中。先更新 s0 为 killed，同时创建 s1。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "00cd3777-9caa-4db9-aa1b-bfac102dd6cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015po9w1jYqfEoWRsmQ17QBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2632,
+      "cache_read_input_tokens": 39486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2632
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JjC4SSy57G3Aoye4XMZGna`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s0",
+  "field": "conclusion",
+  "value": "killed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "f52b2b6e-a397-4495-b456-78ba33a8b014",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015po9w1jYqfEoWRsmQ17QBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2632,
+      "cache_read_input_tokens": 39486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2632
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T11:14:36.606Z_
+
+<details><summary>↩ Tool result · `toolu_01JjC4SSy57G3Aoye4XMZGna`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:14:36.402Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}, \"conclusion\": \"killed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.418}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "4d1cb7ac-a282-40fd-8411-01b11e0d8305",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:10:24.895Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:14:36.402Z\\\", \\\"parent\\\": \\\"exp_008f\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (train from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (built-in env)\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.418}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s0\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:14:36.402Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}, \"conclusion\": \"killed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.418}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01QDwHMsFqjjUHzeh9CRqStx`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "hypothesis",
+  "value": "Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "865d07ce-b984-464a-8c84-7fcfe5e5a351",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015po9w1jYqfEoWRsmQ17QBo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2632,
+      "cache_read_input_tokens": 39486,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2632
+      },
+      "output_tokens": 17,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T11:14:39.863Z_
+
+<details><summary>↩ Tool result · `toolu_01QDwHMsFqjjUHzeh9CRqStx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:39.781Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2169}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "d5366056-86b9-4182-8680-be46a7244423",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:14:39.781Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2169}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:39.781Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2169}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+s0 标记 killed，s1 已创建(PREPARING)。现在推进 s0→DONE 和 s1 的 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "39f70d1e-ac77-4bd8-921d-e9de69e0599d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018DWofRu9aPQU8jgC9WKEtp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 42118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_011yPgQMqdMAspQsL2mU68r3`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s0",
+  "field": "status",
+  "value": "DONE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "ffa248cb-56e2-413a-b515-c492519b304a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018DWofRu9aPQU8jgC9WKEtp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 42118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T11:14:46.446Z_
+
+<details><summary>↩ Tool result · `toolu_011yPgQMqdMAspQsL2mU68r3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:14:46.202Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-27T11:14:46.202Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3692}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "3735f065-1a0d-4fa5-ac2a-f40b698e04c3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:10:24.895Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:14:46.202Z\\\", \\\"parent\\\": \\\"exp_008f\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (train from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (built-in env)\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-27T11:14:46.202Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3692}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:10:24.895Z\", \"updated_at\": \"2026-05-27T11:14:46.202Z\", \"parent\": \"exp_008f\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-27T11:14:46.202Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3692}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YPGM9qfuFH7VWmCJmmg1Ug`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "parent",
+  "value": "exp_008f_no_dt_embed_subsample_on_h8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "bde5b8ae-8b1f-471b-bec0-050bdd201ba6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018DWofRu9aPQU8jgC9WKEtp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1260,
+      "cache_read_input_tokens": 42118,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1260
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T11:14:47.050Z_
+
+<details><summary>↩ Tool result · `toolu_01YPGM9qfuFH7VWmCJmmg1Ug`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:46.949Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2596}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "fe0c0246-3b21-4b93-9292-b028c1d87585",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:14:46.949Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2596}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:46.949Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2596}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+s0 已 DONE(killed)。推进 s1: PREPARING→QUEUED→ALLOCATED。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "cdc0e2a8-fa3f-4f6c-878f-7958f41bf99a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b53zNvrR96VTtbpfwMKnP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 43378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01T5zXkoMHuXtjW2SP3MTGd6`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "status",
+  "value": "QUEUED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "39ccbdf7-26c8-4ff0-888d-e9830186d648",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012b53zNvrR96VTtbpfwMKnP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 43378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1091
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T11:14:51.424Z_
+
+<details><summary>↩ Tool result · `toolu_01T5zXkoMHuXtjW2SP3MTGd6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:51.205Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3348}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "6a6585ef-49ff-466b-ac6b-d8464d57a09a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:14:51.205Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3348}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:14:51.205Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3348}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01EkE46nxkVYmc56hqVmozhq`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "server",
+  "value": "westd-51268"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "7a8533e6-6819-4982-8c43-fdf486be1c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lmi91VgzJ8KQkVrJdGwn9Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 398,
+      "cache_read_input_tokens": 44469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 398
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T11:15:04.093Z_
+
+<details><summary>↩ Tool result · `toolu_01EkE46nxkVYmc56hqVmozhq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:04.006Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "887c92eb-14d6-4878-92b7-c1d8951a8964",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:04.006Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2038}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:04.006Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DbauMEjwNZhN27m3xGbmNH`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "gpu",
+  "value": "cuda:0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "1c4631c6-102c-4887-bdd5-ff49b6d1bff6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lmi91VgzJ8KQkVrJdGwn9Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 398,
+      "cache_read_input_tokens": 44469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 398
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T11:15:04.789Z_
+
+<details><summary>↩ Tool result · `toolu_01DbauMEjwNZhN27m3xGbmNH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:04.695Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "910faab1-8b03-483a-a5d6-9ac558426221",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:04.695Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2038}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:04.695Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2038}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DbKGaCsTMnX6GS1NZ1u9Qb`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "status",
+  "value": "ALLOCATED"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "f0dbe12a-0328-42a3-8cf9-eeb4f3d8148f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A2ouww4VznWJKXf4vww4SC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 44867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 919
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T11:15:07.860Z_
+
+<details><summary>↩ Tool result · `toolu_01DbKGaCsTMnX6GS1NZ1u9Qb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:07.651Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.336}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "7d4144a3-0235-489f-957e-fd3d275d5958",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:07.651Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.336}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:07.651Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.336}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+s1 已 ALLOCATED。提交实验到 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "6ee75649-fd3a-4af0-8d2c-5e980f852ed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yAvRckvCiwxuhB7XvphRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 45786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 389
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GWjphVVLxh7ogD8dWGWVcb`</summary>
+
+```json
+{
+  "exp_id": "exp_walker_no_dt_emb_s1",
+  "field": "status",
+  "value": "RUNNING",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+    "server": "westd-51268",
+    "data_path": "dmc_walker_walk",
+    "data_count": "105000 steps",
+    "model_name": "dreamerv3",
+    "seed": 1,
+    "checkpoint_source": "none (train from scratch)",
+    "eval_data": "dmc_walker_walk (built-in env)"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "d472f8cb-a13d-4ff4-8896-8be7e8cfe613",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011yAvRckvCiwxuhB7XvphRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 45786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 389
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T11:15:17.644Z_
+
+<details><summary>↩ Tool result · `toolu_01GWjphVVLxh7ogD8dWGWVcb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:17.396Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3693}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "08dd8863-0993-41c7-8b63-d3f202e7b98c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_walker_no_dt_emb_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-27T11:14:39.780Z\\\", \\\"updated_at\\\": \\\"2026-05-27T11:15:17.396Z\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (train from scratch)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk (built-in env)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3693}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_walker_no_dt_emb_s1\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-27T11:14:39.780Z\", \"updated_at\": \"2026-05-27T11:15:17.396Z\", \"hypothesis\": \"Removing dt_embedding (dt_embed_dim=0) prevents CIVO triggering in Walker Walk seed=1. With no learned temporal embedding, the value network cannot develop compounding overestimation. This extends no_dt_emb evidence from seed=0 (exp_008f) and seed=1 (exp_069) to validate robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-51268\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-51268\", \"data_path\": \"dmc_walker_walk\", \"data_count\": \"105000 steps\", \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (train from scratch)\", \"eval_data\": \"dmc_walker_walk (built-in env)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3693}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+Registry 已到 RUNNING。现在在服务器上启动实验进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "c2947f62-f1ee-4e1d-897e-224a6f7add7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jh3LMLApMTZNE54QVGwpfH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 46175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LXWEjXmVfpafShyVpcg44V`</summary>
+
+```json
+{
+  "server": "westd-51268",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && nohup python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 > logdir/exp_walker_no_dt_emb_s1.log 2>&1 & echo PID=\\$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "f44873d1-56e5-4296-8c76-aaf89f36be4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jh3LMLApMTZNE54QVGwpfH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1006,
+      "cache_read_input_tokens": 46175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1006
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T11:15:57.476Z_
+
+<details><summary>↩ Tool result · `toolu_01LXWEjXmVfpafShyVpcg44V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=628803\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "2c12652f-0f83-4f56-8f81-9637ee638848",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=628803\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PID=628803\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+PID=628803 已启动。验证 GPU 占用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "2ce51404-823f-4da9-9269-c4a43b13a2ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Zghw2gTv9c9zcfrFXUuzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 430,
+      "cache_read_input_tokens": 47181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018hJRzighiDDj4tKTEZNtQU`</summary>
+
+```json
+{
+  "server": "westd-51268",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "33df9971-5684-44a9-b548-30fcea4574ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Zghw2gTv9c9zcfrFXUuzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 430,
+      "cache_read_input_tokens": 47181,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 430
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-27T11:16:03.673Z_
+
+<details><summary>↩ Tool result · `toolu_018hJRzighiDDj4tKTEZNtQU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:16:03 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   36C    P0             92W /  600W |   50500MiB /  97887MiB |      4%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          628808    C+G   python                                 1309MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "31c2de5e-a66f-48c2-9739-d27fc168fe2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Wed May 27 19:16:03 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\\\n| N/A   36C    P0             92W /  600W |   50500MiB /  97887MiB |      4%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          628808    C+G   python                                 1309MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Wed May 27 19:16:03 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:38:00.0 Off |                  Off |\\n| N/A   36C    P0             92W /  600W |   50500MiB /  97887MiB |      4%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   29C    P8             36W /  600W |       3MiB /  97887MiB |      0%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          628808    C+G   python                                 1309MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+全部完成。
+
+**总结：**
+1. **Kill 完成** — PID 628264 (exp_walker_no_dt_emb_s0, seed=0) 已终止，registry 标记 DONE/killed
+2. **新实验已启动** — exp_walker_no_dt_emb_s1 (seed=1) 在 cuda:0 运行中，PID 628808，占用 ~1.3GB 显存（正在初始化）
+3. cuda:1 未受影响
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "uuid": "f29792e5-b4ec-45ed-9e11-2aab99173d24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0142kvsrgaTavTR47mdcT1H8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 47611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 667
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 58_
+
+全部完成。
+
+**总结：**
+1. **Kill 完成** — PID 628264 (exp_walker_no_dt_emb_s0, seed=0) 已终止，registry 标记 DONE/killed
+2. **新实验已启动** — exp_walker_no_dt_emb_s1 (seed=1) 在 cuda:0 运行中，PID 628808，占用 ~1.3GB 显存（正在初始化）
+3. cuda:1 未受影响
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 136209,
+  "duration_api_ms": 104000,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "1316fe1d-59ea-4c49-9d4f-b9b2856927b3",
+  "total_cost_usd": 0.56561525,
+  "usage": {
+    "input_tokens": 17,
+    "cache_creation_input_tokens": 36827,
+    "cache_read_input_tokens": 488809,
+    "output_tokens": 3567,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36827,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 140,
+        "cache_read_input_tokens": 47611,
+        "cache_creation_input_tokens": 667,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 667
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1687,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001782,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 3567,
+      "cacheReadInputTokens": 488809,
+      "cacheCreationInputTokens": 36827,
+      "webSearchRequests": 0,
+      "costUSD": 0.56383325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fd6912be-0f5e-4d77-8c3c-d05f02dd16a5"
+}
+```
+
+</details>
+
+---

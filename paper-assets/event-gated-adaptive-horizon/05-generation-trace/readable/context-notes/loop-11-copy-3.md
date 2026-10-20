@@ -1,0 +1,81 @@
+# reviewer / loop_11.md
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_11.md`
+- **Structured JSON:** [`271a7e2266a3816195b2.json`](../../sessions/27/271a7e2266a3816195b2.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 11
+reason: idle_timeout
+updated: '2026-05-15T22:15:35+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：仅 cuda:0 和 cuda:1（物理 GPU）。命令用 `CUDA_VISIBLE_DEVICES=N --device cuda:0` 映射。
+- 服务器：bjb1-45299(root)，代码根 `/root/autodl-tmp/event-gated-adaptive-horizon`
+- **判断进程 hang 必须多次快照对比**：之前我单次快照误判 009h 为 hung，导致 Director 误杀。至少等 2-3 分钟取两个 snapshot，检查 metrics.jsonl 修改时间变化和 /proc context switches。"慢" ≠ "卡住"。
+- 016 系列实验共用 logdir 现象频繁（016b→016c→016d→016e），读 metrics 时注意区分哪些数据属于哪次 run（看 step 5000 重复条目数量）。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：bjb1-45299，root 账号，时区 UTC+8
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）
+- 代码：`/root/autodl-tmp/event-gated-adaptive-horizon`
+- Logdir：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`
+- 运行日志：`~/runs/event-gated-adaptive-horizon/`
+- 退出码：`/tmp/agent-ml-exit/&lt;exp_name>.exit`
+- 活跃进程（截至 handoff）：
+  - 009d baseline: PID 149708, GPU 0, ~4156 MiB, step ~148K+/500K
+  - 016e SGS: PID 527392, GPU 1, ~3257 MiB, step ~16K/105K
+- tools.py 两项关键 patch 生效中：(1) simulate() 无限循环安全阀 `_dbg_iter>5000` break (2) `Logger.video()` 改为 no-op（防 moviepy 2.x SummaryWriter deadlock）
+- checkpoint_monitor.py: PID 123058 后台运行
+
+### 3. 📊 当前状态
+**刚做完：**
+- 发布 009h 误杀自我更正（我错误诊断导致有效实验被杀）
+- 确认 016e SGS 稳定运行（第 5 次尝试终于成功，已过所有 deadlock 关键点）
+- 确认 GPU 1 孤儿进程（PID 527835）已被 ghost cleanup worker 清理
+- 009d registry metrics 已更新至 138K（eval_return=495.49，新高）
+
+**Registry RUNNING：**
+- `exp_016e_sgs_walker_s1` — SGS 核心方法实验，step ~16K/105K，GPU 1，约需 ~3h 完成
+- `exp_009d_baseline_walker_s0` — baseline 第三 seed，step ~148K+/500K，GPU 0，约需 ~13h 完成
+
+**QUEUED：**
+- `exp_010a_cheetah_baseline_s1` — Cheetah Run baseline，排在 009d 之后 GPU 0
+
+### 4. 📋 待办（条件触发式）
+- 016e 到 step 25K+ → 检查 NVE 初始趋势，对比 008d（非 SGS）同 step 的 NVE，初步判断 SGS 是否阻断 CIVO
+- 016e 到 step 35K+ → 计算 NVE@35K+，这是 CIVO 分类窗口起点，关键数据点
+- 016e 完成（105K）→ 全量审查：NVE 轨迹 vs 008d、actor_loss 符号、value_std 趋势，判断 SGS 是否有效阻断 CIVO
+- 016e 失败通知 → 检查是否是 video deadlock 复发（不应该，video 已 no-op）或新问题
+- 009d 每 ~30K 步 → 检查 eval trajectory，更新 registry metrics
+- 009d 完成（500K）→ 验证最终 metrics，确认 Cheetah baseline 010a 是否自动启动
+- paper_provenance.yaml 仍为空 → 持续提醒 Director 补全
+
+### 5. 🎯 战略上下文
+- **目标**：CoRL 2026，DDL 2026-05-29（剩 14 天）
+- **核心因果链（D049）**：Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件。2×2 消融矩阵已闭合（008a/008d/008f/015b）。
+- **NVE 诊断力（D054）**：task_b2@1.5x(35K+) 7/8 accuracy, AUROC=0.933。008e_v3_s2 是唯一 FP（non-CIVO late collapse via IRD）。
+- **三种 collapse 机制**：CIVO（trained dt_emb value inflation）、IRD（world model accuracy ceiling → value_std 爆炸）、Gradient Starvation（frozen dt_emb → actor_loss→0）
+- **016e 是 critical path**：SGS 是论文 method section 核心贡献。如果 SGS 有效（NVE<1.5x），论文定位 diagnostic+method；如果无效，降级为 diagnostic-only。
+- **GPU 1 eval hang 历史**：经过 016→016b→016c→016d→016e 共 5 次迭代才稳定。根因是两个独立问题：(1) EGL device mismatch（fix: MUJOCO_EGL_DEVICE_ID=1）(2) moviepy 2.x SummaryWriter deadlock（fix: Logger.video() no-op）。注意：009h 的 "eval hang" 是我的**误诊**，EGL fix 对 009h 其实有效。
+- **易错点**：不要在 GPU 1 实验上过快下 hang 结论。016 系列多次 logdir 复用导致 metrics.jsonl 有重复 step 5000 数据，分析时需注意数据来源。
+
+
+---

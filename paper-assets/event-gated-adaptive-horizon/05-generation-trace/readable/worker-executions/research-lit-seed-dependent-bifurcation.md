@@ -1,0 +1,3519 @@
+# research lit seed dependent bifurcation
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_research_lit-seed-dependent-bifurcation_20260514T185837.log`
+- **Structured JSON:** [`a34727299e2ecc6a39d5.json`](../../sessions/a3/a34727299e2ecc6a39d5.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "41357fee-d5c3-4c3e-af1f-c33cdbd72ea5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778796600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "f33c0ffb-7ea8-4041-8fe6-81c56f76f52f",
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to do a literature search on seed-dependent value overestimation and stochastic bifurcation in MBRL. Let me break this down:
+
+1. Search the web for relevant papers using multiple keyword combinations
+2. Read the current memory.md file
+3. Write a report and append it to memory.md
+
+Let me start by launching web searches in parallel and reading the current memory.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "01049047-653d-498d-bf75-286806c1619c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjswDtX5xi4BajVJ6fRGnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12154,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12154
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始文献搜索，同时读取当前 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "2c4ba038-c254-4b68-a9a7-32b9989df0e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjswDtX5xi4BajVJ6fRGnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12154,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12154
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BZVuMnnEykcio1vkenriQe`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "d1fbc41d-6c89-4a97-ae74-4da73822edc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjswDtX5xi4BajVJ6fRGnL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12154,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12154
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T18:58:50.131Z_
+
+<details><summary>↩ Tool result · `toolu_01BZVuMnnEykcio1vkenriQe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "fa7f5d37-5e98-4efe-8e68-11d5f607dbcd",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_012yzFRab9jX9k76xHRjn1bD`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "2659a08e-6a56-4692-b981-75130a7bca58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrMpNAD5WgVPmeJb9fAMFR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1522,
+      "cache_read_input_tokens": 23601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1522
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T18:58:55.349Z_
+
+<details><summary>↩ Tool result · `toolu_012yzFRab9jX9k76xHRjn1bD`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\\n\\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\\n\\n### 关键 novelty gaps（论文可用）\\n\\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\\n\\n### 相关文献支撑\\n\\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\\n\\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\\n\\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\\n\\n### Actor Entropy — 非显而易见的发现\\n\\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\\n\\n### Value Calibration — 最强诊断信号\\n\\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\\n   - Healthy: baseline ~0.69，event-gated healthy 0.20-0.53，**从未超过 1.0**\\n   - 判定阈值 v/R > 1.5 在 late training 可 100% 区分两类\\n\\n2. **008f 极端保守**：v/R=0.20@105K，eval_return=503.21 但 value 仅约 100。value function 严重低估实际回报。这与 009c 教训一致——去掉 dt_embedding 消除了 delusional critic 但引入 reward prediction 噪声，value function 因此保守。\\n\\n3. **Normalized v/e target 不具区分力**：所有实验 late-stage normalized_vt 均收敛至 ~1.0（collapsed 008d=1.0034, 006=1.0069; healthy 008a=1.0001, 008c=1.0084），无法用于诊断。\\n\\n### 组合机制（论文可用）\\n\\n**Delusional critic signature = 慢 entropy 收敛 + value 过高估计**。Actor 探索更多是因为 value landscape 误导，但这种探索被 delusional critic 引向错误方向。这构成一个可论证的因果链：trained dt_embedding → corrupted world model → value overestimation → misdirected exploration → performance collapse。\\n\\n### 论文使用建议\\n\\n- **可直接用**：v/R ratio 作为 delusional critic 诊断指标（Figure 材料），collapsed vs healthy 的 clean separation\\n- **可用但需 caveat**：actor entropy 趋势差异（方向正确但需注明 run length 不等）\\n- **不可用**：normalized v/e target（无区分力）；baseline entropy recovery（与 event-gating 机制无直接关系，属 baseline 自身行为）\\n\\n### 附注\\n\\n服务器上还有 `logdir/analysis_rssm_prediction_quality.json`（RSSM dt=1 vs dt=2 prediction quality），属于不同 plan 的分析产物。\\n\\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\\n\\n**发现**：去掉 dt_embedding 有两个独立效应：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗。\\n\\n两个 seed 的 v/e 都正常（normalized v/e 均 < 1.5x），确认 delusional critic 被消除。但性能差异巨大：\\n- seed 0 (008f): zigzag recovery → 503@105K\\n- seed 2 (009c): peak 359@75K → monotonic decline → 148@105K\\n\\n**根因**：008f 的 reward_MAE=0.747（baseline 的 75x），reward gap 仅 1.01x（无法区分 dt=1/dt=2）。reward 信号噪声使优化 landscape 高度 seed-dependent。\\n\\n**对论文的影响**：\\n- C2 机制识别（trained dt_emb → delusional critic）：不受影响，两个 seed 都确认\\n- 008f 实用含义：从\\\"消除 collapse\\\"降为\\\"消除 delusional critic 但引入 reward 噪声\\\"\\n- C6 (008e_v3) 升格为核心推荐——唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案\\n- Framing 提案（Option A: \\\"机制 + 陷阱 + 正确修复\\\"）已提交 Director 审批\\n\\n**教训**：单一 seed 的 positive result 不能用于 claim stability。008f seed 0 的 zigzag recovery 可能是随机事件，不是系统性保护。\\n\\n## 2026-05-14: Actor Entropy 分析决策（Director 修正）\\n\\n- **C2 cleanest comparison pair**: 008f vs 008d（仅 dt_embed_dim 不同）。不用 008c vs 008d（两个变量差异：subsample + dt_emb）。\\n- **论文措辞**: 用 \\\"entropy convergence delayed\\\"，不说 \\\"entropy rises\\\"。\\n- **原因**: 008c（subsample OFF）vs 008d（subsample ON）有两个变量差异，不是 clean single-variable control。008f 和 008d 唯一差异是 dt_embed_dim（0 vs 32），是最干净的因果对照。\\n\\n## 2026-05-14: cuda:1 排期（D031 修正）\\n\\n009b（running）→ **008e_v3_s1** → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060\\n\\n008e_v3 是论文 crown jewel (C6)，多 seed 验证最高优先。\\n\\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\\n\\n### 结论：代码无需修改，直接可用\\n\\n代码通过 `--task` 参数自动解析环境名，流程：\\n- `--task dmc_cheetah_run` → `suite.load(\\\"cheetah\\\", \\\"run\\\")`\\n- `--task dmc_cartpole_swingup` → `suite.load(\\\"cartpole\\\", \\\"swingup\\\")`\\n\\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\\n\\n### 环境 Observation/Action Space 对比\\n\\n| 环境 | Obs dims | Action dims | Action range |\\n|------|----------|-------------|--------------|\\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\\n\\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\\n\\n### 启动命令模板\\n\\n**Cheetah Run Baseline:**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cheetah_run \\\\\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\n```\\n\\n**Cheetah Run Treatment (以 008f config 为例):**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cheetah_run \\\\\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\n```\\n\\n**Cartpole Swingup Baseline:**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cartpole_swingup \\\\\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\n```\\n\\n**Cartpole Swingup Treatment (以 008f config 为例):**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cartpole_swingup \\\\\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\n```\\n\\n### 环境特定注意事项\\n\\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\\n2. **time_limit=1000**（默认）对三个环境都适用\\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\\n6. **无需代码修改**\\n\", \"total_chars\": 6630, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "bcc072fc-e2ac-4a24-a50c-2c98fe93f75c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\\\\n\\\\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\\\\n\\\\n### 关键 novelty gaps（论文可用）\\\\n\\\\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\\\\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\\\\n\\\\n### 相关文献支撑\\\\n\\\\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\\\\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\\\\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\\\\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\\\\n\\\\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\\\\n\\\\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\\\\n\\\\n### Actor Entropy — 非显而易见的发现\\\\n\\\\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\\\\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\\\\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\\\\n\\\\n### Value Calibration — 最强诊断信号\\\\n\\\\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\\\\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\\\\n   - Healthy: baseline ~0.69，event-gated healthy 0.20-0.53，**从未超过 1.0**\\\\n   - 判定阈值 v/R > 1.5 在 late training 可 100% 区分两类\\\\n\\\\n2. **008f 极端保守**：v/R=0.20@105K，eval_return=503.21 但 value 仅约 100。value function 严重低估实际回报。这与 009c 教训一致——去掉 dt_embedding 消除了 delusional critic 但引入 reward prediction 噪声，value function 因此保守。\\\\n\\\\n3. **Normalized v/e target 不具区分力**：所有实验 late-stage normalized_vt 均收敛至 ~1.0（collapsed 008d=1.0034, 006=1.0069; healthy 008a=1.0001, 008c=1.0084），无法用于诊断。\\\\n\\\\n### 组合机制（论文可用）\\\\n\\\\n**Delusional critic signature = 慢 entropy 收敛 + value 过高估计**。Actor 探索更多是因为 value landscape 误导，但这种探索被 delusional critic 引向错误方向。这构成一个可论证的因果链：trained dt_embedding → corrupted world model → value overestimation → misdirected exploration → performance collapse。\\\\n\\\\n### 论文使用建议\\\\n\\\\n- **可直接用**：v/R ratio 作为 delusional critic 诊断指标（Figure 材料），collapsed vs healthy 的 clean separation\\\\n- **可用但需 caveat**：actor entropy 趋势差异（方向正确但需注明 run length 不等）\\\\n- **不可用**：normalized v/e target（无区分力）；baseline entropy recovery（与 event-gating 机制无直接关系，属 baseline 自身行为）\\\\n\\\\n### 附注\\\\n\\\\n服务器上还有 `logdir/analysis_rssm_prediction_quality.json`（RSSM dt=1 vs dt=2 prediction quality），属于不同 plan 的分析产物。\\\\n\\\\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\\\\n\\\\n**发现**：去掉 dt_embedding 有两个独立效应：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗。\\\\n\\\\n两个 seed 的 v/e 都正常（normalized v/e 均 < 1.5x），确认 delusional critic 被消除。但性能差异巨大：\\\\n- seed 0 (008f): zigzag recovery → 503@105K\\\\n- seed 2 (009c): peak 359@75K → monotonic decline → 148@105K\\\\n\\\\n**根因**：008f 的 reward_MAE=0.747（baseline 的 75x），reward gap 仅 1.01x（无法区分 dt=1/dt=2）。reward 信号噪声使优化 landscape 高度 seed-dependent。\\\\n\\\\n**对论文的影响**：\\\\n- C2 机制识别（trained dt_emb → delusional critic）：不受影响，两个 seed 都确认\\\\n- 008f 实用含义：从\\\\\\\"消除 collapse\\\\\\\"降为\\\\\\\"消除 delusional critic 但引入 reward 噪声\\\\\\\"\\\\n- C6 (008e_v3) 升格为核心推荐——唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案\\\\n- Framing 提案（Option A: \\\\\\\"机制 + 陷阱 + 正确修复\\\\\\\"）已提交 Director 审批\\\\n\\\\n**教训**：单一 seed 的 positive result 不能用于 claim stability。008f seed 0 的 zigzag recovery 可能是随机事件，不是系统性保护。\\\\n\\\\n## 2026-05-14: Actor Entropy 分析决策（Director 修正）\\\\n\\\\n- **C2 cleanest comparison pair**: 008f vs 008d（仅 dt_embed_dim 不同）。不用 008c vs 008d（两个变量差异：subsample + dt_emb）。\\\\n- **论文措辞**: 用 \\\\\\\"entropy convergence delayed\\\\\\\"，不说 \\\\\\\"entropy rises\\\\\\\"。\\\\n- **原因**: 008c（subsample OFF）vs 008d（subsample ON）有两个变量差异，不是 clean single-variable control。008f 和 008d 唯一差异是 dt_embed_dim（0 vs 32），是最干净的因果对照。\\\\n\\\\n## 2026-05-14: cuda:1 排期（D031 修正）\\\\n\\\\n009b（running）→ **008e_v3_s1** → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060\\\\n\\\\n008e_v3 是论文 crown jewel (C6)，多 seed 验证最高优先。\\\\n\\\\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\\\\n\\\\n### 结论：代码无需修改，直接可用\\\\n\\\\n代码通过 `--task` 参数自动解析环境名，流程：\\\\n- `--task dmc_cheetah_run` → `suite.load(\\\\\\\"cheetah\\\\\\\", \\\\\\\"run\\\\\\\")`\\\\n- `--task dmc_cartpole_swingup` → `suite.load(\\\\\\\"cartpole\\\\\\\", \\\\\\\"swingup\\\\\\\")`\\\\n\\\\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\\\\n\\\\n### 环境 Observation/Action Space 对比\\\\n\\\\n| 环境 | Obs dims | Action dims | Action range |\\\\n|------|----------|-------------|--------------|\\\\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\\\\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\\\\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\\\\n\\\\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\\\\n\\\\n### 启动命令模板\\\\n\\\\n**Cheetah Run Baseline:**\\\\n```bash\\\\npython dreamer.py --configs defaults dmc_proprio \\\\\\\\\\\\n  --task dmc_cheetah_run \\\\\\\\\\\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\\\\\\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\\\n```\\\\n\\\\n**Cheetah Run Treatment (以 008f config 为例):**\\\\n```bash\\\\npython dreamer.py --configs defaults dmc_proprio \\\\\\\\\\\\n  --task dmc_cheetah_run \\\\\\\\\\\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\\\\\\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\\\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\\\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\\\n```\\\\n\\\\n**Cartpole Swingup Baseline:**\\\\n```bash\\\\npython dreamer.py --configs defaults dmc_proprio \\\\\\\\\\\\n  --task dmc_cartpole_swingup \\\\\\\\\\\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\\\\\\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\\\n```\\\\n\\\\n**Cartpole Swingup Treatment (以 008f config 为例):**\\\\n```bash\\\\npython dreamer.py --configs defaults dmc_proprio \\\\\\\\\\\\n  --task dmc_cartpole_swingup \\\\\\\\\\\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\\\\\\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\\\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\\\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\\\n```\\\\n\\\\n### 环境特定注意事项\\\\n\\\\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\\\\n2. **time_limit=1000**（默认）对三个环境都适用\\\\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\\\\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\\\\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\\\\n6. **无需代码修改**\\\\n\\\", \\\"total_chars\\\": 6630, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\\n\\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\\n\\n### 关键 novelty gaps（论文可用）\\n\\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\\n\\n### 相关文献支撑\\n\\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\\n\\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\\n\\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\\n\\n### Actor Entropy — 非显而易见的发现\\n\\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\\n\\n### Value Calibration — 最强诊断信号\\n\\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\\n   - Healthy: baseline ~0.69，event-gated healthy 0.20-0.53，**从未超过 1.0**\\n   - 判定阈值 v/R > 1.5 在 late training 可 100% 区分两类\\n\\n2. **008f 极端保守**：v/R=0.20@105K，eval_return=503.21 但 value 仅约 100。value function 严重低估实际回报。这与 009c 教训一致——去掉 dt_embedding 消除了 delusional critic 但引入 reward prediction 噪声，value function 因此保守。\\n\\n3. **Normalized v/e target 不具区分力**：所有实验 late-stage normalized_vt 均收敛至 ~1.0（collapsed 008d=1.0034, 006=1.0069; healthy 008a=1.0001, 008c=1.0084），无法用于诊断。\\n\\n### 组合机制（论文可用）\\n\\n**Delusional critic signature = 慢 entropy 收敛 + value 过高估计**。Actor 探索更多是因为 value landscape 误导，但这种探索被 delusional critic 引向错误方向。这构成一个可论证的因果链：trained dt_embedding → corrupted world model → value overestimation → misdirected exploration → performance collapse。\\n\\n### 论文使用建议\\n\\n- **可直接用**：v/R ratio 作为 delusional critic 诊断指标（Figure 材料），collapsed vs healthy 的 clean separation\\n- **可用但需 caveat**：actor entropy 趋势差异（方向正确但需注明 run length 不等）\\n- **不可用**：normalized v/e target（无区分力）；baseline entropy recovery（与 event-gating 机制无直接关系，属 baseline 自身行为）\\n\\n### 附注\\n\\n服务器上还有 `logdir/analysis_rssm_prediction_quality.json`（RSSM dt=1 vs dt=2 prediction quality），属于不同 plan 的分析产物。\\n\\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\\n\\n**发现**：去掉 dt_embedding 有两个独立效应：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗。\\n\\n两个 seed 的 v/e 都正常（normalized v/e 均 < 1.5x），确认 delusional critic 被消除。但性能差异巨大：\\n- seed 0 (008f): zigzag recovery → 503@105K\\n- seed 2 (009c): peak 359@75K → monotonic decline → 148@105K\\n\\n**根因**：008f 的 reward_MAE=0.747（baseline 的 75x），reward gap 仅 1.01x（无法区分 dt=1/dt=2）。reward 信号噪声使优化 landscape 高度 seed-dependent。\\n\\n**对论文的影响**：\\n- C2 机制识别（trained dt_emb → delusional critic）：不受影响，两个 seed 都确认\\n- 008f 实用含义：从\\\"消除 collapse\\\"降为\\\"消除 delusional critic 但引入 reward 噪声\\\"\\n- C6 (008e_v3) 升格为核心推荐——唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案\\n- Framing 提案（Option A: \\\"机制 + 陷阱 + 正确修复\\\"）已提交 Director 审批\\n\\n**教训**：单一 seed 的 positive result 不能用于 claim stability。008f seed 0 的 zigzag recovery 可能是随机事件，不是系统性保护。\\n\\n## 2026-05-14: Actor Entropy 分析决策（Director 修正）\\n\\n- **C2 cleanest comparison pair**: 008f vs 008d（仅 dt_embed_dim 不同）。不用 008c vs 008d（两个变量差异：subsample + dt_emb）。\\n- **论文措辞**: 用 \\\"entropy convergence delayed\\\"，不说 \\\"entropy rises\\\"。\\n- **原因**: 008c（subsample OFF）vs 008d（subsample ON）有两个变量差异，不是 clean single-variable control。008f 和 008d 唯一差异是 dt_embed_dim（0 vs 32），是最干净的因果对照。\\n\\n## 2026-05-14: cuda:1 排期（D031 修正）\\n\\n009b（running）→ **008e_v3_s1** → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060\\n\\n008e_v3 是论文 crown jewel (C6)，多 seed 验证最高优先。\\n\\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\\n\\n### 结论：代码无需修改，直接可用\\n\\n代码通过 `--task` 参数自动解析环境名，流程：\\n- `--task dmc_cheetah_run` → `suite.load(\\\"cheetah\\\", \\\"run\\\")`\\n- `--task dmc_cartpole_swingup` → `suite.load(\\\"cartpole\\\", \\\"swingup\\\")`\\n\\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\\n\\n### 环境 Observation/Action Space 对比\\n\\n| 环境 | Obs dims | Action dims | Action range |\\n|------|----------|-------------|--------------|\\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\\n\\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\\n\\n### 启动命令模板\\n\\n**Cheetah Run Baseline:**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cheetah_run \\\\\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\n```\\n\\n**Cheetah Run Treatment (以 008f config 为例):**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cheetah_run \\\\\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\n```\\n\\n**Cartpole Swingup Baseline:**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cartpole_swingup \\\\\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\\\\n  --steps 500000 --seed Y --compile False --device cuda:Z\\n```\\n\\n**Cartpole Swingup Treatment (以 008f config 为例):**\\n```bash\\npython dreamer.py --configs defaults dmc_proprio \\\\\\n  --task dmc_cartpole_swingup \\\\\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\\\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\\\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\\\\n  --imag_horizon 8 --gate_dt_embed_dim 0\\n```\\n\\n### 环境特定注意事项\\n\\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\\n2. **time_limit=1000**（默认）对三个环境都适用\\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\\n6. **无需代码修改**\\n\", \"total_chars\": 6630, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BUpxAZDMDpyGAp5LACbRXk`</summary>
+
+```json
+{
+  "query": "seed dependent collapse model-based reinforcement learning DreamerV3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "d52a2f78-e7a2-49ed-a315-4b494a89682e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrMpNAD5WgVPmeJb9fAMFR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1522,
+      "cache_read_input_tokens": 23601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1522
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M9ktkhT9pj8dUkERxfXVsL`</summary>
+
+```json
+{
+  "query": "value overestimation stochastic reinforcement learning world model self-correction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "95ed0e8c-421b-4767-8dcb-b5f9846e807a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrMpNAD5WgVPmeJb9fAMFR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1522,
+      "cache_read_input_tokens": 23601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1522
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qo5Z4rTWiFgNemTxbK9NcV`</summary>
+
+```json
+{
+  "query": "bifurcation deep reinforcement learning training dynamics dynamical systems"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "2cb448ba-ecfb-4afc-83fc-399ce8f7b6ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrMpNAD5WgVPmeJb9fAMFR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1522,
+      "cache_read_input_tokens": 23601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1522
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T18:59:02.983Z_
+
+<details><summary>↩ Tool result · `toolu_01M9ktkhT9pj8dUkERxfXVsL`</summary>
+
+```text
+Web search results for query: "value overestimation stochastic reinforcement learning world model self-correction"
+
+Links: [{"title":"Parameter-Free Reduction of the Estimation Bias in Deep Reinforcement Learning for Deterministic Policy Gradients | Neural Processing Letters | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11063-024-11461-y"},{"title":"Factors of Inﬂuence of the Overestimation Bias of Q-Learning","url":"https://arxiv.org/pdf/2210.05262"},{"title":"Reducing the estimation bias and variance in reinforcement learning via Maxmean and Aitken value iteration - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197625025333"},{"title":"Monte Carlo Bias Correction in Q-Learning | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-19907-3_33"},{"title":"Variation-resistant Q-learning: Controlling and Utilizing Estimation Bias","url":"https://www.scitepress.org/Papers/2021/101680/101680.pdf"},{"title":"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub","url":"https://github.com/yingchengyang/Reinforcement-Learning-Papers"},{"title":"Gaussian Approximation for Bias Reduction in Q-Learning","url":"https://jmlr.org/papers/volume22/20-633/20-633.pdf"},{"title":"Controlling estimation error in reinforcement learning via Reinforced Operation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0020025524006492"},{"title":"(PDF) Self-Correcting Models for Model-Based Reinforcement Learning","url":"https://www.academia.edu/30559347/Self_Correcting_Models_for_Model_Based_Reinforcement_Learning"},{"title":"TD3: Overcoming Overestimation in Deep Reinforcement Learning | by Dong-Keon Kim | Medium","url":"https://medium.com/@kdk199604/td3-overcoming-overestimation-in-deep-reinforcement-learning-c52d1cc9d69a"}]
+
+Based on the web search results, here's an overview of research related to value overestimation in stochastic reinforcement learning with world model self-correction:
+
+## Value Overestimation in Q-Learning
+
+The Q-learning algorithm suffers from overestimation bias due to the maximum operator appearing in its update rule. Value-based reinforcement learning methods suffer from overestimation bias, because of the existence of max operator, resulting in suboptimal policies.
+
+## Self-Correcting Approaches
+
+The research literature includes work on self-correcting mechanisms. Self-Correcting Q-Learning (SCQL) is one such approach referenced in the literature. Additionally, Hallucinated Replay trains the model to "correct" itself when it produces errors, substantially improving MBRL with flawed models, with theoretical analysis illuminating settings in which it is likely to be effective or ineffective.
+
+## Stochastic Approaches to Mitigation
+
+For stochastic reinforcement learning specifically, Estimation error induced by Stochastic Weighted Twin Critic Update may result in overestimation for some training iterations, but estimation error does not accumulate over a significant number of time steps due to its stochastic nature.
+
+## World Model-Based Methods
+
+When an agent cannot represent a perfectly accurate model of its environment's dynamics, model-based reinforcement learning can fail catastrophically, as planning involves composing the predictions of the model and when flawed predictions are composed, even minor errors can compound.
+
+The search results reveal substantial research on addressing overestimation bias through various techniques including double Q-learning, ensemble methods, and model-based approaches with self-correction mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "482b4e8a-4ef2-4077-9958-ded82be234f5",
+  "tool_use_result": {
+    "query": "value overestimation stochastic reinforcement learning world model self-correction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EgmCH5SPpY8jCsLtKTPEX5",
+        "content": [
+          {
+            "title": "Parameter-Free Reduction of the Estimation Bias in Deep Reinforcement Learning for Deterministic Policy Gradients | Neural Processing Letters | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11063-024-11461-y"
+          },
+          {
+            "title": "Factors of Inﬂuence of the Overestimation Bias of Q-Learning",
+            "url": "https://arxiv.org/pdf/2210.05262"
+          },
+          {
+            "title": "Reducing the estimation bias and variance in reinforcement learning via Maxmean and Aitken value iteration - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625025333"
+          },
+          {
+            "title": "Monte Carlo Bias Correction in Q-Learning | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-19907-3_33"
+          },
+          {
+            "title": "Variation-resistant Q-learning: Controlling and Utilizing Estimation Bias",
+            "url": "https://www.scitepress.org/Papers/2021/101680/101680.pdf"
+          },
+          {
+            "title": "GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub",
+            "url": "https://github.com/yingchengyang/Reinforcement-Learning-Papers"
+          },
+          {
+            "title": "Gaussian Approximation for Bias Reduction in Q-Learning",
+            "url": "https://jmlr.org/papers/volume22/20-633/20-633.pdf"
+          },
+          {
+            "title": "Controlling estimation error in reinforcement learning via Reinforced Operation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0020025524006492"
+          },
+          {
+            "title": "(PDF) Self-Correcting Models for Model-Based Reinforcement Learning",
+            "url": "https://www.academia.edu/30559347/Self_Correcting_Models_for_Model_Based_Reinforcement_Learning"
+          },
+          {
+            "title": "TD3: Overcoming Overestimation in Deep Reinforcement Learning | by Dong-Keon Kim | Medium",
+            "url": "https://medium.com/@kdk199604/td3-overcoming-overestimation-in-deep-reinforcement-learning-c52d1cc9d69a"
+          }
+        ]
+      },
+      "Based on the web search results, here's an overview of research related to value overestimation in stochastic reinforcement learning with world model self-correction:\n\n## Value Overestimation in Q-Learning\n\nThe Q-learning algorithm suffers from overestimation bias due to the maximum operator appearing in its update rule. Value-based reinforcement learning methods suffer from overestimation bias, because of the existence of max operator, resulting in suboptimal policies.\n\n## Self-Correcting Approaches\n\nThe research literature includes work on self-correcting mechanisms. Self-Correcting Q-Learning (SCQL) is one such approach referenced in the literature. Additionally, Hallucinated Replay trains the model to \"correct\" itself when it produces errors, substantially improving MBRL with flawed models, with theoretical analysis illuminating settings in which it is likely to be effective or ineffective.\n\n## Stochastic Approaches to Mitigation\n\nFor stochastic reinforcement learning specifically, Estimation error induced by Stochastic Weighted Twin Critic Update may result in overestimation for some training iterations, but estimation error does not accumulate over a significant number of time steps due to its stochastic nature.\n\n## World Model-Based Methods\n\nWhen an agent cannot represent a perfectly accurate model of its environment's dynamics, model-based reinforcement learning can fail catastrophically, as planning involves composing the predictions of the model and when flawed predictions are composed, even minor errors can compound.\n\nThe search results reveal substantial research on addressing overestimation bias through various techniques including double Q-learning, ensemble methods, and model-based approaches with self-correction mechanisms."
+    ],
+    "durationSeconds": 7.512176316000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T18:59:03.560Z_
+
+<details><summary>↩ Tool result · `toolu_01BUpxAZDMDpyGAp5LACbRXk`</summary>
+
+```text
+Web search results for query: "seed dependent collapse model-based reinforcement learning DreamerV3"
+
+Links: [{"title":"[2301.04104] Mastering Diverse Domains through World Models","url":"https://arxiv.org/abs/2301.04104"},{"title":"Mastering Diverse Control Tasks through World Models","url":"https://danijar.com/project/dreamerv3/"},{"title":"DreamerNav: learning-based autonomous navigation in dynamic indoor environments using world models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12510832/"},{"title":"Mastering Diverse Domains through World Models","url":"https://arxiv.org/pdf/2301.04104"},{"title":"DreamerV3: Model-Based RL Algorithm","url":"https://www.emergentmind.com/topics/dreamerv3-algorithm"},{"title":"Mastering diverse control tasks through world models | Nature","url":"https://www.nature.com/articles/s41586-025-08744-2"},{"title":"Next Embedding Prediction Makes World Models Stronger","url":"https://arxiv.org/html/2603.02765v1"},{"title":"DreamerV3: Mastering Diverse Domains through World Models","url":"https://vitalab.github.io/article/2023/01/19/DreamerV3.html"},{"title":"Parallelizing Model-based Reinforcement Learning Over the Sequence Length","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/ed5854c456e136afa3faa5e41b1f3509-Paper-Conference.pdf"},{"title":"GitHub - danijar/dreamerv3: Mastering Diverse Domains through World Models · GitHub","url":"https://github.com/danijar/dreamerv3"}]
+
+Based on the search results, I found relevant information about DreamerV3 and related concepts. Here's what I discovered:
+
+## DreamerV3 Overview
+
+DreamerV3 is a general algorithm that outperforms specialized methods across over 150 diverse tasks, with a single configuration. Dreamer learns a model of the environment and improves its behavior by imagining future scenarios.
+
+## Model-Based Architecture
+
+DreamerV3 is a model-based reinforcement learning algorithm that utilizes compact latent world models to enable efficient policy optimization through imagined rollouts, employing an RSSM architecture with parallel-trained encoder, actor, and critic components.
+
+## Addressing Collapse Issues
+
+Regarding the "collapse" aspect of your query, the search results discuss representation collapse prevention. Representational collapse, where the learned state becomes degenerate, is prevented through bootstrapping and redundancy-reduction regularizers like Barlow Twins, which can prevent collapse without negatives.
+
+Additionally, to encourage exploration and prevent the policy from collapsing into a deterministic strategy, an entropy term is added to the actor's loss function to encourage exploration by maintaining high entropy in the policy.
+
+## Robustness Techniques
+
+DreamerV3 introduces robustness techniques including observation symlog, KL balance and free bits, 1% unimix for all categoricals, percentile return normalization, symexp twohot loss for the reward head and critic.
+
+The search results did not contain specific information about "seed-dependent collapse" as a particular technical concept in DreamerV3. If you're looking for more specific details about this phenomenon, you might want to consult the original DreamerV3 paper directly or look for recent research discussing this specific aspect.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "a898c12f-6397-44f2-85f2-5de399a97599",
+  "tool_use_result": {
+    "query": "seed dependent collapse model-based reinforcement learning DreamerV3",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TSQZ8ShKTS6yzUN4HQwiEJ",
+        "content": [
+          {
+            "title": "[2301.04104] Mastering Diverse Domains through World Models",
+            "url": "https://arxiv.org/abs/2301.04104"
+          },
+          {
+            "title": "Mastering Diverse Control Tasks through World Models",
+            "url": "https://danijar.com/project/dreamerv3/"
+          },
+          {
+            "title": "DreamerNav: learning-based autonomous navigation in dynamic indoor environments using world models - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12510832/"
+          },
+          {
+            "title": "Mastering Diverse Domains through World Models",
+            "url": "https://arxiv.org/pdf/2301.04104"
+          },
+          {
+            "title": "DreamerV3: Model-Based RL Algorithm",
+            "url": "https://www.emergentmind.com/topics/dreamerv3-algorithm"
+          },
+          {
+            "title": "Mastering diverse control tasks through world models | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-08744-2"
+          },
+          {
+            "title": "Next Embedding Prediction Makes World Models Stronger",
+            "url": "https://arxiv.org/html/2603.02765v1"
+          },
+          {
+            "title": "DreamerV3: Mastering Diverse Domains through World Models",
+            "url": "https://vitalab.github.io/article/2023/01/19/DreamerV3.html"
+          },
+          {
+            "title": "Parallelizing Model-based Reinforcement Learning Over the Sequence Length",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/ed5854c456e136afa3faa5e41b1f3509-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - danijar/dreamerv3: Mastering Diverse Domains through World Models · GitHub",
+            "url": "https://github.com/danijar/dreamerv3"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about DreamerV3 and related concepts. Here's what I discovered:\n\n## DreamerV3 Overview\n\nDreamerV3 is a general algorithm that outperforms specialized methods across over 150 diverse tasks, with a single configuration. Dreamer learns a model of the environment and improves its behavior by imagining future scenarios.\n\n## Model-Based Architecture\n\nDreamerV3 is a model-based reinforcement learning algorithm that utilizes compact latent world models to enable efficient policy optimization through imagined rollouts, employing an RSSM architecture with parallel-trained encoder, actor, and critic components.\n\n## Addressing Collapse Issues\n\nRegarding the \"collapse\" aspect of your query, the search results discuss representation collapse prevention. Representational collapse, where the learned state becomes degenerate, is prevented through bootstrapping and redundancy-reduction regularizers like Barlow Twins, which can prevent collapse without negatives.\n\nAdditionally, to encourage exploration and prevent the policy from collapsing into a deterministic strategy, an entropy term is added to the actor's loss function to encourage exploration by maintaining high entropy in the policy.\n\n## Robustness Techniques\n\nDreamerV3 introduces robustness techniques including observation symlog, KL balance and free bits, 1% unimix for all categoricals, percentile return normalization, symexp twohot loss for the reward head and critic.\n\nThe search results did not contain specific information about \"seed-dependent collapse\" as a particular technical concept in DreamerV3. If you're looking for more specific details about this phenomenon, you might want to consult the original DreamerV3 paper directly or look for recent research discussing this specific aspect."
+    ],
+    "durationSeconds": 8.176474730999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T18:59:03.992Z_
+
+<details><summary>↩ Tool result · `toolu_01Qo5Z4rTWiFgNemTxbK9NcV`</summary>
+
+```text
+Web search results for query: "bifurcation deep reinforcement learning training dynamics dynamical systems"
+
+Links: [{"title":"Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks","url":"https://arxiv.org/html/2603.04420"},{"title":"Deep Learning for Bifurcation Detection: Extending Early Warning Signals to Dynamical Systems with Coloured Noise","url":"https://www.mdpi.com/2227-7390/13/17/2782"},{"title":"[2603.04420] Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks","url":"https://arxiv.org/abs/2603.04420"},{"title":"[1912.00947] Restoring Chaos Using Deep Reinforcement Learning","url":"https://ar5iv.labs.arxiv.org/html/1912.00947"},{"title":"Predicting discrete-time bifurcations with deep learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10564974/"},{"title":"Restoring chaos using deep reinforcement learning - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/32237764/"},{"title":"Predicting discrete-time bifurcations with deep learning | Nature Communications","url":"https://www.nature.com/articles/s41467-023-42020-z"},{"title":"[2303.09669] Predicting discrete-time bifurcations with deep learning","url":"https://ar5iv.labs.arxiv.org/html/2303.09669"},{"title":"Predicting discrete-time bifurcations with deep learning","url":"https://arxiv.org/html/2303.09669"},{"title":"Neural Ordinary Differential Equations for Learning and Extrapolating System Dynamics Across Bifurcations","url":"https://arxiv.org/html/2507.19036"}]
+
+I've found comprehensive research on bifurcations in deep learning and dynamical systems. Here's what the search revealed:
+
+## Key Research Areas
+
+**Deep Learning for Bifurcation Detection:**
+
+Deep learning classifiers can provide an early warning signal for critical transitions by learning generic features of bifurcations from large simulated training data sets. Researchers have leveraged the normal forms of three primary types of bifurcations (fold, transcritical, and Hopf) to construct training sets that enable deep learning architectures to perform effectively.
+
+**Bifurcation Prediction in Dynamical Systems:**
+
+A deep learning classifier has been trained to provide an early warning signal for the five local discrete-time bifurcations of codimension-one, with testing on simulation data from discrete-time models used in physiology, economics and ecology, as well as experimental data of spontaneously beating chick-heart aggregates that undergo a period-doubling bifurcation.
+
+**Reinforcement Learning Applications:**
+
+Deep reinforcement learning has been demonstrated to be useful in restoring chaos for a transiently-chaotic system, with the RL agent able to restore chaos in a transiently-chaotic regime of the Lorenz system of equations.
+
+**Recent Advances:**
+
+Neural Ordinary Differential Equations can recover underlying bifurcation structures directly from time-series data by learning parameter-dependent vector fields, and notably can forecast bifurcations even beyond the parameter regions represented in the training data.
+
+These research directions combine dynamical systems theory with modern deep learning techniques to better understand critical transitions and system behavior across bifurcations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "b3fa3618-6e2f-4bbc-82d1-b0bc1984412b",
+  "tool_use_result": {
+    "query": "bifurcation deep reinforcement learning training dynamics dynamical systems",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VqZqJtjJMn4SuGhawnodJQ",
+        "content": [
+          {
+            "title": "Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks",
+            "url": "https://arxiv.org/html/2603.04420"
+          },
+          {
+            "title": "Deep Learning for Bifurcation Detection: Extending Early Warning Signals to Dynamical Systems with Coloured Noise",
+            "url": "https://www.mdpi.com/2227-7390/13/17/2782"
+          },
+          {
+            "title": "[2603.04420] Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks",
+            "url": "https://arxiv.org/abs/2603.04420"
+          },
+          {
+            "title": "[1912.00947] Restoring Chaos Using Deep Reinforcement Learning",
+            "url": "https://ar5iv.labs.arxiv.org/html/1912.00947"
+          },
+          {
+            "title": "Predicting discrete-time bifurcations with deep learning - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10564974/"
+          },
+          {
+            "title": "Restoring chaos using deep reinforcement learning - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/32237764/"
+          },
+          {
+            "title": "Predicting discrete-time bifurcations with deep learning | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-023-42020-z"
+          },
+          {
+            "title": "[2303.09669] Predicting discrete-time bifurcations with deep learning",
+            "url": "https://ar5iv.labs.arxiv.org/html/2303.09669"
+          },
+          {
+            "title": "Predicting discrete-time bifurcations with deep learning",
+            "url": "https://arxiv.org/html/2303.09669"
+          },
+          {
+            "title": "Neural Ordinary Differential Equations for Learning and Extrapolating System Dynamics Across Bifurcations",
+            "url": "https://arxiv.org/html/2507.19036"
+          }
+        ]
+      },
+      "I've found comprehensive research on bifurcations in deep learning and dynamical systems. Here's what the search revealed:\n\n## Key Research Areas\n\n**Deep Learning for Bifurcation Detection:**\n\nDeep learning classifiers can provide an early warning signal for critical transitions by learning generic features of bifurcations from large simulated training data sets. Researchers have leveraged the normal forms of three primary types of bifurcations (fold, transcritical, and Hopf) to construct training sets that enable deep learning architectures to perform effectively.\n\n**Bifurcation Prediction in Dynamical Systems:**\n\nA deep learning classifier has been trained to provide an early warning signal for the five local discrete-time bifurcations of codimension-one, with testing on simulation data from discrete-time models used in physiology, economics and ecology, as well as experimental data of spontaneously beating chick-heart aggregates that undergo a period-doubling bifurcation.\n\n**Reinforcement Learning Applications:**\n\nDeep reinforcement learning has been demonstrated to be useful in restoring chaos for a transiently-chaotic system, with the RL agent able to restore chaos in a transiently-chaotic regime of the Lorenz system of equations.\n\n**Recent Advances:**\n\nNeural Ordinary Differential Equations can recover underlying bifurcation structures directly from time-series data by learning parameter-dependent vector fields, and notably can forecast bifurcations even beyond the parameter regions represented in the training data.\n\nThese research directions combine dynamical systems theory with modern deep learning techniques to better understand critical transitions and system behavior across bifurcations."
+    ],
+    "durationSeconds": 8.424199576
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The first round of searches didn't find exactly what I need. Let me do more targeted searches for the specific topics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "4952c03b-c591-4ea7-b779-ec3857c4dcc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kgB1DnXoVvtY9p4QhMWGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 25123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+第一轮搜索未直接命中。继续更精准的搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "05657033-20af-4896-a163-a7c78b7ef2a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kgB1DnXoVvtY9p4QhMWGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 25123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A7CzqMpcThPs6z2xzGvTtU`</summary>
+
+```json
+{
+  "query": "temporal embedding value function critic reinforcement learning conditioning horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "68f1a22d-80e1-4286-bb71-527f0f12d2fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kgB1DnXoVvtY9p4QhMWGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 25123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LWEDzg9RS1Anc1DL4o4Adf`</summary>
+
+```json
+{
+  "query": "\"critic overestimation\" \"model-based\" imagination rollout dreamer MBPO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "22fa36c3-b51e-460b-b8b8-66b0d17c9009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kgB1DnXoVvtY9p4QhMWGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 25123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01547QCHUHZsnc5aAWYPKPdt`</summary>
+
+```json
+{
+  "query": "reinforcement learning training instability seed variance reproducibility deep RL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "a813146c-9b82-48a4-b895-fe13dbd76cad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kgB1DnXoVvtY9p4QhMWGF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6781,
+      "cache_read_input_tokens": 25123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6781
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T18:59:15.811Z_
+
+<details><summary>↩ Tool result · `toolu_01A7CzqMpcThPs6z2xzGvTtU`</summary>
+
+```text
+Web search results for query: "temporal embedding value function critic reinforcement learning conditioning horizon"
+
+Links: [{"title":"Reinforcement learning - Scholarpedia","url":"http://www.scholarpedia.org/article/Reinforcement_learning"},{"title":"Reinforcement learning - Wikipedia","url":"https://en.wikipedia.org/wiki/Reinforcement_learning"},{"title":"Transformer Critic with Action Chunking","url":"https://www.emergentmind.com/topics/transformer-based-critic-with-action-chunking"},{"title":"Explainable Reinforcement Learning via Temporal Policy Decomposition","url":"https://arxiv.org/html/2501.03902v1"},{"title":"Policy Gradient and Actor–Critic Learning in Continuous ...","url":"https://www.jmlr.org/papers/volume23/21-1387/21-1387.pdf"},{"title":"Reinforcement learning with temporal and variable dependency-aware transformer for stock trading optimization - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025007865"},{"title":"Abstract","url":"https://arxiv.org/html/2510.14503"},{"title":"Safe reinforcement learning under temporal logic with reward design and quantum action selection | Scientific Reports","url":"https://www.nature.com/articles/s41598-023-28582-4"},{"title":"Actor-critic methods — Mastering Reinforcement Learning","url":"https://gibberblot.github.io/rl-notes/single-agent/actor-critic.html"},{"title":"Instructing Goal-Conditioned Reinforcement Learning ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/7b35a69f434b5eb07ed1b1ef16ace52c-Paper-Conference.pdf"}]
+
+I've performed a web search for your query about temporal embedding, value function, critic, reinforcement learning, conditioning, and horizon. Here are the key findings:
+
+## Main Results
+
+**Transformer-Based Critic with Temporal Modeling:**
+A Transformer-based Critic refers to methods in deep reinforcement learning where the value function (critic) is parameterized by a Transformer architecture, leveraging the temporal modeling capabilities of Transformers to enhance credit assignment, especially in long-horizon or sparse-reward environments.
+
+**Temporal Structure in Value Functions:**
+In reinforcement learning, value functions compress information about rewards collected across multiple trajectories and over an infinite horizon, allowing a compact form of knowledge representation. However, a core problem in explaining RL behavior lies in how value functions obscure temporal information, specifically by summarizing expected rewards over multiple trajectories and an infinite horizon, effectively hiding when and where rewards are expected to be collected.
+
+**Horizon-Conditioned Learning:**
+Temporal Policy Decomposition is a method that explains RL actions in terms of Expected Future Outcomes (EFOs), where given an initial state-action pair, outcome function, and RL policy, an EFO provides information about the outcome after a specific number of time steps, with explanations consisting of EFOs for each future time step up to a fixed prediction horizon.
+
+**Actor-Critic Foundations:**
+An actor-critic algorithm consists of two parts: to estimate the value function of a given policy and to update (improve) the policy.
+
+The search results highlight how modern approaches use temporal embeddings and transformer architectures to better capture long-horizon dependencies in value function estimation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "4529ac53-980f-4720-a814-c4d88a9af330",
+  "tool_use_result": {
+    "query": "temporal embedding value function critic reinforcement learning conditioning horizon",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019KFrEBzPbDMiQw5zvNbTFU",
+        "content": [
+          {
+            "title": "Reinforcement learning - Scholarpedia",
+            "url": "http://www.scholarpedia.org/article/Reinforcement_learning"
+          },
+          {
+            "title": "Reinforcement learning - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Reinforcement_learning"
+          },
+          {
+            "title": "Transformer Critic with Action Chunking",
+            "url": "https://www.emergentmind.com/topics/transformer-based-critic-with-action-chunking"
+          },
+          {
+            "title": "Explainable Reinforcement Learning via Temporal Policy Decomposition",
+            "url": "https://arxiv.org/html/2501.03902v1"
+          },
+          {
+            "title": "Policy Gradient and Actor–Critic Learning in Continuous ...",
+            "url": "https://www.jmlr.org/papers/volume23/21-1387/21-1387.pdf"
+          },
+          {
+            "title": "Reinforcement learning with temporal and variable dependency-aware transformer for stock trading optimization - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025007865"
+          },
+          {
+            "title": "Abstract",
+            "url": "https://arxiv.org/html/2510.14503"
+          },
+          {
+            "title": "Safe reinforcement learning under temporal logic with reward design and quantum action selection | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-023-28582-4"
+          },
+          {
+            "title": "Actor-critic methods — Mastering Reinforcement Learning",
+            "url": "https://gibberblot.github.io/rl-notes/single-agent/actor-critic.html"
+          },
+          {
+            "title": "Instructing Goal-Conditioned Reinforcement Learning ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/7b35a69f434b5eb07ed1b1ef16ace52c-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "I've performed a web search for your query about temporal embedding, value function, critic, reinforcement learning, conditioning, and horizon. Here are the key findings:\n\n## Main Results\n\n**Transformer-Based Critic with Temporal Modeling:**\nA Transformer-based Critic refers to methods in deep reinforcement learning where the value function (critic) is parameterized by a Transformer architecture, leveraging the temporal modeling capabilities of Transformers to enhance credit assignment, especially in long-horizon or sparse-reward environments.\n\n**Temporal Structure in Value Functions:**\nIn reinforcement learning, value functions compress information about rewards collected across multiple trajectories and over an infinite horizon, allowing a compact form of knowledge representation. However, a core problem in explaining RL behavior lies in how value functions obscure temporal information, specifically by summarizing expected rewards over multiple trajectories and an infinite horizon, effectively hiding when and where rewards are expected to be collected.\n\n**Horizon-Conditioned Learning:**\nTemporal Policy Decomposition is a method that explains RL actions in terms of Expected Future Outcomes (EFOs), where given an initial state-action pair, outcome function, and RL policy, an EFO provides information about the outcome after a specific number of time steps, with explanations consisting of EFOs for each future time step up to a fixed prediction horizon.\n\n**Actor-Critic Foundations:**\nAn actor-critic algorithm consists of two parts: to estimate the value function of a given policy and to update (improve) the policy.\n\nThe search results highlight how modern approaches use temporal embeddings and transformer architectures to better capture long-horizon dependencies in value function estimation."
+    ],
+    "durationSeconds": 7.948840950999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:59:16.551Z_
+
+<details><summary>↩ Tool result · `toolu_01LWEDzg9RS1Anc1DL4o4Adf`</summary>
+
+```text
+Web search results for query: ""critic overestimation" "model-based" imagination rollout dreamer MBPO"
+
+Links: [{"title":"Dreamer: Learning Long-Horizon Behaviors through Latent Imagination | by Dong-Keon Kim | Medium","url":"https://medium.com/@kdk199604/dreamer-learning-long-horizon-behaviors-through-latent-imagination-fa60327c2843"},{"title":"Week 5: Model-Based Methods - Deep RL Course","url":"https://deeprlcourse.github.io/course_notes/model-based/"},{"title":"Interpretable World Model Imaginations as Deep Reinforcement Learning Explanation | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-032-08327-2_7"},{"title":"LEARNING BEHAVIORS BY LATENT IMAGINATION","url":"https://openreview.net/pdf?id=S1lOTC4tDS"},{"title":"Mastering diverse control tasks through world models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12003158/"},{"title":"GitHub - opendilab/awesome-model-based-RL: A curated list of awesome model based RL resources (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-model-based-RL"},{"title":"Model-Based Reinforcement Learning via Imagination with Derived Memory Yao Mu","url":"https://proceedings.neurips.cc/paper/2021/file/4ebccfb3e317c7789f04f7a558df4537-Paper.pdf"},{"title":"Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning","url":"https://arxiv.org/html/2412.14312"},{"title":"Mastering diverse control tasks through world models | Nature","url":"https://www.nature.com/articles/s41586-025-08744-2"},{"title":"Published as a conference paper at ICLR 2020","url":"https://arxiv.org/pdf/1912.01603"}]
+
+I found several relevant search results about critic overestimation and model-based reinforcement learning methods. Here are the key findings:
+
+## Critic Overestimation Issues
+
+Critic divergence is a well-known challenge in off-policy RL that can be exacerbated by overly-replaying stale data during training. Recent studies have highlighted two forms of critic divergence: overestimation and underestimation. Overestimation, common in offline and online off-policy methods with high replay ratios, arises when a learned Q-function is queried for state-action pairs that are out-of-distribution for the training data.
+
+In MBPO specifically, the critic either massively underestimates or predicts no return when compared to SAC. Overestimation is magnified in quadruped tasks with Dyna-style enhancements.
+
+## Model-Based Methods: MBPO and Dreamer
+
+MBPO maintains a replay buffer of the transitions it has experienced in the environment and supplements this real world data by generating synthetic on-policy rollouts that branch from states in the replay buffer, thereby augmenting the replay data with "imagined" transitions. This partially synthetic dataset is then used to train both the actor and the critic.
+
+MBPO uses a learned model to generate short rollouts for policy optimization, while Dreamer trains a world model and then uses latent imagination (rollouts in latent space) to learn a global policy.
+
+Dreamer uses an actor critic approach to learn behaviors that consider rewards beyond the horizon, learning an action model and a value model in the latent space of the world model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "06058857-304b-4a62-9799-d49231490a4c",
+  "tool_use_result": {
+    "query": "\"critic overestimation\" \"model-based\" imagination rollout dreamer MBPO",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EhxkcxJmHoHjapuqfPA4hG",
+        "content": [
+          {
+            "title": "Dreamer: Learning Long-Horizon Behaviors through Latent Imagination | by Dong-Keon Kim | Medium",
+            "url": "https://medium.com/@kdk199604/dreamer-learning-long-horizon-behaviors-through-latent-imagination-fa60327c2843"
+          },
+          {
+            "title": "Week 5: Model-Based Methods - Deep RL Course",
+            "url": "https://deeprlcourse.github.io/course_notes/model-based/"
+          },
+          {
+            "title": "Interpretable World Model Imaginations as Deep Reinforcement Learning Explanation | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-032-08327-2_7"
+          },
+          {
+            "title": "LEARNING BEHAVIORS BY LATENT IMAGINATION",
+            "url": "https://openreview.net/pdf?id=S1lOTC4tDS"
+          },
+          {
+            "title": "Mastering diverse control tasks through world models - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12003158/"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-model-based-RL: A curated list of awesome model based RL resources (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-model-based-RL"
+          },
+          {
+            "title": "Model-Based Reinforcement Learning via Imagination with Derived Memory Yao Mu",
+            "url": "https://proceedings.neurips.cc/paper/2021/file/4ebccfb3e317c7789f04f7a558df4537-Paper.pdf"
+          },
+          {
+            "title": "Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning",
+            "url": "https://arxiv.org/html/2412.14312"
+          },
+          {
+            "title": "Mastering diverse control tasks through world models | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-08744-2"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2020",
+            "url": "https://arxiv.org/pdf/1912.01603"
+          }
+        ]
+      },
+      "I found several relevant search results about critic overestimation and model-based reinforcement learning methods. Here are the key findings:\n\n## Critic Overestimation Issues\n\nCritic divergence is a well-known challenge in off-policy RL that can be exacerbated by overly-replaying stale data during training. Recent studies have highlighted two forms of critic divergence: overestimation and underestimation. Overestimation, common in offline and online off-policy methods with high replay ratios, arises when a learned Q-function is queried for state-action pairs that are out-of-distribution for the training data.\n\nIn MBPO specifically, the critic either massively underestimates or predicts no return when compared to SAC. Overestimation is magnified in quadruped tasks with Dyna-style enhancements.\n\n## Model-Based Methods: MBPO and Dreamer\n\nMBPO maintains a replay buffer of the transitions it has experienced in the environment and supplements this real world data by generating synthetic on-policy rollouts that branch from states in the replay buffer, thereby augmenting the replay data with \"imagined\" transitions. This partially synthetic dataset is then used to train both the actor and the critic.\n\nMBPO uses a learned model to generate short rollouts for policy optimization, while Dreamer trains a world model and then uses latent imagination (rollouts in latent space) to learn a global policy.\n\nDreamer uses an actor critic approach to learn behaviors that consider rewards beyond the horizon, learning an action model and a value model in the latent space of the world model."
+    ],
+    "durationSeconds": 7.8070650140000035
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T18:59:19.408Z_
+
+<details><summary>↩ Tool result · `toolu_01547QCHUHZsnc5aAWYPKPdt`</summary>
+
+```text
+Web search results for query: "reinforcement learning training instability seed variance reproducibility deep RL"
+
+Links: [{"title":"Variability of Deep Reinforcement Learning Agents in Atari ...","url":"https://people.cs.umass.edu/~kclary/NeurIPS_Critiquing_Trends_Workshop_2018___Variability_of_Deep_RL.pdf"},{"title":"[PDF] Is High Variance Unavoidable in RL? A Case Study in Continuous Control | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Is-High-Variance-Unavoidable-in-RL-A-Case-Study-in-Bjorck-Gomes/c578a295ba3456bebc651f1f516e34ea6e7a5fe3"},{"title":"Is High Variance Unavoidable in RL? A Case Study in Continuous Control | OpenReview","url":"https://openreview.net/forum?id=9xhgmsNVHu"},{"title":"Training instability in deep learning follows low-dimensional dynamical principles","url":"https://arxiv.org/html/2601.13160"},{"title":"Towards Stable and Effective Reinforcement Learning for Mixture-of-Experts","url":"https://arxiv.org/html/2510.23027v1"},{"title":"Is High Variance Unavoidable in RL? A Case Study in Continuous Control | DeepAI","url":"https://deepai.org/publication/is-high-variance-unavoidable-in-rl-a-case-study-in-continuous-control"},{"title":"Deep reinforcement learning that matters | Proceedings of the Thirty-Second AAAI Conference on Artificial Intelligence and Thirtieth Innovative Applications of Artificial Intelligence Conference and Eighth AAAI Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/abs/10.5555/3504035.3504427"},{"title":"The Impact of Nondeterminism on Reproducibility in Deep Reinforcement Learning","url":"https://prabhatnagarajan.com/publications/2018/nagarajanrml2018.pdf"},{"title":"[1909.03772] A Survey on Reproducibility by Evaluating Deep Reinforcement Learning Algorithms on Real-World Robots","url":"https://arxiv.org/abs/1909.03772"},{"title":"The Complete Guide of Learning Rate in RL – AI Robotics: Tutorials, Practical Reinforcement Learning, and Real-World Control","url":"https://www.reinforcementlearningpath.com/the-complete-guide-of-learning-rate-in-rl"}]
+
+Based on the search results, here's a comprehensive overview of reinforcement learning training instability, seed variance, and reproducibility challenges:
+
+## Core Issues with Training Instability and Variance
+
+Reinforcement learning (RL) experiments have notoriously high variance, and minor details can have disproportionately large effects on measured outcomes. This is problematic for creating reproducible research and also serves as an obstacle when applying RL to sensitive real-world applications.
+
+## Sources of Variance and Instability
+
+Variability in deep RL arises from differences in algorithm implementation, hyperparameter selection, environment stochasticity, network architectures, and random seed selection. Non-determinism in standard benchmark environments, combined with variance intrinsic to the methods, can make reported results tough to interpret.
+
+Research has identified specific patterns: Poor outlier runs which completely fail to learn are an important source of variance, but weight initialization and initial exploration are not at fault. One cause for these outliers is unstable network parametrization which leads to saturating nonlinearities, and normalizing penultimate features is surprisingly effective.
+
+## The Role of Random Seeds
+
+Deep RL researchers often train multiple agents with different random seeds to account for this variability in training. However, careful selection of random seeds during training does not necessarily translate to careful consideration of reporting metrics for reproducibility, and reporting and analyzing the choice of random seed is critical for reproducing a training procedure.
+
+## Training Dynamics and Stability
+
+Training unfolds as a high-dimensional dynamical system in which small perturbations to optimization, data, parameters, or learning signals can induce abrupt and irreversible collapse, undermining reproducibility and scalability. Models can continue to improve in final performance while simultaneously becoming more fragile to small, structured perturbations introduced during training.
+
+These findings highlight the critical importance of rigorous experimental design and reporting standards in deep RL research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "24497f9f-76db-46fd-b5da-f2d3fd7b5f08",
+  "tool_use_result": {
+    "query": "reinforcement learning training instability seed variance reproducibility deep RL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NUQZTjQoZsGGo8QWhiHRqc",
+        "content": [
+          {
+            "title": "Variability of Deep Reinforcement Learning Agents in Atari ...",
+            "url": "https://people.cs.umass.edu/~kclary/NeurIPS_Critiquing_Trends_Workshop_2018___Variability_of_Deep_RL.pdf"
+          },
+          {
+            "title": "[PDF] Is High Variance Unavoidable in RL? A Case Study in Continuous Control | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Is-High-Variance-Unavoidable-in-RL-A-Case-Study-in-Bjorck-Gomes/c578a295ba3456bebc651f1f516e34ea6e7a5fe3"
+          },
+          {
+            "title": "Is High Variance Unavoidable in RL? A Case Study in Continuous Control | OpenReview",
+            "url": "https://openreview.net/forum?id=9xhgmsNVHu"
+          },
+          {
+            "title": "Training instability in deep learning follows low-dimensional dynamical principles",
+            "url": "https://arxiv.org/html/2601.13160"
+          },
+          {
+            "title": "Towards Stable and Effective Reinforcement Learning for Mixture-of-Experts",
+            "url": "https://arxiv.org/html/2510.23027v1"
+          },
+          {
+            "title": "Is High Variance Unavoidable in RL? A Case Study in Continuous Control | DeepAI",
+            "url": "https://deepai.org/publication/is-high-variance-unavoidable-in-rl-a-case-study-in-continuous-control"
+          },
+          {
+            "title": "Deep reinforcement learning that matters | Proceedings of the Thirty-Second AAAI Conference on Artificial Intelligence and Thirtieth Innovative Applications of Artificial Intelligence Conference and Eighth AAAI Symposium on Educational Advances in Artificial Intelligence",
+            "url": "https://dl.acm.org/doi/abs/10.5555/3504035.3504427"
+          },
+          {
+            "title": "The Impact of Nondeterminism on Reproducibility in Deep Reinforcement Learning",
+            "url": "https://prabhatnagarajan.com/publications/2018/nagarajanrml2018.pdf"
+          },
+          {
+            "title": "[1909.03772] A Survey on Reproducibility by Evaluating Deep Reinforcement Learning Algorithms on Real-World Robots",
+            "url": "https://arxiv.org/abs/1909.03772"
+          },
+          {
+            "title": "The Complete Guide of Learning Rate in RL – AI Robotics: Tutorials, Practical Reinforcement Learning, and Real-World Control",
+            "url": "https://www.reinforcementlearningpath.com/the-complete-guide-of-learning-rate-in-rl"
+          }
+        ]
+      },
+      "Based on the search results, here's a comprehensive overview of reinforcement learning training instability, seed variance, and reproducibility challenges:\n\n## Core Issues with Training Instability and Variance\n\nReinforcement learning (RL) experiments have notoriously high variance, and minor details can have disproportionately large effects on measured outcomes. This is problematic for creating reproducible research and also serves as an obstacle when applying RL to sensitive real-world applications.\n\n## Sources of Variance and Instability\n\nVariability in deep RL arises from differences in algorithm implementation, hyperparameter selection, environment stochasticity, network architectures, and random seed selection. Non-determinism in standard benchmark environments, combined with variance intrinsic to the methods, can make reported results tough to interpret.\n\nResearch has identified specific patterns: Poor outlier runs which completely fail to learn are an important source of variance, but weight initialization and initial exploration are not at fault. One cause for these outliers is unstable network parametrization which leads to saturating nonlinearities, and normalizing penultimate features is surprisingly effective.\n\n## The Role of Random Seeds\n\nDeep RL researchers often train multiple agents with different random seeds to account for this variability in training. However, careful selection of random seeds during training does not necessarily translate to careful consideration of reporting metrics for reproducibility, and reporting and analyzing the choice of random seed is critical for reproducing a training procedure.\n\n## Training Dynamics and Stability\n\nTraining unfolds as a high-dimensional dynamical system in which small perturbations to optimization, data, parameters, or learning signals can induce abrupt and irreversible collapse, undermining reproducibility and scalability. Models can continue to improve in final performance while simultaneously becoming more fragile to small, structured perturbations introduced during training.\n\nThese findings highlight the critical importance of rigorous experimental design and reporting standards in deep RL research."
+    ],
+    "durationSeconds": 10.308147531000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I'm getting closer. Let me search for a few more specific topics:
+1. "loss of plasticity" in RL (related to collapse)
+2. Stochastic bifurcation specifically in neural network training
+3. Time-step conditioning / dt embedding in RL
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "0bd899f3-703e-467b-9e39-a0730d0abbc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ed3CVZZNCDVUQJ4seuE9in",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3208,
+      "cache_read_input_tokens": 31904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+找到一些关键线索。继续搜索更具针对性的方向。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "1abe69fa-32af-4858-bf40-8f6dbbf0d08b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ed3CVZZNCDVUQJ4seuE9in",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3208,
+      "cache_read_input_tokens": 31904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MWSu3jZWxKyU6fZ1dBCSDA`</summary>
+
+```json
+{
+  "query": "\"loss of plasticity\" reinforcement learning collapse seed dependent training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "159cf32d-ccff-46a8-ade2-0bb590206bbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ed3CVZZNCDVUQJ4seuE9in",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3208,
+      "cache_read_input_tokens": 31904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0157eupCbt8wnibHgKTjwQNk`</summary>
+
+```json
+{
+  "query": "stochastic bifurcation neural network training loss landscape critical transition"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "3e9d343e-939e-4965-af35-f0f3533930ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ed3CVZZNCDVUQJ4seuE9in",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3208,
+      "cache_read_input_tokens": 31904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SupK3zah8KVJnnWAMbQx29`</summary>
+
+```json
+{
+  "query": "\"time step\" conditioning embedding world model reinforcement learning dt variable step"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "bb51aa1f-ef6a-4404-81e9-5a25c21c65ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ed3CVZZNCDVUQJ4seuE9in",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3208,
+      "cache_read_input_tokens": 31904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T18:59:31.574Z_
+
+<details><summary>↩ Tool result · `toolu_01MWSu3jZWxKyU6fZ1dBCSDA`</summary>
+
+```text
+Web search results for query: ""loss of plasticity" reinforcement learning collapse seed dependent training"
+
+Links: [{"title":"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/ce7984e36d58659211a8dc7d5457cd6f-Paper-Conference.pdf"},{"title":"Loss of plasticity in deep continual learning | Nature","url":"https://www.nature.com/articles/s41586-024-07711-7"},{"title":"Disentangling the Causes of Plasticity Loss in Neural Networks","url":"https://arxiv.org/html/2402.18762v1"},{"title":"Loss of Plasticity in Continual Deep Reinforcement Learning","url":"https://proceedings.mlr.press/v232/abbas23a/abbas23a.pdf"},{"title":"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning","url":"https://arxiv.org/html/2405.19153v2"},{"title":"SPHERE: Mitigating the Loss of Spectral Plasticity in Mixture-of-Experts for Deep Reinforcement Learning","url":"https://arxiv.org/html/2605.04712"},{"title":"[2303.07507] Loss of Plasticity in Continual Deep Reinforcement Learning","url":"https://arxiv.org/abs/2303.07507"},{"title":"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn | OpenReview","url":"https://openreview.net/forum?id=EkoFXfSauv"},{"title":"Loss of plasticity in deep continual learning - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/39169245/"},{"title":"ICML Poster Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn","url":"https://icml.cc/virtual/2025/poster/45929"}]
+
+I found several relevant research papers and studies on loss of plasticity in reinforcement learning. Here's what the search results reveal:
+
+## Key Findings
+
+**Loss of Plasticity Definition and Problem:**
+Standard deep-learning methods gradually lose plasticity in continual-learning settings until they learn no better than a shallow network, as demonstrated using the classic ImageNet dataset and reinforcement-learning problems across a wide range of variations.
+
+**Seed Dependence and Instability:**
+Deep reinforcement learning becomes unstable and brittle with respect to hyperparameters and even random seeds.
+
+**Policy Collapse and Plasticity Loss:**
+In on-policy RL, there is a related phenomena to plasticity loss called "policy collapse," which refers to a degradation of performance as training progresses, even on a fixed dataset. The research distinguishes these as separate phenomena, though they may share mitigation strategies.
+
+**Multiple Underlying Mechanisms:**
+Loss of plasticity can be decomposed into multiple independent mechanisms and, while intervening on any single mechanism is insufficient to avoid the loss of plasticity in all cases, intervening on multiple mechanisms in conjunction results in highly robust learning algorithms.
+
+**Proposed Solutions:**
+A simple change enables deep-learning methods to maintain plasticity indefinitely in both supervised and reinforcement learning, with the new algorithm, continual backpropagation, reinitialized a tiny proportion of less-used units on each step much as they were all initialized at the start of training.
+
+**Experimental Approach:**
+Recent research involves running experiments with five repetitions using unique random seeds each.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "193b9134-f81f-4e9a-9e58-1ad3e0d09d07",
+  "tool_use_result": {
+    "query": "\"loss of plasticity\" reinforcement learning collapse seed dependent training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LkXnGPzxa7cPMJoCHnHEuU",
+        "content": [
+          {
+            "title": "A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/ce7984e36d58659211a8dc7d5457cd6f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Loss of plasticity in deep continual learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-024-07711-7"
+          },
+          {
+            "title": "Disentangling the Causes of Plasticity Loss in Neural Networks",
+            "url": "https://arxiv.org/html/2402.18762v1"
+          },
+          {
+            "title": "Loss of Plasticity in Continual Deep Reinforcement Learning",
+            "url": "https://proceedings.mlr.press/v232/abbas23a/abbas23a.pdf"
+          },
+          {
+            "title": "A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning",
+            "url": "https://arxiv.org/html/2405.19153v2"
+          },
+          {
+            "title": "SPHERE: Mitigating the Loss of Spectral Plasticity in Mixture-of-Experts for Deep Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.04712"
+          },
+          {
+            "title": "[2303.07507] Loss of Plasticity in Continual Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2303.07507"
+          },
+          {
+            "title": "Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn | OpenReview",
+            "url": "https://openreview.net/forum?id=EkoFXfSauv"
+          },
+          {
+            "title": "Loss of plasticity in deep continual learning - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/39169245/"
+          },
+          {
+            "title": "ICML Poster Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn",
+            "url": "https://icml.cc/virtual/2025/poster/45929"
+          }
+        ]
+      },
+      "I found several relevant research papers and studies on loss of plasticity in reinforcement learning. Here's what the search results reveal:\n\n## Key Findings\n\n**Loss of Plasticity Definition and Problem:**\nStandard deep-learning methods gradually lose plasticity in continual-learning settings until they learn no better than a shallow network, as demonstrated using the classic ImageNet dataset and reinforcement-learning problems across a wide range of variations.\n\n**Seed Dependence and Instability:**\nDeep reinforcement learning becomes unstable and brittle with respect to hyperparameters and even random seeds.\n\n**Policy Collapse and Plasticity Loss:**\nIn on-policy RL, there is a related phenomena to plasticity loss called \"policy collapse,\" which refers to a degradation of performance as training progresses, even on a fixed dataset. The research distinguishes these as separate phenomena, though they may share mitigation strategies.\n\n**Multiple Underlying Mechanisms:**\nLoss of plasticity can be decomposed into multiple independent mechanisms and, while intervening on any single mechanism is insufficient to avoid the loss of plasticity in all cases, intervening on multiple mechanisms in conjunction results in highly robust learning algorithms.\n\n**Proposed Solutions:**\nA simple change enables deep-learning methods to maintain plasticity indefinitely in both supervised and reinforcement learning, with the new algorithm, continual backpropagation, reinitialized a tiny proportion of less-used units on each step much as they were all initialized at the start of training.\n\n**Experimental Approach:**\nRecent research involves running experiments with five repetitions using unique random seeds each."
+    ],
+    "durationSeconds": 7.664631496000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T18:59:32.885Z_
+
+<details><summary>↩ Tool result · `toolu_01SupK3zah8KVJnnWAMbQx29`</summary>
+
+```text
+Web search results for query: ""time step" conditioning embedding world model reinforcement learning dt variable step"
+
+Links: [{"title":"Training Agents Inside of Scalable World Models Danijar Hafner* Wilson Yan*","url":"https://arxiv.org/pdf/2509.24527"},{"title":"Variable Time Step Reinforcement Learning for Robotic Applications","url":"https://arxiv.org/html/2407.00290v1"},{"title":"[2406.01521] MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://arxiv.org/abs/2406.01521"},{"title":"Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/html/2402.14961v1"},{"title":"Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-76719-w"},{"title":"World Models David Ha 1 J¨urgen Schmidhuber 2 3 Abstract","url":"https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2022_2023/papers/ha_arXiv_2018.pdf"},{"title":"Tutorial 4: Model-Based Reinforcement Learning — Neuromatch Academy: Computational Neuroscience","url":"https://compneuro.neuromatch.io/tutorials/W3D4_ReinforcementLearning/student/W3D4_Tutorial4.html"},{"title":"MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://arxiv.org/html/2406.01521"},{"title":"(PDF) MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://www.researchgate.net/publication/381152918_MOSEAC_Streamlined_Variable_Time_Step_Reinforcement_Learning"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8bead340bb510de5c8356f60ca039efc-Paper-Conference.pdf"}]
+
+The search results show several relevant papers on time step conditioning and variable time steps in reinforcement learning and world models. Here are the key findings:
+
+## Time Step Conditioning in World Models
+
+At inference time, one can condition the model on a step size d = 1/K to target K sampling steps, without suffering from discretization error because the model has learned to predict the end point of each step. This approach is used in modern world models like Dreamer 4 for flexible inference with different numbers of sampling steps.
+
+## Variable Time Step Reinforcement Learning (VTS-RL)
+
+Variable Time Step Reinforcement Learning (VTS-RL) addresses adaptive control frequencies, executing actions only when necessary, thus reducing computational load and extending the action space to include action durations.
+
+SEAC implements elastic time steps, time steps with a known, variable duration, which allow the agent to change its control frequency to adapt to the situation. In practice, SEAC applies control only when necessary, minimizing computational resources and data usage.
+
+## Related Approaches
+
+Shortcut models condition flows on both noise level and step size, producing fast generative models in one training phase and without schedules. Mean Flow extends the idea of conditioning on the step size to a continuous time formulation.
+
+The research shows that incorporating time/step information as a conditioning variable in both generative models and reinforcement learning enables more flexible and efficient control strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "21d65067-f6aa-4b41-a471-17fdc8a9a00c",
+  "tool_use_result": {
+    "query": "\"time step\" conditioning embedding world model reinforcement learning dt variable step",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QuageQWJbVz1cRfVE2PpQE",
+        "content": [
+          {
+            "title": "Training Agents Inside of Scalable World Models Danijar Hafner* Wilson Yan*",
+            "url": "https://arxiv.org/pdf/2509.24527"
+          },
+          {
+            "title": "Variable Time Step Reinforcement Learning for Robotic Applications",
+            "url": "https://arxiv.org/html/2407.00290v1"
+          },
+          {
+            "title": "[2406.01521] MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2406.01521"
+          },
+          {
+            "title": "Reinforcement Learning with Elastic Time Steps",
+            "url": "https://arxiv.org/html/2402.14961v1"
+          },
+          {
+            "title": "Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-76719-w"
+          },
+          {
+            "title": "World Models David Ha 1 J¨urgen Schmidhuber 2 3 Abstract",
+            "url": "https://www.cl.cam.ac.uk/~ey204/teaching/ACS/R244_2022_2023/papers/ha_arXiv_2018.pdf"
+          },
+          {
+            "title": "Tutorial 4: Model-Based Reinforcement Learning — Neuromatch Academy: Computational Neuroscience",
+            "url": "https://compneuro.neuromatch.io/tutorials/W3D4_ReinforcementLearning/student/W3D4_Tutorial4.html"
+          },
+          {
+            "title": "MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://arxiv.org/html/2406.01521"
+          },
+          {
+            "title": "(PDF) MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/381152918_MOSEAC_Streamlined_Variable_Time_Step_Reinforcement_Learning"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8bead340bb510de5c8356f60ca039efc-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "The search results show several relevant papers on time step conditioning and variable time steps in reinforcement learning and world models. Here are the key findings:\n\n## Time Step Conditioning in World Models\n\nAt inference time, one can condition the model on a step size d = 1/K to target K sampling steps, without suffering from discretization error because the model has learned to predict the end point of each step. This approach is used in modern world models like Dreamer 4 for flexible inference with different numbers of sampling steps.\n\n## Variable Time Step Reinforcement Learning (VTS-RL)\n\nVariable Time Step Reinforcement Learning (VTS-RL) addresses adaptive control frequencies, executing actions only when necessary, thus reducing computational load and extending the action space to include action durations.\n\nSEAC implements elastic time steps, time steps with a known, variable duration, which allow the agent to change its control frequency to adapt to the situation. In practice, SEAC applies control only when necessary, minimizing computational resources and data usage.\n\n## Related Approaches\n\nShortcut models condition flows on both noise level and step size, producing fast generative models in one training phase and without schedules. Mean Flow extends the idea of conditioning on the step size to a continuous time formulation.\n\nThe research shows that incorporating time/step information as a conditioning variable in both generative models and reinforcement learning enables more flexible and efficient control strategies."
+    ],
+    "durationSeconds": 7.978073745999994
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T18:59:33.745Z_
+
+<details><summary>↩ Tool result · `toolu_0157eupCbt8wnibHgKTjwQNk`</summary>
+
+```text
+Web search results for query: "stochastic bifurcation neural network training loss landscape critical transition"
+
+Links: [{"title":"Optimization on multifractal loss landscapes explains a diverse range of geometrical and dynamical properties of deep learning | Nature Communications","url":"https://www.nature.com/articles/s41467-025-58532-9"},{"title":"Visualizing the Loss Landscape of Neural Nets","url":"https://arxiv.org/pdf/1712.09913"},{"title":"The Multiscale Structure of Neural Network Loss Landscapes","url":"https://web.stanford.edu/~lexing/BeyondQA.pdf"},{"title":"Predicting discrete-time bifurcations with deep learning | Nature Communications","url":"https://www.nature.com/articles/s41467-023-42020-z"},{"title":"arXiv:2210.06088v1 [cs.LG] 12 Oct 2022 Annihilation of Spurious Minima","url":"https://arxiv.org/pdf/2210.06088"},{"title":"Visualizing the loss landscapes of physics-informed neural networks","url":"https://arxiv.org/html/2602.05849"},{"title":"[2310.17561] Bifurcations and loss jumps in RNN training","url":"https://arxiv.org/abs/2310.17561"},{"title":"A trajectory-based loss function to learn missing terms in bifurcating dynamical systems | Scientific Reports","url":"https://www.nature.com/articles/s41598-021-99609-x"},{"title":"Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks","url":"https://arxiv.org/html/2603.04420"},{"title":"Visualizing the Loss Landscape of Neural Nets | Request PDF","url":"https://www.researchgate.net/publication/322113581_Visualizing_the_Loss_Landscape_of_Neural_Nets"}]
+
+I've found several relevant research papers and articles on your search query. Here's a summary of the key findings:
+
+## Key Research Areas:
+
+**1. Multifractal Loss Landscapes and Critical Transitions**
+
+Recent work models the complexities of loss landscapes as multifractal, unifying and explaining geometrical signatures of loss landscapes including clustered degenerate minima, multiscale structure, and rich optimization dynamics such as the edge of stability and extended edge of chaos without requiring fine-tuning parameters.
+
+**2. Bifurcations in RNN Training**
+
+Bifurcations refer to topological changes in a system's dynamical behavior as parameters are varied, and they may account for sudden loss jumps observed in RNN training. Mathematical proofs show that certain bifurcations in ReLU-based RNNs are associated with loss gradients tending toward infinity or zero.
+
+**3. Loss Landscape Transitions**
+
+A transition from convex to chaotic behavior coincides with a dramatic drop in generalization error. Additionally, neural network loss functions possess a multiscale structure, manifested as a mix of scales near minima that grows subquadratically and several separate scales in larger regions.
+
+**4. Stochastic Dynamics Perspective**
+
+SGD can be interpreted as solving a stochastic differential equation with additive noise, where the density of parameters follows a Fokker-Planck equation with a Gibbs distribution steady state, establishing a strong connection from neural network training to statistical physics.
+
+**5. Bifurcations in Dynamical Systems Learning**
+
+Physics-informed differential equations combined with machine learning can discover missing terms in systems undergoing bifurcations, though the choice of loss function plays a crucial role, as Mean Square Error loss contains the risk of reconstructions that completely miss the dynamical behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "985d1349-d448-4ac5-bc59-08c0105c0f33",
+  "tool_use_result": {
+    "query": "stochastic bifurcation neural network training loss landscape critical transition",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013vQbVQdbuRimyznMnjrS6Y",
+        "content": [
+          {
+            "title": "Optimization on multifractal loss landscapes explains a diverse range of geometrical and dynamical properties of deep learning | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-025-58532-9"
+          },
+          {
+            "title": "Visualizing the Loss Landscape of Neural Nets",
+            "url": "https://arxiv.org/pdf/1712.09913"
+          },
+          {
+            "title": "The Multiscale Structure of Neural Network Loss Landscapes",
+            "url": "https://web.stanford.edu/~lexing/BeyondQA.pdf"
+          },
+          {
+            "title": "Predicting discrete-time bifurcations with deep learning | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-023-42020-z"
+          },
+          {
+            "title": "arXiv:2210.06088v1 [cs.LG] 12 Oct 2022 Annihilation of Spurious Minima",
+            "url": "https://arxiv.org/pdf/2210.06088"
+          },
+          {
+            "title": "Visualizing the loss landscapes of physics-informed neural networks",
+            "url": "https://arxiv.org/html/2602.05849"
+          },
+          {
+            "title": "[2310.17561] Bifurcations and loss jumps in RNN training",
+            "url": "https://arxiv.org/abs/2310.17561"
+          },
+          {
+            "title": "A trajectory-based loss function to learn missing terms in bifurcating dynamical systems | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-021-99609-x"
+          },
+          {
+            "title": "Machine Learning for Complex Systems Dynamics: Detecting Bifurcations in Dynamical Systems with Deep Neural Networks",
+            "url": "https://arxiv.org/html/2603.04420"
+          },
+          {
+            "title": "Visualizing the Loss Landscape of Neural Nets | Request PDF",
+            "url": "https://www.researchgate.net/publication/322113581_Visualizing_the_Loss_Landscape_of_Neural_Nets"
+          }
+        ]
+      },
+      "I've found several relevant research papers and articles on your search query. Here's a summary of the key findings:\n\n## Key Research Areas:\n\n**1. Multifractal Loss Landscapes and Critical Transitions**\n\nRecent work models the complexities of loss landscapes as multifractal, unifying and explaining geometrical signatures of loss landscapes including clustered degenerate minima, multiscale structure, and rich optimization dynamics such as the edge of stability and extended edge of chaos without requiring fine-tuning parameters.\n\n**2. Bifurcations in RNN Training**\n\nBifurcations refer to topological changes in a system's dynamical behavior as parameters are varied, and they may account for sudden loss jumps observed in RNN training. Mathematical proofs show that certain bifurcations in ReLU-based RNNs are associated with loss gradients tending toward infinity or zero.\n\n**3. Loss Landscape Transitions**\n\nA transition from convex to chaotic behavior coincides with a dramatic drop in generalization error. Additionally, neural network loss functions possess a multiscale structure, manifested as a mix of scales near minima that grows subquadratically and several separate scales in larger regions.\n\n**4. Stochastic Dynamics Perspective**\n\nSGD can be interpreted as solving a stochastic differential equation with additive noise, where the density of parameters follows a Fokker-Planck equation with a Gibbs distribution steady state, establishing a strong connection from neural network training to statistical physics.\n\n**5. Bifurcations in Dynamical Systems Learning**\n\nPhysics-informed differential equations combined with machine learning can discover missing terms in systems undergoing bifurcations, though the choice of loss function plays a crucial role, as Mean Square Error loss contains the risk of reconstructions that completely miss the dynamical behavior."
+    ],
+    "durationSeconds": 9.194797120000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for a few more targeted papers:
+
+1. The "Stealing That Free Lunch" paper about Dyna-style RL limitations
+2. The specific paper about training instability following low-dimensional dynamical principles
+3. Henderson et al. "Deep RL that matters"
+4. The "Bifurcations and loss jumps in RNN training" paper
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "2faabd50-3178-4a8f-ace2-af6c9f94c600",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPdqjJTTPWus76X8qbj2Fd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2063,
+      "cache_read_input_tokens": 35112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+找到几个重要线索。继续定向搜索几篇关键论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "f7d6fd84-d020-4903-8079-52ffbb3fc9fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPdqjJTTPWus76X8qbj2Fd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2063,
+      "cache_read_input_tokens": 35112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019PwpLCA54qFD2RXdD9x4Ft`</summary>
+
+```json
+{
+  "query": "\"Stealing That Free Lunch\" dyna reinforcement learning critic divergence overestimation 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "4ca35a34-9c3e-4521-b66e-98225af07dae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPdqjJTTPWus76X8qbj2Fd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2063,
+      "cache_read_input_tokens": 35112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UVfJZpeWYvq81wkScP7cXu`</summary>
+
+```json
+{
+  "query": "\"training instability\" \"low-dimensional\" \"dynamical principles\" deep learning 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "83f2a395-438c-46cb-968f-ec036892687f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPdqjJTTPWus76X8qbj2Fd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2063,
+      "cache_read_input_tokens": 35112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013xii64FzdxEan7P1uCCSLb`</summary>
+
+```json
+{
+  "query": "\"bifurcations and loss jumps\" RNN training 2023 dynamical systems"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "3e3b8d5e-54e8-461a-834d-b96411a2cf9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TPdqjJTTPWus76X8qbj2Fd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 880,
+      "cache_creation_input_tokens": 2063,
+      "cache_read_input_tokens": 35112,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2063
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T18:59:47.880Z_
+
+<details><summary>↩ Tool result · `toolu_01UVfJZpeWYvq81wkScP7cXu`</summary>
+
+```text
+Web search results for query: ""training instability" "low-dimensional" "dynamical principles" deep learning 2025"
+
+Links: [{"title":"[2601.13160] Training instability in deep learning follows low-dimensional dynamical principles","url":"https://arxiv.org/abs/2601.13160"},{"title":"Training instability in deep learning follows low-dimensional dynamical principles","url":"https://arxiv.org/html/2601.13160v1"},{"title":"Training instability in deep learning follows low-dimensional dynamical principles","url":"https://www.researchgate.net/publication/399930979_Training_instability_in_deep_learning_follows_low-dimensional_dynamical_principles"},{"title":"Training instability in deep learning follows low-dimensional dynamical principles | Takara TLDR","url":"https://tldr.takara.ai/p/2601.13160v1"},{"title":"Theoretical Insights on Training Instability in Deep Learning","url":"https://uuujf.github.io/instability/"},{"title":"Dynamics-Informed Deep Learning for Predicting Extreme Events","url":"https://arxiv.org/html/2603.10777"},{"title":"[2603.10777] Dynamics-Informed Deep Learning for Predicting Extreme Events","url":"https://arxiv.org/abs/2603.10777"},{"title":"Frontiers | Dynamical stability and chaos in artificial neural network trajectories along training","url":"https://www.frontiersin.org/journals/complex-systems/articles/10.3389/fcpxs.2024.1367957/full"},{"title":"NeurIPS Tutorial Theoretical Insights on Training Instability in Deep Learning","url":"https://neurips.cc/virtual/2025/loc/san-diego/tutorial/109597"},{"title":"Deep kernel learning of dynamical models from high-dimensional noisy data | Scientific Reports","url":"https://www.nature.com/articles/s41598-022-25362-4"}]
+
+I found relevant research on this topic! The search results reveal a significant paper from January 2026 that directly addresses your query.
+
+## Key Findings
+
+A recent paper titled "Training instability in deep learning follows low-dimensional dynamical principles" proposes a unified dynamical perspective that characterizes training stability as an intrinsic property of learning systems, organized along four interacting dimensions: optimization, environmental/data, parametric, and learning-signal stability.
+
+The research identifies three recurring regularities across reinforcement learning and large language model training: high final performance is frequently decoupled from training stability; controlled stochasticity consistently buffers learning dynamics across paradigms; and deviations in low-dimensional latent meta-states systematically precede observable performance collapse.
+
+## Methodology
+
+The researchers introduce perturbation-based auditing as a methodological approach to studying training stability, which systematically probes the dynamical responses of learning systems, providing principled and reproducible insight into instability formation. They propose StabilityBench as a scientific instrument that enables controlled perturbation auditing across multiple learning paradigms, including reinforcement learning (RL) and large language models (LLMs).
+
+The paper (arXiv:2601.13160) was published on January 19, 2026, by Zhipeng Zhang and colleagues, making it one of the most recent comprehensive investigations into how training instability follows low-dimensional dynamical principles in deep learning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "6cd0adc7-e05a-42e9-9fab-4d13da9cbdec",
+  "tool_use_result": {
+    "query": "\"training instability\" \"low-dimensional\" \"dynamical principles\" deep learning 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MRfrnhkhsEfQ3QSh8kFzey",
+        "content": [
+          {
+            "title": "[2601.13160] Training instability in deep learning follows low-dimensional dynamical principles",
+            "url": "https://arxiv.org/abs/2601.13160"
+          },
+          {
+            "title": "Training instability in deep learning follows low-dimensional dynamical principles",
+            "url": "https://arxiv.org/html/2601.13160v1"
+          },
+          {
+            "title": "Training instability in deep learning follows low-dimensional dynamical principles",
+            "url": "https://www.researchgate.net/publication/399930979_Training_instability_in_deep_learning_follows_low-dimensional_dynamical_principles"
+          },
+          {
+            "title": "Training instability in deep learning follows low-dimensional dynamical principles | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2601.13160v1"
+          },
+          {
+            "title": "Theoretical Insights on Training Instability in Deep Learning",
+            "url": "https://uuujf.github.io/instability/"
+          },
+          {
+            "title": "Dynamics-Informed Deep Learning for Predicting Extreme Events",
+            "url": "https://arxiv.org/html/2603.10777"
+          },
+          {
+            "title": "[2603.10777] Dynamics-Informed Deep Learning for Predicting Extreme Events",
+            "url": "https://arxiv.org/abs/2603.10777"
+          },
+          {
+            "title": "Frontiers | Dynamical stability and chaos in artificial neural network trajectories along training",
+            "url": "https://www.frontiersin.org/journals/complex-systems/articles/10.3389/fcpxs.2024.1367957/full"
+          },
+          {
+            "title": "NeurIPS Tutorial Theoretical Insights on Training Instability in Deep Learning",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/tutorial/109597"
+          },
+          {
+            "title": "Deep kernel learning of dynamical models from high-dimensional noisy data | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-022-25362-4"
+          }
+        ]
+      },
+      "I found relevant research on this topic! The search results reveal a significant paper from January 2026 that directly addresses your query.\n\n## Key Findings\n\nA recent paper titled \"Training instability in deep learning follows low-dimensional dynamical principles\" proposes a unified dynamical perspective that characterizes training stability as an intrinsic property of learning systems, organized along four interacting dimensions: optimization, environmental/data, parametric, and learning-signal stability.\n\nThe research identifies three recurring regularities across reinforcement learning and large language model training: high final performance is frequently decoupled from training stability; controlled stochasticity consistently buffers learning dynamics across paradigms; and deviations in low-dimensional latent meta-states systematically precede observable performance collapse.\n\n## Methodology\n\nThe researchers introduce perturbation-based auditing as a methodological approach to studying training stability, which systematically probes the dynamical responses of learning systems, providing principled and reproducible insight into instability formation. They propose StabilityBench as a scientific instrument that enables controlled perturbation auditing across multiple learning paradigms, including reinforcement learning (RL) and large language models (LLMs).\n\nThe paper (arXiv:2601.13160) was published on January 19, 2026, by Zhipeng Zhang and colleagues, making it one of the most recent comprehensive investigations into how training instability follows low-dimensional dynamical principles in deep learning systems."
+    ],
+    "durationSeconds": 7.313725571999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T18:59:48.015Z_
+
+<details><summary>↩ Tool result · `toolu_013xii64FzdxEan7P1uCCSLb`</summary>
+
+```text
+Web search results for query: ""bifurcations and loss jumps" RNN training 2023 dynamical systems"
+
+Links: [{"title":"[2310.17561] Bifurcations and loss jumps in RNN training","url":"https://arxiv.org/abs/2310.17561"},{"title":"Bifurcations and loss jumps in RNN training | OpenReview","url":"https://openreview.net/forum?id=QmPf29EHyI"},{"title":"Bifurcations and loss jumps in RNN training","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/df334022279996b07e0870a629c18857-Abstract-Conference.html"},{"title":"Bifurcations and loss jumps in RNN training","url":"https://arxiv.org/pdf/2310.17561"},{"title":"NeurIPS Poster Bifurcations and loss jumps in RNN training","url":"https://neurips.cc/virtual/2023/poster/71693"},{"title":"[2310.17561] Bifurcations and loss jumps in RNN training","url":"https://ar5iv.labs.arxiv.org/html/2310.17561"},{"title":"[Quick Review] Bifurcations and loss jumps in RNN training","url":"https://liner.com/review/bifurcations-and-loss-jumps-in-rnn-training"},{"title":"Bifurcations and loss jumps in RNN training","url":"https://synthical.com/article/1ddb9b48-9df7-408a-8cf6-bd65d16aafd9"},{"title":"Gradient-free training of recurrent neural networks","url":"https://arxiv.org/html/2410.23467v1"},{"title":"Almost-Linear RNNs Yield Highly Interpretable Symbolic Codes in Dynamical Systems Reconstruction","url":"https://arxiv.org/html/2410.14240v1"}]
+
+Perfect! I found the paper you're looking for. Here are the key results:
+
+## Paper Overview
+
+The paper addresses recurrent neural networks (RNNs), which are popular machine learning tools for modeling sequential data and inferring dynamical systems from time series, using concepts from dynamical systems theory to understand both how trained RNNs solve tasks and the training process itself.
+
+## Main Findings
+
+Bifurcations may account for sudden loss jumps observed in RNN training that could severely impede the training process. The researchers mathematically proved for a particular class of ReLU-based RNNs that certain bifurcations are indeed associated with loss gradients tending toward infinity or zero.
+
+## Methodological Contributions
+
+The authors introduced a novel heuristic algorithm for detecting all fixed points and k-cycles in ReLU-based RNNs and their existence and stability regions (bifurcation manifolds in parameter space), which provides exact results and returns fixed points and cycles up to high orders with surprisingly good scaling behavior.
+
+## Practical Solutions
+
+The algorithm was exemplified on the analysis of RNN training processes, finding that the recently introduced technique of generalized teacher forcing completely avoids certain types of bifurcations in training.
+
+The paper was published in 2023 and presented at NeurIPS 2023. The full paper is available on arXiv (2310.17561).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "24612809-0bab-4583-81e3-16d3564cb662",
+  "tool_use_result": {
+    "query": "\"bifurcations and loss jumps\" RNN training 2023 dynamical systems",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J5sHu4rbD6h5VVvrKiC5Lm",
+        "content": [
+          {
+            "title": "[2310.17561] Bifurcations and loss jumps in RNN training",
+            "url": "https://arxiv.org/abs/2310.17561"
+          },
+          {
+            "title": "Bifurcations and loss jumps in RNN training | OpenReview",
+            "url": "https://openreview.net/forum?id=QmPf29EHyI"
+          },
+          {
+            "title": "Bifurcations and loss jumps in RNN training",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/df334022279996b07e0870a629c18857-Abstract-Conference.html"
+          },
+          {
+            "title": "Bifurcations and loss jumps in RNN training",
+            "url": "https://arxiv.org/pdf/2310.17561"
+          },
+          {
+            "title": "NeurIPS Poster Bifurcations and loss jumps in RNN training",
+            "url": "https://neurips.cc/virtual/2023/poster/71693"
+          },
+          {
+            "title": "[2310.17561] Bifurcations and loss jumps in RNN training",
+            "url": "https://ar5iv.labs.arxiv.org/html/2310.17561"
+          },
+          {
+            "title": "[Quick Review] Bifurcations and loss jumps in RNN training",
+            "url": "https://liner.com/review/bifurcations-and-loss-jumps-in-rnn-training"
+          },
+          {
+            "title": "Bifurcations and loss jumps in RNN training",
+            "url": "https://synthical.com/article/1ddb9b48-9df7-408a-8cf6-bd65d16aafd9"
+          },
+          {
+            "title": "Gradient-free training of recurrent neural networks",
+            "url": "https://arxiv.org/html/2410.23467v1"
+          },
+          {
+            "title": "Almost-Linear RNNs Yield Highly Interpretable Symbolic Codes in Dynamical Systems Reconstruction",
+            "url": "https://arxiv.org/html/2410.14240v1"
+          }
+        ]
+      },
+      "Perfect! I found the paper you're looking for. Here are the key results:\n\n## Paper Overview\n\nThe paper addresses recurrent neural networks (RNNs), which are popular machine learning tools for modeling sequential data and inferring dynamical systems from time series, using concepts from dynamical systems theory to understand both how trained RNNs solve tasks and the training process itself.\n\n## Main Findings\n\nBifurcations may account for sudden loss jumps observed in RNN training that could severely impede the training process. The researchers mathematically proved for a particular class of ReLU-based RNNs that certain bifurcations are indeed associated with loss gradients tending toward infinity or zero.\n\n## Methodological Contributions\n\nThe authors introduced a novel heuristic algorithm for detecting all fixed points and k-cycles in ReLU-based RNNs and their existence and stability regions (bifurcation manifolds in parameter space), which provides exact results and returns fixed points and cycles up to high orders with surprisingly good scaling behavior.\n\n## Practical Solutions\n\nThe algorithm was exemplified on the analysis of RNN training processes, finding that the recently introduced technique of generalized teacher forcing completely avoids certain types of bifurcations in training.\n\nThe paper was published in 2023 and presented at NeurIPS 2023. The full paper is available on arXiv (2310.17561)."
+    ],
+    "durationSeconds": 6.899225595000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T18:59:50.395Z_
+
+<details><summary>↩ Tool result · `toolu_019PwpLCA54qFD2RXdD9x4Ft`</summary>
+
+```text
+Web search results for query: ""Stealing That Free Lunch" dyna reinforcement learning critic divergence overestimation 2024"
+
+Links: [{"title":"Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning","url":"https://arxiv.org/html/2412.14312v1"},{"title":"[2412.14312] Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning","url":"https://arxiv.org/abs/2412.14312"},{"title":"Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Zt05jXhqXx"},{"title":"Fixing That Free Lunch: When, Where, and Why Synthetic Data Fails in Model-Based Policy Optimization","url":"https://arxiv.org/html/2510.01457v1"},{"title":"A Forensic Analysis of Synthetic Data in RL: Diagnosing and Solving Algorithmic Failures in Model-Based Policy Optimization","url":"https://arxiv.org/html/2510.01457"},{"title":"Machine Learning Dec 2024","url":"https://arxiv.org/list/cs.LG/2024-12?skip=1075&show=250"},{"title":"[PDF] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Overestimation,-Overfitting,-and-Plasticity-in-the-Nauman-Bortkiewicz/dcf39ce4ea7c1d073dcd0dbb131a0b90a4bd2977"},{"title":"Computer Science Dec 2024","url":"https://www.arxiv.org/list/cs/2024-12?skip=6550&show=50"},{"title":"RLJ | RLC 2024 Dissecting Deep RL with High Update Ratios:","url":"https://www.seas.upenn.edu/~eeaton/papers/Hussing2024DissectingDeepRL.pdf"},{"title":"ICML Poster Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning","url":"https://icml.cc/virtual/2025/poster/44829"}]
+
+Based on the search results, here's information about the paper "Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning":
+
+## Overview
+
+The paper examines Model-Based Policy Optimization (MBPO), a popular Dyna-style model-based reinforcement learning algorithm, which demonstrates strong performance across tasks in OpenAI Gym, but performs significantly worse than its base off-policy algorithm, Soft Actor Critic (SAC), when trained in DeepMind Control Suite (DMC).
+
+## Key Findings
+
+While DMBRL algorithms perform well in control tasks in OpenAI Gym, their performance can drop significantly in DeepMind Control Suite (DMC). Adding synthetic rollouts to the training process significantly degrades performance across most DMC environments.
+
+## Critic Divergence Issues
+
+The paper measured the average critic Q-values throughout training for SAC and MBPO in DMC environments where MBPO fails, finding that MBPO's Q-values exhibited significantly greater divergence. This suggests that inaccurate synthetic transitions drive the Q-value estimation issues.
+
+Layer Normalization was employed as a regularization technique to bound the critic output, but did not mitigate the critic divergence induced by the non-stationarity of the critic target.
+
+## Investigation Results
+
+The paper investigated possible explanations including overestimation bias, network plasticity, model fidelity, and extensive hyperparameter tuning, but found that none resolved the discrepancy. It showed that introducing any synthetic rollout data into training consistently degraded policy performance.
+
+The paper was accepted to ICML 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "a0f3b370-fefb-49d8-9ccd-c5b2cfa12fb9",
+  "tool_use_result": {
+    "query": "\"Stealing That Free Lunch\" dyna reinforcement learning critic divergence overestimation 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018Y88BXe1srtu4ePnH6qb9g",
+        "content": [
+          {
+            "title": "Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning",
+            "url": "https://arxiv.org/html/2412.14312v1"
+          },
+          {
+            "title": "[2412.14312] Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2412.14312"
+          },
+          {
+            "title": "Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=Zt05jXhqXx"
+          },
+          {
+            "title": "Fixing That Free Lunch: When, Where, and Why Synthetic Data Fails in Model-Based Policy Optimization",
+            "url": "https://arxiv.org/html/2510.01457v1"
+          },
+          {
+            "title": "A Forensic Analysis of Synthetic Data in RL: Diagnosing and Solving Algorithmic Failures in Model-Based Policy Optimization",
+            "url": "https://arxiv.org/html/2510.01457"
+          },
+          {
+            "title": "Machine Learning Dec 2024",
+            "url": "https://arxiv.org/list/cs.LG/2024-12?skip=1075&show=250"
+          },
+          {
+            "title": "[PDF] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Overestimation,-Overfitting,-and-Plasticity-in-the-Nauman-Bortkiewicz/dcf39ce4ea7c1d073dcd0dbb131a0b90a4bd2977"
+          },
+          {
+            "title": "Computer Science Dec 2024",
+            "url": "https://www.arxiv.org/list/cs/2024-12?skip=6550&show=50"
+          },
+          {
+            "title": "RLJ | RLC 2024 Dissecting Deep RL with High Update Ratios:",
+            "url": "https://www.seas.upenn.edu/~eeaton/papers/Hussing2024DissectingDeepRL.pdf"
+          },
+          {
+            "title": "ICML Poster Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning",
+            "url": "https://icml.cc/virtual/2025/poster/44829"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the paper \"Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning\":\n\n## Overview\n\nThe paper examines Model-Based Policy Optimization (MBPO), a popular Dyna-style model-based reinforcement learning algorithm, which demonstrates strong performance across tasks in OpenAI Gym, but performs significantly worse than its base off-policy algorithm, Soft Actor Critic (SAC), when trained in DeepMind Control Suite (DMC).\n\n## Key Findings\n\nWhile DMBRL algorithms perform well in control tasks in OpenAI Gym, their performance can drop significantly in DeepMind Control Suite (DMC). Adding synthetic rollouts to the training process significantly degrades performance across most DMC environments.\n\n## Critic Divergence Issues\n\nThe paper measured the average critic Q-values throughout training for SAC and MBPO in DMC environments where MBPO fails, finding that MBPO's Q-values exhibited significantly greater divergence. This suggests that inaccurate synthetic transitions drive the Q-value estimation issues.\n\nLayer Normalization was employed as a regularization technique to bound the critic output, but did not mitigate the critic divergence induced by the non-stationarity of the critic target.\n\n## Investigation Results\n\nThe paper investigated possible explanations including overestimation bias, network plasticity, model fidelity, and extensive hyperparameter tuning, but found that none resolved the discrepancy. It showed that introducing any synthetic rollout data into training consistently degraded policy performance.\n\nThe paper was accepted to ICML 2025."
+    ],
+    "durationSeconds": 10.310187992999992
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! I now have a good collection of papers. Let me do one more round of targeted searches for the most relevant papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "e02dac26-e913-4fb6-a3b1-832137608b00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjAXth2E8THJgPrvgVQTzk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1677,
+      "cache_creation_input_tokens": 2195,
+      "cache_read_input_tokens": 37175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2195
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+最后一轮精准搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "f2c23c05-f2c4-4a08-81bf-96f65d30e978",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjAXth2E8THJgPrvgVQTzk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1677,
+      "cache_creation_input_tokens": 2195,
+      "cache_read_input_tokens": 37175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2195
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0146KZDJLEYtJB1jhK47gcoQ`</summary>
+
+```json
+{
+  "query": "Nauman Bortkiewicz \"overestimation overfitting plasticity\" actor-critic 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "7c98902a-83a0-4322-aa65-c465486f215b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjAXth2E8THJgPrvgVQTzk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1677,
+      "cache_creation_input_tokens": 2195,
+      "cache_read_input_tokens": 37175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2195
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019kkrt9b1tF4m4sCkvbUZSJ`</summary>
+
+```json
+{
+  "query": "Henderson \"deep reinforcement learning that matters\" reproducibility seed AAAI 2018"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "372eface-60df-490f-9d8b-b8ae8788aa7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjAXth2E8THJgPrvgVQTzk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1677,
+      "cache_creation_input_tokens": 2195,
+      "cache_read_input_tokens": 37175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2195
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019RHBAEWhUVTC2A4gfLRe6s`</summary>
+
+```json
+{
+  "query": "\"elastic time step\" \"variable time step\" reinforcement learning MOSEAC value estimation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "7fb68928-a26d-4a1a-9608-07b4c756faf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjAXth2E8THJgPrvgVQTzk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1677,
+      "cache_creation_input_tokens": 2195,
+      "cache_read_input_tokens": 37175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2195
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T18:59:59.752Z_
+
+<details><summary>↩ Tool result · `toolu_019kkrt9b1tF4m4sCkvbUZSJ`</summary>
+
+```text
+Web search results for query: "Henderson "deep reinforcement learning that matters" reproducibility seed AAAI 2018"
+
+Links: [{"title":"Deep Reinforcement Learning That Matters | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/11694"},{"title":"Deep reinforcement learning that matters | Proceedings of the Thirty-Second AAAI Conference on Artificial Intelligence and Thirtieth Innovative Applications of Artificial Intelligence Conference and Eighth AAAI Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/abs/10.5555/3504035.3504427"},{"title":"[1709.06560] Deep Reinforcement Learning that Matters","url":"https://arxiv.org/abs/1709.06560"},{"title":"Deep reinforcement learning that matters - Princeton University","url":"https://collaborate.princeton.edu/en/publications/deep-reinforcement-learning-that-matters/"},{"title":"[PDF] Deep Reinforcement Learning that Matters | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Deep-Reinforcement-Learning-that-Matters-Henderson-Islam/33690ff21ef1efb576410e656f2e60c89d0307d6"},{"title":"Deep Reinforcement Learning that Matters","url":"https://arxiv.org/pdf/1709.06560"},{"title":"(PDF) Deep Reinforcement Learning That Matters","url":"https://www.researchgate.net/publication/319953023_Deep_Reinforcement_Learning_That_Matters"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=Peter+Henderson,+Riashat+Islam,+Philip+Bachman,+Joelle+Pineau,+Doina+Precup,+and+David+Meger.+Deep+reinforcement+learning+that+matters.+In+Thirty-Second+AAAI+Conference+on+Artificial+Intelligence,+2018."},{"title":"Aaai","url":"https://ojs.aaai.org/index.php/AAAI/citationstylelanguage/get/apa?submissionId=11694&publicationId=10053"},{"title":"Deep Reinforcement Learning that Matters (1709.06560v3)","url":"https://www.emergentmind.com/papers/1709.06560"}]
+
+I've successfully found the paper you're looking for. Here's what the search reveals:
+
+"Deep Reinforcement Learning That Matters" is a paper by Henderson, P., Islam, R., Bachman, P., Pineau, J., Precup, D., and Meger, D., published in the Proceedings of the AAAI Conference on Artificial Intelligence in 2018.
+
+The paper addresses critical reproducibility issues in deep reinforcement learning. Non-determinism in standard benchmark environments, combined with variance intrinsic to the methods, can make reported results tough to interpret, and without significance metrics and tighter standardization of experimental reporting, it is difficult to determine whether improvements over the prior state-of-the-art are meaningful.
+
+The study reveals that random seed variability can lead to substantial differences in results, highlighting the need for multiple trial evaluations. The authors recommend reporting average performance across multiple trials with different random seeds to mitigate variability.
+
+The paper is available through multiple sources including the official AAAI conference proceedings website (ojs.aaai.org), arXiv (1709.06560), and other academic databases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "f4517e2b-ca2e-441a-a4e7-cc178c9a2341",
+  "tool_use_result": {
+    "query": "Henderson \"deep reinforcement learning that matters\" reproducibility seed AAAI 2018",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XQLkrbLo65zy4EmNobXcEs",
+        "content": [
+          {
+            "title": "Deep Reinforcement Learning That Matters | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/11694"
+          },
+          {
+            "title": "Deep reinforcement learning that matters | Proceedings of the Thirty-Second AAAI Conference on Artificial Intelligence and Thirtieth Innovative Applications of Artificial Intelligence Conference and Eighth AAAI Symposium on Educational Advances in Artificial Intelligence",
+            "url": "https://dl.acm.org/doi/abs/10.5555/3504035.3504427"
+          },
+          {
+            "title": "[1709.06560] Deep Reinforcement Learning that Matters",
+            "url": "https://arxiv.org/abs/1709.06560"
+          },
+          {
+            "title": "Deep reinforcement learning that matters - Princeton University",
+            "url": "https://collaborate.princeton.edu/en/publications/deep-reinforcement-learning-that-matters/"
+          },
+          {
+            "title": "[PDF] Deep Reinforcement Learning that Matters | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Deep-Reinforcement-Learning-that-Matters-Henderson-Islam/33690ff21ef1efb576410e656f2e60c89d0307d6"
+          },
+          {
+            "title": "Deep Reinforcement Learning that Matters",
+            "url": "https://arxiv.org/pdf/1709.06560"
+          },
+          {
+            "title": "(PDF) Deep Reinforcement Learning That Matters",
+            "url": "https://www.researchgate.net/publication/319953023_Deep_Reinforcement_Learning_That_Matters"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar?q=Peter+Henderson,+Riashat+Islam,+Philip+Bachman,+Joelle+Pineau,+Doina+Precup,+and+David+Meger.+Deep+reinforcement+learning+that+matters.+In+Thirty-Second+AAAI+Conference+on+Artificial+Intelligence,+2018."
+          },
+          {
+            "title": "Aaai",
+            "url": "https://ojs.aaai.org/index.php/AAAI/citationstylelanguage/get/apa?submissionId=11694&publicationId=10053"
+          },
+          {
+            "title": "Deep Reinforcement Learning that Matters (1709.06560v3)",
+            "url": "https://www.emergentmind.com/papers/1709.06560"
+          }
+        ]
+      },
+      "I've successfully found the paper you're looking for. Here's what the search reveals:\n\n\"Deep Reinforcement Learning That Matters\" is a paper by Henderson, P., Islam, R., Bachman, P., Pineau, J., Precup, D., and Meger, D., published in the Proceedings of the AAAI Conference on Artificial Intelligence in 2018.\n\nThe paper addresses critical reproducibility issues in deep reinforcement learning. Non-determinism in standard benchmark environments, combined with variance intrinsic to the methods, can make reported results tough to interpret, and without significance metrics and tighter standardization of experimental reporting, it is difficult to determine whether improvements over the prior state-of-the-art are meaningful.\n\nThe study reveals that random seed variability can lead to substantial differences in results, highlighting the need for multiple trial evaluations. The authors recommend reporting average performance across multiple trials with different random seeds to mitigate variability.\n\nThe paper is available through multiple sources including the official AAAI conference proceedings website (ojs.aaai.org), arXiv (1709.06560), and other academic databases."
+    ],
+    "durationSeconds": 5.0840527129999975
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T19:00:02.137Z_
+
+<details><summary>↩ Tool result · `toolu_019RHBAEWhUVTC2A4gfLRe6s`</summary>
+
+```text
+Web search results for query: ""elastic time step" "variable time step" reinforcement learning MOSEAC value estimation"
+
+Links: [{"title":"[2406.01521] MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://arxiv.org/abs/2406.01521"},{"title":"Variable Time Step Reinforcement Learning for Robotic Applications","url":"https://arxiv.org/html/2407.00290v1"},{"title":"Reinforcement Learning with Elastic Time Steps1footnote 1FootnoteFootnoteFootnotesFootnotes1footnote 1This work was partly presented at the Finding the Frame Workshop in August 2024.","url":"https://arxiv.org/html/2402.14961v4"},{"title":"MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://arxiv.org/html/2406.01521"},{"title":"[2402.14961] Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/abs/2402.14961"},{"title":"(PDF) MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://www.researchgate.net/publication/381152918_MOSEAC_Streamlined_Variable_Time_Step_Reinforcement_Learning"},{"title":"Reinforcement Learning with Elastic Time Steps⋆","url":"https://arxiv.org/pdf/2402.14961"},{"title":"GitHub - alpaficia/MOSEAC: Code for the paper accepted by the RLC workshop (Finding the frame) · GitHub","url":"https://github.com/alpaficia/MOSEAC"},{"title":"[2407.00290] Variable Time Step Reinforcement Learning for Robotic Applications","url":"https://arxiv.org/abs/2407.00290"},{"title":"Elastic Time Step Reinforcement Learning - PolyPublie","url":"https://publications.polymtl.ca/59033/"}]
+
+I found comprehensive results about elastic time steps, variable time step reinforcement learning, and MOSEAC. Here's what the search revealed:
+
+## MOSEAC and Elastic Time Steps
+
+MOSEAC is an off-policy actor-critic algorithm that uses elastic time steps to dynamically adjust the control frequency and minimizes computational resources by selecting the lowest viable frequency.
+
+## Variable Time Step Reinforcement Learning (VTS-RL)
+
+Variable Time Step Reinforcement Learning addresses control frequency issues by using adaptive frequencies for the control loop, executing actions only when necessary, reducing computational load and extending the action space by including action durations.
+
+## Key Features of MOSEAC
+
+MOSEAC integrates action durations into the action space and adjusts hyperparameters based on observed trends in task rewards during training, reducing the need to set multiple hyperparameters. 
+
+MOSEAC extends the SAC algorithm by incorporating action duration into the action policy set, enabling it to predict both the action and its duration simultaneously.
+
+## Value Estimation and Convergence
+
+MOSEAC demonstrates convergence and produces stable policies at the theoretical level. The algorithm uses a multi-objective reward function that adjusts hyperparameters based on observed trends in task rewards during training.
+
+## Performance Benefits
+
+Results show faster convergence, better training results, and reduced energy consumption with respect to other variable- or fixed-frequency approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "64c959d7-0f58-44a8-83c5-c221fe493b99",
+  "tool_use_result": {
+    "query": "\"elastic time step\" \"variable time step\" reinforcement learning MOSEAC value estimation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ExGRDophfYnpM5eLfGPUCn",
+        "content": [
+          {
+            "title": "[2406.01521] MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2406.01521"
+          },
+          {
+            "title": "Variable Time Step Reinforcement Learning for Robotic Applications",
+            "url": "https://arxiv.org/html/2407.00290v1"
+          },
+          {
+            "title": "Reinforcement Learning with Elastic Time Steps1footnote 1FootnoteFootnoteFootnotesFootnotes1footnote 1This work was partly presented at the Finding the Frame Workshop in August 2024.",
+            "url": "https://arxiv.org/html/2402.14961v4"
+          },
+          {
+            "title": "MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://arxiv.org/html/2406.01521"
+          },
+          {
+            "title": "[2402.14961] Reinforcement Learning with Elastic Time Steps",
+            "url": "https://arxiv.org/abs/2402.14961"
+          },
+          {
+            "title": "(PDF) MOSEAC: Streamlined Variable Time Step Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/381152918_MOSEAC_Streamlined_Variable_Time_Step_Reinforcement_Learning"
+          },
+          {
+            "title": "Reinforcement Learning with Elastic Time Steps⋆",
+            "url": "https://arxiv.org/pdf/2402.14961"
+          },
+          {
+            "title": "GitHub - alpaficia/MOSEAC: Code for the paper accepted by the RLC workshop (Finding the frame) · GitHub",
+            "url": "https://github.com/alpaficia/MOSEAC"
+          },
+          {
+            "title": "[2407.00290] Variable Time Step Reinforcement Learning for Robotic Applications",
+            "url": "https://arxiv.org/abs/2407.00290"
+          },
+          {
+            "title": "Elastic Time Step Reinforcement Learning - PolyPublie",
+            "url": "https://publications.polymtl.ca/59033/"
+          }
+        ]
+      },
+      "I found comprehensive results about elastic time steps, variable time step reinforcement learning, and MOSEAC. Here's what the search revealed:\n\n## MOSEAC and Elastic Time Steps\n\nMOSEAC is an off-policy actor-critic algorithm that uses elastic time steps to dynamically adjust the control frequency and minimizes computational resources by selecting the lowest viable frequency.\n\n## Variable Time Step Reinforcement Learning (VTS-RL)\n\nVariable Time Step Reinforcement Learning addresses control frequency issues by using adaptive frequencies for the control loop, executing actions only when necessary, reducing computational load and extending the action space by including action durations.\n\n## Key Features of MOSEAC\n\nMOSEAC integrates action durations into the action space and adjusts hyperparameters based on observed trends in task rewards during training, reducing the need to set multiple hyperparameters. \n\nMOSEAC extends the SAC algorithm by incorporating action duration into the action policy set, enabling it to predict both the action and its duration simultaneously.\n\n## Value Estimation and Convergence\n\nMOSEAC demonstrates convergence and produces stable policies at the theoretical level. The algorithm uses a multi-objective reward function that adjusts hyperparameters based on observed trends in task rewards during training.\n\n## Performance Benefits\n\nResults show faster convergence, better training results, and reduced energy consumption with respect to other variable- or fixed-frequency approaches."
+    ],
+    "durationSeconds": 6.773239027000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T19:00:02.469Z_
+
+<details><summary>↩ Tool result · `toolu_0146KZDJLEYtJB1jhK47gcoQ`</summary>
+
+```text
+Web search results for query: "Nauman Bortkiewicz "overestimation overfitting plasticity" actor-critic 2024"
+
+Links: [{"title":"[2403.00514] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning","url":"https://arxiv.org/abs/2403.00514"},{"title":"[PDF] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Overestimation,-Overfitting,-and-Plasticity-in-the-Nauman-Bortkiewicz/dcf39ce4ea7c1d073dcd0dbb131a0b90a4bd2977"},{"title":"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning","url":"https://proceedings.mlr.press/v235/nauman24a.html"},{"title":"[2403.00514v2] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning","url":"https://arxiv.org/abs/2403.00514v2"},{"title":"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning","url":"https://arxiv.org/html/2403.00514v1"},{"title":"ICML Poster Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning","url":"https://icml.cc/virtual/2024/poster/34956"},{"title":"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/overestimation-overfitting-plasticity-actor-critic-bitter-lesson"},{"title":"Overestimation, overfitting, and plasticity in actor-critic | Proceedings of the 41st International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3692070.3693586"},{"title":"Michal Bortkiewicz - Michal Bortkiewicz","url":"https://michalbortkiewicz.github.io/"},{"title":"dblp: Michal Nauman","url":"https://dblp.org/pid/277/6250.html"}]
+
+I found the paper you're searching for! Here are the search results:
+
+## Paper Summary
+
+"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning" was published by Michal Nauman, Michał Bortkiewicz, Piotr Miłoś, Tomasz Trzcinski, Mateusz Ostaszewski, and Marek Cygan at the Proceedings of the 41st International Conference on Machine Learning (ICML) in 2024.
+
+## Key Research Details
+
+The researchers implemented over 60 different off-policy agents, each integrating established regularization techniques from recent state-of-the-art algorithms, and tested these agents across 14 diverse tasks from 2 simulation benchmarks, measuring training metrics related to overestimation, overfitting, and plasticity loss.
+
+Their findings reveal that while the effectiveness of a specific regularization setup varies with the task, certain combinations consistently demonstrate robust and superior performance. Notably, a simple Soft Actor-Critic agent, appropriately regularized, reliably finds a better-performing policy within the training regime, which previously was achieved mainly through model-based approaches.
+
+The paper is available on ArXiv (2403.00514) and was presented at ICML 2024 with an official publication in the proceedings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "98447b5c-915e-468b-acc2-8683cf75a578",
+  "tool_use_result": {
+    "query": "Nauman Bortkiewicz \"overestimation overfitting plasticity\" actor-critic 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fk49r1khTMa8QmMkMBMrud",
+        "content": [
+          {
+            "title": "[2403.00514] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2403.00514"
+          },
+          {
+            "title": "[PDF] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Overestimation,-Overfitting,-and-Plasticity-in-the-Nauman-Bortkiewicz/dcf39ce4ea7c1d073dcd0dbb131a0b90a4bd2977"
+          },
+          {
+            "title": "Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning",
+            "url": "https://proceedings.mlr.press/v235/nauman24a.html"
+          },
+          {
+            "title": "[2403.00514v2] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2403.00514v2"
+          },
+          {
+            "title": "Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning",
+            "url": "https://arxiv.org/html/2403.00514v1"
+          },
+          {
+            "title": "ICML Poster Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning",
+            "url": "https://icml.cc/virtual/2024/poster/34956"
+          },
+          {
+            "title": "Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/overestimation-overfitting-plasticity-actor-critic-bitter-lesson"
+          },
+          {
+            "title": "Overestimation, overfitting, and plasticity in actor-critic | Proceedings of the 41st International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3693586"
+          },
+          {
+            "title": "Michal Bortkiewicz - Michal Bortkiewicz",
+            "url": "https://michalbortkiewicz.github.io/"
+          },
+          {
+            "title": "dblp: Michal Nauman",
+            "url": "https://dblp.org/pid/277/6250.html"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here are the search results:\n\n## Paper Summary\n\n\"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\" was published by Michal Nauman, Michał Bortkiewicz, Piotr Miłoś, Tomasz Trzcinski, Mateusz Ostaszewski, and Marek Cygan at the Proceedings of the 41st International Conference on Machine Learning (ICML) in 2024.\n\n## Key Research Details\n\nThe researchers implemented over 60 different off-policy agents, each integrating established regularization techniques from recent state-of-the-art algorithms, and tested these agents across 14 diverse tasks from 2 simulation benchmarks, measuring training metrics related to overestimation, overfitting, and plasticity loss.\n\nTheir findings reveal that while the effectiveness of a specific regularization setup varies with the task, certain combinations consistently demonstrate robust and superior performance. Notably, a simple Soft Actor-Critic agent, appropriately regularized, reliably finds a better-performing policy within the training regime, which previously was achieved mainly through model-based approaches.\n\nThe paper is available on ArXiv (2403.00514) and was presented at ICML 2024 with an official publication in the proceedings."
+    ],
+    "durationSeconds": 8.302685467000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to compile the report. Let me organize the findings and write the memory.md addition.
+
+Key papers found:
+
+1. **Zhang et al. 2026** - "Training instability in deep learning follows low-dimensional dynamical principles" (arXiv 2601.13160) - HIGHLY RELEVANT. Studies training instability from dynamical systems perspective. Finds: (a) high performance decoupled from training stability, (b) controlled stochasticity buffers learning dynamics, (c) deviations in low-dimensional latent meta-states precede observable performance collapse.
+
+
+2. **Engelken 2023** - "Bifurcations and loss jumps in RNN training" (NeurIPS 2023) - Shows how bifurcations in parameter space trigger loss jumps, with mathematical proofs for ReLU RNNs, though focused on RNNs rather than RL specifically.
+3. **Nauman et al. 2024** - "Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of RL" (ICML 2024) - Directly addresses overestimation, overfitting, and plasticity loss in actor-critic methods.
+4. **Bjorck** - Still reviewing additional papers... I'm finishing my assessment of the literature and identifying the key novelty gaps. There's no existing work specifically examining seed-dependent collapse in model-based RL like Dreamer, stochastic bifurcation during MBRL training from a dynamical systems lens, or how temporal conditioning in world model embeddings affects critic value estimation—these represent genuine unexplored intersections in the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "3c1f20e8-ef3d-44c9-8675-9a3d8ddb8ec3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaEo75uS6SeL5AiHtF4NBy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1723,
+      "cache_creation_input_tokens": 3030,
+      "cache_read_input_tokens": 39370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3030
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+搜索完成，共 12 轮 web search。现在综合整理结果并写入 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "3d1f6419-8fa1-4d85-945a-baf7013c2488",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaEo75uS6SeL5AiHtF4NBy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1723,
+      "cache_creation_input_tokens": 3030,
+      "cache_read_input_tokens": 39370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3030
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01ARz5zEevegwwm6S1YvchKt`</summary>
+
+````json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\n\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\n\n### 关键 novelty gaps（论文可用）\n\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\n\n### 相关文献支撑\n\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\n\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\n\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\n\n### Actor Entropy — 非显而易见的发现\n\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\n\n### Value Calibration — 最强诊断信号\n\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\n   - Healthy: baseline ~0.69，event-gated healthy 0.20-0.53，**从未超过 1.0**\n   - 判定阈值 v/R > 1.5 在 late training 可 100% 区分两类\n\n2. **008f 极端保守**：v/R=0.20@105K，eval_return=503.21 但 value 仅约 100。value function 严重低估实际回报。这与 009c 教训一致——去掉 dt_embedding 消除了 delusional critic 但引入 reward prediction 噪声，value function 因此保守。\n\n3. **Normalized v/e target 不具区分力**：所有实验 late-stage normalized_vt 均收敛至 ~1.0（collapsed 008d=1.0034, 006=1.0069; healthy 008a=1.0001, 008c=1.0084），无法用于诊断。\n\n### 组合机制（论文可用）\n\n**Delusional critic signature = 慢 entropy 收敛 + value 过高估计**。Actor 探索更多是因为 value landscape 误导，但这种探索被 delusional critic 引向错误方向。这构成一个可论证的因果链：trained dt_embedding → corrupted world model → value overestimation → misdirected exploration → performance collapse。\n\n### 论文使用建议\n\n- **可直接用**：v/R ratio 作为 delusional critic 诊断指标（Figure 材料），collapsed vs healthy 的 clean separation\n- **可用但需 caveat**：actor entropy 趋势差异（方向正确但需注明 run length 不等）\n- **不可用**：normalized v/e target（无区分力）；baseline entropy recovery（与 event-gating 机制无直接关系，属 baseline 自身行为）\n\n### 附注\n\n服务器上还有 `logdir/analysis_rssm_prediction_quality.json`（RSSM dt=1 vs dt=2 prediction quality），属于不同 plan 的分析产物。\n\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\n\n**发现**：去掉 dt_embedding 有两个独立效应：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗。\n\n两个 seed 的 v/e 都正常（normalized v/e 均 < 1.5x），确认 delusional critic 被消除。但性能差异巨大：\n- seed 0 (008f): zigzag recovery → 503@105K\n- seed 2 (009c): peak 359@75K → monotonic decline → 148@105K\n\n**根因**：008f 的 reward_MAE=0.747（baseline 的 75x），reward gap 仅 1.01x（无法区分 dt=1/dt=2）。reward 信号噪声使优化 landscape 高度 seed-dependent。\n\n**对论文的影响**：\n- C2 机制识别（trained dt_emb → delusional critic）：不受影响，两个 seed 都确认\n- 008f 实用含义：从\"消除 collapse\"降为\"消除 delusional critic 但引入 reward 噪声\"\n- C6 (008e_v3) 升格为核心推荐——唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案\n- Framing 提案（Option A: \"机制 + 陷阱 + 正确修复\"）已提交 Director 审批\n\n**教训**：单一 seed 的 positive result 不能用于 claim stability。008f seed 0 的 zigzag recovery 可能是随机事件，不是系统性保护。\n\n## 2026-05-14: Actor Entropy 分析决策（Director 修正）\n\n- **C2 cleanest comparison pair**: 008f vs 008d（仅 dt_embed_dim 不同）。不用 008c vs 008d（两个变量差异：subsample + dt_emb）。\n- **论文措辞**: 用 \"entropy convergence delayed\"，不说 \"entropy rises\"。\n- **原因**: 008c（subsample OFF）vs 008d（subsample ON）有两个变量差异，不是 clean single-variable control。008f 和 008d 唯一差异是 dt_embed_dim（0 vs 32），是最干净的因果对照。\n\n## 2026-05-14: cuda:1 排期（D031 修正）\n\n009b（running）→ **008e_v3_s1** → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060。\n\n008e_v3 是论文 crown jewel (C6)，多 seed 验证最高优先。\n\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\n\n### 结论：代码无需修改，直接可用\n\n代码通过 `--task` 参数自动解析环境名，流程：\n- `--task dmc_cheetah_run` → `suite.load(\"cheetah\", \"run\")`\n- `--task dmc_cartpole_swingup` → `suite.load(\"cartpole\", \"swingup\")`\n\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\n\n### 环境 Observation/Action Space 对比\n\n| 环境 | Obs dims | Action dims | Action range |\n|------|----------|-------------|--------------|\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\n\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\n\n### 启动命令模板\n\n**Cheetah Run Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cheetah Run Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n**Cartpole Swingup Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cartpole Swingup Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n### 环境特定注意事项\n\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\n2. **time_limit=1000**（默认）对三个环境都适用\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\n6. **无需代码修改**\n\n## 2026-05-14: 009b 文献联动 — Seed-Dependent Bifurcation\n\n### 搜索结果（12 轮 web search, 2026-05-14）\n\n**直接相关（建议加入 literature_map.yaml）：**\n\n1. **Zhang et al. 2026** — \"Training instability in deep learning follows low-dimensional dynamical principles\" (arXiv 2601.13160). 提出训练不稳定性的动力学系统框架：(a) 高性能与训练稳定性脱耦，(b) 可控随机性缓冲学习动态，(c) 低维 latent meta-state 偏离先于可观测 collapse。**最相关**——为我们的 seed-dependent bifurcation 提供理论框架。\n2. **Engelken 2023** — \"Bifurcations and loss jumps in RNN training\" (NeurIPS 2023, arXiv 2310.17561). 证明 RNN 训练中参数空间的 bifurcation 导致 loss jump，gradient 趋向 ∞ 或 0。**类比价值**——我们的 seed bifurcation 可能对应 value function 参数空间中类似的 critical manifold。\n3. **Nauman et al. 2024** — \"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of RL\" (ICML 2024, arXiv 2403.00514). 60+ agent 组合实验，overestimation + overfitting + plasticity loss 三者交互。**支撑我们的 value overestimation 诊断**。\n4. **Voelcker et al. 2024** — \"Stealing That Free Lunch: Exposing the Limits of Dyna-Style RL\" (ICML 2025, arXiv 2412.14312). MBPO 在 DMC 上 critic Q-value 严重发散，synthetic rollout 加剧 overestimation。**直接支撑 MBRL 中 imagination rollout 导致 critic divergence 的论点**。\n5. **Abbas et al. 2023** — \"Loss of Plasticity in Continual Deep RL\" (CoLLAs 2023, arXiv 2303.07507). RL agent 训练中逐渐丧失学习能力。**与 seed 2 无法 self-correct 的现象可能相关**——plasticity loss 可能阻止了 value function 的自我修正。\n\n**已在 literature_map 中（确认相关性）：**\n\n6. **Bjorck et al. 2022** (ICLR) — RL 方差主要来自早期 outlier runs。**直接相关**——我们的 seed 1 vs seed 2 分叉正是发生在早期。\n7. **Henderson et al. 2018** — \"Deep RL that Matters\" (AAAI 2018). seed 选择、超参和环境细节对结果影响巨大。**经典参考**。\n\n**间接相关（不建议加入 map，但可在论文中引用）：**\n\n- MOSEAC / Elastic Time Steps (2024): variable time step RL，但关注 control frequency，非 temporal conditioning in world models\n- Kang et al. 2024: \"A Study of Plasticity Loss in On-Policy Deep RL\" (NeurIPS 2024)——on-policy 场景\n\n### 直接研究过我们现象的论文\n\n**没有。** 无论文直接研究 MBRL（尤其 Dreamer 家族）中相同配置不同 seed 导致 value overestimation collapse vs self-correction 的分叉现象。\n\n### Novelty Gap 评估\n\n1. **Seed-dependent bifurcation in MBRL value estimation** — 完全空白。Bjorck 2022 描述了 RL variance 来自 outlier runs，但未深入机制。Zhang 2026 提出了动力学框架但未应用于 MBRL value overestimation。\n2. **Value overestimation self-correction 条件** — 完全空白。现有文献（TD3、clipped double-Q）关注 mitigation techniques，无人研究何时 overestimation 会自发修正。\n3. **Temporal conditioning 对 critic 的影响** — 空白。Variable time step RL 研究 control frequency，不研究 world model 内部 dt_embedding 如何扭曲 value estimation。\n\n**结论**：我们发现的 stochastic bifurcation 现象在现有文献中是新的。最近的 Zhang 2026 提供了理论语言（low-dimensional meta-state, perturbation auditing），但我们的具体 MBRL setting + temporal conditioning + value calibration 诊断构成独立贡献。\n\n### 建议添加到 literature_map.yaml 的条目\n\n```yaml\nzhang2026instability:\n  title: \"Training instability in deep learning follows low-dimensional dynamical principles\"\n  authors: \"Zhipeng Zhang et al.\"\n  year: 2026\n  venue: \"arXiv preprint 2601.13160\"\n  category: training_dynamics\n  relevance: \"动力学系统视角分析训练不稳定性; low-dim meta-state 偏离先于 collapse; 为我们的 seed bifurcation 提供理论框架\"\n\nengelken2023bifurcations:\n  title: \"Bifurcations and loss jumps in RNN training\"\n  authors: \"Rainer Engelken\"\n  year: 2023\n  venue: \"NeurIPS 2023\"\n  category: training_dynamics\n  relevance: \"参数空间 bifurcation 导致 loss jump 的数学证明; 类比我们 value function 的 seed-dependent divergence\"\n\nnauman2024overestimation:\n  title: \"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of RL\"\n  authors: \"Michal Nauman, Michał Bortkiewicz et al.\"\n  year: 2024\n  venue: \"ICML 2024\"\n  category: value_overestimation\n  relevance: \"overestimation + overfitting + plasticity loss 三者交互的系统研究; 支撑我们的 value calibration 诊断\"\n\nvoelcker2024stealing:\n  title: \"Stealing That Free Lunch: Exposing the Limits of Dyna-Style RL\"\n  authors: \"Claas Voelcker et al.\"\n  year: 2024\n  venue: \"ICML 2025\"\n  category: compounding_error\n  relevance: \"MBPO synthetic rollout 导致 DMC critic Q-value 发散; 直接支撑 imagination-driven overestimation\"\n\nabbas2023plasticity:\n  title: \"Loss of Plasticity in Continual Deep Reinforcement Learning\"\n  authors: \"Zaheer Abbas et al.\"\n  year: 2023\n  venue: \"CoLLAs 2023\"\n  category: training_dynamics\n  relevance: \"RL agent 训练中丧失学习能力; 可能解释 seed 2 无法 self-correct value overestimation\"\n```\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "95285279-37ae-40d6-b7b2-96c171bcbcb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NaEo75uS6SeL5AiHtF4NBy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1723,
+      "cache_creation_input_tokens": 3030,
+      "cache_read_input_tokens": 39370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3030
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T19:02:19.856Z_
+
+<details><summary>↩ Tool result · `toolu_01ARz5zEevegwwm6S1YvchKt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "942ab137-3a68-4138-a38b-7ba69f4f9451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+文献搜索完成，报告已追加到 memory.md。
+
+**核心结论**：12 轮搜索未找到任何论文直接研究 MBRL 中 seed-dependent value overestimation bifurcation。三个 novelty gap 均为完全空白：
+
+1. **Seed-dependent bifurcation in MBRL value estimation** — Bjorck 2022 描述 variance 来源但未深入机制，Zhang 2026 提供动力学框架但未应用于 MBRL
+2. **Value overestimation 自我修正条件** — 现有文献只关注 mitigation（TD3 等），无人研究自发修正
+3. **Temporal conditioning 对 critic 的影响** — variable time step RL 研究 control frequency，不涉及 world model 内部 dt_embedding
+
+建议新增 5 篇到 literature_map.yaml，其中 Zhang 2026（训练不稳定性的动力学原理）和 Voelcker 2024（Dyna-style RL critic divergence）最有论文引用价值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "uuid": "5acbaecd-974a-46c9-b6be-56c6b1f7d721",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QYqa4zbU92CW8d3EoR9ox9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8059,
+      "cache_read_input_tokens": 42400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8059
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+文献搜索完成，报告已追加到 memory.md。
+
+**核心结论**：12 轮搜索未找到任何论文直接研究 MBRL 中 seed-dependent value overestimation bifurcation。三个 novelty gap 均为完全空白：
+
+1. **Seed-dependent bifurcation in MBRL value estimation** — Bjorck 2022 描述 variance 来源但未深入机制，Zhang 2026 提供动力学框架但未应用于 MBRL
+2. **Value overestimation 自我修正条件** — 现有文献只关注 mitigation（TD3 等），无人研究自发修正
+3. **Temporal conditioning 对 critic 的影响** — variable time step RL 研究 control frequency，不涉及 world model 内部 dt_embedding
+
+建议新增 5 篇到 literature_map.yaml，其中 Zhang 2026（训练不稳定性的动力学原理）和 Voelcker 2024（Dyna-style RL critic divergence）最有论文引用价值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 222017,
+  "duration_api_ms": 298984,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "851b3195-92f7-4f2a-8a9c-e80d6374c1aa",
+  "total_cost_usd": 1.0417639999999997,
+  "usage": {
+    "input_tokens": 4289,
+    "cache_creation_input_tokens": 39012,
+    "cache_read_input_tokens": 246132,
+    "output_tokens": 8083,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39012,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 301,
+        "cache_read_input_tokens": 42400,
+        "cache_creation_input_tokens": 8059,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8059
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 264368,
+      "outputTokens": 7397,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 15,
+      "costUSD": 0.451353,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4289,
+      "outputTokens": 8083,
+      "cacheReadInputTokens": 246132,
+      "cacheCreationInputTokens": 39012,
+      "webSearchRequests": 0,
+      "costUSD": 0.590411,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1e1a1a97-35c2-429d-8ba4-9f79a1c8c02f"
+}
+```
+
+</details>
+
+---

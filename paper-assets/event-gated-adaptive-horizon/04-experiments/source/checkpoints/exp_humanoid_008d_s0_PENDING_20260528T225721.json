@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_humanoid_008d_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-28T22:36:50.115Z",
+    "updated_at": "2026-05-28T22:57:21.417Z",
+    "hypothesis": "Humanoid Walk trained dt_emb + gate + subsample ON (008d config: gate_fixed_dt=2, gate_subsample_max_dt=2, H=8), seed=0 — tests whether CIVO onset generalizes to highest-DoF (21) DMC locomotion environment. Expect NVE > 2.0× if CIVO is DoF-independent. Source: post-D171 scope expansion."
+  },
+  "timestamp": "2026-05-28T22:57:21.910806+00:00",
+  "trigger": "update_registry"
+}

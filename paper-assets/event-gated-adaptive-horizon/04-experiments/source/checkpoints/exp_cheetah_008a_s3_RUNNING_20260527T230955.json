@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_cheetah_008a_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T20:21:22.462Z",
+    "updated_at": "2026-05-27T23:09:55.196Z",
+    "hypothesis": "Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=3 — C3 cross-env value growth suppression rebuttal reserve. Expect no CIVO (NVE < 2.0), value suppression consistent with s0/s1. Source: D172 rebuttal reserve.",
+    "parent": "exp_008a_no_subsample_dt2",
+    "server": "westd-51268",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_cheetah_008a_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --imag_horizon 15\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "652810",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_cheetah_008a_s3.log",
+      "submitted_at": "2026-05-27T20:22:23.747Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "652810",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_cheetah_008a_s3.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_cheetah_008a_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --imag_horizon 15\"",
+      "finished_at": "2026-05-27T23:09:51.796Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-27T23:09:55.723892+00:00",
+  "trigger": "update_registry"
+}

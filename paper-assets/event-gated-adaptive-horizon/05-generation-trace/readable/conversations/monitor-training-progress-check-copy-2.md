@@ -1,0 +1,639 @@
+# monitor training progress check
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/chats/worker_monitor_training-progress-check_20260514T142507.jsonl`
+- **Structured JSON:** [`f4da428e04be93dd366c.json`](../../sessions/f4/f4da428e04be93dd366c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+21 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T14:26:37.503697+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T14:26:37.504168+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T14:26:37.504403+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ps -p 142508,887053 -o pid,etimes,rss,pcpu --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "ps -p 142508,887053 -o pid,etimes,rss,pcpu --no-headers",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T14:26:37.504593+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T14:26:37.504779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"142508   17543  3572  0.0\\n887053     416  3560  0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T14:26:37.504986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 16 %, 4165 MiB, 97887 MiB\\n1, 0 %, 2751 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T14:26:37.505204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -5 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "tail -5 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T14:26:37.505377+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -5 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "tail -5 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T14:26:37.505603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 115000, \\\"model_loss\\\": 3.699066400527954, \\\"model_grad_norm\\\": 8.97429084777832, \\\"height_loss\\\": 0.0011876571225002408, \\\"orientations_loss\\\": 0.06526687741279602, \\\"velocity_loss\\\": 0.4811341166496277, \\\"reward_loss\\\": 0.5598351359367371, \\\"cont_loss\\\": 1.1036448838153134e-10, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.319404602050781, \\\"rep_loss\\\": 4.319404602050781, \\\"kl\\\": 4.3076910972595215, \\\"prior_ent\\\": 42.26466751098633, \\\"post_ent\\\": 37.89037322998047, \\\"normed_target_mean\\\": 0.7640796899795532, \\\"normed_target_std\\\": 0.32654911279678345, \\\"normed_target_min\\\": -0.6853947043418884, \\\"normed_target_max\\\": 1.0981252193450928, \\\"EMA_005\\\": 549.508056640625, \\\"EMA_095\\\": 584.3721923828125, \\\"value_mean\\\": 574.9320068359375, \\\"value_std\\\": 11.255321502685547, \\\"value_min\\\": 453.3771057128906, \\\"value_max\\\": 587.9420776367188, \\\"target_mean\\\": 576.14501953125, \\\"target_std\\\": 11.385961532592773, \\\"target_min\\\": 525.5618896484375, \\\"target_max\\\": 587.794189453125, \\\"imag_reward_mean\\\": 1.1719746589660645, \\\"imag_reward_std\\\": 0.7155168056488037, \\\"imag_reward_min\\\": 0.0028495558071881533, \\\"imag_reward_max\\\": 2.005420684814453, \\\"imag_action_mean\\\": -0.13997890055179596, \\\"imag_action_std\\\": 0.7641435265541077, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.239124774932861, \\\"actor_loss\\\": -0.0326109305024147, \\\"actor_grad_norm\\\": 0.4192263185977936, \\\"value_loss\\\": 1.1561189889907837, \\\"value_grad_norm\\\": 0.08047934621572495, \\\"update_count\\\": 27599.0, \\\"fps\\\": 7.771510422228855}\\n{\\\"step\\\": 116000, \\\"dataset_size\\\": 58000.0, \\\"train_return\\\": 687.1270141601562, \\\"train_length\\\": 500.0, \\\"train_episodes\\\": 116.0}\\n{\\\"ste
+…[truncated 566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T14:26:37.505907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 0, \\\"dataset_size\\\": 2000.0, \\\"train_return\\\": 38.18262481689453, \\\"train_length\\\": 500.0, \\\"train_episodes\\\": 4.0}\\n{\\\"step\\\": 0, \\\"dataset_size\\\": 2000.0, \\\"train_return\\\": 36.775489807128906, \\\"train_length\\\": 500.0, \\\"train_episodes\\\": 4.0}\\n{\\\"step\\\": 5000}\\n{\\\"step\\\": 5000, \\\"eval_return\\\": 39.26672782897949, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 5000, \\\"model_loss\\\": 20.864545822143555, \\\"model_grad_norm\\\": 167.9042510986328, \\\"height_loss\\\": 0.06079593300819397, \\\"orientations_loss\\\": 2.6459152698516846, \\\"velocity_loss\\\": 9.773075103759766, \\\"reward_loss\\\": 3.331825017929077, \\\"cont_loss\\\": 0.0191054530441761, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999998, \\\"dyn_loss\\\": 8.389714241027832, \\\"rep_loss\\\": 8.389714241027832, \\\"kl\\\": 8.389714241027832, \\\"prior_ent\\\": 105.70162200927734, \\\"post_ent\\\": 97.9590072631836, \\\"normed_target_mean\\\": 0.11476299166679382, \\\"normed_target_std\\\": 0.055940475314855576, \\\"normed_target_min\\\": 0.026590298861265182, \\\"normed_target_max\\\": 0.19516827166080475, \\\"EMA_005\\\": 0.008502965793013573, \\\"EMA_095\\\": 0.049313098192214966, \\\"value_mean\\\": 0.0012787904124706984, \\\"value_std\\\": 1.968605829461012e-05, \\\"value_min\\\": 0.0010149538284167647, \\\"value_max\\\": 0.001306091551668942, \\\"target_mean\\\": 0.12326595932245255, \\\"target_std\\\": 0.05594047158956528, \\\"target_min\\\": 0.035093262791633606, \\\"target_max\\\": 0.20367123186588287, \\\"imag_reward_mean\\\": 0.0340474508702755, \\\"imag_reward_std\\\": 0.00011087780148955062, \\\"imag_reward_min\\\": 0.03247014060616493, \\\"imag_reward_max\\\": 0.03421979770064354, \\\"imag_action_mean\\\": -0.00023364566732198, \\\"imag_action_std\\\": 0.7484322190284729, \\\"imag_action_min\\\": -1.0, \\\
+…[truncated 830 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T14:26:37.506183+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep eval_return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "grep eval_return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T14:26:37.506404+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 5000, \\\"eval_return\\\": 41.212448310852054, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 15000, \\\"eval_return\\\": 106.00523834228515, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 25000, \\\"eval_return\\\": 325.32677001953124, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 35000, \\\"eval_return\\\": 354.4852634429932, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 45000, \\\"eval_return\\\": 498.01019897460935, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 55000, \\\"eval_return\\\": 534.1289978027344, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 65000, \\\"eval_return\\\": 688.8694213867187, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 75000, \\\"eval_return\\\": 656.8485473632812, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 85000, \\\"eval_return\\\": 618.729623413086, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 95000, \\\"eval_return\\\": 596.2426391601563, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 105000, \\\"eval_return\\\": 836.5136474609375, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 115000, \\\"eval_return\\\": 804.7892761230469, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T14:26:37.506589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep eval_return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "grep eval_return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T14:26:37.506762+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 5000, \\\"eval_return\\\": 39.26672782897949, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T14:26:37.506956+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep value_mean /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "grep value_mean /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/metrics.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T14:26:37.507331+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 5000, \\\"model_loss\\\": 23.881872177124023, \\\"model_grad_norm\\\": 43.19063949584961, \\\"height_loss\\\": 0.07459643483161926, \\\"orientations_loss\\\": 3.4684994220733643, \\\"velocity_loss\\\": 11.2112398147583, \\\"reward_loss\\\": 3.3303756713867188, \\\"cont_loss\\\": 0.010503309778869152, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999998, \\\"dyn_loss\\\": 9.644432067871094, \\\"rep_loss\\\": 9.644432067871094, \\\"kl\\\": 9.644432067871094, \\\"prior_ent\\\": 104.37167358398438, \\\"post_ent\\\": 95.30342864990234, \\\"normed_target_mean\\\": 0.17799051105976105, \\\"normed_target_std\\\": 0.08560321480035782, \\\"normed_target_min\\\": 0.02460494264960289, \\\"normed_target_max\\\": 0.30194905400276184, \\\"EMA_005\\\": 0.00741711026057601, \\\"EMA_095\\\": 0.0719190388917923, \\\"value_mean\\\": 0.0016824555350467563, \\\"value_std\\\": 2.001773646043148e-05, \\\"value_min\\\": 0.001340973423793912, \\\"value_max\\\": 0.0017143762670457363, \\\"target_mean\\\": 0.1854075938463211, \\\"target_std\\\": 0.08560321480035782, \\\"target_min\\\": 0.032022055238485336, \\\"target_max\\\": 0.3093661367893219, \\\"imag_reward_mean\\\": 0.030494196340441704, \\\"imag_reward_std\\\": 9.039848373504356e-05, \\\"imag_reward_min\\\": 0.028985094279050827, \\\"imag_reward_max\\\": 0.030653567984700203, \\\"imag_action_mean\\\": -0.2212187647819519, \\\"imag_action_std\\\": 0.7056715488433838, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 8.081310272216797, \\\"actor_loss\\\": -0.18354639410972595, \\\"actor_grad_norm\\\": 0.0016011674888432026, \\\"value_loss\\\": 9.468164443969727, \\\"value_grad_norm\\\": 16.003355026245117, \\\"update_count\\\": 100.0, \\\"fps\\\": 0}\\n{\\\"step\\\": 15000, \\\"model_loss\\\": 7.868103504180908, \\\"model_grad_norm\\\": 12.534991264343262, \\\"height_loss\\\": 0.008534025400876999, \\\"o
+…[truncated 7642 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T14:26:37.507624+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_009a_baseline_walker_s2",
+  "field": "metrics",
+  "value": "{'current_step': 116000, 'target_step': 500000, 'progress_pct': 23.2, 'latest_eval_return': 804.79, 'eval_return_step': 115000, 'value_mean': 574.93, 'value_eval_ratio_pct': 71.4, 'fps': 7.77, 'train_return_latest': 848.09, 'eta_hours': 13.7, 'checked_at': '2026-05-14'}",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_009a_baseline_walker_s2",
+    "field": "metrics",
+    "value": "{'current_step': 116000, 'target_step': 500000, 'progress_pct': 23.2, 'latest_eval_return': 804.79, 'eval_return_step': 115000, 'value_mean': 574.93, 'value_eval_ratio_pct': 71.4, 'fps': 7.77, 'train_return_latest': 848.09, 'eta_hours': 13.7, 'checked_at': '2026-05-14'}",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T14:26:37.507892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_009a_baseline_walker_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:24.247Z\", \"updated_at\": \"2026-05-14T14:26:26.556Z\", \"hypothesis\": \"Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T07:19:08.969Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"spec\": {\"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000}, \"pid\": \"142508\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009a_baseline_walker_s2.log\", \"metrics\": {\"current_step\": 116000, \"target_step\": 500000, \"progress_pct\": 23.2, \"latest_eval_return\": 804.79, \"eval_return_step\": 115000, \"value_mean\": 574.93, \"value_eval_ratio_pct\": 71.4, \"fps\": 7.77, \"train_return_latest\": 848.09, \"eta_hours\": 13.7, \"checked_at\": \"2026-05-14\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1741}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T14:26:37.508125+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_009b_008d_walker_s2",
+  "field": "metrics",
+  "value": "{'current_step': 5000, 'target_step': 105000, 'progress_pct': 4.8, 'latest_eval_return': 39.27, 'eval_return_step': 5000, 'value_mean': 0.0013, 'value_eval_ratio_pct': 0.003, 'gate_dt_mean': 2, 'gate_dt_2_frac': 1, 'gate_empirical_entropy': 0, 'gate_entropy_ratio': 0, 'fps_estimated': 7.5, 'eta_hours': 3.7, 'delusional_critic_risk': 'too_early_to_assess', 'checked_at': '2026-05-14'}",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_009b_008d_walker_s2",
+    "field": "metrics",
+    "value": "{'current_step': 5000, 'target_step': 105000, 'progress_pct': 4.8, 'latest_eval_return': 39.27, 'eval_return_step': 5000, 'value_mean': 0.0013, 'value_eval_ratio_pct': 0.003, 'gate_dt_mean': 2, 'gate_dt_2_frac': 1, 'gate_empirical_entropy': 0, 'gate_entropy_ratio': 0, 'fps_estimated': 7.5, 'eta_hours': 3.7, 'delusional_critic_risk': 'too_early_to_assess', 'checked_at': '2026-05-14'}",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T14:26:37.508373+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_009b_008d_walker_s2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:25.186Z\", \"updated_at\": \"2026-05-14T14:26:29.310Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000}, \"pid\": \"887053\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d
+…[truncated 506 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_monitor_training-progress-check_20260514T142507",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-14T14:26:37.508624+00:00_
+
+Registry 已更新。总结：
+
+| | exp_009a (baseline) | exp_009b (008d treatment) |
+|---|---|---|
+| **Step** | 116K / 500K (23.2%) | 5K / 105K (4.8%) |
+| **eval_return** | 804.8 @ 115K | 39.3 @ 5K |
+| **value_mean** | 574.9 | 0.0013 |
+| **value/eval ratio** | 71.4% | ~0% (正常，太早期) |
+| **fps** | 7.77 | ~7.5 (估算) |
+| **ETA** | ~13.7h | ~3.7h |
+| **GPU** | cuda:0, 16%, 4165MiB | cuda:1, 0%, 2751MiB |
+| **状态** | 健康，eval_return 稳步上升 | 刚启动，gate 全锁 dt=2 |
+
+009a 训练曲线正常，eval_return 从 41→805 稳步爬升。009b 刚跑 7 分钟，尚无法判断 delusional critic collapse 风险——需要等到 ~30K-50K steps 时观察 value_eval_ratio 是否异常膨胀。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_monitor_training-progress-check_20260514T142507"
+}
+```
+
+</details>
+
+---

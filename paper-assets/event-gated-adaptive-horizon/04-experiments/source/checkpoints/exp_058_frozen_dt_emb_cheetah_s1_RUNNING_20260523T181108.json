@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_058_frozen_dt_emb_cheetah_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T18:10:49.773Z",
+    "updated_at": "2026-05-23T18:11:08.604Z",
+    "hypothesis": "Cheetah frozen dt_emb 跨 seed 可复现性验证。exp_046 (s0) 显示 frozen 将 NVE 从 ~70-108（trained）降至 1.35。s1 验证阻止效应是否可复现。如果 s1 也阻止 → Cheetah frozen n=2 增强极端 CIVO 场景下 frozen diagnostic 的统计基础。",
+    "parent": "exp_046_frozen_dt_emb_cheetah",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_058_frozen_dt_emb_cheetah_s1",
+      "server": "bjb1-45299",
+      "gpu_ids": [
+        0
+      ],
+      "pid": 164830,
+      "data_path": "dmc_cheetah_run",
+      "data_count": 210000,
+      "model_name": "DreamerV3 (frozen dt_emb, Cheetah s1)",
+      "seed": 1,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "dmc_cheetah_run (online eval)",
+      "log_path": "logdir/exp_058_frozen_dt_emb_cheetah_s1/train.log"
+    }
+  },
+  "timestamp": "2026-05-23T18:11:08.920216+00:00",
+  "trigger": "update_registry"
+}

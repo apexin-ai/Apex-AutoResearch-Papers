@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_010b_cheetah_civo_trigger_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:02:47.702Z",
+    "updated_at": "2026-05-18T02:03:55.097Z",
+    "hypothesis": "Cheetah Run CIVO trigger seed=0: trained dt_emb + subsample ON + H=8. 第二 seed 复现 Cheetah CIVO (NVE>1.5×)，加强跨环境因果论证统计力度。Rebuttal 储备。",
+    "parent": "exp_010b_cheetah_civo_trigger"
+  },
+  "timestamp": "2026-05-18T02:03:55.466628+00:00",
+  "trigger": "update_registry"
+}

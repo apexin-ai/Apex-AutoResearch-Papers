@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21b0582902ea8523097d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_5_1778753974.md",
+  "task_key": "loop_5_1778753974",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778753974.md",
+    "occurrence": 1,
+    "bytes": 4035,
+    "sha256": "327df018218094000f7f62166be261d4d15a8044a861a90a1e6587ae009dfef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T09:34:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb1-45299 上 cuda:0 和 cuda:1，不可用其他设备\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv\n- submit 命令必须带 `export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa`\n- exp_008e 有重复进程历史（两个 PID 写同一 logdir），新跑 008e 系列前必须确认旧进程已清理、logdir 干净\n- registry 中有 6 个 PREPARING 状态的残留条目（exp_008a/008c/008d/008e_v2/008e_v3/006），是早期中间状态记录，不是真实待跑实验，不要尝试提交它们\n\n### 2. 🖥️ 基础设施快照\n- 服务器: bjb1-45299，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python: `/root/miniconda3/bin/python`（conda base 环境）\n- 项目本地路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/`\n- logdir: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`（所有实验 checkpoint + metrics.jsonl 在此）\n- 活跃进程: exp_008f PID 127761（tmux，cuda:0）；008a PID 106942 已退出\n- Worker: `worker_status_server_check_008a_done_20260514T061744` 已派出检查服务器状态（可能已完成，需读回调）\n\n### 3. 📊 当前状态\n**刚做完**: exp_008a_no_subsample_dt2 完成分析，结论 SUCCESS。eval@105K=777.66（82% baseline），normalized v/e=0.59x，两次 V-shaped recovery，C3 claim fully confirmed。已更新 registry→DONE/success，已更新 memory.md，已向 Director 汇报。\n\n**RUNNING**:\n- `exp_008f_no_dt_embed_subsample_on_h8` (cuda:0, PID 127761) — C2 confound control：dt_embed_dim=0 + subsample ON + H=8。这是 **MVP 最后一块拼图**。@35K eval 是决策点：normalized v/e <1.0x → 因果确认 → complete_mvp\n\n**待确认**:\n- `exp_008e_v3_subsample_on_dt1_h15` — registry 显示 PREPARING 但 ROADMAP 说 @44K。Worker 正在检查其真实状态（是否在服务器上跑着但 registry 未更新）\n- cuda:1 是否空闲 — Worker 正在查 nvidia-smi\n\n**等待中**: Worker 回调（server status check）；Director 对 008a 汇报的回复\n\n### 4. 📋 待办\n- Worker 回调到达 → 读结果，确认 008f/008e_v3 真实状态和 GPU 占用，若 cuda:1 空闲则向 Director 请求任务\n- 008f cron 回调（进程退出）→ 按 on-experiment-done 分析：normalized v/e <1.0x → complete_mvp + 汇报 Director；>1.5x → story pivot 需要\n- 008e_v3 如果在跑 → 等完成回调；如果没跑 → 需要在空闲 GPU 上重新提交\n- Director 批准进入 experiment_plan 阶段 → 规划完整实验矩阵（多 DMC 环境 × 3 seeds）\n- MVP complete 后 → 读 paper_framing.md 确认 claims 与实验证据对齐，启动 experiment_plan + Dream 审稿模拟\n\n### 5. 🎯 战略上下文\n**核心结论链**: trained dt_embedding → delusional critic (v/e >1.5x baseline) → collapse (008d/006) vs untrained dt_embedding → value growth suppression (v/e <1.0x baseline) → V-shaped recovery → 82% baseline (008a)。Narrative B+: \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"。\n\n**因果证据矩阵**:\n- C2 (dt_emb causation): 008c vs 008d 确认，008f 做 confound control（去掉 dt_emb dim 看是否仍崩）\n- C3 (suppression → performance): 008a 完整确认\n- B+ confound: 008e_v3 解答 \"subsample ON + untrained dt_emb 会怎样\"\n\n**易错点**:\n- 008f 的 normalized v/e 判读要对标 008d@同 step，不是对标 008a（两者 H 不同）\n- 008e_v3 可能实际在跑但 registry 未跟踪（submit 时出过重复进程问题），必须以服务器实际 `ps` 为准\n- ROADMAP 里 \"cuda:0 跑 008a+008e_v3, cuda:1 跑 008f\" 与 registry spec 里的 gpu 字段可能不一致（CUDA_VISIBLE_DEVICES 映射），以 nvidia-smi 为准\n- CoRL DDL 2026-05-29，剩余 15 天，MVP 后仍需 generalization 实验 + 论文，时间紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778753974.md"
+}

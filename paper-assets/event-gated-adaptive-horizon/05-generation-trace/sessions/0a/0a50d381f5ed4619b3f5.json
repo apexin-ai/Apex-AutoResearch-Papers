@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "0a50d381f5ed4619b3f5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "sync supplementary to local",
+  "task_key": "worker_sync_supplementary-to-local_20260524T032203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_supplementary-to-local_20260524T032203.log",
+    "occurrence": 1,
+    "bytes": 700842,
+    "sha256": "04a653eb4bafabf944a5677e0cc5cb1ed64424612be36c622fb76eb217e207b0"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 1,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 53,
+      "tool_result": 52,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "0a50d381f5ed4619b3f5-part-0001.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "0a50d381f5ed4619b3f5-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "0a50d381f5ed4619b3f5-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-supplementary-to-local.md"
+}

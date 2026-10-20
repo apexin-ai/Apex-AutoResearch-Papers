@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_humanoid_baseline_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-28T22:36:46.382Z",
+    "updated_at": "2026-05-29T04:39:10.761Z",
+    "hypothesis": "Humanoid Walk baseline (dt=1, no gate) establishes reference performance for 21-DoF environment CIVO verification. Expect stable training without value overestimation (NVE < 2.0×). Source: post-D171 scope expansion.",
+    "spec": {
+      "data_path": "dmc_humanoid_walk",
+      "data_count": 200000,
+      "model_name": "DreamerV3-S (baseline, no gate)",
+      "seed": 0,
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_humanoid_walk --logdir logdir/exp_humanoid_baseline_s0 --steps 200000 --seed 0 --compile False --device cuda:0\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "25955",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_humanoid_baseline_s0.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-29T04:29:59.886Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-29T04:30:07.659100+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "eval_return_final_mean": 1.48,
+      "eval_return_final_std": 0.36,
+      "eval_return_best": 2.16,
+      "nve_max": 12.97,
+      "nve_max_step": 105000,
+      "nve_mean_35k_plus": 7.64,
+      "ve_ratio_final": 12.22,
+      "value_mean_final": 15.18,
+      "value_mean_max": 15.18,
+      "actor_entropy_final": -17.83,
+      "civo_alerts": 3,
+      "civo_alert_steps": [
+        55000,
+        105000,
+        195000
+      ],
+      "total_steps": 212000,
+      "train_return_final_mean": 1.73
+    },
+    "checkpoint_path": "logdir/exp_humanoid_baseline_s0/latest.pt",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_humanoid_baseline_s0.log",
+    "completed_at": "2026-05-29T04:39:10.761Z"
+  },
+  "timestamp": "2026-05-29T04:39:11.276499+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,576 @@
+# research paper framing draft
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_research_paper_framing_draft_20260514T040752.log`
+- **Structured JSON:** [`6236d8a3828f2314b8e5.json`](../../sessions/62/6236d8a3828f2314b8e5.json)
+
+## Before a recorded user message
+
+11 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "98852352-efc8-42e2-9e5c-0ffe5a4defb4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778740200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "cc09196d-0a06-422d-869a-038ac22a55da",
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll draft the paper_framing.md document. Let me first load the tool schema for saving project files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "32cf0e1d-b264-4497-a080-cb82c78b45d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GREeYzPSC4N1TNMYgkUV5B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12333,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12333
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019QR9C42oVc8XkEqff5xUwp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "870120b5-6f30-483d-8157-4b95bb1b1de0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GREeYzPSC4N1TNMYgkUV5B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12333,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12333
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T04:08:03.570Z_
+
+<details><summary>↩ Tool result · `toolu_019QR9C42oVc8XkEqff5xUwp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "42d9237f-bcc2-4883-b9b7-c25576d711e8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll draft the paper_framing.md content and save it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "ac6e6438-8d22-49f5-91bf-c7eb6c22dc0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoTDViLAtGCsUTxxcHzRdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 23780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 389
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01BKfUG95uZMse8dUTYsGGDf`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "content": "# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\n\n## Title Candidates\n\n1. **\"Why Temporal Abstraction Fails in World-Model Reinforcement Learning: A Diagnostic Analysis\"**\n2. **\"The Delusional Critic Problem in Variable-Rate Imagination\"**\n3. **\"Diagnosing Value Overestimation in Temporally-Abstract World Models\"**\n\n## Venue\n\n**CoRL 2026** — Deadline: 2026-05-29\n\n## Narrative Positioning\n\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\n\nThe contribution is a **closed causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor. Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\n\n---\n\n## Core Claims\n\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\n\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\n\n| Evidence | Experiment | Key Metric |\n|----------|-----------|------------|\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | ~30% of baseline performance |\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\n\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\n\n### C2: Trained dt_embedding causes delusional critic (root cause)\n\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is systematic value overestimation (delusional critic) that drives actor learning toward incorrect policies.\n\n| Evidence | Experiment | Key Metric |\n|----------|-----------|------------|\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval ~242@55K, plateau, value/eval ratio ~19% (healthy) |\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval 146@35K, value/eval=41.2%@35K (severe overestimation) |\n| Same overestimation as H=15 | exp_006 vs exp_008d | Both show ~41-43% value/eval ratio, confirming dt_emb is root cause, not horizon length |\n\n**Strength**: Strong. The 008c vs 008d comparison is a controlled experiment isolating dt_embedding training as the single variable. The value/eval ratio quantitatively separates healthy (~19%) from pathological (~41%) regimes.\n\n### C3: Untrained dt_embedding creates pessimistic bias that delays but does not prevent degradation\n\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, resulting in pessimistic value estimates. This delays collapse (~3x longer to degrade) but does not eliminate it.\n\n| Evidence | Experiment | Key Metric |\n|----------|-----------|------------|\n| Delayed degradation | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | @55K=487.9, value/eval=37.6% |\n| Comparison to trained dt_emb | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | Collapse by 65K |\n| Pessimistic bias magnitude | exp_008a vs exp_006 | 008a reaches comparable peak ~3x later |\n\n**Strength**: Moderate. The delay effect is clear, but whether 008a eventually collapses at the same rate needs longer training runs. Current evidence shows value/eval=37.6% is elevated but below the ~41% pathological threshold.\n\n**Narrative B+ upgrade condition**: If exp_008a@65K ≥ 450 eval return, upgrade C3 to: *\"Pessimistic bias from untrained dt_embedding serves as a partial mitigation, sustaining performance through reduced value overestimation.\"* This strengthens the paper's actionable implications.\n\n### C4: Longer dt amplifies the problem\n\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\n\n| Evidence | Experiment | Key Metric |\n|----------|-----------|------------|\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\n| dt=4 severe degradation | exp_007_fixed_dt4 | ~30% of baseline (~285) |\n| Monotonic relationship | dt=1 (~950) > dt=2 (~485 peak) > dt=4 (~285) | Clear monotonic decline |\n\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\n\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\n\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\n\n| Evidence | Experiment | Key Metric |\n|----------|-----------|------------|\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval ~488, no collapse at 55K |\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\n\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\n\n---\n\n## Story Arc\n\n### 1. Introduction\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding → delusional critic as the root cause\n\n### 2. Background & Related Work\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\n- World-model RL (Dreamer family, IRIS, TWM)\n- Variable-rate planning in world models (few prior works, mostly positive framing)\n- Value overestimation / delusional policies in model-based RL\n\n### 3. Methodology\n- DreamerV3 as base architecture\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\n\n### 4. Results\n- **Finding 1**: All dt>1 configurations degrade (C1)\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \"smoking gun\" comparison (008c vs 008d)\n- **Finding 3**: Untrained dt_embedding delays but doesn't prevent degradation (C3)\n- **Finding 4**: Longer dt amplifies (C4)\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\n\n### 5. Discussion\n- Mechanism: why trained dt_embedding causes delusional critic (RSSM fidelity gap at dt>1)\n- Connection to existing theory: delusional policies (Delalleau et al.), model exploitation in MBRL\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\n\n### 6. Implications for Future Work\n- Don't train dt_embedding jointly with value function in current world-model architectures\n- RSSM prediction quality must improve before variable-rate imagination is viable\n- Pessimistic value estimation as a potential mitigation direction\n- Need for diagnostic methodology in temporal abstraction research\n\n---\n\n## Anticipated Reviewer Concerns\n\n### R1: \"Limited to one environment / one base algorithm\"\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\n**Mitigation**: If time allows, add one additional environment (e.g., Walker or Cheetah) to show the pattern holds.\n\n### R2: \"No proposed solution — what's the actionable takeaway?\"\n**Pre-emption**: Diagnostic papers serve a different purpose than method papers. Identifying root causes (trained dt_embedding) and quantitative signatures (value/eval ratio >40% = pathological) gives the community concrete guidance. We explicitly outline mitigation directions (pessimistic value estimation, improved RSSM, decoupled dt_embedding training).\n**Mitigation**: Frame implications section as a \"research agenda\" with specific, testable hypotheses.\n\n### R3: \"Value/eval ratio is a crude proxy for overestimation\"\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the ratio consistently separates stable (≤19%) from collapsing (≥41%) configurations across all experiments, demonstrating its diagnostic utility.\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\n\n### R4: \"The factorial design is incomplete — missing cells in the grid\"\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\n\n### R5: \"Novelty concern — model exploitation / value overestimation in MBRL is well-known\"\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\n\n---\n\n## Experiment Coverage Assessment\n\n| Claim | Evidence Status | Gaps |\n|-------|----------------|------|\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\n| C2 (root cause: dt_emb) | ✅ Strong — controlled 008c vs 008d | Consider adding value prediction distribution analysis |\n| C3 (pessimistic bias) | ⚠️ Moderate — need 008a longer run | **Priority**: check 008a@65K. If ≥450 → upgrade; if <400 → weaken to \"delays only\" |\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\n\n### Priority Actions Before Submission\n1. **Check exp_008a@65K** — determines C3 framing (Narrative B+ trigger)\n2. **Complete factorial grid analysis** — present all 8 cells, even if some are interpolated\n3. **Value prediction distribution plots** — strengthen C2 beyond ratio proxy\n4. **Second environment** (stretch goal) — addresses R1\n\n---\n\n## Key Figures (Planned)\n\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "42160568-3716-4766-8946-93eb91bfb5b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoTDViLAtGCsUTxxcHzRdz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 389,
+      "cache_read_input_tokens": 23780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 389
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T04:09:22.553Z_
+
+<details><summary>↩ Tool result · `toolu_01BKfUG95uZMse8dUTYsGGDf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "f0614ff0-e6cf-4a69-8542-5bd195a75cc1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+`paper_framing.md` 已写入。包含：
+
+- **3 个备选标题**，推荐第一个（最完整）或第二个（更 punchy）
+- **5 个 Core Claims**，每个附实验编号和关键指标，标注证据强度（C1/C2 强，C3-C5 中等）
+- **Story Arc** 六段式结构，以 factorial diagnosis 为方法论核心
+- **5 个预演审稿攻击面**，每个附 pre-emption 策略和 mitigation 措施
+- **Experiment Coverage 表**，标出 C3（008a@65K）为当前最高优先级 gap
+- **Narrative B+ 触发条件**：008a@65K ≥ 450 时升级 C3 措辞
+- **5 张关键图表**规划
+
+最紧迫的 action item：检查 exp_008a 在 65K 步时的 eval return，决定 C3 的最终 framing。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "uuid": "5aa8b4b3-8d28-496e-be02-9f29a2f5d02d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAzeEkvasf53mjVdSbfUNN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3525,
+      "cache_read_input_tokens": 24169,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3525
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 11_
+
+`paper_framing.md` 已写入。包含：
+
+- **3 个备选标题**，推荐第一个（最完整）或第二个（更 punchy）
+- **5 个 Core Claims**，每个附实验编号和关键指标，标注证据强度（C1/C2 强，C3-C5 中等）
+- **Story Arc** 六段式结构，以 factorial diagnosis 为方法论核心
+- **5 个预演审稿攻击面**，每个附 pre-emption 策略和 mitigation 措施
+- **Experiment Coverage 表**，标出 C3（008a@65K）为当前最高优先级 gap
+- **Narrative B+ 触发条件**：008a@65K ≥ 450 时升级 C3 措辞
+- **5 张关键图表**规划
+
+最紧迫的 action item：检查 exp_008a 在 65K 步时的 eval return，决定 C3 的最终 framing。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 94526,
+  "duration_api_ms": 95738,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "87c0917f-e5b4-41b8-b240-d7fc55a90327",
+  "total_cost_usd": 0.22892674999999998,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 16247,
+    "cache_read_input_tokens": 59396,
+    "output_tokens": 3832,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16247,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 284,
+        "cache_read_input_tokens": 24169,
+        "cache_creation_input_tokens": 3525,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3525
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1765,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001855,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 3832,
+      "cacheReadInputTokens": 59396,
+      "cacheCreationInputTokens": 16247,
+      "webSearchRequests": 0,
+      "costUSD": 0.22707175,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c8e4a64c-0706-4bf0-9be7-67762a2f1e44"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f581c9e2660e1e0043",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis nve ci supplement d054 fix",
+  "task_key": "worker_analysis_nve_ci_supplement_d054_fix_20260515T173839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_ci_supplement_d054_fix_20260515T173839_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "cd8c4562ff60fdada683cbded75c6491bb3be033154d0366daa6d5bfb1a848da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**task_b2** (≥1.5x threshold, 3 pos / 5 neg):\n| 指标 | 值 |\n|------|-----|\n| AUROC | 14/15 = 0.9333 |\n| Accuracy | 7/8 = 87.5% |\n| Clopper-Pearson 95% CI | [0.4735, 0.9968] |\n| Separation margin | -2.16 (有重叠) |\n| False positive | 008e_v3_s2 (NVE=3.78, Imagination-Reality Divergence) |\n\n**task_b1** (≥1.7x threshold, 2 pos / 6 neg):\n| 指标 | 值 |\n|------|-----|\n| AUROC | 12/12 = 1.0 |\n| Accuracy | 8/8 = 100% |\n| Clopper-Pearson 95% CI | [0.6306, 1.0] |\n| Separation margin | +0.35 (完美分离) |\n\n**注意**: task_b1 的 CI 下界 scipy 计算为 0.6306（`0.025^(1/8)`），与 Director 预期的 0.6877 有差异。0.6306 是标准 Clopper-Pearson 精确值。\n\nJSON 已输出到服务器和本地 `artifacts/nve_threshold_v3_ci_supplement_d054.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nve-ci-supplement-d054-fix.md"
+}

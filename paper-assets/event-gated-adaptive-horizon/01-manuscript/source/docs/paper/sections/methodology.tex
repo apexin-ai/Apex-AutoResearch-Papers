@@ -1,0 +1,52 @@
+\section{Experimental Setup}
+\label{sec:methodology}
+
+\subsection{Base Architecture}
+\label{sec:base_arch}
+
+All experiments build on DreamerV3 \citep{hafner2025dreamerv3}, which learns an RSSM with discrete latent states ($32$ categories $\times$ $32$ classes), uses symlog-transformed predictions, and trains an actor-critic entirely in imagined trajectories. The default configuration imagines $H{=}15$ steps at $\dt{=}1$ (one imagination step per environment transition).
+
+\subsection{Variable-Rate Imagination Mechanism}
+\label{sec:variable_rate}
+
+We introduce three orthogonal modifications enabling variable-rate imagination, each independently toggled.
+
+\paragraph{Temporal embedding.}
+A learned embedding $e(\dt)$ is concatenated to the RSSM input at each imagination step. We test three modes: \textbf{trained} (updated via backpropagation, enabling co-adaptation), \textbf{frozen} (fixed random projection, \texttt{requires\_grad=False}), and \textbf{removed} (dimension zero). We further distinguish \textbf{trained-and-exposed} (subsample ON: the RSSM trains on $\dt{>}1$ transitions) from \textbf{trained-but-unexposed} (subsample OFF: $\dt{>}1$ used only during imagination). This four-way classification is the key experimental structure of our factorial design.
+
+\paragraph{Temporal subsampling.}
+When enabled, the replay buffer augments training data with variable-$\dt$ transitions by subsampling consecutive frames (max factor~2: both $\dt{=}1$ and $\dt{=}2$ from the same episodes). This controls whether the world model has seen multi-scale dynamics during training.
+
+\paragraph{Imagination horizon and step size.}
+We test $H{=}15$ (default) and $H{=}8$. The reduced horizon controls for compounding error: $H{=}8$ at $\dt{=}2$ covers $16$ physical steps, comparable to the default $15$. The parameter \texttt{gate\_fixed\_dt} forces a specific $\dt$ ($1$, $2$, or $4$), separating $\dt$-conditioning effects from any learned gating policy.
+
+\subsection{Factorial Design}
+\label{sec:factorial}
+
+We adopt a factorial ablation across four factors: $\dt$-embedding mode (trained / frozen / none), temporal subsampling (on / off), imagination horizon ($H{=}15$ / $H{=}8$), and step size ($\dt{=}1$, $2$, $4$). The design (12 conditions, Table~\ref{tab:factorial_design} in Appendix~\ref{sec:appendix_factorial}) isolates trained $\dt$-embedding and multi-rate exposure as orthogonal factors. Key configurations use 4--5 seeds; following \citet{agarwal2021precipice}, we report per-seed trajectories.
+
+\subsection{Diagnostic Metrics}
+\label{sec:metrics}
+
+\paragraph{Normalized value-to-eval ratio ($\nve$).}
+We define $\nve_t = (v/e)_{\text{config},t} / (v/e)_{\text{baseline},t}$, where $v/e$ is the critic's mean imagined value divided by mean evaluation return, and the baseline is the highest-performing seed (exp\_001, seed~1, 505K steps). Analysis is restricted to a \textbf{35K+ window} to avoid early-training inflation. The $\nve \geq 2.0\times$ threshold classifies all $n{=}36$ configurations across two environments (AUROC${=}1.000$ [95\% bootstrap CI: 1.000--1.000], F1${=}1.000$; Appendix~\ref{sec:appendix_sensitivity}).
+
+\subsection{Selective Gradient Stopping}
+\label{sec:sgs_method}
+
+To identify which gradient pathway through $e_{\Delta t}$ drives CIVO, we introduce \textit{selective gradient stopping} (SGS): $e_{\Delta t}$ is detached via $\operatorname{sg}(\cdot)$ before selected prediction heads during the backward pass, preventing those loss gradients from updating $e_{\Delta t}$ while preserving its forward-pass contribution. We test three variants: reward-only (exp\_016e), full-pathway (exp\_018, all non-KL gradients blocked), and obs-decoder-only (exp\_025/026). Gradient decomposition using $\nabla_\theta \mathcal{L}_i$ quantifies each pathway's contribution (Appendix~\ref{sec:sgs_gradient_analysis}).
+
+\subsection{Forward-Pass Interventions}
+\label{sec:forward_pass_method}
+
+We test two forward-pass interventions as representation- and output-level probes: \textbf{TCN} adds Gaussian noise $\mathcal{N}(0, \sigma^2)$ to $e_{\Delta t}$ during imagination ($\sigma \in \{0.2, 0.5\}$, three environments); \textbf{RAVE} clips imagined values exceeding an EMA anchor ($c \in \{2.0, 1.5\}$).
+
+\subsection{Dual-Critic Mechanism Ablation}
+\label{sec:dual_critic_method}
+
+We conduct a $2{\times}2$ factorial: \{single, dual\} $\times$ \{narrow (${\sim}1.2$M), wide (${\sim}2.4$M)\} critic. The dual-critic follows TD3 \citep{fujimoto2018td3}: two value heads on shared RSSM features, actor optimizing $\min(v_1, v_2)$. The wide variant doubles hidden dimensions to control for capacity independently of min.
+
+\subsection{Environment and Training Details}
+\label{sec:env_details}
+
+All experiments use Walker Walk and Cheetah Run from DMC \citep{tassa2018dmcontrol} with proprioceptive observations. Walker Walk (6-joint biped) is the primary environment; Cheetah Run (6-joint runner) serves as a severity probe (CIVO at $8$--$70\times$ NVE vs.\ $2$--$5\times$ on Walker). Baselines run 500K steps; treatments 105K steps. Hyperparameters follow DreamerV3 defaults \citep{hafner2025dreamerv3} ($d{=}32$ embedding; Appendix~\ref{sec:hyperparameters}). Training uses a single NVIDIA RTX PRO 6000 GPU (${\sim}80$ GPU-hours total). The codebase extends the official DreamerV3 implementation\footnote{\url{https://github.com/danijar/dreamerv3}, accessed March 2026.} with the variable-rate modules of \S\ref{sec:variable_rate}.

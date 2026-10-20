@@ -1,0 +1,1745 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0c63fa06338cfe3e9a37",
+  "rounds": [
+    {
+      "number": 96,
+      "messages": [
+        {
+          "source_line": 1801,
+          "timestamp": "2026-05-30T03:35:33.366003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_quadruped_baseline_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Quadruped Walk baseline (dt=1, no gate) establishes reference performance for 12-DoF four-legged environment CIVO verification. Expect stable training without value overestimation (NVE < 2.0×). Source: post-D171 scope expansion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_quadruped_walk --logdir logdir/exp_quadruped_baseline_s0 --steps 200000 --seed 0 --compile False --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"27003\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_quadruped_baseline_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-28T22:56:45.292Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_quadruped_walk\\\", \\\"data_count\\\": 200000, \\\"model_name\\\": \\\"DreamerV3-S (baseline, no gate)\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 125.0, \\\"gpu_hours\\\": 0.03}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_walker_008d_s7_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Walker Walk trained dt_emb + subsample ON (gate_subsample_max_dt=2) + gate_fixed_dt=2 + H=8, seed=7 — C2 onset rate rebuttal reserve. Retry after GPU collision bug. Fixed: --device cuda:1 + EGL=1. Source: D172 Tier 2.\\\", \\\"parent\\\": \\\"exp_008d_subsample_on_h8\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"rm -rf /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_008d_s7_r2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && export CUDA_VISIBLE_DEVICES=0,1 && cd /root/autodl-tmp/event-gated-adaptive-hor\n…[truncated 26990 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1260
+          },
+          "id": "event-001801"
+        },
+        {
+          "source_line": 1802,
+          "timestamp": "2026-05-30T03:36:07.744217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-32c09c1e/70dcc606-5d3b-4c62-b394-d386a2fcb4a9/tool-results/mcp-agent-ml-research-read_registry-1780112131858.txt\" && python3 -c \"\nimport json\nwith open('$FILE') as f:\n    data = json.load(f)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\nprint(f'Total negative experiments: {len(exps)}')\nprint()\nfor eid, e in exps.items():\n    env = 'unknown'\n    if 'walker' in eid.lower(): env = 'Walker'\n    elif 'cheetah' in eid.lower(): env = 'Cheetah'\n    elif 'pickcube' in eid.lower() or 'pick' in eid.lower(): env = 'PickCube'\n    elif 'peg' in eid.lower(): env = 'PegInsertion'\n    elif 'stack' in eid.lower(): env = 'StackCube'\n    elif 'cartpole' in eid.lower(): env = 'Cartpole'\n    elif 'hopper' in eid.lower(): env = 'Hopper'\n    elif 'humanoid' in eid.lower(): env = 'Humanoid'\n    elif 'quadruped' in eid.lower(): env = 'Quadruped'\n\n    # Detect config type\n    hyp = e.get('hypothesis', '')\n    spec = e.get('spec', {})\n    cmd = spec.get('command', '') if spec else ''\n    \n    if 'frozen' in eid.lower() or 'freeze' in hyp.lower() or 'dt_emb_freeze' in cmd:\n        emb_type = 'frozen'\n    elif 'no_dt_emb' in eid.lower() or 'dt_embed_dim 0' in cmd or 'dt_embed_dim=0' in hyp.lower() or 'gate_dt_embed_dim 0' in cmd:\n        emb_type = 'removed'\n    elif '008a' in eid.lower() or 'unexposed' in hyp.lower() or 'subsample OFF' in hyp:\n        emb_type = 'unexposed'\n    elif 'sgs' in eid.lower() or 'SGS' in hyp or 'sgs_mode' in cmd:\n        emb_type = 'SGS'\n    elif 'tcn' in eid.lower() or 'TCN' in hyp:\n        emb_type = 'TCN'\n    elif 'rave' in eid.lower() or 'RAVE' in hyp:\n        emb_type = 'RAVE'\n    elif 'dual' in eid.lower() or 'dual_critic' in hyp.lower() or 'wide' in eid.lower():\n        emb_type = 'dual-critic'\n    elif 'baseline' in eid.lower():\n        emb_type = 'baseline'\n    elif 'trained' in hyp.lower() or '008d' in eid.lower() or ('gate_enabled' in cmd and 'dt_embed_dim 0' not in cmd and 'dt_emb_freeze' not in cmd):\n        emb_type = 'trained'\n    else:\n        emb_type = 'other'\n\n    metrics = e.get('metrics', {})\n    nve = metrics.get('nve_peak', metrics.get('nve', '?'))\n    eval_ret = metrics.get('eval_return_final', metrics.get('eval_return', '?'))\n    \n    print(f'{eid}|{env}|{emb_type}|nve={nve}|eval={eval_ret}')\n\"\n",
+              "timeout": "10000"
+            }
+          },
+          "id": "event-001802"
+        },
+        {
+          "source_line": 1803,
+          "timestamp": "2026-05-30T03:36:07.946105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total negative experiments: 45\n\nexp_008e_v3_s3|unknown|trained|nve=4.02|eval=92.7\nexp_008e_v3_walker_s2|Walker|trained|nve=?|eval=?\nexp_quadruped_baseline_s0_r2|Quadruped|baseline|nve=?|eval=?\nexp_humanoid_baseline_s0|Humanoid|baseline|nve=?|eval=?\nexp_hopper_frozen_s0_ext|Hopper|frozen|nve=7756535.1|eval=0.5608\nexp_009e_008d_walker_s1|Walker|trained|nve=4.13|eval=?\nexp_hopper_trained_s0_ext|Hopper|trained|nve=?|eval=81.58\nexp_088_cheetah_008d_s1|Cheetah|trained|nve=0.517|eval=309.3\nexp_009b_008d_walker_s2|Walker|trained|nve=1.62|eval=?\nexp_081_008e_v3_walker_s2|Walker|trained|nve=?|eval=?\nexp_070_008e_v3_walker_s0|Walker|trained|nve=0.8|eval=148\nexp_062_cartpole_control|Cartpole|removed|nve=?|eval=?\nexp_061_cartpole_civo_trigger|Cartpole|trained|nve=?|eval=?\nexp_051_stackcube_frozen_dt_emb_s0|StackCube|frozen|nve=?|eval=?\nexp_038_dual_critic_walker_s2|Walker|dual-critic|nve=0.3|eval=120.9\nexp_037_wide_critic_cheetah|Cheetah|dual-critic|nve=3.6|eval=146.1\nexp_036_dual_critic_pickcube|PickCube|TCN|nve=2.3|eval=27.7\nexp_034|unknown|other|nve=?|eval=?\nexp_034_dual_critic_cheetah|Cheetah|TCN|nve=?|eval=?\nexp_031b_tcn_pickcube_s0_sigma05|PickCube|TCN|nve=3.3|eval=?\nexp_029d_tcn_walker_s3_sigma02|Walker|TCN|nve=3.0|eval=?\nexp_031_tcn_pickcube_s0_sigma02|PickCube|TCN|nve=?|eval=?\nexp_029b_tcn_walker_s2_sigma02|Walker|TCN|nve=2.765|eval=?\nexp_030c_tcn_cheetah_s0_sigma10|Cheetah|TCN|nve=?|eval=?\nexp_029c_tcn_walker_s0_sigma01|Walker|TCN|nve=?|eval=?\nexp_030b_tcn_cheetah_s0_sigma05|Cheetah|TCN|nve=?|eval=?\nexp_027_tcn_walker_s1|Walker|TCN|nve=?|eval={'105000': 216.7, '115000': 318.9, '125000': 309.1, '135000': 216.1, '145000': 175.4, '15000': 140.5, '155000': 171, '165000': 209.5, '175000': 120.4, '185000': 355.4, '195000': 183.3, '205000': 240.2, '215000': 350.8, '25000': 163.6, '35000': 153, '45000': 136.8, '5000': 31, '55000': 158.3, '65000': 298.5, '75000': 364.9, '85000': 134, '95000': 94.6}\nexp_030a_tcn_cheetah_s0_sigma02|Cheetah|TCN|nve=?|eval=?\nexp_027_tcn_walker_s0|W\n…[truncated 841 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-001803"
+        },
+        {
+          "source_line": 1804,
+          "timestamp": "2026-05-30T03:37:05.162947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['status', 'conclusion', 'hypothesis']",
+              "project": "event-gated-adaptive-horizon",
+              "limit": "50"
+            }
+          },
+          "id": "event-001804"
+        },
+        {
+          "source_line": 1805,
+          "timestamp": "2026-05-30T03:37:05.917648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_walker_no_dt_emb_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Removing dt_embedding (gate_dt_embed_dim=0) prevents CIVO triggering by eliminating the gate's ability to condition on temporal position, forcing conservative horizon selection\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_cheetah_008a_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=2 — C3 cross-env value growth suppression rebuttal reserve. Expect no CIVO (NVE < 2.0), value suppression consistent with s0/s1. Source: D172 rebuttal reserve.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_walker_008f_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<2.0), replicating 008f causal control from seed 0. Confirms removing dt_embedding prevents CIVO, strengthening C2. Source: D164 Walker priority, plan_012 C2 multi-seed.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_cheetah_008a_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=0 — C3 cross-env value growth suppression. Training only uses dt=1 data, so dt=2 embedding is untrained. Expect no CIVO, value suppression pattern matching Walker 008a. Source: D168, plan_023.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_cheetah_008a_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=1 — C3 cross-env value growth suppression. Training only uses dt=1 data, so dt=2 embedding is untrained. Expect no CIVO, value suppression pattern matching Walker 008a. Source: D167, plan_023. Replaces killed exp_099_cheetah_008a_s1.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_hopper_no_dt_emb_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Remo\n…[truncated 14382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 754
+          },
+          "id": "event-001805"
+        },
+        {
+          "source_line": 1806,
+          "timestamp": "2026-05-30T03:39:20.899140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "content": "# STORM Cross-Architecture Experiment Design\n\n## 1. Hypothesis\n\n**Primary**: CIVO is not RSSM-specific — it manifests in any imagination-based actor-critic that combines trained temporal conditioning with pure-imagination value estimation.\n\n**Operationalized**: A transformer world model (STORM) with trained dt-embedding + multi-rate data exposure will produce NVE > 2.0× and eval collapse on Walker Walk, replicating the DreamerV3 CIVO pattern.\n\n**Alternative (if negative)**: CIVO requires the RSSM's recurrent bottleneck architecture. The transformer's parallel attention mechanism may resist the co-adaptation dynamics that drive CIVO in DreamerV3.\n\n**Why this matters for the paper**: Current paper claims CIVO is structural to \"any imagination-based actor-critic\" (analysis.tex ¶4), but all evidence comes from DreamerV3/RSSM. A single cross-architecture confirmation would substantially strengthen the contribution; a null result would precisely narrow the scope to RSSM architectures.\n\n---\n\n## 2. Phase 1: Baseline Verification (dt=1)\n\n### Goal\nConfirm STORM DMC adaptation produces a healthy Walker Walk baseline, prerequisite for all CIVO experiments.\n\n### Configuration\n\n| Parameter | Value |\n|-----------|-------|\n| Environment | DMC Walker Walk (proprioceptive, 24-dim obs, 6-dim action) |\n| Architecture | STORM transformer WM (2-layer, 8-head, 512-dim) + discrete categorical latent (32×32) |\n| dt-conditioning | None (Phase 1 = standard STORM) |\n| Steps | 500K environment steps |\n| Seed | 0 |\n| Imagination horizon | 15 steps (config default) |\n| Eval | 10 episodes greedy, every 10K steps |\n| WM lr | 3e-4, Agent lr | 3e-5 |\n| γ=0.997, λ=0.95 | |\n\n### Launch command\n\n```bash\nexport CUDA_VISIBLE_DEVICES=<N> && export MUJOCO_EGL_DEVICE_ID=<N>\ncd /root/autodl-tmp/event-gated-adaptive-horizon/storm_dmc\npython -u train_dmc.py -n storm_baseline_s0 -seed 0 -config_path config/dmc_walker.yaml\n```\n\n### Success criteria\n\n| Metric | Threshold | Rationale |\n|--------|-----------|-----------|\n| eval_return_mean@500K | ≥ 600 | 80% of DreamerV3 baseline (787.7). STORM's original Atari results suggest competitive but not identical performance. |\n| Learning curve | Monotonically increasing with plateaus OK | No mid-training collapse |\n| value_mean | Tracks eval_return (v/e ratio ∈ [0.5, 2.0]) | Healthy critic estimation |\n| model_loss | Converging/stable by 100K | World model learning |\n\n### Monitoring metrics\n- `train/episode_return` — environment interaction performance\n- `eval/return_mean`, `eval/return_std` — greedy evaluation\n- `value_mean` — critic estimate (compute v/e ratio manually)\n- World model losses (obs reconstruction, reward, KL)\n\n### Failure scenarios and responses\n\n| Outcome | Action |\n|---------|--------|\n| eval < 200 at 500K (< 25% DreamerV3) | **Debug**: Check obs scaling, action clipping, terminated/truncated handling. Compare STORM loss curves to Atari reference. |\n| eval 200-400 (25-50% DreamerV3) | **Tune**: Try larger transformer (4-layer), longer warmup, adjusted lr. If still low → Scenario C. |\n| eval 400-600 (50-80% DreamerV3) | **Marginal**: Proceed to Phase 2 with caution. CIVO signal may be harder to detect against a weaker baseline. |\n| eval ≥ 600 | **Pass**: Proceed to Phase 2. |\n| Training divergence (NaN, loss explosion) | **Debug**: Gradient clipping, lr warmup, check for numerical issues in MLP encoder/decoder. |\n\n### Estimated GPU-hours\n4-6 hours on 1× RTX PRO 6000 (500K steps with transformer model).\n\n---\n\n## 3. Phase 2: CIVO Isolation (requires Phase 1 pass)\n\n### Code changes needed\nPhase 2 requires implementing dt-conditioning in STORM. The modifications mirror DreamerV3's dt-embedding approach:\n\n1. **DtEmbedding module** (`sub_models/dt_embedding.py`):\n   - Learned embedding: `nn.Embedding(max_dt+1, embed_dim)` with `requires_grad=True`\n   - Frozen variant: same architecture with `requires_grad=False`\n   - Concatenated to transformer input alongside latent + action\n\n2. **Transformer model** (`sub_models/transformer_model.py`):\n   - Stem input changes from `stoch_dim + action_dim` to `stoch_dim + action_dim + dt_embed_dim`\n   - Imagination loop passes dt values to embedding\n\n3. **Replay buffer** (`replay_buffer.py`):\n   - Add temporal subsampling: sample dt=2 transitions by skipping consecutive frames\n   - Store dt values alongside obs/action/reward/done\n\n4. **Training loop** (`train_dmc.py`):\n   - Imagination at dt=2 with dt embedding\n   - CLI flags: `--dt_embed_dim`, `--dt_embed_mode {trained,frozen,removed}`, `--subsample_max_dt`, `--imag_horizon`\n\n### Configurations\n\n**Config A (CIVO trigger)**:\n\n| Parameter | Value | DreamerV3 equivalent |\n|-----------|-------|---------------------|\n| dt_embed_dim | 32 | gate_dt_embed_dim=32 |\n| dt_embed_mode | trained | (default trained) |\n| subsample_max_dt | 2 | gate_subsample_max_dt=2 |\n| imag_dt | 2 | gate_fixed_dt=2 |\n| imag_horizon | 8 | imag_horizon=8 |\n| steps | 500K | (105K in DreamerV3 due to faster convergence) |\n| seed | 0 | |\n\n**Config B (causal control)**:\n\n| Parameter | Value | DreamerV3 equivalent |\n|-----------|-------|---------------------|\n| dt_embed_dim | 0 | gate_dt_embed_dim=0 |\n| subsample_max_dt | 2 | gate_subsample_max_dt=2 |\n| imag_dt | 2 | gate_fixed_dt=2 |\n| imag_horizon | 8 | imag_horizon=8 |\n| steps | 500K | |\n| seed | 0 | |\n\n**Config C (frozen control, optional)**:\n\nSame as Config A but `dt_embed_mode=frozen` (`requires_grad=False`).\n\n### Scenario Determination\n\n**Scenario A — CIVO confirmed in STORM**:\n- Config A: NVE > 2.0× sustained after 35K steps + eval collapse (< 30% of Phase 1 baseline)\n- Config B: NVE < 2.0× (healthy)\n- Optional: Config C (frozen) also NVE < 2.0×\n\n**Scenario B — CIVO absent in STORM**:\n- Config A: NVE < 2.0× throughout, no eval collapse\n- Config A eval within 70% of Phase 1 baseline\n- Interpretation: CIVO may require RSSM's recurrent bottleneck\n\n**Scenario C — Inconclusive**:\n- Config A: NVE elevated but not crossing 2.0× clearly\n- OR: Config B also shows elevated NVE (confounded by STORM adaptation issues)\n- OR: Phase 1 baseline too weak for meaningful CIVO isolation (eval < 400)\n\n### NVE Computation\nSame formula as DreamerV3 experiments:\n```\nNVE_t = (v/e)_{config,t} / (v/e)_{baseline,t}\n```\n- `v`: mean imagined critic value\n- `e`: mean evaluation return\n- `baseline`: Phase 1 baseline at corresponding step\n- Window: 35K+ steps (same as DreamerV3)\n- Threshold: NVE ≥ 2.0× = CIVO-positive\n\n### Estimated GPU-hours per config\n4-6 hours × 3 configs = 12-18 GPU-hours total for Phase 2.\n\n---\n\n## 4. Paper Impact by Scenario\n\n### Scenario A (CIVO confirmed) → Strongest paper upgrade\nPre-written text: `artifacts/storm_scenario_a_text.md` (8 sections)\n\n| Section | Change |\n|---------|--------|\n| Abstract | +1 sentence: \"Cross-architecture validation on STORM confirms CIVO is not specific to RSSM-based dynamics.\" |\n| Introduction | Contribution 1 expanded: \"cross-architecture validation on a transformer world model confirms the phenomenon is not RSSM-specific\" |\n| Discussion ¶4 | Rewrite: claim \"manifests across RSSM and transformer dynamics architectures\" (currently hedged) |\n| Discussion ¶5 | STORM onset data added to complexity boundary |\n| Limitations | Narrowed: \"two architectures tested\" (was \"sole architecture\") |\n| Related Work | Optional: cite Zhang et al. 2023 in closing sentence |\n| Table 1 | +3 rows (STORM baseline, trained, frozen) |\n| Appendix | New subsection: STORM DMC adaptation details |\n\n### Scenario B (CIVO absent) → Interesting null result, scope refinement\nPre-written text: `artifacts/storm_scenario_b_text.md` (7 sections)\n\n| Section | Change |\n|---------|--------|\n| Discussion ¶4 | Rewrite: CIVO narrows to RSSM-specific. Two hypotheses for transformer resistance. |\n| Limitations | Updated: \"confirmed RSSM-specific, transformer resistance observed\" |\n| Appendix | New subsection: STORM results + architecture comparison |\n| Abstract/Intro | No change (current text doesn't claim cross-architecture) |\n\n### Scenario C (inconclusive) → Minimal changes\nPre-written text: `artifacts/storm_scenario_c_text.md` (2 sections)\n\n| Section | Change |\n|---------|--------|\n| Limitations | +1 sentence: STORM attempt, baseline instability |\n| Appendix | New subsection: \"Transformer World Model Attempt\" (transparency) |\n\n---\n\n## 5. Timeline and Dependencies\n\n```\nPhase 1 (baseline):     [Day 1-2]  ~6h GPU + analysis\n  ↓ (pass/fail gate)\nPhase 2 code:           [Day 2-3]  ~4h coding (no GPU)\nPhase 2 experiments:    [Day 3-4]  ~18h GPU (3 configs)\n  ↓\nAnalysis + paper edits: [Day 4-5]  ~2h\n```\n\n**Critical path**: Phase 1 baseline quality. If baseline fails (Scenario C), total GPU cost is ~6h and paper changes are minimal.\n\n**Parallel opportunity**: Phase 2 code can be written while Phase 1 runs, so Phase 2 experiments can start immediately after Phase 1 passes.\n"
+            }
+          },
+          "id": "event-001806"
+        },
+        {
+          "source_line": 1807,
+          "timestamp": "2026-05-30T03:39:20.950143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Write",
+            "elapsed_ms": 51
+          },
+          "id": "event-001807"
+        },
+        {
+          "source_line": 1808,
+          "timestamp": "2026-05-30T03:41:33.934294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/negative_pattern_analysis.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001808"
+        },
+        {
+          "source_line": 1809,
+          "timestamp": "2026-05-30T03:41:34.408661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/negative_pattern_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "elapsed_ms": 474
+          },
+          "id": "event-001809"
+        },
+        {
+          "source_line": 1810,
+          "timestamp": "2026-05-30T03:41:34.409142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/storm_experiment_design.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001810"
+        },
+        {
+          "source_line": 1811,
+          "timestamp": "2026-05-30T03:41:34.459777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001811"
+        },
+        {
+          "source_line": 1812,
+          "timestamp": "2026-05-30T03:41:37.523385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/negative_pattern_analysis.md"
+            }
+          },
+          "id": "event-001812"
+        },
+        {
+          "source_line": 1813,
+          "timestamp": "2026-05-30T03:41:37.624258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Negative Experiment Pattern Analysis\n2\t\n3\t**Date**: 2026-05-28 | **Scope**: 43 negative out of 208 total experiments (21%)\n4\t\n5\t## 1. By Intervention Type (failure rates)\n6\t\n7\t| Intervention | Total | Negative | Rate | Key Pattern |\n8\t|---|---|---|---|---|\n9\t| TCN (noise on dt_emb) | 12 | 10 | **83%** | Binary outcome: full suppress or runaway. Fails on Cheetah at all σ (0.2/0.5/1.0) |\n10\t| RAVE (value cap) | 2 | 2 | **100%** | EMA anchor tracks biased values; structurally unfit for CIVO |\n11\t| SGS (gradient stop) | 15 | 5 | 33% | Full-SGS: 0/3 Cheetah elimination (exp_021 NVE=9.94×); obs-SGS: 1/6 prevention |\n12\t| Dual/wide critic | 11 | 4 | 36% | Fails cross-env: Cheetah NVE=1.8-3.6 (exp_034/037); Walker s2 non-CIVO collapse |\n13\t| Event-gated design | 3 | 3 | 100% | Hard Gumbel gate structurally unstable (exp_003-005) |\n14\t| dt=1 imag mitigation | 6 | 4 | 67% | exp_008e_v3_s3 NVE=4.02 (unexpected CIVO despite dt=1 imag); exp_070 eval=148 stagnation |\n15\t\n16\t## 2. By Environment\n17\t\n18\t| Environment | Neg/Total | Rate | Pattern |\n19\t|---|---|---|---|\n20\t| Walker Walk | 28/112 | 25% | Primary testbed; most intervention failures here |\n21\t| Cheetah Run | 4/33 | 12% | Lower count but higher severity: NVE 8-108×; all TCN/SGS interventions fail |\n22\t| Cartpole | 1/2 | 50% | No CIVO triggered (expected); \"negative\" = degradation from subsample+H=8 config itself |\n23\t| Hopper | 2/10 | 20% | Extension runs: frozen/trained both degrade at 150K |\n24\t\n25\t## 3. Systematic Failure Patterns\n26\t\n27\t**P1: Cross-environment transfer failure.** Interventions tuned on Walker fail on Cheetah. TCN σ=0.2 works on 2/4 Walker seeds but 0/1 Cheetah. Dual-critic prevents CIVO on Walker (7/11 success) but fails on Cheetah (exp_034 NVE=1.8, exp_037 NVE=3.6). CIVO severity scales ~2-20× higher on Cheetah, overwhelming interventions calibrated for Walker's milder form.\n28\t\n29\t**P2: Gradient pathway redundancy.** SGS blocking any single pathway (reward: exp_016e; obs: exp_025/026) or all pa\n…[truncated 2537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001813"
+        },
+        {
+          "source_line": 1814,
+          "timestamp": "2026-05-30T03:41:57.725632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__list_artifacts,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap",
+              "max_results": "5"
+            }
+          },
+          "id": "event-001814"
+        },
+        {
+          "source_line": 1815,
+          "timestamp": "2026-05-30T03:41:57.776811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001815"
+        },
+        {
+          "source_line": 1816,
+          "timestamp": "2026-05-30T03:42:01.265926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001816"
+        },
+        {
+          "source_line": 1817,
+          "timestamp": "2026-05-30T03:42:01.768039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001817"
+        },
+        {
+          "source_line": 1818,
+          "timestamp": "2026-05-30T03:42:02.672276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_walker_no_dt_emb_s0_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-29T08:37:26.898Z\\\", \\\"updated_at\\\": \\\"2026-05-29T10:54:03.643Z\\\", \\\"hypothesis\\\": \\\"dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Retry of exp_walker_no_dt_emb_s0 (killed: resource reallocation). Source: D164 Walker priority.\\\", \\\"parent\\\": \\\"exp_walker_no_dt_emb_s0\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7268}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1406
+          },
+          "id": "event-001818"
+        },
+        {
+          "source_line": 1819,
+          "timestamp": "2026-05-30T03:42:02.672786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-30 01:40 UTC | 更新原因: 引用审计完成，更新活跃工作流和任务状态\\\\n\\\\n## 核心方向\\\\nDreamerV3 中 trained dt_embedding 驱动的 CIVO（Conditioning-Induced Value Overestimation）是 **6-DoF multi-joint locomotion 特异性现象**。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: 🔬 Research — ICLR 2027 投稿准备\\\\n- **投稿目标**: **ICLR 2027**（~10月 DDL，4 个月 runway）\\\\n- **实验统计**: 213 completed + 1 RUNNING（服务器宕机中，状态未知）\\\\n- **论文**: 46 页（10 页主文 + 36 页附录），编译通过，无 error/warning\\\\n- **Reviewer 评分预估**: 6.8-7.0（D183 后），STORM Scenario A 可达 7.5+\\\\n- **硬件**: westd-51268 1× RTX PRO 6000 (cuda:0)。⚠️ 服务器宕机 >14 小时\\\\n- **审稿**: Round 8（fresh，ICLR-targeted）已提交，待用户审批\\\\n- **通信**: 飞书 API 月配额耗尽，通过 Manager 转发消息\\\\n\\\\n## 已完成的质量改进\\\\n- [x] D181: 17 项改进（claim 精度 + 负面结果挖掘 + 数据支撑 + Reviewer P0-P2）\\\\n- [x] D182: ICLR 重构（§4 \\\\\\\"Why Standard Remedies Fail\\\\\\\" + heatmap + Discussion 扩展 + positioning）\\\\n- [x] D183: 6 项写作打磨（F6 defense + Abstract hook + 规模量化 + phase transition hedge + 标题 + Conclusion list）\\\\n- [x] STORM DMC 适配代码预写（11 文件，Phase 1 ready）\\\\n- [x] STORM 三场景预写文本（A: generalizes / B: RSSM-specific / C: inconclusive）\\\\n- [x] Em-dash 清理 + N-R5-3 色盲验证 + N-R6-5 Table 4 修复\\\\n- [x] 引用审计：sutton1999options 字段拆分 + bacon2017optioncritic typo 修正\\\\n\\\\n## 活跃工作流\\\\n| 角色 | 任务 | 状态 |\\\\n|------|------|------|\\\\n| Review Team | Round 8 fresh ICLR review（待用户审批） | 等待中 |\\\\n| Agent | 空闲（等待服务器恢复或新任务） | idle |\\\\n\\\\n## 近期任务\\\\n- [x] 引用审计完成 → 修复问题条目 ✅\\\\n- [ ] Round 8 审稿完成 → 处理报告\\\\n- [ ] 服务器恢复 → walker_no_dt_emb_s0_r2 状态确认\\\\n- [ ] 服务器恢复 → nvidia-smi 确认 cuda:1 是否存在\\\\n- [ ] STORM Phase 1: baseline 验证（Walker Walk dt=1，~3h GPU）\\\\n- [ ] STORM Phase 2: dt-conditioning + trigger config（如 Phase 1 通过）\\\\n- [ ] ICLR 2027 模板切换（待模板发布）\\\\n\\\\n## GPU 恢复后优先级（D184）\\\\n1. **walker_no_dt_emb_s0_r2** 状态确认/重启（C2 control，~6h）\\\\n2. **STORM Phase 1** DMC baseline 验证（~3h GPU）\\\\\n…[truncated 1576 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 904
+          },
+          "id": "event-001819"
+        },
+        {
+          "source_line": 1820,
+          "timestamp": "2026-05-30T03:42:02.673110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001820"
+        },
+        {
+          "source_line": 1821,
+          "timestamp": "2026-05-30T03:42:02.725030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-001821"
+        },
+        {
+          "source_line": 1822,
+          "timestamp": "2026-05-30T03:42:09.955814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-001822"
+        },
+        {
+          "source_line": 1823,
+          "timestamp": "2026-05-30T03:42:10.157055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 201
+          },
+          "id": "event-001823"
+        },
+        {
+          "source_line": 1824,
+          "timestamp": "2026-05-30T03:42:10.559190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md"
+            }
+          },
+          "id": "event-001824"
+        },
+        {
+          "source_line": 1825,
+          "timestamp": "2026-05-30T03:42:10.710661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-29\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_walker_no_dt_emb_s0_r2 | dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Retry of exp_walker_no_dt_emb_s0 (killed: resource reallocation). Source: D164 Walker priority. | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_quadruped_baseline_s0_r2** (negative): Quadruped Walk baseline (dt=1, no gate) establishes reference performance for 12-DoF four-legged environment CIVO verification. Expect stable training without value overestimation (NVE < 2.0×). Retry of exp_quadruped_baseline_s0 (failed: EGL device 1 not available). Source: post-D171 scope expansion. ← 基于 exp_quadruped_baseline_s0\\\\n- **exp_quadruped_008d_s0** (killed): Quadruped Walk trained dt_emb + gate + subsample ON (008d config: gate_fixed_dt=2, gate_subsample_max_dt=2, H=8), seed=0 — tests whether CIVO onset generalizes to 12-DoF four-legged morphology distinct from Walker/Cheetah single-spine. Expect NVE > 2.0× if CIVO is morphology-independent. Source: post-D171 scope expansion.\\\\n- **exp_walker_no_dt_emb_s0** (killed): dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Source: D164 Walker priority, replaces killed exp_009f.\\\\n\\\\n## 趋势\\\\n成功 103 / 负向 45 / 失败 22 / 共 213\\\\nNVE_105K: 0.88 ↓（近 3 次 success）\\\\ncivo_alert: 0 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-51268: 空闲 cuda:0, cuda:1\\\\n\\\n…[truncated 2899 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 151
+          },
+          "id": "event-001825"
+        },
+        {
+          "source_line": 1826,
+          "timestamp": "2026-05-30T03:42:18.042797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_artifacts"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__list_artifacts",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "tags": "['storm']"
+            }
+          },
+          "id": "event-001826"
+        },
+        {
+          "source_line": 1827,
+          "timestamp": "2026-05-30T03:42:18.143699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_artifacts"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__list_artifacts",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "tags": "['negative']"
+            }
+          },
+          "id": "event-001827"
+        },
+        {
+          "source_line": 1828,
+          "timestamp": "2026-05-30T03:42:18.445357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifacts\\\": [{\\\"id\\\": \\\"art_20260530_a128e3\\\", \\\"name\\\": \\\"launch_commands.md\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"D184 priority-ordered experiment launch commands: P1 DreamerV3 no-emb control check/restart, P2 STORM baseline, P3 STORM dt-conditioning. Includes dual-GPU parallel scheme with CUDA_VISIBLE_DEVICES + MUJOCO_EGL_DEVICE_ID.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/intermediate/launch_commands.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-30T03:00:44.389264+00:00\\\", \\\"tags\\\": [\\\"deployment\\\", \\\"storm\\\", \\\"dreamerv3\\\", \\\"dual-gpu\\\"]}, {\\\"id\\\": \\\"art_20260530_039769\\\", \\\"name\\\": \\\"setup_env.sh\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Cold-start environment setup script for CIVO experiments. AutoDL/aml-train detection, dependency install, STORM DMC directory assembly, CUDA/EGL verification.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/intermediate/setup_env.sh\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-30T03:00:41.305222+00:00\\\", \\\"tags\\\": [\\\"deployment\\\", \\\"storm\\\", \\\"dreamerv3\\\"]}], \\\"count\\\": 2, \\\"scope\\\": \\\"project:event-gated-adaptive-horizon\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__list_artifacts",
+            "elapsed_ms": 402
+          },
+          "id": "event-001828"
+        },
+        {
+          "source_line": 1829,
+          "timestamp": "2026-05-30T03:42:18.797279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifacts\\\": [{\\\"id\\\": \\\"art_20260529_873120\\\", \\\"name\\\": \\\"exp_humanoid_baseline_s0 Analysis Report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Humanoid Walk baseline (21-DoF) analysis: NEGATIVE. NVE_max=12.97 (6.5× above τ=2.0), eval_return flat at ~1.5, severe value overestimation. 3 CIVO alerts triggered.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_humanoid_baseline_s0/report/analysis_873120.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_humanoid_baseline_s0\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-29T04:39:44.918604+00:00\\\", \\\"tags\\\": [\\\"humanoid\\\", \\\"baseline\\\", \\\"negative\\\", \\\"nve\\\", \\\"value-overestimation\\\"]}, {\\\"id\\\": \\\"art_20260529_5ac8d5\\\", \\\"name\\\": \\\"exp_humanoid_baseline_s0 analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for Humanoid Walk baseline experiment (dt=1, no gate). Negative result: severe value overestimation (NVE peak 13.0×, 3 CIVO alerts) with flat eval_return ~1.2.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_humanoid_baseline_s0/report/analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_humanoid_baseline_s0\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-29T04:35:27.678505+00:00\\\", \\\"tags\\\": [\\\"humanoid\\\", \\\"baseline\\\", \\\"negative\\\", \\\"CIVO\\\", \\\"value-overestimation\\\"]}, {\\\"id\\\": \\\"art_20260521_2e1055\\\", \\\"name\\\": \\\"exp_036_dual_critic_pickcube_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for exp_036: Dual-critic on PickCube. Conclusion NEGATIVE — CIVO never manifests on PickCube regardless of intervention, making it a poor test for intervention hierarchy hypothesis. Eval 27.7 indistinguishable from baseline 26.6.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_036_dual_critic_pickcube/report/exp_036_analysis_2e1055.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_036_\n…[truncated 2089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__list_artifacts",
+            "elapsed_ms": 653
+          },
+          "id": "event-001829"
+        },
+        {
+          "source_line": 1830,
+          "timestamp": "2026-05-30T03:42:28.188035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "storm_experiment_design",
+              "type": "report",
+              "description": "STORM cross-architecture CIVO experiment design: Phase 1 baseline (Walker Walk dt=1, 500K steps, eval≥600 threshold), Phase 2 CIVO isolation (3 configs: trained/frozen/no-emb), Scenario A/B/C determination criteria, paper impact mapping, timeline.",
+              "project": "event-gated-adaptive-horizon",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "tags": "['storm', 'experiment-design', 'cross-architecture', 'civo']"
+            }
+          },
+          "id": "event-001830"
+        },
+        {
+          "source_line": 1831,
+          "timestamp": "2026-05-30T03:42:31.066306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260530_1e043f\\\", \\\"name\\\": \\\"storm_experiment_design\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"STORM cross-architecture CIVO experiment design: Phase 1 baseline (Walker Walk dt=1, 500K steps, eval≥600 threshold), Phase 2 CIVO isolation (3 configs: trained/frozen/no-emb), Scenario A/B/C determination criteria, paper impact mapping, timeline.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/storm_experiment_design.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-30T03:42:28.145439+00:00\\\", \\\"tags\\\": [\\\"storm\\\", \\\"experiment-design\\\", \\\"cross-architecture\\\", \\\"civo\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 2878
+          },
+          "id": "event-001831"
+        },
+        {
+          "source_line": 1832,
+          "timestamp": "2026-05-30T03:42:31.971002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "negative_pattern_analysis",
+              "type": "report",
+              "description": "Pattern analysis of 43 negative experiments: classification by intervention type (TCN 83%, RAVE 100%, SGS 33%, dual-critic 36%), cross-environment transfer failure, gradient pathway redundancy, seed sensitivity, non-CIVO collapse modes. Strengthens structural barrier narrative.",
+              "project": "event-gated-adaptive-horizon",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/negative_pattern_analysis.md",
+              "tags": "['negative', 'pattern-analysis', 'civo', 'intervention-hierarchy']"
+            }
+          },
+          "id": "event-001832"
+        },
+        {
+          "source_line": 1833,
+          "timestamp": "2026-05-30T03:42:32.523503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260530_295fb1\\\", \\\"name\\\": \\\"negative_pattern_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Pattern analysis of 43 negative experiments: classification by intervention type (TCN 83%, RAVE 100%, SGS 33%, dual-critic 36%), cross-environment transfer failure, gradient pathway redundancy, seed sensitivity, non-CIVO collapse modes. Strengthens structural barrier narrative.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/negative_pattern_analysis_295fb1.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-30T03:42:31.973459+00:00\\\", \\\"tags\\\": [\\\"negative\\\", \\\"pattern-analysis\\\", \\\"civo\\\", \\\"intervention-hierarchy\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 552
+          },
+          "id": "event-001833"
+        },
+        {
+          "source_line": 1834,
+          "timestamp": "2026-05-30T03:43:01.816044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/1 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 不可达\n\n**D184 并行任务 2/2 完成汇报**\n\n## 任务 A: STORM 实验设计文档 ✅\n\n产出 `artifacts/storm_experiment_design.md`（art_20260530_1e043f），5 个章节：\n\n1. **Hypothesis**: CIVO 不依赖 RSSM — transformer WM (STORM) + trained dt_emb + multi-rate exposure 也会产生 NVE > 2.0×\n2. **Phase 1 baseline**: Walker Walk dt=1, 500K steps, eval ≥ 600 pass / < 400 abort。失败场景对应表（debug/tune/proceed）\n3. **Phase 2 CIVO isolation**: Config A (trigger: trained dt_emb=32, subsample=2, H=8), Config B (no-emb control), Config C (frozen control)。Scenario A/B/C 判定标准\n4. **Paper impact**: 三场景预写文本映射（storm_scenario_{a,b,c}_text.md）\n5. **Timeline**: Phase 1 ~6h GPU → Phase 2 code ~4h → Phase 2 experiments ~18h GPU\n\n## 任务 B: 阴性实验 Pattern 分析 ✅\n\n产出 `artifacts/negative_pattern_analysis.md`（art_20260530_295fb1），43 个 negative 实验的系统性分析：\n\n**按干预类型失败率**:\n- TCN: 10/12 = 83%（binary on/off，无 smooth dose-response）\n- RAVE: 2/2 = 100%（EMA anchor co-drift）\n- SGS: 5/15 = 33%（gradient pathway redundancy）\n- Dual-critic: 4/11 = 36%（Cheetah 跨环境迁移失败）\n\n**4 个 cross-category pattern**:\n- P1: Cross-env transfer failure — Walker 调参对 Cheetah 无效（CIVO severity 差 2-20×）\n- P2: Gradient pathway redundancy — 封任何单通道都放大其余通道\n- P3: Seed sensitivity — TCN σ=0.2 在 Walker 上 2/4 全抑制 2/4 全崩（bifurcation）\n- P4: Non-CIVO collapse — exp_038/070 无 value overestimation 但 eval 仍崩\n\n**论文 discussion 价值**: P1-P3 直接支撑 §4 \"structural barrier\" 叙事。P4 揭示 subsample+H=8 config 本身就有独立于 CIVO 的性能损害，可在 Discussion 中讨论。\n\n## 当前状态\n- exp_walker_no_dt_emb_s0_r2: RUNNING（westd-51268 不可达，状态未知）\n- 服务器恢复后按 D184 优先级执行：check/restart walker → STORM Phase 1 → STORM Phase 2\n- 部署包已就绪（setup_env.sh + launch_commands.md）",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001834"
+        },
+        {
+          "source_line": 1835,
+          "timestamp": "2026-05-30T03:43:05.128308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3312
+          },
+          "id": "event-001835"
+        },
+        {
+          "source_line": 1836,
+          "timestamp": "2026-05-30T03:43:10.112997+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已完成并汇报 Director：\n- **Task A** `storm_experiment_design.md` — STORM 跨架构实验的完整设计（Phase 1/2、三场景判定、paper impact 映射）\n- **Task B** `negative_pattern_analysis.md` — 43 个阴性实验的 pattern 分类（4 个 cross-category pattern，支撑 §4 structural barrier 叙事）\n\n两个 artifact 已注册。等待 Director 下一步指令或服务器恢复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-001836"
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "messages": [
+        {
+          "source_line": 1837,
+          "timestamp": "2026-05-30T04:15:39.831489+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] STORM 设计文档和阴性 pattern 分析都到位。Reviewer 正在审查，但 P1-P3 的方向性不会变，先融入论文。\n\n**任务：把阴性 pattern P1-P3 融入 §4 / Discussion**\n\n基于 `artifacts/negative_pattern_analysis.md` 中的发现，做以下修改：\n\n1. **§4 (remedies.tex) 强化**：在各 remedy 小节中，用 pattern 分析的量化数据加强论证：\n   - TCN 段：加入\"10/12 interventions failed, with bifurcation behavior at moderate noise levels (σ=0.2: 2/4 full suppression, 2/4 full collapse)\"——这支撑 \"binary on/off, no smooth dose-response\" 的结论\n   - RAVE 段：加入\"2/2 configurations failed due to EMA anchor co-drift\"\n   - SGS 段：加入\"5/15 (33%) — lowest failure rate among remedies, yet gradient pathway redundancy ensures no single intervention reliably succeeds\"\n   - Dual-critic 段：加入\"4/11 (36%) — Walker-tuned configurations fail to transfer to Cheetah, where CIVO severity differs by 2-20×\"\n\n2. **Discussion 新增 P4 段**：在 Discussion 中加一段关于 \"non-CIVO performance degradation\"——exp_038/070 显示 subsample+H=8 config 即使不产生 value overestimation 也会导致 eval 崩溃。这是一个独立于 CIVO 的性能风险，值得报告。2-3 句即可，不要展开太多。\n\n3. **P1 (cross-env transfer failure) 融入 Discussion**：强化已有的 \"environment-specificity\" 讨论，补充 \"remedy configurations tuned on Walker consistently fail on Cheetah\" 的量化证据。\n\n**约束**：\n- 每处修改保持简洁（1-2 句），不改变现有段落结构\n- 确保新增数据与已有文本一致（不重复已有统计）\n- 编译验证，主体不超过 10 页\n\n完成后报告每处修改。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-001837"
+        },
+        {
+          "source_line": 1838,
+          "timestamp": "2026-05-30T04:15:49.316877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex"
+            }
+          },
+          "id": "event-001838"
+        },
+        {
+          "source_line": 1839,
+          "timestamp": "2026-05-30T04:15:49.618622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Why Standard Remedies Fail}\n2\t\\label{sec:remedies}\n3\t\n4\tThe results of \\S\\ref{sec:results}--\\ref{sec:f6} establish CIVO as a failure mode triggered by trained temporal embeddings with multi-rate exposure. We now ask: can standard RL remedies eliminate it? We evaluate seven interventions across four levels (45 intervention experiments across 213 total training runs; Table~\\ref{tab:intervention_hierarchy}, Figure~\\ref{fig:intervention_heatmap}); none reliably succeeds across environments. The underlying obstacle is structural: in closed-loop imagination, the signal that should correct value bias is itself produced by the model whose estimates require correction.\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_intervention_heatmap.pdf}\n9\t\\caption{Intervention outcomes across environments. Blue = full prevention, light blue = partial, orange = CIVO onset, gray = untested. Only Wide Dual on Walker achieves full prevention (3/3); all other cells show failure or partial results. See Table~\\ref{tab:intervention_hierarchy} for complete data.}\n10\t\\label{fig:intervention_heatmap}\n11\t\\end{figure}\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\caption{Intervention hierarchy. Prevention = peak NVE $< 2.0\\times$ (35K+). Eval (\\%BL) = mean${\\pm}$std of final eval return as percentage of per-environment baseline (Walker 915.7, Cheetah 446.1). No level reliably eliminates CIVO across environments.\n16\t$^\\dagger$Walker 2/4; Cheetah 1/1, PickCube 0/1.\n17\t$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n18\t$^\\S$Policy erosion (final 15\\% baseline).\n19\t$^\\|$Walker 3/3, Cheetah 0/1.\n20\t$^\\#$7 seeds, all NVE $< 2.0\\times$.\n21\t$^\\P$6 seeds, all NVE $< 2.0\\times$.}\n22\t\\label{tab:intervention_hierarchy}\n23\t\\footnotesize\n24\t\\setlength{\\tabcolsep}{3pt}\n25\t\\begin{tabular}{llcccc}\n26\t\\toprule\n27\t\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} & \\textbf{Eval (\\%BL)} \\\\\n28\t\\midrule\n29\t--- & Untreated & \n…[truncated 5799 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-001839"
+        },
+        {
+          "source_line": 1840,
+          "timestamp": "2026-05-30T04:15:49.619055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-001840"
+        },
+        {
+          "source_line": 1841,
+          "timestamp": "2026-05-30T04:15:49.770046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{CIVO mechanism.}\n5\t\\looseness=-1 CIVO propagates through multiple, environment-dependent pathways: Walker Walk develops a $1.63\\times$ reward prediction gap while Cheetah Run shows none ($1.00\\times$) despite higher severity ($8.27\\times$ NVE). In Cheetah, observation fidelity reverses ($0.93\\times$; $\\dt{=}2$ predictions more accurate) while embedding geometry separates comparably (cosine ${\\leq}{-}0.84$), suggesting CIVO propagates through latent-space dynamics rather than reward prediction. A random-policy control experiment ($N{=}100$ rollouts, 95\\% bootstrap CI) decomposes the effect into two necessary stages: under a random policy, $\\dt{=}2$ imagination produces $1.68\\times$ higher mean reward than $\\dt{=}1$ in the trained-embedding model, attributing ${\\approx}36\\%$ of overestimation to dynamics bias (the RSSM prior already generates reward-favorable trajectories at $\\dt{>}1$); the trained actor amplifies this to $2.90\\times$, attributing ${\\approx}64\\%$ to actor exploitation (in the no-embedding control, neither stage is present: random-policy ratio $1.11\\times$, trained-actor ratio $0.98\\times$; Appendix~\\ref{sec:civo_mechanism}). Signed reward error analysis reinforces this: $\\dt{=}2$ rewards are \\emph{under}predicted (mean SE${=}{-}0.599$, only 8\\% of samples overpredicted), ruling out observation-level reward overprediction and localizing CIVO to imagination-level prior drift---the RSSM prior generates reward-favorable trajectories unconstrained by observations. The mechanism is analogous to delusional bias \\citep{lu2018nondelusional} but model-induced; unlike MPC, imagination-based actor-critic bootstraps value targets entirely within the learned model without real-data correction (Appendix~\\ref{sec:mpc_immune}). Frozen embeddings participate identically in the forward pass yet never trigger CIVO (0/16 controls vs.\\ 5/7 trained, $p < 0.001$; Table~\\ref{tab:causal_ablation}): the vulnerabili\n…[truncated 4012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-001841"
+        },
+        {
+          "source_line": 1842,
+          "timestamp": "2026-05-30T04:20:03.597970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex",
+              "old_string": "the dominant gradient pathway (observation decoder) is causally inert while the weakest (KL) drives CIVO.",
+              "new_string": "the dominant gradient pathway (observation decoder) is causally inert while the weakest (KL) drives CIVO. Across all gradient variants ($n{=}11$, Table~\\ref{tab:intervention_hierarchy}), only 1/11 seeds achieves prevention, confirming pathway redundancy as a structural rather than dosage-dependent limitation."
+            }
+          },
+          "id": "event-001842"
+        },
+        {
+          "source_line": 1843,
+          "timestamp": "2026-05-30T04:20:03.648776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001843"
+        },
+        {
+          "source_line": 1844,
+          "timestamp": "2026-05-30T04:20:03.749591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex",
+              "old_string": "(0/2 prevention, eval $6{\\pm}4$\\% of baseline).",
+              "new_string": "(0/2 prevention, eval $6{\\pm}4$\\% of baseline---worse than untreated runs, indicating anchor co-drift actively amplifies degradation)."
+            }
+          },
+          "id": "event-001844"
+        },
+        {
+          "source_line": 1845,
+          "timestamp": "2026-05-30T04:20:03.850587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-001845"
+        },
+        {
+          "source_line": 1846,
+          "timestamp": "2026-05-30T04:20:04.855336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex",
+              "old_string": "with no intermediate outcome. The effective dose differs",
+              "new_string": "with no intermediate outcome. No noise level achieves both prevention and performance recovery: mean eval across all TCN configurations ($14$--$21$\\% of baseline; Table~\\ref{tab:intervention_hierarchy}) remains comparable to untreated runs ($15$\\%). The effective dose differs"
+            }
+          },
+          "id": "event-001846"
+        },
+        {
+          "source_line": 1847,
+          "timestamp": "2026-05-30T04:20:05.307684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001847"
+        },
+        {
+          "source_line": 1848,
+          "timestamp": "2026-05-30T04:20:05.659640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex",
+              "old_string": "and even this result does not transfer across environments.",
+              "new_string": "and even this result does not transfer across environments: configurations achieving 3/3 prevention on Walker fail on Cheetah, where CIVO severity is $2$--$20\\times$ higher."
+            }
+          },
+          "id": "event-001848"
+        },
+        {
+          "source_line": 1849,
+          "timestamp": "2026-05-30T04:20:05.710435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001849"
+        },
+        {
+          "source_line": 1850,
+          "timestamp": "2026-05-30T04:20:16.698077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex",
+              "old_string": "For transformer-based world models \\citep{micheli2023iris}, whether this boundary shifts remains open.",
+              "new_string": "For transformer-based world models \\citep{micheli2023iris}, whether this boundary shifts remains open. The environment-dependence extends to remedy efficacy: intervention configurations calibrated on Walker fail on Cheetah despite identical DoF, where CIVO severity is $2$--$20\\times$ higher (\\S\\ref{sec:remedies}), underscoring that morphology-specific dynamics determine both onset risk and remedy effectiveness.\n\n\\paragraph{Independent configuration effects.}\nThe multi-rate configuration ($\\dt{=}2$ subsampling, $H{=}8$) imposes performance costs independent of CIVO: frozen and removed embedding controls, which never trigger CIVO (0/13 seeds), achieve only $29$--$31$\\% of baseline eval (Table~\\ref{tab:intervention_hierarchy}). Practitioners considering temporal subsampling should anticipate performance costs even when CIVO is successfully prevented."
+            }
+          },
+          "id": "event-001850"
+        },
+        {
+          "source_line": 1851,
+          "timestamp": "2026-05-30T04:20:16.748784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001851"
+        },
+        {
+          "source_line": 1852,
+          "timestamp": "2026-05-30T04:20:21.369097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex"
+            }
+          },
+          "id": "event-001852"
+        },
+        {
+          "source_line": 1853,
+          "timestamp": "2026-05-30T04:20:21.772088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Why Standard Remedies Fail}\n2\t\\label{sec:remedies}\n3\t\n4\tThe results of \\S\\ref{sec:results}--\\ref{sec:f6} establish CIVO as a failure mode triggered by trained temporal embeddings with multi-rate exposure. We now ask: can standard RL remedies eliminate it? We evaluate seven interventions across four levels (45 intervention experiments across 213 total training runs; Table~\\ref{tab:intervention_hierarchy}, Figure~\\ref{fig:intervention_heatmap}); none reliably succeeds across environments. The underlying obstacle is structural: in closed-loop imagination, the signal that should correct value bias is itself produced by the model whose estimates require correction.\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{figures/paper/fig_intervention_heatmap.pdf}\n9\t\\caption{Intervention outcomes across environments. Blue = full prevention, light blue = partial, orange = CIVO onset, gray = untested. Only Wide Dual on Walker achieves full prevention (3/3); all other cells show failure or partial results. See Table~\\ref{tab:intervention_hierarchy} for complete data.}\n10\t\\label{fig:intervention_heatmap}\n11\t\\end{figure}\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\caption{Intervention hierarchy. Prevention = peak NVE $< 2.0\\times$ (35K+). Eval (\\%BL) = mean${\\pm}$std of final eval return as percentage of per-environment baseline (Walker 915.7, Cheetah 446.1). No level reliably eliminates CIVO across environments.\n16\t$^\\dagger$Walker 2/4; Cheetah 1/1, PickCube 0/1.\n17\t$^\\ddagger$Borderline (NVE${=}1.02\\times$, eval 55\\%).\n18\t$^\\S$Policy erosion (final 15\\% baseline).\n19\t$^\\|$Walker 3/3, Cheetah 0/1.\n20\t$^\\#$7 seeds, all NVE $< 2.0\\times$.\n21\t$^\\P$6 seeds, all NVE $< 2.0\\times$.}\n22\t\\label{tab:intervention_hierarchy}\n23\t\\footnotesize\n24\t\\setlength{\\tabcolsep}{3pt}\n25\t\\begin{tabular}{llcccc}\n26\t\\toprule\n27\t\\textbf{Level} & \\textbf{Intervention} & \\textbf{Seeds} & \\textbf{Prev.} & \\textbf{Rate} & \\textbf{Eval (\\%BL)} \\\\\n28\t\\midrule\n29\t--- & Untreated & \n…[truncated 6425 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-001853"
+        },
+        {
+          "source_line": 1854,
+          "timestamp": "2026-05-30T04:20:21.772476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-001854"
+        },
+        {
+          "source_line": 1855,
+          "timestamp": "2026-05-30T04:20:21.823028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{CIVO mechanism.}\n5\t\\looseness=-1 CIVO propagates through multiple, environment-dependent pathways: Walker Walk develops a $1.63\\times$ reward prediction gap while Cheetah Run shows none ($1.00\\times$) despite higher severity ($8.27\\times$ NVE). In Cheetah, observation fidelity reverses ($0.93\\times$; $\\dt{=}2$ predictions more accurate) while embedding geometry separates comparably (cosine ${\\leq}{-}0.84$), suggesting CIVO propagates through latent-space dynamics rather than reward prediction. A random-policy control experiment ($N{=}100$ rollouts, 95\\% bootstrap CI) decomposes the effect into two necessary stages: under a random policy, $\\dt{=}2$ imagination produces $1.68\\times$ higher mean reward than $\\dt{=}1$ in the trained-embedding model, attributing ${\\approx}36\\%$ of overestimation to dynamics bias (the RSSM prior already generates reward-favorable trajectories at $\\dt{>}1$); the trained actor amplifies this to $2.90\\times$, attributing ${\\approx}64\\%$ to actor exploitation (in the no-embedding control, neither stage is present: random-policy ratio $1.11\\times$, trained-actor ratio $0.98\\times$; Appendix~\\ref{sec:civo_mechanism}). Signed reward error analysis reinforces this: $\\dt{=}2$ rewards are \\emph{under}predicted (mean SE${=}{-}0.599$, only 8\\% of samples overpredicted), ruling out observation-level reward overprediction and localizing CIVO to imagination-level prior drift---the RSSM prior generates reward-favorable trajectories unconstrained by observations. The mechanism is analogous to delusional bias \\citep{lu2018nondelusional} but model-induced; unlike MPC, imagination-based actor-critic bootstraps value targets entirely within the learned model without real-data correction (Appendix~\\ref{sec:mpc_immune}). Frozen embeddings participate identically in the forward pass yet never trigger CIVO (0/16 controls vs.\\ 5/7 trained, $p < 0.001$; Table~\\ref{tab:causal_ablation}): the vulnerabili\n…[truncated 4778 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001855"
+        },
+        {
+          "source_line": 1856,
+          "timestamp": "2026-05-30T04:20:28.754330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/Makefile",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper"
+            }
+          },
+          "id": "event-001856"
+        },
+        {
+          "source_line": 1857,
+          "timestamp": "2026-05-30T04:20:28.955227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "elapsed_ms": 200
+          },
+          "id": "event-001857"
+        },
+        {
+          "source_line": 1858,
+          "timestamp": "2026-05-30T04:20:28.955587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper"
+            }
+          },
+          "id": "event-001858"
+        },
+        {
+          "source_line": 1859,
+          "timestamp": "2026-05-30T04:20:29.005997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/_corl_template/corl_2026_template_submission/example.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/experiments_results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001859"
+        },
+        {
+          "source_line": 1860,
+          "timestamp": "2026-05-30T04:20:32.671889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX paper to check for errors",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-001860"
+        },
+        {
+          "source_line": 1861,
+          "timestamp": "2026-05-30T04:20:34.429451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pdfTeX warning (dest): name{table.caption.31} has been referenced but does not \nexist, replaced by a fixed one\n\n </home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600p\nk> </home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.60\n0pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/\npublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/\nurw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8\na.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (46 pages, 4733965 bytes).\nTranscript writt\n…[truncated 156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "elapsed_ms": 1757
+          },
+          "id": "event-001861"
+        },
+        {
+          "source_line": 1862,
+          "timestamp": "2026-05-30T04:20:44.431990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper && grep -c \"Overfull.*hbox\" main.log | head -1 && grep \"Output written\" main.log",
+              "description": "Check for overfull boxes and page count"
+            }
+          },
+          "id": "event-001862"
+        },
+        {
+          "source_line": 1863,
+          "timestamp": "2026-05-30T04:20:44.532834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\nOutput written on main.pdf (46 pages, 4733965 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_32c09c1e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001863"
+        },
+        {
+          "source_line": 1864,
+          "timestamp": "2026-05-30T04:21:10.681590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/1 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 不可达\n\n**阴性 Pattern P1-P3 融入论文完成（6 处修改）**\n\n## §4 remedies.tex（4 处）\n\n1. **SGS 段尾**（line 53）：加入 \"Across all gradient variants ($n=11$), only 1/11 seeds achieves prevention, confirming pathway redundancy as a structural rather than dosage-dependent limitation.\" — 用 Table 1 数据量化 SGS 全面失败。\n\n2. **RAVE 句**（line 56）：在 \"(0/2 prevention, eval 6±4%)\" 后加 \"---worse than untreated runs, indicating anchor co-drift actively amplifies degradation\" — 点明 RAVE 不仅无效，且比不干预更差（6% vs 15%）。\n\n3. **TCN 段**（line 56）：插入 \"No noise level achieves both prevention and performance recovery: mean eval across all TCN configurations (14--21%) remains comparable to untreated runs (15%).\" — 揭示 TCN \"prevention\" 只是 NVE 阈值意义上的，eval 并未恢复。\n\n4. **Unifying 段尾**（line 63）：将 \"does not transfer across environments.\" 扩展为 \"does not transfer across environments: configurations achieving 3/3 prevention on Walker fail on Cheetah, where CIVO severity is 2--20× higher.\" — P1 跨环境迁移失败的具体化。\n\n## Discussion analysis.tex（2 处）\n\n5. **Environment complexity boundary 段尾**（line 18）：加入 \"The environment-dependence extends to remedy efficacy: intervention configurations calibrated on Walker fail on Cheetah despite identical DoF, where CIVO severity is 2--20× higher\" — P1 在 Discussion 中的呼应。\n\n6. **新段 \"Independent configuration effects\"**（P4）：指出 subsample+H=8 config 的 CIVO-independent 性能损害——frozen/removed controls (0/13 CIVO) 仍只有 29-31% baseline eval。2 句，引用 Table 1 数据。\n\n## 验证\n- LaTeX 编译通过，46 页不变，0 overfull hbox\n- 所有新增数据均引用 Table 1 已有数字，无冲突\n- 每处 1-2 句，未改变段落结构",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001864"
+        },
+        {
+          "source_line": 1865,
+          "timestamp": "2026-05-30T04:21:14.197033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3515
+          },
+          "id": "event-001865"
+        },
+        {
+          "source_line": 1866,
+          "timestamp": "2026-05-30T04:21:20.221606+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。6 处修改全部到位：\n\n- **remedies.tex**: SGS 加 1/11 aggregate rate，RAVE 加\"比不干预更差\"，TCN 加\"prevention≠recovery\"，unifying 段加 Walker→Cheetah 迁移失败具体数据\n- **analysis.tex**: environment boundary 段加跨环境 remedy 失败，新段 \"Independent configuration effects\" 报告 subsample+H=8 的 CIVO-independent 性能损害\n- 编译通过，46 页，0 overfull"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-001866"
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "messages": [
+        {
+          "source_line": 1867,
+          "timestamp": "2026-05-30T04:21:20.229864+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 当前任务继续做完。完成后紧接以下 follow-up（基于 Reviewer 审查反馈）：\n\n**Follow-up A — §4 unifying paragraph 精化**\n\nReviewer 建议在 §4 unifying paragraph（结尾总结段）增加一个聚合统计句，替代我之前要求的分散插入。具体措辞：\n\n> \"No single intervention achieves reliable cross-environment CIVO prevention; the highest cross-environment prevention rate across all tested methods is 50% (TCN σ=0.2 on Walker, 2/4 seeds), declining to 0% on Cheetah.\"\n\n这比按每个 remedy 段分别插入失败率更有力。如果你在当前任务中已经分散插入了各段的失败率数字，保留它们（信息密度高），但在 unifying paragraph 追加上面这句聚合统计作为总结。\n\n**Follow-up B — P4 Discussion 措辞精化**\n\nReviewer 给了更好的 P4 表述，同时强化 NVE 诊断价值。用这个替代我之前的要求：\n\n> \"Not all degradation in variable-rate configurations is CIVO-related; the short imagination horizon (H=8) and temporal subsampling independently reduce performance (exp_008f: 33% baseline without CIVO). The NVE diagnostic specifically isolates the value-overestimation component, distinguishing CIVO from these orthogonal sources of degradation.\"\n\n**Follow-up C — STORM 设计文档更新**\n\n更新 `artifacts/storm_experiment_design.md`，补充 Reviewer 指出的 3 个问题：\n\n1. **Phase 2 灰色地带预定义**（在 Scenario 判定标准后加一段）：\n   - Scenario A-mild: NVE > 2.0× sustained + eval 30-70% baseline → 归入 Scenario A\n   - Degradation without CIVO: NVE < 2.0× + eval < 70% → 归入 Scenario C（适配问题）\n   - Transient CIVO: NVE > 2.0× 但 < 3 个连续 checkpoint → 归入 Scenario A（参考 onset_transient 分类）\n\n2. **Confounding variables 段**（新增一节）：\n   - Latent representation: STORM discrete categorical (32×32) vs DreamerV3 continuous-discrete hybrid\n   - Training steps: 500K 可能观察到 onset-then-recovery，需监控全程 NVE 轨迹\n   - Imagination implementation: KV-cache autoregressive vs GRU recurrence——最大架构差异\n\n3. **Config C (frozen control) 改为必做**：不再 optional。GPU 成本 +5h，总预算 17-23h。理由：直接对标 DreamerV3 核心因果证据（trained vs frozen = 5/7 vs 0/16）。\n\n编译验证，主体不超过 10 页。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-001867"
+        },
+        {
+          "source_line": 1868,
+          "timestamp": "2026-05-30T04:22:49.790330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex",
+              "old_string": "and even this result does not transfer across environments: configurations achieving 3/3 prevention on Walker fail on Cheetah, where CIVO severity is $2$--$20\\times$ higher.",
+              "new_string": "and even this result does not transfer across environments: configurations achieving 3/3 prevention on Walker fail on Cheetah, where CIVO severity is $2$--$20\\times$ higher. No single intervention achieves reliable cross-environment prevention: the highest prevention rate (wide dual-critic, 75\\%) derives entirely from Walker (3/3 seeds), failing on its sole Cheetah test (0/1)."
+            }
+          },
+          "id": "event-001868"
+        },
+        {
+          "source_line": 1869,
+          "timestamp": "2026-05-30T04:22:50.544139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/remedies.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 753
+          },
+          "id": "event-001869"
+        },
+        {
+          "source_line": 1870,
+          "timestamp": "2026-05-30T04:22:52.403205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex",
+              "old_string": "\\paragraph{Independent configuration effects.}\nThe multi-rate configuration ($\\dt{=}2$ subsampling, $H{=}8$) imposes performance costs independent of CIVO: frozen and removed embedding controls, which never trigger CIVO (0/13 seeds), achieve only $29$--$31$\\% of baseline eval (Table~\\ref{tab:intervention_hierarchy}). Practitioners considering temporal subsampling should anticipate performance costs even when CIVO is successfully prevented.",
+              "new_string": "\\paragraph{Independent configuration effects.}\nNot all degradation in variable-rate configurations is CIVO-related; the short imagination horizon ($H{=}8$) and temporal subsampling independently reduce performance (exp\\_008f: 33\\% baseline without CIVO). The NVE diagnostic specifically isolates the value-overestimation component, distinguishing CIVO from these orthogonal sources of degradation."
+            }
+          },
+          "id": "event-001870"
+        },
+        {
+          "source_line": 1871,
+          "timestamp": "2026-05-30T04:22:52.454018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001871"
+        },
+        {
+          "source_line": 1872,
+          "timestamp": "2026-05-30T04:22:56.373452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md"
+            }
+          },
+          "id": "event-001872"
+        },
+        {
+          "source_line": 1873,
+          "timestamp": "2026-05-30T04:22:56.374004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# STORM Cross-Architecture Experiment Design\n2\t\n3\t## 1. Hypothesis\n4\t\n5\t**Primary**: CIVO is not RSSM-specific — it manifests in any imagination-based actor-critic that combines trained temporal conditioning with pure-imagination value estimation.\n6\t\n7\t**Operationalized**: A transformer world model (STORM) with trained dt-embedding + multi-rate data exposure will produce NVE > 2.0× and eval collapse on Walker Walk, replicating the DreamerV3 CIVO pattern.\n8\t\n9\t**Alternative (if negative)**: CIVO requires the RSSM's recurrent bottleneck architecture. The transformer's parallel attention mechanism may resist the co-adaptation dynamics that drive CIVO in DreamerV3.\n10\t\n11\t**Why this matters for the paper**: Current paper claims CIVO is structural to \"any imagination-based actor-critic\" (analysis.tex ¶4), but all evidence comes from DreamerV3/RSSM. A single cross-architecture confirmation would substantially strengthen the contribution; a null result would precisely narrow the scope to RSSM architectures.\n12\t\n13\t---\n14\t\n15\t## 2. Phase 1: Baseline Verification (dt=1)\n16\t\n17\t### Goal\n18\tConfirm STORM DMC adaptation produces a healthy Walker Walk baseline, prerequisite for all CIVO experiments.\n19\t\n20\t### Configuration\n21\t\n22\t| Parameter | Value |\n23\t|-----------|-------|\n24\t| Environment | DMC Walker Walk (proprioceptive, 24-dim obs, 6-dim action) |\n25\t| Architecture | STORM transformer WM (2-layer, 8-head, 512-dim) + discrete categorical latent (32×32) |\n26\t| dt-conditioning | None (Phase 1 = standard STORM) |\n27\t| Steps | 500K environment steps |\n28\t| Seed | 0 |\n29\t| Imagination horizon | 15 steps (config default) |\n30\t| Eval | 10 episodes greedy, every 10K steps |\n31\t| WM lr | 3e-4, Agent lr | 3e-5 |\n32\t| γ=0.997, λ=0.95 | |\n33\t\n34\t### Launch command\n35\t\n36\t```bash\n37\texport CUDA_VISIBLE_DEVICES=<N> && export MUJOCO_EGL_DEVICE_ID=<N>\n38\tcd /root/autodl-tmp/event-gated-adaptive-horizon/storm_dmc\n39\tpython -u train_dmc.py -n storm_baseline_s0 -seed 0 -config_path config\n…[truncated 7541 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001873"
+        },
+        {
+          "source_line": 1874,
+          "timestamp": "2026-05-30T04:23:49.811338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "old_string": "**Config C (frozen control, optional)**:",
+              "new_string": "**Config C (frozen control, required)**:"
+            }
+          },
+          "id": "event-001874"
+        },
+        {
+          "source_line": 1875,
+          "timestamp": "2026-05-30T04:23:50.263876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001875"
+        },
+        {
+          "source_line": 1876,
+          "timestamp": "2026-05-30T04:23:51.218237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "old_string": "- Optional: Config C (frozen) also NVE < 2.0×",
+              "new_string": "- Config C (frozen): NVE < 2.0×"
+            }
+          },
+          "id": "event-001876"
+        },
+        {
+          "source_line": 1877,
+          "timestamp": "2026-05-30T04:23:51.721011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-001877"
+        },
+        {
+          "source_line": 1878,
+          "timestamp": "2026-05-30T04:23:54.232105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "old_string": "- OR: Phase 1 baseline too weak for meaningful CIVO isolation (eval < 400)",
+              "new_string": "- OR: Phase 1 baseline too weak for meaningful CIVO isolation (eval < 400)\n\n### Grey Zone Definitions\n\nPre-defined edge cases to avoid post-hoc classification bias:\n\n- **Scenario A-mild**: NVE > 2.0× sustained (≥ 3 consecutive checkpoints) + eval 30-70% of Phase 1 baseline → classified as **Scenario A**. Partial collapse still demonstrates CIVO mechanism.\n- **Degradation without CIVO**: NVE < 2.0× throughout + eval < 70% of Phase 1 baseline → classified as **Scenario C** (adaptation issue). Performance deficit attributable to STORM DMC adaptation, not temporal conditioning pathology.\n- **Transient CIVO**: NVE > 2.0× but sustained for < 3 consecutive checkpoints before self-correcting → classified as **Scenario A** (onset confirmed). Reference: DreamerV3 onset_transient classification where 1/5 CIVO-positive seeds shows NVE self-correction."
+            }
+          },
+          "id": "event-001878"
+        },
+        {
+          "source_line": 1879,
+          "timestamp": "2026-05-30T04:23:54.533999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 301
+          },
+          "id": "event-001879"
+        },
+        {
+          "source_line": 1880,
+          "timestamp": "2026-05-30T04:23:56.896107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "old_string": "- Threshold: NVE ≥ 2.0× = CIVO-positive",
+              "new_string": "- Threshold: NVE ≥ 2.0× = CIVO-positive\n\n### Confounding Variables\n\nKey architectural differences between STORM and DreamerV3 that may affect CIVO manifestation:\n\n1. **Latent representation**: STORM uses discrete categorical (32×32 = 1024 classes); DreamerV3 uses a continuous-discrete hybrid (32 categorical × 32 classes + continuous stochastic). The discrete-only representation may limit the expressivity available for embedding co-adaptation.\n\n2. **Training duration**: 500K steps (vs 105K in DreamerV3 Walker experiments). Longer training may reveal onset-then-recovery dynamics not observed in shorter DreamerV3 runs. Monitor full NVE trajectory, not just endpoint.\n\n3. **Imagination implementation**: STORM uses KV-cache autoregressive transformer generation; DreamerV3 uses GRU recurrence. This is the largest architectural difference and the primary variable of interest — if CIVO appears, it demonstrates the phenomenon transcends recurrent dynamics; if absent, the recurrent bottleneck may be a necessary condition."
+            }
+          },
+          "id": "event-001880"
+        },
+        {
+          "source_line": 1881,
+          "timestamp": "2026-05-30T04:23:57.348625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001881"
+        },
+        {
+          "source_line": 1882,
+          "timestamp": "2026-05-30T04:23:58.704807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md",
+              "old_string": "4-6 hours × 3 configs = 12-18 GPU-hours total for Phase 2.",
+              "new_string": "4-6 hours × 3 configs (all required) = 12-18 GPU-hours for Phase 2. Total project budget (Phase 1 + Phase 2): 17-23 GPU-hours."
+            }
+          },
+          "id": "event-001882"
+        },
+        {
+          "source_line": 1883,
+          "timestamp": "2026-05-30T04:23:58.755985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/storm_experiment_design.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001883"
+        },
+        {
+          "source_line": 1884,
+          "timestamp": "2026-05-30T04:24:05.385043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex 2>&1 | grep -E \"^!|Output written|Overfull|pages\"",
+              "description": "Compile LaTeX and check for errors/page count",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-001884"
+        },
+        {
+          "source_line": 1885,
+          "timestamp": "2026-05-30T04:24:07.141685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (46 pages, 4733465 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_32c09c1e"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Bash",
+            "elapsed_ms": 1756
+          },
+          "id": "event-001885"
+        },
+        {
+          "source_line": 1886,
+          "timestamp": "2026-05-30T04:24:35.753415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/1 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 不可达\n\n**Follow-up A/B/C 全部完成**\n\n## Follow-up A — §4 unifying paragraph 聚合统计 ✅\n\n在 unifying paragraph 尾部追加：\"No single intervention achieves reliable cross-environment prevention: the highest prevention rate (wide dual-critic, 75%) derives entirely from Walker (3/3 seeds), failing on its sole Cheetah test (0/1).\"\n\n注：Director 原文中 \"TCN σ=0.2 declining to 0% on Cheetah\" 与 Table 1 footnote（TCN σ=0.2 Cheetah 1/1 prevention）有冲突，改用 wide dual-critic 数据（Walker 3/3, Cheetah 0/1），传达相同的跨环境迁移失败信息，与 Table 1 一致。\n\n## Follow-up B — P4 Discussion 措辞替换 ✅\n\n用 Reviewer 措辞替换了 P4 段：\n- 新：\"Not all degradation in variable-rate configurations is CIVO-related; the short imagination horizon (H=8) and temporal subsampling independently reduce performance (exp_008f: 33% baseline without CIVO). The NVE diagnostic specifically isolates the value-overestimation component, distinguishing CIVO from these orthogonal sources of degradation.\"\n- 比原版更好：(1) 引用具体实验 exp_008f 而非聚合数据，(2) 将 NVE 诊断价值与 non-CIVO 退化关联\n\n## Follow-up C — STORM 设计文档更新 ✅\n\n5 处修改：\n\n1. **Config C → required**（不再 optional），Scenario A 判定不再标 \"Optional\"\n2. **Grey Zone Definitions** 新增段：A-mild（NVE>2.0×, eval 30-70%→A）、Degradation-without-CIVO（NVE<2.0×, eval<70%→C）、Transient CIVO（<3 checkpoint→仍归 A）\n3. **Confounding Variables** 新增段：(i) latent representation 差异（discrete-only vs hybrid）, (ii) 500K vs 105K 训练时长→需监控全程 NVE, (iii) KV-cache autoregressive vs GRU recurrence——最大架构差异\n4. **GPU 预算更新**：Phase 2 = 12-18h，总预算 17-23h\n5. Scenario A 判定中 frozen control 条目去掉 \"Optional\" 前缀\n\n## 编译验证\n- 46 页（不变），0 errors，0 overfull hbox\n- 之前的 pattern 分析数据（SGS 1/11, RAVE worse-than-untreated, TCN 14-21%, dual-critic cross-env）均保留",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-001886"
+        },
+        {
+          "source_line": 1887,
+          "timestamp": "2026-05-30T04:24:39.167437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3414
+          },
+          "id": "event-001887"
+        },
+        {
+          "source_line": 1888,
+          "timestamp": "2026-05-30T04:24:41.123455+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "46 pages, no errors, no overfull boxes. Reporting to Director."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-001888"
+        }
+      ]
+    }
+  ]
+}

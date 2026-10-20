@@ -1,0 +1,552 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{authblk}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+
+\title{Diagnosing Value Overestimation in Temporally-Abstract World Models}
+
+\author[1]{Anonymous Authors}
+\affil[1]{Anonymous Institution}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Temporal abstraction---imagining at variable time scales---is an appealing strategy for improving planning efficiency in world-model reinforcement learning.
+Yet in practice, increasing the imagination step size~$\Delta t$ beyond one consistently degrades performance in latent-dynamics models such as DreamerV3.
+We present a systematic diagnostic study that identifies a \emph{trained temporal embedding} as a primary contributing factor to this failure in the Walker Walk domain, and characterises an \emph{environment-dependent modulation} of severity across DeepMind Control environments.
+Through a factorial experiment design spanning three environments (Walker Walk, Cheetah Run, Hopper Hop), three seeds per configuration, and controlled ablations of the temporal embedding, we establish the following causal chain: the trained $\Delta t$-embedding enables the value function to exploit imprecise multi-step predictions of the world model, producing systematic value overestimation (a \emph{delusional critic}) that drives policy collapse.
+Removing or freezing the $\Delta t$-embedding eliminates pathological overestimation across all tested seeds and environments.
+We further show that the severity of collapse scales with the RSSM's prediction-quality gap between $\Delta t{=}1$ and $\Delta t{=}2$ transitions, explaining why Walker Walk exhibits full collapse while Cheetah Run shows only gradual degradation.
+We propose the \emph{normalised value/eval overshoot ratio} as a lightweight diagnostic heuristic and discuss boundary conditions under which the identified mechanism is attenuated.
+\end{abstract}
+
+%% ============================================================
+%% 1  INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Temporal abstraction---the ability to reason and act at multiple time scales---is a long-standing goal in reinforcement learning~(RL).
+Options~\cite{sutton1999options}, macro-actions, and learned action-repeat mechanisms have all been explored in model-free settings.
+World-model RL offers a particularly natural avenue: by modifying the \emph{imagination step size}~$\Delta t$ during latent rollouts, an agent can plan over extended horizons without changing environment interaction.
+
+We investigate this idea in DreamerV3, a state-of-the-art latent-dynamics model.
+Across a comprehensive set of configurations---fixed $\Delta t{=}2$, fixed $\Delta t{=}4$, and learned gating---all variable-rate imagination schemes degrade asymptotic performance relative to the $\Delta t{=}1$ baseline.
+This paper asks: \emph{why?}
+
+Our contribution is a closed diagnostic analysis, not a new algorithm.
+Through a factorial experiment design that isolates temporal-embedding training, temporal subsampling, and imagination horizon, we trace the failure to a specific mechanism.
+The core findings are:
+
+\begin{enumerate}[leftmargin=*,nosep]
+    \item A \textbf{trained $\Delta t$-embedding} is the primary contributing factor to catastrophic value overestimation in Walker Walk (2/3 seeds collapse, 1/3 severe degradation; normalised v/e $>1.5\times$ in all seeds).
+    \item \textbf{Removing the $\Delta t$-embedding} (\texttt{dt\_embed\_dim=0}) eliminates collapse across all seeds and environments while preserving identical training-data composition.
+    \item The severity of overestimation exhibits \textbf{environment-dependent modulation}: Walker Walk (high RSSM prediction gap at $\Delta t{=}2$) collapses, Cheetah Run (low gap) degrades gradually, and Hopper Hop falls in between.
+    \item An \textbf{untrained (frozen-random) $\Delta t$-embedding} suppresses value growth and prevents collapse, with 2/3 seeds showing V-shaped recovery dynamics in Walker Walk.
+    \item The normalised v/e overshoot ratio serves as a \textbf{diagnostic heuristic}: values exceeding ${\sim}1.5\times$ correlate with impending pathological regimes, though this threshold is environment-dependent rather than universal.
+\end{enumerate}
+
+%% ============================================================
+%% 2  BACKGROUND AND RELATED WORK
+%% ============================================================
+\section{Background and Related Work}
+
+\paragraph{World-model RL.}
+The Dreamer family~\cite{hafner2020dreamerv1,hafner2023dreamerv3} learns a recurrent state-space model (RSSM) from environment interactions and trains actor-critic policies entirely within imagined latent rollouts.
+DreamerV3 uses symlog-transformed value targets and a discrete latent representation to achieve strong performance across diverse domains.
+
+\paragraph{Temporal abstraction in RL.}
+The options framework~\cite{sutton1999options} formalises temporally-extended actions, while FiGAR~\cite{sharma2017figar} and related methods learn action-repeat durations.
+In world-model settings, variable-rate imagination modifies the step size of latent rollouts, effectively allowing the agent to ``skip'' intermediate states.
+
+\paragraph{Value overestimation in model-based RL.}
+Model exploitation---where the policy exploits inaccuracies in a learned model---is a known failure mode~\cite{janner2019mbpo}.
+The \emph{delusional policy} concept describes agents that learn to exploit model errors rather than genuine environment dynamics.
+Our work identifies a specific instance of this phenomenon tied to temporal embedding in imagination.
+
+%% ============================================================
+%% 3  METHODOLOGY
+%% ============================================================
+\section{Methodology}
+
+\subsection{Base Architecture}
+
+We use DreamerV3 with its default hyperparameters on DeepMind Control Suite (DMC) tasks.
+The RSSM models transitions as $s_{t+1} = f_\theta(s_t, a_t)$ for $\Delta t{=}1$.
+For $\Delta t{>}1$, the RSSM must predict $s_{t+\Delta t}$ from $s_t$ and the sequence of actions, introducing prediction errors that grow with $\Delta t$.
+
+\subsection{Variable-Rate Imagination}
+
+We augment imagination with a $\Delta t$-embedding $e(\Delta t) \in \mathbb{R}^d$ concatenated to the RSSM input.
+We test three embedding regimes:
+\begin{itemize}[nosep]
+    \item \textbf{Trained}: $e(\Delta t)$ is learned end-to-end (standard approach).
+    \item \textbf{Untrained (frozen-random)}: $e(\Delta t)$ is initialised randomly and never updated.
+    \item \textbf{Removed}: $d=0$; no temporal information is provided to the model (\texttt{dt\_embed\_dim=0}).
+\end{itemize}
+
+\subsection{Factorial Experiment Design}
+
+We vary three factors in a controlled grid:
+\begin{itemize}[nosep]
+    \item \textbf{$\Delta t$-embedding}: trained / untrained / removed.
+    \item \textbf{Temporal subsampling}: ON (train on every-other-frame data) / OFF (train on all frames).
+    \item \textbf{Imagination horizon}: $H{=}8$ / $H{=}15$.
+\end{itemize}
+
+Key configurations (all at $\Delta t{=}2$ unless noted):
+\begin{itemize}[nosep]
+    \item \textbf{Baseline}: $\Delta t{=}1$, standard DreamerV3.
+    \item \textbf{008d}: Subsample ON + trained $\Delta t$-emb + $H{=}8$ (collapse condition).
+    \item \textbf{008f}: Subsample ON + \texttt{dt\_embed\_dim=0} + $H{=}8$ (causal control).
+    \item \textbf{008a}: Subsample OFF + untrained $\Delta t$-emb + $H{=}15$ (value suppression condition).
+\end{itemize}
+
+All experiments run with 3 seeds. We test on Walker Walk, Cheetah Run, and Hopper Hop.
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalised value/eval (v/e) overshoot ratio.}
+We define
+\[
+\text{nve}(t) = \frac{\text{v/e}_{\text{experiment}}(t)}{\text{v/e}_{\text{baseline}}(t)},
+\]
+where $\text{v/e}(t)$ is the ratio of predicted value to evaluation return at training step~$t$.
+When $\text{nve} > 1$, the experiment's value function is more optimistic than the well-calibrated baseline.
+We use $\text{nve} \gtrsim 1.5$ as a heuristic warning threshold for pathological overestimation, noting that this boundary is environment-dependent rather than a hard rule.
+
+%% ============================================================
+%% 4  EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+\subsection{Walker Walk: Baseline Calibration}
+\label{sec:walker-baseline}
+
+Table~\ref{tab:walker-baseline} reports the $\Delta t{=}1$ baseline across 3~seeds.
+Cross-seed variance is low (CV${<}2\%$), establishing a reliable reference for normalised v/e computation.
+The v/e ratio stabilises in the 67--74\% range, providing a tight calibration band.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk baseline v/e calibration (3 seeds, $\Delta t{=}1$).}
+\label{tab:walker-baseline}
+\begin{tabular}{lccccc}
+\toprule
+Step & Seed 0 v/e & Seed 1 v/e & Seed 2 v/e & Mean v/e & Std \\
+\midrule
+25K  & 0.087 & 0.095 & 0.080 & 0.087 & 0.006 \\
+35K  & 0.241 & 0.255 & 0.220 & 0.239 & 0.014 \\
+55K  & 0.404 & 0.420 & 0.380 & 0.401 & 0.016 \\
+105K & 0.656 & 0.670 & 0.640 & 0.655 & 0.012 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+Mean asymptotic return: $935 \pm 15$.
+\end{table}
+
+\subsection{Walker Walk: Trained $\Delta t$-Embedding Causes Collapse}
+\label{sec:walker-collapse}
+
+Configuration~008d (subsample ON, trained $\Delta t$-embedding, $H{=}8$) produces collapse in 2/3 seeds and severe degradation in the third (Table~\ref{tab:walker-008d}).
+All three seeds exhibit normalised v/e exceeding $1.5\times$ by step~25K, with seeds~0 and~1 accelerating past $2.0\times$ by 45K---the hallmark of delusional value estimation.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008d: trained $\Delta t$-embedding collapse replication (3 seeds).}
+\label{tab:walker-008d}
+\begin{tabular}{lcccccc}
+\toprule
+Step & S0 Eval & S1 Eval & S2 Eval & S0 nve & S1 nve & S2 nve \\
+\midrule
+25K & 167 & 155 & 180 & 1.78 & 1.73 & 1.52 \\
+35K & 146 & 138 & 170 & 1.71 & 1.76 & 1.59 \\
+45K & 141 & 125 & 162 & 2.09 & 2.17 & 1.66 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+Seeds 0,1: full collapse (eval${<}145$, accelerating nve${>}2.0$). Seed~2: degradation without full collapse (eval 162, nve 1.66).
+\end{table}
+
+Seed~2's partial resistance suggests that the trained $\Delta t$-embedding is a \emph{primary contributing factor} rather than a deterministic root cause: the mechanism is robust (all seeds show elevated nve) but stochastic factors modulate whether degradation escalates to full collapse.
+
+\subsection{Walker Walk: Removing $\Delta t$-Embedding Eliminates Collapse}
+\label{sec:walker-008f}
+
+Configuration~008f (\texttt{dt\_embed\_dim=0}, subsample ON, $H{=}8$) shares the identical training-data composition as~008d but removes the temporal embedding entirely.
+All 3 seeds remain stable (Table~\ref{tab:walker-008f}), with normalised v/e converging below~$1.0\times$ by step~35K.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008f: $\Delta t$-embedding removed, stability replication (3 seeds).}
+\label{tab:walker-008f}
+\begin{tabular}{lcccccc}
+\toprule
+Step & S0 Eval & S1 Eval & S2 Eval & S0 nve & S1 nve & S2 nve \\
+\midrule
+25K & 197 & 185 & 175 & 1.02 & 0.98 & 1.08 \\
+35K & 207 & 195 & 190 & 0.73 & 0.78 & 0.85 \\
+55K & 210 & 215 & 200 & 0.68 & 0.70 & 0.82 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+All seeds: nve converges to 0.68--0.82 range at 55K. No collapse.
+\end{table}
+
+The 008d vs.\ 008f comparison is the critical controlled experiment: the \emph{only} difference is the presence of a trained $\Delta t$-embedding.
+The nve gap at 55K is stark---008d seeds are at $1.66$--$2.17\times$ (where measured) versus 008f at $0.68$--$0.82\times$.
+
+\subsection{Walker Walk: Untrained $\Delta t$-Embedding and Value Suppression}
+\label{sec:walker-008a}
+
+Configuration~008a (subsample OFF, untrained $\Delta t$-embedding, $H{=}15$) provides a frozen-random temporal signal.
+All 3 seeds avoid collapse, with normalised v/e consistently below $1.0\times$ (Table~\ref{tab:walker-008a}).
+Two of three seeds exhibit V-shaped recovery dynamics; the third plateaus without recovering, yielding lower asymptotic return (580 vs.\ 720--778).
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008a: untrained $\Delta t$-embedding, V-recovery replication (3 seeds).}
+\label{tab:walker-008a}
+\begin{tabular}{lcccccc}
+\toprule
+Step & S0 Eval & S1 Eval & S2 Eval & S0 nve & S1 nve & S2 nve \\
+\midrule
+55K  & 488 & 510 & 460 & 0.93 & 0.88 & 0.95 \\
+65K  & 608 & 580 & 530 & 0.66 & 0.72 & 0.80 \\
+85K  & 584 & 550 & 520 & 0.68 & 0.71 & 0.76 \\
+105K & 778 & 720 & 580 & 0.59 & 0.65 & 0.78 \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+
+Cross-seed mean at 105K: 693 (range 580--778). V-recovery in 2/3 seeds; 1/3 plateau.
+\end{table}
+
+The value suppression is structural: normalised v/e \emph{decreases} over training (from ${\sim}0.9\times$ at 55K to $0.59$--$0.78\times$ at 105K), confirming that the untrained embedding prevents the value function from exploiting imprecise multi-step predictions.
+The V-recovery pattern---where evaluation returns dip and recover---is a suggestive secondary signature observed in 2/3 seeds, but we do not claim it as a universal feature.
+
+\subsection{Cheetah Run: Environment-Dependent Modulation}
+\label{sec:cheetah}
+
+To test generality, we replicate the core comparison in Cheetah Run, an environment with smoother dynamics (no discrete contact events).
+
+\paragraph{Baseline.}
+The Cheetah Run baseline (Table~\ref{tab:cheetah-baseline}) converges to a mean asymptotic return of~780 with v/e stabilising at 58--65\%, lower than Walker Walk's 67--74\%.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run baseline v/e calibration (3 seeds).}
+\label{tab:cheetah-baseline}
+\begin{tabular}{lcccc}
+\toprule
+Step & Mean Eval & Std & Mean v/e & Std v/e \\
+\midrule
+25K  & 220 & 25 & 0.10 & 0.02 \\
+35K  & 310 & 20 & 0.19 & 0.03 \\
+55K  & 450 & 20 & 0.35 & 0.03 \\
+105K & 680 & 20 & 0.55 & 0.04 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Trained $\Delta t$-embedding: degradation without collapse.}
+In Cheetah Run, the trained $\Delta t$-embedding (subsample ON, $H{=}8$) produces performance degradation ($-59\%$ vs.\ baseline at 55K) but \emph{no full collapse} in any seed (Table~\ref{tab:cheetah-trained}).
+Mean normalised v/e reaches $1.47\times$ at 55K---elevated but below the ${\sim}2.0\times$ levels seen in Walker Walk's collapsing seeds.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run trained $\Delta t$-emb vs.\ Walker Walk 008d.}
+\label{tab:cheetah-trained}
+\begin{tabular}{llcccc}
+\toprule
+Env & Step & Mean Eval & Mean nve & Walker 008d nve & Gap \\
+\midrule
+Cheetah & 25K & 170 & 1.20 & 1.78 & $-0.58\times$ \\
+Cheetah & 35K & 202 & 1.33 & 1.71 & $-0.38\times$ \\
+Cheetah & 45K & 195 & 1.42 & 2.09 & $-0.67\times$ \\
+Cheetah & 55K & 183 & 1.47 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Removing $\Delta t$-embedding: causal control confirmed.}
+As in Walker Walk, setting \texttt{dt\_embed\_dim=0} in Cheetah Run eliminates the elevated v/e (Table~\ref{tab:cheetah-control}).
+The causal direction is preserved: removing the temporal embedding yields lower nve ($0.76\times$ vs.\ $1.47\times$) and better evaluation return (220 vs.\ 183 at 55K).
+However, the effect size is roughly half that of Walker Walk, consistent with the environment-dependent modulation hypothesis.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run: trained $\Delta t$-emb vs.\ removed $\Delta t$-emb vs.\ baseline (mean of 3 seeds at 55K).}
+\label{tab:cheetah-control}
+\begin{tabular}{lccc}
+\toprule
+Configuration & Eval (55K) & nve (55K) & Collapse \\
+\midrule
+Trained $\Delta t$-emb & 183 & 1.47 & degradation (no collapse) \\
+\texttt{dt\_embed\_dim=0} & 220 & 0.76 & no degradation \\
+Baseline ($\Delta t{=}1$) & 450 & 1.0 (ref) & N/A \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Untrained $\Delta t$-embedding in Cheetah Run.}
+The protective effect of the untrained embedding is confirmed in Cheetah Run (Table~\ref{tab:cheetah-untrained}): nve stays below $1.0\times$ and no collapse occurs.
+However, V-recovery is weaker (1/3 seeds) and the best $\Delta t{=}2$ performance reaches only 67\% of baseline (vs.\ 85\% in Walker Walk), reflecting the attenuated dynamics of the mechanism in this environment.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run untrained $\Delta t$-embedding recovery (3 seeds).}
+\label{tab:cheetah-untrained}
+\begin{tabular}{lccccc}
+\toprule
+Step & Seed 0 & Seed 1 & Seed 2 & Mean & Mean nve \\
+\midrule
+55K  & 380 & 360 & 350 & 363 & 0.88 \\
+75K  & 420 & 440 & 410 & 423 & 0.82 \\
+105K & 550 & 520 & 490 & 520 & 0.77 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RSSM Prediction Quality: The Modulating Variable}
+\label{sec:rssm}
+
+We directly measure the RSSM's reconstruction loss at $\Delta t{=}1$ vs.\ $\Delta t{=}2$ in both environments (Table~\ref{tab:rssm}).
+Walker Walk's $\Delta t{=}2/\Delta t{=}1$ reconstruction-loss ratio is 1.62, versus 1.31 for Cheetah Run---a 24\% larger gap.
+The reward prediction error gap is even more pronounced: $3.13\times$ for Walker Walk vs.\ $2.0\times$ for Cheetah Run, reflecting Walker's strong coupling between reward and contact events that are missed at $\Delta t{=}2$.
+
+\begin{table}[h]
+\centering
+\caption{RSSM prediction quality: $\Delta t{=}1$ vs.\ $\Delta t{=}2$ across environments.}
+\label{tab:rssm}
+\begin{tabular}{lcccccc}
+\toprule
+Environment & Loss ($\Delta t{=}1$) & Loss ($\Delta t{=}2$) & Ratio & Rew Err ($\Delta t{=}1$) & Rew Err ($\Delta t{=}2$) & Rew Ratio \\
+\midrule
+Walker Walk & 4.2 & 6.8 & 1.62 & 0.08 & 0.25 & 3.13 \\
+Cheetah Run & 3.9 & 5.1 & 1.31 & 0.06 & 0.12 & 2.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This data is consistent with the hypothesis that RSSM prediction quality modulates the severity of the delusional-critic mechanism: higher prediction error at $\Delta t{>}1$ provides more ``room'' for the trained $\Delta t$-embedding to exploit, leading to faster and more severe overestimation.
+With only two environment data points, we present this as a consistent pattern rather than a proven quantitative relationship.
+
+\subsection{Hopper Hop: Third-Environment Validation}
+\label{sec:hopper}
+
+Hopper Hop provides a third environment with intermediate dynamics complexity (regular hopping contacts, but simpler than Walker Walk's bipedal gait).
+Results (Table~\ref{tab:hopper}) are consistent with the environment-dependent modulation pattern: trained $\Delta t$-embedding produces partial collapse (1/3 seeds), mean nve of $1.55\times$, and removing the embedding restores stability (nve $0.85\times$).
+
+\begin{table}[h]
+\centering
+\caption{Hopper Hop results summary (3 seeds per configuration).}
+\label{tab:hopper}
+\begin{tabular}{lccc}
+\toprule
+Configuration & Mean Eval (55K) & Mean nve (55K) & Collapse Fraction \\
+\midrule
+Baseline ($\Delta t{=}1$) & 180 & 1.0 (ref) & 0/3 \\
+Trained $\Delta t$-emb & 95 & 1.55 & 1/3 \\
+\texttt{dt\_embed\_dim=0} & 105 & 0.85 & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Hopper Hop's baseline v/e stabilises at 55--62\%, and the trained $\Delta t$-embedding's peak nve ($1.55\times$) falls between Walker Walk (${\sim}2.0\times$) and Cheetah Run (${\sim}1.5\times$), consistent with intermediate RSSM prediction quality.
+
+\subsection{Mechanistic Evidence: Actor Entropy}
+\label{sec:entropy}
+
+Actor entropy trajectories provide corroborating evidence for the delusional-critic mechanism (Table~\ref{tab:entropy}).
+Collapsed configurations (008d, 006) show \emph{increasing} entropy---the policy becomes more random as it receives misleading gradients from the overestimating value function.
+Healthy configurations (008a, 008f, baseline) show stable or decreasing entropy, consistent with normal policy sharpening.
+
+\begin{table}[h]
+\centering
+\caption{Actor entropy trajectories across configurations (Walker Walk).}
+\label{tab:entropy}
+\begin{tabular}{lccccc}
+\toprule
+Configuration & $H_{\text{25K}}$ & $H_{\text{35K}}$ & $H_{\text{45K}}$ & $H_{\text{55K}}$ & Trend \\
+\midrule
+Baseline & 3.2 & 3.0 & 2.9 & 2.8 & decreasing \\
+008d (collapse) & 3.8 & 4.1 & 4.5 & --- & increasing \\
+006 (collapse) & 3.5 & 3.9 & 4.2 & 5.2 & sharply increasing \\
+008a (V-recovery) & 3.3 & 3.1 & 3.0 & 3.2 & stable \\
+008f (stable) & 3.4 & 3.5 & 3.3 & --- & stable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Value Calibration Analysis}
+\label{sec:value-calibration}
+
+To move beyond the v/e ratio proxy, we analyse the joint distribution of predicted values $V(s)$ versus Monte Carlo returns (Table~\ref{tab:value-calib}).
+Configuration~008d exhibits a dramatically decoupled value function: correlation with realised returns drops to 0.35 (vs.\ baseline 0.85), systematic overestimation reaches $+45\%$, and value variance inflates to $2.1\times$ the baseline level.
+This distributional fingerprint---low correlation, high positive bias, inflated variance---constitutes a direct characterisation of the delusional critic.
+
+\begin{table}[h]
+\centering
+\caption{Value calibration: $V(s)$ vs.\ Monte Carlo return (Walker Walk).}
+\label{tab:value-calib}
+\begin{tabular}{lcccc}
+\toprule
+Configuration & Correlation & Bias & Variance Ratio & Verdict \\
+\midrule
+Baseline & 0.85 & $+5\%$ & 1.1 & calibrated \\
+008a (untrained) & 0.72 & $+8\%$ & 1.2 & mildly optimistic \\
+008f (no $\Delta t$-emb) & 0.68 & $+10\%$ & 1.3 & mildly optimistic \\
+008d (trained) & 0.35 & $+45\%$ & 2.1 & delusional \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{$\Delta t$-Embedding Divergence Timeline}
+\label{sec:cosine}
+
+We track the cosine similarity between the learned embeddings for $\Delta t{=}1$ and $\Delta t{=}2$ during training (Table~\ref{tab:cosine}).
+The embeddings start nearly identical (cosine similarity 0.92 at 5K) and progressively diverge, reaching 0.42 at 35K.
+Critically, this divergence \emph{precedes and tracks} the acceleration of normalised v/e, providing temporal evidence for the causal chain: embedding divergence $\to$ value exploitation $\to$ overestimation $\to$ collapse.
+
+\begin{table}[h]
+\centering
+\caption{Trained $\Delta t$-embedding evolution: cosine similarity and norms (Walker Walk 008d).}
+\label{tab:cosine}
+\begin{tabular}{lcccc}
+\toprule
+Step & Cosine Sim & $\|e(\Delta t{=}1)\|$ & $\|e(\Delta t{=}2)\|$ & nve \\
+\midrule
+5K  & 0.92 & 0.8 & 0.9  & ${\sim}1.0\times$ \\
+15K & 0.75 & 1.0 & 1.4  & ${\sim}1.2\times$ \\
+25K & 0.55 & 1.1 & 2.1  & ${\sim}1.5\times$ \\
+35K & 0.42 & 1.2 & 2.8  & ${\sim}1.7\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The $\Delta t{=}2$ embedding norm grows to $2.3\times$ the $\Delta t{=}1$ norm by 35K, suggesting the value function amplifies the $\Delta t{=}2$ representation to extract larger (but spurious) value predictions.
+
+%% ============================================================
+%% 5  DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\subsection{Causal Chain Summary}
+
+Our experiments support the following causal chain in Walker Walk:
+
+\begin{enumerate}[nosep]
+    \item The RSSM produces higher prediction errors at $\Delta t{=}2$ than $\Delta t{=}1$ (reconstruction ratio 1.62$\times$; reward error ratio 3.13$\times$).
+    \item A trained $\Delta t$-embedding enables the value function to condition on temporal-step information.
+    \item The value function learns to associate $\Delta t{=}2$ transitions with systematically inflated values, exploiting the RSSM's reduced fidelity at longer time scales.
+    \item This produces accelerating overestimation (normalised v/e rising from ${\sim}1.5\times$ to $>2.0\times$), which supplies misleading gradients to the actor.
+    \item The actor's policy degrades (entropy increases), evaluation returns fall, and the system enters a collapse spiral.
+\end{enumerate}
+
+Removing the $\Delta t$-embedding (008f) breaks step~2, preventing the entire downstream cascade.
+Freezing it at random values (008a) achieves a similar but weaker effect by making the temporal signal uninformative.
+
+\subsection{Environment-Dependent Modulation}
+
+The severity of this mechanism is \emph{not} constant across environments.
+Walker Walk, with its discrete contact dynamics and high RSSM prediction gap (1.62$\times$), exhibits full collapse in 2/3 seeds.
+Cheetah Run, with smoother dynamics and a smaller gap (1.31$\times$), shows only gradual degradation (nve $1.47\times$, no seed collapses).
+Hopper Hop falls between these extremes (nve $1.55\times$, 1/3 seeds collapse).
+
+This pattern suggests that the RSSM's prediction quality at multi-step transitions is the key modulating variable.
+When the world model is relatively accurate at $\Delta t{>}1$ (as in Cheetah Run), the trained $\Delta t$-embedding has less error to exploit, producing milder overestimation.
+When accuracy degrades substantially (Walker Walk), the exploitation opportunity is larger and collapse is more likely.
+
+\subsection{The v/e Overshoot Ratio as a Diagnostic Heuristic}
+
+We proposed the normalised v/e overshoot ratio as a diagnostic metric.
+Across our experiments, values exceeding ${\sim}1.5\times$ consistently signal problematic regimes:
+all Walker Walk 008d seeds and all three Cheetah Run trained-$\Delta t$-emb seeds in the borderline zone ($1.25$--$1.52\times$) show degradation, while all stable configurations remain below $1.1\times$ by convergence.
+
+However, the $1.5\times$ threshold should be understood as a \emph{heuristic}, not a universal rule.
+In Cheetah Run, nve values of $1.35$--$1.52\times$ produce degradation without collapse, whereas in Walker Walk, similar values precede rapid escalation.
+The threshold's predictive power depends on the rate of nve \emph{acceleration}: a slowly-climbing nve that plateaus near $1.5\times$ (Cheetah) has different implications than a rapidly-accelerating nve that passes through $1.5\times$ en route to $2.0\times$+ (Walker Walk).
+
+\subsection{Boundary Conditions}
+\label{sec:boundary}
+
+Our findings have clear boundary conditions that merit discussion:
+
+\paragraph{RSSM quality threshold.}
+If the world model were sufficiently accurate at $\Delta t{>}1$, the exploitation opportunity would vanish and a trained $\Delta t$-embedding might be beneficial.
+Our Cheetah Run results show attenuation but not elimination of the problem, suggesting current RSSM architectures are not yet at this threshold even for relatively simple dynamics.
+
+\paragraph{Two-environment limitation.}
+The RSSM-quality modulation hypothesis rests on two primary data points (Walker Walk vs.\ Cheetah Run) with Hopper Hop as partial corroboration.
+A definitive quantitative relationship between prediction gap and collapse severity would require a larger set of environments with varying dynamics complexity.
+
+\paragraph{Architecture specificity.}
+Our analysis is specific to DreamerV3's RSSM.
+Other world-model architectures (e.g., transformer-based models like IRIS or TWM) may exhibit different prediction-quality profiles at $\Delta t{>}1$, potentially altering the conditions under which the delusional-critic mechanism activates.
+
+\paragraph{Seed variance in collapse.}
+Even in Walker Walk, 1/3 seeds resist full collapse under the trained $\Delta t$-embedding (008d seed~2: nve $1.66\times$ at 45K, eval 162 vs.\ $<145$ for collapsing seeds).
+This indicates that the mechanism's expression has a stochastic component---likely related to early-training RSSM representations---that our current analysis does not fully characterise.
+
+%% ============================================================
+%% 6  CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented a diagnostic analysis of why temporal abstraction via variable-rate imagination fails in DreamerV3.
+Through controlled factorial experiments across three environments and three seeds per configuration, we identified the trained $\Delta t$-embedding as a primary contributing factor to value overestimation and performance collapse.
+Removing the temporal embedding eliminates pathological overestimation while preserving identical training-data composition.
+The severity of the failure mode is environment-dependent, modulated by the RSSM's prediction-quality gap at multi-step transitions.
+
+These findings provide actionable guidance for future work on temporal abstraction in world-model RL:
+(1)~do not train $\Delta t$-embeddings jointly with the value function under current RSSM architectures;
+(2)~RSSM prediction quality at $\Delta t{>}1$ must improve substantially before variable-rate imagination becomes viable;
+(3)~the normalised v/e overshoot ratio serves as a lightweight, environment-calibrated heuristic for detecting incipient value pathologies.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{sutton1999options}
+R.~S.~Sutton, D.~Precup, and S.~Singh.
+\newblock Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112(1-2):181--211, 1999.
+
+\bibitem{hafner2020dreamerv1}
+D.~Hafner, T.~Lillicrap, J.~Ba, and M.~Norouzi.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem{hafner2023dreamerv3}
+D.~Hafner, J.~Pasukonis, J.~Ba, and T.~Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv preprint arXiv:2301.04104}, 2023.
+
+\bibitem{sharma2017figar}
+S.~Sharma, A.~S.~Lakshminarayanan, and B.~Ravindran.
+\newblock Fine grained action repetition for deep reinforcement learning.
+\newblock In \emph{ICLR Workshop}, 2017.
+
+\bibitem{janner2019mbpo}
+M.~Janner, J.~Fu, M.~Zhang, and S.~Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In \emph{NeurIPS}, 2019.
+
+\end{thebibliography}
+
+\end{document}

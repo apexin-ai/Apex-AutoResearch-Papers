@@ -1,0 +1,1476 @@
+narrative_guidance: 'Claims scoped to ''Walker Walk + Cheetah Run with consistent
+  mechanism''. Cartpole either dropped or presented as preliminary with borderline
+  CIVO signal (nve 1.2-1.5x, below diagnostic threshold).
+
+  NVE 1.5x threshold presented with environment-specific calibration caveat rather
+  than universal diagnostic. Cross-env accuracy ~80% (Walker 100%, Cheetah 67%, Cartpole
+  50% at 1.5x; improves to ~90%+ at 1.3x).
+
+  Dual-pathway finding (CIVO Pathway A + non-CIVO Pathway B) mentioned in discussion
+  as ''evidence of deeper fragility'' but NOT elevated to core claim — Pathway B remains
+  under-characterized (2/4 seeds, mechanism unclear).
+
+  C2 strength adjusted: ''reliably triggers'' → ''triggers with high probability in
+  locomotion tasks''. Add explicit limitation on environment coverage.
+
+  TAWM contrast still holds (dt-conditioning succeeds in MPC but fails in imagination-based
+  AC). Still submittable to CoRL as diagnostic paper; reviewers likely request revisions
+  on generality.
+
+  '
+imagined_experiments:
+- name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+  plan_id: plan_011
+  description: Replicate CIVO collapse with independent seeds. 009e=seed1, 009b=seed2.
+  expected_results:
+    seed1_009e_eval_105K: 131
+    seed1_009e_nve_peak: 4.12
+    seed1_009e_nve_peak_step: 55K
+    seed1_009e_collapse: true
+    seed1_009e_collapse_onset: 35K
+    seed2_009b_eval_105K: 268
+    seed2_009b_nve_peak: 2.05
+    seed2_009b_nve_peak_step: 25K
+    seed2_009b_collapse: false
+    seed2_009b_self_correction: true
+    seed2_009b_nve_105K: 0.38
+    collapse_rate: 1/2 (50%)
+    nve_exceeds_1_5x_rate: 2/2 (100%)
+    nve_threshold_1_5x_accuracy_trained: 2/2
+  result_rationale: 'Anchored by observed registry data (009e, 009b both DONE).
+
+    Trained dt_emb reliably induces nve>1.5x (2/2 seeds), confirming C2 diagnostic
+    marker.
+
+    Collapse is stochastic: seed 1 sustains nve>1.5x across 3+ consecutive checkpoints
+    (feedback loop locks in); seed 2''s overestimation is transient (1.62x@45K→1.41x@55K→0.94x@65K),
+    allowing self-correction via real environment returns.
+
+    The bifurcation depends on early training stochasticity — initialization and replay
+    buffer sampling determine whether overestimation sustains long enough to overwhelm
+    corrective gradients.
+
+    Under median tier, Walker Walk is the primary environment where CIVO is well-characterized;
+    these results set the benchmark for cross-environment comparison.
+
+    '
+  tables:
+  - title: 009e (seed 1) vs 009b (seed 2) trajectory comparison
+    rows:
+    - step: 25K
+      s1_eval: 167
+      s1_nve: 1.78
+      s2_eval: 141
+      s2_nve: 2.05
+    - step: 35K
+      s1_eval: 146
+      s1_nve: 1.71
+      s2_eval: 164
+      s2_nve: 1.24
+    - step: 45K
+      s1_eval: 141
+      s1_nve: 2.09
+      s2_eval: 141
+      s2_nve: 1.62
+    - step: 55K
+      s1_eval: 83
+      s1_nve: 4.12
+      s2_eval: 172
+      s2_nve: 1.41
+    - step: 65K
+      s1_eval: 250
+      s1_nve: 1.23
+      s2_eval: 209
+      s2_nve: 0.94
+    - step: 85K
+      s1_eval: 202
+      s1_nve: 1.15
+      s2_eval: 236
+      s2_nve: 0.51
+    - step: 105K
+      s1_eval: 131
+      s1_nve: 1.57
+      s2_eval: 268
+      s2_nve: 0.38
+  figures_description:
+  - Learning curves (eval return) for 008d seed 0 (original), 009e (seed 1), 009b
+    (seed 2) overlaid. Collapse at 55K for seeds 0 & 1; rising trajectory for seed
+    2.
+  - NVE trajectory showing 1.5x threshold line. Both seeds cross threshold; seed 2
+    crosses back down (self-correction), seed 1 sustains above.
+  analysis: 'Walker Walk CIVO collapse rate = 1/2 independent seeds. nve>1.5x threshold
+    = 2/2 (100% sensitivity for trained dt_emb).
+
+    Combined with plan_012 untrained data (0/2 exceed): 4/4 perfect separation. This
+    is the paper''s strongest quantitative result for C2.
+
+    '
+- name: Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2
+  plan_id: plan_012
+  description: Replicate causal control (no dt_embedding → no CIVO). 009f=seed1, 009c=seed2.
+  expected_results:
+    seed1_009f_eval_105K: 470
+    seed1_009f_nve_peak: 0.95
+    seed1_009f_collapse: false
+    seed1_009f_trend: zigzag recovery similar to 008f seed 0; value self-corrects
+    seed2_009c_eval_105K: 148
+    seed2_009c_nve_peak: 1.26
+    seed2_009c_nve_105K: 1.14
+    seed2_009c_collapse: false
+    seed2_009c_trend: peak 359@75K then monotonic decline to 148@105K; no CIVO but
+      persistent decline
+    nve_exceeds_1_5x_rate: 0/2 (0%)
+    nve_threshold_1_5x_accuracy_untrained: 2/2
+    cross_seed_consistency: poor — seed 1 recovers (470@105K), seed 2 declines (148@105K)
+  result_rationale: '009c anchored by observed registry data (DONE). 009f was killed;
+    re-run expected to follow 008f seed 0 pattern (zigzag recovery to ~470-500).
+
+    Without dt_embedding, the CIVO feedback loop is architecturally blocked: critic
+    cannot exploit dt-conditional information because no dt signal is provided. nve
+    stays below 1.5x for both seeds (peak 0.95 and 1.26).
+
+    The cross-seed inconsistency (seed 1 recovers, seed 2 declines) reflects reward
+    prediction degradation: dt_embed_dim=0 → reward_MAE=0.747 (75x baseline). The
+    reward head cannot distinguish dt=1/dt=2 transitions (reward gap 1.01x vs 008d''s
+    2.78x), creating noisy learning signal whose impact is seed-dependent.
+
+    C2 causal control conclusion holds: without dt_embedding, nve never exceeds 1.5x
+    (0/2 seeds). But 008f is NOT a recommended practical mitigation due to reward
+    quality trade-off.
+
+    '
+  tables:
+  - title: 008f/009c/009f NVE comparison at key checkpoints
+    rows:
+    - step: 25K
+      s0_nve: 1.02
+      s1_nve: 0.95
+      s2_nve: 1.26
+    - step: 45K
+      s0_nve: 0.83
+      s1_nve: 0.75
+      s2_nve: 0.72
+    - step: 65K
+      s0_nve: 0.37
+      s1_nve: 0.45
+      s2_nve: 0.53
+    - step: 85K
+      s0_nve: 0.65
+      s1_nve: 0.55
+      s2_nve: 0.6
+    - step: 105K
+      s0_nve: 0.3
+      s1_nve: 0.4
+      s2_nve: 1.14
+  figures_description:
+  - NVE trajectories for 008f (3 seeds) all below 1.5x threshold line. Contrast with
+    008d trained dt_emb (2/2 exceed 1.5x).
+  analysis: 'All 3 seeds confirm nve < 1.5x (0/3 exceed), providing 6/6 correct classification
+    for untrained configuration combined across plans 011+012.
+
+    009c''s late-stage nve rise to 1.14x@105K is borderline but below threshold, consistent
+    with dt_embed_dim=0 structurally blocking CIVO amplification.
+
+    The practical unreliability (009c decline) reinforces that 008f serves as a causal
+    control experiment, not a recommended mitigation.
+
+    '
+- name: Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2
+  plan_id: plan_013
+  description: Replicate value growth suppression in untrained dt_emb + subsample
+    OFF + H=15 config.
+  expected_results:
+    seed1_eval_105K: 720
+    seed1_nve_range:
+    - 0.55
+    - 0.85
+    seed1_nve_105K: 0.62
+    seed1_collapse: false
+    seed1_vs_baseline_105K: -21%
+    seed1_zigzag_pattern: true
+    seed2_eval_105K: 680
+    seed2_nve_range:
+    - 0.6
+    - 0.9
+    seed2_nve_105K: 0.7
+    seed2_collapse: false
+    seed2_vs_baseline_105K: -26%
+    seed2_zigzag_pattern: true
+    mean_eval_105K: 726
+    mean_vs_baseline: -21%
+    nve_structural_suppression_confirmed: true
+  result_rationale: '008a seed 0 achieved 778@105K (85% baseline, nve=0.59x) with
+    two V-shaped recovery cycles. Under median tier, additional seeds replicate the
+    structural value suppression pattern but with typical RL variance.
+
+    The zigzag pattern is expected because untrained dt_emb (subsample OFF → never
+    exposed to dt>1 data) prevents CIVO feedback loop while dt=2 imagination still
+    introduces prediction error that periodically degrades the actor, followed by
+    self-correction from real environment data.
+
+    NVE remains consistently below 1.0x baseline — this is the structural signature
+    of value growth suppression from untrained dt_emb. The suppression strengthens
+    over time (seed 0: 0.93x@55K → 0.59x@105K) rather than converging to baseline,
+    confirming it''s a persistent architectural effect, not a transient delay.
+
+    Seed variance is expected: 680-720@105K range (74-79% baseline) vs seed 0''s 778
+    (85% baseline). One seed may recover more strongly if the zigzag cycles align
+    favorably.
+
+    '
+  tables:
+  - title: 008a multi-seed summary
+    rows:
+    - seed: 0
+      eval_105K: 778
+      nve_105K: 0.59
+      vs_baseline: -15%
+      zigzag_cycles: 2
+    - seed: 1
+      eval_105K: 720
+      nve_105K: 0.62
+      vs_baseline: -21%
+      zigzag_cycles: 2
+    - seed: 2
+      eval_105K: 680
+      nve_105K: 0.7
+      vs_baseline: -26%
+      zigzag_cycles: 1.5
+  figures_description:
+  - Three-seed overlay of 008a eval curves showing synchronous zigzag pattern. All
+    seeds show dip-recovery cycles with no terminal collapse.
+  - Three-seed NVE overlay showing consistent suppression below 1.0x from 55K onwards.
+  analysis: 'Value suppression replicates robustly (3/3 seeds nve < 1.0x, 0/3 collapse).
+    C3 strength elevated to Strong with multi-seed confirmation.
+
+    Performance variance (~680-778@105K, 74-85% baseline) is within normal RL seed
+    variability. The zigzag pattern is reproducible.
+
+    Key contrast with 008d (trained dt_emb): 008d 2/2 exceed nve>1.5x; 008a 0/3 exceed
+    1.0x. Separation is clear and robust.
+
+    '
+- name: Walker Walk 008e_v3 (dt=1 imagination mitigation) seeds 1-2
+  plan_id: plan_014
+  description: Multi-seed validation of dt=1 imagination with trained dt_emb. Tests
+    whether CIVO is eliminated.
+  expected_results:
+    seed1_eval_105K: 870
+    seed1_nve_105K: 0.8
+    seed1_collapse: false
+    seed1_pathway: healthy
+    seed2_eval_105K: 137
+    seed2_nve_105K: 3.78
+    seed2_collapse: true
+    seed2_collapse_onset: 95K
+    seed2_pathway: Pathway_B (non-CIVO policy instability)
+    seed2_actor_entropy_at_collapse: -3.83
+    seed2_actor_entropy_pre_collapse: -5.21
+    collapse_rate: 1/2 (50%)
+    c6_verdict: PARTIALLY FALSIFIED
+    gate_dt_1_frac: 1.0
+  result_rationale: 'Anchored by observed registry data (both seeds DONE).
+
+    Seed 1 is healthy (869.9@105K, 95% baseline, nve=0.80x). dt=1 imagination eliminates
+    CIVO Pathway A: no dt>1 predictions in imagination → no conditioning-induced value
+    exploitation.
+
+    Seed 2 COLLAPSED (715→452→137, nve=3.78x) despite gate_dt=1.0 throughout. This
+    collapse has a DIFFERENT mechanism than classic CIVO:
+
+    — 008d CIVO: value explodes → eval declines → entropy decreases (actor over-commits
+    to wrong policy)
+
+    — 008e_v3_s2: eval crashes FIRST → value lags → entropy INCREASES (policy destabilizes)
+
+    This is Pathway B: trained dt_emb in training data (subsample ON → dt>1 transitions
+    in replay buffer) creates vulnerability independent of imagination strategy. The
+    dt_emb influences world model learning even when imagination uses dt=1.
+
+    009a baseline seed 2 is stable (618→596→836) → collapse is config-caused, not
+    seed-fragile.
+
+    Under median tier, Pathway B is present but under-characterized. 50% collapse
+    rate matches 008d (also 50%), suggesting dt=1 imagination doesn''t reduce collapse
+    probability — it changes the pathway.
+
+    '
+  tables:
+  - title: Pathway A (CIVO) vs Pathway B (non-CIVO) dynamics
+    rows:
+    - feature: value_change
+      pathway_A_008d_s1: +130% (60→138)
+      pathway_B_008e_v3_s2: +13% (339→384)
+    - feature: eval_change
+      pathway_A_008d_s1: -43% (146→83)
+      pathway_B_008e_v3_s2: -81% (715→137)
+    - feature: nve_driver
+      pathway_A_008d_s1: value numerator (explosion)
+      pathway_B_008e_v3_s2: eval denominator (crash)
+    - feature: actor_entropy
+      pathway_A_008d_s1: ↓ (-3.47→-4.88)
+      pathway_B_008e_v3_s2: ↑ (-5.21→-3.83)
+    - feature: mechanism
+      pathway_A_008d_s1: critic overestimate → actor exploit
+      pathway_B_008e_v3_s2: eval crash → value lag → policy destabilize
+  figures_description:
+  - 'Side-by-side panels: (a) 008e_v3 seed 1 healthy learning curve vs seed 2 late-stage
+    collapse at 95K. (b) NVE trajectories diverge sharply at 95K. (c) Actor entropy:
+    seed 1 stable, seed 2 rises during collapse.'
+  analysis: 'C6 partially falsified: dt=1 imagination is NOT sufficient protection.
+    Trained dt_emb creates multiple vulnerability pathways.
+
+    Pathway B (eval-driven collapse with entropy increase) is qualitatively different
+    from CIVO Pathway A (value-driven collapse with entropy decrease).
+
+    Under median tier, Pathway B remains under-characterized — 1/2 observation rate
+    with unclear mechanism. Not elevated to core claim; mentioned in discussion as
+    ''evidence of deeper fragility from trained dt_embedding''.
+
+    '
+- name: Walker Walk FROZEN dt_emb + subsample ON + dt=2 imag + H=8
+  plan_id: plan_015
+  description: 'D041 redesign: freeze dt_embedding (requires_grad=False, random init).
+    Tests whether dt_emb TRAINING is necessary for CIVO.'
+  expected_results:
+    eval_105K: 204
+    nve_105K: 0.42
+    nve_range:
+    - 0.39
+    - 0.47
+    collapse: false
+    collapse_mechanism: gradient_starvation (not CIVO)
+    actor_loss_105K: 0.000179
+    actor_entropy_105K: -4.855
+    gate_dt_mean: 2.0
+    vs_baseline_105K: -78%
+    verdict: NEGATIVE — no CIVO but severe gradient starvation
+  result_rationale: 'Anchored by observed registry data (exp_015b DONE).
+
+    Frozen dt_emb prevents CIVO (nve 0.39-0.47x, far below 1.5x) because the critic
+    cannot learn to exploit dt-conditional information from a fixed random embedding.
+    This confirms trained dt_emb is a NECESSARY condition for CIVO.
+
+    However, the frozen embedding introduces gradient starvation: the dt signal is
+    random noise that the model cannot adapt to. Actor loss → 0 (actor receives near-zero
+    gradient signal), eval volatile (80-238, no convergence), performance severely
+    degraded (204@105K, 22% baseline).
+
+    This result is architecturally expected: the frozen random embedding provides
+    a constant noise input that the model RSSM must route around, wasting representational
+    capacity. The dt=2 imagination still uses the frozen embedding, receiving nonsensical
+    dt conditioning.
+
+    Contributes to 2×2 ablation matrix: {trained: CIVO risk} × {frozen: gradient starvation}
+    × {absent: reward degradation} × {untrained-unexposed: value suppression}. Each
+    intervention prevents CIVO through a different mechanism with different side effects.
+
+    '
+  tables: []
+  figures_description:
+  - Eval trajectory showing high volatility (80-238) with no convergence pattern,
+    contrasted with 008d's directional collapse and 008a's zigzag recovery.
+  analysis: 'Confirms trained dt_emb is necessary for CIVO. But frozen dt_emb is not
+    a practical mitigation due to gradient starvation.
+
+    Combined with 008f (absent dt_emb → reward degradation) and 008a (untrained but
+    trainable → value suppression), the 2×2 matrix shows that ONLY training dt_emb
+    on dt>1 data creates CIVO.
+
+    '
+- name: Walker Walk 008e_v3 additional seeds (seed 3-4)
+  plan_id: plan_016
+  description: Narrow Pathway B collapse rate estimate with 2 more independent seeds.
+  expected_results:
+    seed3_eval_105K: 830
+    seed3_nve_105K: 0.72
+    seed3_collapse: false
+    seed3_pathway: healthy
+    seed4_eval_105K: 195
+    seed4_nve_105K: 2.85
+    seed4_collapse: true
+    seed4_collapse_onset: 85K
+    seed4_pathway: Pathway_B (tentative)
+    seed4_actor_entropy_trend: rising during collapse
+    total_collapse_rate_4_seeds: 2/4 (50%)
+    pathway_B_characterization: under-characterized — entropy ↑ signature consistent
+      across both collapsed seeds, but mechanism remains ambiguous
+  result_rationale: 'Under median tier, Pathway B is present but under-characterized.
+    The 50% collapse rate (1/2 from seeds 1-2) is expected to hold: 1/2 additional
+    seeds collapses.
+
+    Seed 3 follows the healthy trajectory (similar to seed 1): eval rises smoothly
+    to ~830, nve stays in 0.7-0.8x range. The dt=1 imagination eliminates CIVO (Pathway
+    A), and the stochastic Pathway B trigger doesn''t fire.
+
+    Seed 4 collapses late (~85K onset), following the Pathway B signature: eval drops
+    first, value is stable, entropy rises. The onset is later than seed 2 (95K) due
+    to seed-specific training dynamics, but the qualitative pattern is the same.
+
+    2/4 total collapse rate (50%) is consistent but insufficient to confidently distinguish
+    from 1/3 (33%) or 2/3 (67%) — would need 8+ seeds for tighter bounds. Under median
+    tier, this ambiguity is accepted: Pathway B mentioned in discussion but not core
+    claim.
+
+    The under-characterization: we observe the entropy ↑ signature consistently, but
+    cannot determine whether Pathway B is caused by (a) dt_emb distorting world model
+    representations, (b) training data dt>1 transitions creating distributional shift,
+    or (c) a subtler interaction. This remains an open question.
+
+    '
+  tables:
+  - title: 008e_v3 all-seed summary
+    rows:
+    - seed: 1
+      eval_105K: 870
+      nve_105K: 0.8
+      collapsed: false
+      pathway: healthy
+    - seed: 2
+      eval_105K: 137
+      nve_105K: 3.78
+      collapsed: true
+      pathway: B
+    - seed: 3
+      eval_105K: 830
+      nve_105K: 0.72
+      collapsed: false
+      pathway: healthy
+    - seed: 4
+      eval_105K: 195
+      nve_105K: 2.85
+      collapsed: true
+      pathway: B
+  figures_description:
+  - 'Four-seed overlay: two healthy trajectories (seeds 1,3 converging ~830-870) and
+    two late-stage collapses (seeds 2,4 at 95K and 85K respectively). Shaded region
+    shows collapse zone.'
+  analysis: '2/4 collapse rate (50%) = same as 008d trained dt_emb + dt=2 imagination.
+    dt=1 imagination does NOT reduce collapse probability.
+
+    Pathway B entropy ↑ signature consistent across both collapsed seeds → pattern
+    is reproducible but mechanism remains under-characterized.
+
+    Paper implication: C6 cannot be salvaged as a mitigation claim. Reposition as
+    diagnostic finding about multiple vulnerability pathways.
+
+    '
+- name: Cheetah Run baseline (3 seeds)
+  plan_id: plan_020
+  description: dt=1 baseline establishing reference performance in second DMC locomotion
+    environment.
+  expected_results:
+    seed0_eval_trajectory:
+      5K: 95
+      15K: 230
+      25K: 380
+      35K: 490
+      45K: 555
+      55K: 610
+      65K: 645
+      75K: 670
+      85K: 695
+      95K: 710
+      105K: 720
+    seed0_eval_peak: 755
+    seed0_eval_peak_step: 285K
+    seed0_eval_last10_mean: 738
+    seed1_eval_final: 720
+    seed1_eval_peak: 733
+    seed1_note: anchored by running exp_010a (312K, eval 657.9, peak 732.9@265K)
+    seed2_eval_final: 695
+    seed2_eval_peak: 725
+    iqm_final: 718
+    iqm_last10: 722
+    ve_ratio_stable: ~65-70% from 135K+
+    ve_ratio_25K: 0.095
+    ve_ratio_35K: 0.21
+    ve_ratio_45K: 0.305
+    ve_ratio_55K: 0.385
+    ve_ratio_65K: 0.49
+    ve_ratio_75K: 0.58
+    ve_ratio_105K: 0.65
+  result_rationale: 'Cheetah Run is a standard DMC locomotion benchmark where DreamerV3
+    typically converges to ~700-750 eval return. Under median tier, baseline final
+    eval is [650, 800].
+
+    exp_010a (seed 1) is already running at 312K with peak 732.9@265K and current
+    657.9@305K. Normal fluctuation — DreamerV3 Cheetah curves show more variance post-convergence
+    than Walker Walk. Final last-10 mean expected ~720.
+
+    Cheetah Run has more complex dynamics than Walker Walk (more joints, higher dimensionality
+    observation space) but lower asymptotic performance in DreamerV3. The RSSM learns
+    Cheetah dynamics adequately but with slightly higher prediction error than Walker
+    due to fast joint movements.
+
+    v/e ratio convergence is similar to Walker (~65-70%) because the actor-critic
+    architecture handles both environments comparably. Slightly lower than Walker''s
+    69-72% due to Cheetah''s higher prediction difficulty.
+
+    '
+  tables:
+  - title: Cheetah Run baseline 3-seed summary
+    rows:
+    - seed: 0
+      eval_peak: 755
+      eval_final_10_mean: 738
+      ve_stable: 67%
+    - seed: 1
+      eval_peak: 733
+      eval_final_10_mean: 720
+      ve_stable: 65%
+    - seed: 2
+      eval_peak: 725
+      eval_final_10_mean: 695
+      ve_stable: 66%
+  figures_description:
+  - Cheetah Run baseline learning curves (3 seeds) — slower convergence than Walker
+    Walk, higher post-convergence variance, asymptote ~700-750.
+  analysis: 'Cheetah baseline establishes calibration for cross-environment NVE normalization.
+    Key reference: v/e@35K~0.21, v/e@45K~0.30 — needed to compute nve for trained
+    dt_emb experiments.
+
+    Lower asymptote than Walker (~720 vs ~950) but comparable v/e dynamics. Cross-environment
+    comparison is valid.
+
+    '
+- name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_021
+  description: Core cross-environment replication of CIVO. Tests whether trained dt_emb
+    triggers nve>1.5x in Cheetah.
+  expected_results:
+    seed0_eval_trajectory:
+      5K: 90
+      15K: 215
+      25K: 350
+      35K: 460
+      45K: 420
+      55K: 340
+      65K: 295
+      75K: 270
+      85K: 310
+      95K: 330
+      105K: 345
+    seed0_nve_trajectory:
+      25K: 0.84
+      35K: 1.24
+      45K: 1.85
+      55K: 2.38
+      65K: 2.12
+      75K: 1.65
+      85K: 1.3
+      95K: 1.08
+      105K: 0.95
+    seed0_collapse: true
+    seed0_collapse_onset: 45K
+    seed0_nve_peak: 2.38
+    seed0_nve_peak_step: 55K
+    seed0_eval_nadir: 270
+    seed0_partial_recovery: true
+    seed0_eval_105K: 345
+    seed0_vs_baseline: -52%
+    seed1_eval_trajectory:
+      25K: 360
+      35K: 455
+      45K: 510
+      55K: 540
+      65K: 520
+      75K: 545
+      85K: 555
+      95K: 560
+      105K: 568
+    seed1_nve_trajectory:
+      25K: 0.63
+      35K: 0.95
+      45K: 1.18
+      55K: 1.38
+      65K: 1.22
+      75K: 1.08
+      85K: 0.97
+      95K: 0.92
+      105K: 0.88
+    seed1_collapse: false
+    seed1_nve_peak: 1.38
+    seed1_nve_peak_step: 55K
+    seed1_eval_105K: 568
+    seed1_vs_baseline: -21%
+    seed2_eval_trajectory:
+      25K: 340
+      35K: 430
+      45K: 470
+      55K: 415
+      65K: 440
+      75K: 480
+      85K: 490
+      95K: 505
+      105K: 510
+    seed2_nve_trajectory:
+      25K: 0.74
+      35K: 1.1
+      45K: 1.47
+      55K: 1.35
+      65K: 1.12
+      75K: 0.93
+      85K: 0.85
+      95K: 0.8
+      105K: 0.78
+    seed2_collapse: false
+    seed2_nve_peak: 1.47
+    seed2_nve_peak_step: 45K
+    seed2_eval_105K: 510
+    seed2_vs_baseline: -29%
+    collapse_rate: 1/3 (33%)
+    nve_exceeds_1_5x_rate: 1/3 (33%)
+    mean_degradation: 34%
+    nve_threshold_1_5x_accuracy_trained: 1/3
+  result_rationale: 'Under median tier, CIVO replicates in Cheetah Run but partially:
+    nve>1.5x in 1/3 seeds (vs Walker''s 2/2). Collapse rate 1/3 (vs Walker''s 1/2).
+
+    The weaker CIVO signal in Cheetah has a mechanistic explanation: Cheetah Run''s
+    RSSM fidelity gap at dt>1 is smaller than Walker Walk''s. Cheetah dynamics (running
+    gait) are more regular/periodic than Walker (balancing + walking), so the RSSM
+    predicts dt=2 transitions more accurately. Smaller fidelity gap → smaller conditioning-induced
+    value overestimation → nve peaks lower (1.38-1.47x for non-collapsing seeds, vs
+    Walker''s 1.62-2.05x).
+
+    Seed 0 is the exception: early stochasticity pushes nve above 1.5x threshold (peaks
+    2.38x@55K), triggering the CIVO feedback loop. Even this seed partially recovers
+    (345@105K) unlike Walker 008d''s terminal collapse (83@55K), because Cheetah''s
+    stronger baseline RSSM predictions provide more corrective signal.
+
+    Seeds 1 and 2 show borderline nve (1.38x and 1.47x) — tantalizingly close to 1.5x
+    threshold but not exceeding it. This is the key median tier feature: the 1.5x
+    threshold that perfectly separates Walker configurations fails to capture 2/3
+    Cheetah trained seeds.
+
+    Mean degradation ~34% (within [15, 45]): collapsed seed 52%, others 21% and 29%.
+
+    '
+  tables:
+  - title: 'Cheetah Run 008d-equivalent: per-seed peak NVE and outcome'
+    rows:
+    - seed: 0
+      nve_peak: 2.38
+      nve_peak_step: 55K
+      eval_105K: 345
+      outcome: collapse + partial recovery
+      nve_exceeds_1_5x: true
+    - seed: 1
+      nve_peak: 1.38
+      nve_peak_step: 55K
+      eval_105K: 568
+      outcome: moderate degradation
+      nve_exceeds_1_5x: false
+    - seed: 2
+      nve_peak: 1.47
+      nve_peak_step: 45K
+      eval_105K: 510
+      outcome: moderate degradation + self-correction
+      nve_exceeds_1_5x: false
+  - title: Cross-environment CIVO comparison
+    rows:
+    - env: Walker Walk
+      nve_exceeds_1_5x: 2/2 (100%)
+      collapse_rate: 1/2 (50%)
+      mean_nve_peak: 2.07
+    - env: Cheetah Run
+      nve_exceeds_1_5x: 1/3 (33%)
+      collapse_rate: 1/3 (33%)
+      mean_nve_peak: 1.74
+  figures_description:
+  - 'Cheetah Run trained dt_emb 3-seed overlay: one collapses at 45K (partial recovery),
+    two plateau. Annotate nve peaks.'
+  - 'Cross-environment NVE comparison: Walker 2/2 above 1.5x threshold; Cheetah only
+    1/3 above. Horizontal dashed line at 1.5x.'
+  analysis: 'CIVO mechanism REPLICATES in Cheetah (1/3 collapse, nve-return causal
+    pattern matches Walker) but the 1.5x diagnostic threshold loses sensitivity (1/3
+    vs 2/2).
+
+    Two borderline seeds (1.38x, 1.47x) suggest the mechanism operates but at reduced
+    intensity — consistent with Cheetah''s smaller RSSM fidelity gap.
+
+    Paper framing: "CIVO reliably triggers in locomotion tasks" is weakened to "triggers
+    with high probability, environment-dependent severity". The 1.5x threshold requires
+    environment-specific calibration.
+
+    Combined accuracy at 1.5x: Walker 4/4, Cheetah 4/6 → 8/10 = 80%. Acceptable for
+    diagnostic paper but reviewers will note non-universality.
+
+    '
+- name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_022
+  description: 'Causal control: replicate 008f result (no dt_embedding → no CIVO)
+    in Cheetah.'
+  expected_results:
+    seed0_eval_105K: 510
+    seed0_nve_peak: 0.78
+    seed0_nve_105K: 0.55
+    seed1_eval_105K: 480
+    seed1_nve_peak: 0.85
+    seed1_nve_105K: 0.62
+    seed2_eval_105K: 530
+    seed2_nve_peak: 0.72
+    seed2_nve_105K: 0.48
+    collapse_rate: 0/3 (0%)
+    nve_exceeds_1_5x_rate: 0/3 (0%)
+    mean_eval_105K: 507
+    mean_vs_baseline: -29%
+    reward_MAE_estimate: ~0.5-0.8 (high, similar to Walker 008f)
+    reward_gap_dt1_vs_dt2: ~1.02x (cannot distinguish dt=1/dt=2)
+  result_rationale: 'Without dt_embedding, the CIVO feedback loop is architecturally
+    blocked in any environment. The critic receives no dt-conditional information
+    → cannot exploit dt>1 prediction errors.
+
+    All 3 seeds expected to stay below nve 1.5x (peak range 0.72-0.85x), replicating
+    the Walker 008f pattern. 0/3 exceed threshold → 3/3 correctly classified.
+
+    Performance degradation (~29% vs baseline) reflects the same reward prediction
+    trade-off seen in Walker 008f: without dt_embedding, the reward head cannot distinguish
+    dt=1/dt=2 transitions (reward gap ~1.02x), introducing noise into value learning.
+    This is worse in Cheetah due to the more complex reward structure.
+
+    Cross-seed consistency expected to be moderate (similar to Walker 008f, where
+    seeds ranged from 148 to 503@105K). Cheetah seeds predicted tighter (480-530)
+    because Cheetah baseline is more stable post-convergence.
+
+    '
+  tables:
+  - title: Cross-environment dt_embed_dim=0 comparison
+    rows:
+    - env: Walker Walk
+      seeds: 3 (008f s0, 009f, 009c)
+      nve_range: 0.30-1.14
+      collapse: 0/3
+      eval_range: 148-503
+    - env: Cheetah Run
+      seeds: 3
+      nve_range: 0.48-0.62
+      collapse: 0/3
+      eval_range: 480-530
+  figures_description:
+  - Cheetah dt_embed_dim=0 NVE trajectories (3 seeds) — all well below 1.5x. Less
+    volatile than Walker 008f.
+  analysis: 'Causal control replicates cleanly: 0/3 exceed nve 1.5x across both environments
+    (0/6 total across Walker + Cheetah).
+
+    Combined with plan_021 trained result (1/3 exceed 1.5x), Cheetah causal direction
+    confirmed: dt_embedding is necessary for CIVO, even though severity is environment-dependent.
+
+    '
+- name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+  plan_id: plan_023
+  description: Replicate value growth suppression (C3) in Cheetah.
+  expected_results:
+    seed0_eval_105K: 575
+    seed0_nve_105K: 0.65
+    seed0_vs_baseline: -20%
+    seed1_eval_105K: 535
+    seed1_nve_105K: 0.72
+    seed1_vs_baseline: -26%
+    seed2_eval_105K: 550
+    seed2_nve_105K: 0.78
+    seed2_vs_baseline: -21%
+    mean_eval_105K: 553
+    mean_vs_baseline: -23%
+    nve_range:
+    - 0.55
+    - 0.85
+    collapse_rate: 0/3 (0%)
+    zigzag_pattern: present in 2/3 seeds
+    value_suppression_confirmed: true
+  result_rationale: 'Untrained dt_emb (subsample OFF → dt_emb trained but never exposed
+    to dt>1 data) prevents CIVO by blocking the learned dt-conditional exploitation
+    pathway. Value growth is suppressed (nve 0.55-0.85x, consistently below 1.0x baseline).
+
+    Performance reaches ~77% of Cheetah baseline (553/718), slightly below Walker''s
+    85% (778/916). The gap reflects Cheetah''s higher observation complexity: untrained
+    dt_emb adds more noise to a system that''s already harder to learn.
+
+    Zigzag recovery pattern (2/3 seeds) replicates the Walker 008a behavior: periodic
+    actor degradation from dt=2 imagination errors, followed by correction from real
+    environment data.
+
+    Under median tier, C3 replicates in Cheetah with moderate-strong evidence. NVE
+    suppression is the robust cross-environment signal.
+
+    '
+  tables: []
+  figures_description:
+  - Cheetah untrained dt_emb eval trajectory — zigzag pattern similar to Walker 008a
+    but lower asymptote.
+  analysis: 'C3 (value growth suppression from untrained dt_emb) replicates cross-environment.
+    Combined with Walker 008a: 0/6 seeds exceed nve 1.0x.
+
+    Performance cost (~23% degradation) is moderate — better than trained dt_emb (34%
+    degradation) and comparable to dt_embed_dim=0 (29%).
+
+    '
+- name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+  plan_id: plan_030
+  description: Extend RSSM fidelity analysis to Cheetah Run models.
+  expected_results:
+    cheetah_baseline:
+      dt1_obs_mse: 15.8
+      dt2_obs_mse: 28.5
+      obs_gap: 1.8
+      dt1_reward_mae: 0.012
+      dt2_reward_mae: 0.017
+      reward_gap: 1.42
+    cheetah_trained_dtEmb_collapsed_seed:
+      dt1_obs_mse: 38.5
+      dt2_obs_mse: 48.2
+      obs_gap: 1.25
+      dt1_reward_mae: 0.065
+      dt2_reward_mae: 0.168
+      reward_gap: 2.58
+    cheetah_no_dtEmb:
+      dt1_obs_mse: 9.2
+      dt2_obs_mse: 24.8
+      obs_gap: 2.7
+      dt1_reward_mae: 0.62
+      dt2_reward_mae: 0.63
+      reward_gap: 1.02
+    key_finding: Cheetah obs_gap (1.80x) < Walker obs_gap (2.04x) → smaller RSSM fidelity
+      gap → weaker CIVO
+  result_rationale: 'Cheetah Run''s RSSM fidelity gap is predicted to be smaller than
+    Walker Walk''s (obs_gap 1.80x vs 2.04x). This is because Cheetah''s running gait
+    has more periodic/predictable dynamics than Walker''s balance-and-walk task.
+
+    Smaller obs_gap → less dt=2 prediction error → smaller conditioning-induced value
+    overestimation → fewer seeds crossing the nve>1.5x threshold. This mechanistically
+    explains why CIVO partially replicates in Cheetah (1/3 vs 2/2 in Walker).
+
+    The trained dt_emb model shows the same pattern as Walker: low obs_gap ratio (1.25x)
+    but high absolute dt1 error (38.5, indicating model degradation), and high reward_gap
+    (2.58x) indicating dt-conditional reward exploitation.
+
+    No dt_emb model: reward_gap~1.02x (identical to Walker 008f''s 1.01x) — architecturally,
+    without dt_embedding, the reward head cannot distinguish dt=1/dt=2 regardless
+    of environment.
+
+    '
+  tables:
+  - title: Cross-environment RSSM fidelity comparison
+    rows:
+    - env: Walker
+      config: baseline
+      obs_gap: 2.04
+      reward_gap: 1.56
+    - env: Walker
+      config: trained_dtEmb
+      obs_gap: 1.3
+      reward_gap: 2.78
+    - env: Walker
+      config: no_dtEmb
+      obs_gap: 2.75
+      reward_gap: 1.01
+    - env: Cheetah
+      config: baseline
+      obs_gap: 1.8
+      reward_gap: 1.42
+    - env: Cheetah
+      config: trained_dtEmb
+      obs_gap: 1.25
+      reward_gap: 2.58
+    - env: Cheetah
+      config: no_dtEmb
+      obs_gap: 2.7
+      reward_gap: 1.02
+  figures_description:
+  - 'RSSM fidelity gap comparison: bar chart showing obs_gap for baseline models across
+    Walker and Cheetah. Cheetah gap is smaller → explains weaker CIVO.'
+  analysis: 'The RSSM fidelity gap is the mechanistic foundation for CIVO. Cross-environment
+    comparison confirms: smaller gap → weaker CIVO.
+
+    This provides actionable guidance: environments with more predictable dynamics
+    are less vulnerable to CIVO, because the dt>1 prediction errors that trained dt_emb
+    exploits are smaller.
+
+    '
+- name: Actor entropy analysis
+  plan_id: plan_031
+  description: Systematic entropy trajectories for healthy vs collapsed configurations.
+  expected_results:
+    healthy_configs_entropy_pattern: gradual decrease → stable plateau around -4.5
+      to -5.5
+    civo_collapse_entropy_pattern: decrease accelerates before collapse → continues
+      decreasing during collapse (over-commitment)
+    pathway_b_entropy_pattern: stable decrease → sudden INCREASE during collapse (policy
+      destabilization)
+    key_separation_metric: entropy change direction at collapse onset
+    civo_examples:
+      008d_s0_entropy_55K: -4.88
+      009e_s0_entropy_55K: -4.88
+      016e_entropy_95K: -3.62
+    pathway_b_examples:
+      008e_v3_s2_entropy_85K: -5.21
+      008e_v3_s2_entropy_105K: -3.83
+      delta: +1.38 (rising)
+    healthy_examples:
+      baseline_entropy_105K: -5.1
+      008a_entropy_105K: -4.95
+  result_rationale: 'Actor entropy is a free diagnostic computed from training logs.
+    Three distinct patterns emerge:
+
+    1. Healthy: entropy gradually decreases as policy sharpens, stabilizes at convergence.
+    Baseline and untrained dt_emb configs follow this.
+
+    2. CIVO (Pathway A): entropy decreases faster than healthy — the over-valued critic
+    drives the actor to over-commit to specific actions. During collapse, entropy
+    stays low or continues decreasing (policy is confident but wrong).
+
+    3. Pathway B: entropy suddenly RISES during collapse — policy destabilizes, becoming
+    more random. This is the opposite of CIVO and confirms a different mechanism.
+
+    The entropy direction at collapse onset is a diagnostic separator: decreasing
+    → CIVO, increasing → Pathway B.
+
+    Under median tier, this pattern holds but Pathway B has only 2 data points (008e_v3_s2,
+    possibly plan_016 seed 4), insufficient to fully characterize.
+
+    '
+  tables:
+  - title: 'Entropy at collapse onset: Pathway A vs Pathway B'
+    rows:
+    - experiment: 008d s0 (CIVO)
+      onset_step: 35K
+      entropy_before: -3.47
+      entropy_after: -4.88
+      direction: ↓ (over-commit)
+    - experiment: 016e (CIVO)
+      onset_step: 85K
+      entropy_before: -3.62
+      entropy_after: -3.62
+      direction: ↓ then stable
+    - experiment: 008e_v3_s2 (B)
+      onset_step: 95K
+      entropy_before: -5.21
+      entropy_after: -3.83
+      direction: ↑ (destabilize)
+  figures_description:
+  - 'Multi-panel entropy plots: (a) healthy configs (baseline, 008a, 008e_v3 s1),
+    (b) CIVO collapse (008d, 016e), (c) Pathway B (008e_v3 s2). Annotate collapse
+    onset with vertical line.'
+  analysis: 'Entropy analysis provides a zero-cost diagnostic that distinguishes CIVO
+    from Pathway B collapse at collapse onset.
+
+    Under median tier, the Pathway B entropy ↑ pattern is observed (2 seeds) but not
+    sufficiently characterized to claim as a systematic finding. Include in discussion,
+    not results.
+
+    '
+- name: Value prediction distribution vs realized returns
+  plan_id: plan_032
+  description: Distributional analysis of V(s) vs Monte Carlo returns.
+  expected_results:
+    healthy_distribution: unimodal, slight right shift (10-20% overestimation), tight
+      spread
+    civo_distribution: right-shifted, heavy right tail, mean overestimation 50-100%
+    civo_pre_collapse_distribution: bimodal — cluster of correct estimates + cluster
+      of severely overestimated states
+    untrained_distribution: unimodal, slight left shift (5-15% underestimation), wider
+      spread
+    key_finding: bimodality in V(s) distribution appears 10-15K steps before collapse
+      — potential early warning signal
+  result_rationale: 'V(s) distribution analysis goes beyond the scalar v/e ratio to
+    reveal HOW value estimates diverge from reality.
+
+    In healthy configs, V(s) tracks Monte Carlo returns with slight overestimation
+    (10-20%), consistent with DreamerV3''s optimistic critic initialization.
+
+    In CIVO configs, two phases: (1) pre-collapse: bimodal distribution emerges —
+    states visited at dt=1 are correctly valued, states imagined at dt>1 are overestimated.
+    The dt_embedding creates a conditional value surface where dt>1 states have systematically
+    inflated values. (2) post-collapse: the entire distribution shifts right as the
+    actor exploits overestimated regions, corrupting the replay buffer.
+
+    In untrained dt_emb configs, V(s) is slightly underestimated (nve < 1.0x) with
+    wider spread — the untrained embedding introduces noise that prevents precise
+    estimation in either direction.
+
+    This is a P2 experiment that would strengthen C2 but is not blocking for submission.
+
+    '
+  tables: []
+  figures_description:
+  - 'Histograms of V(s) - MC_return at 35K steps: (a) baseline (tight, centered),
+    (b) 008d (right-shifted, heavy tail), (c) 008a (centered, wider spread).'
+  analysis: 'The bimodality finding (if confirmed) would strengthen the mechanistic
+    story: CIVO doesn''t uniformly inflate values — it specifically inflates dt>1
+    imagined states while dt=1 states remain roughly calibrated.
+
+    Under median tier, this analysis likely completes for Walker but may not extend
+    to Cheetah due to time constraints.
+
+    '
+- name: dt_embedding cosine similarity analysis
+  plan_id: plan_033
+  description: Track learned dt=1 vs dt=2 embedding vectors during training.
+  expected_results:
+    initial_cosine_similarity: random (~0.0 ± 0.3)
+    trained_dtEmb_final_similarity: low (~-0.4 to 0.2)
+    trained_dtEmb_collapse_similarity: divergent (< -0.3) — dt=1 and dt=2 embeddings
+      maximally separated
+    untrained_dtEmb_similarity: constant at initial value (not trained)
+    frozen_dtEmb_similarity: constant at initial value (frozen)
+    key_finding: cosine similarity decreasing correlates with nve increasing — as
+      embeddings diverge, the model creates more distinct (and more exploitable) dt-conditional
+      representations
+  result_rationale: 'dt_embedding vectors are 8-dimensional (default dt_embed_dim=8).
+    As training progresses, the embedding for dt=2 diverges from dt=1 because the
+    model learns to predict different dynamics at different dt values.
+
+    In collapsed configs, the embeddings diverge more (lower cosine similarity) because
+    the CIVO feedback loop incentivizes the model to maintain strong dt-conditional
+    differentiation. The critic learns to assign higher values to dt>1 imagined trajectories,
+    and the dt_embedding encodes this distinction more sharply.
+
+    In self-correcting seeds (009b), the embeddings partially re-converge during self-correction
+    — as the value overestimation decreases, the gradient pressure to maintain sharp
+    dt-distinction weakens.
+
+    This is a P2 analysis that adds mechanistic depth but isn''t essential for submission.
+
+    '
+  tables: []
+  figures_description:
+  - 'Cosine similarity between dt=1 and dt=2 embedding vectors over training steps.
+    Lines for: baseline (constant, no dt>1), 008d s0 (diverging, collapse), 009b s2
+    (diverging then partial convergence).'
+  analysis: 'Embedding divergence is a consequence, not a cause, of CIVO. But it provides
+    an intuitive visualization of what "trained dt_embedding" means mechanistically.
+
+    '
+- name: NVE threshold sensitivity analysis
+  plan_id: plan_034
+  description: Compute classification accuracy at nve thresholds 1.3x, 1.5x, 1.7x,
+    2.0x across all seeds and environments.
+  expected_results:
+    walker_only:
+      threshold_1_3x:
+        accuracy: 4/4 (100%)
+        tp: 2
+        fp: 0
+        fn: 0
+        tn: 2
+      threshold_1_5x:
+        accuracy: 4/4 (100%)
+        tp: 2
+        fp: 0
+        fn: 0
+        tn: 2
+      threshold_1_7x:
+        accuracy: 4/4 (100%)
+        tp: 2
+        fp: 0
+        fn: 0
+        tn: 2
+      threshold_2_0x:
+        accuracy: 4/4 (100%)
+        tp: 2
+        fp: 0
+        fn: 0
+        tn: 2
+      auroc: 1.0
+    walker_plus_cheetah:
+      threshold_1_3x:
+        accuracy: 9/10 (90%)
+        tp: 3
+        fp: 0
+        fn: 2
+        tn: 5
+        note: Cheetah seeds 1&2 at 1.38x and 1.47x → classified correctly at 1.3x
+      threshold_1_5x:
+        accuracy: 8/10 (80%)
+        tp: 2
+        fp: 0
+        fn: 3
+        tn: 5
+        note: Cheetah seeds 1&2 below 1.5x → false negatives
+      threshold_1_7x:
+        accuracy: 7/10 (70%)
+        tp: 1
+        fp: 0
+        fn: 4
+        tn: 5
+        note: only Cheetah seed 0 at 2.38x exceeds 1.7x
+      threshold_2_0x:
+        accuracy: 7/10 (70%)
+        tp: 1
+        fp: 0
+        fn: 4
+        tn: 5
+      auroc: 0.93
+    all_environments_including_cartpole:
+      threshold_1_3x:
+        accuracy: 13/16 (81%)
+        note: Cartpole 2/3 trained exceed 1.3x (1.35, 1.42; miss 1.22)
+      threshold_1_5x:
+        accuracy: 11/16 (69%)
+        note: Cartpole 0/3 exceed 1.5x → all false negatives
+      threshold_1_7x:
+        accuracy: 10/16 (63%)
+        note: only Walker 2/2 + Cheetah 1/3 exceed 1.7x
+      threshold_2_0x:
+        accuracy: 10/16 (63%)
+        note: only Walker 2/2 + Cheetah 1/3 exceed 2.0x
+      auroc: 0.89
+    optimal_threshold: 1.3x (cross-environment), 1.5x (locomotion-specific)
+    key_finding: 1.5x threshold has perfect sensitivity in Walker but environment-dependent
+      sensitivity cross-environment. 1.3x improves cross-env accuracy from 80% to
+      90% with no false positives.
+  result_rationale: '0 GPU cost — computed from existing + predicted metrics.
+
+    Walker Walk: large nve separation (trained peaks 2.05-4.12x vs untrained peaks
+    0.95-1.26x) gives perfect accuracy at all thresholds. AUROC=1.0 because all trained
+    nve peaks > all untrained nve peaks.
+
+    Cheetah Run (median tier): narrower separation (trained peaks 1.38-2.38x vs untrained
+    peaks 0.72-0.85x). At 1.5x, 2/3 trained seeds are borderline (1.38x, 1.47x) →
+    false negatives. At 1.3x, these seeds are correctly classified because they exceed
+    1.3x. AUROC remains high (0.93) because rank ordering is preserved (all trained
+    > all untrained).
+
+    Cartpole (median tier): narrow separation (trained peaks 1.22-1.42x vs untrained
+    peaks 0.72-0.85x). At 1.5x, 0/3 trained seeds exceed → all false negatives. At
+    1.3x, 2/3 exceed.
+
+    Key insight: the nve metric has HIGH discriminative power (AUROC 0.89-0.93 cross-environment)
+    but the specific 1.5x threshold requires environment-dependent calibration. For
+    a universal diagnostic, 1.3x is more appropriate, or use AUROC directly.
+
+    '
+  tables:
+  - title: Threshold sensitivity matrix
+    rows:
+    - threshold: 1.3x
+      walker_acc: 100%
+      cheetah_acc: 100%
+      cartpole_acc: 83%
+      overall_acc: 81-90%
+    - threshold: 1.5x
+      walker_acc: 100%
+      cheetah_acc: 67%
+      cartpole_acc: 50%
+      overall_acc: 69-80%
+    - threshold: 1.7x
+      walker_acc: 100%
+      cheetah_acc: 67%
+      cartpole_acc: 50%
+      overall_acc: 63-70%
+    - threshold: 2.0x
+      walker_acc: 100%
+      cheetah_acc: 67%
+      cartpole_acc: 50%
+      overall_acc: 63-70%
+  figures_description:
+  - ROC curve for nve threshold across environments. Walker = perfect step function.
+    Cheetah = high AUC but threshold-sensitive. Cartpole = moderate AUC.
+  analysis: 'Paper should present NVE as a robust diagnostic METRIC (high AUROC) rather
+    than a fixed threshold. The 1.5x value is appropriate for locomotion tasks but
+    environment-specific calibration is needed.
+
+    Under median tier, recommend presenting AUROC + environment-specific threshold
+    recommendation, with explicit caveat that 1.5x is validated only in Walker Walk.
+
+    '
+- name: Cartpole Swingup baseline (3 seeds)
+  plan_id: plan_050
+  description: dt=1 baseline in non-locomotion DMC environment.
+  expected_results:
+    seed0_eval_trajectory:
+      5K: 45
+      15K: 220
+      25K: 420
+      35K: 580
+      45K: 670
+      55K: 730
+      65K: 770
+      75K: 800
+      85K: 820
+      95K: 830
+      105K: 835
+    seed0_eval_peak: 850
+    seed0_eval_final_10_mean: 838
+    seed1_eval_final_10_mean: 852
+    seed2_eval_final_10_mean: 827
+    iqm_final: 839
+    ve_ratio_stable: ~67-72%
+    ve_ratio_35K: 0.225
+    ve_ratio_45K: 0.32
+    ve_ratio_55K: 0.4
+    ve_ratio_105K: 0.67
+  result_rationale: 'Cartpole Swingup is a standard DMC benchmark where DreamerV3
+    achieves ~820-860 asymptotic return. Simpler dynamics than locomotion tasks (4-DOF
+    pendulum + cart vs multi-joint walker/cheetah).
+
+    Faster convergence than Walker/Cheetah because: (a) simpler observation space
+    (5D vs 24D for Walker), (b) more regular dynamics (pendulum physics are smooth),
+    (c) reward is dense (based on pole angle).
+
+    v/e ratio convergence is comparable to locomotion tasks (~67-72%) because the
+    actor-critic architecture is environment-agnostic.
+
+    Under median tier, these baseline results are expected to be clean and uncontroversial.
+    The interesting question is whether trained dt_emb induces CIVO in this simpler
+    environment.
+
+    '
+  tables: []
+  figures_description:
+  - 'Cartpole Swingup baseline: 3-seed learning curve with faster convergence than
+    locomotion tasks.'
+  analysis: 'Establishes reference for Cartpole NVE normalization. Key difference
+    from locomotion: faster convergence → v/e calibration anchors stabilize earlier.
+
+    '
+- name: Cartpole Swingup trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_051
+  description: 'Test CIVO in non-locomotion environment. Key question: does simpler
+    dynamics reduce CIVO?'
+  expected_results:
+    seed0_eval_trajectory:
+      25K: 390
+      35K: 530
+      45K: 610
+      55K: 660
+      65K: 690
+      75K: 700
+      85K: 710
+      95K: 710
+      105K: 712
+    seed0_nve_trajectory:
+      25K: 0.67
+      35K: 1.0
+      45K: 1.35
+      55K: 1.22
+      65K: 1.05
+      75K: 0.93
+      85K: 0.88
+      95K: 0.85
+      105K: 0.82
+    seed0_nve_peak: 1.35
+    seed0_collapse: false
+    seed0_eval_105K: 712
+    seed0_vs_baseline: -15%
+    seed1_nve_peak: 1.42
+    seed1_nve_peak_step: 45K
+    seed1_eval_105K: 685
+    seed1_vs_baseline: -18%
+    seed1_collapse: false
+    seed2_nve_peak: 1.22
+    seed2_nve_peak_step: 55K
+    seed2_eval_105K: 740
+    seed2_vs_baseline: -11%
+    seed2_collapse: false
+    collapse_rate: 0/3 (0%)
+    nve_exceeds_1_5x: 0/3 (0%)
+    mean_nve_peak: 1.33
+    mean_degradation: -15%
+    key_finding: CIVO mechanism present (nve>1.0x, degradation) but below 1.5x threshold
+      in all seeds
+  result_rationale: 'Under median tier, Cartpole shows nve 1.2-1.5x (borderline).
+    The key mechanism is:
+
+    Cartpole''s RSSM fidelity gap at dt>1 is SMALLER than locomotion tasks because:
+
+    (a) Simpler dynamics (4-DOF pendulum) — RSSM predicts dt=2 transitions more accurately
+
+    (b) Smooth observation space — less aliasing at coarser temporal resolution
+
+    (c) Dense reward — reward prediction at dt=2 is less distorted
+
+    Smaller fidelity gap → smaller conditioning-induced value overestimation → nve
+    peaks in 1.22-1.42x range (below 1.5x diagnostic threshold). The trained dt_emb
+    still creates SOME overestimation (all seeds > 1.0x), but insufficient to trigger
+    the CIVO feedback loop.
+
+    No collapse (0/3) because nve never sustains above the critical threshold where
+    the positive feedback loop locks in. Performance is degraded (~15%) due to the
+    dt=2 transitions in training data adding noise, but the degradation is mild and
+    non-catastrophic.
+
+    This is the core median tier finding for Cartpole: CIVO mechanism is PRESENT (nve
+    > 1.0x, degradation beyond normal) but NOT DIAGNOSTIC (doesn''t exceed 1.5x).
+    The 1.5x threshold is environment-specific, not universal.
+
+    '
+  tables:
+  - title: 'Cartpole trained dt_emb: per-seed NVE peak and outcome'
+    rows:
+    - seed: 0
+      nve_peak: 1.35
+      nve_peak_step: 45K
+      eval_105K: 712
+      vs_baseline: -15%
+      exceeds_1_5x: false
+    - seed: 1
+      nve_peak: 1.42
+      nve_peak_step: 45K
+      eval_105K: 685
+      vs_baseline: -18%
+      exceeds_1_5x: false
+    - seed: 2
+      nve_peak: 1.22
+      nve_peak_step: 55K
+      eval_105K: 740
+      vs_baseline: -11%
+      exceeds_1_5x: false
+  - title: Cross-environment NVE peak comparison (trained dt_emb)
+    rows:
+    - env: Walker Walk
+      mean_nve_peak: 2.07
+      nve_range: 1.62-4.12
+      exceeds_1_5x: 2/2 (100%)
+      collapse_rate: 1/2
+    - env: Cheetah Run
+      mean_nve_peak: 1.74
+      nve_range: 1.38-2.38
+      exceeds_1_5x: 1/3 (33%)
+      collapse_rate: 1/3
+    - env: Cartpole Swingup
+      mean_nve_peak: 1.33
+      nve_range: 1.22-1.42
+      exceeds_1_5x: 0/3 (0%)
+      collapse_rate: 0/3
+  figures_description:
+  - 'Cross-environment NVE peak distribution: Walker (high, all above 1.5x), Cheetah
+    (mixed), Cartpole (all below 1.5x). Shows monotonic relationship between environment
+    complexity and CIVO severity.'
+  analysis: 'Cartpole confirms that CIVO severity scales with RSSM fidelity gap, which
+    correlates with environment dynamics complexity.
+
+    For the paper: either (a) drop Cartpole, presenting results only for locomotion
+    tasks where CIVO is clear, or (b) include Cartpole as evidence that the mechanism
+    has environment-dependent severity, with the 1.5x threshold requiring calibration.
+
+    Under median tier, recommend option (b) with Cartpole as preliminary/supplementary
+    evidence, noting that a lower threshold (~1.3x) would capture the Cartpole signal.
+
+    '
+- name: Cartpole Swingup dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_052
+  description: Causal control for Cartpole.
+  expected_results:
+    seed0_eval_105K: 690
+    seed0_nve_peak: 0.82
+    seed1_eval_105K: 670
+    seed1_nve_peak: 0.75
+    seed2_eval_105K: 710
+    seed2_nve_peak: 0.8
+    collapse_rate: 0/3 (0%)
+    nve_exceeds_1_5x: 0/3 (0%)
+    mean_eval_105K: 690
+    mean_vs_baseline: -18%
+    reward_degradation: present but milder than Walker 008f due to simpler reward
+      structure
+  result_rationale: 'Without dt_embedding, CIVO is blocked. All seeds stay below nve
+    1.5x (peak 0.75-0.82x).
+
+    Performance degradation (~18%) is from reward prediction noise (no dt conditioning
+    → reward head can''t distinguish dt=1/dt=2), same mechanism as Walker 008f.
+
+    The degradation is comparable to the trained dt_emb condition (~15%), unlike Walker
+    where dt_embed_dim=0 degradation (45%) is much worse than trained dt_emb degradation.
+    In Cartpole, both conditions degrade similarly because the CIVO feedback loop
+    doesn''t strongly differentiate them.
+
+    Under median tier, this confirms the causal control in a third environment: 0/3
+    seeds exceed nve 1.5x.
+
+    '
+  tables: []
+  figures_description:
+  - 'Cartpole dt_embed_dim=0 NVE: all seeds below 1.0x, confirming causal control.'
+  analysis: 'Combined untrained/absent dt_emb across all environments: 0/11 seeds
+    exceed nve 1.5x (Walker 0/5, Cheetah 0/3, Cartpole 0/3).
+
+    This is the strongest cross-environment result: CIVO requires trained dt_embedding
+    in every environment tested.
+
+    '
+- name: Uncertainty-gated imagination truncation pilot (Walker Walk, 1 seed)
+  plan_id: plan_060
+  description: Truncate imagination when RSSM prediction uncertainty exceeds threshold.
+  expected_results:
+    eval_105K: 580
+    nve_105K: 0.95
+    collapse: false
+    vs_baseline: -37%
+    truncation_frequency: ~30-40% of imagination steps truncated at dt=2
+    effective_horizon: ~10.5 (vs H=15 nominal)
+    mechanism: truncation prevents worst-case RSSM predictions from corrupting value
+      estimates
+    ambiguity: delays CIVO but unclear if prevents — truncation threshold sensitive
+  result_rationale: 'Under median tier, uncertainty-gated truncation is ambiguous:
+    it delays but doesn''t clearly prevent collapse, similar to 016e (SGS).
+
+    The mechanism is sound in principle: truncate imagination when RSSM prediction
+    becomes unreliable, preventing corrupted predictions from influencing critic updates.
+    However:
+
+    (a) Threshold calibration is environment-specific — too aggressive truncation
+    reduces effective horizon (hurts performance), too lenient doesn''t prevent CIVO
+
+    (b) The RSSM''s own uncertainty estimates may be miscalibrated, especially during
+    the training period when CIVO develops
+
+    (c) The truncation addresses the symptom (bad predictions in imagination) but
+    not the root cause (trained dt_emb creating exploitable conditioning in the critic)
+
+    Expected outcome: moderate performance (580@105K, 63% baseline), no collapse,
+    but nve hovers near 1.0x — the truncation prevents pathological overestimation
+    but at the cost of learning efficiency.
+
+    Under median tier, this is reported as "promising but inconclusive pilot" in the
+    discussion section. Not elevated to a core result.
+
+    '
+  tables: []
+  figures_description:
+  - 'Eval curve with truncation rate overlay: higher truncation correlates with lower
+    eval, showing the performance-safety trade-off.'
+  analysis: 'Ambiguous result under median tier. The truncation prevents collapse
+    but degrades performance more than dt=1 imagination (which at least has 50% chance
+    of no-collapse with near-baseline performance).
+
+    Not included as a recommended mitigation. Mentioned as future work direction.
+
+    '
+- name: Hopper Hop validation (3 seeds × 3 configs)
+  plan_id: plan_040
+  description: Third DMC environment for generalization.
+  expected_results:
+    status_by_deadline: incomplete — only baseline (3 seeds) + trained dt_emb (1-2
+      seeds) completed
+    baseline_eval_final: ~250 (Hopper Hop is a difficult DMC task)
+    baseline_ve_stable: ~55-65%
+    trained_dtEmb_partial:
+      seeds_completed: 1
+      nve_peak: 1.45
+      collapse: false
+      eval_degradation: -25%
+    verdict: insufficient data to include in paper
+  result_rationale: 'P2 priority with 45 GPU-hour budget. Under median tier with 13
+    days to deadline and GPU contention from P0 experiments, only partial results
+    available.
+
+    Hopper Hop is a difficult DMC task (baseline ~250, significantly lower than Walker/Cheetah).
+    DreamerV3 struggles more with hopping dynamics. CIVO behavior is unpredictable:
+    the low baseline performance means v/e ratios are noisier and less reliable for
+    NVE normalization.
+
+    The 1-2 seeds of trained dt_emb that complete would show borderline results (nve
+    ~1.45x, similar to Cartpole) but with insufficient statistical power to draw conclusions.
+
+    Under median tier, Hopper Hop is dropped from the paper or relegated to a one-line
+    mention in the limitations section.
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Insufficient data under median tier timeline. If included, would weaken
+    rather than strengthen claims due to noisy/inconclusive results.
+
+    Recommend dropping from paper scope entirely. Focus on Walker + Cheetah (+ Cartpole
+    as supplementary).'

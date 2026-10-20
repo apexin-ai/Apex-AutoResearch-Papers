@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c710b61662c45b1530",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis nve threshold",
+  "task_key": "worker_analysis_nve_threshold_20260525T195512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_threshold_20260525T195512_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "6d7e28b260df5ad9007d2a686064287efd437638f2447b4b326dcf9361092a9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**N=61** (25 CIVO, 36 Healthy)，**AUROC = 0.989**\n\n| Threshold | Accuracy | Precision | Recall | F1 |\n|-----------|----------|-----------|--------|------|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 |\n\n**推荐 θ=1.5×**: 100% recall，4个 FP 均可解释（frozen transient spike + eval-variance-driven），Youden's J 最优点也在 ~1.51×。θ=2.0× 适用于需要零误报的场景，但会漏掉 3 个 self-correcting CIVO seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nve-threshold.md"
+}

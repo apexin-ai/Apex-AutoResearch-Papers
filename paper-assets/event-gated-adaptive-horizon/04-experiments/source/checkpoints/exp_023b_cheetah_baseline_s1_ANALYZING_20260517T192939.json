@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_023b_cheetah_baseline_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:53:21.197Z",
+    "updated_at": "2026-05-17T19:29:39.508Z",
+    "hypothesis": "Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate), seed=1. Second seed for Cheetah baseline to establish robust NVE normalization across seeds.",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && bash scripts/exp_023b_cheetah_baseline_s1.sh\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "680126",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_023b_cheetah_baseline_s1.log",
+      "submitted_at": "2026-05-17T13:59:45.409Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 1,
+      "model_name": "DreamerV3",
+      "data_path": "dmc_cheetah_run",
+      "data_count": "N/A (online RL)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T19:25:34.295Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T19:25:39.255677+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T19:29:39.697640+00:00",
+  "trigger": "update_registry"
+}

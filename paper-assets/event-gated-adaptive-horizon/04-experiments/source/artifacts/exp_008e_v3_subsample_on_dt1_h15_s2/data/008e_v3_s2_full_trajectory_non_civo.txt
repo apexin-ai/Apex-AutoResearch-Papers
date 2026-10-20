@@ -1,0 +1,20 @@
+008e_v3_s2 Full Trajectory Non-CIVO Confirmation (35K-105K)
+
+Step | eval | value_mean | target_mean | value-target | value_std | actor_entropy | actor_loss | reward_loss
+35K  | 320  | 79.8       | 82.0        | -2.3         | 3.9       | -3.50         | -0.167     | 0.619
+45K  | 357  | 125.3      | 127.2       | -2.0         | 4.7       | -4.91         | -0.112     | 0.620
+55K  | 418  | 172.9      | 174.8       | -1.9         | 5.7       | -5.12         | -0.092     | 0.610
+65K  | 435  | 220.5      | 222.2       | -1.7         | 6.2       | -5.14         | -0.075     | 0.604
+75K  | 577  | 272.6      | 274.7       | -2.1         | 5.7       | -5.22         | -0.098     | 0.598
+85K  | 715  | 339.3      | 341.8       | -2.5         | 7.4       | -5.21         | -0.098     | 0.582
+95K  | 452  | 384.4      | 385.0       | -0.6         | 9.2       | -4.53         | -0.027     | 0.561
+105K | 137  | 339.8      | 338.8       | +1.1         | 18.3      | -3.83         | +0.016     | 0.557
+
+Diagnosis (5/5 non-CIVO):
+1. value tracks target: diff within ±2.5, only +1.1 at 105K (CIVO: value >> target)
+2. value_std explosion: 7.4→18.3 (CIVO: stable/declining)
+3. actor_entropy rises: -5.21→-3.83 (CIVO: declines, over-confidence)
+4. actor_loss turns positive: -0.098→+0.016 (CIVO: extremely negative)
+5. reward_loss stable: 0.582→0.557 (world model itself is healthy)
+
+Mechanism: world model accuracy ceiling → value_std explosion → noisy actor gradients → policy de-specialization → eval collapse

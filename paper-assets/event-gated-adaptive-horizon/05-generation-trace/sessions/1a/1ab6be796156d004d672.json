@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab6be796156d004d672",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check new pid",
+  "task_key": "worker_check_new-pid_20260513T072323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_new-pid_20260513T072323_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "805da656c93d03466513f528806bfca57c9c70ff6b96d38dc1da14d4544dffbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n- **PID**: 27009（`python dreamer.py`，CPU 948%，运行约 3h）\n- **tmux session**: `exp_003_event_gated_v2`\n- **当前 step**: 60000（最新 metrics 行）\n- **gate_scale**: 0.06\n- **gate_dt_mean**: 4.51（dt 分布近均匀，entropy ratio 0.9995）\n- **gate_empirical_entropy**: 2.078\n- **train_return**: 最近 4 个 episode 为 331.5 / 337.2 / 253.9 / 355.6（均值 ~319.5）\n- **eval_return**: metrics.jsonl 中最近无 eval_return 字段，当前只有 train_return\n\n训练正常运行中，目标 500k steps，当前 60k（12%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-new-pid.md"
+}

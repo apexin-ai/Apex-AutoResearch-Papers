@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp_009d_baseline_walker_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:55:00.039Z",
+    "updated_at": "2026-05-15T12:10:01.788Z",
+    "hypothesis": "Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）",
+    "parent": "exp_001_baseline",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "144237",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s0.log",
+      "submitted_at": "2026-05-15T12:09:51.345Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 10.4,
+      "gpu_hours": 0.0
+    },
+    "notes": "exit_code=2，启动后 15 秒即死（11:55:00 创建 → 11:55:15 退出）。从未进入 RUNNING。诊断中: worker_diagnose_exp_009d_s0_20260515T120737",
+    "server": "bjb1-45299",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T12:06:19.592Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\"",
+      "code_commit": "dccb867841046bf6dc7dcc654ea71f99e1181828",
+      "finished_at": "2026-05-15T12:10:00.498Z",
+      "training_hours": 0.06
+    },
+    "pid": "144237",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s0.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T12:10:01.788Z"
+  },
+  "timestamp": "2026-05-15T12:10:01.938919+00:00",
+  "trigger": "update_registry"
+}

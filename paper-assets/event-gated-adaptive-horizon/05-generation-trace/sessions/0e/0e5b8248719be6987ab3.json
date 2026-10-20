@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5b8248719be6987ab3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 008e v3 fresh metrics",
+  "task_key": "worker_ops_008e_v3_fresh_metrics_20260514T071355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_008e_v3_fresh_metrics_20260514T071355_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "931061139fd6ed6eeac3d17cb9f978e6aa3ea46ce17c65ba31b0aea6f3b70e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。趋势判断：\n\n**eval_return**：单调递增，65K 达到 580.7，学习曲线健康。对 walker_walk 来说这个进度正常。\n\n**normalized v/e**：从 25K 的 1.93x 快速下降到 65K 的 **0.72x**，远低于 1.2x 阈值。value function 相对 baseline 更保守，说明 subsample ON（含 dt=2 transitions）并未导致 value 过估——反而偏保守。\n\n**关键结论**：exp_008e_v3 表现接近 baseline，subsample ON + dt=1 imagination 的组合没有造成明显性能下降。gate_dt 全程锁定 1.0（符合 fixed_dt=1 设定）。剩余 ~37K steps，预估还需 ~1.5h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-008e-v3-fresh-metrics.md"
+}

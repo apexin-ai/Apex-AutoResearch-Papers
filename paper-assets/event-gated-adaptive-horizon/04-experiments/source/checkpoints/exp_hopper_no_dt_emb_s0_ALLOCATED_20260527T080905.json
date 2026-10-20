@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_hopper_no_dt_emb_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:08:47.870Z",
+    "updated_at": "2026-05-27T08:09:04.873Z",
+    "hypothesis": "Removing dt_embedding entirely (dt_embed_dim=0) while keeping gate+dt=2+subsample ON will still show severe learning delay in Hopper, confirming gate mechanism itself (not dt_emb) is the root cause of Hopper's failure. Source: D162 diagnostic.",
+    "parent": "exp_hopper_trained_s0",
+    "server": "westd-51268",
+    "gpu": "cuda:1",
+    "spec": {
+      "server": "westd-51268",
+      "gpu": "cuda:1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "model_name": "dreamerv3",
+      "data_path": "dmc_hopper_hop (online)",
+      "data_count": "105000 steps",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-27T08:09:05.367168+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp_051_stackcube_frozen_dt_emb_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:30:00.000Z",
+    "updated_at": "2026-05-24T16:53:23.046Z",
+    "hypothesis": "Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks. If frozen prevents CIVO → extends Walker/Cheetah frozen finding to manipulation; if not → domain-specific factors override dt_emb mechanism.",
+    "parent": "exp_049_stackcube_civo_trigger_s0",
+    "spec": {
+      "command": "python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0",
+      "server": "bjb1-40020",
+      "gpu_ids": [
+        1
+      ],
+      "pid": 305974,
+      "data_path": "ManiSkill StackCube-v1 (online RL, state obs)",
+      "data_count": 210000,
+      "model_name": "DreamerV3 (frozen dt_emb, ManiSkill StackCube)",
+      "seed": 0,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "StackCube-v1 (online eval)",
+      "log_path": "logdir/exp_051_stackcube_frozen_dt_emb_s0.log",
+      "checkpoint_path": "logdir/exp_051_stackcube_frozen_dt_emb_s0/checkpoint_202500.pt"
+    },
+    "metrics": {
+      "eval_final": 45.3,
+      "eval_final_step": 212500,
+      "eval_peak": 45.3,
+      "eval_peak_step": 212500,
+      "ve_ratio_final": 0.1,
+      "ve_ratio_final_step": 212500,
+      "ve_ratio_peak": 4.3,
+      "ve_ratio_peak_step": 42500,
+      "total_steps": 222400,
+      "nve_classification": "onset_self_correcting",
+      "civo_transient": true,
+      "civo_sustained": false,
+      "civo_transient_range": "22K-62K",
+      "civo_self_correction": true,
+      "civo_self_correction_step": 82500,
+      "gate_dt_mean": 2,
+      "gate_dt_variation": false,
+      "eval_dip_during_civo": 7.1,
+      "eval_dip_step": 42500
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-23T08:48:40.404Z"
+  },
+  "timestamp": "2026-05-24T16:53:23.370185+00:00",
+  "trigger": "update_registry"
+}

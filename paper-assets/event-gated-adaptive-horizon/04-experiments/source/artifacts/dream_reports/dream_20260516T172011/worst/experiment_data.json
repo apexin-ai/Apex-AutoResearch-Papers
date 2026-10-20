@@ -1,0 +1,1306 @@
+[
+  {
+    "name": "Walker Walk 008d (trained dt_emb, collapse) seeds 1-2",
+    "description": "Replicate delusional critic collapse with 2 more seeds (009e seed 1, 009b seed 2)",
+    "results": {
+      "seed1_collapse": true,
+      "seed1_nve_peak": 4.12,
+      "seed1_nve_peak_step": 55000,
+      "seed1_eval_final_105K": 131,
+      "seed2_collapse": false,
+      "seed2_nve_peak": 2.05,
+      "seed2_nve_peak_step": 25000,
+      "seed2_eval_final_105K": 268,
+      "seed2_self_correction": true,
+      "collapse_rate": 0.5,
+      "nve_exceeds_1_5x_rate": 1.0
+    },
+    "tables": [
+      {
+        "title": "008d cross-seed comparison",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "nve_peak_step",
+          "eval_105K",
+          "collapse",
+          "mechanism"
+        ],
+        "rows": [
+          [
+            "0(=009e)",
+            4.12,
+            "55K",
+            131,
+            true,
+            "value-driven CIVO"
+          ],
+          [
+            "2(=009b)",
+            2.05,
+            "25K",
+            268,
+            false,
+            "transient→self-correction"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "崩溃率 50% 在 worst 档下不足以支持 mechanism claim——reviewer 会说这是 \"coin flip\" 而非 \"reliable trigger\"。NVE>1.5× threshold 在 Walker Walk 内部仍有 4/4 separation， 但当 Cheetah 控制实验也出现高 NVE 时，这个 threshold 的跨环境泛化性崩溃。\n\n\n已有数据（009e collapsed NVE 4.12×@55K; 009b self-corrected NVE 2.05×→0.38×）。 在 worst 档，这些结果本身成立，但 1/2 崩溃率意味着 CIVO 不是确定性的—— 仅是一个随机事件。当 Cheetah 的 dt_embed_dim=0 控制也出现 NVE>2.0× 时， Walker Walk 的 1/2 崩溃率变得不具说服力：究竟是 trained dt_emb 引起的， 还是配置组合的随机脆弱性？审稿人将质疑 n=2 的统计功效。\n"
+  },
+  {
+    "name": "Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2",
+    "description": "Replicate causal control stability — 008f_s3 (third seed) 是关键",
+    "results": {
+      "seed1_009f_status": "killed_no_data",
+      "seed2_009c_eval_105K": 148.34,
+      "seed2_009c_nve_105K": 1.14,
+      "seed3_008f_s3_eval_peak": 280,
+      "seed3_008f_s3_eval_105K": 165,
+      "seed3_008f_s3_nve_peak": 1.72,
+      "seed3_008f_s3_nve_peak_step": 85000,
+      "seed3_exceeds_1_5x": true,
+      "protection_falsified": true,
+      "classification_accuracy_post_s3": 0.71
+    },
+    "tables": [
+      {
+        "title": "008f (no dt_emb) all seeds NVE summary",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "nve_peak_step",
+          "exceeds_1.5x",
+          "eval_105K"
+        ],
+        "rows": [
+          [
+            0,
+            1.02,
+            "25K",
+            false,
+            503
+          ],
+          [
+            "2(009c)",
+            1.14,
+            "105K",
+            false,
+            148
+          ],
+          [
+            "3(008f_s3)",
+            1.72,
+            "85K",
+            "YES",
+            165
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "008f_s3 跨越 NVE 1.5× 是 worst 档的核心打击点。此前 4/4 perfect separation （trained 2/2 exceed, untrained 0/2 exceed）变为 5/7 imperfect separation （trained 2/2+009e+009b=4/4 exceed, untrained 1/3 exceed = 008f_s3）。 分类精度从 100% 降至 ~71%（5/7 correct）。审稿人将质疑：如果没有 dt_emb 也能出现 NVE>1.5×，那么 trained dt_emb 真的是 \"necessary condition\" 吗？ 或仅是 \"amplifier\"？这削弱了整个 C2 因果链从 \"necessary and sufficient\" 到 \"risk factor\"。\n\n\nWorst 档核心假设：008f_s3 NVE > 1.5×。机制：在 dt_embed_dim=0 条件下， RSSM 仍需处理 dt=2 transitions（subsample ON），reward head 无法区分 dt=1/dt=2 （reward gap 1.01×），但 observation decoder 的 dt=2 误差累积在某些 seed 下 仍可通过 critic 误导 actor。009c 已在 105K 达到 NVE=1.14×（borderline）， 008f_s3 在更长 run 或不同初始化下跨越 1.5×。这不是经典 CIVO（无 dt_emb amplification）， 而是 \"raw RSSM fidelity gap\" 本身的有限 value overestimation——但它破坏了 NVE 1.5× 作为 trained vs untrained dt_emb 的 perfect separator 的故事。\n"
+  },
+  {
+    "name": "Walker Walk 008e_v3 (mitigation) seeds 1-2",
+    "description": "Multi-seed validation of dt=1 imagination mitigation",
+    "results": {
+      "seed1_eval_105K": 869.9,
+      "seed1_nve_105K": 0.8,
+      "seed1_collapse": false,
+      "seed2_eval_105K": 137.0,
+      "seed2_nve_105K": 3.78,
+      "seed2_collapse": true,
+      "seed2_mechanism": "eval_driven_not_CIVO",
+      "collapse_rate": 0.5,
+      "mitigation_reliability": "unreliable"
+    },
+    "tables": [
+      {
+        "title": "008e_v3 cross-seed collapse comparison",
+        "columns": [
+          "seed",
+          "eval_105K",
+          "nve_105K",
+          "collapse",
+          "pathway",
+          "entropy_direction"
+        ],
+        "rows": [
+          [
+            1,
+            869.9,
+            0.8,
+            false,
+            "-",
+            "stable"
+          ],
+          [
+            2,
+            137.0,
+            3.78,
+            true,
+            "Pathway B (eval-driven)",
+            "↑ -5.21→-3.83"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Dual-pathway 在 worst 档被视为 ad hoc。Reviewer 核心批评： \"Two pathways from two seeds is curve-fitting, not science. Show me 10 seeds with clear bimodal distribution, or this is just noise.\" 50% collapse rate means dt=1 imagination provides zero marginal safety over dt=2 imagination (008d also 50%). The entire C6 story collapses into \"trained dt_emb is bad, and we have no mitigation.\"\n\n\n已有数据确认（s1 成功 95% baseline, s2 崩溃 via non-CIVO pathway）。 在 worst 档，这个 50% 崩溃率与 008d 的 50% 完全相同——dt=1 imagination 作为 mitigation 零效果。更糟的是 s2 的崩溃机制（eval-driven, entropy ↑） 与经典 CIVO 不同，被 reviewer 视为 \"ad hoc dual-pathway explanation\" 而非 genuine insight。审稿人评价：\"claiming two distinct pathways from n=2 per pathway is unfalsifiable post-hoc rationalization.\"\n"
+  },
+  {
+    "name": "Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2",
+    "description": "Replicate value growth suppression with 2 more seeds",
+    "results": {
+      "seed1_eval_105K": 520,
+      "seed1_nve_range": [
+        0.55,
+        0.95
+      ],
+      "seed1_collapse": false,
+      "seed1_recovery_pattern": "single_dip_recovery",
+      "seed2_eval_105K": 380,
+      "seed2_nve_peak": 1.35,
+      "seed2_nve_peak_step": 75000,
+      "seed2_collapse": false,
+      "seed2_pattern": "slow_decline_after_peak",
+      "cross_seed_consistency": "moderate",
+      "vs_baseline_mean": "-48%"
+    },
+    "tables": [
+      {
+        "title": "008a cross-seed summary",
+        "columns": [
+          "seed",
+          "eval_105K",
+          "vs_baseline_pct",
+          "nve_peak",
+          "collapse",
+          "pattern"
+        ],
+        "rows": [
+          [
+            0,
+            778,
+            "-15%",
+            0.93,
+            false,
+            "zigzag recovery"
+          ],
+          [
+            1,
+            520,
+            "-43%",
+            0.95,
+            false,
+            "single dip recovery"
+          ],
+          [
+            2,
+            380,
+            "-59%",
+            1.35,
+            false,
+            "slow decline post-peak"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "C3 核心 claim 是 \"untrained dt_emb prevents optimistic drift\" — 这在 worst 档仍成立 （NVE < 1.5×），但 practical value 被质疑。平均 -48% vs baseline 意味着 \"preventing collapse by preventing learning\" — reviewer 评价： \"You've shown that removing information prevents exploitation, which is trivially true.\"\n\n\n008a 的 \"untrained dt_emb\" 实际是 trained dt_emb unexposed to dt>1 data （subsample OFF = 所有训练数据都是 dt=1）。在 worst 档，seed 间变异大： seed 0 达到 778（85% baseline），但 seed 1/2 可能仅达到 380-520（40-57% baseline）。 V-recovery pattern 不稳定复现——有的 seed 单次 dip，有的缓慢下滑。 NVE 保持 <1.5× 但绝对性能远低于 baseline，reviewer 质疑： \"suppressed v/e is not suppressed degradation — 008a still loses 48% performance, making it useless as mitigation.\" 这削弱了 C3 从 \"protection\" 到 \"delayed failure\"。\n"
+  },
+  {
+    "name": "Walker Walk FROZEN dt_emb + subsample ON + dt=2 imag + H=8",
+    "description": "Frozen dt_embedding (requires_grad=False), 诊断 dt_emb TRAINING 是否是必要条件",
+    "results": {
+      "eval_105K": 204,
+      "nve_peak": 0.47,
+      "nve_105K": 0.42,
+      "collapse": false,
+      "actor_loss_105K": 0.000179,
+      "mechanism": "gradient_starvation",
+      "gate_dt_mean": 2.0,
+      "comparison_vs_008d": "no collapse but severe underperformance",
+      "comparison_vs_008f": "similar non-collapse but different mechanism"
+    },
+    "tables": [
+      {
+        "title": "Frozen dt_emb vs controls",
+        "columns": [
+          "config",
+          "eval_105K",
+          "nve_peak",
+          "mechanism",
+          "informative_for_C2"
+        ],
+        "rows": [
+          [
+            "015b (frozen)",
+            204,
+            0.47,
+            "gradient starvation",
+            "confounded"
+          ],
+          [
+            "008d (trained)",
+            131,
+            4.12,
+            "CIVO",
+            "yes (positive control)"
+          ],
+          [
+            "008f (dim=0)",
+            503,
+            1.02,
+            "no conditioning",
+            "yes (negative control)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "015b 在 worst 档被视为 uninformative control。Reviewer 评价： \"Freezing the embedding creates a fundamentally different learning regime (gradient starvation in actor) — you cannot conclude that training is the causal factor when your intervention has multiple confounded effects.\" 2×2 消融矩阵（trained/frozen × exposed/unexposed）的 frozen row 全部被 gradient starvation 污染，无法干净解读。\n\n\n已有 exp_015b 数据：NVE 0.39-0.47（远低于 1.0，critic 低估），actor_loss→0 （gradient starvation），eval 80-238 高波动无稳定收敛。在 worst 档， 这个结果被 reviewer 视为 confounding：frozen dt_emb 不崩溃是因为 gradient starvation 阻止了所有学习，不是因为 dt_emb training 是 CIVO 的原因。 \"You prevented CIVO by preventing learning entirely — this doesn't isolate the mechanism.\" 与 008f（dt_embed_dim=0）的区别不清晰：两者都不崩溃，但原因可能完全不同 （015b = gradient starvation; 008f = no conditioning information）。\n"
+  },
+  {
+    "name": "Walker Walk 008e_v3 additional seeds (seed 3-4)",
+    "description": "Narrow true collapse probability of dt=1 imagination config",
+    "results": {
+      "seed3_eval_105K": 780,
+      "seed3_nve_105K": 0.72,
+      "seed3_collapse": false,
+      "seed4_eval_105K": 95,
+      "seed4_nve_peak": 4.2,
+      "seed4_nve_peak_step": 85000,
+      "seed4_collapse": true,
+      "seed4_mechanism": "mixed — value and eval co-decline",
+      "total_collapse_rate": "2/4 = 50%",
+      "confidence_interval_collapse_rate": "[0.15, 0.85] (Clopper-Pearson 95%)"
+    },
+    "tables": [
+      {
+        "title": "008e_v3 all seeds summary",
+        "columns": [
+          "seed",
+          "eval_105K",
+          "nve_105K",
+          "collapse",
+          "mechanism_classification"
+        ],
+        "rows": [
+          [
+            1,
+            869.9,
+            0.8,
+            false,
+            "healthy"
+          ],
+          [
+            2,
+            137.0,
+            3.78,
+            true,
+            "Pathway B (eval-driven)"
+          ],
+          [
+            3,
+            780,
+            0.72,
+            false,
+            "healthy"
+          ],
+          [
+            4,
+            95,
+            4.2,
+            true,
+            "mixed/ambiguous"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "50% collapse rate with wide CI is statistically uninformative. The existence of a third mechanism pattern (seed 4 \"mixed\") destroys the dual-pathway narrative. Reviewer 核心批评：\"每多一个 seed 就发明一条新 pathway — 这不是 mechanism discovery， 是 overfitting to noise.\" CoRL 审稿标准要求 reproducible results，50% collapse from a supposedly safe configuration is unacceptable for a practical recommendation.\n\n\nWorst 档下，008e_v3 的崩溃率维持 ~50%（2/4 seeds collapse）。Seed 4 崩溃 机制既不完全像 Pathway A（value explosion）也不完全像 Pathway B（eval-driven）， 而是 \"mixed\" — 进一步削弱 dual-pathway 作为干净分类的可信度。 Clopper-Pearson 95% CI for 2/4 = [0.07, 0.93]，统计功效极低。 Reviewer 评价：\"50% collapse from n=4 gives CI [0.07, 0.93] — you literally cannot distinguish this from any collapse rate between 7% and 93%.\"\n"
+  },
+  {
+    "name": "Cheetah Run baseline (3 seeds)",
+    "description": "dt=1 baseline in second DMC environment",
+    "results": {
+      "seed0_eval_peak": 850,
+      "seed0_eval_500K": 820,
+      "seed1_eval_peak": 790,
+      "seed1_eval_500K": 760,
+      "seed2_eval_peak": 810,
+      "seed2_eval_500K": 780,
+      "mean_eval_500K": 787,
+      "std_eval_500K": 30,
+      "ve_stable_range": "0.65-0.75",
+      "baseline_established": true
+    },
+    "tables": [
+      {
+        "title": "Cheetah baseline 3 seeds",
+        "columns": [
+          "seed",
+          "eval_peak",
+          "eval_500K",
+          "ve_stable"
+        ],
+        "rows": [
+          [
+            0,
+            850,
+            820,
+            0.71
+          ],
+          [
+            1,
+            790,
+            760,
+            0.68
+          ],
+          [
+            2,
+            810,
+            780,
+            0.73
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Baseline 正常建立。为后续 CIVO trigger 和 causal control 提供 reference。 Cross-seed std ~30 (3.8% of mean) 表明 Cheetah 的 seed sensitivity 低于 Walker Walk。\n\n\nBaseline 在任何 tier 下都应成功——这是 vanilla DreamerV3 on Cheetah Run。 已有 exp_010a 达到 849.8。Worst 档下 baseline 正常，cross-seed 一致性好， 建立了干净的 reference。这不是 failure point；failure 在后续实验。\n"
+  },
+  {
+    "name": "Cheetah Run trained dt_emb + subsample ON (3 seeds)",
+    "description": "Replicate CIVO collapse in Cheetah Run",
+    "results": {
+      "seed0_nve_peak": 8.5,
+      "seed0_nve_peak_step": 75000,
+      "seed0_collapse": true,
+      "seed0_eval_105K": 85,
+      "seed1_nve_peak": 5.2,
+      "seed1_nve_peak_step": 65000,
+      "seed1_collapse": true,
+      "seed1_eval_105K": 120,
+      "seed2_nve_peak": 3.8,
+      "seed2_nve_peak_step": 55000,
+      "seed2_collapse": false,
+      "seed2_eval_105K": 310,
+      "seed2_self_correction": true,
+      "collapse_rate": "2/3",
+      "mean_nve_peak": 5.83,
+      "cross_env_replication": "partial"
+    },
+    "tables": [
+      {
+        "title": "Cheetah CIVO trigger 3 seeds",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "peak_step",
+          "eval_105K",
+          "collapse",
+          "vs_baseline_105K"
+        ],
+        "rows": [
+          [
+            0,
+            8.5,
+            "75K",
+            85,
+            true,
+            "-89%"
+          ],
+          [
+            1,
+            5.2,
+            "65K",
+            120,
+            true,
+            "-85%"
+          ],
+          [
+            2,
+            3.8,
+            "55K",
+            310,
+            false,
+            "-60%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CIVO trigger 在 Cheetah 仍触发高 NVE，但 timing 和 severity 不同于 Walker Walk。 这本身不是 worst 档的核心问题——问题在于 control 也出现高 NVE。\n\n\n已有 exp_010b 达到 NVE 14.59× 并崩溃。Worst 档下 CIVO trigger 仍部分成功 （2/3 collapse），但 peak NVE 范围 3.8-8.5×（低于 Walker Walk 的 009e 4.12× 仅作为下限）。关键问题不在 trigger（它 works），而在 control 不 work。 NVE 仍 >1.5× in all seeds，确认 trained dt_emb 确实 triggers pathological overestimation。 但 severity 和 timing 跨环境不一致。\n"
+  },
+  {
+    "name": "Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)",
+    "description": "核心跨环境因果控制 — worst 档的关键失败点",
+    "results": {
+      "seed0_nve_peak": 2.8,
+      "seed0_nve_peak_step": 75000,
+      "seed0_eval_105K": 280,
+      "seed0_exceeds_1_5x": true,
+      "seed1_nve_peak": 2.1,
+      "seed1_nve_peak_step": 85000,
+      "seed1_eval_105K": 350,
+      "seed1_exceeds_1_5x": true,
+      "seed2_nve_peak": 3.5,
+      "seed2_nve_peak_step": 65000,
+      "seed2_eval_105K": 190,
+      "seed2_exceeds_1_5x": true,
+      "seed2_collapse": true,
+      "mean_nve_peak": 2.8,
+      "all_exceed_1_5x": true,
+      "causal_control_failed": true,
+      "cheetah_control_nve_peak": 3.5
+    },
+    "tables": [
+      {
+        "title": "Cheetah dt_embed_dim=0 — CONTROL FAILED",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "peak_step",
+          "eval_105K",
+          "exceeds_1.5x",
+          "collapse"
+        ],
+        "rows": [
+          [
+            0,
+            2.8,
+            "75K",
+            280,
+            "YES",
+            false
+          ],
+          [
+            1,
+            2.1,
+            "85K",
+            350,
+            "YES",
+            false
+          ],
+          [
+            2,
+            3.5,
+            "65K",
+            190,
+            "YES",
+            true
+          ]
+        ]
+      },
+      {
+        "title": "Cross-environment causal control comparison",
+        "columns": [
+          "environment",
+          "config",
+          "seeds_exceeding_1.5x",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "Walker Walk",
+            "008f (no dt_emb)",
+            "0/3",
+            "control holds"
+          ],
+          [
+            "Cheetah Run",
+            "no dt_emb",
+            "3/3",
+            "CONTROL FAILS"
+          ],
+          [
+            "Walker Walk",
+            "008d (trained dt_emb)",
+            "2/2",
+            "CIVO confirmed"
+          ],
+          [
+            "Cheetah Run",
+            "trained dt_emb",
+            "3/3",
+            "CIVO confirmed"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心灾难：在 Cheetah 中，去掉 dt_embedding 不能阻止 NVE>1.5×。 这直接否证了 \"trained dt_emb is necessary for CIVO\" 作为跨环境通用规律。 可能的解释：Cheetah 的 RSSM fidelity gap 本身更大（不需要 dt_emb 放大）， 或者 Cheetah 的 reward structure 让 critic 更容易被 dt=2 误差误导。 无论哪种解释，都意味着 Walker Walk 的干净 4/4 separation 是 environment-specific artifact。 NVE 1.5× threshold 不是 universal diagnostic marker for trained dt_emb — 它是 \"RSSM fidelity sufficient for critic exploitation\" 的 marker， 而 dt_emb 仅在某些环境中是该条件的必要 amplifier。\n\n\n这是 worst 档的核心破坏性结果。Cheetah 中去掉 dt_embedding 后 NVE 仍达 2.0-3.5×。 机制解释：Cheetah Run 的 reward landscape 比 Walker Walk 更稀疏（locomotion reward 与速度线性相关，但 early training 中 reward signal 噪声大），RSSM 在 Cheetah 中 即使没有 dt_emb conditioning，dt=2 transitions 的 reward prediction 偏差也足够 大，能通过 critic 产生显著 value overestimation。具体来说，Cheetah 的 reward_MAE at dt=2 即使无 dt_emb 也达到 baseline 的 3-5×（不像 Walker Walk 的 008f 的 75× 那么极端，但方向相同且 impact 不同）。这意味着 \"dt_embedding is necessary for CIVO\" 仅在 Walker Walk 成立——在 Cheetah 中，RSSM fidelity gap at dt=2 本身就足以 trigger pathological overestimation without dt_emb amplification。因果链从 \"trained dt_emb → CIVO\" 变为 \"RSSM dt=2 error → CIVO（dt_emb amplifies but is not necessary）\"。这是对 C2 核心 claim 的根本否证。\n"
+  },
+  {
+    "name": "Cheetah Run untrained dt_emb + no subsample (3 seeds)",
+    "description": "Replicate value growth suppression in Cheetah Run",
+    "results": {
+      "seed0_eval_105K": 450,
+      "seed0_nve_peak": 1.6,
+      "seed0_nve_105K": 1.2,
+      "seed1_eval_105K": 520,
+      "seed1_nve_peak": 1.4,
+      "seed1_nve_105K": 0.9,
+      "seed2_eval_105K": 380,
+      "seed2_nve_peak": 1.8,
+      "seed2_nve_105K": 1.5,
+      "mean_eval_105K": 450,
+      "vs_baseline_mean": "-43%",
+      "seeds_exceeding_1_5x": "2/3",
+      "protection_partial": true
+    },
+    "tables": [
+      {
+        "title": "Cheetah untrained dt_emb (no subsample) 3 seeds",
+        "columns": [
+          "seed",
+          "eval_105K",
+          "nve_peak",
+          "nve_105K",
+          "vs_baseline"
+        ],
+        "rows": [
+          [
+            0,
+            450,
+            1.6,
+            1.2,
+            "-43%"
+          ],
+          [
+            1,
+            520,
+            1.4,
+            0.9,
+            "-34%"
+          ],
+          [
+            2,
+            380,
+            1.8,
+            1.5,
+            "-52%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "在 worst 档，C3 的 value growth suppression 仅在 Walker Walk 干净复现。 Cheetah 中 untrained dt_emb 的保护力度显著减弱。这进一步支持 \"Walker Walk + RSSM 特异性\" 叙事 — CIVO 和 anti-CIVO 机制 都是 environment-specific 的，没有 universal pattern。\n\n\nSubsample OFF + untrained dt_emb 在 Cheetah 中仅提供部分保护。 由于 Cheetah 的 RSSM fidelity gap 更大（见 plan_022 rationale）， 即使 dt_emb 未暴露于 dt>1 数据，RSSM 本身在处理环境动态时 产生的 compounding error 也会推高 value estimates。2/3 seeds 的 NVE 触及或超过 1.5×（虽然短暂），与 Walker Walk 008a 的 consistently <1.0× 形成鲜明对比。C3 的 \"untrained dt_emb prevents optimistic drift\" 在 Cheetah 中不成立 — 再次说明现象的 environment-specificity。\n"
+  },
+  {
+    "name": "RSSM prediction quality: dt=1 vs dt=2 transitions",
+    "description": "Measure observation/reward reconstruction loss at dt=2 vs dt=1",
+    "results": {
+      "cheetah_baseline_obs_gap": 3.2,
+      "cheetah_baseline_reward_gap": 2.8,
+      "cheetah_no_dt_emb_obs_gap": 3.8,
+      "cheetah_no_dt_emb_reward_gap": 1.8,
+      "cheetah_trained_dt_emb_obs_gap": 1.5,
+      "cheetah_trained_dt_emb_reward_gap": 3.9,
+      "walker_vs_cheetah_fidelity_pattern": "inconsistent"
+    },
+    "tables": [
+      {
+        "title": "Cross-environment RSSM fidelity comparison",
+        "columns": [
+          "env",
+          "config",
+          "obs_gap",
+          "reward_gap",
+          "NVE_outcome"
+        ],
+        "rows": [
+          [
+            "Walker",
+            "baseline",
+            2.04,
+            1.56,
+            "healthy"
+          ],
+          [
+            "Walker",
+            "008d (trained dt_emb)",
+            1.3,
+            2.78,
+            "CIVO collapse"
+          ],
+          [
+            "Walker",
+            "008f (no dt_emb)",
+            2.75,
+            1.01,
+            "no collapse"
+          ],
+          [
+            "Cheetah",
+            "baseline",
+            3.2,
+            2.8,
+            "healthy"
+          ],
+          [
+            "Cheetah",
+            "trained dt_emb",
+            1.5,
+            3.9,
+            "CIVO collapse"
+          ],
+          [
+            "Cheetah",
+            "no dt_emb",
+            3.8,
+            1.8,
+            "NVE>2.0× (!)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RSSM fidelity analysis 在 worst 档下揭示一个关键 insight： CIVO 的 necessary condition 不是 trained dt_emb，而是 \"sufficient reward prediction error at dt>1 to mislead critic\"。dt_emb 在 Walker Walk 中是 这个条件的 sole enabler（008f reward_gap=1.01 without dt_emb），但在 Cheetah 中 RSSM 本身的 dt=2 reward error 就足够大（1.8× without dt_emb）。 这是 important methodological finding 但破坏了 C2 的 clean causal story。\n\n\nCheetah 的 RSSM fidelity pattern 与 Walker Walk 不同。关键差异： (1) Cheetah baseline obs gap (3.2×) > Walker baseline (2.04×) — Cheetah 的 RSSM 在 dt=2 预测本身就更差。(2) Cheetah no_dt_emb reward_gap (1.8×) 远高于 Walker 008f (1.01×) — 即使没有 dt_emb，Cheetah 的 reward 预测 在 dt=2 时仍有显著偏差。这解释了 plan_022 的失败：Walker 008f 的 reward gap 接近 1.0 使 critic 不被误导，但 Cheetah 的 1.8× reward gap 足以 trigger value overestimation without dt_emb。RSSM fidelity analysis 揭示 核心问题不是 dt_emb training per se，而是 RSSM dt=2 reward prediction quality — dt_emb 仅在 reward gap 本身低时才是关键 amplifier。\n"
+  },
+  {
+    "name": "Actor entropy analysis",
+    "description": "Plot actor_entropy vs training step for healthy vs collapsed configs",
+    "results": {
+      "walker_008d_entropy_decline_rate": "-0.035_per_1K_steps",
+      "walker_008e_v3_s2_entropy_rise_rate": "+0.028_per_1K_steps",
+      "cheetah_collapsed_entropy_pattern": "mixed",
+      "cheetah_no_dt_emb_collapsed_seed2_entropy": "declining",
+      "pathway_classification_consistency": "poor"
+    },
+    "tables": [
+      {
+        "title": "Entropy trajectory classification across environments",
+        "columns": [
+          "exp",
+          "env",
+          "collapse",
+          "entropy_direction",
+          "pathway_assignment"
+        ],
+        "rows": [
+          [
+            "008d_s0",
+            "Walker",
+            true,
+            "↓ (-3.47→-4.88)",
+            "A (CIVO)"
+          ],
+          [
+            "008e_v3_s2",
+            "Walker",
+            true,
+            "↑ (-5.21→-3.83)",
+            "B (eval-driven)"
+          ],
+          [
+            "010b",
+            "Cheetah",
+            true,
+            "↓ (-4.2→-5.1)",
+            "A-like"
+          ],
+          [
+            "Cheetah_022_s2",
+            "Cheetah",
+            true,
+            "flat (-4.5→-4.4)",
+            "unclassified"
+          ],
+          [
+            "Cheetah_021_s0",
+            "Cheetah",
+            true,
+            "↓ then ↑",
+            "mixed"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Entropy-based pathway classification 在 Walker Walk 内部有 2/2 clean separation 但无法泛化。Cheetah 崩溃 seeds 的 entropy pattern 不落入 A/B 任一类别。 这支持 worst 档 narrative：现象是 environment-specific，不是 universal mechanism。\n\n\nActor entropy analysis 在 worst 档下进一步混淆 mechanism classification。 Walker Walk 有干净的双模式（008d: entropy ↓ = CIVO Pathway A; 008e_v3_s2: entropy ↑ = Pathway B）。但 Cheetah 的 collapsed seeds 不 fit 任何一种模式： 有的 entropy declining（像 Pathway A），有的 flat（neither A nor B）， 有的 oscillating。这使得 \"dual-pathway\" framework 不能泛化到 Cheetah， 变成 Walker-Walk-specific phenomenology。审稿人评价： \"The pathway taxonomy is descriptive, not predictive.\"\n"
+  },
+  {
+    "name": "Value prediction distribution vs realized returns",
+    "description": "Distribution plots of V(s) vs Monte Carlo return",
+    "results": {
+      "walker_008d_value_overestimate_mean": "+45%",
+      "walker_008d_value_overestimate_std": "22%",
+      "walker_008f_value_calibration_error": "+8%",
+      "cheetah_no_dt_emb_value_overestimate_mean": "+32%",
+      "cheetah_no_dt_emb_value_overestimate_std": "35%",
+      "distributional_test_p_value_walker": 0.001,
+      "distributional_test_p_value_cheetah_control": 0.02
+    },
+    "tables": [
+      {
+        "title": "Value calibration summary",
+        "columns": [
+          "config",
+          "env",
+          "V(s) - MC_return mean%",
+          "std_pct",
+          "KS test p"
+        ],
+        "rows": [
+          [
+            "008d (trained dt_emb)",
+            "Walker",
+            "+45%",
+            "22%",
+            0.001
+          ],
+          [
+            "008f (no dt_emb)",
+            "Walker",
+            "+8%",
+            "15%",
+            0.34
+          ],
+          [
+            "trained dt_emb",
+            "Cheetah",
+            "+52%",
+            "28%",
+            0.001
+          ],
+          [
+            "no dt_emb",
+            "Cheetah",
+            "+32%",
+            "35%",
+            0.02
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Distributional evidence 在 worst 档下强化了核心问题：Cheetah 的 no-dt-emb condition 不能恢复 value calibration（p=0.02 仍 significant）。 Calibration error +32% 虽然小于 trained dt_emb 的 +52%，但仍足以 drive actor exploitation in 2/3 seeds。\n\n\nValue distribution analysis 在 worst 档下确认：(1) Walker 008d 有显著 right-skewed value overestimation（如预期）；(2) Walker 008f calibration 良好； (3) 但 Cheetah no_dt_emb 也有显著 overestimation（+32% mean）， 尽管 variance 更高。统计检验 p=0.02 对 Cheetah control 仍显著， 意味着去掉 dt_emb 在 Cheetah 中不能恢复 value calibration。 这是 plan_022 结果的 distributional 确认。\n"
+  },
+  {
+    "name": "dt_embedding cosine similarity analysis",
+    "description": "Analyze learned dt_embedding vectors evolution during training",
+    "results": {
+      "walker_cosine_sim_dt1_dt2_initial": 0.85,
+      "walker_cosine_sim_dt1_dt2_35K": 0.42,
+      "walker_cosine_sim_dt1_dt2_55K": 0.28,
+      "cheetah_cosine_sim_dt1_dt2_35K": 0.38,
+      "cheetah_cosine_sim_dt1_dt2_55K": 0.22,
+      "divergence_rate_walker": "-0.012_per_1K",
+      "divergence_rate_cheetah": "-0.014_per_1K",
+      "cross_env_pattern": "similar_divergence"
+    },
+    "tables": [
+      {
+        "title": "dt_embedding cosine similarity evolution",
+        "columns": [
+          "env",
+          "step",
+          "cos_sim_dt1_dt2",
+          "CIVO_status"
+        ],
+        "rows": [
+          [
+            "Walker",
+            "15K",
+            0.72,
+            "not yet"
+          ],
+          [
+            "Walker",
+            "35K",
+            0.42,
+            "onset (008d)"
+          ],
+          [
+            "Walker",
+            "55K",
+            0.28,
+            "collapse (008d)"
+          ],
+          [
+            "Cheetah",
+            "15K",
+            0.68,
+            "not yet"
+          ],
+          [
+            "Cheetah",
+            "35K",
+            0.38,
+            "onset"
+          ],
+          [
+            "Cheetah",
+            "55K",
+            0.22,
+            "collapse"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cosine similarity analysis 在 worst 档下成为 null result — 两个环境中 dt_emb 学习速度相似，但 outcome 差异来自 RSSM fidelity 差异，不是 dt_emb 本身。 This further supports the reframe: dt_emb is an amplifier, not the root cause.\n\n\ndt_embedding cosine similarity 在两个环境中都快速下降——dt_emb 学会了区分 dt=1 和 dt=2。这在两个环境中一致，本身支持 \"dt_emb learns to condition\" 的故事。但在 worst 档下，这个 analysis 的问题是：cosine similarity divergence rate 在 Walker 和 Cheetah 中相似，但 outcome 不同（Walker 008f 不崩溃， Cheetah no_dt_emb 崩溃）。所以 dt_emb 的 learning dynamics 不是 environment-specific outcome 的 predictor。这使得 cosine similarity 只是一个 descriptive metric，不具 diagnostic value。\n"
+  },
+  {
+    "name": "NVE threshold sensitivity analysis",
+    "description": "Compute classification accuracy at various nve thresholds, 0 GPU cost",
+    "results": {
+      "threshold_1_3x_accuracy": 0.64,
+      "threshold_1_5x_accuracy": 0.71,
+      "threshold_1_7x_accuracy": 0.79,
+      "threshold_2_0x_accuracy": 0.86,
+      "auroc_walker_only": 0.92,
+      "auroc_cross_environment": 0.68,
+      "optimal_threshold_walker": 1.5,
+      "optimal_threshold_cheetah": 2.5,
+      "threshold_stability": "environment_dependent"
+    },
+    "tables": [
+      {
+        "title": "NVE threshold classification results",
+        "columns": [
+          "threshold",
+          "walker_accuracy",
+          "cheetah_accuracy",
+          "combined_accuracy",
+          "notes"
+        ],
+        "rows": [
+          [
+            1.3,
+            "5/7 (71%)",
+            "3/6 (50%)",
+            "8/13 (62%)",
+            "too many FP"
+          ],
+          [
+            1.5,
+            "5/7 (71%)",
+            "3/6 (50%)",
+            "8/13 (62%)",
+            "008f_s3 breaks Walker"
+          ],
+          [
+            1.7,
+            "6/7 (86%)",
+            "4/6 (67%)",
+            "10/13 (77%)",
+            "borderline"
+          ],
+          [
+            2.0,
+            "7/7 (100%)",
+            "5/6 (83%)",
+            "12/13 (92%)",
+            "excludes 008f_s3"
+          ]
+        ]
+      },
+      {
+        "title": "AUROC by scope",
+        "columns": [
+          "scope",
+          "auroc",
+          "95_pct_CI"
+        ],
+        "rows": [
+          [
+            "Walker Walk only (original 4 seeds)",
+            1.0,
+            "[0.75, 1.00]"
+          ],
+          [
+            "Walker Walk (with 008f_s3)",
+            0.92,
+            "[0.70, 1.00]"
+          ],
+          [
+            "Cross-environment (Walker + Cheetah)",
+            0.68,
+            "[0.45, 0.88]"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "NVE threshold 的跨环境泛化失败是 worst 档的核心量化证据。 审稿人评价：\"A diagnostic marker that requires environment-specific calibration is not a diagnostic marker — it's a fitted parameter. What does 'NVE>1.5× means CIVO' add over 'model is broken' which you can already see from eval decline?\" 论文需要承认 NVE threshold 是 Walker-Walk-calibrated，跨环境需要 re-calibration。 这削弱了 methodology paper 的 generality claim。\n\n\n在 worst 档下，NVE threshold 分类在 Walker Walk 内部仍表现良好 （AUROC 0.92，1.5× threshold 4/4 on original data），但加入 Cheetah 数据后 AUROC 降至 0.68。原因：(1) Cheetah no_dt_emb 的 3/3 seeds 都 exceed 1.5× = 3 false positives（被分类为 \"CIVO\" 但实际是 \"RSSM fidelity gap without dt_emb\"）； (2) 如果加入 008f_s3 (NVE 1.72×) 作为 Walker Walk false positive， 则 Walker 内部 accuracy 也降至 5/7 = 71%。最佳 threshold 在环境间不一致 （Walker 1.5×, Cheetah 2.5×），使得 NVE threshold 不是 universal diagnostic tool 而是 environment-specific calibration。\n"
+  },
+  {
+    "name": "Cartpole Swingup baseline (3 seeds)",
+    "description": "dt=1 baseline in non-locomotion DMC environment",
+    "results": {
+      "seed0_eval_peak": 820,
+      "seed0_eval_500K": 790,
+      "seed1_eval_peak": 800,
+      "seed1_eval_500K": 770,
+      "seed2_eval_peak": 835,
+      "seed2_eval_500K": 810,
+      "mean_eval_500K": 790,
+      "std_eval_500K": 20,
+      "ve_stable_range": "0.60-0.70",
+      "baseline_established": true
+    },
+    "tables": [
+      {
+        "title": "Cartpole baseline 3 seeds",
+        "columns": [
+          "seed",
+          "eval_peak",
+          "eval_500K",
+          "ve_stable"
+        ],
+        "rows": [
+          [
+            0,
+            820,
+            790,
+            0.65
+          ],
+          [
+            1,
+            800,
+            770,
+            0.62
+          ],
+          [
+            2,
+            835,
+            810,
+            0.68
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cartpole baseline 正常。但在 worst 档下，后续实验（051/052）的结果 将进一步支持 \"environment-specific phenomenon\" 叙事。\n\n\nCartpole Swingup 是非 locomotion 任务，DreamerV3 应正常收敛。 Baseline 在任何 tier 下都应成功。提供第三个环境的 reference。 ve_stable 略低于 Walker/Cheetah（Cartpole reward structure 不同）。\n"
+  },
+  {
+    "name": "Cartpole Swingup trained dt_emb + subsample ON (3 seeds)",
+    "description": "Replicate CIVO collapse in Cartpole Swingup",
+    "results": {
+      "seed0_nve_peak": 3.2,
+      "seed0_collapse": true,
+      "seed0_eval_105K": 150,
+      "seed1_nve_peak": 1.8,
+      "seed1_collapse": false,
+      "seed1_eval_105K": 420,
+      "seed2_nve_peak": 2.5,
+      "seed2_collapse": false,
+      "seed2_eval_105K": 350,
+      "seed2_self_correction": true,
+      "collapse_rate": "1/3",
+      "mean_nve_peak": 2.5
+    },
+    "tables": [
+      {
+        "title": "Cartpole CIVO trigger 3 seeds",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "eval_105K",
+          "collapse",
+          "vs_baseline"
+        ],
+        "rows": [
+          [
+            0,
+            3.2,
+            150,
+            true,
+            "-81%"
+          ],
+          [
+            1,
+            1.8,
+            420,
+            false,
+            "-47%"
+          ],
+          [
+            2,
+            2.5,
+            350,
+            false,
+            "-56%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cartpole 的低 collapse rate (1/3) 和低 NVE peaks 进一步支持 \"CIVO severity is environment-specific\" 叙事。审稿人总结： \"Three environments, three different collapse rates (33%, 50%, 67%) — the mechanism's strength is entirely determined by environment properties, not by the dt_emb architecture per se.\"\n\n\nCartpole 的 CIVO trigger 在 worst 档下仅 1/3 collapse。 NVE peaks 1.8-3.2×（低于 Walker 008d 的 4.12× 和 Cheetah 的 8.5×）。 Cartpole 的 reward 信号相对 dense（每 step 都有 meaningful reward difference）， 这使得 RSSM 在 Cartpole 的 reward prediction 质量更高，dt=2 error 更小。 结果：trained dt_emb 确实 raises NVE，但 collapse rate 更低且 severity 更弱。 Cross-environment pattern：Walker 50% collapse, Cheetah 67%, Cartpole 33%。 没有一致的 collapse rate — 完全取决于 environment-specific RSSM fidelity。\n"
+  },
+  {
+    "name": "Cartpole Swingup dt_embed_dim=0 + subsample ON (3 seeds)",
+    "description": "Replicate causal control in Cartpole Swingup",
+    "results": {
+      "seed0_nve_peak": 1.2,
+      "seed0_eval_105K": 550,
+      "seed0_exceeds_1_5x": false,
+      "seed1_nve_peak": 0.9,
+      "seed1_eval_105K": 620,
+      "seed1_exceeds_1_5x": false,
+      "seed2_nve_peak": 1.1,
+      "seed2_eval_105K": 580,
+      "seed2_exceeds_1_5x": false,
+      "all_below_1_5x": true,
+      "causal_control_holds": true
+    },
+    "tables": [
+      {
+        "title": "Cartpole dt_embed_dim=0 control",
+        "columns": [
+          "seed",
+          "nve_peak",
+          "eval_105K",
+          "exceeds_1.5x",
+          "vs_baseline"
+        ],
+        "rows": [
+          [
+            0,
+            1.2,
+            550,
+            false,
+            "-30%"
+          ],
+          [
+            1,
+            0.9,
+            620,
+            false,
+            "-21%"
+          ],
+          [
+            2,
+            1.1,
+            580,
+            false,
+            "-27%"
+          ]
+        ]
+      },
+      {
+        "title": "Cross-environment causal control summary",
+        "columns": [
+          "environment",
+          "control_holds (0/3 > 1.5×)",
+          "environments_with_clean_replication"
+        ],
+        "rows": [
+          [
+            "Walker Walk",
+            "YES (0/3)",
+            1
+          ],
+          [
+            "Cartpole Swingup",
+            "YES (0/3)",
+            1
+          ],
+          [
+            "Cheetah Run",
+            "NO (3/3 > 1.5×)",
+            0
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "2/3 environments with clean replication 在 worst 档下不够。 Cheetah 是标准 DMC benchmark 且 DreamerV3 论文中有 strong results， reviewer 不会接受 \"it works on Walker and Cartpole but not Cheetah so we scope our claims\" — 因为 Cheetah 不是 outlier，而是 standard task。 environments_with_clean_replication = 1（将 Cartpole 视为 \"similar to Walker\"， 计为同一类）或 2（如果按字面计数），取决于 reviewer 的 generosity。\n\n\nCartpole 的 causal control 在 worst 档下 holds（all NVE < 1.5×）。 但这并不挽回整体叙事——它仅说明 Cartpole 像 Walker Walk 一样： no dt_emb → no CIVO。问题是 Cheetah 不 follow 这个 pattern。 跨环境总结：Walker control holds, Cartpole control holds, Cheetah control fails。 审稿人评价：\"2/3 environments support your causal control — but the one that doesn't (Cheetah) is actually the harder, more interesting environment. If your mechanism only works on easy tasks, that's a scope limitation, not a finding.\"\n"
+  },
+  {
+    "name": "Uncertainty-gated imagination truncation pilot",
+    "description": "Monitor RSSM prediction uncertainty; truncate when exceeding threshold",
+    "results": {
+      "eval_105K": 380,
+      "nve_peak": 1.9,
+      "nve_105K": 1.4,
+      "collapse": false,
+      "vs_baseline": "-59%",
+      "truncation_rate_dt2": 0.45,
+      "effective_horizon_mean": 5.8,
+      "uncertainty_threshold_sensitivity": "high"
+    },
+    "tables": [
+      {
+        "title": "Uncertainty truncation pilot results",
+        "columns": [
+          "metric",
+          "value",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "eval_105K",
+            380,
+            "41% baseline — worse than dt=1 config (008e_v3 95%)"
+          ],
+          [
+            "nve_peak",
+            1.9,
+            "borderline — still approaches 1.5× danger zone"
+          ],
+          [
+            "truncation_rate",
+            "45%",
+            "nearly half dt=2 steps discarded"
+          ],
+          [
+            "effective_H",
+            5.8,
+            "below H=8 target — learning signal loss"
+          ],
+          [
+            "threshold_sensitivity",
+            "high",
+            "±10% threshold change → ±25% eval change"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Plan_060 在 worst 档下确认了一个 negative insight：uncertainty truncation 是一种 overly conservative intervention，牺牲太多 learning signal。 它不构成 paper contribution——只是另一个 \"dt>1 不 work\" 的数据点。\n\n\nUncertainty-gated truncation 在 worst 档下\"部分 works\"——防止了 collapse （NVE 未达到灾难性水平），但以大幅牺牲 effective horizon 为代价。 45% 的 dt=2 transitions 被截断，effective horizon 从 H=8 降至 5.8， 导致 learning signal 不足，eval 仅 380（41% baseline）。 审稿人评价：\"Truncation prevents collapse at the cost of making the model useless — you're essentially falling back to dt=1 with extra complexity. This is not a mitigation, it's an admission that dt>1 imagination doesn't work.\" 更关键的是：uncertainty threshold 需要 per-environment calibration （与 NVE threshold 同样的问题），且对 threshold 值高度敏感。\n"
+  },
+  {
+    "name": "Hopper Hop validation (3 seeds × 3 configs)",
+    "description": "Third DMC environment for stronger generalization claim",
+    "results": {
+      "baseline_mean_500K": 250,
+      "trained_dt_emb_collapse_rate": "1/3",
+      "trained_dt_emb_nve_peak_mean": 2.8,
+      "no_dt_emb_control_nve_peak_mean": 1.9,
+      "no_dt_emb_exceeds_1_5x": "2/3",
+      "control_failed": true,
+      "pattern": "similar to Cheetah"
+    },
+    "tables": [
+      {
+        "title": "Hopper results summary (worst tier)",
+        "columns": [
+          "config",
+          "collapse_rate",
+          "mean_nve_peak",
+          "control_holds"
+        ],
+        "rows": [
+          [
+            "baseline",
+            "0/3",
+            0.7,
+            "-"
+          ],
+          [
+            "trained_dt_emb",
+            "1/3",
+            2.8,
+            "-"
+          ],
+          [
+            "no_dt_emb",
+            "0/3 collapse",
+            1.9,
+            "NO (2/3 > 1.5×)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Hopper 数据在 worst 档下本身就 noisy（hard task, high variance）， 使得统计推断更困难。加上 control 失败，Hopper 不增加 paper 的说服力。 Final cross-environment tally: 4 environments tested, causal control holds in 2 (Walker, Cartpole), fails in 2 (Cheetah, Hopper)。这是 50/50 — reviewer 不可能接受 \"the mechanism is universal\" with 50% replication。\n\n\nHopper Hop 是 hard locomotion task（DreamerV3 baseline 在 Hopper 上 本身就波动大）。在 worst 档下，Hopper 的结果类似 Cheetah： (1) CIVO trigger works（NVE 2.8× mean, 1/3 collapse）； (2) control fails（no_dt_emb 仍有 2/3 seeds exceed 1.5×）。 这进一步确认 \"causal control 仅在 simple/smooth reward environments 成立\"。 Hopper 和 Cheetah 的共同特征：reward landscape 更稀疏或更 nonlinear， RSSM fidelity gap at dt=2 更大，dt_emb 不再是 CIVO 的 sole enabler。\n"
+  },
+  {
+    "name": "NVE threshold sensitivity analysis (0 GPU)",
+    "description": "Classification accuracy at various thresholds across all seeds",
+    "results": {
+      "nve_threshold_classification_accuracy": 0.71,
+      "auroc_walker": 0.92,
+      "auroc_all_envs": 0.68,
+      "optimal_threshold_varies_by_env": true,
+      "walker_optimal": 1.5,
+      "cheetah_optimal": 2.5,
+      "cartpole_optimal": 1.7,
+      "hopper_optimal": 2.2,
+      "bootstrap_ci_delta_nve_lower_bound": 0.3,
+      "bootstrap_exceedance_pct": 72
+    },
+    "tables": [
+      {
+        "title": "Cross-environment threshold analysis",
+        "columns": [
+          "env",
+          "optimal_threshold",
+          "accuracy_at_1.5x",
+          "AUROC",
+          "n_datapoints"
+        ],
+        "rows": [
+          [
+            "Walker",
+            1.5,
+            "5/7 (71%)",
+            0.92,
+            7
+          ],
+          [
+            "Cheetah",
+            2.5,
+            "5/6 (83%)",
+            0.78,
+            6
+          ],
+          [
+            "Cartpole",
+            1.7,
+            "5/6 (83%)",
+            0.89,
+            6
+          ],
+          [
+            "Hopper",
+            2.2,
+            "4/6 (67%)",
+            0.72,
+            6
+          ],
+          [
+            "ALL",
+            "-",
+            "19/25 (76%)",
+            0.68,
+            25
+          ]
+        ]
+      },
+      {
+        "title": "Bootstrap statistics (all environments)",
+        "columns": [
+          "metric",
+          "value",
+          "CI_95"
+        ],
+        "rows": [
+          [
+            "delta_NVE_trained_vs_untrained",
+            1.8,
+            "[0.3, 3.2]"
+          ],
+          [
+            "exceedance_pct",
+            "72%",
+            "[55%, 88%]"
+          ],
+          [
+            "classification_accuracy_at_1.5x",
+            "71%",
+            "[55%, 85%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Plan_034 的 worst 档结果对 methodology contribution 是关键的： NVE monitoring 有 some value（AUROC > random），但 environment-specific calibration requirement 削弱了 \"general diagnostic toolkit\" 的 pitch。 CoRL reviewer 需要 \"plug and play\" methodology，不是 \"first calibrate per-environment then use.\" Bootstrap CI includes 0.3 as lower bound (barely positive) — the effect is real but small and unreliable.\n\nNVE threshold 在 worst 档下仍有 some discriminative power（AUROC 0.68 > random）， 但远未达到 \"reliable diagnostic\" 水平。Classification accuracy 71% 意味着 ~30% misclassification rate（both FP and FN）。Bootstrap CI lower bound 0.3 勉强 >0（方向对），但 exceedance 72% 远低于 95% CI 的 conventional threshold。 审稿人评价：\"A diagnostic with 30% error rate and environment-specific thresholds is a starting point for methodology research, not a finished contribution.\"\n"
+  }
+]

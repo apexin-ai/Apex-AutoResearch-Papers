@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_hopper_frozen_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:34:37.319Z",
+    "updated_at": "2026-05-27T10:47:34.515Z",
+    "conclusion": "killed",
+    "hypothesis": "Frozen dt_emb + subsample ON in Hopper Hop will NOT show CIVO (NVE stays below 1.5×), confirming trained dt_emb is the necessary condition for CIVO across a third multi-joint locomotion environment (seed 1 replication)",
+    "plan_id": "plan_040",
+    "server": "westd-51268",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_frozen_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "626827",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-27T10:45:13.546Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 141.0,
+      "gpu_hours": 0.04
+    },
+    "pid": "626827",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_hopper_frozen_s1.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_frozen_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\""
+    },
+    "completed_at": "2026-05-27T10:47:34.515Z"
+  },
+  "timestamp": "2026-05-27T10:47:35.009579+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_054_pickcube_frozen_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:47:24.310Z",
+    "updated_at": "2026-05-23T07:47:35.587Z",
+    "hypothesis": "PickCube frozen dt_emb baseline (fixed_dt=2, subsample ON, H=8)。验证 CIVO frozen 配置在最简单 manipulation task 上的表现。如果 eval return 稳定高于 random → frozen dt_emb 在 easy task 上不影响学习；如果性能差 → frozen dt_emb 有问题。"
+  },
+  "timestamp": "2026-05-23T07:47:35.903804+00:00",
+  "trigger": "update_registry"
+}

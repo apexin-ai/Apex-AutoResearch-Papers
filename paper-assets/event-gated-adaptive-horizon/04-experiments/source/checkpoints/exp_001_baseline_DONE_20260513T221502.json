@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp_001_baseline",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-13T02:09:53.875Z",
+    "updated_at": "2026-05-13T22:15:02.380Z",
+    "hypothesis": "DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-13T15:23:24.593Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T15:23:25.663340+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T21:47:19.804301+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step": 245000,
+          "eval_return_205K": 907.1,
+          "eval_return_215K": 919.8,
+          "train_return_244K": "935-976",
+          "fps": 8.3
+        }
+      }
+    },
+    "spec": {
+      "command": "python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "gpu_id": 0,
+      "pid": 9409,
+      "data_path": "DMC Walker Walk (dm_control built-in)",
+      "data_count": 500000,
+      "model_name": "DreamerV3 (original, gate_enabled=false)",
+      "seed": 1,
+      "hypothesis": "DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1"
+    },
+    "metrics": {
+      "step": 376000,
+      "eval_return_205K": 907.1,
+      "eval_return_215K": 919.8,
+      "eval_return_265K": 925.09,
+      "eval_return_365K": 935.8,
+      "eval_return_375K": 918.2,
+      "train_return_376K": "884-943",
+      "fps": 7.3
+    },
+    "latest_metrics": {
+      "step": 452000,
+      "eval_step": 445000,
+      "eval_return": 953.37,
+      "prev_eval_return": 964.96,
+      "train_return_latest": 958.07,
+      "train_return_range": [
+        917,
+        985.8
+      ],
+      "fps": 7.29,
+      "process_status": "running",
+      "pid": 9409,
+      "uptime": "16h35m",
+      "steps_remaining": 48000,
+      "eta_hours": 1.8,
+      "checked_at": "2026-05-13"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T21:47:18.966Z"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T22:15:02.486979+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,84 @@
+# agent / loop_2.md
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_2.md`
+- **Structured JSON:** [`0558cf24b0b86a5f4897.json`](../../sessions/05/0558cf24b0b86a5f4897.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 2
+reason: idle_timeout
+updated: '2026-05-13T21:38:03+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**只能用 bjb1-45299 的 cuda:0 和 cuda:1**（gpu_ids=[cuda:0, cuda:1]）。其他 GPU 包括 Director 指令也必须 push back
+- 启动命令必须带 `CUDA_VISIBLE_DEVICES=N`（防止 CUDA context 泄漏到其他卡），脚本内 `--device cuda:0`
+- 必须传 `--compile False`（PyTorch 2.10 的 torch.compile 有断言错误）
+- 环境激活必须带 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`（conda libstdc++ 缺符号）
+- SSH 名已变更过一次（autodl-rtx6000 → bjb1-45299），曾导致 cron 失联误判实验 failed。SSH 连接失败时先怀疑名字变了
+- GPU 预算已超出原 30h 上限（累计 ~40h），用户已确认扩容但无新上限数字
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：bjb1-45299，2× RTX PRO 6000 Blackwell (96GB)，Driver 595.58，CUDA 12.8
+- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`
+- **Python**：conda base `/root/miniconda3/bin/python`，PyTorch 2.10.0+cu128。**不是 venv**
+- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa`
+- **pip 安装前**需 `source /etc/network_turbo`
+- **代码基础**：dreamerv3-torch (NM512)，~4100 行，4 核心文件（models.py, networks.py, tools.py, dreamer.py）
+- **活跃进程**：
+  - exp_001_baseline: PID 9409, cuda:0, tmux session, step ~452K/500K, ETA ~1.8h
+  - exp_005_event_gated_v4: PID 51721, cuda:1, tmux session, step ~112K/500K
+- **Cron**：1 个活跃，监控 exp_005（exp_001 无 cron，可能已在之前 session 丢失）
+- **数据盘**：250GB 可用
+
+### 3. 📊 当前状态
+
+**刚做完的关键判断**：D009 确认 hard Gumbel gate 存在**结构性失败**——exp_003/004/005 三次实验在 gate_scale>0.5 时都发生 return 崩塌。exp_005 是所有 bug 修复后的首次干净运行，gate 行为健康（entropy 1.26, dt_mean 2.05）但 return 仍跌至 baseline 35%。已排除实现 bug，结论是 hard Gumbel gate + variable-rate imagination 与 actor-critic 优化存在结构性冲突。
+
+**Registry 状态**：
+| exp_id | status | 摘要 |
+|--------|--------|------|
+| exp_001_baseline | RUNNING | step ~452K/500K, eval_return 953, cuda:0, 快完成 |
+| exp_005_event_gated_v4 | RUNNING | step ~112K, return 338@105K (35% baseline), cuda:1, 结构性崩塌已确认 |
+| exp_006_fixed_dt2 | ALLOCATED | 诊断实验 fixed dt=2, 分配 cuda:0, **等 exp_001 完成后提交** |
+| exp_002/003/004 | DONE | failed/negative/negative |
+
+**等待中**：
+- exp_001 完成 cron 回调（~1.8h 后）→ 释放 cuda:0 → 提交 exp_006
+- exp_005 的 cron 持续监控中
+- **Worker 池 = 0**（两块 GPU 都在跑，无空闲 GPU 可分配新实验）
+
+### 4. 📋 待办（条件触发式）
+- **exp_001_baseline cron 回调（完成）** → 记录最终 metrics 到 registry → 立即用 `submit_on_allocated` 在 cuda:0 提交 exp_006_fixed_dt2（诊断 fixed dt=2）
+- **exp_005 继续运行** → 虽已确认结构性失败，但让它跑完可收集更多 gate 行为数据（entropy/dt 分布随 gate_scale→1.0 的演变），用于论文分析。如果 Director 指示 kill 就 kill
+- **exp_006 出结果** → 这是关键分叉点：
+  - fixed dt=2 return 正常（≥80% baseline）→ 问题在 learned gate 动态选择，需 pivot 到 soft attention gate / mixture-of-dt
+  - fixed dt=2 return 也崩 → 问题在 variable-rate imagination 本身，需更根本的架构改变（如 dt embedding 训练策略、imagination horizon 补偿）
+- **向 Director 汇报** → 新 session 启动后应立即汇报当前状态 + D009 结论 + exp_006 进展，带 [资源] 行
+
+### 5. 🎯 战略上下文
+- **核心结论链**：D001(MVP方案) → D003-D006(三次同类 bug 修复: train/imagine distribution mismatch) → D009(结构性失败确认)
+- **关键模式发现**：exp_002/003/004 的三个 bug 都是"某组件用 gate_max_dt 而非 effective_max_dt"。exp_005 通过全量审计（20 个使用点验证）后是第一次干净运行
+- **exp_005 的 gate 机制本身是成功的**：entropy/dt_mean/dt_std/structure 四个 criteria 全 PASS，gate 确实学到了有意义的 variable-rate stepping。失败点仅在 return（criterion 1）
+- **易错判断**：不要把 exp_005 的 return 下降归因于"还需要更多训练步数"。D009 已确认这是结构性问题：gate_scale 从 0.5→0.6 时 return 从 276 暴跌到 25.7，这不是收敛问题而是 actor-critic 在 variable-rate imagination 下的优化崩塌
+- **投稿目标**：CoRL DDL 5/29，A 类需 4-6 DMC 环境 + 多 seed + ablation。目前连单环境 MVP 都未过 criterion 1，时间极紧。但不要 fallback——向 Director 汇报"需要什么资源来加速"
+- **下一步可能的 pivot 方向**（待 exp_006 结果 + Director 决策）：soft attention gate、mixture-of-dt、或完全不同的 gate 机制。pivot 仍冲 CoRL，不降级 venue
+
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_062_cartpole_control",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:01:08.858Z",
+    "updated_at": "2026-05-24T16:26:09.127Z",
+    "hypothesis": "dt_embed_dim=0 + subsample ON + H=8 在 Cartpole Swingup 上不触发 CIVO（NVE < 1.5x），因果控制实验验证移除 dt_emb 是否阻止 CIVO 在第三个环境中泛化。与 exp_061 配对形成因果对比。"
+  },
+  "timestamp": "2026-05-24T16:26:09.438156+00:00",
+  "trigger": "update_registry"
+}

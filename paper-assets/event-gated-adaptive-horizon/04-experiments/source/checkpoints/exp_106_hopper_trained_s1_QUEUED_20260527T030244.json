@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_106_hopper_trained_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:55:11.391Z",
+    "updated_at": "2026-05-27T03:02:43.917Z",
+    "hypothesis": "Trained dt_embedding with subsample (008d-equivalent) in Hopper Hop will trigger CIVO onset (NVE &gt; 1.5× after 35K steps), second seed for onset rate. Source: C2 third-environment verification (D160).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-27T03:02:44.392053+00:00",
+  "trigger": "update_registry"
+}

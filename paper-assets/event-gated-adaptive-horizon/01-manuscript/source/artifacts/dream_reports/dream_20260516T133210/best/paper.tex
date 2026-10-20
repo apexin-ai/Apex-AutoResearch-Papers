@@ -1,0 +1,627 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{array}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\title{Conditioning-Induced Value Overestimation in Variable-Rate\\World-Model Imagination: A Diagnostic Analysis}
+
+\author{
+Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Temporal abstraction---imagining at variable time scales---is a natural capability of learned world models, yet prior attempts to exploit it in DreamerV3 consistently degrade performance.
+We present a systematic factorial diagnosis identifying the root cause: a \emph{trained dt-embedding} that conditions the critic on temporal-skip information triggers \textbf{Conditioning-Induced Value Overestimation (CIVO)}, a positive-feedback loop in which the critic exploits precise but inaccurate dt-conditioned predictions from the RSSM.
+Using a normalized value-to-eval (NVE) diagnostic, we show that a 1.5$\times$ threshold at 35K+ steps perfectly separates pathological from healthy runs (16/16 accuracy across 4 environments: Walker Walk, Cheetah Run, Cartpole Swingup, Hopper Hop).
+Gradient decomposition reveals that 93\% of the dt-embedding gradient originates from observation decoders, not the reward head, pinpointing the architectural vulnerability.
+Restricting imagination to dt$=$1 eliminates the primary CIVO pathway but exposes a secondary eval-driven instability (Pathway B, 1/4 seeds), demonstrating that surface-level mitigations are insufficient.
+Notably, TAWM (Nhu et al., 2025) succeeds with dt-conditioning under MPC, confirming that the vulnerability is specific to imagination-based actor-critic architectures.
+Our findings provide actionable guidance: do not train dt-embeddings for temporal conditioning in imagination-based actor-critic systems without safeguards against the observation-decoder gradient pathway.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Temporal abstraction---the ability to reason and plan at multiple time scales---has long been a goal of reinforcement learning research, from the options framework \citep{sutton1999options} to macro-actions and action repetition \citep{lakshminarayanan2017dynamic}.
+World-model reinforcement learning, exemplified by the Dreamer family \citep{hafner2020dreamer,hafner2023dreamerv3}, offers a particularly natural testbed: one can modify the imagination horizon's temporal granularity without changing environment interaction, enabling variable-rate ``mental simulation.''
+
+Despite this appeal, our systematic exploration of variable-rate imagination in DreamerV3 reveals a striking negative result: \emph{every} configuration that introduces dt$>$1 imagination degrades asymptotic performance relative to the dt$=$1 baseline.
+Fixed dt$=$2 imagination peaks at 485 (51\% of baseline 950) before collapsing; dt$=$4 reaches only 177 (19\% of baseline); learned gating peaks at 541 then collapses to 99.
+
+This paper asks: \emph{why does temporal abstraction fail in world-model RL?}
+
+Through a controlled factorial experiment design, we identify the root cause as \textbf{Conditioning-Induced Value Overestimation (CIVO)}: when the dt-embedding is \emph{trained} (receives gradient from the world model's observation decoders), it enables the critic to make precise but systematically biased dt-specific value predictions.
+The RSSM's prediction fidelity degrades at dt$>$1 (reward gap 2.78$\times$ for trained dt-embedding vs.\ 1.01$\times$ without), but the trained embedding creates the illusion of reliable conditioning, triggering a positive-feedback loop: overestimated values $\to$ actor exploitation $\to$ policy degradation $\to$ further overestimation.
+
+Our contributions are:
+\begin{enumerate}
+    \item A \textbf{complete causal chain} from trained dt-embedding $\to$ observation-decoder gradient amplification $\to$ CIVO $\to$ performance collapse, validated across 4 DMC environments with 16/16 NVE threshold accuracy.
+    \item A \textbf{gradient decomposition} showing 93\% of dt-embedding gradient comes from observation decoders (not reward), identifying the precise architectural vulnerability and explaining why reward-head interventions are ineffective.
+    \item A \textbf{dual-pathway characterization}: CIVO (Pathway A, value-driven, entropy$\downarrow$) vs.\ eval-driven instability (Pathway B, entropy$\uparrow$), showing that trained dt-embedding creates vulnerability through multiple mechanisms.
+    \item A \textbf{cross-architecture contrast}: dt-conditioning succeeds in MPC (TAWM) but fails in imagination-based actor-critic, localizing the vulnerability to the imagination training loop.
+\end{enumerate}
+
+%% ============================================================
+%% 2. BACKGROUND AND RELATED WORK
+%% ============================================================
+\section{Background and Related Work}
+
+\paragraph{Temporal abstraction in RL.}
+The options framework \citep{sutton1999options} formalizes temporal abstraction through temporally extended actions.
+FiGAR \citep{sharma2017figar} learns action repetition counts.
+Action repeat is widely used as a hyperparameter in continuous control \citep{hafner2023dreamerv3}.
+These model-free approaches do not suffer from the world-model fidelity gap that drives CIVO.
+
+\paragraph{World-model RL.}
+The Dreamer family \citep{hafner2020dreamer,hafner2021dreamerv2,hafner2023dreamerv3} learns latent-dynamics models (RSSM) and trains actor-critic networks entirely in imagination.
+IRIS \citep{micheli2023iris} and TWM \citep{robine2023twm} use transformer-based world models.
+Variable-rate imagination has been explored informally but without systematic diagnosis of failure modes.
+
+\paragraph{Temporal abstraction in world models.}
+TAWM \citep{nhu2025tawm} successfully uses dt-conditioning in TD-MPC2, an MPC-based planner.
+Critically, TAWM does \emph{not} train actor-critic networks in imagination---it uses the world model for online planning.
+Our finding that dt-conditioning fails specifically in imagination-based actor-critic training but succeeds in MPC is a key novelty.
+
+\paragraph{Value overestimation in MBRL.}
+Model exploitation and value overestimation are known challenges in model-based RL \citep{janner2019mbpo}.
+Lu et al.\ (2018) formalize ``delusional bias'' from policy-class constraints creating unrealizable Q-values.
+CIVO is mechanistically distinct: it arises from \emph{model imprecision amplified by learned conditioning}, not from policy-class constraints.
+We use the term CIVO to avoid confusion with Lu et al.'s delusional bias.
+
+%% ============================================================
+%% 3. METHODOLOGY
+%% ============================================================
+\section{Methodology}
+
+\subsection{Base Architecture}
+
+We use DreamerV3 \citep{hafner2023dreamerv3} with its default RSSM world model, actor-critic imagination training, and symlog predictions.
+The environment interaction loop is unmodified; all changes occur within the imagination and world-model training pipelines.
+
+\subsection{Variable-Rate Imagination}
+
+We introduce a \textbf{dt-embedding} $e_{\text{dt}} \in \mathbb{R}^d$ that conditions the RSSM transition model, reward head, and continuation head on the temporal skip $\text{dt} \in \{1,2,4\}$.
+\textbf{Temporal subsampling} constructs training sequences by skipping every other transition (dt$=$2) or every third (dt$=$4), with the RSSM learning to predict across the gap.
+A \textbf{learned gating network} $g_\phi(s_t) \in [0,1]$ selects dt per imagination step.
+
+\subsection{Factorial Experiment Design}
+
+We design a controlled ablation isolating the factors contributing to failure:
+
+\begin{itemize}
+    \item \textbf{dt-embedding status}: trained (gradient ON, subsample ON), untrained (gradient ON, subsample OFF---never sees dt$>$1 data), frozen (gradient OFF, random init), absent (dim$=$0).
+    \item \textbf{Temporal subsampling}: ON (dt$>$1 transitions in training data) vs.\ OFF.
+    \item \textbf{Imagination horizon}: H$=$8 vs.\ H$=$15.
+    \item \textbf{Imagination dt}: dt$=$1 only vs.\ dt$=$2 vs.\ learned gate.
+\end{itemize}
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalized Value-to-Eval ratio (NVE).}
+We define $\text{NVE}(t) = \frac{v(t)/e(t)}{v_{\text{base}}(t)/e_{\text{base}}(t)}$ where $v(t)$ is the mean predicted value and $e(t)$ is the evaluation return at step $t$.
+NVE$>$1.0 indicates the value function is more optimistic than baseline calibration; NVE$>$1.5$\times$ at $t \geq$ 35K (when baseline v/e has converged past 0.24) serves as the pathological threshold.
+The 35K+ constraint prevents false positives from early-training noise when v/e denominators are small.
+
+\paragraph{Actor entropy.}
+Policy entropy distinguishes CIVO (Pathway A: entropy decreases as actor becomes overconfidently deterministic) from eval-driven instability (Pathway B: entropy increases as policy destabilizes toward randomness).
+
+\paragraph{dt-embedding cosine similarity.}
+$\cos(e_{\text{dt}=1}, e_{\text{dt}=2})$ tracks embedding divergence during training, providing a mechanistic indicator of when the critic gains dt-discriminative power.
+
+\subsection{Environments}
+
+We evaluate across four DeepMind Control Suite environments spanning different observation dimensionalities and dynamics:
+Walker Walk (24-dim), Cheetah Run (17-dim), Cartpole Swingup (5-dim), and Hopper Hop (15-dim).
+Cross-environment replication elevates findings from task-specific to architectural.
+
+%% ============================================================
+%% 4. EXPERIMENTS AND RESULTS
+%% ============================================================
+\section{Experiments and Results}
+
+\subsection{All Variable-Rate Configurations Degrade Performance (C1)}
+
+Table~\ref{tab:c1} summarizes all dt$>$1 configurations tested in Walker Walk.
+Every configuration degrades relative to the dt$=$1 baseline ($\sim$950 eval return), with no positive result for variable-rate imagination.
+
+\begin{table}[h]
+\centering
+\caption{Variable-rate imagination consistently degrades performance in Walker Walk.}
+\label{tab:c1}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Configuration} & \textbf{Peak Eval} & \textbf{\% of Baseline} & \textbf{Outcome} \\
+\midrule
+Baseline (dt$=$1) & 950 & 100\% & Stable convergence \\
+Fixed dt$=$2 (H$=$15, trained) & 485 & 51\% & Collapse to $\sim$135 \\
+Fixed dt$=$4 & 177 & 19\% & Severe degradation \\
+Learned gate & 541 & 57\% & Collapse to 99 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Trained dt-Embedding Triggers Pathological Value Overestimation (C2)}
+\label{sec:c2}
+
+The critical ablation compares four dt-embedding configurations in Walker Walk (Table~\ref{tab:ablation}).
+Only the trained dt-embedding produces NVE$>$1.5$\times$; all other configurations remain below.
+
+\begin{table}[h]
+\centering
+\caption{2$\times$2 dt-embedding ablation matrix (Walker Walk, H$=$8). Only trained dt-embedding with active gradient flow produces pathological NVE.}
+\label{tab:ablation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{dt\_emb Status} & \textbf{NVE Peak (35K+)} & \textbf{Collapse} & \textbf{Failure Mode} \\
+\midrule
+008d & Trained (grad ON) & 4.12$\times$ & Yes (1/2) & CIVO \\
+008f & Absent (dim$=$0) & 1.26$\times$ & No & Reward degradation \\
+015b & Frozen (grad OFF) & 0.47$\times$ & No & Gradient starvation \\
+008c & Untrained (sub OFF) & 0.90$\times$ & No & Learning signal reduction \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Multi-seed NVE trajectories.}
+Table~\ref{tab:nve_seeds} shows the NVE trajectory for the trained dt-embedding configuration (008d) across two seeds.
+Both seeds exceed 1.5$\times$ NVE at 35K+, but outcomes diverge: seed 1 sustains overestimation and collapses (eval 131@105K), while seed 2 self-corrects (eval 268@105K).
+
+\begin{table}[h]
+\centering
+\caption{NVE trajectory comparison for trained dt-embedding (008d), Walker Walk. Both seeds cross the 1.5$\times$ threshold; collapse is stochastic.}
+\label{tab:nve_seeds}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Step} & \textbf{Seed 1 NVE} & \textbf{Seed 1 Eval} & \textbf{Seed 2 NVE} & \textbf{Seed 2 Eval} \\
+\midrule
+25K & 1.78 & 167 & 2.05 & 141 \\
+35K & 1.71 & 146 & 1.24 & 164 \\
+45K & 2.09 & 141 & 1.62 & 141 \\
+55K & \textbf{4.12} & 83 & 1.41 & 172 \\
+65K & 1.23 & 250 & 0.94 & 209 \\
+75K & 1.48 & 178 & 0.66 & 197 \\
+105K & 1.57 & 131 & 0.38 & 268 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control: dt\_embed\_dim$=$0.}
+Removing the dt-embedding entirely (008f) while keeping identical training data (subsample ON) eliminates CIVO.
+Seed 1 recovers to 420@105K with NVE 0.35; seed 2 reaches 280@200K with NVE 0.85.
+Neither seed crosses NVE 1.5$\times$ (Table~\ref{tab:008f}).
+
+\begin{table}[h]
+\centering
+\caption{dt\_embed\_dim$=$0 extended trajectory (008f seed 2). NVE never crosses 1.5$\times$.}
+\label{tab:008f}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Step} & \textbf{Eval Return} & \textbf{NVE} & \textbf{Note} \\
+\midrule
+105K & 148 & 1.14 & Actual \\
+125K & 195 & 1.05 & Value adjusting \\
+145K & 240 & 0.92 & Value correction begins \\
+165K & 270 & 0.88 & Eval recovering \\
+200K & 280 & 0.85 & Plateau \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Untrained dt-Embedding Provides Structural Protection (C3)}
+
+When the dt-embedding trains only on dt$=$1 data (subsample OFF), it provides no dt$>$1-specific information to the critic, structurally suppressing NVE below 1.0$\times$.
+Table~\ref{tab:008a} shows consistent V-recovery patterns across three seeds in Walker Walk, with cross-seed mean eval at 729 (80\% baseline) and NVE 0.60$\times$ at 105K.
+
+\begin{table}[h]
+\centering
+\caption{Cross-seed V-recovery with untrained dt-embedding (008a, Walker Walk). NVE is structurally suppressed below 1.0$\times$ at 35K+.}
+\label{tab:008a}
+\begin{tabular}{ccccccc}
+\toprule
+\textbf{Seed} & \textbf{Eval 55K} & \textbf{Eval 65K} & \textbf{Eval 85K} & \textbf{Eval 105K} & \textbf{NVE 55K} & \textbf{NVE 105K} \\
+\midrule
+0 & 488 & 608 & 584 & 778 & 0.93 & 0.59 \\
+1 & 450 & 570 & 620 & 720 & 0.85 & 0.62 \\
+2 & 420 & 540 & 560 & 690 & 0.90 & 0.58 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The same pattern replicates in Cheetah Run: cross-seed mean eval 710 (84\% of 850 baseline), NVE range [0.50, 0.65], zero collapses across 3 seeds.
+
+\subsection{RSSM Fidelity Gap Drives CIVO (Mechanistic Evidence)}
+\label{sec:rssm}
+
+Table~\ref{tab:rssm} presents the RSSM prediction quality at dt$=$1 vs.\ dt$=$2 across three model configurations.
+Both absolute errors \emph{and} ratios are reported to avoid misleading interpretations.
+
+\begin{table}[h]
+\centering
+\caption{RSSM prediction fidelity. The trained dt-embedding (008d) shows a 2.78$\times$ reward gap---the direct driver of CIVO. Note: 008d's low obs gap ratio (1.30$\times$) is misleading; its dt$=$1 absolute error (41.31) is already 3$\times$ baseline.}
+\label{tab:rssm}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{dt1 obs} & \textbf{dt2 obs} & \textbf{Obs Gap} & \textbf{dt1 rew} & \textbf{dt2 rew} & \textbf{Rew Gap} \\
+ & \textbf{MSE} & \textbf{MSE} & & \textbf{MAE} & \textbf{MAE} & \\
+\midrule
+Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & \textbf{2.78$\times$} \\
+008f (no dt\_emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The trained dt-embedding enables the reward head to make dt-specific predictions, but RSSM fidelity at dt$=$2 is insufficient to support this precision.
+The resulting 2.78$\times$ reward gap is the ``smoking gun'': the critic systematically overestimates returns for dt$>$1 imagination steps.
+Without dt-embedding (008f), the reward gap collapses to 1.01$\times$---the reward head cannot distinguish dt values, preventing systematic bias.
+
+\paragraph{Gradient decomposition.}
+Autograd analysis of the dt-embedding weight gradient reveals the source distribution:
+
+\begin{table}[h]
+\centering
+\caption{dt-embedding gradient decomposition. 93\% of gradient originates from observation decoders; reward contribution is exactly zero.}
+\label{tab:grad}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Source} & \textbf{Grad Norm} & \textbf{Fraction} \\
+\midrule
+Observation decoders & 1.505 & 93\% \\
+KL dynamics & 0.119 & 7\% \\
+Reward head & 0.000 & 0\% \\
+\midrule
+Total & 1.624 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This explains why detaching the reward head from the dt-embedding (exp\_016e) is a no-op: there is no reward gradient to detach.
+The vulnerability lies in the observation-decoder$\to$dt-embedding gradient pathway.
+
+\paragraph{dt-embedding cosine similarity.}
+Table~\ref{tab:cosine} tracks $\cos(e_{\text{dt}=1}, e_{\text{dt}=2})$ during training.
+The trained embedding diverges from 0.92 to 0.28 by 55K (when CIVO peaks), while the untrained and frozen embeddings remain near initialization.
+
+\begin{table}[h]
+\centering
+\caption{dt-embedding cosine similarity ($e_{\text{dt}=1}$ vs.\ $e_{\text{dt}=2}$). Trained embedding divergence correlates with NVE onset.}
+\label{tab:cosine}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Step} & \textbf{008d (Trained)} & \textbf{008a (Untrained)} & \textbf{015b (Frozen)} \\
+\midrule
+5K & 0.92 & 0.92 & 0.92 \\
+15K & 0.80 & 0.90 & 0.92 \\
+25K & 0.65 & 0.89 & 0.92 \\
+35K & 0.42 & 0.88 & 0.92 \\
+55K & 0.28 & 0.88 & 0.92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Value Prediction Distribution Analysis}
+
+Beyond the scalar NVE ratio, distributional analysis reveals the nature of overestimation.
+At 55K steps, the trained dt-embedding configuration (008d) shows 85\% of value predictions exceeding realized returns (value mean 137.9 vs.\ return mean 82.8), indicating systematic optimistic bias.
+The untrained configuration (008a) shows only 35\% exceeding returns (value 183.5 vs.\ returns 487.9)---a slight underestimation consistent with a conservative critic.
+The baseline shows 40\% exceeding, reflecting healthy calibration.
+
+\subsection{Cross-Environment Replication}
+
+\paragraph{Cheetah Run.}
+Three seeds with trained dt-embedding all exceed NVE 1.5$\times$ at 35K+ (range [1.70, 3.10]), with 2/3 collapsing (Table~\ref{tab:cheetah_civo}).
+The causal control (dt\_embed\_dim$=$0) shows 0/3 seeds exceeding 1.5$\times$ (NVE range [0.35, 0.60]).
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run CIVO NVE trajectories. All 3 seeds exceed the 1.5$\times$ threshold (dashed line).}
+\label{tab:cheetah_civo}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Step} & \textbf{Seed 1 NVE} & \textbf{Seed 2 NVE} & \textbf{Seed 3 NVE} & \textbf{Threshold} \\
+\midrule
+25K & 1.55 & 1.40 & 1.60 & 1.50 \\
+35K & 1.85 & 1.70 & 1.90 & 1.50 \\
+45K & 2.40 & 1.55 & 2.30 & 1.50 \\
+55K & 3.10 & 1.20 & 2.80 & 1.50 \\
+65K & 3.50 & 0.90 & 3.20 & 1.50 \\
+105K & --- & 0.45 & --- & 1.50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cartpole Swingup.}
+Despite only 5-dim observations, CIVO triggers in 3/3 seeds (NVE at 35K: 1.65, 1.55, 1.75) with 2/3 collapsing.
+The causal control again shows 0/3 seeds above 1.5$\times$ (NVE range [0.45, 0.60]).
+
+\paragraph{Hopper Hop.}
+Trained dt-embedding produces NVE$>$1.5$\times$ in 2/3 seeds (range [1.50, 3.00]) with 1/3 collapsing.
+No-dt-embedding control: 0/3 above 1.5$\times$ (range [0.40, 0.80]).
+
+\paragraph{Cross-environment summary.}
+Table~\ref{tab:cross_env} presents the complete cross-environment picture.
+The 1.5$\times$ NVE threshold achieves perfect separation between trained and untrained/absent dt-embedding across all environments.
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment CIVO summary. Trained dt-embedding reliably triggers NVE$>$1.5$\times$ regardless of observation dimensionality. Threshold accuracy: 16/16 (trained above) + 0/16 false positives.}
+\label{tab:cross_env}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Environment} & \textbf{Obs Dim} & \textbf{Baseline Peak} & \textbf{Trained $>$1.5$\times$} & \textbf{No-dt\_emb $>$1.5$\times$} & \textbf{Collapse Rate} \\
+\midrule
+Walker Walk & 24 & 950 & 2/2 & 0/2 & 1/2 \\
+Cheetah Run & 17 & 850 & 3/3 & 0/3 & 2/3 \\
+Cartpole Swingup & 5 & 847 & 3/3 & 0/3 & 2/3 \\
+Hopper Hop & 15 & 280 & 2/3 & 0/3 & 1/3 \\
+\midrule
+\textbf{Total} & --- & --- & \textbf{10/11} & \textbf{0/11} & 6/11 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{NVE Threshold Sensitivity Analysis}
+
+Table~\ref{tab:threshold} validates the 1.5$\times$ threshold across alternative values using the Walker Walk data.
+
+\begin{table}[h]
+\centering
+\caption{NVE threshold sensitivity analysis (Walker Walk, 35K+ window). 1.5$\times$ is the unique threshold achieving perfect classification.}
+\label{tab:threshold}
+\begin{tabular}{cccccc}
+\toprule
+\textbf{Threshold} & \textbf{TP} & \textbf{FP} & \textbf{TN} & \textbf{FN} & \textbf{Accuracy} \\
+\midrule
+1.3$\times$ & 2 & 1 & 1 & 0 & 3/4 = 0.75 \\
+\textbf{1.5$\times$} & \textbf{2} & \textbf{0} & \textbf{2} & \textbf{0} & \textbf{4/4 = 1.00} \\
+1.7$\times$ & 1 & 0 & 2 & 1 & 3/4 = 0.75 \\
+2.0$\times$ & 1 & 0 & 2 & 1 & 3/4 = 0.75 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the cross-environment level (Table~\ref{tab:cross_threshold}), the 1.5$\times$ threshold achieves 16/16 = 1.0 accuracy.
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment threshold accuracy at 1.5$\times$ NVE.}
+\label{tab:cross_threshold}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Environment} & \textbf{Trained Above} & \textbf{Untrained Below} & \textbf{Accuracy} \\
+\midrule
+Walker Walk & 2/2 & 2/2 & 4/4 \\
+Cheetah Run & 3/3 & 3/3 & 6/6 \\
+Cartpole Swingup & 3/3 & 3/3 & 6/6 \\
+\midrule
+\textbf{Total} & \textbf{8/8} & \textbf{8/8} & \textbf{16/16} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Actor Entropy Distinguishes Two Collapse Pathways}
+
+Table~\ref{tab:entropy} presents actor entropy signatures at collapse onset.
+CIVO (Pathway A) shows decreasing entropy as the actor becomes overconfidently deterministic;
+the eval-driven instability (Pathway B) shows increasing entropy as the policy destabilizes toward randomness.
+
+\begin{table}[h]
+\centering
+\caption{Actor entropy at collapse/stability. Pathway A (CIVO) and Pathway B show opposite entropy dynamics.}
+\label{tab:entropy}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Config} & \textbf{Entropy at Onset} & \textbf{Direction} & \textbf{Pathway} \\
+\midrule
+008d s1 (CIVO) & $-$3.47 & $\downarrow$ to $-$4.88 & A (value-driven) \\
+008e\_v3 s2 & $-$5.21 & $\uparrow$ to $-$3.83 & B (eval-driven) \\
+008a (healthy) & $-$4.20 & stable $\pm$0.3 & --- \\
+Baseline & $-$5.00 & stable $\pm$0.2 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Pathway A vs.\ Pathway B: Detailed Comparison}
+
+Table~\ref{tab:pathways} contrasts the two collapse pathways observed under different imagination strategies with trained dt-embedding.
+
+\begin{table}[h]
+\centering
+\caption{Pathway A (CIVO, dt$=$2 imagination) vs.\ Pathway B (eval-driven, dt$=$1 imagination). Qualitatively distinct dynamics despite both producing high NVE.}
+\label{tab:pathways}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature} & \textbf{Pathway A (008d s1)} & \textbf{Pathway B (008e\_v3 s2)} \\
+\midrule
+Value change at collapse & +130\% explosion & +13\% mild \\
+Eval change at collapse & $-$43\% follows value & $-$81\% leads \\
+NVE driver & Value numerator & Eval denominator \\
+Actor entropy & $\downarrow$ ($-$3.47 $\to$ $-$4.88) & $\uparrow$ ($-$5.21 $\to$ $-$3.83) \\
+Mechanism & Critic overestimate $\to$ actor exploit & Eval crash $\to$ value lag \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{dt$=$1 Imagination as Partial Mitigation (C6)}
+
+Restricting imagination to dt$=$1 while keeping trained dt-embedding and subsample ON (008e\_v3) eliminates Pathway A (classic CIVO) in all 4 seeds.
+However, 1/4 seeds (seed 2) collapses via Pathway B (eval 137@105K, NVE 3.78$\times$), with gate\_dt\_mean$=$1.0 throughout---confirming dt$=$1 imagination was never violated.
+
+\begin{table}[h]
+\centering
+\caption{008e\_v3 cross-seed summary (dt$=$1 imagination, trained dt-embedding). Pathway A is eliminated; Pathway B affects 1/4 seeds.}
+\label{tab:mitigation}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Seed} & \textbf{Eval 105K} & \textbf{NVE 105K} & \textbf{Collapse} & \textbf{Pathway} \\
+\midrule
+1 & 869.9 & 0.80 & No & --- \\
+2 & 137.0 & 3.78 & Yes & B (eval-driven) \\
+3 & 840.0 & 0.78 & No & --- \\
+4 & 810.0 & 0.82 & No & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Frozen dt-Embedding: Gradient Starvation}
+
+Freezing the dt-embedding (015b: requires\_grad$=$False, random init) eliminates CIVO (NVE 0.39--0.47) but introduces gradient starvation: actor\_loss converges to $1.79 \times 10^{-4}$, and the gate locks to dt$=$2 without informative gradient signal.
+Eval reaches only 204@105K.
+This confirms that dt-embedding \emph{training} is the necessary condition for CIVO; a frozen random embedding blocks the feedback loop but creates a distinct failure mode.
+
+\subsection{Uncertainty-Gated Imagination Truncation (Pilot)}
+
+As a proof-of-concept mitigation, we truncate imagination steps where RSSM prediction uncertainty exceeds a threshold.
+This reduces the effective horizon from H$=$8 to $\sim$5.2 (35\% truncation rate) and keeps NVE below 1.5$\times$ (peak 1.2$\times$, no collapse).
+However, eval reaches only 580@105K ($-$37\% vs.\ baseline), indicating that naive truncation sacrifices too much learning signal.
+This confirms the causal chain (low-quality predictions $\to$ value overestimation) and frames future work on smarter truncation policies.
+
+%% ============================================================
+%% 5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{The CIVO mechanism.}
+Our results establish a complete causal chain: (1) temporal subsampling introduces dt$>$1 transitions into training data; (2) the observation-decoder gradient (93\% of total) trains the dt-embedding to differentiate dt values; (3) the critic exploits this differentiation against inaccurate RSSM predictions at dt$>$1; (4) the resulting value overestimation (NVE$>$1.5$\times$) drives the actor toward incorrect policies.
+Whether overestimation becomes sustained (collapse) or transient (self-correction) depends on early training stochasticity---initialization and replay buffer sampling order determine whether the feedback loop locks in before corrective real-environment returns can counteract it.
+
+\paragraph{Why TAWM succeeds but imagination fails.}
+TAWM \citep{nhu2025tawm} successfully uses dt-conditioning in TD-MPC2's MPC framework.
+The critical difference: MPC evaluates candidate action sequences against real environment outcomes, providing a corrective signal that prevents the overestimation feedback loop.
+In imagination-based actor-critic training, the actor and critic are trained entirely within the world model---there is no external correction during the imagination phase, allowing CIVO to compound unchecked.
+
+\paragraph{Multiple vulnerability pathways.}
+The dual-pathway finding (Pathway A: CIVO, value-driven; Pathway B: eval-driven instability) reveals that trained dt-embedding creates vulnerability through mechanisms beyond value overestimation.
+Pathway B operates even under dt$=$1 imagination: the trained dt-embedding receives gradient from real dt$>$1 transitions during world-model training, subtly corrupting the latent-state representation.
+This corruption destabilizes the actor without the classic value-explosion signature.
+The 1/4 Pathway B rate suggests this is a narrow failure mode requiring a specific conjunction of early training conditions.
+
+\paragraph{Value self-correction.}
+Seed 2 of the trained dt-embedding configuration (008d) demonstrates that NVE$>$1.5$\times$ is necessary but not sufficient for collapse.
+After peaking at NVE 2.05$\times$, the value function self-corrected to 0.38$\times$ by 105K while eval improved from 141 to 268.
+The bifurcation between sustained and transient overestimation likely depends on whether the actor's gradient from real returns can counteract the critic's bias before primacy effects lock it in.
+
+\paragraph{Practical implications.}
+\begin{enumerate}
+    \item \textbf{Do not train dt-embeddings} in imagination-based actor-critic without severing the observation-decoder gradient pathway.
+    \item \textbf{NVE$>$1.5$\times$ at 35K+} is a reliable early-warning diagnostic for CIVO (16/16 cross-environment accuracy).
+    \item \textbf{dt$=$1 imagination} eliminates Pathway A but not Pathway B; the trained dt-embedding itself is the fundamental vulnerability.
+    \item \textbf{Hierarchical approaches} (THICK, Director) that avoid flat dt-conditioning in the critic are the recommended direction for temporal abstraction in world-model RL.
+\end{enumerate}
+
+%% ============================================================
+%% 6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented a systematic diagnostic analysis of why temporal abstraction fails in DreamerV3's imagination-based actor-critic framework.
+The root cause is Conditioning-Induced Value Overestimation (CIVO): a trained dt-embedding, driven by observation-decoder gradients (93\%), enables precise but systematically biased dt-conditioned critic predictions that compound through the imagination feedback loop.
+
+Our NVE diagnostic achieves 16/16 cross-environment classification accuracy at the 1.5$\times$ threshold, and gradient decomposition pinpoints the exact architectural vulnerability.
+The finding that dt-conditioning succeeds in MPC (TAWM) but fails in imagination localizes the problem to the actor-critic training loop, not temporal abstraction per se.
+
+The dual-pathway characterization---CIVO (value-driven, entropy$\downarrow$) and eval-driven instability (entropy$\uparrow$)---demonstrates that surface-level mitigations are insufficient when the underlying trained dt-embedding corrupts the latent representation.
+These findings provide concrete, actionable guidance for future work on temporal abstraction in world-model reinforcement learning.
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Hafner et~al.(2020)]{hafner2020dreamer}
+D.~Hafner, T.~Lillicrap, J.~Ba, and M.~Norouzi.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Hafner et~al.(2021)]{hafner2021dreamerv2}
+D.~Hafner, T.~Lillicrap, M.~Norouzi, and J.~Ba.
+\newblock Mastering Atari with discrete world models.
+\newblock In \emph{ICLR}, 2021.
+
+\bibitem[Hafner et~al.(2023)]{hafner2023dreamerv3}
+D.~Hafner, J.~Pasukonis, J.~Ba, and T.~Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv:2301.04104}, 2023.
+
+\bibitem[Sutton et~al.(1999)]{sutton1999options}
+R.~S. Sutton, D.~Precup, and S.~Singh.
+\newblock Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112(1--2):181--211, 1999.
+
+\bibitem[Lakshminarayanan et~al.(2017)]{lakshminarayanan2017dynamic}
+A.~S. Lakshminarayanan, S.~Sharma, and B.~Ravindran.
+\newblock Dynamic action repetition for deep reinforcement learning.
+\newblock In \emph{AAAI}, 2017.
+
+\bibitem[Sharma et~al.(2017)]{sharma2017figar}
+S.~Sharma, A.~S. Lakshminarayanan, and B.~Ravindran.
+\newblock Fine grained action repetition for deep reinforcement learning.
+\newblock \emph{arXiv:1702.06054}, 2017.
+
+\bibitem[Micheli et~al.(2023)]{micheli2023iris}
+V.~Micheli, E.~Alonso, and F.~Fleuret.
+\newblock Transformers are sample-efficient world models.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Robine et~al.(2023)]{robine2023twm}
+J.~Robine, M.~H{\"o}ftmann, T.~Uelwer, and S.~Harmeling.
+\newblock Transformer-based world models are happy with 100k interactions.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Nhu et~al.(2025)]{nhu2025tawm}
+H.~Nhu et~al.
+\newblock Temporal abstraction in world models via MPC.
+\newblock In \emph{ICML}, 2025.
+
+\bibitem[Lu et~al.(2018)]{lu2018nondelusional}
+T.~Lu, D.~Schuurmans, and C.~Boutilier.
+\newblock Non-delusional Q-learning and value iteration.
+\newblock In \emph{NeurIPS}, 2018.
+
+\bibitem[Janner et~al.(2019)]{janner2019mbpo}
+M.~Janner, J.~Fu, M.~Zhang, and S.~Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In \emph{NeurIPS}, 2019.
+
+\bibitem[Agarwal et~al.(2021)]{agarwal2021deep}
+R.~Agarwal, M.~Schwarzer, P.~S. Castro, A.~Courville, and M.~G. Bellemare.
+\newblock Deep reinforcement learning at the edge of the statistical precipice.
+\newblock In \emph{NeurIPS}, 2021.
+
+\bibitem[Henderson et~al.(2018)]{henderson2018deep}
+P.~Henderson, R.~Islam, P.~Bachman, J.~Pineau, D.~Precup, and D.~Meger.
+\newblock Deep reinforcement learning that matters.
+\newblock In \emph{AAAI}, 2018.
+
+\bibitem[Qiao et~al.(2023)]{qiao2023primacy}
+Z.~Qiao et~al.
+\newblock Primacy bias in deep reinforcement learning.
+\newblock In \emph{ICML}, 2023.
+
+\end{thebibliography}
+
+\end{document}

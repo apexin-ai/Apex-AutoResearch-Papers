@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c65a97953cbed25e62b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code bernoulli st gate",
+  "task_key": "worker_code_bernoulli_st_gate_20260513T224003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bernoulli_st_gate_20260513T224003_result.json",
+    "occurrence": 1,
+    "bytes": 2297,
+    "sha256": "d7901a61e3b8d0c1b2f45180b4260d04825b93b17021a7f09a002bc6d80686e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Implementation complete. Here's the summary:\n\n## 实现方案\n\n### 改动文件\n\n1. **networks.py** — 新增 `BernoulliSTGate` 类（~60行）\n   - MLP → single logit → sigmoid → hard threshold with straight-through gradient\n   - `forward()` 返回 `(p_skip, dt, logit)`，API 与 EventGate 兼容\n   - `entropy()` 计算 binary entropy\n\n2. **models.py** — 6处改动\n   - RSSM `max_dt=2` when bernoulli_st\n   - Gate 构造分支：gate_type → BernoulliSTGate / EventGate\n   - `_update_gate_schedule` 限制 effective_max_dt ≤ 2\n   - subsample max_dt=2 for bernoulli_st\n   - Gate loss：bernoulli_st 用 BCE + state-delta binary supervision，gumbel 保持 categorical CE\n   - Gate metrics：bincount/fraction 用 effective max_dt=2\n\n3. **configs.yaml** — 新增 `gate_type: \"gumbel\"` 参数\n\n### Dry-run 结果\n\n```\nOptimizer model_opt has 16946265 variables.\ngate_dt_mean 1.0 / gate_dt_std 0.0 / gate_dt_min 1.0 / gate_dt_max 1.0\ngate_dt_1_frac 1.0 / gate_dt_2_frac 0.0\ngate_loss 0.0 / gate_scale 0.0 / gate_entropy_bonus 0.1\ngate_empirical_entropy 0.0 / gate_entropy_ratio 0.0\nmodel_loss 42.9 / model_grad_norm 90.2\n```\n\n- 模型初始化成功，无报错\n- gate_dt_mean=1.0（符合预期：step=1000 < 25000，gate 处于 phase 1，scale=0.0，全部 dt=1）\n- gate_dt_2_frac=0.0（gate 未激活时不会 skip）\n- 所有 metrics 正常输出\n\n### git commit\n\n```\n2ffb24e feat: add Bernoulli straight-through gate (--gate_type bernoulli_st)\n```\n\n### 设计决策\n\n- **`_imagine` 无需改动**：BernoulliSTGate 与 EventGate API 兼容（`_, next_dt, _ = gate(...)`），imagination 循环天然支持\n- **Gate supervision**：bernoulli_st 在 WorldModel._train 中用 BCE + state-delta binary target（大 delta → don't skip, 小 delta → skip），与 Gumbel 的 categorical CE 对称\n- **Curriculum**：复用现有 gate_scale schedule（phase 1 不训练 gate，phase 2 逐步引入），对 bernoulli_st 同样适用\n- **Entropy bonus**：复用 `gate_entropy_bonus_init/final` 退火机制，BernoulliSTGate.entropy 计算 binary entropy\n\n### 使用方式\n\n```bash\npython dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk \\\n    --gate_enabled True --gate_type bernoulli_st\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bernoulli-st-gate.md"
+}

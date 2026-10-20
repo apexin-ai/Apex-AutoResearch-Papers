@@ -1,0 +1,7 @@
+exp_008d_s3 (trained, walker): cos_25k=-0.87, cos_75k=-0.70
+exp_010b_s0 (trained, cheetah): cos_25k=-0.90, cos_75k=-0.84
+exp_059_s5 (trained, walker): cos_25k=-0.94, cos_75k=-0.86
+exp_057_s2 (frozen, walker): cos_all=-0.15 (constant)
+exp_058_s1 (frozen, cheetah): cos_all=+0.07 (constant)
+
+Conclusion: Trained dt_embedding learns nearly opposite representations for dt=1 vs dt=2. CIVO from dt=2 representation bias, not micro-difference amplification.

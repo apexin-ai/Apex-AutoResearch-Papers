@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_019a_v2_pickcube_baseline",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T20:12:22.372Z",
+    "updated_at": "2026-05-17T07:44:35.071Z",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-16T21:07:12.193Z",
+    "notes": "2026-05-16 22:54: Resubmitted with CVD fix (unset CUDA_VISIBLE_DEVICES inside bash -c). PID 629444. ManiSkill3/SAPIEN requires physical device access — CVD breaks resolve_physical_device(). Using MUJOCO_EGL_DEVICE_ID=1 + --device cuda:1 directly.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-16 22:54: Resubmitted with CVD fix (unset CUDA_VISIBLE_DEVICES inside bash -c). PID 629444. ManiSkill3/SAPIEN requires physical device access — CVD breaks resolve_physical_device(). Using MUJOCO_EGL_DEVICE_ID=1 + --device cuda:1 directly."
+      }
+    },
+    "spec": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled False --seed 1 --steps 200000 --compile False --device cuda:1 --logdir ./logdir/exp_019a_v2_pickcube_baseline\"",
+      "server": "bjb1-45299",
+      "data_path": "ManiSkill3 PickCube-v1 (online RL)",
+      "data_count": 200000,
+      "model_name": "DreamerV3-S",
+      "seed": 1,
+      "checkpoint_source": "auto-resume from logdir",
+      "eval_data": "N/A - training experiment",
+      "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_019a_v2_pickcube_baseline/checkpoint.ckpt",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_019a_v2_pickcube_baseline"
+    },
+    "hypothesis": "Vanilla DreamerV3 on ManiSkill3 PickCube establishes a cross-environment baseline; if stable, subsequent CIVO trigger experiment (019b) can test whether CIVO generalizes beyond DMC Walker Walk.",
+    "parent": "exp_001_baseline",
+    "gpu": "cuda:1",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T07:44:35.292731+00:00",
+  "trigger": "update_registry"
+}

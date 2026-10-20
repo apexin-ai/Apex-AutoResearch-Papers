@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_001_baseline_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:54:03.635Z",
+    "updated_at": "2026-05-18T23:54:17.940Z",
+    "hypothesis": "Walker Walk baseline seed=3. Third seed for tighter baseline eval CI.",
+    "parent": "exp_001_baseline"
+  },
+  "timestamp": "2026-05-18T23:54:18.144709+00:00",
+  "trigger": "update_registry"
+}

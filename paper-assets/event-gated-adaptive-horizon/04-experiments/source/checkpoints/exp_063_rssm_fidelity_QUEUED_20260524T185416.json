@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_063_rssm_fidelity",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T18:12:47.163Z",
+    "updated_at": "2026-05-24T18:54:16.049Z",
+    "hypothesis": "RSSM 在 dt=2 transitions 上的 observation/reward reconstruction loss 显著高于 dt=1，量化 fidelity gap 作为 trained dt_emb 导致 delusional critic 的机械性基础。从 exp_001 (baseline) 和 exp_008d (collapsed) 的已有 checkpoint 提取，对比 dt=1 vs dt=2 prediction quality。",
+    "server": "bjb1-40020",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-40020",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-24T18:53:48.781Z"
+    }
+  },
+  "timestamp": "2026-05-24T18:54:16.386198+00:00",
+  "trigger": "update_registry"
+}

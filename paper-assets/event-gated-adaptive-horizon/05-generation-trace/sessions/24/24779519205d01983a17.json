@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24779519205d01983a17",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis zero gpu nve threshold entropy",
+  "task_key": "worker_analysis_zero_gpu_nve_threshold_entropy_20260524T114932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_zero_gpu_nve_threshold_entropy_20260524T114932_result.json",
+    "occurrence": 1,
+    "bytes": 1752,
+    "sha256": "8f35f678402df8143291696820c55045d485e670d3eec6fafbf35504679199de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 分析 1: NVE Threshold Sensitivity\n\nn=32 (Walker 23 + Cheetah 9), n_pos=11, n_neg=21, AUROC=0.961\n\n| Threshold | Accuracy | TPR | FPR | F1 |\n|-----------|----------|-----|-----|-----|\n| **1.3x** | 81.2% | 1.000 | 0.286 | 0.786 |\n| **1.5x** | **90.6%** | **1.000** | 0.143 | **0.880** |\n| **1.7x** | 81.2% | 0.727 | 0.143 | 0.727 |\n| **2.0x** | 87.5% | 0.727 | 0.048 | 0.800 |\n\n**1.5x 是最优 F1 阈值**（90.6% accuracy, perfect recall）。FP 来自 3 个非 CIVO 机制：frozen emb self-correction (047, 057) 和 IRD (008e_v3_s2)。1.7x 起丢失 3 个 FN（009b, 008d_s3, 018_s1），均为边界 CIVO 案例。Cheetah 在所有 ≥1.5x 阈值下 100% 准确。\n\n### 分析 2: Actor Entropy 图\n\n成功生成。5 个实验均有 actor_entropy 数据，已画对比图。\n\n关键发现：\n- 所有实验起始 ~8.1（最大熵），然后收敛\n- Collapsed 实验（008d, 006）在 15K 时 entropy 仍为正值（0.48, 0.96），而 healthy 实验已下降到负值（-1.15, -1.18）—— collapsed 反而收敛更慢\n- Baseline 在 105K 后出现独特的 entropy recovery（-5.2 → -0.78），伴随 return 从 ~400 提升到 ~950\n\n### 文件路径\n\n| 产出 | 服务器路径 | 本地路径 |\n|------|-----------|---------|\n| NVE sensitivity 表格 | `/root/autodl-tmp/.../artifacts/nve_threshold_sensitivity.md` | `artifacts/nve_threshold_sensitivity.md` |\n| Actor entropy PDF | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.pdf` | (服务器端) |\n| Actor entropy PNG | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.png` | (服务器端) |\n\nActor entropy 图因 SCP 不可用未能下载到本地。如需要可手动从服务器获取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-zero-gpu-nve-threshold-entropy.md"
+}

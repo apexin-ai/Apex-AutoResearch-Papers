@@ -1,0 +1,1435 @@
+# audit reference check
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_audit_reference-check_20260524T125157.jsonl`
+- **Structured JSON:** [`0188c12f9088b56514f5.json`](../../sessions/01/0188c12f9088b56514f5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-24T12:55:38.200337+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,WebSearch",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,WebSearch",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-24T12:55:38.200803+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-24T12:55:38.201130+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T12:55:38.201341+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/paper -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/paper -name \"*.tex\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-24T12:55:38.201716+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905
+…[truncated 6658 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T12:55:38.202009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/abstract_body.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/conclusion.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/analysis.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/introduction.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/related_work.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/methodology.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/results.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/example_paper.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T12:55:38.202268+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -oP '@\\w+\\{([^,]+),' /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "grep -oP '@\\w+\\{([^,]+),' /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-24T12:55:38.202500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"@inproceedings{micheli2023iris,\\n@article{sutton1999options,\\n@inproceedings{hafner2020dreamerv1,\\n@article{hafner2023dreamerv3,\\n@inproceedings{sharma2017figar,\\n@inproceedings{janner2019mbpo,\\n@article{asadi2019combating,\\n@inproceedings{hansen2024tdmpc2,\\n@inproceedings{yu2020mopo,\\n@inproceedings{thrun1993issues,\\n@inproceedings{vanhasselt2016double,\\n@inproceedings{fujimoto2018td3,\\n@inproceedings{lu2018nondelusional,\\n@inproceedings{biedenkapp2021temporl,\\n@inproceedings{hafner2021dreamerv2,\\n@inproceedings{gumbsch2024thick,\\n@inproceedings{mattes2024hieros,\\n@inproceedings{henderson2018deep,\\n@inproceedings{lambert2020objective,\\n@inproceedings{agarwal2021precipice,\\n@article{tassa2018dmcontrol,\\n@article{hafner2025dreamerv4,\\n@inproceedings{lyle2022capacity,\\n@inproceedings{nhu2025tawm,\\n@inproceedings{li2025lsimagine,\\n@inproceedings{chen2021redq,\\n@inproceedings{bacon2017optioncritc,\\n@inproceedings{buckman2018steve,\\n@inproceedings{chua2018pets,\\n@article{bishop1995noise,\\n@inproceedings{fortunato2018noisynet,\\n@inproceedings{parr1998ham,\\n@article{dietterich2000maxq,\\n@inproceedings{bradtke1995smdp,\\n@inproceedings{kidambi2020morel,\\n@inproceedings{yu2021combo,\\n@inproceedings{hamrick2021planning,\\n@inproceedings{lee2024dreamsmooth,\\n@inproceedings{wu2023daydreamer,\\n@inproceedings{park2021timediscretization,\\n@article{wang2024elastic,\\n@article{colas2018seeds,\\n@article{benechehab2023multitimestep,\\n@inproceedings{hafner2022director,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T12:55:38.202712+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -ohP '\\\\cite[tp]?\\{[^}]+\\}' /root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/*.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "grep -ohP '\\\\cite[tp]?\\{[^}]+\\}' /root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/*.tex",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T12:55:38.202958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\citep{lu2018nondelusional}\\n\\\\citep{lu2018nondelusional}\\n\\\\citet{lyle2022capacity}\\n\\\\citet{nhu2025tawm}\\n\\\\citep{gumbsch2024thick}\\n\\\\citep{mattes2024hieros}\\n\\\\citep{li2025lsimagine}\\n\\\\citep{micheli2023iris}\\n\\\\citep{colas2018seeds}\\n\\\\citep{wu2023daydreamer, hansen2024tdmpc2}\\n\\\\citep{nhu2025tawm}\\n\\\\citep{hansen2024tdmpc2}\\n\\\\citep{hafner2023dreamerv3}\\n\\\\citep{tassa2018dmcontrol}\\n\\\\citep{lu2018nondelusional}\\n\\\\citep{hafner2023dreamerv3}\\n\\\\citet{agarwal2021precipice}\\n\\\\citep{fujimoto2018td3}\\n\\\\citep{hafner2023dreamerv3}\\n\\\\citep{sutton1999options}\\n\\\\citep{bacon2017optioncritc}\\n\\\\citep{parr1998ham}\\n\\\\citep{dietterich2000maxq}\\n\\\\citep{bradtke1995smdp}\\n\\\\citep{sharma2017figar, biedenkapp2021temporl, park2021timediscretization}\\n\\\\citet{wang2024elastic}\\n\\\\citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3, hafner2025dreamerv4}\\n\\\\citep{hafner2022director, gumbsch2024thick, mattes2024hieros, li2025lsimagine}\\n\\\\citep{nhu2025tawm}\\n\\\\citep{hansen2024tdmpc2}\\n\\\\citep{thrun1993issues}\\n\\\\citep{vanhasselt2016double}\\n\\\\citep{fujimoto2018td3}\\n\\\\citep{chen2021redq}\\n\\\\citep{janner2019mbpo}\\n\\\\citep{yu2020mopo}\\n\\\\citep{kidambi2020morel}\\n\\\\citep{yu2021combo}\\n\\\\citet{lu2018nondelusional}\\n\\\\citep{benechehab2023multitimestep}\\n\\\\citep{lambert2020objective, asadi2019combating}\\n\\\\citep{hamrick2021planning}\\n\\\\citep{lee2024dreamsmooth}\\n\\\\citep{bishop1995noise}\\n\\\\citep{fortunato2018noisynet}\\n\\\\citep{chua2018pets}\\n\\\\citep{buckman2018steve}\\n\\\\citet{henderson2018deep}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-24T12:55:38.203167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -c 6000 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "tail -c 6000 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T12:55:38.203481+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\n  year = {2025},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2410.03618},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{chen2021redq,\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2101.05982},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{bacon2017optioncritc,\\n  title = {The Option-Critic Architecture},\\n  author = {Bacon, Pierre-Luc and Harb, Jean and Precup, Doina},\\n  year = {2017},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{buckman2018steve,\\n  title = {Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion},\\n  author = {Buckman, Jacob and Hafner, Danijar and Tucker, George and Brevdo, Eugene and Lee, Honglak},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{chua2018pets,\\n  title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},\\n  author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{bishop1995noise,\\n  title = {Training with Noise is Equivalent to {Tikhonov} Regularization},\\n  author = {Bishop, Chris M.},\\n  year = {1995},\\n  journal = {Neural Computation},\\n  volume = {7},\\n  number = {1},\\n  pages = {108--116},\\n}\\n\\n@inproceedings{fortunato2018noisynet,\\n  title = {Noisy Networks for Exploration},\\n  author = {Fortunato, Meire and Azar, Mohammad Gheshlaghi and Piot, Bilal and Menick, Jacob and Osband, Ian and G
+…[truncated 4485 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T12:55:38.203757+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "head -200 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-45299",
+    "command": "head -200 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T12:55:38.204051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905
+…[truncated 5742 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-24T12:55:38.204303+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Combating the Compounding-Error Problem with a Multi-step Model Asadi 2019 published venue conference journal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Combating the Compounding-Error Problem with a Multi-step Model Asadi 2019 published venue conference journal"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-24T12:55:38.204443+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DeepMind Control Suite Tassa 2018 published venue conference journal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DeepMind Control Suite Tassa 2018 published venue conference journal"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T12:55:38.204569+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Training Agents Inside of Scalable World Models\" Hafner 2025 DreamerV4 published venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Training Agents Inside of Scalable World Models\" Hafner 2025 DreamerV4 published venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-24T12:55:38.204688+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Reinforcement Learning with Elastic Time Steps\" Wang Beltrame 2024 published venue conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Reinforcement Learning with Elastic Time Steps\" Wang Beltrame 2024 published venue conference"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T12:55:38.204832+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"How Many Random Seeds Statistical Power Analysis Deep Reinforcement Learning\" Colas 2018 published venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"How Many Random Seeds Statistical Power Analysis Deep Reinforcement Learning\" Colas 2018 published venue"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-24T12:55:38.204982+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Multi-timestep models for Model-based Reinforcement Learning\" Benechehab 2023 published venue conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Multi-timestep models for Model-based Reinforcement Learning\" Benechehab 2023 published venue conference"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-24T12:55:38.205140+00:00_
+
+Web search results for query: "Combating the Compounding-Error Problem with a Multi-step Model Asadi 2019 published venue conference journal"
+
+Links: [{"title":"Combating the Compounding-Error Problem with a Multi-step Model | DeepAI","url":"https://deepai.org/publication/combating-the-compounding-error-problem-with-a-multi-step-model"},{"title":"[1905.13320] Combating the Compounding-Error Problem with a Multi-step Model","url":"https://arxiv.org/abs/1905.13320"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model — Grokipedia","url":"https://grokipedia.com/page/190513320"},{"title":"Learning with Imperfect Models: When Multi-step Prediction Mitigates Compounding Error","url":"https://arxiv.org/html/2504.01766v1"},{"title":"Multi-timestep models for Model-based Reinforcement Learning","url":"https://arxiv.org/html/2310.05672v1"},{"title":"(PDF) Learning with Imperfect Models: When Multi-step Prediction Mitigates Compounding Error","url":"https://www.researchgate.net/publication/390440014_Learning_with_Imperfect_Models_When_Multi-step_Prediction_Mitigates_Compounding_Error"},{"title":"(PDF) Combating the Compounding-Error Problem with a Multi-step Model","url":"https://www.researchgate.net/publication/333564721_Combating_the_Compounding-Error_Problem_with_a_Multi-step_Model"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model Kavosh Asadi","url":"https://arxiv.org/pdf/1905.13320"}]
+
+Based on the search results, here's the information about the paper:
+
+## Publication Details
+
+The paper "Combating the Compounding-Error Problem with a Multi-step Model" by Asadi, Misra, Kim, and Littman was published as an arXiv preprint arXiv:1905.13320 in 2019. More specifically, it was published on May 30, 2019.
+
+## Publication Venue
+
+This is a research paper in the field of model-based reinforcement learning, published as an arXiv preprint in 2019. The paper appears to have been initially released on arXiv rather than directly in a confer
+…[truncated 631 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T12:55:38.205301+00:00_
+
+Web search results for query: "DeepMind Control Suite Tassa 2018 published venue conference journal"
+
+Links: [{"title":"[PDF] DeepMind Control Suite | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeepMind-Control-Suite-Tassa-Doron/a9a3ed69c94a3e1c08ef1f833d9199f57736238b"},{"title":"Paper page - DeepMind Control Suite","url":"https://huggingface.co/papers/1801.00690"},{"title":"DeepMind Control Suite - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv180100690T/abstract"},{"title":"DeepMind Control Suite","url":"https://scirate.com/arxiv/1801.00690"},{"title":"[1801.00690] DeepMind Control Suite","url":"https://arxiv.org/abs/1801.00690"},{"title":"DeepMind Control Suite | DeepAI","url":"https://deepai.org/publication/deepmind-control-suite"},{"title":"DeepMind Control Suite | Wizwand","url":"https://www.wizwand.com/paper/68fa63ea1e209131cea01681"},{"title":"(PDF) DeepMind Control Suite","url":"https://www.researchgate.net/publication/322221208_DeepMind_Control_Suite"}]
+
+Based on the search results, the DeepMind Control Suite by Tassa et al. was published in ArXiv in 2018. More specifically, it was submitted on January 2, 2018, and published on January 3, 2018.
+
+The paper was published as an arXiv e-print with the identifier arXiv:1801.00690, rather than in a conference or traditional journal venue. It remains an arXiv preprint publication.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T12:55:38.205463+00:00_
+
+Web search results for query: ""How Many Random Seeds Statistical Power Analysis Deep Reinforcement Learning" Colas 2018 published venue"
+
+Links: [{"title":"[PDF] How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments | Semantic Scholar","url":"https://www.semanticscholar.org/paper/How-Many-Random-Seeds-Statistical-Power-Analysis-in-Colas-Sigaud/789510820bb369802d58b733ef1c9dc531a609ed"},{"title":"How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments - Inria - Institut national de recherche en sciences et technologies du numérique","url":"https://inria.hal.science/hal-01890154v1"},{"title":"[1806.08295] How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments","url":"https://arxiv.org/abs/1806.08295"},{"title":"How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments | DeepAI","url":"https://deepai.org/publication/how-many-random-seeds-statistical-power-analysis-in-deep-reinforcement-learning-experiments"},{"title":"[1806.08295] How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments","url":"https://ar5iv.labs.arxiv.org/html/1806.08295"},{"title":"Deep reinforcement learning at the edge of the statistical precipice | Proceedings of the 35th International Conference on Neural Information Processing Systems","url":"https://dl.acm.org/doi/10.5555/3540261.3542505"},{"title":"How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments | Request PDF","url":"https://www.researchgate.net/publication/325922173_How_Many_Random_Seeds_Statistical_Power_Analysis_in_Deep_Reinforcement_Learning_Experiments"}]
+
+Based on the search results, the paper "How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments" by Cédric Colas, Olivier Sigaud, and Pierre-Yves Oudeyer was published in arXiv.org on June 21, 2018.
+
+
+REMINDER: You MUST inc
+…[truncated 78 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T12:55:38.205632+00:00_
+
+Web search results for query: ""Reinforcement Learning with Elastic Time Steps" Wang Beltrame 2024 published venue conference"
+
+Links: [{"title":"Reinforcement Learning with Elastic Time Steps1footnote 1FootnoteFootnoteFootnotesFootnotes1footnote 1This work was partly presented at the Finding the Frame Workshop in August 2024.","url":"https://arxiv.org/html/2402.14961v4"},{"title":"Reinforcement Learning with Elastic Time Steps - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2402.14961v1"},{"title":"Titre: Title: Elastic Time Step Reinforcement Learning Auteur:","url":"https://publications.polymtl.ca/59033/1/2024_DongWang.pdf"},{"title":"Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/pdf/2402.14961"},{"title":"[2402.14961] Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/abs/2402.14961"},{"title":"MOSEAC: Streamlined Variable Time Step Reinforcement Learning","url":"https://arxiv.org/html/2406.01521v1"},{"title":"Computer Science Feb 2024","url":"https://arxiv.org/list/cs/2024-02?skip=7000"},{"title":"Variable Time Step Reinforcement Learning for Robotic Applications","url":"https://arxiv.org/html/2407.00290v1"},{"title":"Reinforcement Learning with Elastic Time Steps by Dong Wang, Giovanni Beltrame :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4924628"},{"title":"[2407.00290] Variable Time Step Reinforcement Learning for Robotic Applications","url":"https://arxiv.org/abs/2407.00290"}]
+
+Based on the search results, I found information about "Reinforcement Learning with Elastic Time Steps" by Wang and Beltrame (2024):
+
+The paper "Reinforcement Learning with Elastic Time Steps" is available as an arXiv preprint (arXiv:2402.14961). The work was submitted to IEEE Robotics and Automation Letters in 2024.
+
+Additionally, the work was partly presented at the Finding the Frame Workshop in August 2024.
+
+The paper presents the Multi-Objective Soft Elastic Actor-Critic (MOSEAC), an off-policy acto
+…[truncated 274 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-24T12:55:38.205835+00:00_
+
+Web search results for query: ""Training Agents Inside of Scalable World Models" Hafner 2025 DreamerV4 published venue"
+
+Links: [{"title":"[2509.24527] Training Agents Inside of Scalable World Models","url":"https://arxiv.org/abs/2509.24527"},{"title":"Dreamer 4: Scalable World Model Agent","url":"https://www.emergentmind.com/topics/dreamer-4"},{"title":"GitHub - nicklashansen/dreamer4: Unofficial implementation of the Dreamer 4 world model in PyTorch. · GitHub","url":"https://github.com/nicklashansen/dreamer4"},{"title":"Training Agents Inside of Scalable World Models","url":"https://danijar.com/project/dreamer4/"},{"title":"DeepMind introduces AI agent that learns to complete various tasks in a scalable world model","url":"https://techxplore.com/news/2025-10-deepmind-ai-agent-tasks-scalable.html"},{"title":"[Dreamer 4] Training Agents Inside of Scalable World Models","url":"https://arxiviq.substack.com/p/dreamer-4-training-agents-inside"},{"title":"TalkRL: The Reinforcement Learning Podcast | Transcript: Danijar Hafner on Dreamer v4","url":"https://www.talkrl.com/episodes/danijar-hafner-on-dreamer-v4/transcript"},{"title":"Dreamer 4: Scalable World Model Agents","url":"https://www.emergentmind.com/papers/2509.24527"},{"title":"Training Agents Inside of Scalable World Models Danijar Hafner* Wilson Yan*","url":"https://arxiv.org/pdf/2509.24527"}]
+
+Based on the search results, here's the information about the paper:
+
+**Title:** Training Agents Inside of Scalable World Models
+
+**Authors:** Danijar Hafner, Wilson Yan, and Timothy Lillicrap
+
+**Year:** 2025
+
+**Venue/Publication:** The paper was published on September 29, 2025 on arXiv (preprint server)
+
+**ArXiv ID:** 2509.24527
+
+**Main Contribution:** The paper introduces Dreamer 4, a scalable agent that learns to solve control tasks by reinforcement learning inside of a fast and accurate world model.
+
+The paper does not appear to have been published in a traditional peer-reviewed conference or journal venue yet—it is cu
+…[truncated 142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T12:55:38.206029+00:00_
+
+Web search results for query: ""Multi-timestep models for Model-based Reinforcement Learning" Benechehab 2023 published venue conference"
+
+Links: [{"title":"[PDF] Multi-timestep models for Model-based Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Multi-timestep-models-for-Model-based-Reinforcement-Benechehab-Paolo/182c8e48d08b8ff29f0854fe903b3bae8e0c999d"},{"title":"[2310.05672] Multi-timestep models for Model-based Reinforcement Learning","url":"https://arxiv.org/abs/2310.05672"},{"title":"Multi-timestep models for Model-based Reinforcement Learning","url":"https://arxiv.org/html/2310.05672v1"},{"title":"[PDF] Towards a Simple Approach to Multi-step Model-based Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Towards-a-Simple-Approach-to-Multi-step-Model-based-Asadi-Cater/154c8a314b8387db2d75b7a6c319a040c8be5cfd"},{"title":"MULTI-TIMESTEP MODELS FOR MODEL-BASED REIN","url":"https://openreview.net/pdf?id=Rh4DmXaf8R"},{"title":"Multi-timestep models for Model-based Reinforcement Learning","url":"https://arxiv.org/pdf/2310.05672"},{"title":"Multi-timestep models for Model-based Reinforcement Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv231005672B/abstract"},{"title":"Multi-timestep models for Model-based Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rh4DmXaf8R&noteId=Ab3ewc4D7t"}]
+
+Based on the search results, the paper "Multi-timestep models for Model-based Reinforcement Learning" by Benechehab and colleagues was published on arXiv on October 9, 2023 (arXiv:2310.05672).
+
+The paper was submitted to a conference venue as well. It was submitted to ICLR (International Conference on Learning Representations) 2024, as evidenced by the submission guidelines reference on OpenReview.
+
+To summarize the published venue information:
+- **Primary venue**: arXiv (October 2023)
+- **Conference submission**: ICLR 2024
+
+
+REMINDER: You MUST include the sour
+…[truncated 65 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T12:55:38.206214+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DeepMind Control Suite Tassa 2018 arXiv:1801.00690 journal publication accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DeepMind Control Suite Tassa 2018 arXiv:1801.00690 journal publication accepted"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-24T12:55:38.206343+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Benechehab \"Multi-timestep models\" ICLR 2024 accepted rejected OpenReview"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Benechehab \"Multi-timestep models\" ICLR 2024 accepted rejected OpenReview"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-24T12:55:38.206464+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Wang Beltrame \"Elastic Time Steps\" IEEE Robotics Automation Letters accepted 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Wang Beltrame \"Elastic Time Steps\" IEEE Robotics Automation Letters accepted 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T12:55:38.206604+00:00_
+
+Web search results for query: "DeepMind Control Suite Tassa 2018 arXiv:1801.00690 journal publication accepted"
+
+Links: [{"title":"[1801.00690] DeepMind Control Suite","url":"https://arxiv.org/abs/1801.00690"},{"title":"[1801.00690v1] DeepMind Control Suite","url":"https://arxiv.org/abs/1801.00690v1"},{"title":"[PDF] DeepMind Control Suite | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeepMind-Control-Suite-Tassa-Doron/a9a3ed69c94a3e1c08ef1f833d9199f57736238b"},{"title":"DeepMind Control Suite - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv180100690T/abstract"},{"title":"DeepMind Control Suite","url":"https://scirate.com/arxiv/1801.00690"},{"title":"Table 2 from DeepMind Control Suite | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeepMind-Control-Suite-Tassa-Doron/a9a3ed69c94a3e1c08ef1f833d9199f57736238b/figure/2"},{"title":"(PDF) DeepMind Control Suite","url":"https://www.researchgate.net/publication/322221208_DeepMind_Control_Suite"},{"title":"dblp: DeepMind Control Suite.","url":"https://dblp.org/rec/journals/corr/abs-1801-00690.html"},{"title":"DeepMind Control Suite arXiv:1801.00690v1 [cs.AI] 2 Jan ...","url":"https://www.researchgate.net/profile/Abbas-Abdolmaleki/publication/322221208_DeepMind_Control_Suite/links/5a60c3700f7e9bfbc3f8e37f/DeepMind-Control-Suite.pdf"}]
+
+Based on the search results, I found information about the DeepMind Control Suite paper (arXiv:1801.00690):
+
+The paper "DeepMind Control Suite" was authored by Yuval Tassa, Yotam Doron, Alistair Muldal, Tom Erez, Yazhe Li, Diego de Las Casas, David Budden, Abbas Abdolmaleki, Josh Merel, Andrew Lefrancq, Timothy Lillicrap, and Martin Riedmiller. It was published as an arXiv e-print in January 2018.
+
+The DeepMind Control Suite is a set of continuous control tasks with a standardised structure and interpretable rewards, intended to serve as performance benchmarks for reinforcement learning agents, with tasks written in Python and powered by the MuJoCo 
+…[truncated 465 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-24T12:55:38.206780+00:00_
+
+Web search results for query: "Benechehab "Multi-timestep models" ICLR 2024 accepted rejected OpenReview"
+
+Links: [{"title":"MULTI-TIMESTEP MODELS FOR MODEL-BASED REIN","url":"https://openreview.net/pdf?id=Rh4DmXaf8R"},{"title":"Multi-timestep models for Model-based Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rh4DmXaf8R&noteId=Ab3ewc4D7t"},{"title":"[PDF] Multi-timestep models for Model-based Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Multi-timestep-models-for-Model-based-Reinforcement-Benechehab-Paolo/182c8e48d08b8ff29f0854fe903b3bae8e0c999d"},{"title":"ICLR 2024 Workshop SeT LLM | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2024%2FWorkshop%2FSeT_LLM"},{"title":"Under review as a conference paper at ICLR 2024","url":"https://openreview.net/pdf/398f7217d3e812669c40ca8af325c1aa921ec592.pdf"},{"title":"Published as a conference paper at ICLR 2024","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/0a0e436e8830f746300f592377730fca-Paper-Conference.pdf"},{"title":"GitHub - ANLGBOY/ICLR-2024-OpenReview-Ratings · GitHub","url":"https://github.com/ANLGBOY/ICLR-2024-OpenReview-Ratings"}]
+
+Based on the search results, I found information about the paper "Multi-timestep models for Model-based Reinforcement Learning" by Benechehab and colleagues.
+
+The paper addresses the challenge of compounding one-step prediction errors in model-based reinforcement learning by using a multi-timestep objective to train one-step models. The objective is a weighted sum of a loss function at various future horizons, with exponentially decaying weights leading to models that significantly improve the long-horizon R2 score.
+
+Regarding the ICLR 2024 submission status: The search results show that this work was submitted to ICLR 2024 according to the submission guidelines on OpenReview. However, the search results do not explicitly state whether the paper was accepted or rejected at ICLR 2024. T
+…[truncated 309 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T12:55:38.206967+00:00_
+
+Web search results for query: "Wang Beltrame "Elastic Time Steps" IEEE Robotics Automation Letters accepted 2024 2025"
+
+Links: [{"title":"[2402.14961] Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/abs/2402.14961"},{"title":"IEEE Robotics and Automation Letters Papers Published by Researchers in Japan","url":"https://ishikawalab.ynu.ac.jp/ieee/ral/index.html"},{"title":"IEEE Robotics and Automation Letters | IEEE Xplore","url":"https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7083369"},{"title":"IEEE robotics and automation letters. - NLM Catalog - NCBI","url":"https://www.ncbi.nlm.nih.gov/nlmcatalog?term=2377-3766%5BISSN%5D"},{"title":"IEEE Robotics and Automation Letters","url":"https://www.scimagojr.com/journalsearch.php?q=21100900379&tip=sid"},{"title":"ISSN 2377-3766 - IEEE robotics & automation letters","url":"https://portal.issn.org/resource/ISSN/2377-3766"},{"title":"Reinforcement Learning with Elastic Time Steps","url":"https://arxiv.org/pdf/2402.14961"}]
+
+Based on the search results, I found relevant information about the paper you're looking for:
+
+The paper "Reinforcement Learning with Elastic Time Steps" is authored by Dong Wang and Giovanni Beltrame. The paper proposes Soft Elastic Actor-Critic (SEAC), a novel off-policy actor-critic algorithm that implements elastic time steps, time steps with a known, variable duration, which allow the agent to change its control frequency to adapt to the situation.
+
+The paper appears to have been uploaded to arXiv on February 14, 2024 (based on the arxiv ID 2402.14961). However, based on the search results provided, I cannot confirm the specific acceptance status or publication details in IEEE Robotics and Automation Letters for 2024-2025. The arXiv version is available, but you may want to check IEEE Xplore or the authors' institutional pages for the official publication details in the journal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdow
+…[truncated 13 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T12:55:38.207146+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:openreview.net \"Multi-timestep models\" Benechehab decision accept reject"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:openreview.net \"Multi-timestep models\" Benechehab decision accept reject"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-24T12:55:38.207272+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Combating the Compounding-Error Problem\" Asadi Littman conference proceedings accepted NeurIPS AAAI ICML"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Combating the Compounding-Error Problem\" Asadi Littman conference proceedings accepted NeurIPS AAAI ICML"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T12:55:38.207409+00:00_
+
+Web search results for query: "site:openreview.net "Multi-timestep models" Benechehab decision accept reject"
+
+Links: [{"title":"MULTI-TIMESTEP MODELS FOR MODEL-BASED REIN","url":"https://openreview.net/pdf?id=Rh4DmXaf8R"},{"title":"Multi-timestep models for Model-based Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=Rh4DmXaf8R&noteId=Ab3ewc4D7t"},{"title":"Multi-timestep models for Model-based Reinforcement Learning","url":"https://arxiv.org/pdf/2310.05672"},{"title":"What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review","url":"https://arxiv.org/pdf/2509.25701"},{"title":"Subjective optimality in finite sequential decision-making","url":"https://www.biorxiv.org/content/10.1101/2020.07.15.204321.full.pdf"}]
+
+I found the paper on OpenReview! The search results show a paper titled "Multi-timestep models for Model-based Reinforcement Learning" by Abdelhakim Benechehab and co-authors.
+
+Based on the search results, here's what I found:
+
+In model-based reinforcement learning (MBRL), most algorithms rely on simulating trajectories from one-step dynamics models learned on data. A critical challenge of this approach is the compounding of one-step prediction errors as length of the trajectory grows. The paper tackles this issue by using a multi-timestep objective to train one-step models.
+
+The objective is a weighted sum of a loss function (e.g., negative log-likelihood) at various future horizons. The authors explore and test a range of weights profiles and find that exponentially decaying weights lead to models that significantly improve the long-horizon R2 score.
+
+Finally, using a soft actor-critic (SAC) agent in pure batch reinforcement learning (RL) and iterated batch RL scenarios, the multi-timestep models outperform or match standard one-step models.
+
+The paper is available on OpenReview with the ID Rh4DmXaf8R and was submitted on November 22, 2023.
+
+
+REMINDER: You MUST include the sources above in your response to 
+…[truncated 35 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T12:55:38.207579+00:00_
+
+Web search results for query: ""Combating the Compounding-Error Problem" Asadi Littman conference proceedings accepted NeurIPS AAAI ICML"
+
+Links: [{"title":"Combating the Compounding-Error Problem with a Multi-step Model Kavosh Asadi","url":"https://arxiv.org/pdf/1905.13320"},{"title":"(PDF) Combating the Compounding-Error Problem with a Multi-step Model","url":"https://www.researchgate.net/publication/333564721_Combating_the_Compounding-Error_Problem_with_a_Multi-step_Model"},{"title":"A survey on model-based reinforcement learning | Science China Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11432-022-3696-5"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model — Grokipedia","url":"https://grokipedia.com/page/190513320"},{"title":"[1905.13320] Combating the Compounding-Error Problem with a Multi-step Model","url":"https://arxiv.org/abs/1905.13320"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190513320A/abstract"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model | DeepAI","url":"https://deepai.org/publication/combating-the-compounding-error-problem-with-a-multi-step-model"}]
+
+Based on the search results, I found information about "Combating the Compounding-Error Problem with a Multi-step Model" by Asadi, Dipendra Misra, Seungchan Kim, and Michel L. Littman.
+
+However, I should note that the search results indicate this paper appears to be from arXiv (paper 1905.13320, dated May 30, 2019). While the paper addresses the compounding-error problem in model-based reinforcement learning through a multi-step model approach, the search results do not contain specific information confirming acceptance at NeurIPS, AAAI, or ICML conference proceedings.
+
+The paper itself provides a multi-step model that directly outputs the outcome of executing a sequence of actions, with theoretical and empirical 
+…[truncated 472 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T12:55:38.207779+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T12:55:38.207957+00:00_
+
+008e_dryrun_check.md
+009b_literature_search.md
+016e
+018
+018_prewrite_two_versions.md
+018v2_server_check.md
+019a
+019a_dryrun_report.md
+019b
+_project
+actor_loss_timeseries.json
+analysis
+analysis_actor_entropy_plan031.md
+analysis_civo_detector_pickcube_backtest.md
+analysis_rssm_prediction_quality.json
+auroc_label_fix_recompute.py
+auroc_label_fix_report.md
+auroc_label_fix_result.json
+bernoulli_st_pessimism_designs.md
+bootstrap_ci_n3.json
+bootstrap_ci_results.json
+bootstrap_cis
+bootstrap_cis.json
+check_037_038_status.md
+checkpoint_monitor.py
+civo_detector_retrospective.json
+claim_strength_audit.md
+code
+code_survey_dreamerv3.md
+contingency_framing_B_C.md
+d061_literature_linkage.md
+data
+drafts
+dream_reports
+eval_mvp.py
+exp_001_baseline
+exp_001_baseline_s1_ve_profile_full.csv
+exp_001_baseline_s2_ext_ve_ratio_profile.csv
+exp_001_baseline_s2_ve_profile_full.csv
+exp_001_baseline_s3_ve_profile_full.csv
+exp_001_baseline_s4_ve_profile_full.csv
+exp_002_event_gated
+exp_005_event_gated_v4
+exp_006
+exp_006_fixed_dt2
+exp_008d_civo_trigger_s3
+exp_008e_v3_subsample_on_dt1_h15_s2
+exp_008e_v3_walker_s2
+exp_008f_s3
+exp_009b_008d_walker_s2
+exp_010a_cheetah_baseline_s1
+exp_015
+exp_018_full_sgs_walker_s1
+exp_018v2_full_sgs_walker_s1
+exp_019b_final_analysis.md
+exp_019b_pickcube_civo_trigger
+exp_021_full_sgs_cheetah_s1
+exp_022_untrained_dt_emb_learned_gate
+exp_022b
+exp_023a_cheetah_baseline_s0
+exp_023b_cheetah_baseline_s1
+exp_024b_cheetah_no_dt_emb_s0
+exp_027_tcn_walker_s0
+exp_027_tcn_walker_s0_analysis.md
+exp_031b_tcn_pickcube_s0_sigma05
+exp_032_dual_critic_walker
+exp_032b_dual_critic_walker_s1
+exp_033_wide_critic_walker
+exp_034
+exp_034_dual_critic_cheetah
+exp_035
+exp_035_narrow_dual_critic_walker
+exp_036_dual_critic_pickcube
+exp_047_diagnosis.md
+figures
+figures_data
+framing_b_reaudit_diff.md
+gen_bib.py
+gpu_deployment_plan_20260521.md
+gradient_stopping_code_audit.md
+imagination_reward_analysis.md
+implementation_design.md
+literature
+literature_gap_analysis_20260514.md
+literature_map.yaml
+literat
+…[truncated 1134 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-24T12:55:38.208119+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/reference_audit_results.md",
+  "content": "# 参考文献审查报告\n\n## 1. arXiv → 正式发表 更新建议\n\n共发现 6 条 arXiv preprint 条目，逐一检索后结果如下：\n\n| bib key | 标题 | 当前状态 | 建议更新为 |\n|---------|------|----------|-----------|\n| asadi2019combating | Combating the Compounding-Error Problem with a Multi-step Model | arXiv:1905.13320 | 未查到正式发表，保持现状 |\n| tassa2018dmcontrol | DeepMind Control Suite | arXiv:1801.00690 | 未查到正式发表（技术报告性质），保持现状 |\n| hafner2025dreamerv4 | Training Agents Inside of Scalable World Models | arXiv:2509.24527 | 2025年9月发布，尚未正式发表，保持现状 |\n| wang2024elastic | Reinforcement Learning with Elastic Time Steps | arXiv:2402.14961 | 未查到正式发表确认，保持现状 |\n| colas2018seeds | How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments | arXiv:1806.08295 | 未查到正式发表，保持现状 |\n| benechehab2023multitimestep | Multi-timestep models for Model-based Reinforcement Learning | arXiv:2310.05672 | 曾提交 ICLR 2024 (OpenReview)，未查到接收证据，保持现状 |\n\n**结论：全部 arXiv 条目均为最新状态，无需更新。**\n\n## 2. 格式一致性问题\n\n- **问题1：作者名格式不一致。** 部分条目使用缩写（如 `Hafner, D`、`Sutton, R.S`、`Sharma, S`），另一部分使用全名（如 `Hafner, Danijar`、`Micheli, Vincent`、`Fujimoto, Scott`）。建议统一为全名格式。\n  - 缩写格式条目：sutton1999options, hafner2020dreamerv1, sharma2017figar, janner2019mbpo, asadi2019combating, hansen2024tdmpc2, yu2020mopo, thrun1993issues, lu2018nondelusional, biedenkapp2021temporl, hafner2021dreamerv2, gumbsch2024thick, mattes2024hieros, henderson2018deep, lambert2020objective, agarwal2021precipice, lyle2022capacity, li2025lsimagine\n  - 全名格式条目：micheli2023iris, hafner2023dreamerv3, vanhasselt2016double, fujimoto2018td3, tassa2018dmcontrol, nhu2025tawm, chen2021redq, bacon2017optioncritc, buckman2018steve, chua2018pets, bishop1995noise, fortunato2018noisynet, parr1998ham, dietterich2000maxq, bradtke1995smdp, kidambi2020morel, yu2021combo, hamrick2021planning, lee2024dreamsmooth, wu2023daydreamer, park2021timediscretization, wang2024elastic, colas2018seeds, benechehab2023multitimestep, hafner2022director, hafner2025dreamerv4\n\n- **问题2：会议名称不一致。** `lambert2020objective` 使用缩写 `L4DC`，其余条目均使用全称（如 \"International Conference on Machine Learning\"、\"Advances in Neural Information Processing Systems\"）。建议改为 `Learning for Dynamics and Control`。\n\n- **问题3：`sutton1999options` 的 journal 字段格式异常。** 当前为 `journal = {Artificial Intelligence 112}`，卷号混入期刊名。建议拆分为 `journal = {Artificial Intelligence}, volume = {112}`。\n\n- **DOI 字段**：所有条目均无 doi 字段，格式一致，无问题。\n- **年份格式**：所有条目均使用四位数年份，格式一致，无问题。\n\n## 3. 悬空引用\n\n- 正文引用但 bib 缺失：**无**\n- bib 有但正文未引用：**无**\n\n全部 44 条 bib 条目均在正文中被引用，所有正文引用均在 bib 中有对应条目。\n\n## 总结\n\n- ✅ 通过项: 4（arXiv 条目均为最新、DOI 一致性、年份格式一致、无悬空引用）\n- ⚠️ 需修复: 3（作者名格式不一致、`L4DC` 会议名缩写、`sutton1999options` journal 字段卷号混入）\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/reference_audit_results.md",
+    "content": "# 参考文献审查报告\n\n## 1. arXiv → 正式发表 更新建议\n\n共发现 6 条 arXiv preprint 条目，逐一检索后结果如下：\n\n| bib key | 标题 | 当前状态 | 建议更新为 |\n|---------|------|----------|-----------|\n| asadi2019combating | Combating the Compounding-Error Problem with a Multi-step Model | arXiv:1905.13320 | 未查到正式发表，保持现状 |\n| tassa2018dmcontrol | DeepMind Control Suite | arXiv:1801.00690 | 未查到正式发表（技术报告性质），保持现状 |\n| hafner2025dreamerv4 | Training Agents Inside of Scalable World Models | arXiv:2509.24527 | 2025年9月发布，尚未正式发表，保持现状 |\n| wang2024elastic | Reinforcement Learning with Elastic Time Steps | arXiv:2402.14961 | 未查到正式发表确认，保持现状 |\n| colas2018seeds | How Many Random Seeds? Statistical Power Analysis in Deep RL Experiments | arXiv:1806.08295 | 未查到正式发表，保持现状 |\n| benechehab2023multitimestep | Multi-timestep models for Model-based Reinforcement Learning | arXiv:2310.05672 | 曾提交 ICLR 2024 (OpenReview)，未查到接收证据，保持现状 |\n\n**结论：全部 arXiv 条目均为最新状态，无需更新。**\n\n## 2. 格式一致性问题\n\n- **问题1：作者名格式不一致。** 部分条目使用缩写（如 `Hafner, D`、`Sutton, R.S`、`Sharma, S`），另一部分使用全名（如 `Hafner, Danijar`、`Micheli, Vincent`、`Fujimoto, Scott`）。建议统一为全名格式。\n  - 缩写格式条目：sutton1999options, hafner2020dreamerv1, sharma2017figar, janner2019mbpo, asadi2019combating, hansen2024tdmpc2, yu2020mopo, thrun1993issues, lu2018nondelusional, biedenkapp2021temporl, hafner2021dreamerv2, gumbsch2024thick, mattes2024hieros, henderson2018deep, lambert2020objective, agarwal2021precipice, lyle2022capacity, li2025lsimagine\n  - 全名格式条目：micheli2023iris, hafner2023dreamerv3, vanhasselt2016double, fujimoto2018td3, tassa2018dmcontrol, nhu2025tawm, chen2021redq, bacon2017optioncritc, buckman2018steve, chua2018pets, bishop1995noise, fortunato2018noisynet, parr1998ham, dietterich2000maxq, bradtke1995smdp, kidambi2020morel, yu2021combo, hamrick2021planning, lee2024dreamsmooth, wu2023daydreamer, park2021timediscretization, wang2024elastic, colas2018seeds, benechehab2023multitimestep, hafner2022director, hafner2025dreamerv4\n\n- **问题2：会议名称不一致。** `lambert2020objective` 使用缩写 `L4DC`，其余条目均使用全称（如 \"International Conference on Machine Learning\"、\"Advances in Neural Information Processing Systems\"）。建议改为 `Learning for Dynamics and Control`。\n\n- **问题3：`sutton1999options` 的 journal 字段格式异常。** 当前为 `journal = {Artificial Intelligence 112}`，卷号混入期刊名。建议拆分为 `journal = {Artificial Intelligence}, volume = {112}`。\n\n- **DOI 字段**：所有条目均无 doi 字段，格式一致，无问题。\n- **年份格式**：所有条目均使用四位数年份，格式一致，无问题。\n\n## 3. 悬空引用\n\n- 正文引用但 bib 缺失：**无**\n- bib 有但正文未引用：**无**\n\n全部 44 条 bib 条目均在正文中被引用，所有正文引用均在 bib 中有对应条目。\n\n## 总结\n\n- ✅ 通过项: 4（arXiv 条目均为最新、DOI 一致性、年份格式一致、无悬空引用）\n- ⚠️ 需修复: 3（作者名格式不一致、`L4DC` 会议名缩写、`sutton1999options` journal 字段卷号混入）\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T12:55:38.208324+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/reference_audit_results.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-24T12:55:38.208453+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T12:55:38.208577+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_reference-check_20260524T125157",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-24T12:55:38.208734+00:00_
+
+审查完成。报告已写入 `artifacts/reference_audit_results.md`。
+
+**结果摘要：**
+
+- **arXiv 更新**：6 条 arXiv preprint 全部已是最新状态，无需更新
+- **悬空引用**：无（44 条 bib 条目与正文引用完全对应）
+- **需修复 3 项**：
+  1. 作者名格式不一致 — 18 条用缩写（`Hafner, D`），26 条用全名（`Hafner, Danijar`）
+  2. `lambert2020objective` 会议名用了缩写 `L4DC`，其余均为全称
+  3. `sutton1999options` 的 journal 字段把卷号混入了期刊名（`Artificial Intelligence 112` → 应拆分为 `journal + volume`）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_audit_reference-check_20260524T125157"
+}
+```
+
+</details>
+
+---

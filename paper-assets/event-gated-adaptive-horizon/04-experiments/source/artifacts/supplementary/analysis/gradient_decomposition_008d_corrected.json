@@ -1,0 +1,74 @@
+{
+  "exp_id": "008d_gradient_decomposition_corrected",
+  "description": "Gradient decomposition with CORRECT 008d config (gate_fixed_dt=2, gate_subsample_max_dt=2). Previous measurement used wrong config (gate_fixed_dt=0, gate_max_dt=8).",
+  "config_used": {
+    "gate_fixed_dt": 2,
+    "gate_subsample_max_dt": 2,
+    "gate_subsample_min_dt": 1
+  },
+  "config_source": "from scripts/multi_seed_runs.sh: --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8",
+  "wrong_config_reference": {
+    "gate_fixed_dt": 0,
+    "gate_subsample_max_dt": 8,
+    "gate_subsample_min_dt": 1
+  },
+  "n_batches": 50,
+  "steps": [
+    {
+      "exp_name": "008d_55K",
+      "step": 55000,
+      "correct_config": {
+        "obs_pct": 16.3,
+        "reward_pct": 49.0,
+        "kl_pct": 34.7,
+        "cont_pct": 0.0,
+        "obs_norm": 0.05338690355420113,
+        "reward_norm": 0.16024933338165284,
+        "kl_norm": 0.1137042511254549,
+        "cont_norm": 4.784910906385775e-10,
+        "obs_std": 0.018112064819495628,
+        "reward_std": 0.05158491480353947,
+        "kl_std": 0.04374867340298699,
+        "cont_std": 6.709101055494468e-11
+      },
+      "wrong_config": {
+        "obs_pct": 25.4,
+        "reward_pct": 22.1,
+        "kl_pct": 52.6,
+        "cont_pct": 0.0,
+        "obs_norm": 0.6264371278882027,
+        "reward_norm": 0.5449469876289368,
+        "kl_norm": 1.298936483860016,
+        "cont_norm": 3.365819933875969e-10
+      }
+    },
+    {
+      "exp_name": "009e_112K",
+      "step": 112000,
+      "correct_config": {
+        "obs_pct": 21.5,
+        "reward_pct": 38.1,
+        "kl_pct": 40.4,
+        "cont_pct": 0.0,
+        "obs_norm": 0.049470185209065674,
+        "reward_norm": 0.08739126916974783,
+        "kl_norm": 0.09275161661207676,
+        "cont_norm": 3.4966869764258e-12,
+        "obs_std": 0.022880772139388585,
+        "reward_std": 0.0419506772871833,
+        "kl_std": 0.043059347366171355,
+        "cont_std": 8.176284327077564e-13
+      },
+      "wrong_config": {
+        "obs_pct": 27.7,
+        "reward_pct": 23.6,
+        "kl_pct": 48.7,
+        "cont_pct": 0.0,
+        "obs_norm": 0.5439578950405121,
+        "reward_norm": 0.4646164005994797,
+        "kl_norm": 0.9576000785827636,
+        "cont_norm": 2.1549697031171545e-12
+      }
+    }
+  ]
+}

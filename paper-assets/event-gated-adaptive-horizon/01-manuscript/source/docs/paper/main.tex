@@ -1,0 +1,86 @@
+\documentclass{article}
+
+% xcolor with table option must be loaded before corl_2026.sty (which loads color internally)
+\usepackage[table]{xcolor}
+
+\usepackage{corl_2026} % CoRL 2026 submission (anonymous)
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\graphicspath{{../../artifacts/}}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% Tighten float/text spacing
+\setlength{\textfloatsep}{8pt plus 2pt minus 4pt}
+\setlength{\floatsep}{8pt plus 2pt minus 4pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+
+% Custom commands
+\newcommand{\dt}{\mathrm{dt}}
+\newcommand{\nve}{\mathrm{nve}}
+% SGS result values
+\newcommand{\sgseval}{448.3}
+\newcommand{\sgsnve}{1.66}
+\newcommand{\sgsclaim}{reduced CIVO severity in one of two Walker seeds but eliminated it in neither (0/3 across environments)}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+\newcommand{\etal}{\textit{et al.}}
+
+\title{Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3}
+
+\author{
+  Anonymous Authors\\
+  Anonymous Institution\\
+  \texttt{anon@anon.edu}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract_body}
+\end{abstract}
+
+\keywords{World Models, Temporal Abstraction, Value Overestimation}
+
+% --- INTRODUCTION ---
+\input{sections/introduction}
+
+% --- RELATED WORK ---
+\input{sections/related_work}
+
+% --- EXPERIMENTS AND RESULTS (merged) ---
+\input{sections/experiments_results}
+
+% --- WHY STANDARD REMEDIES FAIL ---
+\input{sections/remedies}
+
+% --- DISCUSSION ---
+\input{sections/analysis}
+
+% --- CONCLUSION ---
+\input{sections/conclusion}
+
+\bibliography{references}
+
+% --- APPENDIX ---
+\newpage
+\appendix
+\input{sections/appendix}
+
+\end{document}

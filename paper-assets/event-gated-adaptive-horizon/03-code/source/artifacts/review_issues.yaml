@@ -1,0 +1,905 @@
+issues:
+  - id: "R1-N1"
+    summary: "统计检验力严重不足：2-3 seeds 无法支撑 causal factor 声明"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "三位 reviewer 均认同统计效力不足"
+      - round: 3
+        reviewers: [1, 2]
+        note: "RESOLVED。Seeds 增至 4，语言改为 strongest predictor，LOEO AUROC=0.981。"
+    action_items:
+      - round: 1
+        action: "补 seeds 到 4 per key config"
+        assigned_to: agent
+        status: done
+      - round: 1
+        action: "弱化因果语言: causal factor → strongest predictor"
+        assigned_to: paper_agent
+        status: done
+      - round: 1
+        action: "统计报告改用 IQM + bootstrap CI per Agarwal et al. 2021"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Seeds 增至 4，因果语言全面弱化为 strongest predictor，LOEO 交叉验证 AUROC=0.981。"
+    resolution_round: 3
+
+  - id: "R1-N2"
+    summary: "NVE 阈值 1.5× 为 post-hoc 选择，无独立验证"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "三位 reviewer 一致认为 post-hoc"
+    action_items:
+      - round: 1
+        action: "LOEO cross-validation: mean AUROC 0.981"
+        assigned_to: agent
+        status: done
+    resolution: "LOEO 交叉验证完成：3 环境 leave-one-out，mean AUROC 0.981。"
+    resolution_round: 1
+
+  - id: "R1-N3"
+    summary: "CoRL venue fit 严重不足"
+    category: framing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 7
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "最强共识"
+      - round: 3
+        reviewers: [2]
+        note: "STILL_OPEN。ManiSkill negative results 反向证明 CIVO 与 manipulation 无关。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "Venue 切换至 ICML 2026。CoRL venue fit 问题不再适用。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "REOPENED。Venue 切换回 CoRL 2026。R2 给 Relevance 1/5（desk reject 级），R1 给 5/10。三次写作修复均失败，evidence 问题不可通过写作解决。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。Venue 切换至 ICLR 2027（D176→D181）。ICLR 欢迎 diagnostic/analysis 论文，venue fit 问题消除。"
+    action_items:
+      - round: 1
+        action: "ManiSkill 实验"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "建议用户切回 ICML——等待用户决策"
+        assigned_to: director
+        status: done
+    resolution: "Venue 切换至 ICLR 2027。ICLR general ML audience 无 robotics relevance 要求，venue fit 问题根本消除。"
+    resolution_round: 8
+
+  - id: "R1-N4"
+    summary: "单环境（Walker Walk）局限使因果声明不可泛化"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "三位 reviewer 一致"
+      - round: 3
+        reviewers: [1, 2]
+        note: "RESOLVED。5 环境覆盖。"
+    action_items:
+      - round: 1
+        action: "Cheetah Run + ManiSkill 扩展"
+        assigned_to: agent
+        status: done
+    resolution: "5 环境覆盖，CIVO 确认为 locomotion-specific。"
+    resolution_round: 3
+
+  - id: "R3-N1"
+    summary: "未使用 CoRL 2026 官方 PMLR 模板"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [2]
+        note: "RESOLVED。已使用 corl_2026。Round 4 后由 N-R4-1 接管。"
+    action_items: []
+    resolution: "已使用 corl_2026 PMLR 模板。后由 N-R4-1 接管切换至 ICML。"
+    resolution_round: 3
+
+  - id: "R2-N3"
+    summary: "纯诊断负面结果缺乏 actionable solution"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 7
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "R2 critical, R1 AGREE with nuance"
+      - round: 3
+        reviewers: [2]
+        note: "STILL_OPEN。有改善但核心结论仍是 no reliable fix。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "ICML 下降级为 warning。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。ICML 语境下 diagnostic paper 贡献模式合理。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "REOPENED。回到 CoRL，CoRL 社区高度重视 practical impact。与 R1-N3 同根——切回 ICML 即消除。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。ICLR 2027 与 ICML 同为 general ML venue，diagnostic/analysis contribution pattern 被认可。"
+    action_items:
+      - round: 1
+        action: "Practitioner guidelines + 四级干预层级 + online detector"
+        assigned_to: paper_agent
+        status: done
+    resolution: "ICLR 2027 venue 切换消除此问题。ICLR 接受 diagnostic paper 贡献模式（同 R5 ICML 时 RESOLVED 的逻辑）。"
+    resolution_round: 8
+
+  - id: "R1-W1"
+    summary: "Factorial design 存在混淆变量"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "RESOLVED。Primary vs secondary comparisons 明确标注。"
+    action_items: []
+    resolution: "Primary vs secondary comparisons 明确标注，2×2 grid 完整。"
+    resolution_round: 3
+
+  - id: "R1-W2"
+    summary: "105K vs 505K 训练步数不对等"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "RESOLVED。Discussion 新增 exp_045 self-recovery 数据。"
+    action_items: []
+    resolution: "Discussion 新增 exp_045 self-recovery 数据（302K 步后完全恢复）。"
+    resolution_round: 4
+
+  - id: "R1-W3"
+    summary: "Pathway B (non-CIVO collapse) 解释不充分"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "RESOLVED。弱化措辞。"
+    action_items: []
+    resolution: "2 seeds + 'preliminary evidence, requires confirmation' 措辞。"
+    resolution_round: 3
+
+  - id: "R1-W4"
+    summary: "RSSM fidelity 仅报告 MAE，未验证 reward overprediction 方向性"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2, 3]
+        note: "三位 AGREE"
+    action_items: []
+    resolution: "Signed error 分析完成。dt=2 underprediction -0.599。"
+    resolution_round: 1
+
+  - id: "R2-W1"
+    summary: "与 TAWM 的对比仅基于 architectural reasoning，无实证"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "RESOLVED。改为 'hypothesized structural factor'。"
+    action_items: []
+    resolution: "措辞全文弱化为 'hypothesized structural factor'。"
+    resolution_round: 4
+
+  - id: "R2-W3"
+    summary: "CIVO 与已知 value overestimation 的区分不够清晰"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 7
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "RESOLVED。充分经验性区分。"
+      - round: 7
+        reviewers: [1, 2]
+        note: "REOPENED。R2 认为与 compounding model error 高度相似。已通过 W-MF3 修复弱化因果声明为 proposed pathway。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。Related Work 新增显式 compounding error 区分（unexposed dt=2 NVE<0.6× vs trained 4.12×），signed error 反驳 obs-level overprediction。"
+    action_items:
+      - round: 7
+        action: "因果声明弱化为 proposed/hypothesized pathway"
+        assigned_to: agent
+        status: done
+    resolution: "Related Work 显式区分 CIVO vs compounding error（含经验证据），因果声明全文弱化为 proposed pathway。"
+    resolution_round: 8
+
+  - id: "R2-W4"
+    summary: "Related Work 遗漏 + bib 冗余"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "RESOLVED。Becker-Ehmck 混淆解释接受。"
+    action_items: []
+    resolution: "全部引用到位。Becker-Ehmck 经确认为 Benechehab et al. 2023，已引用。"
+    resolution_round: 4
+
+  - id: "R3-W1"
+    summary: "Limitations 作为 paragraph 嵌入 Conclusion"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions: []
+    action_items: []
+    resolution: "形式可接受。"
+    resolution_round: 1
+
+  - id: "R3-W2"
+    summary: "Abstract 过长且缺乏 robotics motivation"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions: []
+    action_items: []
+    resolution: "Abstract 约 150 词，robotics motivation 到位。"
+    resolution_round: 3
+
+  - id: "R3-W3"
+    summary: "Bibliography 严重冗余"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions: []
+    action_items: []
+    resolution: "Bib 清理至 44 条。"
+    resolution_round: 3
+
+  - id: "R3-W5"
+    summary: "fig4_mechanism_diagram.pdf 未被引用"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions: []
+    action_items: []
+    resolution: "已在 Appendix 引用。"
+    resolution_round: 1
+
+  - id: "R3-N3"
+    summary: "换模板后正文可能超 8 页"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions: []
+    action_items: []
+    resolution: "正文 8 页（CoRL），切换 ICML 后正文 6 页。R6 扩展至 8 页，满 ICML 配额。"
+    resolution_round: 3
+
+  - id: "REV-1"
+    summary: "008f causal control 跨 seed 不稳定"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions: []
+    action_items: []
+    resolution: "exp_043 确认 5/5 seeds 全部 NVE<1.5。"
+    resolution_round: 1
+
+  - id: "REV-2"
+    summary: "105K vs 500K 比较不对等"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions: []
+    action_items: []
+    resolution: "随 R1-W2 一同解决。"
+    resolution_round: 4
+
+  - id: "R3-N-new-1"
+    summary: "Online CIVO Detector 评估样本量不足"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    mentions: []
+    action_items: []
+    resolution: "Detector 降级为 preliminary diagnostic，CI 披露。"
+    resolution_round: 4
+
+  - id: "R3-N-new-2"
+    summary: "Dual-critic convergence 主文叙事过于简化 / gradient diversity 无支撑"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "ρ>0.999 与 wide dual-critic prevention 存在张力。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "PARTIALLY RESOLVED。'gradient diversity' 无量化支撑。[复发×2轮]"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。results.tex:167 改为 'mechanisms that remain to be characterized'。"
+    action_items:
+      - round: 4
+        action: "替换 gradient diversity 为承认不确定的措辞"
+        assigned_to: agent
+        status: done
+    resolution: "results.tex:167 改为 'mechanisms that remain to be characterized (Appendix G)'。"
+    resolution_round: 5
+
+  - id: "R3-N-new-3"
+    summary: "ManiSkill 和 Cheetah Run baseline eval 值在 Table 1 中缺失"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 5
+    mentions:
+      - round: 3
+        reviewers: [2]
+        note: "Table 1 中缺少 vanilla DreamerV3 baseline eval 值。"
+      - round: 4
+        reviewers: [2]
+        note: "未修复。[复发×2轮]"
+      - round: 5
+        reviewers: [1, 2]
+        note: "Walker/Cheetah baseline 已补充，StackCube/PegInsertion 'not separately measured'。降级 info。"
+    action_items: []
+    resolution: "Walker 915.7 和 Cheetah ~409 已在 Table 1 脚注补充。降级为 info，不再追踪。"
+    resolution_round: 5
+
+  - id: "N-R4-1"
+    summary: "模板格式"
+    category: format
+    severity: critical
+    status: in_progress
+    first_raised_round: 4
+    last_seen_round: 7
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "corl → icml 切换。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。icml2026.sty 正确。"
+      - round: 7
+        reviewers: []
+        note: "Venue 切换回 CoRL，corl_2026.sty 正确。"
+      - round: 8
+        reviewers: []
+        note: "Venue 切换至 ICLR 2027。当前仍用 corl_2026.sty，待 ICLR 2027 模板发布后切换。"
+    action_items:
+      - round: 4
+        action: "切换 main.tex 为 icml2026.sty"
+        assigned_to: agent
+        status: done
+      - round: 8
+        action: "切换至 ICLR 2027 模板（待模板发布）"
+        assigned_to: agent
+        status: in_progress
+    resolution: ""
+    resolution_round: null
+
+  - id: "N-R4-2"
+    summary: "缺少 ICML 2026 要求的 Impact Statement"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    mentions:
+      - round: 4
+        reviewers: [2]
+        note: "R2 发现。Desk reject 风险。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。conclusion.tex:14-18 到位。"
+    action_items:
+      - round: 4
+        action: "添加 Broader Impact Statement"
+        assigned_to: agent
+        status: done
+    resolution: "Broader Impact Statement 已添加。"
+    resolution_round: 5
+
+  - id: "N-R4-3"
+    summary: "IQM 计算错误：n=5 seeds 报告了 n=4 的 IQM 值 175.2"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    mentions:
+      - round: 4
+        reviewers: [2]
+        note: "175.2 是 n=4 值，n=5 应为 148.8。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。148.8 经独立验证。"
+    action_items:
+      - round: 4
+        action: "重算 n=5 IQM 并更新 results.tex"
+        assigned_to: agent
+        status: done
+    resolution: "IQM 已更正为 148.8 (n=5)，经两位 reviewer 独立计算验证。"
+    resolution_round: 5
+
+  - id: "N-R4-4"
+    summary: "Seed 数量叙述全文不一致"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 5
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "methodology 说4，results 说5。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。全文统一 '4--5 seeds'。"
+    action_items:
+      - round: 4
+        action: "统一全文 seed 数量叙述"
+        assigned_to: agent
+        status: done
+    resolution: "全文统一为 '4--5 seeds'。"
+    resolution_round: 5
+
+  - id: "N-R4-5"
+    summary: "'causal chain' 措辞暗示因果推断"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 4
+    last_seen_round: 6
+    mentions:
+      - round: 4
+        reviewers: [2]
+        note: "建议改为 'trace a pathway'。"
+      - round: 5
+        reviewers: [1, 2]
+        note: "RESOLVED。'trace a predictive pathway'。"
+      - round: 6
+        reviewers: []
+        note: "Results 中已修复。Discussion 仍有 'three-stage causal chain (n=2)' 但语境审慎。"
+    action_items:
+      - round: 4
+        action: "修改措辞"
+        assigned_to: agent
+        status: done
+    resolution: "'establish a causal chain' → 'trace a predictive pathway'。"
+    resolution_round: 5
+
+  - id: "N-R5-1"
+    summary: "PDF 显示 AUTHORERR: Missing \\icmlcorrespondingauthor"
+    category: format
+    severity: info
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "两位 reviewer 均发现。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "RESOLVED。"
+    action_items:
+      - round: 5
+        action: "添加 \\icmlcorrespondingauthor"
+        assigned_to: agent
+        status: done
+    resolution: "main.tex:55 添加 \\icmlcorrespondingauthor。"
+    resolution_round: 6
+
+  - id: "N-R5-2"
+    summary: "正文仅 6 页（ICML 允许 8 页），display item 密度偏低"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 6
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "前 3 页无 display item。"
+      - round: 6
+        reviewers: [1, 2]
+        note: "RESOLVED。正文 8 页。"
+    action_items:
+      - round: 5
+        action: "Figure 6 移入 Section 4.3"
+        assigned_to: agent
+        status: done
+    resolution: "正文 8 页。"
+    resolution_round: 6
+
+  - id: "N-R5-3"
+    summary: "Figure 4 红绿色块对色盲不友好"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 5
+    last_seen_round: 7
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "建议改用 blue/orange 或添加纹理。"
+      - round: 7
+        reviewers: [1]
+        note: "R1-M2 提到 Figure 3 seed 曲线颜色区分度不足。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。审查确认所有 7 个图表脚本已使用 Wong/Okabe-Ito 色盲安全配色（orange #D55E00 / blue #0072B2）。"
+    action_items:
+      - round: 5
+        action: "重新生成 Figure 4 使用色盲友好配色"
+        assigned_to: agent
+        status: done
+    resolution: "审查确认所有主文+附录图表已使用 Wong 色盲安全配色。唯一红绿文件 (fig2_nve_trajectory.py) 非论文使用版本。"
+    resolution_round: 8
+
+  - id: "N-R5-W1"
+    summary: "Contribution scope 有限：仅 DreamerV3 + locomotion"
+    category: framing
+    severity: warning
+    status: wont_fix
+    first_raised_round: 5
+    last_seen_round: 5
+    mentions:
+      - round: 5
+        reviewers: [1, 2]
+        note: "ICML 语境下 diagnostic paper 可接受。"
+    action_items: []
+    resolution: "研究固有 scope 限制。Rebuttal prep 已准备。"
+    resolution_round: null
+
+  - id: "N-R6-1"
+    summary: "F6 (008e_v3) seed 集合变更 + 结果翻转，缺乏透明解释"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "2/2 共识 Must-Fix。"
+      - round: 7
+        reviewers: [1]
+        note: "R1-W4。Appendix I 已有但缺汇总统计。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。汇总统计已添加，registry 已标注 pre-correction。"
+    action_items:
+      - round: 6
+        action: "Appendix 新增 Code Corrections section"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "Appendix I 汇总统计已添加"
+        assigned_to: agent
+        status: done
+    resolution: "Appendix I Code Corrections 完整：section + 汇总统计 + 008e_v3 registry pre-correction 标注。"
+    resolution_round: 8
+
+  - id: "N-R6-2"
+    summary: "AUROC 从 0.957 跳至 1.000，threshold 变更，新增 data points"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "2/2 共识 Should-Fix。"
+      - round: 7
+        reviewers: [1]
+        note: "R1-N1。需 bootstrap CI。已修复：CI 添加，类别比例报告。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。AUROC=1.000 [95% CI: 1.000-1.000, 10K bootstrap]，n=36 类别比例 9:27 报告。"
+    action_items:
+      - round: 6
+        action: "Appendix B.5 列出 n=36 完整实验列表"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "Bootstrap CI 已计算并添加到全文"
+        assigned_to: agent
+        status: done
+    resolution: "AUROC=1.000 [95% CI: 1.000-1.000, 10K stratified bootstrap]。n=36 完整列表 + 类别比例 9:27 在 Appendix B.5。"
+    resolution_round: 8
+
+  - id: "N-R6-3"
+    summary: "Table 1 脚注 f 'corrected-code rerun' 缺乏细节"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "2/2 共识 Should-Fix。"
+      - round: 7
+        reviewers: [1]
+        note: "R1-W4 再次标记。已修复：汇总统计已添加。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。与 N-R6-1 合并，Appendix I 完整覆盖。"
+    action_items:
+      - round: 6
+        action: "与 N-R6-1 合并透明度叙事"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "Code correction 汇总统计已添加"
+        assigned_to: agent
+        status: done
+    resolution: "Appendix I Code Corrections 完整覆盖所有 corrected-code rerun 的细节。"
+    resolution_round: 8
+
+  - id: "N-R6-4"
+    summary: "移除了若干引用（DreamSmooth 等），未说明原因"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1]
+        note: "R1 标记。"
+      - round: 7
+        reviewers: []
+        note: "DreamSmooth dangling bib entry 已移除。"
+    action_items:
+      - round: 7
+        action: "移除 DreamSmooth dangling bib entry"
+        assigned_to: agent
+        status: done
+    resolution: "DreamSmooth bib entry 已移除（未被 cite）。"
+    resolution_round: 7
+
+  - id: "N-R6-5"
+    summary: "Table 4 中 008f s1 行 Exp 编号空白"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 6
+    last_seen_round: 7
+    mentions:
+      - round: 6
+        reviewers: [1, 2]
+        note: "2/2 共识。"
+      - round: 7
+        reviewers: []
+        note: "本轮未单独标记。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。实际位于 Table 4 (tab:complete_results)，非 Table 1。已补 exp_069。"
+    action_items:
+      - round: 6
+        action: "补上实验编号"
+        assigned_to: agent
+        status: done
+    resolution: ""
+    resolution_round: null
+
+  - id: "N-R7-1"
+    summary: "正文严重超页：~10.5 页 vs CoRL 8 页限制"
+    category: format
+    severity: critical
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R2 标记为 desk-reject 级别。"
+    action_items:
+      - round: 7
+        action: "Discussion 压缩 + Table 1 脚注精简 + Table 2 移 appendix + Results 段落精简"
+        assigned_to: agent
+        status: done
+    resolution: "正文压缩至 8 页（Conclusion 结束于 page 8 底部）。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-2"
+    summary: "AUROC=1.000 on n=36 缺乏 bootstrap CI"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1]
+        note: "R1-N1。"
+    action_items:
+      - round: 7
+        action: "Bootstrap CI 已计算（1.000-1.000, 10000 stratified resamples）"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "弱化 perfect classification 措辞"
+        assigned_to: agent
+        status: done
+    resolution: "AUROC=1.000 [95% CI: 1.000–1.000, 10000 stratified resamples]。类别比例 9:27 已在主文报告。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-3"
+    summary: "因果机制声明超出观测证据强度"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1, 2]
+        note: "R1-N2, R2-W1 共识。"
+    action_items:
+      - round: 7
+        action: "全文 causal mechanism → proposed/hypothesized pathway"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "Figure 1 caption 标注各环节证据层级（observed/inferred/hypothesized）"
+        assigned_to: agent
+        status: done
+    resolution: "全文因果声明弱化。Figure 1 caption 标注四级证据层级。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-4"
+    summary: "统计效力不足：IQM 噪声大，seed-level 叙述非统计证据"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1]
+        note: "R1-N3。"
+    action_items:
+      - round: 7
+        action: "n=36 类别比例明确报告"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "Fisher exact test for Table 2 关键对比"
+        assigned_to: agent
+        status: done
+      - round: 7
+        action: "seed-level claims 添加 anecdotal 限定"
+        assigned_to: agent
+        status: done
+    resolution: "Fisher exact test 5 组对比完成。seed-level claims 标注 anecdotal。n=36 类别比例报告。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-5"
+    summary: "诊断协议通用性未经验证——仅 DreamerV3"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [2]
+        note: "R2-W3。"
+    action_items:
+      - round: 7
+        action: "限定声明范围为 within DreamerV3"
+        assigned_to: agent
+        status: done
+    resolution: "'transferable diagnostic protocol' 已移除。scope 限定为 DreamerV3。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-6"
+    summary: "pathway redundancy 声明缺乏统计检验"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [1]
+        note: "R1-W5。"
+    action_items:
+      - round: 7
+        action: "Fisher exact test p-values for Table 2"
+        assigned_to: agent
+        status: done
+    resolution: "Fisher exact test 完成。frozen/removed p<0.001, wide dual p=0.011, TCN p=0.036, SGS p=1.000。与 N-R7-4 合并修复。Reviewer 验证通过。"
+    resolution_round: 7
+
+  - id: "N-R7-7"
+    summary: "缺失 robotics-specific 引用（FiGAR/DAC/SPiRL）"
+    category: writing
+    severity: info
+    status: resolved
+    first_raised_round: 7
+    last_seen_round: 7
+    mentions:
+      - round: 7
+        reviewers: [2]
+        note: "R2。补充可强化 robotics relevance。"
+      - round: 8
+        reviewers: []
+        note: "RESOLVED。FiGAR 和 SPiRL 已加入 Related Work temporal abstraction 段。ICLR venue 下 robotics relevance 不再是审稿关注点。"
+    action_items:
+      - round: 8
+        action: "FiGAR + SPiRL 引用已添加到 related_work.tex"
+        assigned_to: agent
+        status: done
+    resolution: "FiGAR \\citep{sharma2017figar} 和 SPiRL \\citep{pertsch2020spirl} 已在 Related Work 引用。"
+    resolution_round: 8

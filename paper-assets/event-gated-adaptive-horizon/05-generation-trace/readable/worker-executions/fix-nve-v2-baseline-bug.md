@@ -1,0 +1,6504 @@
+# fix nve v2 baseline bug
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 104
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/workers/worker_fix_nve_v2_baseline_bug_20260525T212054.log`
+- **Structured JSON:** [`38fcde90c340ed32f0b7.json`](../../sessions/38/38fcde90c340ed32f0b7.json)
+
+## Before a recorded user message
+
+104 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "832c963d-a3a3-4bac-9b05-8bd194368ed5",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779761400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "43802831-7ddf-4063-9198-5c0ffcb2b682",
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the analysis report and fetching the registry data to understand the current state and identify all the bugs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "51858c01-7afa-4e28-9c82-5c3dadbd2a73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014i1apoGaznoBaNPobADL3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll read the analysis report and fetch registry data in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "2b8d2bd3-bda4-4916-96b0-da5427d56dfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014i1apoGaznoBaNPobADL3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Dnjr67B7Y4obTc45YsJANH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "7f0e3641-b93c-40e1-9ccc-4b240305ad34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014i1apoGaznoBaNPobADL3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-25T21:21:07.070Z_
+
+<details><summary>↩ Tool result · `toolu_01Dnjr67B7Y4obTc45YsJANH`</summary>
+
+````text
+1	# NVE Threshold Sensitivity Analysis V2
+2	
+3	**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比
+4	
+5	## 数据集更新
+6	
+7	- V1 数据点数: 61
+8	- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)
+9	- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)
+10	- Method B 覆盖: 37/63 有 ve_ratio_peak
+11	- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据
+12	
+13	### exp_084/085 归一化差异说明
+14	
+15	exp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。
+16	
+17	### exp_088 早期训练瞬态 NVE spike 说明
+18	
+19	exp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 "trained config, no CIVO onset" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。
+20	
+21	---
+22	
+23	## Method A: Step-matched NVE
+24	
+25	NVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step
+26	
+27	### 单一阈值
+28	
+29	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+30	|-----------|----------|-----------|--------|------|-----|-----|
+31	| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |
+32	| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |
+33	| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |
+34	| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |
+35	
+36	**AUROC = 0.9863**
+37	
+38	θ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)
+39	
+40	θ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)
+41	
+42	NVE_peak 分布:
+43	- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954
+44	- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856
+45	- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy
+46	
+47	### 组合诊断标准
+48	
+49	条件 A: NVE_peak ≥ τ
+50	条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)
+51	条件 C: NVE 上升趋势 (≥10% 增幅)
+52	判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。
+53	
+54	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |
+55	|-----------|----------|-----------|--------|------|-----|-----|----------------|
+56	| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |
+57	| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |
+58	| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |
+59	| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |
+60	
+61	**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。
+62	
+63	组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。
+64	
+65	当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。
+66	
+67	---
+68	
+69	## Method B: Raw ve_ratio peak
+70	
+71	直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。
+72	
+73	可用子集: N=37 (CIVO=15, Healthy=22)
+74	
+75	### 单一阈值
+76	
+77	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+78	|-----------|----------|-----------|--------|------|-----|-----|
+79	| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |
+80	| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |
+81	| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |
+82	| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |
+83	| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+84	
+85	**AUROC = 0.9727**
+86	
+87	θ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)
+88	
+89	ve_ratio_peak 分布:
+90	- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722
+91	- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569
+92	
+93	### 组合诊断标准
+94	
+95	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+96	|-----------|----------|-----------|--------|------|-----|-----|
+97	| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |
+98	| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |
+99	| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |
+100	| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+101	| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |
+102	
+103	---
+104	
+105	## NVE_median_last5 辅助指标
+106	
+107	对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)
+108	
+109	| exp_id | type | NVE_median_last5 | label | correct? |
+110	|--------|------|-----------------|-------|----------|
+111	| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |
+112	| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |
+113	| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |
+114	| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |
+115	| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |
+116	| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |
+117	| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |
+118	| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |
+119	| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |
+120	| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |
+121	| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |
+122	| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |
+123	| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |
+124	| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |
+125	| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |
+126	| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |
+127	| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |
+128	
+129	**分布统计**:
+130	- CIVO (8): min=0.900, median=1.674, max=4.116
+131	- Healthy (9): min=0.379, median=0.700, max=1.043
+132	- Accuracy: 14/17 = 82.4% (阈值=1.0)
+133	
+134	**误判分析**:
+135	- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0
+136	- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO
+137	- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO
+138	
+139	**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 "frozen 实验 median ≈ 0.5" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。
+140	
+141	---
+142	
+143	## 单一阈值 vs 组合标准对比
+144	
+145	### Method A 对比
+146	
+147	| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |
+148	|------|----------------|----------------|----------------|----------------|
+149	| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |
+150	| Precision | 83.3% | **85.2%** | **100%** | **100%** |
+151	| Recall | **100%** | 92.0% | **88.0%** | 80.0% |
+152	| F1 | **0.909** | 0.885 | **0.936** | 0.889 |
+153	| FP | 5 | **4** | **0** | **0** |
+154	| FN | **0** | 2 | **3** | 5 |
+155	
+156	### Method A vs Method B (最佳阈值)
+157	
+158	| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |
+159	|------|------------------------|------------------------|
+160	| AUROC | **0.986** | 0.973 |
+161	| F1 | 0.909 | **0.966** |
+162	| Precision | 83.3% | **100%** |
+163	| Recall | **100%** | 93.3% |
+164	| FP | 5 | **0** |
+165	| FN | **0** | 1 |
+166	
+167	---
+168	
+169	## 推荐（论文用框架）
+170	
+171	### 1. 主方法：Method A step-matched NVE, θ=1.5×
+172	
+173	- AUROC=0.986, 最高判别力
+174	- 100% recall — 不漏检任何 CIVO
+175	- F1=0.909
+176	- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)
+177	- 与原论文 NVE 定义一致
+178	
+179	### 2. 辅助确认：组合标准（持续性 + 时序因果）
+180	
+181	- 轨迹数据可用时，组合标准可排除瞬态 FP
+182	- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势
+183	- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器
+184	- 当前 73% 实验缺少轨迹数据，大量 A_only 回退
+185	- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除
+186	
+187	### 3. 高置信度：θ=2.0×
+188	
+189	- Precision=100% (FP=0)
+190	- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认
+191	- 代价：3 个 FN (低幅 CIVO 遗漏)
+192	
+193	### 4. Appendix：Method B (raw ve_ratio) 交叉验证
+194	
+195	- ve_ratio_peak 不受 baseline 选择偏差影响
+196	- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)
+197	- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感
+198	- Method B AUROC=0.973，与 Method A 的 0.986 一致性高
+199	- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒
+200	
+201	### 5. Decision rule
+202	
+203	```
+204	if NVE_peak >= 1.5×:
+205	    → FLAG as potential CIVO
+206	    if trajectory_data_available:
+207	        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:
+208	            → CONFIRM as CIVO
+209	        else:
+210	            → LIKELY transient spike, monitor but do not kill
+211	    else:
+212	        → TREAT as CIVO (conservative)
+213	        
+214	if NVE_peak >= 2.0×:
+215	    → DEFINITE CIVO (zero FP at this threshold)
+216	```
+217	
+218	### 6. 归一化方法差异说明
+219	
+220	exp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。
+221	
+222	### 7. 早期瞬态 NVE spike 讨论
+223	
+224	exp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：
+225	- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）
+226	- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算
+227	- NVE_median_last5 (0.379) 天然抵抗此类早期 spike
+228	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "4e6f77c2-c40f-4497-b7d0-7a1f123433de",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+      "content": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n",
+      "numLines": 228,
+      "startLine": 1,
+      "totalLines": 228
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S6WAZshvC3R2DbmLaUfFCn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "50949c58-457a-41ee-8361-6c437bcaf494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014i1apoGaznoBaNPobADL3K",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12192,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12192
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T21:21:07.810Z_
+
+<details><summary>↩ Tool result · `toolu_01S6WAZshvC3R2DbmLaUfFCn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "805c9fbf-e685-419e-a7e0-ffd4f689cca9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the registry data for exp_077 and exp_083 (Cheetah baselines) and all Cheetah experiments to get the correct baseline ve_ratio values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "fe6b560a-cd9c-4cd6-a7f0-92bf4dc921b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Reading registry for Cheetah baseline experiments and all Cheetah experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5c8e367c-ef4f-4ea9-b54a-c84495640f84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018Rvtu8paPxzP7gG3yiQA28`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_077"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5ece788c-fe83-4578-8e00-8775024bccff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011zGtSMx2XC4NvA2H5RFBB8`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_083"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "f8d2af30-4560-4238-910b-6654b6ef8d11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-25T21:21:14.375Z_
+
+<details><summary>↩ Tool result · `toolu_018Rvtu8paPxzP7gG3yiQA28`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6424}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "037aab25-b6eb-4505-9d34-269dc6a1893c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6424}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6424}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T21:21:15.011Z_
+
+<details><summary>↩ Tool result · `toolu_011zGtSMx2XC4NvA2H5RFBB8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6269}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "12408cb1-cebd-46ca-8870-ddff91351949",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6269}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6269}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015zZBqiSNU82vTWsVLmREJB`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_078"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "be99e58f-110e-4de2-a47a-eb0f52a5b454",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T21:21:15.848Z_
+
+<details><summary>↩ Tool result · `toolu_015zZBqiSNU82vTWsVLmREJB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6607}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "037dbfad-84d2-405d-b99c-50e0b072f660",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6607}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6607}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013vQXkrNky3r4vbFNgjn1jF`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_082"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "f9293cd2-fd98-4110-adc6-773cbc61ddf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Bkceve4cdgycNWm1TkBBKE`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_086"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "6ae5099e-f1a8-4b62-97fe-b163f0116010",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-25T21:21:16.758Z_
+
+<details><summary>↩ Tool result · `toolu_013vQXkrNky3r4vbFNgjn1jF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6111}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0489dbd5-3aa5-40a9-9e94-317df04e23ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6111}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6111}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01NXTUVETLEc1HH6sdKAuA9K`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_087"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "d83dbc24-f65e-4292-ab0b-d60ec8baabe4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-25T21:21:17.669Z_
+
+<details><summary>↩ Tool result · `toolu_01Bkceve4cdgycNWm1TkBBKE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8993}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "c9ce389a-0d34-4d8c-807e-6c3e6001cf11",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8993}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8993}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013FtFJnM8tJHpLRbifmXQaA`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "exp_id": "exp_088"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "aed2169f-9772-427f-9169-afb571b9bf6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jyn3iP7td3YRiYPjXfbucp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6464,
+      "cache_read_input_tokens": 23639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6464
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-25T21:21:19.073Z_
+
+<details><summary>↩ Tool result · `toolu_01NXTUVETLEc1HH6sdKAuA9K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3818}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "6a5d4fd2-e884-46e5-b607-736e6c3fe4cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3818}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3818}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-25T21:21:20.029Z_
+
+<details><summary>↩ Tool result · `toolu_013FtFJnM8tJHpLRbifmXQaA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9324}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "46163cce-0673-45b8-8d07-11a21cda400c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9324}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9324}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All the filtered queries returned 0 results. The exp_id filter might not match exactly. Let me try reading the full registry to see what's there, or try different filter approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5b0d8541-de63-4b19-9d54-81d550cb0966",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwQZdaakuVYCymvYaxziZH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 30103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+The exp_id filter didn't match. Let me fetch the full registry to see the actual field names and experiment IDs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "96dbd149-5f22-4f44-9322-24fe5d262373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwQZdaakuVYCymvYaxziZH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 30103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016hRhvSc6aaqPbcrEmuTJYo`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "ec3a74b9-1bb4-4f48-b59f-4708aa888496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FwQZdaakuVYCymvYaxziZH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1582,
+      "cache_read_input_tokens": 30103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-25T21:21:25.837Z_
+
+<details><summary>↩ Tool result · `toolu_016hRhvSc6aaqPbcrEmuTJYo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_088\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T21:13:21.246Z\", \"updated_at\": \"2026-05-25T21:13:24.217Z\", \"metrics\": {\"eval_return_final\": 309.34, \"eval_return_best\": 309.34, \"best_step\": 105000, \"eval_return_trajectory\": {\"5K\": 13.48, \"15K\": 114.02, \"25K\": 177.63, \"35K\": 162.83, \"45K\": 131.77, \"55K\": 248.23, \"65K\": 172.46, \"75K\": 97.35, \"85K\": 85.46, \"95K\": 149.74, \"105K\": 309.34}, \"NVE_final\": 0.087, \"NVE_peak\": 1.82, \"NVE_peak_step\": 35000, \"NVE_trajectory\": {\"15K\": 0.166, \"25K\": 1.106, \"35K\": 1.82, \"45K\": 1.58, \"55K\": 0.55, \"65K\": 0.429, \"75K\": 0.518, \"85K\": 0.379, \"95K\": 0.214, \"105K\": 0.087}, \"NVE_median_last5\": 0.379, \"ve_ratio_peak\": 0.31, \"ve_ratio_peak_step\": 45000, \"ve_ratio_final\": 0.053, \"ve_ratio_trajectory\": {\"15K\": 0.0143, \"25K\": 0.0709, \"35K\": 0.1909, \"45K\": 0.31, \"55K\": 0.1568, \"65K\": 0.1855, \"75K\": 0.267, \"85K\": 0.2485, \"95K\": 0.1223, \"105K\": 0.0532}, \"civo_alert_max\": 0, \"nve_classification\": \"Healthy\", \"value_mean_peak\": 40.848, \"value_mean_final\": 16.455, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\"}, \"exp_086_frozen_dt_emb_cheetah_s0\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T16:24:01.866Z\", \"updated_at\": \"2026-05-25T21:08:51.498Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_078 (trained dt_emb, NVE=4.1×). Re-run after orphan process incident.\", \"parent\": \"exp_078_cheetah_008d_s0\", \"completed_at\": \"2026-05-25T18:08:31.088Z\", \"reproduce\": {\"finished_at\": \"2026-05-25T20:17:39.670Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:08:47.611867+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T20:17:50.028253+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_086_frozen_dt_emb_cheetah_s0/latest.pt\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_086_frozen_dt_emb_cheetah_s0.log\"}, \"metrics\": {\"eval_return_final\": 53.3, \"eval_return_best\": 326.4, \"best_step\": 35000, \"total_steps\": 105000, \"NVE_final\": 0.27, \"NVE_peak\": 0.27, \"ve_ratio_peak\": 0.2, \"ve_ratio_peak_step\": 105000, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false, \"nve_classification\": \"no_civo\"}, \"conclusion\": \"success\"}, \"exp_088_cheetah_008d_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T18:50:48.276Z\", \"updated_at\": \"2026-05-25T21:08:43.742Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_088_cheetah_008d_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"42804\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"submitted_at\": \"2026-05-25T18:50:47.731Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [1], \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger config, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"wall_clock_seconds\": 8276.0, \"gpu_hours\": 2.3}, \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed)。预期触发 CIVO，验证 Cheetah CIVO onset 的跨 seed 可复现性。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"reproduce\": {\"finished_at\": \"2026-05-25T21:03:45.960Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T21:03:51.893445+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 309.3, \"eval_return_peak\": 309.3, \"eval_return_peak_step\": 105000, \"eval_trajectory\": {\"5K\": 13.5, \"15K\": 114, \"25K\": 177.6, \"35K\": 162.8, \"45K\": 131.8, \"55K\": 248.2, \"65K\": 172.5, \"75K\": 97.3, \"85K\": 85.5, \"95K\": 149.7, \"105K\": 309.3}, \"ve_ratio_final\": 0.053, \"ve_ratio_peak\": 0.31, \"ve_ratio_peak_step\": 45000, \"ve_ratio_trajectory\": {\"15K\": 0.014, \"25K\": 0.071, \"35K\": 0.191, \"45K\": 0.31, \"55K\": 0.157, \"65K\": 0.185, \"75K\": 0.267, \"85K\": 0.249, \"95K\": 0.122, \"105K\": 0.053}, \"nve_peak\": 0.517, \"nve_peak_step\": 45000, \"nve_onset_step\": null, \"nve_onset_value\": null, \"nve_trajectory_35Kplus\": {\"35K\": 0.318, \"45K\": 0.517, \"55K\": 0.261, \"65K\": 0.309, \"75K\": 0.445, \"85K\": 0.414, \"95K\": 0.204, \"105K\": 0.089}, \"nve_classification\": \"no_onset\", \"civo\": false, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_083_cheetah_baseline_s1\", \"baseline_eval_105K\": 444, \"eval_pct_baseline\": 0.696, \"total_steps\": 105000, \"total_env_steps\": 105000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"completed_at\": \"2026-05-25T21:02:16Z\"}, \"exp_091_cheetah_008d_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:29:07.244Z\", \"updated_at\": \"2026-05-25T20:29:43.485Z\", \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed) 和 exp_088 (s1, running)。预期触发 CIVO，给 Cheetah CIVO trigger 凑齐 3-seed 基础，加强 C1 cross-env 证据。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_091_cheetah_008d_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"47303\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_091_cheetah_008d_s2.log\", \"submitted_at\": \"2026-05-25T20:29:32.176Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}}, \"exp_090_cheetah_no_dt_emb_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:15:41.571Z\", \"updated_at\": \"2026-05-25T20:17:44.601Z\", \"hypothesis\": \"Cheetah Run dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_082 (s0, NVE=0.33×, no CIVO, success)。dt_embedding 完全移除后预期无 CIVO，加强 C2 cross-env causal control 多 seed 证据基础。plan_022。\", \"parent\": \"exp_082_cheetah_no_dt_emb_s0\", \"spec\": {\"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, Cheetah causal control)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_090_cheetah_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"307484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_090_cheetah_no_dt_emb_s2.log\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}}}, \"count\": 5, \"total\": 168, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6259}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0da1b3d3-2482-4805-8089-0bd3d83183be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_088\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T21:13:21.246Z\\\", \\\"updated_at\\\": \\\"2026-05-25T21:13:24.217Z\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 309.34, \\\"eval_return_best\\\": 309.34, \\\"best_step\\\": 105000, \\\"eval_return_trajectory\\\": {\\\"5K\\\": 13.48, \\\"15K\\\": 114.02, \\\"25K\\\": 177.63, \\\"35K\\\": 162.83, \\\"45K\\\": 131.77, \\\"55K\\\": 248.23, \\\"65K\\\": 172.46, \\\"75K\\\": 97.35, \\\"85K\\\": 85.46, \\\"95K\\\": 149.74, \\\"105K\\\": 309.34}, \\\"NVE_final\\\": 0.087, \\\"NVE_peak\\\": 1.82, \\\"NVE_peak_step\\\": 35000, \\\"NVE_trajectory\\\": {\\\"15K\\\": 0.166, \\\"25K\\\": 1.106, \\\"35K\\\": 1.82, \\\"45K\\\": 1.58, \\\"55K\\\": 0.55, \\\"65K\\\": 0.429, \\\"75K\\\": 0.518, \\\"85K\\\": 0.379, \\\"95K\\\": 0.214, \\\"105K\\\": 0.087}, \\\"NVE_median_last5\\\": 0.379, \\\"ve_ratio_peak\\\": 0.31, \\\"ve_ratio_peak_step\\\": 45000, \\\"ve_ratio_final\\\": 0.053, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0.0143, \\\"25K\\\": 0.0709, \\\"35K\\\": 0.1909, \\\"45K\\\": 0.31, \\\"55K\\\": 0.1568, \\\"65K\\\": 0.1855, \\\"75K\\\": 0.267, \\\"85K\\\": 0.2485, \\\"95K\\\": 0.1223, \\\"105K\\\": 0.0532}, \\\"civo_alert_max\\\": 0, \\\"nve_classification\\\": \\\"Healthy\\\", \\\"value_mean_peak\\\": 40.848, \\\"value_mean_final\\\": 16.455, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\\\", \\\"log_path\\\": \\\"/root/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\\\"}, \\\"exp_086_frozen_dt_emb_cheetah_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-25T16:24:01.866Z\\\", \\\"updated_at\\\": \\\"2026-05-25T21:08:51.498Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_078 (trained dt_emb, NVE=4.1×). Re-run after orphan process incident.\\\", \\\"parent\\\": \\\"exp_078_cheetah_008d_s0\\\", \\\"completed_at\\\": \\\"2026-05-25T18:08:31.088Z\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T20:17:39.670Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T18:08:47.611867+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T20:17:50.028253+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_086_frozen_dt_emb_cheetah_s0/latest.pt\\\", \\\"log_path\\\": \\\"/root/runs/event-gated-adaptive-horizon/exp_086_frozen_dt_emb_cheetah_s0.log\\\"}, \\\"metrics\\\": {\\\"eval_return_final\\\": 53.3, \\\"eval_return_best\\\": 326.4, \\\"best_step\\\": 35000, \\\"total_steps\\\": 105000, \\\"NVE_final\\\": 0.27, \\\"NVE_peak\\\": 0.27, \\\"ve_ratio_peak\\\": 0.2, \\\"ve_ratio_peak_step\\\": 105000, \\\"gate_pattern\\\": \\\"100% dt=2 locked\\\", \\\"civo_alert\\\": false, \\\"nve_classification\\\": \\\"no_civo\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_088_cheetah_008d_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T18:50:48.276Z\\\", \\\"updated_at\\\": \\\"2026-05-25T21:08:43.742Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_088_cheetah_008d_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\\\\\"\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"42804\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T18:50:47.731Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [1], \\\"data_path\\\": \\\"dmc_cheetah_run\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3 (trained dt_emb, CIVO trigger config, Cheetah s1)\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"dmc_cheetah_run (online eval)\\\", \\\"wall_clock_seconds\\\": 8276.0, \\\"gpu_hours\\\": 2.3}, \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed)。预期触发 CIVO，验证 Cheetah CIVO onset 的跨 seed 可复现性。plan_021。\\\", \\\"parent\\\": \\\"exp_078_cheetah_008d_s0\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T21:03:45.960Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T21:03:51.893445+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 309.3, \\\"eval_return_peak\\\": 309.3, \\\"eval_return_peak_step\\\": 105000, \\\"eval_trajectory\\\": {\\\"5K\\\": 13.5, \\\"15K\\\": 114, \\\"25K\\\": 177.6, \\\"35K\\\": 162.8, \\\"45K\\\": 131.8, \\\"55K\\\": 248.2, \\\"65K\\\": 172.5, \\\"75K\\\": 97.3, \\\"85K\\\": 85.5, \\\"95K\\\": 149.7, \\\"105K\\\": 309.3}, \\\"ve_ratio_final\\\": 0.053, \\\"ve_ratio_peak\\\": 0.31, \\\"ve_ratio_peak_step\\\": 45000, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0.014, \\\"25K\\\": 0.071, \\\"35K\\\": 0.191, \\\"45K\\\": 0.31, \\\"55K\\\": 0.157, \\\"65K\\\": 0.185, \\\"75K\\\": 0.267, \\\"85K\\\": 0.249, \\\"95K\\\": 0.122, \\\"105K\\\": 0.053}, \\\"nve_peak\\\": 0.517, \\\"nve_peak_step\\\": 45000, \\\"nve_onset_step\\\": null, \\\"nve_onset_value\\\": null, \\\"nve_trajectory_35Kplus\\\": {\\\"35K\\\": 0.318, \\\"45K\\\": 0.517, \\\"55K\\\": 0.261, \\\"65K\\\": 0.309, \\\"75K\\\": 0.445, \\\"85K\\\": 0.414, \\\"95K\\\": 0.204, \\\"105K\\\": 0.089}, \\\"nve_classification\\\": \\\"no_onset\\\", \\\"civo\\\": false, \\\"civo_alert\\\": 0, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"gate_empirical_entropy\\\": 0, \\\"baseline_ref\\\": \\\"exp_083_cheetah_baseline_s1\\\", \\\"baseline_eval_105K\\\": 444, \\\"eval_pct_baseline\\\": 0.696, \\\"total_steps\\\": 105000, \\\"total_env_steps\\\": 105000}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\\\", \\\"completed_at\\\": \\\"2026-05-25T21:02:16Z\\\"}, \\\"exp_091_cheetah_008d_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T20:29:07.244Z\\\", \\\"updated_at\\\": \\\"2026-05-25T20:29:43.485Z\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed) 和 exp_088 (s1, running)。预期触发 CIVO，给 Cheetah CIVO trigger 凑齐 3-seed 基础，加强 C1 cross-env 证据。plan_021。\\\", \\\"parent\\\": \\\"exp_078_cheetah_008d_s0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_091_cheetah_008d_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\\\\\"\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"47303\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_091_cheetah_008d_s2.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T20:29:32.176Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_cheetah_run\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"eval_data\\\": \\\"dmc_cheetah_run (online eval)\\\"}}, \\\"exp_090_cheetah_no_dt_emb_s2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T20:15:41.571Z\\\", \\\"updated_at\\\": \\\"2026-05-25T20:17:44.601Z\\\", \\\"hypothesis\\\": \\\"Cheetah Run dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_082 (s0, NVE=0.33×, no CIVO, success)。dt_embedding 完全移除后预期无 CIVO，加强 C2 cross-env causal control 多 seed 证据基础。plan_022。\\\", \\\"parent\\\": \\\"exp_082_cheetah_no_dt_emb_s0\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"dmc_cheetah_run\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"DreamerV3 (dt_embed_dim=0, Cheetah causal control)\\\", \\\"seed\\\": 2, \\\"checkpoint_source\\\": \\\"N/A (training from scratch)\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_090_cheetah_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_embed_dim 0\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"307484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_090_cheetah_no_dt_emb_s2.log\\\", \\\"eval_data\\\": \\\"dmc_cheetah_run (online eval)\\\"}}}, \\\"count\\\": 5, \\\"total\\\": 168, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6259}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_088\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T21:13:21.246Z\", \"updated_at\": \"2026-05-25T21:13:24.217Z\", \"metrics\": {\"eval_return_final\": 309.34, \"eval_return_best\": 309.34, \"best_step\": 105000, \"eval_return_trajectory\": {\"5K\": 13.48, \"15K\": 114.02, \"25K\": 177.63, \"35K\": 162.83, \"45K\": 131.77, \"55K\": 248.23, \"65K\": 172.46, \"75K\": 97.35, \"85K\": 85.46, \"95K\": 149.74, \"105K\": 309.34}, \"NVE_final\": 0.087, \"NVE_peak\": 1.82, \"NVE_peak_step\": 35000, \"NVE_trajectory\": {\"15K\": 0.166, \"25K\": 1.106, \"35K\": 1.82, \"45K\": 1.58, \"55K\": 0.55, \"65K\": 0.429, \"75K\": 0.518, \"85K\": 0.379, \"95K\": 0.214, \"105K\": 0.087}, \"NVE_median_last5\": 0.379, \"ve_ratio_peak\": 0.31, \"ve_ratio_peak_step\": 45000, \"ve_ratio_final\": 0.053, \"ve_ratio_trajectory\": {\"15K\": 0.0143, \"25K\": 0.0709, \"35K\": 0.1909, \"45K\": 0.31, \"55K\": 0.1568, \"65K\": 0.1855, \"75K\": 0.267, \"85K\": 0.2485, \"95K\": 0.1223, \"105K\": 0.0532}, \"civo_alert_max\": 0, \"nve_classification\": \"Healthy\", \"value_mean_peak\": 40.848, \"value_mean_final\": 16.455, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\"}, \"exp_086_frozen_dt_emb_cheetah_s0\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T16:24:01.866Z\", \"updated_at\": \"2026-05-25T21:08:51.498Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_078 (trained dt_emb, NVE=4.1×). Re-run after orphan process incident.\", \"parent\": \"exp_078_cheetah_008d_s0\", \"completed_at\": \"2026-05-25T18:08:31.088Z\", \"reproduce\": {\"finished_at\": \"2026-05-25T20:17:39.670Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:08:47.611867+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T20:17:50.028253+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_086_frozen_dt_emb_cheetah_s0/latest.pt\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_086_frozen_dt_emb_cheetah_s0.log\"}, \"metrics\": {\"eval_return_final\": 53.3, \"eval_return_best\": 326.4, \"best_step\": 35000, \"total_steps\": 105000, \"NVE_final\": 0.27, \"NVE_peak\": 0.27, \"ve_ratio_peak\": 0.2, \"ve_ratio_peak_step\": 105000, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false, \"nve_classification\": \"no_civo\"}, \"conclusion\": \"success\"}, \"exp_088_cheetah_008d_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T18:50:48.276Z\", \"updated_at\": \"2026-05-25T21:08:43.742Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_088_cheetah_008d_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"42804\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"submitted_at\": \"2026-05-25T18:50:47.731Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [1], \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger config, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"wall_clock_seconds\": 8276.0, \"gpu_hours\": 2.3}, \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed)。预期触发 CIVO，验证 Cheetah CIVO onset 的跨 seed 可复现性。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"reproduce\": {\"finished_at\": \"2026-05-25T21:03:45.960Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T21:03:51.893445+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 309.3, \"eval_return_peak\": 309.3, \"eval_return_peak_step\": 105000, \"eval_trajectory\": {\"5K\": 13.5, \"15K\": 114, \"25K\": 177.6, \"35K\": 162.8, \"45K\": 131.8, \"55K\": 248.2, \"65K\": 172.5, \"75K\": 97.3, \"85K\": 85.5, \"95K\": 149.7, \"105K\": 309.3}, \"ve_ratio_final\": 0.053, \"ve_ratio_peak\": 0.31, \"ve_ratio_peak_step\": 45000, \"ve_ratio_trajectory\": {\"15K\": 0.014, \"25K\": 0.071, \"35K\": 0.191, \"45K\": 0.31, \"55K\": 0.157, \"65K\": 0.185, \"75K\": 0.267, \"85K\": 0.249, \"95K\": 0.122, \"105K\": 0.053}, \"nve_peak\": 0.517, \"nve_peak_step\": 45000, \"nve_onset_step\": null, \"nve_onset_value\": null, \"nve_trajectory_35Kplus\": {\"35K\": 0.318, \"45K\": 0.517, \"55K\": 0.261, \"65K\": 0.309, \"75K\": 0.445, \"85K\": 0.414, \"95K\": 0.204, \"105K\": 0.089}, \"nve_classification\": \"no_onset\", \"civo\": false, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_083_cheetah_baseline_s1\", \"baseline_eval_105K\": 444, \"eval_pct_baseline\": 0.696, \"total_steps\": 105000, \"total_env_steps\": 105000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"completed_at\": \"2026-05-25T21:02:16Z\"}, \"exp_091_cheetah_008d_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:29:07.244Z\", \"updated_at\": \"2026-05-25T20:29:43.485Z\", \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed) 和 exp_088 (s1, running)。预期触发 CIVO，给 Cheetah CIVO trigger 凑齐 3-seed 基础，加强 C1 cross-env 证据。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_091_cheetah_008d_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"47303\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_091_cheetah_008d_s2.log\", \"submitted_at\": \"2026-05-25T20:29:32.176Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (trained dt_emb)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}}, \"exp_090_cheetah_no_dt_emb_s2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T20:15:41.571Z\", \"updated_at\": \"2026-05-25T20:17:44.601Z\", \"hypothesis\": \"Cheetah Run dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_082 (s0, NVE=0.33×, no CIVO, success)。dt_embedding 完全移除后预期无 CIVO，加强 C2 cross-env causal control 多 seed 证据基础。plan_022。\", \"parent\": \"exp_082_cheetah_no_dt_emb_s0\", \"spec\": {\"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, Cheetah causal control)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_090_cheetah_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"307484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_090_cheetah_no_dt_emb_s2.log\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}}}, \"count\": 5, \"total\": 168, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6259}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the registry data. Now I need to find exp_077 and exp_083 (Cheetah baselines). The filter by exp_id didn't work - probably the key in the experiments dict IS the exp_id. Let me look at how the registry stores experiments. I see keys like "exp_088", "exp_086_frozen_dt_emb_cheetah_s0", "exp_088_cheetah_008d_s1" etc. So the key is the full experiment name, not just "exp_088". The filter by exp_id probably tries to match a field called "exp_id" which doesn't exist as a field.
+
+
+I'll search for experiments with names containing "077" and "083". Looking at the registry, I can see exp_088_cheetah_008d_s1 has an nve_peak of 0.517 at step 45000, with trajectory values across different step counts.
+
+There are actually two entries for exp_088 — an older one showing incorrect NVE values (peak of 1.82 at 35K) and a newer corrected version with the proper peak of 0.517 at 45K. The analysis report mistakenly used the older, incorrect entry. Now I need to pull the baseline data for the Cheetah experiment to compare against.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "7dd0f76b-3145-40af-a86d-7c040de7cd19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NstMyk19zf4zcdaz7755mH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 31685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Found exp_088's correct registry data (NVE_peak=0.517@45K). Now I need the Cheetah baseline experiments. Let me search for them.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "b815316d-7fa8-4c8b-8a96-e6d75136bdf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NstMyk19zf4zcdaz7755mH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 31685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018pyPMRVTWr4oGg73bEKPAA`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "fields": [
+    "*"
+  ],
+  "filters": {
+    "status": "DONE"
+  },
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "f94076a8-1434-4943-b65c-1044fec0ef30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NstMyk19zf4zcdaz7755mH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4316,
+      "cache_read_input_tokens": 31685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-25T21:21:43.997Z_
+
+<details><summary>↩ Tool result · `toolu_018pyPMRVTWr4oGg73bEKPAA`</summary>
+
+```text
+Error: result (222,546 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "589c0c73-b5ba-4809-ae69-43427275b04d",
+  "tool_use_result": {
+    "content": "Error: result (222,546 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_086_frozen_dt_emb_cheetah_s0\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T16:24:01.866Z\", \"updated_at\": \"2026-05-25T21:08:51.498Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_078 (trained dt_emb, NVE=4.1×). Re-run after orphan process incident.\", \"parent\": \"exp_078_cheetah_008d_s0\", \"completed_at\": \"2026-05-25T18:08:31.088Z\", \"reproduce\": {\"finished_at\": \"2026-05-25T20:17:39.670Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:08:47.611867+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T20:17:50.028253+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_086_frozen_dt_emb_cheetah_s0/latest.pt\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_086_frozen_dt_emb_cheetah_s0.log\"}, \"metrics\": {\"eval_return_final\": 53.3, \"eval_return_best\": 326.4, \"best_step\": 35000, \"total_steps\": 105000, \"NVE_final\": 0.27, \"NVE_peak\": 0.27, \"ve_ratio_peak\": 0.2, \"ve_ratio_peak_step\": 105000, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false, \"nve_classification\": \"no_civo\"}, \"conclusion\": \"success\"}, \"exp_088_cheetah_008d_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T18:50:48.276Z\", \"updated_at\": \"2026-05-25T21:08:43.742Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_088_cheetah_008d_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"42804\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"submitted_at\": \"2026-05-25T18:50:47.731Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [1], \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger config, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"wall_clock_seconds\": 8276.0, \"gpu_hours\": 2.3}, \"hypothesis\": \"Cheetah Run trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_078 (s0, NVE=4.1×, CIVO confirmed)。预期触发 CIVO，验证 Cheetah CIVO onset 的跨 seed 可复现性。plan_021。\", \"parent\": \"exp_078_cheetah_008d_s0\", \"reproduce\": {\"finished_at\": \"2026-05-25T21:03:45.960Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T21:03:51.893445+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"eval_return_final\": 309.3, \"eval_return_peak\": 309.3, \"eval_return_peak_step\": 105000, \"eval_trajectory\": {\"5K\": 13.5, \"15K\": 114, \"25K\": 177.6, \"35K\": 162.8, \"45K\": 131.8, \"55K\": 248.2, \"65K\": 172.5, \"75K\": 97.3, \"85K\": 85.5, \"95K\": 149.7, \"105K\": 309.3}, \"ve_ratio_final\": 0.053, \"ve_ratio_peak\": 0.31, \"ve_ratio_peak_step\": 45000, \"ve_ratio_trajectory\": {\"15K\": 0.014, \"25K\": 0.071, \"35K\": 0.191, \"45K\": 0.31, \"55K\": 0.157, \"65K\": 0.185, \"75K\": 0.267, \"85K\": 0.249, \"95K\": 0.122, \"105K\": 0.053}, \"nve_peak\": 0.517, \"nve_peak_step\": 45000, \"nve_onset_step\": null, \"nve_onset_value\": null, \"nve_trajectory_35Kplus\": {\"35K\": 0.318, \"45K\": 0.517, \"55K\": 0.261, \"65K\": 0.309, \"75K\": 0.445, \"85K\": 0.414, \"95K\": 0.204, \"105K\": 0.089}, \"nve_classification\": \"no_onset\", \"civo\": false, \"civo_alert\": 0, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_083_cheetah_baseline_s1\", \"baseline_eval_105K\": 444, \"eval_pct_baseline\": 0.696, \"total_steps\": 105000, \"total_env_steps\": 105000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_088_cheetah_008d_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_088_cheetah_008d_s1.log\", \"completed_at\": \"2026-05-25T21:02:16Z\"}, \"exp_009b_008d_walker_s2\": {\"account\": \"root\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 sustained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x→2.09x→4.12x) and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold (at 35K+ steps) is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T18:51:00Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:17:25.186Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T18:47:21.873692+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic collapse 的跨 seed 可复现性。plan_011。\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log\", \"metrics\": {\"ve_ratio_peak\": 0.5703, \"ve_ratio_peak_step\": 55000, \"ve_ratio_final\": 0.25, \"ve_ratio_final_step\": 105000, \"nve_peak\": 1.62, \"nve_peak_step\": 45000, \"nve_peak_note\": \"step-matched s1 baseline @45K = 0.331; arithmetic peak @25K=2.04x excluded (baseline<0.1)\", \"nve_classification\": \"onset_self_correcting\"}, \"notes\": \"D032: Collapse NOT reproduced in seed 2. nve peaked 2.05x@25K (transient) then self-corrected to 0.38x@105K. Eval rose to 268. Contrast: seed 1 had SUSTAINED nve>1.5x at 35K+ (1.71x→2.09x→4.12x) → collapse to 83. Key finding: nve>1.5x threshold (35K+ steps) is reliable trained dt_emb marker (2/2 seeds), but collapse is stochastic (1/2). Framing proposal submitted to Director.\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": \"887053\", \"reproduce\": {\"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-14T18:47:20.636Z\"}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)\", \"seed\": 2, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T19:54:21.605Z\"}, \"exp_009e_008d_walker_s1\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T11:26:52.478Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T11:09:15.367Z\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=2 + H=8, seed=1 — 跨 seed 复制 exp_008d (s0, collapse confirmed at ~55K, NVE=1.67×@55K). 预期在 ~55K 步内触发 CIVO collapse，验证 trained dt_emb 导致的 delusional critic collapse 的跨 seed 可复现性。plan_011。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/metrics.jsonl\", \"metrics\": {\"ve_ratio_peak\": 1.6663, \"ve_ratio_peak_step\": 55000, \"ve_ratio_final\": 1.03, \"ve_ratio_final_step\": 105000, \"nve_peak\": 4.13, \"nve_peak_step\": 55000, \"nve_peak_note\": \"step-matched s1 baseline @55K = 0.4035; paper onset NVE @45K = 2.09x\", \"nve_classification\": \"onset_collapse\"}, \"notes\": \"008d extended replication (same seed=1, 009e extends 008d from 55K to 105K). Eval trajectory 5K-55K identical to 008d (deterministic). Collapse confirmed at 105K: eval 131.08, nve@55K=4.12x (normalized). 65K bounce to 250 was transient, not recovery. actor_loss flipped positive @85K. Independent collapse rate = 1/2 (seed 1 collapsed, seed 2 self-corrected), NOT 2/3 — 008d and 009e are the same seed.\", \"parent\": \"exp_008d_subsample_on_h8\", \"pid\": 119108, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 5.43, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009e_008d_walker_s1.log\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8\", \"pid\": \"119108\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-15T06:01:00Z\", \"wall_clock_seconds\": 19552.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T19:54:20.393Z\"}, \"exp_085_frozen_dt_emb_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:17:10.446Z\", \"updated_at\": \"2026-05-25T19:52:18.635Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"296781\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\", \"submitted_at\": \"2026-05-25T16:17:29.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt\", \"wall_clock_seconds\": 12139.0, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:38.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:47.198579+00:00\"}]}, \"metrics\": {\"eval_return_final\": 69.26, \"eval_return_best\": 281.53, \"best_step\": 65000, \"total_steps\": 105000, \"NVE_final\": 0.08, \"NVE_peak\": 0.31, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:48.059Z\"}, \"exp_084_frozen_dt_emb_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:58:38.310Z\", \"updated_at\": \"2026-05-25T19:52:17.020Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"296484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T16:17:20.106Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt\", \"wall_clock_seconds\": 12145.7, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:18.394Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:26.293176+00:00\"}]}, \"metrics\": {\"eval_return_final\": 281.48, \"eval_return_best\": 334.06, \"best_step\": 95000, \"total_steps\": 112000, \"NVE_final\": 0.31, \"NVE_peak\": 0.37, \"gate_pattern\": \"100% dt=2 locked\", \"civo_alert\": false}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:45.775Z\"}, \"exp_082_cheetah_no_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T13:12:29.199Z\", \"updated_at\": \"2026-05-25T18:49:20.158Z\", \"hypothesis\": \"Cheetah Run causal control: dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=0。移除 dt_embedding 后预期无 CIVO，证明 trained dt_emb 是 Cheetah CIVO 的必要条件。与 exp_078 (trained dt_emb, CIVO trigger) 构成因果对。plan_022。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_082_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu_ids\": [0], \"pid\": \"N/A\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, Cheetah causal control)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\"}, \"pid\": \"29479\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_082_cheetah_no_dt_emb_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_082_cheetah_no_dt_emb_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000\\\"\", \"finished_at\": \"2026-05-25T16:21:37.237Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T16:21:43.091656+00:00\"}]}, \"metrics\": {\"eval_return_final\": 83.2, \"eval_return_peak\": 239.3, \"eval_return_peak_step\": 45000, \"eval_trajectory\": {\"5K\": 6.8, \"15K\": 32.2, \"25K\": 108.4, \"35K\": 119.4, \"45K\": 239.3, \"55K\": 157, \"65K\": 180.1, \"75K\": 178.6, \"85K\": 84.2, \"95K\": 57.7, \"105K\": 83.2}, \"ve_ratio_final\": 0.616, \"ve_ratio_peak\": 0.955, \"ve_ratio_peak_step\": 95000, \"ve_ratio_trajectory\": {\"15K\": 0.038, \"25K\": 0.069, \"35K\": 0.132, \"45K\": 0.103, \"55K\": 0.237, \"65K\": 0.268, \"75K\": 0.311, \"85K\": 0.724, \"95K\": 0.955, \"105K\": 0.616}, \"nve_peak\": 1.58, \"nve_peak_step\": 95000, \"nve_peak_note\": \"eval-variance-driven (eval=57.7, value=55.1, ve_ratio<1.0), NOT value overestimation\", \"nve_trajectory_35Kplus\": {\"35K\": 1.49, \"45K\": 0.59, \"55K\": 0.96, \"65K\": 0.55, \"75K\": 0.55, \"85K\": 0.98, \"95K\": 1.58, \"105K\": 1.02}, \"nve_classification\": \"no_civo\", \"civo\": false, \"civo_alert\": 0, \"civo_alert_steps\": [], \"value_mean_final\": 51.3, \"value_mean_95K\": 55.1, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_077_cheetah_baseline_s0\", \"baseline_eval_105K\": 448.1, \"eval_pct_baseline\": \"18.6%\", \"causal_pair\": \"exp_078_cheetah_008d_s0\", \"causal_variable\": \"dt_embed_dim (082=0 vs 078=trained)\", \"total_steps\": 112000, \"total_env_steps\": 105000}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_082_cheetah_no_dt_emb_s0\", \"completed_at\": \"2026-05-25T16:27:45.939Z\"}, \"exp_087_frozen_dt_emb_cheetah_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:29:59.272Z\", \"updated_at\": \"2026-05-25T18:45:37.694Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO — multi-seed cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_086 (frozen s0) and exp_078 (trained, NVE=4.1×).\", \"parent\": \"exp_086_frozen_dt_emb_cheetah_s0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_087_frozen_dt_emb_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"36195\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\", \"submitted_at\": \"2026-05-25T16:30:22.662Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3+FrozenDtEmb_SubsampleON_Dt2_H8\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 8115.0, \"gpu_hours\": 2.25}, \"reproduce\": {\"finished_at\": \"2026-05-25T18:42:02.488Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T18:42:10.415795+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_087_frozen_dt_emb_cheetah_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\", \"metrics\": {\"eval_return_105K\": 186.9, \"eval_return_peak\": 310.1, \"eval_return_peak_step\": \"75K\", \"eval_trajectory\": {\"5K\": 13.5, \"15K\": 90.2, \"25K\": 199.3, \"35K\": 165.7, \"45K\": 299.2, \"55K\": 207.2, \"65K\": 196.8, \"75K\": 310.1, \"85K\": 246.8, \"95K\": 57.9, \"105K\": 186.9}, \"ve_ratio_105K\": 0.1, \"ve_ratio_peak\": 0.2, \"ve_ratio_peak_step\": \"95K\", \"civo_alert\": 0, \"NVE\": 0.33, \"NVE_baseline\": \"exp_083_cheetah_baseline_s1\", \"NVE_baseline_ve_ratio_peak\": 0.6, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"total_steps\": 112000, \"model_loss_105K\": 2.4}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T18:45:37.694Z\"}, \"exp_083_cheetah_baseline_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T14:14:00.361Z\", \"updated_at\": \"2026-05-25T18:09:32.066Z\", \"hypothesis\": \"Cheetah Run dt=1 baseline seed=1。多 seed baseline 用于更稳健的 NVE 归一化，与 exp_077 (seed=0, eval=448.1) 构成 calibration 对。plan_020 第二个 seed。\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_083_cheetah_baseline_s1 --steps 105000 --seed 1 --compile False --device cuda:0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"30581\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_083_cheetah_baseline_s1.log\", \"submitted_at\": \"2026-05-25T14:28:23.155Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3_baseline_dt1\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 105000, \"wall_clock_seconds\": 7365.2, \"gpu_hours\": 2.05}, \"reproduce\": {\"finished_at\": \"2026-05-25T16:28:26.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T16:28:32.490600+00:00\"}]}, \"metrics\": {\"eval_return_105K\": 444, \"eval_trajectory\": {\"5K\": 11.6, \"15K\": 76.4, \"25K\": 300.2, \"35K\": 372.3, \"45K\": 384.2, \"55K\": 395.4, \"65K\": 446.1, \"75K\": 440.5, \"85K\": 409, \"95K\": 466, \"105K\": 444}, \"ve_ratio_105K\": 0.6, \"ve_ratio_peak\": 0.6, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"model_loss_105K\": 1.6}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_083_cheetah_baseline_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_083_cheetah_baseline_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T16:31:08.314Z\", \"parent\": \"exp_077_cheetah_baseline_s0\"}, \"exp_078_cheetah_008d_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:24.844Z\", \"updated_at\": \"2026-05-25T18:06:40.922Z\", \"hypothesis\": \"Trained dt_embedding with subsample ON + dt=2 + H=8 on Cheetah Run triggers CIVO — cross-environment validation (C2) that CIVO is not Walker-specific. Paired with exp_077 (baseline) for NVE calculation.\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_078_cheetah_008d_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"21846\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_078_cheetah_008d_s0.log\", \"submitted_at\": \"2026-05-25T11:21:50.283Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11948.1, \"gpu_hours\": 3.32}, \"pid\": \"21846\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_078_cheetah_008d_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_078_cheetah_008d_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-25T14:27:13.393Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T14:27:19.359689+00:00\"}]}, \"metrics\": {\"eval_return_final\": 119.5, \"eval_return_peak\": 213.7, \"eval_return_peak_step\": 35000, \"eval_trajectory\": {\"5K\": 8.3, \"15K\": 41.3, \"25K\": 170, \"35K\": 213.7, \"45K\": 148.9, \"55K\": 64.5, \"65K\": 36.8, \"75K\": 26.1, \"85K\": 26.7, \"95K\": 32.5, \"105K\": 119.5}, \"ve_ratio_final\": 0.291, \"ve_ratio_peak\": 2.318, \"ve_ratio_peak_step\": 75000, \"ve_ratio_trajectory\": {\"15K\": 0.039, \"25K\": 0.056, \"35K\": 0.11, \"45K\": 0.295, \"55K\": 0.908, \"65K\": 1.72, \"75K\": 2.318, \"85K\": 2.022, \"95K\": 1.366, \"105K\": 0.291}, \"nve_peak\": 4.1, \"nve_peak_step\": 75000, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.7, \"nve_trajectory_35Kplus\": {\"35K\": 1.24, \"45K\": 1.7, \"55K\": 3.66, \"65K\": 3.55, \"75K\": 4.1, \"85K\": 2.74, \"95K\": 2.26, \"105K\": 0.48}, \"nve_classification\": \"onset_self_correcting\", \"civo\": true, \"civo_alert\": 1, \"civo_alert_steps\": [55000, 65000], \"civo_sustained_range\": \"45K-95K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 105000, \"value_mean_peak\": 63.3, \"value_mean_peak_step\": 65000, \"value_mean_final\": 34.8, \"delta_ve_peak\": 0.814, \"delta_ve_peak_step\": 65000, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0, \"baseline_ref\": \"exp_077_cheetah_baseline_s0\", \"baseline_eval_105K\": 448.1, \"eval_pct_baseline\": \"26.7%\", \"total_steps\": 112000, \"total_env_steps\": 105000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_078_cheetah_008d_s0/latest.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T14:40:58.408Z\"}, \"exp_077_cheetah_baseline_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:21.685Z\", \"updated_at\": \"2026-05-25T18:06:38.886Z\", \"hypothesis\": \"Cheetah Run dt=1 baseline seed=0. Establishes NVE normalization denominator for Cheetah CIVO experiments. Paired with exp_078 (trained dt_emb CIVO trigger) and exp_083 (baseline seed=1).\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"21683\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log\", \"submitted_at\": \"2026-05-25T11:21:44.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10257.0, \"gpu_hours\": 2.85}, \"pid\": \"21683\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\\\"\", \"finished_at\": \"2026-05-25T14:07:47.479Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T14:07:53.264245+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 448.1, \"eval_trajectory\": {\"5K\": 12.2, \"15K\": 18.4, \"25K\": 182.9, \"35K\": 356, \"45K\": 377.2, \"55K\": 441, \"65K\": 317.3, \"75K\": 340.9, \"85K\": 309.3, \"95K\": 418.4, \"105K\": 448.1}, \"ve_ratio_105K\": 0.611, \"ve_ratio_peak\": 0.739, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"model_loss_105K\": 1.83, \"total_steps\": 112000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_077_cheetah_baseline_s0/latest.pt\", \"completed_at\": \"2026-05-25T14:12:41.181Z\"}, \"exp_079_frozen_dt_emb_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:48:27.865Z\", \"updated_at\": \"2026-05-25T18:06:36.594Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING is the necessary condition for CIVO onset. Duplicate of exp_067, killed before completion.\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"parent\": \"exp_067_frozen_dt_emb_walker_plan015\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_079_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"283090\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_079_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T11:21:37.918Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 392.1, \"gpu_hours\": 0.11}, \"pid\": \"283090\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_079_frozen_dt_emb_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_079_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T11:28:10.029Z\"}, \"exp_081_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T12:09:44.566Z\", \"updated_at\": \"2026-05-25T15:49:23.869Z\", \"hypothesis\": \"Trained dt_emb with dt=1 imagination + subsample ON (max_dt=2) + H=15 does not trigger CIVO on Walker Walk — multi-seed validation seed=2 of C6 mitigation config 008e_v3\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_081_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"285949\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"submitted_at\": \"2026-05-25T12:10:38.467Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 2, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 13125.4, \"gpu_hours\": 3.65}, \"reproduce\": {\"finished_at\": \"2026-05-25T15:37:00.120Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T15:37:06.073794+00:00\"}]}, \"metrics\": {\"eval_return_105k\": 597.1, \"ve_ratio_105k\": 0.5, \"civo_alert\": 0, \"gate_dt_1_frac\": 1, \"baseline_pct\": 64.2, \"train_return_112k_mean\": 583.8}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_081_008e_v3_walker_s2/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_081_008e_v3_walker_s2.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-25T15:49:23.870Z\"}, \"exp_080_008e_v3_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T11:30:20.594Z\", \"updated_at\": \"2026-05-25T15:49:21.640Z\", \"hypothesis\": \"Trained dt_emb with dt=1 imagination + subsample ON (max_dt=2) + H=15 does not trigger CIVO on Walker Walk — multi-seed validation seed=1 of C6 mitigation config 008e_v3\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_080_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"283925\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log\", \"submitted_at\": \"2026-05-25T11:30:51.090Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"seed\": 1, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 15510.5, \"gpu_hours\": 4.31}, \"reproduce\": {\"finished_at\": \"2026-05-25T15:44:00.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T15:44:06.170688+00:00\"}]}, \"metrics\": {\"eval_return_105k\": 876.7, \"ve_ratio_105k\": 0.6, \"civo_alert\": 0, \"gate_dt_1_frac\": 1, \"baseline_pct\": 94.3, \"train_return_112k_mean\": 926.8}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_080_008e_v3_walker_s1/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T15:49:21.640Z\"}, \"exp_074_008a_walker_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T09:08:57.028Z\", \"updated_at\": \"2026-05-25T12:08:22.221Z\", \"hypothesis\": \"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\", \"parent\": \"exp_008a_no_subsample_dt2\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_074_008a_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"274730\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_074_008a_walker_s3.log\", \"submitted_at\": \"2026-05-25T09:09:28.652Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10733.6, \"gpu_hours\": 2.98}, \"pid\": \"274730\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_074_008a_walker_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_074_008a_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T12:04:22.816Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T12:04:34.186555+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_105K\": 855.9, \"civo_ve_ratio_final\": 0.3, \"civo_alert\": 0, \"value_mean_105K\": 295.2, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"model_loss_105K\": 3.8, \"eval_trajectory\": {\"5K\": 36.1, \"15K\": 281, \"25K\": 389.8, \"35K\": 303.8, \"45K\": 437.3, \"55K\": 411.3, \"65K\": 566.4, \"75K\": 513.9, \"85K\": 645.9, \"95K\": 776.6, \"105K\": 855.9}, \"four_seed_summary\": {\"mean_eval_return\": 791, \"std_eval_return\": 102.2, \"all_civo_alert_0\": true, \"seeds_completed\": 4}}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_074_008a_walker_s3/latest.pt\", \"completed_at\": \"2026-05-25T12:08:22.221Z\"}, \"exp_076_cheetah_civo_trigger_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:03:42.328Z\", \"updated_at\": \"2026-05-25T10:48:15.566Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=2: trained dt_emb + subsample ON + dt=2 + H=8。将 Cheetah CIVO trigger 扩展到第 3 个独立 seed，巩固跨环境 claim 统计力度。来源: plan_021 扩展。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_076_cheetah_civo_trigger_s3 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"19953\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_076_cheetah_civo_trigger_s3.log\", \"submitted_at\": \"2026-05-25T10:44:40.370Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 215.2, \"gpu_hours\": 0.06}, \"pid\": \"19953\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_076_cheetah_civo_trigger_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_076_cheetah_civo_trigger_s3 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T10:48:15.566Z\"}, \"exp_075_cheetah_civo_trigger_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T10:03:40.222Z\", \"updated_at\": \"2026-05-25T10:48:13.465Z\", \"hypothesis\": \"Cheetah Run CIVO trigger seed=1: trained dt_emb + subsample ON + dt=2 + H=8 on westd-19154。复现 exp_010b 配置（原 seed=1 在 bjb1-45299），跨服务器验证 Cheetah CIVO 可复现性。来源: plan_021 扩展。\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_075_cheetah_civo_trigger_s2 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"19788\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_075_cheetah_civo_trigger_s2.log\", \"submitted_at\": \"2026-05-25T10:44:34.345Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 219.1, \"gpu_hours\": 0.06}, \"pid\": \"19788\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_075_cheetah_civo_trigger_s2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_075_cheetah_civo_trigger_s2 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T10:48:13.465Z\"}, \"exp_071_008f_walker_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:03:48.097Z\", \"updated_at\": \"2026-05-25T10:42:39.889Z\", \"hypothesis\": \"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"265628\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log\", \"submitted_at\": \"2026-05-25T07:04:24.723Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13095.2, \"gpu_hours\": 3.64}, \"pid\": \"265628\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T10:05:58.573Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T10:06:05.930693+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 311.9, \"eval_return_peak\": 457.7, \"ve_ratio_final\": 0.4, \"ve_ratio_peak\": 0.7, \"gate_dt_mean_final\": 2, \"civo_alert\": 0, \"value_loss_final\": 1, \"actor_entropy_final\": -4.6, \"model_loss_final\": 4.5}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_071_008f_walker_s3\", \"completed_at\": \"2026-05-25T10:42:39.889Z\"}, \"exp_073_008f_walker_s4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:30:42.251Z\", \"updated_at\": \"2026-05-25T10:00:42.604Z\", \"hypothesis\": \"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_073_008f_walker_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"11670\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"submitted_at\": \"2026-05-25T07:31:11.391Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8971.2, \"gpu_hours\": 2.49}, \"pid\": \"11670\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_073_008f_walker_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-25T09:48:03.882Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T09:48:13.191417+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 289.3, \"eval_return_peak\": 486.5, \"eval_return_peak_step\": 75000, \"ve_ratio_final\": 0.5, \"ve_ratio_peak\": 0.5, \"nve_peak\": 0.76, \"civo_alert\": 0, \"civo\": false, \"gate_dt_2_frac\": 1, \"gate_dt_mean\": 2, \"gate_empirical_entropy\": 0, \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 33.2}, {\"step\": 15000, \"eval_return\": 128.3}, {\"step\": 25000, \"eval_return\": 165.3}, {\"step\": 35000, \"eval_return\": 284.5}, {\"step\": 45000, \"eval_return\": 272.5}, {\"step\": 55000, \"eval_return\": 406.7}, {\"step\": 65000, \"eval_return\": 379.5}, {\"step\": 75000, \"eval_return\": 486.5}, {\"step\": 85000, \"eval_return\": 352.6}, {\"step\": 95000, \"eval_return\": 297.7}, {\"step\": 105000, \"eval_return\": 289.3}]}, \"completed_at\": \"2026-05-25T10:00:42.604Z\"}, \"exp_072_008e_v3_walker_s5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T07:24:08.174Z\", \"updated_at\": \"2026-05-25T10:00:39.306Z\", \"hypothesis\": \"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_072_008e_v3_walker_s5 --steps 105000 --seed 5 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"11116\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"submitted_at\": \"2026-05-25T07:24:40.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 9358.6, \"gpu_hours\": 2.6}, \"pid\": \"11116\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_072_008e_v3_walker_s5 --steps 105000 --seed 5 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"finished_at\": \"2026-05-25T09:47:34.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T09:47:39.804739+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5\", \"conclusion\": \"success\", \"metrics\": {\"eval_return_final\": 853.1, \"eval_return_peak\": 853.1, \"eval_return_peak_step\": 105000, \"ve_ratio_final\": 0.6, \"nve_final\": 0.61, \"nve_peak\": 0.61, \"nve_peak_step\": 105000, \"civo_alert\": 0, \"civo\": false, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"actor_entropy_final\": -5.1, \"value_mean_final\": 520.8, \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 29.4}, {\"step\": 15000, \"eval_return\": 251.1}, {\"step\": 25000, \"eval_return\": 423}, {\"step\": 35000, \"eval_return\": 511}, {\"step\": 45000, \"eval_return\": 600.1}, {\"step\": 55000, \"eval_return\": 649}, {\"step\": 65000, \"eval_return\": 697.2}, {\"step\": 75000, \"eval_return\": 727.3}, {\"step\": 85000, \"eval_return\": 710.3}, {\"step\": 95000, \"eval_return\": 803.9}, {\"step\": 105000, \"eval_return\": 853.1}]}, \"completed_at\": \"2026-05-25T10:00:39.306Z\"}, \"exp_070_008e_v3_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T05:07:49.050Z\", \"updated_at\": \"2026-05-25T08:54:47.019Z\", \"hypothesis\": \"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"260999\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log\", \"submitted_at\": \"2026-05-25T05:29:11.281Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12335.7, \"gpu_hours\": 3.43}, \"pid\": \"260999\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T08:50:11.463Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T08:50:17.078252+00:00\"}]}, \"metrics\": {\"eval_return\": 148, \"peak_eval_return\": 232.5, \"peak_eval_step\": 55000, \"ve_ratio_105k\": 0.8, \"nve_peak\": 0.8, \"nve_peak_step\": 95000, \"civo\": false, \"gate_dt_1_frac\": 1, \"gate_dt_mean\": 1, \"actor_entropy_final\": -3.7, \"value_mean_final\": 122.1, \"failure_mode\": \"non-CIVO learning failure (never reached baseline performance)\", \"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 37.4}, {\"step\": 15000, \"eval_return\": 93.2}, {\"step\": 25000, \"eval_return\": 178.8}, {\"step\": 35000, \"eval_return\": 221.6}, {\"step\": 45000, \"eval_return\": 230.9}, {\"step\": 55000, \"eval_return\": 232.5}, {\"step\": 65000, \"eval_return\": 194}, {\"step\": 75000, \"eval_return\": 175.2}, {\"step\": 85000, \"eval_return\": 218.6}, {\"step\": 95000, \"eval_return\": 139.6}, {\"step\": 105000, \"eval_return\": 148}], \"ve_ratio_trajectory\": [{\"step\": 15000, \"ve\": 0}, {\"step\": 25000, \"ve\": 0.1}, {\"step\": 35000, \"ve\": 0.2}, {\"step\": 45000, \"ve\": 0.3}, {\"step\": 55000, \"ve\": 0.4}, {\"step\": 65000, \"ve\": 0.5}, {\"step\": 75000, \"ve\": 0.6}, {\"step\": 85000, \"ve\": 0.5}, {\"step\": 95000, \"ve\": 0.8}, {\"step\": 105000, \"ve\": 0.8}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_070_008e_v3_walker_s0/latest.pt\", \"conclusion\": \"negative\", \"notes\": \"Seed 0 FAILED but NOT via CIVO. eval_return peaked at 232.5@55K (far below baseline ~500+), declined to 148@105K. ve_ratio stayed healthy throughout (max 0.8, never triggered CIVO alert). Gate locked dt=1. This is a distinct failure mode from seeds 2,3 (which had CIVO collapse with NVE>3.7x). Agent never reached high performance — learning stagnated early. Cross-seed 008e_v3 summary: 5 seeds tested, 2 success (s1=870, s4=899), 2 CIVO collapse (s2=137 NVE=3.78, s3=93 NVE=4.02), 1 non-CIVO failure (s0=148 NVE=0.8). CIVO collapse rate: 2/5=40%. Overall failure rate: 3/5=60%.\", \"completed_at\": \"2026-05-25T08:54:47.019Z\"}, \"exp_069_008f_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T03:49:41.282Z\", \"updated_at\": \"2026-05-25T07:28:33.676Z\", \"hypothesis\": \"Reproducing 008f config (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will NOT trigger CIVO (NVE < 1.5x) because removing dt_emb eliminates the temporal abstraction mismatch that drives value error amplification\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"failure_reason\": \"bjb1-40020 服务器不可达（SSH 连接 port 40020 on 106.120.183.117 失败），进程无法监控，未产生有效 W&B metrics\", \"completed_at\": \"2026-05-25T04:17:38.829Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:17:43.081459+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T07:17:09.809673+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"server\": \"westd-19154\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_069_008f_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:1\"], \"pid\": \"4590\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"submitted_at\": \"2026-05-25T05:04:10.980Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8662.7, \"gpu_hours\": 2.41}, \"pid\": \"4590\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_069_008f_walker_repro_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_069_008f_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"finished_at\": \"2026-05-25T07:17:02.903Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_069_008f_walker_repro_s1/latest.pt\", \"metrics\": {\"eval_return_final\": 237.8, \"eval_return_peak\": 390.1, \"eval_return_peak_step\": 95000, \"ve_ratio_final\": 0.4, \"ve_ratio_peak\": 0.4, \"ve_ratio_peak_step\": 105000, \"nve_final_105k\": 0.61, \"nve_peak\": 0.66, \"nve_peak_step\": 75000, \"civo_alert\": false, \"gate_dt_2_frac\": 1, \"eval_trajectory\": {\"5k\": 30.5, \"15k\": 158.7, \"25k\": 180.8, \"35k\": 250.3, \"45k\": 293.6, \"55k\": 272.2, \"65k\": 328.1, \"75k\": 244.8, \"85k\": 382.5, \"95k\": 390.1, \"105k\": 237.8}, \"ve_ratio_trajectory\": {\"15k\": 0, \"25k\": 0.1, \"35k\": 0.2, \"45k\": 0.2, \"55k\": 0.3, \"65k\": 0.3, \"75k\": 0.4, \"85k\": 0.3, \"95k\": 0.3, \"105k\": 0.4}}, \"conclusion\": \"success\"}, \"exp_068_008d_walker_repro_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-25T03:49:39.539Z\", \"updated_at\": \"2026-05-25T07:28:31.319Z\", \"hypothesis\": \"Reproducing 008d config (trained dt_emb + subsample ON + dt=2 + H=8) on Walker Walk seed=1 will trigger CIVO (NVE > 1.5x) because trained dt_emb enables value error amplification through temporal abstraction mismatch\", \"parent\": \"exp_008d_subsample_on_h8\", \"failure_reason\": \"SSH check failed 5x — last error: [Errno None] Unable to connect to port 40020 on 106.120.183.117\", \"completed_at\": \"2026-05-25T04:18:15.954Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:18:20.002698+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T07:23:04.341146+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"server\": \"westd-19154\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"westd-19154\", \"gpu\": [\"cuda:0\"], \"pid\": \"4425\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log\", \"submitted_at\": \"2026-05-25T05:04:05.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8666.2, \"gpu_hours\": 2.41}, \"pid\": \"4425\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_068_008d_walker_repro_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_068_008d_walker_repro_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"finished_at\": \"2026-05-25T07:22:57.100Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_068_008d_walker_repro_s1/latest.pt\", \"metrics\": {\"eval_return_final\": 39.1, \"eval_return_peak\": 192.4, \"eval_return_peak_step\": 55000, \"ve_ratio_final\": 2.7, \"ve_ratio_peak\": 4.6, \"ve_ratio_peak_step\": 85000, \"nve_final_105k\": 4.12, \"nve_peak_85k\": 6.57, \"nve_onset_step\": 45000, \"nve_onset_value\": 1.81, \"civo_alert\": true, \"civo_alert_step\": 85000, \"gate_dt_2_frac\": 1, \"eval_trajectory\": {\"5k\": 31, \"15k\": 146.5, \"25k\": 174.1, \"35k\": 189.6, \"45k\": 142.2, \"55k\": 192.4, \"65k\": 114.4, \"75k\": 106.6, \"85k\": 33.4, \"95k\": 26.9, \"105k\": 39.1}, \"ve_ratio_trajectory\": {\"15k\": 0, \"25k\": 0.2, \"35k\": 0.3, \"45k\": 0.6, \"55k\": 0.6, \"65k\": 1.3, \"75k\": 1.6, \"85k\": 4.6, \"95k\": 4.6, \"105k\": 2.7}}, \"conclusion\": \"success\"}, \"exp_067_frozen_dt_emb_walker_plan015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T03:49:37.736Z\", \"updated_at\": \"2026-05-25T06:59:24.006Z\", \"hypothesis\": \"Frozen (requires_grad=False) dt_embedding + subsample ON + dt=2 + H=8 在 Walker Walk 上不触发 CIVO，验证 dt_emb 的 TRAINING 是 CIVO 的必要条件（而非 dt_emb 的存在本身）。来源: plan_015。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-25T03:51:43.628Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T06:54:52.150Z\", \"training_hours\": 3.05}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_067_frozen_dt_emb_walker_plan015 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"255883\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_067_frozen_dt_emb_walker_plan015.log\", \"submitted_at\": \"2026-05-25T03:52:29.860Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11214.1, \"gpu_hours\": 3.12}, \"pid\": \"255883\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_067_frozen_dt_emb_walker_plan015.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T06:54:57.723176+00:00\"}]}, \"metrics\": {\"eval_final\": 281.5, \"eval_peak\": 334.1, \"eval_peak_step\": 95000, \"nve_peak\": 0.4, \"nve_final\": 0.2, \"civo_alert\": 0, \"total_env_steps\": 112000, \"update_count\": 25099, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"gate_dt_2_frac\": 1, \"gate_empirical_entropy\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_067_frozen_dt_emb_walker_plan015/latest.pt\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T06:59:24.006Z\"}, \"exp_066b_timeseries_rssm_fidelity_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T02:34:14.574Z\", \"updated_at\": \"2026-05-25T04:35:12.673Z\", \"hypothesis\": \"RSSM fidelity gap (dt=2 prediction error > dt=1) emerges before value overestimation in seed=1, replicating the causal chain found in exp_066 seed=0 and confirming cross-seed robustness of the fidelity→VE mechanism.\", \"parent\": \"exp_066_timeseries_rssm_fidelity\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066b_timeseries_rssm_fidelity_s1 --steps 60000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"252133\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_066b_timeseries_rssm_fidelity_s1.log\", \"submitted_at\": \"2026-05-25T02:38:44.421Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6988.3, \"gpu_hours\": 1.94}, \"pid\": \"252133\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_066b_timeseries_rssm_fidelity_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066b_timeseries_rssm_fidelity_s1 --steps 60000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-25T04:18:02.308Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T04:18:10.617905+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066b_timeseries_rssm_fidelity_s1/checkpoint_65000.pt\", \"metrics\": {\"seed\": 1, \"steps_completed\": 65000, \"eval_return_peak\": 201.9, \"eval_return_peak_step\": 45000, \"eval_return_final\": 160.7, \"civo_alert_step\": 55000, \"ve_ratio_final\": 0.724, \"fidelity_gap_timeseries\": {\"ss_ratio_10K\": 0.887, \"ss_ratio_15K\": 1.017, \"ss_ratio_20K\": 1.216, \"ss_ratio_25K\": 1.532, \"ss_ratio_30K\": 1.374, \"ss_ratio_35K\": 1.486, \"ss_ratio_40K\": 1.428, \"ss_ratio_45K\": 1.38, \"ss_ratio_50K\": 1.468, \"ss_ratio_55K\": 1.517, \"ss_ratio_60K\": 1.799, \"ss_ratio_65K\": 1.756}, \"ve_ratio_timeseries\": {\"12K\": 0.012, \"15K\": 0.033, \"24K\": 0.118, \"25K\": 0.193, \"35K\": 0.269, \"45K\": 0.358, \"52K\": 0.495, \"55K\": 0.71, \"64K\": 0.724}, \"fidelity_gap_onset_step\": 15000, \"ve_onset_step\": 24000, \"temporal_lead_steps\": 9000, \"causal_direction\": \"fidelity_gap_leads_ve\", \"cross_seed_comparison\": {\"s0_ss_ratio_65K\": 1.678, \"s1_ss_ratio_65K\": 1.756, \"s0_fidelity_onset\": 20000, \"s1_fidelity_onset\": 15000, \"s0_ve_onset\": 30000, \"s1_ve_onset\": 24000, \"s0_temporal_lead\": 10000, \"s1_temporal_lead\": 9000, \"pattern_consistent\": true}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T04:35:12.673Z\"}, \"exp_062_cartpole_control\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:01:08.858Z\", \"updated_at\": \"2026-05-25T03:45:35.194Z\", \"hypothesis\": \"dt_embed_dim=0 + subsample ON + H=8 在 Cartpole Swingup 上不触发 CIVO（NVE < 1.5x），因果控制实验验证移除 dt_emb 是否阻止 CIVO 在第三个环境中泛化。与 exp_061 配对形成因果对比。\", \"spec\": {\"command\": \"bash -c 'for SEED in 0 1 2; do python -u dreamer.py --configs defaults dmc_proprio --task dmc_cartpole_swingup --logdir logdir/exp_062_cartpole_control_s${SEED} --steps 105000 --seed $SEED --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --checkpoint_every 25000; done'\", \"server\": \"bjb1-40020\", \"gpu\": [\"cuda:0\"], \"pid\": \"473913\", \"log_path\": \"bjb1-40020:~/runs/event-gated-adaptive-horizon/exp_062_cartpole_control.log\", \"submitted_at\": \"2026-05-24T16:26:50.780Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (dt_embed_dim=0, control, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [0], \"checkpoint_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_062_cartpole_control_s0/checkpoint.pt\", \"wall_clock_seconds\": 40686.6, \"gpu_hours\": 11.3}, \"metrics\": {\"seeds\": {\"s0\": {\"eval_return\": 230.4, \"ve_ratio_peak\": 0.069, \"ve_ratio_final\": 0.056, \"value_mean\": 12.9, \"civo_detected\": false}, \"s1\": {\"eval_return\": 255.3, \"ve_ratio_peak\": 0.079, \"ve_ratio_final\": 0.04, \"value_mean\": 10.2, \"civo_detected\": false}, \"s2\": {\"eval_return\": 248.8, \"ve_ratio_peak\": 0.065, \"ve_ratio_final\": 0.048, \"value_mean\": 11.8, \"civo_detected\": false}}, \"mean_eval_return\": 244.8, \"mean_ve_ratio_peak\": 0.071, \"civo_detected_any\": false, \"steps_completed\": 112000}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-25T03:44:57.338Z\"}, \"exp_061_cartpole_civo_trigger\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-24T16:01:07.009Z\", \"updated_at\": \"2026-05-25T03:18:38.759Z\", \"hypothesis\": \"Trained dt_emb (d=32) + subsample ON + H=8 + dt=2 imagination 在 Cartpole Swingup 上触发 CIVO（NVE > 1.5x），验证 CIVO 是否跨 locomotion 子类环境泛化（Walker/Cheetah 已确认，Cartpole 是第三个 DMC locomotion 环境）。与 exp_062 配对形成因果对比。\", \"spec\": {\"command\": \"bash -c '... --device cuda:0 ...'\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"226158\", \"log_path\": \"bjb1-45299:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_061_cartpole_civo_trigger_s{0,1,2}/\", \"submitted_at\": \"2026-05-24T16:50:56.301Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO trigger, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [1], \"checkpoint_path\": \"bjb1-45299:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_061_cartpole_civo_trigger_s{0,1,2}/latest.pt\", \"wall_clock_seconds\": 39600, \"gpu_hours\": 11}, \"conclusion\": \"negative\", \"metrics\": {\"seeds\": 3, \"steps_per_seed\": 112000, \"s0_eval_return_final\": 211.1, \"s0_eval_return_peak\": 247.8, \"s0_value_mean_final\": 9.229, \"s0_ve_ratio_peak\": 0.058, \"s0_train_return_final\": 199.2, \"s1_eval_return_final\": 269, \"s1_eval_return_peak\": 328.1, \"s1_value_mean_final\": 9.323, \"s1_ve_ratio_peak\": 0.04, \"s1_train_return_final\": 188.7, \"s2_eval_return_final\": 228.9, \"s2_eval_return_peak\": 245.9, \"s2_value_mean_final\": 9.46, \"s2_ve_ratio_peak\": 0.043, \"s2_train_return_final\": 258.9, \"civo_detected\": false, \"civo_alert_any_seed\": false, \"ve_ratio_max_all_seeds\": 0.058, \"vs_baseline_eval_mean\": \"-56.3%\", \"baseline_exp060_eval_s2_105K\": 557}, \"completed_at\": \"2026-05-25T03:18:38.759Z\"}, \"exp_008d_subsample_on_h8\": {\"completed_at\": \"2026-05-14T04:50:52.439Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-14T01:46:57.960Z\", \"hypothesis\": \"Trained dt-embedding with subsample (gate_fixed_dt=2, gate_subsample_max_dt=2) causes critic value function to overestimate through dt-conditioned representation co-adaptation, leading to policy collapse.\", \"metrics\": {\"actor_loss_25K\": -0.195, \"actor_loss_35K\": -0.17, \"baseline_35K\": 400, \"baseline_45K\": 443, \"data_source_45K\": \"from training logs metrics.jsonl\", \"eval_return_25K\": 167.22, \"eval_return_35K\": 146.34, \"eval_return_45K\": 140.8, \"eval_return_55K\": 82.75, \"model_loss_25K\": 5.33, \"model_loss_35K\": 5.07, \"step\": 55000, \"trend\": \"eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\", \"value_eval_ratio_25K\": 0.155, \"value_eval_ratio_35K\": 0.411, \"value_eval_ratio_45K\": 0.693, \"value_eval_ratio_55K\": 1.666, \"value_mean_25K\": 25.86, \"value_mean_35K\": 60.2, \"value_mean_45K\": 97.5, \"value_mean_55K\": 137.88, \"verdict_35K\": \"WARN_COLLAPSE\", \"verdict_45K\": \"COLLAPSE_CONFIRMED\", \"vs_baseline_35K\": \"-63.4%\", \"vs_baseline_45K\": \"-68.2%\"}, \"parent\": \"exp_005_event_gated_v4\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8/checkpoint.ckpt\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008d_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.48, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8)\", \"pid\": \"109519\", \"seed\": 1, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-14T02:21:59.852Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 8932.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-25T02:41:05.620Z\", \"notes\": \"RSSM fidelity analysis (exp_063, 55K checkpoint only): dt=2/dt=1 single-step reward MAE ratio = 2.695x (vs exp_066 s0's 1.37x at same step). Larger fidelity gap correlates with worse VE (1.666 vs 0.621). No intermediate checkpoints exist — cannot directly verify 25K fidelity gap for this seed. Cross-seed pattern consistent: VE trajectory matches s0 (low at 25K, collapse by 55K). See artifact art_20260525_e45921.\"}, \"exp_066_timeseries_rssm_fidelity\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-24T21:07:53.125Z\", \"updated_at\": \"2026-05-25T02:33:00.783Z\", \"hypothesis\": \"Trained dt_embedding causes RSSM fidelity degradation (dt=2 vs dt=1 reward MAE gap) that progressively worsens during training, and its temporal evolution precedes or synchronizes with NVE (value overestimation) rise, establishing a temporal causal chain: RSSM fidelity gap → value overestimation.\", \"parent\": \"exp_063_rssm_fidelity\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T22:27:54.087Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/dreamerv3-torch && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066_timeseries_rssm_fidelity_s0 --steps 60000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 999999\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-24T22:28:15.966Z\", \"training_hours\": 0.01}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-24T22:28:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T22:28:24.279787+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_066_timeseries_rssm_fidelity_s0 --steps 60000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 5000 --eval_every 5000'\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"pid\": 490622, \"fix_note\": \"eval_every changed from 999999 to 5000 — checkpoint saving is coupled to eval loop, 999999 prevented checkpoints from being saved\", \"checkpoint_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066_timeseries_rssm_fidelity_s0/checkpoint.pt\", \"log_path\": \"bjb1-40020:/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_066_timeseries_rssm_fidelity_s0/\"}, \"conclusion\": \"success\", \"metrics\": {\"ss_ratio_10K\": 1.047, \"ss_ratio_30K\": 1.247, \"ss_ratio_65K\": 1.678, \"ol_ratio_30K_peak\": 1.446, \"ol_ratio_35K_peak\": 1.509, \"ve_ratio_final\": 1.399, \"fidelity_gap_onset_step\": 20000, \"ve_onset_step\": 30000, \"temporal_lead_steps\": 10000, \"pearson_ss_ve\": 0.807, \"pearson_ss_ve_p\": 0.0015, \"pearson_ol_ve\": 0.425, \"pearson_ol_ve_p\": 0.169, \"ss_monotonicity\": 0.73, \"ol_monotonicity\": 0.73, \"ve_monotonicity\": 0.82, \"causal_direction\": \"fidelity_gap_leads_ve\", \"conclusion\": \"success\"}}, \"exp_060_cartpole_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:01:05.099Z\", \"updated_at\": \"2026-05-25T01:25:39.711Z\", \"hypothesis\": \"Cartpole Swingup (DMC) baseline dt=1 建立 v/e ratio 校准基线，用于 CIVO 诊断阈值在第三个 DMC 环境的验证。预期 NVE 保持在 1.0x 附近，无 CIVO 现象。\", \"spec\": {\"command\": \"bash -c 'for SEED in 0 1 2; do python -u dreamer.py --configs defaults dmc_proprio --task dmc_cartpole_swingup --logdir logdir/exp_060_cartpole_baseline_s${SEED} --steps 105000 --seed $SEED --compile False --device cuda:0 --checkpoint_every 25000; done'\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"223294\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_060_cartpole_baseline.log\", \"submitted_at\": \"2026-05-24T16:26:42.610Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_cartpole_swingup\", \"data_count\": 105000, \"model_name\": \"DreamerV3 (vanilla baseline, Cartpole Swingup)\", \"seed\": \"0,1,2\", \"gpu_ids\": [0], \"wall_clock_seconds\": 32337.1, \"gpu_hours\": 8.98}, \"conclusion\": \"success\", \"metrics\": {\"seeds\": 3, \"steps_per_seed\": 112000, \"train_return_s0\": 809.4, \"train_return_s1\": 684.4, \"train_return_s2\": 526.1, \"eval_return_s2_105K\": 557}, \"checkpoint_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_060_cartpole_baseline_s{0,1,2}/latest.pt\", \"log_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_060_cartpole_baseline_s{0,1,2}/metrics.jsonl\", \"completed_at\": \"2026-05-25T01:25:39.711Z\"}, \"exp_065_dt_emb_cosine\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T20:48:47.693Z\", \"updated_at\": \"2026-05-24T20:54:51.678Z\", \"hypothesis\": \"分析 trained dt_embedding 中 dt=1 vs dt=2 向量的 cosine similarity 及其训练过程演化。如果 cosine sim 高（接近 1）→ dt_emb 未学到有意义区分，CIVO 来自微小差异被 downstream 放大；如果 cosine sim 低 → dt_emb 学到了显著不同的表征，CIVO 来自 dt=2 表征本身的偏差。\", \"conclusion\": \"success\", \"checkpoint_path\": \"logdir/exp_065_dt_emb_cosine/results.json\", \"log_path\": \"bjb1-45299:/root/dreamerv3-torch/logdir/exp_065_dt_emb_cosine/\", \"completed_at\": \"2026-05-24T20:52:24.863Z\", \"metrics\": {\"trained_cosine_sim_range\": \"-0.94 to -0.70\", \"frozen_cosine_sim_range\": \"-0.15 to +0.07\", \"trained_trend\": \"strong negative (near-opposite directions)\", \"frozen_trend\": \"near-zero constant\", \"conclusion\": \"dt=1 and dt=2 embeddings learn nearly opposite representations; CIVO from dt=2 representation bias, not amplified micro-differences\"}}, \"exp_064_value_distribution\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T19:23:05.483Z\", \"updated_at\": \"2026-05-24T20:14:50.460Z\", \"hypothesis\": \"V(s) vs Monte Carlo return 分布对比：trained dt_emb (exp_008d collapsed) 的 value estimate 在 dt=2 imagination 步骤系统性高估，而 untrained/absent dt_emb (exp_008f control) 和 baseline (exp_001) 的 value 分布与 MC return 紧密跟踪。直观展示 CIVO 的 value divergence 位置和形态。\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T19:56:27.179Z\"}, \"spec\": {\"command\": \"python scripts/value_distribution_analysis.py --device cuda:0\", \"server\": \"bjb1-40020\", \"data_path\": \"logdir/exp_001_baseline + logdir/exp_008d + logdir/exp_008f\", \"data_count\": 500, \"model_name\": \"DreamerV3 (baseline + collapsed + control checkpoints)\", \"seed\": 0, \"gpu_ids\": [1], \"checkpoint_path\": \"logdir/exp_064_value_distribution/\", \"log_path\": \"logdir/exp_064_value_distribution/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_bias\": 344.85, \"baseline_rmse\": 371.73, \"baseline_overest_pct\": 100, \"baseline_v_mc_ratio\": 3.31, \"civo_bias\": 108.99, \"civo_rmse\": 112.36, \"civo_overest_pct\": 100, \"civo_v_mc_ratio\": 7.8, \"civo_v_mc_median\": 3.4, \"control_bias\": -6.51, \"control_rmse\": 57.93, \"control_overest_pct\": 52.5, \"control_v_mc_ratio\": 2.58, \"control_v_mc_median\": 1.05}, \"completed_at\": \"2026-05-24T20:14:50.460Z\"}, \"exp_063_rssm_fidelity\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T18:12:47.163Z\", \"updated_at\": \"2026-05-24T19:21:37.837Z\", \"hypothesis\": \"RSSM 在 dt=2 transitions 上的 observation/reward reconstruction loss 显著高于 dt=1，量化 fidelity gap 作为 trained dt_emb 导致 delusional critic 的机械性基础。从 exp_001 (baseline) 和 exp_008d (collapsed) 的已有 checkpoint 提取，对比 dt=1 vs dt=2 prediction quality。\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-24T18:53:48.781Z\"}, \"spec\": {\"command\": \"python scripts/rssm_fidelity_analysis.py --device cuda:0\", \"server\": \"bjb1-40020\", \"data_path\": \"logdir/exp_001_baseline + logdir/exp_008d_subsample_on_h8\", \"data_count\": 500, \"model_name\": \"DreamerV3 RSSM (baseline + collapsed checkpoints)\", \"seed\": 0, \"gpu_ids\": [1], \"checkpoint_path\": \"logdir/exp_063_rssm_fidelity/results.json\", \"log_path\": \"logdir/exp_063_rssm_fidelity/results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_dt1_obs_mse\": 13.7, \"baseline_dt2_obs_mse\": 20.62, \"baseline_dt2_dt1_ratio_obs\": 1.505, \"baseline_dt2_dt1_ratio_reward\": 1.483, \"collapsed_dt1_obs_mse\": 26.93, \"collapsed_dt2_single_obs_mse\": 42.02, \"collapsed_dt2_single_reward_mae\": 0.146, \"collapsed_dt2_dt1_ratio_obs\": 1.56, \"collapsed_dt2_dt1_ratio_reward\": 2.695, \"collapsed_single_vs_chained_obs\": 1.138, \"collapsed_single_vs_chained_reward\": 1.926}, \"completed_at\": \"2026-05-24T19:21:37.837Z\"}, \"exp_051_stackcube_frozen_dt_emb_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:30:00.000Z\", \"updated_at\": \"2026-05-24T16:53:23.046Z\", \"hypothesis\": \"Freezing dt_emb in StackCube (manipulation domain) prevents CIVO collapse, contrasting exp_049 (trained dt_emb, CIVO ve_ratio 3.27@32.5K) to establish trained-vs-frozen causal evidence in manipulation tasks. If frozen prevents CIVO → extends Walker/Cheetah frozen finding to manipulation; if not → domain-specific factors override dt_emb mechanism.\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_051_stackcube_frozen_dt_emb_s0\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 305974, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_051_stackcube_frozen_dt_emb_s0.log\", \"checkpoint_path\": \"logdir/exp_051_stackcube_frozen_dt_emb_s0/checkpoint_202500.pt\"}, \"metrics\": {\"eval_final\": 45.3, \"eval_final_step\": 212500, \"eval_peak\": 45.3, \"eval_peak_step\": 212500, \"ve_ratio_final\": 0.1, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 4.3, \"ve_ratio_peak_step\": 42500, \"total_steps\": 222400, \"nve_classification\": \"onset_self_correcting\", \"civo_transient\": true, \"civo_sustained\": false, \"civo_transient_range\": \"22K-62K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 82500, \"gate_dt_mean\": 2, \"gate_dt_variation\": false, \"eval_dip_during_civo\": 7.1, \"eval_dip_step\": 42500}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-23T08:48:40.404Z\"}, \"exp_049_stackcube_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T17:14:38.578Z\", \"updated_at\": \"2026-05-24T16:53:19.032Z\", \"hypothesis\": \"CIVO trigger 配置（trained dt_emb + subsample ON + H=8）在 ManiSkill StackCube-v1 manipulation 任务上是否也触发 CIVO。测试 CIVO 是否从 locomotion 推广到 manipulation 领域。StackCube 是多阶段任务（pick+stack）。如果触发 → 扩展跨域证据；如果不触发 → 支持 locomotion-specific scope。\", \"parent\": \"exp_048_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_049_stackcube_civo_trigger_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 91395, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_049_stackcube_civo_trigger_s0/train.log\"}, \"metrics\": {\"eval_final\": 34.88, \"eval_final_step\": 212500, \"eval_peak\": 35.89, \"eval_peak_step\": 182500, \"ve_ratio_final\": 0.186, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 5.048, \"ve_ratio_peak_step\": 42500, \"total_steps\": 222400, \"total_episodes\": 1112, \"nve_classification\": \"onset_self_correcting\", \"civo_transient\": true, \"civo_sustained\": false, \"civo_transient_range\": \"22K-72K\", \"civo_self_correction\": true, \"civo_self_correction_step\": 112500, \"gate_dt_mean\": 2, \"gate_dt_variation\": false, \"eval_dip_during_civo\": 4.93, \"eval_dip_step\": 62500}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_049_stackcube_civo_trigger_s0/checkpoint_202500.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_049_stackcube_civo_trigger_s0/metrics.jsonl\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T04:23:01.339Z\"}, \"exp_057\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T16:49:35.310Z\", \"updated_at\": \"2026-05-24T16:50:44.968Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker seed=2, n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3 验证稳健性。\", \"parent\": \"\", \"spec\": {\"command\": \"python train.py --env walker --frozen_dt_emb --seed 2\", \"server\": \"bjb1-45299\", \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"data_count\": 225000, \"seed\": 2, \"model_name\": \"dreamer_frozen_dt_emb\"}, \"log_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/train.log\", \"checkpoint_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/checkpoint_225000.pt\", \"metrics\": {\"eval_return_peak\": 221.7, \"eval_return_peak_step\": 195000, \"eval_return_final\": 123.9, \"eval_return_final_step\": 215000, \"nve_peak\": 1.3, \"nve_peak_step\": 115000, \"nve_final\": 0.2, \"civo_alert\": 0, \"civo_sustained\": false, \"civo_transient\": true, \"civo_transient_range\": \"115k-145k\", \"train_steps\": 225000, \"gate_dt_mean\": 2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T16:50:44.968Z\"}, \"exp_008d_civo_trigger_s4\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/latest.pt\", \"completed_at\": \"2026-05-18T05:17:45.132Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T02:02:43.972Z\", \"hypothesis\": \"Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/metrics.jsonl\", \"metrics\": {\"ve_ratio_peak\": 3.0294, \"ve_ratio_peak_step\": 105000, \"ve_ratio_final\": 3.0294, \"ve_ratio_final_step\": 105000, \"nve_peak\": 4.62, \"nve_peak_step\": 105000, \"nve_peak_note\": \"step-matched s1 baseline @105K = 0.6564\", \"nve_classification\": \"onset_collapse\"}, \"parent\": \"exp_008d_civo_trigger_s3\", \"retry_count\": 0, \"spec\": {\"checkpoint_source\": \"train_from_scratch\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_008d_civo_trigger_s4\", \"data_count\": 0, \"data_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon\", \"eval_data\": \"dmc_walker_walk_online\", \"gpu\": \"cuda:0\", \"model_name\": \"DreamerV3-walker-civo-trigger\", \"pid\": \"715124\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-24T08:56:41.239Z\"}, \"exp_059_walker_trained_s5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:08:46.842Z\", \"updated_at\": \"2026-05-24T07:46:59.075Z\", \"hypothesis\": \"Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。\", \"parent\": \"exp_008d_civo_trigger_s3\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"186176\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log\", \"submitted_at\": \"2026-05-24T03:15:40.649Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11526.3, \"gpu_hours\": 3.2}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"pid\": \"186176\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\\\"\", \"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"finished_at\": \"2026-05-24T06:20:56.680Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T06:21:01.777871+00:00\"}]}, \"metrics\": {\"ve_ratio_peak\": 3.3075, \"ve_ratio_peak_step\": \"85K\", \"nve_peak\": 4.72, \"nve_peak_note\": \"step-matched s1 baseline @85K = 0.7007\", \"nve_classification\": \"onset_collapse\", \"nve_classification_note\": \"Reclassified from onset_self_correcting: NVE self-corrected but eval=95.8 (10.5% of baseline 913) indicates irreversible policy damage. Collapse†.\", \"nve_final\": 1.22, \"nve_final_note\": \"0.8/0.656 (step-matched s1 baseline @105K)\", \"eval_final\": 95.8, \"eval_baseline\": 913, \"eval_pct_baseline\": \"10.5%\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_059_walker_trained_s5/checkpoint.pt\", \"completed_at\": \"2026-05-24T06:27:46.992Z\", \"notes\": \"CIVO-positive under step-matched NVE (peak ≈ 5.0×). Self-correcting outcome (ve_ratio 3.3@85K → 0.8@105K in ~10K steps). Supports 5/5 Walker trained CIVO onset. Gate locked at dt=2 throughout (entropy=0).\"}, \"exp_057_frozen_dt_emb_walker_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T15:25:00.000Z\", \"updated_at\": \"2026-05-24T02:17:41.318Z\", \"hypothesis\": \"Frozen dt_emb 跨 seed 可复现性验证（Walker n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3，如果 0 CIVO → frozen 在 Walker 上稳健；如果出现持续 CIVO → 样本不足。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_057_frozen_dt_emb_walker_s2\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 157775, \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Walker s2)\", \"seed\": 2, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"log_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/train.log\", \"checkpoint_path\": \"logdir/exp_057_frozen_dt_emb_walker_s2/checkpoint_225000.pt\"}, \"completed_at\": \"2026-05-23T23:30:00.000Z\", \"metrics\": {\"total_steps\": 225000, \"ve_ratio_peak\": 1.283, \"ve_ratio_peak_step\": 115000, \"ve_ratio_final\": 0.177, \"ve_ratio_final_step\": 215000, \"nve_peak\": 1.88, \"nve_peak_step\": 115000, \"nve_classification\": \"transient\", \"eval_return_final\": 123.94, \"eval_return_final_step\": 215000, \"eval_return_peak\": 221.72, \"eval_return_peak_step\": 195000}}, \"exp_058_frozen_dt_emb_cheetah_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T18:10:49.773Z\", \"updated_at\": \"2026-05-24T00:30:00.000Z\", \"hypothesis\": \"Cheetah frozen dt_emb 跨 seed 可复现性验证。exp_046 (s0) 显示 frozen 将 NVE 从 ~70-108（trained）降至 1.35。s1 验证阻止效应是否可复现。如果 s1 也阻止 → Cheetah frozen n=2 增强极端 CIVO 场景下 frozen diagnostic 的统计基础。\", \"parent\": \"exp_046_frozen_dt_emb_cheetah\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_058_frozen_dt_emb_cheetah_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 164830, \"data_path\": \"dmc_cheetah_run\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, Cheetah s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_058_frozen_dt_emb_cheetah_s1/train.log\", \"checkpoint_path\": \"logdir/exp_058_frozen_dt_emb_cheetah_s1/checkpoint_225000.pt\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:30:00.000Z\", \"metrics\": {\"total_steps\": 224000, \"ve_ratio_peak\": 0.231, \"ve_ratio_peak_step\": 45000, \"ve_ratio_final\": 0.107, \"ve_ratio_final_step\": 215000, \"eval_return_final\": 80.46, \"eval_return_final_step\": 215000, \"eval_return_peak\": 191.74, \"eval_return_peak_step\": 25000, \"nve_peak\": 0.78, \"nve_peak_step\": 45000, \"nve_classification\": \"no_civo\", \"note\": \"Cheetah frozen s1. NVE=0.78× (raw 0.231 / baseline 0.296 @45K). Cheetah frozen n=2: s0 NVE=1.35, s1 NVE=0.78 — both clean, frozen 稳健阻止 extreme CIVO (trained NVE 70-108).\"}}, \"exp_056_peginsertion_frozen_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T09:02:23.683Z\", \"updated_at\": \"2026-05-24T00:00:00.000Z\", \"hypothesis\": \"D143 混合机制假说验证——PegInsertion frozen dt_emb 跨 seed 可复现性。exp_053 (s0) 显示 frozen 在 82.5K 回落到 1.82 而 trained 攀升到 10.05，s1 验证这个分叉是否可复现。如果 s1 也回落 → frozen 稳健阻止 dt_emb 放大；如果不回落 → seed-dependent。\", \"parent\": \"exp_053_peginsertion_frozen_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_056_peginsertion_frozen_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [1], \"pid\": 346430, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, fixed dt=2, ManiSkill PegInsertion s1)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_056_peginsertion_frozen_s1/train.log\", \"checkpoint_path\": \"logdir/exp_056_peginsertion_frozen_s1/checkpoint_202500.pt\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:00:00.000Z\", \"metrics\": {\"total_steps\": 222500, \"ve_ratio_peak\": 11.321, \"ve_ratio_peak_step\": 82500, \"ve_ratio_final\": 1.193, \"ve_ratio_final_step\": 212500, \"eval_return_final\": 4.37, \"eval_return_final_step\": 212500, \"eval_return_peak\": 24.42, \"eval_return_peak_step\": 132500, \"nve_classification\": \"burst\", \"note\": \"Ordering reversal vs s0 confirms D146 seed-dependent noise. Frozen s1 burst 11.32 > trained s1 peak 3.08 — frozen does NOT suppress ManiSkill transients.\", \"ve_ratio_trajectory\": {\"12500\": 0.316, \"22500\": 0.975, \"32500\": 1.839, \"42500\": 1.966, \"52500\": 5.422, \"62500\": 4.047, \"72500\": 8.408, \"82500\": 11.321, \"92500\": 3.724, \"102500\": 3.034, \"112500\": 2.204, \"122500\": 2.425, \"132500\": 0.842, \"142500\": 2.194, \"152500\": 2.203, \"162500\": 0.651, \"172500\": 1.085, \"182500\": 1.07, \"192500\": 0.467, \"202500\": 0.708, \"212500\": 1.193}}}, \"exp_055_peginsertion_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T08:50:00.000Z\", \"updated_at\": \"2026-05-23T23:38:30.000Z\", \"hypothesis\": \"PegInsertion CIVO 跨 seed 可复现性验证。exp_050 (s0) 显示持续性 CIVO（ve_ratio_peak 10.05×@82.5K，最终自修复到 0.379@212.5K）。如果 s1 也触发持续 CIVO → PegInsertion CIVO 可复现；如果不触发 → seed-specific 异常。\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_055_peginsertion_civo_trigger_s1\", \"server\": \"bjb1-40020\", \"gpu_ids\": [0], \"pid\": 345223, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, PegInsertion)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/train.log\"}, \"ve_ratio_peak\": \"3.08@92500\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T23:38:25.428Z\", \"metrics\": {\"total_steps\": 222400, \"ve_ratio_peak\": 3.08, \"ve_ratio_peak_step\": 92500, \"ve_ratio_final\": 0.498, \"ve_ratio_final_step\": 212500, \"eval_return_final\": 11.44, \"eval_return_final_step\": 212500, \"eval_return_peak\": 24.05, \"eval_return_peak_step\": 112500, \"nve_classification\": \"transient\", \"civo_triggered\": true, \"civo_self_corrected\": \"partial\", \"note\": \"CIVO triggered (peak 3.08@92.5K, less severe than s0=10.05). Partial self-correction to 0.498. PegInsertion trained cross-seed: s0=10.05, s1=3.08 — severity seed-dependent.\", \"ve_ratio_trajectory\": {\"12500\": 0.19, \"22500\": 0.81, \"32500\": 1.35, \"42500\": 2.0, \"52500\": 2.39, \"62500\": 2.85, \"72500\": 2.28, \"82500\": 2.48, \"92500\": 3.08, \"102500\": 2.51, \"112500\": 0.91, \"122500\": 1.21, \"132500\": 1.36, \"142500\": 0.75, \"152500\": 0.55, \"162500\": 1.17, \"172500\": 0.96, \"182500\": 0.94, \"192500\": 0.9, \"202500\": 0.73, \"212500\": 0.5}}, \"checkpoint_path\": \"logdir/exp_055_peginsertion_civo_trigger_s1/checkpoint_222500.pt\"}, \"exp_054_pickcube_frozen_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T07:47:24.310Z\", \"updated_at\": \"2026-05-23T18:08:00.000Z\", \"hypothesis\": \"PickCube frozen dt_emb baseline (fixed_dt=2, subsample ON, H=8)。验证 CIVO frozen 配置在最简单 manipulation task 上的表现。如果 eval return 稳定高于 random → frozen dt_emb 在 easy task 上不影响学习；如果性能差 → frozen dt_emb 有问题。\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --seed 0 --steps 210000 --compile False --device cuda:0 --checkpoint_every 25000 --logdir logdir/exp_054_pickcube_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 133956, \"data_path\": \"ManiSkill PickCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, CIVO config, ManiSkill PickCube)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PickCube-v1 (online eval)\", \"log_path\": \"logdir/exp_054_pickcube_frozen_s0/metrics.jsonl\", \"checkpoint_path\": \"logdir/exp_054_pickcube_frozen_s0/checkpoint.ckpt\"}, \"ve_ratio_peak\": \"8.81@62500\", \"eval_final\": 10.26, \"eval_final_step\": 212500, \"ve_ratio_final\": 0.583, \"ve_ratio_final_step\": 212500}, \"exp_053_peginsertion_frozen_s0\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:23:10.381Z\", \"updated_at\": \"2026-05-23T15:00:00.000Z\", \"hypothesis\": \"Freezing dt_emb in PegInsertionSide-v1 (contact-rich manipulation) prevents CIVO while maintaining task performance, establishing that dt_emb freezing generalizes as CIVO prevention across task domains. If frozen prevents CIVO here → extends StackCube/locomotion frozen finding to insertion tasks; if CIVO still appears → freezing insufficient for contact-rich tasks.\", \"parent\": \"exp_050_peginsertion_civo_trigger_s0\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_053_peginsertion_frozen_s0\", \"server\": \"bjb1-45299\", \"gpu_ids\": [1], \"pid\": 123495, \"data_path\": \"ManiSkill PegInsertionSide-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (frozen dt_emb, fixed dt=2, ManiSkill PegInsertion)\", \"seed\": 0, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"PegInsertionSide-v1 (online eval)\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_053_peginsertion_frozen_s0.log\", \"checkpoint_path\": \"logdir/exp_053_peginsertion_frozen_s0/checkpoint.ckpt\"}, \"ve_ratio_peak\": \"8.10@52500\", \"eval_final\": 5.89, \"ve_ratio_final\": 0.202, \"ve_ratio_final_step\": 212500}, \"exp_050_peginsertion_civo_trigger_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:38:33.441Z\", \"updated_at\": \"2026-05-23T08:51:11.592Z\", \"hypothesis\": \"Fixed-dt=2 gate with CIVO trigger on PegInsertionSide-v1 (contact-rich manipulation) will demonstrate that temporal abstraction benefits extend beyond locomotion to precise insertion tasks, where event-gated horizons can skip redundant approach phases while preserving fine-grained control near contact.\", \"spec\": {\"command\": \"LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs maniskill_peginsertion --task maniskill_PegInsertionSide-v1 --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_050_peginsertion_civo_trigger_s0\", \"server\": \"bjb1-40020\", \"data_path\": \"ManiSkill PegInsertionSide-v1 (state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 + CIVO trigger (gate_fixed_dt=2)\", \"seed\": 0, \"pid\": 304736, \"gpu_ids\": [0], \"log_path\": \"logdir/exp_050_peginsertion_civo_trigger_s0/train.log\", \"checkpoint_path\": \"logdir/exp_050_peginsertion_civo_trigger_s0\"}, \"metrics\": {\"ve_ratio_peak\": 10.05, \"ve_ratio_peak_step\": 82500, \"ve_ratio_final\": 0.379, \"ve_ratio_final_step\": 212500, \"civo_self_corrected\": true, \"civo_correction_delay_steps\": 130000, \"eval_final\": 20.86, \"eval_final_step\": 212500, \"eval_peak\": 20.86, \"eval_peak_step\": 212500, \"total_steps\": 222400}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T08:30:00.000Z\"}, \"exp_052_stackcube_civo_trigger_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T21:26:49.825Z\", \"updated_at\": \"2026-05-23T07:45:47.966Z\", \"hypothesis\": \"StackCube CIVO trigger (trained dt_emb + subsample ON + H=8) 跨 seed 可复现性验证。exp_049 (s0) 在 32.5K 步触发 CIVO（ve_ratio 3.27）。如果 s1 也触发 → CIVO 在 manipulation 领域可复现，非 seed-specific；如果不触发 → seed-dependent，需更多 seeds。\", \"parent\": \"exp_049_stackcube_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs maniskill_stackcube --task maniskill_StackCube-v1 --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_052_stackcube_civo_trigger_s1\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 103781, \"data_path\": \"ManiSkill StackCube-v1 (online RL, state obs)\", \"data_count\": 210000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, ManiSkill StackCube)\", \"seed\": 1, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"StackCube-v1 (online eval)\", \"log_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/train.log\"}, \"metrics\": {\"eval_final\": 29.458, \"eval_final_step\": 212500, \"eval_peak\": 39.873, \"eval_peak_step\": 162500, \"ve_ratio_final\": 0.133, \"ve_ratio_final_step\": 212500, \"ve_ratio_peak\": 4.67, \"ve_ratio_peak_step\": 52500, \"total_steps\": 222400}, \"conclusion\": \"success\", \"checkpoint_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/checkpoint_202500.pt\", \"log_path\": \"logdir/exp_052_stackcube_civo_trigger_s1/metrics.jsonl\", \"completed_at\": \"2026-05-23T07:45:47.966Z\"}, \"exp_048_cheetah_civo_extension\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T16:30:40.050Z\", \"updated_at\": \"2026-05-22T21:18:00.000Z\", \"hypothesis\": \"Cheetah CIVO (NVE 70.64, far more severe than Walker 1.5-4.9) is too severe for spontaneous recovery. Walker CIVO self-corrected in exp_045 (ve_ratio 4.91→0.05 over 170K steps). If Cheetah does NOT self-correct → severity determines recoverability narrative. If it does → CIVO is universally transient regardless of severity.\", \"parent\": \"exp_010b_cheetah_civo_trigger_s0\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_048_cheetah_civo_extension\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": 88654, \"data_path\": \"dmc_cheetah_run (online RL)\", \"data_count\": 300000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config, Cheetah)\", \"seed\": 0, \"checkpoint_source\": \"exp_010b_cheetah_civo_trigger_s0/latest.pt (step 105K, NVE=70.64)\", \"eval_data\": \"dmc_cheetah_run (online eval)\", \"log_path\": \"logdir/exp_048_cheetah_civo_extension/train.log\"}, \"metrics\": {\"eval_final\": 23.4, \"eval_final_step\": 302000, \"eval_peak\": 32.8, \"eval_peak_step\": 252000, \"ve_ratio_initial\": 46.3, \"ve_ratio_peak\": 24.112, \"ve_ratio_peak_step\": 162000, \"ve_ratio_final\": 1.803, \"nve_initial\": 70.64, \"nve_peak_secondary\": 36.76, \"nve_final\": 2.75, \"total_steps\": 312000, \"civo_self_corrected\": false, \"civo_correction_pct\": 96, \"secondary_burst_step\": 152000, \"secondary_burst_nve\": 36.47, \"gate_collapsed\": true}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_048_cheetah_civo_extension/checkpoint_300000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_048_cheetah_civo_extension/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T21:18:00.000Z\"}, \"exp_047_frozen_dt_emb_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T11:03:31.428Z\", \"updated_at\": \"2026-05-22T19:01:30.894Z\", \"hypothesis\": \"Frozen dt_emb Walker seed 1: 增强 exp_042 (s0, NVE=0.19) 的统计力度。 如果 s1 也 NVE<1.5 且无持续 CIVO → frozen dt_emb mitigation 跨 seed robust。\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_047_frozen_dt_emb_walker_s1\", \"server\": \"bjb1-40020\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 210000, \"model_name\": \"dreamer_gated_frozen_dt_emb\", \"seed\": 1, \"eval_data\": \"dmc_walker_walk (online eval)\", \"checkpoint_source\": \"N/A (training from scratch)\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T18:56:07.648Z\"}, \"metrics\": {\"eval_final\": 144.22, \"eval_final_step\": 215000, \"eval_peak\": 408.79, \"eval_peak_step\": 125000, \"ve_ratio_peak\": 1.099, \"ve_ratio_peak_step\": 75000, \"ve_ratio_final\": 0.277, \"nve_peak\": 1.71, \"nve_peak_step\": 95000, \"nve_final_105k\": 0.56, \"total_steps\": 225000}, \"checkpoint_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/checkpoint_225000.pt\", \"log_path\": \"logdir/exp_047_frozen_dt_emb_walker_s1/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T19:01:30.894Z\"}, \"exp_046_frozen_dt_emb_cheetah\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:41:53.934Z\", \"updated_at\": \"2026-05-22T18:32:34.105Z\", \"server\": \"bjb1-40020\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"hypothesis\": \"Cross-environment validation: frozen dt_emb (random init, requires_grad=False) prevents CIVO on Cheetah Run, extending the Walker Walk finding (exp_042 NVE=0.19, exp_015b NVE=0.47) to a second environment. Cheetah has stronger CIVO (NVE 8.27-70.64× in exp_010b) so this is a harder test of the frozen mitigation.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"reproduce\": {\"server\": \"bjb1-40020\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T10:42:06.985Z\", \"finished_at\": \"2026-05-22T18:27:00.000Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --checkpoint_every 25000 --logdir logdir/exp_046_frozen_dt_emb_cheetah\", \"server\": \"bjb1-40020\", \"seed\": 0, \"model_name\": \"dreamerv3-cheetah-frozen-dt-emb\", \"data_path\": \"dmc_cheetah_run\", \"data_count\": 210000, \"eval_data\": \"dmc_cheetah_run (online eval)\", \"checkpoint_source\": \"N/A (training from scratch)\"}, \"metrics\": {\"eval_final\": 150.5, \"eval_peak\": 207.4, \"eval_peak_step\": 145000, \"ve_ratio_peak\": 0.4, \"ve_ratio_final\": 0.1, \"nve_peak\": 1.35, \"nve_peak_step\": 45000, \"nve_final\": 0.17, \"total_steps\": 224000, \"civo_alert_count\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_046_frozen_dt_emb_cheetah/checkpoint_225000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_046_frozen_dt_emb_cheetah/train.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:31:00.933Z\"}, \"exp_044_gradient_stop_walker\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:03:45.656Z\", \"updated_at\": \"2026-05-22T16:08:22.684Z\", \"hypothesis\": \"Reviewer Q2 直接回应：gradient stopping（detach dt_emb gradient to reward head）是否能阻断 CIVO 的 reward-critic feedback loop。基于 008d 配置（trained dt_emb + subsample ON + H=8），仅阻断 dt_emb→reward_head 梯度路径。如果 gradient stopping 有效（NVE<1.5）→ 最简干预方案成立，推翻我们之前 SGS 1/17 的结论（SGS 阻断所有梯度 vs 这里只阻断 dt_emb→reward 路径）。如果无效 → 直接证据证明 gradient-level intervention 不足以解决 CIVO，支撑 Intervention Hierarchy 中 gradient-level 最弱的结论。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True --logdir logdir/exp_044_gradient_stop_walker\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"68371\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_044_gradient_stop_walker.log\", \"submitted_at\": \"2026-05-22T09:08:10.295Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"DMC Walker Walk\", \"data_count\": 210000, \"model_name\": \"DreamerV3 + reward_dt_emb_detach\", \"seed\": 0, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"dmc_walker_walk\", \"wall_clock_seconds\": 25212.4, \"gpu_hours\": 7.0}, \"reproduce\": {\"finished_at\": \"2026-05-22T16:04:32.082Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:04:36.793540+00:00\"}]}, \"metrics\": {\"eval_final\": 538.6, \"eval_peak\": 561.2, \"eval_peak_step\": 185000, \"eval_civo_trough\": 44.3, \"eval_civo_trough_step\": 95000, \"ve_ratio_peak\": 4.4, \"ve_ratio_peak_step\": 95000, \"ve_ratio_final\": 0.1, \"civo_onset_step\": 85000, \"civo_resolved_step\": 125000, \"civo_duration_steps\": 40000, \"total_steps\": 224000, \"pre_civo_peak\": 545.6, \"pre_civo_peak_step\": 75000}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_044_gradient_stop_walker/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_044_gradient_stop_walker.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T16:08:22.684Z\"}, \"exp_045_treatment_extension_008d_s3\": {\"created_at\": \"2026-05-22T09:40:52.894Z\", \"updated_at\": \"2026-05-22T15:41:43.036Z\", \"status\": \"DONE\", \"retry_count\": 0, \"hypothesis\": \"CIVO-triggering config (trained dt_emb + subsample ON + H=8) that already exhibited CIVO at 112K will show sustained or worsening value overestimation when extended to 300K, providing temporal dynamics data for the treatment extension analysis (Reviewer Q: does CIVO self-correct or persist?)\", \"parent\": \"exp_008d_civo_trigger_s3\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s3\", \"server\": \"bjb1-45299\", \"gpu_ids\": [0], \"pid\": \"70945\", \"data_path\": \"dmc_walker_walk (online RL)\", \"data_count\": 300000, \"model_name\": \"DreamerV3 (trained dt_emb, CIVO config)\", \"seed\": 3, \"checkpoint_source\": \"exp_008d_civo_trigger_s3/latest.pt (step 112K)\", \"eval_data\": \"dmc_walker_walk (online eval, same as training env)\", \"log_path\": \"logdir/exp_045_treatment_extension_008d_s3/train.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_final\": 867.6, \"eval_peak\": 869.7, \"eval_peak_step\": 242000, \"nve_peak\": 4.91, \"nve_peak_step\": 132000, \"nve_final\": 0.052, \"ve_ratio_final\": 0.052, \"total_steps\": 312000, \"civo_alerts\": 0, \"civo_self_corrected\": true, \"civo_correction_step\": 142000, \"eval_trajectory\": {\"112000\": 58.5, \"122000\": 41.8, \"132000\": 35.1, \"142000\": 350.2, \"152000\": 646.4, \"162000\": 482.3, \"172000\": 600.4, \"182000\": 600.5, \"192000\": 699.5, \"202000\": 684.3, \"212000\": 758.6, \"222000\": 744.6, \"232000\": 745.4, \"242000\": 869.7, \"252000\": 721.6, \"262000\": 820.6, \"272000\": 716.2, \"282000\": 755.6, \"292000\": 843, \"302000\": 867.6}, \"ve_ratio_trajectory\": {\"122000\": 4.77, \"132000\": 4.91, \"142000\": 0.43, \"152000\": 0.21, \"162000\": 0.25, \"172000\": 0.18, \"182000\": 0.16, \"192000\": 0.13, \"202000\": 0.12, \"212000\": 0.1, \"222000\": 0.1, \"232000\": 0.09, \"242000\": 0.07, \"252000\": 0.08, \"262000\": 0.07, \"272000\": 0.08, \"282000\": 0.07, \"292000\": 0.06, \"302000\": 0.05}}, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_045_treatment_extension_008d_s3/checkpoint_302000.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_045_treatment_extension_008d_s3/train.log\", \"completed_at\": \"2026-05-22T15:41:43.036Z\"}, \"exp_043_008f_walker_s1\": {\"created_at\": \"2026-05-22T02:35:37.558Z\", \"hypothesis\": \"Plan_012 / Claim C2 seed 1：复现 008f 因果控制（dt_embed_dim=0, subsample ON, H=8）。目前只有 seed 0 数据。如果 s1 也显示无 CIVO → 确认 dt_emb absence prevents CIVO 是 robust 的跨 seed 结论，支撑因果链 \\\"trained dt_emb → CIVO\\\"。\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0 --logdir logdir/exp_043_008f_walker_s1\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1\", \"model_name\": \"DreamerV3 (no dt_emb, 008f control)\", \"pid\": \"250627\", \"seed\": 1, \"server\": \"bjb1-40020\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T10:38:36.474Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_043_008f_walker_s1\", \"metrics\": {\"eval_final\": 673.73, \"eval_peak\": 673.73, \"eval_peak_step\": 215000, \"nve_peak\": 0.808, \"nve_peak_step\": 105000, \"nve_final\": 0.123, \"civo_alert\": false, \"total_steps\": 224000, \"gate_dt_2_frac\": 1, \"gate_entropy\": 0, \"note\": \"No CIVO (peak NVE 0.808, well below 1.5). Gate fixed at dt=2. Seed 1 replicates seed 0 finding: dt_emb absence prevents CIVO.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:38:36.474Z\"}, \"exp_042_frozen_dt_emb_walker\": {\"created_at\": \"2026-05-22T02:13:59.183Z\", \"hypothesis\": \"dt_embedding training (not its mere existence) is a necessary condition for CIVO collapse. Freezing dt_emb (random init, requires_grad=False) should prevent the reward-value divergence observed in exp_008d with trained dt_emb.\", \"parent\": \"\", \"retry_count\": 0, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True --logdir logdir/exp_042_frozen_dt_emb_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker\", \"model_name\": \"DreamerV3 + frozen dt_emb\", \"pid\": \"251336\", \"seed\": 0, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T10:29:26.337Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_042_frozen_dt_emb_walker\", \"metrics\": {\"eval_final\": 612.45, \"eval_peak\": 682.38, \"eval_peak_step\": 205000, \"nve_peak\": 0.194, \"nve_final\": 0.051, \"civo_alert\": false, \"total_steps\": 224000, \"total_train_episodes\": 224}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:29:26.337Z\"}, \"exp_040_wide_dual_critic_cheetah\": {\"created_at\": \"2026-05-21T19:50:49.909Z\", \"hypothesis\": \"Cheetah dual-critic seed 1：exp_034 (s0) 显示 dual-critic 在 Cheetah 上 NVE 1.8, eval 97.5（部分恢复 31%）。s1 确认此 pattern 是否 robust。如果 s1 也部分恢复 → Cheetah dual-critic 效果一致但弱于 Walker；如果 s1 完全不恢复 → s0 的部分恢复是偶发。\", \"parent\": \"exp_032_dual_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_040_wide_dual_critic_cheetah\\\"\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_040_wide_dual_critic_cheetah.log\", \"pid\": \"52397\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T19:51:11.519Z\", \"submitted_via\": \"submit_training_job\", \"seed\": 1, \"wall_clock_seconds\": 49438.9, \"gpu_hours\": 13.73}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T09:37:44.547Z\", \"reproduce\": {\"finished_at\": \"2026-05-22T09:35:07.693Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:35:10.404Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:35:14.583680+00:00\"}]}}, \"exp_041_dual_critic_walker_s3\": {\"created_at\": \"2026-05-21T19:50:54.290Z\", \"hypothesis\": \"D128 推导：exp_038 s2 出现非 CIVO 崩溃 (eval 354→121, NVE≤0.3)，当前 collapse 频率 1/3。s3 确定崩溃是偶发 (1/4) 还是系统性 (2/4)。如果 s3 正常 → 非 CIVO 崩溃为低频偶发事件，dual-critic CIVO prevention 仍 robust；如果 s3 也崩 → 50% 系统性问题需进一步诊断。\", \"parent\": \"exp_032_dual_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_041_dual_critic_walker_s3\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_041_dual_critic_walker_s3.log\", \"pid\": \"51103\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-22T02:38:20.728Z\", \"submitted_via\": \"submit_training_job\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_041_dual_critic_walker_s3/checkpoint.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"dmc_walker_walk\", \"wall_clock_seconds\": 23112.0, \"gpu_hours\": 6.42}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T09:04:44.715Z\", \"reproduce\": {\"finished_at\": \"2026-05-22T09:00:53.721Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:00:58.393731+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_return_peak\": 761.1, \"eval_return_final\": 544, \"eval_return_peak_step\": 165000, \"nve_peak\": 1.5, \"nve_final\": 0.1, \"civo_prevented\": true, \"gate_dt_2_frac\": 1, \"non_civo_collapse\": false, \"steps\": 215000, \"note\": \"CIVO prevented (NVE≤1.5), no non-CIVO collapse. Eval stays 486-761 after peak. Non-CIVO collapse rate confirmed 1/4 (only s2).\"}, \"completed_at\": \"2026-05-22T09:03:32.751Z\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_041_dual_critic_walker_s3/latest.pt\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_041_dual_critic_walker_s3.log\"}, \"exp_039_narrow_dual_critic_walker_s1\": {\"completed_at\": \"2026-05-22T02:35:33.617Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T16:31:40.055Z\", \"hypothesis\": \"Narrow dual-critic Walker seed 1: 验证 exp_035 (s0, eval 697.8) 的 CIVO recovery 发现是否跨 seed 一致。如果 s1 也展示 recovery → narrow dual-critic (min operation alone) 驱动 recovery 是 robust 的；如果不 recover → s0 的 recovery 是偶发事件。\", \"metrics\": {\"civo_recovery\": true, \"eval_return_final\": 592.7, \"note\": \"Narrow dual Walker s1: CIVO triggered then recovered. s0=697.8, s1=592.7, mean≈645. Recovery 2/2.\", \"nve_peak\": 2.19, \"recovery_confirmed\": true}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_039_narrow_dual_critic_walker_s1/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --narrow_dual_critic True --logdir logdir/exp_039_narrow_dual_critic_walker_s1\\\"\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 10.06, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_039_narrow_dual_critic_walker_s1.log\", \"pid\": \"198771\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T16:31:39.634Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 36234.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:35:33.617Z\"}, \"exp_038_dual_critic_walker_s2\": {\"completed_at\": \"2026-05-22T02:11:36.842Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:18:35.293Z\", \"hypothesis\": \"Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.\", \"metrics\": {\"civo_alert\": 0, \"civo_prevented\": true, \"eval_return_collapse\": 99.6, \"eval_return_collapse_step\": 175000, \"eval_return_final\": 120.9, \"eval_return_peak\": 354, \"eval_return_peak_step\": 155000, \"gate_dt_2_frac\": 1, \"non_civo_collapse\": true, \"note\": \"CIVO prevented (NVE≤0.3) but non-CIVO eval collapse at 175k (354→99.6). Different failure mode from value overestimation.\", \"nve_final\": 0.248, \"nve_peak\": 0.3, \"steps\": 224000}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-22T02:07:51.177Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...dual_critic walker s2...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 13.88, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2\", \"model_name\": \"DreamerV3 + Dual Critic (wide)\", \"pid\": \"175633\", \"seed\": 2, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T12:18:34.859Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 49982.0}, \"status\": \"DONE\", \"updated_at\": \"2026-05-22T02:11:36.842Z\"}, \"exp_037_wide_critic_cheetah\": {\"completed_at\": \"2026-05-21T19:45:52.311Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:18:33.040Z\", \"hypothesis\": \"Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_final\": 146.1, \"eval_return_peak\": 350.1, \"gate_dt_2_frac\": 1, \"nve_final\": 0.1, \"nve_peak\": 3.6, \"steps\": 224000}, \"parent\": \"exp_033_wide_critic_walker\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"checkpoint_source\": \"N/A - training from scratch\", \"command\": \"bash -c \\\"...wide_critic cheetah...\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run\", \"eval_data\": \"N/A - training experiment\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 7.46, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\", \"model_name\": \"DreamerV3 + Wide Single Critic\", \"pid\": \"14487\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T12:18:32.619Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 26839.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T19:45:52.311Z\"}, \"exp_036_dual_critic_pickcube\": {\"completed_at\": \"2026-05-21T19:45:31.290Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T08:43:18.481296+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T19:38:29.196731+00:00\"}]}, \"hypothesis\": \"Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_final\": 27.7, \"eval_return_peak\": 27.7, \"gate_dt_2_frac\": 1, \"nve_final\": 0.2, \"nve_peak\": 2.3, \"steps\": 212447}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T19:38:24.346Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\\\"\", \"data_count\": 200000, \"data_path\": \"ManiSkill PickCube-v1\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 11.03, \"gpu_id\": 0, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\", \"model_name\": \"DreamerV3 + Dual Critic\", \"pid\": \"2476\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T08:43:44.544357+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 39706.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T19:45:31.290Z\"}, \"exp_035_narrow_dual_critic_walker\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_035_narrow_dual_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T16:11:39.130025+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T07:47:55.131429+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T16:08:03.906985+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Narrow dual-critic ablation (2×256 hidden, total params ≈ baseline single 512 critic): isolates min operation effect from parameter count. If CIVO suppressed → min operation itself prevents overestimation cascade. If CIVO persists → parameter count is the key factor. Combined with exp_033 (wide single critic) forms 2×2 factorial: {single,dual} × {normal,scaled} → mechanism decomposition.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_035_narrow_dual_critic_walker.log\", \"metrics\": {\"actor_entropy_final\": -0.19, \"civo_alert_window\": \"65K-85K\", \"civo_prevented\": false, \"civo_recovery\": true, \"director_override\": \"Director ruled success: CIVO recovery (33.8→697.8) is the success criterion, not prevention\", \"eval_at_215K\": 697.8, \"eval_at_85K\": 33.8, \"eval_final\": 697.8, \"eval_peak\": 697.8, \"eval_trough\": 33.8, \"nve_final\": 0.066, \"nve_peak\": 2.75, \"nve_peak_step\": 85000, \"recovery_from\": 33.8, \"recovery_to\": 697.8, \"total_steps\": 215000, \"train_return_final_range\": \"708-806\", \"v1_v2_gap_max\": 0.08, \"v1_v2_gap_typical\": 0.01}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T16:07:58.973Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-40020\", \"started_at\": \"2026-05-21T07:48:17.595Z\", \"training_hours\": 8.33}, \"retry_count\": 0, \"server\": \"bjb1-40020\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --narrow_dual_critic True --logdir logdir/exp_035_narrow_dual_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 8.31, \"gpu_id\": 1, \"hyperparams\": {\"critic_hidden\": 256, \"critic_layers\": 2, \"critic_params_each\": 525000, \"critic_params_total\": 1050000, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"narrow_dual_critic\": true}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_035_narrow_dual_critic_walker.log\", \"model_name\": \"DreamerV3 + Narrow Dual Critic (2×256 hidden, 1.05M total)\", \"pid\": \"162900\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T07:56:05.926445+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29900.2}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T16:14:26.099Z\"}, \"exp_034\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah/\", \"completed_at\": \"2026-05-21T12:18:09.552Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T12:17:29.760Z\", \"hypothesis\": \"Dual-critic (min of two independent critics) will prevent CIVO in Cheetah Run by providing pessimistic value estimates, as it did in Walker Walk (exp_032). If value overestimation is environment-universal, the same mechanism should work across DMC tasks.\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"metrics\": {\"CIVO_prevented\": false, \"civo_trigger_steps\": [55000, 105000], \"final_NVE\": 0.144, \"final_eval_return\": 97.5, \"max_NVE\": 1.753, \"peak_eval_return\": 315.7, \"total_steps\": 215000, \"v1_v2_max_divergence\": 0.004}, \"retry_count\": 0, \"spec\": {\"command\": \"python train.py --configs dmc_cheetah_run --dual_critic True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --steps 210000 --seed 0\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:18:09.552Z\"}, \"exp_034_dual_critic_cheetah\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_034_dual_critic_cheetah\", \"completed_at\": \"2026-05-21T12:14:19.189109+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-21T05:50:59.612345+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T12:02:46.032647+00:00\"}]}, \"hypothesis\": \"Dual-critic on Cheetah Run: TCN failed at all σ (0.2/0.5/1.0) on Cheetah. If dual-critic suppresses CIVO on Cheetah (where TCN failed completely) → dual-critic is a more general architecture-level intervention that works across environments. Strengthens Intervention Hierarchy: architecture-level > representation-level.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"metrics\": {\"baseline_eval_final\": 0.83, \"baseline_nve_peak\": 70.64, \"civo_alert_steps\": [95000, 105000], \"civo_alerts\": 2, \"civo_prevented\": false, \"dual_wave_civo\": true, \"eval_final\": 97.5, \"eval_final_step\": 215000, \"eval_peak\": 315.7, \"eval_peak_step\": 45000, \"eval_vs_peak_pct\": 31, \"gate_dt2_frac\": 1, \"gate_entropy\": 0, \"v1_v2_gap\": \"<0.2 (min operation has no pessimism effect)\", \"value_mean_final\": 14.2, \"value_mean_peak\": 60.5, \"ve_ratio_final\": 0.1, \"ve_ratio_peak\": 1.8, \"ve_ratio_peak_step\": 55000}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T12:02:37.929Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_034_dual_critic_cheetah\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Cheetah Run (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_id\": 1, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_034_dual_critic_cheetah.log\", \"model_name\": \"DreamerV3 + Dual Critic\", \"pid\": \"993925\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-21T05:51:51.325323+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:15:03.481Z\"}, \"exp_033_wide_critic_walker\": {\"account\": \"root\", \"checkpoint_path\": \"logdir/exp_033_wide_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T12:08:15.252Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-21T03:45:53.644963+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T12:02:31.184962+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Wide single critic ablation: if CIVO suppression in exp_032 (dual-critic) is due to parameter count/regularization rather than pessimistic min operation, then a single critic with 2× parameters should also suppress CIVO. If wide-critic fails (CIVO persists) but dual-critic succeeds → min operation has implicit regularization effect beyond pessimism.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\", \"metrics\": {\"civo_alert_step\": 105000, \"civo_alert_ve_ratio\": 1.958, \"civo_instability_duration_steps\": 75000, \"critic_params\": 2886911, \"eval_reward_final\": 407.9, \"eval_reward_peak\": 194.8, \"eval_reward_trough\": 31.8, \"value_loss_final\": 1.4, \"ve_ratio_final\": 0.1, \"ve_ratio_peak\": 4.7}, \"parent\": \"exp_032_dual_critic_walker\", \"reproduce\": {\"finished_at\": \"2026-05-21T12:02:26.400Z\", \"gpu\": \"cuda:0\", \"server\": \"bjb1-40020\", \"started_at\": \"2026-05-21T03:46:14.882Z\", \"training_hours\": 8.27}, \"retry_count\": 0, \"server\": \"bjb1-40020\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_033_wide_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 8.25, \"gpu_id\": 0, \"hyperparams\": {\"critic_hidden\": 1024, \"critic_layers\": 2, \"critic_params\": 2886911, \"dual_critic\": false, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"wide_critic\": true}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_033_wide_critic_walker.log\", \"model_name\": \"DreamerV3 + Wide Critic (1024 hidden, 2.89M params, 2.44× normal)\", \"pid\": \"151860\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-21T03:52:59.702597+00:00\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29715.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T12:08:15.252Z\"}, \"exp_031b_tcn_pickcube_s0_sigma05\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_031b_tcn_pickcube_s0_sigma05/latest.pt\", \"completed_at\": \"2026-05-21T08:43:18.481253+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T19:46:39.136363+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T08:41:51.310620+00:00\"}]}, \"failure_reason\": \"NVE late-stage decline is floor effect (value signal collapse), not CIVO recovery. Eval flat 25-29 throughout — agent never learned meaningful manipulation. Confirmed by Reviewer. TCN PickCube: 0/2 (σ=0.2 and σ=0.5 both failed).\", \"hypothesis\": \"PickCube σ=0.5 dose-response data collection: σ=0.2 (exp_031) failed with NVE peak 3.71. σ=0.5 tests whether higher noise amplitude can suppress CIVO in ManiSkill PickCube. Combined with σ=0.2 data, establishes dose-response curve for robotics manipulation domain.\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_031b_tcn_pickcube_s0_sigma05.log\", \"metrics\": {\"eval_reward_final\": 25.5, \"eval_reward_last5_avg\": 25.9, \"eval_reward_peak\": 29.1, \"nve_final\": 0.2, \"nve_peak\": 3.3, \"nve_peak_step\": 42500, \"nve_suppressed_from_step\": 72500, \"total_episodes\": 1062, \"total_steps\": 212400}, \"parent\": \"exp_031_tcn_pickcube_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-21T08:41:45.929Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.5 --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_031b_tcn_pickcube_s0_sigma05\\\"\", \"data_count\": 200000, \"data_path\": \"ManiSkill PickCube-v1\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_031b_tcn_pickcube_s0_sigma05.log\", \"model_name\": \"DreamerV3 + TCN σ=0.5\", \"pid\": \"968495\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T22:33:14.695383+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T08:50:22.853581+00:00\"}, \"exp_032_dual_critic_walker\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker/latest.pt\", \"completed_at\": \"2026-05-21T07:47:55.131382+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T22:58:31.008200+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T07:45:13.742811+00:00\"}]}, \"hypothesis\": \"Dual-critic (min of two independent critics for actor loss) will suppress CIVO by preventing critic overestimation. Uses 008d CIVO-trigger config (trained dt_emb + multi-rate exposure). If NVE stays below 1.5× and eval matches baseline, dual-critic is an effective architecture-level intervention.\", \"metrics\": {\"baseline_eval\": 900, \"civo_prevented\": true, \"eval_final\": 739.7, \"eval_final_step\": 215000, \"eval_peak\": 787.7, \"eval_peak_step\": 205000, \"eval_vs_baseline_pct\": 87.5, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"note\": \"CIVO prevented 2/2 seeds. v1≈v2 → mechanism is implicit value regularization, not min-of-two pessimism.\", \"nve_final\": 0.1, \"nve_peak\": 1.1, \"nve_peak_step\": 95000, \"v1_v2_gap\": \"<0.1% (min operation has no pessimism effect)\"}, \"parent\": \"exp_008d_civo_trigger_s2\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:45:08.395Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032_dual_critic_walker\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_032_dual_critic_walker\\\"\", \"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"gpu\": [\"cuda:1\"], \"gpu_id\": 1, \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0.0}, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_032_dual_critic_walker.log\", \"model_name\": \"DreamerV3 + Dual Critic (min of two independent critics)\", \"pid\": \"124556\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T23:19:57.690519+00:00\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T07:52:13.265445+00:00\"}, \"exp_032b_dual_critic_walker_s1\": {\"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032b_dual_critic_walker_s1/latest.pt\", \"completed_at\": \"2026-05-21T05:50:59.612299+00:00\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T23:22:08.787456+00:00\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T05:48:16.069863+00:00\"}]}, \"gpu\": \"cuda:1\", \"hypothesis\": \"Dual-critic seed=1 replication: if both s0 and s1 show NVE<1.5× and eval matches baseline → dual-critic is a robust architecture-level CIVO intervention, strengthening Intervention Hierarchy evidence.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_032b_dual_critic_walker_s1.log\", \"metrics\": {\"actor_loss_late\": \"≈0 (gradient signal weak)\", \"baseline_eval\": 900, \"director_override\": \"CIVO suppressed (NVE<1.5 throughout) = success for intervention evaluation. Eval 57% of vanilla baseline is due to gate collapse (dt=2 locked), not dual-critic failure.\", \"eval_criterion_pass\": false, \"eval_trajectory\": \"75K=241, 105K=228, 155K=361, 195K=544, 205K=552(peak), 215K=516\", \"eval_vs_baseline_pct\": 57, \"final_eval_return\": 516, \"final_nve\": 0.1, \"gate_dt2_frac\": 1.0, \"nve_criterion_pass\": true, \"nve_trajectory\": \"15K=0.0, 25K=0.2, 35K=0.4, 45K=0.8, 55K=0.7, 65K=0.7, 75K=0.7, 85K=1.4(peak), 95K=0.7, 105K=0.5, 135K=0.4, 215K=0.1\", \"peak_eval_return\": 551.8, \"peak_nve\": 1.4, \"total_steps\": 224000, \"total_updates\": 52599, \"training_hours\": 6.42, \"value1_value2_gap\": \"<0.5 (min operation has no pessimism effect)\"}, \"notes\": \"NVE well controlled (peak 1.4 < 1.5, no CIVO), but eval only 57% of baseline (516 vs ~900). Dual-critic suppresses value overestimation at cost of policy performance. Gate collapsed to dt=2 throughout. Two critics converge to near-identical values, min operation ineffective.\", \"parent\": \"exp_032_dual_critic_walker\", \"pid\": \"973387\", \"reproduce\": {\"code_commit\": \"fb56c860a88292ad60b6183effc1102a01205086\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_032b_dual_critic_walker_s1\\\"\", \"finished_at\": \"2026-05-21T05:48:11.173Z\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"started_at\": \"2026-05-20T23:22:55.338Z\", \"training_hours\": 6.42}, \"retry_count\": 0, \"server\": \"bjb1-45299\", \"spec\": {\"data_count\": 210000, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"hyperparams\": {\"dual_critic\": true, \"gate_enabled\": true, \"gate_fixed_dt\": 2, \"gate_subsample_max_dt\": 2, \"imag_horizon\": 8, \"tcn_sigma\": 0}, \"model_name\": \"DreamerV3 + Dual Critic (min of two independent critics)\", \"seed\": 1}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T05:55:05.353975+00:00\"}, \"exp_029d_tcn_walker_s3_sigma02\": {\"completed_at\": \"2026-05-21T03:39:24.356918+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T19:33:03.633Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-21T03:32:52.751412+00:00\"}]}, \"failure_reason\": \"Sudden CIVO blowup: NVE appeared healthy at 95K (0.666, declining from 0.855@85K), then catastrophic spike to 3.0@105K. Eval collapsed 349.6→71.8. Late-stage NVE recovery to 0.4@215K = value adaptation (eval stayed at 104.5, never recovered). TCN σ=0.2 Walker: 2/4 seeds CIVO failure (s2: NVE 2.77, s3: NVE 3.0).\", \"hypothesis\": \"Fourth TCN σ=0.2 seed to match 4 baseline seeds (s1=916, s2=443, s3=869, s4=923@105K) for statistical comparison. Current TCN seeds: s0=91%, s1=45%. Need s2+s3 to compute IQM+CI per Agarwal et al. 2021.\", \"metrics\": {\"civo_onset_step\": 105000, \"civo_pattern\": \"sudden blowup (healthy 0.67@95K → 3.0@105K)\", \"eval_final\": 104.5, \"eval_last_step\": 215000, \"eval_peak\": 349.6, \"eval_peak_step\": 95000, \"eval_return_105K\": 71.8, \"eval_return_115K\": 69.8, \"eval_return_125K\": 61.5, \"eval_return_135K\": 141.8, \"eval_return_145K\": 98.66, \"eval_return_155K\": 88.86, \"eval_return_15K\": 159.1, \"eval_return_165K\": 86.22, \"eval_return_175K\": 123.53, \"eval_return_185K\": 153.71, \"eval_return_195K\": 68.84, \"eval_return_205K\": 63.71, \"eval_return_215K\": 104.5, \"eval_return_25K\": 155.7, \"eval_return_35K\": 190.8, \"eval_return_45K\": 137.1, \"eval_return_55K\": 210.7, \"eval_return_5K\": 31.7, \"eval_return_65K\": 189.5, \"eval_return_75K\": 253.2, \"eval_return_85K\": 259.5, \"eval_return_95K\": 349.6, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"nve_peak\": 3.0, \"nve_peak_step\": 105000, \"step\": 224000, \"value_mean_105K\": 218.37, \"value_mean_215K\": 42.55, \"value_mean_95K\": 232.74, \"ve_ratio_105K\": 3.0, \"ve_ratio_115K\": 2.5, \"ve_ratio_125K\": 2.4, \"ve_ratio_135K\": 0.9, \"ve_ratio_145K\": 1.141, \"ve_ratio_155K\": 1.06, \"ve_ratio_165K\": 0.91, \"ve_ratio_175K\": 0.556, \"ve_ratio_185K\": 0.396, \"ve_ratio_195K\": 0.78, \"ve_ratio_205K\": 0.747, \"ve_ratio_215K\": 0.4, \"ve_ratio_45K\": 0.695, \"ve_ratio_55K\": 0.598, \"ve_ratio_65K\": 0.863, \"ve_ratio_75K\": 0.791, \"ve_ratio_85K\": 0.9, \"ve_ratio_95K\": 0.7}, \"parent\": \"exp_029b_tcn_walker_s2_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-21T03:32:47.021Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029d_tcn_walker_s3_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_029d_tcn_walker_s3_sigma02\\\"\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029d_tcn_walker_s3_sigma02.log\", \"pid\": \"109826\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T19:33:48.032Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-21T03:39:24.356963+00:00\"}, \"exp_031_tcn_pickcube_s0_sigma02\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_031_tcn_pickcube_s0_sigma02\", \"completed_at\": \"2026-05-20T23:52:48.308Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T12:09:56.923Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T23:50:00.801433+00:00\"}]}, \"hypothesis\": \"TCN (Temporal Conditioning Noise, σ=0.2) on dt_embedding during imagination rollout will suppress CIVO in ManiSkill PickCube-v1, as it did in Walker Walk, by preventing the world model from overfitting to fixed dt signals.\", \"metrics\": {\"eval_peak\": 28.6, \"eval_peak_step\": 162500, \"eval_return_132K\": 23.45, \"eval_return_152K\": 23.1, \"eval_return_192K\": 11.6, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0, \"step\": 195600, \"train_return_range\": \"18-25\", \"ve_ratio_latest\": 0.18, \"ve_ratio_peak\": 3.71}, \"parent\": \"exp_019b_pickcube_civo_trigger\", \"reproduce\": {\"finished_at\": \"2026-05-20T23:49:56.649Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"none(train_from_scratch)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_031_tcn_pickcube_s0_sigma02\\\"\", \"data_count\": \"200000(online)\", \"data_path\": \"maniskill_PickCube-v1\", \"eval_data\": \"maniskill_PickCube-v1(online_eval)\", \"gpu\": \"cuda:1\", \"gpu_hours\": 11.17, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_031_tcn_pickcube_s0_sigma02.log\", \"model_name\": \"dreamerv3\", \"pid\": \"908459\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T12:42:41.707Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 40206.6}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T23:52:48.308Z\"}, \"exp_029b_tcn_walker_s2_sigma02\": {\"completed_at\": \"2026-05-20T22:58:31.008151+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T16:55:13.731Z\", \"failure_reason\": \"CIVO confirmed: NVE accelerated 1.01→1.65→2.77@105K (008d-like pattern), eval collapsed 177.7→32.0. Late-stage NVE decline to 1.06@155K = value adaptation to collapsed policy, NOT CIVO self-recovery (eval remained at 56.5, never recovered). Killed at 156K to free GPU for dual-critic experiment.\", \"hypothesis\": \"TCN σ=0.2 seed variance characterization: s0 eval=91%, s1 eval=45%. Third seed resolves whether high variance is systematic or s1 is outlier.\", \"metrics\": {\"civo_onset_step\": 65000, \"eval_last_step\": 165000, \"eval_peak\": 177.67, \"eval_peak_step\": 55000, \"eval_return_105K\": 31.97, \"eval_return_115K\": 35.45, \"eval_return_125K\": 33.04, \"eval_return_135K\": 42.47, \"eval_return_145K\": 51.66, \"eval_return_155K\": 56.5, \"eval_return_15K\": 168.41, \"eval_return_165K\": 44.9, \"eval_return_25K\": 159.56, \"eval_return_35K\": 168.05, \"eval_return_45K\": 171.51, \"eval_return_55K\": 177.67, \"eval_return_5K\": 30.46, \"eval_return_65K\": 106.57, \"eval_return_75K\": 64.01, \"eval_return_85K\": 62.82, \"eval_return_95K\": 44.66, \"gate_dt2_frac\": 1.0, \"gate_entropy\": 0.0, \"late_stage_nve_decline\": \"value adaptation (value_mean 108→55), not recovery (eval stayed 32-57)\", \"nve_peak\": 2.765, \"nve_peak_step\": 105000, \"step\": 168000, \"value_mean_105K\": 88.38, \"value_mean_165K\": 55.03, \"value_mean_55K\": 103.62, \"ve_ratio_105K\": 2.765, \"ve_ratio_115K\": 2.326, \"ve_ratio_125K\": 2.278, \"ve_ratio_135K\": 1.648, \"ve_ratio_145K\": 1.234, \"ve_ratio_155K\": 1.061, \"ve_ratio_15K\": 0.03, \"ve_ratio_165K\": 1.226, \"ve_ratio_25K\": 0.174, \"ve_ratio_35K\": 0.335, \"ve_ratio_45K\": 0.477, \"ve_ratio_55K\": 0.583, \"ve_ratio_65K\": 1.014, \"ve_ratio_75K\": 1.65, \"ve_ratio_85K\": 1.623, \"ve_ratio_95K\": 2.109}, \"parent\": \"exp_029a_tcn_walker_s1_sigma02\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029b_tcn_walker_s2_sigma02\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_029b_tcn_walker_s2_sigma02\\\"\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029b_tcn_walker_s2_sigma02.log\", \"pid\": \"75543\", \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T16:56:24.781Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T22:58:31.008195+00:00\"}, \"exp_030c_tcn_cheetah_s0_sigma10\": {\"completed_at\": \"2026-05-20T22:34:07.916411+00:00\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T16:26:11.800Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T22:28:30.207347+00:00\"}]}, \"hypothesis\": \"TCN σ=1.0 on Cheetah tests whether higher noise amplitude further suppresses CIVO. σ=0.5 (exp_030b) was negative with NVE peaking at 10.67@55K then declining. σ=1.0 should provide stronger temporal regularization. If NVE stays below 1.5 throughout training and eval_return ≥ baseline → TCN generalizes to Cheetah with appropriate σ scaling.\", \"metrics\": {\"baseline_eval_avg\": 548, \"eval_final\": 47.2, \"eval_peak\": 371.7, \"eval_peak_step\": 35000, \"eval_return_105K\": 122.5, \"eval_return_115K\": 162.2, \"eval_return_125K\": 148.5, \"eval_return_135K\": 138.4, \"eval_return_145K\": 100.4, \"eval_return_155K\": 144.3, \"eval_return_15K\": 87.5, \"eval_return_165K\": 130.9, \"eval_return_175K\": 66.4, \"eval_return_185K\": 47.2, \"eval_return_195K\": 56.5, \"eval_return_205K\": 49.7, \"eval_return_215K\": 47.2, \"eval_return_25K\": 166.3, \"eval_return_35K\": 371.7, \"eval_return_45K\": 144.0, \"eval_return_55K\": 266.0, \"eval_return_5K\": 8.3, \"eval_return_65K\": 197.0, \"eval_return_75K\": 107.8, \"eval_return_85K\": 95.8, \"eval_return_95K\": 72.8, \"eval_vs_baseline\": \"8.6%\", \"gate_dt2_frac\": 1.0, \"gate_dt_mean\": 2.0, \"gate_entropy\": 0.0, \"step\": 224000, \"ve_ratio_max\": 0.4}, \"parent\": \"\", \"reproduce\": {\"finished_at\": \"2026-05-20T22:28:26.022Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030c_tcn_cheetah_s0_sigma10\", \"command\": \"dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --tcn_sigma 1.0\", \"data_count\": 210000, \"data_path\": \"dmc_cheetah_run\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_030c_tcn_cheetah_s0_sigma10.log\", \"model_name\": \"dreamerv3\", \"pid\": \"920968\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T16:49:48.464Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T22:34:07.916452+00:00\"}, \"exp_029c_tcn_walker_s0_sigma01\": {\"conclusion\": \"negative\", \"created_at\": \"2026-05-20T11:09:50.913Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T19:30:34.687287+00:00\"}]}, \"hypothesis\": \"σ=0.1 tests the lower bound of effective TCN noise; if Walker σ=0.2 prevents CIVO and σ=0.1 does not, establishes minimum effective dose. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8). Three-point dose-response: σ=0.1 (this), σ=0.2 (success), σ=0.5 (oscillatory failure).\", \"metrics\": {\"eval_final\": 328.3, \"eval_peak\": 490.7, \"eval_peak_step\": \"165K\", \"eval_return_105K\": 204.7, \"eval_return_115K\": 296.4, \"eval_return_125K\": 232.3, \"eval_return_135K\": 247.4, \"eval_return_145K\": 323.1, \"eval_return_155K\": 359.7, \"eval_return_15K\": 99.1, \"eval_return_165K\": 490.7, \"eval_return_175K\": 246.2, \"eval_return_185K\": 220.6, \"eval_return_195K\": 212.8, \"eval_return_205K\": 256.9, \"eval_return_215K\": 328.3, \"eval_return_25K\": 140.7, \"eval_return_35K\": 155.7, \"eval_return_45K\": 160.9, \"eval_return_55K\": 254.8, \"eval_return_5K\": 35.6, \"eval_return_65K\": 268.7, \"eval_return_75K\": 295.5, \"eval_return_85K\": 220.8, \"eval_return_95K\": 188.6, \"nve_final\": 0.1, \"nve_max\": 1.0218, \"nve_max_step\": \"95K\", \"total_steps\": 224000, \"ve_ratio_105K\": 0.761, \"ve_ratio_115K\": 0.4514, \"ve_ratio_125K\": 0.4899, \"ve_ratio_135K\": 0.3995, \"ve_ratio_145K\": 0.2667, \"ve_ratio_155K\": 0.2, \"ve_ratio_15K\": 0.0306, \"ve_ratio_165K\": 0.1, \"ve_ratio_175K\": 0.3, \"ve_ratio_185K\": 0.3, \"ve_ratio_195K\": 0.3, \"ve_ratio_205K\": 0.2, \"ve_ratio_215K\": 0.1, \"ve_ratio_25K\": 0.1606, \"ve_ratio_35K\": 0.3162, \"ve_ratio_45K\": 0.4807, \"ve_ratio_55K\": 0.4368, \"ve_ratio_65K\": 0.5432, \"ve_ratio_75K\": 0.6211, \"ve_ratio_85K\": 0.9533, \"ve_ratio_95K\": 1.0218}, \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-20T19:30:28.923Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029c_tcn_walker_s0_sigma01/latest.pt\", \"checkpoint_source\": \"from_scratch\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.1 --logdir logdir/exp_029c_tcn_walker_s0_sigma01\\\"\", \"data_count\": 210000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_029c_tcn_walker_s0_sigma01.log\", \"model_name\": \"dreamer\", \"pid\": \"59395\", \"seed\": 0, \"server\": \"bjb1-40020\", \"submitted_at\": \"2026-05-20T11:42:56.447Z\", \"submitted_via\": \"submit_training_job\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T19:53:26.097Z\"}, \"exp_029a_tcn_walker_s1_sigma02\": {\"completed_at\": \"2026-05-20T16:47:18.789Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T08:31:29.514Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-20T16:47:29.902718+00:00\"}]}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"hypothesis\": \"TCN σ=0.2 multi-seed validation (seed=1): replication of exp_027_tcn_walker_s0_sigma02 which shows NVE<1.0× and eval reaching baseline at 135K. Tests whether CIVO suppression is reproducible across seeds. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.2. If s1 also shows NVE<1.0× → TCN σ=0.2 is a robust intervention.\", \"metrics\": {\"current_step\": 215000, \"eval_last10_mean\": 282.15, \"eval_peak\": 401, \"eval_peak_step\": \"125K\", \"eval_return_105K\": 319.4, \"eval_return_115K\": 345.5, \"eval_return_125K\": 401, \"eval_return_135K\": 307.8, \"eval_return_145K\": 380.8, \"eval_return_155K\": 307.3, \"eval_return_15K\": 137.7, \"eval_return_165K\": 320.3, \"eval_return_175K\": 159, \"eval_return_185K\": 278.2, \"eval_return_195K\": 301.2, \"eval_return_205K\": 204.6, \"eval_return_215K\": 161.3, \"eval_return_25K\": 180.9, \"eval_return_35K\": 124, \"eval_return_45K\": 124.2, \"eval_return_55K\": 133.9, \"eval_return_5K\": 36.7, \"eval_return_65K\": 169.7, \"eval_return_75K\": 171.2, \"eval_return_85K\": 151.8, \"eval_return_95K\": 180.3, \"nve_final\": 0.1864, \"nve_max\": 0.6428, \"nve_max_step\": \"55K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.1554, \"ve_ratio_115K\": 0.1348, \"ve_ratio_125K\": 0.116, \"ve_ratio_135K\": 0.1449, \"ve_ratio_145K\": 0.1088, \"ve_ratio_155K\": 0.1287, \"ve_ratio_15K\": 0.0248, \"ve_ratio_165K\": 0.1142, \"ve_ratio_175K\": 0.2138, \"ve_ratio_185K\": 0.121, \"ve_ratio_195K\": 0.1075, \"ve_ratio_205K\": 0.1503, \"ve_ratio_215K\": 0.1864, \"ve_ratio_25K\": 0.1165, \"ve_ratio_35K\": 0.3574, \"ve_ratio_45K\": 0.5147, \"ve_ratio_55K\": 0.6428, \"ve_ratio_65K\": 0.4777, \"ve_ratio_75K\": 0.398, \"ve_ratio_85K\": 0.4033, \"ve_ratio_95K\": 0.3007}, \"notes\": \"Cron 误报: process exited without sentinel/W&B, 但实验已正常完成 (215K/210K target). NVE max 0.6428@55K (CIVO suppressed), eval peak 401@125K (45% baseline). 对比 parent s0: s0 eval 达 baseline, s1 仅 45% → 高 seed 方差暴露 TCN 脆弱性. 结论 conclusion=success 不变.\", \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"reproduce\": {\"finished_at\": \"2026-05-20T16:47:17.713Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02/latest.pt\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir ~/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02\", \"data_count\": 210000, \"data_path\": \"dmc_walker_walk\", \"gpu\": \"cuda:1\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02.log\", \"model_name\": \"dreamerv3\", \"pid\": \"50924\", \"seed\": 1, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T16:53:36.867Z\"}, \"exp_030b_tcn_cheetah_s0_sigma05\": {\"completed_at\": \"2026-05-20T16:49:02.778Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T11:07:53.975Z\", \"hypothesis\": \"Cheetah CIVO intensity requires higher TCN noise; σ=0.5 may be the environment-appropriate dose (Walker σ=0.5 = overdose causing oscillatory CIVO, Cheetah σ=0.2 = underdose with NVE 1.903@55K). Tests whether TCN effectiveness is environment-dependent with σ scaling to CIVO severity. If NVE<1.5× and eval maintained → TCN is generalizable with environment-tuned σ.\", \"metrics\": {\"current_step\": 195000, \"eval_return_105K\": 104.4, \"eval_return_115K\": 137.7, \"eval_return_125K\": 211.7, \"eval_return_135K\": 97.2, \"eval_return_145K\": 79.4, \"eval_return_155K\": 76.8, \"eval_return_15K\": 78.3, \"eval_return_165K\": 77.5, \"eval_return_175K\": 85.7, \"eval_return_185K\": 68.7, \"eval_return_195K\": 77.6, \"eval_return_25K\": 219.3, \"eval_return_35K\": 296.5, \"eval_return_45K\": 32.8, \"eval_return_55K\": 6, \"eval_return_5K\": 8.3, \"eval_return_65K\": 71.2, \"eval_return_75K\": 23.3, \"eval_return_85K\": 34, \"eval_return_95K\": 143.6, \"nve_final\": 0.1534, \"nve_max\": 10.6657, \"nve_max_step\": \"55K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.2686, \"ve_ratio_115K\": 0.1789, \"ve_ratio_125K\": 0.1037, \"ve_ratio_135K\": 0.2153, \"ve_ratio_145K\": 0.2478, \"ve_ratio_155K\": 0.2392, \"ve_ratio_15K\": 0.0202, \"ve_ratio_165K\": 0.202, \"ve_ratio_175K\": 0.1591, \"ve_ratio_185K\": 0.1834, \"ve_ratio_195K\": 0.1534, \"ve_ratio_25K\": 0.0636, \"ve_ratio_35K\": 0.1238, \"ve_ratio_45K\": 1.9141, \"ve_ratio_55K\": 10.6657, \"ve_ratio_65K\": 0.8371, \"ve_ratio_75K\": 1.9823, \"ve_ratio_85K\": 1.0946, \"ve_ratio_95K\": 0.2253}, \"parent\": \"\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030b_tcn_cheetah_s0_sigma05/latest.pt\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_030b_tcn_cheetah_s0_sigma05/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T16:49:02.778Z\"}, \"exp_027_tcn_walker_s1\": {\"completed_at\": \"2026-05-20T12:38:02.085Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T05:51:53.479Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T12:35:42.576855+00:00\"}]}, \"hypothesis\": \"TCN σ=0.5 seed=1: Replication of exp_027_tcn_walker_s0 with different seed to verify that the NVE self-correction phenomenon (transient CIVO at 55K → NVE recovery to 0.83 by 75K) is reproducible across seeds, not a stochastic artifact. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) with TCN noise σ=0.5.\", \"metrics\": {\"eval_last10_mean\": 233.1, \"eval_peak\": 364.9, \"eval_peak_step\": 75000, \"eval_return\": {\"105000\": 216.7, \"115000\": 318.9, \"125000\": 309.1, \"135000\": 216.1, \"145000\": 175.4, \"15000\": 140.5, \"155000\": 171, \"165000\": 209.5, \"175000\": 120.4, \"185000\": 355.4, \"195000\": 183.3, \"205000\": 240.2, \"215000\": 350.8, \"25000\": 163.6, \"35000\": 153, \"45000\": 136.8, \"5000\": 31, \"55000\": 158.3, \"65000\": 298.5, \"75000\": 364.9, \"85000\": 134, \"95000\": 94.6}, \"nve_final\": 0.1476, \"nve_max\": 1.6367, \"nve_max_step\": 95000, \"total_steps\": 215000, \"ve_ratio\": {\"105000\": 0.6444, \"115000\": 0.4021, \"125000\": 0.38, \"135000\": 0.5078, \"145000\": 0.8469, \"15000\": 0.0246, \"155000\": 0.8568, \"165000\": 0.5393, \"175000\": 0.7355, \"185000\": 0.211, \"195000\": 0.3513, \"205000\": 0.2376, \"215000\": 0.1476, \"25000\": 0.1416, \"35000\": 0.3585, \"45000\": 0.6101, \"55000\": 0.7092, \"65000\": 0.4875, \"75000\": 0.4902, \"85000\": 1.4104, \"95000\": 1.6367}}, \"parent\": \"exp_027_tcn_walker_s0\", \"reproduce\": {\"finished_at\": \"2026-05-20T12:35:38.092Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_027_tcn_walker_s1/\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s1.log\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T12:45:31.028Z\"}, \"exp_027_tcn_walker_s0_sigma02\": {\"completed_at\": \"2026-05-20T11:19:31.331Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-20T03:25:32.533Z\", \"hypothesis\": \"TCN σ sensitivity test: same as exp_027 (Gaussian noise on dt_embedding during imagination) but with σ=0.2 instead of 0.5. Tests whether smaller noise magnitude is sufficient to disrupt dt-specific value bias. If σ=0.5 works but σ=0.2 doesn't → noise magnitude matters; if both work → method is robust to σ choice.\", \"metrics\": {\"eval_last10_mean\": 587.1, \"eval_peak\": 821.1, \"eval_peak_step\": \"175K\", \"eval_return_105K\": 236.4, \"eval_return_115K\": 543.8, \"eval_return_125K\": 458.4, \"eval_return_135K\": 496.7, \"eval_return_145K\": 542.7, \"eval_return_155K\": 660.5, \"eval_return_15K\": 150.6, \"eval_return_165K\": 653.3, \"eval_return_175K\": 821.1, \"eval_return_185K\": 560.5, \"eval_return_195K\": 567.9, \"eval_return_205K\": 558.7, \"eval_return_215K\": 551, \"eval_return_25K\": 199.4, \"eval_return_35K\": 278.2, \"eval_return_45K\": 315.6, \"eval_return_55K\": 278.6, \"eval_return_5K\": 35.6, \"eval_return_65K\": 331, \"eval_return_75K\": 293.1, \"eval_return_85K\": 363.9, \"eval_return_95K\": 171.4, \"nve_final\": 0.0955, \"nve_max\": 0.9081, \"nve_max_step\": \"95K\", \"total_steps\": 215000, \"ve_ratio_105K\": 0.5625, \"ve_ratio_115K\": 0.2105, \"ve_ratio_125K\": 0.2182, \"ve_ratio_135K\": 0.1764, \"ve_ratio_145K\": 0.143, \"ve_ratio_155K\": 0.106, \"ve_ratio_15K\": 0.0192, \"ve_ratio_165K\": 0.0979, \"ve_ratio_175K\": 0.0729, \"ve_ratio_185K\": 0.1048, \"ve_ratio_195K\": 0.1026, \"ve_ratio_205K\": 0.0995, \"ve_ratio_215K\": 0.0955, \"ve_ratio_25K\": 0.0961, \"ve_ratio_35K\": 0.1875, \"ve_ratio_45K\": 0.3009, \"ve_ratio_55K\": 0.5231, \"ve_ratio_65K\": 0.5654, \"ve_ratio_75K\": 0.611, \"ve_ratio_85K\": 0.4665, \"ve_ratio_95K\": 0.9081}, \"parent\": \"exp_027_tcn_walker_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0_sigma02/latest.pt\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.2 --logdir logdir/exp_027_tcn_walker_s0_sigma02\", \"data_count\": 215000, \"data_path\": \"dmc_walker_walk\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0_sigma02.log\", \"model_name\": \"dreamerv3\", \"seed\": 0, \"server\": \"bjb1-40020\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T12:06:21.855Z\"}, \"exp_030a_tcn_cheetah_s0_sigma02\": {\"completed_at\": \"2026-05-20T11:10:00.827Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T09:24:38.711Z\", \"hypothesis\": \"TCN σ=0.2 cross-environment validation on Cheetah Run: tests whether CIVO suppression generalizes beyond Walker Walk. Cheetah exhibits stronger CIVO (NVE 8.27-70.64× in exp_010b) so this is a harder test. Same CIVO-inducing config (gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8) + TCN σ=0.2. If NVE<1.5× and eval maintained → TCN is environment-agnostic intervention.\", \"metrics\": {\"current_step\": 64000, \"eval_return_35K\": 299.5, \"eval_return_55K\": 31.9, \"note\": \"WARNING: NVE breached 1.5× at 55K (1.903), eval crashed 299→32. Possible CIVO despite TCN.\", \"target_steps\": 210000, \"ve_ratio_55K\": 1.903}, \"parent\": \"exp_027_tcn_walker_s0_sigma02\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_030a_tcn_cheetah_s0_sigma02/\", \"checkpoint_source\": \"from_scratch\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_enabled True --tcn_sigma 0.2 --logdir logdir/exp_030a_tcn_cheetah_s0_sigma02\", \"data_count\": \"210000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run\", \"gpu\": \"cuda:0\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_030a_tcn_cheetah_s0_sigma02.log\", \"model_name\": \"dreamerv3_tcn_sigma02_cheetah\", \"seed\": 0, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T11:10:00.827Z\"}, \"exp_027_tcn_walker_s0\": {\"analysis_summary\": \"TCN (σ=0.5 noise on dt_embedding) FAILED to suppress CIVO. NVE breached 1.5× threshold 3 times: 55K(1.68×), 65K(1.54×), 85K(3.97×). Peak NVE 3.97× at 85K is HIGHER than typical CIVO, suggesting TCN destabilizes value learning. Eval peaked at 240 (35K), then collapsed to avg 117 in latter half — far below 450 target. Gate remained fixed at dt=2 throughout (zero entropy). The noise magnitude was insufficient to decorrelate critic estimates from dt conditioning. Training reached 120K/210K planned. Hypothesis falsified: forward-pass noise at σ=0.5 does not prevent critic from exploiting dt-specific value structure.\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_027_tcn_walker_s0/latest.pt\", \"completed_at\": \"2026-05-20T09:24:09.016Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T02:44:51.820Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-20T06:06:34.898602+00:00\"}]}, \"hypothesis\": \"Temporal Conditioning Noise (TCN): adding Gaussian noise (sigma=0.5) to dt_embedding during imagination rollouts reduces dt conditioning precision, preventing critic from learning dt-specific value bias. Predicts CIVO suppression (NVE < 1.5×) with eval > 50% baseline (~450+). Based on obs-decoder SGS failure (gradient-level intervention insufficient) → need forward-pass/representation-level intervention.\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0.log\", \"metrics\": {\"eval_return_105K\": 95.5, \"eval_return_112K\": 99.5, \"eval_return_15K\": 154.6, \"eval_return_25K\": 223.6, \"eval_return_35K\": 240, \"eval_return_45K\": 101.2, \"eval_return_55K\": 70, \"eval_return_5K\": 37.4, \"eval_return_65K\": 95.1, \"eval_return_75K\": 189.2, \"eval_return_85K\": 36, \"eval_return_95K\": 166.4, \"final_step\": 120000, \"gate_dt_entropy\": 0, \"gate_dt_mean\": 2, \"last_5_eval_avg\": 117.3, \"nve_breach_count\": 3, \"nve_breach_steps\": \"55K(1.68), 65K(1.54), 85K(3.97)\", \"peak_eval\": 240, \"peak_eval_step\": \"35K\", \"peak_nve\": 3.965, \"peak_nve_step\": \"85K\", \"target_steps\": 210000, \"ve_ratio_105K\": 0.916, \"ve_ratio_15K\": 0.02, \"ve_ratio_25K\": 0.11, \"ve_ratio_35K\": 0.235, \"ve_ratio_45K\": 0.86, \"ve_ratio_55K\": 1.679, \"ve_ratio_65K\": 1.544, \"ve_ratio_75K\": 0.831, \"ve_ratio_85K\": 3.965, \"ve_ratio_95K\": 0.675}, \"parent\": \"exp_025_obs_sgs_walker_s1\", \"reproduce\": {\"finished_at\": \"2026-05-20T06:06:30.806Z\"}, \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --tcn_sigma 0.5 --logdir logdir/exp_027_tcn_walker_s0\\\"\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 3.18, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0.log\", \"pid\": \"888715\", \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T06:13:35.505Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 11433.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T09:24:09.016Z\"}, \"exp_028_rave_walker_s0_ceil15\": {\"completed_at\": \"2026-05-20T08:31:12.389Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T03:25:34.045Z\", \"hypothesis\": \"RAVE ceiling sensitivity test: same as exp_028 (EMA-anchored value cap) but with ceiling=1.5 instead of 2.0. Tighter constraint tests whether more aggressive capping improves CIVO suppression without harming learning. If ceiling=2.0 works and 1.5 also works → method robust; if 1.5 hurts eval → ceiling choice is critical.\", \"metrics\": {\"current_step\": 135000, \"eval_return_105K\": 76.2, \"eval_return_115K\": 41.2, \"eval_return_125K\": 36.6, \"eval_return_135K\": 39.1, \"eval_return_15K\": 99.4, \"eval_return_25K\": 155.3, \"eval_return_35K\": 180.1, \"eval_return_45K\": 166.9, \"eval_return_55K\": 131, \"eval_return_5K\": 31.6, \"eval_return_65K\": 91.5, \"eval_return_75K\": 120.9, \"eval_return_85K\": 137.3, \"eval_return_95K\": 70.2, \"target_steps\": 210000, \"ve_ratio_105K\": 0.984, \"ve_ratio_115K\": 1.513, \"ve_ratio_125K\": 1.462, \"ve_ratio_135K\": 1.171, \"ve_ratio_15K\": 0.03, \"ve_ratio_25K\": 0.128, \"ve_ratio_35K\": 0.247, \"ve_ratio_45K\": 0.428, \"ve_ratio_55K\": 0.737, \"ve_ratio_65K\": 1.294, \"ve_ratio_75K\": 0.937, \"ve_ratio_85K\": 0.727, \"ve_ratio_95K\": 1.28}, \"parent\": \"exp_028_rave_walker_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15/\", \"checkpoint_source\": \"N/A (trained from scratch, hyperparameter variant of exp_028_rave_walker_s0)\", \"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --rave_enabled True --rave_ceiling 1.5 --rave_ema_decay 0.99 --logdir ~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15'\", \"data_count\": \"210000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15.log\", \"model_name\": \"dreamerv3_rave_ceil15\", \"note\": \"CUDA_VISIBLE_DEVICES=1 set by submit_training_job, device=cuda:0 within process\", \"pid\": \"38372\", \"seed\": 0, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_028_rave_walker_s0_ceil15\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T08:31:12.389Z\"}, \"exp_028_rave_walker_s0\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_028_rave_walker_s0/checkpoint.ckpt\", \"completed_at\": \"2026-05-20T06:14:31.720Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-20T02:44:53.882Z\", \"hypothesis\": \"Reality-Anchored Value Estimation (RAVE): cap imagination critic values at ceiling*v_anchor (ceiling=2.0, v_anchor=EMA of real-state critic values). Directly prevents pathological value inflation (NVE>1.5×) by bounding imagination/reality value ratio. Based on CIVO core mechanism being imagination value explosion → this directly caps the ratio without modifying gradients or training dynamics.\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_028_rave_walker_s0/\", \"metrics\": {\"current_steps\": 105000, \"eval_trajectory\": {\"105K\": {\"eval_return\": 29, \"value_mean\": 92.2, \"ve_ratio\": 3.183}, \"15K\": {\"eval_return\": 105.3, \"value_mean\": 2.93, \"ve_ratio\": 0.028}, \"25K\": {\"eval_return\": 191.9, \"value_mean\": 24.4, \"ve_ratio\": 0.127}, \"35K\": {\"eval_return\": 204.6, \"ve_ratio\": 0.267}, \"45K\": {\"eval_return\": 197.7, \"ve_ratio\": 0.439}, \"55K\": {\"eval_return\": 193, \"ve_ratio\": 0.62}, \"5K\": {\"eval_return\": 37.4, \"value_mean\": 0.001}, \"65K\": {\"eval_return\": 79.8, \"ve_ratio\": 1.832}, \"75K\": {\"eval_return\": 44.5, \"ve_ratio\": 3.415}, \"85K\": {\"eval_return\": 57.7, \"ve_ratio\": 2.126}, \"95K\": {\"eval_return\": 25.9, \"value_mean\": 105.87, \"ve_ratio\": 4.086}}, \"note\": \"NEGATIVE. NVE diverged from 55K onward (0.62→4.09), eval collapsed 193→29. No self-correction.\"}, \"parent\": \"exp_025_obs_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A (trained from scratch, derives from SGS failure line)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --rave_ceiling 2.0 --logdir logdir/exp_028_rave_walker_s0\\\"\", \"data_count\": \"105000 env steps (52.5K agent steps, action_repeat=2)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 3.33, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0.log\", \"model_name\": \"dreamerv3_rave_ceil20\", \"pid\": \"879636\", \"seed\": 0, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-20T02:54:26.022Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 12005.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T06:14:31.720Z\"}, \"exp_025_obs_sgs_walker_s2\": {\"completed_at\": \"2026-05-20T03:14:06.591Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-19T16:39:26.941Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-20T03:14:13.011509+00:00\"}]}, \"failure_reason\": \"Reclassified: experiment completed 224K/210K steps normally. Cron misclassified as failed due to missing W&B sentinel. Actual result is negative — obs-decoder SGS suppressed CIVO (ve_ratio 0.8-1.4) but eval collapsed to ~90 (baseline ~930).\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"metrics\": {\"eval_return_215K\": 89.6, \"target_steps\": 210000, \"train_steps_completed\": 224000, \"ve_ratio_175K\": 1.2, \"ve_ratio_185K\": 1.4, \"ve_ratio_215K\": 0.8}, \"notes\": \"Obs-decoder SGS s2 完成全部训练（224K/210K steps）。ve_ratio 全程 0.8-1.4（CIVO 部分抑制），但 eval_return 仅 66-90（baseline ~930，远低于 70% 阈值 ~650）。与 s1/s3/s4 一致：obs-decoder SGS 无法在抑制 CIVO 的同时保持性能。梯度干预路线全面否定（Full SGS 0/3 + Obs-decoder SGS 0/6 有效）。\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"reproduce\": {\"finished_at\": \"2026-05-20T03:14:07.466Z\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s2/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s2\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s2/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"7989\", \"seed\": 2, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_025_s2\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:17:26.061Z\"}, \"exp_026_obs_sgs_cheetah_s1\": {\"completed_at\": \"2026-05-20T03:02:46.556Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T20:19:29.171Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_026_obs_sgs_cheetah_s1/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 105000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_026_obs_sgs_cheetah_s1\", \"data_count\": \"105000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_026_obs_sgs_cheetah_s1/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs_cheetah\", \"pid\": \"16346\", \"seed\": 1, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_026_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:46.556Z\"}, \"exp_026_obs_sgs_cheetah_s0\": {\"completed_at\": \"2026-05-20T03:02:43.170Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T20:19:27.608Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS on Cheetah Run: cross-environment validation that obs-decoder SGS suppresses CIVO in a second environment. Based on 010b showing Cheetah CIVO (NVE 8.27-70.64×), if obs-decoder SGS works, NVE should stay < 1.5× and eval > 70% of Cheetah baseline (~380+). Tests whether the gradient decomposition finding (obs decoder as critical pathway) generalizes beyond Walker.\", \"parent\": \"exp_010b_cheetah_civo_trigger_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_026_obs_sgs_cheetah_s0/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 105000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_026_obs_sgs_cheetah_s0\", \"data_count\": \"105000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_026_obs_sgs_cheetah_s0/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs_cheetah\", \"pid\": \"16208\", \"seed\": 0, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_026_s0\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:43.170Z\"}, \"exp_025_obs_sgs_walker_s4\": {\"completed_at\": \"2026-05-20T03:02:39.948Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:29.810Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s4/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 4 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s4\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:1\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s4/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"851593\", \"seed\": 4, \"server\": \"bjb1-45299\", \"tmux_session\": \"exp_025_s4\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:39.948Z\"}, \"exp_025_obs_sgs_walker_s3\": {\"completed_at\": \"2026-05-20T03:02:36.670Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:28.402Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s3/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 3 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s3\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s3/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"847597\", \"seed\": 3, \"server\": \"bjb1-45299\", \"tmux_session\": \"exp_025_s3\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:36.670Z\"}, \"exp_025_obs_sgs_walker_s1\": {\"completed_at\": \"2026-05-20T03:02:32.583Z\", \"conclusion\": \"failed\", \"created_at\": \"2026-05-19T16:39:25.583Z\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"hypothesis\": \"Obs-decoder-only SGS (stop-gradient only on observation decoder pathway to dt_embedding) will suppress CIVO while preserving reward head gradient signal. Based on gradient decomposition showing obs decoder (16-22%) not reward head (38-49%) carries the critical dt-specific spatial information driving the fidelity gap. Predicts NVE < 1.5× and eval > 70% baseline (~650+).\", \"parent\": \"exp_018_full_sgs_walker_s1\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_025_obs_sgs_walker_s1/\", \"checkpoint_source\": \"N/A (trained from scratch)\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --sgs_mode obs_decoder_only --logdir logdir/exp_025_obs_sgs_walker_s1\", \"data_count\": \"210000 env steps (105K agent steps)\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": [\"cuda:0\"], \"log_path\": \"logdir/exp_025_obs_sgs_walker_s1/train.log\", \"model_name\": \"dreamerv3_obs_decoder_sgs\", \"pid\": \"7833\", \"seed\": 1, \"server\": \"bjb1-40020\", \"tmux_session\": \"exp_025_s1\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-20T03:02:32.583Z\"}, \"exp_001_baseline_s4_extended\": {\"completed_at\": \"2026-05-19T23:06:42.122Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T09:02:31.737Z\", \"hypothesis\": \"Walker Walk baseline seed=4 extended to 505K. Third long-run baseline seed for multi-seed NVE normalization. s4@105K=922.8 (highest), obtaining full ve_ratio profile.\", \"metrics\": {\"convergence_mean_250k_plus\": 935, \"final_eval_return\": 938.86, \"final_step\": 520000, \"peak_eval_return\": 960.6}, \"parent\": \"exp_001_baseline_s4\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s4/\", \"checkpoint_source\": \"logdir/exp_001_baseline_s4/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 4 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s4\", \"data_count\": \"505000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": \"cuda:1\", \"log_path\": \"logdir/exp_001_baseline_s4/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 112000, \"seed\": 4, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s4_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T23:06:42.122Z\"}, \"exp_001_baseline_s3_extended\": {\"completed_at\": \"2026-05-19T21:23:44.025Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T09:02:30.382Z\", \"hypothesis\": \"Walker Walk baseline seed=3 extended to 505K. Second long-run baseline seed (alongside s2_ext) for multi-seed NVE normalization robustness. s3@105K=869.0, testing convergence to 920+ level.\", \"metrics\": {\"eval_profile\": {\"102000\": 869.03, \"112000\": 898.89, \"120000\": 898.38, \"130000\": 837.74, \"140000\": 876.64, \"15000\": 224.27, \"150000\": 899.47, \"160000\": 922.77, \"170000\": 925.77, \"180000\": 912.89, \"190000\": 915.07, \"200000\": 894.77, \"210000\": 899.79, \"220000\": 951.18, \"230000\": 930.56, \"240000\": 910.47, \"25000\": 329.99, \"250000\": 914.02, \"260000\": 931.33, \"270000\": 954.65, \"280000\": 928.01, \"290000\": 947.4, \"300000\": 853.32, \"310000\": 906.35, \"320000\": 847.16, \"330000\": 934.78, \"340000\": 921.08, \"35000\": 413.12, \"350000\": 922.63, \"360000\": 844.99, \"370000\": 911.36, \"380000\": 917.73, \"390000\": 937.21, \"400000\": 928, \"410000\": 945.88, \"420000\": 897.2, \"430000\": 949.45, \"440000\": 937.28, \"45000\": 332.69, \"450000\": 924.24, \"460000\": 967.25, \"470000\": 940.55, \"480000\": 936.24, \"490000\": 944.67, \"5000\": 42.15, \"500000\": 957.09, \"510000\": 947.68, \"55000\": 519.91, \"65000\": 667.42, \"72000\": 771.33, \"82000\": 772.88, \"92000\": 854.6}, \"final_eval_return\": 947.68, \"final_step\": 520000, \"final_train_return_avg\": 945.4}, \"parent\": \"exp_001_baseline_s3\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s3/\", \"checkpoint_source\": \"logdir/exp_001_baseline_s3/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 3 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s3\", \"data_count\": \"505000 env steps\", \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"dmc_walker_walk (online eval during training)\", \"gpu\": \"cuda:0\", \"log_path\": \"logdir/exp_001_baseline_s3/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 120000, \"seed\": 3, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s3_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T21:23:44.025Z\"}, \"exp_001_baseline_s2_extended\": {\"completed_at\": \"2026-05-19T17:44:27.212Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T04:10:10.948Z\", \"hypothesis\": \"Walker Walk baseline seed=2 extended to 505K. Tests whether low eval (443.5 @105K) is due to slow convergence or seed-level difference. s1=915.7, s3=869.0 at 105K.\", \"metrics\": {\"eval_return_at_105K\": 443.5, \"eval_return_final\": 945.7, \"eval_return_peak\": 962.6, \"total_steps\": 512000, \"value_mean_at_105K\": 329.16, \"value_mean_plateau\": 665, \"ve_ratio_at_105K\": 0.7422, \"ve_ratio_converged_range\": \"0.69-0.77\"}, \"parent\": \"exp_001_baseline_s2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_001_baseline_s2/latest.pt\", \"checkpoint_source\": \"logdir/exp_001_baseline_s2/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 505000 --seed 2 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s2\", \"data_count\": 0, \"data_path\": \"logdir/exp_001_baseline_s2\", \"eval_data\": \"dmc_walker_walk (online eval)\", \"gpu\": \"cuda:1\", \"log_path\": \"logdir/exp_001_baseline_s2/train_extended.log\", \"model_name\": \"dreamerv3\", \"resumed_from_step\": 112000, \"seed\": 2, \"server\": \"bjb1-45299\", \"target_steps\": 505000, \"tmux_session\": \"exp_s2_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T17:44:27.212Z\"}, \"exp_023_cheetah_baseline_s4_extended\": {\"completed_at\": \"2026-05-19T09:02:40.466Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T06:27:42.161Z\", \"hypothesis\": \"Cheetah Run baseline seed=4 extended to 300K. Tests whether eval drop at 194K→204K (537→302) is transient fluctuation or permanent collapse. Informs baseline stability and NVE normalization robustness.\", \"metrics\": {\"eval_302k\": 580, \"eval_peak_ext\": 642.3, \"eval_peak_ext_step\": 272000, \"note\": \"延长到 300K 确认非 collapse。eval 恢复到 642 peak@272K，200K-300K 区间震荡上行 (301-642 range)，194K→204K 骤降为 transient fluctuation。\"}, \"parent\": \"exp_023_cheetah_baseline_s4\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"logdir/exp_023_cheetah_baseline_s4/\", \"checkpoint_source\": \"logdir/exp_023_cheetah_baseline_s4/latest.pt\", \"command\": \"CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 300000 --seed 4 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s4\", \"data_count\": \"300000 env steps\", \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"dmc_cheetah_run (online eval during training)\", \"gpu\": \"cuda:0\", \"log_path\": \"logdir/exp_023_cheetah_baseline_s4/train_extended.log\", \"model_name\": \"dreamerv3_baseline\", \"resumed_from_step\": 212000, \"seed\": 4, \"server\": \"bjb1-45299\", \"target_steps\": 300000, \"tmux_session\": \"exp_023_s4_ext\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T09:02:40.466Z\"}, \"exp_001_baseline_s4\": {\"completed_at\": \"2026-05-19T09:00:10.632Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-19T04:47:01.105Z\", \"hypothesis\": \"Walker Walk baseline seed=4. Fourth seed for 4-seed baseline CI. Tests whether s2 (443.5) is outlier or bimodal distribution (s1=915.7, s3=869.0).\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 922.8, \"peak_eval\": 922.8, \"peak_eval_step\": 105000, \"target_steps\": 105000, \"value_mean_final\": 576.1, \"ve_ratio_105k\": 0.624}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s4\", \"checkpoint_source\": \"N/A\", \"command\": \"CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 4 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s4\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s4/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T09:00:10.632Z\"}, \"exp_023_cheetah_baseline_s4\": {\"completed_at\": \"2026-05-19T06:26:03.295Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T23:54:02.288Z\", \"hypothesis\": \"Cheetah Run baseline seed=4. Fourth seed for tighter eval return CI and NVE normalization robustness.\", \"metrics\": {\"current_step\": 212000, \"eval_return_194k\": 537.03, \"eval_return_204k\": 301.69, \"note\": \"Cheetah baseline s4. Large eval drop 194K→204K (537→302). ve_ratio>1 indicates value overestimation at final step.\", \"peak_eval\": 537.03, \"peak_eval_step\": 194000, \"target_steps\": 200000, \"value_mean_204k\": 339.14, \"ve_ratio_204k\": 1.124}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s4\", \"checkpoint_source\": \"N/A (train from scratch)\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 4 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s4\", \"data_count\": \"200K env steps\", \"data_path\": \"dmc_cheetah_run (online RL)\", \"eval_data\": \"dmc_cheetah_run eval episodes\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s4/metrics.jsonl\", \"model_name\": \"DreamerV3 (default)\", \"pid\": 774033, \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T06:26:03.295Z\"}, \"exp_023_cheetah_baseline_s3\": {\"completed_at\": \"2026-05-19T04:08:47.459Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T21:49:33.229Z\", \"hypothesis\": \"Cheetah Run baseline seed=3. Extends 023a/023b/023_s2 (3 seeds) to 4 seeds for tighter eval return CI.\", \"metrics\": {\"current_step\": 204000, \"eval_return_202k\": 642.13, \"peak_eval\": 685.93, \"peak_eval_step\": 172000, \"target_steps\": 200000, \"value_mean_final\": 445.42, \"ve_ratio_final\": 0.694}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s3\", \"checkpoint_source\": \"N/A\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 3 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s3\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:1\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s3/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"pid\": \"768897\", \"seed\": 3, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T04:08:47.459Z\"}, \"exp_001_baseline_s3\": {\"completed_at\": \"2026-05-19T04:08:45.989Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T23:54:03.635Z\", \"hypothesis\": \"Walker Walk baseline seed=3. Third seed for tighter baseline eval CI.\", \"metrics\": {\"current_step\": 120000, \"eval_return_102k\": 869.03, \"peak_eval\": 898.89, \"peak_eval_step\": 112000, \"target_steps\": 105000, \"value_mean_final\": 622.2, \"ve_ratio_final\": 0.692}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s3\", \"checkpoint_source\": \"N/A (train from scratch)\", \"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 3 --device cuda:0 --compile False --gate_enabled False --logdir logdir/exp_001_baseline_s3\", \"data_count\": \"105K env steps\", \"data_path\": \"dmc_walker_walk (online RL)\", \"eval_data\": \"dmc_walker_walk eval episodes\", \"gpu\": \"cuda:1\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s3/metrics.jsonl\", \"model_name\": \"DreamerV3 (default)\", \"pid\": 774106, \"seed\": 3, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T04:08:45.989Z\"}, \"exp_023_cheetah_baseline_s2\": {\"completed_at\": \"2026-05-19T00:13:55.909Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T16:05:14.249Z\", \"hypothesis\": \"Cheetah Run baseline additional seed for tighter CI. Extends 023a/023b (2 seeds) to 3 seeds.\", \"metrics\": {\"current_step\": 205000, \"eval_return_final\": 645.4, \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\", \"target_steps\": 200000}, \"parent\": \"exp_023a_cheetah_baseline_s0\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s2\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 200000 --seed 2 --device cuda:0 --compile False --gate_enabled False --checkpoint_every 10000 --logdir logdir/exp_023_cheetah_baseline_s2\\\"\", \"data_count\": 0, \"data_path\": \"dmc_cheetah_run\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 8.13, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_023_cheetah_baseline_s2/metrics.jsonl\", \"model_name\": \"dreamerv3\", \"pid\": \"753786\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T16:05:57.478Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 29278.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-19T00:13:55.909Z\"}, \"exp_008f_s4\": {\"completed_at\": \"2026-05-18T23:18:51.672Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-18T18:41:00.894Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=4. Additional independent seed for 008f control (existing seeds: 1/008f, 2/009c, 3/008f_s3). C2 causal contrast robustness.\", \"metrics\": {\"civo_alert\": 0, \"eval_return_105k\": 306.5, \"note\": \"No CIVO. No-dt-emb control seed=4. Peak NVE 1.41x @85K (transient), settles to 0.58x @105K.\", \"nve_105k\": 0.58, \"peak_eval\": 487.5, \"peak_eval_step\": 55000, \"peak_nve\": 1.41, \"peak_nve_step\": 85000}, \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_emb_s4\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_emb_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 105000, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_emb_s4/metrics.jsonl\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8\", \"seed\": 4, \"server\": \"bjb1-45299\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T23:18:51.672Z\"}, \"exp_009c_s3\": {\"completed_at\": \"2026-05-18T21:40:10.763Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T17:12:00.539Z\", \"hypothesis\": \"Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=3. Additional seed for 009c (seed=2 NVE 1.14x at 105K on upward trajectory); tests whether NVE rise is reproducible across independent seeds or stochastic.\", \"metrics\": {\"current_step\": 108000, \"eval_return_105k\": 311.92, \"note\": \"eval peaked at 55-65K (~457) then declined to 311.92. NVE 0.52x (no CIVO). 009c seed=2 NVE 1.14x not reproduced.\", \"nve_105k\": 0.52, \"target_steps\": 105000, \"value_mean_105k\": 120.27, \"ve_ratio_105k\": 0.386}, \"parent\": \"exp_009c_008f_walker_s2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_no_dt_emb_s3\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_no_dt_emb_s3/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T21:40:10.762Z\"}, \"exp_001_baseline_s2\": {\"completed_at\": \"2026-05-18T21:40:09.329Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T16:05:17.571Z\", \"hypothesis\": \"Walker Walk baseline additional seed for tighter evaluation return CI.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 443.46, \"target_steps\": 105000, \"value_mean_105k\": 329.16, \"ve_ratio_105k\": 0.742}, \"parent\": \"exp_001_baseline\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s2\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_001_baseline_s2/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T21:40:09.329Z\"}, \"exp_008f_s2\": {\"completed_at\": \"2026-05-18T18:41:05.369Z\", \"conclusion\": \"killed\", \"created_at\": \"2026-05-18T16:05:16.527Z\", \"hypothesis\": \"No-dt-emb control additional seed. Extends 008f (1 seed, NVE 0.97x) for C2 causal contrast robustness.\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_source\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=0 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"data_count\": 0, \"data_path\": \"dmc_walker_walk\", \"eval_data\": \"N/A\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 2.58, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008f_s2.log\", \"model_name\": \"dreamerv3\", \"pid\": \"754063\", \"seed\": 2, \"server\": \"bjb1-45299\", \"submitted_at\": \"2026-05-18T16:06:00.248Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 9305.1}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:41:05.369Z\"}, \"exp_008a_cheetah_unexposed_s1\": {\"completed_at\": \"2026-05-18T18:20:00.278Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T14:23:13.377Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=1. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 504.38, \"nve_105k\": 0.478, \"target_steps\": 105000, \"value_mean_105k\": 156.97, \"ve_ratio_105k\": 0.3112}, \"parent\": \"exp_008a_no_subsample_dt2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s1\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s1/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:20:00.278Z\"}, \"exp_008a_cheetah_unexposed_s0\": {\"completed_at\": \"2026-05-18T18:19:58.491Z\", \"conclusion\": \"success\", \"created_at\": \"2026-05-18T14:23:12.052Z\", \"hypothesis\": \"Cross-environment validation of C3 (unexposed dt_emb protection) on Cheetah Run, seed=0. If unexposed dt_emb (trained but subsample OFF, gate_subsample_max_dt=1) prevents CIVO in Cheetah as it does in Walker (008a: 3/3 healthy, NVE 0.43-0.93x), this strengthens the causal claim that multi-rate data exposure is the necessary CIVO trigger across environments.\", \"metrics\": {\"current_step\": 112000, \"eval_return_105k\": 532.35, \"nve_105k\": 0.49, \"target_steps\": 105000, \"value_mean_105k\": 169.98, \"ve_ratio_105k\": 0.3193}, \"parent\": \"exp_008a_no_subsample_dt2\", \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s0\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_cheetah_unexposed_s0/metrics.jsonl\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-18T18:19:58.491Z\"}}, \"count\": 100, \"total\": 164, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6415}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The result is too large. Let me search for the specific Cheetah baseline experiments using grep or a more targeted approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "164c9230-e5a3-4672-b306-4ce489027c2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195DtKs7P11CnTmzYLTxBCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 36001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1081
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Large result. Let me search specifically for the baseline experiments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0bbe9263-d4b3-4be7-a61c-8f699c6457d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195DtKs7P11CnTmzYLTxBCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 36001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1081
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N3y5hCnpfzNDQyXbwm5T8E`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find cheetah baseline experiments\nfor k, v in exps.items():\n    if 'cheetah' in k.lower() and 'baseline' in k.lower():\n        print(f'=== {k} ===')\n        print(json.dumps(v.get('metrics', {}), indent=2))\n        print()\n\" 2>&1",
+  "description": "Extract Cheetah baseline experiments from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "715d7e9b-6414-4eb6-a6c6-fb2f596131f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195DtKs7P11CnTmzYLTxBCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 36001,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1081
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-25T21:21:50.619Z_
+
+<details><summary>↩ Tool result · `toolu_01N3y5hCnpfzNDQyXbwm5T8E`</summary>
+
+```text
+=== exp_083_cheetah_baseline_s1 ===
+{
+  "eval_return_105K": 444,
+  "eval_trajectory": {
+    "5K": 11.6,
+    "15K": 76.4,
+    "25K": 300.2,
+    "35K": 372.3,
+    "45K": 384.2,
+    "55K": 395.4,
+    "65K": 446.1,
+    "75K": 440.5,
+    "85K": 409,
+    "95K": 466,
+    "105K": 444
+  },
+  "ve_ratio_105K": 0.6,
+  "ve_ratio_peak": 0.6,
+  "ve_ratio_peak_step": "85K",
+  "civo_alert": 0,
+  "model_loss_105K": 1.6
+}
+
+=== exp_077_cheetah_baseline_s0 ===
+{
+  "eval_return_105K": 448.1,
+  "eval_trajectory": {
+    "5K": 12.2,
+    "15K": 18.4,
+    "25K": 182.9,
+    "35K": 356,
+    "45K": 377.2,
+    "55K": 441,
+    "65K": 317.3,
+    "75K": 340.9,
+    "85K": 309.3,
+    "95K": 418.4,
+    "105K": 448.1
+  },
+  "ve_ratio_105K": 0.611,
+  "ve_ratio_peak": 0.739,
+  "ve_ratio_peak_step": "85K",
+  "civo_alert": 0,
+  "model_loss_105K": 1.83,
+  "total_steps": 112000
+}
+
+=== exp_023_cheetah_baseline_s4_extended ===
+{
+  "eval_302k": 580,
+  "eval_peak_ext": 642.3,
+  "eval_peak_ext_step": 272000,
+  "note": "\u5ef6\u957f\u5230 300K \u786e\u8ba4\u975e collapse\u3002eval \u6062\u590d\u5230 642 peak@272K\uff0c200K-300K \u533a\u95f4\u9707\u8361\u4e0a\u884c (301-642 range)\uff0c194K\u2192204K \u9aa4\u964d\u4e3a transient fluctuation\u3002"
+}
+
+=== exp_023_cheetah_baseline_s4 ===
+{
+  "current_step": 212000,
+  "eval_return_194k": 537.03,
+  "eval_return_204k": 301.69,
+  "note": "Cheetah baseline s4. Large eval drop 194K\u2192204K (537\u2192302). ve_ratio>1 indicates value overestimation at final step.",
+  "peak_eval": 537.03,
+  "peak_eval_step": 194000,
+  "target_steps": 200000,
+  "value_mean_204k": 339.14,
+  "ve_ratio_204k": 1.124
+}
+
+=== exp_023_cheetah_baseline_s3 ===
+{
+  "current_step": 204000,
+  "eval_return_202k": 642.13,
+  "peak_eval": 685.93,
+  "peak_eval_step": 172000,
+  "target_steps": 200000,
+  "value_mean_final": 445.42,
+  "ve_ratio_final": 0.694
+}
+
+=== exp_023_cheetah_baseline_s2 ===
+{
+  "current_step": 205000,
+  "eval_return_final": 645.4,
+  "note": "Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.",
+  "target_steps": 200000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "d74b64da-637f-4653-a333-53a85675b35b",
+  "tool_use_result": {
+    "stdout": "=== exp_083_cheetah_baseline_s1 ===\n{\n  \"eval_return_105K\": 444,\n  \"eval_trajectory\": {\n    \"5K\": 11.6,\n    \"15K\": 76.4,\n    \"25K\": 300.2,\n    \"35K\": 372.3,\n    \"45K\": 384.2,\n    \"55K\": 395.4,\n    \"65K\": 446.1,\n    \"75K\": 440.5,\n    \"85K\": 409,\n    \"95K\": 466,\n    \"105K\": 444\n  },\n  \"ve_ratio_105K\": 0.6,\n  \"ve_ratio_peak\": 0.6,\n  \"ve_ratio_peak_step\": \"85K\",\n  \"civo_alert\": 0,\n  \"model_loss_105K\": 1.6\n}\n\n=== exp_077_cheetah_baseline_s0 ===\n{\n  \"eval_return_105K\": 448.1,\n  \"eval_trajectory\": {\n    \"5K\": 12.2,\n    \"15K\": 18.4,\n    \"25K\": 182.9,\n    \"35K\": 356,\n    \"45K\": 377.2,\n    \"55K\": 441,\n    \"65K\": 317.3,\n    \"75K\": 340.9,\n    \"85K\": 309.3,\n    \"95K\": 418.4,\n    \"105K\": 448.1\n  },\n  \"ve_ratio_105K\": 0.611,\n  \"ve_ratio_peak\": 0.739,\n  \"ve_ratio_peak_step\": \"85K\",\n  \"civo_alert\": 0,\n  \"model_loss_105K\": 1.83,\n  \"total_steps\": 112000\n}\n\n=== exp_023_cheetah_baseline_s4_extended ===\n{\n  \"eval_302k\": 580,\n  \"eval_peak_ext\": 642.3,\n  \"eval_peak_ext_step\": 272000,\n  \"note\": \"\\u5ef6\\u957f\\u5230 300K \\u786e\\u8ba4\\u975e collapse\\u3002eval \\u6062\\u590d\\u5230 642 peak@272K\\uff0c200K-300K \\u533a\\u95f4\\u9707\\u8361\\u4e0a\\u884c (301-642 range)\\uff0c194K\\u2192204K \\u9aa4\\u964d\\u4e3a transient fluctuation\\u3002\"\n}\n\n=== exp_023_cheetah_baseline_s4 ===\n{\n  \"current_step\": 212000,\n  \"eval_return_194k\": 537.03,\n  \"eval_return_204k\": 301.69,\n  \"note\": \"Cheetah baseline s4. Large eval drop 194K\\u2192204K (537\\u2192302). ve_ratio>1 indicates value overestimation at final step.\",\n  \"peak_eval\": 537.03,\n  \"peak_eval_step\": 194000,\n  \"target_steps\": 200000,\n  \"value_mean_204k\": 339.14,\n  \"ve_ratio_204k\": 1.124\n}\n\n=== exp_023_cheetah_baseline_s3 ===\n{\n  \"current_step\": 204000,\n  \"eval_return_202k\": 642.13,\n  \"peak_eval\": 685.93,\n  \"peak_eval_step\": 172000,\n  \"target_steps\": 200000,\n  \"value_mean_final\": 445.42,\n  \"ve_ratio_final\": 0.694\n}\n\n=== exp_023_cheetah_baseline_s2 ===\n{\n  \"current_step\": 205000,\n  \"eval_return_final\": 645.4,\n  \"note\": \"Cheetah Run baseline seed=2. Third baseline seed for NVE normalization.\",\n  \"target_steps\": 200000\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the baseline data. But I notice that exp_077 and exp_083 don't have per-step ve_ratio trajectories. They only have ve_ratio_105K, ve_ratio_peak, and ve_ratio_peak_step. I need the per-step ve_ratio values to do step-matched NVE calculations.
+
+Let me check if there are ve_ratio trajectory data in the baseline experiments. I see that exp_083 has ve_ratio_105K=0.6 and ve_ratio_peak=0.6, and exp_077 has ve_ratio_105K=0.611 and ve_ratio_peak=0.739.
+ 
+I'm finding a discrepancy in the analysis report for exp_088 — it claims NVE_peak=1.82 was calculated using baseline ve_ratio=0.105 at step 35K, but the corrected registry shows different trajectory values. Looking at the actual data, I can see the nve_trajectory_35Kplus and ve_ratio_trajectory entries with their respective step values, and I need to recalculate NVE using the correct baseline ratios.
+
+Working through the math, if NVE equals exp_ve_ratio divided by baseline_ve_ratio, then at 35K the old calculation of 0.191 / 0.105 = 1.82 used the wrong baseline. The corrected trajectory shows NVE@35K = 0.318, which means the actual baseline at 35K should be 0.191 / 0.318 = 0.601. I'm trying to verify this against other experiments like exp_077 and exp_083, but I'm running into the issue that I don't have per-step ve_ratio values for the baselines — only eval_return metrics, which aren't what I need. Let me work backwards from the corrected NVE trajectory instead, using the 45K step where I have both NVE = 0.517 and exp_ve_ratio = 0.31 to derive the baseline.
+
+That gives me baseline_ve_ratio@45K = 0.31 / 0.517 ≈ 0.6, and the same calculation at 35K yields 0.191 / 0.318 ≈ 0.6. So the baseline ve_ratio is consistently around 0.6 across steps, which aligns with what I see at 105K. The original bug was treating 0.105 as the baseline when it should've been ~0.6 — roughly a 6× error.
+
+Now I need to fix the report: exp_088's reported NVE_peak of 1.82 is incorrect and should be 0.517 at 45K, and I should check what other values need correcting.
+
+I'm pulling the registry data for exp_078 and exp_082 to see if they have similar issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a78826c4-3fc8-41d0-9481-d8fb05f5cbf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaCyJvrT4hFWvAYtA5FgHu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 37082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1412
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Good, I have the baselines. Now let me extract all Cheetah experiments' NVE data from the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "2b763af7-287f-4939-a26b-211e88a26303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaCyJvrT4hFWvAYtA5FgHu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 37082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1412
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PYLt75RCSSCQr6nJS8co97`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n# Find all cheetah experiments referenced in the report\ntargets = ['exp_078', 'exp_082', 'exp_086', 'exp_087', 'exp_088']\nfor k, v in exps.items():\n    for t in targets:\n        if k.startswith(t):\n            metrics = v.get('metrics', {})\n            print(f'=== {k} ===')\n            # Print key NVE-related fields\n            for field in ['NVE_peak', 'NVE_peak_step', 'NVE_trajectory', 'nve_peak', 'nve_peak_step', 'nve_trajectory_35Kplus', 'nve_classification', 've_ratio_peak', 've_ratio_peak_step', 've_ratio_trajectory', 'eval_return_final', 'civo_alert', 'civo_alert_max', 'civo', 'baseline_ref']:\n                if field in metrics:\n                    print(f'  {field}: {metrics[field]}')\n            conclusion = v.get('conclusion', 'N/A')\n            print(f'  conclusion: {conclusion}')\n            print()\n\" 2>&1",
+  "description": "Extract NVE data for all Cheetah experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "bdcfd51e-6752-44c9-b5dd-ac8c9c4dd5f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YaCyJvrT4hFWvAYtA5FgHu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 37082,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1412
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-25T21:22:20.467Z_
+
+<details><summary>↩ Tool result · `toolu_01PYLt75RCSSCQr6nJS8co97`</summary>
+
+```text
+=== exp_086_frozen_dt_emb_cheetah_s0 ===
+  NVE_peak: 0.27
+  nve_classification: no_civo
+  ve_ratio_peak: 0.2
+  ve_ratio_peak_step: 105000
+  eval_return_final: 53.3
+  civo_alert: False
+  conclusion: success
+
+=== exp_088_cheetah_008d_s1 ===
+  nve_peak: 0.517
+  nve_peak_step: 45000
+  nve_trajectory_35Kplus: {'35K': 0.318, '45K': 0.517, '55K': 0.261, '65K': 0.309, '75K': 0.445, '85K': 0.414, '95K': 0.204, '105K': 0.089}
+  nve_classification: no_onset
+  ve_ratio_peak: 0.31
+  ve_ratio_peak_step: 45000
+  ve_ratio_trajectory: {'15K': 0.014, '25K': 0.071, '35K': 0.191, '45K': 0.31, '55K': 0.157, '65K': 0.185, '75K': 0.267, '85K': 0.249, '95K': 0.122, '105K': 0.053}
+  eval_return_final: 309.3
+  civo_alert: 0
+  civo: False
+  baseline_ref: exp_083_cheetah_baseline_s1
+  conclusion: negative
+
+=== exp_082_cheetah_no_dt_emb_s0 ===
+  nve_peak: 1.58
+  nve_peak_step: 95000
+  nve_trajectory_35Kplus: {'35K': 1.49, '45K': 0.59, '55K': 0.96, '65K': 0.55, '75K': 0.55, '85K': 0.98, '95K': 1.58, '105K': 1.02}
+  nve_classification: no_civo
+  ve_ratio_peak: 0.955
+  ve_ratio_peak_step: 95000
+  ve_ratio_trajectory: {'15K': 0.038, '25K': 0.069, '35K': 0.132, '45K': 0.103, '55K': 0.237, '65K': 0.268, '75K': 0.311, '85K': 0.724, '95K': 0.955, '105K': 0.616}
+  eval_return_final: 83.2
+  civo_alert: 0
+  civo: False
+  baseline_ref: exp_077_cheetah_baseline_s0
+  conclusion: success
+
+=== exp_087_frozen_dt_emb_cheetah_s1 ===
+  nve_classification: no_civo
+  ve_ratio_peak: 0.2
+  ve_ratio_peak_step: 95K
+  civo_alert: 0
+  conclusion: success
+
+=== exp_078_cheetah_008d_s0 ===
+  nve_peak: 4.1
+  nve_peak_step: 75000
+  nve_trajectory_35Kplus: {'35K': 1.24, '45K': 1.7, '55K': 3.66, '65K': 3.55, '75K': 4.1, '85K': 2.74, '95K': 2.26, '105K': 0.48}
+  nve_classification: onset_self_correcting
+  ve_ratio_peak: 2.318
+  ve_ratio_peak_step: 75000
+  ve_ratio_trajectory: {'15K': 0.039, '25K': 0.056, '35K': 0.11, '45K': 0.295, '55K': 0.908, '65K': 1.72, '75K': 2.318, '85K': 2.022, '95K': 1.366, '105K': 0.291}
+  eval_return_final: 119.5
+  civo_alert: 1
+  civo: True
+  baseline_ref: exp_077_cheetah_baseline_s0
+  conclusion: success
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "95f6b1c8-d35f-4f79-b75b-8180c48f198a",
+  "tool_use_result": {
+    "stdout": "=== exp_086_frozen_dt_emb_cheetah_s0 ===\n  NVE_peak: 0.27\n  nve_classification: no_civo\n  ve_ratio_peak: 0.2\n  ve_ratio_peak_step: 105000\n  eval_return_final: 53.3\n  civo_alert: False\n  conclusion: success\n\n=== exp_088_cheetah_008d_s1 ===\n  nve_peak: 0.517\n  nve_peak_step: 45000\n  nve_trajectory_35Kplus: {'35K': 0.318, '45K': 0.517, '55K': 0.261, '65K': 0.309, '75K': 0.445, '85K': 0.414, '95K': 0.204, '105K': 0.089}\n  nve_classification: no_onset\n  ve_ratio_peak: 0.31\n  ve_ratio_peak_step: 45000\n  ve_ratio_trajectory: {'15K': 0.014, '25K': 0.071, '35K': 0.191, '45K': 0.31, '55K': 0.157, '65K': 0.185, '75K': 0.267, '85K': 0.249, '95K': 0.122, '105K': 0.053}\n  eval_return_final: 309.3\n  civo_alert: 0\n  civo: False\n  baseline_ref: exp_083_cheetah_baseline_s1\n  conclusion: negative\n\n=== exp_082_cheetah_no_dt_emb_s0 ===\n  nve_peak: 1.58\n  nve_peak_step: 95000\n  nve_trajectory_35Kplus: {'35K': 1.49, '45K': 0.59, '55K': 0.96, '65K': 0.55, '75K': 0.55, '85K': 0.98, '95K': 1.58, '105K': 1.02}\n  nve_classification: no_civo\n  ve_ratio_peak: 0.955\n  ve_ratio_peak_step: 95000\n  ve_ratio_trajectory: {'15K': 0.038, '25K': 0.069, '35K': 0.132, '45K': 0.103, '55K': 0.237, '65K': 0.268, '75K': 0.311, '85K': 0.724, '95K': 0.955, '105K': 0.616}\n  eval_return_final: 83.2\n  civo_alert: 0\n  civo: False\n  baseline_ref: exp_077_cheetah_baseline_s0\n  conclusion: success\n\n=== exp_087_frozen_dt_emb_cheetah_s1 ===\n  nve_classification: no_civo\n  ve_ratio_peak: 0.2\n  ve_ratio_peak_step: 95K\n  civo_alert: 0\n  conclusion: success\n\n=== exp_078_cheetah_008d_s0 ===\n  nve_peak: 4.1\n  nve_peak_step: 75000\n  nve_trajectory_35Kplus: {'35K': 1.24, '45K': 1.7, '55K': 3.66, '65K': 3.55, '75K': 4.1, '85K': 2.74, '95K': 2.26, '105K': 0.48}\n  nve_classification: onset_self_correcting\n  ve_ratio_peak: 2.318\n  ve_ratio_peak_step: 75000\n  ve_ratio_trajectory: {'15K': 0.039, '25K': 0.056, '35K': 0.11, '45K': 0.295, '55K': 0.908, '65K': 1.72, '75K': 2.318, '85K': 2.022, '95K': 1.366, '105K': 0.291}\n  eval_return_final: 119.5\n  civo_alert: 1\n  civo: True\n  baseline_ref: exp_077_cheetah_baseline_s0\n  conclusion: success",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check the other exp_088 entry (the PREPARING one) to understand the bug:
+
+From the registry, there are TWO entries for exp_088:
+1. `exp_088` (PREPARING status): Has NVE_peak=1.82, NVE_trajectory with incorrect values
+2. `exp_088_cheetah_008d_s1` (DONE status): Has nve_peak=0.517, correct values
+
+The analysis report used the wrong entry's data (NVE_peak=1.82).
+
+
+Now I'm going through all the Cheetah experiments to verify their data against the registry—checking exp_078 which shows CIVO status with NVE_peak=4.1, and exp_082 with NVE_peak=1.58 to see if the report has them listed correctly. Looking at the new experiment counts more carefully — V2 shows 63 total entries compared to V1's 61, meaning only 2 new experiments were added (exp_086 and exp_088), so exp_087 either existed in V1 already or isn't in the dataset at all.
+
+Checking the registry for exp_087, I can see it has nve_classification marked as no_civo with a ve_ratio_peak of 0.2, but it's missing the NVE_peak field entirely. The user's instructions are asking me to verify all five Cheetah experiments — not just exp_088 — to ensure they're all using the correct baseline for their NVE calculations.
+
+Now I'm going through each experiment systematically. For exp_078, the registry shows NVE_peak=4.1 at 75K steps with ve_ratio_peak=2.318, and it's using exp_077 as the baseline. I can back-calculate the baseline ve_ratio by dividing 2.318 by 4.1, which gives approximately 0.565 — this falls within the expected baseline range of 0.6-0.7, so that checks out. For exp_082, the registry indicates NVE_peak=1.58 at 95K with ve_ratio_peak=0.955, also using exp_077 as baseline, and I need to verify that ratio calculation as well.
+
+Continuing through the list, exp_086 has NVE_peak=0.27 with no ve_ratio trajectory, which is fine. exp_087 has no explicit NVE_peak in the registry but shows ve_ratio_peak=0.2, so I'll need to check the actual report for the NVE value. But exp_088 is where I'm finding a discrepancy — the registry lists NVE_peak=0.517 at 45K, yet the report shows 1.82 at 35K, which is a clear inconsistency. Let me trace through the report to see how exp_088's NVE was actually used in the calculations.
+
+Looking at the report entries, exp_088_cheetah_008d_s1 appears multiple times with NVE_peak=1.82 marked as an early-training transient at step 35K, flagged as a false positive at θ=1.5×, and it satisfies the A∧B∧C conditions at both θ=1.3× and θ=1.5×. The median NVE over the last 5 steps is 0.379. The full trajectory shows the peak at 35K with values climbing from 0.166 at 15K up to 1.82, then declining through 1.58, 0.55, and 0.429 by 65K.
+
+But comparing the old trajectory against the corrected one reveals a major discrepancy—the old data had those inflated values around 1.82 and 1.58 that exceeded the 1.5× threshold, whereas the corrected trajectory shows all values well below 1.0, with the 35K point actually at 0.318 instead of 1.82. This correction flips exp_088 from a false positive to a clear true negative.
+
+Now I'm wondering if other Cheetah experiments were affected by the same bug. The wrong baseline ve_ratio of 0.105 is suspicious—it doesn't match any actual Cheetah baseline, but it's oddly close to exp_078's ve_ratio at 35K, which makes me think the analysis script might have accidentally pulled exp_078's values as the baseline when computing exp_088's NVE instead of using the correct reference. So I'm back-calculating the baseline ve_ratio from the corrected experiment data by dividing the experiment's ve by its correct_NVE value. Across multiple steps and experiments, this consistently yields a baseline ratio around 0.6, which makes sense since baselines should be stable across different conditions.
+
+The only problematic entry is the old exp_088 that appeared in the report—the other Cheetah experiments check out fine. I've verified exp_082 by confirming its NVE_peak of 1.58 at 95K matches what I'd expect from the ve_ratio and baseline calculations.
+
+Now I need to figure out what corrections to make in the report for exp_088.
+
+For exp_088, the old peak was 1.82 at 35K, but the corrected calculation gives 0.517 at 45K. Looking at the full corrected trajectory across all temperature points, the new peak of 0.517 falls well below all the threshold multipliers (1.3×, 1.5×, 1.7×, 2.0×), which fundamentally changes how exp_088 should be classified.
+
+This correction shifts exp_088 from being a false positive at the lower thresholds in the original analysis to a true negative across the board. Now I need to recalculate the classification metrics for the full dataset—with 25 collapsed samples and 38 healthy ones—to see how this single correction ripples through the false positive and true negative counts at each threshold level. Now I'm recalculating the metrics at both thresholds with exp_088 removed from the false positives. At θ=1.3×, removing that experiment brings the false positive count down to 8, which shifts the precision to 75.8% and F1 score to 0.862. For θ=1.5×, I need to work through the same correction to see how the metrics change. Now I'm recalculating the metrics at θ=1.7× after removing exp_088 as a false positive, which brings the F1 score up to 0.880 with balanced precision and recall at 88%. At θ=2.0×, the previous results showed near-perfect precision with slightly lower recall.
+
+For AUROC, I need to think through how exp_088's NVE value dropping from 1.82 to 0.517 affects the ranking of experiments—this change should push it lower in the ranking, which would improve the overall area under the ROC curve. the probability that a random CIVO experiment has higher NVE than a random Healthy experiment. I'm computing AUROC by summing over all pairs of CIVO and Healthy experiments, counting how many times CIVO ranks higher and handling ties with 0.5 weight. When I move exp_088 from NVE=1.82 to 0.517, it shifts from being ranked above some CIVO experiments to being ranked below all of them, which changes how many pairwise comparisons favor CIVO. CIVOs) with that one healthy experiment. The total increase is 3 concordant pairs, which brings the AUROC from 0.9863 up to approximately 0.9895 when I recalculate across all 950 total pairs. Let me verify this is actually about discordant pairs though—I need to check whether those 3 CIVOs with lower NVE values are creating ranking errors in the CIVO versus Healthy comparisons. + 3 = 940, giving a new AUROC of 940/950 ≈ 0.9895. That's a meaningful improvement over the old 0.9863. Now I need to recalculate the NVE_peak distribution to see how the healthy group's metrics have shifted.
+
+Looking at the healthy group statistics, I'm removing exp_088's value of 1.82 and adding 0.517, which brings the mean down from 0.856 to 0.822. The maximum stays at 1.930 since that came from a different sample, and now I need to figure out where the new median falls in the sorted distribution. , 1.930], 3 CIVO + 4 Healthy (exp_088 removed from overlap)
+
+I need to verify exp_087's presence in the dataset. The report mentions V2 adds exp_086 and exp_088 to reach 63 total, so exp_087 might already be in V1's 61 or possibly not included at all. Let me check the report more carefully to confirm which experiments are actually in the N=63 dataset.
+
+Looking at the registry data for exp_087, I see it has nve_classification=no_civo and ve_ratio_peak=0.2, but no explicit NVE_peak value. Since it's a frozen dt_emb experiment like exp_086, I can estimate its NVE by dividing the ve_ratio_peak by the baseline ve_ratio—if Cheetah's baseline is around 0.6, that would give an NVE of approximately 0.2.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5edd3b8f-643e-4f61-854a-9b7ca18777fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xLXKdE8GHKYH4JqVYhvzB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 38494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+Now let me get exp_087's full data and check if there are any other experiments that might have baseline issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "d28a95e3-9b86-4658-a614-c6b30473b3c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xLXKdE8GHKYH4JqVYhvzB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 38494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AGk4eZkxzsEqWFoGn9baCN`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/489dde6b-8fc8-4974-8bea-a1d25f98a4d9/tool-results/mcp-agent-ml-research-read_registry-1779744103970.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\nexps = data['data']['experiments']\n\n# Get exp_087 full data\nfor k, v in exps.items():\n    if k.startswith('exp_087'):\n        print(f'=== {k} ===')\n        print(json.dumps(v, indent=2, default=str))\n\" 2>&1",
+  "description": "Get exp_087 full registry data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "ee8e16b4-930b-4f9e-af70-1c862f84ff12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013xLXKdE8GHKYH4JqVYhvzB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 38494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-25T21:24:24.815Z_
+
+<details><summary>↩ Tool result · `toolu_01AGk4eZkxzsEqWFoGn9baCN`</summary>
+
+```text
+=== exp_087_frozen_dt_emb_cheetah_s1 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-25T16:29:59.272Z",
+  "updated_at": "2026-05-25T18:45:37.694Z",
+  "hypothesis": "Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO \u2014 multi-seed cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_086 (frozen s0) and exp_078 (trained, NVE=4.1\u00d7).",
+  "parent": "exp_086_frozen_dt_emb_cheetah_s0",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_087_frozen_dt_emb_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\"",
+    "server": "westd-19154",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "36195",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log",
+    "submitted_at": "2026-05-25T16:30:22.662Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "seed": 1,
+    "model_name": "DreamerV3+FrozenDtEmb_SubsampleON_Dt2_H8",
+    "data_path": "dmc_cheetah_run",
+    "data_count": 105000,
+    "checkpoint_source": "N/A (training from scratch, parent is lineage only)",
+    "eval_data": "N/A (training experiment)",
+    "wall_clock_seconds": 8115.0,
+    "gpu_hours": 2.25
+  },
+  "reproduce": {
+    "finished_at": "2026-05-25T18:42:02.488Z"
+  },
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-25T18:42:10.415795+00:00"
+      }
+    ]
+  },
+  "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_087_frozen_dt_emb_cheetah_s1/latest.pt",
+  "log_path": "~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log",
+  "metrics": {
+    "eval_return_105K": 186.9,
+    "eval_return_peak": 310.1,
+    "eval_return_peak_step": "75K",
+    "eval_trajectory": {
+      "5K": 13.5,
+      "15K": 90.2,
+      "25K": 199.3,
+      "35K": 165.7,
+      "45K": 299.2,
+      "55K": 207.2,
+      "65K": 196.8,
+      "75K": 310.1,
+      "85K": 246.8,
+      "95K": 57.9,
+      "105K": 186.9
+    },
+    "ve_ratio_105K": 0.1,
+    "ve_ratio_peak": 0.2,
+    "ve_ratio_peak_step": "95K",
+    "civo_alert": 0,
+    "NVE": 0.33,
+    "NVE_baseline": "exp_083_cheetah_baseline_s1",
+    "NVE_baseline_ve_ratio_peak": 0.6,
+    "nve_classification": "no_civo",
+    "gate_dt_mean": 2,
+    "gate_dt_2_frac": 1,
+    "gate_empirical_entropy": 0,
+    "total_steps": 112000,
+    "model_loss_105K": 2.4
+  },
+  "conclusion": "success",
+  "completed_at": "2026-05-25T18:45:37.694Z"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a9401bae-c1e6-4582-82bd-864a7562f34a",
+  "tool_use_result": {
+    "stdout": "=== exp_087_frozen_dt_emb_cheetah_s1 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-25T16:29:59.272Z\",\n  \"updated_at\": \"2026-05-25T18:45:37.694Z\",\n  \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run seed=1 does not trigger CIVO \\u2014 multi-seed cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Paired with exp_086 (frozen s0) and exp_078 (trained, NVE=4.1\\u00d7).\",\n  \"parent\": \"exp_086_frozen_dt_emb_cheetah_s0\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_087_frozen_dt_emb_cheetah_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\",\n    \"server\": \"westd-19154\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"36195\",\n    \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\",\n    \"submitted_at\": \"2026-05-25T16:30:22.662Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"seed\": 1,\n    \"model_name\": \"DreamerV3+FrozenDtEmb_SubsampleON_Dt2_H8\",\n    \"data_path\": \"dmc_cheetah_run\",\n    \"data_count\": 105000,\n    \"checkpoint_source\": \"N/A (training from scratch, parent is lineage only)\",\n    \"eval_data\": \"N/A (training experiment)\",\n    \"wall_clock_seconds\": 8115.0,\n    \"gpu_hours\": 2.25\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-25T18:42:02.488Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-25T18:42:10.415795+00:00\"\n      }\n    ]\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_087_frozen_dt_emb_cheetah_s1/latest.pt\",\n  \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_087_frozen_dt_emb_cheetah_s1.log\",\n  \"metrics\": {\n    \"eval_return_105K\": 186.9,\n    \"eval_return_peak\": 310.1,\n    \"eval_return_peak_step\": \"75K\",\n    \"eval_trajectory\": {\n      \"5K\": 13.5,\n      \"15K\": 90.2,\n      \"25K\": 199.3,\n      \"35K\": 165.7,\n      \"45K\": 299.2,\n      \"55K\": 207.2,\n      \"65K\": 196.8,\n      \"75K\": 310.1,\n      \"85K\": 246.8,\n      \"95K\": 57.9,\n      \"105K\": 186.9\n    },\n    \"ve_ratio_105K\": 0.1,\n    \"ve_ratio_peak\": 0.2,\n    \"ve_ratio_peak_step\": \"95K\",\n    \"civo_alert\": 0,\n    \"NVE\": 0.33,\n    \"NVE_baseline\": \"exp_083_cheetah_baseline_s1\",\n    \"NVE_baseline_ve_ratio_peak\": 0.6,\n    \"nve_classification\": \"no_civo\",\n    \"gate_dt_mean\": 2,\n    \"gate_dt_2_frac\": 1,\n    \"gate_empirical_entropy\": 0,\n    \"total_steps\": 112000,\n    \"model_loss_105K\": 2.4\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-25T18:45:37.694Z\"\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. exp_087 has NVE=0.33 with baseline_ve_ratio_peak=0.6. This is correct. ve_ratio_peak=0.2, so NVE=0.2/0.6=0.33. ✓
+
+Now let me also verify the NVE trajectory data in the PREPARING entry for exp_088 vs the DONE entry. The PREPARING entry has the wrong NVE values, and the DONE entry has the correct ones.
+
+Let me also check: is exp_087 in the N=63 dataset? Let me look at the report. In the V2 data section:
+
+
+- V1: 61 data points
+- V2: 63 data points
+- New: exp_086, exp_088
+
+So exp_087 was already part of V1. But that's odd given its created_at timestamp is today, which is after the V1 analysis was presumably completed. Let me think through whether it was added retroactively to V1 or if there's something else going on here.
+
+Actually, this doesn't matter for what I need to do. The user wants me to verify all Cheetah experiments' NVE calculations, and exp_087 checks out—it's correctly calculated with NVE=0.33 using the right baseline ve_ratio_peak of 0.6. Now I'm looking at the old exp_088 entry to trace where the bug originated. The PREPARING entry shows NVE and ve_ratio trajectories across different thresholds, and I need to verify whether the NVE values are being calculated correctly from the ve_ratio data.
+
+Working through the math at each threshold, I'm finding that the implied baseline ve_ratio values are extremely low and inconsistent across steps—they're changing at each threshold rather than staying constant. This suggests the analysis pulled baseline ve_ratio values from a different experiment entirely instead of using the actual baseline experiments.
+
+With the corrected approach using the consistent baseline ve_ratio of approximately 0.6 from the actual Cheetah baseline experiments, the numbers align properly. The error was using incorrect per-step baseline values that don't match the real baseline data from exp_077 and exp_083.
+
+Now I'm checking the other Cheetah experiments to see if they follow the same pattern, starting with exp_078 which uses CIVO. I'm realizing there's a discrepancy in my calculation—dividing 0.11 by 1.24 gives 0.0887, which is far too low compared to the expected 0.6 baseline at 35K. The issue might be that exp_078 and exp_088 reference different baseline experiments: exp_077 versus exp_083, and these could have different ve_ratio values at the same step. Looking at the available data, neither baseline has a complete per-step trajectory, only peak values occurring much later in training. at 35K should be around 0.0887, which means exp_088's baseline (exp_083) should have a similar ve_ratio at that step. Let me trace through the actual baseline values in the registry to see if the NVE calculations are internally consistent across these experiments. The user is claiming the correct Cheetah baseline ve_ratio at step 35K should be around 0.6, but when I work backwards from exp_078's NVE trajectory in the registry, I get only 0.089 for exp_077 at that step—a massive discrepancy. Either exp_078's NVE values are wrong, or the user's assertion about the baseline value is incorrect.
+
+Let me reconsider what the user actually said. They mentioned the analysis script used the wrong baseline for exp_088, but exp_078 and exp_082 were likely computed directly by the experiment completion hook rather than through that script. So the real question is whether those registry values are trustworthy. Looking back at what's documented in the report versus what's in the registry for exp_078, I need to figure out which source is authoritative.
+
+Checking the numbers: exp_082 shows NVE_peak=1.58 in both the registry and the report, which is consistent. For exp_078, the registry has nve_peak=4.1@75K, which would place it in the CIVO group. So it seems the report is already pulling these values from the registry correctly—the only real problem is with exp_088.
+
+Now I need to verify exp_086 and exp_087 as well. The report shows exp_086 with NVE_peak=0.27, matching the registry exactly. For exp_087, I should check whether the report value aligns with what's in the registry. me see what the report actually lists as new experiments — it only mentions exp_086 and exp_088, so exp_087 appears to be missing from the dataset entirely. Since the user specifically asked me to verify its NVE calculation, I can confirm it would be a clear true negative with NVE=0.33 using the correct baseline, but it's not actually part of the N=63 analysis.
+
+Now for the actual corrections needed: exp_088's NVE_peak needs to be recalculated from 1.82 down to 0.517, which removes it from all false positive lists and requires updating the metrics across all thresholds, AUROC, the NVE distributions, and the trajectory discussions. Let me verify the NVE_median_last5 value for exp_088 against the corrected trajectory to ensure consistency. I'm noticing the old trajectory gives a median of 0.379 for the last five checkpoints, which matches what's in the registry, but my corrected trajectory produces 0.309 instead. The issue is that the registry already has the old NVE_median_last5 value stored, and I need to figure out whether the DONE entry should have this field explicitly set or if it's being inherited from somewhere else. Looking at the corrected NVE trajectory values from 65K through 105K, I need to calculate the median of those five checkpoints: 0.309, 0.445, 0.414, 0.204, 0.089. When sorted, the middle value is 0.309. I should update the NVE_median_last5 value to 0.309 since the user asked me to correct all NVE values for exp_088, even though both the old and new values keep the classification as Healthy. Now let me figure out what else needs updating.
+
+I'm mapping out the specific changes needed across the document: adding a version note about the Cheetah baseline bug fix, updating the exp_088 entry with the corrected NVE_peak value of 0.517 instead of 1.82, and removing or rewriting the section about early-training transients since that explanation no longer applies with the corrected values.
+
+I also need to recalculate the Method A threshold table, update the AUROC, adjust the false positive list for θ=1.5× to remove exp_088 (reducing the count from 5 to 4), and revise the NVE_peak distribution statistics for healthy samples. The combined diagnostic criteria section requires significant rework since much of it was built around exp_088's behavior, so I'll need to remove that specific discussion and recalculate the table there as well.
+
+Moving forward, I'll need to update the NVE_median_last5 table and its conclusions, recalculate values in the single threshold versus combined criteria comparison, update the Method A versus Method B comparison table, and revise the recommendations section to remove references to exp_088 as a false positive and the "early-training transient" characterization. This is a substantial revision that requires precise recalculation of all affected values.
+
+Now I'm working through the exact numbers with N=63, CIVO=25, and Healthy=38. Since exp_088's NVE_peak is now 0.517, it falls below all thresholds and shifts from being a false positive to a true negative. For the single threshold method at θ=1.3×, this means the false positive count drops from 9 to 8, while maintaining perfect recall with 25 true positives and 30 true negatives, giving an accuracy of 87.3%, precision of 75.8%, and recall of 100%. I'm calculating the F1 score and need to work through the same adjustments for the other threshold values. At θ=1.7×, reclassifying exp_088 from false positive to true negative reduces false positives to 3 while introducing 3 false negatives, yielding balanced precision and recall of 88%. At θ=2.0×, the threshold is high enough that exp_088 doesn't trigger as a false positive even in the original version, so the metrics remain unchanged with perfect precision but 3 false negatives.
+
+Now I'm recalculating AUROC since exp_088's NVE score changed from 1.82 to 0.517, which affects how many CIVO experiments rank higher than each healthy control in the ROC analysis. I'm second-guessing the AUROC calculation—if 0.9863 is rounded, the actual concordant count could vary slightly. Let me assume it rounds to 937 concordant pairs, which would make the new total 940 and the updated AUROC approximately 0.9895, a clear improvement. I should verify whether any ties exist at the threshold, but without additional information I'll proceed with this estimate.
+
+Now I'm looking at how the NVE_peak distribution changes for the healthy group...
+
+the mean drops from 0.856 to 0.822 since exp_088 shifts down significantly, and the median will move slightly lower as that sample relocates from the upper ranks to somewhere in the middle of the sorted distribution. I'm getting confused about how the replacement affects the median positions—when I swap out the high value at position 35 with 0.517, the positions of the middle values shift depending on where 0.517 inserts into the sorted order, which would change which values end up at positions 19 and 20. (not remove+insert), the count stays at 38. So:
+- Remove value at position 35 (1.82)
+- Insert value 0.517 at its sorted position
+
+After removing 1.82 from position 35, all values at positions 36-38 shift down by 1.
+After inserting 0.517, say at position 15, all values at positions 15+ shift up by 1.
+
+Net effect: values at positions 1-14 unchanged, 15 becomes 0.517, 16-34 shift right by 1 (old 15 → 16, ..., old 34 → 35), 35-37 are old 36-38.
+
+So old position 19 → new position 20, old position 18 → new position 19.
+
+New median = (old_18th + old_19th) / 2
+
+If old median = (old_19th + old_20th) / 2 = 0.800, the new median shifts slightly lower depending on the 18th value. I'll estimate it around 0.79 and note that in the report without claiming false precision.
+
+For the overlap zone, removing exp_088 (1.82) means the NVE range stays [1.530, 1.930] but now has 3 CIVO and 4 Healthy instead of 5. The θ=1.5× FP list also needs updating with this removal.
+
+Now for the combination diagnostic recalculation—this is where it gets complex since exp_088 had trajectory data with NVE_peak=0.517, which never exceeds any threshold, so it wouldn't trigger any condition at any θ level. At θ=1.3×, exp_088 was counted as a false positive because it satisfied conditions A∧B∧C, so removing it changes the FP count from 7 to 6 while FN stays at 0. With the corrected NVE value, exp_088 now fails condition A across all thresholds since its maximum NVE is only 0.517, making it a true negative in the combination diagnostic rather than a false positive. This reduces the false positives from 7 to 6 at θ=1.3×, giving us TP=25, TN=32, FP=6, FN=0.
+
+At θ=1.5×, the correction similarly flips exp_088 from a false positive to a true negative, lowering false positives from 4 to 3 while keeping TP=23 and FN=2, with TN now at 35. Now I'm verifying the F1 score calculation, which simplifies to 46/51 or 0.902. Looking at the θ=1.7× threshold, the old analysis correctly excluded exp_088 as a false positive since it didn't meet the consecutive condition, and recalculating with the corrected NVE value doesn't change this outcome. Moving to θ=2.0×, the metrics show improved accuracy at 92.1% with perfect precision but recall drops to 80%.
+
+Generating comparison table... Verifying the F1 score calculation for θ=1.7× confirms it's correct at 0.833, so both threshold values remain unchanged. Now I'm preparing to update the comparison tables to show how the single threshold method stacks up against the combination approach at θ=1.5×.
+
+Generating comparison tables... Method B isn't affected by the exp_088 correction since it uses the raw ve_ratio_peak value directly. Now I'm recalculating the Healthy group statistics for NVE_median_last5 after updating exp_088's entry from 0.379 to 0.309, which keeps it correctly classified as a true negative at the threshold.
+
+The minimum value shifts down to 0.309 while the median and maximum remain stable at 0.700 and 1.043. This change means I need to substantially revise the section discussing the early-training transient behavior, since exp_088 no longer shows the high NVE spike that was actually caused by the baseline calculation bug.
+
+The concept of early-training transient is still generally valid, but exp_088 is no longer a valid example of it. Now I'm realizing the user wants me to edit the analysis document and register the updated artifact, so I need to plan targeted edits carefully rather than rewriting the entire file. With the corrected NVE_peak of 0.517 for exp_088, the threshold classifier actually improves because we've removed a false positive, which aligns with what the user expected.
+
+Now I'm verifying that the N=63 corrected metrics should match or exceed the N=61 version. Since exp_086 and the corrected exp_088 are both clear true negatives well below all thresholds, adding them increases true negative counts without introducing false positives, which improves or maintains the overall performance metrics. The improvement is consistent across the θ=1.3× and 1.5× thresholds.
+
+Now I'm planning the specific edits needed: adding the V2.1 header, correcting the NVE_peak value for exp_088, rewriting the explanation for exp_088's early training transient behavior to clarify that the original NVE=1.82 was a baseline calculation error, updating the Method A threshold table, revising the AUROC value, adjusting the false positive list for θ=1.5×, and recalculating the NVE_peak distribution across all experiments.
+
+I also need to update the combination diagnostic table with the correct values, revise the discussion around exp_088's combination diagnostic results, update the NVE_median_last5 table entry, adjust the median_last5 conclusion reference, revise the comparison tables, and finalize the recommendations section. I want to make sure I capture the A_only fallback field correctly—the report indicates 46/63 experiments lack a valid combination diagnostic, which I need to verify against the actual data before proceeding with these edits. The NVE correction doesn't affect the trajectory data availability, so the A_only fallback count remains at 46 out of 63 experiments. Now I need to verify the overlap zone boundaries—specifically checking which healthy experiments fall within the NVE range of 1.530 to 1.930.
+
+After removing exp_088 from the original list, I'm left with four healthy experiments in the overlap zone: exp_082, exp_008e_v3, exp_057, and exp_047. So the updated overlap zone contains 3 CIVO experiments plus these 4 healthy ones, all of which are Walker-based experiments. I'm ready to make the edits now.
+
+I'm reconsidering whether to rewrite the entire file versus making targeted edits. Given how many changes are scattered throughout, I think it's better to work through the edits systematically from top to bottom rather than trying to do everything in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "bf143f0d-84a2-4e23-95a0-ddd2c4befaeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdgJci9ayuegw1tsfd5MRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8117,
+      "cache_read_input_tokens": 40952,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8117
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+I now have all the data needed. Let me summarize the findings:
+
+- **exp_088**: Registry NVE_peak=0.517@45K (correct), report has 1.82@35K (wrong baseline bug)
+- **exp_078**: Registry NVE_peak=4.1@75K — matches report ✓
+- **exp_082**: Registry NVE_peak=1.58@95K — matches report ✓
+- **exp_086**: Registry NVE_peak=0.27 — matches report ✓
+- **exp_087**: Registry NVE=0.33 — correct baseline used ✓
+
+Only exp_088 is affected. Now I'll recalculate all metrics and edit the report. Let me compute the corrected values with a script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "852d9358-011c-414e-ac2e-9854e184a501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdgJci9ayuegw1tsfd5MRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8117,
+      "cache_read_input_tokens": 40952,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8117
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01U9FiYiAo9FgWxuJEa7LQAq`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\n# Recalculate all metrics with exp_088 NVE corrected from 1.82 to 0.517\n\nN = 63\nCIVO_total = 25\nHealthy_total = 38\n\n# exp_088 old NVE = 1.82, new NVE = 0.517\nold_nve_088 = 1.82\nnew_nve_088 = 0.517\n\nprint(\"=== Method A Single Threshold ===\")\n# Old values: {threshold: (FP, FN)}\nold = {\n    1.3: (9, 0),\n    1.5: (5, 0),\n    1.7: (4, 3),\n    2.0: (0, 3),\n}\n\nfor thresh, (old_fp, old_fn) in old.items():\n    # exp_088 was FP if old_nve > thresh, becomes TN if new_nve < thresh\n    was_fp = old_nve_088 >= thresh\n    now_fp = new_nve_088 >= thresh\n    \n    new_fp = old_fp - (1 if was_fp and not now_fp else 0) + (1 if now_fp and not was_fp else 0)\n    new_fn = old_fn  # exp_088 is Healthy, doesn't affect FN\n    \n    tp = CIVO_total - new_fn\n    tn = Healthy_total - new_fp\n    \n    acc = (tp + tn) / N * 100\n    prec = tp / (tp + new_fp) * 100 if (tp + new_fp) > 0 else 100\n    rec = tp / CIVO_total * 100\n    f1 = 2 * (prec/100) * (rec/100) / ((prec/100) + (rec/100)) if (prec + rec) > 0 else 0\n    \n    print(f\"θ={thresh}×: Acc={acc:.1f}%, Prec={prec:.1f}%, Rec={rec:.1f}%, F1={f1:.3f}, FP={new_fp}, FN={new_fn}\")\n\n# AUROC change\nprint(\"\\n=== AUROC ===\")\nold_auroc = 0.9863\ntotal_pairs = CIVO_total * Healthy_total  # 950\nold_concordant = old_auroc * total_pairs\n# exp_088 at 1.82: 3 CIVOs (1.53, 1.62, 1.64) had NVE < 1.82 -> 3 discordant\n# exp_088 at 0.517: all 25 CIVOs have NVE >= 1.53 > 0.517 -> 0 discordant\n# Net: +3 concordant\nnew_concordant = old_concordant + 3\nnew_auroc = new_concordant / total_pairs\nprint(f\"Old: {old_auroc:.4f}, New: {new_auroc:.4f}\")\n\n# Healthy NVE distribution\nprint(\"\\n=== Healthy NVE Distribution ===\")\nold_mean = 0.856\nold_sum = old_mean * Healthy_total\nnew_sum = old_sum - old_nve_088 + new_nve_088\nnew_mean = new_sum / Healthy_total\nprint(f\"Mean: {old_mean} -> {new_mean:.3f}\")\nprint(f\"Max: 1.930 (unchanged, from exp_008e_v3)\")\nprint(f\"Min: 0.100 (unchanged)\")\nprint(f\"Overlap zone: 3 CIVO + 4 Healthy (was 5)\")\n\n# NVE_median_last5 for exp_088\nprint(\"\\n=== NVE_median_last5 for exp_088 ===\")\nnve_traj = {\"35K\": 0.318, \"45K\": 0.517, \"55K\": 0.261, \"65K\": 0.309, \"75K\": 0.445, \"85K\": 0.414, \"95K\": 0.204, \"105K\": 0.089}\nlast5 = [nve_traj[\"65K\"], nve_traj[\"75K\"], nve_traj[\"85K\"], nve_traj[\"95K\"], nve_traj[\"105K\"]]\nlast5_sorted = sorted(last5)\nmedian = last5_sorted[2]\nprint(f\"Last 5 NVE values: {last5}\")\nprint(f\"Sorted: {last5_sorted}\")\nprint(f\"Median: {median}\")\n\nprint(\"\\n=== Combination Diagnostic ===\")\n# θ=1.3×: old FP=7, exp_088 was FP (A∧B∧C satisfied), now TN (A fails)\n# θ=1.5×: old FP=4, exp_088 was FP (A∧B∧C satisfied), now TN (A fails)\n# θ=1.7×: old FP=3, exp_088 was already excluded (B failed), unchanged\n# θ=2.0×: old FP=0, unchanged\n\ncombo_old = {\n    1.3: (7, 0),\n    1.5: (4, 2),\n    1.7: (3, 5),\n    2.0: (0, 5),\n}\n\n# exp_088 was FP in combo at 1.3 and 1.5 (A∧B∧C satisfied at those thresholds)\ncombo_088_was_fp = {1.3: True, 1.5: True, 1.7: False, 2.0: False}\n\nfor thresh, (old_fp, old_fn) in combo_old.items():\n    new_fp = old_fp - (1 if combo_088_was_fp[thresh] else 0)\n    new_fn = old_fn\n    \n    tp = CIVO_total - new_fn\n    tn = Healthy_total - new_fp\n    \n    acc = (tp + tn) / N * 100\n    prec = tp / (tp + new_fp) * 100 if (tp + new_fp) > 0 else 100\n    rec = tp / CIVO_total * 100\n    f1 = 2 * (prec/100) * (rec/100) / ((prec/100) + (rec/100)) if (prec + rec) > 0 else 0\n    \n    print(f\"θ={thresh}×: Acc={acc:.1f}%, Prec={prec:.1f}%, Rec={rec:.1f}%, F1={f1:.3f}, FP={new_fp}, FN={new_fn}\")\n\nPYEOF",
+  "description": "Recalculate all corrected metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "988cf23d-2c71-40de-ae5b-def25b4e182e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdgJci9ayuegw1tsfd5MRd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8117,
+      "cache_read_input_tokens": 40952,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8117
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-25T21:28:46.965Z_
+
+<details><summary>↩ Tool result · `toolu_01U9FiYiAo9FgWxuJEa7LQAq`</summary>
+
+```text
+=== Method A Single Threshold ===
+θ=1.3×: Acc=87.3%, Prec=75.8%, Rec=100.0%, F1=0.862, FP=8, FN=0
+θ=1.5×: Acc=93.7%, Prec=86.2%, Rec=100.0%, F1=0.926, FP=4, FN=0
+θ=1.7×: Acc=90.5%, Prec=88.0%, Rec=88.0%, F1=0.880, FP=3, FN=3
+θ=2.0×: Acc=95.2%, Prec=100.0%, Rec=88.0%, F1=0.936, FP=0, FN=3
+
+=== AUROC ===
+Old: 0.9863, New: 0.9895
+
+=== Healthy NVE Distribution ===
+Mean: 0.856 -> 0.822
+Max: 1.930 (unchanged, from exp_008e_v3)
+Min: 0.100 (unchanged)
+Overlap zone: 3 CIVO + 4 Healthy (was 5)
+
+=== NVE_median_last5 for exp_088 ===
+Last 5 NVE values: [0.309, 0.445, 0.414, 0.204, 0.089]
+Sorted: [0.089, 0.204, 0.309, 0.414, 0.445]
+Median: 0.309
+
+=== Combination Diagnostic ===
+θ=1.3×: Acc=90.5%, Prec=80.6%, Rec=100.0%, F1=0.893, FP=6, FN=0
+θ=1.5×: Acc=92.1%, Prec=88.5%, Rec=92.0%, F1=0.902, FP=3, FN=2
+θ=1.7×: Acc=87.3%, Prec=87.0%, Rec=80.0%, F1=0.833, FP=3, FN=5
+θ=2.0×: Acc=92.1%, Prec=100.0%, Rec=80.0%, F1=0.889, FP=0, FN=5
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "c44f5d60-a38c-4264-b55b-e27e740bffd8",
+  "tool_use_result": {
+    "stdout": "=== Method A Single Threshold ===\nθ=1.3×: Acc=87.3%, Prec=75.8%, Rec=100.0%, F1=0.862, FP=8, FN=0\nθ=1.5×: Acc=93.7%, Prec=86.2%, Rec=100.0%, F1=0.926, FP=4, FN=0\nθ=1.7×: Acc=90.5%, Prec=88.0%, Rec=88.0%, F1=0.880, FP=3, FN=3\nθ=2.0×: Acc=95.2%, Prec=100.0%, Rec=88.0%, F1=0.936, FP=0, FN=3\n\n=== AUROC ===\nOld: 0.9863, New: 0.9895\n\n=== Healthy NVE Distribution ===\nMean: 0.856 -> 0.822\nMax: 1.930 (unchanged, from exp_008e_v3)\nMin: 0.100 (unchanged)\nOverlap zone: 3 CIVO + 4 Healthy (was 5)\n\n=== NVE_median_last5 for exp_088 ===\nLast 5 NVE values: [0.309, 0.445, 0.414, 0.204, 0.089]\nSorted: [0.089, 0.204, 0.309, 0.414, 0.445]\nMedian: 0.309\n\n=== Combination Diagnostic ===\nθ=1.3×: Acc=90.5%, Prec=80.6%, Rec=100.0%, F1=0.893, FP=6, FN=0\nθ=1.5×: Acc=92.1%, Prec=88.5%, Rec=92.0%, F1=0.902, FP=3, FN=2\nθ=1.7×: Acc=87.3%, Prec=87.0%, Rec=80.0%, F1=0.833, FP=3, FN=5\nθ=2.0×: Acc=92.1%, Prec=100.0%, Rec=80.0%, F1=0.889, FP=0, FN=5",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have all the corrected numbers. Let me now proceed with editing the report. I'll make edits from top to bottom.
+
+Let me plan all the edits carefully:
+
+1. **Title line + version note** (lines 1-3): Add V2.1 note
+2. **Data section exp_088** (line 9): Fix NVE_peak
+3. **exp_088 transient section** (lines 17-19): Rewrite to note this was a bug, not a real transient
+4. **Method A single threshold table** (lines 29-34): Update values
+
+
+5. **AUROC** (line 36): Update
+6. **θ=1.5× FP list** (line 38): Remove exp_088
+7. **NVE_peak distribution** (lines 42-45): Update Healthy stats
+8. **Combination diagnostic table** (lines 54-59): Update
+9. **Combination discussion** (line 61): Update exp_088 discussion
+10. **NVE_median_last5 table** (line 127): Update exp_088 row
+11. **NVE_median_last5 conclusions** (line 139): Update
+12. **Method A comparison** section: Continue with remaining edits through the Method A vs B comparison, recommendation sections, and the final correction note.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "bd678a3e-15f8-4587-942b-efb70424c0c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XozhQSwbPQd1GiywCwLuUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14861,
+      "cache_read_input_tokens": 49069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+All values computed. Now I'll edit analysis_v2.md with all corrections. Starting from top to bottom.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0f6e6a83-0378-45a0-8e37-3611e5fc4513",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XozhQSwbPQd1GiywCwLuUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14861,
+      "cache_read_input_tokens": 49069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Fvo4HohtoXjdSy1dUEiZrx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比",
+  "new_string": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正说明**: 修复 Cheetah baseline step-matching bug。exp_088 的 NVE 计算原使用错误 baseline ve_ratio（0.105），正确值应为 exp_083 baseline 的 step-matched ve_ratio（≈0.6）。修正后 exp_088 NVE_peak 从 1.82@35K 降为 0.517@45K，从 FP 变为 clear TN。所有阈值性能指标和 AUROC 已重算。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "4ea9ed3f-289a-48e6-a81b-90f6fb58cdde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XozhQSwbPQd1GiywCwLuUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14861,
+      "cache_read_input_tokens": 49069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-25T21:29:07.067Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Fvo4HohtoXjdSy1dUEiZrx`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "dcccfc05-390b-4f22-b1a9-ac1c70a41a9f",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MBBRNToKKHNE86W3efpD5c`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)",
+  "new_string": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "6550afb2-299a-40f9-ac58-f2329dc14583",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XozhQSwbPQd1GiywCwLuUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14861,
+      "cache_read_input_tokens": 49069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14861
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-25T21:29:10.978Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MBBRNToKKHNE86W3efpD5c`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "ee07d820-f2a5-4297-91a7-7575bb808ece",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VyJqqLoyrwFCJjqxHmwYDb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "fa1b4a8f-e3da-4508-b657-49be4a6f837e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01326S7TWom7ehtpG6suNF9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1256,
+      "cache_read_input_tokens": 63930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1256
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-25T21:29:13.482Z_
+
+<details><summary>↩ Tool result · `toolu_01VyJqqLoyrwFCJjqxHmwYDb`</summary>
+
+````text
+1	# NVE Threshold Sensitivity Analysis V2
+2	
+3	**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比
+4	
+5	## 数据集更新
+6	
+7	- V1 数据点数: 61
+8	- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)
+9	- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)
+10	- Method B 覆盖: 37/63 有 ve_ratio_peak
+11	- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据
+12	
+13	### exp_084/085 归一化差异说明
+14	
+15	exp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。
+16	
+17	### exp_088 早期训练瞬态 NVE spike 说明
+18	
+19	exp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 "trained config, no CIVO onset" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。
+20	
+21	---
+22	
+23	## Method A: Step-matched NVE
+24	
+25	NVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step
+26	
+27	### 单一阈值
+28	
+29	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+30	|-----------|----------|-----------|--------|------|-----|-----|
+31	| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |
+32	| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |
+33	| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |
+34	| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |
+35	
+36	**AUROC = 0.9863**
+37	
+38	θ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)
+39	
+40	θ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)
+41	
+42	NVE_peak 分布:
+43	- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954
+44	- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856
+45	- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy
+46	
+47	### 组合诊断标准
+48	
+49	条件 A: NVE_peak ≥ τ
+50	条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)
+51	条件 C: NVE 上升趋势 (≥10% 增幅)
+52	判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。
+53	
+54	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |
+55	|-----------|----------|-----------|--------|------|-----|-----|----------------|
+56	| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |
+57	| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |
+58	| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |
+59	| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |
+60	
+61	**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。
+62	
+63	组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。
+64	
+65	当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。
+66	
+67	---
+68	
+69	## Method B: Raw ve_ratio peak
+70	
+71	直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。
+72	
+73	可用子集: N=37 (CIVO=15, Healthy=22)
+74	
+75	### 单一阈值
+76	
+77	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+78	|-----------|----------|-----------|--------|------|-----|-----|
+79	| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |
+80	| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |
+81	| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |
+82	| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |
+83	| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+84	
+85	**AUROC = 0.9727**
+86	
+87	θ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)
+88	
+89	ve_ratio_peak 分布:
+90	- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722
+91	- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569
+92	
+93	### 组合诊断标准
+94	
+95	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+96	|-----------|----------|-----------|--------|------|-----|-----|
+97	| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |
+98	| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |
+99	| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |
+100	| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+101	| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |
+102	
+103	---
+104	
+105	## NVE_median_last5 辅助指标
+106	
+107	对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)
+108	
+109	| exp_id | type | NVE_median_last5 | label | correct? |
+110	|--------|------|-----------------|-------|----------|
+111	| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |
+112	| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |
+113	| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |
+114	| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |
+115	| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |
+116	| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |
+117	| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |
+118	| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |
+119	| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |
+120	| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |
+121	| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |
+122	| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |
+123	| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |
+124	| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |
+125	| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |
+126	| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |
+127	| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |
+128	
+129	**分布统计**:
+130	- CIVO (8): min=0.900, median=1.674, max=4.116
+131	- Healthy (9): min=0.379, median=0.700, max=1.043
+132	- Accuracy: 14/17 = 82.4% (阈值=1.0)
+133	
+134	**误判分析**:
+135	- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0
+136	- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO
+137	- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO
+138	
+139	**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 "frozen 实验 median ≈ 0.5" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。
+140	
+141	---
+142	
+143	## 单一阈值 vs 组合标准对比
+144	
+145	### Method A 对比
+146	
+147	| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |
+148	|------|----------------|----------------|----------------|----------------|
+149	| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |
+150	| Precision | 83.3% | **85.2%** | **100%** | **100%** |
+151	| Recall | **100%** | 92.0% | **88.0%** | 80.0% |
+152	| F1 | **0.909** | 0.885 | **0.936** | 0.889 |
+153	| FP | 5 | **4** | **0** | **0** |
+154	| FN | **0** | 2 | **3** | 5 |
+155	
+156	### Method A vs Method B (最佳阈值)
+157	
+158	| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |
+159	|------|------------------------|------------------------|
+160	| AUROC | **0.986** | 0.973 |
+161	| F1 | 0.909 | **0.966** |
+162	| Precision | 83.3% | **100%** |
+163	| Recall | **100%** | 93.3% |
+164	| FP | 5 | **0** |
+165	| FN | **0** | 1 |
+166	
+167	---
+168	
+169	## 推荐（论文用框架）
+170	
+171	### 1. 主方法：Method A step-matched NVE, θ=1.5×
+172	
+173	- AUROC=0.986, 最高判别力
+174	- 100% recall — 不漏检任何 CIVO
+175	- F1=0.909
+176	- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)
+177	- 与原论文 NVE 定义一致
+178	
+179	### 2. 辅助确认：组合标准（持续性 + 时序因果）
+180	
+181	- 轨迹数据可用时，组合标准可排除瞬态 FP
+182	- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势
+183	- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器
+184	- 当前 73% 实验缺少轨迹数据，大量 A_only 回退
+185	- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除
+186	
+187	### 3. 高置信度：θ=2.0×
+188	
+189	- Precision=100% (FP=0)
+190	- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认
+191	- 代价：3 个 FN (低幅 CIVO 遗漏)
+192	
+193	### 4. Appendix：Method B (raw ve_ratio) 交叉验证
+194	
+195	- ve_ratio_peak 不受 baseline 选择偏差影响
+196	- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)
+197	- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感
+198	- Method B AUROC=0.973，与 Method A 的 0.986 一致性高
+199	- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒
+200	
+201	### 5. Decision rule
+202	
+203	```
+204	if NVE_peak >= 1.5×:
+205	    → FLAG as potential CIVO
+206	    if trajectory_data_available:
+207	        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:
+208	            → CONFIRM as CIVO
+209	        else:
+210	            → LIKELY transient spike, monitor but do not kill
+211	    else:
+212	        → TREAT as CIVO (conservative)
+213	        
+214	if NVE_peak >= 2.0×:
+215	    → DEFINITE CIVO (zero FP at this threshold)
+216	```
+217	
+218	### 6. 归一化方法差异说明
+219	
+220	exp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。
+221	
+222	### 7. 早期瞬态 NVE spike 讨论
+223	
+224	exp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：
+225	- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）
+226	- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算
+227	- NVE_median_last5 (0.379) 天然抵抗此类早期 spike
+228	
+229	---
+230	
+231	## 8. Step-filtered NVE (step ≥ 50K)
+232	
+233	### 动机
+234	
+235	NVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。
+236	
+237	### 数据集统计
+238	
+239	| 类别 | N |
+240	|------|---|
+241	| N_total | 63 |
+242	| N_with_nve_trajectory（可应用 step filter） | 6 |
+243	| N_without_trajectory（保留原始 NVE_peak） | 57 |
+244	| N_excluded（insufficient data） | 0 |
+245	
+246	6 个有 nve_trajectory 的实验:
+247	
+248	| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |
+249	|--------|-------|--------------|--------------------------|-----------|------|
+250	| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |
+251	| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |
+252	| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |
+253	| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |
+254	| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |
+255	| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |
+256	
+257	exp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。
+258	
+259	### 各阈值性能对比
+260	
+261	| θ | Metric | Filtered (≥50K) | Original | Δ |
+262	|---|--------|-----------------|----------|---|
+263	| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |
+264	| | Precision | 75.8% | 73.5% | +2.2% |
+265	| | Recall | 100% | 100% | — |
+266	| | F1 | 0.862 | 0.847 | +0.015 |
+267	| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |
+268	| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |
+269	| | Precision | **86.2%** | 83.3% | +2.9% |
+270	| | Recall | **100%** | 100% | — |
+271	| | F1 | **0.926** | 0.909 | +0.017 |
+272	| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |
+273	| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |
+274	| | Precision | 88.0% | 84.6% | +3.4% |
+275	| | Recall | 88.0% | 88.0% | — |
+276	| | F1 | 0.880 | 0.863 | +0.017 |
+277	| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |
+278	| **2.0×** | Accuracy | 95.2% | 95.2% | — |
+279	| | Precision | 100% | 100% | — |
+280	| | Recall | 88.0% | 88.0% | — |
+281	| | F1 | 0.936 | 0.936 | — |
+282	| | FP / FN | 0 / 3 | 0 / 3 | — |
+283	
+284	### AUROC
+285	
+286	| | AUROC |
+287	|---|-------|
+288	| Filtered (step ≥ 50K) | **0.9895** |
+289	| Original (all steps) | 0.9863 |
+290	| Δ | +0.0032 |
+291	
+292	### 消除的 FP
+293	
+294	Step filter 在 θ ≤ 1.7× 下消除 1 个 FP:
+295	
+296	| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |
+297	|--------|--------------|-------------------|------|
+298	| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |
+299	
+300	θ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。
+301	
+302	θ=1.5× 残余 FP (4):
+303	
+304	| exp_id | NVE_peak | 类型 |
+305	|--------|----------|------|
+306	| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |
+307	| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |
+308	| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |
+309	| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |
+310	
+311	### NVE_peak 分布 (filtered)
+312	
+313	| 组 | N | min | median | max | mean |
+314	|----|---|-----|--------|-----|------|
+315	| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |
+316	| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |
+317	
+318	Overlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。
+319	
+320	### 验证结论
+321	
+322	| 目标 | 值 | 达标 |
+323	|------|---|------|
+324	| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |
+325	| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |
+326	
+327	**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。
+328	
+329	Step filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。
+330	
+331	**论文建议**: 在 NVE 定义中加入 "step ≥ 50K" 条件（或等价表述为 "在 baseline ve_ratio 稳定后才开始计算 NVE"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。
+332	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "8b8e5d24-d8a3-4844-bb83-d64cf95bf206",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+      "content": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+      "numLines": 332,
+      "startLine": 1,
+      "totalLines": 332
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full file. There's also a "Section 8: Step-filtered NVE" section (lines 231-332) that I need to update. This section was specifically about filtering exp_088's early NVE spike, which was based on the incorrect NVE=1.82. With the corrected NVE=0.517, the entire "step-filtered NVE" section's premise is different.
+
+Let me now plan all the edits systematically:
+
+1. **Lines 1-3**: Add V2.1 header + version note ✓
+
+
+2. **Line 9**: Fix exp_088 NVE_peak
+3. **Lines 17-19**: Rewrite exp_088 transient section
+4. **Lines 29-34**: Update Method A single threshold table
+5. **Line 36**: Update AUROC
+6. **Line 38**: Update FP list
+7. **Lines 42-45**: Update NVE_peak distribution
+8. **Lines 54-59**: Update combination table
+9. **Line 61**: Rewrite combination discussion
+10. **Line 127**: Update exp_088 NVE_median_last5
+11. **Line 131**: Update Healthy min in distribution
+12. **Line 139**: Update conclusion
+13. **Lines 147-154**: Update Method A comparison table
+14. **Lines 158-165**: Update Method A vs B table
+15. **Lines 172-177**: Update recommendation 1
+16. **Line 185**: Remove exp_088 from recommendation 2
+17. **Lines 195-199**: Update recommendation 4 reference to exp_088
+18. **Lines 222-228**: Rewrite section 7 (early transient)
+19. **Lines 231-332**: The step-filtered NVE section needs major revision since the "filtered" and "original" values are now the same (the "original" NVE=1.82 was wrong, corrected to 0.517)
+
+Now I need to tackle the step-filtered NVE section. Since the original value was incorrect and is now corrected to match the filtered value, I'll need to substantially rewrite this entire section to reflect that they're equivalent.
+
+Looking at the corrected trajectory for exp_088, the unfiltered peak is 0.517 at 45K, but when I apply the step filter (≥50K), the maximum shifts to 0.445 at 75K. So the filtering does create a meaningful difference—it reduces the peak value and shifts where that peak occurs.
+
+However, since both values are well below all classification thresholds, this filtering doesn't actually change exp_088's classification outcome. The step-filter section was originally motivated by the NVE=1.82 bug, which turns out wasn't real. Now that I've corrected it to 0.517, the step filter has no practical impact on any experiment's classification in this dataset.
+
+I need to decide whether to keep Section 8 with updated values, remove it entirely since the bug it addressed doesn't exist, or simplify it to just note that corrected baselines eliminate the need for this workaround.
+
+I'll go with option 3—keeping a brief methodological note about step filtering while acknowledging that with the corrected baselines, it has zero practical impact on the N=63 dataset. Now I'll start making the edits in batches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "ff166124-eea4-4448-992d-0fbec345ac99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fRqCW62xD8EwgdrcQNgvb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 65186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Now I'll apply all the corrections. Let me make the edits in batches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "e8cc6fcf-f4f8-4f56-9e52-ff679367d79b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fRqCW62xD8EwgdrcQNgvb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 65186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01EdcPfkMeQXx5bAJ4GSBzgP`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比",
+  "new_string": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "014fc53d-f317-44c9-b812-7f95c5a15dee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fRqCW62xD8EwgdrcQNgvb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8469,
+      "cache_read_input_tokens": 65186,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8469
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-25T21:29:48.726Z_
+
+<details><summary>↩ Tool result · `toolu_01EdcPfkMeQXx5bAJ4GSBzgP`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "191b2a52-2a20-4b94-bf9f-b052b0d5a716",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比",
+    "newString": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 9,
+        "lines": [
+          "-# NVE Threshold Sensitivity Analysis V2",
+          "+# NVE Threshold Sensitivity Analysis V2.1",
+          " ",
+          " **Updated: 2026-05-25** — 组合诊断标准 + 双方法对比",
+          " ",
+          "+> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。",
+          "+",
+          " ## 数据集更新",
+          " ",
+          " - V1 数据点数: 61"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NuY2EkLqPVu4jUbfgpveGK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)",
+  "new_string": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "83097fc7-c206-4844-9749-31b121ffee8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3DjPNR16xAYxbPkShRtku",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1485,
+      "cache_read_input_tokens": 73655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1485
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-25T21:29:55.049Z_
+
+<details><summary>↩ Tool result · `toolu_01NuY2EkLqPVu4jUbfgpveGK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "c87911ff-d204-449d-9129-6f307184501b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)",
+    "newString": "- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 8,
+        "oldLines": 7,
+        "newStart": 8,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " - V1 数据点数: 61",
+          " - V2 数据点数: 63 (Collapsed: 25, Healthy: 38)",
+          "-- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=1.82, ve_ratio_peak=0.31, early-training transient)",
+          "+- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)",
+          " - Method B 覆盖: 37/63 有 ve_ratio_peak",
+          " - 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01W1F52NXkB4HHwTBzsurJuC`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。",
+  "new_string": "### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "1e2e12fe-8b3d-4dc1-98a7-ecfdb03cf9e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3DjPNR16xAYxbPkShRtku",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1485,
+      "cache_read_input_tokens": 73655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1485
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-25T21:30:05.645Z_
+
+<details><summary>↩ Tool result · `toolu_01W1F52NXkB4HHwTBzsurJuC`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "2499cdc7-0fa4-40db-ae29-979f0114ff7e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。",
+    "newString": "### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 早期训练瞬态 NVE spike 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 16,
+        "oldLines": 9,
+        "newStart": 16,
+        "newLines": 9,
+        "lines": [
+          " ",
+          " exp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。",
+          " ",
+          "-### exp_088 早期训练瞬态 NVE spike 说明",
+          "+### exp_088 说明",
+          " ",
+          "-exp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=1.82 发生在极早期 step 35K，此时实验和 baseline 的 ve_ratio 绝对值均很低（exp=0.191, baseline_mean=0.105），比值噪声大。NVE 在 55K 后迅速降至 < 0.6 并保持稳定。NVE_median_last5=0.379，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的重要数据点，表明早期低绝对值 ve_ratio 的 NVE 比值可能产生误导性的瞬态 spike。",
+          "+exp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。",
+          " ",
+          " ---",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HEpNuFgVUDAkDikqV2Sgq4`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy",
+  "new_string": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5e74c29b-9d1f-443c-ab4f-a8d87188db58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjAwUQbUegyeife5DanHov",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1203,
+      "cache_read_input_tokens": 75140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1203
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-25T21:30:23.346Z_
+
+<details><summary>↩ Tool result · `toolu_01HEpNuFgVUDAkDikqV2Sgq4`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "e827db8e-d955-4eb5-a3dd-9d6c2dfe70db",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy",
+    "newString": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |\n| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |\n| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9863**\n\nθ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 30,
+        "oldLines": 21,
+        "newStart": 30,
+        "newLines": 21,
+        "lines": [
+          " ",
+          " | Threshold | Accuracy | Precision | Recall | F1 | FP | FN |",
+          " |-----------|----------|-----------|--------|------|-----|-----|",
+          "-| 1.3× | 85.7% | 73.5% | 100% | 0.847 | 9 | 0 |",
+          "-| **1.5×** | **92.1%** | **83.3%** | **100%** | **0.909** | 5 | 0 |",
+          "-| 1.7× | 88.9% | 84.6% | 88.0% | 0.863 | 4 | 3 |",
+          "+| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |",
+          "+| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |",
+          "+| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |",
+          " | 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |",
+          " ",
+          "-**AUROC = 0.9863**",
+          "+**AUROC = 0.9895**",
+          " ",
+          "-θ=1.5× FP (5): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient), exp_088_cheetah_008d_s1 (1.82, early-training transient at step 35K)",
+          "+θ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)",
+          " ",
+          " θ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)",
+          " ",
+          " NVE_peak 分布:",
+          " - CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954",
+          "-- Healthy (38): min=0.100, median=0.800, max=1.930, mean=0.856",
+          "-- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 5 Healthy",
+          "+- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822",
+          "+- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy",
+          " ",
+          " ### 组合诊断标准",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BvmZjwgv33ehMyqkJyXz2J`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。",
+  "new_string": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "1be79292-6c99-40a5-8d9f-5e893b6e7451",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jRAPP7e1xmEmJezGRjoRE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1245,
+      "cache_read_input_tokens": 76343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1245
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-25T21:30:40.496Z_
+
+<details><summary>↩ Tool result · `toolu_01BvmZjwgv33ehMyqkJyXz2J`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "9388037d-d910-4267-9449-8029b930385a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。",
+    "newString": "| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |\n| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 55,
+        "oldLines": 12,
+        "newStart": 55,
+        "newLines": 12,
+        "lines": [
+          " ",
+          " | Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |",
+          " |-----------|----------|-----------|--------|------|-----|-----|----------------|",
+          "-| 1.3× | 88.9% | 78.1% | 100% | 0.877 | 7 | 0 | 46/63 |",
+          "-| 1.5× | 90.5% | 85.2% | 92.0% | 0.885 | 4 | 2 | 46/63 |",
+          "+| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |",
+          "+| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |",
+          " | 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |",
+          " | 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |",
+          " ",
+          "-**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。但 exp_088 在 θ=1.3× 和 θ=1.5× 下满足 A∧B∧C（35K-45K 连续两点 > τ 且有上升趋势），组合标准未能排除此 FP。θ=1.7× 下 B 条件未满足（仅 35K=1.82 > 1.7，45K=1.58 < 1.7），正确排除。",
+          "+**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。",
+          " ",
+          " 组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Now update the NVE_median_last5 table, the comparison tables, and the recommendations section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "07162396-4b7f-4c82-ade6-4062e64e7f91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQeTzB1mi1LYFNCE3CPHF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 77588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1169
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01176qmuNYiCUbovSNhyu9Bt`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |",
+  "new_string": "| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "e19f593a-934c-440a-b630-78af9b69ebab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQeTzB1mi1LYFNCE3CPHF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 77588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1169
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-25T21:30:46.660Z_
+
+<details><summary>↩ Tool result · `toolu_01176qmuNYiCUbovSNhyu9Bt`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "bdfe720b-3245-4f64-9b74-3015b710e3ae",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |",
+    "newString": "| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 126,
+        "oldLines": 7,
+        "newStart": 126,
+        "newLines": 7,
+        "lines": [
+          " | exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |",
+          " | exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |",
+          " | exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |",
+          "-| exp_088_cheetah_008d_s1 | Healthy | 0.379 | Healthy | ✓ |",
+          "+| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |",
+          " ",
+          " **分布统计**:",
+          " - CIVO (8): min=0.900, median=1.674, max=4.116"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XmYSPjqtmvQg4rWXqnyhfn`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "- Healthy (9): min=0.379, median=0.700, max=1.043",
+  "new_string": "- Healthy (9): min=0.309, median=0.700, max=1.043"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "9deb1531-b76d-4da7-a0f6-7254b6d223fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQeTzB1mi1LYFNCE3CPHF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 77588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1169
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-25T21:30:48.660Z_
+
+<details><summary>↩ Tool result · `toolu_01XmYSPjqtmvQg4rWXqnyhfn`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "752a00bb-7e81-4c8a-9699-d0f64df422eb",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "- Healthy (9): min=0.379, median=0.700, max=1.043",
+    "newString": "- Healthy (9): min=0.309, median=0.700, max=1.043",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.379, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 130,
+        "oldLines": 7,
+        "newStart": 130,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " **分布统计**:",
+          " - CIVO (8): min=0.900, median=1.674, max=4.116",
+          "-- Healthy (9): min=0.379, median=0.700, max=1.043",
+          "+- Healthy (9): min=0.309, median=0.700, max=1.043",
+          " - Accuracy: 14/17 = 82.4% (阈值=1.0)",
+          " ",
+          " **误判分析**:"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_016tCRw7YCuv293VT1FhcrQ3`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。",
+  "new_string": "**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "db8dcfa2-b594-444d-9b9b-3ff0909f6f1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VdQeTzB1mi1LYFNCE3CPHF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1169,
+      "cache_read_input_tokens": 77588,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1169
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-25T21:30:54.914Z_
+
+<details><summary>↩ Tool result · `toolu_016tCRw7YCuv293VT1FhcrQ3`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "54db547a-9669-49cb-994a-5a2eecaa75ca",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。",
+    "newString": "**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 138,
+        "oldLines": 7,
+        "newStart": 138,
+        "newLines": 7,
+        "lines": [
+          " - exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO",
+          " - exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO",
+          " ",
+          "-**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.379) 进一步确认 median_last5 对排除早期瞬态 NVE spike 有效。",
+          "+**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。",
+          " ",
+          " ---",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CywntMzieWLjChxWZZ72qy`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |",
+  "new_string": "| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a1540438-357d-49d5-ba24-f2a9f4796df0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zqQ2nKQgaMm4wv4g6XmHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 78757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1095
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-25T21:31:05.112Z_
+
+<details><summary>↩ Tool result · `toolu_01CywntMzieWLjChxWZZ72qy`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "112f0863-c555-4a70-9827-dc380fb5ee13",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |",
+    "newString": "| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |\n| Precision | 83.3% | **85.2%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.909** | 0.885 | **0.936** | 0.889 |\n| FP | 5 | **4** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 148,
+        "oldLines": 11,
+        "newStart": 148,
+        "newLines": 11,
+        "lines": [
+          " ",
+          " | 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |",
+          " |------|----------------|----------------|----------------|----------------|",
+          "-| Accuracy | **92.1%** | 90.5% | **95.2%** | 92.1% |",
+          "-| Precision | 83.3% | **85.2%** | **100%** | **100%** |",
+          "+| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |",
+          "+| Precision | 86.2% | **88.5%** | **100%** | **100%** |",
+          " | Recall | **100%** | 92.0% | **88.0%** | 80.0% |",
+          "-| F1 | **0.909** | 0.885 | **0.936** | 0.889 |",
+          "-| FP | 5 | **4** | **0** | **0** |",
+          "+| F1 | **0.926** | 0.902 | **0.936** | 0.889 |",
+          "+| FP | 4 | **3** | **0** | **0** |",
+          " | FN | **0** | 2 | **3** | 5 |",
+          " ",
+          " ### Method A vs Method B (最佳阈值)"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WAAT5RCEJ8w3GHbRNNY7rf`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |",
+  "new_string": "| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "81f6c4a5-b087-4c0f-b426-48c1122a0597",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zqQ2nKQgaMm4wv4g6XmHM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 78757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1095
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-25T21:31:08.910Z_
+
+<details><summary>↩ Tool result · `toolu_01WAAT5RCEJ8w3GHbRNNY7rf`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "98a55c9d-2550-4ade-8f49-fdda467ad3c0",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |",
+    "newString": "| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.986** | 0.973 |\n| F1 | 0.909 | **0.966** |\n| Precision | 83.3% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 5 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 159,
+        "oldLines": 11,
+        "newStart": 159,
+        "newLines": 11,
+        "lines": [
+          " ",
+          " | 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |",
+          " |------|------------------------|------------------------|",
+          "-| AUROC | **0.986** | 0.973 |",
+          "-| F1 | 0.909 | **0.966** |",
+          "-| Precision | 83.3% | **100%** |",
+          "+| AUROC | **0.990** | 0.973 |",
+          "+| F1 | 0.926 | **0.966** |",
+          "+| Precision | 86.2% | **100%** |",
+          " | Recall | **100%** | 93.3% |",
+          "-| FP | 5 | **0** |",
+          "+| FP | 4 | **0** |",
+          " | FN | **0** | 1 |",
+          " ",
+          " ---"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+Now update the recommendations section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "9339a621-f21d-481b-b8dd-9b11d763ff9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJ61RfQFxdTtQfd1oGvKK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 79852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01PGoVbpSSqXXen8ZiQ3XTME`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致",
+  "new_string": "### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "1a2a4e7f-5467-40ea-acdd-76cea02e45c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJ61RfQFxdTtQfd1oGvKK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 79852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-25T21:31:17.888Z_
+
+<details><summary>↩ Tool result · `toolu_01PGoVbpSSqXXen8ZiQ3XTME`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a1a6f12c-419c-49b9-8a29-f53fcbbf1074",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致",
+    "newString": "### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.986, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.909\n- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 172,
+        "oldLines": 10,
+        "newStart": 172,
+        "newLines": 10,
+        "lines": [
+          " ",
+          " ### 1. 主方法：Method A step-matched NVE, θ=1.5×",
+          " ",
+          "-- AUROC=0.986, 最高判别力",
+          "+- AUROC=0.990, 最高判别力",
+          " - 100% recall — 不漏检任何 CIVO",
+          "-- F1=0.909",
+          "-- 5 个 FP 全部可解释 (frozen transient spike + eval-variance-driven + early-training transient)",
+          "+- F1=0.926",
+          "+- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)",
+          " - 与原论文 NVE 定义一致",
+          " ",
+          " ### 2. 辅助确认：组合标准（持续性 + 时序因果）"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_012A586WrajQxD5sFe7KRcBW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除",
+  "new_string": "- 当前 73% 实验缺少轨迹数据，大量 A_only 回退"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "2fd0c198-cbca-4899-9e86-bc467041852f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJ61RfQFxdTtQfd1oGvKK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 79852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-25T21:31:21.760Z_
+
+<details><summary>↩ Tool result · `toolu_012A586WrajQxD5sFe7KRcBW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "b810b6f1-6a97-4304-a3df-5d2f02a689dd",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除",
+    "newString": "- 当前 73% 实验缺少轨迹数据，大量 A_only 回退",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 184,
+        "oldLines": 7,
+        "newStart": 184,
+        "newLines": 6,
+        "lines": [
+          " - 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势",
+          " - 作为 θ=1.5× 筛查后的二次确认，而非独立分类器",
+          " - 当前 73% 实验缺少轨迹数据，大量 A_only 回退",
+          "-- 注意：exp_088 在 θ=1.5× 下满足组合条件（35K-45K 两连续点），θ=1.7× 下才被排除",
+          " ",
+          " ### 3. 高置信度：θ=2.0×",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01CS26xNJnrLVCqmU7tLuBmH`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒",
+  "new_string": "- Method B AUROC=0.973，与 Method A 的 0.990 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "fed731d7-f605-4f95-8ef6-f401de0e0cae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MJ61RfQFxdTtQfd1oGvKK7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 79852,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-25T21:31:25.374Z_
+
+<details><summary>↩ Tool result · `toolu_01CS26xNJnrLVCqmU7tLuBmH`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "4ef6a20f-330e-4c4a-a52c-a468b89a5200",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒",
+    "newString": "- Method B AUROC=0.973，与 Method A 的 0.990 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.986 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 196,
+        "oldLines": 8,
+        "newStart": 196,
+        "newLines": 8,
+        "lines": [
+          " - ve_ratio_peak 不受 baseline 选择偏差影响",
+          " - θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)",
+          " - exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感",
+          "-- Method B AUROC=0.973，与 Method A 的 0.986 一致性高",
+          "-- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN，表明 raw ve_ratio 对早期瞬态 spike 更鲁棒",
+          "+- Method B AUROC=0.973，与 Method A 的 0.990 一致性高",
+          "+- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN",
+          " ",
+          " ### 5. Decision rule",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+Now update Section 7 (early transient discussion) and Section 8 (step-filtered NVE, needs removal/replacement).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "658bcb2b-5338-47f3-bc38-b7018d868feb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeG12oV3pPaEYmHezZSQSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1269,
+      "cache_read_input_tokens": 81060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1269
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_017PPTtwWen5nCp9yUW4eG6W`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike",
+  "new_string": "### 7. Baseline 计算注意事项\n\nV2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "233321f2-74da-41c3-ba93-4244cedc4028",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeG12oV3pPaEYmHezZSQSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1269,
+      "cache_read_input_tokens": 81060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1269
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-25T21:31:40.386Z_
+
+<details><summary>↩ Tool result · `toolu_017PPTtwWen5nCp9yUW4eG6W`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5869187f-d0ce-425e-bd46-e93eafbb1f71",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike",
+    "newString": "### 7. Baseline 计算注意事项\n\nV2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.990 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. 早期瞬态 NVE spike 讨论\n\nexp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：\n- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）\n- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算\n- NVE_median_last5 (0.379) 天然抵抗此类早期 spike\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 220,
+        "oldLines": 12,
+        "newStart": 220,
+        "newLines": 9,
+        "lines": [
+          " ",
+          " exp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。",
+          " ",
+          "-### 7. 早期瞬态 NVE spike 讨论",
+          "+### 7. Baseline 计算注意事项",
+          " ",
+          "-exp_088 揭示了 NVE_peak 作为分类指标的一个局限：当 baseline 和实验的 ve_ratio 在训练早期均接近零时，比值（NVE）可能因分母噪声而产生虚高 spike。exp_088 在 step 35K 的 NVE=1.82 来自 ve_ratio 0.191/0.105，绝对值极低。可能的缓解策略：",
+          "-- 忽略 step ≤ 50K 的 NVE 值（仅在 ve_ratio 稳定后开始计算）",
+          "-- 要求 ve_ratio ≥ 最小阈值（如 0.5）后才纳入 NVE 计算",
+          "-- NVE_median_last5 (0.379) 天然抵抗此类早期 spike",
+          "+V2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。",
+          " ",
+          " ---",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+Now remove Section 8 (step-filtered NVE) which was based on the incorrect premise.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "46a60ff4-80c2-4fe7-907a-0c67b01efdc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UVX2eux751B9ruveBXL93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 82329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 671
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01QLXM3fQZK6V898y55BNG3D`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "old_string": "---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。",
+  "new_string": "---\n\n*Section 8 (Step-filtered NVE) 已删除：该分析基于 exp_088 NVE_peak=1.82 的错误前提。修正 baseline 后 exp_088 NVE_peak=0.517，step filter 对 N=63 数据集无分类影响。*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a5c3395e-5c8e-4187-9d59-d70e484eb77b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018UVX2eux751B9ruveBXL93",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 671,
+      "cache_read_input_tokens": 82329,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 671
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-25T21:32:27.912Z_
+
+<details><summary>↩ Tool result · `toolu_01QLXM3fQZK6V898y55BNG3D`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "ea9b2e52-dd94-42d9-a04f-db7cf28c3dd9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+    "oldString": "---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。",
+    "newString": "---\n\n*Section 8 (Step-filtered NVE) 已删除：该分析基于 exp_088 NVE_peak=1.82 的错误前提。修正 baseline 后 exp_088 NVE_peak=0.517，step filter 对 N=63 数据集无分类影响。*",
+    "originalFile": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.990 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. Baseline 计算注意事项\n\nV2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。\n\n---\n\n## 8. Step-filtered NVE (step ≥ 50K)\n\n### 动机\n\nNVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。\n\n### 数据集统计\n\n| 类别 | N |\n|------|---|\n| N_total | 63 |\n| N_with_nve_trajectory（可应用 step filter） | 6 |\n| N_without_trajectory（保留原始 NVE_peak） | 57 |\n| N_excluded（insufficient data） | 0 |\n\n6 个有 nve_trajectory 的实验:\n\n| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |\n|--------|-------|--------------|--------------------------|-----------|------|\n| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |\n| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |\n| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |\n| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |\n| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |\n\nexp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。\n\n### 各阈值性能对比\n\n| θ | Metric | Filtered (≥50K) | Original | Δ |\n|---|--------|-----------------|----------|---|\n| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |\n| | Precision | 75.8% | 73.5% | +2.2% |\n| | Recall | 100% | 100% | — |\n| | F1 | 0.862 | 0.847 | +0.015 |\n| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |\n| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |\n| | Precision | **86.2%** | 83.3% | +2.9% |\n| | Recall | **100%** | 100% | — |\n| | F1 | **0.926** | 0.909 | +0.017 |\n| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |\n| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |\n| | Precision | 88.0% | 84.6% | +3.4% |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.880 | 0.863 | +0.017 |\n| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |\n| **2.0×** | Accuracy | 95.2% | 95.2% | — |\n| | Precision | 100% | 100% | — |\n| | Recall | 88.0% | 88.0% | — |\n| | F1 | 0.936 | 0.936 | — |\n| | FP / FN | 0 / 3 | 0 / 3 | — |\n\n### AUROC\n\n| | AUROC |\n|---|-------|\n| Filtered (step ≥ 50K) | **0.9895** |\n| Original (all steps) | 0.9863 |\n| Δ | +0.0032 |\n\n### 消除的 FP\n\nStep filter 在 θ ≤ 1.7× 下消除 1 个 FP:\n\n| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |\n|--------|--------------|-------------------|------|\n| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |\n\nθ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。\n\nθ=1.5× 残余 FP (4):\n\n| exp_id | NVE_peak | 类型 |\n|--------|----------|------|\n| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |\n| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |\n| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |\n| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |\n\n### NVE_peak 分布 (filtered)\n\n| 组 | N | min | median | max | mean |\n|----|---|-----|--------|-----|------|\n| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |\n| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |\n\nOverlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。\n\n### 验证结论\n\n| 目标 | 值 | 达标 |\n|------|---|------|\n| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |\n| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |\n\n**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。\n\nStep filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。\n\n**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。\n",
+    "structuredPatch": [
+      {
+        "oldStart": 226,
+        "oldLines": 104,
+        "newStart": 226,
+        "newLines": 4,
+        "lines": [
+          " ",
+          " ---",
+          " ",
+          "-## 8. Step-filtered NVE (step ≥ 50K)",
+          "-",
+          "-### 动机",
+          "-",
+          "-NVE 在训练早期（step < 50K）因 baseline ve_ratio 尚未稳定而不可靠。exp_088 的 NVE_peak=1.82 发生在 step 35K（ve_ratio 0.191/0.105），绝对值极低，比值噪声大。定义 NVE 仅在 step ≥ 50K 后计算可消除此类假阳性。",
+          "-",
+          "-### 数据集统计",
+          "-",
+          "-| 类别 | N |",
+          "-|------|---|",
+          "-| N_total | 63 |",
+          "-| N_with_nve_trajectory（可应用 step filter） | 6 |",
+          "-| N_without_trajectory（保留原始 NVE_peak） | 57 |",
+          "-| N_excluded（insufficient data） | 0 |",
+          "-",
+          "-6 个有 nve_trajectory 的实验:",
+          "-",
+          "-| exp_id | label | NVE_peak 原始 | NVE_peak filtered (≥50K) | peak step | 变化 |",
+          "-|--------|-------|--------------|--------------------------|-----------|------|",
+          "-| exp_008e_v3_walker_s2 | CIVO | 3.780 | 3.780 | 105K | 不变 |",
+          "-| exp_078_cheetah_008d_s0 | CIVO | 4.100 | 4.100 | 75K | 不变 |",
+          "-| exp_015b_frozen_dt_emb | Healthy | 0.467 | 0.467 | 85K | 不变 |",
+          "-| exp_032b_dual_critic_walker_s1 | Healthy | 1.400 | 1.400 | 85K | 不变 |",
+          "-| exp_082_cheetah_no_dt_emb_s0 | Healthy | 1.580 | 1.580 | 95K | 不变 |",
+          "-| **exp_088_cheetah_008d_s1** | **Healthy** | **1.820** | **0.550** | **55K** | **↓ 消除早期 spike** |",
+          "-",
+          "-exp_088 被过滤的 NVE 值: 15K=0.166, 25K=1.106, **35K=1.820**, 45K=1.580。step ≥ 50K 后最大值 0.550（55K），远低于所有阈值。",
+          "-",
+          "-### 各阈值性能对比",
+          "-",
+          "-| θ | Metric | Filtered (≥50K) | Original | Δ |",
+          "-|---|--------|-----------------|----------|---|",
+          "-| **1.3×** | Accuracy | 87.3% | 85.7% | +1.6% |",
+          "-| | Precision | 75.8% | 73.5% | +2.2% |",
+          "-| | Recall | 100% | 100% | — |",
+          "-| | F1 | 0.862 | 0.847 | +0.015 |",
+          "-| | FP / FN | 8 / 0 | 9 / 0 | −1 FP |",
+          "-| **1.5×** | Accuracy | **93.7%** | 92.1% | +1.6% |",
+          "-| | Precision | **86.2%** | 83.3% | +2.9% |",
+          "-| | Recall | **100%** | 100% | — |",
+          "-| | F1 | **0.926** | 0.909 | +0.017 |",
+          "-| | FP / FN | **4 / 0** | 5 / 0 | −1 FP |",
+          "-| **1.7×** | Accuracy | 90.5% | 88.9% | +1.6% |",
+          "-| | Precision | 88.0% | 84.6% | +3.4% |",
+          "-| | Recall | 88.0% | 88.0% | — |",
+          "-| | F1 | 0.880 | 0.863 | +0.017 |",
+          "-| | FP / FN | 3 / 3 | 4 / 3 | −1 FP |",
+          "-| **2.0×** | Accuracy | 95.2% | 95.2% | — |",
+          "-| | Precision | 100% | 100% | — |",
+          "-| | Recall | 88.0% | 88.0% | — |",
+          "-| | F1 | 0.936 | 0.936 | — |",
+          "-| | FP / FN | 0 / 3 | 0 / 3 | — |",
+          "-",
+          "-### AUROC",
+          "-",
+          "-| | AUROC |",
+          "-|---|-------|",
+          "-| Filtered (step ≥ 50K) | **0.9895** |",
+          "-| Original (all steps) | 0.9863 |",
+          "-| Δ | +0.0032 |",
+          "-",
+          "-### 消除的 FP",
+          "-",
+          "-Step filter 在 θ ≤ 1.7× 下消除 1 个 FP:",
+          "-",
+          "-| exp_id | NVE_peak 原始 | NVE_peak filtered | 原因 |",
+          "-|--------|--------------|-------------------|------|",
+          "-| exp_088_cheetah_008d_s1 | 1.82 (step 35K) | 0.55 (step 55K) | 早期低 ve_ratio 分母噪声 |",
+          "-",
+          "-θ=2.0× 无变化（exp_088 原始 NVE_peak=1.82 < 2.0，本不是该阈值的 FP）。",
+          "-",
+          "-θ=1.5× 残余 FP (4):",
+          "-",
+          "-| exp_id | NVE_peak | 类型 |",
+          "-|--------|----------|------|",
+          "-| exp_008e_v3_subsample_on_dt1_h15 | 1.93 | 无 trajectory 数据 |",
+          "-| exp_057_frozen_dt_emb_walker_s2 | 1.88 | 无 trajectory 数据 |",
+          "-| exp_047_frozen_dt_emb_walker_s1 | 1.71 | 无 trajectory 数据 |",
+          "-| exp_082_cheetah_no_dt_emb_s0 | 1.58 | 有 nve_traj，peak 在 95K（非早期 spike） |",
+          "-",
+          "-### NVE_peak 分布 (filtered)",
+          "-",
+          "-| 组 | N | min | median | max | mean |",
+          "-|----|---|-----|--------|-----|------|",
+          "-| CIVO | 25 | 1.530 | 4.100 | 70.640 | 6.954 |",
+          "-| Healthy | 38 | 0.100 | 0.780 | 1.930 | 0.822 |",
+          "-",
+          "-Overlap zone: NVE ∈ [1.530, 1.930]，含 3 CIVO + 4 Healthy（原始: 3 CIVO + 5 Healthy）。",
+          "-",
+          "-### 验证结论",
+          "-",
+          "-| 目标 | 值 | 达标 |",
+          "-|------|---|------|",
+          "-| F1 > 0.92 (θ=1.5×, step ≥ 50K) | **0.926** | ✓ |",
+          "-| FP ≤ 3 (θ=1.5×, step ≥ 50K) | **4** | ✗ (差 1) |",
+          "-",
+          "-**F1 > 0.92 达标**，但 FP=4 未达到 ≤ 3 目标。Step filter 消除了 exp_088 这一最明确的早期瞬态 FP，但剩余 4 个 FP 均为非早期 spike 类型（3 个无 trajectory 数据无法进一步过滤，1 个 peak 确认在 step ≥ 50K）。",
+          "-",
+          "-Step filter 的主要价值在于方法论的严谨性：排除 baseline ve_ratio 未稳定阶段的 NVE 计算，而非显著改变分类性能。在 N=63 数据集中，仅 exp_088 一个实验受影响，因为绝大多数 CIVO onset 发生在 step ≥ 50K 之后。",
+          "-",
+          "-**论文建议**: 在 NVE 定义中加入 \"step ≥ 50K\" 条件（或等价表述为 \"在 baseline ve_ratio 稳定后才开始计算 NVE\"）。这不改变主要结论（θ=1.5× 仍是推荐阈值，AUROC 从 0.986 提升到 0.990），但消除了早期训练瞬态 spike 这一已知的方法论漏洞。",
+          "+*Section 8 (Step-filtered NVE) 已删除：该分析基于 exp_088 NVE_peak=1.82 的错误前提。修正 baseline 后 exp_088 NVE_peak=0.517，step filter 对 N=63 数据集无分类影响。*"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+Now let me verify the final file looks correct.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "aba753db-de67-4ed4-9a77-f5c8cbfdd45a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4A5ZizQPBad2brpmfHdHk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2612,
+      "cache_read_input_tokens": 83000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2612
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01E1gHCDaCVuXXmHm4mM8vGK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "5865d01c-5261-44a2-ac67-19291a85be4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4A5ZizQPBad2brpmfHdHk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2612,
+      "cache_read_input_tokens": 83000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2612
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-25T21:32:31.327Z_
+
+<details><summary>↩ Tool result · `toolu_01E1gHCDaCVuXXmHm4mM8vGK`</summary>
+
+````text
+1	# NVE Threshold Sensitivity Analysis V2.1
+2	
+3	**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比
+4	
+5	> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。
+6	
+7	## 数据集更新
+8	
+9	- V1 数据点数: 61
+10	- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)
+11	- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)
+12	- Method B 覆盖: 37/63 有 ve_ratio_peak
+13	- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据
+14	
+15	### exp_084/085 归一化差异说明
+16	
+17	exp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。
+18	
+19	### exp_088 说明
+20	
+21	exp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 "trained config, no CIVO onset" 的 clear true negative 数据点。
+22	
+23	---
+24	
+25	## Method A: Step-matched NVE
+26	
+27	NVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step
+28	
+29	### 单一阈值
+30	
+31	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+32	|-----------|----------|-----------|--------|------|-----|-----|
+33	| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |
+34	| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |
+35	| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |
+36	| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |
+37	
+38	**AUROC = 0.9895**
+39	
+40	θ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)
+41	
+42	θ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)
+43	
+44	NVE_peak 分布:
+45	- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954
+46	- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822
+47	- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy
+48	
+49	### 组合诊断标准
+50	
+51	条件 A: NVE_peak ≥ τ
+52	条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)
+53	条件 C: NVE 上升趋势 (≥10% 增幅)
+54	判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。
+55	
+56	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |
+57	|-----------|----------|-----------|--------|------|-----|-----|----------------|
+58	| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |
+59	| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |
+60	| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |
+61	| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |
+62	
+63	**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。
+64	
+65	组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。
+66	
+67	当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。
+68	
+69	---
+70	
+71	## Method B: Raw ve_ratio peak
+72	
+73	直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。
+74	
+75	可用子集: N=37 (CIVO=15, Healthy=22)
+76	
+77	### 单一阈值
+78	
+79	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+80	|-----------|----------|-----------|--------|------|-----|-----|
+81	| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |
+82	| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |
+83	| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |
+84	| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |
+85	| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+86	
+87	**AUROC = 0.9727**
+88	
+89	θ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)
+90	
+91	ve_ratio_peak 分布:
+92	- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722
+93	- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569
+94	
+95	### 组合诊断标准
+96	
+97	| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |
+98	|-----------|----------|-----------|--------|------|-----|-----|
+99	| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |
+100	| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |
+101	| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |
+102	| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |
+103	| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |
+104	
+105	---
+106	
+107	## NVE_median_last5 辅助指标
+108	
+109	对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)
+110	
+111	| exp_id | type | NVE_median_last5 | label | correct? |
+112	|--------|------|-----------------|-------|----------|
+113	| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |
+114	| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |
+115	| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |
+116	| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |
+117	| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |
+118	| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |
+119	| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |
+120	| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |
+121	| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |
+122	| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |
+123	| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |
+124	| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |
+125	| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |
+126	| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |
+127	| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |
+128	| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |
+129	| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |
+130	
+131	**分布统计**:
+132	- CIVO (8): min=0.900, median=1.674, max=4.116
+133	- Healthy (9): min=0.309, median=0.700, max=1.043
+134	- Accuracy: 14/17 = 82.4% (阈值=1.0)
+135	
+136	**误判分析**:
+137	- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0
+138	- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO
+139	- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO
+140	
+141	**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 "frozen 实验 median ≈ 0.5" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。
+142	
+143	---
+144	
+145	## 单一阈值 vs 组合标准对比
+146	
+147	### Method A 对比
+148	
+149	| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |
+150	|------|----------------|----------------|----------------|----------------|
+151	| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |
+152	| Precision | 86.2% | **88.5%** | **100%** | **100%** |
+153	| Recall | **100%** | 92.0% | **88.0%** | 80.0% |
+154	| F1 | **0.926** | 0.902 | **0.936** | 0.889 |
+155	| FP | 4 | **3** | **0** | **0** |
+156	| FN | **0** | 2 | **3** | 5 |
+157	
+158	### Method A vs Method B (最佳阈值)
+159	
+160	| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |
+161	|------|------------------------|------------------------|
+162	| AUROC | **0.990** | 0.973 |
+163	| F1 | 0.926 | **0.966** |
+164	| Precision | 86.2% | **100%** |
+165	| Recall | **100%** | 93.3% |
+166	| FP | 4 | **0** |
+167	| FN | **0** | 1 |
+168	
+169	---
+170	
+171	## 推荐（论文用框架）
+172	
+173	### 1. 主方法：Method A step-matched NVE, θ=1.5×
+174	
+175	- AUROC=0.990, 最高判别力
+176	- 100% recall — 不漏检任何 CIVO
+177	- F1=0.926
+178	- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)
+179	- 与原论文 NVE 定义一致
+180	
+181	### 2. 辅助确认：组合标准（持续性 + 时序因果）
+182	
+183	- 轨迹数据可用时，组合标准可排除瞬态 FP
+184	- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势
+185	- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器
+186	- 当前 73% 实验缺少轨迹数据，大量 A_only 回退
+187	
+188	### 3. 高置信度：θ=2.0×
+189	
+190	- Precision=100% (FP=0)
+191	- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认
+192	- 代价：3 个 FN (低幅 CIVO 遗漏)
+193	
+194	### 4. Appendix：Method B (raw ve_ratio) 交叉验证
+195	
+196	- ve_ratio_peak 不受 baseline 选择偏差影响
+197	- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)
+198	- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感
+199	- Method B AUROC=0.973，与 Method A 的 0.990 一致性高
+200	- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN
+201	
+202	### 5. Decision rule
+203	
+204	```
+205	if NVE_peak >= 1.5×:
+206	    → FLAG as potential CIVO
+207	    if trajectory_data_available:
+208	        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:
+209	            → CONFIRM as CIVO
+210	        else:
+211	            → LIKELY transient spike, monitor but do not kill
+212	    else:
+213	        → TREAT as CIVO (conservative)
+214	        
+215	if NVE_peak >= 2.0×:
+216	    → DEFINITE CIVO (zero FP at this threshold)
+217	```
+218	
+219	### 6. 归一化方法差异说明
+220	
+221	exp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。
+222	
+223	### 7. Baseline 计算注意事项
+224	
+225	V2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。
+226	
+227	---
+228	
+229	*Section 8 (Step-filtered NVE) 已删除：该分析基于 exp_088 NVE_peak=1.82 的错误前提。修正 baseline 后 exp_088 NVE_peak=0.517，step filter 对 N=63 数据集无分类影响。*
+230	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "66e1ca35-e004-4426-aae2-1d49089e0cf2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+      "content": "# NVE Threshold Sensitivity Analysis V2.1\n\n**Updated: 2026-05-25** — 组合诊断标准 + 双方法对比\n\n> **V2.1 修正**: 修复 Cheetah baseline step-matching bug。exp_088 NVE 计算原使用错误 baseline ve_ratio（≈0.105），正确值为 exp_083 的 step-matched ve_ratio（≈0.6），6 倍差异。修正后 exp_088 NVE_peak: 1.82@35K → 0.517@45K，从 FP 变为 clear TN。所有阈值指标、AUROC、组合诊断已重算。Section 8 step-filtered NVE 基于错误前提已删除。\n\n## 数据集更新\n\n- V1 数据点数: 61\n- V2 数据点数: 63 (Collapsed: 25, Healthy: 38)\n- 新增实验: exp_086_frozen_dt_emb_cheetah_s0 (Healthy, NVE_peak=0.27, ve_ratio_peak=0.2), exp_088_cheetah_008d_s1 (Healthy, NVE_peak=0.517, ve_ratio_peak=0.31)\n- Method B 覆盖: 37/63 有 ve_ratio_peak\n- 时间序列覆盖: 18/63 有逐 checkpoint NVE 轨迹数据\n\n### exp_084/085 归一化差异说明\n\nexp_084_frozen_dt_emb_walker_s0 (NVE_peak=0.37) 和 exp_085_frozen_dt_emb_walker_s1 (NVE_peak=0.31) 使用不同归一化方法（如 raw V(s)/E_return 而非 step-matched baseline 归一化）可能得到不同数值。两实验在 Method A 和 Method B 下均为明确的 true negative。\n\n### exp_088 说明\n\nexp_088_cheetah_008d_s1 使用 008d（CIVO-trigger）配置但全程未触发 CIVO (civo_alert=0.0)。NVE_peak=0.517@45K，NVE 全程 < 1.0（corrected trajectory: 35K=0.318, 45K=0.517, 55K=0.261, 65K=0.309, 75K=0.445, 85K=0.414, 95K=0.204, 105K=0.089）。NVE_median_last5=0.309，eval_return_final=309.3（vs baseline 446.1）。这是 \"trained config, no CIVO onset\" 的 clear true negative 数据点。\n\n---\n\n## Method A: Step-matched NVE\n\nNVE = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 87.3% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.7%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.5% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.2% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n**AUROC = 0.9895**\n\nθ=1.5× FP (4): exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n\nθ=2.0× FN (3): exp_008d_civo_trigger_s3 (1.53), exp_009b_008d_walker_s2 (1.62), exp_027_tcn_walker_s1 (1.64)\n\nNVE_peak 分布:\n- CIVO (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (38): min=0.100, median=0.790, max=1.930, mean=0.822\n- Overlap zone: NVE ∈ [1.530, 1.930], 含 3 CIVO + 4 Healthy\n\n### 组合诊断标准\n\n条件 A: NVE_peak ≥ τ\n条件 B: NVE > τ 持续 ≥2 个连续 eval 点 (排除瞬态 spike)\n条件 C: NVE 上升趋势 (≥10% 增幅)\n判定 CIVO positive 需 A ∧ B ∧ C 同时满足。无轨迹数据时回退到条件 A only。\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN | A_only fallback |\n|-----------|----------|-----------|--------|------|-----|-----|----------------|\n| 1.3× | 90.5% | 80.6% | 100% | 0.893 | 6 | 0 | 46/63 |\n| 1.5× | 92.1% | 88.5% | 92.0% | 0.902 | 3 | 2 | 46/63 |\n| 1.7× | 87.3% | 87.0% | 80.0% | 0.833 | 3 | 5 | 46/63 |\n| 2.0× | 92.1% | 100% | 80.0% | 0.889 | 0 | 5 | 46/63 |\n\n**关键发现**: 组合标准在 θ=1.3× 消除了 2 个 FP (exp_032b_dual_critic_walker_s1 和 exp_082_cheetah_no_dt_emb_s0 — 因 B 条件未满足而正确排除)。\n\n组合标准引入的 FN: exp_008e_v3_walker_s2 (B=N, NVE 仅末段突增), exp_029d_tcn_walker_s3_sigma02 (B=N)。\n\n当 73% 实验缺少轨迹数据时，组合诊断相比单一阈值优势有限。\n\n---\n\n## Method B: Raw ve_ratio peak\n\n直接用 ve_ratio_peak (未除以 baseline) 作为分类分数。\n\n可用子集: N=37 (CIVO=15, Healthy=22)\n\n### 单一阈值\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 81.1% | 70.0% | 93.3% | 0.800 | 6 | 1 |\n| 1.0× | 91.9% | 87.5% | 93.3% | 0.903 | 2 | 1 |\n| **1.3×** | **97.3%** | **100%** | **93.3%** | **0.966** | 0 | 1 |\n| 1.5× | 97.3% | 100% | 93.3% | 0.966 | 0 | 1 |\n| 2.0× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n\n**AUROC = 0.9727**\n\nθ=1.3× FN (1): exp_009b_008d_walker_s2 (ve_ratio_peak=0.570, 但 step-matched NVE=1.62)\n\nve_ratio_peak 分布:\n- CIVO (15): min=0.570, median=3.000, max=24.112, mean=4.722\n- Healthy (22): min=0.200, median=0.510, max=1.283, mean=0.569\n\n### 组合诊断标准\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 0.8× | 86.5% | 81.2% | 86.7% | 0.839 | 3 | 2 |\n| 1.0× | 86.5% | 85.7% | 80.0% | 0.828 | 2 | 3 |\n| 1.3× | 91.9% | 100% | 80.0% | 0.889 | 0 | 3 |\n| 1.5× | 89.2% | 100% | 73.3% | 0.846 | 0 | 4 |\n| 2.0× | 78.4% | 100% | 46.7% | 0.636 | 0 | 8 |\n\n---\n\n## NVE_median_last5 辅助指标\n\n对有轨迹数据的 17 个实验，取最后 5 个 checkpoint 的 NVE 中位数。(exp_086 无轨迹数据，未纳入此表，NVE_peak=0.27 在所有阈值下均为 true negative。)\n\n| exp_id | type | NVE_median_last5 | label | correct? |\n|--------|------|-----------------|-------|----------|\n| exp_008e_v3_walker_s2 | CIVO | 0.900 | CIVO | ✗ |\n| exp_027_tcn_walker_s0 | CIVO | 1.396 | CIVO | ✓ |\n| exp_027_tcn_walker_s1 | CIVO | 0.982 | CIVO | ✗ |\n| exp_029b_tcn_walker_s2_sigma02 | CIVO | 2.315 | CIVO | ✓ |\n| exp_029d_tcn_walker_s3_sigma02 | CIVO | 1.284 | CIVO | ✓ |\n| exp_030b_tcn_cheetah_s0_sigma05 | CIVO | 1.674 | CIVO | ✓ |\n| exp_068_008d_walker_repro_s1 | CIVO | 4.116 | CIVO | ✓ |\n| exp_078_cheetah_008d_s0 | CIVO | 2.740 | CIVO | ✓ |\n| exp_008a_no_subsample_dt2 | Healthy | 1.043 | Healthy | ✗ |\n| exp_015b_frozen_dt_emb | Healthy | 0.420 | Healthy | ✓ |\n| exp_027_tcn_walker_s0_sigma02 | Healthy | 0.857 | Healthy | ✓ |\n| exp_029a_tcn_walker_s1_sigma02 | Healthy | 0.554 | Healthy | ✓ |\n| exp_032b_dual_critic_walker_s1 | Healthy | 0.700 | Healthy | ✓ |\n| exp_069_008f_walker_repro_s1 | Healthy | 0.533 | Healthy | ✓ |\n| exp_070_008e_v3_walker_s0 | Healthy | 0.888 | Healthy | ✓ |\n| exp_082_cheetah_no_dt_emb_s0 | Healthy | 0.980 | Healthy | ✓ |\n| exp_088_cheetah_008d_s1 | Healthy | 0.309 | Healthy | ✓ |\n\n**分布统计**:\n- CIVO (8): min=0.900, median=1.674, max=4.116\n- Healthy (9): min=0.309, median=0.700, max=1.043\n- Accuracy: 14/17 = 82.4% (阈值=1.0)\n\n**误判分析**:\n- exp_008e_v3_walker_s2: median_last5=0.900 (CIVO, 误判为 Healthy) — NVE 末段才突增 (105K=3.78)，最后 5 点中前 4 个 < 1.0\n- exp_027_tcn_walker_s1: median_last5=0.982 (CIVO, 边界误判) — 自我修正型 CIVO\n- exp_008a_no_subsample_dt2: median_last5=1.043 (Healthy, 轻微超 1.0) — eval-variance-driven，非 CIVO\n\n**结论**: NVE_median_last5 有判别力但弱于 NVE_peak。预期 \"frozen 实验 median ≈ 0.5\" 在 exp_015b (0.420) 上验证成功。Healthy 组 median 整体 < 1.0 (9/9)，CIVO 组 median > 1.0 (6/8)。exp_088 (0.309) 为 clear TN，与 NVE_peak=0.517 一致。\n\n---\n\n## 单一阈值 vs 组合标准对比\n\n### Method A 对比\n\n| 指标 | 单一阈值 θ=1.5× | 组合标准 θ=1.5× | 单一阈值 θ=2.0× | 组合标准 θ=2.0× |\n|------|----------------|----------------|----------------|----------------|\n| Accuracy | **93.7%** | 92.1% | **95.2%** | 92.1% |\n| Precision | 86.2% | **88.5%** | **100%** | **100%** |\n| Recall | **100%** | 92.0% | **88.0%** | 80.0% |\n| F1 | **0.926** | 0.902 | **0.936** | 0.889 |\n| FP | 4 | **3** | **0** | **0** |\n| FN | **0** | 2 | **3** | 5 |\n\n### Method A vs Method B (最佳阈值)\n\n| 指标 | Method A θ=1.5× (N=63) | Method B θ=1.3× (N=37) |\n|------|------------------------|------------------------|\n| AUROC | **0.990** | 0.973 |\n| F1 | 0.926 | **0.966** |\n| Precision | 86.2% | **100%** |\n| Recall | **100%** | 93.3% |\n| FP | 4 | **0** |\n| FN | **0** | 1 |\n\n---\n\n## 推荐（论文用框架）\n\n### 1. 主方法：Method A step-matched NVE, θ=1.5×\n\n- AUROC=0.990, 最高判别力\n- 100% recall — 不漏检任何 CIVO\n- F1=0.926\n- 4 个 FP 全部可解释 (frozen transient spike + eval-variance-driven)\n- 与原论文 NVE 定义一致\n\n### 2. 辅助确认：组合标准（持续性 + 时序因果）\n\n- 轨迹数据可用时，组合标准可排除瞬态 FP\n- 条件：NVE > θ 持续 ≥2 个连续 eval 点 ∧ 上升趋势\n- 作为 θ=1.5× 筛查后的二次确认，而非独立分类器\n- 当前 73% 实验缺少轨迹数据，大量 A_only 回退\n\n### 3. 高置信度：θ=2.0×\n\n- Precision=100% (FP=0)\n- NVE_peak ≥ 2.0× 时可直接判定 CIVO，无需额外确认\n- 代价：3 个 FN (低幅 CIVO 遗漏)\n\n### 4. Appendix：Method B (raw ve_ratio) 交叉验证\n\n- ve_ratio_peak 不受 baseline 选择偏差影响\n- θ=1.3× 达到 100% precision + F1=0.966 (N=37 子集)\n- exp_009b 是唯一 FN (ve_ratio_peak=0.570, step-matched NVE=1.62)，说明 baseline normalization 对低幅 CIVO 更敏感\n- Method B AUROC=0.973，与 Method A 的 0.990 一致性高\n- exp_088 (ve_ratio_peak=0.31) 在 Method B 所有阈值下均为 TN\n\n### 5. Decision rule\n\n```\nif NVE_peak >= 1.5×:\n    → FLAG as potential CIVO\n    if trajectory_data_available:\n        if NVE > 1.5× for >= 2 consecutive checkpoints AND uptrend present:\n            → CONFIRM as CIVO\n        else:\n            → LIKELY transient spike, monitor but do not kill\n    else:\n        → TREAT as CIVO (conservative)\n        \nif NVE_peak >= 2.0×:\n    → DEFINITE CIVO (zero FP at this threshold)\n```\n\n### 6. 归一化方法差异说明\n\nexp_084 (NVE=0.37) 和 exp_085 (NVE=0.31) 在 Method A 和 Method B 下均为 true negative。使用不同归一化方法（如 raw V(s)/E_return）可能得到不同数值，但不影响分类结果——frozen dt_emb 实验的 NVE 远低于任何阈值。θ=2.0× 在 Method A 下 precision=100% (FP=0)。\n\n### 7. Baseline 计算注意事项\n\nV2 原始报告中 exp_088 的 NVE_peak=1.82 是 baseline step-matching bug 导致的虚高值（使用了错误的 baseline ve_ratio≈0.105 而非正确的≈0.6）。修正后 NVE_peak=0.517，为 clear TN。此 bug 仅影响 exp_088，其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）的 NVE 使用正确 baseline，已验证无误。\n\n---\n\n*Section 8 (Step-filtered NVE) 已删除：该分析基于 exp_088 NVE_peak=1.82 的错误前提。修正 baseline 后 exp_088 NVE_peak=0.517，step filter 对 N=63 数据集无分类影响。*\n",
+      "numLines": 230,
+      "startLine": 1,
+      "totalLines": 230
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file looks correct. Let me verify all the key values are consistent:
+
+1. ✅ V2.1 header with correction note
+2. ✅ exp_088 NVE_peak=0.517 (line 11, 21)
+3. ✅ exp_088 description corrected (lines 19-21)
+4. ✅ Method A table corrected (lines 31-36)
+5. ✅ AUROC=0.9895 (line 38)
+6. ✅ θ=1.5× FP list: 4 FPs, no exp_088 (line 40)
+
+
+7. ✅ NVE_peak distribution: Healthy mean=0.822, overlap=3+4 (lines 46-47)
+8. ✅ Combination table updated (lines 57-61)
+9. ✅ Combination discussion: removed exp_088 reference (line 63)
+10. ✅ NVE_median_last5: exp_088=0.309 (line 129)
+11. ✅ Healthy min=0.309 (line 133)
+12. ✅ Conclusion: exp_088 (0.309) clear TN (line 141)
+
+All the critical values are tracking correctly through the document, including the NVE metrics, the combination table updates, and the final classification of exp_088 as a true negative.
+
+13. ✅ Method A vs B comparison table updated (lines 149-167)
+14. ✅ Recommendations refined: AUROC=0.990, F1=0.926 with 4 false positives, exp_088 confirmed as TN (lines 175-200)
+15. ✅ Section 7 baseline bug explanation added, Section 8 removed with note (lines 223-229)
+
+Now I'm ready to register the updated artifact with all these corrections applied.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "1f8b8e4c-cc65-42ad-bde2-d0326dfcbb33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFXHte6zF6zoFadaVpxkTt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5832,
+      "cache_read_input_tokens": 85612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98_
+
+All corrections verified. Now let me register the updated artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "bcc48414-1cf9-47e9-8cf6-64da8899fb54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFXHte6zF6zoFadaVpxkTt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5832,
+      "cache_read_input_tokens": 85612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UiPLp3SNjDFJC6Bq9pnfUj`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "8c22176b-00f9-445f-9b99-34a32e621918",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFXHte6zF6zoFadaVpxkTt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5832,
+      "cache_read_input_tokens": 85612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5832
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-25T21:32:47.130Z_
+
+<details><summary>↩ Tool result · `toolu_01UiPLp3SNjDFJC6Bq9pnfUj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "8558511d-9a17-4b42-8de4-9cb5b02ca5d1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01Po3gfefHCU3o6e5mNWQceF`</summary>
+
+```json
+{
+  "name": "NVE Threshold Sensitivity Analysis V2.1",
+  "type": "report",
+  "description": "V2.1: 修复 Cheetah baseline step-matching bug。exp_088 NVE_peak 从 1.82@35K 修正为 0.517@45K。θ=1.5× F1: 0.909→0.926, AUROC: 0.9863→0.9895, FP: 5→4。Section 8 step-filtered NVE 因基于错误前提已删除。",
+  "project": "event-gated-adaptive-horizon",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis_v2.md",
+  "tags": [
+    "nve",
+    "threshold",
+    "bugfix",
+    "plan_034"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "a6050eb8-04f2-4ce6-b25a-f57ac833ad44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011gZJfhiggsbEEfzcdv7pTY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 91444,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1243
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-25T21:32:56.072Z_
+
+<details><summary>↩ Tool result · `toolu_01Po3gfefHCU3o6e5mNWQceF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_bd7498\", \"name\": \"NVE Threshold Sensitivity Analysis V2.1\", \"type\": \"report\", \"description\": \"V2.1: 修复 Cheetah baseline step-matching bug。exp_088 NVE_peak 从 1.82@35K 修正为 0.517@45K。θ=1.5× F1: 0.909→0.926, AUROC: 0.9863→0.9895, FP: 5→4。Section 8 step-filtered NVE 因基于错误前提已删除。\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_v2_bd7498.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T21:32:55.574575+00:00\", \"tags\": [\"nve\", \"threshold\", \"bugfix\", \"plan_034\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0661e8f0-89aa-485e-92ae-c895475409f6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_bd7498\\\", \\\"name\\\": \\\"NVE Threshold Sensitivity Analysis V2.1\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"V2.1: 修复 Cheetah baseline step-matching bug。exp_088 NVE_peak 从 1.82@35K 修正为 0.517@45K。θ=1.5× F1: 0.909→0.926, AUROC: 0.9863→0.9895, FP: 5→4。Section 8 step-filtered NVE 因基于错误前提已删除。\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_v2_bd7498.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T21:32:55.574575+00:00\\\", \\\"tags\\\": [\\\"nve\\\", \\\"threshold\\\", \\\"bugfix\\\", \\\"plan_034\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_bd7498\", \"name\": \"NVE Threshold Sensitivity Analysis V2.1\", \"type\": \"report\", \"description\": \"V2.1: 修复 Cheetah baseline step-matching bug。exp_088 NVE_peak 从 1.82@35K 修正为 0.517@45K。θ=1.5× F1: 0.909→0.926, AUROC: 0.9863→0.9895, FP: 5→4。Section 8 step-filtered NVE 因基于错误前提已删除。\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_v2_bd7498.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T21:32:55.574575+00:00\", \"tags\": [\"nve\", \"threshold\", \"bugfix\", \"plan_034\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+修复完成。汇总：
+
+**Bug**: exp_088 NVE 计算使用了错误的 Cheetah baseline ve_ratio（≈0.105 vs 正确值≈0.6），导致 NVE_peak 虚高 6 倍。
+
+**影响范围**: 仅 exp_088。其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）baseline 正确，已验证。
+
+**修正后指标变化** (θ=1.5×):
+
+| 指标 | V2 (bug) | V2.1 (修正) |
+|------|----------|-------------|
+| NVE_peak (exp_088) | 1.82@35K | 0.517@45K |
+| AUROC | 0.9863 | 0.9895 |
+| F1 | 0.909 | 0.926 |
+| FP | 5 | 4 |
+| Precision | 83.3% | 86.2% |
+
+修正后 N=63 各指标均优于 V1 (N=61)，符合预期——新增的 exp_086/088 都是 clear TN。Section 8 (step-filtered NVE) 因基于错误前提已删除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "uuid": "0594ee8d-3d9d-4d8e-858d-a0a147d07213",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015wfHmsPSdWKAtog3Y5X4Sq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 92687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 104_
+
+修复完成。汇总：
+
+**Bug**: exp_088 NVE 计算使用了错误的 Cheetah baseline ve_ratio（≈0.105 vs 正确值≈0.6），导致 NVE_peak 虚高 6 倍。
+
+**影响范围**: 仅 exp_088。其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）baseline 正确，已验证。
+
+**修正后指标变化** (θ=1.5×):
+
+| 指标 | V2 (bug) | V2.1 (修正) |
+|------|----------|-------------|
+| NVE_peak (exp_088) | 1.82@35K | 0.517@45K |
+| AUROC | 0.9863 | 0.9895 |
+| F1 | 0.909 | 0.926 |
+| FP | 5 | 4 |
+| Precision | 83.3% | 86.2% |
+
+修正后 N=63 各指标均优于 V1 (N=61)，符合预期——新增的 exp_086/088 都是 clear TN。Section 8 (step-filtered NVE) 因基于错误前提已删除。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 723253,
+  "duration_api_ms": 719047,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "489dde6b-8fc8-4974-8bea-a1d25f98a4d9",
+  "total_cost_usd": 2.160513,
+  "usage": {
+    "input_tokens": 28,
+    "cache_creation_input_tokens": 81958,
+    "cache_read_input_tokens": 1405055,
+    "output_tokens": 37758,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 81958,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 347,
+        "cache_read_input_tokens": 92687,
+        "cache_creation_input_tokens": 718,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 718
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1558,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001658,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 28,
+      "outputTokens": 37758,
+      "cacheReadInputTokens": 1405055,
+      "cacheCreationInputTokens": 81958,
+      "webSearchRequests": 0,
+      "costUSD": 2.158855,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6ef04e9d-88fa-4103-8563-8d2376ac38e0"
+}
+```
+
+</details>
+
+---

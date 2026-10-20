@@ -1,0 +1,112 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sutton1999between,precup2000temporal}
+\citation{hafner2023mastering}
+\citation{nhu2025tawm}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sutton1999between,precup2000temporal}
+\citation{sharma2017learning}
+\citation{lakshminarayanan2017dynamic}
+\citation{hafner2020dream,hafner2021mastering,hafner2023mastering}
+\citation{micheli2023transformers}
+\citation{robine2023transformer}
+\citation{nhu2025tawm}
+\citation{janner2019trust}
+\citation{lu2018non}
+\citation{hafner2023mastering}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal abstraction in RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-model RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variable-rate planning in world models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value overestimation in MBRL.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}DreamerV3 with Variable-Rate Imagination}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Factorial Experiment Design}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Diagnostic Metric: Normalized Value-to-Evaluation Ratio (NVE)}{2}{subsection.3.3}\protected@file@percent }
+\citation{tassa2018deepmind}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Variable-Rate Imagination Consistently Degrades Performance (C1)}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trained dt\_embedding Reliably Triggers CIVO (C2)}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:c2}{{4.2}{3}{Trained dt\_embedding Reliably Triggers CIVO (C2)}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Walker Walk cross-seed validation (008d, trained embedding).}{3}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Walker 008d (trained dt\_embedding, subsample ON): cross-seed NVE trajectory.}}{3}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:008d_cross_seed}{{1}{3}{Walker 008d (trained dt\_embedding, subsample ON): cross-seed NVE trajectory}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal control: no dt\_embedding (008f).}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Walker 008f (dt\_embed\_dim=0): all seeds show NVE\,$<$\,1.5$\times $, no CIVO.}}{3}{table.caption.8}\protected@file@percent }
+\newlabel{tab:008f}{{2}{3}{Walker 008f (dt\_embed\_dim=0): all seeds show NVE\,$<$\,1.5$\times $, no CIVO}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Frozen embedding (015b).}{4}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces dt\_embedding state $\times $ dt$>$1 data presence: failure mode matrix.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:2x2_matrix}{{3}{4}{dt\_embedding state $\times $ dt$>$1 data presence: failure mode matrix}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{RSSM fidelity gap.}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces RSSM prediction fidelity: absolute errors and $dt=2$/$dt=1$ ratios. Both absolute values and ratios are reported; 008d's low obs gap (1.30$\times $) is misleading because its $dt=1$ error (41.3) is already 3$\times $ baseline---the model has collapsed.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:rssm_fidelity}{{4}{4}{RSSM prediction fidelity: absolute errors and $dt=2$/$dt=1$ ratios. Both absolute values and ratios are reported; 008d's low obs gap (1.30$\times $) is misleading because its $dt=1$ error (41.3) is already 3$\times $ baseline---the model has collapsed}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Untrained dt\_embedding Prevents Optimistic Drift (C3)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Unexposed dt\_embedding: cross-environment value suppression.}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:unexposed_cross_env}{{5}{4}{Unexposed dt\_embedding: cross-environment value suppression}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Temporal Step Size and Horizon Effects (C4, C5)}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Dual Collapse Pathways from Trained dt\_embedding (C6)}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:c6}{{4.5}{5}{Dual Collapse Pathways from Trained dt\_embedding (C6)}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 008e\_v3 (trained dt\_emb, $dt=1$ imagination): 4-seed results. Collapse rate 50\%.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:008e_v3_seeds}{{6}{5}{008e\_v3 (trained dt\_emb, $dt=1$ imagination): 4-seed results. Collapse rate 50\%}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Two collapse pathways: classic CIVO (Pathway A) vs.\ policy instability (Pathway B).}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:dual_pathway}{{7}{5}{Two collapse pathways: classic CIVO (Pathway A) vs.\ policy instability (Pathway B)}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Actor entropy trajectories distinguish three regimes.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:entropy}{{8}{5}{Actor entropy trajectories distinguish three regimes}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Backward-Pass Interventions Fail (C7)}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:c7}{{4.6}{5}{Backward-Pass Interventions Fail (C7)}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Forward-Pass Mitigation: Temporal Conditioning Noise (C8)}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:c8}{{4.7}{6}{Forward-Pass Mitigation: Temporal Conditioning Noise (C8)}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma =0.2$, Walker Walk.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma =0.5$, Walker Walk (2 seeds).}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma =0.2$, Cheetah Run.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma =0.5$, Cheetah Run.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dose-response relationship.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Environment Generalization}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:cross_env}{{4.8}{6}{Cross-Environment Generalization}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cheetah Run: amplified severity.}{6}{section*.22}\protected@file@percent }
+\citation{nhu2025tawm}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CIVO severity scales with environment complexity.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:severity_cross_env}{{9}{7}{CIVO severity scales with environment complexity}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cartpole Swingup: CIVO in non-locomotion tasks.}{7}{section*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cartpole Swingup: trained dt\_embedding triggers CIVO in non-locomotion tasks.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:cartpole_civo}{{10}{7}{Cartpole Swingup: trained dt\_embedding triggers CIVO in non-locomotion tasks}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{NVE 1.5$\times $ diagnostic threshold.}{7}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NVE\,$\geq $\,1.5$\times $ threshold: cross-environment classification (trained dt\_emb exceeds threshold vs.\ untrained/absent stays below). AUROC\,=\,0.969.}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:nve_threshold_4env}{{11}{7}{NVE\,$\geq $\,1.5$\times $ threshold: cross-environment classification (trained dt\_emb exceeds threshold vs.\ untrained/absent stays below). AUROC\,=\,0.969}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-environment causal control.}{7}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The CIVO mechanism.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why MPC succeeds where imagination fails.}{7}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces NVE threshold sensitivity analysis.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:threshold_sensitivity}{{12}{8}{NVE threshold sensitivity analysis}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces No-dt-embedding causal control: CIVO eliminated across all environments.}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:no_emb_cross_env}{{13}{8}{No-dt-embedding causal control: CIVO eliminated across all environments}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Forward-pass vs.\ backward-pass interventions.}{8}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dose-response and calibration.}{8}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multiple vulnerability pathways.}{8}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\citation{kim2024thick}
+\citation{robine2024hieros}
+\bibstyle{plainnat}
+\bibcite{hafner2023mastering}{{1}{2023}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2021mastering}{{2}{2021}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2020dream}{{3}{2020}{{Hafner et~al.}}{{}}}
+\bibcite{sutton1999between}{{4}{1999}{{Sutton et~al.}}{{}}}
+\bibcite{precup2000temporal}{{5}{2000}{{Precup}}{{}}}
+\bibcite{sharma2017learning}{{6}{2017}{{Sharma et~al.}}{{}}}
+\bibcite{lakshminarayanan2017dynamic}{{7}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\bibcite{micheli2023transformers}{{8}{2023}{{Micheli et~al.}}{{}}}
+\bibcite{robine2023transformer}{{9}{2023}{{Robine et~al.}}{{}}}
+\bibcite{nhu2025tawm}{{10}{2025}{{Nhu et~al.}}{{}}}
+\bibcite{lu2018non}{{11}{2018}{{Lu et~al.}}{{}}}
+\bibcite{janner2019trust}{{12}{2019}{{Janner et~al.}}{{}}}
+\bibcite{tassa2018deepmind}{{13}{2018}{{Tassa et~al.}}{{}}}
+\bibcite{agarwal2021deep}{{14}{2021}{{Agarwal et~al.}}{{}}}
+\bibcite{kim2024thick}{{15}{2024}{{Kim et~al.}}{{}}}
+\bibcite{robine2024hieros}{{16}{2024}{{Robine et~al.}}{{}}}
+\bibcite{henderson2018deep}{{17}{2018}{{Henderson et~al.}}{{}}}
+\gdef \@abspage@last{10}

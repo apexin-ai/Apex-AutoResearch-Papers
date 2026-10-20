@@ -1,0 +1,536 @@
+# cron hook exp cheetah 008a s1
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/cron_hook_exp_cheetah_008a_s1.jsonl`
+- **Structured JSON:** [`4e52732f396aac0fd869.json`](../../sessions/4e/4e52732f396aac0fd869.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T22:50:45.200100+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #28。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-51268 cuda:0 和 cuda:1，严禁使用其他 GPU
+- bjb1-45299 宕机不可用，不要尝试连接
+- 数据锁定 (D171) 生效中：所有实验数据和论文数值冻结，仅允许 prose polish + 格式调整，禁止修改任何数值/统计/表格/图表数据
+- NVE CIVO 检测阈值 τ=2.0（D165），分析时用 2.0 不是 1.5
+- exp_walker_008f_s0 和 exp_walker_no_dt_emb_s0 是不同 registry 条目但同一类实验（后者 killed），不要混淆
+- Cheetah 008a 系列历史上多次 killed/failed（exp_095/096/098/099/102/103），当前命名为 exp_cheetah_008a_s0/s1，不要用旧命名
+- `read_registry` 工具有缓存问题——exp_walker_no_dt_emb_s1 在工具中显示 RUNNING，但原始 YAML 已是 DONE/success。遇到状态不一致时以 registry.yaml 原始文件为准
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-51268，2× RTX PRO 6000 Blackwell 96GB
+- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon
+- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）
+- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- EGL 变量：MUJOCO_GL=egl, PYOPENGL_PLATFORM=egl, MUJOCO_EGL_DEVICE_ID={gpu_index}
+- W&B：已配置
+- 活跃进程：无（全部实验已完成）
+- Cron：无活跃 cron（reconcile_crons 返回 0）
+
+### 3. 📊 当前状态
+Loop #27 session-start 完成。确认所有实验已结束，无 RUNNING/PREPARING：
+- exp_cheetah_008a_s0: DONE/success, NVE=0.584 (C3 Cheetah s0 ✅)
+- exp_walker_008f_s0: DONE/success, NVE=0.996 (C2 Walker no_dt_emb s0 ✅)
+- exp_walker_no_dt_emb_s1: DONE/success, NVE=0.703 (C2 additional seed ✅)
+
+已向 Director 汇报当前状态。无 Worker 运行，无 Director 决策待处理。
+实验统计：208 个（103 success / 43 negative / 21 failed / 40 killed）。两块 GPU 空闲。
+
+### 4. 📋 待办
+- 用户决定 CoRL 2026 → 当前版本已就绪，确认提交流程
+- 用户决定转 ICML/NeurIPS → Agent 已准备切换清单（ROADMAP 记录），执行 venue 切换
+- Director 要求启动 Paper Agent 整合最终结果 → spawn worker 执行
+- 若用户要求新实验（数据锁定后不应发生）→ push back，引用 D171
+
+### 5. 🎯 战略上下文
+- 核心发现：DreamerV3 的 trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），是 multi-joint locomotion 特异性现象。Frozen/removed dt_emb 可稳健阻止
+- C2（causal control）和 C3（cross-env）证据链已闭合（D170）
+- C6 已 CONFIRMED（4/4 deterministic mitigation）
+- Hopper 结论：gate mechanism failure，不是 dt_emb-driven CIVO（D162）
+- **关键阻塞**：Round 7 审稿指出 CoRL venue fit 是反复出现的 evidence 问题（Round 1/3/7），写作无法修复。切 ICML 可同时消除 W-MF2 + W-MF6 两个 desk-reject 条件。等待用户 venue 决策
+- 论文 43 页（CoRL 格式，正文 8 页达标），venue-independent 修复全部完成并 Reviewer 验证通过
+- 易错：CoRL DDL 是 5/28 12:00 UTC（北京时间 20:00），过期则 CoRL 选项自动失效
+
+## 项目硬约束 (memory.md 节选)
+
+## Hopper 三配置失败模式对比（2026-05-27, 完整图谱）
+
+**核心发现**：Hopper 所有 gated config 均表现 severe learning delay，但失败模式各不同：
+
+| 配置 | eval_return_final | 恢复? | 失败模式 |
+|------|-------------------|-------|---------|
+| trained dt_emb (s0_ext, 150K) | 81.58 | ✅ 是 | 延迟学习→短暂 ve_ratio 升高→自纠正恢复 |
+| frozen dt_emb (s0_ext, 160K) | 0.56 | ❌ 否 | gate 锁死(entropy=0)→phantom value 膨胀→结构性不可恢复 |
+| no_dt_emb (s0, 105K) | 10.76 | ❌ 严重延迟 | entropy 维持最大值到 55K，value 发育受阻(baseline 的 4.3%)，无 CIVO |
+| baseline (无 gate) | 96.43 | — | 正常学习 |
+
+**结论**：gate+dt=2+subsample 机制导致 Hopper severe learning delay，与 dt_emb 类型无关。三种 gated config 失败严重程度：frozen > no_dt_emb > trained（trained 可恢复）。支持 D162 重分类。Hopper 不支持 CIVO 跨环境普遍性 claim。
+
+**Delayed CIVO 假设已被证伪**（trained_s0_ext, NEGATIVE）：
+- 原假设：trained_s0 的 ve_ratio 指数上升是 delayed CIVO onset
+- 实际：延长到 150K 后 ve_ratio 下降、eval_return 恢复到 81.58
+- 结论：是 transient instability during severe learning delay，非真正 CIVO
+
+**frozen_s0_ext 关键 insight**（NEGATIVE）：
+- frozen dt_emb 锁死 gate（entropy=0, 永久 dt=2），无自适应 horizon
+- value_mean 持续膨胀（4.34→8.46）但 eval_return ≈ 0（phantom value overestimation）
+- **与 trained 的区别**：可学习的 dt_emb 既是 CIVO 触发条件，也是自纠正的必要条件
+
+**分析约束（仍然有效）**：
+1. ve_ratio 伪信号: 25K 时 ve_ratio=67750（除零膨胀），必须用 MIN_STEP=35K
+2. NVE 判断不能只用 tau=2.0 二值判断，必须看完整曲线 + value_mean 趋势 + civo/alert（D165: 阈值从 1.5 正式调整为 2.0）
+
+## CLI flag 服务器差异 (2026-05-25) — 已解决
+- **2026-05-26 更新**: westd-51268 已从 bjb1 rsync 代码，两边一致使用 `--gate_dt_embed_dim`
+- 教训: 不要跨服务器复制命令模板，提交前验证参数名
+
+## 服务器迁移 (2026-05-26)
+- bjb1-45299 无卡，数据已迁移到 westd-51268
+- westd-51268: 2×RTX PRO 6000 Blackwell (96GB), CUDA 13.2
+- westd 数据盘重启后清空，代码通过 rsync 从 bjb1 恢复
+
+## 可查的历史
+前 161 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-28T22:50:59.825715+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-28T22:50:59.876638+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-28T22:51:05.452587+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-28T22:51:06.456262+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8027}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1003
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-28T22:51:06.456735+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-28T22:51:06.457074+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T22:51:07.008965+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T22:51:07.210812+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T22:51:07.313382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_quadruped_baseline_s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T22:36:51.697Z\", \"updated_at\": \"2026-05-28T22:37:38.586Z\", \"hypothesis\": \"Quadruped Walk baseline (dt=1, no gate) establishes reference performance for 12-DoF four-legged environment CIVO verification. Expect stable training without value overestimation (NVE < 2.0×). Source: post-D171 scope expansion.\"}, \"exp_humanoid_baseline_s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T22:36:46.382Z\", \"updated_at\": \"2026-05-28T22:37:36.522Z\", \"hypothesis\": \"Humanoid Walk baseline (dt=1, no gate) establishes reference performance for 21-DoF environment CIVO verification. Expect stable training without value overestimation (NVE < 2.0×). Source: post-D171 scope expansion.\"}, \"exp_quadruped_008d_s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T22:36:53.813Z\", \"updated_at\": \"2026-05-28T22:36:53.813Z\", \"hypothesis\": \"Quadruped Walk trained dt_emb + gate + subsample ON (008d config: gate_fixed_dt=2, gate_subsample_max_dt=2, H=8), seed=0 — tests whether CIVO onset generalizes to 12-DoF four-legged morphology distinct from Walker/Cheetah single-spine. Expect NVE > 2.0× if CIVO is morphology-independent. Source: post-D171 scope expansion.\"}, \"exp_humanoid_008d_s0\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-28T22:36:50.115Z\", \"updated_at\": \"2026-05-28T22:36:50.115Z\", \"hypothesis\": \"Humanoid Walk trained dt_emb + gate + subsample ON (008d config: gate_fixed_dt=2, gate_subsample_max_dt=2, H=8), seed=0 — tests whether CIVO onset generalizes to highest-DoF (21) DMC locomotion environment. Expect NVE > 2.0× if CIVO is DoF-independent. Source: post-D171 scope expansion.\"}}, \"count\": 4, \"total\": 4, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7857}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 856
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T22:51:07.364149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 907
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-28T22:51:07.364666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\", \"content\": \"# Handover — 2026-05-28\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp_walker_no_dt_emb_s0: dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Source: D164 Walker priority, replaces killed exp_009f.（已分配 ? GPU:?，等待提交）\\n\\n## 近期结论\\n- **exp_walker_no_dt_emb_s1** (success): dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 1 will NOT show CIVO (NVE<1.5), replicating 008f causal control from seed 0. Confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Source: D164 Walker priority, plan_012 C2 multi-seed. Replaces killed exp_009f_008f_walker_s1. ← 基于 exp_008f_no_dt_embed_subsample_on_h8\\n  [exp_walker_no_dt_emb_s1 analysis report](/api/workspace-files/projects/event-gated-adaptive-horizon/artifacts/exp_walker_no_dt_emb_s1/report/analysis_43d981.md)\\n- **exp_walker_008d_s6_r2** (failed): Walker Walk trained dt_emb + subsample ON (gate_subsample_max_dt=2) + gate_fixed_dt=2 + H=8, seed=6 — C2 onset rate rebuttal reserve. Retry after GPU collision bug (s6/s7 both on cuda:0). Source: D172 Tier 2. ← 基于 exp_008d_subsample_on_h8\\n- **exp_walker_008d_s7_r2** (failed): Walker Walk trained dt_emb + subsample ON (gate_subsample_max_dt=2) + gate_fixed_dt=2 + H=8, seed=7 — C2 onset rate rebuttal reserve. Retry after GPU collision bug. Fixed: --device cuda:1 + EGL=1. Source: D172 Tier 2. ← 基于 exp_008d_subsample_on_h8\\n\\n## 趋势\\n成功 103 / 负向 43 / 失败 21 / 共 207\\nEMA_005_105K: 139.9 ↑（近 3 次 success）\\nEMA_095_105K: 204.3 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-51268: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- 016e: 已被终止 — unknown
+…[truncated 2694 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 355
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T22:51:07.365064+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-28 03:48 UTC | 更新原因: Round 7 审稿修复全部完成，等待用户 venue 决策\\n\\n## 核心方向\\nDreamerV3 中 trained dt_embedding 驱动的 CIVO（Conditioning-Induced Value Overestimation）是 multi-joint locomotion 特异性现象，frozen/removed dt_emb 可稳健阻止。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: 🔒 数据锁定 (D171) — 所有数值冻结，仅允许 prose polish + 格式调整\\n- **投稿目标**: ⚠️ **待用户决策**（CoRL 2026 DDL 5/28 UTC 12:00 vs ICML/NeurIPS）\\n- **实验统计**: 208 个（103 success / 43 negative / 21 failed / 40 killed）\\n- **论文**: 43 页（CoRL 格式，正文 8 页达标）\\n- **Round 7 审稿**: Weak Reject — 2 个 desk-reject 条件（页数已修 ✅ + venue fit 未解 ❌）\\n- **Venue-independent 修复**: 全部完成 + Reviewer 验证通过\\n  - ✅ AUROC bootstrap CI (1.000 [1.000–1.000], 9:27)\\n  - ✅ 因果声明弱化为 proposed/hypothesized pathway + Figure 1 证据层级\\n  - ✅ Fisher exact test (5 组对比)\\n  - ✅ Code correction 汇总统计\\n  - ✅ 诊断协议 scope 限定为 DreamerV3\\n  - ✅ Figure 1 所有数值更新 (τ=2.0×, 008d s1, 009e s1)\\n  - ✅ 正文压缩至 8 页\\n\\n## 关键阻塞\\n**Venue 决策**：Round 7 审稿明确指出 CoRL venue fit 是第三次复发的 evidence 问题（Round 1/3/7），写作无法修复。切回 ICML 可同时消除 W-MF2 (venue fit) + W-MF6 (negative result significance) 两个 desk-reject 条件。已向用户报告并等待决策。\\n\\n## Venue 切换准备\\n- CoRL 版本：就绪（当前状态）\\n- ICML 预备方案：Agent 正在准备切换清单（不执行），用户决策后秒切\\n\\n## GPU 预算\\n- westd-51268: 2× RTX PRO 6000 Blackwell（空闲，数据锁定期无实验需求）\\n\\n## 低优先级残余\\n- N-R5-3 色盲友好配色（Figure 3/4）— in_progress\\n- N-R7-7 缺失 FiGAR/DAC/SPiRL 引用 — open（仅 CoRL 相关）\\n- intro \\\"perfect classification\\\" 可选弱化 — info\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D175 | 2026-05-28 | 启动 Phase 1 环境扩展实验（Humanoid + Quadruped），D171 不阻止新环 | exp_humanoid_baseline_s0, exp_humanoid_008d_s0, exp_quadruped_baseline_s0, exp_quadruped_008d_s0 |\\n| D174 | 2026-05-28 | 修复附录 B2 AUROC 从 1.000→0.964，主文 n=36 AUROC=1.000 不变 | exp_008f_s0, exp_00
+…[truncated 1021 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T22:51:35.178443+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/2 在用 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 未检查\n\nLoop #28 session-start 完成。\n\n**当前状态**：\n- RUNNING: 0，PREPARING: 4（D175 环境扩展 Humanoid+Quadruped）\n- 活跃 Cron: 0\n- 两块 GPU 空闲\n\n**关键时间点**：CoRL DDL 今天 5/28 12:00 UTC（北京时间 20:00）。\n\n**待决策**：\n1. **Venue**: CoRL 提交 vs 切 ICML/NeurIPS？DDL 今天到期，过期后 CoRL 选项失效\n2. **D175 环境扩展实验**（4 个 PREPARING）：是否分配 GPU 推进？这些不受 D171 数据锁定限制，但需要 GPU 分配",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 0/2 在用 | Worker 0 (GPU 0 / CPU 0) | 磁盘: westd-51268 未检查\n\nLoop #28 session-start 完成。\n\n**当前状态**：\n- RUNNING: 0，PREPARING: 4（D175 环境扩展 Humanoid+Quadruped）\n- 活跃 Cron: 0\n- 两块 GPU 空闲\n\n**关键时间点**：CoRL DDL 今天 5/28 12:00 UTC（北京时间 20:00）。\n\n**待决策**：\n1. **Venue**: CoRL 提交 vs 切 ICML/NeurIPS？DDL 今天到期，过期后 CoRL 选项失效\n2. **D175 环境扩展实验**（4 个 PREPARING）：是否分配 GPU 推进？这些不受 D171 数据锁定限制，但需要 GPU 分配",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T22:51:38.847028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_cheetah_008a_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3668
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-28T22:51:41.473030+00:00_
+
+已向 Director 汇报。当前状态：全部实验完成，4 个 D175 环境扩展实验在 PREPARING 等待审批，两块 GPU 空闲。CoRL DDL 今天到期，等待 Director venue 决策。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_cheetah_008a_s1"
+}
+```
+
+</details>
+
+---

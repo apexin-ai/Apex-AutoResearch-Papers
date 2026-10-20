@@ -1,0 +1,56 @@
+% Table B: Temporal Causality — return crash precedes entropy explosion
+% Data source: actor_entropy_analysis.md (EG v4/v5, 008d, 006, baselines)
+\begin{table}[t]
+\centering
+\caption{Temporal ordering of return collapse and entropy explosion in
+collapsed (CIVO) vs.\ healthy configurations. Return degrades
+\emph{before} entropy rises, consistent with the delusional-critic
+causal chain: biased world model $\to$ overestimated critic $\to$
+bad actor gradients $\to$ entropy explosion.
+Data from actor entropy analysis across 12 experiments.%
+\label{tab:temporal-causality}}
+\small
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Event & Metric & Collapsed & Healthy \\
+\midrule
+Return crash onset
+  & Step range
+  & 60--80K
+  & --- (stable $>900$) \\
+Entropy rise onset
+  & Step range
+  & 95K+
+  & 200K+ \\
+Temporal lag
+  & $\Delta$ steps
+  & 15--35K
+  & --- \\
+\midrule
+Entropy drift rate
+  & nats / 10K steps
+  & $+1.14$ to $+2.11$
+  & $+0.07$ to $+0.22$ \\
+Drift rate ratio
+  & collapsed / healthy
+  & \multicolumn{2}{c}{$10$--$20\times$} \\
+\midrule
+Final entropy
+  & nats
+  & $+1.0$ to $+3.2$
+  & $-1.0$ to $-3.5$ \\
+Final return
+  & reward
+  & $< 100$
+  & $> 900$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize
+Collapsed: EG~v4~s1 (return 583$\to$93, entropy $-5.21\to+3.22$),
+EG~v5~s1 (539$\to$102, $-5.11\to+1.03$),
+exp\_006 (814$\to$29), exp\_045 extension ($-3.56\to-0.14$ over 190K steps).
+Healthy: baseline s1--s4 (4 seeds, 505K steps).
+}
+\end{table}

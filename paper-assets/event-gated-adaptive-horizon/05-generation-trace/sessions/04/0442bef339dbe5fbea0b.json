@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0442bef339dbe5fbea0b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops diagnose 008e and metrics",
+  "task_key": "worker_ops_diagnose_008e_and_metrics_20260514T041721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_008e_and_metrics_20260514T041721_result.json",
+    "occurrence": 1,
+    "bytes": 2066,
+    "sha256": "5d5e7f50dd44f247e9197297d4dd385430a888864cb5fa26e18339ada4484098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n## 008e 诊断\n\n- **PID 121636 状态**：alive（已运行 7h21m）\n- **PID 122038 状态**：alive（已运行 6h57m）\n- **实际运行命令**：两个完全相同 — `python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15`\n- **logdir 冲突**：**是** — 两个进程写入同一 logdir，metrics.jsonl 已有重复条目（8 条 step=0 记录），数据已损坏\n- **`--gate_dt_embed_dim 0` 是否存在**：**否** — 两个命令都没有\n- **代码默认值**：`gate_dt_embed_dim = 32`（configs.yaml:102）\n- **GPU 竞争**：两个进程都在 `CUDA_VISIBLE_DEVICES=1`，7 小时才跑到 step=5000，严重竞争\n- **建议**：**kill 两个进程，清空 logdir，重新启动**。两个完全相同、写同一 logdir、缺少关键参数、还互相竞争 GPU，全部无效。重启时必须加 `--gate_dt_embed_dim 0`，且只需一个进程。\n\n## 008a 最新指标\n\n- **当前 step**: 68000\n- **eval_return 完整轨迹**: 5K→31 | 15K→167 | 25K→231 | 35K→501 | 45K→563 | 55K→488 | **65K→607.98**\n- **value_mean @65K**: 226.10\n- **actor_loss @65K**: -0.0575\n- **value/eval ratio @65K**: 226.10 / 607.98 ≈ **0.372**\n- **B/B+ 判断**: eval_return 607.98 **远超 450 阈值 → B+**，且仍在上升\n\n## 008d 最新指标\n\n- **当前 step**: 45000（但最新 eval 只到 35K，45K eval 即将产出）\n- **eval_return 轨迹**: 5K→31 | 15K→154 | 25K→167 | **35K→146**\n- **value_mean @35K**: 60.20\n- **gate_dt_mean @35K**: 2.0（全固定 dt=2，符合预期）\n- **value/eval ratio @35K**: 60.20 / 146.34 ≈ **0.411**\n- **崩塌确认**: **初步信号有** — eval_return 从 25K 的 167 下降到 35K 的 146（-12.5%），但需等 45K eval 数据确认。如果 45K eval 继续下降（<130），则确认崩塌复现。**待观察**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-008e-and-metrics.md"
+}

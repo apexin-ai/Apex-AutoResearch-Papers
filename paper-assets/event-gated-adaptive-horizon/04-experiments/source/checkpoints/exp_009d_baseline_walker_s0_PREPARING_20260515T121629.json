@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_009d_baseline_walker_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-15T11:55:00.039Z",
+    "updated_at": "2026-05-15T12:16:29.188Z",
+    "hypothesis": "Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）",
+    "parent": "exp_001_baseline",
+    "notes": "第二次提交。首次失败原因: cd /root/runs/... 目录无源码，应为 /root/autodl-tmp/event-gated-adaptive-horizon/。已修正工作目录。PID 144237, cuda:0, 500K steps ~19h。",
+    "server": "bjb1-45299",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T12:06:19.592Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\"",
+      "code_commit": "dccb867841046bf6dc7dcc654ea71f99e1181828",
+      "finished_at": "2026-05-15T12:10:00.498Z",
+      "training_hours": 0.06
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T12:10:01.788Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T12:10:04.203907+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第二次提交。首次失败原因: cd /root/runs/... 目录无源码，应为 /root/autodl-tmp/event-gated-adaptive-horizon/。已修正工作目录。PID 144237, cuda:0, 500K steps ~19h。"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T12:16:29.340739+00:00",
+  "trigger": "update_registry"
+}

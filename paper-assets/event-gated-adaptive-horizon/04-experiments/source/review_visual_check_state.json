@@ -1,0 +1,87 @@
+{
+  "status": "done",
+  "started_at": "2026-05-28T02:01:03.851017+00:00",
+  "completed_at": "2026-05-28T02:05:28.023766+00:00",
+  "findings": [
+    {
+      "severity": "critical",
+      "dimension": "page 36",
+      "message": "近乎空白页：仅顶部 5 行文字（~10% 填充），剩余 ~90% 完全空白。Appendix I 段落结束后直接分页，下一页才是 Table 3。应将 Table 3 上移或将前文内容重排以消除此空页。审稿人会认为版面管理粗糙。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 3-4",
+      "message": "连续 2 页纯文本（Experimental Setup §3.1-3.8），无任何 display item。虽然是实验设置描述，但密集的子节（3.1-3.8 共 8 个子节）挤在 2 页纯文本中，审稿人可能感到视觉疲劳。建议考虑将关键架构组件用一个简洁的示意图/表格总结。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 9-10",
+      "message": "连续 2 页纯文本（Discussion §5），page 10 完全是密集段落，无任何公式/图/表打断。Discussion 本身是文字密集段，但 page 10 的 4 个子主题（causal role / intervention resistance / transferable protocol / practitioner guidelines）可考虑用一个总结表或 checklist 图替代部分文字。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 45",
+      "message": "末页内容约占 55%，Tables 31-32 结束后有较大空白。作为附录末页影响较小，但如果能把 page 36 的空白消除，整体会更紧凑。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 流程图中的文字偏小（约正文字号的 60-65%），尤其是 pathway 内的标注文字（如 \"Policy gradient magnitude\"、\"Performance Collapse\" 等）。在打印或缩放查看时可能难以辨认。建议将图内关键标注字号提升至正文的 70%+。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1 非常密集（~15 行数据 + 9 列），Outcome 列使用文字描述而非数值。表格整体使用了 booktabs 风格横线，无竖线——格式正确。但列数较多导致部分列间距偏紧。建议检查是否可简化（如将 Sub 和 H 合并为一列，或将部分配置移至附录）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 2 和 Figure 3 挤在同一页。Figure 3 的 legend 条目较多（6 条线 + dashed/dotted 样式），在 150 dpi 下仍可辨认但略显拥挤。颜色搭配使用了不同色相 + 线型（solid/dashed/dotted）辅助区分，色盲友好性尚可。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 4 双面板布局紧凑合理。Table 2 使用 booktabs 风格，格式规范。\"Prec. Rate\" 列百分比精度统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 16-17",
+      "message": "附录 Figure 5 (ROC) 和 Figure 6 (Precision/Recall/F1) 质量良好，标注清晰，AUROC=1.000 直接在图中标注。操作点和阈值标注清楚。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 19",
+      "message": "Figure 7 (2×2 factorial design) 有直观的百分比标注和 \"Top 3% drift\" 箭头注释，信息传达效果好。但四个子图的 y 轴范围不一致，跨子图比较时需注意。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 22",
+      "message": "Figure 9 (cosine similarity heatmaps) 颜色矩阵清晰，但矩阵标签字号偏小。在灰度打印时颜色区分度会降低——建议在 caption 中注明色标含义或使用对比度更高的 colormap。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 37",
+      "message": "Table 3 (完整实验结果) 占满整页，含大量脚注。信息量极大但格式规范。脚注使用了字母标记 a-l，内容详尽。作为附录的核心数据表是合理的。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 38-43",
+      "message": "Tables 4-28 密集排列，每页 3-5 个小表。格式统一，使用 booktabs 风格。部分表格（如 Table 6 Pre-experiment NVE values）行数很少（6 行），可考虑与相邻表合并以节省空间。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 33",
+      "message": "Algorithm 1 (Online CIVO Detector) 伪代码框格式清晰，使用了标准 algorithmic 环境。条件和循环缩进正确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，未发现 LaTeX 错误残留或乱码。Section heading 无孤悬现象。参考文献页（p12-13）格式统一，未见 [?] 未解析引用。"
+    }
+  ],
+  "counts": {
+    "critical": 1,
+    "warning": 3,
+    "info": 11
+  }
+}

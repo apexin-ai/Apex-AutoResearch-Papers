@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19cf5acb5655656ae7f3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "prep hopper phase2 validation",
+  "task_key": "worker_prep_hopper_phase2_validation_20260527T030515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_hopper_phase2_validation_20260527T030515_result.json",
+    "occurrence": 1,
+    "bytes": 2887,
+    "sha256": "1242c60d2c489ef69f640e3d3810b0c3448fa2818b7f4fc6ed9bf4c2dd522cf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 2 预验证报告\n\n### 磁盘状态\n`/root/autodl-tmp/`: **247GB 可用**（仅用 3.2G/250G）。远超 20GB 要求。✓\n\n### Phase 1 进度\n| 实验 | 当前 step | 目标 | 进度 |\n|------|-----------|------|------|\n| exp_hopper_baseline | 5,000 | 105,000 | ~5% |\n| exp_hopper_trained_s0 | 5,000 | 105,000 | ~5% |\n\n两个 Phase 1 实验刚启动不久，距离完成还需较长时间。\n\n### Phase 2 logdir 冲突检查\n- `logdir/exp_hopper_frozen_s0` — 不存在 ✓\n- `logdir/exp_hopper_trained_s1` — 不存在 ✓\n\n### GPU\n2x NVIDIA RTX PRO 6000 Blackwell (96GB each) — 双卡可用 ✓\n\n### CLI 参数验证\n\n**exp_hopper_trained_s1** — 所有参数有效 ✓\n- `--gate_enabled`, `--gate_fixed_dt`, `--gate_subsample_max_dt`, `--gate_dt_embed_dim`(configs.yaml L111), `--imag_horizon` 均存在\n\n**exp_hopper_frozen_s0** — ⚠️ 有问题：\n| 参数 | 状态 |\n|------|------|\n| `--gate_dt_embed_dim 16` | ✓ 有效（configs.yaml L111，默认 32） |\n| `--gate_freeze_dt_embed True` | ❌ **不存在** |\n\n正确的 flag 是 **`--dt_emb_freeze True`**（configs.yaml L128，models.py L96-97 实现）。\n\n### 第二个问题：exp_hopper_trained_s1 设备不一致\n\n任务描述说用 `cuda:1, EGL_DEVICE_ID=1`，但实际命令中写的是 `--device cuda:0`。如果意图是双卡并行跑两个实验，应改为 `--device cuda:1`。\n\n### 修正后的 exp_hopper_frozen_s0 命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_frozen_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_dt_embed_dim 16 --dt_emb_freeze True --imag_horizon 8\n```\n\n### 修正后的 exp_hopper_trained_s1 命令（如果要用 cuda:1）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_trained_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\n```\n\n### 风险总结\n1. **🔴 阻塞**：`--gate_freeze_dt_embed` flag 不存在，必须改为 `--dt_emb_freeze`\n2. **🟡 注意**：exp_hopper_trained_s1 命令中 `--device cuda:0` 与描述中 `cuda:1` 不一致，需确认意图\n3. **🟡 注意**：frozen 实验用 `--gate_dt_embed_dim 16`（非默认 32），确认这是有意为之"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-hopper-phase2-validation.md"
+}

@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{Cross-environment CIVO comparison. \textbf{Trigger}: trained dt\_emb + subsample ON + $H{=}8$; \textbf{Control}: dt\_embed\_dim$=$0 (no dt\_emb) + subsample ON + $H{=}8$. NVE Peak reports the maximum Normalized Value Excess across all seeds. CIVO is flagged when any seed exceeds NVE $\geq 1.5\times$.}
+\label{tab:cross_env_civo}
+\begin{tabular}{llccc}
+\toprule
+Environment & Configuration & Eval Return & NVE Peak & CIVO \\
+\midrule
+\multirow{3}{*}{Walker Walk}
+ & Baseline ($\Delta t{=}1$) & $787.7 \pm 230.8$ & --- & --- \\
+ & Trigger (trained dt\_emb) & $140.6 \pm 111.5$ & $4.72\times$ & \cmark~(5/5) \\
+ & Control (no dt\_emb) & $373.8 \pm 111.9$ & $1.41\times$ & \xmark~(0/4) \\
+\midrule
+\multirow{3}{*}{Cheetah Run}
+ & Baseline ($\Delta t{=}1$) & $593.9 \pm 60.4$ & --- & --- \\
+ & Trigger (trained dt\_emb) & $26.3 \pm 36.0$ & $70.64\times$ & \cmark~(2/2) \\
+ & Control (no dt\_emb) & $86.9 \pm 13.6$ & $0.20\times$ & \xmark~(0/2) \\
+\midrule
+\multirow{3}{*}{Cartpole Swingup}
+ & Baseline ($\Delta t{=}1$) & $673.3 \pm 142.0$ & --- & --- \\
+ & Trigger (trained dt\_emb) & $236.3 \pm 29.7$ & $0.06\times$ & \xmark~(0/3) \\
+ & Control (no dt\_emb) & \multicolumn{3}{c}{\emph{running (exp\_062)}} \\
+\bottomrule
+\end{tabular}
+\end{table}

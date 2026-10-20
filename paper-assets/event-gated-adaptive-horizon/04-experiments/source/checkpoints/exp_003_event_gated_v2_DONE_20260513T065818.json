@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_003_event_gated_v2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:52:22.660Z",
+    "updated_at": "2026-05-13T06:58:18.561Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1_v2 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True",
+      "server": "autodl-rtx6000",
+      "gpu_id": 1,
+      "pid": 24438,
+      "data_path": "DMC Walker Walk (dm_control built-in)",
+      "data_count": 500000,
+      "model_name": "DreamerV3 + Event-Gated Variable-Rate RSSM v2 (hotfix: env step curriculum, phase1=50K, phase2=150K)",
+      "seed": 1,
+      "hypothesis": "Subsample curriculum (dt=1 for 50K env steps, linear ramp to max_dt over 50K-150K) prevents early training destabilization while preserving event-gated variable-rate benefits",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1_v2",
+      "checkpoint_source": "logdir/event_gated_s1_v2/latest.pt (resumed from step ~48K)"
+    },
+    "metrics": {
+      "step": 52000,
+      "eval_return_5K": 31,
+      "eval_return_15K": 153.9,
+      "eval_return_25K": 254.2,
+      "eval_return_35K": 290.8,
+      "eval_return_latest": 416.37,
+      "train_return_48K_52K": "424-533",
+      "phase2_not_activated": "pending_verification"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T06:58:18.093Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T06:58:18.561Z"
+  },
+  "timestamp": "2026-05-13T06:58:18.571749+00:00",
+  "trigger": "update_registry"
+}

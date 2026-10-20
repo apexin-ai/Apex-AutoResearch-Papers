@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_080_008e_v3_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T11:30:20.594Z",
+    "updated_at": "2026-05-25T15:49:21.640Z",
+    "hypothesis": "Trained dt_emb with dt=1 imagination + subsample ON (max_dt=2) + H=15 does not trigger CIVO on Walker Walk — multi-seed validation seed=1 of C6 mitigation config 008e_v3",
+    "parent": "exp_008e_v3_subsample_on_dt1_h15",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_080_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "283925",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log",
+      "submitted_at": "2026-05-25T11:30:51.090Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 1,
+      "model_name": "DreamerV3+SubsampleON_FixedDt1_H15",
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "checkpoint_source": "N/A (training from scratch, parent is lineage only)",
+      "eval_data": "N/A (training experiment)",
+      "wall_clock_seconds": 15510.5,
+      "gpu_hours": 4.31
+    },
+    "reproduce": {
+      "finished_at": "2026-05-25T15:44:00.217Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T15:44:06.170688+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "eval_return_105k": 876.7,
+      "ve_ratio_105k": 0.6,
+      "civo_alert": 0,
+      "gate_dt_1_frac": 1,
+      "baseline_pct": 94.3,
+      "train_return_112k_mean": 926.8
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_080_008e_v3_walker_s1/latest.pt",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_080_008e_v3_walker_s1.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-25T15:49:21.640Z"
+  },
+  "timestamp": "2026-05-25T15:49:22.041961+00:00",
+  "trigger": "update_registry"
+}

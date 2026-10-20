@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e6a5f6ffde1ce59f96d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research literature gap check",
+  "task_key": "worker_research_literature-gap-check_20260514T185805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-gap-check_20260514T185805_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "250aa143d602bc48d73bd317d6547bee4f4a324f3026cc4ee4c9d37b25097371"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**更新总结**：\n\n**新增 10 篇论文**（45→55），填补 5 个 gap：\n\n1. **时间离散化理论**（关键 gap）— Tallec 2019 (ICML), Park 2021 (NeurIPS), Wang 2024: 为\"variable dt 在 world model RL 中为何失败\"提供理论基础\n2. **诊断方法论**— Engstrom 2020 (ICLR), Andrychowicz 2021 (ICLR): 为 factorial diagnostic analysis 提供方法论先例\n3. **Delusional bias 后续**— Su 2020 ConQUR (ICML): 补全 Lu 2018 → ConQUR → 我们的 MBRL 新实例链条\n4. **MBRL rollout 质量**（关键 gap）— Frauenknecht 2025 (ICLR), Voelcker 2025 MAD-TD (ICLR): 最新 ICLR 2025 工作，直接支撑我们的发现并提供差异化定位\n5. **Dreamer 最新进展 + 动作重复**— Hafner 2025 DreamerV4, Nie 2025 SDAR (ICLR): 确保覆盖最新架构演进\n\n所有新增论文均有真实 arXiv ID 或会议引用。Gap 分析报告在 `artifacts/literature_gap_analysis_20260514.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-gap-check.md"
+}

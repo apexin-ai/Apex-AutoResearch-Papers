@@ -1,0 +1,1057 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9a864803bc48f0cc90",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "analysis data lockdown audit",
+  "task_key": "worker_analysis_data-lockdown-audit_20260526T063759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_data-lockdown-audit_20260526T063759.jsonl",
+    "occurrence": 1,
+    "bytes": 68766,
+    "sha256": "2e4f5977d2b86932c5ecec46732e85609aa13f737f2ce1da58094f48a0505d86"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T06:42:10.631319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T06:42:10.631749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T06:42:10.632007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T06:42:10.632743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. ~~**\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**~~ (deprecated — \\\\\\\"delusional critic\\\\\\\" conflicts with Lu et al. 2018)\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"** ← preferred after D037 terminology decision\\\\n4. **\\\\\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\\\\\"**\\\\n\\\\n**⚠️ D037 术语决定**: \\\\\\\"delusional critic\\\\\\\" → **\\\\\\\"conditioning-induced value overestimation\\\\\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\\\\\"delusional critic\\\\\\\" → \\\\\\\"conditioning-induced value overestimation\\\\\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\\\n\\\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\\\\\"known failure class 的 specific instance\\\\\\\" 升级为 \\\\\\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\\\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\\\n\\\\n## Venue\\\\n\\\\n**ICML 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **strongly supported causal chain** from mechanism to failure \n…[truncated 46842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T06:42:10.633005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T06:42:10.633153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T06:42:10.634146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (214,180 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/mcp-agent-ml-research-read_registry-1779777499101.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/mcp-agent-ml-research-read_registry-1779777499101.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T06:42:10.634343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'status': 'QUEUED'}",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T06:42:10.634542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_097_cheetah_008d_s3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T00:46:49.098Z\\\", \\\"updated_at\\\": \\\"2026-05-26T06:18:42.386Z\\\", \\\"hypothesis\\\": \\\"Cheetah with fixed dt=2 and subsample_max_dt=2 (008d config, seed 3) will reproduce the CIVO trigger pattern seen in Walker, confirming cross-environment generality of the trained dt_emb collapse mechanism.\\\", \\\"parent\\\": \\\"exp_078_cheetah_008d_s0\\\", \\\"notes\\\": \\\"降级 P3 — Director 指令：C1 已有 2/3 onset rate 数据，4th seed 非数据锁定前必须。C3 Cheetah 0-data gap 优先。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_097_cheetah_008d_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\\\\\"\\\", \\\"server\\\": \\\"westd-51268\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"3794\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_097_cheetah_008d_s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T03:18:16.230Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_cheetah_run (online RL)\\\", \\\"data_count\\\": \\\"105000 steps\\\", \\\"model_name\\\": \\\"DreamerV3-S + gate_dt_emb (008d config)\\\", \\\"seed\\\": 3, \\\"checkpoint_source\\\": \\\"N/A - training from scratch\\\", \\\"eval_data\\\": \\\"N/A - online RL training\\\"}, \\\"metrics\\\": {\\\"step\\\": 65000, \\\"eval_return_trajectory\\\": [8.7, 216.6, 139.4, 105.3, 23.4, 68.2, 182.5], \\\"ve_ratio_trajectory\\\": [0, 0.1, 0.3, 2.3, 0.8], \\\"civo_onset\\\": true, \\\"civo_onset_step\\\": 45000, \\\"civo_onset_ve_ratio\\\": 2.3, \\\"civo_alert_triggered\\\": true, \\\"nve_pattern\\\": \\\"transient_spike_45K\\\"}}, \\\"exp_100_walker_008a_s1\\\":\n…[truncated 1625 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T06:42:10.634730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_103_cheetah_008a_s1\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T04:34:41.510Z\\\", \\\"updated_at\\\": \\\"2026-05-26T04:34:55.804Z\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=1 — C3 Cheetah cross-env 验证第 2 seed。与 exp_102 共同建立 C3 value suppression 在 Cheetah 上的多 seed 证据。替代被 killed 的 exp_099。plan_023。\\\", \\\"parent\\\": \\\"exp_099_cheetah_008a_s1\\\"}, \\\"exp_102_cheetah_008a_s0\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T04:34:39.218Z\\\", \\\"updated_at\\\": \\\"2026-05-26T04:34:53.208Z\\\", \\\"hypothesis\\\": \\\"Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=0 — C3 Cheetah cross-env 验证。训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练，预期无 CIVO（value suppression 而非 overestimation）。替代被 killed 的 exp_098。plan_023。\\\", \\\"parent\\\": \\\"exp_098_cheetah_008a_s0\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6845}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T06:42:10.634933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/mcp-agent-ml-research-read_registry-1779777499101.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total success experiments: {len(exps)}')\nprint()\nfor eid, exp in exps.items():\n    metrics = exp.get('metrics', {})\n    conclusion = exp.get('conclusion', 'N/A')\n    notes = exp.get('notes', '')[:80]\n    print(f'{eid}: conclusion={conclusion}, metrics_keys={list(metrics.keys())[:5]}')\n\"\n",
+              "description": "Parse success experiments from registry"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T06:42:10.635127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total success experiments: 92\n\nrssm_fidelity_v2: conclusion=success, metrics_keys=[]\nexp_091_cheetah_008d_s2: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 've_ratio_final']\nexp_093_cheetah_no_dt_emb_s2: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 'value_mean_final']\nexp_092_cheetah_no_dt_emb_s1: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 'value_mean_final']\nexp_086_frozen_dt_emb_cheetah_s0: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_best', 'best_step', 'total_steps', 'NVE_final']\nexp_085_frozen_dt_emb_walker_s1: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_best', 'best_step', 'total_steps', 'NVE_final']\nexp_084_frozen_dt_emb_walker_s0: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_best', 'best_step', 'total_steps', 'NVE_final']\nexp_082_cheetah_no_dt_emb_s0: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 've_ratio_final']\nexp_087_frozen_dt_emb_cheetah_s1: conclusion=success, metrics_keys=['eval_return_105K', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 've_ratio_105K']\nexp_083_cheetah_baseline_s1: conclusion=success, metrics_keys=['eval_return_105K', 'eval_trajectory', 've_ratio_105K', 've_ratio_peak', 've_ratio_peak_step']\nexp_078_cheetah_008d_s0: conclusion=success, metrics_keys=['eval_return_final', 'eval_return_peak', 'eval_return_peak_step', 'eval_trajectory', 've_ratio_final']\nexp_077_cheetah_baseline_s0: conclusion=success, metrics_keys=['eval_return_105K', 'eval_trajectory', 've_ratio_105K', 've_ratio_peak', 've_ratio_peak_step']\nexp_080_008e_v3_walker_s1: conclusion=success, metrics_keys=['eval_return_105k', 've_ratio_105k', 'civo_alert', 'gate_dt_1_frac', 'baseline_pct']\nexp_074\n…[truncated 11671 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T06:42:10.635283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['status', 'conclusion', 'metrics']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T06:42:10.635425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T06:42:10.636129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (99,623 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/mcp-agent-ml-research-read_registry-1779777512996.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/mcp-agent-ml-research-read_registry-1779777512996.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T06:42:10.636435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-26 06:37 UTC | 更新原因: 服务器迁移修正 + 数据锁定倒计时24h + 实验状态同步\\\\n\\\\n> 最后更新原因: 服务器迁移后状态修正 + 数据锁定倒计时\\\\n\\\\n## 核心方向\\\\nDreamerV3 中 trained dt_embedding 驱动的 CIVO（Conditioning-Induced Value Overestimation）是 multi-joint locomotion 特异性现象，frozen/removed dt_emb 可稳健阻止。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: 数据锁定冲刺 — 最后一批实验收尾 + RSSM v3 数字待锁定\\\\n- **投稿目标**: ICML 2026（DDL 5/29，数据锁定 5/27，剩余 ~24h）\\\\n- **实验统计**: 184 个（92 success / 41 negative / 2 running / 3 queued）\\\\n- **论文**: 7 页正文 + appendix，ICML 2026 模板，0 errors\\\\n- **审稿进展**: Round 5 完成\\\\n- **服务器**: 仅 westd-51268（2× RTX PRO 6000 Blackwell 96GB）可用。bjb1-45299 已宕机不可用\\\\n\\\\n### 里程碑完成\\\\n- ✅ Frozen dt_emb 因果验证 4/4 闭合（Walker 084/085 + Cheetah 086/087，NVE < 0.53×）\\\\n- ✅ plan_034 NVE 阈值分析：N=61, AUROC=0.989, θ=1.5×(F1=0.926, recall=100%)\\\\n- ✅ D155 NVE 组合诊断：三维标准（peak + 持续性 + 时序因果）\\\\n- ✅ Cheetah CIVO trigger 2/3 seeds confirmed（exp_078 s0, exp_091 s2）\\\\n- ✅ RSSM fidelity v2 analysis 完成（Walker），reward dissociation confirmed\\\\n- ✅ paper_framing.md C2 Cheetah onset 已更新为 2/3\\\\n\\\\n### 运行中/待处理实验\\\\n| exp_id | 目的 | 状态 | GPU |\\\\n|--------|------|------|-----|\\\\n| exp_097 (Cheetah 008d s3) | C1/C2 Cheetah CIVO 第 3 seed | RUNNING（应已完成） | westd cuda:0 |\\\\n| exp_100 (Walker 008a s1) | C3 Walker 008a 第 2 seed | RUNNING（应已完成） | westd cuda:1 |\\\\n| exp_102 (Cheetah 008a s0) | C3 cross-env 验证 | QUEUED | 等 GPU |\\\\n| exp_103 (Cheetah 008a s1) | C3 cross-env 验证第 2 seed | QUEUED | 等 GPU |\\\\n\\\\n### 待完成分析（CPU 任务）\\\\n- Cheetah trained_dt_emb v3 RSSM 分析（需 exp_097 checkpoint）\\\\n- Walker + Cheetah v3 RSSM 数字合并 → 替换论文旧 2.78× 数字\\\\n\\\\n## 近期任务（数据锁定前）\\\\n- [ ] exp_097 完成确认 → NVE 分析 → 更新 C2 Cheetah onset 为 3/4 或维持 2/3\\\\n- [ ] exp_100 完成确认 → NVE 分析 → C3 Walker 008a 2-seed 闭合\\\\n- [ ] GPU 释放 → 立即提交 exp_102 + exp_103（Cheetah 008a C3 cross-env）\\\\n- [ ] \n…[truncated 1933 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T06:42:10.636655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'status': 'DONE', 'conclusion': 'negative'}",
+              "fields": "['status', 'conclusion']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T06:42:10.636887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_088_cheetah_008d_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_009b_008d_walker_s2\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_009e_008d_walker_s1\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_081_008e_v3_walker_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_070_008e_v3_walker_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_062_cartpole_control\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_061_cartpole_civo_trigger\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_051_stackcube_frozen_dt_emb_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_038_dual_critic_walker_s2\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_037_wide_critic_cheetah\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_036_dual_critic_pickcube\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_034\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_034_dual_critic_cheetah\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_031b_tcn_pickcube_s0_sigma05\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_029d_tcn_walker_s3_sigma02\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_031_tcn_pickcube_s0_sigma02\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_029b_tcn_walker_s2_sigma02\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_030c_tcn_cheetah_s0_sigma10\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_029c_tcn_walker_s0_sigma01\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_030b_tcn_cheetah_s0_sigma05\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_027_tcn_walker_s1\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_030a_tcn_cheetah_s0_sigma02\\\": {\\\"conclusion\\\": \\\"negative\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"exp_027_tcn_walker_s0\\\": {\\\n…[truncated 1638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T06:42:10.637055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/artifacts/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T06:42:10.637221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/code_survey_dreamerv3.md\nartifacts/code_survey_dreamerv3.md\nartifacts/_project/report/implementation_design.md\nartifacts/implementation_design.md\nartifacts/code/configs.yaml\nartifacts/code/networks.py\nartifacts/code/models.py\nartifacts/code/__pycache__/networks.cpython-314.pyc\nartifacts/code/__pycache__/tools.cpython-314.pyc\nartifacts/code/__pycache__/models.cpython-314.pyc\nartifacts/_project/intermediate/CHANGES.md\nartifacts/code/CHANGES.md\nartifacts/exp_001_baseline/data/exp_001_baseline.md\nartifacts/exp_002_event_gated/data/exp_002_event_gated.md\nartifacts/eval_mvp.py\nartifacts/code/subsample_curriculum_patch.py\nartifacts/method_section_draft.md\nartifacts/exp_005_event_gated_v4/report/exp_005_gate_audit.md\nartifacts/_project/paper/narrative_frameworks_95c2c8.md\nartifacts/_project/paper/narrative_frameworks.md\nartifacts/_project/paper/related_work_section_6c6fde.md\nartifacts/_project/paper/related_work_section.md\nartifacts/pivot_gate_survey.md\nartifacts/exp_006/report/exp_006_full_metrics.md\nartifacts/_project/report/literature_survey_summary.md\nartifacts/literature_survey_summary.md\nartifacts/exp_006_fixed_dt2/analysis/collapse_mechanism.md\nartifacts/_project/report/pivot_design_doc.md\nartifacts/checkpoint_monitor.py\nartifacts/_project/report/negative_pattern_analysis.md\nartifacts/negative_pattern_analysis.md\nartifacts/_project/report/bernoulli_st_pessimism_designs.md\nartifacts/bernoulli_st_pessimism_designs.md\nartifacts/_project/report/pessimism_mechanism_design.md\nartifacts/pessimism_mechanism_design.md\nartifacts/_project/report/metrics_check_loop5.md\nartifacts/008e_dryrun_check.md\nartifacts/report_server_status.md\nartifacts/dream_reports/dream_20260514T062606/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260514T062606/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260514T062606/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260514T062606/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/\n…[truncated 3617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T06:42:10.637373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "rssm_fidelity_v3|NVE.*V2|nve.*v2|组合诊断",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T06:42:10.637740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 250 files limit: 250\nlogs/workers/worker_analysis_data-lockdown-audit_20260526T063759.log\nlogs/chats/feishu_group_oc_5e879064da2e47dad864c1f891eb37a8_director.jsonl\nlogs/chats/cron_hook_exp_078_cheetah_008d_s0.jsonl\nlogs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer.jsonl\nROADMAP.md\nlogs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb.jsonl\nlogs/chats/archive/feishu_group_oc_5e879064da2e47dad864c1f891eb37a8_director_20260526T063446_868122.jsonl\nlogs/chats/cron_hook_exp_077_cheetah_baseline_s0.jsonl\nlogs/workers/worker_analysis_rssm_standardized_v3_20260526T034528_result.json\nlogs/workers/worker_analysis_rssm_standardized_v3_20260526T034528.log\nartifacts/manifest.yaml\nlogs/workers/worker_analysis_paper_data_audit_pre_lockdown_20260526T043156.log\nlogs/chats/cron_hook_exp_074_008a_walker_s3.jsonl\ntask_context/history/agent/loop_23_1779776000.md\nlogs/chats/archive/cron_hook_exp_074_008a_walker_s3_20260526T042923_186515.jsonl\nlogs/chats/worker_code_exp_101_rssm_prediction_quality_20260526T041155.jsonl\nlogs/workers/worker_code_exp_101_rssm_prediction_quality_20260526T041155.log\nlogs/workers/worker_infra_bjb1-to-westd-data-migration_20260526T032815.log\nlogs/workers/worker_infra_westd-51268-verify-and-submit_20260526T030746.log\nlogs/workers/worker_code_plan_030_rssm_analysis_20260526T024153.log\nlogs/chats/cron_hook_exp_072_008e_v3_walker_s5.jsonl\nlogs/chats/cron_hook_exp_073_008f_walker_s4.jsonl\nlogs/workers/worker_diagnose_bjb1-process-check_20260526T021330.log\nlogs/chats/cron_hook_exp_071_008f_walker_s3.jsonl\nlogs/chats/archive/cron_hook_exp_073_008f_walker_s4_20260526T021125_302866.jsonl\nlogs/chats/archive/cron_hook_exp_072_008e_v3_walker_s5_20260526T021109_750174.jsonl\nlogs/workers/worker_diagnose_bjb1_verify_and_analyze_20260526_20260526T020546.log\nlogs/workers/worker_analysis_exp_092_093_cheetah_no_dt_emb_20260526T020248.log\nlogs/chats/cron_hook_exp_093_cheetah_no_dt_emb_s2.jsonl\nlogs/chats/cron_hook_exp_070_008e_v3_walker_s0.jsonl\nlogs/\n…[truncated 15281 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T06:42:10.637980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_rssm_standardized_v3_20260526T034528_result.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T06:42:10.638121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (1111313 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T06:42:10.638246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_paper_data_audit_pre_lockdown_20260526T043156.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T06:42:10.638369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (347727 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T06:42:10.638487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_data-lockdown-audit_20260526T063759.log",
+              "limit": "100"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T06:42:10.638603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (263546 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T06:42:10.638724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -200 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_rssm_standardized_v3_20260526T034528_result.json 2>/dev/null | head -100",
+              "description": "Read tail of RSSM v3 analysis result"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T06:42:10.639110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (2.3MB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/bh5b9ch3u.txt\n\nPreview (first 2KB):\n{\n  \"raw\": \"Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\\n{\\\"type\\\":\\\"system\\\",\\\"subtype\\\":\\\"init\\\",\\\"cwd\\\":\\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon\\\",\\\"session_id\\\":\\\"9ad9b41f-6c98-411a-920f-401add7d902b\\\",\\\"tools\\\":[\\\"Task\\\",\\\"AskUserQuestion\\\",\\\"Bash\\\",\\\"CronCreate\\\",\\\"CronDelete\\\",\\\"CronList\\\",\\\"Edit\\\",\\\"EnterPlanMode\\\",\\\"EnterWorktree\\\",\\\"ExitPlanMode\\\",\\\"ExitWorktree\\\",\\\"Glob\\\",\\\"Grep\\\",\\\"ListMcpResourcesTool\\\",\\\"Monitor\\\",\\\"NotebookEdit\\\",\\\"PushNotification\\\",\\\"Read\\\",\\\"ReadMcpResourceTool\\\",\\\"RemoteTrigger\\\",\\\"ScheduleWakeup\\\",\\\"Skill\\\",\\\"TaskOutput\\\",\\\"TaskStop\\\",\\\"TodoWrite\\\",\\\"ToolSearch\\\",\\\"WebFetch\\\",\\\"WebSearch\\\",\\\"Write\\\",\\\"mcp__agent-ml-research__append_idea\\\",\\\"mcp__agent-ml-research__detect_image\\\",\\\"mcp__agent-ml-research__kill_job\\\",\\\"mcp__agent-ml-research__read_project_file\\\",\\\"mcp__agent-ml-research__read_registry\\\",\\\"mcp__agent-ml-research__register_artifact\\\",\\\"mcp__agent-ml-research__save_project_file\\\",\\\"mcp__agent-ml-research__ssh_execute\\\",\\\"mcp__agent-ml-research__ssh_read_only\\\",\\\"mcp__agent-ml-research__update_registry\\\"],\\\"mcp_servers\\\":[{\\\"name\\\":\\\"agent-ml-research\\\",\\\"status\\\":\\\"connected\\\"}],\\\"model\\\":\\\"claude-opus-4-6\\\",\\\"permissionMode\\\":\\\"bypassPermissions\\\",\\\"slash_commands\\\":[\\\"update-config\\\",\\\"debug\\\",\\\"simplify\\\",\\\"batch\\\",\\\"fewer-permission-prompts\\\",\\\"loop\\\",\\\"schedule\\\",\\\"claude-api\\\",\\\"clear\\\",\\\"compact\\\",\\\"context\\\",\\\"heapdump\\\",\\\"init\\\",\\\"review\\\",\\\"security-review\\\",\\\"extra-usage\\\",\\\"usage\\\",\\\"insights\\\",\\\"team-onboarding\\\"],\\\"apiKeySource\\\":\\\"none\\\",\\\"claude_code_version\\\":\\\"2.1.126\\\"\n…[truncated 303 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T06:42:10.639289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -100 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_paper_data_audit_pre_lockdown_20260526T043156.log 2>/dev/null",
+              "description": "Read tail of pre-lockdown data audit"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T06:42:10.639586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (810.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/bk60pohrt.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon\",\"session_id\":\"c2ef2e1a-6184-45b8-a0cd-2fdd0e560f73\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__append_idea\",\"mcp__agent-ml-research__read_project_file\",\"mcp__agent-ml-research__read_registry\",\"mcp__agent-ml-research__register_artifact\",\"mcp__agent-ml-research__save_project_file\",\"mcp__agent-ml-research__update_registry\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"ecaef9f2-9f20-4250-a489-4e96bcb5b998\",\"memory_paths\":{\"auto\":\"/ho\n…[truncated 181 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T06:42:10.639751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -100 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_data-lockdown-audit_20260526T063759.log 2>/dev/null",
+              "description": "Read tail of data lockdown audit"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T06:42:10.640023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (706.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/3603fcc5-b3d9-4c04-9b61-06a2d2d5d089/tool-results/betnc9018.txt\n\nPreview (first 2KB):\nWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon\",\"session_id\":\"3603fcc5-b3d9-4c04-9b61-06a2d2d5d089\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__append_idea\",\"mcp__agent-ml-research__read_project_file\",\"mcp__agent-ml-research__read_registry\",\"mcp__agent-ml-research__register_artifact\",\"mcp__agent-ml-research__save_project_file\",\"mcp__agent-ml-research__update_registry\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"470c2e4d-e144-427f-902d-66b2fb5659de\",\"memory_paths\":{\"auto\":\"/ho\n…[truncated 181 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T06:42:10.640247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['status', 'conclusion']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T06:42:10.640429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rssm_fidelity_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_091_cheetah_008d_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_099_cheetah_008a_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_098_cheetah_008a_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_093_cheetah_no_dt_emb_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_092_cheetah_no_dt_emb_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_094\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_093\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_096_cheetah_008a_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_095_cheetah_no_dt_emb_s3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 10, \\\"total\\\": 179, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8732}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T06:42:10.640569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_101",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+              "output_mode": "files_with_matches",
+              "head_limit": "10"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T06:42:10.640699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 10 files limit: 10\nlogs/workers/worker_analysis_data-lockdown-audit_20260526T063759.log\nlogs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb.jsonl\nlogs/chats/feishu_group_oc_5e879064da2e47dad864c1f891eb37a8_director.jsonl\nlogs/chats/cron_hook_exp_078_cheetah_008d_s0.jsonl\nlogs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer.jsonl\ntask_context/director.md\nlogs/chats/archive/feishu_group_oc_5e879064da2e47dad864c1f891eb37a8_director_20260526T063446_868122.jsonl\nlogs/chats/cron_hook_exp_077_cheetah_baseline_s0.jsonl\nregistry.yaml\nreport.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T06:42:10.640840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "rssm.*v3|v3.*rssm|RSSM Fidelity.*v3",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts",
+              "output_mode": "files_with_matches",
+              "-i": "True"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T06:42:10.641032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 192 files\nartifacts/manifest.yaml\nartifacts/d152_code_evolution_report.md\nartifacts/_project/report/rebuttal_prep.md\nartifacts/rebuttal_prep.md\nartifacts/dream_reports/dream_20260520T210241/meta.yaml\nartifacts/dream_reports/dream_20260520T210241/logs/review_median.log\nartifacts/dream_reports/dream_20260520T210241/median/review_report.md\nartifacts/dream_reports/dream_20260520T210241/best/review_report.md\nartifacts/dream_reports/dream_20260520T210241/median/review_context.yaml\nartifacts/dream_reports/dream_20260520T210241/logs/review_best.log\nartifacts/dream_reports/dream_20260520T210241/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260520T210241/median/paper.tex\nartifacts/dream_reports/dream_20260520T210241/median/paper_framing.md\nartifacts/dream_reports/dream_20260520T210241/median/experiment_data.json\nartifacts/dream_reports/dream_20260520T210241/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260520T210241/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260520T210241/best/paper.tex\nartifacts/dream_reports/dream_20260520T210241/best/paper_framing.md\nartifacts/dream_reports/dream_20260520T210241/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260520T210241/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260520T210241/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260520T155150/logs/review_worst.log\nartifacts/dream_reports/dream_20260520T155150/worst/review_report.md\nartifacts/dream_reports/dream_20260520T155150/logs/review_median.log\nartifacts/dream_reports/dream_20260520T155150/median/review_report.md\nartifacts/dream_reports/dream_20260520T155150/logs/review_best.log\nartifacts/dream_reports/dream_20260520T155150/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260520T155150/worst/paper.tex\nartifacts/dream_reports/dream_20260520T155150/worst/paper_framing.md\nartifacts/dream_reports/dream_20260520T155150/worst/experiment_data.json\nartifacts/dream_reports/dream_20260520T15\n…[truncated 10483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T06:42:10.641209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['status', 'conclusion', 'metrics', 'notes']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-26T06:42:10.641439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rssm_fidelity_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_091_cheetah_008d_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 2.5, \\\"eval_return_peak\\\": 213.83, \\\"eval_return_peak_step\\\": 45000, \\\"eval_trajectory\\\": {\\\"5K\\\": 9.04, \\\"15K\\\": 97.2, \\\"25K\\\": 126.42, \\\"35K\\\": 182.63, \\\"45K\\\": 213.83, \\\"55K\\\": 98.87, \\\"65K\\\": 2.23, \\\"75K\\\": 1.88, \\\"85K\\\": 2.12, \\\"95K\\\": 0.55, \\\"105K\\\": 2.5}, \\\"ve_ratio_final\\\": 27.89, \\\"ve_ratio_peak\\\": 127.62, \\\"ve_ratio_peak_step\\\": 95000, \\\"ve_ratio_trajectory\\\": {\\\"15K\\\": 0.017, \\\"25K\\\": 0.091, \\\"35K\\\": 0.144, \\\"45K\\\": 0.212, \\\"55K\\\": 0.692, \\\"65K\\\": 34.8, \\\"75K\\\": 43.14, \\\"85K\\\": 35.86, \\\"95K\\\": 127.62, \\\"105K\\\": 27.89}, \\\"value_mean_trajectory\\\": {\\\"5K\\\": 0, \\\"15K\\\": 1.69, \\\"25K\\\": 11.49, \\\"35K\\\": 26.28, \\\"45K\\\": 45.35, \\\"55K\\\": 68.4, \\\"65K\\\": 77.52, \\\"75K\\\": 81.16, \\\"85K\\\": 75.86, \\\"95K\\\": 70.36, \\\"105K\\\": 69.59}, \\\"nve_peak\\\": 138.7, \\\"nve_peak_step\\\": 75000, \\\"nve_onset_step\\\": 45000, \\\"nve_classification\\\": \\\"onset_collapse\\\", \\\"civo\\\": true, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"total_steps\\\": 105000, \\\"baseline_ref\\\": \\\"mean(exp_077_s0, exp_083_s1)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"CIVO CONFIRMED: nve_peak=138.7×, eval 213→2.5 完全崩溃 (onset_collapse)。conclusion 保持 success 因 registry 不支持自定义值，但本实验结果为 CIVO 触发确认。\\\"}, \\\"exp_093_cheetah_no_dt_emb_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 151.2, \\\"eval_return_peak\\\": 263, \\\"eval_return_peak_step\\\": 75000, \\\"eval_trajectory\\\": {\\\"5K\\\": 9.1, \\\"15K\\\": 48.8, \\\"25K\\\": 64.6, \\\"35K\\\": 73.5, \\\"45K\\\": 123.2, \\\"55K\\\": 135.8, \\\"65K\\\": 200.8, \\\"75K\\\": 263, \\\"85K\\\": 153.9, \\\"95K\\\": 96.4, \\\"105K\\\": 151.2}, \\\"value_mean_final\\\": 40.9, \\\"value_mean_trajectory\\\": {\\\"15K\\\": 1, \\\"25K\\\": 6.2, \\\"35K\\\": 14.4, \\\"45K\\\": 23.1, \\\"55K\\\": 32.6, \\\"65K\\\": 43.3, \\\"75K\\\": 53, \\\"85K\\\": 57.9, \\\"95K\\\": 52.1, \\\"105K\\\": 40.9}, \\\"ve_ratio_final\\\": 0.3, \\\"\n…[truncated 2235 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-26T06:42:10.641607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -l \"exp_101\" registry.yaml 2>/dev/null && python3 -c \"\nimport yaml\nwith open('registry.yaml') as f:\n    reg = yaml.safe_load(f)\nexps = reg.get('experiments', {})\n# Check for exp_101\nfor k in exps:\n    if '101' in k:\n        print(f'{k}: status={exps[k].get(\\\"status\\\")}, conclusion={exps[k].get(\\\"conclusion\\\")}')\n\"",
+              "description": "Check exp_101 in registry"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T06:42:10.641738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "registry.yaml\nexp_101_rssm_prediction_quality: status=PREPARING, conclusion=killed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T06:42:10.641921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['conclusion', 'notes']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T06:42:10.642184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"rssm_fidelity_v2\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_091_cheetah_008d_s2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"CIVO CONFIRMED: nve_peak=138.7×, eval 213→2.5 完全崩溃 (onset_collapse)。conclusion 保持 success 因 registry 不支持自定义值，但本实验结果为 CIVO 触发确认。\\\"}, \\\"exp_093_cheetah_no_dt_emb_s2\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_092_cheetah_no_dt_emb_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_086_frozen_dt_emb_cheetah_s0\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_085_frozen_dt_emb_walker_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_084_frozen_dt_emb_walker_s0\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_082_cheetah_no_dt_emb_s0\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_087_frozen_dt_emb_cheetah_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_083_cheetah_baseline_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_078_cheetah_008d_s0\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_077_cheetah_baseline_s0\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_080_008e_v3_walker_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_074_008a_walker_s3\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_071_008f_walker_s3\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_073_008f_walker_s4\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_072_008e_v3_walker_s5\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_069_008f_walker_repro_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_068_008d_walker_repro_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_067_frozen_dt_emb_walker_plan015\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_066b_timeseries_rssm_fidelity_s1\\\": {\\\"conclusion\\\": \\\"success\\\"}, \\\"exp_008d_subsample_on_h8\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"RSSM fidelity analysis (exp_063, 55K checkpoint only): dt=2/dt=1 single-step reward MAE ratio = 2.695x (vs exp_066 s0's 1.37x at same step). Larger fidelity gap correlates with worse VE (1.666 vs 0.621). No intermediate checkpoints exist — cannot directly verify 25K fidelity gap for this seed. Cross-seed pattern consistent: VE trajectory matches s0 (low at 25K, collapse by \n…[truncated 8704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T06:42:10.642409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "data_lockdown_audit.md",
+              "content": "# ICML 2026 Data Lockdown Audit\n\n**日期**: 2026-05-26 | **锁定日期**: 2026-05-27 | **投稿**: 2026-05-29\n**实验总数**: 184 (92 success / 41 negative / 2 running / 3 queued / 46 other)\n\n---\n\n## 1. Claim → 实验覆盖表\n\n| Claim | 状态 | 关键实验 | 环境覆盖 | Seeds | 数据可用 |\n|-------|------|----------|----------|-------|----------|\n| **C1: Variable-rate degradation** | ✅ Strong | exp_006 (dt=2), exp_007 (dt=4), exp_005 (learned gate), exp_078/091 (Cheetah) | Walker + Cheetah | 多 seed | 全部完成 |\n| **C2: Trained dt_emb → CIVO susceptibility** | ✅ Strong | Walker: 008d(s0), 009e(s1), 009b(s2), 059(s5), 008d_s3, 008d_s4 — 5/5 onset; Cheetah: 078(s0), 091(s2) onset, 088(s1) no onset — 2/3; Controls: 042,067,015b,047,057,084,085 (Walker frozen 0/7), 046,058,086,087 (Cheetah frozen 0/4), 008f,009c,069,082,092,093,024b×2 (removed 0/8) | Walker + Cheetah + Cartpole(scope限定) | Walker 5/5, Cheetah 2/3, Frozen 0/11+, Removed 0/8 | 全部完成 (Fisher p<0.0001) |\n| **C3: Untrained dt_emb protection** | ⚠️ Walker strong, Cheetah partial | Walker: 008a(s0) 778@105K=85% baseline, 008a_unexposed_s1/s2 完成; Cheetah: 008a_cheetah_unexposed_s0/s1 完成 | Walker ✅ + Cheetah ✅(unexposed) | Walker 3 seeds, Cheetah 2 seeds (unexposed) | **exp_100 (Walker 008a s1) RUNNING — 补充第2 seed** |\n| **C4: Longer dt amplifies** | ✅ Moderate | exp_006 (dt=2), exp_007 (dt=4), baseline (dt=1) | Walker only | 1 seed per dt | 完成 (仅2个dt值) |\n| **C5: Horizon/subsample secondary** | ✅ Moderate | 008c vs 008a (H=8 vs H=15), 008e_v3 (subsample ON + dt=1 imag) | Walker | 多 seed | 完成 |\n| **C6: dt=1 imag partial falsification** | ✅ Moderate | 008e_v3_s1 (success), 008e_v3_s2 (collapse, D039 non-CIVO pathway); 080(s1), 081(s2), 070(s0), 072(s5) 无CIVO(D152 旧代码bug) | Walker | 4 seeds (当前代码) | 完成 (D152/D153 clarified) |\n| **C7: SGS failure / gradient decoupling** | ✅ Strong | 016e (reward SGS), 018/021 (full SGS), 025/026 (obs-decoder SGS); 17 seeds total, 1/17 CIVO-free (with value collapse). Embedding removal 5/5 | Walker + Cheetah | 17 seeds | 完成 |\n| **C8: Intervention Hierarchy** | ✅ Moderate | TCN: 027(σ=0.5×2), 027_σ02, 029a-d (σ=0.2×4), 030a-c (Cheetah), 031 (PickCube); RAVE: 028×2; Dual-critic: 032-041. 总计 7 methods × 3 levels × 3 envs | Walker + Cheetah + PickCube | 多 seed | 完成 |\n\n---\n\n## 2. 数据缺口清单（按优先级）\n\n### P0 — 锁定前必须确认\n\n| 缺口 | 影响 | 当前状态 | Action |\n|------|------|----------|--------|\n| **exp_097 完成确认** (Cheetah 008d s3) | C2 Cheetah onset rate 更新为 3/4 或维持 2/3 | RUNNING @65K, CIVO onset detected @45K (NVE=2.3) | 等待完成 → NVE 分析 → 更新 paper_framing C2 |\n| **exp_100 完成确认** (Walker 008a s1) | C3 Walker 2-seed 闭合 | RUNNING, 无 metrics 更新 | 等待完成 → NVE 分析 → 确认 value suppression |\n\n### P1 — 锁定前应完成（有替代方案）\n\n| 缺口 | 影响 | 替代 | Action |\n|------|------|------|--------|\n| **RSSM fidelity v3 Cheetah 数字** | 论文 Table 1 当前用旧 2.78× 数字 | Walker v3 已完成可独立使用；Cheetah 旧数字可保留注明 | 需 exp_097 checkpoint → 分析 → 合并 |\n| **RSSM fidelity v3 Walker+Cheetah 合并表** | 论文数字一致性 | Walker v3 单独可用 | CPU 任务，依赖 exp_097 完成 |\n\n### P2 — 有则更好，缺不致命\n\n| 缺口 | 影响 | 替代 |\n|------|------|------|\n| **exp_102/103** (Cheetah 008a s0/s1) — C3 cross-env proper | C3 Cheetah 补充证据 | **已有 exp_008a_cheetah_unexposed_s0/s1 (success)**，差异仅为配置细节(subsample_max_dt)。可引用 unexposed 数据 |\n| **C4 finer dt grid** (dt=3, dt=6) | 强化 monotonic claim | 两个 dt 值足够支撑 \"supporting claim\" |\n| **Distributional value analysis** | 回应 R3 (v/e proxy 粗糙) | exp_064 已有初步分析 |\n\n---\n\n## 3. 运行中实验预计时间线\n\n| 实验 | 提交时间 | 预计总时长 | 预计完成 | 当前进度 |\n|------|---------|-----------|---------|---------|\n| exp_097 (Cheetah 008d s3, cuda:0) | 05-26 03:18 UTC | ~6-8h (105K steps) | **05-26 ~10:00 UTC** | @65K (62%), CIVO onset confirmed |\n| exp_100 (Walker 008a s1, cuda:1) | 05-26 03:38 UTC | ~6-8h (105K steps) | **05-26 ~10:00 UTC** | 进行中，无 metrics 更新 |\n\n### exp_102/103 可行性分析\n\n- 需等 exp_097/100 完成释放 GPU（预计 05-26 ~10:00 UTC）\n- 每个实验约 3-5 小时\n- 锁定时间 05-27 00:00 UTC（假设 UTC 日期）\n- **可用窗口**: ~14 小时\n- **判定**: 串行可完成 2 个（3h×2=6h），并行 2 张卡可轻松完成\n- **⚠️ 但 exp_008a_cheetah_unexposed_s0/s1 已提供 C3 Cheetah 数据**，exp_102/103 为增强证据而非必须\n\n---\n\n## 4. 已有但尚未整合进论文的分析\n\n| 分析 | 状态 | 整合优先级 | 说明 |\n|------|------|-----------|------|\n| **RSSM fidelity v3 (Walker)** | ✅ 分析完成 | P0 — 替换论文旧数字 | worker_analysis_rssm_standardized_v3 已完成，需更新论文 Table 1 |\n| **NVE V2 组合诊断 (D155)** | ✅ 分析完成 | P1 — 已记录在 paper_framing | 三维标准(peak + 持续性 + 时序因果)，plan_034 AUROC=0.989 |\n| **D152/D153 008e_v3 bug clarification** | ✅ 决策完成 | P1 — 论文需反映 | 旧 CIVO 由 gate_max_dt=8 bug 导致，C6 修正为当前代码 0/4 collapse |\n| **D156 stochastic onset revision** | ✅ 已更新 paper_framing | P0 — 确认论文文本一致 | C2 措辞：trained dt_emb 是 CIVO 必要条件但非充分条件 |\n| **Cheetah exp_091 onset_collapse** | ✅ Registry 完成 | P0 — 已在 paper_framing | NVE_peak=138.7×, 完全崩溃 |\n| **exp_088 Cheetah s1 no onset** | ✅ Registry 完成 | P0 — 已在 paper_framing | Cheetah 2/3 onset rate confirmed |\n| **Dual-critic 2×2 factorial (D126-D128)** | ✅ 分析完成 | P1 — 论文已整合 | v1≈v2 发现 + min vs capacity 交互效应 |\n| **TCN dose-response (D113)** | ✅ 分析完成 | P1 — 论文已整合 | Intervention Hierarchy 确认 |\n| **exp_101 RSSM prediction quality** | ❌ Killed (PREPARING) | 已放弃 | 被服务器迁移中断 |\n| **Cheetah v3 RSSM fidelity** | 🔄 等待 exp_097 | P1 | 需 checkpoint 做分析 |\n\n---\n\n## 5. 风险评估\n\n### 🟢 低风险 — 论文核心 claims 已有充分数据\n\n- **C1, C2, C7** 证据最强（多环境、多 seed、控制实验完备）\n- **C3** Walker 有 3 seeds (008a s0, unexposed s1/s2)，Cheetah 有 unexposed 2 seeds\n- **C8** Intervention Hierarchy 7 methods × 3 levels 已完整\n- NVE 诊断工具 AUROC=0.989 (N=61) 已锁定\n- Fisher exact test p<0.0001 for trained-vs-control separation\n\n### 🟡 中风险 — 数据可改善但不致命\n\n| 风险 | 概率 | 影响 | 缓解 |\n|------|------|------|------|\n| exp_097/100 未在锁定前完成 | 低（预计 ~4h 后完成） | C2 Cheetah 维持 2/3 而非 3/4; C3 Walker 维持 1 seed 008a proper + 2 unexposed | 已有数据足够支撑 claims |\n| RSSM v3 Cheetah 数字缺失 | 中（依赖 exp_097） | Table 1 仅有 Walker v3 数字 | 论文可只报 Walker RSSM v3，Cheetah 用旧分析注明版本 |\n| exp_102/103 无法完成 | 高（取决于 GPU 释放时间） | C3 Cheetah 依赖 unexposed 配置 | unexposed 实验已足够，差异为 subsample_max_dt 参数，核心机制一致 |\n\n### 🔴 高风险项 — 无\n\n所有 8 个 Claims 均有已完成的实验数据支撑。无任何 claim 完全缺少实验证据。\n\n---\n\n## 6. 锁定前 Action Items\n\n### 必须完成（05-27 前）\n\n1. **[~4h]** 等待 exp_097 + exp_100 完成\n2. **[30min]** exp_097 完成后：NVE 分析 → 更新 C2 Cheetah onset (3/4 or 维持 2/3)\n3. **[30min]** exp_100 完成后：NVE 分析 → 确认 C3 Walker value suppression\n4. **[1h]** exp_097 checkpoint → Cheetah v3 RSSM fidelity 分析 → 合并 Walker+Cheetah RSSM 表\n5. **[30min]** 更新论文 RSSM fidelity 数字（v3 替换旧值）\n6. **[30min]** 确认 paper_framing 所有数字与最新 registry metrics 一致\n7. **[立即]** GPU 释放后提交 exp_102/103（如时间允许，非必须）\n\n### 锁定确认清单\n\n- [ ] exp_097 final metrics 记录\n- [ ] exp_100 final metrics 记录\n- [ ] RSSM v3 数字锁定（Walker 确定, Cheetah 尽力）\n- [ ] paper_framing.md C2 Cheetah onset rate 最终确认\n- [ ] 所有 success 实验 metrics 与论文数字交叉验证\n- [ ] 声明数据锁定完成\n\n---\n\n## 7. 数据完整性总结\n\n**覆盖率**: 8/8 claims 有完成实验支撑（C6 partially falsified 是预期结论）\n\n**最强证据链**:\n- C2 necessity: 0/19 controls (frozen+removed) vs 7/8 trained onset → Fisher p<0.0001\n- C7 SGS failure: 1/17 seeds across 3 variants, embedding removal 5/5\n- C8 Hierarchy: 7 methods × 3 levels, TCN 2/10 唯一成功（且 fragile）\n\n**最弱环节**:\n- C4 仅 2 个 dt 值（dt=2, dt=4），但定位为 supporting claim\n- C3 Cheetah cross-env 依赖 \"unexposed\" 配置而非标准 008a 配置（exp_102/103 待排队）\n- RSSM v3 Cheetah 数字待生成\n\n**结论**: 论文核心叙事（trained dt_emb → CIVO → Intervention Hierarchy 三层失败）的实验证据链完整。锁定前主要任务是确认 2 个 RUNNING 实验结果并更新数字，而非填补证据缺口。\n"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T06:42:10.642667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'data_lockdown_audit.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-26T06:42:10.642887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "data_lockdown_audit",
+              "type": "report",
+              "description": "ICML 2026 数据锁定审计：Claim→实验覆盖表、数据缺口清单、锁定前 action items、风险评估",
+              "project": "event-gated-adaptive-horizon",
+              "content": "# ICML 2026 Data Lockdown Audit\n\n**日期**: 2026-05-26 | **锁定日期**: 2026-05-27 | **投稿**: 2026-05-29\n**实验总数**: 184 (92 success / 41 negative / 2 running / 3 queued / 46 other)\n\n---\n\n## 1. Claim → 实验覆盖表\n\n| Claim | 状态 | 关键实验 | 环境覆盖 | Seeds | 数据可用 |\n|-------|------|----------|----------|-------|----------|\n| **C1: Variable-rate degradation** | ✅ Strong | exp_006 (dt=2), exp_007 (dt=4), exp_005 (learned gate), exp_078/091 (Cheetah) | Walker + Cheetah | 多 seed | 全部完成 |\n| **C2: Trained dt_emb → CIVO susceptibility** | ✅ Strong | Walker: 008d(s0), 009e(s1), 009b(s2), 059(s5), 008d_s3, 008d_s4 — 5/5 onset; Cheetah: 078(s0), 091(s2) onset, 088(s1) no onset — 2/3; Controls: frozen 0/11, removed 0/8 | Walker + Cheetah | Walker 5/5, Cheetah 2/3, Controls 0/19 | 完成 (Fisher p&lt;0.0001) |\n| **C3: Untrained dt_emb protection** | ⚠️ Walker strong, Cheetah partial | Walker: 008a(s0) 778@105K=85% BL, unexposed_s1/s2; Cheetah: unexposed_s0/s1 | Walker ✅ + Cheetah ✅(unexposed) | Walker 3, Cheetah 2 (unexposed) | **exp_100 RUNNING — Walker 2nd proper seed** |\n| **C4: Longer dt amplifies** | ✅ Moderate | exp_006 (dt=2), exp_007 (dt=4), baseline (dt=1) | Walker only | 1 seed per dt | 完成 |\n| **C5: Horizon/subsample secondary** | ✅ Moderate | 008c vs 008a (H=8 vs H=15), 008e_v3 | Walker | 多 seed | 完成 |\n| **C6: dt=1 imag partial falsification** | ✅ Moderate | 008e_v3_s1 (success), 008e_v3_s2 (collapse, non-CIVO pathway); D152 clarified | Walker | 4 seeds (current code) | 完成 |\n| **C7: SGS failure / gradient decoupling** | ✅ Strong | 016e, 018/021, 025/026; 17 seeds, 1/17 CIVO-free. Removal 5/5 | Walker + Cheetah | 17 seeds | 完成 |\n| **C8: Intervention Hierarchy** | ✅ Moderate | TCN 2/10, RAVE 0/2, SGS 1/17, Dual-critic (factorial). 7 methods × 3 levels × 3 envs | Walker + Cheetah + PickCube | 多 seed | 完成 |\n\n---\n\n## 2. 数据缺口清单（按优先级）\n\n### P0 — 锁定前必须确认\n\n| 缺口 | 影响 | 当前状态 | Action |\n|------|------|----------|--------|\n| **exp_097 完成确认** (Cheetah 008d s3) | C2 Cheetah onset rate: 3/4 or 维持 2/3 | RUNNING @65K, CIVO onset @45K (NVE=2.3) | 等待完成 → NVE 分析 → 更新 C2 |\n| **exp_100 完成确认** (Walker 008a s1) | C3 Walker proper 008a 第2 seed | RUNNING, 无 metrics 更新 | 等待完成 → NVE 分析 → 确认 value suppression |\n\n### P1 — 应完成（有替代）\n\n| 缺口 | 影响 | 替代 | Action |\n|------|------|------|--------|\n| **RSSM fidelity v3 Cheetah** | 论文 Table 1 Cheetah 行 | Walker v3 独立可用；Cheetah 旧数字可注明版本 | 需 exp_097 checkpoint |\n| **RSSM v3 Walker+Cheetah 合并表** | 数字一致性 | Walker v3 单独可用 | CPU 任务 |\n\n### P2 — 有则更好，缺不致命\n\n| 缺口 | 影响 | 替代 |\n|------|------|------|\n| **exp_102/103** (Cheetah 008a proper) | C3 Cheetah 补充 | **已有 008a_cheetah_unexposed_s0/s1 (success)**，核心机制一致 |\n| **C4 finer dt grid** | 强化 monotonic | 2 个 dt 值足够 supporting claim |\n| **Distributional value analysis** | 回应 R3 | exp_064 初步分析已有 |\n\n---\n\n## 3. 运行中实验时间线\n\n| 实验 | 提交 | 预计完成 | 进度 |\n|------|------|---------|------|\n| exp_097 (Cheetah 008d s3, cuda:0) | 05-26 03:18 UTC | **~10:00 UTC** | @65K/105K (62%), CIVO onset confirmed |\n| exp_100 (Walker 008a s1, cuda:1) | 05-26 03:38 UTC | **~10:00 UTC** | 进行中 |\n\n### exp_102/103 可行性\n\n- GPU 释放预计 05-26 ~10:00 UTC\n- 每实验 3-5h，并行 2 卡可完成\n- 锁定窗口 ~14h → **可行但非必须**（已有 unexposed 数据）\n\n---\n\n## 4. 已有但尚未整合进论文的分析\n\n| 分析 | 状态 | 优先级 | 说明 |\n|------|------|--------|------|\n| **RSSM fidelity v3 (Walker)** | ✅ 完成 | P0 | worker_analysis_rssm_standardized_v3 已完成，需更新论文 Table 1 |\n| **NVE V2 组合诊断 (D155)** | ✅ 完成 | P1 | 三维标准(peak+持续性+时序因果)，AUROC=0.989, N=61 |\n| **D152/D153 008e_v3 bug clarification** | ✅ 决策完成 | P1 | 旧 CIVO 由 gate_max_dt=8 bug 导致，C6 当前代码 0/4 |\n| **D156 stochastic onset** | ✅ 已更新 paper_framing | P0 | trained dt_emb 必要非充分 |\n| **Cheetah v3 RSSM fidelity** | 🔄 等待 exp_097 | P1 | 需 checkpoint |\n| **exp_101 RSSM prediction quality** | ❌ Killed | 放弃 | 服务器迁移中断 |\n\n---\n\n## 5. 风险评估\n\n### 🟢 低风险 — 核心 claims 数据充分\n\n- **C1, C2, C7** 最强：多环境多 seed + 完备控制实验\n- C2 necessity: 0/19 controls vs 7/8 trained onset → Fisher p&lt;0.0001\n- C7: 1/17 SGS seeds CIVO-free, removal 5/5\n- C8: 7 methods × 3 levels 完整\n- NVE AUROC=0.989 已锁定\n\n### 🟡 中风险\n\n| 风险 | 概率 | 影响 | 缓解 |\n|------|------|------|------|\n| exp_097/100 未在锁定前完成 | 低 | C2 Cheetah 维持 2/3; C3 Walker 维持已有 seeds | 已有数据足够 |\n| RSSM v3 Cheetah 缺失 | 中 | Table 1 仅 Walker v3 | 注明版本差异 |\n| exp_102/103 不完成 | 高 | C3 Cheetah 用 unexposed 配置 | unexposed 核心机制一致 |\n\n### 🔴 高风险 — 无\n\n8/8 Claims 均有已完成实验数据支撑。\n\n---\n\n## 6. 锁定前 Action Items\n\n### 必须完成\n\n1. **[~4h等待]** exp_097 + exp_100 完成\n2. **[30min]** exp_097 → NVE 分析 → 更新 C2 Cheetah onset\n3. **[30min]** exp_100 → NVE 分析 → 确认 C3 value suppression\n4. **[1h]** exp_097 checkpoint → Cheetah RSSM v3 → 合并表\n5. **[30min]** 论文 RSSM 数字用 v3 替换\n6. **[30min]** paper_framing 数字交叉验证\n7. **[可选]** GPU 释放后提交 exp_102/103\n\n### 锁定确认清单\n\n- [ ] exp_097 final metrics\n- [ ] exp_100 final metrics\n- [ ] RSSM v3 数字锁定\n- [ ] C2 Cheetah onset rate 最终确认\n- [ ] 论文数字交叉验证\n- [ ] 声明数据锁定\n\n---\n\n## 7. 总结\n\n**覆盖率**: 8/8 claims 有完成实验支撑\n\n**最强证据链**: C2 necessity (0/19 controls vs 7/8 trained, p&lt;0.0001) → C7 SGS failure (1/17) → C8 Hierarchy (TCN 2/10 唯一成功且 fragile)\n\n**最弱环节**: C4 仅 2 dt 值 (supporting claim); C3 Cheetah 用 unexposed 配置\n\n**结论**: 论文核心叙事的实验证据链完整。锁定前主要任务是确认 2 个 RUNNING 实验并更新数字，非填补证据缺口。\n",
+              "content_filename": "data_lockdown_audit.md",
+              "tags": "['audit', 'data-lockdown', 'icml2026']"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T06:42:10.643136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260526_e4ed38\\\", \\\"name\\\": \\\"data_lockdown_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"ICML 2026 数据锁定审计：Claim→实验覆盖表、数据缺口清单、锁定前 action items、风险评估\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/data_lockdown_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-26T06:41:59.831575+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"data-lockdown\\\", \\\"icml2026\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-26T06:42:10.643314+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/_project/report/data_lockdown_audit.md`。\n\n核心结论：\n\n**8/8 Claims 均有已完成实验支撑，无高风险项。**\n\n关键发现：\n- **证据最强**：C2 (0/19 controls vs 7/8 trained, Fisher p<0.0001)、C7 (SGS 1/17)、C8 (三层 Hierarchy)\n- **2 个 RUNNING 实验** (exp_097 Cheetah s3 @65K, exp_100 Walker 008a s1) 预计 ~4h 后完成，补充而非填补证据\n- **exp_097 已检测到 CIVO onset @45K**，完成后 Cheetah onset rate 大概率升至 3/4\n- **exp_102/103 非必须** — 已有 008a_cheetah_unexposed_s0/s1 覆盖 C3 Cheetah\n- **待整合**：RSSM fidelity v3 Walker 数字（已分析完）需替换论文旧值；Cheetah v3 需 exp_097 checkpoint\n\n锁定前 action items：确认 097/100 完成 → NVE 分析 → RSSM v3 合并 → 论文数字更新 → 锁定声明。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_data-lockdown-audit_20260526T063759"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-data-lockdown-audit.md"
+}

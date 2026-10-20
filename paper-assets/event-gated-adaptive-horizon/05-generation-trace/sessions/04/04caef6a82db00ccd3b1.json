@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04caef6a82db00ccd3b1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779849356.md",
+  "task_key": "loop_24_1779849356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779849356.md",
+    "occurrence": 1,
+    "bytes": 4500,
+    "sha256": "ae66f8635e29af16a77692027783a592fad94ed6867d79e1429dd35504b85749"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:34:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-51268:cuda:0` 和 `westd-51268:cuda:1`，bjb1 已无卡\n- CLI flag 统一为 `--gate_dt_embed_dim`（不是 `--dt_embed_dim`），westd 已 rsync 同步\n- ICML 2026 DDL 5/29，数据锁定 5/27——距数据锁定 ~24h\n- exp_097 registry 原为 ALLOCATED、exp_100 原为 QUEUED，但 cron reconcile 确认两者进程在跑且 registry 已修正为 RUNNING\n- 旧 westd-19154 的 checkpoint 全部丢失（服务器数据盘重启清空），只有 registry 里的 metrics 存活\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-51268，2×RTX PRO 6000 Blackwell (96GB)，CUDA 13.2\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **环境变量**: `MUJOCO_GL=egl`, `PYOPENGL_PLATFORM=egl`\n- **代码来源**: 从 bjb1 rsync 恢复，两边 flag 已统一\n- **活跃进程**:\n  - exp_097_cheetah_008d_s3: PID 3794, westd cuda:0, tmux session, cron 监控中\n  - exp_100_walker_008a_s1: PID 5591, westd cuda:1, tmux session, cron 监控中\n- **exp_101 脚本已就绪**: `scripts/analyze_rssm_exp101.py` + `scripts/run_exp101_all.sh`，dry-run 通过，完整运行需 ~1.5-2h GPU\n\n### 3. 📊 当前状态\nSession #24 完成了 session-start 初始化（registry 同步 + cron reconcile + report/roadmap 读取），向 Director 汇报了当前状态，spawn 了 paper data audit worker 补充 Worker 池。\n\n**Registry 活跃实验**:\n- exp_097_cheetah_008d_s3 (RUNNING): C1 cross-env CIVO trigger 4th seed, westd cuda:0, PID 3794\n- exp_100_walker_008a_s1 (RUNNING): C3 value suppression 2nd seed, westd cuda:1, PID 5591\n- exp_101_rssm_prediction_quality (PREPARING): RSSM dt=1 vs dt=2 reconstruction loss 对比，代码就绪等 GPU\n- rssm_fidelity_v2 (PREPARING): RSSM fidelity 分析 v2\n\n**等待中**:\n- exp_097 / exp_100 cron 完成回调\n- worker_analysis_rssm_standardized_v3（33 turns，ssh_read_only 分析中，已运行较久）\n- worker_analysis_paper_data_audit_pre_lockdown（刚 spawn，做数据锁定前 paper 数据审计）\n- Round 5 审稿结果\n\n### 4. 📋 待办（条件触发式）\n- exp_097 cron 回调（完成）→ 修正 registry 为 DONE，spawn Worker 分析 NVE/CIVO pattern（与 exp_078 s0 对比），汇报 Director（C1 4th seed 结果，onset rate 更新为 ?/4）\n- exp_100 cron 回调（完成）→ 修正 registry 为 DONE，spawn Worker 分析，汇报 Director（C3 Walker 008a 多 seed 证据）\n- 097 或 100 释放 GPU → 立即提交 exp_101（`bash scripts/run_exp101_all.sh cuda:0` 或 cuda:1），预估 ~1.5-2h\n- worker_analysis_rssm_standardized_v3 完成 → 整合 RSSM fidelity 分析结果到 report.md，判断是否支撑 paper 叙事\n- worker_analysis_paper_data_audit_pre_lockdown 完成 → 审查审计报告，识别 claim 证据缺口，汇报 Director\n- 数据锁定 5/27 到达 → 停止新实验提交，汇总所有已完成实验 metrics，锁定论文数据表\n- Round 5 审稿结果到达 → 按审稿意见处理\n\n### 5. 🎯 战略上下文\n**核心结论**: DreamerV3 的 trained dt_embedding 是 CIVO 的必要条件（非充分），frozen/removed dt_emb 可稳健阻止。CIVO 是 multi-joint locomotion 特异性现象。Onset 具随机性：2/3 概率触发，severity 跨 34 倍方差。\n\n**关键决策链**:\n- D156: trained dt_emb 是必要非充分条件，onset 随机\n- D155: NVE 诊断升级为三维标准（peak + 持续性 ≥2 eval + 时序因果），消除 frozen transient spike 假阳性\n- D154: C2 claim 限定 locomotion domain\n- D153: 旧 008e_v3 CIVO 由参数路由 bug 导致，C6 不可靠\n\n**exp_101 dry-run 信号**: dt=2 obs_mse 1.84x > dt=1, reward_mae 1.32x > dt=1——初步支持 RSSM prediction quality degradation 假说，完整 6-checkpoint 分析是关键补强数据\n\n**易错点**:\n- Cheetah baseline NVE 不能用固定值，必须 step-matched ve_ratio（两个 baseline seed peak 差异大: 0.955 vs 0.6）\n- RSSM fidelity 数据有三份文件，同一 checkpoint 不同 n_samples 给出不同 reward ratio（3.11× vs 1.50×），论文引用时必须标注来源和 n\n- report.md 和 ROADMAP.md 当前内容过时（仍引用 bjb1/westd-19154），下一轮需更新\n- exp_101 不是训练实验而是离线分析脚本，不用 submit_training_job，直接 SSH 执行即可\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779849356.md"
+}

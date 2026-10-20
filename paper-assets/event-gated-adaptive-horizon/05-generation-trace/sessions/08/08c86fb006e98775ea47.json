@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08c86fb006e98775ea47",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 088 metrics nve update",
+  "task_key": "worker_analysis_exp_088_metrics_nve_update_20260525T210814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_088_metrics_nve_update_20260525T210814_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "934d35a6ff5d36854a021e5d3bf0475980d59a9db532d862ae60a749aec8d622"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**任务 1 — exp_088 指标提取 & registry 更新**:\n- eval_return: best=final=309.3@105K (vs baseline 446.1)\n- ve_ratio_peak=0.31@45K, civo_alert=0 全程\n- NVE_peak=1.82@35K（早期瞬态，baseline ve_ratio 分母极低导致），NVE_final=0.09\n- gate_dt=2.0 constant（gate 未激活）\n- checkpoint_path / log_path 已设置\n\n**任务 2 — NVE 分析更新**:\n- N=62→63, Healthy=37→38\n- exp_088 是 θ=1.5× 的新 FP（NVE_peak=1.82 来自 step 35K 的低绝对值噪声比）\n- Method A θ=1.5×: AUROC 0.989→0.986, F1 0.926→0.909, FP 4→5\n- Method A θ=2.0× 不受影响（NVE=1.82 < 2.0）\n- Method B 不受影响（ve_ratio_peak=0.31 远低于所有阈值）\n- 新增第 7 节讨论早期瞬态 NVE spike 的局限性及缓解策略"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-088-metrics-nve-update.md"
+}

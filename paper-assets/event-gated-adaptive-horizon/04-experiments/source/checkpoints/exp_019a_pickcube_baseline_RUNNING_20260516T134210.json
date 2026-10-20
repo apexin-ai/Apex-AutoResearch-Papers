@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_019a_pickcube_baseline",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:23:50.639Z",
+    "updated_at": "2026-05-16T13:42:10.309Z",
+    "hypothesis": "PickCube-v1 baseline — dt=1, no dt_emb (dim=0), subsample OFF. ManiSkill3 manipulation 环境稳定基线，验证 CIVO 诊断在 manipulation 中的适用性",
+    "notes": "ManiSkill3 Phase 1. 排队等 cuda:1 (010a 完成后). --compile False --device cuda:1. maniskill_state config.",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-16T12:00:04.473Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults maniskill_state --task maniskill_PickCube-v1 --steps 200000 --seed 1 --device cuda:0 --compile False --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_019a_pickcube_baseline\"",
+      "code_commit": "3328f53cb32cda27e85b099d560256aeb01db998"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults maniskill_state --task maniskill_PickCube-v1 --steps 200000 --seed 1 --device cuda:0 --compile False --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_019a_pickcube_baseline\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "586751",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_019a_pickcube_baseline.log",
+      "submitted_at": "2026-05-16T13:20:56.230Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "586751",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_019a_pickcube_baseline.log",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T13:42:10.496853+00:00",
+  "trigger": "update_registry"
+}

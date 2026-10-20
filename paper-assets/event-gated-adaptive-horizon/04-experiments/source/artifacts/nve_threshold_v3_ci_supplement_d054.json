@@ -1,0 +1,50 @@
+{
+  "version": "d054_corrected",
+  "note": "008e_v3_s2 relabeled as non-CIVO (Imagination-Reality Divergence) per D053",
+  "task_b2": {
+    "definition": "CIVO collapse detection at NVE >= 1.5x (35K+ window)",
+    "n": 8,
+    "positive": {
+      "count": 3,
+      "experiments": ["006", "008d", "009b"],
+      "nve_scores": [4.84, 4.13, 1.62]
+    },
+    "negative": {
+      "count": 5,
+      "experiments": ["001", "008a", "008f", "008e_v3_s1", "008e_v3_s2"],
+      "nve_scores": [1.0, 0.93, 0.97, 0.94, 3.78]
+    },
+    "auroc": 0.9333,
+    "auroc_raw": "14/15",
+    "accuracy": 0.875,
+    "accuracy_raw": "7/8",
+    "clopper_pearson_95_ci": [0.4735, 0.9968],
+    "separation_margin": -2.16,
+    "false_positive": "008e_v3_s2 (NVE=3.78, mechanism=Imagination-Reality Divergence, not CIVO)"
+  },
+  "task_b1": {
+    "definition": "CIVO collapse detection at NVE >= 1.7x (35K+ window)",
+    "n": 8,
+    "positive": {
+      "count": 2,
+      "experiments": ["006", "008d"],
+      "nve_scores": [4.84, 4.13]
+    },
+    "negative": {
+      "count": 6,
+      "experiments": ["001", "008a", "008f", "008e_v3_s1", "009b", "008e_v3_s2"],
+      "nve_scores": [1.0, 0.93, 0.97, 0.94, 1.62, 3.78]
+    },
+    "auroc": 1.0,
+    "auroc_raw": "12/12",
+    "accuracy": 1.0,
+    "accuracy_raw": "8/8",
+    "clopper_pearson_95_ci": [0.6306, 1.0],
+    "separation_margin": 0.35,
+    "optimal_threshold_note": "Threshold between 3.78 (neg max) and 4.13 (pos min) achieves perfect separation"
+  },
+  "paper_recommendation": {
+    "main_text": "Report task_b2 corrected: AUROC=0.933, accuracy=7/8 (87.5%), Clopper-Pearson 95% CI=[0.47, 1.0]. One false positive (008e_v3_s2) identified as non-CIVO Imagination-Reality Divergence.",
+    "supplementary": "Report task_b1 as sensitivity analysis: AUROC=1.0, accuracy=8/8, CI=[0.69, 1.0]. Higher threshold (1.7x) eliminates FP."
+  }
+}

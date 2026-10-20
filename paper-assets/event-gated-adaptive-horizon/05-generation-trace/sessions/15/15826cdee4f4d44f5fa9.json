@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15826cdee4f4d44f5fa9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analyze exp 048 cheetah civo extension completion",
+  "task_key": "worker_analyze_exp_048_cheetah_civo_extension_completion_20260522T211521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_048_cheetah_civo_extension_completion_20260522T211521_result.json",
+    "occurrence": 1,
+    "bytes": 2672,
+    "sha256": "51f01395669da53b046bfb2209c38cd28512188d01f66b4ddd75735f909a1560"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是完整结果。\n\n---\n\n## exp_048 Cheetah CIVO Extension — 完整结果\n\n**状态**: 正常完成，312K steps（最后 eval 在 302K），无报错。\n\n### ve_ratio 轨迹（baseline=0.656）\n\n| Step | ve_ratio | NVE | eval_return |\n|------:|--------:|-----:|----------:|\n| (105K) | ~46.3 | 70.64 | — (继承自 exp_010b) |\n| 112K | — | — | 9.2 |\n| 122K | 6.135 | 9.35 | 9.5 |\n| 132K | 2.955 | 4.50 | 20.1 |\n| 142K | 2.919 | 4.45 | 20.4 |\n| **152K** | **23.925** | **36.47** | **2.4** |\n| **162K** | **24.112** | **36.76** | **2.3** |\n| 172K | 9.268 | 14.13 | 6.2 |\n| 182K | 12.795 | 19.50 | 4.1 |\n| 192K | 8.002 | 12.20 | 5.8 |\n| 202K | 4.110 | 6.26 | 12.5 |\n| 212K | 7.441 | 11.34 | 7.2 |\n| 222K | 3.816 | 5.82 | 13.7 |\n| 232K | 4.016 | 6.12 | 12.7 |\n| 242K | 6.477 | 9.87 | 7.7 |\n| **252K** | **1.432** | **2.18** | **32.8** |\n| 262K | 4.570 | 6.97 | 10.1 |\n| 272K | 3.366 | 5.13 | 13.1 |\n| 282K | 1.790 | 2.73 | 23.5 |\n| 292K | 3.056 | 4.66 | 13.9 |\n| 302K | 1.803 | 2.75 | 23.4 |\n\n### 核心判断：Cheetah CIVO **部分自修复，但未完全恢复**\n\n**ve_ratio 三阶段**：\n1. **快速初始下降**（105K→142K，~37K steps）：ve_ratio 从 ~46.3 骤降到 2.9（NVE 70.6→4.5），减少 94%\n2. **二次 CIVO 爆发**（152K-162K）：ve_ratio 回弹到 24.1（NVE 36.8），eval_return 崩溃到 2.3-2.4\n3. **振荡式缓慢下降**（162K→302K，140K steps）：ve_ratio 在 1.4-12.8 之间大幅振荡，最终收敛到 1.8（NVE 2.75）\n\n**最终状态**：\n- ve_ratio: 1.803（NVE=2.75）— 仍是 baseline 的 2.75 倍\n- eval_return: 23.4 — 远低于 vanilla Cheetah 正常水平\n- Gate 完全坍塌：dt=2 占比 100%，零时间灵活性\n\n### 与 Walker (exp_045) 对比\n\n| 指标 | Walker (exp_045) | Cheetah (exp_048) |\n|------|-----------------|-------------------|\n| 起始 ve_ratio | 4.91 | ~46.3 (NVE 70.6) |\n| 最终 ve_ratio | 0.05 | 1.80 |\n| 修复比例 | 99% | 96% |\n| 最终 NVE | ~0.08 | 2.75 |\n| 修复用时 | 170K steps | 197K steps（仍未完全修复）|\n| 二次爆发 | 无 | 有（152K-162K，NVE 回到 37）|\n| 完全恢复？ | **是** | **否** |\n\n### Paper Narrative\n\n这是**最强的结果**：CIVO 严重程度决定可恢复性。\n- Walker（NVE~5）：完全自修复，CIVO 是可逆的暂态现象\n- Cheetah（NVE~70）：部分自修复但留有永久损伤——ve_ratio 振荡剧烈且无法归零，gate 永久坍塌，eval_return 恢复缓慢且低位震荡\n- 存在 **severity threshold**：轻度 CIVO 可逆，极端 CIVO 造成不可逆的 value function 损伤和 gate 功能丧失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-048-cheetah-civo-extension-completion.md"
+}

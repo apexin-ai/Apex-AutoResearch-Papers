@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sutton1999options,vezhnevets2017feudal}
+\citation{hafner2023dreamerv3}
+\citation{nhu2025tawm}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.1}\protected@file@percent }
+\citation{sutton1999options}
+\citation{sharma2017figar}
+\citation{lakshminarayanan2017dynamic}
+\citation{vezhnevets2017feudal,nachum2018hiro}
+\citation{hafner2020dreamerv1,hafner2021dreamerv2,hafner2023dreamerv3}
+\citation{nhu2025tawm}
+\citation{janner2019mbpo,chua2018pets}
+\citation{lu2018nondelusional}
+\citation{hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Background and Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal Abstraction in RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-Model RL.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value Overestimation in MBRL.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Base Architecture}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Variable-Rate Imagination}{2}{subsection.3.2}\protected@file@percent }
+\citation{tassa2018dmcontrol}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Factorial Experiment Design}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diagnostic Metrics}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalized Value-to-Eval Ratio (NVE).}{3}{section*.5}\protected@file@percent }
+\newlabel{eq:nve}{{1}{3}{Normalized Value-to-Eval Ratio (NVE)}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Environments}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}All Variable-Rate Configurations Degrade Performance (C1)}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variable-rate imagination consistently degrades performance in Walker Walk. Baseline eval $\approx $916--950.}}{3}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:c1_degradation}{{1}{3}{Variable-rate imagination consistently degrades performance in Walker Walk. Baseline eval $\approx $916--950}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trained dt\_embedding Triggers Pathological Overestimation (C2)}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:c2}{{4.2}{3}{Trained dt\_embedding Triggers Pathological Overestimation (C2)}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Walker Walk 008d (trained \texttt  {dt\_emb}): cross-seed NVE trajectory at 35K+ steps. All seeds exceed NVE $>1.5\times $; collapse is stochastic (2/3 seeds).}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:c2_walker_seeds}{{2}{4}{Walker Walk 008d (trained \texttt {dt\_emb}): cross-seed NVE trajectory at 35K+ steps. All seeds exceed NVE $>1.5\times $; collapse is stochastic (2/3 seeds)}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cheetah Run trained \texttt  {dt\_emb}: CIVO trigger is directionally consistent across environments. NVE peaks are higher than Walker Walk (mean 10.2$\times $).}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:c2_cheetah}{{3}{4}{Cheetah Run trained \texttt {dt\_emb}: CIVO trigger is directionally consistent across environments. NVE peaks are higher than Walker Walk (mean 10.2$\times $)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Causal Control: Removing dt\_embedding Eliminates CIVO (C2, continued)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces NVE peaks: trained \texttt  {dt\_emb} vs. control (\texttt  {dt\_embed\_dim=0}). The $1.5\times $ threshold achieves 83\% classification accuracy (6/7); Cheetah seed~2 (NVE peak $1.75\times $) is a borderline case that does not result in collapse.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:control_nve}{{4}{4}{NVE peaks: trained \texttt {dt\_emb} vs. control (\texttt {dt\_embed\_dim=0}). The $1.5\times $ threshold achieves 83\% classification accuracy (6/7); Cheetah seed~2 (NVE peak $1.75\times $) is a borderline case that does not result in collapse}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}dt\_embedding Ablation Matrix}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ablation}{{4.4}{5}{dt\_embedding Ablation Matrix}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Walker Walk \texttt  {dt\_emb} ablation matrix. Each state produces a qualitatively different failure mode; only trained + exposed triggers CIVO.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:ablation_matrix}{{5}{5}{Walker Walk \texttt {dt\_emb} ablation matrix. Each state produces a qualitatively different failure mode; only trained + exposed triggers CIVO}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Untrained dt\_embedding Prevents Optimistic Drift (C3)}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Untrained \texttt  {dt\_emb} (008a, Walker Walk): value suppression is directionally consistent (NVE $<1.0\times $ in all seeds), but absolute recovery varies substantially.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:c3_untrained}{{6}{5}{Untrained \texttt {dt\_emb} (008a, Walker Walk): value suppression is directionally consistent (NVE $<1.0\times $ in all seeds), but absolute recovery varies substantially}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}RSSM Fidelity Analysis}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:rssm}{{4.6}{5}{RSSM Fidelity Analysis}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces RSSM fidelity: prediction quality at dt=1 vs.\ dt=2. The trained \texttt  {dt\_emb} (008d) shows low obs gap ratio ($1.30\times $) because its dt=1 absolute error is already $3\times $ baseline (model-wide degradation), while its reward gap ($2.78\times $) drives systematic critic bias. The absent configuration (008f) has uniformly poor but \emph  {unbiased} reward prediction (gap $1.01\times $).}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:rssm_fidelity}{{7}{5}{RSSM fidelity: prediction quality at dt=1 vs.\ dt=2. The trained \texttt {dt\_emb} (008d) shows low obs gap ratio ($1.30\times $) because its dt=1 absolute error is already $3\times $ baseline (model-wide degradation), while its reward gap ($2.78\times $) drives systematic critic bias. The absent configuration (008f) has uniformly poor but \emph {unbiased} reward prediction (gap $1.01\times $)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Dual Collapse Pathways: dt=1 Imagination Does Not Prevent Collapse (C6)}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:c6}{{4.7}{6}{Dual Collapse Pathways: dt=1 Imagination Does Not Prevent Collapse (C6)}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 008e\_v3 (trained \texttt  {dt\_emb}, dt=1 imagination): 4-seed results. Collapse rate = 50\%, identical to 008d (dt=2 imagination). All collapsed seeds exhibit Pathway~B dynamics (non-CIVO).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:c6_pathways}{{8}{6}{008e\_v3 (trained \texttt {dt\_emb}, dt=1 imagination): 4-seed results. Collapse rate = 50\%, identical to 008d (dt=2 imagination). All collapsed seeds exhibit Pathway~B dynamics (non-CIVO)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Collapse pathway comparison. Pathway~A (CIVO) and Pathway~B (policy instability) have qualitatively different dynamics but are both triggered by trained \texttt  {dt\_embedding}.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:pathway_comparison}{{9}{6}{Collapse pathway comparison. Pathway~A (CIVO) and Pathway~B (policy instability) have qualitatively different dynamics but are both triggered by trained \texttt {dt\_embedding}}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Entropy signatures.}{6}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Actor entropy signatures by collapse pathway.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:entropy}{{10}{6}{Actor entropy signatures by collapse pathway}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}NVE Threshold Sensitivity Analysis}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:threshold}{{4.8}{7}{NVE Threshold Sensitivity Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NVE threshold classification performance across $\sim $12 data points (6 trained, 6 control, 2 environments). The $1.5\times $ threshold balances sensitivity (100\%) with specificity (83\%), with one borderline Cheetah control seed (NVE peak $1.75\times $) as the sole false positive.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:threshold_sensitivity}{{11}{7}{NVE threshold classification performance across $\sim $12 data points (6 trained, 6 control, 2 environments). The $1.5\times $ threshold balances sensitivity (100\%) with specificity (83\%), with one borderline Cheetah control seed (NVE peak $1.75\times $) as the sole false positive}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}CIVO Independent Contribution: Full-SGS Analysis}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:sgs}{{4.9}{7}{CIVO Independent Contribution: Full-SGS Analysis}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces CIVO decomposition sensitivity analysis. The independent contribution of CIVO to the performance gap ranges from 20 to 35 percentage points depending on decomposition assumptions.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:civo_decomposition}{{12}{7}{CIVO decomposition sensitivity analysis. The independent contribution of CIVO to the performance gap ranges from 20 to 35 percentage points depending on decomposition assumptions}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Value Prediction Distribution Analysis}{7}{subsection.4.10}\protected@file@percent }
+\citation{henderson2018matters}
+\citation{nikishin2022primacy}
+\citation{nhu2025tawm}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Uncertainty-Gated Imagination Truncation (Pilot)}{8}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:truncation}{{4.11}{8}{Uncertainty-Gated Imagination Truncation (Pilot)}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}dt\_embedding Cosine Similarity}{8}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:cosine}{{4.12}{8}{dt\_embedding Cosine Similarity}{subsection.4.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{The CIVO Mechanism.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multiple Vulnerability Pathways.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Correction and the Point of No Return.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Environment Consistency.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contrast with TAWM.}{8}{section*.23}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{agarwal2021deep}{{1}{2021}{{Agarwal et~al.}}{{}}}
+\bibcite{chua2018pets}{{2}{2018}{{Chua et~al.}}{{}}}
+\bibcite{hafner2020dreamerv1}{{3}{2020}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2021dreamerv2}{{4}{2021}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2023dreamerv3}{{5}{2023}{{Hafner et~al.}}{{}}}
+\bibcite{henderson2018matters}{{6}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{janner2019mbpo}{{7}{2019}{{Janner et~al.}}{{}}}
+\bibcite{lakshminarayanan2017dynamic}{{8}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\bibcite{lu2018nondelusional}{{9}{2018}{{Lu et~al.}}{{}}}
+\bibcite{nachum2018hiro}{{10}{2018}{{Nachum et~al.}}{{}}}
+\bibcite{nhu2025tawm}{{11}{2025}{{Nhu et~al.}}{{}}}
+\bibcite{nikishin2022primacy}{{12}{2022}{{Nikishin et~al.}}{{}}}
+\bibcite{sharma2017figar}{{13}{2017}{{Sharma et~al.}}{{}}}
+\bibcite{sutton1999options}{{14}{1999}{{Sutton et~al.}}{{}}}
+\bibcite{tassa2018dmcontrol}{{15}{2018}{{Tassa et~al.}}{{}}}
+\bibcite{vezhnevets2017feudal}{{16}{2017}{{Vezhnevets et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{10}

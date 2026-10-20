@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1baa474359e882fb8503",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 030c",
+  "task_key": "worker_analysis_exp_030c_20260520T223021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_030c_20260520T223021_result.json",
+    "occurrence": 1,
+    "bytes": 2474,
+    "sha256": "ca93082c1d53a76b4e85156581c2fb163a270aecda55472f077fe834e1cc748a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部到手。以下是汇总报告。\n\n---\n\n## exp_030c 最终结果\n\n- **最终 step**: 224K (train) / 215K (eval)，EXIT_CODE=0 正常退出\n- **最终 eval_return**: **47.2** @215K\n- **最终 NVE (ve_ratio)**: **0.3** @215K\n- **eval_peak**: **371.7** @35K\n- **NVE_max**: **0.4** @45K/75K/85K/95K\n\n### eval_return 完整轨迹\n\n| Step | eval_return | ve_ratio |\n|------|------------|----------|\n| 5K | 8.3 | — |\n| 15K | 87.5 | 0.0 |\n| 25K | 166.3 | 0.1 |\n| 35K | **371.7** | 0.1 |\n| 45K | 144.0 | 0.4 |\n| 55K | 266.0 | 0.2 |\n| 65K | 197.0 | 0.2 |\n| 75K | 107.8 | 0.4 |\n| 85K | 95.8 | 0.4 |\n| 95K | 72.8 | 0.4 |\n| 105K | 122.5 | 0.2 |\n| 115K | 162.2 | 0.1 |\n| 125K | 148.5 | 0.1 |\n| 135K | 138.4 | 0.1 |\n| 145K | 100.4 | 0.2 |\n| 155K | 144.3 | 0.1 |\n| 165K | 130.9 | 0.1 |\n| 175K | 66.4 | 0.2 |\n| 185K | 47.2 | 0.3 |\n| 195K | 56.5 | 0.2 |\n| 205K | 49.7 | 0.3 |\n| 215K | 47.2 | 0.3 |\n\n### Gate 状态\n- gate_dt_mean=**2.0** 全程不变，gate_dt_2_frac=**1.0**，gate_entropy=**0.0**\n- Gate 完全坍缩在 dt=2，TCN 从未激活 horizon 调整\n\n### Cheetah 基线对比\n- **Baseline eval (多 seed 平均)**: ~548 (last-5 mean), peak ~624-686\n- exp_030c peak 371.7 = baseline 的 **67.8%**\n- exp_030c final 47.2 = baseline 的 **8.6%**\n\n### 结论: **negative**\n\nσ=1.0 的高噪声完全抑制了 NVE 飙升（max 仅 0.4，远低于 CIVO 阈值），但代价是性能持续崩坏。35K 之后 eval 单调下行，175K 后跌至 ~50 区间再未恢复。Gate 全程锁死 dt=2，TCN 机制完全无效。\n\n---\n\n## Cheetah TCN 全系列对比 (exp_030a/b/c)\n\n| 实验 | σ | eval_peak | peak_step | eval_final | NVE_max | NVE_max_step | 结论 |\n|------|---|-----------|-----------|------------|---------|--------------|------|\n| **030a** | 0.2 | 299.5 | 35K | ~32 (stopped@64K) | **1.90** | 55K | negative — NVE 突破致 crash |\n| **030b** | 0.5 | 296.5 | 35K | 77.6 @195K | **10.67** | 55K | negative — 极端 NVE spike |\n| **030c** | 1.0 | 371.7 | 35K | 47.2 @215K | **0.4** | 45K | negative — NVE 低但性能崩坏 |\n| **Baseline** | — | 624-686 | 172-205K | ~548 avg | ~0.7-0.9 | — | success |\n\n**规律**: 三个 σ 全部 negative。σ 越小 NVE 越容易爆（0.2→1.9, 0.5→10.7），σ 越大 NVE 被压平但 eval 也被压死。没有一个 σ 能同时抑制 CIVO 且保持性能。TCN 在 Cheetah 上全面失败，gate 始终锁 dt=2 从不自适应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-030c.md"
+}

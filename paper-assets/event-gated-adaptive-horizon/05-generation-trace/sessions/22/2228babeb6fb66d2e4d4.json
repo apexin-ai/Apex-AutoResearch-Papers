@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2228babeb6fb66d2e4d4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap-ci_20260516T194558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci_20260516T194558_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "65cf8898350679e94229566c7397e2c1b5a2807491debda821e09efbb2abbc2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Condition | n | NVE mean | NVE 95% CI | Collapse rate | Collapse CI |\n|-----------|---|----------|-----------|---------------|-------------|\n| trained_dt_emb | 4 | 5.61 | [1.86, 11.46] | 75% | [0.30, 0.95] |\n| no_dt_emb | 3 | 0.91 | [0.82, 0.97] | 0% | [0.00, 0.56] |\n| full_sgs | 2 | 1.19 | [0.72, 1.66] | 50% | [0.10, 0.91] |\n\n- **Cross-env classification**: 7/7 correct (100%) at threshold 1.5×, CI=[1.0, 1.0]\n- **Effect size**: Cohen's d = 1.0 (large), mean difference = 4.7×\n- **Key finding**: trained_dt_emb CI lower bound (1.86) > no_dt_emb CI upper bound (0.97) — 完全不重叠，统计分离明确\n\n注意事项：\n- no_dt_emb 中 009c 的 NVE 值是基于 \"normalized v/e < 1.5x\" 定性描述估算的 (0.82)\n- full_sgs 只有 n=2（018 有配置错误，018v2 是修正版），CI 很宽\n- 008d seed 0 的 NVE=1.67 是下界（实验在 55K 步被终止）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

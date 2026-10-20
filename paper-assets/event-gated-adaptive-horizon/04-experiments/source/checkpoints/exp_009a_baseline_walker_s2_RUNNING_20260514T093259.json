@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_009a_baseline_walker_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:17:24.247Z",
+    "updated_at": "2026-05-14T09:32:59.132Z",
+    "hypothesis": "Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）",
+    "server": "bjb1-45299",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T07:19:08.969Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\"",
+      "code_commit": "09876d7080affdb0fb329e24753a46d998da9d8e"
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "142508",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_009a_baseline_walker_s2.log",
+      "submitted_at": "2026-05-14T09:32:58.868Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "142508",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_009a_baseline_walker_s2.log"
+  },
+  "timestamp": "2026-05-14T09:32:59.527056+00:00",
+  "trigger": "update_registry"
+}

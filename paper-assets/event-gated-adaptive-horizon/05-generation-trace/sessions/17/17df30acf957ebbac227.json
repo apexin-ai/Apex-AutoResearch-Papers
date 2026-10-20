@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17df30acf957ebbac227",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose stuck experiments urgent",
+  "task_key": "worker_diagnose_stuck-experiments-urgent_20260514T220552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_stuck-experiments-urgent_20260514T220552_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "bc3bb638aac998004d774e81d7ccd64a1a63dd79cd214fdca6cdf177a8105ed0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个实验都正常运行中，没有卡住。**\n\n## 诊断结果\n\n### exp_008e_v3_walker_s1 (cuda:1)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** (PID 898132, CPU 976%, 启动于今天 02:49) |\n| 当前 step | **80,000 / 105,000** (76%) |\n| metrics.jsonl | 最后修改 **06:05**（1分钟前），104 行 |\n| GPU 1 | 1% util, 4167 MiB / 97887 MiB, 40°C |\n\n比你上次看到的 65K 前进了 15K steps，正在正常推进。\n\n### exp_009a_baseline_walker_s2 (cuda:0)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** (PID 142513, CPU 1033%, 启动于 May14) |\n| 当前 step | **325,000 / 500,000** (65%) |\n| metrics.jsonl | 最后修改 **06:03**（3分钟前），421 行 |\n| GPU 0 | 0% util, 4165 MiB / 97887 MiB, 34°C |\n\n比你上次看到的 300K 前进了 25K steps，正在正常推进。\n\n### 关于 GPU 利用率低\n\nnvidia-smi 是瞬时快照。两个进程的 CPU 使用率都在 ~1000%（多核并行），说明正在活跃运算。GPU util 为 0-1% 可能是因为：\n- 查询的瞬间恰好在做 CPU 侧操作（数据处理/环境交互/checkpoint 写入）\n- DreamerV3 在 DMC 任务上模型较小，GPU 操作快速完成后主要瓶颈在 CPU 侧的环境 step\n\n**结论：两个实验都在正常运行，无需干预。** 按当前速度估算：\n- 008e_v3_s1: 剩余 25K steps，预计几小时内完成\n- 009a_baseline_s2: 剩余 175K steps，预计十几小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-stuck-experiments-urgent.md"
+}

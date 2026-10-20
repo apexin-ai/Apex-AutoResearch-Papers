@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_107_hopper_frozen_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T02:55:18.139Z",
+    "updated_at": "2026-05-27T02:55:18.139Z"
+  },
+  "timestamp": "2026-05-27T02:55:18.982070+00:00",
+  "trigger": "update_registry"
+}

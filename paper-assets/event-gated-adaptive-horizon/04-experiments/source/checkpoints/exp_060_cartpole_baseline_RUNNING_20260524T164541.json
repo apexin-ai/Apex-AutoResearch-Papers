@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_060_cartpole_baseline",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:01:05.099Z",
+    "updated_at": "2026-05-24T16:45:40.771Z",
+    "hypothesis": "Cartpole Swingup (DMC) baseline dt=1 建立 v/e ratio 校准基线，用于 CIVO 诊断阈值在第三个 DMC 环境的验证。预期 NVE 保持在 1.0x 附近，无 CIVO 现象。",
+    "spec": {
+      "command": "bash -c 'for SEED in 0 1 2; do python -u dreamer.py --configs defaults dmc_proprio --task dmc_cartpole_swingup --logdir logdir/exp_060_cartpole_baseline_s${SEED} --steps 105000 --seed $SEED --compile False --device cuda:0 --checkpoint_every 25000; done'",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "223294",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_060_cartpole_baseline.log",
+      "submitted_at": "2026-05-24T16:26:42.610Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "dmc_cartpole_swingup",
+      "data_count": 105000,
+      "model_name": "DreamerV3 (vanilla baseline, Cartpole Swingup)",
+      "seed": "0,1,2",
+      "gpu_ids": [
+        0
+      ]
+    }
+  },
+  "timestamp": "2026-05-24T16:45:41.202757+00:00",
+  "trigger": "update_registry"
+}

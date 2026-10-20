@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_008d_civo_trigger_s4",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:02:43.972Z",
+    "updated_at": "2026-05-18T05:17:45.132Z",
+    "hypothesis": "Walker Walk CIVO trigger seed=4: trained dt_emb + subsample ON + H=8. 第四 seed 复现 CIVO (NVE>1.5×)，加强 Walker 因果论证的统计力度。Rebuttal 储备。",
+    "parent": "exp_008d_civo_trigger_s3",
+    "spec": {
+      "command": "python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 4 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir ./logdir/exp_008d_civo_trigger_s4",
+      "server": "bjb1-45299",
+      "pid": "715124",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/event-gated-adaptive-horizon",
+      "data_count": 0,
+      "model_name": "DreamerV3-walker-civo-trigger",
+      "seed": 4,
+      "checkpoint_source": "train_from_scratch",
+      "eval_data": "dmc_walker_walk_online"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_step": 112000,
+      "target_step": 105000,
+      "eval_return_trajectory": {
+        "5K": 30.9,
+        "15K": 171.4,
+        "25K": 189.5,
+        "35K": 153.8,
+        "45K": 158.2,
+        "55K": 229.3,
+        "65K": 333.6,
+        "75K": 302.4,
+        "85K": 383.3,
+        "95K": 240.3,
+        "105K": 63.6
+      },
+      "peak_eval_return": 383.3,
+      "peak_eval_step": 85000,
+      "final_eval_return_105K": 63.6,
+      "ve_ratio_105K": 3.03,
+      "civo_alert_105K": 1,
+      "delta_ve_105K": 2.05,
+      "value_mean_105K": 192.65,
+      "value_mean_95K": 235.42,
+      "civo_confirmed": true,
+      "gate_dt_mean": 2,
+      "gate_dt_2_frac": 1
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/latest.pt",
+    "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s4/metrics.jsonl",
+    "completed_at": "2026-05-18T05:17:45.132Z"
+  },
+  "timestamp": "2026-05-18T05:17:45.347487+00:00",
+  "trigger": "update_registry"
+}

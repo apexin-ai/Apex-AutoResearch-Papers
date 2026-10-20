@@ -1,0 +1,141 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sutton1999options}
+\citation{sharma2017figar}
+\citation{hafner2020dreamerv1,hafner2021dreamerv2,hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{nhu2025tawm}
+\citation{sutton1999options}
+\citation{bacon2017option}
+\citation{sharma2017figar}
+\citation{hafner2023dreamerv3}
+\citation{micheli2023iris}
+\citation{robine2023twm}
+\citation{kim2024thick}
+\citation{ropke2024hieros}
+\citation{nhu2025tawm}
+\citation{janner2019mbpo}
+\citation{lu2018delusional}
+\citation{hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal abstraction in RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-model RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value overestimation in MBRL.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Base Architecture}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Variable-Rate Imagination}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Factorial Experiment Design}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Factorial design: core configurations. Each cell denotes a distinct experiment.}}{3}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:factorial}{{1}{3}{Factorial design: core configurations. Each cell denotes a distinct experiment}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diagnostic Metrics}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalized Value Excess (NVE).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}C1: Variable-Rate Imagination Consistently Degrades Performance}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces C1: Performance degradation across configurations and environments. Baseline eval returns: Walker $\sim $950, Cheetah $\sim $594, Cartpole $\sim $852.}}{3}{table.caption.6}\protected@file@percent }
+\newlabel{tab:c1_degradation}{{2}{3}{C1: Performance degradation across configurations and environments. Baseline eval returns: Walker $\sim $950, Cheetah $\sim $594, Cartpole $\sim $852}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cheetah Run baseline.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cartpole Swingup baseline.}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cheetah Run baseline across seeds.}}{4}{table.caption.8}\protected@file@percent }
+\newlabel{tab:cheetah_baseline}{{3}{4}{Cheetah Run baseline across seeds}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}C2: Trained \texttt  {dt\_emb}\xspace  Reliably Triggers Pathological Value Overestimation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:c2}{{4.2}{4}{C2: Trained \dtemb Reliably Triggers Pathological Value Overestimation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Walker Walk 008d (trained \texttt  {dt\_emb}\xspace  ): cross-seed comparison. All 5 seeds trigger $NVE\xspace  > 1.5\times $; 4/5 collapse.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:008d_seeds}{{4}{4}{Walker Walk 008d (trained \dtemb ): cross-seed comparison. All 5 seeds trigger $\nve > 1.5\times $; 4/5 collapse}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal control: removing \texttt  {dt\_emb}\xspace  .}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Walker Walk 008f (no \texttt  {dt\_emb}\xspace  ): cross-seed summary. 0/5 seeds exceed $NVE\xspace  = 1.5\times $.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:008f_seeds}{{5}{4}{Walker Walk 008f (no \dtemb ): cross-seed summary. 0/5 seeds exceed $\nve = 1.5\times $}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-environment replication.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cartpole Swingup trained \texttt  {dt\_emb}\xspace  .}{4}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cartpole no \texttt  {dt\_emb}\xspace  control.}{4}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hopper Hop validation (predicted).}{4}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NVE threshold analysis.}{4}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-environment CIVO\xspace  : trained \texttt  {dt\_emb}\xspace  vs.\ no \texttt  {dt\_emb}\xspace  .}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:cross_env_civo}{{6}{5}{Cross-environment \civo : trained \dtemb vs.\ no \dtemb }{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cheetah Run trained \texttt  {dt\_emb}\xspace  : per-seed results. All 3 seeds collapse with extreme NVE.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:cheetah_trained}{{7}{5}{Cheetah Run trained \dtemb : per-seed results. All 3 seeds collapse with extreme NVE}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}C3: Untrained \texttt  {dt\_emb}\xspace  Prevents Optimistic Drift}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}C4: Longer $\Delta t$ Amplifies Degradation}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}C5: Horizon and Subsampling Are Secondary Factors}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}C6: Dual Vulnerability Pathways}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:c6}{{4.6}{5}{C6: Dual Vulnerability Pathways}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Actor entropy analysis.}{5}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cheetah Run no \texttt  {dt\_emb}\xspace  : per-seed results. All 3 seeds stable with $NVE\xspace  < 0.5$.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cheetah_no_dtemb}{{8}{6}{Cheetah Run no \dtemb : per-seed results. All 3 seeds stable with $\nve < 0.5$}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cartpole Swingup: trained \texttt  {dt\_emb}\xspace  per-seed results.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:cartpole_trained}{{9}{6}{Cartpole Swingup: trained \dtemb per-seed results}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}C7: Gradient-Level Interventions Are Categorically Insufficient}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:c7}{{4.7}{6}{C7: Gradient-Level Interventions Are Categorically Insufficient}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gradient decomposition.}{6}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SGS results.}{6}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Frozen \texttt  {dt\_emb}\xspace  ablation.}{6}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}RSSM Prediction Quality Analysis}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value prediction distributions.}{6}{section*.37}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Hopper Hop: trained \texttt  {dt\_emb}\xspace  vs.\ no \texttt  {dt\_emb}\xspace  (predicted).}}{7}{table.caption.21}\protected@file@percent }
+\newlabel{tab:hopper}{{10}{7}{Hopper Hop: trained \dtemb vs.\ no \dtemb (predicted)}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NVE threshold sensitivity analysis (18 seeds). $1.5\times $ maximizes accuracy and F1.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:nve_threshold}{{11}{7}{NVE threshold sensitivity analysis (18 seeds). $1.5\times $ maximizes accuracy and F1}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {dt\_emb}\xspace  cosine similarity.}{7}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why TAWM succeeds where DreamerV3 fails.}{7}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multiple vulnerability pathways.}{7}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gradient magnitude $\neq  $ causal importance.}{7}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stochastic bifurcation.}{7}{section*.42}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Untrained \texttt  {dt\_emb}\xspace  (008a, Walker) and Cheetah equivalent: cross-seed results.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:untrained_emb}{{12}{8}{Untrained \dtemb (008a, Walker) and Cheetah equivalent: cross-seed results}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces C4: Monotonic degradation with increasing $\Delta t$ (Walker Walk).}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:c4_dt}{{13}{8}{C4: Monotonic degradation with increasing $\Delta t$ (Walker Walk)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for temporal abstraction.}{8}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Intervention Attempts: Comprehensive Negative Results}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:interventions}{{A}{8}{Intervention Attempts: Comprehensive Negative Results}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Temporal Conditioning Noise (TCN)}{8}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma = 0.2$, Walker Walk.}{8}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN dose-response (Walker Walk).}{8}{section*.46}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{bacon2017option}{{1}{2017}{{Bacon et~al.}}{{}}}
+\bibcite{hafner2020dreamerv1}{{2}{2020}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2021dreamerv2}{{3}{2021}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2023dreamerv3}{{4}{2023}{{Hafner et~al.}}{{}}}
+\bibcite{janner2019mbpo}{{5}{2019}{{Janner et~al.}}{{}}}
+\bibcite{kim2024thick}{{6}{2024}{{Kim et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 008e\_v3 ($\Delta t = 1$ imagination, trained \texttt  {dt\_emb}\xspace  ): all 4 seeds. 50\% collapse rate matches 008d.}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:008e_v3}{{14}{9}{008e\_v3 ($\Delta t = 1$ imagination, trained \dtemb ): all 4 seeds. 50\% collapse rate matches 008d}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Pathway A (classic CIVO\xspace  , 008d) vs.\ Pathway B (policy instability, 008e\_v3 s2).}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:pathways}{{15}{9}{Pathway A (classic \civo , 008d) vs.\ Pathway B (policy instability, 008e\_v3 s2)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma = 0.5$, Cheetah Run.}{9}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TCN $\sigma = 0.2$, PickCube.}{9}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Uncertainty-Gated Imagination Truncation}{9}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Consolidated Intervention Summary}{9}{subsection.A.3}\protected@file@percent }
+\bibcite{lu2018delusional}{{7}{2018}{{Lu et~al.}}{{}}}
+\bibcite{micheli2023iris}{{8}{2023}{{Micheli et~al.}}{{}}}
+\bibcite{nhu2025tawm}{{9}{2025}{{Nhu et~al.}}{{}}}
+\bibcite{robine2023twm}{{10}{2023}{{Robine et~al.}}{{}}}
+\bibcite{ropke2024hieros}{{11}{2024}{{R{\"o}pke et~al.}}{{}}}
+\bibcite{sharma2017figar}{{12}{2017}{{Sharma et~al.}}{{}}}
+\bibcite{sutton1999options}{{13}{1999}{{Sutton et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Actor entropy at collapse onset across pathways.}}{10}{table.caption.29}\protected@file@percent }
+\newlabel{tab:entropy}{{16}{10}{Actor entropy at collapse onset across pathways}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Gradient decomposition of \texttt  {dt\_emb}\xspace  .weight by source.}}{10}{table.caption.31}\protected@file@percent }
+\newlabel{tab:grad_decomp}{{17}{10}{Gradient decomposition of \dtemb .weight by source}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Selective gradient stopping: comprehensive failure across 17 seeds. Embedding removal (008f+024b) achieves 5/5 for comparison.}}{11}{table.caption.33}\protected@file@percent }
+\newlabel{tab:sgs}{{18}{11}{Selective gradient stopping: comprehensive failure across 17 seeds. Embedding removal (008f+024b) achieves 5/5 for comparison}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces \texttt  {dt\_emb}\xspace  three-state comparison (Walker Walk, subsample ON).}}{11}{table.caption.35}\protected@file@percent }
+\newlabel{tab:three_state}{{19}{11}{\dtemb three-state comparison (Walker Walk, subsample ON)}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces RSSM fidelity: absolute errors and ratios. Both must be reported to avoid misleading conclusions from 008d's low obs gap ratio (1.30$\times $), which masks 3$\times $ baseline absolute error.}}{11}{table.caption.36}\protected@file@percent }
+\newlabel{tab:rssm_fidelity}{{20}{11}{RSSM fidelity: absolute errors and ratios. Both must be reported to avoid misleading conclusions from 008d's low obs gap ratio (1.30$\times $), which masks 3$\times $ baseline absolute error}{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces TCN $\sigma = 0.2$ Walker Walk: seed comparison. Prevention rate: 1/2 (50\%).}}{11}{table.caption.45}\protected@file@percent }
+\newlabel{tab:tcn_02_walker}{{21}{11}{TCN $\sigma = 0.2$ Walker Walk: seed comparison. Prevention rate: 1/2 (50\%)}{table.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces TCN dose-response across $\sigma $ values (Walker Walk).}}{11}{table.caption.47}\protected@file@percent }
+\newlabel{tab:tcn_dose}{{22}{11}{TCN dose-response across $\sigma $ values (Walker Walk)}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Cheetah Run TCN vs.\ untreated. Reduction in peak NVE but clinically insignificant.}}{11}{table.caption.49}\protected@file@percent }
+\newlabel{tab:cheetah_tcn}{{23}{11}{Cheetah Run TCN vs.\ untreated. Reduction in peak NVE but clinically insignificant}{table.caption.49}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Uncertainty-gated truncation: delayed but not prevented CIVO.}}{12}{table.caption.51}\protected@file@percent }
+\newlabel{tab:uncertainty_truncation}{{24}{12}{Uncertainty-gated truncation: delayed but not prevented CIVO}{table.caption.51}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces All intervention attempts. Combined forward-pass prevention rate: $\leq $1/8 seeds across environments.}}{12}{table.caption.52}\protected@file@percent }
+\newlabel{tab:all_interventions}{{25}{12}{All intervention attempts. Combined forward-pass prevention rate: $\leq $1/8 seeds across environments}{table.caption.52}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Final claim status summary.}}{12}{table.caption.53}\protected@file@percent }
+\newlabel{tab:claims_final}{{26}{12}{Final claim status summary}{table.caption.53}{}}
+\gdef \@abspage@last{12}

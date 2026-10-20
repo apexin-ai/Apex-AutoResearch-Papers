@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cd28173d5d5fe00b415",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code 018 analysis prep",
+  "task_key": "worker_code_018-analysis-prep_20260516T044808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_018-analysis-prep_20260516T044808_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "c82b7c939f0d7e10b173e45528bd85144cea74980c04273601320504a6f24eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个产出物：\n\n**1. 分析脚本** `scripts/analyze_018_full_sgs.py` — 已部署到服务器并通过 dry-run 验证\n- 用 008d 代替 018 测试，正确输出 CIVO_PRESENT（NVE 4.13x, 4 consecutive checkpoints）\n- 008f 正确判定 CIVO_ABSENT（NVE 1.02x）\n- 016e 正确判定 CIVO_PRESENT（NVE 10.42x）\n- 生成了 eval curves 和 NVE trajectories 的 PDF/PNG 图表（~20KB/90KB）\n\n**2. 判断标准文档** `artifacts/_project/report/018_analysis_criteria.md`\n- 三行决策表：NVE<1.5x → gradient-level / NVE>1.5x → representation-level / transient → partial\n- 参考实验对比逻辑（018 vs 008d/016e/008f）\n- 完整运行命令\n\n018 训练完成后运行：\n```bash\ncd /root/autodl-tmp/event-gated-adaptive-horizon\npython scripts/analyze_018_full_sgs.py \\\n  --logdir-018 logdir/exp_018_full_sgs_walker_s1 \\\n  --logdir-008d logdir/exp_008d_subsample_on_h8 \\\n  --logdir-008f logdir/exp_008f_no_dt_embed_subsample_on_h8 \\\n  --logdir-016e logdir/exp_016e_sgs_walker_s1 \\\n  --baseline-logdir logdir/baseline_s1 \\\n  --output-dir artifacts/018_analysis\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-018-analysis-prep.md"
+}

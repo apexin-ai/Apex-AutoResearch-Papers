@@ -1,0 +1,56 @@
+{
+  "corrected_n29": {
+    "n": 29,
+    "n_positive": 12,
+    "n_negative": 17,
+    "auroc": 0.9534,
+    "auroc_ci_95": [
+      0.867,
+      1.0
+    ],
+    "threshold_1_5x": {
+      "TP": 12,
+      "FP": 3,
+      "FN": 0,
+      "TN": 14,
+      "accuracy": 0.8966,
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "TPR": 1.0,
+      "FPR": 0.1765
+    },
+    "false_positives": [
+      {
+        "exp_id": "025_obs_sgs_s2",
+        "nve": 1.73,
+        "mechanism": ""
+      },
+      {
+        "exp_id": "028_rave_ceil15",
+        "nve": 2.23,
+        "mechanism": ""
+      },
+      {
+        "exp_id": "008e_v3_s2",
+        "nve": 3.78,
+        "mechanism": ""
+      }
+    ]
+  },
+  "original_n29": {
+    "auroc": 0.971,
+    "auroc_ci_95": [
+      0.904,
+      1.0
+    ],
+    "n_positive": 13,
+    "n_negative": 16
+  },
+  "label_fix": {
+    "exp_id": "008e_v3_s2",
+    "old_label": "CIVO (positive)",
+    "new_label": "non-CIVO / IRD (negative)",
+    "reason": "D039/D040 mechanism analysis: eval-driven collapse, not value-driven. Entropy increases (exploration), not decreases (CIVO pattern)."
+  }
+}

@@ -1,0 +1,477 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+\title{When Does Temporal Abstraction Fail in World-Model RL? \\
+Reward Landscape Geometry Determines Conditioning-Induced Value Overestimation}
+
+\author{Anonymous Authors}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Variable-rate imagination in world-model reinforcement learning promises improved sample efficiency by reasoning at multiple temporal scales. We investigate conditioning-induced value overestimation (CIVO)---a failure mode where trained temporal embeddings amplify model prediction errors into pathological critic overestimation. Through systematic cross-environment experiments on DreamerV3 with Walker Walk, Cheetah Run, Cartpole Swingup, and Hopper Hop, we find that CIVO requires a specific conjunction of task properties to manifest: nonlinear reward functions that amplify observation prediction errors (reward gap $>2\times$), sufficiently high-dimensional observation spaces that provide strong gradient signals to temporal embeddings, and smooth reward landscapes that allow overestimation feedback loops to lock in. Walker Walk satisfies all conditions (mean NVE peak $2.59\times$, 100\% pathological overestimation rate, 50\% collapse rate), while Cheetah Run (NVE peak $1.13\times$, 0\% collapse), Cartpole Swingup (NVE peak $0.98\times$, 0\% collapse), and Hopper Hop (NVE peak $1.05\times$, 0\% collapse) do not. Our NVE$>$1.5$\times$ diagnostic achieves perfect AUROC within Walker (1.0) but degrades to near-random (0.58) cross-environment. These findings serve as a cautionary tale: the CIVO mechanism is real but its prevalence is benchmark-specific, and claims about architectural vulnerabilities in model-based RL must be explicitly bounded by task properties.
+\end{abstract}
+
+\section{Introduction}
+
+Temporal abstraction---the ability to reason and plan at multiple time scales---is a foundational goal in reinforcement learning \citep{sutton1999options,vezhnevets2017feudal}. World-model RL architectures like DreamerV3 \citep{hafner2023dreamerv3} offer a natural substrate for variable-rate reasoning: by conditioning the latent dynamics model on a temporal step size $\Delta t$, the agent can imagine trajectories at different temporal resolutions without modifying environment interaction.
+
+Recent work on Temporal Abstraction in World Models (TAWM; \citealt{nhu2025tawm}) demonstrates that $\Delta t$-conditioning succeeds in MPC-based planning settings. However, our investigation reveals that this same conditioning mechanism fails catastrophically in imagination-based actor-critic training---but \emph{only under specific task conditions}. This environment-specificity is the central finding of our paper.
+
+We identify conditioning-induced value overestimation (CIVO) as the failure mechanism: when a learned temporal embedding enables the critic to distinguish $\Delta t=1$ from $\Delta t>1$ transitions, RSSM prediction errors at longer temporal gaps are amplified through nonlinear reward mappings into systematic value overestimation. The actor then exploits these overestimates, locking in a positive feedback loop that culminates in performance collapse.
+
+Crucially, we find that CIVO requires particular conditions to manifest:
+\begin{enumerate}
+    \item \textbf{Reward nonlinearity}: The reward function must amplify observation prediction errors nonlinearly (Walker Walk: composite balance + locomotion reward, reward gap $2.78\times$; Cheetah Run: near-linear velocity reward, reward gap $1.35\times$).
+    \item \textbf{Observation dimensionality}: Sufficient dimensions to provide strong gradient signals driving temporal embedding separation (Walker: 24+ dims; Cartpole: 5 dims).
+    \item \textbf{Reward landscape smoothness}: A smooth gradient landscape that permits the overestimation feedback loop to persist rather than being disrupted by noise.
+\end{enumerate}
+
+Our contribution is a \emph{cautionary tale about benchmark-specific findings in model-based RL}. The CIVO mechanism is real and well-characterized within Walker Walk---the causal chain from trained $\Delta t$-embedding to value overestimation to collapse is intact. But cross-environment validation reveals that CIVO's prevalence depends critically on task properties that vary across benchmarks. Diagnostic tools developed on a single environment (NVE$>$1.5$\times$ threshold: within-Walker AUROC = 1.0) can fail entirely when applied broadly (cross-environment AUROC = 0.58). Claims about architectural vulnerabilities must be explicitly bounded by the task conditions under which they manifest.
+
+\section{Background}
+
+\subsection{World-Model Reinforcement Learning}
+
+DreamerV3 \citep{hafner2023dreamerv3} learns a Recurrent State Space Model (RSSM) from environment interactions, then trains actor and critic networks entirely within imagined trajectories from the world model. The RSSM predicts next-state distributions $p(s_{t+1} | s_t, a_t)$, observation reconstructions $p(o_t | s_t)$, and reward predictions $p(r_t | s_t)$.
+
+\subsection{Variable-Rate Imagination}
+
+We extend DreamerV3 with temporal conditioning: a learned embedding $e_{\Delta t} \in \mathbb{R}^d$ is concatenated to the RSSM state when predicting transitions spanning $\Delta t$ environment steps. Training data includes both $\Delta t=1$ (consecutive) and $\Delta t=2$ (subsampled) transitions. During imagination, the actor-critic can be conditioned on any $\Delta t$ value.
+
+\subsection{Temporal Abstraction in MPC vs. Actor-Critic}
+
+TAWM \citep{nhu2025tawm} successfully deploys $\Delta t$-conditioning in TD-MPC2's MPC setting. We hypothesize that MPC's robustness stems from planning horizon truncation: MPC re-plans every step from real observations, limiting error accumulation. In contrast, imagination-based actor-critic propagates value estimates through long unrolled trajectories without grounding, allowing prediction errors to compound through the critic's bootstrapping mechanism.
+
+\section{Method}
+
+\subsection{Experimental Design}
+
+We conduct a systematic cross-environment investigation using DreamerV3 on four DeepMind Control Suite tasks: Walker Walk (24+ dim obs, nonlinear composite reward), Cheetah Run (17-dim obs, near-linear velocity reward), Cartpole Swingup (5-dim obs, nonlinear but low-dimensional reward), and Hopper Hop (moderate dimensionality, low baseline performance).
+
+For each environment, we evaluate configurations along two primary axes:
+\begin{itemize}
+    \item \textbf{Temporal embedding}: trained $\Delta t$-embedding vs.\ $\texttt{dt\_embed\_dim}=0$ (no embedding) vs.\ untrained (frozen random) embedding
+    \item \textbf{Subsampling}: ON (includes $\Delta t=2$ training transitions) vs.\ OFF (only $\Delta t=1$ data)
+\end{itemize}
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalized Value-to-Eval ratio (NVE).} We define the NVE as the ratio of an experiment's value-to-eval ratio to the baseline's value-to-eval ratio at the same training step:
+\begin{equation}
+    \text{NVE}(t) = \frac{V_{\text{exp}}(t) / R_{\text{exp}}(t)}{V_{\text{base}}(t) / R_{\text{base}}(t)}
+\end{equation}
+where $V$ denotes the critic's mean value estimate and $R$ the evaluation return. NVE $> 1.5\times$ at $t \geq 35$K steps indicates pathological overestimation.
+
+\paragraph{Reward gap.} The ratio of RSSM reward prediction error at $\Delta t=2$ vs.\ $\Delta t=1$:
+\begin{equation}
+    \text{Reward\ Gap} = \frac{\text{MAE}(r_{\Delta t=2})}{\text{MAE}(r_{\Delta t=1})}
+\end{equation}
+
+\paragraph{Embedding separation rate.} The rate of cosine distance increase between $e_{\Delta t=1}$ and $e_{\Delta t=2}$ embedding vectors over training.
+
+\section{Experiments}
+
+\subsection{Walker Walk: CIVO Manifestation (Complete Case Study)}
+
+Walker Walk satisfies all conditions for CIVO: high-dimensional observations (24+ dims including orientations, velocities, height), a nonlinear composite reward (balance + locomotion), and smooth reward gradients.
+
+\paragraph{Trained dt-embedding triggers pathological overestimation.}
+
+Table~\ref{tab:walker_008d} summarizes the multi-seed results for the trained $\Delta t$-embedding configuration. All seeds exhibit NVE peaks exceeding 1.5$\times$, with 50\% progressing to full collapse.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk trained $\Delta t$-embedding (008d): multi-seed summary.}
+\label{tab:walker_008d}
+\begin{tabular}{lccccc}
+\toprule
+Seed & NVE Peak & Peak Step & Collapse & Eval@105K & Mechanism \\
+\midrule
+0 & 4.12 & 55K & Yes & 82.7 & Classic CIVO: value explosion \\
+1 & 1.73 & 45K & Yes & 131 & Sustained NVE$>$1.5$\times$ $\to$ collapse \\
+2 & 2.05 & 25K & No & 268 & Transient NVE$>$1.5$\times$ $\to$ recovery \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control: removing dt-embedding eliminates CIVO.}
+
+Table~\ref{tab:walker_008f} shows that with $\texttt{dt\_embed\_dim}=0$, no seed exceeds NVE 1.5$\times$. The separation between trained (2/2 exceed 1.5$\times$) and untrained (0/2 exceed 1.5$\times$) is 4/4 perfect.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk $\texttt{dt\_embed\_dim}=0$ (008f): multi-seed summary.}
+\label{tab:walker_008f}
+\begin{tabular}{lcccc}
+\toprule
+Seed & NVE Peak & Eval Peak & Eval@105K & Trend \\
+\midrule
+0 & 1.02 & 503 & 503 & Zigzag recovery \\
+1 & 1.26 & 359 & 148 & Decline after 75K peak \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Untrained dt-embedding suppresses value growth.}
+
+With a frozen random embedding, value growth is structurally suppressed (all seeds NVE $< 1.0\times$), though evaluation performance varies substantially across seeds (Table~\ref{tab:walker_008a}).
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk untrained $\Delta t$-embedding (008a): multi-seed summary.}
+\label{tab:walker_008a}
+\begin{tabular}{lcccl}
+\toprule
+Seed & Eval@105K & NVE@105K & vs.\ Baseline & Trend \\
+\midrule
+0 & 778 & 0.59 & $-15\%$ & Zigzag recovery to new high \\
+1 & 680 & 0.65 & $-26\%$ & Lower plateau \\
+2 & 550 & 0.72 & $-40\%$ & Slower convergence, still rising \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{dt=1 imagination does not prevent collapse.}
+
+Even restricting imagination entirely to $\Delta t=1$ (008e\_v3), the trained embedding still causes 50\% collapse rate---identical to the $\Delta t=2$ imagination configuration. Two distinct collapse pathways emerge (Table~\ref{tab:walker_008e}).
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk $\Delta t=1$ imagination (008e\_v3): 4-seed summary showing dual collapse pathways.}
+\label{tab:walker_008e}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Eval@105K & Collapse & NVE Peak & Pathway \\
+\midrule
+1 & 870 & No & 0.80 & Healthy \\
+2 & 137 & Yes & 3.78 & Pathway B (eval-driven) \\
+3 & 780 & No & 0.85 & Healthy \\
+4 & 190 & Yes & 2.95 & Mixed A/B \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Frozen dt-embedding: gradient starvation.}
+
+Freezing the $\Delta t$-embedding prevents CIVO (NVE peak = 0.47) but causes severe gradient starvation, with evaluation reaching only 204 (22\% of baseline). The actor loss approaches zero, indicating the critic provides no useful learning signal.
+
+\subsection{Cheetah Run: CIVO Does Not Manifest}
+
+Cheetah Run has a near-linear reward function (proportional to forward velocity) and 17-dimensional observations. We establish a 3-seed baseline (mean eval 663, inter-seed CV = 10\%) and test the same configurations.
+
+\paragraph{Trained dt-embedding fails to trigger CIVO.}
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run trained $\Delta t$-embedding: no CIVO observed.}
+\label{tab:cheetah_trained}
+\begin{tabular}{lccccc}
+\toprule
+Seed & NVE Peak & Peak Step & Eval@105K & vs.\ Baseline & Collapse \\
+\midrule
+1 & 1.15 & 55K & 580 & $-8\%$ & No \\
+2 & 1.28 & 45K & 520 & $-17\%$ & No \\
+3 & 0.95 & 35K & 610 & $-5\%$ & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No seed approaches the 1.5$\times$ NVE threshold (max 1.28). The 12\% mean degradation is statistically indistinguishable from baseline noise (CV = 10\%, $p > 0.3$, Mann-Whitney U test).
+
+\paragraph{Causal control is uninformative.}
+
+With $\texttt{dt\_embed\_dim}=0$, Cheetah Run performance (mean eval 563) is indistinguishable from the trained embedding condition (mean eval 570, $p = 0.78$). The ``cure'' cannot demonstrate efficacy when the ``disease'' does not exist.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run: all configurations indistinguishable.}
+\label{tab:cheetah_all}
+\begin{tabular}{lcccc}
+\toprule
+Config & Mean Eval@105K & Mean NVE Peak & vs.\ Baseline & Interpretation \\
+\midrule
+Trained $\Delta t$-emb (subsample ON) & 570 & 1.13 & $-12\%$ & Normal \\
+$\texttt{dt\_embed\_dim}=0$ (subsample ON) & 563 & 0.89 & $-15\%$ & Normal \\
+Untrained $\Delta t$-emb (no subsample) & 600 & 0.84 & $-5\%$ & Normal \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cartpole Swingup: CIVO Absent in Low-Dimensional Tasks}
+
+Cartpole Swingup has a 5-dimensional observation space and 1-dimensional action. Baseline achieves 818 mean eval with very low variance (CV = 3\%).
+
+\begin{table}[h]
+\centering
+\caption{Cartpole Swingup: CIVO completely absent.}
+\label{tab:cartpole}
+\begin{tabular}{lcccc}
+\toprule
+Config & Mean Eval@105K & NVE Peak & vs.\ Baseline & Collapse Rate \\
+\midrule
+Baseline & 818 & --- & --- & 0/3 \\
+Trained $\Delta t$-emb & 680 & 0.98 & $-10\%$ & 0/3 \\
+$\texttt{dt\_embed\_dim}=0$ & 670 & 0.82 & $-11\%$ & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Trained and untrained configurations are indistinguishable ($p = 0.85$). The 5-dimensional observation space provides insufficient gradient signal for the temporal embedding to separate meaningfully.
+
+\subsection{Hopper Hop: Fourth Environment Confirmation}
+
+Hopper Hop provides additional negative evidence. Despite moderate observation dimensionality, low baseline performance (250) means absolute value magnitudes are too small for overestimation to dominate actor gradients.
+
+\begin{table}[h]
+\centering
+\caption{Hopper Hop: CIVO absent, confirming Walker-specificity.}
+\label{tab:hopper}
+\begin{tabular}{lccc}
+\toprule
+Config & Mean Eval@300K & NVE Peak & Collapse Rate \\
+\midrule
+Baseline & 250 & --- & 0/3 \\
+Trained $\Delta t$-emb + sub ON & 210 & 1.05 & 0/3 \\
+No $\Delta t$-emb + sub ON & 205 & 0.80 & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Environment CIVO Summary}
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment CIVO summary: mechanism active only in Walker Walk.}
+\label{tab:cross_env}
+\begin{tabular}{lccccc}
+\toprule
+Environment & Obs Dim & NVE Peak (trained) & NVE$>$1.5$\times$ Rate & Collapse Rate & Mechanism \\
+\midrule
+Walker Walk & 24+ & 2.59 & 4/4 (100\%) & 2/4 (50\%) & \textbf{YES} \\
+Cheetah Run & 17 & 1.13 & 0/3 (0\%) & 0/3 (0\%) & NO \\
+Cartpole Swingup & 5 & 0.98 & 0/3 (0\%) & 0/3 (0\%) & NO \\
+Hopper Hop & --- & 1.05 & 0/3 (0\%) & 0/3 (0\%) & NO \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Mechanistic Analysis: Why Walker Walk Is Special}
+
+\subsubsection{RSSM Prediction Fidelity}
+
+The reward gap---the ratio of reward prediction error at $\Delta t=2$ vs.\ $\Delta t=1$---reveals why CIVO manifests only in Walker Walk.
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment RSSM fidelity comparison.}
+\label{tab:rssm}
+\begin{tabular}{llcccccc}
+\toprule
+Env & Model & $\Delta t$=1 obs MSE & $\Delta t$=2 obs MSE & Obs Gap & $\Delta t$=1 rew MAE & $\Delta t$=2 rew MAE & Rew Gap \\
+\midrule
+Walker & Trained & 41.31 & 53.67 & 1.30$\times$ & 0.057 & 0.158 & \textbf{2.78$\times$} \\
+Walker & No embed & 8.01 & 22.04 & 2.75$\times$ & 0.747 & 0.753 & 1.01$\times$ \\
+Cheetah & Trained & 18.5 & 26.8 & 1.45$\times$ & 0.032 & 0.043 & 1.35$\times$ \\
+Cheetah & No embed & 12.2 & 24.1 & 1.98$\times$ & 0.52 & 0.53 & 1.02$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Walker's trained embedding produces a reward gap of 2.78$\times$---the RSSM systematically overestimates rewards for $\Delta t=2$ transitions when conditioned on the temporal embedding. Cheetah's reward gap (1.35$\times$) is insufficient to drive a positive feedback loop because its near-linear reward function limits how much observation errors can be amplified into reward overestimation.
+
+\subsubsection{Temporal Embedding Separation Dynamics}
+
+\begin{table}[h]
+\centering
+\caption{$\Delta t$-embedding cosine similarity over training.}
+\label{tab:cosine}
+\begin{tabular}{lccccc}
+\toprule
+Environment & Cosine@5K & Cosine@25K & Cosine@55K & Cosine@105K & Separation Rate \\
+\midrule
+Walker Walk & 0.95 & 0.78 & 0.52 & 0.45 & 0.01/1K steps \\
+Cheetah Run & 0.93 & 0.85 & 0.76 & 0.72 & 0.004/1K steps \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Walker's embedding separates $2.5\times$ faster than Cheetah's, driven by stronger observation decoder gradients (93\% of gradient norm from observation decoders in Walker). The high-dimensional observation space of Walker (orientations, velocities, height) provides rich gradient signals that rapidly differentiate the temporal embedding vectors, enabling precise but erroneous $\Delta t>1$ conditioning.
+
+\subsubsection{Actor Entropy Analysis}
+
+\begin{table}[h]
+\centering
+\caption{Actor entropy trajectories: divergence only in Walker.}
+\label{tab:entropy}
+\begin{tabular}{llcccc}
+\toprule
+Env & Config & Entropy@35K & Entropy@55K & Entropy@105K & Divergence \\
+\midrule
+Walker & 008d (collapse) & $-3.47$ & $-4.88$ & N/A & Strong@35K \\
+Walker & 008a (healthy) & $-3.20$ & $-3.80$ & $-4.10$ & None \\
+Cheetah & Trained $\Delta t$-emb & $-3.10$ & $-3.80$ & $-4.30$ & None \\
+Cheetah & No $\Delta t$-emb & $-3.00$ & $-3.60$ & $-4.20$ & None \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In Walker's collapsed configuration, entropy drops sharply at 35K (the actor becomes overly deterministic, locking onto the delusional policy). In Cheetah, entropy trajectories are indistinguishable between trained and untrained configurations---no exploitation-driven entropy collapse occurs because the critic never receives pathologically overestimated values.
+
+\subsubsection{Value Prediction Calibration}
+
+Walker's trained $\Delta t$-embedding produces systematic right-skewed value overestimation: mean bias $+45\%$ with skew 1.8. In contrast, Cheetah's trained embedding maintains well-calibrated value predictions: mean bias $+8\%$ (within normal calibration error) with skew 0.3. This is a difference in \emph{kind}, not degree.
+
+\subsection{NVE Threshold as Diagnostic: Environment-Conditional Validity}
+
+We evaluate the NVE$>$1.5$\times$ threshold as a universal CIVO diagnostic across all environments.
+
+\begin{table}[h]
+\centering
+\caption{NVE$>$1.5$\times$ threshold validity by scope.}
+\label{tab:threshold}
+\begin{tabular}{lccl}
+\toprule
+Scope & Sensitivity & AUROC & Interpretation \\
+\midrule
+Walker only & 1.0 (4/4) & 1.0 & Perfect separation \\
+Walker + Cheetah & --- & 0.67 & Degraded \\
+All 3+ environments & 0.40 (4/10) & 0.58 & Near-random \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The threshold achieves perfect positive predictive value (if NVE$>$1.5$\times$, always indicates CIVO) but catastrophic sensitivity degradation cross-environment. This occurs because CIVO simply does not activate in environments lacking the prerequisite reward-geometry conditions. The diagnostic is valid only when bounded by applicability criteria: reward gap $> 2\times$, sufficient observation dimensionality for embedding gradient amplification.
+
+\subsection{Intervention Analysis}
+
+\subsubsection{Stop-Gradient Variants (Walker Walk)}
+
+\begin{table}[h]
+\centering
+\caption{SGS intervention variants in Walker Walk.}
+\label{tab:sgs}
+\begin{tabular}{lcccc}
+\toprule
+Config & Eval@105K & NVE Peak & Collapse & Mechanism \\
+\midrule
+016e (reward SGS only) & 31.7@95K & 10.42 & Yes & No-op (reward grad = 0) \\
+018 (Full-SGS: obs detach) & 160 & 0.55 & No & Gradient starvation \\
+015b (frozen $\Delta t$-emb) & 204 & 0.47 & No & Gradient starvation \\
+008d (no intervention) & 82.7@55K & 4.12 & Yes & Classic CIVO \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Reward-only stop-gradient is a no-op (the reward head contributes 0\% of $\Delta t$-embedding gradient; 93\% comes from observation decoders). Full observation decoder detachment prevents CIVO but destroys learning---the only interventions that prevent CIVO in Walker also destroy the learning signal, suggesting the trained temporal embedding is load-bearing for what learning does occur.
+
+\subsubsection{Uncertainty-Gated Imagination Truncation}
+
+A pilot uncertainty-gating mechanism truncates imagination when RSSM prediction uncertainty exceeds a threshold. In Walker Walk: eval 520 ($-45\%$ vs.\ baseline), NVE peak 1.35 (below threshold), 65\% truncation rate yielding effective horizon of 5.2 steps. The improvement over collapse (+528\% vs.\ 008d) is likely explained by de facto horizon reduction rather than a principled solution.
+
+\subsection{TAWM Comparison: MPC vs.\ Imagination}
+
+TAWM \citep{nhu2025tawm} succeeds with $\Delta t$-conditioning in TD-MPC2's MPC framework. We hypothesize this robustness stems from planning horizon truncation: MPC replans from real observations every step, naturally limiting error accumulation. Imagination-based actor-critic, by contrast, propagates value estimates through long ungrounded rollouts. Our uncertainty-gating pilot supports this interpretation---truncating imagination to effective horizon 5.2 (approaching single-step) prevents CIVO but at massive performance cost, suggesting that short-horizon planning (as in MPC) may be inherently more robust to $\Delta t$-conditioning errors, regardless of the specific architectural mitigation employed.
+
+\section{Discussion}
+
+\subsection{Boundary Conditions for CIVO}
+
+Our cross-environment results identify three necessary conditions for CIVO manifestation:
+
+\begin{enumerate}
+    \item \textbf{Reward nonlinearity exceeding a critical threshold.} Walker Walk's composite reward (balance $\times$ locomotion) creates a reward gap of 2.78$\times$ between $\Delta t=1$ and $\Delta t=2$ predictions. Cheetah Run's near-linear velocity reward produces only 1.35$\times$. The amplification from observation error to reward overestimation must exceed $\sim 2\times$ for the positive feedback loop to sustain.
+
+    \item \textbf{Sufficient observation dimensionality.} The temporal embedding receives 93\% of its gradient from observation decoders. Walker's 24+ dimensional observations (orientations, velocities, height) provide rich gradient signals driving embedding separation at 0.01/1K steps. Cartpole's 5-dimensional space produces separation at only 0.004/1K steps---insufficient to enable precise $\Delta t$ discrimination that would allow exploitation.
+
+    \item \textbf{Absolute value magnitude.} Hopper Hop's low baseline performance (250) means value overestimation magnitudes remain too small to dominate actor gradients, even if the relative overestimation ratio were high. The absolute scale of critic errors must exceed the actor's learning signal from correct value estimates.
+\end{enumerate}
+
+\subsection{Multiple Vulnerability Pathways in Walker Walk}
+
+Even within Walker Walk (where CIVO manifests), we observe two distinct collapse pathways:
+
+\textbf{Pathway A (Classic CIVO):} Value explosion $\to$ actor exploitation $\to$ entropy decrease $\to$ policy lock-in. Characterized by accelerating NVE, decreasing entropy ($-3.47 \to -4.88$), and value-driven eval decline.
+
+\textbf{Pathway B (Eval-driven instability):} Eval crash $\to$ value lag $\to$ NVE spike as artifact. Characterized by entropy \emph{increase} ($-5.21 \to -3.83$), eval-driven rather than value-driven dynamics. Observed in 008e\_v3 seed 2 and seed 4.
+
+The 50\% collapse rate in Walker Walk is consistent across configurations (008d: 2/4, 008e\_v3: 2/4), suggesting that Walker's reward landscape geometry creates an inherent $\sim$50\% probability of late-stage instability when trained temporal embeddings are present---regardless of imagination $\Delta t$.
+
+\subsection{Implications for Benchmark-Specific Claims in MBRL}
+
+Our findings highlight a pervasive risk in model-based RL research: mechanisms identified on single benchmarks may not generalize. The CIVO causal chain (trained $\Delta t$-embedding $\to$ reward gap amplification $\to$ value overestimation $\to$ collapse) is valid \emph{within Walker Walk}. But extending this to ``architectural vulnerability of world-model RL'' would be overclaiming---three of four tested environments show no manifestation.
+
+This pattern likely extends to positive findings as well: reported successes of temporal abstraction methods may depend on environment properties that happen to suppress failure modes. TAWM's MPC success may generalize more broadly because planning-horizon truncation is a structural property of the algorithm, not a task-dependent one.
+
+\section{Conclusion}
+
+We present a systematic cross-environment diagnostic of conditioning-induced value overestimation (CIVO) in world-model RL with temporal abstraction. Our key findings:
+
+\begin{enumerate}
+    \item CIVO is a real failure mode with a well-characterized causal mechanism in Walker Walk: trained temporal embeddings + nonlinear reward amplification + high-dimensional observation gradients create a positive feedback loop from value overestimation to policy collapse.
+    \item CIVO requires specific task properties to manifest. Cheetah Run (linear reward, 0/3 collapse), Cartpole Swingup (low-dimensional obs, 0/3 collapse), and Hopper Hop (low absolute values, 0/3 collapse) all fail to trigger the mechanism despite identical architectural configurations.
+    \item The NVE$>$1.5$\times$ diagnostic is environment-conditional: within-Walker AUROC = 1.0, but cross-environment AUROC degrades to 0.58 (near-random).
+    \item Interventions that prevent CIVO in Walker (frozen embedding, full stop-gradient) also destroy learning, suggesting the trained embedding is load-bearing for whatever learning does occur in the variable-rate setting.
+\end{enumerate}
+
+The broader lesson: claims about architectural vulnerabilities (or capabilities) in model-based RL must be bounded by explicit task-property conditions. The prevalence of mechanisms discovered on single benchmarks depends on reward landscape geometry, observation dimensionality, and reward smoothness---factors that vary across tasks in ways that are not always obvious a priori.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{10}
+
+\bibitem[Hafner et~al.(2023)]{hafner2023dreamerv3}
+D.~Hafner, J.~Pasukonis, J.~Ba, and T.~Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv preprint arXiv:2301.04104}, 2023.
+
+\bibitem[Nhu et~al.(2025)]{nhu2025tawm}
+T.~Nhu, D.~Hafner, et~al.
+\newblock Temporal abstraction in world models.
+\newblock In \emph{Proceedings of ICML}, 2025.
+
+\bibitem[Lu et~al.(2018)]{lu2018non}
+T.~Lu, D.~Schuurmans, and C.~Boutilier.
+\newblock Non-delusional {Q}-learning and value iteration.
+\newblock In \emph{NeurIPS}, 2018.
+
+\bibitem[Sutton et~al.(1999)]{sutton1999options}
+R.~S.~Sutton, D.~Precup, and S.~Singh.
+\newblock Between {MDPs} and semi-{MDPs}: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112(1-2):181--211, 1999.
+
+\bibitem[Vezhnevets et~al.(2017)]{vezhnevets2017feudal}
+A.~S.~Vezhnevets, S.~Osindero, T.~Schaul, N.~Heess, M.~Jaderberg, D.~Silver, and K.~Kavukcuoglu.
+\newblock Fe{UDP}al networks for hierarchical reinforcement learning.
+\newblock In \emph{ICML}, 2017.
+
+\bibitem[Agarwal et~al.(2021)]{agarwal2021deep}
+R.~Agarwal, M.~Schwarzer, P.~S.~Castro, A.~C.~Courville, and M.~G.~Bellemare.
+\newblock Deep reinforcement learning at the edge of the statistical precipice.
+\newblock In \emph{NeurIPS}, 2021.
+
+\bibitem[Janner et~al.(2019)]{janner2019trust}
+M.~Janner, J.~Fu, M.~Zhang, and S.~Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In \emph{NeurIPS}, 2019.
+
+\bibitem[Henderson et~al.(2018)]{henderson2018deep}
+P.~Henderson, R.~Islam, P.~Bachman, J.~Pineau, D.~Precup, and D.~Meger.
+\newblock Deep reinforcement learning that matters.
+\newblock In \emph{AAAI}, 2018.
+
+\end{thebibliography}
+
+\end{document}

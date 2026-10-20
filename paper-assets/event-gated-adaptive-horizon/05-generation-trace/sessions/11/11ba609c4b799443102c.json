@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11ba609c4b799443102c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis walker no dt emb episodes check",
+  "task_key": "worker_analysis_walker_no_dt_emb_episodes_check_20260526T061722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_walker_no_dt_emb_episodes_check_20260526T061722_result.json",
+    "occurrence": 1,
+    "bytes": 1578,
+    "sha256": "03173d1cf2477766190c387c73c214c3da304a8cc30be18e737e90c0e7b2780e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 所有 Walker checkpoint 的 episode 数\n\n| 实验 | 类型 | Episodes | 状态 |\n|---|---|---|---|\n| exp_008d_civo_trigger_s4 | civo_trigger | 112 | 完成 |\n| **exp_009c_no_dt_emb_s2** | **no_dt_emb** | **20** | **完成（数据极少）** |\n| exp_009d_baseline_walker_s1 | baseline | 116 | 完成 |\n| **exp_084_frozen_dt_emb_walker_s0** | **frozen_dt_emb** | **112** | **完成，无进程运行** |\n| exp_092_cheetah_no_dt_emb_s1 | no_dt_emb (cheetah) | 112 | 完成 |\n| exp_093_cheetah_no_dt_emb_s2 | no_dt_emb (cheetah) | 112 | 完成 |\n| exp_097_cheetah_008d_s3 | civo_trigger (cheetah) | 64 | **训练中** (GPU 0) |\n| exp_100_walker_008a_s1 | 008a variant (walker) | 56 | **训练中** (GPU 1) |\n\n### 关键发现\n\n1. **no_dt_emb Walker**: 服务器上只有 exp_009c，确认只有 20 episodes。**exp_008f 和 exp_069 不存在于此服务器。** 没有其他 no_dt_emb Walker 可用。\n\n2. **exp_084 frozen**: 已完成训练，112 episodes，与其他完成实验（008d=112, 009d=116）量级一致。无 metrics.jsonl，checkpoint 只含 `agent_state_dict` + `optims_state_dict`，无法直接读取训练步数。但 112 episodes 说明训练充分。\n\n3. **当前 GPU 占用**: 两块 GPU 都在跑实验（exp_097 和 exp_100），如果要重跑 no_dt_emb Walker 需要等这两个完成或另找资源。\n\n### 建议\n\nexp_009c 的 20 episodes 确实不可用于可靠分析。需要**重新训练一个 no_dt_emb Walker 实验**到 112+ episodes。等 exp_097 或 exp_100 完成后腾出 GPU 来跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-walker-no-dt-emb-episodes-check.md"
+}

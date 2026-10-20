@@ -1,0 +1,3765 @@
+dream_id: dream_20260514T062606
+project: event-gated-adaptive-horizon
+venue: ''
+focus: 'Key questions for reviewers: (1) Is the causal evidence from factorial design
+  (008d vs 008f) convincing enough for a mechanistic claim? (2) Does the normalized
+  v/e ratio hold up as a diagnostic tool? (3) Is a diagnostic paper without a proposed
+  solution publishable at CoRL? (4) Are Walker Walk + Cheetah Run sufficient for generalization
+  claims, or is a third environment needed? (5) Single seed MVP results + planned
+  3-seed replication — will reviewers accept cross-experiment consistency as partial
+  compensation?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 因果链完整闭合：008f 确认 dt_embedding 是 root cause，Cheetah Run 复现同一机制，多种子一致性高。原始
+        framing 无需调整。
+      key_assumptions:
+      - 008f (dt_embed_dim=0 + subsample ON) 全程无 collapse，normalized v/e 持续 <1.0x
+      - 008d collapse pattern 在 3/3 seeds 复现（trained dt_emb → v/e >1.5x → 性能崩溃）
+      - Cheetah Run 中 trained dt_emb 同样触发 delusional critic（normalized v/e >1.5x），untrained/no-dt-emb
+        保持稳定
+      - 008a 的 V-recovery + v/e suppression 在额外 seeds 中复现
+      - 008f vs 008d 的 causal gap 在 Cheetah Run 中同方向、同量级
+      number_ranges:
+        008f_normalized_ve_55K:
+        - 0.5
+        - 0.85
+        008f_eval_return_55K:
+        - 190
+        - 260
+        walker_008d_collapse_replication:
+        - 3
+        - 3
+        walker_008f_stable_replication:
+        - 3
+        - 3
+        cheetah_trained_dtEmb_peak_normalized_ve:
+        - 1.5
+        - 2.5
+        cheetah_no_dtEmb_normalized_ve:
+        - 0.5
+        - 0.95
+        cheetah_best_dt2_vs_baseline_pct:
+        - 70
+        - 90
+        walker_008a_multiseed_mean_105K:
+        - 700
+        - 850
+        claims_at_strong_evidence:
+        - 4
+        - 5
+      narrative_direction: '完整的因果诊断论文。标题可用 "Why Temporal Abstraction Fails"。 核心叙事：trained
+        dt_embedding → RSSM fidelity gap → delusional critic → collapse， 因果链经 factorial
+        ablation + 双环境 + 多种子三重验证。 v/e overshoot ratio 作为可复用诊断工具（>1.5x = pathological）直接
+        actionable。 Claims 保持原始强度，C2 从 "provisional" 升级为 "confirmed"。 Discussion 可以自信地提出
+        "不要在当前 RSSM 架构中联合训练 dt_embedding" 作为明确指导。
+
+        '
+    median:
+      tier: median
+      meaning: Walker Walk 因果链成立但 Cheetah Run 机制减弱或多种子有 variance。需降低 claim 强度，从 'root
+        cause' 调整为 'primary contributing factor'。
+      key_assumptions:
+      - 008f 全程 stable（normalized v/e <1.1x），因果隔离在 Walker Walk 成立
+      - 008d collapse 在 2/3 seeds 复现，1 seed 仅 degradation 不 collapse
+      - Cheetah Run 中 trained dt_emb 降性能但 collapse 不如 Walker 剧烈（normalized v/e 1.2-1.5x，边界区）
+      - 008a V-recovery 在 2/3 seeds 出现，1 seed 仅 plateau 不 recover
+      - Cheetah Run 中 untrained dt_emb 有保护作用但 gap 较小
+      number_ranges:
+        008f_normalized_ve_55K:
+        - 0.85
+        - 1.1
+        008f_eval_return_55K:
+        - 160
+        - 210
+        walker_008d_collapse_replication:
+        - 2
+        - 3
+        walker_008f_stable_replication:
+        - 2
+        - 3
+        cheetah_trained_dtEmb_peak_normalized_ve:
+        - 1.1
+        - 1.5
+        cheetah_no_dtEmb_normalized_ve:
+        - 0.7
+        - 1.15
+        cheetah_best_dt2_vs_baseline_pct:
+        - 50
+        - 75
+        walker_008a_multiseed_mean_105K:
+        - 550
+        - 720
+        claims_at_strong_evidence:
+        - 2
+        - 3
+      narrative_direction: '因果诊断仍成立但需加 nuance。标题调整为 "Diagnosing Value Overestimation
+        in Temporally-Abstract World Models"（弱化 "fails"）。 核心叙事不变，但 C2 措辞从 "root cause"
+        调为 "primary contributing factor in Walker Walk"。 Cheetah Run 部分加 "environment-dependent
+        modulation" 讨论—— 提出假设：RSSM prediction error 的环境依赖性调节了 dt_embedding 的危害程度。
+        补充实验：加入 RSSM reconstruction loss at dt=1 vs dt=2 的环境间对比（plan_030）支撑此解释。 v/e
+        overshoot ratio 仍然有效但阈值可能 environment-specific，从硬规则降为启发式。 Discussion 中增加一段
+        "boundary conditions" 分析。
+
+        '
+    worst:
+      tier: worst
+      meaning: 008f 也出现 collapse 或严重退化——dt_embedding 不是 root cause，问题在 RSSM 对 dt>1
+        transition 的根本建模缺陷。需要完全 reframe。
+      key_assumptions:
+      - 008f normalized v/e 在 45K-65K 攀升至 >1.3x，出现与 008d 类似的 overestimation（虽然可能较慢）
+      - 或 Cheetah Run 中所有 dt>1 配置（含 no-dt-emb）都严重退化，无法区分 dt_emb 效应
+      - 多种子中 008d collapse 仅 1-2/3 seeds 复现，variance 过大削弱因果论证
+      - 008a 的 V-recovery 在其他 seeds 不复现，仅为 seed-specific 偶然
+      - dt_embedding 是 collapse 的加速器而非 cause——去掉它只是减慢了同一退化过程
+      number_ranges:
+        008f_normalized_ve_55K:
+        - 1.1
+        - 1.8
+        008f_eval_return_55K:
+        - 100
+        - 170
+        walker_008d_collapse_replication:
+        - 1
+        - 2
+        walker_008f_stable_replication:
+        - 1
+        - 2
+        cheetah_trained_dtEmb_peak_normalized_ve:
+        - 0.9
+        - 1.3
+        cheetah_no_dtEmb_normalized_ve:
+        - 0.9
+        - 1.4
+        cheetah_best_dt2_vs_baseline_pct:
+        - 30
+        - 55
+        walker_008a_multiseed_mean_105K:
+        - 350
+        - 570
+        claims_at_strong_evidence:
+        - 1
+        - 2
+      narrative_direction: '完全 reframe。标题改为 "Temporal Abstraction is Fundamentally
+        Broken in Latent-Dynamics World Models: An Empirical Investigation"。 放弃 dt_embedding
+        因果叙事，转为更强的 negative result： RSSM 类 latent dynamics model 对 dt>1 transition
+        的 prediction fidelity 根本不足以支撑 temporal abstraction， 无论怎么设计 conditioning mechanism。dt_embedding
+        只是暴露/加速了这一根本缺陷，而非制造它。 贡献重新定位为：(1) 首次系统性实证证明 temporal abstraction 在 RSSM 架构中全面失败（C1
+        强化为主 claim）； (2) factorial methodology 作为 MBRL 诊断范式的方法论贡献； (3) v/e ratio +
+        normalized overshoot 作为通用 model exploitation 诊断工具； (4) 提出 "RSSM fidelity ceiling"
+        假说——temporal abstraction 的前置条件是 multi-step prediction 质量， 当前架构远未达标，这比任何 conditioning
+        trick 更根本。 仍然投 CoRL——negative result + 方法论 + 可操作的 research agenda 在 CoRL 有先例。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/dream_reports/dream_20260514T062606/best/paper.pdf
+  imagined_experiments:
+  - name: Walker Walk dt_embed_dim=0 H=8 — 55K completion
+    plan_id: plan_007
+    description: '008f 已运行至 35K，继续至 55K+ 确认 normalized v/e 持续收敛， eval 稳定在 190-260
+      范围，与 008d 的 diverging pattern 形成完整对照。
+
+      '
+    expected_results:
+      eval_return_45K: 215
+      eval_return_55K: 230
+      eval_return_65K: 238
+      value_mean_45K: 55.0
+      value_mean_55K: 76.0
+      value_eval_ratio_45K: 0.256
+      value_eval_ratio_55K: 0.33
+      normalized_ve_45K: 0.77
+      normalized_ve_55K: 0.82
+      normalized_ve_65K: 0.72
+      vs_baseline_55K: -63.2%
+      collapse: false
+      gate_dt_mean: 2
+    result_rationale: 'dt_embed_dim=0 意味着 critic 在 imagination 中无法获得 dt 信息， 因此无法对
+      dt=2 步骤做出 dt-specific 的价值估计。 RSSM 仍然用 dt=2 transition 训练（subsample ON），所以 world
+      model  对 dt=2 dynamics 的预测质量仍然有限，限制了绝对性能（~230 vs baseline 950）。 但关键是：没有 dt_embedding
+      → critic 不会因 dt-conditioned  overestimation 而 diverge。v/e 应跟随或略低于 baseline 的自然增长曲线
+      （normalized ~0.7-0.85x），绝不会出现 008d 那种 >1.5x 的 pathological  overshoot。45K→55K
+      的 normalized v/e 从 0.77→0.82 是自然漂移， 不是 accelerating divergence。这直接证明 dt_embedding
+      conditioning  （而非 RSSM 的 dt=2 dynamics 本身）是 delusional critic 的 root cause。
+
+      '
+    tables:
+    - title: 008f vs 008d — Causal Isolation
+      rows:
+      - - Metric
+        - 008f (no dt_emb)
+        - 008d (trained dt_emb)
+        - Interpretation
+      - - normalized_ve_25K
+        - 1.02x
+        - 1.78x
+        - 008d 已进入 pathological
+      - - normalized_ve_35K
+        - 0.73x
+        - 1.71x
+        - 008f 收敛，008d 持续 diverge
+      - - normalized_ve_45K
+        - 0.77x (pred)
+        - 2.09x
+        - gap 扩大至 2.7x 差异
+      - - normalized_ve_55K
+        - 0.82x (pred)
+        - — (已 collapse)
+        - 008f 稳定
+      - - eval_return_45K
+        - ~215 (pred)
+        - '140.8'
+        - 008f 略高，无 collapse
+      - - collapse
+        - 'No'
+        - Yes (@35K)
+        - 单变量隔离确认
+    figures_description:
+    - 双 Y 轴图：左轴 normalized v/e ratio，右轴 eval return。008f（蓝，实线）和 008d（红，虚线）并排。008d
+      的 v/e 从 1.78x→2.09x 加速上升同时 eval 下降形成 'X 交叉'；008f 的 v/e 在 0.7-0.85x 水平波动，eval
+      缓慢上升。灰色水平线标注 1.5x pathological threshold。
+    analysis: '这是整篇论文的 smoking gun。008f 与 008d 仅差一个变量：dt_embedding。 008d 有 trained
+      dt_embedding → normalized v/e 1.78x→2.09x → collapse； 008f 无 dt_embedding →
+      normalized v/e 0.73x→0.82x → stable。 因果归因闭合：dt_embedding conditioning 是 delusional
+      critic 的充要条件。 RSSM 的 dt=2 prediction quality 本身不足以触发 collapse（008f 证明）， 但给 critic
+      提供 dt 信息后，critic 会 exploit 这些不准确的 dt-conditioned  predictions 来系统性高估 value。
+
+      '
+  - name: Walker Walk untrained dt_emb + subsample ON H=15
+    plan_id: plan_008
+    description: '解耦 008a 的 B+ protection 来源：是 untrained dt_emb 还是 subsample OFF？
+      008e_v3 已在运行（45K 数据：382.2, v/e=0.876x），预测完整轨迹。
+
+      '
+    expected_results:
+      eval_return_45K: 382
+      eval_return_55K: 430
+      eval_return_65K: 490
+      eval_return_75K: 460
+      eval_return_85K: 520
+      eval_return_95K: 550
+      eval_return_105K: 640
+      value_eval_ratio_55K: 0.36
+      value_eval_ratio_65K: 0.4
+      value_eval_ratio_105K: 0.45
+      normalized_ve_45K: 0.88
+      normalized_ve_55K: 0.89
+      normalized_ve_65K: 0.71
+      normalized_ve_105K: 0.69
+      vs_baseline_105K: -30.1%
+      collapse: false
+    result_rationale: 'untrained dt_emb + subsample ON + H=15 结合了两个效应： (1) untrained
+      dt_emb 阻止 dt-conditioned value overestimation（同 008a 机制）， (2) subsample ON 减少有效训练
+      transition 数量，比 008a（subsample OFF）学得慢。 因此绝对性能低于 008a（640 vs 778 @105K），但同样不会
+      collapse。 normalized v/e 保持 <1.0x 证明 protection 来自 untrained dt_emb（而非 subsample
+      OFF）， 因为 subsample ON 的训练数据分布与 008d 相同，唯一差异是 dt_emb 是否 trained。 相比 008a 的两次
+      V-recovery，这里预期振荡幅度更小（subsample ON  → 更稳定但更慢的学习信号），呈现缓慢单调上升而非剧烈 V 形。
+
+      '
+    tables:
+    - title: B+ Protection 归因：008a vs 008e_v2 vs 008d
+      rows:
+      - - Config
+        - subsample
+        - dt_emb
+        - eval@105K
+        - norm_ve@105K
+        - collapse
+      - - 008a
+        - 'OFF'
+        - untrained
+        - '778'
+        - 0.59x
+        - 'No'
+      - - 008e_v2 (pred)
+        - 'ON'
+        - untrained
+        - ~640
+        - ~0.69x
+        - 'No'
+      - - 008d
+        - 'ON'
+        - trained
+        - — (collapse@35K)
+        - 2.09x@45K
+        - 'Yes'
+    figures_description:
+    - 三条学习曲线叠加：008a（蓝）显示 V-recovery 到 778，008e_v2（绿）显示较慢但稳定的上升到 ~640，008d（红）显示 35K
+      后 collapse。下方子图显示 normalized v/e，008a 和 008e_v2 均在 1.0x 以下，008d 在 1.5x 以上。
+    analysis: '008e_v2 是 C3/C5 的关键解耦实验。如果 008a 的 protection 来自 subsample OFF （更多训练数据），那么
+      008e_v2（subsample ON）应该 collapse。 但 008e_v2 不 collapse 且 normalized v/e <1.0x，证明
+      protection  的主因是 untrained dt_emb，subsample 只影响收敛速度。 这也强化了 C5：learning signal
+      reduction 是 secondary factor，不是 root cause。
+
+      '
+  - name: Walker Walk baseline seeds 1-2
+    plan_id: plan_010
+    description: '2 个额外 seed 建立 baseline v/e 校准的置信区间， 为 008d/008f 多种子 normalized v/e
+      计算提供 per-seed reference。
+
+      '
+    expected_results:
+      seed1_eval_return_last10_mean: 940
+      seed2_eval_return_last10_mean: 960
+      three_seed_mean: 950.3
+      three_seed_std: 9.5
+      seed1_ve_35K: 0.23
+      seed2_ve_35K: 0.25
+      seed1_ve_55K: 0.39
+      seed2_ve_55K: 0.42
+      seed1_ve_105K: 0.64
+      seed2_ve_105K: 0.68
+      ve_35K_mean: 0.24
+      ve_35K_std: 0.013
+      ve_55K_mean: 0.405
+      ve_55K_std: 0.015
+      ve_105K_mean: 0.66
+      ve_105K_std: 0.014
+      ve_stable_range: 68-73%
+    result_rationale: 'Walker Walk 是 DMC 中最稳定的环境之一，DreamerV3 baseline 的 seed 间方差极小。
+      seed 0 的 asymptotic 950.9 ± ~10 是典型值。v/e ratio 的 seed 间方差 主要来自 eval return 的随机波动（±15-20），而
+      value function 的收敛轨迹 高度一致（因为 world model 在此简单环境中很快收敛）。 三种子均值 ~950、std <10 为后续所有
+      normalized v/e 计算提供了 robust 的 per-step reference curve，使得 "1.5x = pathological"  的
+      threshold 具有统计意义（而非单种子巧合）。
+
+      '
+    tables:
+    - title: Baseline v/e Calibration (3 seeds)
+      rows:
+      - - Step
+        - Seed 0
+        - Seed 1 (pred)
+        - Seed 2 (pred)
+        - Mean±Std
+      - - 35K
+        - '0.241'
+        - '0.23'
+        - '0.25'
+        - 0.240±0.013
+      - - 55K
+        - '0.404'
+        - '0.39'
+        - '0.42'
+        - 0.405±0.015
+      - - 105K
+        - '0.656'
+        - '0.64'
+        - '0.68'
+        - 0.660±0.014
+      - - Asymptotic
+        - ~70%
+        - ~69%
+        - ~72%
+        - ~70±1.5%
+    figures_description:
+    - v/e ratio vs training step 带 shaded confidence band（3 seeds）。中线为均值，shaded region
+      为 ±1 std。水平虚线标注 asymptotic ~70%。此图作为后续所有 normalized v/e 计算的 reference。
+    analysis: 'baseline 多种子的意义不在于确认 Walker Walk 能解决（这是 trivial 的）， 而在于建立 v/e ratio
+      的 per-step reference distribution。 单种子 normalized v/e 有 ±5-8% 的 noise，三种子均值将
+      noise 降到 ±3-4%， 使得 "008d 的 1.7x 是 pathological" 的判断从 "很可能" 升级为 "统计显著"。
+
+      '
+  - name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+    plan_id: plan_011
+    description: '复现 delusional critic collapse：3/3 seeds 均应在 25K-45K  出现 normalized
+      v/e >1.5x 并触发 eval return 持续下降。
+
+      '
+    expected_results:
+      seed1_eval_return_25K: 155
+      seed1_eval_return_35K: 138
+      seed1_eval_return_45K: 125
+      seed2_eval_return_25K: 172
+      seed2_eval_return_35K: 152
+      seed2_eval_return_45K: 133
+      seed1_normalized_ve_35K: 1.62
+      seed1_normalized_ve_45K: 1.95
+      seed2_normalized_ve_35K: 1.8
+      seed2_normalized_ve_45K: 2.15
+      three_seed_collapse_count: 3
+      three_seed_peak_return_mean: 165
+      three_seed_peak_return_std: 12
+      three_seed_normalized_ve_45K_mean: 2.06
+      three_seed_normalized_ve_45K_std: 0.13
+    result_rationale: 'trained dt_embedding 导致的 delusional critic 是结构性问题，不是随机事件。 机制：trained
+      dt_emb 让 critic 在 imagination 中为 dt=2 步骤学到 dt-specific 的 value estimate，但 RSSM
+      在 dt=2 transition 上的 prediction fidelity 不足以支撑这种精度 → critic 系统性高估 → actor  追逐虚假梯度
+      → eval return 下降 → 正反馈循环。 这个机制对初始化不敏感（dt_embedding 的训练方向由 RSSM 的 dt=2  prediction
+      bias 决定，而该 bias 在不同 seed 中方向一致——都是 overestimate）， 因此预期 3/3 seeds 全部 collapse，seed
+      间 normalized v/e 的方差很小（±0.13）。 collapse 的时间点可能有 ±5K step 的偏差，但模式完全一致。
+
+      '
+    tables:
+    - title: 008d Collapse Replication (3 seeds)
+      rows:
+      - - Metric
+        - Seed 0
+        - Seed 1 (pred)
+        - Seed 2 (pred)
+        - Consistency
+      - - Peak eval return
+        - 167@25K
+        - 155@25K
+        - 172@25K
+        - Mean 165±9
+      - - Eval @45K
+        - '140.8'
+        - ~125
+        - ~133
+        - All declining
+      - - Norm v/e @35K
+        - 1.71x
+        - 1.62x
+        - 1.80x
+        - All >1.5x ✓
+      - - Norm v/e @45K
+        - 2.09x
+        - 1.95x
+        - 2.15x
+        - All >1.5x ✓
+      - - Collapse?
+        - 'Yes'
+        - 'Yes'
+        - 'Yes'
+        - 3/3
+    figures_description:
+    - 三条 eval return 曲线（红色系，不同 line style 区分 seed）全部呈 inverted-V 后持续下降。右侧子图显示 normalized
+      v/e 全部 >1.5x（灰色 threshold 线以上）。配对标注 '3/3 seeds collapse'。
+    analysis: '3/3 collapse 复现是 best tier 的 defining criterion 之一。 这将 C2 从 "provisional"
+      升级为 "confirmed"，因为 collapse 不是 单种子的随机异常，而是 trained dt_embedding 的必然结果。 reviewer
+      R6 的 "single seed" concern 被直接消解。 seed 间一致性（normalized v/e std ~0.13）还表明 1.5x
+      threshold  是 robust 的诊断标准，不需要 per-seed calibration。
+
+      '
+  - name: Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2
+    plan_id: plan_012
+    description: '复现 causal control 的稳定性：3/3 seeds 的 normalized v/e  持续 <1.0x，无 collapse，与
+      008d 形成完美对照。
+
+      '
+    expected_results:
+      seed1_eval_return_55K: 220
+      seed2_eval_return_55K: 240
+      seed1_normalized_ve_35K: 0.7
+      seed1_normalized_ve_55K: 0.78
+      seed2_normalized_ve_35K: 0.76
+      seed2_normalized_ve_55K: 0.85
+      three_seed_eval_55K_mean: 232
+      three_seed_eval_55K_std: 16
+      three_seed_normalized_ve_55K_mean: 0.8
+      three_seed_normalized_ve_55K_std: 0.06
+      three_seed_stable_count: 3
+      collapse: false
+    result_rationale: 'dt_embed_dim=0 从架构上消除了 dt conditioning 通路。 无论 seed 如何变化，critic
+      都无法获得 dt 信息，因此无法形成 dt-specific 的 overestimation。这是架构级的保护，不依赖初始化。 性能低（~230 vs
+      baseline 950）是因为 subsample ON 减少了训练数据 且 H=8 horizon 太短，但这与 collapse 是完全不同的 failure
+      mode。 normalized v/e 在 0.7-0.85x 范围的 seed 间方差来自 eval return  的随机波动，不会突破 1.0x，更不会到
+      1.5x pathological zone。
+
+      '
+    tables:
+    - title: 008f vs 008d 多种子对照
+      rows:
+      - - ''
+        - 008f norm_ve (3 seeds)
+        - 008d norm_ve (3 seeds)
+      - - '@35K'
+        - 0.73, 0.70, 0.76
+        - 1.71, 1.62, 1.80
+      - - '@55K'
+        - 0.82, 0.78, 0.85
+        - collapse, collapse, collapse
+      - - Mean±Std @35K
+        - 0.73±0.03
+        - 1.71±0.09
+      - - Collapse rate
+        - 0/3
+        - 3/3
+    figures_description:
+    - Box plot 或 violin plot：x 轴为 config（008f vs 008d），y 轴为 normalized v/e @35K。008f
+      的分布完全在 1.0x 以下，008d 完全在 1.5x 以上，无重叠。1.5x threshold 水平线标注。
+    analysis: '008f 3/3 stable + 008d 3/3 collapse = 完美的 6-point causal contrast。
+      effect size 极大（Cohen''s d > 10），统计检验的 p-value 可以忽略。 这直接回答了论文的核心问题：为什么 temporal
+      abstraction 失败？ 答案：因为 trained dt_embedding 让 critic exploit RSSM 的 fidelity
+      gap。 移除 dt_embedding → 移除 exploit 通路 → 消除 collapse。
+
+      '
+  - name: Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2
+    plan_id: plan_013
+    description: '复现 value growth suppression 和 V-recovery pattern， 确认 untrained dt_emb
+      的保护效应跨 seed 一致。
+
+      '
+    expected_results:
+      seed1_eval_return_65K: 580
+      seed1_eval_return_105K: 720
+      seed2_eval_return_65K: 630
+      seed2_eval_return_105K: 810
+      three_seed_mean_105K: 769
+      three_seed_std_105K: 46
+      seed1_normalized_ve_105K: 0.62
+      seed2_normalized_ve_105K: 0.55
+      three_seed_normalized_ve_105K_mean: 0.59
+      three_seed_normalized_ve_105K_std: 0.04
+      v_recovery_count: 3/3 show at least one V-recovery
+      collapse: false
+    result_rationale: 'untrained dt_emb 的 protection 机制是架构性的（random fixed embedding  阻断
+      dt-specific value learning），因此 V-recovery pattern 应跨 seed 复现。 但 V-recovery 的具体时间和幅度受
+      exploration noise 影响较大： actor 在 random dt_embedding 下的梯度信号较弱且含噪，导致 policy  在局部最优间振荡（V
+      的下降段），然后通过 value function 的 slow  catch-up 恢复（V 的上升段）。seed 0 有两次 V-recovery，
+      其他 seed 可能只有一次或三次，但模式一致：振荡但不 collapse。 三种子均值 769±46 @105K 对应 baseline 的 84%（best
+      tier 定义 700-850）， normalized v/e 均值 0.59±0.04 远低于 pathological threshold。
+
+      '
+    tables:
+    - title: 008a V-Recovery Replication (3 seeds)
+      rows:
+      - - Seed
+        - Peak@65K
+        - Dip (min after peak)
+        - '@105K'
+        - Norm v/e@105K
+        - V-recoveries
+      - - Seed 0
+        - '608'
+        - 470@75K
+        - '778'
+        - 0.59x
+        - '2'
+      - - Seed 1 (pred)
+        - '580'
+        - 440@75K
+        - '720'
+        - 0.62x
+        - 1-2
+      - - Seed 2 (pred)
+        - '630'
+        - 490@85K
+        - '810'
+        - 0.55x
+        - '2'
+      - - Mean±Std
+        - 606±25
+        - 467±25
+        - 769±46
+        - 0.59±0.04
+        - All ≥1
+    figures_description:
+    - 三条 eval return 曲线（蓝色系）叠加显示 V-recovery pattern，每条都有振荡但无 collapse。shaded band
+      显示 ±1 std。下方子图 normalized v/e 三条线全部在 1.0x 以下且随训练递减。
+    analysis: 'V-recovery 的多种子复现证明这是 untrained dt_emb 的系统性行为， 而非 seed 0 的巧合。振荡的存在表明
+      dt=2 imagination 仍然引入了 learning instability（vs baseline 的 smooth convergence），
+      但 untrained dt_emb 将 instability 的上界限制在 "振荡" 而非 "collapse"。 这支持 C3 的核心论点：untrained
+      dt_emb substantively protects performance。
+
+      '
+  - name: Cheetah Run baseline (3 seeds)
+    plan_id: plan_020
+    description: '建立 Cheetah Run 的 dt=1 reference，包括 asymptotic return  和 v/e calibration
+      curve，为跨环境泛化提供 second environment anchor。
+
+      '
+    expected_results:
+      seed0_eval_return_asymptotic: 810
+      seed1_eval_return_asymptotic: 790
+      seed2_eval_return_asymptotic: 830
+      three_seed_mean_asymptotic: 810
+      three_seed_std_asymptotic: 20
+      ve_35K_mean: 0.21
+      ve_55K_mean: 0.38
+      ve_105K_mean: 0.6
+      ve_stable_range: 62-68%
+      fps: 7.0
+    result_rationale: 'Cheetah Run 在 DreamerV3 中的典型 asymptotic return 为 780-850。 相比
+      Walker Walk（~950），Cheetah Run 的 dynamics 更复杂 （连续前进、速度控制），但 RSSM 仍能有效建模 dt=1
+      transition。 v/e ratio 的增长曲线与 Walker Walk 类似但 asymptotic 略低（~65% vs ~70%）， 因为
+      Cheetah Run 的 reward scale 和 episode structure 不同， value function 的 calibration
+      稍有差异。 三种子方差 std ~20 略高于 Walker Walk（std ~10），因为 Cheetah Run  的探索空间更大，不同 seed
+      可能发现略不同的 gait pattern。
+
+      '
+    tables:
+    - title: Cheetah Run Baseline v/e Calibration
+      rows:
+      - - Step
+        - Mean v/e
+        - Std
+        - vs Walker baseline
+      - - 35K
+        - '0.21'
+        - '0.02'
+        - 'Walker: 0.24 (similar)'
+      - - 55K
+        - '0.38'
+        - '0.03'
+        - 'Walker: 0.40 (similar)'
+      - - 105K
+        - '0.60'
+        - '0.03'
+        - 'Walker: 0.66 (slightly lower)'
+      - - Asymptotic
+        - ~65%
+        - ~3%
+        - 'Walker: ~70%'
+    figures_description:
+    - Walker Walk vs Cheetah Run baseline v/e ratio 并排图，显示两个环境的 calibration curve
+      形状相似但量级略有差异，建立 cross-environment reference。
+    analysis: 'Cheetah Run baseline 的主要目的是为 normalized v/e 计算提供  environment-specific
+      reference。如果两环境的 v/e calibration curve  形状一致（都是 monotonic 增长到 asymptotic），则
+      1.5x threshold  可以 environment-agnostically 使用，大幅增强诊断工具的通用性。
+
+      '
+  - name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+    plan_id: plan_021
+    description: '跨环境复现 delusional critic collapse：trained dt_embedding  在 Cheetah
+      Run 中触发同样的 v/e overshoot → collapse 机制。
+
+      '
+    expected_results:
+      seed0_eval_peak: 420
+      seed0_eval_peak_step: 35K
+      seed0_eval_55K: 280
+      seed1_eval_peak: 390
+      seed2_eval_peak: 440
+      three_seed_normalized_ve_35K_mean: 1.85
+      three_seed_normalized_ve_45K_mean: 2.2
+      peak_normalized_ve_max: 2.4
+      collapse_count: 3/3
+      vs_baseline_best_pct: 52
+    result_rationale: 'trained dt_embedding → delusional critic 的机制与环境无关， 只取决于 RSSM
+      在 dt=2 transition 上的 fidelity gap。 Cheetah Run 的 dynamics 比 Walker Walk 复杂（更高维的速度控制），
+      RSSM 的 dt=2 prediction error 可能更大 → collapse 可能更快更剧烈。 peak normalized v/e 在
+      1.5-2.5x（best tier 定义）， 因为 dt_embedding 让 critic 学到了 Cheetah Run 中 dt=2 specific  的
+      value pattern，但 RSSM 对这些 pattern 的预测同样不准确。 collapse 的时间可能略有提前（Cheetah Run 的更大
+      prediction error  → 更快的 positive feedback），peak return 约为 baseline 的 50-55%
+      （vs Walker 中 008d 的 ~18%，因为 collapse 发生得更快， 在 agent 还没充分学习时就开始）。
+
+      '
+    tables:
+    - title: Cross-Environment Collapse Comparison
+      rows:
+      - - Environment
+        - Config
+        - Peak Return (% baseline)
+        - Norm v/e at collapse
+        - Seeds collapsed
+      - - Walker Walk
+        - 008d
+        - 167 (18%)
+        - 2.09x@45K
+        - 3/3
+      - - Cheetah Run (pred)
+        - trained dt_emb
+        - ~420 (52%)
+        - ~2.20x@45K
+        - 3/3
+      - - Mechanism
+        - ''
+        - 'Same: trained dt_emb → v/e divergence → collapse'
+        - ''
+        - ''
+    figures_description:
+    - 双环境 collapse 对比图：上排 Walker Walk，下排 Cheetah Run。每排显示 eval return（左）和 normalized
+      v/e（右）。两排均显示相同的 inverted-V + accelerating v/e pattern，标题 'Same mechanism, different
+      environment'。
+    analysis: 'Cheetah Run 的 collapse 复现是论文 generalization claim 的支柱。 同一机制（trained
+      dt_emb → v/e >1.5x → collapse）在两个 dynamics 完全不同的环境中出现，排除了 "这只是 Walker Walk 的
+      artifact"  的质疑。normalized v/e 的 pathological threshold（1.5x）在两环境中 都成立，确认了它作为
+      environment-agnostic 诊断工具的价值。
+
+      '
+  - name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+    plan_id: plan_022
+    description: '跨环境复现 causal control：移除 dt_embedding 消除 Cheetah Run  中的 delusional
+      critic，normalized v/e <1.0x。
+
+      '
+    expected_results:
+      seed0_eval_55K: 210
+      seed1_eval_55K: 195
+      seed2_eval_55K: 225
+      three_seed_eval_55K_mean: 210
+      three_seed_normalized_ve_35K_mean: 0.75
+      three_seed_normalized_ve_55K_mean: 0.82
+      collapse: false
+      vs_baseline_55K_pct: 26
+    result_rationale: '与 Walker Walk 的 008f 完全平行的逻辑：dt_embed_dim=0 移除了 critic 的 dt
+      conditioning 通路，阻止了 dt-specific overestimation。 Cheetah Run 中绝对性能更低（~210 vs
+      Walker 的 ~230）， 因为 Cheetah Run 的 dynamics 更复杂，subsample ON + H=8 的 learning
+      signal 更加不足。但关键指标 normalized v/e <1.0x  与 Walker Walk 一致，证明 protection 来自架构（无
+      dt_emb）， 不来自环境特性。best tier 定义 cheetah_no_dtEmb_normalized_ve  在 [0.5, 0.95]，预测
+      0.82 在此范围内。
+
+      '
+    tables:
+    - title: 'Cheetah Run: dt_emb=0 vs trained dt_emb'
+      rows:
+      - - Metric
+        - dt_embed_dim=0 (pred)
+        - trained dt_emb (pred)
+      - - Eval @55K mean
+        - ~210
+        - ~280 (declining)
+      - - Norm v/e @35K mean
+        - 0.75x
+        - 1.85x
+      - - Norm v/e @55K mean
+        - 0.82x
+        - collapse
+      - - Collapse?
+        - 0/3
+        - 3/3
+    figures_description:
+    - Cheetah Run 版本的 008f vs 008d box plot，格式与 Walker Walk 图一致，展示 cross-environment
+      consistency。
+    analysis: 'Cheetah Run 的 causal control 完成了双环境 × 多种子的验证矩阵： Walker: 008f stable
+      3/3, 008d collapse 3/3。 Cheetah: no-dt-emb stable 3/3, trained-dt-emb collapse
+      3/3。 4 个 condition × 3 seeds = 12 个数据点，全部与因果假设一致。
+
+      '
+  - name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+    plan_id: plan_023
+    description: '跨环境复现 C3：untrained dt_emb 在 Cheetah Run 中同样实现 value growth suppression
+      和 near-baseline recovery。
+
+      '
+    expected_results:
+      seed0_eval_105K: 620
+      seed1_eval_105K: 580
+      seed2_eval_105K: 660
+      three_seed_mean_105K: 620
+      three_seed_vs_baseline_pct: 77
+      three_seed_normalized_ve_105K_mean: 0.62
+      v_recovery_observed: 2/3 seeds show V-recovery pattern
+      collapse: false
+    result_rationale: 'untrained dt_emb 在 Cheetah Run 中的 protection 机制相同： random fixed
+      embedding 阻断 dt-conditioned value learning。 subsample OFF + H=15 提供足够的 learning
+      signal， 因此 agent 能恢复到 baseline 的 70-90%（best tier 定义 [70, 90]， 预测 77%）。V-recovery
+      pattern 可能在 2/3 seeds 中可见 （Cheetah Run 的更大探索空间可能导致部分 seed 的振荡更不规则）， 但所有 3 seeds
+      都不 collapse。normalized v/e 一致 <1.0x。
+
+      '
+    tables:
+    - title: Cross-Environment C3 Comparison
+      rows:
+      - - Environment
+        - Config
+        - Eval@105K (%baseline)
+        - Norm v/e@105K
+        - V-recovery
+      - - Walker Walk
+        - 008a (3 seeds)
+        - 769±46 (84%)
+        - 0.59±0.04x
+        - 3/3
+      - - Cheetah Run (pred)
+        - untrained dt_emb
+        - 620±40 (77%)
+        - 0.62±0.05x
+        - 2-3/3
+    figures_description:
+    - 双环境 V-recovery 对比：Walker Walk（上）和 Cheetah Run（下）的 008a-equivalent 学习曲线，均显示振荡但不
+      collapse 的 pattern。
+    analysis: 'Cheetah Run 中 77% baseline 略低于 Walker Walk 的 84%， 符合预期（Cheetah Run
+      dynamics 更复杂 → 更大的 dt=2 prediction error  → 即使没有 dt_emb exploitation，RSSM fidelity
+      gap 仍然限制了 absolute performance）。但 "不 collapse" 和 "v/e <1.0x" 的定性结论 跨环境一致，支持
+      C3 的 generalizability。
+
+      '
+  - name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+    plan_id: plan_030
+    description: '直接量化 RSSM 在 dt=1 vs dt=2 transition 上的 fidelity gap， 为因果链提供 mechanistic
+      foundation。
+
+      '
+    expected_results:
+      dt1_obs_reconstruction_loss: 0.42
+      dt2_obs_reconstruction_loss: 1.15
+      dt1_reward_prediction_loss: 0.08
+      dt2_reward_prediction_loss: 0.31
+      fidelity_ratio_obs: 2.74
+      fidelity_ratio_reward: 3.88
+    result_rationale: 'RSSM 是为 dt=1 sequential prediction 设计的（z_t → z_{t+1}）， dt=2
+      要求跳过一个中间状态直接预测 z_{t+2}。 即使通过 subsample ON 训练了 dt=2 transition，RSSM 的 recurrent  structure（GRU-based）在跳过时间步时天然会损失信息——
+      中间状态的 dynamics 被 "折叠" 进一次 transition，增加了预测不确定性。 observation reconstruction loss
+      的 fidelity ratio ~2.7x  反映了这种信息损失；reward prediction 的 ratio 更高（~3.9x） 因为 reward
+      对 state 的微小偏差更敏感（Walker Walk 的 reward  是 smooth function of joint angles，dt=2
+      的 angle prediction error  直接放大到 reward error）。 这个 fidelity gap 是整个因果链的物理基础：
+      如果 RSSM 能完美预测 dt=2，trained dt_embedding 就不会导致  delusional critic，因为 value estimate
+      会基于准确的 world model。
+
+      '
+    tables:
+    - title: RSSM Fidelity Gap
+      rows:
+      - - Metric
+        - dt=1
+        - dt=2
+        - Ratio (dt=2/dt=1)
+      - - Obs reconstruction loss
+        - '0.42'
+        - '1.15'
+        - 2.74x
+      - - Reward prediction loss
+        - '0.08'
+        - '0.31'
+        - 3.88x
+      - - State prediction MSE
+        - '0.015'
+        - '0.048'
+        - 3.20x
+    figures_description:
+    - 'Bar chart：dt=1 vs dt=2 的三类 loss（obs, reward, state），每组两个 bar。dt=2 bar 上方标注
+      ratio。标题 ''RSSM Fidelity Gap: The Mechanistic Foundation''。'
+    analysis: '这个分析将因果链从 "statistical correlation"（v/e overshoot → collapse） 延伸到 "mechanistic
+      explanation"（RSSM prediction error at dt=2  → critic exploitation → overestimation）。fidelity
+      ratio 的大小 也解释了为什么 dt=4 比 dt=2 更糟糕（C4）：prediction error  随 dt 非线性增长。
+
+      '
+  - name: Actor entropy analysis
+    plan_id: plan_031
+    description: '分析 collapsed vs healthy config 的 actor entropy 轨迹， 检验 "delusional
+      critic → actor confusion" 的因果路径。
+
+      '
+    expected_results:
+      baseline_entropy_trend: monotonic decrease 2.5→1.2 over 100K
+      exp_008a_entropy_trend: oscillating 2.3→1.8 with V-recovery dips
+      exp_008d_entropy_25K: 2.1
+      exp_008d_entropy_35K: 2.4
+      exp_008d_entropy_45K: 2.6
+      exp_008d_entropy_trend: increasing from 25K (collapse onset)
+      exp_006_entropy_45K: 2.3
+      exp_006_entropy_55K: 2.7
+    result_rationale: '健康的训练过程中，actor entropy 应单调下降：policy 从均匀分布 逐渐收敛到高 reward 的 deterministic
+      action。 在 delusional critic 场景下，critic 提供的梯度方向不一致 （因为 value overestimate 的方向随
+      imagination trajectory 变化）， 导致 actor 无法收敛 → entropy 停止下降甚至反弹上升。 008d 在 25K（collapse
+      onset）后 entropy 从 2.1 上升到 2.6， 表明 actor 在 delusional gradients 下变得越来越 "confused"。
+      008a（untrained dt_emb）的 entropy 振荡对应 V-recovery pattern： actor 偶尔找到好 policy（entropy
+      下降）但 noisy gradient  让它偏离（entropy 回升），整体呈缓慢下降趋势而非上升。
+
+      '
+    tables:
+    - title: Actor Entropy Trajectories
+      rows:
+      - - Step
+        - Baseline
+        - 008a (untrained)
+        - 008d (trained)
+        - 006 (trained)
+      - - 25K
+        - '2.2'
+        - '2.4'
+        - 2.1 (collapse start)
+        - '2.0'
+      - - 35K
+        - '2.0'
+        - '2.3'
+        - 2.4 ↑
+        - '2.1'
+      - - 45K
+        - '1.8'
+        - '2.1'
+        - 2.6 ↑↑
+        - 2.3 ↑
+      - - 55K
+        - '1.6'
+        - '2.0'
+        - —
+        - 2.7 ↑↑
+    figures_description:
+    - 四条 entropy 曲线：baseline（黑，单调下降），008a（蓝，振荡下降），008d（红，collapse 后上升），006（橙，同 008d
+      模式但延迟）。collapse 区间用红色 shading 标注。
+    analysis: 'actor entropy 上升是 delusional critic → policy degradation  因果路径的直接证据。这补充了
+      v/e ratio 的诊断（v/e 描述 "critic 有问题"， entropy 描述 "actor 因此受害"），使因果链的 "最后一环" 可观测。
+
+      '
+  - name: Value prediction distribution vs realized returns
+    plan_id: plan_032
+    description: '对比 trained vs untrained dt_emb 的 V(s) 分布 vs Monte Carlo return  分布，展示
+      overestimation 的 distributional 特征。
+
+      '
+    expected_results:
+      trained_dtEmb_V_mean_vs_MC_mean_ratio: 1.65
+      trained_dtEmb_V_right_tail_95th: 3.2x MC 95th
+      untrained_dtEmb_V_mean_vs_MC_mean_ratio: 0.92
+      untrained_dtEmb_V_right_tail_95th: 1.1x MC 95th
+      baseline_V_mean_vs_MC_mean_ratio: 1.05
+    result_rationale: 'trained dt_emb 导致 critic 系统性高估某些 state-dt combinations， 但不是均匀高估——overestimation
+      集中在 dt=2 imagination trajectory  经过的 state 区域。因此 V(s) 分布相比 MC return 分布呈现 右偏（right-skewed）：大部分
+      state 的 V 估计合理， 但一小部分 state 的 V 被严重高估（right tail 膨胀 3.2x）， 而这些 state 恰好是 actor
+      会在 imagination 中频繁访问的区域 → 形成正反馈。untrained dt_emb 的 V 分布几乎匹配 MC 分布 （ratio 0.92，略
+      underestimate——conservative is safe）， right tail 无异常膨胀。
+
+      '
+    tables: []
+    figures_description:
+    - 三行 histogram overlay（V(s) 蓝色 vs MC return 橙色）：第一行 baseline（几乎重叠），第二行 untrained
+      dt_emb（V 略左偏），第三行 trained dt_emb（V 分布明显右偏，right tail 远超 MC）。
+    analysis: 'Distributional analysis 直接回应 reviewer R3（"v/e ratio is crude"）， 展示
+      overestimation 不是均匀的而是 state-dependent 的右偏， 这比单一 ratio 更 informative，且与 MBRL
+      文献中的 model exploitation  理论一致（agent 学会 exploit model error 最大的 state 区域）。
+
+      '
+  - name: dt_embedding cosine similarity analysis
+    plan_id: plan_033
+    description: '追踪 trained dt_embedding 中 dt=1 vs dt=2 向量的 cosine similarity  随训练的变化，观察
+      differentiation 与 collapse 的时间关系。
+
+      '
+    expected_results:
+      cosine_sim_init: 0.85
+      cosine_sim_15K: 0.62
+      cosine_sim_25K: 0.41
+      cosine_sim_35K: 0.28
+      cosine_sim_collapse_onset: ~0.4 (25K, matching collapse onset)
+      untrained_cosine_sim: ~0.85 (constant, random init)
+    result_rationale: '初始化时 dt=1 和 dt=2 embedding 是随机向量，cosine similarity ~0.85 （高维空间中随机向量的
+      typical similarity）。 训练过程中，RSSM 通过 dt_embedding 学习区分 dt=1 和 dt=2 transition，
+      两个向量逐渐分离（cosine sim 下降）。当 similarity 降到 ~0.4 时， critic 已经能显著区分 dt=1 和 dt=2 的
+      value estimate， 此时如果 dt=2 的 value estimate 基于不准确的 RSSM prediction， delusional
+      overestimation 开始主导。这个时间点（~25K）与 008d 的 collapse onset 一致，提供了 dt_embedding differentiation
+      → collapse  的 temporal coupling 证据。untrained embedding 的 cosine sim  恒定在 ~0.85，永远不会
+      trigger 这个 differentiation→exploitation 路径。
+
+      '
+    tables:
+    - title: dt_embedding Differentiation Timeline
+      rows:
+      - - Step
+        - Cosine Sim
+        - Norm v/e (008d)
+        - Event
+      - - 5K
+        - '0.85'
+        - —
+        - embeddings undifferentiated
+      - - 15K
+        - '0.62'
+        - —
+        - beginning to separate
+      - - 25K
+        - '0.41'
+        - 1.78x
+        - collapse onset — critic differentiates dt
+      - - 35K
+        - '0.28'
+        - 1.71x
+        - full differentiation, collapse accelerating
+    figures_description:
+    - '双 Y 轴图：左轴 cosine similarity（蓝，下降），右轴 008d normalized v/e（红，上升）。两条曲线交叉区域标注 ''critical
+      window: differentiation enables exploitation''。'
+    analysis: 'cosine similarity 分析建立了 dt_embedding training dynamics  与 delusional
+      critic onset 的 temporal coupling。 这不是相关性而是因果路径上的中间变量： training → embedding differentiation
+      → dt-conditioned value learning  → exploitation of RSSM error → collapse。 untrained
+      embedding 的恒定 similarity 解释了为什么 protection 是 structural。
+
+      '
+  - name: Hopper Hop validation (3 seeds × 3 configs)
+    plan_id: plan_040
+    description: '第三个 DMC 环境验证，强化 generalization claim。 3 configs = baseline + trained
+      dt_emb + dt_embed_dim=0。
+
+      '
+    expected_results:
+      baseline_asymptotic_mean: 250
+      baseline_asymptotic_std: 30
+      trained_dtEmb_collapse: 3/3 seeds
+      trained_dtEmb_peak_normalized_ve: 1.7
+      no_dtEmb_normalized_ve_55K: 0.8
+      no_dtEmb_eval_55K_vs_baseline_pct: 28
+    result_rationale: 'Hopper Hop 是 DMC 中难度较高的环境（DreamerV3 baseline ~200-300）， RSSM
+      对 hopping dynamics 的建模难度更大（contact dynamics,  discontinuous state transitions）。因此
+      dt=2 的 RSSM fidelity gap  可能更大 → trained dt_emb 的 collapse 可能更快。 但在 best tier
+      下，同一机制仍然 hold： trained dt_emb → v/e >1.5x → collapse；no dt_emb → v/e <1.0x →
+      stable。 有了三个环境的一致结果，论文可以 claim "the mechanism generalizes  across DMC locomotion
+      tasks"。Hopper Hop 是 P2 stretch goal， 不是 blocking，但如果完成，将使 generalization claim
+      从  "two environments" 升级为 "three diverse environments"。
+
+      '
+    tables:
+    - title: Three-Environment Mechanism Consistency
+      rows:
+      - - Environment
+        - Trained dt_emb collapse
+        - No dt_emb stable
+        - Norm v/e threshold holds
+      - - Walker Walk
+        - 3/3 ✓
+        - 3/3 ✓
+        - ✓ (1.5x)
+      - - Cheetah Run (pred)
+        - 3/3 ✓
+        - 3/3 ✓
+        - ✓ (1.5x)
+      - - Hopper Hop (pred)
+        - 3/3 ✓
+        - 3/3 ✓
+        - ✓ (1.5x)
+      - - Total
+        - 9/9
+        - 9/9
+        - 100% consistent
+    figures_description:
+    - 3×2 panel：三行（三个环境），两列（eval return, normalized v/e）。每个 panel 叠加 trained dt_emb（红）和
+      no dt_emb（蓝）。所有红线 collapse，所有蓝线 stable，视觉上极具冲击力。
+    analysis: 三环境 × 多种子 = 论文最强的泛化证据。 9/9 collapse + 9/9 stable 的 binary 一致性使得 p-value
+      < 0.001 （binomial test），即使不做 formal hypothesis testing， reviewer 也很难质疑机制的 generality。
+      但 Hopper Hop 是 45 GPU-hours，在 deadline 前可能无法完成。 即使没有 Hopper Hop，Walker + Cheetah
+      的 6/6 + 6/6 已经足够。
+  review_report: '---
+
+    dream_id: dream_20260514T062606
+
+    tier: best
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-14T07:01:00.404686+00:00
+
+    ---
+
+
+    # Dream Review Report — "Why Temporal Abstraction Fails in World-Model Reinforcement
+    Learning"
+
+
+    **dream_id**: 20260514T062606 | **review_mode**: full | **tier**: best
+
+
+    ---
+
+
+    ## Panel
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methods + Experiments | 3/6 (Weak Reject) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper investigates why temporal abstraction (variable-rate imagination with
+    dt>1) consistently degrades performance in DreamerV3. Through factorial ablation
+    across 3 DMC environments (Walker Walk, Cheetah Run, Hopper Hop) × 3 seeds, the
+    authors identify a four-link causal chain: (1) RSSM fidelity gap at dt>1 (2.7–3.9×
+    prediction error), (2) trained duration embeddings enable dt-specific value estimates
+    grounded in these inaccurate predictions, (3) systematic value overestimation
+    ("delusional critic", R_norm > 1.5×), and (4) actor entropy rise and performance
+    collapse. The paper claims 9/9 collapse with trained dt-embedding and 9/9 stability
+    without, proposes the normalized v/e overshoot ratio as an environment-agnostic
+    diagnostic, and recommends against jointly training dt-embeddings with the value
+    function.
+
+
+    ---
+
+
+    ## 2. Strengths (Consensus)
+
+
+    **S1. The 008d vs 008f single-variable isolation is methodologically exemplary.**
+    Both reviewers agree this is the paper''s strongest element. The comparison holds
+    subsample=ON and H=8 constant, varying only dt_embed_dim (32 vs 0). The reported
+    effect size (Cohen''s d > 10) and binary split (3/3 collapse vs 0/3 collapse in
+    Walker Walk) make this one of the cleanest controlled experiments seen in an RL
+    paper. [R1, R2]
+
+
+    **S2. The causal chain narrative is well-constructed.** Each link is independently
+    verified with a dedicated experiment or analysis: RSSM fidelity gap (Table 1),
+    embedding differentiation timeline (Table 10), delusional critic onset (Tables
+    3-5), actor entropy as downstream evidence (Table 11), and distributional analysis
+    (Table 12). The multi-link structure with independent verification at each step
+    is rigorous. [R1, R2]
+
+
+    **S3. The normalized v/e overshoot ratio is a useful diagnostic contribution.**
+    Normalizing by the baseline''s own v/e trajectory at each training step elegantly
+    removes environment-specific and phase-specific confounds. The metric is simple,
+    interpretable, and could see adoption in future MBRL temporal abstraction work.
+    [R1, R2]
+
+
+    **S4. The paper is appropriately positioned as a diagnostic/negative-result paper.**
+    The authors do not overclaim a new method. The framing as "why does this fail?"
+    is a legitimate and underserved genre in RL research. The concrete recommendation
+    ("don''t jointly train dt-embedding") is actionable. [R2]
+
+
+    **S5. The mechanistic evidence adds satisfying depth.** The cosine similarity
+    tracking of dt-embedding differentiation (Table 10), showing temporal coupling
+    with collapse onset at cosine sim ~0.4, provides causal pathway evidence beyond
+    mere correlation. The value distribution right-tail analysis (Table 12, 3.2× inflation
+    at 95th percentile) shows overestimation is state-dependent, not uniform. [R1,
+    R2]
+
+
+    ---
+
+
+    ## 3. Weaknesses (Consensus)
+
+
+    **W1. [CRITICAL] Data authenticity concern: substantial portions of reported results
+    appear to be projections, not completed experiments.** Both reviewers independently
+    identified this as the most serious issue. Cross-referencing the paper''s claims
+    against the experiment registry and project roadmap reveals that only single-seed
+    Walker Walk experiments (baseline, 006, 007, 008a, 008c, 008d, and partial 008f/008e_v3)
+    appear to have been completed. All multi-seed Walker Walk data (seeds 1-2), all
+    Cheetah Run data, and all Hopper Hop data appear to originate from dream simulation
+    predictions. The "9/9 collapse, 9/9 stable" headline is built substantially on
+    projected data presented without distinction from empirical results. If confirmed,
+    this fundamentally undermines the paper''s claims about cross-environment generalization
+    and multi-seed replication. **The paper must clearly distinguish completed experiments
+    from projections, or complete the experiments before submission.** [R1, R2]
+
+
+    **W2. Related work coverage is significantly inadequate for a diagnostic paper.**
+    With only ~10 references, the paper misses critical connections:
+
+    - **Multi-step value estimation**: Buckman et al. 2018 (STEVE), Feinberg et al.
+    2018 (MVE) directly address how model prediction horizon interacts with value
+    accuracy — the same phenomenon studied here.
+
+    - **Conservative MBRL**: MOPO (Yu et al. 2020), COMBO (Yu et al. 2021), CQL (Kumar
+    et al. 2020) address value overestimation in model-based/offline settings. The
+    paper should discuss whether these mitigations apply.
+
+    - **Hierarchical RL**: Missing feudal networks, HIRO, Director (Hafner et al.
+    2022 — temporal abstraction in DreamerV3''s own architecture family).
+
+    - **Recent world models**: IRIS, TWM, TransDreamer (transformer-based) may have
+    different multi-step fidelity characteristics.
+
+    - **Delusional policies attribution error**: The paper cites Delalleau et al.
+    (2019 NeurIPS Workshop) for delusional policies, but the foundational work is
+    Lu et al. (2018 NeurIPS, "Non-delusional Q-learning and Value-iteration"). This
+    is a significant misattribution for a central concept. [R2, confirmed by R1]
+
+
+    **W3. Title and generality claims exceed the evidence.** "Why Temporal Abstraction
+    Fails in World-Model Reinforcement Learning" implies generality across world-model
+    architectures. All evidence comes from one architecture (DreamerV3/RSSM) on one
+    task family (DMC locomotion). The causal chain is RSSM-specific — the fidelity
+    gap at dt>1 is an RSSM architectural property. Transformer-based, GNN-based, or
+    diffusion-based world models may behave differently. The title should be scoped
+    to "RSSM-based" or "current" world models. Similarly, claiming "environment-agnostic"
+    diagnostics from 3 locomotion tasks is unsupported. [R2, R1 agrees]
+
+
+    **W4. The 1.5× threshold is post-hoc with no independent validation.** The threshold
+    perfectly separates all 18 data points (9 collapse, 9 stable), but it was derived
+    from the same data it is evaluated on. No held-out environments, no cross-validation,
+    no sensitivity analysis. A reviewer cannot distinguish whether 1.5× reflects a
+    genuine phase transition or a convenient post-hoc cutoff. Even basic analysis
+    (e.g., "all collapsed runs had R_norm > 1.6 and all stable runs had R_norm < 0.9,
+    so any threshold in [0.9, 1.6] would work") would strengthen confidence. [R1,
+    R2 agrees]
+
+
+    **W5. The paper does not engage with fixability.** Section 5.4 lists four mitigation
+    directions in a single paragraph with no analysis, no pilot experiments, and no
+    theoretical grounding. For a diagnostic paper, practical impact depends heavily
+    on whether the diagnosis enables solutions. Testing even one mitigation (e.g.,
+    conservative value regularization, ensemble-based uncertainty penalties, or the
+    mentioned decoupled training schedule) would significantly increase the paper''s
+    contribution. As written, the recommendation reduces to "don''t do temporal abstraction
+    this way," which is trivially actionable but not constructive. [R2, R1 agrees]
+
+
+    **W6. Factorial design has missing cells and confounds.** The 008d/008f pair (the
+    smoking gun) uses H=8, while 008a and 008e_v2 use H=15, and the baseline also
+    uses H=15. The horizon difference is a confound when comparing across these groups.
+    A complete factorial would include trained dt_emb with H=15 and subsample OFF,
+    and removed dt_emb with H=15. The paper does not explain why these cells are absent.
+    [R1]
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    **Q1.** Can you confirm which of the reported results (Tables 4-9) are from completed
+    experiments versus projections? Specifically: are the multi-seed Walker Walk results
+    (seeds 1-2), Cheetah Run (all seeds), and Hopper Hop (all seeds) from actual training
+    runs?
+
+
+    **Q2.** Have you considered whether the delusional critic mechanism would manifest
+    in transformer-based world models (IRIS, TWM) where multi-step prediction may
+    degrade differently than RSSM? If the fidelity gap is RSSM-specific, the contribution
+    scope narrows substantially.
+
+
+    **Q3.** The Delalleau et al. (2019) citation for "delusional policies" — did you
+    mean Lu et al. (2018, NeurIPS, "Non-delusional Q-learning and Value-iteration")?
+
+
+    **Q4.** What is the sensitivity of your findings to the 1.5× threshold? What is
+    the actual gap between the highest R_norm of any stable run and the lowest R_norm
+    of any collapsed run?
+
+
+    **Q5.** The baseline v/e ratio converges to ~70% — substantial overestimation
+    even at dt=1. Is the collapse a qualitative phase transition or simply a matter
+    of degree? What distinguishes "tolerable" overestimation from "delusional" overestimation
+    mechanistically?
+
+
+    ---
+
+
+    ## 5. Minor Issues
+
+
+    - Hopper Hop contributes equally to the "9/9" headline but receives only 2 sentences
+    of description and no detailed per-seed tables. This asymmetry is concerning.
+
+    - The Cohen''s d claim ("exceeding 10") should report the actual value.
+
+    - Bibliography formatting is inconsistent (some with arXiv IDs, others without).
+
+    - Table 10 lacks error bars across seeds for cosine similarity.
+
+    - Section 4.5 references "008e_v2" but the factorial grid (Section 3.3) does not
+    clearly explain the versioning.
+
+    - The paper uses "dt" and "Δt" inconsistently.
+
+
+    ---
+
+
+    ## 6. Experiment Coverage Assessment
+
+
+    Comparing against the full experiment design (review_context.yaml), the paper
+    covers:
+
+    - ✅ RSSM fidelity gap analysis (plan_030)
+
+    - ✅ Walker Walk 008f completion (plan_007)
+
+    - ✅ Walker Walk 008e_v2 protection attribution (plan_008)
+
+    - ✅ Baseline multi-seed calibration (plan_010)
+
+    - ✅ 008d multi-seed collapse replication (plan_011)
+
+    - ✅ 008f multi-seed stability (plan_012)
+
+    - ✅ 008a multi-seed V-recovery (plan_013)
+
+    - ✅ Cheetah Run baseline + trained/untrained/no-dt_emb (plans 020-023)
+
+    - ✅ Hopper Hop (plan_040) — summary only
+
+    - ✅ Actor entropy analysis (plan_031)
+
+    - ✅ Value distribution analysis (plan_032)
+
+    - ✅ dt_embedding cosine similarity (plan_033)
+
+
+    Coverage is comprehensive in scope but **the critical question is how many are
+    actual vs projected results**. If only Walker Walk seed 0 experiments are completed,
+    the effective coverage is ~30% actual, ~70% projected.
+
+
+    ---
+
+
+    ## 7. Roundtable Convergence Notes
+
+
+    Both reviewers arrived at the same score (3/6) independently, which is notable.
+    The convergence points:
+
+
+    1. **Agreement on core quality**: The 008d vs 008f isolation is genuinely well-designed
+    and the causal chain structure is rigorous. If all data were empirical, this would
+    score higher.
+
+
+    2. **Agreement on the blocking issue**: Data authenticity is not a "could be improved"
+    comment — it is a blocking concern. Projected results presented as empirical findings
+    would be a serious problem at any venue.
+
+
+    3. **Agreement on scope**: The paper needs to either (a) scope its claims to RSSM-based
+    models, or (b) provide evidence from additional architectures. Currently the title
+    promises more than the evidence delivers.
+
+
+    4. **Divergence on secondary priorities**: R1 emphasizes the need for better statistical
+    rigor (threshold validation, complete factorial); R2 emphasizes the need for better
+    literature engagement and at least one mitigation pilot. Both are valid — a revision
+    should address both.
+
+
+    ---
+
+
+    ## 8. Overall Assessment
+
+
+    **Score: 3/6 (Weak Reject)**
+
+
+    The paper identifies a genuinely novel and specific failure mechanism (trained
+    dt-embedding → delusional critic in RSSM-based temporal abstraction) with a methodologically
+    strong core experiment (008d vs 008f). The normalized v/e ratio is a useful diagnostic
+    contribution. However, three issues collectively place this below the acceptance
+    threshold:
+
+
+    1. **Data integrity**: The apparent presentation of projected results as empirical
+    findings is a blocking concern. The "9/9 collapse, 9/9 stable" headline — the
+    paper''s central evidence — cannot be evaluated without knowing which data points
+    are real.
+
+
+    2. **Scope overclaiming**: The title and framing promise insights about "world-model
+    RL" generally, but evidence comes from one architecture on one task family. Claims
+    must be scoped to match evidence.
+
+
+    3. **Literature gaps**: A diagnostic paper whose contribution is explaining "why"
+    must engage deeply with existing explanations and mitigation techniques. The current
+    related work section is too thin.
+
+
+    **Path to acceptance**: Complete all claimed experiments (particularly Cheetah
+    Run and Hopper Hop multi-seed runs), scope the title and claims to RSSM-based
+    models, expand related work substantially (especially multi-step value estimation,
+    conservative MBRL, and correct the delusional policies citation), add threshold
+    sensitivity analysis, and include at least one pilot mitigation experiment. If
+    the empirical results match the projections, the upgraded paper could reach 4-5/6.
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/dream_reports/dream_20260514T062606/median/paper.pdf
+  imagined_experiments:
+  - name: Walker Walk baseline seeds 1-2
+    plan_id: plan_010
+    description: 2 additional seeds for dt=1 baseline, establishing per-seed v/e calibration
+      curves
+    expected_results:
+      seed1_eval_return_55K: 610
+      seed1_eval_return_105K: 890
+      seed1_eval_return_last10_mean: 935
+      seed1_value_eval_ratio_35K: 0.255
+      seed1_value_eval_ratio_55K: 0.42
+      seed1_value_eval_ratio_105K: 0.67
+      seed2_eval_return_55K: 580
+      seed2_eval_return_105K: 870
+      seed2_eval_return_last10_mean: 920
+      seed2_value_eval_ratio_35K: 0.22
+      seed2_value_eval_ratio_55K: 0.38
+      seed2_value_eval_ratio_105K: 0.64
+      cross_seed_mean_last10: 935
+      cross_seed_std_last10: 15
+      cross_seed_ve_stable_range: 67-74%
+    result_rationale: 'Walker Walk dt=1 baseline 在 DreamerV3 中是成熟配置，seed 间 variance
+      较小。 Seed 0 asymptote 950.9，预期 seed 1-2 在 920-950 范围内（±3%），v/e 稳态在 67-74%。 这是
+      median 档的正常 baseline variance，不影响因果链判断。 v/e calibration curves 形状一致（单调上升后饱和），但具体数值有
+      ±0.03 偏移， 这会为后续 normalized v/e 计算引入小幅 per-seed 校准差异。
+
+      '
+    tables:
+    - name: Baseline v/e calibration (3 seeds)
+      columns:
+      - step
+      - seed0_ve
+      - seed1_ve
+      - seed2_ve
+      - mean_ve
+      - std_ve
+      rows:
+      - - 25K
+        - 0.087
+        - 0.095
+        - 0.08
+        - 0.087
+        - 0.006
+      - - 35K
+        - 0.241
+        - 0.255
+        - 0.22
+        - 0.239
+        - 0.014
+      - - 55K
+        - 0.404
+        - 0.42
+        - 0.38
+        - 0.401
+        - 0.016
+      - - 105K
+        - 0.656
+        - 0.67
+        - 0.64
+        - 0.655
+        - 0.012
+    figures_description:
+    - 3-seed baseline learning curves (eval return vs step), shaded std band. All
+      converge to ~920-950 by 200K.
+    - 3-seed v/e ratio curves overlaid. Near-identical shape, stable from 135K+.
+    analysis: 'Baseline 的 3-seed 一致性高（CV<2%），为 normalized v/e 的 per-seed 计算提供可靠参考。
+      v/e stable range 67-74% 跨 seed，比单 seed 的 69-72% 稍宽，但仍是紧致分布。 这意味着 >1.5x normalized
+      v/e 阈值在 3-seed 下仍有足够 margin。
+
+      '
+  - name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+    plan_id: plan_011
+    description: 'Replicate delusional critic collapse: subsample ON + trained dt_emb
+      + H=8'
+    expected_results:
+      seed1_eval_return_25K: 155
+      seed1_eval_return_35K: 138
+      seed1_eval_return_45K: 125
+      seed1_value_eval_ratio_35K: 0.45
+      seed1_value_eval_ratio_45K: 0.72
+      seed1_normalized_ve_35K: 1.76
+      seed1_normalized_ve_45K: 2.17
+      seed1_verdict: COLLAPSE_CONFIRMED
+      seed2_eval_return_25K: 180
+      seed2_eval_return_35K: 170
+      seed2_eval_return_45K: 162
+      seed2_value_eval_ratio_35K: 0.35
+      seed2_value_eval_ratio_45K: 0.55
+      seed2_normalized_ve_35K: 1.59
+      seed2_normalized_ve_45K: 1.66
+      seed2_verdict: DEGRADATION_NO_FULL_COLLAPSE
+      collapse_replication_count: 2
+      cross_seed_mean_eval_45K: 143
+    result_rationale: 'Median 档核心假设：008d collapse 在 2/3 seeds 复现，1 seed 仅 degradation
+      不 collapse。 Seed 0 已确认 collapse（eval 167→146→141, normalized v/e 1.78x→2.09x）。
+      Seed 1 预期复现类似 pattern：v/e 加速 diverge，eval 持续下降，构成 collapse。 Seed 2 是 median
+      档的关键区分点——trained dt_emb 仍导致 elevated normalized v/e（>1.5x）， 但 eval 仅从 180 缓降到
+      162 而非 crash，v/e 加速率较低。 可能原因：seed 2 的 RSSM 恰好在 dt=2 transition 上学到了稍好的 representation，
+      使 value overestimation 速度放慢但不消除。这给了足够 signal 说 trained dt_emb 有害， 但 variance
+      阻止了 "100% collapse" 的强结论，需用 "primary contributing factor" 措辞。
+
+      '
+    tables:
+    - name: 008d collapse replication (3 seeds)
+      columns:
+      - step
+      - seed0_eval
+      - seed1_eval
+      - seed2_eval
+      - seed0_nve
+      - seed1_nve
+      - seed2_nve
+      rows:
+      - - 25K
+        - 167
+        - 155
+        - 180
+        - 1.78
+        - 1.73
+        - 1.52
+      - - 35K
+        - 146
+        - 138
+        - 170
+        - 1.71
+        - 1.76
+        - 1.59
+      - - 45K
+        - 141
+        - 125
+        - 162
+        - 2.09
+        - 2.17
+        - 1.66
+    figures_description:
+    - 3-seed 008d learning curves. Seed 0,1 show clear collapse; seed 2 shows degradation
+      with slower decline.
+    - 3-seed normalized v/e trajectories. All >1.5x, but seed 2 slope shallower.
+    analysis: '2/3 seeds 完全 collapse（eval <145@45K + accelerating normalized v/e >2.0x），
+      1 seed 显著 degradation 但未 crash（eval 162@45K, normalized v/e 1.66x 仍在 pathological
+      zone 但增速慢）。 这支持 "trained dt_emb is a primary contributing factor" 而非 "deterministic
+      root cause"。 normalized v/e >1.5x 在所有 3 seeds 出现，作为 diagnostic signal 仍然 robust。
+
+      '
+  - name: Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2
+    plan_id: plan_012
+    description: 'Replicate causal control: subsample ON + dt_embed_dim=0 + H=8'
+    expected_results:
+      seed1_eval_return_25K: 185
+      seed1_eval_return_35K: 195
+      seed1_eval_return_55K: 215
+      seed1_normalized_ve_25K: 0.98
+      seed1_normalized_ve_35K: 0.78
+      seed1_normalized_ve_55K: 0.7
+      seed1_verdict: STABLE_NO_COLLAPSE
+      seed2_eval_return_25K: 175
+      seed2_eval_return_35K: 190
+      seed2_eval_return_55K: 200
+      seed2_normalized_ve_25K: 1.08
+      seed2_normalized_ve_35K: 0.85
+      seed2_normalized_ve_55K: 0.82
+      seed2_verdict: STABLE_NO_COLLAPSE
+      stable_replication_count: 3
+      cross_seed_mean_eval_55K: 207
+      cross_seed_nve_range_55K: 0.70-0.82
+    result_rationale: 'Median 档假设 008f 全程 stable（normalized v/e <1.1x）。 Seed 0 已确认
+      stable（nve 1.02x@25K→0.73x@35K，下降趋势）。 移除 dt_embedding 后 value function 无法 exploit
+      dt 信息， 因此所有 seeds 都应显示 normalized v/e 收敛到 baseline 水平或以下。 Eval performance 受限于
+      H=8 + subsample ON（学习信号减少）， 停留在 baseline 的 ~20-22%，但关键是没有 collapse。 3/3 seeds
+      stable 是 median 档的合理预期——因为这是一个 "移除有害因素" 的实验， variance 主要体现在 absolute performance
+      而非 collapse/non-collapse 的二分上。
+
+      '
+    tables:
+    - name: 008f stability replication (3 seeds)
+      columns:
+      - step
+      - seed0_eval
+      - seed1_eval
+      - seed2_eval
+      - seed0_nve
+      - seed1_nve
+      - seed2_nve
+      rows:
+      - - 25K
+        - 197
+        - 185
+        - 175
+        - 1.02
+        - 0.98
+        - 1.08
+      - - 35K
+        - 207
+        - 195
+        - 190
+        - 0.73
+        - 0.78
+        - 0.85
+      - - 55K
+        - 210
+        - 215
+        - 200
+        - 0.68
+        - 0.7
+        - 0.82
+    figures_description:
+    - 3-seed 008f learning curves. All slowly increasing, no collapse. Clear contrast
+      with 008d.
+    - '3-seed normalized v/e: all converge below 1.0x by 35K, confirming dt_embedding
+      removal eliminates delusional critic.'
+    analysis: '008f 的 3-seed stability 与 008d 的 2/3-seed collapse 形成鲜明对比。 因果推断仍然成立：在完全相同的
+      subsample ON + H=8 条件下， 唯一差异（dt_embedding 有/无）决定了 collapse/stable 分野。 即使 008d
+      seed 2 未完全 collapse，其 normalized v/e（1.52-1.66x） 与 008f 全部 seeds 的 nve（0.68-1.08x）之间有明确
+      gap。
+
+      '
+  - name: Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2
+    plan_id: plan_013
+    description: 'Replicate value growth suppression: subsample OFF + untrained dt_emb
+      + H=15'
+    expected_results:
+      seed1_eval_return_55K: 510
+      seed1_eval_return_65K: 580
+      seed1_eval_return_85K: 550
+      seed1_eval_return_105K: 720
+      seed1_normalized_ve_55K: 0.88
+      seed1_normalized_ve_105K: 0.65
+      seed1_v_recovery_cycles: 2
+      seed1_verdict: V_RECOVERY_CONFIRMED
+      seed2_eval_return_55K: 460
+      seed2_eval_return_65K: 530
+      seed2_eval_return_85K: 520
+      seed2_eval_return_105K: 580
+      seed2_normalized_ve_55K: 0.95
+      seed2_normalized_ve_105K: 0.78
+      seed2_v_recovery_cycles: 0
+      seed2_verdict: PLATEAU_NO_COLLAPSE
+      recovery_replication_count: 2
+      cross_seed_mean_105K: 693
+      multiseed_mean_105K_range: 580-778
+    result_rationale: 'Median 档假设：008a V-recovery 在 2/3 seeds 出现，1 seed 仅 plateau
+      不 recover。 Seed 0 已确认双 V-recovery（501→608→470→778）。 Seed 1 预期类似 pattern：untrained
+      dt_emb 抑制 value overestimation， 允许 actor 在过拟合后恢复，但 peak 略低于 seed 0（720 vs 778）。
+      Seed 2 是 median 档的区分点——normalized v/e 仍被抑制（<1.0x，无 collapse）， 但 eval return
+      在 530 附近 plateau 而非形成清晰 V-recovery。 可能机制：seed 2 的 actor 收敛到一个 suboptimal 但 stable
+      的 policy， value suppression 阻止了 overestimation 但 exploration 不足以跳出 local optimum。
+      关键是 3/3 seeds 都 no collapse + normalized v/e <1.0x， protective effect 是 robust
+      的；V-recovery 的具体 pattern 有 seed variance。 cross_seed_mean_105K = (778+720+580)/3
+      ≈ 693，落在 median 档指标范围 [550,720] 内。
+
+      '
+    tables:
+    - name: 008a V-recovery replication (3 seeds)
+      columns:
+      - step
+      - seed0_eval
+      - seed1_eval
+      - seed2_eval
+      - seed0_nve
+      - seed1_nve
+      - seed2_nve
+      rows:
+      - - 55K
+        - 488
+        - 510
+        - 460
+        - 0.93
+        - 0.88
+        - 0.95
+      - - 65K
+        - 608
+        - 580
+        - 530
+        - 0.66
+        - 0.72
+        - 0.8
+      - - 85K
+        - 584
+        - 550
+        - 520
+        - 0.68
+        - 0.71
+        - 0.76
+      - - 105K
+        - 778
+        - 720
+        - 580
+        - 0.59
+        - 0.65
+        - 0.78
+    figures_description:
+    - 3-seed 008a learning curves. Seed 0,1 show V-shaped recoveries; seed 2 plateaus
+      at ~530 without collapse.
+    - '3-seed normalized v/e: all consistently <1.0x, confirming structural value
+      suppression across seeds.'
+    analysis: 'V-recovery 的 seed variance 迫使将 C3 的表述从 "V-shaped recovery is a signature"  调整为
+      "untrained dt_emb consistently prevents collapse and suppresses v/e,  with recovery
+      dynamics varying across seeds"。 核心 finding（value suppression → no collapse）在
+      3/3 seeds robust。 V-recovery 作为 secondary pattern 在 2/3 seeds 出现，可作为 suggestive
+      evidence 而非 strong claim。
+
+      '
+  - name: Cheetah Run baseline (3 seeds)
+    plan_id: plan_020
+    description: dt=1 baseline in second DMC environment, establishing Cheetah-specific
+      v/e calibration
+    expected_results:
+      seed0_eval_return_55K: 450
+      seed0_eval_return_105K: 680
+      seed0_eval_return_asymptotic: 780
+      seed1_eval_return_55K: 430
+      seed1_eval_return_105K: 660
+      seed1_eval_return_asymptotic: 760
+      seed2_eval_return_55K: 470
+      seed2_eval_return_105K: 700
+      seed2_eval_return_asymptotic: 800
+      mean_eval_return_asymptotic: 780
+      mean_value_eval_ratio_35K: 0.19
+      mean_value_eval_ratio_55K: 0.35
+      mean_value_eval_ratio_105K: 0.55
+      ve_stable_range: 58-65%
+    result_rationale: 'Cheetah Run 的 DreamerV3 baseline 通常低于 Walker Walk（~780 vs ~950）。
+      Cheetah Run 的 dynamics 更连续平滑（locomotion on flat terrain）， RSSM 对 Cheetah 的 reconstruction
+      quality 通常优于 Walker（接触力学更简单）。 v/e 稳态 58-65% 略低于 Walker 的 69-72%，反映 Cheetah 的
+      reward landscape 不同。 3 seeds variance 预期 ±3-5%，略高于 Walker（Cheetah 的 reward 更连续
+      → 更多 local optima）。
+
+      '
+    tables:
+    - name: Cheetah Run baseline v/e calibration (3 seeds)
+      columns:
+      - step
+      - mean_eval
+      - std_eval
+      - mean_ve
+      - std_ve
+      rows:
+      - - 25K
+        - 220
+        - 25
+        - 0.1
+        - 0.02
+      - - 35K
+        - 310
+        - 20
+        - 0.19
+        - 0.03
+      - - 55K
+        - 450
+        - 20
+        - 0.35
+        - 0.03
+      - - 105K
+        - 680
+        - 20
+        - 0.55
+        - 0.04
+    figures_description:
+    - Cheetah Run 3-seed baseline with shaded std. Slower initial learning than Walker,
+      smooth convergence.
+    - Cheetah v/e calibration curve. Same monotonic rise shape as Walker but lower
+      asymptote (~60% vs ~70%).
+    analysis: 'Cheetah baseline 的 v/e asymptote 较低（~60% vs Walker ~70%）， 这将影响 normalized
+      v/e 的解读——同样的 absolute v/e 在 Cheetah 中 normalized 更高。 需要 environment-specific
+      calibration，不能直接复用 Walker 的 1.5x 阈值。
+
+      '
+  - name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+    plan_id: plan_021
+    description: 'Replicate delusional critic in Cheetah Run: dt=2 + subsample ON
+      + trained dt_emb + H=8'
+    expected_results:
+      seed0_eval_return_25K: 160
+      seed0_eval_return_35K: 200
+      seed0_eval_return_45K: 195
+      seed0_eval_return_55K: 180
+      seed0_normalized_ve_35K: 1.35
+      seed0_normalized_ve_45K: 1.45
+      seed0_normalized_ve_55K: 1.5
+      seed0_verdict: DEGRADATION_BORDERLINE
+      seed1_eval_return_35K: 220
+      seed1_eval_return_55K: 205
+      seed1_normalized_ve_35K: 1.25
+      seed1_normalized_ve_55K: 1.38
+      seed1_verdict: DEGRADATION_MILD
+      seed2_eval_return_35K: 185
+      seed2_eval_return_55K: 165
+      seed2_normalized_ve_35K: 1.4
+      seed2_normalized_ve_55K: 1.52
+      seed2_verdict: DEGRADATION_BORDERLINE
+      cross_seed_mean_eval_55K: 183
+      cheetah_trained_dtEmb_peak_normalized_ve: 1.35
+      collapse_count: 0
+      vs_baseline_pct_55K: -59%
+    result_rationale: 'Median 档核心假设：Cheetah Run 中 trained dt_emb 降性能但 collapse 不如
+      Walker 剧烈 （normalized v/e 1.2-1.5x，边界区）。 机制：Cheetah 的 dynamics 比 Walker 更平滑连续，RSSM
+      在 dt=2 的 prediction error 较低。 因此 trained dt_emb 导致的 value overestimation 速度更慢、幅度更小。
+      normalized v/e 在 1.2-1.5x 区间——超过 baseline 但未达到 Walker 的 >2.0x 加速 diverge。 Eval
+      return 呈缓慢下降趋势（200→180）而非 Walker 的急剧 collapse（167→141）。 这产生了关键的 "environment-dependent
+      modulation" 叙事： 相同的 dt_embedding 机制在不同 RSSM fidelity 条件下产生不同严重程度。 从方法论看，这其实
+      *strengthens* 而非 weakens 因果解释—— 因为它指向 RSSM prediction quality 作为调节变量，与 C2 机制一致。
+
+      '
+    tables:
+    - name: Cheetah trained dt_emb (3 seeds) vs Walker 008d
+      columns:
+      - env
+      - step
+      - mean_eval
+      - mean_nve
+      - walker_008d_nve
+      - gap
+      rows:
+      - - Cheetah
+        - 25K
+        - 170
+        - 1.2
+        - 1.78
+        - -0.58x
+      - - Cheetah
+        - 35K
+        - 202
+        - 1.33
+        - 1.71
+        - -0.38x
+      - - Cheetah
+        - 45K
+        - 195
+        - 1.42
+        - 2.09
+        - -0.67x
+      - - Cheetah
+        - 55K
+        - 183
+        - 1.47
+        - N/A (collapsed)
+        - —
+    figures_description:
+    - Cheetah trained dt_emb 3-seed curves vs Cheetah baseline. Degradation visible
+      but no sharp collapse.
+    - 'Cross-environment normalized v/e comparison: Walker 008d (accelerating >2.0x)
+      vs Cheetah (plateau ~1.3-1.5x).'
+    analysis: 'Cheetah 的 trained dt_emb 效果是 "attenuated Walker" 而非 "clean replication"。
+      这是 median 档的核心挑战：collapse 不复现，但 degradation 和 elevated v/e 复现。 需要 reframe C2：dt_embedding
+      的危害程度由 RSSM fidelity at dt>1 调节。 Walker 的 contact dynamics → 高 RSSM error →
+      快速 collapse。 Cheetah 的 smooth dynamics → 低 RSSM error → 慢速 degradation。 v/e
+      overshoot ratio >1.5x 阈值在 Cheetah 中不是硬界限而是 "warning zone"。
+
+      '
+  - name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+    plan_id: plan_022
+    description: 'Causal control in Cheetah: dt=2 + subsample ON + dt_embed_dim=0
+      + H=8'
+    expected_results:
+      seed0_eval_return_35K: 195
+      seed0_eval_return_55K: 220
+      seed0_normalized_ve_35K: 0.82
+      seed0_normalized_ve_55K: 0.75
+      seed1_eval_return_55K: 210
+      seed1_normalized_ve_55K: 0.8
+      seed2_eval_return_55K: 230
+      seed2_normalized_ve_55K: 0.72
+      cross_seed_mean_eval_55K: 220
+      cross_seed_mean_nve_55K: 0.76
+      cheetah_no_dtEmb_normalized_ve: 0.76
+      vs_baseline_pct_55K: -51%
+      vs_trained_dtEmb_gap_eval: +37 (220 vs 183)
+      vs_trained_dtEmb_gap_nve: -0.71x (0.76 vs 1.47)
+    result_rationale: '移除 dt_embedding 在 Cheetah 中同样消除 elevated v/e，但 performance
+      gap 较 Walker 小。 在 Walker 中，008f vs 008d 的 eval gap 明显（207 vs 141@55K）。 在 Cheetah
+      中，gap 缩小（220 vs 183@55K），因为 baseline degradation 本身较温和。 Normalized v/e 在 0.7-1.15x
+      范围（median 档指标），低于 1.0x 表示 no overestimation。 因果方向仍一致（有 dt_emb → nve>1.2x, 无
+      dt_emb → nve<1.0x），但 effect size 较小。 这支持 "dt_embedding is harmful but severity
+      is environment-modulated"。
+
+      '
+    tables:
+    - name: Cheetah 008f-equivalent vs trained dt_emb (mean across 3 seeds)
+      columns:
+      - config
+      - eval_55K
+      - nve_55K
+      - collapse
+      rows:
+      - - trained dt_emb
+        - 183
+        - 1.47
+        - degradation (no collapse)
+      - - dt_embed_dim=0
+        - 220
+        - 0.76
+        - no degradation
+      - - baseline
+        - 450
+        - 1.0 (reference)
+        - N/A
+    figures_description:
+    - 'Cheetah causal comparison: trained dt_emb (declining, elevated nve) vs dt_embed_dim=0
+      (stable, suppressed nve).'
+    analysis: '因果方向在 Cheetah 仍成立（removing dt_emb → lower v/e + better performance），
+      但 effect size 是 Walker 的约 50%。这是论文中 "boundary conditions" section 的核心数据： 当 RSSM
+      prediction quality 较好时（Cheetah），dt_embedding 的危害减轻但不消失。 cheetah_no_dtEmb_normalized_ve=0.76
+      落在 median 档指标范围 [0.7, 1.15] 内。
+
+      '
+  - name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+    plan_id: plan_023
+    description: 'Value growth suppression in Cheetah: dt=2 + subsample OFF + untrained
+      dt_emb + H=15'
+    expected_results:
+      seed0_eval_return_55K: 380
+      seed0_eval_return_105K: 550
+      seed0_normalized_ve_105K: 0.72
+      seed1_eval_return_105K: 520
+      seed1_normalized_ve_105K: 0.78
+      seed2_eval_return_105K: 490
+      seed2_normalized_ve_105K: 0.82
+      cross_seed_mean_105K: 520
+      vs_baseline_pct_105K: -24%
+      v_recovery_count: 1/3 seeds shows V-recovery, 2/3 plateau
+      cheetah_best_dt2_vs_baseline_pct: 67%
+    result_rationale: 'Median 档假设：Cheetah 中 untrained dt_emb 有保护作用但 gap 较小。 Walker
+      中 008a 达 baseline 85%（778/916），Cheetah 预期只达 67%（520/780）。 原因：Cheetah 的 smooth
+      dynamics 使 RSSM error 较低 → trained dt_emb 的危害本就较小 →  untrained dt_emb 的 "保护效果"
+      相对 margin 也较小（从 183 到 220 vs 从 141 到 207 in Walker）。 V-recovery pattern 在 Cheetah
+      中更弱：只有 1/3 seeds 出现， 因为 Cheetah 的 reward landscape 更平 → actor 倾向 plateau 而非
+      oscillate。 cheetah_best_dt2_vs_baseline_pct=67% 落在 median 档指标范围 [50%, 75%] 内。
+
+      '
+    tables:
+    - name: Cheetah untrained dt_emb recovery (3 seeds)
+      columns:
+      - step
+      - seed0
+      - seed1
+      - seed2
+      - mean
+      - nve_mean
+      rows:
+      - - 55K
+        - 380
+        - 360
+        - 350
+        - 363
+        - 0.88
+      - - 75K
+        - 420
+        - 440
+        - 410
+        - 423
+        - 0.82
+      - - 105K
+        - 550
+        - 520
+        - 490
+        - 520
+        - 0.77
+    figures_description:
+    - Cheetah 008a-equivalent 3-seed curves. Slow monotonic improvement, fewer oscillations
+      than Walker.
+    - 'Cross-environment untrained dt_emb comparison: Walker shows V-recovery, Cheetah
+      shows plateau-rise.'
+    analysis: 'Cheetah 的 untrained dt_emb configuration 确认 protective effect（no collapse,
+      nve<1.0x） 但 recovery 更缓慢。这与 environment-dependent modulation 假设一致： Cheetah 的
+      RSSM error 较低 → dt_emb 的影响（有害或保护性的）都被 attenuate。 论文中可用此数据支持 "the dt_embedding
+      mechanism is general,  but its magnitude scales with RSSM prediction error"。
+
+      '
+  - name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+    plan_id: plan_030
+    description: Measure observation/reward reconstruction loss at dt=2 vs dt=1 from
+      existing trained models across both environments
+    expected_results:
+      walker_rssm_recon_loss_dt1: 4.2
+      walker_rssm_recon_loss_dt2: 6.8
+      walker_dt2_dt1_ratio: 1.62
+      cheetah_rssm_recon_loss_dt1: 3.9
+      cheetah_rssm_recon_loss_dt2: 5.1
+      cheetah_dt2_dt1_ratio: 1.31
+      walker_reward_pred_error_dt1: 0.08
+      walker_reward_pred_error_dt2: 0.25
+      cheetah_reward_pred_error_dt1: 0.06
+      cheetah_reward_pred_error_dt2: 0.12
+      cross_env_recon_gap_ratio: 1.24
+    result_rationale: '这是 median 档叙事的关键支撑实验——直接量化 RSSM fidelity gap 的 environment
+      dependence。 Walker Walk 涉及 contact dynamics（脚与地面碰撞），dt=2 跳过一个接触事件时 RSSM 需要 "想象"
+      中间状态，reconstruction loss 预期升高 ~60%（ratio 1.6x）。 Cheetah Run 的 dynamics 更平滑（无离散接触切换），
+      dt=2 的 prediction 误差增幅较小（~30%, ratio 1.3x）。 这个 1.6x vs 1.3x 的差距直接解释了为什么 trained
+      dt_emb 在 Walker 导致 collapse  而在 Cheetah 仅导致 degradation：更大的 RSSM error → 更多
+      delusional critic gradient → 更快 collapse。 Reward prediction error 的环境间差异更大（3.1x
+      vs 2.0x ratio）， 因为 Walker 的 reward 与接触事件强耦合。
+
+      '
+    tables:
+    - name: 'RSSM reconstruction loss: dt=1 vs dt=2 × environment'
+      columns:
+      - environment
+      - loss_dt1
+      - loss_dt2
+      - ratio
+      - reward_err_dt1
+      - reward_err_dt2
+      - reward_ratio
+      rows:
+      - - Walker Walk
+        - 4.2
+        - 6.8
+        - 1.62
+        - 0.08
+        - 0.25
+        - 3.13
+      - - Cheetah Run
+        - 3.9
+        - 5.1
+        - 1.31
+        - 0.06
+        - 0.12
+        - 2.0
+    figures_description:
+    - 'Bar chart: RSSM reconstruction loss at dt=1 vs dt=2 for both environments.
+      Walker gap visibly larger.'
+    - 'Scatter: RSSM dt2/dt1 ratio (x) vs peak normalized v/e in trained dt_emb config
+      (y). Two points but on the expected trend line.'
+    analysis: 'plan_030 提供了 "environment-dependent modulation" 假设的 mechanistic foundation。
+      Walker 的 RSSM dt2/dt1 gap 比 Cheetah 大 ~24%（1.62/1.31=1.24x）， 这与 Walker 中 trained
+      dt_emb 导致更严重 collapse 的观察一致。 但只有两个环境点，无法建立 quantitative 关系。 论文中应呈现为 "consistent
+      with the hypothesis" 而非 "proves"。 如果 plan_040（Hopper Hop）执行，将提供第三个点。
+
+      '
+  - name: Actor entropy analysis
+    plan_id: plan_031
+    description: Plot actor entropy vs training step for healthy (008a/008c/008f)
+      vs collapsed (006/008d) configurations
+    expected_results:
+      walker_008d_entropy_25K: 3.8
+      walker_008d_entropy_35K: 4.1
+      walker_008d_entropy_45K: 4.5
+      walker_008d_entropy_trend: increasing
+      walker_006_entropy_35K: 3.9
+      walker_006_entropy_55K: 5.2
+      walker_006_entropy_trend: sharply_increasing
+      walker_008a_entropy_55K: 3.2
+      walker_008a_entropy_105K: 2.8
+      walker_008a_entropy_trend: stable_to_decreasing
+      walker_008f_entropy_35K: 3.5
+      walker_008f_entropy_trend: stable
+      walker_baseline_entropy_35K: 3.0
+      walker_baseline_entropy_105K: 2.5
+      walker_baseline_entropy_trend: decreasing
+    result_rationale: 'Actor entropy 增高表示 policy 变得更随机——这是 delusional critic gradient
+      的下游症状。 当 value function 高估 → actor 收到 misleading gradient → policy 不再有 clear
+      preference → entropy 升高。 预期 collapsed configs（008d, 006）显示 entropy 单调上升（actor
+      confusion）， 而 healthy configs（008a, 008f, baseline）显示 entropy stable 或下降（policy
+      sharpening）。 这不是新发现，但提供了 mechanism 的额外 sanity check： 如果 collapsed configs 的
+      entropy *不*上升，则 C2 的 "delusional critic → actor degradation" 链需要修正。 Median 档下预期
+      pattern 清晰但 noise 较大（因为 entropy 是 high-variance metric）。
+
+      '
+    tables:
+    - name: Actor entropy trajectories
+      columns:
+      - config
+      - entropy_25K
+      - entropy_35K
+      - entropy_45K
+      - entropy_55K
+      - trend
+      rows:
+      - - baseline
+        - 3.2
+        - 3.0
+        - 2.9
+        - 2.8
+        - decreasing
+      - - 008d (collapse)
+        - 3.8
+        - 4.1
+        - 4.5
+        - —
+        - increasing
+      - - 006 (collapse)
+        - 3.5
+        - 3.9
+        - 4.2
+        - 5.2
+        - sharply increasing
+      - - 008a (V-recovery)
+        - 3.3
+        - 3.1
+        - 3.0
+        - 3.2
+        - stable
+      - - 008f (stable)
+        - 3.4
+        - 3.5
+        - 3.3
+        - —
+        - stable
+    figures_description:
+    - 'Actor entropy over training: collapsed configs diverge upward, healthy configs
+      converge downward. Clear separation after 25K.'
+    analysis: 'Entropy analysis 为 C2 提供 corroborating evidence 而非 primary evidence。
+      Collapsed configs 的 entropy 上升模式与 "delusional critic → actor confusion" 一致。
+      在 paper 中作为 supplementary figure 或 appendix，支撑 main text 的 causal diagram。
+
+      '
+  - name: Value prediction distribution vs realized returns
+    plan_id: plan_032
+    description: Distribution plots of V(s) vs Monte Carlo return for trained vs untrained
+      dt_emb
+    expected_results:
+      walker_008d_value_mc_correlation: 0.35
+      walker_008d_value_bias: +45% (systematic overestimation)
+      walker_008d_value_std_ratio: 2.1
+      walker_008a_value_mc_correlation: 0.72
+      walker_008a_value_bias: +8% (mild overestimation)
+      walker_008a_value_std_ratio: 1.2
+      walker_baseline_value_mc_correlation: 0.85
+      walker_baseline_value_bias: +5%
+      walker_baseline_value_std_ratio: 1.1
+      walker_008f_value_mc_correlation: 0.68
+      walker_008f_value_bias: +10%
+      walker_008f_value_std_ratio: 1.3
+    result_rationale: 'V(s) vs MC return 的联合分布揭示 v/e ratio 无法捕捉的细节。 008d（trained dt_emb,
+      collapse）预期显示：(a) systematic positive bias（值线远高于 y=x）， (b) 低相关性（value 与实际 return
+      decouple），(c) 高 variance ratio（value 在不确定状态大幅波动）。 这三个特征共同构成 "delusional critic"
+      的 distributional fingerprint。 008a/008f（healthy configs）预期接近 baseline 分布，bias
+      小、相关性高。 Median 档下预期 pattern 清晰但 008f 的 correlation 略低于 baseline （因为 dt=2 imagination
+      本身引入了一些 noise，即使没有 dt_embedding）。
+
+      '
+    tables:
+    - name: Value calibration summary
+      columns:
+      - config
+      - correlation
+      - bias_pct
+      - variance_ratio
+      - verdict
+      rows:
+      - - baseline
+        - 0.85
+        - +5%
+        - 1.1
+        - calibrated
+      - - 008a (untrained)
+        - 0.72
+        - +8%
+        - 1.2
+        - mildly_optimistic
+      - - 008f (no dt_emb)
+        - 0.68
+        - +10%
+        - 1.3
+        - mildly_optimistic
+      - - 008d (trained)
+        - 0.35
+        - +45%
+        - 2.1
+        - delusional
+    figures_description:
+    - '2×2 scatter plot grid: V(s) vs MC return for baseline, 008a, 008f, 008d. Each
+      with y=x line and regression fit.'
+    - 'Histogram: value prediction error distribution (V(s) - MC) for each config.
+      008d shows heavy right tail.'
+    analysis: 'Distribution analysis 将 v/e ratio proxy 升级为更 rigorous 的 value calibration
+      证据。 008d 的 correlation=0.35 和 bias=+45% 直接证明 "delusional"——value function 的预测
+      与实际 return 几乎 decouple 且系统性偏高。 这是 paper 中最强的 supplementary evidence，值得在 main
+      text 中给一段或一个 figure。
+
+      '
+  - name: dt_embedding cosine similarity analysis
+    plan_id: plan_033
+    description: 'Analyze learned dt_embedding vectors: cosine similarity between
+      dt=1 and dt=2'
+    expected_results:
+      cosine_sim_5K: 0.92
+      cosine_sim_15K: 0.75
+      cosine_sim_35K: 0.42
+      cosine_sim_55K: 0.28
+      embedding_norm_dt1_35K: 1.2
+      embedding_norm_dt2_35K: 2.8
+      embedding_divergence_onset: ~15K-25K (coincides with v/e acceleration)
+    result_rationale: 'Trained dt_embedding 在训练过程中逐步学会区分 dt=1 和 dt=2。 早期（<10K）dt=1
+      和 dt=2 embedding 相似（cosine~0.9），value function 尚未 exploit 差异。 15-25K 时 embedding
+      开始分离（cosine 下降到 0.5-0.7）， 这恰好与 v/e ratio 开始加速的时间窗口吻合。 这提供了 temporal evidence：dt_embedding
+      的学习 → value function 开始 exploit → overestimation → collapse。 dt=2 embedding
+      的 norm 增大（2.8 vs dt=1 的 1.2）表明 value function 放大了 dt=2 的表征， 可能因为 dt=2 transition
+      在 imagination 中产生更大的 "value opportunity"（但实际是虚假的）。
+
+      '
+    tables:
+    - name: dt_embedding evolution during training
+      columns:
+      - step
+      - cosine_sim
+      - norm_dt1
+      - norm_dt2
+      - nve_at_step
+      rows:
+      - - 5K
+        - 0.92
+        - 0.8
+        - 0.9
+        - ~1.0x
+      - - 15K
+        - 0.75
+        - 1.0
+        - 1.4
+        - ~1.2x
+      - - 25K
+        - 0.55
+        - 1.1
+        - 2.1
+        - ~1.5x
+      - - 35K
+        - 0.42
+        - 1.2
+        - 2.8
+        - ~1.7x
+    figures_description:
+    - 'Dual-axis plot: cosine similarity (decreasing) and normalized v/e (increasing)
+      vs training step. Divergence onset co-occurs.'
+    - 2D PCA of dt_embedding at [5K, 15K, 25K, 35K]. dt=1 and dt=2 clusters separate
+      over training.
+    analysis: 'Cosine similarity 分析提供 mechanistic timeline：embedding 分离 → value exploitation
+      → collapse。 这是 P2 priority 因为它补充而非替代 core evidence， 但在论文中可以做一个很有说服力的 timeline
+      figure。 如果 embedding 的分离时间与 v/e 加速不吻合，则 C2 的 mechanism story 需要修正。
+
+      '
+  - name: Hopper Hop validation (3 seeds × 3 configs)
+    plan_id: plan_040
+    description: 'Third DMC environment: baseline + trained dt_emb + dt_embed_dim=0'
+    expected_results:
+      baseline_asymptotic: 250
+      trained_dtEmb_peak: 120
+      trained_dtEmb_nve_peak: 1.55
+      trained_dtEmb_collapse: partial (1/3 seeds collapse, 2/3 degradation)
+      no_dtEmb_eval_55K: 105
+      no_dtEmb_nve_55K: 0.85
+      baseline_ve_stable: 55-62%
+    result_rationale: 'Hopper Hop 是高难度 DMC task（baseline ~250 远低于 Walker ~950 和 Cheetah
+      ~780）。 RSSM prediction quality 介于 Walker 和 Cheetah 之间 （有 hopping contact events
+      但比 walking 更规律）。 Median 档下预期 trained dt_emb 的 normalized v/e 在 Walker 和 Cheetah
+      之间（~1.5x）， 1/3 seeds collapse，2/3 degradation。 dt_embed_dim=0 仍应 stable（nve
+      <1.0x）。 但 Hopper 的 absolute performance 很低，signal-to-noise ratio 差 →  结论 less
+      conclusive，主要价值是提供 plan_030 scatter plot 的第三个点。 P2 priority，论文如时间不够可省略。
+
+      '
+    tables:
+    - name: Hopper Hop results summary
+      columns:
+      - config
+      - mean_eval_55K
+      - mean_nve_55K
+      - collapse_fraction
+      rows:
+      - - baseline
+        - 180
+        - 1.0 (ref)
+        - 0/3
+      - - trained dt_emb
+        - 95
+        - 1.55
+        - 1/3
+      - - dt_embed_dim=0
+        - 105
+        - 0.85
+        - 0/3
+    figures_description:
+    - 'Three-environment summary: RSSM dt2/dt1 ratio vs peak normalized v/e. Three
+      points showing positive trend.'
+    analysis: Hopper 作为第三环境，主要贡献是验证 environment-dependent modulation 假设。 如果 RSSM dt2/dt1
+      ratio 介于 Walker 和 Cheetah 之间（如 plan_030 预测）， 且 normalized v/e 也介于两者之间，则三个点落在一条正相关趋势线上——
+      这将 "environment-dependent modulation" 从 post-hoc 假设升级为 empirical pattern。 但
+      P2 priority 意味着在 CoRL deadline 前可能无法完成。 Median 档论文即使没有 Hopper 也可以成立，用 Discussion
+      中的 "boundary conditions" 段覆盖。
+  review_report: '---
+
+    dream_id: dream_20260514T062606
+
+    tier: median
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-14T07:11:16.655418+00:00
+
+    ---
+
+
+    # Dream Review Report: "Diagnosing Value Overestimation in Temporally-Abstract
+    World Models"
+
+
+    **Dream ID:** 20260514T062606
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-14
+
+
+    ---
+
+
+    ## Reviewer Panel
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methodology + Experiments | 3/6 (Weak Reject) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | — | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    ### Step 1: Independent Reviews
+
+
+    Both reviewers independently arrived at 3/6 (Weak Reject) with high confidence
+    (4/5). The convergence was strong — no score reconciliation was needed.
+
+
+    ### Step 2: Cross-Sharing — Key Points Exchanged
+
+
+    **R1 → R2:**
+
+    - The incomplete factorial design (missing cells: trained dt_emb + subsample OFF
+    + H=15; dt_embed_dim=0 + H=15) creates residual confounds that R2''s novelty assessment
+    should account for
+
+    - The nve metric has degenerate behavior at early training (baseline v/e near
+    zero) and conflates two phenomena (V too high vs eval_return already dropping)
+
+    - Cheetah Run should be run to 200K+ to determine if degradation eventually becomes
+    collapse
+
+
+    **R2 → R1:**
+
+    - The related work is grossly inadequate (~5 references); the experimental methodology
+    cannot be fully evaluated without positioning against prior value overestimation
+    literature (TD3, MVE, MOPO)
+
+    - The "delusional policies" citation appears to be a misattribution (should be
+    Lu et al. 2018, not the cited reference)
+
+    - The general principle (auxiliary conditioning + model inaccuracy = exploitation
+    channel) is more significant than the paper acknowledges — this reframes significance
+    upward
+
+
+    ### Step 3: Convergence — Agreements and Residual Disagreements
+
+
+    **Strong consensus (both reviewers agree):**
+
+
+    1. **The 008d vs 008f controlled experiment is the paper''s crown jewel** — single-variable
+    isolation with large effect size (nve 1.71× vs 0.73× at 35K) and binary outcome.
+    This is how controlled experiments in RL should be designed.
+
+
+    2. **The mechanistic insight is genuinely novel and non-obvious** — that the critic''s
+    *conditioning on Δt* (not the RSSM''s prediction quality per se) is what creates
+    the exploitation channel. The temporal coupling between embedding differentiation
+    (cosine similarity) and collapse onset provides causal pathway evidence.
+
+
+    3. **Statistical underpowering is a significant concern** — 3 seeds is insufficient
+    for binary collapse/non-collapse claims. No formal hypothesis tests, no confidence
+    intervals, no rigorous effect sizes reported.
+
+
+    4. **Scope overclaiming** — title and framing suggest generality across world-model
+    RL, but evidence comes from one architecture (DreamerV3/RSSM) on one task family
+    (DMC locomotion).
+
+
+    5. **The 1.5× threshold is post-hoc** — derived from and evaluated on the same
+    data. Not validated on held-out configurations or environments. Cheetah Run borderline
+    cases (nve 1.25–1.52×) challenge its universality.
+
+
+    6. **No mitigation pilot** — the diagnosis would gain significant impact if paired
+    with even one experimental fix.
+
+
+    7. **The honest diagnostic framing is appropriate** — the paper correctly identifies
+    itself as analysis, not algorithm.
+
+
+    **Partial disagreement (resolved in discussion):**
+
+
+    - R2 raised a data provenance concern (whether multi-seed results are from completed
+    experiments vs projections). R1 did not flag this but agreed it would be critical
+    if confirmed. **Resolution:** The roundtable notes this as a concern but cannot
+    verify it from the paper alone. If all results are from completed experiments,
+    this concern is moot. The paper should explicitly confirm all results are empirical.
+
+
+    - R2 weighted the related work gap as a "critical blocking issue"; R1 acknowledged
+    it but weighted experimental gaps more heavily. **Resolution:** Both are blocking.
+    The related work gap is particularly severe for a diagnostic paper that must demonstrate
+    mastery of prior knowledge (especially value overestimation literature, conservative
+    MBRL, and recent temporal abstraction in world models).
+
+
+    ---
+
+
+    ## Consolidated Review
+
+
+    ### Paper Summary
+
+
+    The paper diagnoses why variable-rate imagination (Δt>1) degrades performance
+    in DreamerV3. Through a factorial experiment design across 3 DMC environments
+    (Walker Walk, Cheetah Run, Hopper Hop) with 3 seeds per configuration and controlled
+    ablations of temporal embedding, the authors identify a causal chain: trained
+    Δt-embedding enables the value function to exploit imprecise RSSM predictions
+    at Δt>1, producing systematic value overestimation ("delusional critic") that
+    drives policy collapse. Removing (dt_embed_dim=0) or freezing the embedding eliminates
+    the pathology. The severity scales with the RSSM''s prediction-quality gap between
+    Δt=1 and Δt=2 transitions, explaining environment-dependent differences. The normalised
+    v/e overshoot ratio is proposed as a diagnostic heuristic.
+
+
+    ### Strengths
+
+
+    **S1. Exemplary core controlled experiment (008d vs 008f).** The single-variable
+    isolation — identical subsample=ON, Δt=2, H=8, with the only difference being
+    dt_embed_dim (32 vs 0) — produces a large, directionally unambiguous effect (nve
+    1.71× vs 0.73× at 35K; collapse vs stability in all seeds). This level of experimental
+    control is rare in RL research and provides the strongest evidence in the paper.
+
+
+    **S2. Multi-link causal chain with independent verification.** The paper constructs
+    a 5-step causal chain (RSSM fidelity gap → embedding differentiation → value overestimation
+    → actor entropy rise → collapse) with independent evidence at each link (Sections
+    4.6, 4.10, 4.2/4.9, 4.8, 4.2). The temporal coupling between embedding cosine
+    similarity divergence and nve acceleration (Section 4.10) is particularly compelling
+    — it provides mechanistic timeline evidence, not just correlation.
+
+
+    **S3. Non-obvious mechanistic insight with general implications.** The finding
+    that the critic''s *conditioning on Δt* — not the RSSM''s prediction quality per
+    se — is what enables exploitation is genuinely surprising. The asymmetry between
+    trained (collapse) vs untrained (value suppression) vs removed (stability) embeddings
+    reveals a general principle: auxiliary conditioning variables in critics can create
+    exploitation channels proportional to model inaccuracy under those conditions.
+    This generalizes beyond Δt-embedding to other conditioning variables in MBRL.
+
+
+    **S4. Practical diagnostic contribution.** The normalised v/e overshoot ratio,
+    despite its limitations, is a simple, cheap, interpretable metric that correctly
+    separates healthy from pathological training regimes in the tested configurations.
+    The concrete negative recommendation ("don''t jointly train Δt-embeddings with
+    the value function under current RSSM architectures") is immediately actionable.
+
+
+    **S5. Honest, well-structured framing.** The paper correctly positions itself
+    as diagnostic (not algorithmic), explicitly discusses boundary conditions (Section
+    5.4), and uses appropriately hedged language ("primary contributing factor" rather
+    than "root cause" in most places). The investigative structure (Sections 4.1–4.10)
+    follows a logical progression.
+
+
+    ### Weaknesses
+
+
+    **W1. [Major] Statistical underpowering and absent formal testing.** 3 seeds per
+    configuration is below the standard for top ML venues, especially for RL experiments
+    with binary collapse/non-collapse outcomes. The 008d result (2/3 collapse in Walker,
+    0/3 in Cheetah, 1/3 in Hopper) has wide confidence intervals that are never reported.
+    No hypothesis tests, no confidence intervals, no formally computed effect sizes.
+    For a paper whose entire contribution is empirical diagnosis, this is a significant
+    gap. The community standard (Henderson et al. 2018, Agarwal et al. 2021) calls
+    for 5–10 seeds with proper statistical reporting.
+
+
+    **W2. [Major] Related work is grossly inadequate.** The paper cites only 5 references.
+    For a diagnostic paper claiming to explain a failure mechanism in MBRL, this is
+    severely insufficient. Critical missing bodies of work include:
+
+    - **Value overestimation:** TD3 (Fujimoto et al. 2018), SAC (Haarnoja et al. 2018),
+    REDQ (Chen et al. 2021)
+
+    - **Multi-step value estimation:** MVE (Feinberg et al. 2018), STEVE (Buckman
+    et al. 2018), compound error analysis (Talvitie 2014, 2017)
+
+    - **Conservative MBRL:** MOPO (Yu et al. 2020), COMBO (Yu et al. 2021), MOReL
+    (Kidambi et al. 2020) — these directly address "don''t trust values where model
+    is inaccurate," the principle the paper discovers empirically
+
+    - **Recent temporal abstraction in world models:** THICK (Gumbsch et al. ICLR
+    2024), Director (Hafner et al. 2022), TempoRL (Biedenkapp et al. 2021), TAWM,
+    LS-Imagine
+
+    - **Delusional policies:** The concept should cite Lu et al. (2018, NeurIPS),
+    "Non-delusional Q-learning and Value-iteration," which is the foundational reference
+
+    - **RL evaluation methodology:** Henderson et al. (2018), Agarwal et al. (2021)
+
+
+    A diagnostic paper must demonstrate deep awareness of what is already known to
+    credibly claim novel insight.
+
+
+    **W3. [Major] Scope overclaiming.** The title ("Diagnosing Value Overestimation
+    in Temporally-Abstract World Models") implies generality across world-model architectures
+    and forms of temporal abstraction. The evidence comes from one architecture (DreamerV3/RSSM)
+    on one task family (DMC locomotion with continuous control and dense rewards).
+    The RSSM fidelity gap is architecture-specific — transformer-based world models
+    (IRIS, TWM), diffusion world models, or neural ODE world models may exhibit entirely
+    different prediction degradation profiles. The "environment-agnostic" diagnostic
+    threshold claim rests on 3 similar locomotion environments. Claims should be scoped
+    to "RSSM-based world models" and "tested DMC environments."
+
+
+    **W4. [Moderate] Incomplete factorial design.** The 2×2×2 grid (embedding × subsample
+    × horizon) has missing cells that create residual confounds:
+
+    - No trained dt_emb + subsample OFF + H=15 cell — so we can''t rule out that the
+    interaction of subsample ON + trained dt_emb (not trained dt_emb alone) drives
+    collapse
+
+    - No dt_embed_dim=0 + H=15 cell — so we don''t know if the embedding effect is
+    horizon-dependent
+
+    - The smoking-gun pair (008d/008f) uses H=8, while the value suppression result
+    (008a) uses H=15 + subsample OFF. Cross-group comparisons require independence
+    assumptions the paper itself undermines.
+
+
+    **W5. [Moderate] No mitigation pilot.** A diagnostic paper''s impact depends partly
+    on whether the diagnosis enables solutions. The paper stops at "don''t do this"
+    (Section 5.4 lists four mitigation directions without any experimental validation).
+    Even one pilot experiment — e.g., conservative value penalty when nve exceeds
+    threshold, ensemble critics, or trained-then-frozen Δt-embedding — would transform
+    the contribution from "here''s why this fails" to "here''s why this fails and
+    here''s how to fix it."
+
+
+    **W6. [Minor] Environment generalization is weaker than framed.** Collapse occurs
+    only in Walker Walk (2/3 seeds). Cheetah Run shows gradual degradation with borderline
+    nve (1.47×), Hopper Hop shows 1/3 collapse. The environment-dependent modulation
+    framing (Section 5.2) is reasonable but weakens the diagnostic''s universality.
+    The total collapse count across all environments and seeds is 4/9, not "near-universal."
+
+
+    **W7. [Minor] The nve metric has unaddressed limitations.** (a) The 1.5× threshold
+    is post-hoc, derived from and evaluated on the same data. (b) The metric is degenerate
+    when baseline v/e is near zero (early training). (c) It conflates two phenomena:
+    V being too high vs eval_return already dropping. (d) No sensitivity analysis
+    on baseline seed choice.
+
+
+    ### Questions for Authors
+
+
+    **Q1. (Statistical)** What is the actual separation gap between the highest nve
+    of any stable seed and the lowest nve of any collapsed seed across all environments?
+    This would let us evaluate the robustness of any threshold, not just 1.5×.
+
+
+    **Q2. (Completeness)** Does Cheetah Run trained Δt-embedding eventually collapse
+    at 200K+ steps, or does the degradation plateau? This determines whether the cross-environment
+    difference is qualitative (different failure mode) or quantitative (same mechanism,
+    delayed onset).
+
+
+    **Q3. (Mechanistic)** Have you tried training the Δt-embedding for N steps then
+    freezing it? This would test whether ongoing co-adaptation of embedding and value
+    function is critical, or whether having differentiated-but-static embeddings suffices
+    to trigger collapse. The answer has direct mitigation implications.
+
+
+    **Q4. (Positioning)** How does the Δt-conditioned overestimation relate to standard
+    overestimation studied in TD3? Is it qualitatively different (new failure mode)
+    or the same phenomenon amplified by Δt-conditioning? Could clipped double-Q or
+    ensemble critics mitigate it?
+
+
+    **Q5. (Positioning)** MOPO explicitly penalizes value estimates proportional to
+    model uncertainty — addressing precisely the "don''t trust values where model
+    is inaccurate" principle your paper discovers empirically. Have you considered
+    MOPO-style penalties as mitigation, and if so, why isn''t this tested?
+
+
+    **Q6. (Generality)** THICK (Gumbsch et al. ICLR 2024) implements temporal abstraction
+    in the Dreamer family via learned temporal hierarchy. Do they observe similar
+    value overestimation? If not, what architectural difference prevents it? This
+    comparison seems essential for the paper''s claimed scope.
+
+
+    **Q7. (Metric)** The baseline v/e stabilizes at ~70%, meaning DreamerV3 systematically
+    overestimates values even at Δt=1. What mechanistically distinguishes this "tolerable"
+    baseline overestimation from the "delusional" overestimation at Δt>1?
+
+
+    **Q8. (General principle)** The emerging principle seems to be: "auxiliary conditioning
+    variables in critics create exploitation channels when the world model is inaccurate
+    under those conditions." Do you agree, and does it apply to other conditioning
+    variables (goal conditioning, skill conditioning in hierarchical RL)?
+
+
+    ### Detailed Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|-----|-----|-----------|
+
+    | Methodological soundness | 6/10 | — | 6/10 |
+
+    | Experimental rigor | 5/10 | — | 5/10 |
+
+    | Clarity of presentation | 7/10 | — | 7/10 |
+
+    | Completeness of experiments | 5/10 | — | 5/10 |
+
+    | Diagnostic metric soundness | 6/10 | — | 6/10 |
+
+    | Novelty of research question | — | 6/10 | 6/10 |
+
+    | Novelty of findings | — | 7/10 | 7/10 |
+
+    | Significance of contribution | — | 5/10 | 5/10 |
+
+    | Related work coverage | — | 3/10 | 3/10 |
+
+    | Framing and positioning | — | 5/10 | 5/10 |
+
+
+    ### Overall Score: 3/6 (Weak Reject)
+
+
+    **Confidence: 4/5 (High)**
+
+
+    ### Verdict
+
+
+    The paper identifies a genuine, non-obvious failure mechanism — trained Δt-embedding
+    creating an exploitation channel for value overestimation in RSSM-based world
+    models — and the core controlled experiment (008d vs 008f) is methodologically
+    exemplary. The multi-link causal chain with independent evidence at each step
+    represents rigorous scientific investigation.
+
+
+    However, the paper falls below the acceptance threshold due to: (1) statistical
+    underpowering (3 seeds, no formal tests), (2) grossly inadequate related work
+    (~5 references, missing critical bodies of work on value overestimation, conservative
+    MBRL, and recent temporal abstraction), (3) scope overclaiming relative to evidence
+    (one architecture, one task family), (4) incomplete factorial grid with residual
+    confounds, and (5) no mitigation pilot to demonstrate the diagnosis is actionable.
+
+
+    The core insight is valuable and the methodology at its best (008d vs 008f) is
+    excellent. With the revisions outlined below, this could become a solid 4–5/6
+    paper.
+
+
+    ### Path to Acceptance
+
+
+    1. **Statistical rigor:** Add 2+ seeds to core comparisons (5+ total), report
+    confidence intervals, run permutation tests or Mann-Whitney U for 008d vs 008f
+
+    2. **Related work:** Expand to 25–30 references covering value overestimation
+    (TD3, REDQ), multi-step value estimation (MVE, STEVE), conservative MBRL (MOPO,
+    COMBO), recent temporal abstraction in world models (THICK, Director), and correct
+    the delusional policies citation to Lu et al. (2018)
+
+    3. **Scope claims:** Retitle to scope to RSSM-based models; replace "environment-agnostic"
+    with "consistent across tested environments"
+
+    4. **Fill factorial gaps:** Prioritize trained dt_emb + subsample OFF + H=15 to
+    resolve residual confounds
+
+    5. **Mitigation pilot:** Test at least one fix (conservative value penalty, ensemble
+    critics, or frozen-after-N-steps embedding) to show the diagnosis is actionable
+
+    6. **Threshold validation:** Report the actual stable/collapsed nve gap; add sensitivity
+    analysis on baseline seed choice
+
+    7. **Environment coverage:** Run Cheetah to 200K+; provide equal-depth reporting
+    for Hopper Hop or move to supplementary
+
+    '
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/dream_reports/dream_20260514T062606/worst/paper.pdf
+  imagined_experiments:
+  - name: Walker Walk dt_embed_dim=0 H=8 — C2 causal control (seed 0) [continued]
+    plan_id: plan_007
+    description: 'exp_008f 从 35K 继续运行至 65K+。subsample ON + dt_embed_dim=0 + H=8。 当前
+      35K 数据显示 normalized v/e=0.73x，看似因果确认。 但在 worst 档下，45K-65K 区间 normalized v/e
+      反转上升，出现与 008d 类似的 overestimation。
+
+      '
+    expected_results:
+      eval_return_45K: 195
+      eval_return_55K: 155
+      eval_return_65K: 120
+      value_eval_ratio_45K: 0.42
+      value_eval_ratio_55K: 0.58
+      value_eval_ratio_65K: 0.78
+      normalized_ve_45K: 1.27
+      normalized_ve_55K: 1.44
+      normalized_ve_65K: 1.39
+      trend: 'inverted-V: peak ~207@35K → declining; normalized v/e reverses from
+        0.73x@35K → 1.27x@45K → 1.44x@55K'
+      verdict: COLLAPSE_DELAYED — dt_embedding 是加速器而非 cause
+    result_rationale: '在 worst 档下，008f 的早期 "健康" 信号只是因为没有 dt_embedding 来加速 exploitation。
+      但 RSSM 本身在 subsample ON 训练数据中学到的 dt=2 transition dynamics 质量不足。 随着 value function
+      逐渐从有缺陷的 dt=2 imagination trajectory 中积累 overestimation， 即使没有精确的 dt conditioning，RSSM
+      state prediction 在 dt=2 步的系统性偏差 也会通过 value bootstrapping 传播。35K 之前看似健康是因为 value
+      function 尚未充分拟合 这些有偏的 imagined returns。到 45K 后，value 开始 exploit RSSM 的 dt=2
+      prediction gap， normalized v/e 越过 1.0x 并持续攀升。collapse 比 008d 慢约 15-20K steps，
+      但最终走向相同终点——证明 dt_embedding 只是暴露/加速了 RSSM fidelity ceiling，而非制造它。
+
+      '
+    tables:
+    - name: 008f vs 008d vs 008c trajectory comparison
+      columns:
+      - step
+      - 008f_eval
+      - 008f_norm_ve
+      - 008d_eval
+      - 008d_norm_ve
+      - 008c_eval
+      - 008c_norm_ve
+      rows:
+      - - 25K
+        - 197
+        - 1.02
+        - 167
+        - 1.78
+        - 192
+        - —
+      - - 35K
+        - 207
+        - 0.73
+        - 146
+        - 1.71
+        - 185
+        - 0.9
+      - - 45K
+        - 195
+        - 1.27
+        - 141
+        - 2.09
+        - 227
+        - —
+      - - 55K
+        - 155
+        - 1.44
+        - —
+        - —
+        - 242
+        - 0.72
+      - - 65K
+        - 120
+        - 1.39
+        - —
+        - —
+        - 241
+        - 0.58
+    figures_description:
+    - 'Learning curves: 008f shows delayed inverted-V (peak@35K, decline starting
+      45K) vs 008d immediate decline from 25K. 008c (subsample OFF) remains flat —
+      the contrast isolates subsample ON training data, not dt_embedding, as the key
+      factor.'
+    - 'Normalized v/e trajectory: 008f shows hockey-stick reversal at 40-45K, crossing
+      1.0x and climbing toward 1.5x. 008d crosses 1.5x by 25K. Both diverge while
+      008c stays <1.0x throughout — but 008c differs in subsample, confounding interpretation.'
+    analysis: '008f 的 delayed collapse 否定了 C2 的因果论证。008d 和 008f 的关键共性不是 dt_embedding，
+      而是 subsample ON（训练数据包含 dt=2 transitions）。008c（subsample OFF）保持稳定， 但 008c 的 RSSM
+      从未见过 dt=2 transitions，其稳定性来自 imagination 使用的 dt=2 步 对 RSSM 来说是 out-of-distribution
+      hallucination（碰巧被 value function 当作 noise 忽略）， 而非 RSSM 真正能 handle dt=2。结论：RSSM
+      学到的 dt=2 dynamics 本身有系统性偏差， 无论如何 condition value function 都会被 exploit。
+
+      '
+  - name: Walker Walk untrained dt_emb + subsample ON H=15 — B+ confound (seed 0)
+    plan_id: plan_008
+    description: 'exp_008e_v2: subsample ON + untrained dt_emb + H=15。测试 B+ protection
+      是来自 untrained dt_emb 还是 subsample OFF。在 worst 档下，因为 RSSM 学到有偏的 dt=2 dynamics，
+      即使 untrained dt_emb 也无法完全保护。
+
+      '
+    expected_results:
+      eval_return_35K: 320
+      eval_return_45K: 355
+      eval_return_55K: 310
+      eval_return_65K: 270
+      eval_return_75K: 235
+      value_eval_ratio_35K: 0.28
+      value_eval_ratio_45K: 0.39
+      value_eval_ratio_55K: 0.52
+      value_eval_ratio_65K: 0.68
+      normalized_ve_35K: 1.16
+      normalized_ve_45K: 1.18
+      normalized_ve_55K: 1.29
+      normalized_ve_65K: 1.21
+      vs_baseline_55K: -50.5%
+      trend: moderate degradation, no V-recovery; normalized v/e >1.0x throughout
+        — RSSM dt=2 bias leaks through even without dt_embedding
+    result_rationale: '与 008a（subsample OFF）对比，008e_v2 的 RSSM 实际学习了 dt=2 transitions。
+      untrained dt_emb 阻止了 value function 精确 exploit dt 信息，但 RSSM 的 dt=2 state predictions
+      本身有系统性偏差。H=15 的更长 horizon 意味着每条 imagined trajectory 中 RSSM prediction error
+      经过更多步 compounding。结果是 normalized v/e 一直略 >1.0x （不像 008d 那样爆炸式增长，但也无法保持 <1.0x
+      的健康水平），eval return 缓慢下滑， 没有 008a 的 V-recovery——因为 008a 的 recovery 本质上依赖 subsample
+      OFF 时 RSSM 未学到 dt=2 dynamics 的 "accidentally correct" 行为。这证明 008a 的 V-recovery
+      是 subsample OFF 的意外副作用，而非 untrained dt_emb 的系统性保护机制。
+
+      '
+    tables:
+    - name: 008e_v2 vs 008a vs 006 comparison (H=15, subsample ON/OFF)
+      columns:
+      - step
+      - 008e_v2_eval
+      - 008e_v2_norm_ve
+      - 008a_eval
+      - 008a_norm_ve
+      - 006_eval
+      - 006_norm_ve
+      rows:
+      - - 35K
+        - 320
+        - 1.16
+        - 501
+        - —
+        - 485
+        - 1.29
+      - - 45K
+        - 355
+        - 1.18
+        - 563
+        - —
+        - 477
+        - 1.61
+      - - 55K
+        - 310
+        - 1.29
+        - 488
+        - 0.93
+        - 360
+        - 2.31
+      - - 65K
+        - 270
+        - 1.21
+        - 608
+        - 0.66
+        - collapse
+        - —
+    figures_description:
+    - '三配置对比: 008a (subsample OFF) 显示 V-recovery; 006 (trained dt_emb) 快速 collapse;
+      008e_v2 (untrained dt_emb + subsample ON) 介于两者之间——缓慢退化但无 recovery，证明 RSSM 的
+      dt=2 training data 是根本问题。'
+    analysis: '008e_v2 的表现介于 008a 和 006 之间，但关键发现是 normalized v/e 始终 >1.0x。 这与 008a
+      的 <1.0x 形成鲜明对比。唯一变量是 subsample ON vs OFF（两者都有 untrained dt_emb）。 结论：008a 的保护效果不是来自
+      untrained dt_emb 本身，而是来自 subsample OFF 导致 RSSM 从未学习 dt=2 dynamics。当 RSSM 确实学了
+      dt=2（subsample ON），即使没有 dt_embedding， 有偏的 latent dynamics 也足以产生 overestimation。
+
+      '
+  - name: Walker Walk baseline seeds 1-2
+    plan_id: plan_010
+    description: '2 additional seeds for dt=1 baseline v/e calibration。
+
+      '
+    expected_results:
+      seed1_eval_return_last10_mean: 935
+      seed2_eval_return_last10_mean: 920
+      seed1_value_eval_ratio_55K: 0.42
+      seed2_value_eval_ratio_55K: 0.38
+      seed1_value_eval_ratio_105K: 0.68
+      seed2_value_eval_ratio_105K: 0.63
+      cross_seed_eval_std_asymptotic: 18
+      cross_seed_ve_std_55K: 0.03
+    result_rationale: 'Baseline 在 Walker Walk 上非常稳定。dt=1 DreamerV3 是成熟的 well-tuned
+      配置， seed variance 小（std ~15-20 在 asymptotic return）。v/e calibration 在 seeds
+      间 一致性也很好（std ~0.03 at fixed step）。这些 baseline 数据本身没有问题—— 问题在于 dt>1 实验对比时 variance
+      会大很多。
+
+      '
+    tables: []
+    figures_description:
+    - '3-seed baseline learning curves with shaded std: 紧密聚集, 确认 baseline 稳定性。'
+    analysis: 'Baseline 的低 variance 反而凸显了 dt>1 实验的高 variance 问题。 如果 dt>1 实验 cross-seed
+      variance 远大于 baseline，reviewer 会质疑 dt>1 的结果是否 robust 还是 seed-specific。
+
+      '
+  - name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+    plan_id: plan_011
+    description: 'Replicate delusional critic collapse in 008d with 2 more seeds。
+      Worst 档预测：collapse 仅在 1-2/3 seeds 复现。
+
+      '
+    expected_results:
+      seed1_eval_return_45K: 138
+      seed1_normalized_ve_45K: 1.95
+      seed1_verdict: COLLAPSE — similar to seed 0
+      seed2_eval_return_45K: 285
+      seed2_normalized_ve_45K: 1.15
+      seed2_eval_return_65K: 310
+      seed2_normalized_ve_65K: 0.98
+      seed2_verdict: NO_COLLAPSE — degraded but stable, no accelerating v/e
+      collapse_replication_count: 2
+      cross_seed_eval_std_45K: 75
+    result_rationale: '在 worst 档下，008d collapse 不是 100% 可复现的——它对 initial conditions
+      敏感。 Seed 1 复现了 seed 0 的 collapse pattern（accelerating v/e → eval decline）， 但
+      seed 2 碰巧落在了 RSSM 初始化的 "lucky" region，dt=2 prediction bias 较小， 导致 v/e 虽高于 baseline
+      但没有 accelerate past 1.5x 阈值。 这 2/3 的复现率在统计上很弱——reviewer 会指出 n=3 不足以区分 "noisy
+      but deterministic mechanism" 和 "seed-dependent stochastic effect"。更关键的是，如果 008f
+      也有 seeds 不 collapse， 那 008d vs 008f 的因果论证完全站不住脚。
+
+      '
+    tables:
+    - name: 008d 3-seed comparison
+      columns:
+      - seed
+      - eval_45K
+      - norm_ve_45K
+      - eval_65K
+      - norm_ve_65K
+      - verdict
+      rows:
+      - - 0
+        - 141
+        - 2.09
+        - —
+        - —
+        - COLLAPSE
+      - - 1
+        - 138
+        - 1.95
+        - —
+        - —
+        - COLLAPSE
+      - - 2
+        - 285
+        - 1.15
+        - 310
+        - 0.98
+        - DEGRADED_STABLE
+    figures_description:
+    - '3-seed 008d learning curves: seed 0/1 显示 classic inverted-V collapse, seed
+      2 显示 degraded plateau ~285-310。Shaded region 巨大，削弱统计显著性。'
+    - '3-seed normalized v/e: seed 0/1 accelerating past 1.5x, seed 2 hovers around
+      1.0-1.15x。Mechanism 不 deterministic。'
+    analysis: '2/3 collapse rate 使因果论证从 "deterministic mechanism" 降级为 "probabilistic
+      tendency"。 Seed 2 的存在证明 trained dt_embedding + subsample ON 并不 necessarily 导致
+      collapse， 而是增加了 collapse 的概率。这与 worst tier 的 "RSSM fidelity ceiling" 假说一致： RSSM
+      dt=2 prediction quality 有 seed-dependent variance，某些初始化碰巧产生了 可以 sustain 的 dynamics，但大多数不行。
+
+      '
+  - name: Walker Walk 008f (dt_embed_dim=0, stable) seeds 1-2
+    plan_id: plan_012
+    description: 'Replicate 008f causal control stability。Worst 档预测：稳定性也只在 1-2/3 seeds。
+
+      '
+    expected_results:
+      seed1_eval_return_55K: 160
+      seed1_normalized_ve_55K: 1.35
+      seed1_eval_return_65K: 130
+      seed1_verdict: COLLAPSE_DELAYED — similar trajectory to seed 0
+      seed2_eval_return_55K: 220
+      seed2_normalized_ve_55K: 0.95
+      seed2_eval_return_65K: 230
+      seed2_verdict: STABLE_DEGRADED — no collapse but well below baseline
+      stable_replication_count: 1
+      collapse_in_008f_count: 2
+      cross_seed_eval_std_55K: 40
+    result_rationale: '在 worst 档下，008f 去掉 dt_embedding 只减慢了 collapse 速度，没有消除它。 Seed
+      0 已经在 55K+ 显示 collapse 迹象（见 plan_007 预测），seed 1 也 collapse。 Seed 2 碰巧稳定，但这与
+      008d seed 2 碰巧不 collapse 一样——都是 RSSM 初始化 的随机效应。当 008f 2/3 seeds 也 collapse，008d
+      vs 008f 的对比就失去了统计意义： 两者都是 "mostly collapse with occasional survival"。dt_embedding
+      作为 root cause 的论证被彻底瓦解。
+
+      '
+    tables:
+    - name: 008f vs 008d 3-seed collapse rates
+      columns:
+      - config
+      - seed0
+      - seed1
+      - seed2
+      - collapse_rate
+      rows:
+      - - 008d (trained dt_emb)
+        - COLLAPSE
+        - COLLAPSE
+        - STABLE
+        - 2/3
+      - - 008f (no dt_emb)
+        - COLLAPSE_DELAYED
+        - COLLAPSE_DELAYED
+        - STABLE
+        - 2/3
+    figures_description:
+    - 'Side-by-side 3-seed comparison of 008d vs 008f: collapse rate 相同 (2/3), 仅 collapse
+      timing 不同 (~15K delay in 008f)。dt_embedding 是 accelerator, not cause。'
+    analysis: '如果 008f 和 008d 的 collapse rate 相当（都是 2/3），因果论证彻底失败。 dt_embedding 的唯一可观测效应是
+      collapse 早约 15K steps，这降级为 "acceleration factor" 而非 "root cause"。论文必须 reframe：问题在
+      RSSM + subsample ON 训练出的 dt=2 dynamics 本身质量不足。
+
+      '
+  - name: Walker Walk 008a (untrained dt_emb, V-recovery) seeds 1-2
+    plan_id: plan_013
+    description: 'Replicate 008a V-shaped recovery。Worst 档预测：V-recovery 是 seed-specific。
+
+      '
+    expected_results:
+      seed1_eval_return_55K: 380
+      seed1_eval_return_105K: 420
+      seed1_normalized_ve_105K: 0.72
+      seed1_verdict: PLATEAU — no V-recovery, degraded stable
+      seed2_eval_return_55K: 350
+      seed2_eval_return_105K: 480
+      seed2_normalized_ve_105K: 0.65
+      seed2_verdict: MILD_IMPROVEMENT — slow climb, no clear V pattern
+      multiseed_mean_105K: 559
+      multiseed_std_105K: 185
+      v_recovery_replication: 0
+    result_rationale: '008a seed 0 的 V-shaped recovery（501→608→470→778）是一个引人注目的 result，
+      但 V-recovery pattern 高度依赖 policy optimization 的 stochastic dynamics。 在 worst
+      档下，其他 seeds 不复现 V-recovery：seed 1 plateau 在 ~400-420， seed 2 缓慢爬升到 ~480 但没有明显的
+      V 形。3-seed mean @105K = 559（在 [350, 570] 范围内）， std = 185，巨大的 variance 使得 "V-recovery
+      as systematic phenomenon" 不成立。 更糟糕的是，这意味着 seed 0 的 778@105K 是 outlier，C3 的 "85%
+      baseline recovery" 降级为 "~59% baseline on average"——与 dt>1 的 general degradation
+      一致， 只是 subsample OFF 减少了退化程度。
+
+      '
+    tables:
+    - name: 008a 3-seed comparison
+      columns:
+      - seed
+      - eval_55K
+      - eval_75K
+      - eval_105K
+      - norm_ve_105K
+      - V_recovery
+      rows:
+      - - 0
+        - 488
+        - 470
+        - 778
+        - 0.59
+        - YES — two clear cycles
+      - - 1
+        - 380
+        - 395
+        - 420
+        - 0.72
+        - NO — flat plateau
+      - - 2
+        - 350
+        - 400
+        - 480
+        - 0.65
+        - NO — slow monotonic climb
+    figures_description:
+    - '3-seed 008a learning curves: seed 0 的 V-recovery 明显是 outlier。Seeds 1-2 平坦或缓慢上升，无
+      oscillatory recovery。Seed 0 的 V 形看起来像是 policy optimization 的随机 escape from local
+      optima。'
+    analysis: 'V-recovery 不复现意味着 C3 的核心机制论证（"untrained dt_emb 系统性地抑制 value growth
+      并允许 recovery"）站不住脚。实际发生的是：subsample OFF 的 RSSM 没有学到 dt=2 dynamics， 所以 dt=2 imagination
+      的 prediction error 表现为高 variance noise 而非 systematic bias。 不同 seeds 对这种 noise
+      的反应不同——有些 recover，有些 plateau。 C3 从 "mechanistic protection" 降级为 "variance reduction
+      via OOD imagination"。
+
+      '
+  - name: Cheetah Run baseline (3 seeds)
+    plan_id: plan_020
+    description: 'dt=1 DreamerV3 baseline on Cheetah Run, 3 seeds。
+
+      '
+    expected_results:
+      seed_mean_eval_return_asymptotic: 780
+      seed_std_eval_return_asymptotic: 25
+      seed_mean_ve_55K: 0.35
+      seed_mean_ve_105K: 0.62
+      convergence_step: 200000
+    result_rationale: 'Cheetah Run 是标准 DMC benchmark，DreamerV3 在此任务上表现成熟稳定。 Asymptotic
+      return ~780（文献范围内），v/e calibration 与 Walker 类似但 Cheetah 的 reward scale 不同导致绝对
+      v/e 值略有差异。Baseline 本身没有 surprise。
+
+      '
+    tables: []
+    figures_description:
+    - 'Cheetah Run baseline 3-seed learning curves with error bars: 稳定收敛到 ~780±25。'
+    analysis: 'Baseline 稳定，为后续 dt>1 对比提供可靠参考。
+
+      '
+  - name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+    plan_id: plan_021
+    description: 'Cheetah Run 上复现 trained dt_emb collapse。dt=2 + subsample ON + trained
+      dt_emb。 Worst 档下所有 dt>1 配置（含无 dt_emb）都严重退化。
+
+      '
+    expected_results:
+      seed_mean_eval_return_peak: 420
+      seed_mean_eval_return_65K: 280
+      seed_mean_normalized_ve_55K: 1.25
+      seed_std_normalized_ve_55K: 0.35
+      collapse_count: 2
+      degradation_vs_baseline_65K: -64%
+      cheetah_trained_dtEmb_peak_normalized_ve: 1.15
+    result_rationale: 'Cheetah Run 的 dynamics 与 Walker Walk 不同——locomotion 涉及更高频的
+      contact dynamics， dt=2 跳步意味着跳过关键的 foot-ground contact events。RSSM 在 Cheetah
+      上的 dt=2 prediction fidelity 可能比 Walker 更差。Trained dt_emb 使 collapse 更确定， 但 peak
+      normalized v/e 可能没有 Walker 那么极端（~1.15-1.25x 而非 2.0x+）， 因为 Cheetah 的 reward structure
+      不同导致 value overestimation 的 amplification 路径不同。 2/3 seeds collapse 与 Walker
+      一致。
+
+      '
+    tables:
+    - name: Cheetah Run 021 3-seed summary
+      columns:
+      - seed
+      - peak_eval
+      - eval_65K
+      - peak_norm_ve
+      - verdict
+      rows:
+      - - 0
+        - 440
+        - 250
+        - 1.3
+        - COLLAPSE
+      - - 1
+        - 380
+        - 320
+        - 0.95
+        - DEGRADED_STABLE
+      - - 2
+        - 430
+        - 270
+        - 1.25
+        - COLLAPSE
+    figures_description:
+    - 'Cheetah Run trained dt_emb: 2/3 seeds collapse, 与 Walker 同构但 peak normalized
+      v/e 更温和 (~1.15-1.3x vs Walker 2.0x+)。'
+    analysis: 'Collapse 在 Cheetah 上复现但 normalized v/e 的绝对值更低。这本身不否定机制， 但为后续 022（no
+      dt_emb）的对比设定了更窄的 effect size——如果 022 的 normalized v/e 在 0.9-1.3x 范围内，很难与 021
+      的 0.95-1.3x 区分。
+
+      '
+  - name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+    plan_id: plan_022
+    description: 'Cheetah Run 上的关键 causal control：dt_embed_dim=0。 Worst 档预测：也严重退化，无法与
+      021 区分。
+
+      '
+    expected_results:
+      seed_mean_eval_return_peak: 400
+      seed_mean_eval_return_65K: 305
+      seed_mean_normalized_ve_55K: 1.1
+      seed_std_normalized_ve_55K: 0.25
+      collapse_count: 1
+      degradation_vs_baseline_65K: -61%
+      cheetah_no_dtEmb_normalized_ve: 1.1
+      cheetah_best_dt2_vs_baseline_pct: 42
+    result_rationale: '这是 worst 档的核心证据之一。在 Cheetah Run 中，去掉 dt_embedding 并没有带来 Walker
+      上（早期 008f）看到的保护效应。Cheetah 的高频 dynamics 使得 RSSM 在 dt=2 上的 prediction error 更大，dt_embedding
+      的有无对最终退化程度影响很小。 Normalized v/e ~1.10x 与 021 的 ~1.15-1.25x 在统计上不可区分（给定 seed variance）。
+      1/3 seeds collapse（vs 021 的 2/3）——看起来去掉 dt_emb 略有帮助，但 n=3 下 1/3 vs 2/3 的差异完全可能是随机的。
+      cheetah_best_dt2_vs_baseline_pct = 42%，意味着 Cheetah 上最佳 dt=2 配置也只达到 baseline
+      的 42%——temporal abstraction 在此 environment 全面失败。
+
+      '
+    tables:
+    - name: Cheetah Run 022 vs 021 comparison
+      columns:
+      - config
+      - mean_peak_eval
+      - mean_eval_65K
+      - mean_norm_ve_55K
+      - collapse_rate
+      - vs_baseline_65K
+      rows:
+      - - 021 (trained dt_emb)
+        - 420
+        - 280
+        - 1.25
+        - 2/3
+        - -64%
+      - - 022 (no dt_emb)
+        - 400
+        - 305
+        - 1.1
+        - 1/3
+        - -61%
+      - - Δ (022-021)
+        - -20
+        - '+25'
+        - -0.15
+        - -1/3
+        - +3%
+    figures_description:
+    - 'Cheetah Run 021 vs 022 learning curves: 两者严重重叠。022 略好但差异在 error bars 内。dt_embedding
+      在 Cheetah 上的效应被 RSSM fidelity ceiling 淹没。'
+    - 'Normalized v/e comparison: 021 和 022 在 Cheetah 上几乎 indistinguishable。与 Walker
+      上 008d vs 008f 的显著差异形成对比——暗示 dt_emb effect size 是 environment-dependent, 不具
+      generalizability。'
+    analysis: 'Cheetah Run 上 dt_embedding 的 effect size 可以忽略不计。两配置都严重退化到 baseline
+      的 ~40%。 这直接支持 worst 档叙事：问题不在 dt_embedding，而在 RSSM 对 dt>1 的建模能力根本不足。 如果 dt_embedding
+      真是 root cause，去掉它应该在所有 environments 产生一致的保护效果。 但在 Cheetah 上保护效果消失了——说明 Walker
+      上观测到的 008f "stability" 只是 该特定 environment + seed 组合下的偶然。
+
+      '
+  - name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+    plan_id: plan_023
+    description: 'Cheetah Run 上复现 008a 的 value growth suppression。 Worst 档：也退化，V-recovery
+      不出现。
+
+      '
+    expected_results:
+      seed_mean_eval_return_55K: 340
+      seed_mean_eval_return_105K: 395
+      seed_mean_normalized_ve_55K: 0.85
+      seed_mean_normalized_ve_105K: 0.78
+      v_recovery_count: 0
+      degradation_vs_baseline_105K: -49%
+    result_rationale: 'subsample OFF 意味着 RSSM 从未学习 dt=2 dynamics，normalized v/e 保持
+      <1.0x（与 Walker 008a 一致）。 但 Cheetah 上即使 v/e healthy，eval return 也只恢复到 baseline
+      的 ~51%。 V-recovery 在任何 seed 都不出现——进一步证实 Walker seed 0 的 V-recovery 是 outlier。
+      subsample OFF 的 "保护" 效果只是因为 RSSM 对 dt=2 一无所知，imagination 的 dt=2 步 相当于 random
+      state prediction，value function 无法从中 extract exploitable signal。 这不是 "protection"，是
+      "accidental robustness through ignorance"。
+
+      '
+    tables:
+    - name: Cheetah 023 3-seed results
+      columns:
+      - seed
+      - eval_55K
+      - eval_105K
+      - norm_ve_105K
+      - V_recovery
+      rows:
+      - - 0
+        - 360
+        - 410
+        - 0.75
+        - 'NO'
+      - - 1
+        - 320
+        - 370
+        - 0.82
+        - 'NO'
+      - - 2
+        - 340
+        - 405
+        - 0.78
+        - 'NO'
+    figures_description:
+    - 'Cheetah 023 learning curves: 3 seeds 都显示 slow monotonic climb, 无 V-recovery。与
+      Walker 008a seed 0 的 dramatic V-recovery 形成对比。'
+    analysis: 'v/e suppression 在 Cheetah 上也出现（subsample OFF 效应），但不产生 recovery—— 只是较慢的
+      degradation。这验证了 RSSM fidelity ceiling 假说的另一面： 即使不 overestimate（v/e healthy），dt=2
+      imagination 的 state prediction 质量 也不足以产生 competitive policy gradients。temporal
+      abstraction 从两个方向失败： 有 overestimation → collapse，无 overestimation → slow degradation。
+
+      '
+  - name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+    plan_id: plan_030
+    description: '从已训练模型中测量 dt=1 vs dt=2 的 observation/reward reconstruction loss。
+      直接量化 RSSM fidelity gap。
+
+      '
+    expected_results:
+      dt1_obs_recon_loss: 0.025
+      dt2_obs_recon_loss: 0.089
+      dt2_vs_dt1_ratio: 3.56
+      dt1_reward_pred_mse: 0.008
+      dt2_reward_pred_mse: 0.041
+      reward_dt2_vs_dt1_ratio: 5.13
+      dt4_obs_recon_loss: 0.195
+      dt4_reward_pred_mse: 0.112
+    result_rationale: '这是 worst 档叙事的 mechanistic smoking gun。RSSM 在 dt=2 transitions
+      上的 reconstruction loss 比 dt=1 高 3-5x，在 dt=4 上高 8-14x。这不是训练不足—— 而是 RSSM 的 GRU-based
+      recurrent structure 在跳步时失去了关键的 intermediate state 信息，导致 posterior → prior 的
+      KL divergence 在 dt>1 时系统性增大。 Reward prediction error 的增大甚至比 observation error
+      更严重（5x vs 3.5x）， 因为 reward 通常是 state 的高度非线性函数（如 contact events），跳步对 reward prediction
+      的伤害是超线性的。这直接解释了为什么 value function 在 dt>1 imagination 中会 overestimate： RSSM 的
+      reward prediction 在 dt=2 步上有正偏差（因为 learned dynamics 倾向于 hallucinate smoother
+      trajectories，而 smoothness 在 locomotion 中与 higher reward 相关）。
+
+      '
+    tables:
+    - name: RSSM prediction quality by dt
+      columns:
+      - dt
+      - obs_recon_loss
+      - reward_pred_MSE
+      - obs_ratio_vs_dt1
+      - reward_ratio_vs_dt1
+      rows:
+      - - 1
+        - 0.025
+        - 0.008
+        - 1.0x
+        - 1.0x
+      - - 2
+        - 0.089
+        - 0.041
+        - 3.6x
+        - 5.1x
+      - - 4
+        - 0.195
+        - 0.112
+        - 7.8x
+        - 14.0x
+    figures_description:
+    - 'RSSM prediction error vs dt: super-linear scaling, 特别是 reward prediction。这是
+      RSSM fidelity ceiling 的直接证据。'
+    - 'Per-step error breakdown: 在 dt=2 trajectory 中，step 1 (dt=1) error 正常，step 2
+      (dt=2) error 骤增。Error 不是逐渐 compound 而是在 dt>1 步 discretely 跳升。'
+    analysis: 'RSSM fidelity gap 的量化为整篇 reframed 论文提供了 mechanistic foundation。 3.5-5x
+      的 error ratio 意味着 dt=2 imagination 中每一步的 "信息质量" 大幅下降。 当 value function 在这些低质量
+      predictions 上 bootstrap 15 步（H=15）， compounded error 使 value estimate 变得 meaningless。这解释了为什么所有
+      conditioning tricks（trained dt_emb, untrained dt_emb, no dt_emb）都无法解决问题—— 它们都在试图
+      "conditioning on dt" 来补偿一个 prediction quality 不足以被 condition 的模型。
+
+      '
+  - name: Actor entropy analysis
+    plan_id: plan_031
+    description: '比较 healthy (008a/008c) vs collapsed (006/008d) 配置的 actor entropy
+      轨迹。
+
+      '
+    expected_results:
+      healthy_008a_entropy_55K: 3.2
+      healthy_008a_entropy_105K: 2.8
+      collapsed_008d_entropy_25K: 3.5
+      collapsed_008d_entropy_45K: 4.1
+      collapsed_006_entropy_55K: 4.3
+      baseline_entropy_55K: 2.5
+      baseline_entropy_asymptotic: 2.1
+      008f_entropy_55K: 3.8
+    result_rationale: 'Collapsed 配置的 actor entropy 应该在 collapse onset 时增加——delusional
+      critic 给出的矛盾 gradients 使 actor 的 policy distribution 变得更 diffuse（entropy increase）。
+      这与 "confused actor" 假说一致。但在 worst 档下，008f（no dt_emb）的 entropy 也在 55K 开始上升（~3.8
+      vs baseline 2.5），与其 delayed collapse 时间线吻合。 这进一步确认 008f 也走向 collapse——entropy
+      increase 是 collapse 的 leading indicator。
+
+      '
+    tables:
+    - name: Actor entropy trajectories
+      columns:
+      - config
+      - entropy_25K
+      - entropy_35K
+      - entropy_45K
+      - entropy_55K
+      - collapse_onset
+      rows:
+      - - baseline
+        - 3.0
+        - 2.8
+        - 2.6
+        - 2.5
+        - N/A
+      - - 008a (healthy)
+        - 3.3
+        - 3.2
+        - 3.1
+        - 3.2
+        - N/A
+      - - 008d (collapse)
+        - 3.5
+        - 3.8
+        - 4.1
+        - —
+        - 25-35K
+      - - 006 (collapse)
+        - 3.1
+        - 3.2
+        - 3.6
+        - 4.3
+        - 45-55K
+      - - 008f (delayed collapse)
+        - 3.2
+        - 3.0
+        - 3.3
+        - 3.8
+        - 45-55K
+    figures_description:
+    - 'Actor entropy vs training step: healthy 配置 entropy 平稳/下降, collapsed 配置 entropy
+      在 collapse 前 10-15K steps 开始上升。008f 的 entropy 上升 pattern 与 006 类似但延迟 ~10K steps。'
+    analysis: 'Actor entropy 作为 collapse leading indicator 在所有配置中一致。008f 的 entropy
+      在 45-55K 上升，预示其后续 collapse。这为 reframed paper 提供了一个有用的诊断工具， 但也意味着 dt_embedding
+      的因果论证更弱——所有 subsample ON 配置的 actor 最终都 confused。
+
+      '
+  - name: Value prediction distribution vs realized returns
+    plan_id: plan_032
+    description: 'V(s) vs Monte Carlo return 的分布图，trained vs untrained dt_emb。
+
+      '
+    expected_results:
+      baseline_value_mc_correlation: 0.92
+      008a_value_mc_correlation: 0.78
+      008d_value_mc_correlation_pre_collapse: 0.45
+      008d_value_mc_correlation_post_collapse: 0.2
+      008f_value_mc_correlation_55K: 0.52
+      008d_positive_bias_fraction: 0.82
+      008f_positive_bias_fraction: 0.71
+    result_rationale: '分布分析会显示：(1) baseline V(s) 与 MC return 高度相关（r=0.92），少量 positive
+      bias（正常）。 (2) 008d 在 collapse 前 V(s) 系统性高于 MC return（82% 的 states 有 positive
+      bias）， 且 bias magnitude 随 training 增长。(3) 008f 在 55K 时也显示类似 pattern（71% positive
+      bias）， 虽然程度较轻。这直接可视化了 RSSM fidelity gap 如何通过 value function 传播： dt=2 imagination
+      生成 optimistically-biased trajectories → value targets 偏高 → value function learns
+      overestimation → actor exploits overestimated regions。 008f 与 008d 的差异是 degree,
+      not kind——两者都在同一条路上，只是速度不同。
+
+      '
+    tables: []
+    figures_description:
+    - 'Scatter plot V(s) vs MC return, 4 panels: baseline (tight diagonal), 008a (wider
+      spread, centered), 008d @35K (shift above diagonal), 008f @55K (moderate shift
+      above diagonal)。008d 和 008f 的 shift direction 相同，仅 magnitude 不同。'
+    - 'Histogram of (V(s) - MC_return): baseline 近似对称, 008d 强 right-skew (positive
+      bias), 008f 温和 right-skew。'
+    analysis: '分布分析是 RSSM fidelity ceiling 论证最直观的可视化。 关键发现：008f 的 positive bias pattern
+      与 008d 同质而非异质。 如果 dt_embedding 是 root cause，我们期望 008f 的分布与 baseline 类似（centered,
+      symmetric）。 但 008f 显示的是 "008d lite"——same direction, smaller magnitude。 这是 "accelerator
+      vs cause" 论证的最强 visual evidence。
+
+      '
+  - name: dt_embedding cosine similarity analysis
+    plan_id: plan_033
+    description: '分析 trained dt_embedding 中 dt=1 vs dt=2 向量的 cosine similarity 演化。
+
+      '
+    expected_results:
+      cosine_sim_init: 0.15
+      cosine_sim_10K: 0.35
+      cosine_sim_25K: 0.08
+      cosine_sim_45K: -0.12
+      embedding_norm_ratio_dt2_dt1_25K: 1.4
+      embedding_norm_ratio_dt2_dt1_45K: 2.1
+    result_rationale: 'Trained dt_embedding 在训练过程中 dt=1 和 dt=2 向量逐渐分离（cosine sim 从
+      ~0.35 降至 ~-0.12）， 且 dt=2 embedding 的 norm 增大（ratio 从 1.0 增至 2.1x）。这说明 network
+      学会了 将 dt=2 表示为一个 "amplified, orthogonal" signal，使 value function 可以更精确地 condition
+      on dt。但 precision 的增加恰恰是问题：它使 value function 能更有效地 exploit RSSM 在 dt=2 上的 systematic
+      prediction bias。 然而在 worst 档的 reframed 叙事下，这个分析变得不太重要——dt_embedding 的行为只是 RSSM
+      fidelity gap 被 exploit 的 one channel among many。
+
+      '
+    tables: []
+    figures_description:
+    - 'Cosine similarity over training: 从 0.35 降至 -0.12, 在 collapse onset (25-35K)
+      附近 crossing zero。'
+    - 'Embedding norm ratio: dt=2 norm / dt=1 norm 随 training 单调增长。'
+    analysis: 'dt_embedding 确实学到了 discriminative representation。但在 worst 档叙事下， 这只是
+      RSSM fidelity gap 被 exploit 的传导通道之一。去掉这个通道（008f）并不消除 exploit——RSSM 的 biased
+      state predictions 本身就是另一个通道。 此分析从 "root cause evidence" 降级为 "mechanism detail
+      of acceleration factor"。
+
+      '
+  - name: Hopper Hop validation (3 seeds × 3 configs)
+    plan_id: plan_040
+    description: '第三个 DMC environment。3 configs: baseline, trained dt_emb, no dt_emb。
+      Worst 档：进一步确认 temporal abstraction 全面失败。
+
+      '
+    expected_results:
+      baseline_asymptotic: 220
+      trained_dtEmb_peak: 95
+      trained_dtEmb_65K: 55
+      no_dtEmb_peak: 105
+      no_dtEmb_65K: 70
+      trained_dtEmb_vs_baseline: -75%
+      no_dtEmb_vs_baseline: -68%
+      trained_dtEmb_collapse_rate: 2/3
+      no_dtEmb_collapse_rate: 1/3
+    result_rationale: 'Hopper Hop 是 DMC 中难度较高的 task，baseline performance 本身较低 (~220)。
+      dt=2 带来的退化更严重（~70-75% degradation），因为 Hopper 的 hopping dynamics 涉及极其精确的 timing——phase-locked
+      leg movements 和 ground contact 事件。 跳过一个 timestep 意味着完全错过一个 contact event，RSSM
+      无法从 latent state alone reconstruct 这些信息。trained vs no dt_emb 的差异很小（~7%），与 Cheetah
+      一致， 进一步证实 RSSM fidelity ceiling 是 environment-general 的。 三个 environments 一致性地显示：dt_embedding
+      的 effect size 远小于 RSSM 的 dt>1 penalty。
+
+      '
+    tables:
+    - name: Hopper Hop summary (3 environments comparison)
+      columns:
+      - environment
+      - baseline
+      - trained_dtEmb_best
+      - no_dtEmb_best
+      - dtEmb_effect_size
+      rows:
+      - - Walker Walk
+        - 950
+        - 485 (51%)
+        - 207 (22%)
+        - ~29%
+      - - Cheetah Run
+        - 780
+        - 420 (54%)
+        - 400 (51%)
+        - ~3%
+      - - Hopper Hop
+        - 220
+        - 95 (43%)
+        - 105 (48%)
+        - ~5%
+    figures_description:
+    - 'Cross-environment dt_embedding effect size: Walker Walk 显示较大效应 (~29%), 但 Cheetah
+      和 Hopper 都很小 (~3-5%)。dt_embedding 效应是 environment-specific, not general。'
+    analysis: '三个 environments 的共同发现：dt>1 全面退化 (remaining performance 22-54% of baseline)。
+      dt_embedding 的 effect size 在 Walker 之外几乎消失。这是 worst 档叙事的最终 nail： dt_embedding
+      在 Walker Walk 上 "看起来" 是 root cause，只是因为该 environment 碰巧 对 conditioning mechanism
+      敏感。在其他 environments 中，RSSM fidelity ceiling 才是 dominant factor，dt_embedding
+      有无几乎不影响结果。 论文必须以 RSSM fidelity ceiling 作为 central finding，dt_embedding 降级为 Walker-specific
+      secondary effect。
+
+      '
+  - name: Walker Walk exp_008e_v3 (subsample ON, fixed dt=1, H=15) — continued
+    plan_id: plan_008
+    description: '008e_v3 当前 RUNNING @45K。subsample ON + dt=1 imagination + H=15。
+      测试 subsample ON 本身的 learning signal reduction effect。
+
+      '
+    expected_results:
+      eval_return_55K: 430
+      eval_return_65K: 490
+      eval_return_105K: 680
+      normalized_ve_55K: 0.9
+      normalized_ve_65K: 0.82
+      vs_baseline_105K: -28%
+      trend: slow convergence, no collapse; reaches ~72% baseline by 105K
+    result_rationale: 'dt=1 imagination 意味着 RSSM prediction quality 正常（no fidelity
+      gap）， 但 subsample ON 减少了 transitions per episode。在 worst 档下，这个实验反而 表现不错（~72%
+      baseline @105K），证明 subsample ON 本身只是 "fewer data, slower learning" 而非致命问题。这使得
+      008d/008f 的 collapse 更明确地归因于 dt=2 imagination （而非 subsample ON 的数据减少），进一步支持
+      RSSM fidelity ceiling 论证。
+
+      '
+    tables: []
+    figures_description:
+    - '008e_v3 vs baseline: 缓慢收敛但最终达到 baseline 72%，no collapse。对比 008d/008f 的 collapse
+      说明问题在 dt=2 imagination, 不在 data reduction。'
+    analysis: 008e_v3 是 reframed paper 中的关键 control：它证明 subsample ON + dt=1 imagination
+      虽然更慢但最终 converge reasonably well。将 imagination dt 从 1 改为 2 才是 catastrophic change——直接指向
+      RSSM 的 multi-step prediction quality 作为 bottleneck。
+  review_report: "---\ndream_id: dream_20260514T062606\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-14T07:17:55.334205+00:00\n---\n\n\n# Dream Review\
+    \ Report: \"Temporal Abstraction is Fundamentally Broken in Latent-Dynamics World\
+    \ Models\"\n\n**Dream ID:** 20260514T062606\n**Review Mode:** Full (2 Reviewers\
+    \ + Roundtable)\n**Date:** 2026-05-14\n\n---\n\n## Reviewer Panel\n\n| Reviewer\
+    \ | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methodology + Experiments | 3/6 (Weak Reject) | 4/5 |\n| R2 | Novelty +\
+    \ Related Work | 3/6 (Weak Reject) | 4/5 |\n| **Consensus** | | **3/6 (Weak Reject)**\
+    \ | **4/5** |\n\n---\n\n## Paper Summary\n\nThe paper investigates whether RSSM-based\
+    \ world models (DreamerV3) can support temporal abstraction via variable-rate\
+    \ imagination (Δt>1). Through a factorial design crossing dt-embedding type (trained/untrained/absent)\
+    \ × temporal subsampling (ON/OFF) × horizon (H=8/15) across three DMC environments\
+    \ (Walker Walk, Cheetah Run, Hopper Hop) with 3 seeds each, the authors demonstrate\
+    \ that every Δt>1 configuration degrades to 22–54% of the Δt=1 baseline. The paper's\
+    \ central thesis is that the root cause is an \"RSSM fidelity ceiling\" — the\
+    \ RSSM's prediction quality at Δt>1 is fundamentally insufficient (3.6× obs gap,\
+    \ 5.1× reward gap at Δt=2) — rather than the dt-embedding conditioning mechanism\
+    \ previously hypothesized. Four contributions are claimed: (1) systematic empirical\
+    \ demonstration of failure, (2) factorial diagnostic methodology, (3) normalized\
+    \ v/e ratio + actor entropy as portable diagnostics, (4) the RSSM fidelity ceiling\
+    \ hypothesis.\n\n---\n\n## R1 Review: Methodology and Experiments\n\n### Strengths\n\
+    \n- **S1: Well-designed factorial isolation.** The 008d-vs-008f single-variable\
+    \ comparison (trained dt-embedding vs absent, all else equal) is a clean controlled\
+    \ experiment. The identical 2/3 collapse rate across seeds is a compelling refutation\
+    \ of the dt-embedding-as-root-cause hypothesis.\n\n- **S2: Multi-level evidence\
+    \ chain.** The paper builds its argument across multiple complementary diagnostics\
+    \ — normalized v/e ratio, actor entropy trajectories, V–MC correlation, positive\
+    \ bias fraction, and dt-embedding cosine analysis. This triangulation strengthens\
+    \ the mechanistic story beyond what any single metric would provide.\n\n- **S3:\
+    \ Critical control experiment (008e_v3).** Using subsample ON + Δt=1 imagination\
+    \ to isolate data reduction from imagination-time prediction quality is an important\
+    \ control that pins the failure specifically on Δt>1 imagination rather than on\
+    \ training data scarcity from subsampling.\n\n- **S4: Honest reporting of seed\
+    \ variance.** The paper transparently shows that the V-recovery (008a) is seed-specific\
+    \ and that collapse rates are stochastic. This self-correcting narrative (revising\
+    \ a prior hypothesis) is a strength.\n\n### Weaknesses\n\n- **W1 (Major): n=3\
+    \ seeds is statistically underpowered for the claims made.** The paper's strongest\
+    \ argument — identical 2/3 collapse rates in 008d vs 008f — rests on 3 seeds per\
+    \ config. With n=3, a 2/3 vs 1/3 difference (or even 2/3 vs 0/3) is not statistically\
+    \ distinguishable from chance. Fisher's exact test on {2/3 vs 2/3} provides no\
+    \ power to reject the null. The paper acknowledges variance but still frames conclusions\
+    \ as \"unequivocal.\" At minimum, 5–10 seeds are needed for the collapse-rate\
+    \ comparison to carry inferential weight.\n\n- **W2 (Major): RSSM fidelity measurement\
+    \ (Table 11) lacks methodological detail.** The foundational measurement supporting\
+    \ the \"fidelity ceiling\" hypothesis — the 3.6×/5.1× ratios — is presented in\
+    \ a single table without specifying: which model checkpoint was used, what training\
+    \ step, which environment's model, whether subsample was ON or OFF during training,\
+    \ how many evaluation samples, or confidence intervals. For a measurement that\
+    \ anchors the paper's central claim, this is insufficient.\n\n- **W3 (Major):\
+    \ Sparse factorial grid.** The factorial design is the paper's structural contribution,\
+    \ but the grid is highly incomplete. Of the 3 (dt-emb) × 2 (subsample) × 2 (horizon)\
+    \ × 3 (env) = 36 possible cells, only 13 are filled (~36%). Many cells are Walker\
+    \ Walk only. Cheetah Run and Hopper Hop get 3–4 configs each. The \"cross-environment\
+    \ validation\" is really cross-environment spot-checking.\n\n- **W4 (Moderate):\
+    \ Post-hoc r̂>1.5 threshold.** The paper proposes r̂>1.5 as a pathological threshold\
+    \ that \"precedes collapse within ~10K steps\" but this threshold was derived\
+    \ from and validated on the same data. No out-of-sample or cross-environment validation\
+    \ of this specific threshold is presented. The diagnostic value of the normalized\
+    \ v/e ratio is promising but the specific threshold needs prospective validation.\n\
+    \n- **W5 (Moderate): No mitigation experiments.** The paper diagnoses a failure\
+    \ mode but attempts zero interventions. Even a simple pilot (e.g., ensembles,\
+    \ value clipping, multi-step prediction loss weighting, trajectory truncation\
+    \ based on uncertainty) would significantly increase the paper's practical value\
+    \ and demonstrate that the diagnosis is actionable.\n\n- **W6 (Minor): Only single-checkpoint\
+    \ fidelity measurement.** Table 11 measures RSSM prediction quality at one point.\
+    \ Showing how the fidelity gap evolves during training (especially around collapse\
+    \ onset) would strengthen the causal argument — does the gap widen before collapse,\
+    \ or is it constant?\n\n### Questions for Authors\n\n- Q1: Table 11 — which environment,\
+    \ which training step, subsample ON or OFF for the model being evaluated? Are\
+    \ the ratios consistent across environments?\n- Q2: Why not run more seeds (≥5)\
+    \ for the critical 008d vs 008f comparison, given that the collapse-rate equality\
+    \ is the paper's strongest evidence?\n- Q3: The 008e_v3 control reaches 72% baseline\
+    \ — is the remaining 28% gap attributable to data efficiency loss from subsampling?\
+    \ Has this been verified with a longer training run?\n- Q4: How sensitive is the\
+    \ r̂>1.5 threshold? What happens at r̂=1.3 or r̂=1.8?\n- Q5: The fidelity measurement\
+    \ is static. Does the fidelity gap correlate temporally with collapse onset across\
+    \ configurations?\n\n### Missing Experiments / Analyses\n\n- Statistical significance\
+    \ tests (bootstrap CI, permutation tests) for collapse rate comparisons\n- Fidelity\
+    \ gap evolution over training (not just a single snapshot)\n- At least one non-locomotion\
+    \ DMC environment (e.g., Cartpole Swingup, Reacher) to test whether the fidelity\
+    \ ceiling is locomotion-specific\n- At least one mitigation pilot experiment\n\
+    - Ablation on Δt values (Δt=3, Δt=4 in imagination, not just measurement)\n\n\
+    ### Score: 3/6 (Weak Reject)\n### Confidence: 4/5\n\n---\n\n## R2 Review: Novelty\
+    \ and Related Work\n\n### Strengths\n\n- **S1: Clean experimental narrative.**\
+    \ The paper tells a coherent story: prior hypothesis (dt-embedding causes collapse)\
+    \ → extended experiments refute it → new hypothesis (RSSM fidelity ceiling). The\
+    \ self-correcting structure is intellectually honest and pedagogically effective.\n\
+    \n- **S2: Cross-environment modulation finding.** The observation that dt-embedding\
+    \ effect size is 29% on Walker Walk but only 3–5% on Cheetah/Hopper adds genuine\
+    \ nuance. This isn't just \"it fails everywhere\" — it reveals that the failure\
+    \ mechanism's surface-level appearance is environment-dependent while the underlying\
+    \ cause (fidelity gap) is shared.\n\n- **S3: Portable diagnostic tools.** The\
+    \ normalized v/e overshoot ratio and actor entropy as early-warning diagnostics\
+    \ are potentially useful beyond this specific investigation. The r̂ metric's ability\
+    \ to detect 008f's collapse ~10K steps early is a practical contribution.\n\n\
+    - **S4: Multi-level evidence.** Tables 2, 3, 4, 5, 6, 8, 11, 12, 13 build a thorough\
+    \ evidence base. The value calibration analysis (Table 13) showing 008f as \"\
+    008d lite\" (same direction, smaller magnitude) is particularly compelling.\n\n\
+    ### Weaknesses\n\n- **W1 (Major): Novelty is incremental.** The core insight —\
+    \ that conditioning a critic on unreliable temporal information in a learned world\
+    \ model enables value exploitation — is a predictable corollary of established\
+    \ model-exploitation theory (Janner et al. 2019) and the delusional policy concept\
+    \ (Delalleau et al. 2019). The specific instantiation in temporal abstraction\
+    \ is new, but the underlying mechanism is well-understood. The \"RSSM fidelity\
+    \ ceiling\" is essentially restating that learned dynamics models are less accurate\
+    \ at longer prediction horizons — a widely known property. The paper's value lies\
+    \ in the systematic empirical documentation, not in conceptual novelty.\n\n- **W2\
+    \ (Major): Title/claim scope far exceeds experimental scope.** The title says\
+    \ \"Latent-Dynamics World Models\" but only RSSM/DreamerV3 is tested. No transformer-based\
+    \ world models (IRIS, TWM, TransDreamer), no diffusion-based models, not even\
+    \ DreamerV2 is included. The claim \"fundamentally broken\" in the title implies\
+    \ an architectural impossibility result, but the evidence only shows one architecture\
+    \ fails. The title should be \"...in RSSM-Based World Models\" at minimum. Similarly,\
+    \ \"three DMC environments\" are all locomotion tasks with similar dynamics —\
+    \ this is one task family, not three independent validations.\n\n- **W3 (Major):\
+    \ Related work is critically thin.** Only 9 references for a paper claiming to\
+    \ be the \"first systematic investigation\" in this space. Major gaps include:\n\
+    \  - Multi-step prediction literature (Ke et al. 2019 \"Learning Dynamics Model\
+    \ in RL\"; Asadi et al. 2019 \"Combating compounding errors\")\n  - Temporal difference\
+    \ models (Pong et al. 2018)\n  - Model Predictive Control in learned dynamics\
+    \ (Chua et al. 2018 PETS; Nagabandi et al. 2018)\n  - Value overestimation mitigation\
+    \ (Fujimoto et al. 2018 TD3; Haarnoja et al. 2018 SAC; Lee et al. 2020 SUNRISE)\n\
+    \  - Hierarchical RL with learned models (Hafner et al. 2022 Director; Nachum\
+    \ et al. 2018 HIRO)\n  - Action repeat / frame skip literature (Braylan et al.\
+    \ 2005; Lakshminarayanan et al. 2017)\n  - DreamerV2 (Hafner et al. 2021) — cited\
+    \ but not tested, despite being the most obvious comparison\n  - Concurrent work\
+    \ on multi-step world models (any 2025-2026 work on hierarchical world models)\n\
+    \n- **W4 (Moderate): No constructive contribution.** A negative-result paper that\
+    \ identifies a failure mode but proposes no solution, tests no mitigation, and\
+    \ offers only vague future directions (\"hierarchical state spaces,\" \"uncertainty-aware\
+    \ imagination\") has limited actionability for the community. The discussion lists\
+    \ potential directions in 3 bullet points without any empirical exploration. Testing\
+    \ even one lightweight mitigation (e.g., truncating imagination when prediction\
+    \ uncertainty exceeds a threshold) would dramatically increase the paper's value.\n\
+    \n- **W5 (Moderate): No figures.** The paper is entirely tables — no learning\
+    \ curves, no scatter plots, no trajectory visualizations. For a paper analyzing\
+    \ dynamics, collapse trajectories, and temporal phenomena, the absence of figures\
+    \ is a significant presentation weakness. The narrative repeatedly describes patterns\
+    \ (\"inverted-V,\" \"hockey-stick reversal,\" \"V-shaped recovery\") that demand\
+    \ visualization.\n\n- **W6 (Minor): Contribution 2 (factorial methodology) is\
+    \ not novel.** Factorial experimental design is standard methodology in experimental\
+    \ sciences. Applying it to MBRL ablation studies is straightforward and doesn't\
+    \ constitute a methodological contribution.\n\n### Questions for Authors\n\n-\
+    \ Q1: Would the fidelity ceiling persist in transformer-based world models (IRIS,\
+    \ TWM) that don't rely on GRU-based recurrence? If you believe the finding generalizes,\
+    \ what is the mechanism for architectures without the GRU information bottleneck?\n\
+    - Q2: The paper attributes the fidelity gap to \"GRU-based recurrence losing intermediate\
+    \ state information.\" Has this been verified? Have you measured the KL divergence\
+    \ between posterior and prior at Δt=1 vs Δt=2 to confirm the information loss\
+    \ story?\n- Q3: Why not test Δt=3 or Δt=4 in full training runs (not just the\
+    \ fidelity measurement)? The super-linear scaling in Table 11 predicts even worse\
+    \ performance — confirming this prediction would strengthen the fidelity ceiling\
+    \ argument.\n- Q4: Have you considered that DMC locomotion tasks may be unusually\
+    \ sensitive to frame skipping due to their contact-dynamics nature? Would the\
+    \ conclusion hold for tasks with smoother dynamics (e.g., manipulation, navigation)?\n\
+    \n### Missing Related Work\n\n- Multi-step prediction error compounding (Asadi\
+    \ et al. 2019; Ke et al. 2019; Venkatraman et al. 2015 \"Improving multi-step\
+    \ prediction\")\n- PETS and model-predictive approaches that explicitly handle\
+    \ model uncertainty (Chua et al. 2018)\n- TD3 / conservative value estimation\
+    \ approaches (Fujimoto et al. 2018)\n- Hierarchical world models (Director, HIRO)\n\
+    - Model-based policy optimization with explicit model-exploitation mitigation\
+    \ (MBPO variants)\n- Frame-skip / action repeat prior work beyond FiGAR\n- Any\
+    \ 2024-2026 work on temporal abstraction in world models\n\n### Score: 3/6 (Weak\
+    \ Reject)\n### Confidence: 4/5\n\n---\n\n## Roundtable Discussion\n\n### Step\
+    \ 2: Cross-Sharing\n\n**R1 → R2:** R1's methodological concerns (n=3 underpowered,\
+    \ sparse factorial grid, Table 11 lacking detail) reinforce R2's scope concerns.\
+    \ The statistical weakness of n=3 seeds makes the \"unequivocal\" framing even\
+    \ more problematic given R2's point about overclaiming.\n\n**R2 → R1:** R2's novelty\
+    \ assessment (incremental corollary of known theory) contextualizes R1's experimental\
+    \ concerns. If the conceptual contribution is modest, the empirical evidence needs\
+    \ to be especially rigorous — which R1 shows it is not (underpowered stats, incomplete\
+    \ grid, underspecified fidelity measurement).\n\n### Step 3: Convergence\n\n**Points\
+    \ of agreement (both reviewers):**\n1. The 008d-vs-008f factorial comparison is\
+    \ the paper's strongest contribution — a clean, well-designed single-variable\
+    \ isolation.\n2. The multi-level evidence chain (nve, entropy, V-MC correlation,\
+    \ embedding analysis) is thorough and well-constructed.\n3. The paper overclaims\
+    \ relative to its evidence: \"fundamentally broken\" and \"unequivocal\" are not\
+    \ warranted by n=3 seeds in one architecture on three locomotion tasks.\n4. No\
+    \ mitigation experiments significantly limits practical impact.\n5. The paper\
+    \ would benefit from more seeds (≥5), more environments (non-locomotion), and\
+    \ at least one mitigation pilot.\n6. Score: both converge on 3/6 (Weak Reject).\n\
+    \n**Points of nuanced disagreement:**\n- R1 places more weight on the measurement\
+    \ rigor issues (Table 11 underspecification) as potentially fatal to the central\
+    \ claim. R2 views the fidelity measurement as supporting evidence for an already-expected\
+    \ conclusion and is less concerned about its rigor.\n- R2 views the novelty gap\
+    \ as the primary barrier to acceptance. R1 is more willing to accept an empirical\
+    \ contribution if the experiments are rigorous enough — the issue is that they\
+    \ currently aren't.\n\n**Resolution:** Both concerns are valid and complementary.\
+    \ The paper fails on two fronts: (a) the conceptual novelty is incremental (R2),\
+    \ and (b) the empirical execution, which would need to be exceptional to compensate\
+    \ for modest novelty, has significant gaps (R1). Either issue alone might be surmountable;\
+    \ together they place the paper below the acceptance threshold.\n\n### Step 4:\
+    \ Consolidated Assessment\n\n**Overall Score: 3/6 (Weak Reject)**\n\n**One-line\
+    \ verdict:** A well-structured empirical investigation with a clean factorial\
+    \ design, but incremental novelty, overclaimed scope, underpowered statistics,\
+    \ and no attempted mitigation place it below the acceptance bar for a top ML venue.\n\
+    \n**Key strengths:**\n1. Clean single-variable isolation (008d vs 008f) with honest\
+    \ self-correction of a prior hypothesis\n2. Multi-level diagnostic evidence chain\
+    \ (nve ratio, entropy, V-MC correlation, embedding analysis)\n3. Critical 008e_v3\
+    \ control isolating Δt>1 imagination from subsampling data reduction\n4. Transparent\
+    \ reporting of seed-level variance and non-replication of V-recovery\n\n**Key\
+    \ weaknesses (ranked by severity):**\n1. **(Fatal) Scope-claim mismatch:** Title\
+    \ claims \"latent-dynamics world models\" but only tests one architecture (RSSM/DreamerV3)\
+    \ on one task family (DMC locomotion). The \"fundamentally broken\" framing implies\
+    \ an impossibility result that the evidence cannot support.\n2. **(Major) Incremental\
+    \ novelty:** The RSSM fidelity ceiling is a specific instantiation of known model-exploitation\
+    \ theory. The insight that learned dynamics models degrade at longer prediction\
+    \ horizons is well-established. The paper's value is empirical documentation,\
+    \ not conceptual advance.\n3. **(Major) Underpowered statistics:** n=3 seeds cannot\
+    \ distinguish the critical 2/3 vs 2/3 collapse rate comparison from noise. The\
+    \ paper's strongest empirical argument (identical collapse rates with/without\
+    \ dt-embedding) has no statistical power.\n4. **(Major) No mitigation:** A diagnostic\
+    \ paper without any attempted intervention has limited actionability. Even one\
+    \ pilot mitigation would significantly increase impact.\n5. **(Moderate) Thin\
+    \ related work:** 9 references for a paper claiming \"first systematic investigation\"\
+    \ is inadequate. Major gaps in multi-step prediction, model-exploitation mitigation,\
+    \ hierarchical RL, and alternative world model architectures.\n6. **(Moderate)\
+    \ No figures:** Tables-only presentation for a dynamics-heavy analysis significantly\
+    \ hurts readability and impact.\n7. **(Moderate) Incomplete factorial grid:**\
+    \ Only 36% of the full factorial is filled. Cross-environment \"validation\" is\
+    \ really spot-checking with 3-4 configs per non-Walker environment.\n\n**Recommended\
+    \ revisions for resubmission:**\n1. Narrow the title and claims to match scope:\
+    \ \"...in RSSM-Based World Models\" + \"on DMC Locomotion Tasks\"\n2. Increase\
+    \ seeds to ≥5 for all critical comparisons (008d, 008f, 008a, baselines) with\
+    \ proper statistical tests\n3. Add at least one non-locomotion environment and\
+    \ ideally one non-RSSM architecture\n4. Specify Table 11 methodology fully and\
+    \ show fidelity gap evolution over training\n5. Include at least one mitigation\
+    \ experiment (e.g., uncertainty-based imagination truncation, multi-step prediction\
+    \ loss)\n6. Add figures: learning curves, nve trajectories, V-MC scatter plots,\
+    \ entropy evolution\n7. Expand related work to ≥25 references covering multi-step\
+    \ prediction, model exploitation mitigation, and alternative architectures\n8.\
+    \ Fill more of the factorial grid, especially for Cheetah Run and Hopper Hop\n\
+    \n**Who benefits from this work (if revised):** Researchers building temporal\
+    \ abstraction into world-model RL; practitioners using DreamerV3 who might consider\
+    \ Δt>1 imagination; the MBRL community as a diagnostic methodology template.\n\
+    \n---\n\n*Report generated by Dream Review Director. 2 Reviewers (R1: Methods+Experiments,\
+    \ R2: Novelty+Related Work), full roundtable protocol (Steps 1–4).*\n"
+  error: ''
+errors: {}
+score_anomaly: 评分顺序异常：best(weak reject) == worst(weak reject)，建议谨慎解读
+created_at: '2026-05-14T07:18:04+00:00'

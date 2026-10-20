@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10ea7821c5df538e7fea",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code fix 022 resubmit",
+  "task_key": "worker_code_fix-022-resubmit_20260517T074627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-022-resubmit_20260517T074627_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "d496c917238e143f7c2181d2b0b6e0b728b4254db693e479b1e0a12fa891f78a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n1. **PID 660840 (exp_022)** — 已不存在（之前已自行终止），tmux session 也不存在，logdir 已清理\n2. **cuda:1** — 当前被 PID 629449 (exp_019a_v2) 占用 4152MiB，**不空闲**\n3. **019a_v2 (PID 629444/629449)** — 仍在运行，占用 cuda:0 (643MiB) + cuda:1 (4152MiB)\n4. **019b (PID 649577)** — 在 cuda:0 上运行，2849MiB，CPU 100%，正常\n\ncuda:1 要等 019a_v2 完成后才能空出来。019a_v2 配置是 `--steps 200000 --device cuda:1`，从 06:54 开始跑，已运行约 9 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-022-resubmit.md"
+}

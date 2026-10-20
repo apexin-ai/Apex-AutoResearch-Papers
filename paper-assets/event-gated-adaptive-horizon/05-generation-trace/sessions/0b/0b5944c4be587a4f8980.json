@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "0b5944c4be587a4f8980",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper appendix pathway b cleanup",
+  "task_key": "worker_paper_appendix_pathway_b_cleanup_20260525T162306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_pathway_b_cleanup_20260525T162306_result.json",
+    "occurrence": 1,
+    "bytes": 2223410,
+    "sha256": "405768fac456f7b2710a2df1f551a96d51575ee95d390e1be44135ca0d2da78e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "0b5944c4be587a4f8980-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-pathway-b-cleanup.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_cheetah_008a_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T14:20:25.880Z",
+    "updated_at": "2026-05-27T14:21:04.891Z",
+    "hypothesis": "Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=0 — C3 cross-env value growth suppression. Training only uses dt=1 data, so dt=2 embedding is untrained. Expect no CIVO, value suppression pattern matching Walker 008a. Source: D168, plan_023.",
+    "parent": "exp_008a_no_subsample_dt2"
+  },
+  "timestamp": "2026-05-27T14:21:05.351639+00:00",
+  "trigger": "update_registry"
+}

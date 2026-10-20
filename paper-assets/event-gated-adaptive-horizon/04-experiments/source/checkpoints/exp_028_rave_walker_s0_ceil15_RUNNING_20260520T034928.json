@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_028_rave_walker_s0_ceil15",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:25:34.045Z",
+    "updated_at": "2026-05-20T03:49:28.261Z",
+    "hypothesis": "RAVE ceiling sensitivity test: same as exp_028 (EMA-anchored value cap) but with ceiling=1.5 instead of 2.0. Tighter constraint tests whether more aggressive capping improves CIVO suppression without harming learning. If ceiling=2.0 works and 1.5 also works → method robust; if 1.5 hurts eval → ceiling choice is critical.",
+    "parent": "exp_028_rave_walker_s0",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 0 --device cuda:1 --compile False --gate_enabled True --gate_fixed_dt 2 --imag_horizon 8 --rave_enabled True --rave_ceiling 1.5 --rave_ema_decay 0.99 --logdir ~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15'",
+      "server": "bjb1-40020",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "38009",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15.log",
+      "submitted_at": "2026-05-20T03:48:37.407Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "tmux_session": "exp_028_rave_walker_s0_ceil15",
+      "data_path": "dmc_walker_walk",
+      "data_count": "210000 env steps",
+      "model_name": "dreamerv3_rave_ceil15",
+      "seed": 0,
+      "checkpoint_path": "~/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15/",
+      "checkpoint_source": "N/A (trained from scratch, hyperparameter variant of exp_028_rave_walker_s0)",
+      "eval_data": "dmc_walker_walk (online eval during training)"
+    }
+  },
+  "timestamp": "2026-05-20T03:49:28.527272+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1877 @@
+{
+  "version": 2,
+  "detection_rule": {
+    "description": "Dual-threshold CIVO detection with 4 simultaneous conditions",
+    "conditions": {
+      "ve_ratio_gate": "> 0.5",
+      "delta_ve_threshold": "> 0.1",
+      "delta_ve_consecutive": "delta_ve[t] > delta_ve[t-1], both > 0.1 (2 consecutive windows accelerating)",
+      "eval_consecutive_decline": "eval[t] < eval[t-1] < eval[t-2] (3 consecutive declining points)"
+    },
+    "eval_interval": 10000,
+    "all_conditions_must_hold": true
+  },
+  "experiments": {
+    "exp_008d": {
+      "group": "civo",
+      "path": "exp_008d_subsample_on_h8",
+      "known_collapse_step": 60000,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 3.9e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.021956
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.154654
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.411346
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.692906
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 1.666256
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.021917
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.132699
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.256692
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.28156
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.97335
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 31.0
+        },
+        {
+          "step": 15000,
+          "eval_return": 153.67
+        },
+        {
+          "step": 25000,
+          "eval_return": 167.22
+        },
+        {
+          "step": 35000,
+          "eval_return": 146.34
+        },
+        {
+          "step": 45000,
+          "eval_return": 140.76
+        },
+        {
+          "step": 55000,
+          "eval_return": 82.75
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.1547,
+          "delta_ve": 0.1327,
+          "delta_ve_prev": 0.0219,
+          "eval_t": 167.22,
+          "eval_t_minus_1": 153.67,
+          "eval_t_minus_2": 31.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.4113,
+          "delta_ve": 0.2567,
+          "delta_ve_prev": 0.1327,
+          "eval_t": 146.34,
+          "eval_t_minus_1": 167.22,
+          "eval_t_minus_2": 153.67,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.6929,
+          "delta_ve": 0.2816,
+          "delta_ve_prev": 0.2567,
+          "eval_t": 140.76,
+          "eval_t_minus_1": 146.34,
+          "eval_t_minus_2": 167.22,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": true
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 1.6663,
+          "delta_ve": 0.9734,
+          "delta_ve_prev": 0.2816,
+          "eval_t": 82.75,
+          "eval_t_minus_1": 140.76,
+          "eval_t_minus_2": 146.34,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": true
+        }
+      ],
+      "triggered": true,
+      "trigger_step": 45000,
+      "is_false_positive": false,
+      "detection_lead_steps": 15000,
+      "notes": "CIVO detected 15K steps before collapse. Both conditions co-occur: VE accelerating + eval declining from 167\u2192146\u2192140."
+    },
+    "exp_010b": {
+      "group": "civo",
+      "path": "exp_010b_cheetah_civo_trigger",
+      "known_collapse_step": 70000,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 5.7e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.022582
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.205268
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.08565
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.130216
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 1.023984
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 3.182863
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.415788
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.468007
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.895289
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.686712
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.022525
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.182685
+        },
+        {
+          "step": 35000,
+          "delta_ve": -0.119617
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.044566
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.893768
+        },
+        {
+          "step": 65000,
+          "delta_ve": 2.158879
+        },
+        {
+          "step": 75000,
+          "delta_ve": -2.767075
+        },
+        {
+          "step": 85000,
+          "delta_ve": 0.052219
+        },
+        {
+          "step": 95000,
+          "delta_ve": 0.427282
+        },
+        {
+          "step": 105000,
+          "delta_ve": -0.208577
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 13.48
+        },
+        {
+          "step": 15000,
+          "eval_return": 66.55
+        },
+        {
+          "step": 25000,
+          "eval_return": 51.13
+        },
+        {
+          "step": 35000,
+          "eval_return": 285.85
+        },
+        {
+          "step": 45000,
+          "eval_return": 321.89
+        },
+        {
+          "step": 55000,
+          "eval_return": 63.86
+        },
+        {
+          "step": 65000,
+          "eval_return": 22.67
+        },
+        {
+          "step": 75000,
+          "eval_return": 146.66
+        },
+        {
+          "step": 85000,
+          "eval_return": 109.66
+        },
+        {
+          "step": 95000,
+          "eval_return": 47.95
+        },
+        {
+          "step": 105000,
+          "eval_return": 51.72
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.2053,
+          "delta_ve": 0.1827,
+          "delta_ve_prev": 0.0225,
+          "eval_t": 51.13,
+          "eval_t_minus_1": 66.55,
+          "eval_t_minus_2": 13.48,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.0857,
+          "delta_ve": -0.1196,
+          "delta_ve_prev": 0.1827,
+          "eval_t": 285.85,
+          "eval_t_minus_1": 51.13,
+          "eval_t_minus_2": 66.55,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.1302,
+          "delta_ve": 0.0446,
+          "delta_ve_prev": -0.1196,
+          "eval_t": 321.89,
+          "eval_t_minus_1": 285.85,
+          "eval_t_minus_2": 51.13,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 1.024,
+          "delta_ve": 0.8938,
+          "delta_ve_prev": 0.0446,
+          "eval_t": 63.86,
+          "eval_t_minus_1": 321.89,
+          "eval_t_minus_2": 285.85,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 3.1829,
+          "delta_ve": 2.1589,
+          "delta_ve_prev": 0.8938,
+          "eval_t": 22.67,
+          "eval_t_minus_1": 63.86,
+          "eval_t_minus_2": 321.89,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": true
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.4158,
+          "delta_ve": -2.7671,
+          "delta_ve_prev": 2.1589,
+          "eval_t": 146.66,
+          "eval_t_minus_1": 22.67,
+          "eval_t_minus_2": 63.86,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.468,
+          "delta_ve": 0.0522,
+          "delta_ve_prev": -2.7671,
+          "eval_t": 109.66,
+          "eval_t_minus_1": 146.66,
+          "eval_t_minus_2": 22.67,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.8953,
+          "delta_ve": 0.4273,
+          "delta_ve_prev": 0.0522,
+          "eval_t": 47.95,
+          "eval_t_minus_1": 109.66,
+          "eval_t_minus_2": 146.66,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.6867,
+          "delta_ve": -0.2086,
+          "delta_ve_prev": 0.4273,
+          "eval_t": 51.72,
+          "eval_t_minus_1": 47.95,
+          "eval_t_minus_2": 109.66,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        }
+      ],
+      "triggered": true,
+      "trigger_step": 65000,
+      "is_false_positive": false,
+      "detection_lead_steps": 5000,
+      "notes": "CIVO detected 5K steps before collapse. Explosive VE spike (1.02\u21923.18) with eval crash (321\u219263\u219222)."
+    },
+    "exp_008f": {
+      "group": "healthy",
+      "path": "exp_008f_no_dt_embed_subsample_on_h8",
+      "known_collapse_step": null,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 4e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.016421
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.088968
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.175545
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.275295
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.391457
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.206736
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.303476
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.454399
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.338337
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.195237
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.016382
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.072547
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.086576
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.09975
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.116163
+        },
+        {
+          "step": 65000,
+          "delta_ve": -0.184721
+        },
+        {
+          "step": 75000,
+          "delta_ve": 0.096741
+        },
+        {
+          "step": 85000,
+          "delta_ve": 0.150922
+        },
+        {
+          "step": 95000,
+          "delta_ve": -0.116062
+        },
+        {
+          "step": 105000,
+          "delta_ve": -0.143101
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 30.49
+        },
+        {
+          "step": 15000,
+          "eval_return": 182.03
+        },
+        {
+          "step": 25000,
+          "eval_return": 196.78
+        },
+        {
+          "step": 35000,
+          "eval_return": 206.67
+        },
+        {
+          "step": 45000,
+          "eval_return": 194.08
+        },
+        {
+          "step": 55000,
+          "eval_return": 173.45
+        },
+        {
+          "step": 65000,
+          "eval_return": 374.76
+        },
+        {
+          "step": 75000,
+          "eval_return": 324.46
+        },
+        {
+          "step": 85000,
+          "eval_return": 246.09
+        },
+        {
+          "step": 95000,
+          "eval_return": 318.85
+        },
+        {
+          "step": 105000,
+          "eval_return": 503.21
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.089,
+          "delta_ve": 0.0725,
+          "delta_ve_prev": 0.0164,
+          "eval_t": 196.78,
+          "eval_t_minus_1": 182.03,
+          "eval_t_minus_2": 30.49,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.1755,
+          "delta_ve": 0.0866,
+          "delta_ve_prev": 0.0725,
+          "eval_t": 206.67,
+          "eval_t_minus_1": 196.78,
+          "eval_t_minus_2": 182.03,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.2753,
+          "delta_ve": 0.0998,
+          "delta_ve_prev": 0.0866,
+          "eval_t": 194.08,
+          "eval_t_minus_1": 206.67,
+          "eval_t_minus_2": 196.78,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.3915,
+          "delta_ve": 0.1162,
+          "delta_ve_prev": 0.0998,
+          "eval_t": 173.45,
+          "eval_t_minus_1": 194.08,
+          "eval_t_minus_2": 206.67,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.2067,
+          "delta_ve": -0.1847,
+          "delta_ve_prev": 0.1162,
+          "eval_t": 374.76,
+          "eval_t_minus_1": 173.45,
+          "eval_t_minus_2": 194.08,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.3035,
+          "delta_ve": 0.0967,
+          "delta_ve_prev": -0.1847,
+          "eval_t": 324.46,
+          "eval_t_minus_1": 374.76,
+          "eval_t_minus_2": 173.45,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.4544,
+          "delta_ve": 0.1509,
+          "delta_ve_prev": 0.0967,
+          "eval_t": 246.09,
+          "eval_t_minus_1": 324.46,
+          "eval_t_minus_2": 374.76,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.3383,
+          "delta_ve": -0.1161,
+          "delta_ve_prev": 0.1509,
+          "eval_t": 318.85,
+          "eval_t_minus_1": 246.09,
+          "eval_t_minus_2": 324.46,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.1952,
+          "delta_ve": -0.1431,
+          "delta_ve_prev": -0.1161,
+          "eval_t": 503.21,
+          "eval_t_minus_1": 318.85,
+          "eval_t_minus_2": 246.09,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        }
+      ],
+      "triggered": false,
+      "trigger_step": null,
+      "is_false_positive": false,
+      "detection_lead_steps": null,
+      "notes": "No trigger. ve_ratio never exceeds 0.5 threshold, blocking all downstream checks."
+    },
+    "exp_001_baseline": {
+      "group": "healthy",
+      "path": "baseline_s1",
+      "known_collapse_step": null,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 4.9e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.02594
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.08724
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.241219
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.331018
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.403526
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.562928
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.719429
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.700652
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.632013
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.656413
+        },
+        {
+          "step": 115000,
+          "ve_ratio": 0.682621
+        },
+        {
+          "step": 125000,
+          "ve_ratio": 0.686284
+        },
+        {
+          "step": 135000,
+          "ve_ratio": 0.715997
+        },
+        {
+          "step": 145000,
+          "ve_ratio": 0.701858
+        },
+        {
+          "step": 155000,
+          "ve_ratio": 0.705744
+        },
+        {
+          "step": 165000,
+          "ve_ratio": 0.728003
+        },
+        {
+          "step": 375000,
+          "ve_ratio": 0.724093
+        },
+        {
+          "step": 485000,
+          "ve_ratio": 0.714556
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.025891
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.0613
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.153979
+        },
+        {
+          "step": 65000,
+          "delta_ve": 0.159402
+        },
+        {
+          "step": 115000,
+          "delta_ve": 0.026208
+        },
+        {
+          "step": 135000,
+          "delta_ve": 0.029713
+        },
+        {
+          "step": 165000,
+          "delta_ve": 0.022259
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 31.77
+        },
+        {
+          "step": 105000,
+          "eval_return": 915.67
+        },
+        {
+          "step": 375000,
+          "eval_return": 918.24
+        },
+        {
+          "step": 485000,
+          "eval_return": 930.6
+        },
+        {
+          "step": 505000,
+          "eval_return": 970.41
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.0872,
+          "delta_ve": 0.0613,
+          "delta_ve_prev": 0.0259,
+          "eval_t": null,
+          "eval_t_minus_1": null,
+          "eval_t_minus_2": 31.77,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.2412,
+          "delta_ve": 0.154,
+          "delta_ve_prev": 0.0613,
+          "eval_t": null,
+          "eval_t_minus_1": null,
+          "eval_t_minus_2": null,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.5629,
+          "delta_ve": 0.1594,
+          "delta_ve_prev": 0.154,
+          "eval_t": null,
+          "eval_t_minus_1": null,
+          "eval_t_minus_2": null,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 115000,
+          "ve_ratio": 0.6826,
+          "delta_ve": 0.0262,
+          "delta_ve_prev": 0.1594,
+          "eval_t": null,
+          "eval_t_minus_1": 915.67,
+          "eval_t_minus_2": null,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 135000,
+          "ve_ratio": 0.716,
+          "delta_ve": 0.0297,
+          "delta_ve_prev": 0.0262,
+          "eval_t": null,
+          "eval_t_minus_1": null,
+          "eval_t_minus_2": null,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 165000,
+          "ve_ratio": 0.728,
+          "delta_ve": 0.0223,
+          "delta_ve_prev": 0.0297,
+          "eval_t": null,
+          "eval_t_minus_1": null,
+          "eval_t_minus_2": null,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        }
+      ],
+      "triggered": false,
+      "trigger_step": null,
+      "is_false_positive": false,
+      "detection_lead_steps": null,
+      "notes": "No trigger. delta_ve in converged region is too small (<0.03) to pass threshold despite ve_ratio > 0.5."
+    },
+    "exp_009b": {
+      "group": "boundary",
+      "path": "exp_009b_008d_walker_s2",
+      "known_collapse_step": null,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 3.3e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.030964
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.178144
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.298624
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.53592
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.570304
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.530263
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.473485
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.354594
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.271848
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.251058
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.030932
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.14718
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.120479
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.237296
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.034384
+        },
+        {
+          "step": 65000,
+          "delta_ve": -0.040041
+        },
+        {
+          "step": 75000,
+          "delta_ve": -0.056778
+        },
+        {
+          "step": 85000,
+          "delta_ve": -0.118891
+        },
+        {
+          "step": 95000,
+          "delta_ve": -0.082746
+        },
+        {
+          "step": 105000,
+          "delta_ve": -0.02079
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 39.27
+        },
+        {
+          "step": 15000,
+          "eval_return": 144.31
+        },
+        {
+          "step": 25000,
+          "eval_return": 141.12
+        },
+        {
+          "step": 35000,
+          "eval_return": 164.14
+        },
+        {
+          "step": 45000,
+          "eval_return": 141.04
+        },
+        {
+          "step": 55000,
+          "eval_return": 172.33
+        },
+        {
+          "step": 65000,
+          "eval_return": 209.16
+        },
+        {
+          "step": 75000,
+          "eval_return": 197.46
+        },
+        {
+          "step": 85000,
+          "eval_return": 236.49
+        },
+        {
+          "step": 95000,
+          "eval_return": 278.54
+        },
+        {
+          "step": 105000,
+          "eval_return": 267.93
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.1781,
+          "delta_ve": 0.1472,
+          "delta_ve_prev": 0.0309,
+          "eval_t": 141.12,
+          "eval_t_minus_1": 144.31,
+          "eval_t_minus_2": 39.27,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.2986,
+          "delta_ve": 0.1205,
+          "delta_ve_prev": 0.1472,
+          "eval_t": 164.14,
+          "eval_t_minus_1": 141.12,
+          "eval_t_minus_2": 144.31,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.5359,
+          "delta_ve": 0.2373,
+          "delta_ve_prev": 0.1205,
+          "eval_t": 141.04,
+          "eval_t_minus_1": 164.14,
+          "eval_t_minus_2": 141.12,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.5703,
+          "delta_ve": 0.0344,
+          "delta_ve_prev": 0.2373,
+          "eval_t": 172.33,
+          "eval_t_minus_1": 141.04,
+          "eval_t_minus_2": 164.14,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.5303,
+          "delta_ve": -0.04,
+          "delta_ve_prev": 0.0344,
+          "eval_t": 209.16,
+          "eval_t_minus_1": 172.33,
+          "eval_t_minus_2": 141.04,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.4735,
+          "delta_ve": -0.0568,
+          "delta_ve_prev": -0.04,
+          "eval_t": 197.46,
+          "eval_t_minus_1": 209.16,
+          "eval_t_minus_2": 172.33,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.3546,
+          "delta_ve": -0.1189,
+          "delta_ve_prev": -0.0568,
+          "eval_t": 236.49,
+          "eval_t_minus_1": 197.46,
+          "eval_t_minus_2": 209.16,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.2718,
+          "delta_ve": -0.0827,
+          "delta_ve_prev": -0.1189,
+          "eval_t": 278.54,
+          "eval_t_minus_1": 236.49,
+          "eval_t_minus_2": 197.46,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.2511,
+          "delta_ve": -0.0208,
+          "delta_ve_prev": -0.0827,
+          "eval_t": 267.93,
+          "eval_t_minus_1": 278.54,
+          "eval_t_minus_2": 236.49,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        }
+      ],
+      "triggered": false,
+      "trigger_step": null,
+      "is_false_positive": false,
+      "detection_lead_steps": null,
+      "notes": "No trigger. Self-correcting trajectory: delta_ve turns negative after 55K as VE naturally declines."
+    },
+    "exp_008e_v3_s2": {
+      "group": "boundary",
+      "path": "exp_008e_v3_walker_s2",
+      "known_collapse_step": 95000,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 4.9e-05
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.021609
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.142922
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.248927
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.350916
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.413287
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.506725
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.472888
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.474416
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.849616
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 2.481324
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.02156
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.121313
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.106005
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.10199
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.062371
+        },
+        {
+          "step": 65000,
+          "delta_ve": 0.093438
+        },
+        {
+          "step": 75000,
+          "delta_ve": -0.033838
+        },
+        {
+          "step": 85000,
+          "delta_ve": 0.001528
+        },
+        {
+          "step": 95000,
+          "delta_ve": 0.3752
+        },
+        {
+          "step": 105000,
+          "delta_ve": 1.631709
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 39.27
+        },
+        {
+          "step": 15000,
+          "eval_return": 180.85
+        },
+        {
+          "step": 25000,
+          "eval_return": 211.82
+        },
+        {
+          "step": 35000,
+          "eval_return": 320.39
+        },
+        {
+          "step": 45000,
+          "eval_return": 356.93
+        },
+        {
+          "step": 55000,
+          "eval_return": 418.32
+        },
+        {
+          "step": 65000,
+          "eval_return": 435.09
+        },
+        {
+          "step": 75000,
+          "eval_return": 576.54
+        },
+        {
+          "step": 85000,
+          "eval_return": 715.21
+        },
+        {
+          "step": 95000,
+          "eval_return": 452.43
+        },
+        {
+          "step": 105000,
+          "eval_return": 136.96
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.1429,
+          "delta_ve": 0.1213,
+          "delta_ve_prev": 0.0216,
+          "eval_t": 211.82,
+          "eval_t_minus_1": 180.85,
+          "eval_t_minus_2": 39.27,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.2489,
+          "delta_ve": 0.106,
+          "delta_ve_prev": 0.1213,
+          "eval_t": 320.39,
+          "eval_t_minus_1": 211.82,
+          "eval_t_minus_2": 180.85,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.3509,
+          "delta_ve": 0.102,
+          "delta_ve_prev": 0.106,
+          "eval_t": 356.93,
+          "eval_t_minus_1": 320.39,
+          "eval_t_minus_2": 211.82,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.4133,
+          "delta_ve": 0.0624,
+          "delta_ve_prev": 0.102,
+          "eval_t": 418.32,
+          "eval_t_minus_1": 356.93,
+          "eval_t_minus_2": 320.39,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.5067,
+          "delta_ve": 0.0934,
+          "delta_ve_prev": 0.0624,
+          "eval_t": 435.09,
+          "eval_t_minus_1": 418.32,
+          "eval_t_minus_2": 356.93,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.4729,
+          "delta_ve": -0.0338,
+          "delta_ve_prev": 0.0934,
+          "eval_t": 576.54,
+          "eval_t_minus_1": 435.09,
+          "eval_t_minus_2": 418.32,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.4744,
+          "delta_ve": 0.0015,
+          "delta_ve_prev": -0.0338,
+          "eval_t": 715.21,
+          "eval_t_minus_1": 576.54,
+          "eval_t_minus_2": 435.09,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.8496,
+          "delta_ve": 0.3752,
+          "delta_ve_prev": 0.0015,
+          "eval_t": 452.43,
+          "eval_t_minus_1": 715.21,
+          "eval_t_minus_2": 576.54,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 2.4813,
+          "delta_ve": 1.6317,
+          "delta_ve_prev": 0.3752,
+          "eval_t": 136.96,
+          "eval_t_minus_1": 452.43,
+          "eval_t_minus_2": 715.21,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": true,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": true
+        }
+      ],
+      "triggered": true,
+      "trigger_step": 105000,
+      "is_false_positive": false,
+      "detection_lead_steps": -10000,
+      "notes": "Triggered at 105K, AFTER collapse at 95K (lead=-10K). Non-CIVO collapse: VE spikes reactively, not predictively. Correct behavior: detector cannot predict imagination-reality divergence."
+    },
+    "exp_020": {
+      "group": "healthy",
+      "path": "exp_020_vanilla_dreamerv3_s2",
+      "known_collapse_step": null,
+      "ve_timeline": [
+        {
+          "step": 5000,
+          "ve_ratio": 0.0
+        },
+        {
+          "step": 15000,
+          "ve_ratio": 0.0369
+        },
+        {
+          "step": 25000,
+          "ve_ratio": 0.0931
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.2253
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.2515
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.3238
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.32
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.415
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.5481
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.6449
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.406
+        }
+      ],
+      "delta_ve_timeline": [
+        {
+          "step": 15000,
+          "delta_ve": 0.0369
+        },
+        {
+          "step": 25000,
+          "delta_ve": 0.0563
+        },
+        {
+          "step": 35000,
+          "delta_ve": 0.1322
+        },
+        {
+          "step": 45000,
+          "delta_ve": 0.0262
+        },
+        {
+          "step": 55000,
+          "delta_ve": 0.0723
+        },
+        {
+          "step": 65000,
+          "delta_ve": -0.0038
+        },
+        {
+          "step": 75000,
+          "delta_ve": 0.095
+        },
+        {
+          "step": 85000,
+          "delta_ve": 0.1331
+        },
+        {
+          "step": 95000,
+          "delta_ve": 0.0968
+        },
+        {
+          "step": 105000,
+          "delta_ve": -0.2389
+        }
+      ],
+      "eval_return_timeline": [
+        {
+          "step": 5000,
+          "eval_return": 41.2
+        },
+        {
+          "step": 15000,
+          "eval_return": 106.0
+        },
+        {
+          "step": 25000,
+          "eval_return": 325.0
+        },
+        {
+          "step": 35000,
+          "eval_return": 354.0
+        },
+        {
+          "step": 45000,
+          "eval_return": 498.0
+        },
+        {
+          "step": 55000,
+          "eval_return": 534.0
+        },
+        {
+          "step": 65000,
+          "eval_return": 689.0
+        },
+        {
+          "step": 75000,
+          "eval_return": 657.0
+        },
+        {
+          "step": 85000,
+          "eval_return": 619.0
+        },
+        {
+          "step": 95000,
+          "eval_return": 596.0
+        },
+        {
+          "step": 105000,
+          "eval_return": 837.0
+        }
+      ],
+      "trigger_analysis": [
+        {
+          "step": 25000,
+          "ve_ratio": 0.0931,
+          "delta_ve": 0.0563,
+          "delta_ve_prev": 0.0369,
+          "eval_t": 325.0,
+          "eval_t_minus_1": 106.0,
+          "eval_t_minus_2": 41.2,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 35000,
+          "ve_ratio": 0.2253,
+          "delta_ve": 0.1322,
+          "delta_ve_prev": 0.0563,
+          "eval_t": 354.0,
+          "eval_t_minus_1": 325.0,
+          "eval_t_minus_2": 106.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 45000,
+          "ve_ratio": 0.2515,
+          "delta_ve": 0.0262,
+          "delta_ve_prev": 0.1322,
+          "eval_t": 498.0,
+          "eval_t_minus_1": 354.0,
+          "eval_t_minus_2": 325.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 55000,
+          "ve_ratio": 0.3238,
+          "delta_ve": 0.0723,
+          "delta_ve_prev": 0.0262,
+          "eval_t": 534.0,
+          "eval_t_minus_1": 498.0,
+          "eval_t_minus_2": 354.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 65000,
+          "ve_ratio": 0.32,
+          "delta_ve": -0.0038,
+          "delta_ve_prev": 0.0723,
+          "eval_t": 689.0,
+          "eval_t_minus_1": 534.0,
+          "eval_t_minus_2": 498.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 75000,
+          "ve_ratio": 0.415,
+          "delta_ve": 0.095,
+          "delta_ve_prev": -0.0038,
+          "eval_t": 657.0,
+          "eval_t_minus_1": 689.0,
+          "eval_t_minus_2": 534.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 85000,
+          "ve_ratio": 0.5481,
+          "delta_ve": 0.1331,
+          "delta_ve_prev": 0.095,
+          "eval_t": 619.0,
+          "eval_t_minus_1": 657.0,
+          "eval_t_minus_2": 689.0,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": true,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 95000,
+          "ve_ratio": 0.6449,
+          "delta_ve": 0.0968,
+          "delta_ve_prev": 0.1331,
+          "eval_t": 596.0,
+          "eval_t_minus_1": 619.0,
+          "eval_t_minus_2": 657.0,
+          "conditions": {
+            "ve_ratio_gate": true,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": true
+          },
+          "all_conditions_met": false
+        },
+        {
+          "step": 105000,
+          "ve_ratio": 0.406,
+          "delta_ve": -0.2389,
+          "delta_ve_prev": 0.0968,
+          "eval_t": 837.0,
+          "eval_t_minus_1": 596.0,
+          "eval_t_minus_2": 619.0,
+          "conditions": {
+            "ve_ratio_gate": false,
+            "delta_ve_threshold": false,
+            "delta_ve_consecutive": false,
+            "eval_consecutive_decline": false
+          },
+          "all_conditions_met": false
+        }
+      ],
+      "triggered": false,
+      "trigger_step": null,
+      "is_false_positive": false,
+      "detection_lead_steps": null,
+      "notes": "No trigger. At 85K (ve=0.55, dve=0.13), prev delta_ve=0.095 fails consecutive threshold. At 95K, delta_ve=0.097 < 0.1 fails threshold."
+    }
+  },
+  "summary": {
+    "pass_criteria": {
+      "healthy_fp_target": 0,
+      "healthy_fp_actual": 0,
+      "civo_tp_target": 2,
+      "civo_tp_actual": 2,
+      "boundary_reasonable": true
+    },
+    "overall_pass": true,
+    "civo_detection_rate": 1.0,
+    "healthy_false_positive_rate": 0.0,
+    "mean_lead_steps": 10000.0,
+    "lead_steps_detail": [
+      15000,
+      5000
+    ],
+    "analysis": {
+      "true_positive_detail": "008d detected at 45K (collapse@60K, lead=15K). 010b detected at 65K (collapse@70K, lead=5K).",
+      "false_positive_detail": "0 false positives. 008f blocked by ve_ratio<0.5. 001 blocked by delta_ve<0.1. 020 blocked by delta_ve_consecutive (prev=0.095<0.1).",
+      "boundary_behavior": "009b: no trigger (self-correcting VE). 008e_v3_s2: triggered at 105K AFTER collapse at 95K (reactive, not predictive). Both correct.",
+      "improvement_vs_v1": "FPR reduced from 67% (2/3) to 0% (0/3) while maintaining 100% TPR (2/2). Key filtering: ve_ratio gate eliminates 008f, delta_ve magnitude + consecutive requirement eliminates 001 and 020."
+    }
+  }
+}

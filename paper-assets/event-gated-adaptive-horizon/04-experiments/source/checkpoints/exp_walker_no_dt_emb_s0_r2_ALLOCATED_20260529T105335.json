@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_walker_no_dt_emb_s0_r2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-29T08:37:26.898Z",
+    "updated_at": "2026-05-29T10:53:34.832Z",
+    "hypothesis": "dt_embed_dim=0 + gate+subsample ON in Walker Walk seed 0 will NOT show CIVO (NVE<1.5), replicating 008f causal control. This confirms removing dt_embedding prevents CIVO, strengthening C2 (trained dt_emb is necessary condition). Retry of exp_walker_no_dt_emb_s0 (killed: resource reallocation). Source: D164 Walker priority.",
+    "parent": "exp_walker_no_dt_emb_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_no_dt_emb_s0_r2 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "59301",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_walker_no_dt_emb_s0_r2.log",
+      "submitted_at": "2026-05-29T10:51:34.818Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-29T10:53:35.315764+00:00",
+  "trigger": "update_registry"
+}

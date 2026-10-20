@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f9daded4ca663e911ca",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "data additional figure extraction",
+  "task_key": "worker_data_additional-figure-extraction_20260516T202421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_additional-figure-extraction_20260516T202421_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "836b06d661e400e01b2008c2a1d1743d3d3a7e8b6fc2f1e3f39720b5f17545cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出摘要：\n\n**数据提取结果：**\n\n| 图 | 文件 | 状态 |\n|---|---|---|\n| Fig 3: Actor Entropy Dynamics | `artifacts/analysis/entropy_dynamics_data.json` | 4 实验，6-11 点/条 |\n| Fig 4: CIVO Decomposition | `artifacts/analysis/civo_decomposition_data.json` | 6 条件，含 value_mean + eval_return |\n| Fig 5: Value vs Eval Return | `artifacts/analysis/value_vs_eval_data.json` | 4 实验，全部有双指标 |\n| Fig 6: Subsample Distribution | **跳过** | gate_dt 全为常量 (dt=2, frac=1.0)，无可视化价值 |\n\n**关键发现：**\n- **008d (CIVO)**: value_mean 升至 137.9 而 eval 降至 82.7（NVE=+55），训练在 55K 步崩溃终止\n- **008e_v3_s2 (Pathway B)**: entropy 在 85K→105K 从 -5.21 回升至 -3.83（entropy rebound），eval 从 715→137 崩溃\n- **008f/018v2/008a (健康)**: value 始终低于 eval，NVE 为负值\n- **010b (Cheetah)**: eval 在 45K 后从 322 降至 52，跨域 CIVO 确认\n\n**matplotlib 脚本**：`artifacts/scripts/gen_additional_figures.py`，在服务器执行：\n```bash\ncd /root/autodl-tmp/event-gated-adaptive-horizon\npython gen_additional_figures.py --datadir artifacts/analysis --outdir artifacts/figures\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-additional-figure-extraction.md"
+}

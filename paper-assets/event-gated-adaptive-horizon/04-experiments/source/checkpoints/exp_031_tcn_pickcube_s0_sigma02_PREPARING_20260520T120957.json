@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_031_tcn_pickcube_s0_sigma02",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:09:56.923Z",
+    "updated_at": "2026-05-20T12:09:56.923Z"
+  },
+  "timestamp": "2026-05-20T12:09:57.165890+00:00",
+  "trigger": "update_registry"
+}

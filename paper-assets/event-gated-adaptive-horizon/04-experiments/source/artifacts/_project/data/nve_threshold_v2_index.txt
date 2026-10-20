@@ -1,0 +1,1 @@
+Group A (CIVO-specific, N=6): AUROC=1.0, threshold 2.0x perfect (TP=2, TN=4, FP=0, FN=0). Group B (all-failure, N=9): AUROC=0.8 CI[0.4,1.0], threshold 2.0x accuracy 77.8% (2 FN: 007 and 008c non-CIVO failures). Server paths: artifacts/nve_threshold_v2.json, scripts/nve_threshold_analysis_v2.py

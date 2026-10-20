@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "016e9180ee6ad9b54cbf",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fix roc figure",
+  "task_key": "worker_paper_fix_roc_figure_20260525T141154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_roc_figure_20260525T141154_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "85c25ea6954018b30fd786431fe3aaad429c33e6521ef0badce8c8c49307566c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **ROC 图已替换** — `artifacts/figures/nve_roc_curve.pdf` 从旧 n=30 版（5/20）更新为新 n=56 版（来自 `plan_034_nve_threshold`）\n2. **PRF 图已加入附录** — 在 ROC 图后新增 `fig:nve_prf`，展示 threshold vs Precision/Recall/F1 曲线，caption 标注 peak F1=0.941 at τ=1.5, n=56\n3. **编译通过** — 两遍 pdflatex 无错误，输出 29 页 PDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-roc-figure.md"
+}

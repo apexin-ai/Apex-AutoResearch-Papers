@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_023_cheetah_baseline_s4",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:54:02.288Z",
+    "updated_at": "2026-05-18T23:54:22.660Z",
+    "hypothesis": "Cheetah Run baseline seed=4. Fourth seed for tighter eval return CI and NVE normalization robustness.",
+    "parent": "exp_023a_cheetah_baseline_s0"
+  },
+  "timestamp": "2026-05-18T23:54:22.865633+00:00",
+  "trigger": "update_registry"
+}

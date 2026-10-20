@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_023_cheetah_baseline_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:49:33.229Z",
+    "updated_at": "2026-05-18T21:49:44.537Z",
+    "hypothesis": "Cheetah Run baseline seed=3. Extends 023a/023b/023_s2 (3 seeds) to 4 seeds for tighter eval return CI.",
+    "parent": "exp_023a_cheetah_baseline_s0"
+  },
+  "timestamp": "2026-05-18T21:49:44.753559+00:00",
+  "trigger": "update_registry"
+}

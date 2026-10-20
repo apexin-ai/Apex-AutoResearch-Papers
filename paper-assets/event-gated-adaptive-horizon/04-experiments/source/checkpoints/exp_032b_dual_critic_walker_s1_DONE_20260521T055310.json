@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_032b_dual_critic_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:22:08.787456+00:00",
+    "updated_at": "2026-05-21T05:53:10.600Z",
+    "hypothesis": "Dual-critic seed=1 replication: if both s0 and s1 show NVE<1.5× and eval matches baseline → dual-critic is a robust architecture-level CIVO intervention, strengthening Intervention Hierarchy evidence.",
+    "parent": "exp_032_dual_critic_walker",
+    "spec": {
+      "data_path": "DMC Walker Walk (dm_control built-in)",
+      "data_count": 210000,
+      "model_name": "DreamerV3 + Dual Critic (min of two independent critics)",
+      "seed": 1,
+      "hyperparams": {
+        "gate_enabled": true,
+        "gate_fixed_dt": 2,
+        "gate_subsample_max_dt": 2,
+        "imag_horizon": 8,
+        "dual_critic": true,
+        "tcn_sigma": 0
+      }
+    },
+    "metrics": {
+      "eval_peak": 551.8,
+      "note": "CIVO fully suppressed, project best eval"
+    },
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T23:22:55.338Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_032b_dual_critic_walker_s1\"",
+      "code_commit": "fb56c860a88292ad60b6183effc1102a01205086",
+      "finished_at": "2026-05-21T05:48:11.173Z",
+      "training_hours": 6.42
+    },
+    "pid": "973387",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_032b_dual_critic_walker_s1.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T05:48:16.069863+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T05:50:59.612299+00:00",
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_032b_dual_critic_walker_s1/latest.pt"
+  },
+  "timestamp": "2026-05-21T05:53:10.916755+00:00",
+  "trigger": "update_registry"
+}

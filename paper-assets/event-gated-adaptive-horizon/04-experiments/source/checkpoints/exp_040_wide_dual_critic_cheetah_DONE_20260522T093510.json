@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_040_wide_dual_critic_cheetah",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-21T19:50:49.909Z",
+    "hypothesis": "Cheetah dual-critic seed 1：exp_034 (s0) 显示 dual-critic 在 Cheetah 上 NVE 1.8, eval 97.5（部分恢复 31%）。s1 确认此 pattern 是否 robust。如果 s1 也部分恢复 → Cheetah dual-critic 效果一致但弱于 Walker；如果 s1 完全不恢复 → s0 的部分恢复是偶发。",
+    "parent": "exp_032_dual_critic_walker",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 1 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_040_wide_dual_critic_cheetah\"",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_040_wide_dual_critic_cheetah.log",
+      "pid": "52397",
+      "server": "bjb1-45299",
+      "submitted_at": "2026-05-21T19:51:11.519Z",
+      "submitted_via": "submit_training_job",
+      "seed": 1,
+      "wall_clock_seconds": 49438.9,
+      "gpu_hours": 13.73
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-22T09:35:10.404Z",
+    "reproduce": {
+      "finished_at": "2026-05-22T09:35:07.693Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T09:35:10.404Z"
+  },
+  "timestamp": "2026-05-22T09:35:10.689483+00:00",
+  "trigger": "update_registry"
+}

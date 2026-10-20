@@ -1,0 +1,666 @@
+# Reviewer coordination (archived snapshot) — Part 2 of 2
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+[← Part 1](part-001.md) · [Transcript overview](../reviewer-coordination-20260513-213655.md) · [Structured JSON](../../../sessions/18/184acf9d5cfffc36b811.json)
+
+## Round 70
+
+### Tool call
+
+_source line 723 · 2026-05-13T20:33:51.288881+00:00_
+
+called mcp__agent-ml-research__reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "[severity: info] exp_005 100K 中间检查点审查（gate_scale=0.50）\n\n## Return 趋势反转——谨慎积极\n\n| Step | eval_return | gate_scale | 趋势 |\n|------|-------------|------------|------|\n| 55K | 541 | 0.013 | Phase 1 峰值 |\n| 65K | 466 | 0.10 | -75 |\n| 85K | 319 | 0.30 | -147 |\n| **105K** | **338** | **0.50** | **+19（反转）** |\n\nReturn 在 85K 触底后开始回升（+17.6/10K），与 gate_scale 0.3→0.5 期间 agent 逐渐适应 variable-rate imagination 一致。Worker 判断\"不触发预警\"——**同意**，符合我之前设定的\"趋势变平或回升→继续观察\"标准。\n\n## Gate 行为健康度对比\n\n| 指标 | exp_003@scale=0.61 | exp_005@scale=0.50 | 评估 |\n|------|-------|-------|------|\n| entropy | 1.655 | 1.255 | 健康（均 >0.3） |\n| dt_mean | 2.67 | 2.054 | exp_005 更保守 |\n| dt_1_frac | 21.8% | 31.5% | exp_005 保留更多 dt=1 |\n| gate_loss | 正常 | 0.53 | ✓ bug 修复确认有效 |\n\nexp_005 的 gate 比 exp_003 更保守——更多 dt=1、更低 dt_mean。这可能是修复后 gate 学到了更 calibrated 的 skipping policy（不是所有状态都该跳），也可能是 gate_scale=0.5 vs 0.61 的差异。\n\n## 但 return ratio 仍然很低\n\nreturn_ratio = 0.354 (338/953)。即使以 +17.6/10K 线性外推：\n- 150K (gate_scale=1.0): ~417 → ratio 0.44\n- 200K: ~505 → ratio 0.53\n- 300K: ~681 → ratio 0.71\n- 500K: ~1033 → ratio 1.08\n\n线性外推暗示 **300K+ 才可能接近 80% 阈值**。但线性外推不可靠：\n- 收敛通常先快后慢（S-curve），实际 ratio 可能在 0.5-0.7 plateau\n- 高方差（±125.9）使趋势线不稳定\n- gate_scale 将在 150K 停止变化，之后的 dynamics 完全不同\n\n## 下一检查点建议\n\n**150K（gate_scale=1.0）** 是最关键的判断点。到那时可以回答：\n1. gate_scale 停止变化后 return 是否加速恢复？\n2. gate 行为指标在 scale=1.0 时是否与 exp_003 一致？\n3. gate_loss 是否保持 <5 的合理范围？\n\n如果 150K 时 return_ratio ≥ 0.4 且趋势为正 → 有理由跑到 300K+\n如果 150K 时 return_ratio < 0.3 或趋势为负 → gray zone / failure line，准备 pivot",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "tool_args": {
+    "text": "[severity: info] exp_005 100K 中间检查点审查（gate_scale=0.50）\n\n## Return 趋势反转——谨慎积极\n\n| Step | eval_return | gate_scale | 趋势 |\n|------|-------------|------------|------|\n| 55K | 541 | 0.013 | Phase 1 峰值 |\n| 65K | 466 | 0.10 | -75 |\n| 85K | 319 | 0.30 | -147 |\n| **105K** | **338** | **0.50** | **+19（反转）** |\n\nReturn 在 85K 触底后开始回升（+17.6/10K），与 gate_scale 0.3→0.5 期间 agent 逐渐适应 variable-rate imagination 一致。Worker 判断\"不触发预警\"——**同意**，符合我之前设定的\"趋势变平或回升→继续观察\"标准。\n\n## Gate 行为健康度对比\n\n| 指标 | exp_003@scale=0.61 | exp_005@scale=0.50 | 评估 |\n|------|-------|-------|------|\n| entropy | 1.655 | 1.255 | 健康（均 >0.3） |\n| dt_mean | 2.67 | 2.054 | exp_005 更保守 |\n| dt_1_frac | 21.8% | 31.5% | exp_005 保留更多 dt=1 |\n| gate_loss | 正常 | 0.53 | ✓ bug 修复确认有效 |\n\nexp_005 的 gate 比 exp_003 更保守——更多 dt=1、更低 dt_mean。这可能是修复后 gate 学到了更 calibrated 的 skipping policy（不是所有状态都该跳），也可能是 gate_scale=0.5 vs 0.61 的差异。\n\n## 但 return ratio 仍然很低\n\nreturn_ratio = 0.354 (338/953)。即使以 +17.6/10K 线性外推：\n- 150K (gate_scale=1.0): ~417 → ratio 0.44\n- 200K: ~505 → ratio 0.53\n- 300K: ~681 → ratio 0.71\n- 500K: ~1033 → ratio 1.08\n\n线性外推暗示 **300K+ 才可能接近 80% 阈值**。但线性外推不可靠：\n- 收敛通常先快后慢（S-curve），实际 ratio 可能在 0.5-0.7 plateau\n- 高方差（±125.9）使趋势线不稳定\n- gate_scale 将在 150K 停止变化，之后的 dynamics 完全不同\n\n## 下一检查点建议\n\n**150K（gate_scale=1.0）** 是最关键的判断点。到那时可以回答：\n1. gate_scale 停止变化后 return 是否加速恢复？\n2. gate 行为指标在 scale=1.0 时是否与 exp_003 一致？\n3. gate_loss 是否保持 <5 的合理范围？\n\n如果 150K 时 return_ratio ≥ 0.4 且趋势为正 → 有理由跑到 300K+\n如果 150K 时 return_ratio < 0.3 或趋势为负 → gray zone / failure line，准备 pivot",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 724 · 2026-05-13T20:33:55.106049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "elapsed_ms": 3817
+}
+```
+
+</details>
+
+---
+
+
+## Round 71
+
+## Round 71
+
+3 recorded events
+
+
+### User
+
+_source line 725 · 2026-05-13T20:39:09.201942+00:00_
+
+[系统通知 — worker_done:worker_research_pivot_analysis_20260513T203415]:
+Worker worker_research_pivot_analysis_20260513T203415 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "source": "worker_done:worker_research_pivot_analysis_20260513t203415"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 726 · 2026-05-13T20:39:19.329019+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_research_pivot_analysis_20260513T203415_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_research_pivot_analysis_20260513T203415_result.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 727 · 2026-05-13T20:39:19.379956+00:00_
+
+1	{
+2	  "raw": "文档已写入 `/root/autodl-tmp/event-gated-adaptive-horizon/docs/pivot_analysis.md`（148 行）。\n\n核心结论：\n\n| 方案 | 改动量 | 推荐优先级 |\n|------|--------|-----------|\n| **C: Fixed dt=2** | ~20 行 | **1（先做）** — 诊断价值最高，验证 dt>1 是否有害 |\n| **B: Binary Skip** | ~25-30 行 | 2 — 验证 skip 概念本身是否可行 |\n| **A: Soft Mixture** | ~60-80 行 | 3 — 计算量 ×8，模糊状态风险，最后考虑 |\n\n执行策略：C → 如果 dt=2 也掉 return，说明跳步本身有害，回退 vanilla；如果 C 不掉，再做 B 定位是 Gumbel-Softmax 多类分类的问题还是 skip 概念的问题。"
+3	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+## Round 72
+
+## Round 72
+
+4 recorded events
+
+
+### User
+
+_source line 728 · 2026-05-13T20:58:34.945350+00:00_
+
+[系统通知 — worker_done:worker_diagnose_exp_001_baseline_exit_20260513T205646]:
+Worker worker_diagnose_exp_001_baseline_exit_20260513T205646 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 729 · 2026-05-13T20:58:45.292035+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_diagnose_exp_001_baseline_exit_20260513T205646_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_diagnose_exp_001_baseline_exit_20260513T205646_result.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 730 · 2026-05-13T20:58:45.342933+00:00_
+
+1	{
+2	  "raw": "## 诊断结果\n\n**判定：成功完成 ✓**\n\n| 指标 | 值 |\n|------|-----|\n| 最终 step | 512,000 |\n| eval_return (step 505K) | 970.41 |\n| eval_return (last 10 mean±std) | 950.9 ± 10.5 |\n| train_return (step 512K) | 828~988 |\n| return trend | +25.7 / 10K steps (上升中) |\n| checkpoint | `latest.pt` (229MB) |\n| FPS | 7.59 |\n\n**mvp_eval.py 输出：**\n- **Return**: PASS — eval_return 950.9 ± 10.5，趋势上升\n- **Gate Entropy / Effective Horizon / Temporal Structure**: N/A（baseline 无 gate 机制，预期结果）\n- **Overall**: PARTIAL 1/4\n\n**GPU 状态：cuda:0 空闲**（0 MiB / 97887 MiB, 0% utilization）。cuda:1 占用 4349 MiB。\n\n**已完成操作：**\n- Registry 已更新为 DONE + success + metrics\n- Cron 监控已删除"
+3	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 731 · 2026-05-13T20:58:53.418125+00:00_
+
+Baseline 正常完成，eval_return 950.9 ± 10.5，cuda:0 已空闲。无异常。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer"
+}
+```
+
+</details>
+
+---
+
+
+## Round 73
+
+## Round 73
+
+4 recorded events
+
+
+### User
+
+_source line 732 · 2026-05-13T21:10:35.213502+00:00_
+
+[系统通知 — worker_done:worker_code_exp_006_fixed_dt2_prep_20260513T205612]:
+Worker worker_code_exp_006_fixed_dt2_prep_20260513T205612 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "source": "system"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 733 · 2026-05-13T21:10:45.678455+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_code_exp_006_fixed_dt2_prep_20260513T205612_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_code_exp_006_fixed_dt2_prep_20260513T205612_result.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 734 · 2026-05-13T21:10:45.678938+00:00_
+
+1	{
+2	  "raw": "exp_005 正常运行（PID 51726，1071% CPU，已运行 5h）。\n\n---\n\n## 汇报\n\n### 改动文件\n\n**configs.yaml** (1 行)\n- L114: 新增 `gate_fixed_dt: 0`\n\n**models.py** (8 处, ~18 行净增)\n- L188-196: `WorldModel._train` — `gate_fixed_dt > 0` 时跳过 gate curriculum，直接用固定 `effective_max_dt` 和 `gate_scale=0.0`\n- L245: gate loss 条件追加 `and self._config.gate_fixed_dt == 0`，跳过 gate loss 计算\n- L314: gate metrics 条件追加 `and self._config.gate_fixed_dt == 0`，跳过 gate_loss/gate_scale/entropy_bonus 日志\n- L547: `_imagine` 中 `gate_active` 条件追加 `and config.gate_fixed_dt == 0`\n- L562: fallback dt 改用 `torch.full((batch,), fixed, ...)` 支持任意固定值\n- L572-573: `init_dt` 乘以 `gate_fixed_dt`，确保第一步也用固定 dt\n\n### dry-run 结果\n- 训练正常启动，无报错\n- `gate_dt_mean=2.0`, `gate_dt_std=0.0`, `gate_dt_2_frac=1.0` — dt 恒定为 2\n- gate_loss、gate_scale、gate_entropy_bonus 未输出（符合预期）\n- exp_005 不受影响（仍在运行）\n\n### exp_006_fixed_dt2 启动命令\n\n```bash\ncd /root/autodl-tmp/event-gated-adaptive-horizon && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && \\\nexport PYOPENGL_PLATFORM=osmesa && \\\nCUDA_VISIBLE_DEVICES=0 python dreamer.py \\\n  --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/fixed_dt2_v1_s1 \\\n  --steps 150000 \\\n  --seed 1 \\\n  --compile False \\\n  --device cuda:0 \\\n  --gate_enabled True \\\n  --gate_fixed_dt 2\n```\n\n### 预估训练时长\nexp_005 的 fps ~6.69 步/秒。Fixed dt 省去 gate forward pass（~200K 参数），预估 fps ~7-8。150K 步约 **5-6 小时**。"
+3	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 735 · 2026-05-13T21:11:27.061674+00:00_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer"
+}
+```
+
+</details>
+
+---
+
+
+## Round 74
+
+## Round 74
+
+5 recorded events
+
+
+### User
+
+_source line 736 · 2026-05-13T21:32:51.129877+00:00_
+
+[系统通知 — worker_done:worker_check_exp_005_progress_120K_20260513T213159]:
+Worker worker_check_exp_005_progress_120K_20260513T213159 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "source": "worker_done:worker_check_exp_005_progress_120k_20260513t213159"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 737 · 2026-05-13T21:32:57.358154+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_check_exp_005_progress_120K_20260513T213159_result.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_check_exp_005_progress_120K_20260513T213159_result.json"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 738 · 2026-05-13T21:32:57.358744+00:00_
+
+1	{
+2	  "raw": "## exp_005_event_gated_v4 状态汇报\n\n**进程**: 存活，运行中（PID 51726，已运行 ~57h，CPU 99%）\n- 任务: `dmc_walker_walk`，目标 500k steps，GPU: `cuda:1`\n\n**当前进度**: step **136,000** / 500,000（27.2%），FPS: 7.05\n\n### 最新 metrics（step 135,000）\n\n| 指标 | 值 |\n|------|-----|\n| **eval_return** | **47.38** |\n| gate_scale | 0.800 |\n| gate_dt_mean | 2.44 |\n| gate_dt_std | 1.27 |\n| gate_empirical_entropy | 1.54 |\n| gate_entropy_ratio | 0.859 |\n\n**Gate dt 分布**: dt=1: 25.8%, dt=2: 33.1%, dt=3: 22.5%, dt=4: 10.6%, dt=5: 5.2%, dt=6: 2.7%\n\n### eval_return 趋势\n\n| step | eval_return |\n|------|------------|\n| 5k | 31.0 |\n| 15k | 153.9 |\n| 25k | 254.2 |\n| 35k | 290.8 |\n| 45k | 443.0 |\n| 55k | **541.2** (peak) |\n| 65k | 465.7 |\n| 75k | 482.1 |\n| 85k | 212.3 |\n| 95k | 258.5 |\n| 105k | 276.1 |\n| 115k | 25.7 |\n| 125k | 38.7 |\n| 135k | 47.4 |\n\n**问题**: eval_return 在 55k 达到峰值 541 后持续下降，85k 起大幅崩溃，当前 47.4 仅为峰值的 8.7%。训练出现严重的 performance collapse。"
+3	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 739 · 2026-05-13T21:33:44.037055+00:00_
+
+called mcp__agent-ml-research__reviewer_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director</summary>
+
+```json
+{
+  "text": "[severity: critical] exp_005 Return 崩塌确认——gate_scale 0.5→0.8 期间发生灾难性崩溃\n\n## 数据\n\n| Step | eval_return | gate_scale |\n|------|-------------|------------|\n| 55K | 541.2 | 0.013 |\n| 75K | 482.1 | 0.20 |\n| 105K | 276.1 | 0.50 |\n| **115K** | **25.7** | **0.60** |\n| **125K** | **38.7** | **0.70** |\n| **135K** | **47.4** | **0.80** |\n\n105K→115K：return 从 276 暴跌至 25.7（-90.7%），属于灾难性崩溃，不是渐进下降。\n\n## 与前序实验对比\n\n| | exp_003 | exp_004 | **exp_005** |\n|---|---|---|---|\n| Bug | dt 索引错位 + 想象 dt 无约束 | gate_loss 284M | **所有 bug 已修复** |\n| gate_loss | 正常 | 284M | **0.53（正常）** |\n| gate 行为 | 健康 | 不确定 | **健康**（entropy 1.54, dt_mean 2.44） |\n| Return 崩塌 | ✓ | ✓ | **✓** |\n\n**三次实验，三次崩塌。exp_005 是第一次在所有 bug 修复 + gate_loss 正常 + gate 行为健康的条件下发生的崩塌。**\n\n## 判断\n\n**hard gate mechanism 本身是 return 崩塌的根因。** 理由：\n1. 所有已知 implementation bugs 已修复（全量审计通过）\n2. gate_loss 正常（0.53，不是 284M）\n3. gate 行为健康（entropy, dt distribution 全 PASS）\n4. 崩塌精确同步于 gate_scale 增大（>0.5 时触发）\n5. 崩塌模式在三个修复版本中重复出现\n\n这不再是\"实现 bug 导致 return 下降\"——这是 **hard Gumbel gate + variable-rate imagination 在 actor-critic 优化中的结构性失败**。\n\n## 可能的根因机制\n\n当 gate_scale > 0.5 时，imagination trajectory 中 >50% 的步骤使用 dt>1。这导致：\n- Actor/critic 在 Phase 1 学到的 value landscape 基于 dt=1，当 dt 分布突变时 value 估计失效\n- Variable-rate λ-return 的 discount 结构变化使 value target 与 critic 的预测严重偏离\n- Actor 在已损坏的 value landscape 上优化，policy 退化\n\n## 建议\n\n1. **exp_005 可以继续跑**（观察是否有后期恢复），但 **不应期待 MVP PASS**\n2. **立即启动 exp_006 (fixed dt=2)**——这是最关键的诊断：\n   - 如果 fixed dt=2 return 正常 → 问题在 gate 的动态 dt 选择（可尝试更缓的 curriculum）\n   - 如果 fixed dt=2 也崩 → 问题在 variable-rate imagination 本身（需要 Option A: soft mixture）\n3. **叙事线切换到 failure line**：narrative_frameworks.md 中的\"失败线\"现在是 active path",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "tool_args": {
+    "text": "[severity: critical] exp_005 Return 崩塌确认——gate_scale 0.5→0.8 期间发生灾难性崩溃\n\n## 数据\n\n| Step | eval_return | gate_scale |\n|------|-------------|------------|\n| 55K | 541.2 | 0.013 |\n| 75K | 482.1 | 0.20 |\n| 105K | 276.1 | 0.50 |\n| **115K** | **25.7** | **0.60** |\n| **125K** | **38.7** | **0.70** |\n| **135K** | **47.4** | **0.80** |\n\n105K→115K：return 从 276 暴跌至 25.7（-90.7%），属于灾难性崩溃，不是渐进下降。\n\n## 与前序实验对比\n\n| | exp_003 | exp_004 | **exp_005** |\n|---|---|---|---|\n| Bug | dt 索引错位 + 想象 dt 无约束 | gate_loss 284M | **所有 bug 已修复** |\n| gate_loss | 正常 | 284M | **0.53（正常）** |\n| gate 行为 | 健康 | 不确定 | **健康**（entropy 1.54, dt_mean 2.44） |\n| Return 崩塌 | ✓ | ✓ | **✓** |\n\n**三次实验，三次崩塌。exp_005 是第一次在所有 bug 修复 + gate_loss 正常 + gate 行为健康的条件下发生的崩塌。**\n\n## 判断\n\n**hard gate mechanism 本身是 return 崩塌的根因。** 理由：\n1. 所有已知 implementation bugs 已修复（全量审计通过）\n2. gate_loss 正常（0.53，不是 284M）\n3. gate 行为健康（entropy, dt distribution 全 PASS）\n4. 崩塌精确同步于 gate_scale 增大（>0.5 时触发）\n5. 崩塌模式在三个修复版本中重复出现\n\n这不再是\"实现 bug 导致 return 下降\"——这是 **hard Gumbel gate + variable-rate imagination 在 actor-critic 优化中的结构性失败**。\n\n## 可能的根因机制\n\n当 gate_scale > 0.5 时，imagination trajectory 中 >50% 的步骤使用 dt>1。这导致：\n- Actor/critic 在 Phase 1 学到的 value landscape 基于 dt=1，当 dt 分布突变时 value 估计失效\n- Variable-rate λ-return 的 discount 结构变化使 value target 与 critic 的预测严重偏离\n- Actor 在已损坏的 value landscape 上优化，policy 退化\n\n## 建议\n\n1. **exp_005 可以继续跑**（观察是否有后期恢复），但 **不应期待 MVP PASS**\n2. **立即启动 exp_006 (fixed dt=2)**——这是最关键的诊断：\n   - 如果 fixed dt=2 return 正常 → 问题在 gate 的动态 dt 选择（可尝试更缓的 curriculum）\n   - 如果 fixed dt=2 也崩 → 问题在 variable-rate imagination 本身（需要 Option A: soft mixture）\n3. **叙事线切换到 failure line**：narrative_frameworks.md 中的\"失败线\"现在是 active path",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 740 · 2026-05-13T21:33:47.802421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+  "elapsed_ms": 3765
+}
+```
+
+</details>
+
+---
+
+
+## Round 75
+
+## Round 75
+
+2 recorded events
+
+
+### User
+
+_source line 741 · 2026-05-13T21:36:07.144781+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 742 · 2026-05-13T21:36:55.141474+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0 和 cuda:1（项目 execution.gpu_ids），越界即 CRITICAL
+- 服务器名已从 `autodl-rtx6000` 变更为 `bjb1-45299`——所有 SSH/registry/cron 必须用新名，旧名会 5x 失败后误标 DONE/failed
+- exp_005 PID 51726 在 cuda:1 仍在运行（即使 return 已崩到 47），不要误 kill 除非 Director 明确指示
+- curriculum 阈值是 self._step 单位（25000/75000），对应 env_step 50K/150K（action_repeat=2），不要混淆
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`bjb1-45299`(root)，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 2× NVIDIA RTX PRO 6000 Blackwell (97887 MiB each)
+- 活跃进程：
+  - exp_005 (PID 51726, tmux=exp_005_event_gated_v4, cuda:1, ~136K/500K step, return 崩塌至 47)
+  - exp_001_baseline: **已完成** (512K steps, eval_return 950.9±10.5, checkpoint at logdir/baseline_s1/latest.pt)
+  - cuda:0 **空闲**，可用于 exp_006
+- exp_006 (fixed dt=2) 代码已准备好，dry-run 通过，**尚未提交**
+- Logdirs: `logdir/baseline_s1/`, `logdir/event_gated_v5_s1/`, MVP eval 脚本: `scripts/mvp_eval.py`
+- 无 wandb 配置
+
+### 3. 📊 当前状态
+**exp_005 return 灾难性崩塌已确认**。gate 行为健康（entropy 1.54, dt_mean 2.44），gate_loss 正常（0.53），但 return 从 Phase 1 峰值 541 崩至 47（baseline 的 5%）。这是修复所有 3 个 bug 后的结果——hard gate 机制本身是崩塌根因。
+
+已向 Director 报告 CRITICAL，建议：
+1. 立即在 cuda:0 启动 exp_006 (fixed dt=2) 做诊断
+2. exp_005 可继续跑但不期待 MVP PASS
+3. 叙事线切换到 failure line
+
+等待 Director 决策：是否启动 exp_006 + 是否 kill exp_005。
+
+### 4. 📋 待办
+- Director 批准 exp_006 → 验证 cuda:0 空闲 → 提交 fixed dt=2 实验（命令已在 worker 产出中）
+- exp_006 到 50K step → 检查 return 是否正常（如果 fixed dt=2 也崩 → variable-rate imagination 概念本身有问题，需 soft mixture 或放弃）
+- exp_006 到 50K step return 正常 → 问题锁定在 gate 动态选择，尝试 Option B (binary skip K=2) 或更缓的 curriculum
+- exp_005 到 200K → 如果无恢复迹象，建议 kill 释放 GPU
+- 任何新实验 → 独立核查 GPU 设备号、gate_loss 量级、dt 分布
+
+### 5. 🎯 战略上下文
+**决策链**：D001(MVP方案) → D002(量化criteria) → D003(subsample curriculum) → D004(中期评估3/4 PASS) → D005/D006(dt bug修复) → D008(gate_loss爆炸修复) → 现在：**MVP criterion 1 三连失败，最后一次排除了所有 implementation bug**
+
+**核心结论**：gate 机制（entropy/dt diversity/temporal structure）工作正常，但 hard Gumbel gate + variable-rate imagination 在 gate_scale > 0.5 时摧毁 actor-critic value landscape。这是结构性问题不是 bug。
+
+**最容易判断错的事**：
+- 不要再把 return 崩塌归因于 implementation bug——3 轮审计 + 全量代码审查已排除。下一个"你"如果看到有 worker 说"发现新 bug 导致崩塌"，要极其谨慎审查，大概率是 rationalization
+- exp_003 的 gate 指标（entropy 1.655, H_eff 2.667×）仍可作为 gate 行为参照，但不要用 exp_003 的 return 数据（那个版本有 dt 索引 bug）
+- narrative_frameworks.md 已修订过（去掉了 rationalization、加了单任务 caveat、加了 gray zone），新的"你"应直接用修订版
+- GPU 预算已超 30h 上限（累计 ~35h），需用户/Director 确认扩容
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb:reviewer"
+}
+```
+
+</details>
+
+---

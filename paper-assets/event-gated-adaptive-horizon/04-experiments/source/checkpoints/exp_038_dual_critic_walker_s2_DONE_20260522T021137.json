@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp_038_dual_critic_walker_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-21T12:18:35.293Z",
+    "hypothesis": "Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.",
+    "parent": "exp_032_dual_critic_walker",
+    "reproduce": {
+      "finished_at": "2026-05-22T02:07:51.177Z"
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2/latest.pt",
+      "checkpoint_source": "N/A - training from scratch",
+      "command": "bash -c \"...dual_critic walker s2...\"",
+      "data_count": 210000,
+      "data_path": "DMC Walker Walk",
+      "eval_data": "N/A - training experiment",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_038_dual_critic_walker_s2",
+      "model_name": "DreamerV3 + Dual Critic (wide)",
+      "pid": "175633",
+      "seed": 2,
+      "server": "bjb1-40020",
+      "submitted_at": "2026-05-21T12:18:34.859Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 49982.0,
+      "gpu_hours": 13.88
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-22T02:11:36.842Z",
+    "conclusion": "negative",
+    "metrics": {
+      "eval_return_peak": 354,
+      "eval_return_peak_step": 155000,
+      "eval_return_collapse": 99.6,
+      "eval_return_collapse_step": 175000,
+      "eval_return_final": 120.9,
+      "nve_final": 0.248,
+      "nve_peak": 0.3,
+      "civo_alert": 0,
+      "civo_prevented": true,
+      "non_civo_collapse": true,
+      "gate_dt_2_frac": 1,
+      "steps": 224000,
+      "note": "CIVO prevented (NVE≤0.3) but non-CIVO eval collapse at 175k (354→99.6). Different failure mode from value overestimation."
+    },
+    "completed_at": "2026-05-22T02:11:36.842Z"
+  },
+  "timestamp": "2026-05-22T02:11:37.133524+00:00",
+  "trigger": "update_registry"
+}

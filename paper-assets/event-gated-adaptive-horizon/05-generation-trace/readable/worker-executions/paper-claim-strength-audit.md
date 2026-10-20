@@ -1,0 +1,2226 @@
+# paper claim strength audit
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_paper_claim-strength-audit_20260516T075150.log`
+- **Structured JSON:** [`6c2e6106023e7701f309.json`](../../sessions/6c/6c2e6106023e7701f309.json)
+
+## Before a recorded user message
+
+37 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "3eff0189-038d-400b-9d5e-d4c681c0b632",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778924400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "140378b8-19f1-4ef3-8427-37a77213334d",
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by gathering the necessary information: the registry, paper_framing.md, results.tex, and optionally the narrative_audit.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "0517d479-30c4-47e6-93d5-983940a096a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUxQmBb8TFKayopLAomSqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12083,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12083
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016jzznGsXCeANR96583Eep1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "124d6d1b-392e-469c-821f-1a61bd0bd0d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUxQmBb8TFKayopLAomSqc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12083,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12083
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T07:52:05.557Z_
+
+<details><summary>↩ Tool result · `toolu_016jzznGsXCeANR96583Eep1`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "eb2508eb-14da-433d-94eb-1ea943ea57d3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me gather all the necessary information in parallel: registry, paper_framing.md, results.tex, and narrative_audit.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "36bc24b9-5ba6-493a-99e7-649fac7a29e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012pNeTu6hJuMwXtMo2PMgWo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1443,
+      "cache_read_input_tokens": 23530,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01VcP4KBWm5t6a1dxtyBgssw`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "d5a6f166-b0cc-495d-9f5f-159c0bf26144",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012pNeTu6hJuMwXtMo2PMgWo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1443,
+      "cache_read_input_tokens": 23530,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01RqDnZ36bYTA5ShJNeVzHMa`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "b48e4cce-31e4-48e2-96f1-9e30a2c637ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012pNeTu6hJuMwXtMo2PMgWo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1443,
+      "cache_read_input_tokens": 23530,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T07:52:10.556Z_
+
+<details><summary>↩ Tool result · `toolu_01VcP4KBWm5t6a1dxtyBgssw`</summary>
+
+```text
+Error: result (105,769 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "67c89eeb-b281-4073-b521-93ff07bc0556",
+  "tool_use_result": {
+    "content": "Error: result (105,769 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_010a_cheetah_baseline_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:27.101Z\", \"updated_at\": \"2026-05-16T06:39:47.354Z\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"submitted_at\": \"2026-05-15T22:48:07.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:48:05.456Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\"}, \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"metrics\": {\"step\": 312000, \"eval_return\": 657.9, \"eval_return_at_305K\": 657.9, \"eval_return_peak\": 732.9, \"eval_return_peak_step\": 265000, \"note\": \"312K/512K (60.9%), peak 732.9@265K, ~12-16h remaining\"}}, \"exp_009d_baseline_walker_s0\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-15T11:55:00.039Z\", \"updated_at\": \"2026-05-16T06:39:46.293Z\", \"hypothesis\": \"Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:06:19.592Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T12:24:14.820Z\", \"training_hours\": 0.3}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-15T12:10:01.788Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:10:04.203907+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:24:17.652463+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"149703\", \"model_name\": \"DreamerV3_baseline\", \"seed\": 0, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\"}, \"metrics\": {\"step\": 436000, \"eval_return\": 911.9, \"eval_return_at_428K\": 911.9, \"eval_return_peak\": 950.96, \"eval_return_peak_step\": 398000, \"note\": \"436K/500K (87.2%), peak 950.96@398K, ~4-6h remaining\"}}, \"exp_017_subsample_off_trained_dt_emb\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:44:24.756Z\", \"updated_at\": \"2026-05-16T04:46:30.361Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2）\", \"parent\": \"exp_008a_no_subsample_dt2\", \"notes\": \"D044: 取消。008a 配置验证确认 017 与 008a 完全重复（trained dt_emb + subsample OFF + H=15 + seed 1）。008a 的\\\"untrained\\\"含义是\\\"dt_emb 存在但未接触 dt>1 数据\\\"，不是 frozen/absent。2×2 矩阵已由 008a/008d/008f/015b 闭合。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T04:46:30.361Z\"}, \"exp_019b_pickcube_civo_trigger\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:23:51.568Z\", \"updated_at\": \"2026-05-16T03:24:03.289Z\", \"hypothesis\": \"PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立\", \"notes\": \"ManiSkill3 Phase 1. 排队等 cuda:1 (010a 完成后, 019a 之后或并行). --compile False --device cuda:1. 需记录 dt 分布统计（gate 是否退化）.\"}, \"exp_019a_pickcube_baseline\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:23:50.639Z\", \"updated_at\": \"2026-05-16T03:24:01.901Z\", \"hypothesis\": \"PickCube-v1 baseline — dt=1, untrained dt_emb (dim=0), subsample OFF. 建立 manipulation 环境稳定基线，验证 CIVO 诊断在 manipulation 中的适用性\", \"notes\": \"ManiSkill3 Phase 1. 排队等 cuda:1 (010a 完成后). --compile False --device cuda:1. maniskill_state config.\"}, \"exp_018_full_sgs_walker_s1\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:30:39.991Z\", \"updated_at\": \"2026-05-16T01:46:31.260Z\", \"hypothesis\": \"Walker Walk Full-SGS (detach ALL non-KL head gradients from dt_emb) + subsample ON + H=8 seed 1 — 诊断实验：016e 证明 reward SGS 是 no-op（reward gradient=0），Full-SGS 移除 93% dt_emb 梯度（decoder+reward+cont→0，仅保留 KL dynamics）。如果仍崩 → CIVO 确认是 representation-level（KL training 即足够）；如果不崩 → decoder heads 是 CIVO 梯度根因\", \"parent\": \"exp_016e_sgs_walker_s1\", \"notes\": \"Full-SGS 代码就绪。Bug fix committed (06ab285): restore dt_emb.weight.requires_grad_(True) after imagination. 提交就绪验证通过 (2026-05-16T01:43): 代码版本✅ 配置✅ 环境✅。验证命令: cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py --task dmc_walker_walk --steps 105000 --full_sgs True --seed 1 --logdir /root/runs/event-gated-adaptive-horizon/logdir/exp_018_full_sgs_walker_s1 --device cuda:0。等 009d 完成释放 cuda:0 后提交。\"}, \"016e\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:21:09.251Z\", \"updated_at\": \"2026-05-16T01:39:17.916Z\", \"notes\": \"重复条目，权威数据在 exp_016e_sgs_walker_s1 (DONE/negative)。此条目为 NVE 诊断过程中误创建的冗余记录。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T01:39:17.916Z\"}, \"exp_016e_sgs_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:35:20.242Z\", \"updated_at\": \"2026-05-15T23:30:11.433Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第五次重试，修复 Logger.video() → no-op 彻底消除 SummaryWriter.add_video/flush 死锁\", \"parent\": \"exp_008d_subsample_on_h8\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016e_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\", \"server\": \"bjb1-45299\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3-sgs\", \"seed\": 1, \"pid\": 527392, \"logdir\": \"logdir/exp_016e_sgs_walker_s1\", \"note\": \"logdir 修正: 实际数据在 exp_016e（非 016d）\"}, \"metrics\": {\"current_step\": 100000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, {\"step\": 15000, \"eval_return\": 140.3, \"value_mean\": 3.1, \"ve_ratio\": 0.022}, {\"step\": 25000, \"eval_return\": 141.75, \"value_mean\": 22.97, \"ve_ratio\": 0.162, \"baseline_ve\": 0.087, \"nve\": 1.86}, {\"step\": 35000, \"eval_return\": 173.01, \"value_mean\": 53.55, \"ve_ratio\": 0.309, \"baseline_ve\": 0.241, \"nve\": 1.28}, {\"step\": 45000, \"eval_return\": 184.03, \"value_mean\": 85.32, \"ve_ratio\": 0.464, \"baseline_ve\": 0.331, \"nve\": 1.4}, {\"step\": 55000, \"eval_return\": 153.79, \"value_mean\": 115.63, \"ve_ratio\": 0.752, \"baseline_ve\": 0.404, \"nve\": 1.86}, {\"step\": 65000, \"eval_return\": 324.3, \"value_mean\": 152.3, \"ve_ratio\": 0.469, \"baseline_ve\": 0.563, \"nve\": 0.83}, {\"step\": 75000, \"eval_return\": 326.67, \"value_mean\": 190.04, \"ve_ratio\": 0.582, \"baseline_ve\": 0.719, \"nve\": 0.81}, {\"step\": 85000, \"eval_return\": 256.21, \"value_mean\": 215.39, \"ve_ratio\": 0.841, \"baseline_ve\": 0.701, \"nve\": 1.2}, {\"step\": 95000, \"eval_return\": 31.73, \"value_mean\": 208.88, \"ve_ratio\": 6.583, \"baseline_ve\": 0.632, \"nve\": 10.42}], \"deep_analysis\": {\"016e_vs_008d_entropy_comparison\": {\"15K\": {\"016e\": 1.049, \"008d\": 0.481, \"delta\": 0.568}, \"25K\": {\"016e\": -1.554, \"008d\": -1.862, \"delta\": 0.308}, \"35K\": {\"016e\": -2.118, \"008d\": -3.465, \"delta\": 1.347}, \"45K\": {\"016e\": -3.455, \"008d\": -4.575, \"delta\": 1.12}, \"55K\": {\"016e\": -3.617, \"008d\": -4.879, \"delta\": 1.262}, \"interpretation\": \"SGS preserves ~1.0-1.3 nats higher entropy through 35-55K, enabling better exploration\"}, \"016e_vs_008d_value_at_crash\": {\"016e\": {\"value_mean\": 208.88, \"eval_return\": 31.73, \"disconnect_ratio\": 6.58}, \"008d\": {\"value_mean\": 137.88, \"eval_return\": 82.75, \"disconnect_ratio\": 1.67}, \"interpretation\": \"016e value completely decoupled from reality; 008d still weakly correlated\"}, \"actor_loss_sign_flip\": {\"016e_flip_step\": 95000, \"016e_flip_value\": 0.014, \"008d_min_actor_loss\": -0.073, \"008d_never_flipped\": true, \"interpretation\": \"sign flip = value critic drives actor toward worse actions, triggering catastrophic collapse\"}, \"train_return_collapse_timeline\": {\"88K\": [140, 145, 116, 116], \"92K\": [50, 29, 34, 75], \"96K\": [86, 41, 50, 101], \"100K\": [109, 111, 102, 108], \"interpretation\": \"collapse visible in train_return by 92K; partial recovery by 100K but far below peak\"}}, \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"reward_dt_emb_detach\": true, \"peak_eval_return\": 326.67, \"peak_eval_step\": 75000, \"final_eval_return\": 31.73, \"final_eval_step\": 95000, \"civo_detected\": true, \"civo_onset_step\": 85000, \"civo_catastrophic_step\": 95000, \"civo_severity\": \"catastrophic\", \"civo_nve_peak\": 10.42, \"civo_nve_peak_step\": 95000, \"actor_loss_sign_flip_step\": 95000, \"sgs_verdict\": \"SGS delays CIVO onset ~50K steps by preserving entropy, yields 2x higher peak (327 vs 167), but does NOT prevent collapse. Collapse is more severe (NVE 10.42x vs 4.12x) due to accumulated value overestimation. Root cause is value dynamics, not reward-head gradient contamination.\", \"data_source\": \"metrics.jsonl from logdir/exp_016e_sgs_walker_s1/, completed 100K steps, SSH 2026-05-16T06:25\"}, \"gpu\": \"cuda:1\", \"notes\": \"logdir 路径修正：实际数据在 logdir/exp_016e_sgs_walker_s1（非 spec 中的 exp_016d）。SGS 崩溃确认@95K: eval 31.7, ve_ratio=6.59x, NVE=10.42x。\\n\\n**⚠️ 关键发现（Full-SGS 梯度验证）：reward loss 对 dt_emb.weight 的梯度贡献为 0。016e 的 reward_dt_emb_detach 实际上是 no-op——完全无效干预。** 真正的 dt_emb 梯度来源是 decoder heads（orientations=1.11, velocity=0.90, height=0.76, cont=0.27）。016e 与 008d 的差异（onset 延迟、更高峰值）应归因于随机变异或其他实验条件差异，不是 SGS 干预效果。\\n\\nFull-SGS（detach 所有 non-KL head 梯度）移除 93% dt_emb 梯度（1.624→0.119），是真正的测试。\", \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_016e_sgs_walker_s1/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_016e_sgs_walker_s1/\", \"completed_at\": \"2026-05-15T22:31:16.457Z\"}, \"exp_016d_sgs_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:29:41.130Z\", \"updated_at\": \"2026-05-15T19:37:48.800Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016）。第四次重试，修复 SummaryWriter.add_video 死锁（try/except patch in tools.py）\", \"parent\": \"exp_008d_subsample_on_h8\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016d_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\", \"server\": \"bjb1-45299\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3-sgs\", \"seed\": 1, \"pid\": 526939, \"note\": \"第5次启动。两项修复生效：MUJOCO_EGL_DEVICE_ID=1 + logger.video注释。旧PID 526153已自行退出。\"}, \"conclusion\": \"failed\", \"failure_reason\": \"Same hang as 016c — SummaryWriter.flush() deadlock after add_video with moviepy 2.x. try/except insufficient because flush() blocks on incomplete async video encode. Fix: Logger.video() → no-op.\", \"completed_at\": \"2026-05-15T19:35:10.508Z\"}, \"exp_016c_sgs_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:12:09.799Z\", \"updated_at\": \"2026-05-15T19:27:24.104Z\", \"hypothesis\": \"Walker Walk SGS (reward_dt_emb_detach=True) + subsample ON + H=8 seed 1 — 论文 method section 核心。GPU 1 清理+验证通过后重启（plan_016）\", \"parent\": \"exp_008d_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"524244\", \"seed\": 1, \"model_name\": \"DreamerV3+FixedDt2_SGS_Subsample_H8 (reward_dt_emb_detach=True)\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch, parent is for genealogy only\", \"eval_data\": \"N/A - training experiment, not eval\", \"note\": \"GPU 1 cleanup + CUDA/dm_control verification passed. logdir shared with 016b (fresh start).\"}, \"conclusion\": \"failed\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer). EGL fix confirmed working: eval at step 5000 completed successfully (eval_return=31.0). OOM occurred during training loop startup after eval. Likely system RAM OOM (replay buffer + model + eval concurrent memory peak).\", \"completed_at\": \"2026-05-15T19:26:05.863Z\", \"metrics\": {\"step\": 5000, \"eval_return_5K\": 31, \"egl_fix_verified\": true}}, \"exp_009h_008f_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:03:10.534Z\", \"updated_at\": \"2026-05-15T19:18:24.685Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009g（EGL device mismatch 修复：+MUJOCO_EGL_DEVICE_ID=1）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009h_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"522450\", \"seed\": 0, \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch\", \"note\": \"EGL fix: MUJOCO_EGL_DEVICE_ID=1 to match physical GPU 1. 008f series seeds: 1(008f), 2(009c), 0(009h)\"}, \"pid\": \"522450\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009h_008f_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009h_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T19:08:09.836Z\"}, \"notes\": \"日志显示进程正常完成 prefill → 到达 step 5000 → eval 正在运行（500 iter, 96s, 正常产出 debug 行）→ 被外部 SIGHUP (EXIT_CODE=129) 终止。非渲染死锁，非 OOM。诊断 Worker 排查外部终止原因中。009f/009g/009h 连续 3 次失败，分别因 seed 重复、EGL mismatch、外部 SIGHUP。\", \"conclusion\": \"failed\", \"failure_reason\": \"误杀: Director 基于 Reviewer 错误诊断下令 kill（认为 zombie PID 522009 导致 eval deadlock），但日志证明 EGL fix (MUJOCO_EGL_DEVICE_ID=1) 已生效，eval 正常运行中 (iter=500, t=95.9s)。EGL fix 确认有效。\", \"completed_at\": \"2026-05-15T19:08:12.013Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:08:15.731787+00:00\"}]}}, \"exp_016b_sgs_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:08:00.667Z\", \"updated_at\": \"2026-05-15T19:11:46.897Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（plan_016, 论文 method section 核心）。重跑 016_sgs，修复 EGL device mismatch（+MUJOCO_EGL_DEVICE_ID=1）\", \"parent\": \"exp_008d_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"523536\", \"seed\": 1, \"model_name\": \"DreamerV3+FixedDt2_SGS_Subsample_H8 (reward_dt_emb_detach=True)\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch\", \"note\": \"Rerun of 016_sgs with EGL fix (MUJOCO_EGL_DEVICE_ID=1). Original 016 failed due to EGL device mismatch, not SGS code issue.\"}, \"pid\": 524244, \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016b_sgs_walker_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016b_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T19:10:51.013Z\"}, \"notes\": \"Restarted after GPU 1 cleanup. Old PID 523536 killed during GPU reset attempt. New PID 524244. GPU 1 diagnostics: no ECC/Xid errors, reset not supported (AutoDL container) but cleanup successful. CUDA + dm_control verification passed in 3s.\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T19:10:52.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:10:53.928926+00:00\"}]}}, \"exp_009g_008f_walker_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:54:23.385Z\", \"updated_at\": \"2026-05-15T19:03:53.591Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009f（seed=1 与 parent 008f 重复）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"517413\", \"seed\": 0, \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch\", \"note\": \"Replaces exp_009f which had seed=1 duplicating parent 008f. 008f series seeds: 1(008f), 2(009c), 0(009g)\"}, \"pid\": \"517413\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009g_008f_walker_s0.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T18:59:53.840Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM). Root cause: MUJOCO_GL=egl defaults to EGL device 0 while CUDA_VISIBLE_DEVICES=1 binds CUDA to GPU 1, causing cross-GPU context conflict and eval deadlock at step 5000.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T18:59:55.315Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:59:59.820061+00:00\"}]}, \"notes\": \"Hung at first eval (step 5000) due to osmesa rendering deadlock in dm_control render_executor thread. Same root cause as exp_016. Fixed by switching MUJOCO_GL to egl in dreamer.py.\"}, \"exp_009f_008f_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T11:09:15.806Z\", \"updated_at\": \"2026-05-15T18:54:04.806Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T18:44:58.143Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009f_008f_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T18:52:12.322Z\", \"training_hours\": 0.12}, \"failure_reason\": \"Seed duplication: 009f used seed=1 same as parent 008f, producing deterministic repeat (prefill returns identical). Killed by Director order.\", \"completed_at\": \"2026-05-15T18:46:03.293Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:46:05.155411+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:52:15.790170+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009f_008f_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"516110\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009f_008f_walker_s1.log\", \"submitted_at\": \"2026-05-15T18:47:48.525Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 265.3, \"gpu_hours\": 0.07}, \"pid\": \"516110\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009f_008f_walker_s1.log\", \"conclusion\": \"killed\"}, \"exp_016_sgs_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:30:32.999Z\", \"updated_at\": \"2026-05-15T18:43:52.455Z\", \"hypothesis\": \"Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + trained dt_emb + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路。预期：不崩溃，nve < 1.5x baseline；imagination dt=2/dt=1 reward ratio 从 008d 的 2.90x 大幅下降（plan_016, 论文 method section 核心）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"Director 调整优先级：017 先于 016。cuda:1 释放后先跑 017，017 完成后再跑 016。SGS 诊断 bug 已修复（models.py L388-417 删除），dry-run 通过。[2026-05-15 18:43] PID 514422 hung: GPU 1 利用率 0%, 显存 794 MiB, metrics.jsonl 停 step=5000 持续 2.5h+。已 kill，Worker 诊断根因+修复+重启中。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"514417\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016_sgs_walker_s1.log\", \"submitted_at\": \"2026-05-15T18:36:15.693Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 456.8, \"gpu_hours\": 0.13}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"514417\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_016_sgs_walker_s1.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_016_sgs_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --reward_dt_emb_detach True\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T18:43:51.025Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T18:43:52.455Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:43:57.605618+00:00\"}]}}, \"exp_015b_frozen_dt_emb\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T10:21:05.572Z\", \"updated_at\": \"2026-05-15T18:38:42.380Z\", \"hypothesis\": \"Walker Walk frozen dt_emb + subsample ON + dt=2 imagination + H=8 seed 1 — 2×2 消融矩阵: 隔离 dt_emb 训练 vs 存在的因果效应。如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在（plan_015B, D041）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD + MUJOCO_GL=egl + --device cuda:0 (CUDA_VISIBLE_DEVICES=1 隔离)。cuda:1, seed=1, 105K steps ~5h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\", \"completed_at\": \"2026-05-15T12:12:25.846Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第二次提交。首次失败原因: --device cuda:1 但 CUDA_VISIBLE_DEVICES=1 后进程内只有 cuda:0。已修正为 --device cuda:0。PID 144831, 从头开始 (step=0)。预计 ~5h 完成 105K steps。\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:27:09.189680+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_015b_frozen_dt_emb --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"149991\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_015b_frozen_dt_emb.log\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\"}, \"metrics\": {\"eval_return_5K\": 31, \"eval_return_15K\": 167.9, \"eval_return_25K\": 171.8, \"eval_return_35K\": 201.6, \"eval_return_45K\": 122.3, \"eval_return_55K\": 105.8, \"eval_return_65K\": 160.3, \"eval_return_75K\": 80, \"eval_return_85K\": 183.5, \"eval_return_95K\": 238.4, \"eval_return_105K\": 204.2, \"final_step\": 112000, \"final_eval\": 204.2, \"nve_85K\": 0.467, \"nve_95K\": 0.394, \"nve_105K\": 0.42, \"actor_loss_105K\": 0.000179, \"actor_entropy_105K\": -4.855, \"value_mean_105K\": 56.212, \"value_std_105K\": 13.818, \"gate_dt_mean\": 2, \"gate_dt_1_frac\": 0, \"collapse_mechanism\": \"gradient_starvation_from_frozen_dt_emb\", \"summary\": \"NVE 0.39-0.47 (far below 1.0, critic under-estimates), actor_loss→0 (gradient starvation), gate locked dt=2 100%, eval volatile 80-238 no stable convergence\", \"data_source\": \"worker SSH final analysis 2026-05-15T18:30\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T18:27:07.138Z\"}, \"conclusion\": \"negative\"}, \"exp_008a_no_subsample_dt2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:33:27.311Z\", \"updated_at\": \"2026-05-15T14:50:59.046Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_fixed_dt2_no_subsample --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"106942\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample\", \"submitted_at\": \"2026-05-14T01:37:46.034Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (gate_fixed_dt=2, gate_subsample_max_dt=1, H=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 16752.2, \"gpu_hours\": 4.65}, \"hypothesis\": \"隔离 subsample 效应：trained dt_emb (unexposed to dt>1 data due to subsample OFF) + subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample 混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。\", \"metrics\": {\"step\": 112000, \"eval_return_35K\": 500.84, \"eval_return_45K\": 563.41, \"eval_return_55K\": 487.92, \"eval_return_65K\": 608, \"eval_return_75K\": 469.93, \"eval_return_85K\": 583.73, \"eval_return_95K\": 572.24, \"eval_return_105K\": 777.66, \"value_mean_55K\": 183.5, \"value_mean_65K\": 226.1, \"value_mean_75K\": 251.78, \"value_mean_85K\": 277.36, \"value_mean_95K\": 284.28, \"value_mean_105K\": 300.27, \"value_eval_ratio_55K\": 0.376, \"value_eval_ratio_65K\": 0.372, \"value_eval_ratio_75K\": 0.536, \"value_eval_ratio_85K\": 0.475, \"value_eval_ratio_95K\": 0.497, \"value_eval_ratio_105K\": 0.386, \"normalized_ve_55K\": 0.93, \"normalized_ve_65K\": 0.66, \"normalized_ve_75K\": 0.75, \"normalized_ve_85K\": 0.68, \"normalized_ve_95K\": 0.79, \"normalized_ve_105K\": 0.59, \"baseline_55K\": 625.7, \"baseline_65K\": 616, \"baseline_105K\": 915.67, \"vs_baseline_65K\": \"-1.3%\", \"vs_baseline_105K\": \"-15.1%\", \"verdict_65K\": \"RECOVERED_NEW_HIGH\", \"verdict_105K\": \"NEW_PEAK_V_RECOVERY\", \"trend\": \"Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K\", \"nan_count\": 0, \"data_source\": \"from training logs metrics.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:15:00.119Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:15:01.796655+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/latest.pt\", \"completed_at\": \"2026-05-14T06:16:58.196Z\"}, \"exp_009d_baseline_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:14.363Z\", \"updated_at\": \"2026-05-15T11:54:55.153Z\", \"hypothesis\": \"Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"⚠️ seed=1 与 exp_001_baseline 相同，eval 轨迹确定性复现。不构成独立 seed。如需第三 baseline seed 应 kill 并用 --seed 0 或 --seed 3 重跑。待 Director 决策。\", \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s1.log\", \"submitted_at\": \"2026-05-15T06:35:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\", \"wall_clock_seconds\": 19195.2, \"gpu_hours\": 5.33}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"pid\": 122271, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T11:54:55.153Z\"}, \"exp_009e_008d_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:15.367Z\", \"updated_at\": \"2026-05-15T11:31:04.722Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"008d extended replication (same seed=1, 009e extends 008d from 55K to 105K). Eval trajectory 5K-55K identical to 008d (deterministic). Collapse confirmed at 105K: eval 131.08, nve@55K=4.12x (normalized). 65K bounce to 250 was transient, not recovery. actor_loss flipped positive @85K. Independent collapse rate = 1/2 (seed 1 collapsed, seed 2 self-corrected), NOT 2/3 — 008d and 009e are the same seed.\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"pid\": 119108, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"119108\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009e_008d_walker_s1.log\", \"submitted_at\": \"2026-05-15T06:01:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\", \"wall_clock_seconds\": 19552.5, \"gpu_hours\": 5.43}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0, \"ve_ratio\": 0}, {\"step\": 15000, \"eval_return\": 153.7, \"value_mean\": 3.4, \"ve_ratio\": 0.022}, {\"step\": 25000, \"eval_return\": 167.2, \"value_mean\": 25.9, \"ve_ratio\": 0.155, \"baseline_ve\": 0.087, \"normalized_ve\": 1.78}, {\"step\": 35000, \"eval_return\": 146.3, \"value_mean\": 60.2, \"ve_ratio\": 0.411, \"baseline_ve\": 0.241, \"normalized_ve\": 1.71}, {\"step\": 45000, \"eval_return\": 140.8, \"value_mean\": 97.5, \"ve_ratio\": 0.693, \"baseline_ve\": 0.331, \"normalized_ve\": 2.09}, {\"step\": 55000, \"eval_return\": 82.7, \"value_mean\": 137.9, \"ve_ratio\": 1.666, \"baseline_ve\": 0.404, \"normalized_ve\": 4.12}, {\"step\": 65000, \"eval_return\": 250, \"value_mean\": 173.8, \"ve_ratio\": 0.695, \"baseline_ve\": 0.563, \"normalized_ve\": 1.23}, {\"step\": 75000, \"eval_return\": 178.1, \"value_mean\": 189.9, \"ve_ratio\": 1.066, \"baseline_ve\": 0.719, \"normalized_ve\": 1.48}, {\"step\": 85000, \"eval_return\": 201.93, \"value_mean\": 163.08, \"ve_ratio\": 0.808, \"baseline_ve\": 0.701, \"normalized_ve\": 1.15}, {\"step\": 95000, \"eval_return\": 132.79, \"value_mean\": 144.82, \"ve_ratio\": 1.091, \"baseline_ve\": 0.632, \"normalized_ve\": 1.73}, {\"step\": 105000, \"eval_return\": 131.08, \"value_mean\": 135.37, \"ve_ratio\": 1.033, \"baseline_ve\": 0.656, \"normalized_ve\": 1.57}], \"final_eval_return\": 131.08, \"final_value_mean\": 135.37, \"final_ve_ratio\": 1.033, \"final_nve\": 1.57, \"peak_nve\": 4.12, \"peak_nve_step\": 55000, \"actor_loss_sign_flip\": 85000, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.7%\", \"collapse_rate_note\": \"Independent rate = 1/2 (seed 1 collapsed, seed 2 self-corrected). 008d and 009e share seed=1, count as one independent observation.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/metrics.jsonl\", \"completed_at\": \"2026-05-15T11:26:52.478Z\"}, \"exp_009a_baseline_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:24.247Z\", \"updated_at\": \"2026-05-15T06:33:16.385Z\", \"hypothesis\": \"Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T07:19:08.969Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"spec\": {\"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000}, \"pid\": \"142508\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 41.21}, {\"step\": 15000, \"eval_return\": 106.01}, {\"step\": 25000, \"eval_return\": 325.33}, {\"step\": 35000, \"eval_return\": 354.49}, {\"step\": 45000, \"eval_return\": 498.01}, {\"step\": 55000, \"eval_return\": 534.13}, {\"step\": 65000, \"eval_return\": 688.87}, {\"step\": 75000, \"eval_return\": 656.85}, {\"step\": 85000, \"eval_return\": 618.73}, {\"step\": 95000, \"eval_return\": 596.24}, {\"step\": 105000, \"eval_return\": 836.51}, {\"step\": 115000, \"eval_return\": 804.79}, {\"step\": 125000, \"eval_return\": 865.48}, {\"step\": 135000, \"eval_return\": 876.08}, {\"step\": 145000, \"eval_return\": 869.18}, {\"step\": 155000, \"eval_return\": 778.99}, {\"step\": 165000, \"eval_return\": 864.03}, {\"step\": 175000, \"eval_return\": 850.53}, {\"step\": 185000, \"eval_return\": 907.31}, {\"step\": 195000, \"eval_return\": 873.49}, {\"step\": 205000, \"eval_return\": 887.02}, {\"step\": 215000, \"eval_return\": 956.04}, {\"step\": 225000, \"eval_return\": 892.09}, {\"step\": 235000, \"eval_return\": 914.78}, {\"step\": 245000, \"eval_return\": 950.32}, {\"step\": 255000, \"eval_return\": 936.9}, {\"step\": 265000, \"eval_return\": 937.27}, {\"step\": 275000, \"eval_return\": 934.78}, {\"step\": 285000, \"eval_return\": 960.2}, {\"step\": 295000, \"eval_return\": 947.46}, {\"step\": 305000, \"eval_return\": 937.8}, {\"step\": 315000, \"eval_return\": 948.66}, {\"step\": 325000, \"eval_return\": 930.61}, {\"step\": 335000, \"eval_return\": 919.23}, {\"step\": 345000, \"eval_return\": 816.18}, {\"step\": 355000, \"eval_return\": 932.45}, {\"step\": 365000, \"eval_return\": 943.13}, {\"step\": 375000, \"eval_return\": 952.86}, {\"step\": 385000, \"eval_return\": 942.31}, {\"step\": 395000, \"eval_return\": 966.94}, {\"step\": 405000, \"eval_return\": 948.01}, {\"step\": 415000, \"eval_return\": 957.06}, {\"step\": 425000, \"eval_return\": 939.37}, {\"step\": 435000, \"eval_return\": 963.65}, {\"step\": 445000, \"eval_return\": 948.42}, {\"step\": 455000, \"eval_return\": 937.72}, {\"step\": 465000, \"eval_return\": 939.54}, {\"step\": 475000, \"eval_return\": 965.94}, {\"step\": 485000, \"eval_return\": 916.74}, {\"step\": 495000, \"eval_return\": 945.58}, {\"step\": 505000, \"eval_return\": 957.87}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 25000, \"value_mean\": 45.78}, {\"step\": 55000, \"value_mean\": 253.49}, {\"step\": 105000, \"value_mean\": 539.34}, {\"step\": 155000, \"value_mean\": 633.42}, {\"step\": 205000, \"value_mean\": 658.92}, {\"step\": 255000, \"value_mean\": 663.87}, {\"step\": 305000, \"value_mean\": 663.86}, {\"step\": 355000, \"value_mean\": 663.78}, {\"step\": 405000, \"value_mean\": 663.95}, {\"step\": 455000, \"value_mean\": 664.42}, {\"step\": 505000, \"value_mean\": 665.17}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.141}, {\"step\": 55000, \"ve\": 0.475}, {\"step\": 105000, \"ve\": 0.645}, {\"step\": 155000, \"ve\": 0.813}, {\"step\": 205000, \"ve\": 0.743}, {\"step\": 255000, \"ve\": 0.709}, {\"step\": 305000, \"ve\": 0.708}, {\"step\": 355000, \"ve\": 0.712}, {\"step\": 405000, \"ve\": 0.7}, {\"step\": 455000, \"ve\": 0.709}, {\"step\": 505000, \"ve\": 0.694}], \"final_eval_return\": 957.87, \"final_eval_step\": 505000, \"eval_return_peak\": 966.94, \"eval_return_peak_step\": 395000, \"last10_mean\": 947.19, \"final_value_mean\": 665.17, \"final_ve_ratio\": 0.694, \"ve_stable_range\": \"0.69-0.72 from 235K+\", \"total_steps\": 505000, \"n_evals\": 51, \"vs_exp001_105K\": \"836.51 vs 915.67 (-8.6%)\", \"vs_exp001_peak\": \"966.94 vs 970.41 (-0.4%)\", \"vs_exp001_last10\": \"947.19 vs 950.90 (-0.4%)\", \"vs_exp001_final\": \"957.87 vs 970.41 (-1.3%)\", \"cross_seed_ve_stable\": \"seed 2 v/e = 0.69-0.72 matches seed 0/1 = 0.69-0.72\"}, \"notes\": \"Baseline seed 2 完成。与 exp_001 (seed 0/1) 高度一致: peak 966.94 vs 970.41 (-0.4%), last10 mean 947.19 vs 950.90 (-0.4%), v/e stable 0.69-0.72 匹配。105K 处 836.51 比 seed 0/1 的 915.67 低 8.6%，但 215K+ 后完全收敛。345K 有一个 dip 到 816 但迅速恢复。baseline 跨 seed 一致性确认。\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:33:12.892Z\"}, \"exp_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:29:53.738Z\", \"updated_at\": \"2026-05-15T06:24:21.709Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — crown jewel C6 seed 2 验证\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"C6 seed 2 COLLAPSED. Delusional critic collapse at 85K→105K despite gate_dt_mean=1.0 locked throughout. eval peaked 715@85K then crashed to 137@105K (v/e=2.48, nve=3.78x). Cross-seed: seed 0=869.9 (healthy), seed 1=869.9 (healthy), seed 2=137 (collapsed). Collapse is stochastic (1/3 seeds) even in dt=1 imagination config. Subsample ON training data (dt=2 transitions) appears sufficient to trigger delusional critic in some seeds. Train returns at 108K=19-23 (random policy).\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"43437\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s2.log\", \"submitted_at\": \"2026-05-15T00:46:45.424Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18815.4, \"gpu_hours\": 5.23}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"server\": \"bjb1-45299\", \"account\": \"root\", \"pid\": \"43437\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 39.27}, {\"step\": 15000, \"eval_return\": 180.85}, {\"step\": 25000, \"eval_return\": 211.82}, {\"step\": 35000, \"eval_return\": 320.39}, {\"step\": 45000, \"eval_return\": 356.93}, {\"step\": 55000, \"eval_return\": 418.32}, {\"step\": 65000, \"eval_return\": 435.09}, {\"step\": 75000, \"eval_return\": 576.54}, {\"step\": 85000, \"eval_return\": 715.21}, {\"step\": 95000, \"eval_return\": 452.43}, {\"step\": 105000, \"eval_return\": 136.96}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 15000, \"value_mean\": 3.91}, {\"step\": 25000, \"value_mean\": 30.27}, {\"step\": 35000, \"value_mean\": 79.75}, {\"step\": 45000, \"value_mean\": 125.25}, {\"step\": 55000, \"value_mean\": 172.89}, {\"step\": 65000, \"value_mean\": 220.47}, {\"step\": 75000, \"value_mean\": 272.64}, {\"step\": 85000, \"value_mean\": 339.3}, {\"step\": 95000, \"value_mean\": 384.39}, {\"step\": 105000, \"value_mean\": 339.84}], \"actor_entropy_trajectory\": [{\"step\": 5000, \"actor_entropy\": 8.239}, {\"step\": 15000, \"actor_entropy\": 2.352}, {\"step\": 25000, \"actor_entropy\": 0.17}, {\"step\": 35000, \"actor_entropy\": -3.498}, {\"step\": 45000, \"actor_entropy\": -4.915}, {\"step\": 55000, \"actor_entropy\": -5.121}, {\"step\": 65000, \"actor_entropy\": -5.135}, {\"step\": 75000, \"actor_entropy\": -5.224}, {\"step\": 85000, \"actor_entropy\": -5.208}, {\"step\": 95000, \"actor_entropy\": -4.529}, {\"step\": 105000, \"actor_entropy\": -3.828}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.143, \"nve\": 1.64}, {\"step\": 35000, \"ve\": 0.249, \"nve\": 1.03}, {\"step\": 45000, \"ve\": 0.351, \"nve\": 1.06}, {\"step\": 55000, \"ve\": 0.413, \"nve\": 1.02}, {\"step\": 65000, \"ve\": 0.507, \"nve\": 0.9}, {\"step\": 75000, \"ve\": 0.473, \"nve\": 0.66}, {\"step\": 85000, \"ve\": 0.474, \"nve\": 0.68}, {\"step\": 95000, \"ve\": 0.85, \"nve\": 1.34}, {\"step\": 105000, \"ve\": 2.481, \"nve\": 3.78}], \"final_eval_return\": 136.96, \"peak_eval_return\": 715.21, \"peak_eval_step\": 85000, \"final_value_mean\": 339.84, \"final_ve_ratio\": 2.481, \"final_nve\": 3.78, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.0%\", \"collapse_onset\": \"95K (nve jumped from 0.68x to 1.34x)\", \"collapse_confirmed\": \"105K (nve=3.78x, eval 715→137)\", \"train_return_108K\": \"19-23 (random policy level)\", \"actor_entropy_collapse_signature\": \"entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:00:20.816Z\"}, \"exp_001_baseline\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T02:09:53.875Z\", \"updated_at\": \"2026-05-15T04:59:00.476Z\", \"hypothesis\": \"DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model\", \"failure_reason\": \"误报：cron 检测到进程退出但实际是正常完成（512K步）。已核实 checkpoint 229MB 有效。\", \"completed_at\": \"2026-05-13T15:23:24.593Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:23:25.663340+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T21:47:19.804301+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"step\": 245000, \"eval_return_205K\": 907.1, \"eval_return_215K\": 919.8, \"train_return_244K\": \"935-976\", \"fps\": 8.3}}}, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"pid\": 9409, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 1, \"hypothesis\": \"DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\"}, \"metrics\": {\"step\": 512000, \"eval_trajectory\": {\"5K\": 31.77, \"15K\": 206.61, \"25K\": 395.27, \"35K\": 388.47, \"45K\": 513.77, \"55K\": 625.73, \"65K\": 615.86, \"75K\": 596.28, \"85K\": 713.93, \"95K\": 871.06, \"105K\": 915.67, \"115K\": 919.81, \"125K\": 921.37, \"135K\": 900, \"145K\": 932.16, \"155K\": 933.34, \"165K\": 907.98, \"175K\": 918.87, \"185K\": 954.69, \"195K\": 936.09, \"205K\": 949.24, \"215K\": 913.4, \"225K\": 962.44, \"235K\": 937.24, \"245K\": 934.42, \"255K\": 948.45, \"265K\": 925.09, \"275K\": 931.51, \"285K\": 925.75, \"295K\": 936.3, \"305K\": 939.33, \"315K\": 948.42, \"325K\": 967.75, \"335K\": 942.41, \"345K\": 969.83, \"355K\": 941.11, \"365K\": 935.76, \"375K\": 918.24, \"385K\": 937.98, \"395K\": 955.38, \"405K\": 937.83, \"415K\": 948.99, \"425K\": 954.64, \"435K\": 964.96, \"445K\": 953.37, \"455K\": 945.84, \"465K\": 947.81, \"475K\": 947.66, \"485K\": 930.6, \"495K\": 944.73, \"505K\": 970.41}, \"eval_return_peak\": 970.41, \"eval_return_peak_step\": 505000, \"eval_return_last10_mean\": 950.9, \"final\": true, \"value_eval_ratio_25K\": 0.087, \"value_eval_ratio_35K\": 0.241, \"value_eval_ratio_45K\": 0.331, \"value_eval_ratio_55K\": 0.404, \"value_eval_ratio_65K\": 0.563, \"value_eval_ratio_75K\": 0.719, \"value_eval_ratio_85K\": 0.701, \"value_eval_ratio_95K\": 0.632, \"value_eval_ratio_105K\": 0.656, \"value_eval_ratio_stable\": \"~69-72% from 135K+\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"latest_metrics\": {\"step\": 452000, \"eval_step\": 445000, \"eval_return\": 953.37, \"prev_eval_return\": 964.96, \"train_return_latest\": 958.07, \"train_return_range\": [917, 985.8], \"fps\": 7.29, \"process_status\": \"running\", \"pid\": 9409, \"uptime\": \"16h35m\", \"steps_remaining\": 48000, \"eta_hours\": 1.8, \"checked_at\": \"2026-05-13\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T21:47:18.966Z\"}, \"conclusion\": \"success\"}, \"exp_008e_v3_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:29:53.120Z\", \"updated_at\": \"2026-05-15T00:44:53.439Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证：trained dt_emb 在 dt=1 imagination 下不触发 delusional critic（plan_014）\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"Crown jewel C6 seed 1 SUCCESS. eval_return=869.9@105K, v/e=0.527 (healthy, no delusional critic). Gate locked dt=1 throughout. Trajectory: 31→131→156→276→382→487→581→574→657→852→870. Consistent with seed 0, confirms trained dt_emb + dt=1 imagination is safe.\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"898127\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s1.log\", \"submitted_at\": \"2026-05-14T18:49:27.945Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21325.5, \"gpu_hours\": 5.92}, \"pid\": \"898127\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 31}, {\"step\": 15000, \"eval_return\": 131.2}, {\"step\": 25000, \"eval_return\": 155.7}, {\"step\": 35000, \"eval_return\": 276.5}, {\"step\": 45000, \"eval_return\": 382.2}, {\"step\": 55000, \"eval_return\": 486.8}, {\"step\": 65000, \"eval_return\": 580.7}, {\"step\": 75000, \"eval_return\": 574.1}, {\"step\": 85000, \"eval_return\": 657.3}, {\"step\": 95000, \"eval_return\": 851.9}, {\"step\": 105000, \"eval_return\": 869.9}], \"final_eval_return\": 869.9, \"final_value_mean\": 457.9, \"ve_ratio_105k\": 0.527, \"total_steps\": 112000, \"gate_dt_1_frac\": 1, \"exit_code\": 0}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T00:44:53.439Z\"}, \"exp_006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:49:02.944Z\", \"updated_at\": \"2026-05-14T22:31:54.922Z\", \"metrics\": {\"eval_return\": {\"5000\": 31, \"15000\": 256.9, \"25000\": 321.4, \"35000\": 485.3, \"45000\": 477, \"55000\": 360.4}, \"peak_return\": 485.3, \"peak_step\": 35000, \"latest_step\": 55000, \"latest_return\": 360.4, \"model_loss_at_55k\": 4.853, \"gate_dt_mean\": 2, \"baseline_return_at_55k\": 625.7, \"deficit_vs_baseline_at_55k\": -265.3, \"deficit_pct\": -42.4}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_006_fixed_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:07:59.793Z\", \"updated_at\": \"2026-05-14T22:31:54.075Z\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 167.2, \"eval_return_25K\": 230.8, \"eval_return_35K\": 500.8, \"eval_return_45K\": 563.4, \"eval_return_55K\": 487.9, \"eval_return_65K\": \"pending (eval in progress)\", \"value_mean_55K\": 183.5, \"value_eval_ratio_55K\": \"37.6%\", \"train_return_64K_avg\": 556.6, \"trend\": \"peaked @45K=563, dipped to @55K=488, 65K eval in progress; train returns @64K healthy (~557)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008a_no_subsample_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:08:02.608Z\", \"updated_at\": \"2026-05-14T22:31:52.611Z\", \"metrics\": {\"step\": 68000, \"eval_return_5K\": 31, \"eval_return_15K\": 171.3, \"eval_return_25K\": 192.4, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.6, \"eval_return_55K\": 241.9, \"eval_return_65K\": 240.9, \"value_mean_65K\": 79, \"value_eval_ratio_65K\": \"32.8%\", \"train_return_68K_avg\": 245.1, \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在正式命名实验中。conclusion=killed（D034 registry 清理）。\"}, \"exp_008d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:08:05.136Z\", \"updated_at\": \"2026-05-14T22:31:51.696Z\", \"metrics\": {\"step\": 40000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.7, \"eval_return_25K\": 167.2, \"eval_return_35K\": 146.3, \"value_mean_35K\": 60.2, \"value_eval_ratio_35K\": \"41.1%\", \"train_return_40K_avg\": 119.3, \"trend\": \"declining — train_return @40K avg=119 below @35K eval=146, value/eval=41.1% not yet >50% but train performance dropping\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008d_subsample_on_h8。conclusion=killed（D034 registry 清理）。\"}, \"exp_008e_v2_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:26:39.732Z\", \"updated_at\": \"2026-05-14T22:31:49.814Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v2_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"125392\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v2_subsample_on_dt1_h15.log\", \"submitted_at\": \"2026-05-14T04:27:30.720Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\", \"notes\": \"已被 exp_008e_v3_subsample_on_dt1_h15 取代，进程已死。conclusion=killed（D034 registry 清理）。\"}, \"exp_rssm_fidelity_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:52.237Z\", \"updated_at\": \"2026-05-14T22:31:48.642Z\", \"metrics\": {\"baseline\": {\"dt1_obs_mse\": 13.49, \"dt2_obs_mse\": 27.5, \"obs_gap\": 2.04, \"dt1_reward_mae\": 0.0102, \"dt2_reward_mae\": 0.0159, \"reward_gap\": 1.56}, \"008d_trained_dtEmb\": {\"dt1_obs_mse\": 41.31, \"dt2_obs_mse\": 53.67, \"obs_gap\": 1.3, \"dt1_reward_mae\": 0.0568, \"dt2_reward_mae\": 0.1579, \"reward_gap\": 2.78}, \"008f_no_dtEmb\": {\"dt1_obs_mse\": 8.01, \"dt2_obs_mse\": 22.04, \"obs_gap\": 2.75, \"dt1_reward_mae\": 0.7469, \"dt2_reward_mae\": 0.7526, \"reward_gap\": 1.01}}, \"conclusion\": \"success\", \"hypothesis\": \"RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)\", \"notes\": \"分析实验，非训练实验。conclusion=success，状态从 PREPARING 修正为 DONE（D034 registry 清理）。\"}, \"exp_008e_v3_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:29:31.656Z\", \"updated_at\": \"2026-05-14T19:46:00.840Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"126110\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15\", \"submitted_at\": \"2026-05-14T04:29:31.600Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, untrained dt_emb)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 16695.7, \"gpu_hours\": 4.64}, \"hypothesis\": \"B+ confound control：subsample ON + untrained dt_emb + dt=1 imagination + H=15。验证 subsample ON 训练数据（含 dt=2 transitions）是否本身导致性能下降，即使 imagination 只用 dt=1。对照 008a（subsample OFF）和 baseline。如果 008e_v3 性能接近 baseline → subsample ON 本身无害。如果下降 → subsample ON 改变了 RSSM dynamics。\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"fps\": 7.01, \"eval_return\": {\"5K\": 31, \"15K\": 131.2, \"25K\": 155.69, \"35K\": 276.47, \"45K\": 382.22, \"55K\": 486.84, \"65K\": 580.67, \"75K\": 574.09, \"85K\": 657.31, \"95K\": 851.86, \"105K\": 869.88}, \"value_mean\": {\"25K\": 26.19, \"35K\": 62.76, \"45K\": 110.67, \"55K\": 170.09, \"65K\": 235.05, \"75K\": 300.51, \"85K\": 351.33, \"95K\": 405.25, \"105K\": 457.93}, \"value_eval_ratio\": {\"25K\": 0.168, \"35K\": 0.227, \"45K\": 0.29, \"55K\": 0.35, \"65K\": 0.405, \"75K\": 0.523, \"85K\": 0.534, \"95K\": 0.476, \"105K\": 0.527}, \"normalized_ve\": {\"25K\": 1.93, \"35K\": 0.94, \"45K\": 0.88, \"55K\": 0.87, \"65K\": 0.72, \"75K\": 0.73, \"85K\": 0.76, \"95K\": 0.75, \"105K\": 0.8}, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"last_updated\": \"2026-05-14T09:09:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-5.0%\", \"verdict\": \"SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T09:05:42.563Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T09:05:44.288431+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15/latest.pt\", \"completed_at\": \"2026-05-14T09:07:47.319Z\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\"}, \"exp_009b_008d_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:25.186Z\", \"updated_at\": \"2026-05-14T19:33:15.451Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000}, \"pid\": \"887053\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"finished_at\": \"2026-05-14T18:47:20.636Z\"}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 39.27, \"value_mean\": 0, \"ve_ratio\": 0, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 144.31, \"value_mean\": 4.47, \"ve_ratio\": 0.031, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 141.12, \"value_mean\": 25.14, \"ve_ratio\": 0.178, \"baseline_ve\": 0.087, \"normalized_ve\": 2.05}, {\"step\": 35000, \"eval_return\": 164.14, \"value_mean\": 49.02, \"ve_ratio\": 0.299, \"baseline_ve\": 0.241, \"normalized_ve\": 1.24}, {\"step\": 45000, \"eval_return\": 141.04, \"value_mean\": 75.59, \"ve_ratio\": 0.536, \"baseline_ve\": 0.331, \"normalized_ve\": 1.62}, {\"step\": 55000, \"eval_return\": 172.33, \"value_mean\": 98.28, \"ve_ratio\": 0.57, \"baseline_ve\": 0.404, \"normalized_ve\": 1.41}, {\"step\": 65000, \"eval_return\": 209.16, \"value_mean\": 110.91, \"ve_ratio\": 0.53, \"baseline_ve\": 0.563, \"normalized_ve\": 0.94}, {\"step\": 75000, \"eval_return\": 197.46, \"value_mean\": 93.49, \"ve_ratio\": 0.474, \"baseline_ve\": 0.719, \"normalized_ve\": 0.66}, {\"step\": 85000, \"eval_return\": 236.49, \"value_mean\": 83.86, \"ve_ratio\": 0.355, \"baseline_ve\": 0.701, \"normalized_ve\": 0.51}, {\"step\": 95000, \"eval_return\": 278.54, \"value_mean\": 75.72, \"ve_ratio\": 0.272, \"baseline_ve\": 0.632, \"normalized_ve\": 0.43}, {\"step\": 105000, \"eval_return\": 267.93, \"value_mean\": 67.27, \"ve_ratio\": 0.251, \"baseline_ve\": 0.656, \"normalized_ve\": 0.38}], \"trend\": \"Eval rising throughout: 39→144→141→164→141→172→209→197→236→279→268. Value peaks at 110.91@65K then self-corrects downward to 67.27@105K. v/e ratio peaks 0.57@55K then monotonically declines to 0.25@105K. NO delusional critic collapse — value self-corrects while eval improves.\", \"verdict\": \"NEGATIVE — hypothesis was to replicate collapse, collapse NOT reproduced. However, pathological nve>1.5x episode confirmed (2.05x@25K, 1.62x@45K), consistent with trained dt_emb inducing pathological overestimation. Self-correction to 0.38x@105K distinguishes from seed 0's sustained overestimation → collapse.\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-70.8%\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 0 sustained nve>1.5x across 4 consecutive checkpoints and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:47:21.873692+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T18:51:00Z\", \"notes\": \"D032: Collapse NOT reproduced in seed 2. nve peaked 2.05x@25K (transient) then self-corrected to 0.38x@105K. Eval rose to 268. Contrast: seed 1 had SUSTAINED nve>1.5x at 35K+ (1.71x→2.09x→4.12x) → collapse to 83. Key finding: nve>1.5x threshold (35K+ steps) is reliable trained dt_emb marker (2/2 seeds), but collapse is stochastic (1/2). Framing proposal submitted to Director.\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 sustained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x→2.09x→4.12x) and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold (at 35K+ steps) is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\"}, \"exp_009c_008f_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:26.154Z\", \"updated_at\": \"2026-05-14T14:34:24.161Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T07:19:10.835Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009c_008f_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"finished_at\": \"2026-05-14T14:15:57.425Z\", \"training_hours\": 6.95}, \"spec\": {\"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/metrics.jsonl\"}, \"pid\": \"140980\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009c_008f_walker_s2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:15:58.982844+00:00\"}]}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 30.37, \"value_mean\": 0.0013, \"ve_ratio\": null, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 157.15, \"value_mean\": 3.057, \"ve_ratio\": 0.019, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 168.75, \"value_mean\": 18.536, \"ve_ratio\": 0.11, \"baseline_ve\": 0.087, \"normalized_ve\": 1.26}, {\"step\": 35000, \"eval_return\": 178.94, \"value_mean\": 34.263, \"ve_ratio\": 0.191, \"baseline_ve\": 0.241, \"normalized_ve\": 0.79}, {\"step\": 45000, \"eval_return\": 211.08, \"value_mean\": 50.099, \"ve_ratio\": 0.237, \"baseline_ve\": 0.331, \"normalized_ve\": 0.72}, {\"step\": 55000, \"eval_return\": 238.91, \"value_mean\": 63.267, \"ve_ratio\": 0.265, \"baseline_ve\": 0.404, \"normalized_ve\": 0.66}, {\"step\": 65000, \"eval_return\": 244.15, \"value_mean\": 72.717, \"ve_ratio\": 0.298, \"baseline_ve\": 0.563, \"normalized_ve\": 0.53}, {\"step\": 75000, \"eval_return\": 359.14, \"value_mean\": 83.91, \"ve_ratio\": 0.234, \"baseline_ve\": 0.719, \"normalized_ve\": 0.33}, {\"step\": 85000, \"eval_return\": 227.43, \"value_mean\": 96.071, \"ve_ratio\": 0.422, \"baseline_ve\": 0.701, \"normalized_ve\": 0.6}, {\"step\": 95000, \"eval_return\": 190.94, \"value_mean\": 108.29, \"ve_ratio\": 0.567, \"baseline_ve\": 0.632, \"normalized_ve\": 0.9}, {\"step\": 105000, \"eval_return\": 148.34, \"value_mean\": 111.247, \"ve_ratio\": 0.75, \"baseline_ve\": 0.656, \"normalized_ve\": 1.14}], \"trend\": \"Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503\", \"verdict\": \"NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-83.8%\", \"causal_conclusion\": \"Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T22:15:00Z\", \"notes\": \"D031 排期修正: 009c 延长 200K 降优先级，排在 009e/009f 之后。cuda:1 排期: 009b → 008e_v3_s1 → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060。105K 指标: eval=148.34, value=111.25, nve=1.14x。\"}, \"exp_007_fixed_dt4\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T22:15:44.218Z\", \"updated_at\": \"2026-05-14T10:20:16.451Z\", \"hypothesis\": \"诊断实验：fixed dt=4 vs dt=2 vs learned gate。硬编码 dt=4，其余超参与 exp_006 完全一致。与 exp_006(dt=2) 对照：如果 dt=4 也不掉 return，说明跳步本身无害，问题在 learned gate 机制；如果 dt=4 掉但 dt=2 不掉，说明存在跳步边界。\", \"account\": \"root\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\", \"finished_at\": \"2026-05-13T22:32:00.443Z\"}, \"failure_reason\": \"dt=4 confirmed too coarse for locomotion: eval_return 127@35K vs baseline 389 (-67.4%). model_loss comparable to baseline — RSSM can learn 4-step dynamics, but action temporal resolution too coarse for Walker Walk. Confirms dt sweet spot ∈ {1,2}. See D013.\", \"completed_at\": \"2026-05-13T22:32:00.591Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:32:01.413690+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\"}}, \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v2_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"90354\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt4_v2_s1\", \"model_name\": \"DreamerV3+FixedDt4 (gate_fixed_dt=4, no learned gate, init_dt fix applied)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 150000}, \"metrics\": {\"step\": 48000, \"eval_return_5K\": 31, \"eval_return_15K\": 129.6, \"eval_return_25K\": 176.9, \"eval_return_35K\": 126.7, \"eval_return_45K\": 144.41, \"eval_return_55K\": 152.49, \"peak_return\": 176.9, \"peak_step\": \"25K\", \"model_loss_5K\": 17.927, \"model_loss_15K\": 6.337, \"model_loss_25K\": 5.089, \"model_loss_35K\": 4.755, \"value_mean_45K\": 18.26, \"value_mean_55K\": 9.28, \"value_eval_ratio_45K\": 0.126, \"value_eval_ratio_55K\": 0.061, \"baseline_45K\": 443, \"vs_baseline_45K\": \"-67.4%\", \"trend\": \"peak 176.9@25K, low plateau ~127-152; value extremely suppressed (v/e 6-13%), NOT delusional critic but severe learning failure\"}, \"checkpoint_path\": \"N/A - killed, dt=4 confirmed too coarse for locomotion (D013)\", \"conclusion\": \"negative\"}, \"exp_006_fixed_dt2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:10:58.851Z\", \"updated_at\": \"2026-05-14T10:20:11.722Z\", \"hypothesis\": \"诊断实验：fixed dt=2 vs learned gate。去掉 Gumbel-Softmax gate，硬编码 dt=2，其余超参与 exp_005 完全一致。量化 learned gate 的价值——如果 fixed dt=2 也掉 return，说明跳步本身有害；如果不掉，问题在 gate 学习机制。\", \"parent\": \"exp_005_event_gated_v4\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T22:12:00.446Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\\\"\", \"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"85029\", \"model_name\": \"DreamerV3+FixedDt2 (gate_fixed_dt=2, no learned gate)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 150000, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt2_v1_s1\", \"checkpoint_path\": \"N/A - negative result, fixed dt=2 collapsed to 132.9@65K (21.6% baseline)\", \"failure_reason\": \"fixed dt=2 崩塌：训练分布混合（58.5% dt=1 + 41.5% dt=2 log-uniform）+ 想象纯 dt=2 条件下，eval_return 从 peak 485@35K 持续下降至 132.9@65K（baseline 同期 615.9）。与 learned gate 变体一致的崩塌模式。代码审计确认 curriculum 不生效（gate_fixed_dt>0 跳过 _update_gate_schedule）。\"}, \"pid\": \"85029\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_006_fixed_dt2.log\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 256.9, \"eval_return_25K\": 321.4, \"eval_return_35K\": 485.3, \"eval_return_45K\": 477, \"eval_return_55K\": 360.4, \"eval_return_65K\": 132.86, \"peak_return\": 485.3, \"peak_step\": \"35K\", \"model_loss_5K\": 20.738, \"model_loss_15K\": 7.593, \"model_loss_25K\": 5.633, \"model_loss_35K\": 5.229, \"model_loss_45K\": 5.023, \"model_loss_55K\": 4.9, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"fps\": 6.5, \"value_mean_35K\": 151.1, \"value_mean_45K\": 254.29, \"value_mean_55K\": 336.44, \"value_mean_65K\": 361.69, \"value_eval_ratio_35K\": 0.311, \"value_eval_ratio_45K\": 0.533, \"value_eval_ratio_55K\": 0.933, \"value_eval_ratio_65K\": 2.722, \"baseline_35K\": 388.5, \"baseline_45K\": 513.8, \"baseline_55K\": 625.7, \"vs_baseline_55K\": \"-42.4%\", \"trend\": \"inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"latest_metrics\": {\"step\": 36000, \"eval_step\": 35000, \"eval_return\": 485.3, \"prev_eval_return\": 321.4, \"eval_return_trajectory\": {\"5K\": 31, \"15K\": 256.9, \"25K\": 321.4, \"35K\": 485.3}, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"grad_norm\": 8.6, \"fps\": 6.6, \"process_status\": \"running\", \"pid\": 85029, \"checked_at\": \"2026-05-14\"}, \"extra\": {\"curriculum_audit\": \"Curriculum does NOT apply in fixed_dt mode (models.py:200-205). gate_fixed_dt>0 bypasses _update_gate_schedule(). subsample_variable_dt receives effective_max_dt=2.0 from step 0, training data is 58.5% dt=1 + 41.5% dt=2 throughout. Actual train/imagine mismatch: mixed dt training vs pure dt=2 imagination.\", \"audit_commit\": \"6159e46\", \"bugs_fixed\": \"_effective_max_dt not synced in fixed_dt mode; hardcoded curriculum phases ignoring config\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T01:13:11.533Z\"}, \"exp_008d_subsample_on_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:46:57.960Z\", \"updated_at\": \"2026-05-14T10:20:03.071Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008d_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"109519\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8\", \"submitted_at\": \"2026-05-14T02:21:59.852Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8/checkpoint.ckpt\", \"wall_clock_seconds\": 8932.6, \"gpu_hours\": 2.48}, \"metrics\": {\"step\": 55000, \"eval_return_25K\": 167.22, \"eval_return_35K\": 146.34, \"eval_return_45K\": 140.8, \"eval_return_55K\": 82.75, \"value_mean_25K\": 25.86, \"value_mean_35K\": 60.2, \"value_mean_45K\": 97.5, \"value_mean_55K\": 137.88, \"value_eval_ratio_25K\": 0.155, \"value_eval_ratio_35K\": 0.411, \"value_eval_ratio_45K\": 0.693, \"value_eval_ratio_55K\": 1.666, \"actor_loss_25K\": -0.195, \"actor_loss_35K\": -0.17, \"model_loss_25K\": 5.33, \"model_loss_35K\": 5.07, \"baseline_35K\": 400, \"baseline_45K\": 443, \"vs_baseline_35K\": \"-63.4%\", \"vs_baseline_45K\": \"-68.2%\", \"verdict_35K\": \"WARN_COLLAPSE\", \"verdict_45K\": \"COLLAPSE_CONFIRMED\", \"trend\": \"eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\", \"data_source_45K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T04:50:52.439Z\"}, \"exp_008f_no_dt_embed_subsample_on_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:51:27.592Z\", \"updated_at\": \"2026-05-14T09:49:29.276Z\", \"hypothesis\": \"C2 confound control：隔离 dt_embedding conditioning vs RSSM learned dt=2 dynamics。subsample ON + dt=2 imagination + H=8（与 008d 完全一致），但 gate_dt_embed_dim=0（去掉 dt_embedding 条件输入）。如果 008f 崩塌（v/e >50%）→ 根因是 RSSM 的 dt=2 训练数据导致 dynamics 偏差，不是 dt_embedding per se。如果 008f 稳定（v/e <35%）→ 确认 dt_embedding conditioning 是 delusional critic 的直接原因。对照：008d（dt_embed_dim>0, v/e 15.5%→41.2%→69.3% 崩塌）vs 008c（subsample OFF, untrained dt_emb, v/e 稳定 ~22-33%）。\", \"parent\": \"exp_008d_subsample_on_h8\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_embed_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"127761\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8\", \"submitted_at\": \"2026-05-14T04:51:55.020Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch, parent is for genealogy only\", \"eval_data\": \"N/A - training experiment, not eval\", \"wall_clock_seconds\": 16858.4, \"gpu_hours\": 4.68}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": {\"5K\": {\"eval_return\": 30.49, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, \"15K\": {\"eval_return\": 182.03, \"value_mean\": 2.989, \"ve_ratio\": 0.01642}, \"25K\": {\"eval_return\": 196.78, \"value_mean\": 17.507, \"ve_ratio\": 0.089, \"baseline_ve\": 0.087, \"normalized_ve\": 1.02}, \"35K\": {\"eval_return\": 206.67, \"value_mean\": 36.279, \"ve_ratio\": 0.176, \"baseline_ve\": 0.241, \"normalized_ve\": 0.73}, \"45K\": {\"eval_return\": 194.08, \"value_mean\": 53.429, \"ve_ratio\": 0.275, \"baseline_ve\": 0.331, \"normalized_ve\": 0.83}, \"55K\": {\"eval_return\": 173.45, \"value_mean\": 67.899, \"ve_ratio\": 0.391, \"baseline_ve\": 0.404, \"normalized_ve\": 0.97}, \"65K\": {\"eval_return\": 375, \"normalized_ve\": 0.37}, \"75K\": {\"eval_return\": 324, \"normalized_ve\": 0.42}, \"85K\": {\"eval_return\": 246, \"value_mean\": 111.8, \"normalized_ve\": 0.65}, \"95K\": {\"eval_return\": 319, \"normalized_ve\": 0.54}, \"105K\": {\"eval_return\": 503, \"value_mean\": 98.2, \"normalized_ve\": 0.3}}, \"trend\": \"Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.\", \"verdict\": \"SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed\", \"last_updated\": \"2026-05-14T09:50:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-45.1%\", \"causal_conclusion\": \"trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T09:30:41.254Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T09:30:42.170428+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/latest.pt\", \"completed_at\": \"2026-05-14T09:32:53.461Z\"}, \"exp_008c_no_subsample_dt2_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:33:31.413Z\", \"updated_at\": \"2026-05-14T04:37:29.274Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008c_fixed_dt2_no_subsample_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"107021\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8\", \"submitted_at\": \"2026-05-14T01:37:47.540Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=1, imag_horizon=8)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8/checkpoint.ckpt\", \"wall_clock_seconds\": 9119.3, \"gpu_hours\": 2.53}, \"hypothesis\": \"隔离 compounding error 效应：subsample OFF + imagination dt=2 + H=8（物理覆盖 16 步 ≈ baseline H=15）。与 008a(H=15) 对照：008a 崩但 008c 不崩 → compounding error 是根因，H 需与 dt 反比补偿；两个都崩 → dt=2 RSSM 预测质量本身不足。\", \"metrics\": {\"step\": 68000, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.55, \"eval_return_55K\": 241.87, \"eval_return_65K\": 240.86, \"value_mean_35K\": 40.43, \"value_mean_55K\": 70.32, \"value_mean_65K\": 78.96, \"value_eval_ratio_35K\": 0.218, \"value_eval_ratio_55K\": 0.291, \"value_eval_ratio_65K\": 0.328, \"actor_loss_55K\": -0.082, \"actor_loss_65K\": -0.053, \"baseline_65K\": 616, \"vs_baseline_65K\": \"-60.9%\", \"verdict_65K\": \"PLATEAU\", \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\", \"data_source_35K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T04:09:46.829Z\"}, \"exp_008e_subsample_on_fixed_dt1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:10:07.303Z\", \"updated_at\": \"2026-05-14T04:24:58.056Z\", \"hypothesis\": \"验证 Reviewer D020 因果假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（delusional critic），即使 actor 不用 dt=2 imagination。对照：008a (subsample OFF, dt=2 imag) value/eval=37.6%@55K vs exp_006 (subsample ON, dt=2 imag) 53.3%。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"121636\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"submitted_at\": \"2026-05-14T04:10:22.915Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 685.0, \"gpu_hours\": 0.19}, \"checkpoint_path\": \"N/A - killed, duplicate registry entry, logdir contaminated by dual-process write\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T04:21:47.956Z\", \"failure_reason\": \"重复 registry 条目 + logdir 被两个进程交叉写入导致 tfevents/metrics.jsonl 损坏。Director 指令清理后以 exp_008e_subsample_on_dt1_h15 为准重跑。\"}, \"exp_008e_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:10:37.655Z\", \"updated_at\": \"2026-05-14T04:24:57.658Z\", \"hypothesis\": \"验证 Reviewer D020 delusional critic 假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（即使 actor 不用 dt=2 imagination）。对照：008a（subsample OFF，dt=2 imagination）和 006（subsample ON，dt=2 imagination）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"122038\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"submitted_at\": \"2026-05-14T04:10:46.045Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 662.5, \"gpu_hours\": 0.18}, \"checkpoint_path\": \"N/A - killed, logdir contaminated by duplicate process cross-write\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T04:21:48.584Z\", \"notes\": \"重复进程：与 exp_008e_subsample_on_fixed_dt1 命令完全相同，共享同一 logdir，导致 tfevents 文件互相污染。Kill PID 122038，保留 PID 121636。\"}, \"exp_005_event_gated_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:08:06.061Z\", \"updated_at\": \"2026-05-13T22:15:38.893Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v5_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"51721\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_005_event_gated_v4.log\", \"submitted_at\": \"2026-05-13T16:08:11.913Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"修复 gate_target/masking 维度不匹配 + effective_max_dt 单一来源架构 + 全量审计后，event gate return >= 80% baseline\", \"model_name\": \"DreamerV3+EventGate_v4\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"wall_clock_seconds\": 22029.4, \"gpu_hours\": 6.12}, \"metrics\": {\"step\": 145000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.9, \"eval_return_35K\": 290.8, \"eval_return_55K\": 541.18, \"eval_return_65K\": 465.67, \"eval_return_85K\": 212.34, \"eval_return_105K\": 276.08, \"eval_return_145K\": 98.84, \"peak_return\": 541.18, \"peak_step\": \"55K\", \"final_return\": 98.84, \"baseline_at_145K\": \"~950\", \"return_ratio_final\": 0.104, \"gate_scale_105K\": 0.5, \"gate_dt_mean_105K\": 2.054, \"gate_dt_std_105K\": 0.907, \"gate_entropy_105K\": 1.255, \"fps\": 6.69, \"note\": \"85K/105K metrics corrected from 319.3/337.8 to 212.34/276.08\"}, \"latest_metrics\": {\"step\": 65000, \"eval_return\": 465.67, \"prev_eval_return\": 541.18, \"eval_return_trajectory\": {\"5K\": 31, \"15K\": 153.9, \"25K\": 254.2, \"35K\": 290.8, \"45K\": 443, \"55K\": 541.2, \"65K\": 465.7}, \"gate_scale\": 0.10004, \"gate_dt_mean\": 1.035, \"gate_dt_std\": 0.036, \"gate_dt_1_frac\": 0.965, \"gate_dt_2_frac\": 0.035, \"gate_empirical_entropy\": 0.0499, \"gate_entropy_ratio\": 0.072, \"gate_loss\": 0.00663, \"gate_entropy_bonus\": 0.0865, \"train_return_latest\": 569.8, \"train_return_range\": [535.4, 602.1], \"fps\": 6.69, \"process_status\": \"running\", \"pid\": 51721, \"uptime\": \"2h31m\", \"phase2_status\": \"gate刚进入phase2 (gate_scale=0.1), dt=1占比96.5%, gate几乎未激活。eval_return在55K→65K出现14%下降(541→466), 与phase2启动时机吻合, 类似exp_003崩塌前兆。但baseline同期也有小幅回调(626→616, -1.6%), 且gate尚未真正激活, 需继续观察75K数据确认是正常波动还是collapse。\", \"alert\": \"return_declining_at_phase2_onset\", \"baseline_at_65K\": 615.9, \"gap_vs_baseline\": -150.2, \"checked_at\": \"2026-05-13\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A - killed due to structural failure of hard Gumbel gate\", \"completed_at\": \"2026-05-13T22:15:21.359Z\", \"failure_reason\": \"Hard Gumbel gate 结构性失败。3轮 bug 修复后仍崩塌：eval_return 峰值 541.18@55K → 持续下降 → 98.84@145K（baseline 同期 950.9）。Gate 机制有效（entropy/H_eff/structure 全 PASS），但 hard categorical gate + variable-rate imagination 与 actor-critic 优化存在结构性冲突。gate_scale>0.5 后 return 不可恢复。\"}, \"exp_004_event_gated_v3\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T10:05:16.227Z\", \"updated_at\": \"2026-05-13T15:47:43.692Z\", \"hypothesis\": \"修复 imagination dt 约束后（logits masking + clamp safety net），event gate 在 train/imagine 分布同步条件下能产生有意义的 variable-rate stepping 且 return ≥ 80% baseline\", \"failure_reason\": \"gate_loss 爆炸 bug：compute_gate_targets 使用 gate_max_dt=8 生成 target 分布但 logits masking 使用 effective_max_dt，cross-entropy loss ≈ 3e8。eval_return@125K=352 vs baseline@335K=942，ratio=0.37。第三次 train/imagine distribution mismatch。\", \"completed_at\": \"2026-05-13T15:23:26.384Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:23:27.393422+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"step\": 20000, \"eval_return_15K\": 153.86, \"gate_scale_15K\": 0, \"gate_dt_mean_15K\": 1, \"fps\": 8.1}}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v4_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": 36645, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_v4_s1\", \"submitted_at\": \"2026-05-13T10:12:04.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v3 (dt clipping + logits masking + dt alignment fix)\", \"seed\": 1, \"wall_clock_seconds\": 18682.2, \"gpu_hours\": 5.19, \"checkpoint_path\": \"N/A - killed due to gate_loss explosion bug\"}, \"conclusion\": \"negative\"}, \"exp_003_event_gated_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:52:22.660Z\", \"updated_at\": \"2026-05-13T10:02:35.629Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1_v2 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"autodl-rtx6000\", \"gpu_id\": 1, \"pid\": 27009, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v2 (final fix: env step sync + threshold 25K/75K)\", \"seed\": 1, \"hypothesis\": \"Subsample curriculum prevents early destabilization while event gate learns meaningful variable-rate stepping\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1_v2\", \"checkpoint_source\": \"logdir/event_gated_s1_v2/latest.pt\"}, \"metrics\": {\"step\": 120000, \"gate_scale_116K\": 0.61, \"gate_dt_mean_116K\": 2.67, \"gate_dt_std_116K\": 1.46, \"gate_empirical_entropy_116K\": 1.655, \"gate_entropy_ratio_116K\": 0.796, \"gate_dt_1_frac_116K\": 0.218, \"eval_return_105K\": 92.3, \"eval_return_115K\": 118.7, \"return_ratio_105K\": 0.1, \"return_ratio_115K\": 0.13, \"mvp_C1_return\": \"FAIL (0.13)\", \"mvp_C2_entropy\": \"PASS (1.655)\", \"mvp_C3_heff\": \"PASS (2.667x)\", \"mvp_C4_structure\": \"PASS (autocorr=0.652)\", \"fps\": 6.52}, \"reproduce\": {\"finished_at\": \"2026-05-13T09:58:31.205Z\"}, \"failure_reason\": \"Return 崩塌至 baseline 13%。根因：_imagine 中 gate dt 无约束（输出 dt∈{1,...,8}），而 subsample curriculum 限制训练数据 dt≤effective_max_dt。RSSM 对未训练的大 dt 预测为噪声，progressive poisoning 导致 actor/critic 不可恢复。需修复 dt clipping + logits masking 后从头训练。\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T09:58:31.673Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T09:58:32.493437+00:00\"}]}}, \"exp_002_event_gated\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:09:54.240Z\", \"updated_at\": \"2026-05-13T04:52:18.089Z\", \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True\", \"server\": \"autodl-rtx6000\", \"gpu_id\": 1, \"pid\": 9769, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM (K=8, τ=5→0.5, λ_H=0.1→0.01)\", \"seed\": 1, \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\"}, \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T04:50:14.987Z\", \"kill_reason\": \"Phase 1 subsample 设计缺陷：subsample_variable_dt 在 Phase 1 (gate_scale=0) 也生效，RSSM 用 variable-Δt 数据训练但 imagination 只用 Δt=1，return 恶化到 baseline 的 25%。手动 kill 后部署 subsample curriculum 补丁并重启为 exp_003。\"}}, \"count\": 43, \"total\": 43, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2724}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T07:52:10.569Z_
+
+<details><summary>↩ Tool result · `toolu_01RqDnZ36bYTA5ShJNeVzHMa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**dt_emb 的 93% 梯度来自 observation decoders（orientations/velocity/height），7% 来自 KL dynamics，reward=0。** |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**dt_emb Gradient Decomposition (D061)**\\n\\n梯度验证（torch.autograd.grad analysis, commit 5fc8e49）揭示 dt_emb.weight 的梯度来源分布：\\n\\n| Source | Grad Norm | Fraction |\\n|--------|-----------|----------|\\n| Observation decoders (orientations, velocity, height) | 1.505 | 93% |\\n| KL dynamics | 0.119 | 7% |\\n| Cont head | ~0 (included in decoder total) | <1% |\\n| **Reward head** | **0.000** | **0%** |\\n| **Total** | **1.624** | **100%** |\\n\\n这意味着：(1) 016e 的 reward_dt_emb_detach 是 no-op——detach 了一个不存在的梯度通路；(2) dt_emb 的训练几乎完全由 observation reconstruction loss 驱动；(3) Full-SGS（exp_018）移除 observation decoder 梯度后仅保留 7% KL 梯度，是真正的 gradient-level intervention。\\n\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\n\\n### 6. Implications for Future Work\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from reward head~~ **架构层面无效（reward gradient = 0 by design）。梯度分解揭示 dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward 贡献为 0。真正的干预目标是 observation decoder→dt_emb 梯度通路（Full-SGS, exp_018 planned）。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\n\\n### Priority Actions Before Submission\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\"multiple vulnerability pathways\\\" (CIVO Pathway A + non-CIVO Pathway B)\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: reward_dt_emb_detach 是 no-op（梯度验证揭示 reward gradient = 0 by architecture）。016e 与 008d 的差异（onset timing, peak height）归因于随机变异，非 SGS 效果。dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward=0。\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 33549, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "685cc1e2-265e-4815-8946-d01ddd467132",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. ~~**\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**~~ (deprecated — \\\\\\\"delusional critic\\\\\\\" conflicts with Lu et al. 2018)\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"** ← preferred after D037 terminology decision\\\\n4. **\\\\\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\\\\\"**\\\\n\\\\n**⚠️ D037 术语决定**: \\\\\\\"delusional critic\\\\\\\" → **\\\\\\\"conditioning-induced value overestimation\\\\\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\\\\\"delusional critic\\\\\\\" → \\\\\\\"conditioning-induced value overestimation\\\\\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\\\n\\\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\\\\\"known failure class 的 specific instance\\\\\\\" 升级为 \\\\\\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\\\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\\\n\\\\n## Venue\\\\n\\\\n**CoRL 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\\\n\\\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\\\n\\\\n---\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\\\n\\\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\\\n\\\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\\\n\\\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\\\n\\\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\\\n\\\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\\\n\\\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\\\n\\\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\\\n\\\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\\\\\"point of no return\\\\\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\\\n\\\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**dt_emb 的 93% 梯度来自 observation decoders（orientations/velocity/height），7% 来自 KL dynamics，reward=0。** |\\\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\\\n\\\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\\\\\"eliminates\\\\\\\" 改为 \\\\\\\"significantly delays and reduces\\\\\\\"。推荐方案仍是 008e_v3（C6）**。\\\\n\\\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\\\n\\\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\\\n|-------|------------|------------|---------|---------------|---------------|------------|\\\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\\\n\\\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\\\n\\\\n**dt_emb Gradient Decomposition (D061)**\\\\n\\\\n梯度验证（torch.autograd.grad analysis, commit 5fc8e49）揭示 dt_emb.weight 的梯度来源分布：\\\\n\\\\n| Source | Grad Norm | Fraction |\\\\n|--------|-----------|----------|\\\\n| Observation decoders (orientations, velocity, height) | 1.505 | 93% |\\\\n| KL dynamics | 0.119 | 7% |\\\\n| Cont head | ~0 (included in decoder total) | <1% |\\\\n| **Reward head** | **0.000** | **0%** |\\\\n| **Total** | **1.624** | **100%** |\\\\n\\\\n这意味着：(1) 016e 的 reward_dt_emb_detach 是 no-op——detach 了一个不存在的梯度通路；(2) dt_emb 的训练几乎完全由 observation reconstruction loss 驱动；(3) Full-SGS（exp_018）移除 observation decoder 梯度后仅保留 7% KL 梯度，是真正的 gradient-level intervention。\\\\n\\\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\\\n\\\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\\\n\\\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\\\n\\\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\\\n\\\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\\\n\\\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\\\n\\\\n### C4: Longer dt amplifies the problem\\\\n\\\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\\\n\\\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\\\n\\\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\\\n\\\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\\\n\\\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\\\n\\\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\\\n\\\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\\\n\\\\n原假设\\\\\\\"dt=1 imagination = practical mitigation\\\\\\\"被**否证**。跨 seed 数据：\\\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\\\n- **独立 seed 崩溃率: 1/2 (50%)**\\\\n\\\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\\\n\\\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\\\n\\\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\\\n\\\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\\\n|------|---------------------|---------------------|\\\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\\\n\\\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\\\n\\\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\\\\\"seed 2 本身不稳定\\\\\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\\\n\\\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\\\n|------|-------------------|------------|------|\\\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\\\n\\\\n**C6 最终状态: PARTIALLY FALSIFIED**\\\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\\\n- 崩溃是配置导致的，不是 seed 特异性\\\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\\\n\\\\n**论文表述建议**: \\\\\\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\\\\\"\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\\\n\\\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\\\n\\\\n---\\\\n\\\\n## Story Arc\\\\n\\\\n### 1. Introduction\\\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\\\n\\\\n### 2. Background & Related Work\\\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\\\n- World-model RL (Dreamer family, IRIS, TWM)\\\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\\\n\\\\n### 3. Methodology\\\\n- DreamerV3 as base architecture\\\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\\\n\\\\n### 4. Results\\\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\\\\\"smoking gun\\\\\\\" comparison (008c vs 008d)\\\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\\\n- **Finding 4**: Longer dt amplifies (C4)\\\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\\\n\\\\n### 5. Discussion\\\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\\\n\\\\n### 6. Implications for Future Work\\\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from reward head~~ **架构层面无效（reward gradient = 0 by design）。梯度分解揭示 dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward 贡献为 0。真正的干预目标是 observation decoder→dt_emb 梯度通路（Full-SGS, exp_018 planned）。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\\\n- Need for diagnostic methodology in temporal abstraction research\\\\n\\\\n---\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"Limited to one environment / one base algorithm\\\\\\\"\\\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\\\n\\\\n### R2: \\\\\\\"No proposed solution — what's the actionable takeaway?\\\\\\\"\\\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\\\n\\\\n### R3: \\\\\\\"Value/eval ratio is a crude proxy for overestimation\\\\\\\"\\\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\\\n\\\\n### R4: \\\\\\\"The factorial design is incomplete — missing cells in the grid\\\\\\\"\\\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\\\n\\\\n### R5: \\\\\\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\\\\\"\\\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\\\n\\\\n### R6: \\\\\\\"All results from a single seed — how robust are the conclusions?\\\\\\\"\\\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\\\n\\\\n### R7: \\\\\\\"The factorial design confounds dt_embedding training with training data composition\\\\\\\"\\\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\\\n\\\\n### R8: \\\\\\\"008f reward prediction degradation undermines the causal control\\\\\\\"\\\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\\\\\"去掉 dt_embedding → 不崩塌\\\\\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\\\n\\\\n---\\\\n\\\\n## Experiment Coverage Assessment\\\\n\\\\n| Claim | Evidence Status | Gaps |\\\\n|-------|----------------|------|\\\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\\\n\\\\n### Priority Actions Before Submission\\\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\\\\\"multiple vulnerability pathways\\\\\\\" (CIVO Pathway A + non-CIVO Pathway B)\\\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: reward_dt_emb_detach 是 no-op（梯度验证揭示 reward gradient = 0 by architecture）。016e 与 008d 的差异（onset timing, peak height）归因于随机变异，非 SGS 效果。dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward=0。\\\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\\\n\\\\n---\\\\n\\\\n## Key Figures (Planned)\\\\n\\\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\\\n\\\", \\\"total_chars\\\": 33549, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**dt_emb 的 93% 梯度来自 observation decoders（orientations/velocity/height），7% 来自 KL dynamics，reward=0。** |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**dt_emb Gradient Decomposition (D061)**\\n\\n梯度验证（torch.autograd.grad analysis, commit 5fc8e49）揭示 dt_emb.weight 的梯度来源分布：\\n\\n| Source | Grad Norm | Fraction |\\n|--------|-----------|----------|\\n| Observation decoders (orientations, velocity, height) | 1.505 | 93% |\\n| KL dynamics | 0.119 | 7% |\\n| Cont head | ~0 (included in decoder total) | <1% |\\n| **Reward head** | **0.000** | **0%** |\\n| **Total** | **1.624** | **100%** |\\n\\n这意味着：(1) 016e 的 reward_dt_emb_detach 是 no-op——detach 了一个不存在的梯度通路；(2) dt_emb 的训练几乎完全由 observation reconstruction loss 驱动；(3) Full-SGS（exp_018）移除 observation decoder 梯度后仅保留 7% KL 梯度，是真正的 gradient-level intervention。\\n\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\n\\n### 6. Implications for Future Work\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from reward head~~ **架构层面无效（reward gradient = 0 by design）。梯度分解揭示 dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward 贡献为 0。真正的干预目标是 observation decoder→dt_emb 梯度通路（Full-SGS, exp_018 planned）。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\n\\n### Priority Actions Before Submission\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\"multiple vulnerability pathways\\\" (CIVO Pathway A + non-CIVO Pathway B)\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: reward_dt_emb_detach 是 no-op（梯度验证揭示 reward gradient = 0 by architecture）。016e 与 008d 的差异（onset timing, peak height）归因于随机变异，非 SGS 效果。dt_emb 的 93% 梯度来自 observation decoders，7% 来自 KL dynamics，reward=0。\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 33549, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01E1xfJk3bQ87ouEuuMf9Ais`</summary>
+
+```json
+{
+  "pattern": "**/results.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "40337c3b-b3e1-48a4-baa5-6da1ca0d20c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012pNeTu6hJuMwXtMo2PMgWo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1443,
+      "cache_read_input_tokens": 23530,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1443
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T07:52:11.403Z_
+
+<details><summary>↩ Tool result · `toolu_01E1xfJk3bQ87ouEuuMf9Ais`</summary>
+
+```text
+docs/paper/sections/results.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "382f3acc-527f-4631-98ba-ee816dc89535",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/sections/results.tex"
+    ],
+    "durationMs": 19,
+    "numFiles": 1,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PsceFL6SUn3vRSEHkArbPX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "a65db5bb-f87d-47b3-8be7-b23d07a0def2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Uxuru9Yd86WDc1yAtpRqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13655,
+      "cache_read_input_tokens": 24973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13655
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T07:52:16.305Z_
+
+<details><summary>↩ Tool result · `toolu_01PsceFL6SUn3vRSEHkArbPX`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We organize results around six findings (F1--F6) that establish a causal chain from trained temporal conditioning to pathological value dynamics and performance collapse. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\nve$), defined as the ratio of a configuration's imagined value to evaluation return, normalized by the baseline's ratio at the same training step.
+5	
+6	%% ============================================================
+7	%% TABLE 1: Main results summary
+8	%% ============================================================
+9	
+10	\begin{table*}[t]
+11	\centering
+12	\caption{All configurations and outcomes. NVE reports peak $\nve$ in the 35K+ window (\S\ref{sec:metrics}). CIVO-positive seeds are shaded; $\dagger$\,marks a false positive (non-CIVO collapse with elevated NVE).}
+13	\label{tab:main_results}
+14	\footnotesize
+15	\setlength{\tabcolsep}{4pt}
+16	\begin{tabular}{llcccccl}
+17	\toprule
+18	\textbf{Exp} & \textbf{Config} & \textbf{dt\_emb} & \textbf{Sub} & \textbf{H} & \textbf{Eval@final} & \textbf{NVE} & \textbf{Outcome} \\
+19	\midrule
+20	001 & Baseline ($\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\times$ & Healthy \\
+21	\rowcolor{gray!15}
+22	006 & Fixed $\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\times$ & Collapsed \\
+23	007 & Fixed $\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\
+24	005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\
+25	\midrule
+26	\rowcolor{gray!15}
+27	008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\times$ & Full collapse \\
+28	\rowcolor{gray!15}
+29	009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\times$ & Transient CIVO \\
+30	\rowcolor{gray!15}
+31	009e & Factorial (s1) & trn & ON & 8 & 131.1 @105K & 4.12$\times$ & Oscillatory \\
+32	008f & No dt\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\times$ & Healthy \\
+33	009c & No dt\_emb (s2) & --- & ON & 8 & 148.3 @105K & 1.14$\times$ & Declining \\
+34	008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\times$ & Healthy \\
+35	008c & Unexposed emb & exp$^a$ & OFF & 8 & 240.9 @65K & 0.58$\times$ & Slow learner \\
+36	015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\times$ & Grad.\ starvation \\
+37	\midrule
+38	008e\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\times$ & Healthy \\
+39	008e\_v3 s2$^\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\times$ & Non-CIVO collapse \\
+40	009a & Baseline (s2) & --- & --- & 15 & 836.5 @105K & --- & Healthy \\
+41	\bottomrule
+42	\end{tabular}
+43	\vspace{1pt}
+44	{\raggedright\footnotesize
+45	trn = trained ($d{=}32$, exposed to $\dt{>}1$ data via subsample ON);
+46	exp$^a$ = trained ($d{=}32$) but never exposed to $\dt{>}1$ data (subsample OFF);
+47	frz$^b$ = frozen random projection ($d{=}32$, \texttt{requires\_grad=False});
+48	--- = removed ($d{=}0$).\par}
+49	\end{table*}
+50	
+51	%% ============================================================
+52	%% F1: All dt>1 degrade
+53	%% ============================================================
+54	
+55	\subsection{F1: All Variable-Rate Configurations Degrade}
+56	\label{sec:f1}
+57	
+58	Every configuration that introduces $\dt > 1$ imagination degrades relative to the $\dt{=}1$ baseline, regardless of mechanism (Figure~\ref{fig:learning_curves}). The baseline (exp\_001) reaches 915.7 at 105K steps and peaks at 970.4 at 505K. In contrast, fixed $\dt{=}2$ (exp\_006) peaks at 485.3 at 35K before collapsing to 132.9 by 65K---a $-73\%$ decline from its own peak (14\% of baseline). Fixed $\dt{=}4$ (exp\_007) peaks at only 176.9 at 25K and never exceeds 152.5 thereafter. The learned-gate configuration (exp\_005) peaks at 541.2 at 55K but collapses to 98.8 by 145K. This uniform degradation motivates the factorial analysis that follows.
+59	
+60	\begin{figure}[t]
+61	\centering
+62	\includegraphics[width=\columnwidth]{figures/paper/fig1_learning_curves.pdf}
+63	\caption{Learning curves for all configurations. The $\dt{=}1$ baseline (black) reaches 915.7 at 105K; all variable-rate configurations degrade, with fixed $\dt{=}4$ and the learned gate collapsing most severely.}
+64	\label{fig:learning_curves}
+65	\end{figure}
+66	
+67	%% ============================================================
+68	%% F2: Trained dt_embedding → nve > 1.5x
+69	%% ============================================================
+70	
+71	\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}
+72	\label{sec:f2}
+73	
+74	The factorial design isolates trained $\dt$-embedding as the factor that reliably triggers pathological value overestimation. The key causal control compares exp\_008d (trained $\dt$-embedding, subsampling ON, $H{=}8$) against exp\_008f (identical configuration but \emph{no} trained $\dt$-embedding). As shown in Figure~\ref{fig:nve_trajectory}:
+75	
+76	\begin{itemize}[nosep,leftmargin=*]
+77	\item \textbf{008d} (trained): $\nve = 1.78\times$ at 25K $\rightarrow$ $4.12\times$ at 55K $\rightarrow$ collapse (eval 167$\rightarrow$82.8).
+78	\item \textbf{008f} (no dt\_emb): $\nve = 1.02\times$ at 25K $\rightarrow$ $0.30\times$ at 105K $\rightarrow$ no collapse (eval 503.0 at 105K).
+79	\end{itemize}
+80	
+81	In the 35K+ window (\S\ref{sec:metrics}), the $\nve \geq 1.5\times$ threshold correctly classifies 7/8 seeds (AUROC${=}0.933$, Clopper--Pearson 95\% CI $[0.47, 1.0]$): 3 CIVO-positive (exp\_006, 008d, 009b) and 4 CIVO-negative, with one non-CIVO false positive (008e\_v3 s2, $3.78\times$; \S\ref{sec:f6}).  The gap between the lowest true positive ($1.62\times$) and the highest true negative ($1.00\times$) is $0.62$.
+82	
+83	\begin{figure}[t]
+84	\centering
+85	\includegraphics[width=\columnwidth]{figures/paper/fig2_nve_trajectory.pdf}
+86	\caption{Normalized value-to-eval ratio ($\nve$) trajectories. The dashed line marks the $1.5\times$ threshold. All trained-embedding configurations with $\dt > 1$ imagination (red/orange) exceed this threshold; the mitigation configuration (008e\_v3 s1, dash-dot) with $\dt{=}1$-only imagination remains below it.}
+87	\label{fig:nve_trajectory}
+88	\end{figure}
+89	
+90	\paragraph{Three post-CIVO outcomes.}
+91	Running the 008d configuration with two independent seeds (s1, s2) reveals that trained $\dt$-embedding triggers CIVO---yet the downstream consequence is stochastic. Exp\_009e extends seed~1 (008d) beyond 55K to 105K steps:
+92	
+93	%% ============================================================
+94	%% TABLE 3: Three post-CIVO outcomes
+95	%% ============================================================
+96	
+97	\begin{table}[t]
+98	\centering
+99	\caption{Post-CIVO outcomes for the 008d configuration. Peak/Final NVE measured in the 35K+ window. Seeds 1 and 2 are independent runs; 009e extends seed~1 (008d) from 55K to 105K.}
+100	\label{tab:post_civo}
+101	\footnotesize
+102	\setlength{\tabcolsep}{3pt}
+103	\begin{tabular}{lcccl}
+104	\toprule
+105	\textbf{Seed} & \textbf{Peak} & \textbf{Final} & \textbf{Eval} & \textbf{Outcome} \\
+106	\midrule
+107	s1 (008d) & 4.12$\times$ & 4.12$\times$ & 82.8 & Full collapse \\
+108	s2 (009b) & 1.62$\times$ & 0.38$\times$ & 267.9 & Transient CIVO \\
+109	s1 ext (009e) & 4.12$\times$ & 1.57$\times$ & 131.1 & Oscillatory \\
+110	\bottomrule
+111	\end{tabular}
+112	\end{table}
+113	
+114	\noindent\textbf{Seed 1 (008d):} Full collapse (Pathway A). Value explosion ($+130\%$), evaluation declines from 167 to 82.8, entropy decreases---the classic CIVO feedback loop.
+115	
+116	\noindent\textbf{Seed 2 (009b):} Transient CIVO. The $\nve$ reaches $1.62\times$ at 45K (35K+ window), exceeding the $1.5\times$ threshold, but the value function self-corrects to $0.38\times$ by 105K, and evaluation recovers to 267.9. This demonstrates the threshold's sensitivity to early CIVO signals even in cases that spontaneously recover.
+117	
+118	\noindent\textbf{Seed 1 extended (009e):} Oscillatory degradation. Continuing 008d beyond 55K, evaluation oscillates between 82.7 and 250 before settling at 131.1; the value function rises then reverses (peak $\nve = 4.12\times$ at 55K, final $1.57\times$).
+119	
+120	All runs exceed $\nve \geq 1.5\times$ in the 35K+ window, confirming deterministic CIVO triggering, but downstream outcomes are seed-dependent (1/2 persistent collapse rate among independent seeds).
+121	
+122	%% ============================================================
+123	%% F3: Unexposed dt_embedding suppresses value drift
+124	%% ============================================================
+125	
+126	\subsection{F3: Unexposed Temporal Embedding Suppresses Value Drift}
+127	\label{sec:f3}
+128	
+129	\begin{figure}[t]
+130	\centering
+131	\includegraphics[width=\columnwidth]{figures/paper/fig3_factorial_grid.pdf}
+132	\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}
+133	\label{fig:factorial_grid}
+134	\end{figure}
+135	
+136	Exp\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\dt{>}1$ transitions during world-model training (subsample OFF). Despite sharing the same embedding architecture as exp\_008d, its NVE remains in the $0.59$--$0.93\times$ range across 105K steps. Performance follows two V-shaped recovery cycles, reaching 777.7 at 105K (85\% of baseline). The critical trigger is not the embedding's capacity to represent temporal information, but its adaptation to multi-rate data that enables precise but inaccurate $\dt{>}1$ state predictions within the RSSM.
+137	
+138	This contrasts with exp\_006 (trained $e_{\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\times$ at 45K to $2.31\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\dt{>}1$ transitions during training---confirming that multi-rate data exposure, not embedding architecture, is the operative variable.
+139	
+140	The frozen embedding (exp\_015b, $d{=}32$, \texttt{requires\_grad=False}, subsample ON) provides additional causal evidence: despite full exposure to multi-rate data, its NVE remains at $0.39$--$0.47\times$ and never triggers CIVO, instead failing through gradient starvation (actor loss $\to$ 0; see \S\ref{sec:failure_taxonomy}). This confirms that trainability of the embedding is also necessary---a frozen random projection cannot co-adapt with RSSM dynamics to produce the systematic bias that drives CIVO.
+141	
+142	%% ============================================================
+143	%% F4: dt=2 > dt=4 monotonic degradation
+144	%% ============================================================
+145	
+146	\subsection{F4: Degradation Scales Monotonically with \texorpdfstring{$\dt$}{dt}}
+147	\label{sec:f4}
+148	
+149	\begin{figure}[t]
+150	\centering
+151	\includegraphics[width=\columnwidth]{figures/paper/fig5_dt_amplification.pdf}
+152	\caption{Peak evaluation return as a function of imagination $\dt$. Performance degrades monotonically: $\dt{=}1$ (915.7) $>$ $\dt{=}2$ (485.3, $-47\%$) $>$ $\dt{=}4$ (176.9, $-81\%$).}
+153	\label{fig:dt_amplification}
+154	\end{figure}
+155	
+156	The magnitude of degradation scales monotonically with the imagination step size (Figure~\ref{fig:dt_amplification}). From the $\dt{=}1$ baseline (915.7 at 105K), fixed $\dt{=}2$ (exp\_006) achieves a peak of only 485.3 ($-47\%$), and fixed $\dt{=}4$ (exp\_007) peaks at 176.9 ($-81\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.
+157	
+158	%% ============================================================
+159	%% F5: Horizon and subsample secondary
+160	%% ============================================================
+161	
+162	\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}
+163	\label{sec:f5}
+164	
+165	Neither horizon length nor temporal subsampling triggers collapse without multi-rate data exposure: both trained-but-unexposed configurations (008a, 008c) maintain $\nve < 0.93\times$ (\S\ref{sec:f3}), while the trained-and-exposed counterpart (008d) collapses with $\nve = 4.12\times$.  The no-embedding configurations show cross-seed variance (008f: 503.0 vs.\ 009c: 148.3) but neither exhibits $\nve > 1.5\times$---confirming that low evaluation alone does not indicate CIVO.
+166	
+167	%% ============================================================
+168	%% F6: dt=1 imagination does not prevent collapse
+169	%% ============================================================
+170	
+171	\subsection{F6: Restricting Imagination to \texorpdfstring{$\dt{=}1$}{dt=1} Does Not Prevent Collapse}
+172	\label{sec:f6}
+173	
+174	\begin{figure}[t]
+175	\centering
+176	\includegraphics[width=\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+177	\caption{Contrasting collapse dynamics. \textbf{Left:} 008d (classic CIVO)---value explosion precedes evaluation decline, entropy decreases. \textbf{Right:} 008e\_v3 seed 2 (non-CIVO)---evaluation crashes while value remains stable, entropy \emph{increases}. Baseline seed 2 (009a, dashed) remains stable at 836.5, ruling out seed fragility.}
+178	\label{fig:multiple_pathways}
+179	\end{figure}
+180	
+181	The mitigation experiment exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained $\dt$-embedding for observation conditioning. If CIVO were the sole vulnerability pathway, this restriction should prevent collapse. Results are mixed:
+182	
+183	\begin{itemize}[nosep,leftmargin=*]
+184	\item \textbf{Seed 1} (008e\_v3\_s1): Healthy. Eval 869.9 at 105K ($95\%$ of baseline), $\nve = 0.80\times$.
+185	\item \textbf{Seed 2} (008e\_v3\_s2): Collapsed. Eval drops from 715 to 137 at 105K, $\nve = 3.78\times$.
+186	\end{itemize}
+187	
+188	The baseline with seed 2 (exp\_009a) is stable at 836.5 at 105K, ruling out inherent seed fragility as the explanation.
+189	
+190	\paragraph{Distinct collapse mechanisms.}
+191	The collapse dynamics of 008e\_v3\_s2 differ qualitatively from the classic CIVO observed in 008d (Table~\ref{tab:main_results}, Figure~\ref{fig:multiple_pathways}):
+192	
+193	\begin{itemize}[nosep,leftmargin=*]
+194	\item \textbf{008d (CIVO, Pathway A):} value explosion ($+130\%$) $\rightarrow$ evaluation decline $\rightarrow$ entropy decreases.
+195	\item \textbf{008e\_v3\_s2 (non-CIVO, Pathway B):} evaluation crashes ($-81\%$) $\rightarrow$ value remains stable $\rightarrow$ entropy \emph{increases} ($-5.21 \rightarrow -3.83$).
+196	\end{itemize}
+197	
+198	In Pathway A, the critic drives collapse through systematic overestimation; in Pathway B, the actor destabilizes independently while the critic remains initially well-calibrated. Restricting imagination to $\dt{=}1$ prevents the CIVO mechanism---no early $\nve$ spike, no reward amplification---but seed-dependent late-stage policy instability (Pathway B) can still occur.
+199	
+200	This case also produces the sole false positive in the $\nve \geq 1.5\times$ classification: 008e\_v3\_s2's late evaluation decline inflates $\nve$ to $3.78\times$ through a non-CIVO mechanism (\S\ref{sec:pathways}).
+201	
+202	%% ============================================================
+203	%% TABLE 2: RSSM Fidelity
+204	%% ============================================================
+205	
+206	\begin{table}[t]
+207	\centering
+208	\caption{RSSM fidelity at $\dt{=}1$ vs.\ $\dt{=}2$. Trained embedding (008d) produces $2.78\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}
+209	\label{tab:rssm_fidelity}
+210	\footnotesize
+211	\setlength{\tabcolsep}{4pt}
+212	\begin{tabular}{lcccccc}
+213	\toprule
+214	& \multicolumn{3}{c}{\textbf{obs\_MSE}} & \multicolumn{3}{c}{\textbf{reward\_MAE}} \\
+215	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+216	\textbf{Config} & $\dt{=}1$ & $\dt{=}2$ & Gap & $\dt{=}1$ & $\dt{=}2$ & Gap \\
+217	\midrule
+218	Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+219	008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & 2.78$\times$ \\
+220	008f (no emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+221	\bottomrule
+222	\end{tabular}
+223	\end{table}
+224	
+225	\paragraph{RSSM fidelity analysis.}
+226	Table~\ref{tab:rssm_fidelity} reveals the mechanism underlying CIVO. The trained $\dt$-embedding in 008d produces a $2.78\times$ gap in reward prediction error between $\dt{=}1$ and $\dt{=}2$ trajectories. This asymmetric fidelity means the reward head systematically overpredicts rewards at $\dt{=}2$, which the critic internalizes as optimistic value estimates. In contrast, 008f (no embedding) shows a $1.01\times$ gap---the reward head cannot distinguish temporal scales, which eliminates the exploitation channel but at the cost of severely degraded absolute reward prediction ($0.7469$ MAE vs.\ $0.0568$ for 008d at $\dt{=}1$).
+227	
+228	\paragraph{Summary.}
+229	F1--F5 establish the combination of trained $\dt$-embedding and multi-rate data exposure as the causal factor (7/8 classification, one non-CIVO false positive), with degradation scaling monotonically with $\dt$.  F6 shows that restricting imagination to $\dt{=}1$ prevents CIVO but not all collapse modes: $\nve$ is a sensitive but non-specific warning indicator requiring joint analysis with collapse signatures for mechanistic attribution.
+230	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "879343f3-c7db-4025-b6bb-bf84917c1db7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around six findings (F1--F6) that establish a causal chain from trained temporal conditioning to pathological value dynamics and performance collapse. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$), defined as the ratio of a configuration's imagined value to evaluation return, normalized by the baseline's ratio at the same training step.\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n\\rowcolor{gray!15}\n009e & Factorial (s1) & trn & ON & 8 & 131.1 @105K & 4.12$\\times$ & Oscillatory \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n009c & No dt\\_emb (s2) & --- & ON & 8 & 148.3 @105K & 1.14$\\times$ & Declining \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n008c & Unexposed emb & exp$^a$ & OFF & 8 & 240.9 @65K & 0.58$\\times$ & Slow learner \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n\\midrule\n008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n009a & Baseline (s2) & --- & --- & 15 & 836.5 @105K & --- & Healthy \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, exposed to $\\dt{>}1$ data via subsample ON);\nexp$^a$ = trained ($d{=}32$) but never exposed to $\\dt{>}1$ data (subsample OFF);\nfrz$^b$ = frozen random projection ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline, regardless of mechanism (Figure~\\ref{fig:learning_curves}). The baseline (exp\\_001) reaches 915.7 at 105K steps and peaks at 970.4 at 505K. In contrast, fixed $\\dt{=}2$ (exp\\_006) peaks at 485.3 at 35K before collapsing to 132.9 by 65K---a $-73\\%$ decline from its own peak (14\\% of baseline). Fixed $\\dt{=}4$ (exp\\_007) peaks at only 176.9 at 25K and never exceeds 152.5 thereafter. The learned-gate configuration (exp\\_005) peaks at 541.2 at 55K but collapses to 98.8 by 145K. This uniform degradation motivates the factorial analysis that follows.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves for all configurations. The $\\dt{=}1$ baseline (black) reaches 915.7 at 105K; all variable-rate configurations degrade, with fixed $\\dt{=}4$ and the learned gate collapsing most severely.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the factor that reliably triggers pathological value overestimation. The key causal control compares exp\\_008d (trained $\\dt$-embedding, subsampling ON, $H{=}8$) against exp\\_008f (identical configuration but \\emph{no} trained $\\dt$-embedding). As shown in Figure~\\ref{fig:nve_trajectory}:\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{008d} (trained): $\\nve = 1.78\\times$ at 25K $\\rightarrow$ $4.12\\times$ at 55K $\\rightarrow$ collapse (eval 167$\\rightarrow$82.8).\n\\item \\textbf{008f} (no dt\\_emb): $\\nve = 1.02\\times$ at 25K $\\rightarrow$ $0.30\\times$ at 105K $\\rightarrow$ no collapse (eval 503.0 at 105K).\n\\end{itemize}\n\nIn the 35K+ window (\\S\\ref{sec:metrics}), the $\\nve \\geq 1.5\\times$ threshold correctly classifies 7/8 seeds (AUROC${=}0.933$, Clopper--Pearson 95\\% CI $[0.47, 1.0]$): 3 CIVO-positive (exp\\_006, 008d, 009b) and 4 CIVO-negative, with one non-CIVO false positive (008e\\_v3 s2, $3.78\\times$; \\S\\ref{sec:f6}).  The gap between the lowest true positive ($1.62\\times$) and the highest true negative ($1.00\\times$) is $0.62$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig2_nve_trajectory.pdf}\n\\caption{Normalized value-to-eval ratio ($\\nve$) trajectories. The dashed line marks the $1.5\\times$ threshold. All trained-embedding configurations with $\\dt > 1$ imagination (red/orange) exceed this threshold; the mitigation configuration (008e\\_v3 s1, dash-dot) with $\\dt{=}1$-only imagination remains below it.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\n\\paragraph{Three post-CIVO outcomes.}\nRunning the 008d configuration with two independent seeds (s1, s2) reveals that trained $\\dt$-embedding triggers CIVO---yet the downstream consequence is stochastic. Exp\\_009e extends seed~1 (008d) beyond 55K to 105K steps:\n\n%% ============================================================\n%% TABLE 3: Three post-CIVO outcomes\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{Post-CIVO outcomes for the 008d configuration. Peak/Final NVE measured in the 35K+ window. Seeds 1 and 2 are independent runs; 009e extends seed~1 (008d) from 55K to 105K.}\n\\label{tab:post_civo}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{lcccl}\n\\toprule\n\\textbf{Seed} & \\textbf{Peak} & \\textbf{Final} & \\textbf{Eval} & \\textbf{Outcome} \\\\\n\\midrule\ns1 (008d) & 4.12$\\times$ & 4.12$\\times$ & 82.8 & Full collapse \\\\\ns2 (009b) & 1.62$\\times$ & 0.38$\\times$ & 267.9 & Transient CIVO \\\\\ns1 ext (009e) & 4.12$\\times$ & 1.57$\\times$ & 131.1 & Oscillatory \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent\\textbf{Seed 1 (008d):} Full collapse (Pathway A). Value explosion ($+130\\%$), evaluation declines from 167 to 82.8, entropy decreases---the classic CIVO feedback loop.\n\n\\noindent\\textbf{Seed 2 (009b):} Transient CIVO. The $\\nve$ reaches $1.62\\times$ at 45K (35K+ window), exceeding the $1.5\\times$ threshold, but the value function self-corrects to $0.38\\times$ by 105K, and evaluation recovers to 267.9. This demonstrates the threshold's sensitivity to early CIVO signals even in cases that spontaneously recover.\n\n\\noindent\\textbf{Seed 1 extended (009e):} Oscillatory degradation. Continuing 008d beyond 55K, evaluation oscillates between 82.7 and 250 before settling at 131.1; the value function rises then reverses (peak $\\nve = 4.12\\times$ at 55K, final $1.57\\times$).\n\nAll runs exceed $\\nve \\geq 1.5\\times$ in the 35K+ window, confirming deterministic CIVO triggering, but downstream outcomes are seed-dependent (1/2 persistent collapse rate among independent seeds).\n\n%% ============================================================\n%% F3: Unexposed dt_embedding suppresses value drift\n%% ============================================================\n\n\\subsection{F3: Unexposed Temporal Embedding Suppresses Value Drift}\n\\label{sec:f3}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\n\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\n\\label{fig:factorial_grid}\n\\end{figure}\n\nExp\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\dt{>}1$ transitions during world-model training (subsample OFF). Despite sharing the same embedding architecture as exp\\_008d, its NVE remains in the $0.59$--$0.93\\times$ range across 105K steps. Performance follows two V-shaped recovery cycles, reaching 777.7 at 105K (85\\% of baseline). The critical trigger is not the embedding's capacity to represent temporal information, but its adaptation to multi-rate data that enables precise but inaccurate $\\dt{>}1$ state predictions within the RSSM.\n\nThis contrasts with exp\\_006 (trained $e_{\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\times$ at 45K to $2.31\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\dt{>}1$ transitions during training---confirming that multi-rate data exposure, not embedding architecture, is the operative variable.\n\nThe frozen embedding (exp\\_015b, $d{=}32$, \\texttt{requires\\_grad=False}, subsample ON) provides additional causal evidence: despite full exposure to multi-rate data, its NVE remains at $0.39$--$0.47\\times$ and never triggers CIVO, instead failing through gradient starvation (actor loss $\\to$ 0; see \\S\\ref{sec:failure_taxonomy}). This confirms that trainability of the embedding is also necessary---a frozen random projection cannot co-adapt with RSSM dynamics to produce the systematic bias that drives CIVO.\n\n%% ============================================================\n%% F4: dt=2 > dt=4 monotonic degradation\n%% ============================================================\n\n\\subsection{F4: Degradation Scales Monotonically with \\texorpdfstring{$\\dt$}{dt}}\n\\label{sec:f4}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig5_dt_amplification.pdf}\n\\caption{Peak evaluation return as a function of imagination $\\dt$. Performance degrades monotonically: $\\dt{=}1$ (915.7) $>$ $\\dt{=}2$ (485.3, $-47\\%$) $>$ $\\dt{=}4$ (176.9, $-81\\%$).}\n\\label{fig:dt_amplification}\n\\end{figure}\n\nThe magnitude of degradation scales monotonically with the imagination step size (Figure~\\ref{fig:dt_amplification}). From the $\\dt{=}1$ baseline (915.7 at 105K), fixed $\\dt{=}2$ (exp\\_006) achieves a peak of only 485.3 ($-47\\%$), and fixed $\\dt{=}4$ (exp\\_007) peaks at 176.9 ($-81\\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.\n\n%% ============================================================\n%% F5: Horizon and subsample secondary\n%% ============================================================\n\n\\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}\n\\label{sec:f5}\n\nNeither horizon length nor temporal subsampling triggers collapse without multi-rate data exposure: both trained-but-unexposed configurations (008a, 008c) maintain $\\nve < 0.93\\times$ (\\S\\ref{sec:f3}), while the trained-and-exposed counterpart (008d) collapses with $\\nve = 4.12\\times$.  The no-embedding configurations show cross-seed variance (008f: 503.0 vs.\\ 009c: 148.3) but neither exhibits $\\nve > 1.5\\times$---confirming that low evaluation alone does not indicate CIVO.\n\n%% ============================================================\n%% F6: dt=1 imagination does not prevent collapse\n%% ============================================================\n\n\\subsection{F6: Restricting Imagination to \\texorpdfstring{$\\dt{=}1$}{dt=1} Does Not Prevent Collapse}\n\\label{sec:f6}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (classic CIVO)---value explosion precedes evaluation decline, entropy decreases. \\textbf{Right:} 008e\\_v3 seed 2 (non-CIVO)---evaluation crashes while value remains stable, entropy \\emph{increases}. Baseline seed 2 (009a, dashed) remains stable at 836.5, ruling out seed fragility.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\nThe mitigation experiment exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained $\\dt$-embedding for observation conditioning. If CIVO were the sole vulnerability pathway, this restriction should prevent collapse. Results are mixed:\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Seed 1} (008e\\_v3\\_s1): Healthy. Eval 869.9 at 105K ($95\\%$ of baseline), $\\nve = 0.80\\times$.\n\\item \\textbf{Seed 2} (008e\\_v3\\_s2): Collapsed. Eval drops from 715 to 137 at 105K, $\\nve = 3.78\\times$.\n\\end{itemize}\n\nThe baseline with seed 2 (exp\\_009a) is stable at 836.5 at 105K, ruling out inherent seed fragility as the explanation.\n\n\\paragraph{Distinct collapse mechanisms.}\nThe collapse dynamics of 008e\\_v3\\_s2 differ qualitatively from the classic CIVO observed in 008d (Table~\\ref{tab:main_results}, Figure~\\ref{fig:multiple_pathways}):\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{008d (CIVO, Pathway A):} value explosion ($+130\\%$) $\\rightarrow$ evaluation decline $\\rightarrow$ entropy decreases.\n\\item \\textbf{008e\\_v3\\_s2 (non-CIVO, Pathway B):} evaluation crashes ($-81\\%$) $\\rightarrow$ value remains stable $\\rightarrow$ entropy \\emph{increases} ($-5.21 \\rightarrow -3.83$).\n\\end{itemize}\n\nIn Pathway A, the critic drives collapse through systematic overestimation; in Pathway B, the actor destabilizes independently while the critic remains initially well-calibrated. Restricting imagination to $\\dt{=}1$ prevents the CIVO mechanism---no early $\\nve$ spike, no reward amplification---but seed-dependent late-stage policy instability (Pathway B) can still occur.\n\nThis case also produces the sole false positive in the $\\nve \\geq 1.5\\times$ classification: 008e\\_v3\\_s2's late evaluation decline inflates $\\nve$ to $3.78\\times$ through a non-CIVO mechanism (\\S\\ref{sec:pathways}).\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{RSSM fidelity analysis.}\nTable~\\ref{tab:rssm_fidelity} reveals the mechanism underlying CIVO. The trained $\\dt$-embedding in 008d produces a $2.78\\times$ gap in reward prediction error between $\\dt{=}1$ and $\\dt{=}2$ trajectories. This asymmetric fidelity means the reward head systematically overpredicts rewards at $\\dt{=}2$, which the critic internalizes as optimistic value estimates. In contrast, 008f (no embedding) shows a $1.01\\times$ gap---the reward head cannot distinguish temporal scales, which eliminates the exploitation channel but at the cost of severely degraded absolute reward prediction ($0.7469$ MAE vs.\\ $0.0568$ for 008d at $\\dt{=}1$).\n\n\\paragraph{Summary.}\nF1--F5 establish the combination of trained $\\dt$-embedding and multi-rate data exposure as the causal factor (7/8 classification, one non-CIVO false positive), with degradation scaling monotonically with $\\dt$.  F6 shows that restricting imagination to $\\dt{=}1$ prevents CIVO but not all collapse modes: $\\nve$ is a sensitive but non-specific warning indicator requiring joint analysis with collapse signatures for mechanistic attribution.\n",
+      "numLines": 230,
+      "startLine": 1,
+      "totalLines": 230
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WPi6Do74BMfdqX3UJPHDpP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/narrative_audit.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "1cbc713e-36bf-4ced-9c48-31ba0abe7da6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Uxuru9Yd86WDc1yAtpRqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13655,
+      "cache_read_input_tokens": 24973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13655
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T07:52:16.836Z_
+
+<details><summary>↩ Tool result · `toolu_01WPi6Do74BMfdqX3UJPHDpP`</summary>
+
+````text
+1	# Narrative Audit: 13 Negative Experiments vs 7 Successes — Framing Check
+2	
+3	> Date: 2026-05-16
+4	> Paper framing: **B — Diagnostic paper (CIVO identification + SGS as informative negative)**
+5	> Core story: trained dt_embedding + multi-rate data → CIVO → stochastic collapse
+6	
+7	---
+8	
+9	## 1. Experiment Role Classification
+10	
+11	### 1.1 Successful Experiments (7)
+12	
+13	| Exp ID | Role in Story | What It Establishes |
+14	|--------|--------------|---------------------|
+15	| exp_001 (baseline) | Reference anchor | Healthy v/e dynamics at dt=1; calibration standard for NVE |
+16	| exp_008a (unexposed emb) | Causal control for F3 | Trained embedding without multi-rate exposure does NOT trigger CIVO → multi-rate data is a necessary co-factor |
+17	| exp_008e_v3_s1 | Partial mitigation / F6 setup | dt=1 imagination CAN prevent CIVO in some seeds → but only partial (setup for s2 failure) |
+18	| exp_008f (no dt_emb) | **Core causal ablation** for F2 | Removing dt_embedding eliminates CIVO entirely (NVE ≤1.02x) → dt_emb is causally necessary |
+19	| exp_009a (baseline s2) | Seed fragility control | Baseline stable at seed 2 → 008e_v3_s2 collapse is config-caused, not seed-caused |
+20	| RSSM fidelity analysis | Mechanism evidence | 2.78x reward gap quantifies the asymmetric fidelity that enables critic exploitation |
+21	| exp_008e_v3 (original s0) | Same as s1 above | Additional seed confirming dt=1 imag health |
+22	
+23	### 1.2 Negative Experiments — Narrative Roles
+24	
+25	| # | Exp ID | Conclusion | Narrative Role | Alternative Hypothesis Excluded | Currently in Paper? |
+26	|---|--------|-----------|----------------|-------------------------------|-------------------|
+27	| 1 | exp_005 (learned gate) | negative | F1: Universal failure | "Learned gating could adaptively avoid bad dt" — NO, gate collapses too | ✅ results.tex F1 |
+28	| 2 | exp_006 (fixed dt=2) | negative | F1 + F4: Quantifies dt magnitude effect | "Gate learning mechanism is the problem" — NO, fixed dt also fails | ✅ results.tex F1, F4 |
+29	| 3 | exp_007 (fixed dt=4) | negative | F1 + F4: Monotonic degradation | "dt=2 is a special case" — NO, dt=4 is worse (monotonic) | ✅ results.tex F1, F4 |
+30	| 4 | exp_008c (unexposed, H=8) | negative | F3/F5: Horizon effect | "H=15 compounding error causes failure in 008a" — PARTIALLY (008c worse than 008a) | ✅ results.tex F3 (brief) |
+31	| 5 | exp_008d (trained emb, sub ON) | negative | **F2: Core CIVO demonstration** | N/A — this IS the disease, not exclusion | ✅ results.tex F2 (primary) |
+32	| 6 | exp_008e_v3_s2 | negative | **F6: Pathway B discovery** | "dt=1 imagination is a complete fix" — NO, non-CIVO pathway exists | ✅ results.tex F6 |
+33	| 7 | exp_009b (008d s2) | negative (transient) | F2: Stochastic outcomes | "CIVO always causes full collapse" — NO, self-correction possible | ✅ results.tex F2 (Table 3) |
+34	| 8 | exp_009c (008f s2) | negative (declining) | F5: Cross-seed variance control | "008f is always healthy" — NO, variance exists but NVE stays <1.5x → NOT CIVO | ✅ results.tex F5 (brief) |
+35	| 9 | exp_009e (008d s1 extended) | negative (oscillatory) | F2: Third outcome mode | "Post-CIVO is binary (collapse or not)" — NO, oscillatory regime exists | ✅ results.tex F2 (Table 3) |
+36	| 10 | exp_015b (frozen dt_emb) | negative (grad starvation) | F3: Trainability is necessary | "dt_emb presence (not training) causes CIVO" — NO, frozen emb never triggers CIVO | ✅ results.tex F3 |
+37	| 11 | **exp_016e (SGS/reward detach)** | negative (no-op) | **Gradient decomposition finding** | "Reward head gradient drives dt_emb → stop it to fix CIVO" — NO, reward gradient = 0 by architecture | ❌ **NOT IN RESULTS/ANALYSIS** |
+38	| 12 | exp_016a-d (SGS retries) | failed (technical) | Implementation iterations | N/A — technical failures leading to 016e | ❌ Not needed in paper |
+39	| 13 | exp_017 (subsample OFF + trained) | killed (duplicate) | Cancelled — identical to 008a | N/A — design error, 008a already covers this cell | ❌ Correctly excluded |
+40	
+41	### 1.3 Pending/Queued Experiments (not in current narrative)
+42	
+43	| Exp ID | Intended Role | Status |
+44	|--------|--------------|--------|
+45	| exp_018 (Full-SGS) | Test obs-decoder gradient pathway | QUEUED — would validate gradient decomposition |
+46	| exp_010a (Cheetah baseline) | Cross-environment generalization | RUNNING |
+47	| exp_019a/b (PickCube) | Cross-task generalization | QUEUED |
+48	
+49	---
+50	
+51	## 2. Narrative Coherence Assessment
+52	
+53	### 2.1 Current Story Arc (as written in tex files)
+54	
+55	```
+56	F1: All dt>1 configs fail
+57	  → "Why?" motivates factorial
+58	F2: Trained dt_emb = causal factor (008d vs 008f)
+59	  → NVE ≥ 1.5x diagnostic, 7/8 accuracy
+60	  → Stochastic outcomes (3 post-CIVO modes)
+61	F3: Unexposed/frozen embedding = safe
+62	  → Dual necessary condition: trained + multi-rate exposure
+63	F4: Degradation ∝ dt magnitude
+64	F5: Horizon/subsample secondary
+65	F6: dt=1 imagination ≠ complete fix
+66	  → Pathway B (non-CIVO, entropy-increasing)
+67	  → Trained dt_emb creates multiple vulnerability channels
+68	```
+69	
+70	**Verdict:** The arc from F1→F6 is logically coherent and well-structured as a causal diagnostic. The analysis section correctly synthesizes the mechanism (RSSM fidelity → critic exploitation → actor feedback loop) and contrasts with TAWM (MPC immunity).
+71	
+72	### 2.2 Missing Narrative Links
+73	
+74	#### GAP 1 (P0): 016e / Gradient Decomposition — NOT IN PAPER
+75	
+76	**What's missing:** The gradient decomposition finding (obs decoders 93%, KL 7%, reward 0%) and 016e's no-op result are the **strongest evidence for understanding WHY the causal mechanism works** — but they appear NOWHERE in results.tex or analysis.tex.
+77	
+78	**Impact on story:**
+79	- Without this, the paper shows dt_emb causes CIVO but doesn't explain *through which gradient pathway*
+80	- The conclusion mentions "gradient stopping" as future work — but 016e already shows reward-only SGS is a no-op!
+81	- This creates an internal contradiction: the factorial table (methodology.tex line 55-56) lists 016e and 018, but results never discuss them
+82	
+83	**Narrative role of 016e:** It should be **Finding 7** — "The reward pathway is an architectural null: gradient decomposition reveals that 93% of dt_emb gradients flow through observation decoders, making reward-only stop-gradient (016e) a no-op. This redirects future intervention to the obs decoder pathway (018)."
+84	
+85	**Alternative hypothesis excluded:** "Reward head gradient to dt_emb is the CIVO driver, so blocking it (SGS) should prevent CIVO."
+86	
+87	#### GAP 2 (P1): Conclusion's "gradient stopping" suggestion conflicts with 016e
+88	
+89	**Current conclusion.tex line 20:** "regularization of the dt-embedding (e.g., gradient stopping or spectral normalization) could potentially preserve the temporal signal while preventing co-adaptation with the reward head"
+90	
+91	**Problem:** This implies SGS is untested future work. But 016e already tested reward-only SGS and proved it's a no-op. The conclusion should:
+92	1. State that reward-pathway SGS is empirically confirmed as a no-op (016e)
+93	2. Redirect to full-SGS (018, obs decoder pathway) as the correct gradient-level intervention
+94	3. Frame 018 (queued) as the open question, not generic "gradient stopping"
+95	
+96	#### GAP 3 (P1): 015b's gradient starvation mechanism underdeveloped
+97	
+98	**Current treatment:** F3 mentions 015b's "gradient starvation (actor loss → 0)" in one sentence. The analysis section doesn't discuss WHY frozen embedding causes gradient starvation or what this tells us about the role of dt_emb gradients in the broader training loop.
+99	
+100	**Narrative opportunity:** 015b's gradient starvation + 016e's no-op together paint a picture: dt_emb gradients are overwhelmingly from obs decoders. Freezing dt_emb removes ALL these gradients (starvation). Detaching only reward gradients removes 0% (no-op). This triangulation is currently invisible in the paper.
+101	
+102	#### GAP 4 (P2): 009c's narrative role is vague
+103	
+104	**Current:** F5 mentions 009c briefly as cross-seed variance. But 009c (008f seed 2, NVE=1.14x, eval declining to 148) is important because it shows that removing dt_emb doesn't guarantee good performance — it just eliminates CIVO specifically. The paper could be clearer that 008f/009c's low performance has a different cause (degraded reward prediction quality: 0.7469 MAE) than 008d's collapse.
+105	
+106	---
+107	
+108	## 3. Alternative Hypotheses — Coverage Check
+109	
+110	| Alternative Hypothesis | Excluded By | In Paper? | Clarity |
+111	|----------------------|-------------|-----------|---------|
+112	| "Learned gating mechanism is the problem" | 006 (fixed dt=2 also fails) | ✅ F1 | Clear |
+113	| "Only large dt fails (dt=2 might be fine)" | 006 fails at dt=2 | ✅ F1, F4 | Clear |
+114	| "dt_emb architecture alone causes CIVO" | 008a (trained but unexposed = healthy) | ✅ F3 | Clear |
+115	| "Multi-rate data alone causes CIVO" | 008f (no emb + sub ON = healthy) | ✅ F2 | Clear |
+116	| "dt_emb presence (not trainability) is sufficient" | 015b (frozen = no CIVO) | ✅ F3 | Clear |
+117	| "CIVO always leads to full collapse" | 009b (transient, self-corrects) | ✅ F2 | Clear |
+118	| "dt=1 imagination fully prevents collapse" | 008e_v3_s2 (collapses anyway) | ✅ F6 | Clear |
+119	| "008e_v3_s2 collapse is seed fragility" | 009a (baseline s2 stable) | ✅ F6 | Clear |
+120	| "Reward head gradient drives dt_emb training → block it to fix CIVO" | 016e (no-op, reward grad = 0) | ❌ **NOT IN PAPER** | **MISSING** |
+121	| "dt-conditioning is inherently broken (not architecture-specific)" | TAWM contrast (succeeds in MPC) | ✅ Analysis §5.3 | Clear |
+122	| "Compounding error alone explains failure" | 008c vs 008a (horizon matters, but 008a still works at H=15) | ✅ F3/F5 | Moderate |
+123	| "All dt_emb configurations have same failure mode" | 008e_v3_s2 Pathway B ≠ 008d Pathway A | ✅ F6 | Clear |
+124	
+125	**One critical hypothesis is NOT excluded in the paper text:** the reward-pathway hypothesis (016e). This is the single biggest narrative gap.
+126	
+127	---
+128	
+129	## 4. Narrative Weak Points — Prioritized
+130	
+131	### Critical (blocks Framing B coherence)
+132	
+133	1. **016e results absent from paper** — The gradient decomposition is a defining contribution of Framing B. Without it, the paper identifies WHAT causes CIVO (trained dt_emb + multi-rate data) but cannot explain THROUGH WHICH PATHWAY dt_emb's training drives the problem. The causal story stops one level short.
+134	
+135	2. **Conclusion contradicts known results** — Suggesting "gradient stopping" as future work when 016e already proves reward-only SGS is a no-op is internally inconsistent. A reviewer would immediately ask "did you try it?"
+136	
+137	### Important (strengthens narrative)
+138	
+139	3. **015b + 016e triangulation not synthesized** — These two experiments together prove: (a) dt_emb gradients are overwhelmingly from obs decoders, (b) removing all gradients (freeze) → starvation, (c) removing reward-only gradients → no-op. This triangulation is powerful but invisible.
+140	
+141	4. **No explicit "failed mitigation" subsection** — Framing B positions negative results as diagnostic evidence, but the paper currently lacks a section that frames 016e's failure as informative (analogous to how F6 frames 008e_v3_s2's failure).
+142	
+143	### Minor (polish)
+144	
+145	5. **methodology.tex lists 016e and 018 in factorial table but results never discuss them** — creates expectation violation for readers.
+146	
+147	6. **009c's distinct failure mode (low absolute reward prediction) vs 008d's CIVO** — could be more explicit about why NVE < 1.5x + low eval ≠ CIVO.
+148	
+149	---
+150	
+151	## 5. Recommendations
+152	
+153	### R1: Add F7 (Gradient Decomposition) to results.tex
+154	
+155	Content:
+156	- 016e result: collapse at 95K (NVE=10.42x), indistinguishable from 008d stochastic variation
+157	- Gradient analysis: obs decoders 93% (1.505), KL 7% (0.119), reward 0% (0.000)
+158	- Interpretation: reward-only SGS is architectural no-op
+159	- Implication: obs decoder pathway is the actual gradient channel for dt_emb training
+160	
+161	### R2: Add gradient decomposition discussion to analysis.tex
+162	
+163	After §5.4 "The dt-Embedding Dilemma":
+164	- New subsection: "Gradient Anatomy of the Temporal Embedding"
+165	- Explain WHY obs decoders dominate: dt_emb conditions RSSM state → state predicts observations → obs reconstruction loss backpropagates through dt_emb
+166	- Explain WHY reward = 0: reward head is small relative to obs heads; or reward prediction is too easy
+167	- Connect to 015b: freezing removes obs decoder gradients → gradient starvation
+168	- Frame 018 (full-SGS) as the principled next test
+169	
+170	### R3: Update conclusion.tex
+171	
+172	Replace "gradient stopping or spectral normalization" with:
+173	- "Reward-pathway stop-gradient is empirically confirmed as a no-op (016e); gradient decomposition shows that observation decoders provide 93% of dt_emb's training signal. Full stop-gradient (018, detaching all non-KL gradients) targets the correct pathway and is pending evaluation."
+174	
+175	### R4: Synthesize 015b + 016e as complementary gradient evidence
+176	
+177	In F3 or the new F7, explicitly state:
+178	- 015b (freeze all → starvation, NVE safe) + 016e (block reward only → no-op, NVE pathological) = the gradient source is obs decoders, not reward
+179	- This convergent evidence from two independent experiments strengthens the conclusion
+180	
+181	---
+182	
+183	## 6. Summary Assessment
+184	
+185	| Dimension | Score | Notes |
+186	|-----------|-------|-------|
+187	| Causal chain coherence (F1→F6) | 9/10 | Excellent logical flow from discovery to diagnosis |
+188	| Alternative hypothesis coverage | 8/10 | One critical hypothesis (reward pathway) not excluded in paper |
+189	| Negative results framing | 7/10 | Most negatives well-framed as diagnostic evidence; 016e completely missing |
+190	| Internal consistency | 6/10 | Conclusion contradicts available evidence; factorial table promises results not delivered |
+191	| Story completeness for Framing B | 7/10 | Missing the gradient decomposition that defines Framing B's unique contribution |
+192	
+193	**Bottom line:** The paper's F1-F6 structure is strong and the narrative is coherent — each negative result clearly serves a diagnostic purpose. The single critical gap is the **absence of 016e and gradient decomposition** from the written paper. This is not a minor omission — Framing B's reaudit document identifies it as the defining P0 contribution that distinguishes this paper from a generic "we tried X and it failed" story. Adding F7 (gradient decomposition) and R2-R4 would close the narrative loop and make the diagnostic argument complete.
+194	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "c1ad11f0-cf35-4fc4-aa57-a991c6a61223",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/narrative_audit.md",
+      "content": "# Narrative Audit: 13 Negative Experiments vs 7 Successes — Framing Check\n\n> Date: 2026-05-16\n> Paper framing: **B — Diagnostic paper (CIVO identification + SGS as informative negative)**\n> Core story: trained dt_embedding + multi-rate data → CIVO → stochastic collapse\n\n---\n\n## 1. Experiment Role Classification\n\n### 1.1 Successful Experiments (7)\n\n| Exp ID | Role in Story | What It Establishes |\n|--------|--------------|---------------------|\n| exp_001 (baseline) | Reference anchor | Healthy v/e dynamics at dt=1; calibration standard for NVE |\n| exp_008a (unexposed emb) | Causal control for F3 | Trained embedding without multi-rate exposure does NOT trigger CIVO → multi-rate data is a necessary co-factor |\n| exp_008e_v3_s1 | Partial mitigation / F6 setup | dt=1 imagination CAN prevent CIVO in some seeds → but only partial (setup for s2 failure) |\n| exp_008f (no dt_emb) | **Core causal ablation** for F2 | Removing dt_embedding eliminates CIVO entirely (NVE ≤1.02x) → dt_emb is causally necessary |\n| exp_009a (baseline s2) | Seed fragility control | Baseline stable at seed 2 → 008e_v3_s2 collapse is config-caused, not seed-caused |\n| RSSM fidelity analysis | Mechanism evidence | 2.78x reward gap quantifies the asymmetric fidelity that enables critic exploitation |\n| exp_008e_v3 (original s0) | Same as s1 above | Additional seed confirming dt=1 imag health |\n\n### 1.2 Negative Experiments — Narrative Roles\n\n| # | Exp ID | Conclusion | Narrative Role | Alternative Hypothesis Excluded | Currently in Paper? |\n|---|--------|-----------|----------------|-------------------------------|-------------------|\n| 1 | exp_005 (learned gate) | negative | F1: Universal failure | \"Learned gating could adaptively avoid bad dt\" — NO, gate collapses too | ✅ results.tex F1 |\n| 2 | exp_006 (fixed dt=2) | negative | F1 + F4: Quantifies dt magnitude effect | \"Gate learning mechanism is the problem\" — NO, fixed dt also fails | ✅ results.tex F1, F4 |\n| 3 | exp_007 (fixed dt=4) | negative | F1 + F4: Monotonic degradation | \"dt=2 is a special case\" — NO, dt=4 is worse (monotonic) | ✅ results.tex F1, F4 |\n| 4 | exp_008c (unexposed, H=8) | negative | F3/F5: Horizon effect | \"H=15 compounding error causes failure in 008a\" — PARTIALLY (008c worse than 008a) | ✅ results.tex F3 (brief) |\n| 5 | exp_008d (trained emb, sub ON) | negative | **F2: Core CIVO demonstration** | N/A — this IS the disease, not exclusion | ✅ results.tex F2 (primary) |\n| 6 | exp_008e_v3_s2 | negative | **F6: Pathway B discovery** | \"dt=1 imagination is a complete fix\" — NO, non-CIVO pathway exists | ✅ results.tex F6 |\n| 7 | exp_009b (008d s2) | negative (transient) | F2: Stochastic outcomes | \"CIVO always causes full collapse\" — NO, self-correction possible | ✅ results.tex F2 (Table 3) |\n| 8 | exp_009c (008f s2) | negative (declining) | F5: Cross-seed variance control | \"008f is always healthy\" — NO, variance exists but NVE stays <1.5x → NOT CIVO | ✅ results.tex F5 (brief) |\n| 9 | exp_009e (008d s1 extended) | negative (oscillatory) | F2: Third outcome mode | \"Post-CIVO is binary (collapse or not)\" — NO, oscillatory regime exists | ✅ results.tex F2 (Table 3) |\n| 10 | exp_015b (frozen dt_emb) | negative (grad starvation) | F3: Trainability is necessary | \"dt_emb presence (not training) causes CIVO\" — NO, frozen emb never triggers CIVO | ✅ results.tex F3 |\n| 11 | **exp_016e (SGS/reward detach)** | negative (no-op) | **Gradient decomposition finding** | \"Reward head gradient drives dt_emb → stop it to fix CIVO\" — NO, reward gradient = 0 by architecture | ❌ **NOT IN RESULTS/ANALYSIS** |\n| 12 | exp_016a-d (SGS retries) | failed (technical) | Implementation iterations | N/A — technical failures leading to 016e | ❌ Not needed in paper |\n| 13 | exp_017 (subsample OFF + trained) | killed (duplicate) | Cancelled — identical to 008a | N/A — design error, 008a already covers this cell | ❌ Correctly excluded |\n\n### 1.3 Pending/Queued Experiments (not in current narrative)\n\n| Exp ID | Intended Role | Status |\n|--------|--------------|--------|\n| exp_018 (Full-SGS) | Test obs-decoder gradient pathway | QUEUED — would validate gradient decomposition |\n| exp_010a (Cheetah baseline) | Cross-environment generalization | RUNNING |\n| exp_019a/b (PickCube) | Cross-task generalization | QUEUED |\n\n---\n\n## 2. Narrative Coherence Assessment\n\n### 2.1 Current Story Arc (as written in tex files)\n\n```\nF1: All dt>1 configs fail\n  → \"Why?\" motivates factorial\nF2: Trained dt_emb = causal factor (008d vs 008f)\n  → NVE ≥ 1.5x diagnostic, 7/8 accuracy\n  → Stochastic outcomes (3 post-CIVO modes)\nF3: Unexposed/frozen embedding = safe\n  → Dual necessary condition: trained + multi-rate exposure\nF4: Degradation ∝ dt magnitude\nF5: Horizon/subsample secondary\nF6: dt=1 imagination ≠ complete fix\n  → Pathway B (non-CIVO, entropy-increasing)\n  → Trained dt_emb creates multiple vulnerability channels\n```\n\n**Verdict:** The arc from F1→F6 is logically coherent and well-structured as a causal diagnostic. The analysis section correctly synthesizes the mechanism (RSSM fidelity → critic exploitation → actor feedback loop) and contrasts with TAWM (MPC immunity).\n\n### 2.2 Missing Narrative Links\n\n#### GAP 1 (P0): 016e / Gradient Decomposition — NOT IN PAPER\n\n**What's missing:** The gradient decomposition finding (obs decoders 93%, KL 7%, reward 0%) and 016e's no-op result are the **strongest evidence for understanding WHY the causal mechanism works** — but they appear NOWHERE in results.tex or analysis.tex.\n\n**Impact on story:**\n- Without this, the paper shows dt_emb causes CIVO but doesn't explain *through which gradient pathway*\n- The conclusion mentions \"gradient stopping\" as future work — but 016e already shows reward-only SGS is a no-op!\n- This creates an internal contradiction: the factorial table (methodology.tex line 55-56) lists 016e and 018, but results never discuss them\n\n**Narrative role of 016e:** It should be **Finding 7** — \"The reward pathway is an architectural null: gradient decomposition reveals that 93% of dt_emb gradients flow through observation decoders, making reward-only stop-gradient (016e) a no-op. This redirects future intervention to the obs decoder pathway (018).\"\n\n**Alternative hypothesis excluded:** \"Reward head gradient to dt_emb is the CIVO driver, so blocking it (SGS) should prevent CIVO.\"\n\n#### GAP 2 (P1): Conclusion's \"gradient stopping\" suggestion conflicts with 016e\n\n**Current conclusion.tex line 20:** \"regularization of the dt-embedding (e.g., gradient stopping or spectral normalization) could potentially preserve the temporal signal while preventing co-adaptation with the reward head\"\n\n**Problem:** This implies SGS is untested future work. But 016e already tested reward-only SGS and proved it's a no-op. The conclusion should:\n1. State that reward-pathway SGS is empirically confirmed as a no-op (016e)\n2. Redirect to full-SGS (018, obs decoder pathway) as the correct gradient-level intervention\n3. Frame 018 (queued) as the open question, not generic \"gradient stopping\"\n\n#### GAP 3 (P1): 015b's gradient starvation mechanism underdeveloped\n\n**Current treatment:** F3 mentions 015b's \"gradient starvation (actor loss → 0)\" in one sentence. The analysis section doesn't discuss WHY frozen embedding causes gradient starvation or what this tells us about the role of dt_emb gradients in the broader training loop.\n\n**Narrative opportunity:** 015b's gradient starvation + 016e's no-op together paint a picture: dt_emb gradients are overwhelmingly from obs decoders. Freezing dt_emb removes ALL these gradients (starvation). Detaching only reward gradients removes 0% (no-op). This triangulation is currently invisible in the paper.\n\n#### GAP 4 (P2): 009c's narrative role is vague\n\n**Current:** F5 mentions 009c briefly as cross-seed variance. But 009c (008f seed 2, NVE=1.14x, eval declining to 148) is important because it shows that removing dt_emb doesn't guarantee good performance — it just eliminates CIVO specifically. The paper could be clearer that 008f/009c's low performance has a different cause (degraded reward prediction quality: 0.7469 MAE) than 008d's collapse.\n\n---\n\n## 3. Alternative Hypotheses — Coverage Check\n\n| Alternative Hypothesis | Excluded By | In Paper? | Clarity |\n|----------------------|-------------|-----------|---------|\n| \"Learned gating mechanism is the problem\" | 006 (fixed dt=2 also fails) | ✅ F1 | Clear |\n| \"Only large dt fails (dt=2 might be fine)\" | 006 fails at dt=2 | ✅ F1, F4 | Clear |\n| \"dt_emb architecture alone causes CIVO\" | 008a (trained but unexposed = healthy) | ✅ F3 | Clear |\n| \"Multi-rate data alone causes CIVO\" | 008f (no emb + sub ON = healthy) | ✅ F2 | Clear |\n| \"dt_emb presence (not trainability) is sufficient\" | 015b (frozen = no CIVO) | ✅ F3 | Clear |\n| \"CIVO always leads to full collapse\" | 009b (transient, self-corrects) | ✅ F2 | Clear |\n| \"dt=1 imagination fully prevents collapse\" | 008e_v3_s2 (collapses anyway) | ✅ F6 | Clear |\n| \"008e_v3_s2 collapse is seed fragility\" | 009a (baseline s2 stable) | ✅ F6 | Clear |\n| \"Reward head gradient drives dt_emb training → block it to fix CIVO\" | 016e (no-op, reward grad = 0) | ❌ **NOT IN PAPER** | **MISSING** |\n| \"dt-conditioning is inherently broken (not architecture-specific)\" | TAWM contrast (succeeds in MPC) | ✅ Analysis §5.3 | Clear |\n| \"Compounding error alone explains failure\" | 008c vs 008a (horizon matters, but 008a still works at H=15) | ✅ F3/F5 | Moderate |\n| \"All dt_emb configurations have same failure mode\" | 008e_v3_s2 Pathway B ≠ 008d Pathway A | ✅ F6 | Clear |\n\n**One critical hypothesis is NOT excluded in the paper text:** the reward-pathway hypothesis (016e). This is the single biggest narrative gap.\n\n---\n\n## 4. Narrative Weak Points — Prioritized\n\n### Critical (blocks Framing B coherence)\n\n1. **016e results absent from paper** — The gradient decomposition is a defining contribution of Framing B. Without it, the paper identifies WHAT causes CIVO (trained dt_emb + multi-rate data) but cannot explain THROUGH WHICH PATHWAY dt_emb's training drives the problem. The causal story stops one level short.\n\n2. **Conclusion contradicts known results** — Suggesting \"gradient stopping\" as future work when 016e already proves reward-only SGS is a no-op is internally inconsistent. A reviewer would immediately ask \"did you try it?\"\n\n### Important (strengthens narrative)\n\n3. **015b + 016e triangulation not synthesized** — These two experiments together prove: (a) dt_emb gradients are overwhelmingly from obs decoders, (b) removing all gradients (freeze) → starvation, (c) removing reward-only gradients → no-op. This triangulation is powerful but invisible.\n\n4. **No explicit \"failed mitigation\" subsection** — Framing B positions negative results as diagnostic evidence, but the paper currently lacks a section that frames 016e's failure as informative (analogous to how F6 frames 008e_v3_s2's failure).\n\n### Minor (polish)\n\n5. **methodology.tex lists 016e and 018 in factorial table but results never discuss them** — creates expectation violation for readers.\n\n6. **009c's distinct failure mode (low absolute reward prediction) vs 008d's CIVO** — could be more explicit about why NVE < 1.5x + low eval ≠ CIVO.\n\n---\n\n## 5. Recommendations\n\n### R1: Add F7 (Gradient Decomposition) to results.tex\n\nContent:\n- 016e result: collapse at 95K (NVE=10.42x), indistinguishable from 008d stochastic variation\n- Gradient analysis: obs decoders 93% (1.505), KL 7% (0.119), reward 0% (0.000)\n- Interpretation: reward-only SGS is architectural no-op\n- Implication: obs decoder pathway is the actual gradient channel for dt_emb training\n\n### R2: Add gradient decomposition discussion to analysis.tex\n\nAfter §5.4 \"The dt-Embedding Dilemma\":\n- New subsection: \"Gradient Anatomy of the Temporal Embedding\"\n- Explain WHY obs decoders dominate: dt_emb conditions RSSM state → state predicts observations → obs reconstruction loss backpropagates through dt_emb\n- Explain WHY reward = 0: reward head is small relative to obs heads; or reward prediction is too easy\n- Connect to 015b: freezing removes obs decoder gradients → gradient starvation\n- Frame 018 (full-SGS) as the principled next test\n\n### R3: Update conclusion.tex\n\nReplace \"gradient stopping or spectral normalization\" with:\n- \"Reward-pathway stop-gradient is empirically confirmed as a no-op (016e); gradient decomposition shows that observation decoders provide 93% of dt_emb's training signal. Full stop-gradient (018, detaching all non-KL gradients) targets the correct pathway and is pending evaluation.\"\n\n### R4: Synthesize 015b + 016e as complementary gradient evidence\n\nIn F3 or the new F7, explicitly state:\n- 015b (freeze all → starvation, NVE safe) + 016e (block reward only → no-op, NVE pathological) = the gradient source is obs decoders, not reward\n- This convergent evidence from two independent experiments strengthens the conclusion\n\n---\n\n## 6. Summary Assessment\n\n| Dimension | Score | Notes |\n|-----------|-------|-------|\n| Causal chain coherence (F1→F6) | 9/10 | Excellent logical flow from discovery to diagnosis |\n| Alternative hypothesis coverage | 8/10 | One critical hypothesis (reward pathway) not excluded in paper |\n| Negative results framing | 7/10 | Most negatives well-framed as diagnostic evidence; 016e completely missing |\n| Internal consistency | 6/10 | Conclusion contradicts available evidence; factorial table promises results not delivered |\n| Story completeness for Framing B | 7/10 | Missing the gradient decomposition that defines Framing B's unique contribution |\n\n**Bottom line:** The paper's F1-F6 structure is strong and the narrative is coherent — each negative result clearly serves a diagnostic purpose. The single critical gap is the **absence of 016e and gradient decomposition** from the written paper. This is not a minor omission — Framing B's reaudit document identifies it as the defining P0 contribution that distinguishes this paper from a generic \"we tried X and it failed\" story. Adding F7 (gradient decomposition) and R2-R4 would close the narrative loop and make the diagnostic argument complete.\n",
+      "numLines": 194,
+      "startLine": 1,
+      "totalLines": 194
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wej4zBGVU2m7wwEcnfgBnb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "e7fcd195-e563-4aef-b9f7-a7734411e4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Uxuru9Yd86WDc1yAtpRqf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13655,
+      "cache_read_input_tokens": 24973,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13655
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T07:52:20.456Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Wej4zBGVU2m7wwEcnfgBnb`</summary>
+
+```text
+File content (46721 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "93f43ab1-ba31-4035-91f9-2e26fcf1ffba",
+  "tool_use_result": "Error: File content (46721 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry file is too large. Let me read it in chunks or use bash with jq to extract the relevant experiments. Let me use bash with jq to parse the JSON and get the data I need for each experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "5d560f6d-8f81-4f1f-9d3a-e53c67f1c0a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvQGjNqA6WV7pt2sku3HDf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11486,
+      "cache_read_input_tokens": 38628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Let me extract the registry data in a structured way.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "7d997a0f-5dcc-4339-8b1c-dd7eecc927a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvQGjNqA6WV7pt2sku3HDf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11486,
+      "cache_read_input_tokens": 38628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01URgXz8hfgwHEw3jxbpfyxM`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result.get('experiments', result) if isinstance(result, dict) else result\nfor exp in exps:\n    eid = exp.get('exp_id', 'unknown')\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid} | status={status} | conclusion={conclusion} | metrics={json.dumps(metrics)[:200]}')\n\"",
+  "description": "Extract experiment IDs, status, conclusions, and metrics from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "163e3012-9849-432a-b4d8-d99febfe726c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvQGjNqA6WV7pt2sku3HDf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11486,
+      "cache_read_input_tokens": 38628,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11486
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T07:52:31.860Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01URgXz8hfgwHEw3jxbpfyxM`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    eid = exp.get('exp_id', 'unknown')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "42df2521-7f3e-4ad9-aea0-694d15d9ea5a",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    eid = exp.get('exp_id', 'unknown')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01N9DTnC4FU9qtHmA9aGBWtj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "6ab5dbd4-7546-412e-8376-4164d8e97567",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WfqsZHdHV3Z7G3xryhgZzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 50114,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T07:52:35.975Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01N9DTnC4FU9qtHmA9aGBWtj`</summary>
+
+```text
+File content (46721 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "0fd9e0da-b2d0-4057-8751-b0aee2fcf083",
+  "tool_use_result": "Error: File content (46721 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FTrUZ8quDQNW3qyT4tp3rp`</summary>
+
+```json
+{
+  "command": "head -c 2000 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt",
+  "description": "Check registry file format"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "e0ff6555-2335-44d7-a17d-e4bb4c82d14b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015H3dm2DfChQQv6H8P4njc5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 327,
+      "cache_read_input_tokens": 50596,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 327
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T07:52:40.153Z_
+
+<details><summary>↩ Tool result · `toolu_01FTrUZ8quDQNW3qyT4tp3rp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_010a_cheetah_baseline_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:27.101Z\", \"updated_at\": \"2026-05-16T06:39:47.354Z\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"submitted_at\": \"2026-05-15T22:48:07.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:48:05.456Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\"}, \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"metrics\": {\"step\": 312000, \"eval_return\":
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "f8f4b6f0-d1a7-427c-90cd-3108e85bd876",
+  "tool_use_result": {
+    "stdout": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_010a_cheetah_baseline_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:17:27.101Z\\\", \\\"updated_at\\\": \\\"2026-05-16T06:39:47.354Z\\\", \\\"hypothesis\\\": \\\"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\\\", \\\"notes\\\": \\\"Director 排期: cuda:0 上排在 009d 之后。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"536890\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T22:48:07.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T22:48:05.456Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\\\\\"\\\", \\\"code_commit\\\": \\\"dccb867841046bf6dc7dcc654ea71f99e1181828\\\"}, \\\"pid\\\": \\\"536890\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\\\", \\\"metrics\\\": {\\\"step\\\": 312000, \\\"eval_return\\\":",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0196CU1XAp66oq85CWi9mv6T`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/e0f05abb-f81a-4392-a307-e582f9273f8c/tool-results/mcp-agent-ml-research-read_registry-1778917930537.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nfor eid, exp in exps.items():\n    status = exp.get('status', '')\n    conclusion = exp.get('conclusion', '')\n    metrics = exp.get('metrics', {})\n    eval_ret = metrics.get('eval_return', 'N/A')\n    step = metrics.get('step', 'N/A')\n    nve = metrics.get('nve', metrics.get('normalized_ve', 'N/A'))\n    print(f'{eid} | status={status} | conclusion={conclusion} | eval={eval_ret}@{step} | nve={nve}')\n\" 2>&1",
+  "description": "Parse registry JSON and extract key fields per experiment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "ad6f4437-d184-4052-8d10-096d47a05838",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9XEH6uL5AUqSwUccqYC5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 50923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1018
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T07:52:46.350Z_
+
+<details><summary>↩ Tool result · `toolu_0196CU1XAp66oq85CWi9mv6T`</summary>
+
+```text
+exp_010a_cheetah_baseline_s1 | status=RUNNING | conclusion= | eval=657.9@312000 | nve=N/A
+exp_009d_baseline_walker_s0 | status=RUNNING | conclusion= | eval=911.9@436000 | nve=N/A
+exp_017_subsample_off_trained_dt_emb | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_019b_pickcube_civo_trigger | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A
+exp_019a_pickcube_baseline | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A
+exp_018_full_sgs_walker_s1 | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A
+016e | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_016e_sgs_walker_s1 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_016d_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A
+exp_016c_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@5000 | nve=N/A
+exp_009h_008f_walker_s0 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A
+exp_016b_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A
+exp_009g_008f_walker_s0 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_009f_008f_walker_s1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_016_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A
+exp_015b_frozen_dt_emb | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_008a_no_subsample_dt2 | status=DONE | conclusion=success | eval=N/A@112000 | nve=N/A
+exp_009d_baseline_walker_s1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_009e_008d_walker_s1 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_009a_baseline_walker_s2 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A
+exp_008e_v3_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_001_baseline | status=DONE | conclusion=success | eval=N/A@512000 | nve=N/A
+exp_008e_v3_walker_s1 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A
+exp_006 | status=DONE | conclusion=killed | eval={'5000': 31, '15000': 256.9, '25000': 321.4, '35000': 485.3, '45000': 477, '55000': 360.4}@N/A | nve=N/A
+exp_008a | status=DONE | conclusion=killed | eval=N/A@65000 | nve=N/A
+exp_008c | status=DONE | conclusion=killed | eval=N/A@68000 | nve=N/A
+exp_008d | status=DONE | conclusion=killed | eval=N/A@40000 | nve=N/A
+exp_008e_v2_subsample_on_dt1_h15 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_rssm_fidelity_analysis | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A
+exp_008e_v3_subsample_on_dt1_h15 | status=DONE | conclusion=success | eval={'5K': 31, '15K': 131.2, '25K': 155.69, '35K': 276.47, '45K': 382.22, '55K': 486.84, '65K': 580.67, '75K': 574.09, '85K': 657.31, '95K': 851.86, '105K': 869.88}@N/A | nve={'25K': 1.93, '35K': 0.94, '45K': 0.88, '55K': 0.87, '65K': 0.72, '75K': 0.73, '85K': 0.76, '95K': 0.75, '105K': 0.8}
+exp_009b_008d_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_009c_008f_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_007_fixed_dt4 | status=DONE | conclusion=negative | eval=N/A@48000 | nve=N/A
+exp_006_fixed_dt2 | status=DONE | conclusion=negative | eval=N/A@65000 | nve=N/A
+exp_008d_subsample_on_h8 | status=DONE | conclusion=negative | eval=N/A@55000 | nve=N/A
+exp_008f_no_dt_embed_subsample_on_h8 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A
+exp_008c_no_subsample_dt2_h8 | status=DONE | conclusion=negative | eval=N/A@68000 | nve=N/A
+exp_008e_subsample_on_fixed_dt1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_008e_subsample_on_dt1_h15 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A
+exp_005_event_gated_v4 | status=DONE | conclusion=negative | eval=N/A@145000 | nve=N/A
+exp_004_event_gated_v3 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A
+exp_003_event_gated_v2 | status=DONE | conclusion=negative | eval=N/A@120000 | nve=N/A
+exp_002_event_gated | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "f7481588-b3cc-4ae0-b86a-a817e6572041",
+  "tool_use_result": {
+    "stdout": "exp_010a_cheetah_baseline_s1 | status=RUNNING | conclusion= | eval=657.9@312000 | nve=N/A\nexp_009d_baseline_walker_s0 | status=RUNNING | conclusion= | eval=911.9@436000 | nve=N/A\nexp_017_subsample_off_trained_dt_emb | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_019b_pickcube_civo_trigger | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A\nexp_019a_pickcube_baseline | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A\nexp_018_full_sgs_walker_s1 | status=QUEUED | conclusion= | eval=N/A@N/A | nve=N/A\n016e | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_016e_sgs_walker_s1 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_016d_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A\nexp_016c_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@5000 | nve=N/A\nexp_009h_008f_walker_s0 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A\nexp_016b_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A\nexp_009g_008f_walker_s0 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_009f_008f_walker_s1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_016_sgs_walker_s1 | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A\nexp_015b_frozen_dt_emb | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_008a_no_subsample_dt2 | status=DONE | conclusion=success | eval=N/A@112000 | nve=N/A\nexp_009d_baseline_walker_s1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_009e_008d_walker_s1 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_009a_baseline_walker_s2 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A\nexp_008e_v3_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_001_baseline | status=DONE | conclusion=success | eval=N/A@512000 | nve=N/A\nexp_008e_v3_walker_s1 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A\nexp_006 | status=DONE | conclusion=killed | eval={'5000': 31, '15000': 256.9, '25000': 321.4, '35000': 485.3, '45000': 477, '55000': 360.4}@N/A | nve=N/A\nexp_008a | status=DONE | conclusion=killed | eval=N/A@65000 | nve=N/A\nexp_008c | status=DONE | conclusion=killed | eval=N/A@68000 | nve=N/A\nexp_008d | status=DONE | conclusion=killed | eval=N/A@40000 | nve=N/A\nexp_008e_v2_subsample_on_dt1_h15 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_rssm_fidelity_analysis | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A\nexp_008e_v3_subsample_on_dt1_h15 | status=DONE | conclusion=success | eval={'5K': 31, '15K': 131.2, '25K': 155.69, '35K': 276.47, '45K': 382.22, '55K': 486.84, '65K': 580.67, '75K': 574.09, '85K': 657.31, '95K': 851.86, '105K': 869.88}@N/A | nve={'25K': 1.93, '35K': 0.94, '45K': 0.88, '55K': 0.87, '65K': 0.72, '75K': 0.73, '85K': 0.76, '95K': 0.75, '105K': 0.8}\nexp_009b_008d_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_009c_008f_walker_s2 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_007_fixed_dt4 | status=DONE | conclusion=negative | eval=N/A@48000 | nve=N/A\nexp_006_fixed_dt2 | status=DONE | conclusion=negative | eval=N/A@65000 | nve=N/A\nexp_008d_subsample_on_h8 | status=DONE | conclusion=negative | eval=N/A@55000 | nve=N/A\nexp_008f_no_dt_embed_subsample_on_h8 | status=DONE | conclusion=success | eval=N/A@N/A | nve=N/A\nexp_008c_no_subsample_dt2_h8 | status=DONE | conclusion=negative | eval=N/A@68000 | nve=N/A\nexp_008e_subsample_on_fixed_dt1 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_008e_subsample_on_dt1_h15 | status=DONE | conclusion=killed | eval=N/A@N/A | nve=N/A\nexp_005_event_gated_v4 | status=DONE | conclusion=negative | eval=N/A@145000 | nve=N/A\nexp_004_event_gated_v3 | status=DONE | conclusion=negative | eval=N/A@N/A | nve=N/A\nexp_003_event_gated_v2 | status=DONE | conclusion=negative | eval=N/A@120000 | nve=N/A\nexp_002_event_gated | status=DONE | conclusion=failed | eval=N/A@N/A | nve=N/A",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to write the claim_strength_audit.md document. Let me also extract more detailed metrics for specific experiments from the registry. But I think I have enough from:
+1. The registry output showing all experiments with their status/conclusion
+2. The paper_framing.md with all the detailed claims (C1-C6)
+3. The results.tex showing which experiments are cited and in which findings
+4. The narrative_audit.md which already classifies experiments into negative/successful
+
+Let me now compile the document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "96ad42c9-767f-4e6b-bf44-1394559a404f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fzhMuJYrpu2Js2vnx13wg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2261,
+      "cache_read_input_tokens": 51941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+I have all the information needed. Now I'll compile the claim strength audit document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "19014d07-f1ab-40b5-8fc9-e545c1f78cb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fzhMuJYrpu2Js2vnx13wg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2261,
+      "cache_read_input_tokens": 51941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01Wec7QnZyZDvPUuDjFNLsEj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/claim_strength_audit.md",
+  "content": "# Claim Strength Audit\n\n> Date: 2026-05-16\n> Project: event-gated-adaptive-horizon\n> Claims: C1–C6 (paper_framing.md)\n> Findings: F1–F6 (results.tex)\n\n---\n\n## Part A: Negative Experiments (13)\n\n| # | Exp ID | Conclusion | Alternative Hypothesis Excluded | In results.tex? |\n|---|--------|-----------|--------------------------------|-----------------|\n| 1 | exp_005 (learned gate) | negative — peak 541@55K → collapse 99@145K | \"Learned gating could adaptively avoid bad dt\" → NO, gate collapses too | Y — F1 |\n| 2 | exp_006 (fixed dt=2) | negative — peak 485@35K → collapse 133@65K | \"Gate learning mechanism is the problem\" → NO, fixed dt also fails | Y — F1, F2, F4 |\n| 3 | exp_007 (fixed dt=4) | negative — peak 177@25K, 153@55K | \"dt=2 is a special case\" → NO, dt=4 is worse (monotonic) | Y — F1, F4 |\n| 4 | exp_008c (unexposed, H=8) | negative — eval plateau ~241@65K; NVE=0.58x | \"H=15 compounding error causes failure in 008a\" → PARTIAL (008c worse than 008a at H=8, but never triggers CIVO) | Y — F3 (brief), F5 |\n| 5 | exp_008d (trained emb, sub ON) | negative — eval 167→83@55K; NVE=4.12x | N/A — this IS the core CIVO demonstration, not hypothesis exclusion | Y — F2 (primary), Table 3 |\n| 6 | exp_008e_v3_s2 (non-CIVO collapse) | negative — eval 715@95K→137@105K; NVE=3.78x (eval-driven) | \"dt=1 imagination is a complete fix\" → NO, Pathway B (non-CIVO, entropy ↑) exists | Y — F6 (primary) |\n| 7 | exp_009b (transient CIVO, self-corrected) | negative (transient) — eval 268@105K (rising); NVE peak 1.62x→0.38x | \"CIVO always causes full collapse\" → NO, self-correction possible | Y — F2, Table 3 |\n| 8 | exp_009c (008f s2, declining) | negative — eval 148@105K; NVE=1.14x | \"008f is always healthy\" → NO, variance exists but NVE stays <1.5x → NOT CIVO | Y — F5 (brief) |\n| 9 | exp_009e (008d s1 extended, oscillatory) | negative — eval oscillates 83–250, final 131@105K; NVE=4.12x peak→1.57x final | \"Post-CIVO is binary (collapse or not)\" → NO, oscillatory regime exists | Y — F2, Table 3 |\n| 10 | exp_015b (frozen dt_emb, gradient starvation) | negative — eval 204@105K; NVE=0.47x; actor loss→0 | \"dt_emb presence (not trainability) causes CIVO\" → NO, frozen emb never triggers CIVO | Y — F3 |\n| 11 | exp_016e (reward-only SGS, no-op) | negative — peak 327@75K → collapse 32@95K; NVE=10.42x; reward grad=0 by architecture | \"Reward head gradient drives dt_emb → block it to fix CIVO\" → NO, reward gradient = 0 (obs decoders=93%, KL=7%, reward=0%) | **N** — not in results.tex |\n| 12 | exp_016a-d (SGS retries) | failed (technical) — implementation iterations leading to 016e | N/A — technical failures, no scientific hypothesis tested | N — correctly excluded |\n| 13 | exp_017 (killed, duplicate of 008a) | killed — subsample OFF + trained dt_emb = identical to 008a design | N/A — design error identified before completion; 008a already covers this cell | N — correctly excluded |\n\n---\n\n## Part B: Successful Experiments (7)\n\n| # | Exp ID | Claim Supported | Evidence Provided |\n|---|--------|----------------|-------------------|\n| 1 | exp_001 (baseline) | All claims — reference anchor | Stable convergence 916@105K, 970@505K; v/e calibration standard for NVE normalization (24.1%@35K → 65.6%@105K) |\n| 2 | exp_008a (unexposed emb, healthy) | C3 (untrained prevents drift) | Trained emb but never exposed to dt>1 data → NVE 0.59–0.93x across 105K; two V-recovery cycles; final 778@105K (85% baseline) |\n| 3 | exp_008e_v3_s1 (dt=1 imagination, healthy) | C6 partial (CIVO eliminated in this seed) | Trained dt_emb + subsample ON + dt=1 imagination → eval 870@105K (95% baseline); NVE=0.80x; no CIVO onset |\n| 4 | exp_008f (no dt_emb, causal ablation) | C2 (dt_emb is causally necessary) | dt_embed_dim=0 + subsample ON → NVE=0.97x peak (never >1.5x); V-recovery to 503@105K. Causal direction confirmed: removing dt_emb eliminates CIVO |\n| 5 | exp_009a (baseline s2, seed control) | C6 (rules out seed fragility) | Baseline seed 2 stable at 837@105K (618→596→837); proves 008e_v3_s2 collapse is config-caused |\n| 6 | exp_008e_v3 original s0 | C6 partial (same as s1) | Deterministic reproduction of s1; eval 870@105K; confirms dt=1 imagination health for this seed path |\n| 7 | RSSM fidelity analysis + D061 gradient decomposition | C2 mechanism evidence | Reward gap: 008d=2.78x vs 008f=1.01x (quantifies asymmetric fidelity). Gradient decomposition: obs decoders 93%, KL 7%, reward 0% — identifies gradient pathway |\n\n---\n\n## Part C: Coverage Gaps\n\n### C.1 Negative experiments whose narrative role is unclear or absent in results.tex\n\n| Exp ID | Gap Description | Impact |\n|--------|----------------|--------|\n| **exp_016e** | Gradient decomposition + reward-only SGS no-op result completely absent from results.tex. This is the strongest evidence for HOW the causal mechanism operates (which gradient pathway drives dt_emb training). | **Critical** — blocks \"through which pathway\" explanation. Conclusion.tex suggests \"gradient stopping\" as future work, contradicting known 016e result. Should be F7 or added to Discussion. |\n| exp_016a-d | Technical failures not discussed. | Low — correctly excluded; no scientific content. |\n| exp_017 | Design duplicate, killed. | Low — correctly excluded. |\n\n### C.2 Alternative hypotheses NOT yet excluded by any experiment\n\n| Alternative Hypothesis | Status | What Would Exclude It |\n|------------------------|--------|----------------------|\n| \"Reward head gradient to dt_emb drives CIVO → block it to prevent collapse\" | **Excluded by 016e but NOT written in paper** | Add 016e + gradient decomposition to results or analysis |\n| \"Observation decoder gradient pathway is the true CIVO driver → full SGS prevents collapse\" | **UNTESTED** (exp_018 QUEUED) | exp_018 (full-SGS): detach all non-KL gradients from dt_emb. If CIVO eliminated → confirms obs decoder pathway |\n| \"CIVO is environment-specific to Walker Walk\" | **PARTIALLY TESTED** (exp_010a RUNNING) | exp_010a (Cheetah baseline) + planned Cheetah CIVO trigger experiment |\n| \"Collapse probability for trained dt_emb + dt>1 imag is exactly 50% (not higher)\" | Uncertain — only 2 seeds tested (008d collapse, 009b self-correct) | More seeds (≥5) needed for robust estimate |\n| \"Pathway B (non-CIVO collapse) is specific to dt=1 imagination\" | Untested — only observed in 008e_v3_s2 (dt=1 imag) | Test: trained dt_emb + subsample OFF + dt>1 imag with multiple seeds to see if Pathway B also appears |\n| \"dt=3 follows the monotonic trend (between dt=2 and dt=4)\" | Untested — only dt=2 and dt=4 measured | exp with fixed dt=3 (low priority) |\n\n### C.3 Claim-level coverage summary\n\n| Claim | Negative Exps Supporting | Positive Exps Supporting | Gap? |\n|-------|-------------------------|-------------------------|------|\n| C1 (all dt>1 degrade) | 005, 006, 007 | 001 (anchor) | Cross-environment (010a pending) |\n| C2 (trained dt_emb → NVE>1.5x) | 008d, 009b, 009e, 006 | 008f (causal ablation), RSSM fidelity | 016e excluded from paper text |\n| C3 (untrained prevents drift) | 008c (H=8 version), 015b (frozen) | 008a (primary) | None — strong |\n| C4 (longer dt amplifies) | 006, 007 | 001 (anchor) | Only 2 dt values; no dt=3 |\n| C5 (horizon/subsample secondary) | 008c, 009c | 008a, 008e_v3_s1 | 008c confounded with H — need H=15+sub ON+untrained for clean isolation |\n| C6 (dt=1 imag ≠ complete fix) | 008e_v3_s2 (Pathway B) | 008e_v3_s1, 009a (seed control) | Only 2 seeds; Pathway B mechanism not fully characterized |\n\n---\n\n## Summary\n\n- **12/13** negative experiments have clear narrative roles; **10/13** are cited in results.tex\n- **1 critical gap**: exp_016e (gradient decomposition, reward-only SGS = no-op) is absent from the paper despite being the strongest mechanistic evidence for Framing B\n- **1 untested key hypothesis**: obs decoder pathway as CIVO driver (exp_018, QUEUED)\n- **1 cross-environment gap**: exp_010a RUNNING, needed for Reviewer R1 concern\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "53b30763-1895-4402-b710-3121388f5957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fzhMuJYrpu2Js2vnx13wg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2261,
+      "cache_read_input_tokens": 51941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2261
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T07:54:03.033Z_
+
+<details><summary>↩ Tool result · `toolu_01Wec7QnZyZDvPUuDjFNLsEj`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/claim_strength_audit.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "1af0144a-f63e-4435-8d8d-dacf7e8f3223",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/claim_strength_audit.md",
+    "content": "# Claim Strength Audit\n\n> Date: 2026-05-16\n> Project: event-gated-adaptive-horizon\n> Claims: C1–C6 (paper_framing.md)\n> Findings: F1–F6 (results.tex)\n\n---\n\n## Part A: Negative Experiments (13)\n\n| # | Exp ID | Conclusion | Alternative Hypothesis Excluded | In results.tex? |\n|---|--------|-----------|--------------------------------|-----------------|\n| 1 | exp_005 (learned gate) | negative — peak 541@55K → collapse 99@145K | \"Learned gating could adaptively avoid bad dt\" → NO, gate collapses too | Y — F1 |\n| 2 | exp_006 (fixed dt=2) | negative — peak 485@35K → collapse 133@65K | \"Gate learning mechanism is the problem\" → NO, fixed dt also fails | Y — F1, F2, F4 |\n| 3 | exp_007 (fixed dt=4) | negative — peak 177@25K, 153@55K | \"dt=2 is a special case\" → NO, dt=4 is worse (monotonic) | Y — F1, F4 |\n| 4 | exp_008c (unexposed, H=8) | negative — eval plateau ~241@65K; NVE=0.58x | \"H=15 compounding error causes failure in 008a\" → PARTIAL (008c worse than 008a at H=8, but never triggers CIVO) | Y — F3 (brief), F5 |\n| 5 | exp_008d (trained emb, sub ON) | negative — eval 167→83@55K; NVE=4.12x | N/A — this IS the core CIVO demonstration, not hypothesis exclusion | Y — F2 (primary), Table 3 |\n| 6 | exp_008e_v3_s2 (non-CIVO collapse) | negative — eval 715@95K→137@105K; NVE=3.78x (eval-driven) | \"dt=1 imagination is a complete fix\" → NO, Pathway B (non-CIVO, entropy ↑) exists | Y — F6 (primary) |\n| 7 | exp_009b (transient CIVO, self-corrected) | negative (transient) — eval 268@105K (rising); NVE peak 1.62x→0.38x | \"CIVO always causes full collapse\" → NO, self-correction possible | Y — F2, Table 3 |\n| 8 | exp_009c (008f s2, declining) | negative — eval 148@105K; NVE=1.14x | \"008f is always healthy\" → NO, variance exists but NVE stays <1.5x → NOT CIVO | Y — F5 (brief) |\n| 9 | exp_009e (008d s1 extended, oscillatory) | negative — eval oscillates 83–250, final 131@105K; NVE=4.12x peak→1.57x final | \"Post-CIVO is binary (collapse or not)\" → NO, oscillatory regime exists | Y — F2, Table 3 |\n| 10 | exp_015b (frozen dt_emb, gradient starvation) | negative — eval 204@105K; NVE=0.47x; actor loss→0 | \"dt_emb presence (not trainability) causes CIVO\" → NO, frozen emb never triggers CIVO | Y — F3 |\n| 11 | exp_016e (reward-only SGS, no-op) | negative — peak 327@75K → collapse 32@95K; NVE=10.42x; reward grad=0 by architecture | \"Reward head gradient drives dt_emb → block it to fix CIVO\" → NO, reward gradient = 0 (obs decoders=93%, KL=7%, reward=0%) | **N** — not in results.tex |\n| 12 | exp_016a-d (SGS retries) | failed (technical) — implementation iterations leading to 016e | N/A — technical failures, no scientific hypothesis tested | N — correctly excluded |\n| 13 | exp_017 (killed, duplicate of 008a) | killed — subsample OFF + trained dt_emb = identical to 008a design | N/A — design error identified before completion; 008a already covers this cell | N — correctly excluded |\n\n---\n\n## Part B: Successful Experiments (7)\n\n| # | Exp ID | Claim Supported | Evidence Provided |\n|---|--------|----------------|-------------------|\n| 1 | exp_001 (baseline) | All claims — reference anchor | Stable convergence 916@105K, 970@505K; v/e calibration standard for NVE normalization (24.1%@35K → 65.6%@105K) |\n| 2 | exp_008a (unexposed emb, healthy) | C3 (untrained prevents drift) | Trained emb but never exposed to dt>1 data → NVE 0.59–0.93x across 105K; two V-recovery cycles; final 778@105K (85% baseline) |\n| 3 | exp_008e_v3_s1 (dt=1 imagination, healthy) | C6 partial (CIVO eliminated in this seed) | Trained dt_emb + subsample ON + dt=1 imagination → eval 870@105K (95% baseline); NVE=0.80x; no CIVO onset |\n| 4 | exp_008f (no dt_emb, causal ablation) | C2 (dt_emb is causally necessary) | dt_embed_dim=0 + subsample ON → NVE=0.97x peak (never >1.5x); V-recovery to 503@105K. Causal direction confirmed: removing dt_emb eliminates CIVO |\n| 5 | exp_009a (baseline s2, seed control) | C6 (rules out seed fragility) | Baseline seed 2 stable at 837@105K (618→596→837); proves 008e_v3_s2 collapse is config-caused |\n| 6 | exp_008e_v3 original s0 | C6 partial (same as s1) | Deterministic reproduction of s1; eval 870@105K; confirms dt=1 imagination health for this seed path |\n| 7 | RSSM fidelity analysis + D061 gradient decomposition | C2 mechanism evidence | Reward gap: 008d=2.78x vs 008f=1.01x (quantifies asymmetric fidelity). Gradient decomposition: obs decoders 93%, KL 7%, reward 0% — identifies gradient pathway |\n\n---\n\n## Part C: Coverage Gaps\n\n### C.1 Negative experiments whose narrative role is unclear or absent in results.tex\n\n| Exp ID | Gap Description | Impact |\n|--------|----------------|--------|\n| **exp_016e** | Gradient decomposition + reward-only SGS no-op result completely absent from results.tex. This is the strongest evidence for HOW the causal mechanism operates (which gradient pathway drives dt_emb training). | **Critical** — blocks \"through which pathway\" explanation. Conclusion.tex suggests \"gradient stopping\" as future work, contradicting known 016e result. Should be F7 or added to Discussion. |\n| exp_016a-d | Technical failures not discussed. | Low — correctly excluded; no scientific content. |\n| exp_017 | Design duplicate, killed. | Low — correctly excluded. |\n\n### C.2 Alternative hypotheses NOT yet excluded by any experiment\n\n| Alternative Hypothesis | Status | What Would Exclude It |\n|------------------------|--------|----------------------|\n| \"Reward head gradient to dt_emb drives CIVO → block it to prevent collapse\" | **Excluded by 016e but NOT written in paper** | Add 016e + gradient decomposition to results or analysis |\n| \"Observation decoder gradient pathway is the true CIVO driver → full SGS prevents collapse\" | **UNTESTED** (exp_018 QUEUED) | exp_018 (full-SGS): detach all non-KL gradients from dt_emb. If CIVO eliminated → confirms obs decoder pathway |\n| \"CIVO is environment-specific to Walker Walk\" | **PARTIALLY TESTED** (exp_010a RUNNING) | exp_010a (Cheetah baseline) + planned Cheetah CIVO trigger experiment |\n| \"Collapse probability for trained dt_emb + dt>1 imag is exactly 50% (not higher)\" | Uncertain — only 2 seeds tested (008d collapse, 009b self-correct) | More seeds (≥5) needed for robust estimate |\n| \"Pathway B (non-CIVO collapse) is specific to dt=1 imagination\" | Untested — only observed in 008e_v3_s2 (dt=1 imag) | Test: trained dt_emb + subsample OFF + dt>1 imag with multiple seeds to see if Pathway B also appears |\n| \"dt=3 follows the monotonic trend (between dt=2 and dt=4)\" | Untested — only dt=2 and dt=4 measured | exp with fixed dt=3 (low priority) |\n\n### C.3 Claim-level coverage summary\n\n| Claim | Negative Exps Supporting | Positive Exps Supporting | Gap? |\n|-------|-------------------------|-------------------------|------|\n| C1 (all dt>1 degrade) | 005, 006, 007 | 001 (anchor) | Cross-environment (010a pending) |\n| C2 (trained dt_emb → NVE>1.5x) | 008d, 009b, 009e, 006 | 008f (causal ablation), RSSM fidelity | 016e excluded from paper text |\n| C3 (untrained prevents drift) | 008c (H=8 version), 015b (frozen) | 008a (primary) | None — strong |\n| C4 (longer dt amplifies) | 006, 007 | 001 (anchor) | Only 2 dt values; no dt=3 |\n| C5 (horizon/subsample secondary) | 008c, 009c | 008a, 008e_v3_s1 | 008c confounded with H — need H=15+sub ON+untrained for clean isolation |\n| C6 (dt=1 imag ≠ complete fix) | 008e_v3_s2 (Pathway B) | 008e_v3_s1, 009a (seed control) | Only 2 seeds; Pathway B mechanism not fully characterized |\n\n---\n\n## Summary\n\n- **12/13** negative experiments have clear narrative roles; **10/13** are cited in results.tex\n- **1 critical gap**: exp_016e (gradient decomposition, reward-only SGS = no-op) is absent from the paper despite being the strongest mechanistic evidence for Framing B\n- **1 untested key hypothesis**: obs decoder pathway as CIVO driver (exp_018, QUEUED)\n- **1 cross-environment gap**: exp_010a RUNNING, needed for Reviewer R1 concern\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_014B1QVzKPVwWJnTtLs8k5ec`</summary>
+
+```json
+{
+  "name": "claim_strength_audit",
+  "type": "report",
+  "description": "Claim strength audit: 13 negative + 7 successful experiments mapped to C1-C6 claims, with coverage gaps and unexcluded alternative hypotheses",
+  "project": "event-gated-adaptive-horizon",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/claim_strength_audit.md",
+  "tags": [
+    "paper",
+    "claims",
+    "audit",
+    "diagnostic"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "68deee84-24bc-404d-a0cb-e8191995eef9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wj27pWo4YHxjm6aTD14sDk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3061,
+      "cache_read_input_tokens": 54202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3061
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T07:54:10.469Z_
+
+<details><summary>↩ Tool result · `toolu_014B1QVzKPVwWJnTtLs8k5ec`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_0b4bf1\", \"name\": \"claim_strength_audit\", \"type\": \"report\", \"description\": \"Claim strength audit: 13 negative + 7 successful experiments mapped to C1-C6 claims, with coverage gaps and unexcluded alternative hypotheses\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/claim_strength_audit.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T07:54:10.277936+00:00\", \"tags\": [\"paper\", \"claims\", \"audit\", \"diagnostic\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "59e5d3a5-4869-45f6-aa40-f45c5b39272c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_0b4bf1\\\", \\\"name\\\": \\\"claim_strength_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Claim strength audit: 13 negative + 7 successful experiments mapped to C1-C6 claims, with coverage gaps and unexcluded alternative hypotheses\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/claim_strength_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T07:54:10.277936+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"claims\\\", \\\"audit\\\", \\\"diagnostic\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_0b4bf1\", \"name\": \"claim_strength_audit\", \"type\": \"report\", \"description\": \"Claim strength audit: 13 negative + 7 successful experiments mapped to C1-C6 claims, with coverage gaps and unexcluded alternative hypotheses\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/claim_strength_audit.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T07:54:10.277936+00:00\", \"tags\": [\"paper\", \"claims\", \"audit\", \"diagnostic\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+已完成。文件在 `artifacts/claim_strength_audit.md`，已注册 (`art_20260516_0b4bf1`)。
+
+核心发现：
+- 10/13 阴性实验已被 results.tex 引用，叙事角色清晰
+- **关键缺口**：exp_016e（梯度分解 + reward-only SGS = no-op）完全未写入论文，是 Framing B 最强机制证据
+- 未验证假说：obs decoder 梯度通路是 CIVO 驱动源（exp_018 QUEUED）；跨环境泛化（exp_010a RUNNING）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "uuid": "5d7fea9c-ab43-4c21-9f18-6cacfee6237e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112KMWBWJA3GpZdANZ5Csub",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 532,
+      "cache_read_input_tokens": 57263,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 532
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 37_
+
+已完成。文件在 `artifacts/claim_strength_audit.md`，已注册 (`art_20260516_0b4bf1`)。
+
+核心发现：
+- 10/13 阴性实验已被 results.tex 引用，叙事角色清晰
+- **关键缺口**：exp_016e（梯度分解 + reward-only SGS = no-op）完全未写入论文，是 Framing B 最强机制证据
+- 未验证假说：obs decoder 梯度通路是 CIVO 驱动源（exp_018 QUEUED）；跨环境泛化（exp_010a RUNNING）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 136459,
+  "duration_api_ms": 136175,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "e0f05abb-f81a-4392-a307-e582f9273f8c",
+  "total_cost_usd": 0.6313695,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 46348,
+    "cache_read_input_tokens": 413617,
+    "output_tokens": 5330,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46348,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 182,
+        "cache_read_input_tokens": 57263,
+        "cache_creation_input_tokens": 532,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 532
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1496,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001566,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 5330,
+      "cacheReadInputTokens": 413617,
+      "cacheCreationInputTokens": 46348,
+      "webSearchRequests": 0,
+      "costUSD": 0.6298035000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2ab40f0c-17bc-471c-83b4-aeba84baaa11"
+}
+```
+
+</details>
+
+---

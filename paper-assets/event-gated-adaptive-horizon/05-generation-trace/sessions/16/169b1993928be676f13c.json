@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "169b1993928be676f13c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "sync supplementary to local v2",
+  "task_key": "worker_sync_supplementary-to-local-v2_20260524T035816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_supplementary-to-local-v2_20260524T035816.log",
+    "occurrence": 1,
+    "bytes": 1590473,
+    "sha256": "50a1044f93832af1bce8f58d8e85d92ad4f89a082e4c95aa8affbd0b82a99f64"
+  },
+  "statistics": {
+    "messages": 560,
+    "user_turns": 1,
+    "tool_calls": 191,
+    "roles": {
+      "log": 1,
+      "system": 137,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 191,
+      "tool_result": 190,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "169b1993928be676f13c-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "169b1993928be676f13c-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 406,
+      "chunks": [
+        {
+          "path": "169b1993928be676f13c-part-0002.json",
+          "message_count": 167
+        },
+        {
+          "path": "169b1993928be676f13c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "169b1993928be676f13c-part-0004.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-supplementary-to-local-v2.md"
+}

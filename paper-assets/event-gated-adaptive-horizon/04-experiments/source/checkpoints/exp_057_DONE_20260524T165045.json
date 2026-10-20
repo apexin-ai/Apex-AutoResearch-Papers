@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_057",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T16:49:35.310Z",
+    "updated_at": "2026-05-24T16:50:44.968Z",
+    "hypothesis": "Frozen dt_emb 跨 seed 可复现性验证（Walker seed=2, n=3）。当前 Walker frozen s0 NVE 0.19, s1 NVE 1.71 transient。s2 增加样本量到 n=3 验证稳健性。",
+    "parent": "",
+    "spec": {
+      "command": "python train.py --env walker --frozen_dt_emb --seed 2",
+      "server": "bjb1-45299",
+      "data_path": "/root/autodl-tmp/event-gated-adaptive-horizon",
+      "data_count": 225000,
+      "seed": 2,
+      "model_name": "dreamer_frozen_dt_emb"
+    },
+    "log_path": "logdir/exp_057_frozen_dt_emb_walker_s2/train.log",
+    "checkpoint_path": "logdir/exp_057_frozen_dt_emb_walker_s2/checkpoint_225000.pt",
+    "metrics": {
+      "eval_return_peak": 221.7,
+      "eval_return_peak_step": 195000,
+      "eval_return_final": 123.9,
+      "eval_return_final_step": 215000,
+      "nve_peak": 1.3,
+      "nve_peak_step": 115000,
+      "nve_final": 0.2,
+      "civo_alert": 0,
+      "civo_sustained": false,
+      "civo_transient": true,
+      "civo_transient_range": "115k-145k",
+      "train_steps": 225000,
+      "gate_dt_mean": 2
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T16:50:44.968Z"
+  },
+  "timestamp": "2026-05-24T16:50:45.311861+00:00",
+  "trigger": "update_registry"
+}

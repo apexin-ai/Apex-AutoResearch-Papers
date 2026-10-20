@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10218d283d74ea1cd6e8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "docs onset rate update d167",
+  "task_key": "worker_docs_onset-rate-update-d167_20260527T112543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_docs_onset-rate-update-d167_20260527T112543_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "03ef12e8d3b229864bede4524facd39008e732328c7522300a32519a13a87478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。变更汇总：\n\n**paper_framing.md** (8 处修改):\n- C2 header: Walker 3/3→2/3, 6/7→5/7, Fisher p<0.0001→p<0.001\n- Walker onset 列表: 3/3→2/3, exp_009b 从 onset seed 改为 \"sub-threshold perturbation under τ=2.0\"\n- 阈值行: 删除旧 \"4/4 perfect classification\", onset rate 86%→71%, 标注 009b sub-threshold\n- 证据表: D032 行重标为 \"sub-threshold perturbation\", 2.05x@25K 标注 \"pre-35K false positive\"\n- 阈值分离力行: 2/2→1/2, 删除 \"4/4 perfect classification\"\n- Strength 段: Walker 3/3→2/3, 6/7→5/7, Fisher p→<0.001, 86%→71%\n- Story Arc: Walker 3/3→2/3\n- R6 + Experiment Coverage: 同步更新所有数字\n\n**ROADMAP.md** (1 处):\n- C2 里程碑: 6/7(86%) p<0.0001 → 5/7(71%) p<0.001, 标注 D167"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/docs-onset-rate-update-d167.md"
+}

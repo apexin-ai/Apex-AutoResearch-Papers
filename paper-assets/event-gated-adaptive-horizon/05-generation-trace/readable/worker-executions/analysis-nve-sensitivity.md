@@ -1,0 +1,2801 @@
+# analysis nve sensitivity
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_nve_sensitivity_20260515T125303.log`
+- **Structured JSON:** [`f960f3107ee4e14e19c7.json`](../../sessions/f9/f960f3107ee4e14e19c7.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1edab6b0-e8d3-4e18-8a2f-9d37a967c5ea",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778860200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d60a4bd3-5d8b-4f83-b22b-93651bf845a4",
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task down:
+
+1. Read registry to get NVE data for all experiments listed
+2. If needed, SSH to server to read metrics.jsonl files
+3. Compute classification accuracy at different NVE thresholds
+4. Write analysis to artifacts file
+
+Let me start by reading the registry and understanding what data is available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "2dc7bed0-e762-4919-b590-f8207214791a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jx7MGNUcpSe4saMTSvEXW4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12145,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12145
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行 NVE 敏感性分析。先读 registry 获取各实验的 NVE 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "cf54ac38-b299-40b4-ada1-a3199abaf20c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jx7MGNUcpSe4saMTSvEXW4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12145,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12145
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H1m17jWvRyhFgXzaYtmbj4`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "600bd957-0b83-480f-99e8-b770cd67db33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jx7MGNUcpSe4saMTSvEXW4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12145,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12145
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T12:53:19.740Z_
+
+<details><summary>↩ Tool result · `toolu_01H1m17jWvRyhFgXzaYtmbj4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "cf873a80-ed00-49e8-aa45-723350fcd123",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get NVE data for all the experiments mentioned in the task.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "e58969a3-73c3-4934-b7d0-88c958445ac7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LA4TCAciFkq4mDLgnrQ9Qk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1714,
+      "cache_read_input_tokens": 23986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1714
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01FCPrHsdF8Y8PGZ1noFVYNF`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "2b2ca841-defb-4d44-8aa8-5733d7a110c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LA4TCAciFkq4mDLgnrQ9Qk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1714,
+      "cache_read_input_tokens": 23986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1714
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:53:23.595Z_
+
+<details><summary>↩ Tool result · `toolu_01FCPrHsdF8Y8PGZ1noFVYNF`</summary>
+
+```text
+Error: result (78,795 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "668085e1-ac26-4394-a79e-d8623bcf5465",
+  "tool_use_result": {
+    "content": "Error: result (78,795 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_009d_baseline_walker_s0\": {\"status\": \"RUNNING\", \"retry_count\": 2, \"created_at\": \"2026-05-15T11:55:00.039Z\", \"updated_at\": \"2026-05-15T12:27:44.867Z\", \"hypothesis\": \"Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:06:19.592Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\", \"finished_at\": \"2026-05-15T12:24:14.820Z\", \"training_hours\": 0.3}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-15T12:10:01.788Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:10:04.203907+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:24:17.652463+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 + MUJOCO_GL=egl + CUDA_VISIBLE_DEVICES 隔离。cuda:0, seed=0, 500K steps ~19h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"149703\", \"model_name\": \"DreamerV3_baseline\", \"seed\": 0, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\"}}, \"exp_015b_frozen_dt_emb\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-15T10:21:05.572Z\", \"updated_at\": \"2026-05-15T12:27:20.036Z\", \"hypothesis\": \"Walker Walk frozen dt_emb + subsample ON + dt=2 imagination + H=8 seed 1 — 2×2 消融矩阵: 隔离 dt_emb 训练 vs 存在的因果效应。如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在（plan_015B, D041）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"已清理重复进程并干净重启。修复: LD_PRELOAD + MUJOCO_GL=egl + --device cuda:0 (CUDA_VISIBLE_DEVICES=1 隔离)。cuda:1, seed=1, 105K steps ~5h。logdir: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_015b_frozen_dt_emb\", \"completed_at\": \"2026-05-15T12:12:25.846Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"第二次提交。首次失败原因: --device cuda:1 但 CUDA_VISIBLE_DEVICES=1 后进程内只有 cuda:0。已修正为 --device cuda:0。PID 144831, 从头开始 (step=0)。预计 ~5h 完成 105K steps。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_015b_frozen_dt_emb --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"149991\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_015b_frozen_dt_emb.log\", \"submitted_at\": \"2026-05-15T12:25:06.865Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_009d_baseline_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:14.363Z\", \"updated_at\": \"2026-05-15T11:54:55.153Z\", \"hypothesis\": \"Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"parent\": \"exp_001_baseline\", \"notes\": \"⚠️ seed=1 与 exp_001_baseline 相同，eval 轨迹确定性复现。不构成独立 seed。如需第三 baseline seed 应 kill 并用 --seed 0 或 --seed 3 重跑。待 Director 决策。\", \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s1.log\", \"submitted_at\": \"2026-05-15T06:35:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\", \"wall_clock_seconds\": 19195.2, \"gpu_hours\": 5.33}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"pid\": 122271, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T11:54:55.153Z\"}, \"exp_009e_008d_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:15.367Z\", \"updated_at\": \"2026-05-15T11:31:04.722Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"notes\": \"008d extended replication (same seed=1, 009e extends 008d from 55K to 105K). Eval trajectory 5K-55K identical to 008d (deterministic). Collapse confirmed at 105K: eval 131.08, nve@55K=4.12x (normalized). 65K bounce to 250 was transient, not recovery. actor_loss flipped positive @85K. Independent collapse rate = 1/2 (seed 1 collapsed, seed 2 self-corrected), NOT 2/3 — 008d and 009e are the same seed.\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"pid\": 119108, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"119108\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009e_008d_walker_s1.log\", \"submitted_at\": \"2026-05-15T06:01:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch\", \"eval_data\": \"N/A - training experiment\", \"wall_clock_seconds\": 19552.5, \"gpu_hours\": 5.43}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0, \"ve_ratio\": 0}, {\"step\": 15000, \"eval_return\": 153.7, \"value_mean\": 3.4, \"ve_ratio\": 0.022}, {\"step\": 25000, \"eval_return\": 167.2, \"value_mean\": 25.9, \"ve_ratio\": 0.155, \"baseline_ve\": 0.087, \"normalized_ve\": 1.78}, {\"step\": 35000, \"eval_return\": 146.3, \"value_mean\": 60.2, \"ve_ratio\": 0.411, \"baseline_ve\": 0.241, \"normalized_ve\": 1.71}, {\"step\": 45000, \"eval_return\": 140.8, \"value_mean\": 97.5, \"ve_ratio\": 0.693, \"baseline_ve\": 0.331, \"normalized_ve\": 2.09}, {\"step\": 55000, \"eval_return\": 82.7, \"value_mean\": 137.9, \"ve_ratio\": 1.666, \"baseline_ve\": 0.404, \"normalized_ve\": 4.12}, {\"step\": 65000, \"eval_return\": 250, \"value_mean\": 173.8, \"ve_ratio\": 0.695, \"baseline_ve\": 0.563, \"normalized_ve\": 1.23}, {\"step\": 75000, \"eval_return\": 178.1, \"value_mean\": 189.9, \"ve_ratio\": 1.066, \"baseline_ve\": 0.719, \"normalized_ve\": 1.48}, {\"step\": 85000, \"eval_return\": 201.93, \"value_mean\": 163.08, \"ve_ratio\": 0.808, \"baseline_ve\": 0.701, \"normalized_ve\": 1.15}, {\"step\": 95000, \"eval_return\": 132.79, \"value_mean\": 144.82, \"ve_ratio\": 1.091, \"baseline_ve\": 0.632, \"normalized_ve\": 1.73}, {\"step\": 105000, \"eval_return\": 131.08, \"value_mean\": 135.37, \"ve_ratio\": 1.033, \"baseline_ve\": 0.656, \"normalized_ve\": 1.57}], \"final_eval_return\": 131.08, \"final_value_mean\": 135.37, \"final_ve_ratio\": 1.033, \"final_nve\": 1.57, \"peak_nve\": 4.12, \"peak_nve_step\": 55000, \"actor_loss_sign_flip\": 85000, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.7%\", \"collapse_rate_note\": \"Independent rate = 1/2 (seed 1 collapsed, seed 2 self-corrected). 008d and 009e share seed=1, count as one independent observation.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/latest.pt\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009e_008d_walker_s1/metrics.jsonl\", \"completed_at\": \"2026-05-15T11:26:52.478Z\"}, \"exp_017_subsample_off_trained_dt_emb\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:44:24.756Z\", \"updated_at\": \"2026-05-15T10:44:38.215Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2）\", \"parent\": \"exp_008a_no_subsample_dt2\", \"notes\": \"plan_017, claim C2。Config: gate_enabled=True, gate_fixed_dt=2, gate_subsample_max_dt=1 (subsample OFF), gate_dt_embed_dim=32, imag_horizon=15, seed=1, device=cuda:1。排期: cuda:1 上 009e → plan_015B → plan_017。关键对照: 008a (untrained dt_emb, subsample OFF, H=15) — 唯一差异是 dt_emb trained vs untrained。\"}, \"exp_010a_cheetah_baseline_s1\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:27.101Z\", \"updated_at\": \"2026-05-15T08:34:13.898Z\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"spec\": {\"command\": \"python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0 --gate_enabled False\", \"server\": \"bjb1-45299\", \"model_name\": \"dreamerv3\", \"seed\": 1, \"data_path\": \"dmc_cheetah_run\", \"data_count\": 512000, \"description\": \"plan_020: Cheetah Run dt=1 baseline seed 1, 512K steps, v/e calibration reference for cross-env C1/C2\"}}, \"exp_009a_baseline_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:24.247Z\", \"updated_at\": \"2026-05-15T06:33:16.385Z\", \"hypothesis\": \"Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T07:19:08.969Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009a_baseline_walker_s2 --steps 500000 --seed 2 --compile False --device cuda:0\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"spec\": {\"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000}, \"pid\": \"142508\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/\", \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 41.21}, {\"step\": 15000, \"eval_return\": 106.01}, {\"step\": 25000, \"eval_return\": 325.33}, {\"step\": 35000, \"eval_return\": 354.49}, {\"step\": 45000, \"eval_return\": 498.01}, {\"step\": 55000, \"eval_return\": 534.13}, {\"step\": 65000, \"eval_return\": 688.87}, {\"step\": 75000, \"eval_return\": 656.85}, {\"step\": 85000, \"eval_return\": 618.73}, {\"step\": 95000, \"eval_return\": 596.24}, {\"step\": 105000, \"eval_return\": 836.51}, {\"step\": 115000, \"eval_return\": 804.79}, {\"step\": 125000, \"eval_return\": 865.48}, {\"step\": 135000, \"eval_return\": 876.08}, {\"step\": 145000, \"eval_return\": 869.18}, {\"step\": 155000, \"eval_return\": 778.99}, {\"step\": 165000, \"eval_return\": 864.03}, {\"step\": 175000, \"eval_return\": 850.53}, {\"step\": 185000, \"eval_return\": 907.31}, {\"step\": 195000, \"eval_return\": 873.49}, {\"step\": 205000, \"eval_return\": 887.02}, {\"step\": 215000, \"eval_return\": 956.04}, {\"step\": 225000, \"eval_return\": 892.09}, {\"step\": 235000, \"eval_return\": 914.78}, {\"step\": 245000, \"eval_return\": 950.32}, {\"step\": 255000, \"eval_return\": 936.9}, {\"step\": 265000, \"eval_return\": 937.27}, {\"step\": 275000, \"eval_return\": 934.78}, {\"step\": 285000, \"eval_return\": 960.2}, {\"step\": 295000, \"eval_return\": 947.46}, {\"step\": 305000, \"eval_return\": 937.8}, {\"step\": 315000, \"eval_return\": 948.66}, {\"step\": 325000, \"eval_return\": 930.61}, {\"step\": 335000, \"eval_return\": 919.23}, {\"step\": 345000, \"eval_return\": 816.18}, {\"step\": 355000, \"eval_return\": 932.45}, {\"step\": 365000, \"eval_return\": 943.13}, {\"step\": 375000, \"eval_return\": 952.86}, {\"step\": 385000, \"eval_return\": 942.31}, {\"step\": 395000, \"eval_return\": 966.94}, {\"step\": 405000, \"eval_return\": 948.01}, {\"step\": 415000, \"eval_return\": 957.06}, {\"step\": 425000, \"eval_return\": 939.37}, {\"step\": 435000, \"eval_return\": 963.65}, {\"step\": 445000, \"eval_return\": 948.42}, {\"step\": 455000, \"eval_return\": 937.72}, {\"step\": 465000, \"eval_return\": 939.54}, {\"step\": 475000, \"eval_return\": 965.94}, {\"step\": 485000, \"eval_return\": 916.74}, {\"step\": 495000, \"eval_return\": 945.58}, {\"step\": 505000, \"eval_return\": 957.87}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 25000, \"value_mean\": 45.78}, {\"step\": 55000, \"value_mean\": 253.49}, {\"step\": 105000, \"value_mean\": 539.34}, {\"step\": 155000, \"value_mean\": 633.42}, {\"step\": 205000, \"value_mean\": 658.92}, {\"step\": 255000, \"value_mean\": 663.87}, {\"step\": 305000, \"value_mean\": 663.86}, {\"step\": 355000, \"value_mean\": 663.78}, {\"step\": 405000, \"value_mean\": 663.95}, {\"step\": 455000, \"value_mean\": 664.42}, {\"step\": 505000, \"value_mean\": 665.17}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.141}, {\"step\": 55000, \"ve\": 0.475}, {\"step\": 105000, \"ve\": 0.645}, {\"step\": 155000, \"ve\": 0.813}, {\"step\": 205000, \"ve\": 0.743}, {\"step\": 255000, \"ve\": 0.709}, {\"step\": 305000, \"ve\": 0.708}, {\"step\": 355000, \"ve\": 0.712}, {\"step\": 405000, \"ve\": 0.7}, {\"step\": 455000, \"ve\": 0.709}, {\"step\": 505000, \"ve\": 0.694}], \"final_eval_return\": 957.87, \"final_eval_step\": 505000, \"eval_return_peak\": 966.94, \"eval_return_peak_step\": 395000, \"last10_mean\": 947.19, \"final_value_mean\": 665.17, \"final_ve_ratio\": 0.694, \"ve_stable_range\": \"0.69-0.72 from 235K+\", \"total_steps\": 505000, \"n_evals\": 51, \"vs_exp001_105K\": \"836.51 vs 915.67 (-8.6%)\", \"vs_exp001_peak\": \"966.94 vs 970.41 (-0.4%)\", \"vs_exp001_last10\": \"947.19 vs 950.90 (-0.4%)\", \"vs_exp001_final\": \"957.87 vs 970.41 (-1.3%)\", \"cross_seed_ve_stable\": \"seed 2 v/e = 0.69-0.72 matches seed 0/1 = 0.69-0.72\"}, \"notes\": \"Baseline seed 2 完成。与 exp_001 (seed 0/1) 高度一致: peak 966.94 vs 970.41 (-0.4%), last10 mean 947.19 vs 950.90 (-0.4%), v/e stable 0.69-0.72 匹配。105K 处 836.51 比 seed 0/1 的 915.67 低 8.6%，但 215K+ 后完全收敛。345K 有一个 dip 到 816 但迅速恢复。baseline 跨 seed 一致性确认。\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:33:12.892Z\"}, \"exp_008e_v3_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:29:53.738Z\", \"updated_at\": \"2026-05-15T06:24:21.709Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — crown jewel C6 seed 2 验证\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"C6 seed 2 COLLAPSED. Delusional critic collapse at 85K→105K despite gate_dt_mean=1.0 locked throughout. eval peaked 715@85K then crashed to 137@105K (v/e=2.48, nve=3.78x). Cross-seed: seed 0=869.9 (healthy), seed 1=869.9 (healthy), seed 2=137 (collapsed). Collapse is stochastic (1/3 seeds) even in dt=1 imagination config. Subsample ON training data (dt=2 transitions) appears sufficient to trigger delusional critic in some seeds. Train returns at 108K=19-23 (random policy).\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"43437\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s2.log\", \"submitted_at\": \"2026-05-15T00:46:45.424Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18815.4, \"gpu_hours\": 5.23}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"server\": \"bjb1-45299\", \"account\": \"root\", \"pid\": \"43437\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 39.27}, {\"step\": 15000, \"eval_return\": 180.85}, {\"step\": 25000, \"eval_return\": 211.82}, {\"step\": 35000, \"eval_return\": 320.39}, {\"step\": 45000, \"eval_return\": 356.93}, {\"step\": 55000, \"eval_return\": 418.32}, {\"step\": 65000, \"eval_return\": 435.09}, {\"step\": 75000, \"eval_return\": 576.54}, {\"step\": 85000, \"eval_return\": 715.21}, {\"step\": 95000, \"eval_return\": 452.43}, {\"step\": 105000, \"eval_return\": 136.96}], \"value_trajectory\": [{\"step\": 5000, \"value_mean\": 0}, {\"step\": 15000, \"value_mean\": 3.91}, {\"step\": 25000, \"value_mean\": 30.27}, {\"step\": 35000, \"value_mean\": 79.75}, {\"step\": 45000, \"value_mean\": 125.25}, {\"step\": 55000, \"value_mean\": 172.89}, {\"step\": 65000, \"value_mean\": 220.47}, {\"step\": 75000, \"value_mean\": 272.64}, {\"step\": 85000, \"value_mean\": 339.3}, {\"step\": 95000, \"value_mean\": 384.39}, {\"step\": 105000, \"value_mean\": 339.84}], \"actor_entropy_trajectory\": [{\"step\": 5000, \"actor_entropy\": 8.239}, {\"step\": 15000, \"actor_entropy\": 2.352}, {\"step\": 25000, \"actor_entropy\": 0.17}, {\"step\": 35000, \"actor_entropy\": -3.498}, {\"step\": 45000, \"actor_entropy\": -4.915}, {\"step\": 55000, \"actor_entropy\": -5.121}, {\"step\": 65000, \"actor_entropy\": -5.135}, {\"step\": 75000, \"actor_entropy\": -5.224}, {\"step\": 85000, \"actor_entropy\": -5.208}, {\"step\": 95000, \"actor_entropy\": -4.529}, {\"step\": 105000, \"actor_entropy\": -3.828}], \"ve_ratio_trajectory\": [{\"step\": 25000, \"ve\": 0.143, \"nve\": 1.64}, {\"step\": 35000, \"ve\": 0.249, \"nve\": 1.03}, {\"step\": 45000, \"ve\": 0.351, \"nve\": 1.06}, {\"step\": 55000, \"ve\": 0.413, \"nve\": 1.02}, {\"step\": 65000, \"ve\": 0.507, \"nve\": 0.9}, {\"step\": 75000, \"ve\": 0.473, \"nve\": 0.66}, {\"step\": 85000, \"ve\": 0.474, \"nve\": 0.68}, {\"step\": 95000, \"ve\": 0.85, \"nve\": 1.34}, {\"step\": 105000, \"ve\": 2.481, \"nve\": 3.78}], \"final_eval_return\": 136.96, \"peak_eval_return\": 715.21, \"peak_eval_step\": 85000, \"final_value_mean\": 339.84, \"final_ve_ratio\": 2.481, \"final_nve\": 3.78, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-85.0%\", \"collapse_onset\": \"95K (nve jumped from 0.68x to 1.34x)\", \"collapse_confirmed\": \"105K (nve=3.78x, eval 715→137)\", \"train_return_108K\": \"19-23 (random policy level)\", \"actor_entropy_collapse_signature\": \"entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s2/latest.pt\", \"completed_at\": \"2026-05-15T06:00:20.816Z\"}, \"exp_001_baseline\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T02:09:53.875Z\", \"updated_at\": \"2026-05-15T04:59:00.476Z\", \"hypothesis\": \"DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model\", \"failure_reason\": \"误报：cron 检测到进程退出但实际是正常完成（512K步）。已核实 checkpoint 229MB 有效。\", \"completed_at\": \"2026-05-13T15:23:24.593Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:23:25.663340+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T21:47:19.804301+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"step\": 245000, \"eval_return_205K\": 907.1, \"eval_return_215K\": 919.8, \"train_return_244K\": \"935-976\", \"fps\": 8.3}}}, \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"gpu_id\": 0, \"pid\": 9409, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 (original, gate_enabled=false)\", \"seed\": 1, \"hypothesis\": \"DreamerV3 baseline on DMC Walker Walk for comparison with event-gated model\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1\"}, \"metrics\": {\"step\": 512000, \"eval_trajectory\": {\"5K\": 31.77, \"15K\": 206.61, \"25K\": 395.27, \"35K\": 388.47, \"45K\": 513.77, \"55K\": 625.73, \"65K\": 615.86, \"75K\": 596.28, \"85K\": 713.93, \"95K\": 871.06, \"105K\": 915.67, \"115K\": 919.81, \"125K\": 921.37, \"135K\": 900, \"145K\": 932.16, \"155K\": 933.34, \"165K\": 907.98, \"175K\": 918.87, \"185K\": 954.69, \"195K\": 936.09, \"205K\": 949.24, \"215K\": 913.4, \"225K\": 962.44, \"235K\": 937.24, \"245K\": 934.42, \"255K\": 948.45, \"265K\": 925.09, \"275K\": 931.51, \"285K\": 925.75, \"295K\": 936.3, \"305K\": 939.33, \"315K\": 948.42, \"325K\": 967.75, \"335K\": 942.41, \"345K\": 969.83, \"355K\": 941.11, \"365K\": 935.76, \"375K\": 918.24, \"385K\": 937.98, \"395K\": 955.38, \"405K\": 937.83, \"415K\": 948.99, \"425K\": 954.64, \"435K\": 964.96, \"445K\": 953.37, \"455K\": 945.84, \"465K\": 947.81, \"475K\": 947.66, \"485K\": 930.6, \"495K\": 944.73, \"505K\": 970.41}, \"eval_return_peak\": 970.41, \"eval_return_peak_step\": 505000, \"eval_return_last10_mean\": 950.9, \"final\": true, \"value_eval_ratio_25K\": 0.087, \"value_eval_ratio_35K\": 0.241, \"value_eval_ratio_45K\": 0.331, \"value_eval_ratio_55K\": 0.404, \"value_eval_ratio_65K\": 0.563, \"value_eval_ratio_75K\": 0.719, \"value_eval_ratio_85K\": 0.701, \"value_eval_ratio_95K\": 0.632, \"value_eval_ratio_105K\": 0.656, \"value_eval_ratio_stable\": \"~69-72% from 135K+\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"latest_metrics\": {\"step\": 452000, \"eval_step\": 445000, \"eval_return\": 953.37, \"prev_eval_return\": 964.96, \"train_return_latest\": 958.07, \"train_return_range\": [917, 985.8], \"fps\": 7.29, \"process_status\": \"running\", \"pid\": 9409, \"uptime\": \"16h35m\", \"steps_remaining\": 48000, \"eta_hours\": 1.8, \"checked_at\": \"2026-05-13\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T21:47:18.966Z\"}, \"conclusion\": \"success\"}, \"exp_008e_v3_walker_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:29:53.120Z\", \"updated_at\": \"2026-05-15T00:44:53.439Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证：trained dt_emb 在 dt=1 imagination 下不触发 delusional critic（plan_014）\", \"parent\": \"exp_008e_v3_subsample_on_dt1_h15\", \"notes\": \"Crown jewel C6 seed 1 SUCCESS. eval_return=869.9@105K, v/e=0.527 (healthy, no delusional critic). Gate locked dt=1 throughout. Trajectory: 31→131→156→276→382→487→581→574→657→852→870. Consistent with seed 0, confirms trained dt_emb + dt=1 imagination is safe.\", \"gpu\": \"cuda:1\", \"server\": \"bjb1-45299\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"898127\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v3_walker_s1.log\", \"submitted_at\": \"2026-05-14T18:49:27.945Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21325.5, \"gpu_hours\": 5.92}, \"pid\": \"898127\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\"}, \"metrics\": {\"eval_trajectory\": [{\"step\": 5000, \"eval_return\": 31}, {\"step\": 15000, \"eval_return\": 131.2}, {\"step\": 25000, \"eval_return\": 155.7}, {\"step\": 35000, \"eval_return\": 276.5}, {\"step\": 45000, \"eval_return\": 382.2}, {\"step\": 55000, \"eval_return\": 486.8}, {\"step\": 65000, \"eval_return\": 580.7}, {\"step\": 75000, \"eval_return\": 574.1}, {\"step\": 85000, \"eval_return\": 657.3}, {\"step\": 95000, \"eval_return\": 851.9}, {\"step\": 105000, \"eval_return\": 869.9}], \"final_eval_return\": 869.9, \"final_value_mean\": 457.9, \"ve_ratio_105k\": 0.527, \"total_steps\": 112000, \"gate_dt_1_frac\": 1, \"exit_code\": 0}, \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_walker_s1/latest.pt\", \"completed_at\": \"2026-05-15T00:44:53.439Z\"}, \"exp_006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:49:02.944Z\", \"updated_at\": \"2026-05-14T22:31:54.922Z\", \"metrics\": {\"eval_return\": {\"5000\": 31, \"15000\": 256.9, \"25000\": 321.4, \"35000\": 485.3, \"45000\": 477, \"55000\": 360.4}, \"peak_return\": 485.3, \"peak_step\": 35000, \"latest_step\": 55000, \"latest_return\": 360.4, \"model_loss_at_55k\": 4.853, \"gate_dt_mean\": 2, \"baseline_return_at_55k\": 625.7, \"deficit_vs_baseline_at_55k\": -265.3, \"deficit_pct\": -42.4}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_006_fixed_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:07:59.793Z\", \"updated_at\": \"2026-05-14T22:31:54.075Z\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 167.2, \"eval_return_25K\": 230.8, \"eval_return_35K\": 500.8, \"eval_return_45K\": 563.4, \"eval_return_55K\": 487.9, \"eval_return_65K\": \"pending (eval in progress)\", \"value_mean_55K\": 183.5, \"value_eval_ratio_55K\": \"37.6%\", \"train_return_64K_avg\": 556.6, \"trend\": \"peaked @45K=563, dipped to @55K=488, 65K eval in progress; train returns @64K healthy (~557)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008a_no_subsample_dt2。conclusion=killed（D034 registry 清理）。\"}, \"exp_008c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:08:02.608Z\", \"updated_at\": \"2026-05-14T22:31:52.611Z\", \"metrics\": {\"step\": 68000, \"eval_return_5K\": 31, \"eval_return_15K\": 171.3, \"eval_return_25K\": 192.4, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.6, \"eval_return_55K\": 241.9, \"eval_return_65K\": 240.9, \"value_mean_65K\": 79, \"value_eval_ratio_65K\": \"32.8%\", \"train_return_68K_avg\": 245.1, \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在正式命名实验中。conclusion=killed（D034 registry 清理）。\"}, \"exp_008d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:08:05.136Z\", \"updated_at\": \"2026-05-14T22:31:51.696Z\", \"metrics\": {\"step\": 40000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.7, \"eval_return_25K\": 167.2, \"eval_return_35K\": 146.3, \"value_mean_35K\": 60.2, \"value_eval_ratio_35K\": \"41.1%\", \"train_return_40K_avg\": 119.3, \"trend\": \"declining — train_return @40K avg=119 below @35K eval=146, value/eval=41.1% not yet >50% but train performance dropping\"}, \"conclusion\": \"killed\", \"notes\": \"早期条目，权威数据在 exp_008d_subsample_on_h8。conclusion=killed（D034 registry 清理）。\"}, \"exp_008e_v2_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:26:39.732Z\", \"updated_at\": \"2026-05-14T22:31:49.814Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v2_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"125392\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_008e_v2_subsample_on_dt1_h15.log\", \"submitted_at\": \"2026-05-14T04:27:30.720Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\", \"notes\": \"已被 exp_008e_v3_subsample_on_dt1_h15 取代，进程已死。conclusion=killed（D034 registry 清理）。\"}, \"exp_rssm_fidelity_analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:52.237Z\", \"updated_at\": \"2026-05-14T22:31:48.642Z\", \"metrics\": {\"baseline\": {\"dt1_obs_mse\": 13.49, \"dt2_obs_mse\": 27.5, \"obs_gap\": 2.04, \"dt1_reward_mae\": 0.0102, \"dt2_reward_mae\": 0.0159, \"reward_gap\": 1.56}, \"008d_trained_dtEmb\": {\"dt1_obs_mse\": 41.31, \"dt2_obs_mse\": 53.67, \"obs_gap\": 1.3, \"dt1_reward_mae\": 0.0568, \"dt2_reward_mae\": 0.1579, \"reward_gap\": 2.78}, \"008f_no_dtEmb\": {\"dt1_obs_mse\": 8.01, \"dt2_obs_mse\": 22.04, \"obs_gap\": 2.75, \"dt1_reward_mae\": 0.7469, \"dt2_reward_mae\": 0.7526, \"reward_gap\": 1.01}}, \"conclusion\": \"success\", \"hypothesis\": \"RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)\", \"notes\": \"分析实验，非训练实验。conclusion=success，状态从 PREPARING 修正为 DONE（D034 registry 清理）。\"}, \"exp_008e_v3_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:29:31.656Z\", \"updated_at\": \"2026-05-14T19:46:00.840Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_v3_subsample_on_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"126110\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15\", \"submitted_at\": \"2026-05-14T04:29:31.600Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, untrained dt_emb)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 16695.7, \"gpu_hours\": 4.64}, \"hypothesis\": \"B+ confound control：subsample ON + untrained dt_emb + dt=1 imagination + H=15。验证 subsample ON 训练数据（含 dt=2 transitions）是否本身导致性能下降，即使 imagination 只用 dt=1。对照 008a（subsample OFF）和 baseline。如果 008e_v3 性能接近 baseline → subsample ON 本身无害。如果下降 → subsample ON 改变了 RSSM dynamics。\", \"metrics\": {\"current_step\": 112000, \"target_steps\": 105000, \"fps\": 7.01, \"eval_return\": {\"5K\": 31, \"15K\": 131.2, \"25K\": 155.69, \"35K\": 276.47, \"45K\": 382.22, \"55K\": 486.84, \"65K\": 580.67, \"75K\": 574.09, \"85K\": 657.31, \"95K\": 851.86, \"105K\": 869.88}, \"value_mean\": {\"25K\": 26.19, \"35K\": 62.76, \"45K\": 110.67, \"55K\": 170.09, \"65K\": 235.05, \"75K\": 300.51, \"85K\": 351.33, \"95K\": 405.25, \"105K\": 457.93}, \"value_eval_ratio\": {\"25K\": 0.168, \"35K\": 0.227, \"45K\": 0.29, \"55K\": 0.35, \"65K\": 0.405, \"75K\": 0.523, \"85K\": 0.534, \"95K\": 0.476, \"105K\": 0.527}, \"normalized_ve\": {\"25K\": 1.93, \"35K\": 0.94, \"45K\": 0.88, \"55K\": 0.87, \"65K\": 0.72, \"75K\": 0.73, \"85K\": 0.76, \"95K\": 0.75, \"105K\": 0.8}, \"gate_dt_mean\": 1, \"gate_dt_1_frac\": 1, \"last_updated\": \"2026-05-14T09:09:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-5.0%\", \"verdict\": \"SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T09:05:42.563Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T09:05:44.288431+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15/latest.pt\", \"completed_at\": \"2026-05-14T09:07:47.319Z\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15, trained dt_emb)\"}, \"exp_009b_008d_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:25.186Z\", \"updated_at\": \"2026-05-14T19:33:15.451Z\", \"hypothesis\": \"Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\", \"parent\": \"exp_008d_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000}, \"pid\": \"887053\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"finished_at\": \"2026-05-14T18:47:20.636Z\"}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 39.27, \"value_mean\": 0, \"ve_ratio\": 0, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 144.31, \"value_mean\": 4.47, \"ve_ratio\": 0.031, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 141.12, \"value_mean\": 25.14, \"ve_ratio\": 0.178, \"baseline_ve\": 0.087, \"normalized_ve\": 2.05}, {\"step\": 35000, \"eval_return\": 164.14, \"value_mean\": 49.02, \"ve_ratio\": 0.299, \"baseline_ve\": 0.241, \"normalized_ve\": 1.24}, {\"step\": 45000, \"eval_return\": 141.04, \"value_mean\": 75.59, \"ve_ratio\": 0.536, \"baseline_ve\": 0.331, \"normalized_ve\": 1.62}, {\"step\": 55000, \"eval_return\": 172.33, \"value_mean\": 98.28, \"ve_ratio\": 0.57, \"baseline_ve\": 0.404, \"normalized_ve\": 1.41}, {\"step\": 65000, \"eval_return\": 209.16, \"value_mean\": 110.91, \"ve_ratio\": 0.53, \"baseline_ve\": 0.563, \"normalized_ve\": 0.94}, {\"step\": 75000, \"eval_return\": 197.46, \"value_mean\": 93.49, \"ve_ratio\": 0.474, \"baseline_ve\": 0.719, \"normalized_ve\": 0.66}, {\"step\": 85000, \"eval_return\": 236.49, \"value_mean\": 83.86, \"ve_ratio\": 0.355, \"baseline_ve\": 0.701, \"normalized_ve\": 0.51}, {\"step\": 95000, \"eval_return\": 278.54, \"value_mean\": 75.72, \"ve_ratio\": 0.272, \"baseline_ve\": 0.632, \"normalized_ve\": 0.43}, {\"step\": 105000, \"eval_return\": 267.93, \"value_mean\": 67.27, \"ve_ratio\": 0.251, \"baseline_ve\": 0.656, \"normalized_ve\": 0.38}], \"trend\": \"Eval rising throughout: 39→144→141→164→141→172→209→197→236→279→268. Value peaks at 110.91@65K then self-corrects downward to 67.27@105K. v/e ratio peaks 0.57@55K then monotonically declines to 0.25@105K. NO delusional critic collapse — value self-corrects while eval improves.\", \"verdict\": \"NEGATIVE — hypothesis was to replicate collapse, collapse NOT reproduced. However, pathological nve>1.5x episode confirmed (2.05x@25K, 1.62x@45K), consistent with trained dt_emb inducing pathological overestimation. Self-correction to 0.38x@105K distinguishes from seed 0's sustained overestimation → collapse.\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-70.8%\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 0 sustained nve>1.5x across 4 consecutive checkpoints and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:47:21.873692+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T18:51:00Z\", \"notes\": \"D032: Collapse NOT reproduced in seed 2. nve peaked 2.05x@25K (transient) then self-corrected to 0.38x@105K. Eval rose to 268. Contrast: seed 1 had SUSTAINED nve>1.5x at 35K+ (1.71x→2.09x→4.12x) → collapse to 83. Key finding: nve>1.5x threshold (35K+ steps) is reliable trained dt_emb marker (2/2 seeds), but collapse is stochastic (1/2). Framing proposal submitted to Director.\", \"causal_conclusion\": \"Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 1 sustained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x→2.09x→4.12x) and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold (at 35K+ steps) is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\"}, \"exp_009c_008f_walker_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:26.154Z\", \"updated_at\": \"2026-05-14T14:34:24.161Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T07:19:10.835Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009c_008f_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"code_commit\": \"09876d7080affdb0fb329e24753a46d998da9d8e\", \"finished_at\": \"2026-05-14T14:15:57.425Z\", \"training_hours\": 6.95}, \"spec\": {\"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"seed\": 2, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/metrics.jsonl\"}, \"pid\": \"140980\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_009c_008f_walker_s2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:15:58.982844+00:00\"}]}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 30.37, \"value_mean\": 0.0013, \"ve_ratio\": null, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 15000, \"eval_return\": 157.15, \"value_mean\": 3.057, \"ve_ratio\": 0.019, \"baseline_ve\": null, \"normalized_ve\": null}, {\"step\": 25000, \"eval_return\": 168.75, \"value_mean\": 18.536, \"ve_ratio\": 0.11, \"baseline_ve\": 0.087, \"normalized_ve\": 1.26}, {\"step\": 35000, \"eval_return\": 178.94, \"value_mean\": 34.263, \"ve_ratio\": 0.191, \"baseline_ve\": 0.241, \"normalized_ve\": 0.79}, {\"step\": 45000, \"eval_return\": 211.08, \"value_mean\": 50.099, \"ve_ratio\": 0.237, \"baseline_ve\": 0.331, \"normalized_ve\": 0.72}, {\"step\": 55000, \"eval_return\": 238.91, \"value_mean\": 63.267, \"ve_ratio\": 0.265, \"baseline_ve\": 0.404, \"normalized_ve\": 0.66}, {\"step\": 65000, \"eval_return\": 244.15, \"value_mean\": 72.717, \"ve_ratio\": 0.298, \"baseline_ve\": 0.563, \"normalized_ve\": 0.53}, {\"step\": 75000, \"eval_return\": 359.14, \"value_mean\": 83.91, \"ve_ratio\": 0.234, \"baseline_ve\": 0.719, \"normalized_ve\": 0.33}, {\"step\": 85000, \"eval_return\": 227.43, \"value_mean\": 96.071, \"ve_ratio\": 0.422, \"baseline_ve\": 0.701, \"normalized_ve\": 0.6}, {\"step\": 95000, \"eval_return\": 190.94, \"value_mean\": 108.29, \"ve_ratio\": 0.567, \"baseline_ve\": 0.632, \"normalized_ve\": 0.9}, {\"step\": 105000, \"eval_return\": 148.34, \"value_mean\": 111.247, \"ve_ratio\": 0.75, \"baseline_ve\": 0.656, \"normalized_ve\": 1.14}], \"trend\": \"Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503\", \"verdict\": \"NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-83.8%\", \"causal_conclusion\": \"Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt\", \"completed_at\": \"2026-05-14T22:15:00Z\", \"notes\": \"D031 排期修正: 009c 延长 200K 降优先级，排在 009e/009f 之后。cuda:1 排期: 009b → 008e_v3_s1 → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060。105K 指标: eval=148.34, value=111.25, nve=1.14x。\"}, \"exp_009f_008f_walker_s1\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:09:15.806Z\", \"updated_at\": \"2026-05-14T11:11:21.341Z\", \"hypothesis\": \"Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\", \"parent\": \"exp_008f_no_dt_embed_subsample_on_h8\"}, \"exp_007_fixed_dt4\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T22:15:44.218Z\", \"updated_at\": \"2026-05-14T10:20:16.451Z\", \"hypothesis\": \"诊断实验：fixed dt=4 vs dt=2 vs learned gate。硬编码 dt=4，其余超参与 exp_006 完全一致。与 exp_006(dt=2) 对照：如果 dt=4 也不掉 return，说明跳步本身无害，问题在 learned gate 机制；如果 dt=4 掉但 dt=2 不掉，说明存在跳步边界。\", \"account\": \"root\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\", \"finished_at\": \"2026-05-13T22:32:00.443Z\"}, \"failure_reason\": \"dt=4 confirmed too coarse for locomotion: eval_return 127@35K vs baseline 389 (-67.4%). model_loss comparable to baseline — RSSM can learn 4-step dynamics, but action temporal resolution too coarse for Walker Walk. Confirms dt sweet spot ∈ {1,2}. See D013.\", \"completed_at\": \"2026-05-13T22:32:00.591Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:32:01.413690+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\"}}, \"notes\": \"失败原因诊断中 | tmux 日志仅有初始化 warnings，无 Traceback | metrics.jsonl 仅到 step 5000（eval_return=31, model_grad_norm=206.46）| 进程运行 ~12.5 min 后异常退出 | 诊断 Worker: worker_diagnose_exp_007_fixed_dt4_20260513T223405\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt4_v2_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 4\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"90354\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt4_v2_s1\", \"model_name\": \"DreamerV3+FixedDt4 (gate_fixed_dt=4, no learned gate, init_dt fix applied)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 150000}, \"metrics\": {\"step\": 48000, \"eval_return_5K\": 31, \"eval_return_15K\": 129.6, \"eval_return_25K\": 176.9, \"eval_return_35K\": 126.7, \"eval_return_45K\": 144.41, \"eval_return_55K\": 152.49, \"peak_return\": 176.9, \"peak_step\": \"25K\", \"model_loss_5K\": 17.927, \"model_loss_15K\": 6.337, \"model_loss_25K\": 5.089, \"model_loss_35K\": 4.755, \"value_mean_45K\": 18.26, \"value_mean_55K\": 9.28, \"value_eval_ratio_45K\": 0.126, \"value_eval_ratio_55K\": 0.061, \"baseline_45K\": 443, \"vs_baseline_45K\": \"-67.4%\", \"trend\": \"peak 176.9@25K, low plateau ~127-152; value extremely suppressed (v/e 6-13%), NOT delusional critic but severe learning failure\"}, \"checkpoint_path\": \"N/A - killed, dt=4 confirmed too coarse for locomotion (D013)\", \"conclusion\": \"negative\"}, \"exp_006_fixed_dt2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:10:58.851Z\", \"updated_at\": \"2026-05-14T10:20:11.722Z\", \"hypothesis\": \"诊断实验：fixed dt=2 vs learned gate。去掉 Gumbel-Softmax gate，硬编码 dt=2，其余超参与 exp_005 完全一致。量化 learned gate 的价值——如果 fixed dt=2 也掉 return，说明跳步本身有害；如果不掉，问题在 gate 学习机制。\", \"parent\": \"exp_005_event_gated_v4\", \"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T22:12:00.446Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\\\"\", \"code_commit\": \"6ef8646d807cd10ce0c88e10a7e943211e7fc44c\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/fixed_dt2_v1_s1 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"85029\", \"model_name\": \"DreamerV3+FixedDt2 (gate_fixed_dt=2, no learned gate)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 150000, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt2_v1_s1\", \"checkpoint_path\": \"N/A - negative result, fixed dt=2 collapsed to 132.9@65K (21.6% baseline)\", \"failure_reason\": \"fixed dt=2 崩塌：训练分布混合（58.5% dt=1 + 41.5% dt=2 log-uniform）+ 想象纯 dt=2 条件下，eval_return 从 peak 485@35K 持续下降至 132.9@65K（baseline 同期 615.9）。与 learned gate 变体一致的崩塌模式。代码审计确认 curriculum 不生效（gate_fixed_dt>0 跳过 _update_gate_schedule）。\"}, \"pid\": \"85029\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_006_fixed_dt2.log\", \"metrics\": {\"step\": 65000, \"eval_return_5K\": 31, \"eval_return_15K\": 256.9, \"eval_return_25K\": 321.4, \"eval_return_35K\": 485.3, \"eval_return_45K\": 477, \"eval_return_55K\": 360.4, \"eval_return_65K\": 132.86, \"peak_return\": 485.3, \"peak_step\": \"35K\", \"model_loss_5K\": 20.738, \"model_loss_15K\": 7.593, \"model_loss_25K\": 5.633, \"model_loss_35K\": 5.229, \"model_loss_45K\": 5.023, \"model_loss_55K\": 4.9, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"fps\": 6.5, \"value_mean_35K\": 151.1, \"value_mean_45K\": 254.29, \"value_mean_55K\": 336.44, \"value_mean_65K\": 361.69, \"value_eval_ratio_35K\": 0.311, \"value_eval_ratio_45K\": 0.533, \"value_eval_ratio_55K\": 0.933, \"value_eval_ratio_65K\": 2.722, \"baseline_35K\": 388.5, \"baseline_45K\": 513.8, \"baseline_55K\": 625.7, \"vs_baseline_55K\": \"-42.4%\", \"trend\": \"inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)\", \"data_source_ve\": \"from training logs metrics.jsonl\"}, \"latest_metrics\": {\"step\": 36000, \"eval_step\": 35000, \"eval_return\": 485.3, \"prev_eval_return\": 321.4, \"eval_return_trajectory\": {\"5K\": 31, \"15K\": 256.9, \"25K\": 321.4, \"35K\": 485.3}, \"gate_dt_mean\": 2, \"gate_dt_std\": 0, \"grad_norm\": 8.6, \"fps\": 6.6, \"process_status\": \"running\", \"pid\": 85029, \"checked_at\": \"2026-05-14\"}, \"extra\": {\"curriculum_audit\": \"Curriculum does NOT apply in fixed_dt mode (models.py:200-205). gate_fixed_dt>0 bypasses _update_gate_schedule(). subsample_variable_dt receives effective_max_dt=2.0 from step 0, training data is 58.5% dt=1 + 41.5% dt=2 throughout. Actual train/imagine mismatch: mixed dt training vs pure dt=2 imagination.\", \"audit_commit\": \"6159e46\", \"bugs_fixed\": \"_effective_max_dt not synced in fixed_dt mode; hardcoded curriculum phases ignoring config\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T01:13:11.533Z\"}, \"exp_008d_subsample_on_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:46:57.960Z\", \"updated_at\": \"2026-05-14T10:20:03.071Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008d_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"109519\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8\", \"submitted_at\": \"2026-05-14T02:21:59.852Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8/checkpoint.ckpt\", \"wall_clock_seconds\": 8932.6, \"gpu_hours\": 2.48}, \"metrics\": {\"step\": 55000, \"eval_return_25K\": 167.22, \"eval_return_35K\": 146.34, \"eval_return_45K\": 140.8, \"eval_return_55K\": 82.75, \"value_mean_25K\": 25.86, \"value_mean_35K\": 60.2, \"value_mean_45K\": 97.5, \"value_mean_55K\": 137.88, \"value_eval_ratio_25K\": 0.155, \"value_eval_ratio_35K\": 0.411, \"value_eval_ratio_45K\": 0.693, \"value_eval_ratio_55K\": 1.666, \"actor_loss_25K\": -0.195, \"actor_loss_35K\": -0.17, \"model_loss_25K\": 5.33, \"model_loss_35K\": 5.07, \"baseline_35K\": 400, \"baseline_45K\": 443, \"vs_baseline_35K\": \"-63.4%\", \"vs_baseline_45K\": \"-68.2%\", \"verdict_35K\": \"WARN_COLLAPSE\", \"verdict_45K\": \"COLLAPSE_CONFIRMED\", \"trend\": \"eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\", \"data_source_45K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T04:50:52.439Z\"}, \"exp_008f_no_dt_embed_subsample_on_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:51:27.592Z\", \"updated_at\": \"2026-05-14T09:49:29.276Z\", \"hypothesis\": \"C2 confound control：隔离 dt_embedding conditioning vs RSSM learned dt=2 dynamics。subsample ON + dt=2 imagination + H=8（与 008d 完全一致），但 gate_dt_embed_dim=0（去掉 dt_embedding 条件输入）。如果 008f 崩塌（v/e >50%）→ 根因是 RSSM 的 dt=2 训练数据导致 dynamics 偏差，不是 dt_embedding per se。如果 008f 稳定（v/e <35%）→ 确认 dt_embedding conditioning 是 delusional critic 的直接原因。对照：008d（dt_embed_dim>0, v/e 15.5%→41.2%→69.3% 崩塌）vs 008c（subsample OFF, untrained dt_emb, v/e 稳定 ~22-33%）。\", \"parent\": \"exp_008d_subsample_on_h8\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008f_no_dt_embed_subsample_on_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"127761\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8\", \"submitted_at\": \"2026-05-14T04:51:55.020Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_source\": \"N/A - training from scratch, parent is for genealogy only\", \"eval_data\": \"N/A - training experiment, not eval\", \"wall_clock_seconds\": 16858.4, \"gpu_hours\": 4.68}, \"metrics\": {\"current_step\": 105000, \"target_steps\": 105000, \"eval_checkpoints\": {\"5K\": {\"eval_return\": 30.49, \"value_mean\": 0.001, \"ve_ratio\": 4e-05}, \"15K\": {\"eval_return\": 182.03, \"value_mean\": 2.989, \"ve_ratio\": 0.01642}, \"25K\": {\"eval_return\": 196.78, \"value_mean\": 17.507, \"ve_ratio\": 0.089, \"baseline_ve\": 0.087, \"normalized_ve\": 1.02}, \"35K\": {\"eval_return\": 206.67, \"value_mean\": 36.279, \"ve_ratio\": 0.176, \"baseline_ve\": 0.241, \"normalized_ve\": 0.73}, \"45K\": {\"eval_return\": 194.08, \"value_mean\": 53.429, \"ve_ratio\": 0.275, \"baseline_ve\": 0.331, \"normalized_ve\": 0.83}, \"55K\": {\"eval_return\": 173.45, \"value_mean\": 67.899, \"ve_ratio\": 0.391, \"baseline_ve\": 0.404, \"normalized_ve\": 0.97}, \"65K\": {\"eval_return\": 375, \"normalized_ve\": 0.37}, \"75K\": {\"eval_return\": 324, \"normalized_ve\": 0.42}, \"85K\": {\"eval_return\": 246, \"value_mean\": 111.8, \"normalized_ve\": 0.65}, \"95K\": {\"eval_return\": 319, \"normalized_ve\": 0.54}, \"105K\": {\"eval_return\": 503, \"value_mean\": 98.2, \"normalized_ve\": 0.3}}, \"trend\": \"Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.\", \"verdict\": \"SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed\", \"last_updated\": \"2026-05-14T09:50:00\", \"baseline_105K\": 915.67, \"vs_baseline_105K\": \"-45.1%\", \"causal_conclusion\": \"trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T09:30:41.254Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T09:30:42.170428+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/latest.pt\", \"completed_at\": \"2026-05-14T09:32:53.461Z\"}, \"exp_008a_no_subsample_dt2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:33:27.311Z\", \"updated_at\": \"2026-05-14T06:20:33.902Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_fixed_dt2_no_subsample --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"106942\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample\", \"submitted_at\": \"2026-05-14T01:37:46.034Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample (gate_fixed_dt=2, gate_subsample_max_dt=1, H=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 16752.2, \"gpu_hours\": 4.65}, \"hypothesis\": \"隔离 subsample 效应：subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample 混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。\", \"metrics\": {\"step\": 112000, \"eval_return_35K\": 500.84, \"eval_return_45K\": 563.41, \"eval_return_55K\": 487.92, \"eval_return_65K\": 608, \"eval_return_75K\": 469.93, \"eval_return_85K\": 583.73, \"eval_return_95K\": 572.24, \"eval_return_105K\": 777.66, \"value_mean_55K\": 183.5, \"value_mean_65K\": 226.1, \"value_mean_75K\": 251.78, \"value_mean_85K\": 277.36, \"value_mean_95K\": 284.28, \"value_mean_105K\": 300.27, \"value_eval_ratio_55K\": 0.376, \"value_eval_ratio_65K\": 0.372, \"value_eval_ratio_75K\": 0.536, \"value_eval_ratio_85K\": 0.475, \"value_eval_ratio_95K\": 0.497, \"value_eval_ratio_105K\": 0.386, \"normalized_ve_55K\": 0.93, \"normalized_ve_65K\": 0.66, \"normalized_ve_75K\": 0.75, \"normalized_ve_85K\": 0.68, \"normalized_ve_95K\": 0.79, \"normalized_ve_105K\": 0.59, \"baseline_55K\": 625.7, \"baseline_65K\": 616, \"baseline_105K\": 915.67, \"vs_baseline_65K\": \"-1.3%\", \"vs_baseline_105K\": \"-15.1%\", \"verdict_65K\": \"RECOVERED_NEW_HIGH\", \"verdict_105K\": \"NEW_PEAK_V_RECOVERY\", \"trend\": \"Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K\", \"nan_count\": 0, \"data_source\": \"from training logs metrics.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T06:15:00.119Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T06:15:01.796655+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/latest.pt\", \"completed_at\": \"2026-05-14T06:16:58.196Z\"}, \"exp_008c_no_subsample_dt2_h8\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:33:31.413Z\", \"updated_at\": \"2026-05-14T04:37:29.274Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008c_fixed_dt2_no_subsample_h8 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1 --imag_horizon 8\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"107021\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8\", \"submitted_at\": \"2026-05-14T01:37:47.540Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+FixedDt2_NoSubsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=1, imag_horizon=8)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8/checkpoint.ckpt\", \"wall_clock_seconds\": 9119.3, \"gpu_hours\": 2.53}, \"hypothesis\": \"隔离 compounding error 效应：subsample OFF + imagination dt=2 + H=8（物理覆盖 16 步 ≈ baseline H=15）。与 008a(H=15) 对照：008a 崩但 008c 不崩 → compounding error 是根因，H 需与 dt 反比补偿；两个都崩 → dt=2 RSSM 预测质量本身不足。\", \"metrics\": {\"step\": 68000, \"eval_return_35K\": 185.1, \"eval_return_45K\": 226.55, \"eval_return_55K\": 241.87, \"eval_return_65K\": 240.86, \"value_mean_35K\": 40.43, \"value_mean_55K\": 70.32, \"value_mean_65K\": 78.96, \"value_eval_ratio_35K\": 0.218, \"value_eval_ratio_55K\": 0.291, \"value_eval_ratio_65K\": 0.328, \"actor_loss_55K\": -0.082, \"actor_loss_65K\": -0.053, \"baseline_65K\": 616, \"vs_baseline_65K\": \"-60.9%\", \"verdict_65K\": \"PLATEAU\", \"trend\": \"flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\", \"data_source_35K\": \"from training logs metrics.jsonl\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T04:09:46.829Z\"}, \"exp_008e_subsample_on_fixed_dt1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:10:07.303Z\", \"updated_at\": \"2026-05-14T04:24:58.056Z\", \"hypothesis\": \"验证 Reviewer D020 因果假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（delusional critic），即使 actor 不用 dt=2 imagination。对照：008a (subsample OFF, dt=2 imag) value/eval=37.6%@55K vs exp_006 (subsample ON, dt=2 imag) 53.3%。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"121636\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"submitted_at\": \"2026-05-14T04:10:22.915Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 685.0, \"gpu_hours\": 0.19}, \"checkpoint_path\": \"N/A - killed, duplicate registry entry, logdir contaminated by dual-process write\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T04:21:47.956Z\", \"failure_reason\": \"重复 registry 条目 + logdir 被两个进程交叉写入导致 tfevents/metrics.jsonl 损坏。Director 指令清理后以 exp_008e_subsample_on_dt1_h15 为准重跑。\"}, \"exp_008e_subsample_on_dt1_h15\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:10:37.655Z\", \"updated_at\": \"2026-05-14T04:24:57.658Z\", \"hypothesis\": \"验证 Reviewer D020 delusional critic 假说：subsample ON 训练 dt_embedding[2]（RSSM 精确预测 dt=2），但 actor/critic 仅在 dt=1 imagination 训练。如果 value/eval ratio 仍加速上升 → dt_embedding 训练本身导致 value 过估（即使 actor 不用 dt=2 imagination）。对照：008a（subsample OFF，dt=2 imagination）和 006（subsample ON，dt=2 imagination）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"122038\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_subsample_on_fixed_dt1_h15\", \"submitted_at\": \"2026-05-14T04:10:46.045Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DreamerV3+SubsampleON_FixedDt1_H15 (gate_subsample_max_dt=2, gate_fixed_dt=1, imag_horizon=15)\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"wall_clock_seconds\": 662.5, \"gpu_hours\": 0.18}, \"checkpoint_path\": \"N/A - killed, logdir contaminated by duplicate process cross-write\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T04:21:48.584Z\", \"notes\": \"重复进程：与 exp_008e_subsample_on_fixed_dt1 命令完全相同，共享同一 logdir，导致 tfevents 文件互相污染。Kill PID 122038，保留 PID 121636。\"}, \"exp_005_event_gated_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:08:06.061Z\", \"updated_at\": \"2026-05-13T22:15:38.893Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v5_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"51721\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_005_event_gated_v4.log\", \"submitted_at\": \"2026-05-13T16:08:11.913Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"修复 gate_target/masking 维度不匹配 + effective_max_dt 单一来源架构 + 全量审计后，event gate return >= 80% baseline\", \"model_name\": \"DreamerV3+EventGate_v4\", \"seed\": 1, \"data_path\": \"dmc_walker_walk\", \"data_count\": 500000, \"wall_clock_seconds\": 22029.4, \"gpu_hours\": 6.12}, \"metrics\": {\"step\": 145000, \"eval_return_5K\": 31, \"eval_return_15K\": 153.9, \"eval_return_35K\": 290.8, \"eval_return_55K\": 541.18, \"eval_return_65K\": 465.67, \"eval_return_85K\": 212.34, \"eval_return_105K\": 276.08, \"eval_return_145K\": 98.84, \"peak_return\": 541.18, \"peak_step\": \"55K\", \"final_return\": 98.84, \"baseline_at_145K\": \"~950\", \"return_ratio_final\": 0.104, \"gate_scale_105K\": 0.5, \"gate_dt_mean_105K\": 2.054, \"gate_dt_std_105K\": 0.907, \"gate_entropy_105K\": 1.255, \"fps\": 6.69, \"note\": \"85K/105K metrics corrected from 319.3/337.8 to 212.34/276.08\"}, \"latest_metrics\": {\"step\": 65000, \"eval_return\": 465.67, \"prev_eval_return\": 541.18, \"eval_return_trajectory\": {\"5K\": 31, \"15K\": 153.9, \"25K\": 254.2, \"35K\": 290.8, \"45K\": 443, \"55K\": 541.2, \"65K\": 465.7}, \"gate_scale\": 0.10004, \"gate_dt_mean\": 1.035, \"gate_dt_std\": 0.036, \"gate_dt_1_frac\": 0.965, \"gate_dt_2_frac\": 0.035, \"gate_empirical_entropy\": 0.0499, \"gate_entropy_ratio\": 0.072, \"gate_loss\": 0.00663, \"gate_entropy_bonus\": 0.0865, \"train_return_latest\": 569.8, \"train_return_range\": [535.4, 602.1], \"fps\": 6.69, \"process_status\": \"running\", \"pid\": 51721, \"uptime\": \"2h31m\", \"phase2_status\": \"gate刚进入phase2 (gate_scale=0.1), dt=1占比96.5%, gate几乎未激活。eval_return在55K→65K出现14%下降(541→466), 与phase2启动时机吻合, 类似exp_003崩塌前兆。但baseline同期也有小幅回调(626→616, -1.6%), 且gate尚未真正激活, 需继续观察75K数据确认是正常波动还是collapse。\", \"alert\": \"return_declining_at_phase2_onset\", \"baseline_at_65K\": 615.9, \"gap_vs_baseline\": -150.2, \"checked_at\": \"2026-05-13\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A - killed due to structural failure of hard Gumbel gate\", \"completed_at\": \"2026-05-13T22:15:21.359Z\", \"failure_reason\": \"Hard Gumbel gate 结构性失败。3轮 bug 修复后仍崩塌：eval_return 峰值 541.18@55K → 持续下降 → 98.84@145K（baseline 同期 950.9）。Gate 机制有效（entropy/H_eff/structure 全 PASS），但 hard categorical gate + variable-rate imagination 与 actor-critic 优化存在结构性冲突。gate_scale>0.5 后 return 不可恢复。\"}, \"exp_004_event_gated_v3\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T10:05:16.227Z\", \"updated_at\": \"2026-05-13T15:47:43.692Z\", \"hypothesis\": \"修复 imagination dt 约束后（logits masking + clamp safety net），event gate 在 train/imagine 分布同步条件下能产生有意义的 variable-rate stepping 且 return ≥ 80% baseline\", \"failure_reason\": \"gate_loss 爆炸 bug：compute_gate_targets 使用 gate_max_dt=8 生成 target 分布但 logits masking 使用 effective_max_dt，cross-entropy loss ≈ 3e8。eval_return@125K=352 vs baseline@335K=942，ratio=0.37。第三次 train/imagine distribution mismatch。\", \"completed_at\": \"2026-05-13T15:23:26.384Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:23:27.393422+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"step\": 20000, \"eval_return_15K\": 153.86, \"gate_scale_15K\": 0, \"gate_dt_mean_15K\": 1, \"fps\": 8.1}}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v4_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": 36645, \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_v4_s1\", \"submitted_at\": \"2026-05-13T10:12:04.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_id\": 1, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v3 (dt clipping + logits masking + dt alignment fix)\", \"seed\": 1, \"wall_clock_seconds\": 18682.2, \"gpu_hours\": 5.19, \"checkpoint_path\": \"N/A - killed due to gate_loss explosion bug\"}, \"conclusion\": \"negative\"}, \"exp_003_event_gated_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:52:22.660Z\", \"updated_at\": \"2026-05-13T10:02:35.629Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1_v2 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True\", \"server\": \"autodl-rtx6000\", \"gpu_id\": 1, \"pid\": 27009, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM v2 (final fix: env step sync + threshold 25K/75K)\", \"seed\": 1, \"hypothesis\": \"Subsample curriculum prevents early destabilization while event gate learns meaningful variable-rate stepping\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1_v2\", \"checkpoint_source\": \"logdir/event_gated_s1_v2/latest.pt\"}, \"metrics\": {\"step\": 120000, \"gate_scale_116K\": 0.61, \"gate_dt_mean_116K\": 2.67, \"gate_dt_std_116K\": 1.46, \"gate_empirical_entropy_116K\": 1.655, \"gate_entropy_ratio_116K\": 0.796, \"gate_dt_1_frac_116K\": 0.218, \"eval_return_105K\": 92.3, \"eval_return_115K\": 118.7, \"return_ratio_105K\": 0.1, \"return_ratio_115K\": 0.13, \"mvp_C1_return\": \"FAIL (0.13)\", \"mvp_C2_entropy\": \"PASS (1.655)\", \"mvp_C3_heff\": \"PASS (2.667x)\", \"mvp_C4_structure\": \"PASS (autocorr=0.652)\", \"fps\": 6.52}, \"reproduce\": {\"finished_at\": \"2026-05-13T09:58:31.205Z\"}, \"failure_reason\": \"Return 崩塌至 baseline 13%。根因：_imagine 中 gate dt 无约束（输出 dt∈{1,...,8}），而 subsample curriculum 限制训练数据 dt≤effective_max_dt。RSSM 对未训练的大 dt 预测为噪声，progressive poisoning 导致 actor/critic 不可恢复。需修复 dt clipping + logits masking 后从头训练。\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-13T09:58:31.673Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T09:58:32.493437+00:00\"}]}}, \"exp_002_event_gated\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:09:54.240Z\", \"updated_at\": \"2026-05-13T04:52:18.089Z\", \"spec\": {\"command\": \"python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_s1 --steps 500000 --seed 1 --compile False --device cuda:1 --gate_enabled True\", \"server\": \"autodl-rtx6000\", \"gpu_id\": 1, \"pid\": 9769, \"data_path\": \"DMC Walker Walk (dm_control built-in)\", \"data_count\": 500000, \"model_name\": \"DreamerV3 + Event-Gated Variable-Rate RSSM (K=8, τ=5→0.5, λ_H=0.1→0.01)\", \"seed\": 1, \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/event_gated_s1\"}, \"hypothesis\": \"Event-gated variable-rate RSSM produces meaningful Δt patterns (entropy>0.3, H_eff>1.2×H_nominal) without breaking training stability (return≥80% baseline)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T04:50:14.987Z\", \"kill_reason\": \"Phase 1 subsample 设计缺陷：subsample_variable_dt 在 Phase 1 (gate_scale=0) 也生效，RSSM 用 variable-Δt 数据训练但 imagination 只用 Δt=1，return 恶化到 baseline 的 25%。手动 kill 后部署 subsample curriculum 补丁并重启为 exp_003。\"}}, \"count\": 32, \"total\": 32, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3144}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry result is large. Let me read the relevant experiments' data. I'll use jq to extract just the experiments I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "763b0578-c2dd-4775-8e5e-0b409a117284",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzBtb2c1ZXBjcbGi8zVHCd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 25700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+Registry 数据量大，用 jq 提取目标实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "52fe8460-aa35-4fb2-9756-93f26c9f60de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzBtb2c1ZXBjcbGi8zVHCd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 25700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HkfTUASwM5dNKNyp5TWWf5`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n\ntarget_ids = [\n    'exp_008d_subsample_on_h8',\n    'exp_009b_008d_walker_s2', \n    'exp_006_fixed_dt2',\n    'exp_008f_no_dt_embed_subsample_on_h8',\n    'exp_009c_008f_walker_s2',\n    'exp_008a_no_subsample_dt2',\n    'exp_008c_no_subsample_dt2_h8',\n    'exp_008e_v3_subsample_on_dt1_h15',\n    'exp_008e_v3_walker_s2',\n    'exp_001',\n]\n\nfor exp in result:\n    eid = exp.get('exp_id', '')\n    if eid in target_ids:\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  logdir: {exp.get(\\\"logdir\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'  metrics keys: {list(metrics.keys())}')\n            # Print NVE-related metrics\n            for k, v in metrics.items():\n                if 'nve' in k.lower() or 'normalized_ve' in k.lower() or 'value_mean' in k.lower() or 'eval_return' in k.lower() or 've_ratio' in k.lower():\n                    print(f'  {k}: {v}')\n        print()\n\" 2>&1",
+  "description": "Extract target experiments from registry JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "8beb4372-664e-4627-bceb-9f5e7fe7c9db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzBtb2c1ZXBjcbGi8zVHCd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 526,
+      "cache_read_input_tokens": 25700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 526
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T12:53:32.830Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01HkfTUASwM5dNKNyp5TWWf5`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 21, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "1c973d55-b333-4aac-8baf-5194e4f544db",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 21, in &lt;module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01M1AAKrwSYKm9eH6dTd2jR7`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = data['result']\n# Check type\nif isinstance(result, str):\n    result = json.loads(result)\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelif isinstance(result, list):\n    print(len(result))\n    if len(result) > 0:\n        print(type(result[0]))\n        if isinstance(result[0], dict):\n            print(list(result[0].keys())[:10])\n        elif isinstance(result[0], str):\n            print(result[0][:200])\n\" 2>&1",
+  "description": "Inspect registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "c39949bf-c0f8-4684-bdff-9c542311bc81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EVsfKLQYZZGX6nTXJ5Tik1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 26226,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 759
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T12:53:38.372Z_
+
+<details><summary>↩ Tool result · `toolu_01M1AAKrwSYKm9eH6dTd2jR7`</summary>
+
+```text
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "bd550841-f228-4df0-8dda-9c9f35344a31",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\n['success', 'data', 'error', 'metadata']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Dr6Q7Htge2iUAZoecnY8eS`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = data['result']\nif isinstance(result, str):\n    result = json.loads(result)\n\nexperiments = result['data']\n\ntarget_ids = [\n    'exp_008d_subsample_on_h8',\n    'exp_009b_008d_walker_s2', \n    'exp_006_fixed_dt2',\n    'exp_008f_no_dt_embed_subsample_on_h8',\n    'exp_009c_008f_walker_s2',\n    'exp_008a_no_subsample_dt2',\n    'exp_008c_no_subsample_dt2_h8',\n    'exp_008e_v3_subsample_on_dt1_h15',\n    'exp_008e_v3_walker_s2',\n    'exp_001',\n]\n\nfor exp in experiments:\n    eid = exp.get('exp_id', '')\n    if eid in target_ids:\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  logdir: {exp.get(\\\"logdir\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            # Print all metrics\n            for k, v in sorted(metrics.items()):\n                print(f'  {k}: {v}')\n        print()\n\" 2>&1",
+  "description": "Extract target experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "912c587e-4e70-45c4-b3f0-dfb78f8da8c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zuBzKNtBfd3fLXNCEZcfk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 377,
+      "cache_read_input_tokens": 26985,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 377
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T12:53:44.801Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Dr6Q7Htge2iUAZoecnY8eS`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 25, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "2a60cc24-d234-40ce-ab19-b96d93dafca3",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 25, in &lt;module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A9uJsa6tUtYEcZUaoehSEH`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = data['result']\nif isinstance(result, str):\n    result = json.loads(result)\nexperiments = result['data']\nprint(type(experiments))\nif isinstance(experiments, list):\n    print(len(experiments))\n    print(type(experiments[0]))\n    print(experiments[0][:300] if isinstance(experiments[0], str) else list(experiments[0].keys())[:5])\nelif isinstance(experiments, dict):\n    print(list(experiments.keys())[:10])\n\" 2>&1",
+  "description": "Debug registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "adcf1336-a4f5-44a1-9ffd-d34c07fb5209",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QivAFaAGZ86ecEvjhECbH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 635,
+      "cache_read_input_tokens": 27362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 635
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T12:53:50.315Z_
+
+<details><summary>↩ Tool result · `toolu_01A9uJsa6tUtYEcZUaoehSEH`</summary>
+
+```text
+&lt;class 'dict'>
+['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "7bfb224c-34ea-4144-bdae-a6f5e599fd31",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\n['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012MA99PwV1FCPrsifKBJN4V`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = data['result']\nif isinstance(result, str):\n    result = json.loads(result)\nexperiments = result['data']['experiments']\n\ntarget_ids = [\n    'exp_008d_subsample_on_h8',\n    'exp_009b_008d_walker_s2', \n    'exp_006_fixed_dt2',\n    'exp_008f_no_dt_embed_subsample_on_h8',\n    'exp_009c_008f_walker_s2',\n    'exp_008a_no_subsample_dt2',\n    'exp_008c_no_subsample_dt2_h8',\n    'exp_008e_v3_subsample_on_dt1_h15',\n    'exp_008e_v3_walker_s2',\n    'exp_001',\n]\n\nfor exp in experiments:\n    eid = exp.get('exp_id', '')\n    if eid in target_ids:\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  logdir: {exp.get(\\\"logdir\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            for k, v in sorted(metrics.items()):\n                print(f'  {k}: {v}')\n        else:\n            print('  (no metrics)')\n        print()\n\" 2>&1",
+  "description": "Extract target experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "d481aade-e8ac-4972-8c41-eb0f63750350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRLBY3pe9ACWvmcjo7wFAe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 352,
+      "cache_read_input_tokens": 27997,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 352
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T12:53:56.884Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012MA99PwV1FCPrsifKBJN4V`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 23, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "9dfb2732-abcc-451c-a6a8-88ef50804bd4",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 23, in &lt;module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017jzSDQRkZfQFiorTEeuPyh`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = data['result']\nif isinstance(result, str):\n    result = json.loads(result)\nexperiments = result['data']['experiments']\nprint(type(experiments))\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print(f'Num experiments: {len(keys)}')\n    print(f'Keys sample: {keys[:5]}')\n    first_key = keys[0]\n    val = experiments[first_key]\n    print(f'Type of value: {type(val)}')\n    if isinstance(val, dict):\n        print(f'Value keys: {list(val.keys())[:10]}')\n    elif isinstance(val, str):\n        print(f'Value: {val[:300]}')\nelif isinstance(experiments, list):\n    print(f'Num experiments: {len(experiments)}')\n    print(f'Type of first: {type(experiments[0])}')\n    if isinstance(experiments[0], str):\n        print(f'First: {experiments[0][:300]}')\n\" 2>&1",
+  "description": "Debug experiments data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "fefb1d18-67cb-4f76-812a-20a8db30d95a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rt9TyVVeqkaYTwiWutUf5J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 644,
+      "cache_read_input_tokens": 28349,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 644
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T12:54:03.012Z_
+
+<details><summary>↩ Tool result · `toolu_017jzSDQRkZfQFiorTEeuPyh`</summary>
+
+```text
+&lt;class 'dict'>
+Num experiments: 32
+Keys sample: ['exp_009d_baseline_walker_s0', 'exp_015b_frozen_dt_emb', 'exp_009d_baseline_walker_s1', 'exp_009e_008d_walker_s1', 'exp_017_subsample_off_trained_dt_emb']
+Type of value: &lt;class 'dict'>
+Value keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'notes', 'server', 'gpu', 'account']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "25b58c8b-0868-406b-99c9-4457880dbf58",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\nNum experiments: 32\nKeys sample: ['exp_009d_baseline_walker_s0', 'exp_015b_frozen_dt_emb', 'exp_009d_baseline_walker_s1', 'exp_009e_008d_walker_s1', 'exp_017_subsample_off_trained_dt_emb']\nType of value: &lt;class 'dict'>\nValue keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'notes', 'server', 'gpu', 'account']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013hdP2uf4yrnnhdkwWD8TyN`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a/tool-results/mcp-agent-ml-research-read_registry-1778849603579.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = data['result']\nif isinstance(result, str):\n    result = json.loads(result)\nexperiments = result['data']['experiments']\n\ntarget_ids = [\n    'exp_008d_subsample_on_h8',\n    'exp_009b_008d_walker_s2', \n    'exp_006_fixed_dt2',\n    'exp_008f_no_dt_embed_subsample_on_h8',\n    'exp_009c_008f_walker_s2',\n    'exp_008a_no_subsample_dt2',\n    'exp_008c_no_subsample_dt2_h8',\n    'exp_008e_v3_subsample_on_dt1_h15',\n    'exp_008e_v3_walker_s2',\n    'exp_001',\n]\n\nfor eid in target_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  logdir: {exp.get(\\\"logdir\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            for k, v in sorted(metrics.items()):\n                print(f'  {k}: {v}')\n        else:\n            print('  (no metrics)')\n        print()\n    else:\n        print(f'=== {eid} === NOT FOUND in registry')\n        print()\n\" 2>&1",
+  "description": "Extract target experiments from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "eafdeb36-acbd-459d-9e0d-5bdcbd7d1f5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0146Jgm8ikCqG8SvBMgjeNFc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 28993,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 715
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T12:54:09.457Z_
+
+<details><summary>↩ Tool result · `toolu_013hdP2uf4yrnnhdkwWD8TyN`</summary>
+
+```text
+=== exp_008d_subsample_on_h8 ===
+  status: DONE
+  logdir: N/A
+  actor_loss_25K: -0.195
+  actor_loss_35K: -0.17
+  baseline_35K: 400
+  baseline_45K: 443
+  data_source_45K: from training logs metrics.jsonl
+  eval_return_25K: 167.22
+  eval_return_35K: 146.34
+  eval_return_45K: 140.8
+  eval_return_55K: 82.75
+  model_loss_25K: 5.33
+  model_loss_35K: 5.07
+  step: 55000
+  trend: eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K
+  value_eval_ratio_25K: 0.155
+  value_eval_ratio_35K: 0.411
+  value_eval_ratio_45K: 0.693
+  value_eval_ratio_55K: 1.666
+  value_mean_25K: 25.86
+  value_mean_35K: 60.2
+  value_mean_45K: 97.5
+  value_mean_55K: 137.88
+  verdict_35K: WARN_COLLAPSE
+  verdict_45K: COLLAPSE_CONFIRMED
+  vs_baseline_35K: -63.4%
+  vs_baseline_45K: -68.2%
+
+=== exp_009b_008d_walker_s2 ===
+  status: DONE
+  logdir: N/A
+  baseline_105K: 915.67
+  causal_conclusion: Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 0 sustained nve>1.5x across 4 consecutive checkpoints and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).
+  current_step: 105000
+  eval_checkpoints: [{'step': 5000, 'eval_return': 39.27, 'value_mean': 0, 've_ratio': 0, 'baseline_ve': None, 'normalized_ve': None}, {'step': 15000, 'eval_return': 144.31, 'value_mean': 4.47, 've_ratio': 0.031, 'baseline_ve': None, 'normalized_ve': None}, {'step': 25000, 'eval_return': 141.12, 'value_mean': 25.14, 've_ratio': 0.178, 'baseline_ve': 0.087, 'normalized_ve': 2.05}, {'step': 35000, 'eval_return': 164.14, 'value_mean': 49.02, 've_ratio': 0.299, 'baseline_ve': 0.241, 'normalized_ve': 1.24}, {'step': 45000, 'eval_return': 141.04, 'value_mean': 75.59, 've_ratio': 0.536, 'baseline_ve': 0.331, 'normalized_ve': 1.62}, {'step': 55000, 'eval_return': 172.33, 'value_mean': 98.28, 've_ratio': 0.57, 'baseline_ve': 0.404, 'normalized_ve': 1.41}, {'step': 65000, 'eval_return': 209.16, 'value_mean': 110.91, 've_ratio': 0.53, 'baseline_ve': 0.563, 'normalized_ve': 0.94}, {'step': 75000, 'eval_return': 197.46, 'value_mean': 93.49, 've_ratio': 0.474, 'baseline_ve': 0.719, 'normalized_ve': 0.66}, {'step': 85000, 'eval_return': 236.49, 'value_mean': 83.86, 've_ratio': 0.355, 'baseline_ve': 0.701, 'normalized_ve': 0.51}, {'step': 95000, 'eval_return': 278.54, 'value_mean': 75.72, 've_ratio': 0.272, 'baseline_ve': 0.632, 'normalized_ve': 0.43}, {'step': 105000, 'eval_return': 267.93, 'value_mean': 67.27, 've_ratio': 0.251, 'baseline_ve': 0.656, 'normalized_ve': 0.38}]
+  target_steps: 105000
+  trend: Eval rising throughout: 39→144→141→164→141→172→209→197→236→279→268. Value peaks at 110.91@65K then self-corrects downward to 67.27@105K. v/e ratio peaks 0.57@55K then monotonically declines to 0.25@105K. NO delusional critic collapse — value self-corrects while eval improves.
+  verdict: NEGATIVE — hypothesis was to replicate collapse, collapse NOT reproduced. However, pathological nve>1.5x episode confirmed (2.05x@25K, 1.62x@45K), consistent with trained dt_emb inducing pathological overestimation. Self-correction to 0.38x@105K distinguishes from seed 0's sustained overestimation → collapse.
+  vs_baseline_105K: -70.8%
+
+=== exp_006_fixed_dt2 ===
+  status: DONE
+  logdir: N/A
+  baseline_35K: 388.5
+  baseline_45K: 513.8
+  baseline_55K: 625.7
+  data_source_ve: from training logs metrics.jsonl
+  eval_return_15K: 256.9
+  eval_return_25K: 321.4
+  eval_return_35K: 485.3
+  eval_return_45K: 477
+  eval_return_55K: 360.4
+  eval_return_5K: 31
+  eval_return_65K: 132.86
+  fps: 6.5
+  gate_dt_mean: 2
+  gate_dt_std: 0
+  model_loss_15K: 7.593
+  model_loss_25K: 5.633
+  model_loss_35K: 5.229
+  model_loss_45K: 5.023
+  model_loss_55K: 4.9
+  model_loss_5K: 20.738
+  peak_return: 485.3
+  peak_step: 35K
+  step: 65000
+  trend: inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)
+  value_eval_ratio_35K: 0.311
+  value_eval_ratio_45K: 0.533
+  value_eval_ratio_55K: 0.933
+  value_eval_ratio_65K: 2.722
+  value_mean_35K: 151.1
+  value_mean_45K: 254.29
+  value_mean_55K: 336.44
+  value_mean_65K: 361.69
+  vs_baseline_55K: -42.4%
+
+=== exp_008f_no_dt_embed_subsample_on_h8 ===
+  status: DONE
+  logdir: N/A
+  baseline_105K: 915.67
+  causal_conclusion: trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.
+  current_step: 105000
+  eval_checkpoints: {'5K': {'eval_return': 30.49, 'value_mean': 0.001, 've_ratio': 4e-05}, '15K': {'eval_return': 182.03, 'value_mean': 2.989, 've_ratio': 0.01642}, '25K': {'eval_return': 196.78, 'value_mean': 17.507, 've_ratio': 0.089, 'baseline_ve': 0.087, 'normalized_ve': 1.02}, '35K': {'eval_return': 206.67, 'value_mean': 36.279, 've_ratio': 0.176, 'baseline_ve': 0.241, 'normalized_ve': 0.73}, '45K': {'eval_return': 194.08, 'value_mean': 53.429, 've_ratio': 0.275, 'baseline_ve': 0.331, 'normalized_ve': 0.83}, '55K': {'eval_return': 173.45, 'value_mean': 67.899, 've_ratio': 0.391, 'baseline_ve': 0.404, 'normalized_ve': 0.97}, '65K': {'eval_return': 375, 'normalized_ve': 0.37}, '75K': {'eval_return': 324, 'normalized_ve': 0.42}, '85K': {'eval_return': 246, 'value_mean': 111.8, 'normalized_ve': 0.65}, '95K': {'eval_return': 319, 'normalized_ve': 0.54}, '105K': {'eval_return': 503, 'value_mean': 98.2, 'normalized_ve': 0.3}}
+  last_updated: 2026-05-14T09:50:00
+  target_steps: 105000
+  trend: Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.
+  verdict: SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed
+  vs_baseline_105K: -45.1%
+
+=== exp_009c_008f_walker_s2 ===
+  status: DONE
+  logdir: N/A
+  baseline_105K: 915.67
+  causal_conclusion: Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.
+  current_step: 105000
+  eval_checkpoints: [{'step': 5000, 'eval_return': 30.37, 'value_mean': 0.0013, 've_ratio': None, 'baseline_ve': None, 'normalized_ve': None}, {'step': 15000, 'eval_return': 157.15, 'value_mean': 3.057, 've_ratio': 0.019, 'baseline_ve': None, 'normalized_ve': None}, {'step': 25000, 'eval_return': 168.75, 'value_mean': 18.536, 've_ratio': 0.11, 'baseline_ve': 0.087, 'normalized_ve': 1.26}, {'step': 35000, 'eval_return': 178.94, 'value_mean': 34.263, 've_ratio': 0.191, 'baseline_ve': 0.241, 'normalized_ve': 0.79}, {'step': 45000, 'eval_return': 211.08, 'value_mean': 50.099, 've_ratio': 0.237, 'baseline_ve': 0.331, 'normalized_ve': 0.72}, {'step': 55000, 'eval_return': 238.91, 'value_mean': 63.267, 've_ratio': 0.265, 'baseline_ve': 0.404, 'normalized_ve': 0.66}, {'step': 65000, 'eval_return': 244.15, 'value_mean': 72.717, 've_ratio': 0.298, 'baseline_ve': 0.563, 'normalized_ve': 0.53}, {'step': 75000, 'eval_return': 359.14, 'value_mean': 83.91, 've_ratio': 0.234, 'baseline_ve': 0.719, 'normalized_ve': 0.33}, {'step': 85000, 'eval_return': 227.43, 'value_mean': 96.071, 've_ratio': 0.422, 'baseline_ve': 0.701, 'normalized_ve': 0.6}, {'step': 95000, 'eval_return': 190.94, 'value_mean': 108.29, 've_ratio': 0.567, 'baseline_ve': 0.632, 'normalized_ve': 0.9}, {'step': 105000, 'eval_return': 148.34, 'value_mean': 111.247, 've_ratio': 0.75, 'baseline_ve': 0.656, 'normalized_ve': 1.14}]
+  target_steps: 105000
+  trend: Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503
+  verdict: NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed
+  vs_baseline_105K: -83.8%
+
+=== exp_008a_no_subsample_dt2 ===
+  status: DONE
+  logdir: N/A
+  baseline_105K: 915.67
+  baseline_55K: 625.7
+  baseline_65K: 616
+  data_source: from training logs metrics.jsonl
+  eval_return_105K: 777.66
+  eval_return_35K: 500.84
+  eval_return_45K: 563.41
+  eval_return_55K: 487.92
+  eval_return_65K: 608
+  eval_return_75K: 469.93
+  eval_return_85K: 583.73
+  eval_return_95K: 572.24
+  nan_count: 0
+  normalized_ve_105K: 0.59
+  normalized_ve_55K: 0.93
+  normalized_ve_65K: 0.66
+  normalized_ve_75K: 0.75
+  normalized_ve_85K: 0.68
+  normalized_ve_95K: 0.79
+  step: 112000
+  trend: Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K
+  value_eval_ratio_105K: 0.386
+  value_eval_ratio_55K: 0.376
+  value_eval_ratio_65K: 0.372
+  value_eval_ratio_75K: 0.536
+  value_eval_ratio_85K: 0.475
+  value_eval_ratio_95K: 0.497
+  value_mean_105K: 300.27
+  value_mean_55K: 183.5
+  value_mean_65K: 226.1
+  value_mean_75K: 251.78
+  value_mean_85K: 277.36
+  value_mean_95K: 284.28
+  verdict_105K: NEW_PEAK_V_RECOVERY
+  verdict_65K: RECOVERED_NEW_HIGH
+  vs_baseline_105K: -15.1%
+  vs_baseline_65K: -1.3%
+
+=== exp_008c_no_subsample_dt2_h8 ===
+  status: DONE
+  logdir: N/A
+  actor_loss_55K: -0.082
+  actor_loss_65K: -0.053
+  baseline_65K: 616
+  data_source_35K: from training logs metrics.jsonl
+  eval_return_35K: 185.1
+  eval_return_45K: 226.55
+  eval_return_55K: 241.87
+  eval_return_65K: 240.86
+  step: 68000
+  trend: flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)
+  value_eval_ratio_35K: 0.218
+  value_eval_ratio_55K: 0.291
+  value_eval_ratio_65K: 0.328
+  value_mean_35K: 40.43
+  value_mean_55K: 70.32
+  value_mean_65K: 78.96
+  verdict_65K: PLATEAU
+  vs_baseline_65K: -60.9%
+
+=== exp_008e_v3_subsample_on_dt1_h15 ===
+  status: DONE
+  logdir: N/A
+  baseline_105K: 915.67
+  current_step: 112000
+  eval_return: {'5K': 31, '15K': 131.2, '25K': 155.69, '35K': 276.47, '45K': 382.22, '55K': 486.84, '65K': 580.67, '75K': 574.09, '85K': 657.31, '95K': 851.86, '105K': 869.88}
+  fps: 7.01
+  gate_dt_1_frac: 1
+  gate_dt_mean: 1
+  last_updated: 2026-05-14T09:09:00
+  normalized_ve: {'25K': 1.93, '35K': 0.94, '45K': 0.88, '55K': 0.87, '65K': 0.72, '75K': 0.73, '85K': 0.76, '95K': 0.75, '105K': 0.8}
+  target_steps: 105000
+  value_eval_ratio: {'25K': 0.168, '35K': 0.227, '45K': 0.29, '55K': 0.35, '65K': 0.405, '75K': 0.523, '85K': 0.534, '95K': 0.476, '105K': 0.527}
+  value_mean: {'25K': 26.19, '35K': 62.76, '45K': 110.67, '55K': 170.09, '65K': 235.05, '75K': 300.51, '85K': 351.33, '95K': 405.25, '105K': 457.93}
+  verdict: SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed
+  vs_baseline_105K: -5.0%
+
+=== exp_008e_v3_walker_s2 ===
+  status: DONE
+  logdir: N/A
+  actor_entropy_collapse_signature: entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)
+  actor_entropy_trajectory: [{'step': 5000, 'actor_entropy': 8.239}, {'step': 15000, 'actor_entropy': 2.352}, {'step': 25000, 'actor_entropy': 0.17}, {'step': 35000, 'actor_entropy': -3.498}, {'step': 45000, 'actor_entropy': -4.915}, {'step': 55000, 'actor_entropy': -5.121}, {'step': 65000, 'actor_entropy': -5.135}, {'step': 75000, 'actor_entropy': -5.224}, {'step': 85000, 'actor_entropy': -5.208}, {'step': 95000, 'actor_entropy': -4.529}, {'step': 105000, 'actor_entropy': -3.828}]
+  baseline_105K: 915.67
+  collapse_confirmed: 105K (nve=3.78x, eval 715→137)
+  collapse_onset: 95K (nve jumped from 0.68x to 1.34x)
+  eval_trajectory: [{'step': 5000, 'eval_return': 39.27}, {'step': 15000, 'eval_return': 180.85}, {'step': 25000, 'eval_return': 211.82}, {'step': 35000, 'eval_return': 320.39}, {'step': 45000, 'eval_return': 356.93}, {'step': 55000, 'eval_return': 418.32}, {'step': 65000, 'eval_return': 435.09}, {'step': 75000, 'eval_return': 576.54}, {'step': 85000, 'eval_return': 715.21}, {'step': 95000, 'eval_return': 452.43}, {'step': 105000, 'eval_return': 136.96}]
+  final_eval_return: 136.96
+  final_nve: 3.78
+  final_value_mean: 339.84
+  final_ve_ratio: 2.481
+  gate_dt_1_frac: 1
+  gate_dt_mean: 1
+  peak_eval_return: 715.21
+  peak_eval_step: 85000
+  train_return_108K: 19-23 (random policy level)
+  value_trajectory: [{'step': 5000, 'value_mean': 0}, {'step': 15000, 'value_mean': 3.91}, {'step': 25000, 'value_mean': 30.27}, {'step': 35000, 'value_mean': 79.75}, {'step': 45000, 'value_mean': 125.25}, {'step': 55000, 'value_mean': 172.89}, {'step': 65000, 'value_mean': 220.47}, {'step': 75000, 'value_mean': 272.64}, {'step': 85000, 'value_mean': 339.3}, {'step': 95000, 'value_mean': 384.39}, {'step': 105000, 'value_mean': 339.84}]
+  ve_ratio_trajectory: [{'step': 25000, 've': 0.143, 'nve': 1.64}, {'step': 35000, 've': 0.249, 'nve': 1.03}, {'step': 45000, 've': 0.351, 'nve': 1.06}, {'step': 55000, 've': 0.413, 'nve': 1.02}, {'step': 65000, 've': 0.507, 'nve': 0.9}, {'step': 75000, 've': 0.473, 'nve': 0.66}, {'step': 85000, 've': 0.474, 'nve': 0.68}, {'step': 95000, 've': 0.85, 'nve': 1.34}, {'step': 105000, 've': 2.481, 'nve': 3.78}]
+  vs_baseline_105K: -85.0%
+
+=== exp_001 === NOT FOUND in registry
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "2db05cbc-2d0f-43fe-bf9b-a19b3d629792",
+  "tool_use_result": {
+    "stdout": "=== exp_008d_subsample_on_h8 ===\n  status: DONE\n  logdir: N/A\n  actor_loss_25K: -0.195\n  actor_loss_35K: -0.17\n  baseline_35K: 400\n  baseline_45K: 443\n  data_source_45K: from training logs metrics.jsonl\n  eval_return_25K: 167.22\n  eval_return_35K: 146.34\n  eval_return_45K: 140.8\n  eval_return_55K: 82.75\n  model_loss_25K: 5.33\n  model_loss_35K: 5.07\n  step: 55000\n  trend: eval declining 167→146→141→83; v/e accelerating 15.5%→41.2%→69.3%→167% — delusional critic collapse confirmed, value exceeds eval_return at 55K\n  value_eval_ratio_25K: 0.155\n  value_eval_ratio_35K: 0.411\n  value_eval_ratio_45K: 0.693\n  value_eval_ratio_55K: 1.666\n  value_mean_25K: 25.86\n  value_mean_35K: 60.2\n  value_mean_45K: 97.5\n  value_mean_55K: 137.88\n  verdict_35K: WARN_COLLAPSE\n  verdict_45K: COLLAPSE_CONFIRMED\n  vs_baseline_35K: -63.4%\n  vs_baseline_45K: -68.2%\n\n=== exp_009b_008d_walker_s2 ===\n  status: DONE\n  logdir: N/A\n  baseline_105K: 915.67\n  causal_conclusion: Seed 2 nve transiently reached 2.05x@25K (pathological), confirming trained dt_emb reliably induces nve>1.5x (2/2 seeds). But seed 2 self-corrected (nve 2.05x→0.38x@105K, eval 141→268) while seed 0 sustained nve>1.5x across 4 consecutive checkpoints and collapsed (eval 167→83). Collapse is stochastic (1/2 seeds); nve>1.5x threshold is a reliable diagnostic marker with 4/4 separating power (trained 2/2 exceed, untrained 0/2 exceed).\n  current_step: 105000\n  eval_checkpoints: [{'step': 5000, 'eval_return': 39.27, 'value_mean': 0, 've_ratio': 0, 'baseline_ve': None, 'normalized_ve': None}, {'step': 15000, 'eval_return': 144.31, 'value_mean': 4.47, 've_ratio': 0.031, 'baseline_ve': None, 'normalized_ve': None}, {'step': 25000, 'eval_return': 141.12, 'value_mean': 25.14, 've_ratio': 0.178, 'baseline_ve': 0.087, 'normalized_ve': 2.05}, {'step': 35000, 'eval_return': 164.14, 'value_mean': 49.02, 've_ratio': 0.299, 'baseline_ve': 0.241, 'normalized_ve': 1.24}, {'step': 45000, 'eval_return': 141.04, 'value_mean': 75.59, 've_ratio': 0.536, 'baseline_ve': 0.331, 'normalized_ve': 1.62}, {'step': 55000, 'eval_return': 172.33, 'value_mean': 98.28, 've_ratio': 0.57, 'baseline_ve': 0.404, 'normalized_ve': 1.41}, {'step': 65000, 'eval_return': 209.16, 'value_mean': 110.91, 've_ratio': 0.53, 'baseline_ve': 0.563, 'normalized_ve': 0.94}, {'step': 75000, 'eval_return': 197.46, 'value_mean': 93.49, 've_ratio': 0.474, 'baseline_ve': 0.719, 'normalized_ve': 0.66}, {'step': 85000, 'eval_return': 236.49, 'value_mean': 83.86, 've_ratio': 0.355, 'baseline_ve': 0.701, 'normalized_ve': 0.51}, {'step': 95000, 'eval_return': 278.54, 'value_mean': 75.72, 've_ratio': 0.272, 'baseline_ve': 0.632, 'normalized_ve': 0.43}, {'step': 105000, 'eval_return': 267.93, 'value_mean': 67.27, 've_ratio': 0.251, 'baseline_ve': 0.656, 'normalized_ve': 0.38}]\n  target_steps: 105000\n  trend: Eval rising throughout: 39→144→141→164→141→172→209→197→236→279→268. Value peaks at 110.91@65K then self-corrects downward to 67.27@105K. v/e ratio peaks 0.57@55K then monotonically declines to 0.25@105K. NO delusional critic collapse — value self-corrects while eval improves.\n  verdict: NEGATIVE — hypothesis was to replicate collapse, collapse NOT reproduced. However, pathological nve>1.5x episode confirmed (2.05x@25K, 1.62x@45K), consistent with trained dt_emb inducing pathological overestimation. Self-correction to 0.38x@105K distinguishes from seed 0's sustained overestimation → collapse.\n  vs_baseline_105K: -70.8%\n\n=== exp_006_fixed_dt2 ===\n  status: DONE\n  logdir: N/A\n  baseline_35K: 388.5\n  baseline_45K: 513.8\n  baseline_55K: 625.7\n  data_source_ve: from training logs metrics.jsonl\n  eval_return_15K: 256.9\n  eval_return_25K: 321.4\n  eval_return_35K: 485.3\n  eval_return_45K: 477\n  eval_return_55K: 360.4\n  eval_return_5K: 31\n  eval_return_65K: 132.86\n  fps: 6.5\n  gate_dt_mean: 2\n  gate_dt_std: 0\n  model_loss_15K: 7.593\n  model_loss_25K: 5.633\n  model_loss_35K: 5.229\n  model_loss_45K: 5.023\n  model_loss_55K: 4.9\n  model_loss_5K: 20.738\n  peak_return: 485.3\n  peak_step: 35K\n  step: 65000\n  trend: inverted-V: peak 485@35K, collapsing to 133@65K; v/e accelerating: 31.1%→53.3%→93.3%→272% (value 2.7x eval_return at 65K)\n  value_eval_ratio_35K: 0.311\n  value_eval_ratio_45K: 0.533\n  value_eval_ratio_55K: 0.933\n  value_eval_ratio_65K: 2.722\n  value_mean_35K: 151.1\n  value_mean_45K: 254.29\n  value_mean_55K: 336.44\n  value_mean_65K: 361.69\n  vs_baseline_55K: -42.4%\n\n=== exp_008f_no_dt_embed_subsample_on_h8 ===\n  status: DONE\n  logdir: N/A\n  baseline_105K: 915.67\n  causal_conclusion: trained dt_embedding → value overestimation → actor exploitation → collapse. Without dt_embedding, value self-corrects.\n  current_step: 105000\n  eval_checkpoints: {'5K': {'eval_return': 30.49, 'value_mean': 0.001, 've_ratio': 4e-05}, '15K': {'eval_return': 182.03, 'value_mean': 2.989, 've_ratio': 0.01642}, '25K': {'eval_return': 196.78, 'value_mean': 17.507, 've_ratio': 0.089, 'baseline_ve': 0.087, 'normalized_ve': 1.02}, '35K': {'eval_return': 206.67, 'value_mean': 36.279, 've_ratio': 0.176, 'baseline_ve': 0.241, 'normalized_ve': 0.73}, '45K': {'eval_return': 194.08, 'value_mean': 53.429, 've_ratio': 0.275, 'baseline_ve': 0.331, 'normalized_ve': 0.83}, '55K': {'eval_return': 173.45, 'value_mean': 67.899, 've_ratio': 0.391, 'baseline_ve': 0.404, 'normalized_ve': 0.97}, '65K': {'eval_return': 375, 'normalized_ve': 0.37}, '75K': {'eval_return': 324, 'normalized_ve': 0.42}, '85K': {'eval_return': 246, 'value_mean': 111.8, 'normalized_ve': 0.65}, '95K': {'eval_return': 319, 'normalized_ve': 0.54}, '105K': {'eval_return': 503, 'value_mean': 98.2, 'normalized_ve': 0.3}}\n  last_updated: 2026-05-14T09:50:00\n  target_steps: 105000\n  trend: Zigzag recovery with high variance: eval 207→194→173@55K→375→324→246→319→503@105K. NOT a clean V-shape — high inter-eval variance throughout. Value self-corrected: peaked 111.8@85K then declined to 98.2@105K. Normalized v/e: 0.97x@55K→0.37x@65K→0.65x@85K→0.30x@105K. Key contrast with 008d: value only accelerates (69.3%@45K) vs 008f value self-corrects.\n  verdict: SUCCESS - zigzag recovery to 503@105K, normalized v/e=0.30x, C2 confirmed\n  vs_baseline_105K: -45.1%\n\n=== exp_009c_008f_walker_s2 ===\n  status: DONE\n  logdir: N/A\n  baseline_105K: 915.67\n  causal_conclusion: Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust.\n  current_step: 105000\n  eval_checkpoints: [{'step': 5000, 'eval_return': 30.37, 'value_mean': 0.0013, 've_ratio': None, 'baseline_ve': None, 'normalized_ve': None}, {'step': 15000, 'eval_return': 157.15, 'value_mean': 3.057, 've_ratio': 0.019, 'baseline_ve': None, 'normalized_ve': None}, {'step': 25000, 'eval_return': 168.75, 'value_mean': 18.536, 've_ratio': 0.11, 'baseline_ve': 0.087, 'normalized_ve': 1.26}, {'step': 35000, 'eval_return': 178.94, 'value_mean': 34.263, 've_ratio': 0.191, 'baseline_ve': 0.241, 'normalized_ve': 0.79}, {'step': 45000, 'eval_return': 211.08, 'value_mean': 50.099, 've_ratio': 0.237, 'baseline_ve': 0.331, 'normalized_ve': 0.72}, {'step': 55000, 'eval_return': 238.91, 'value_mean': 63.267, 've_ratio': 0.265, 'baseline_ve': 0.404, 'normalized_ve': 0.66}, {'step': 65000, 'eval_return': 244.15, 'value_mean': 72.717, 've_ratio': 0.298, 'baseline_ve': 0.563, 'normalized_ve': 0.53}, {'step': 75000, 'eval_return': 359.14, 'value_mean': 83.91, 've_ratio': 0.234, 'baseline_ve': 0.719, 'normalized_ve': 0.33}, {'step': 85000, 'eval_return': 227.43, 'value_mean': 96.071, 've_ratio': 0.422, 'baseline_ve': 0.701, 'normalized_ve': 0.6}, {'step': 95000, 'eval_return': 190.94, 'value_mean': 108.29, 've_ratio': 0.567, 'baseline_ve': 0.632, 'normalized_ve': 0.9}, {'step': 105000, 'eval_return': 148.34, 'value_mean': 111.247, 've_ratio': 0.75, 'baseline_ve': 0.656, 'normalized_ve': 1.14}]\n  target_steps: 105000\n  trend: Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503\n  verdict: NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed\n  vs_baseline_105K: -83.8%\n\n=== exp_008a_no_subsample_dt2 ===\n  status: DONE\n  logdir: N/A\n  baseline_105K: 915.67\n  baseline_55K: 625.7\n  baseline_65K: 616\n  data_source: from training logs metrics.jsonl\n  eval_return_105K: 777.66\n  eval_return_35K: 500.84\n  eval_return_45K: 563.41\n  eval_return_55K: 487.92\n  eval_return_65K: 608\n  eval_return_75K: 469.93\n  eval_return_85K: 583.73\n  eval_return_95K: 572.24\n  nan_count: 0\n  normalized_ve_105K: 0.59\n  normalized_ve_55K: 0.93\n  normalized_ve_65K: 0.66\n  normalized_ve_75K: 0.75\n  normalized_ve_85K: 0.68\n  normalized_ve_95K: 0.79\n  step: 112000\n  trend: Two V-shaped recoveries: 501→563→488→608→470→584→572→778; v/e suppressed 38-54% (normalized 0.59-0.79x baseline); no collapse at 105K\n  value_eval_ratio_105K: 0.386\n  value_eval_ratio_55K: 0.376\n  value_eval_ratio_65K: 0.372\n  value_eval_ratio_75K: 0.536\n  value_eval_ratio_85K: 0.475\n  value_eval_ratio_95K: 0.497\n  value_mean_105K: 300.27\n  value_mean_55K: 183.5\n  value_mean_65K: 226.1\n  value_mean_75K: 251.78\n  value_mean_85K: 277.36\n  value_mean_95K: 284.28\n  verdict_105K: NEW_PEAK_V_RECOVERY\n  verdict_65K: RECOVERED_NEW_HIGH\n  vs_baseline_105K: -15.1%\n  vs_baseline_65K: -1.3%\n\n=== exp_008c_no_subsample_dt2_h8 ===\n  status: DONE\n  logdir: N/A\n  actor_loss_55K: -0.082\n  actor_loss_65K: -0.053\n  baseline_65K: 616\n  data_source_35K: from training logs metrics.jsonl\n  eval_return_35K: 185.1\n  eval_return_45K: 226.55\n  eval_return_55K: 241.87\n  eval_return_65K: 240.86\n  step: 68000\n  trend: flat plateau @55K-65K (~241), very slow learner with h8, value/eval=32.8% (no collapse)\n  value_eval_ratio_35K: 0.218\n  value_eval_ratio_55K: 0.291\n  value_eval_ratio_65K: 0.328\n  value_mean_35K: 40.43\n  value_mean_55K: 70.32\n  value_mean_65K: 78.96\n  verdict_65K: PLATEAU\n  vs_baseline_65K: -60.9%\n\n=== exp_008e_v3_subsample_on_dt1_h15 ===\n  status: DONE\n  logdir: N/A\n  baseline_105K: 915.67\n  current_step: 112000\n  eval_return: {'5K': 31, '15K': 131.2, '25K': 155.69, '35K': 276.47, '45K': 382.22, '55K': 486.84, '65K': 580.67, '75K': 574.09, '85K': 657.31, '95K': 851.86, '105K': 869.88}\n  fps: 7.01\n  gate_dt_1_frac: 1\n  gate_dt_mean: 1\n  last_updated: 2026-05-14T09:09:00\n  normalized_ve: {'25K': 1.93, '35K': 0.94, '45K': 0.88, '55K': 0.87, '65K': 0.72, '75K': 0.73, '85K': 0.76, '95K': 0.75, '105K': 0.8}\n  target_steps: 105000\n  value_eval_ratio: {'25K': 0.168, '35K': 0.227, '45K': 0.29, '55K': 0.35, '65K': 0.405, '75K': 0.523, '85K': 0.534, '95K': 0.476, '105K': 0.527}\n  value_mean: {'25K': 26.19, '35K': 62.76, '45K': 110.67, '55K': 170.09, '65K': 235.05, '75K': 300.51, '85K': 351.33, '95K': 405.25, '105K': 457.93}\n  verdict: SUCCESS - 95% baseline, normalized v/e stable 0.72-0.80x, B+ hypothesis confirmed\n  vs_baseline_105K: -5.0%\n\n=== exp_008e_v3_walker_s2 ===\n  status: DONE\n  logdir: N/A\n  actor_entropy_collapse_signature: entropy rose from -5.21@85K to -3.83@105K (policy destabilizing during collapse)\n  actor_entropy_trajectory: [{'step': 5000, 'actor_entropy': 8.239}, {'step': 15000, 'actor_entropy': 2.352}, {'step': 25000, 'actor_entropy': 0.17}, {'step': 35000, 'actor_entropy': -3.498}, {'step': 45000, 'actor_entropy': -4.915}, {'step': 55000, 'actor_entropy': -5.121}, {'step': 65000, 'actor_entropy': -5.135}, {'step': 75000, 'actor_entropy': -5.224}, {'step': 85000, 'actor_entropy': -5.208}, {'step': 95000, 'actor_entropy': -4.529}, {'step': 105000, 'actor_entropy': -3.828}]\n  baseline_105K: 915.67\n  collapse_confirmed: 105K (nve=3.78x, eval 715→137)\n  collapse_onset: 95K (nve jumped from 0.68x to 1.34x)\n  eval_trajectory: [{'step': 5000, 'eval_return': 39.27}, {'step': 15000, 'eval_return': 180.85}, {'step': 25000, 'eval_return': 211.82}, {'step': 35000, 'eval_return': 320.39}, {'step': 45000, 'eval_return': 356.93}, {'step': 55000, 'eval_return': 418.32}, {'step': 65000, 'eval_return': 435.09}, {'step': 75000, 'eval_return': 576.54}, {'step': 85000, 'eval_return': 715.21}, {'step': 95000, 'eval_return': 452.43}, {'step': 105000, 'eval_return': 136.96}]\n  final_eval_return: 136.96\n  final_nve: 3.78\n  final_value_mean: 339.84\n  final_ve_ratio: 2.481\n  gate_dt_1_frac: 1\n  gate_dt_mean: 1\n  peak_eval_return: 715.21\n  peak_eval_step: 85000\n  train_return_108K: 19-23 (random policy level)\n  value_trajectory: [{'step': 5000, 'value_mean': 0}, {'step': 15000, 'value_mean': 3.91}, {'step': 25000, 'value_mean': 30.27}, {'step': 35000, 'value_mean': 79.75}, {'step': 45000, 'value_mean': 125.25}, {'step': 55000, 'value_mean': 172.89}, {'step': 65000, 'value_mean': 220.47}, {'step': 75000, 'value_mean': 272.64}, {'step': 85000, 'value_mean': 339.3}, {'step': 95000, 'value_mean': 384.39}, {'step': 105000, 'value_mean': 339.84}]\n  ve_ratio_trajectory: [{'step': 25000, 've': 0.143, 'nve': 1.64}, {'step': 35000, 've': 0.249, 'nve': 1.03}, {'step': 45000, 've': 0.351, 'nve': 1.06}, {'step': 55000, 've': 0.413, 'nve': 1.02}, {'step': 65000, 've': 0.507, 'nve': 0.9}, {'step': 75000, 've': 0.473, 'nve': 0.66}, {'step': 85000, 've': 0.474, 'nve': 0.68}, {'step': 95000, 've': 0.85, 'nve': 1.34}, {'step': 105000, 've': 2.481, 'nve': 3.78}]\n  vs_baseline_105K: -85.0%\n\n=== exp_001 === NOT FOUND in registry",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have most of the data I need. Let me also check for exp_001 data separately, and gather missing NVE data for some experiments. Let me also check the raw ve data for exp_008d, exp_006_fixed_dt2, and exp_008c_no_subsample_dt2_h8 which don't have normalized_ve explicitly.
+
+I already have:
+- exp_001: baseline v/e values from the task spec (25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656)
+
+
+- exp_008d_subsample_on_h8: Now I'm calculating the normalized value-eval ratios by dividing each step's performance against the corresponding baseline, starting from 35K onward.
+
+- exp_009b_008d_walker_s2: This one already has the normalized values computed across checkpoints from 35K through 105K, showing a general decline in the ratio as training progresses.
+
+- exp_006_fixed_dt2: Beginning to extract the 35K checkpoint data for this experiment as well. Looking at the performance metrics for the negative class experiments without dt_embed, I'm seeing more variability across checkpoints—the first experiment shows a dip at 65K before recovering, while the second experiment demonstrates a general declining trend from 35K through 75K before picking back up. I need to fill in the missing data points for 35K and 45K steps—either by pulling from the registry or SSHing into the metrics files if necessary. For exp_008c, I'm calculating the normalized value estimates across the available checkpoints: 35K gives 0.90, 55K gives 0.72, and 65K gives 0.58, though this experiment only has data through step 68000.
+
+Now looking at exp_008e_v3_subsample_on_dt1_h15, which has a complete series from 35K through 105K with normalized values ranging from 0.94 down to 0.72 at 65K before recovering slightly. The next experiment, exp_008e_v3_walker_s2, shows a similar pattern with normalized estimates starting at 1.03 and 1.06 for the early steps, then declining to 0.66 at 75K before stabilizing around 0.68-1.0 for later steps.
+
+For the classification task, I need to determine whether each experiment meets the criteria at different thresholds. The key distinction is between experiments that exceed a threshold at any single checkpoint versus those that maintain elevated values across multiple consecutive checkpoints in the 35K+ window.
+
+Looking at what data I have available, most experiments have fairly complete coverage in the range I need—exp_008d goes through 55K, exp_009b and exp_008f extend to 105K, and exp_006 reaches 65K. I should verify the missing metrics for exp_008a and exp_008c by checking the server files directly.
+
+Actually, I realize I can already make a determination without those missing values. For exp_008a, the maximum nve I have from 55K onward is 0.93, which is well below any threshold I'm considering. Similarly, exp_008c peaks at 0.90 at 35K. Both are safely below the 1.2+ range, so they won't trigger a high-nve classification regardless of what the earlier checkpoints show.
+
+That said, for a complete NVE trajectory in the output table, I should SSH to grab those missing 35K and 45K data points for both experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "93154889-d43e-4a41-b4a7-cdc006561ba6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmcdW1axC7d8PLqvqWUxuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6725,
+      "cache_read_input_tokens": 29708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Registry 数据基本完整。需要 SSH 补几个缺失的数据点（exp_008a 的 35K/45K value_mean，exp_008c 的 45K）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "f1bc0838-fae1-4dca-8dd7-cf957f7fabf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmcdW1axC7d8PLqvqWUxuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6725,
+      "cache_read_input_tokens": 29708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R2DHpc8yjhWkMs8GqxMDTt`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "python3 -c \"\nimport json\nbase = '/root/autodl-tmp/event-gated-adaptive-horizon/logdir'\nexps = {\n    'exp_008a_no_subsample_dt2': [35000, 45000],\n    'exp_008c_no_subsample_dt2_h8': [45000],\n    'exp_006_fixed_dt2': [35000, 45000, 55000, 65000],\n    'exp_008d_subsample_on_h8': [35000, 45000, 55000],\n}\nfor ename, steps in exps.items():\n    path = f'{base}/{ename}/metrics.jsonl'\n    try:\n        with open(path) as f:\n            lines = [json.loads(l) for l in f]\n        for s in steps:\n            matches = [l for l in lines if l.get('step') == s]\n            if matches:\n                m = matches[0]\n                print(f'{ename}@{s}: eval_return={m.get(\\\"eval_return\\\",\\\"?\\\")}, value_mean={m.get(\\\"value_mean\\\",\\\"?\\\")}')\n            else:\n                print(f'{ename}@{s}: NOT FOUND')\n    except FileNotFoundError:\n        print(f'{ename}: FILE NOT FOUND')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "6bcc0ff0-a8c7-4121-ae28-58c16fa55b80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmcdW1axC7d8PLqvqWUxuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6725,
+      "cache_read_input_tokens": 29708,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6725
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T12:55:05.617Z_
+
+<details><summary>↩ Tool result · `toolu_01R2DHpc8yjhWkMs8GqxMDTt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "d734bd15-56f5-4a25-ab0c-cd4981536857",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VdgN77W9vd9Bp59Vwr3bGz`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -E \"\\\"step\\\": (35000|45000)\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_no_subsample_dt2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "57826c0c-619c-4d96-a8f9-1beffdc3e164",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K6Kg5JjLTPVchqNpCqXBgM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3499,
+      "cache_read_input_tokens": 36433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3499
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T12:55:09.273Z_
+
+<details><summary>↩ Tool result · `toolu_01VdgN77W9vd9Bp59Vwr3bGz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "60936083-2dbf-4efa-88fb-f01d3956604a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wh9NM5N1q5E5KAd9niCZLN`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"35000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_no_subsample_dt2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "ffc1e1a4-4ac6-4bbe-9dea-47fc21b81486",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Xc46zQuEs6UU3SsdYh9L4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 247,
+      "cache_read_input_tokens": 39932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 247
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T12:55:13.630Z_
+
+<details><summary>↩ Tool result · `toolu_01Wh9NM5N1q5E5KAd9niCZLN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_no_subsample_dt2/metrics.jsonl: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "eb760dc4-830a-427c-8167-61f8f0b3f138",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_no_subsample_dt2/metrics.jsonl: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_no_subsample_dt2/metrics.jsonl: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T6eb3ANgQKi6V1XYJRNyng`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ls /root/autodl-tmp/event-gated-adaptive-horizon/logdir/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "ab4269d0-c501-40fd-8298-a7b92b1a3b2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ne3EGVPZx1W3TzEQqyzZqo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 269,
+      "cache_read_input_tokens": 40179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 269
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:55:16.894Z_
+
+<details><summary>↩ Tool result · `toolu_01T6eb3ANgQKi6V1XYJRNyng`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregate_walker.py\\nanalysis_actor_entropy_value_calibration.json\\nanalysis_rssm_prediction_quality.json\\nanalysis_rssm_prediction_quality.py\\nbaseline_s1\\nbaseline_s1.log\\ncheetah_dryrun_200step\\ndryrun_cheetah_baseline\\nevent_gated_s1.log\\nevent_gated_s1_v1_failed\\nevent_gated_s1_v2\\nevent_gated_v4_s1\\nevent_gated_v5_s1\\nexp_008a_fixed_dt2_no_subsample\\nexp_008c_fixed_dt2_no_subsample_h8\\nexp_008d_subsample_on_h8\\nexp_008e_v2_contaminated_20260514_1228\\nexp_008e_v2_dead_20260514_1227\\nexp_008e_v3_subsample_on_dt1_h15\\nexp_008e_v3_walker_s1\\nexp_008e_v3_walker_s2\\nexp_008f_no_dt_embed_subsample_on_h8\\nexp_009a_baseline_walker_s2\\nexp_009b_008d_walker_s2\\nexp_009c_008f_walker_s2\\nexp_009d_baseline_walker_s0\\nexp_009d_baseline_walker_s1\\nexp_009e_008d_walker_s1\\nexp_015b_frozen_dt_emb\\nexp_015b_frozen_dt_emb_bak_1778847895\\nextract_all_metrics.py\\nfixed_dt2_v1_s1\\nfixed_dt4_diag\\nfixed_dt4_v1_s1\\nfixed_dt4_v2_s1\\npaper_data_walker_walk.json\\npaper_figure_data.json\\npaper_figure_data_compact.json\\nplan015_dryrun\\nplan017_dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "0f6b4a1f-7b3f-4a02-9308-73238927f7a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"aggregate_walker.py\\\\nanalysis_actor_entropy_value_calibration.json\\\\nanalysis_rssm_prediction_quality.json\\\\nanalysis_rssm_prediction_quality.py\\\\nbaseline_s1\\\\nbaseline_s1.log\\\\ncheetah_dryrun_200step\\\\ndryrun_cheetah_baseline\\\\nevent_gated_s1.log\\\\nevent_gated_s1_v1_failed\\\\nevent_gated_s1_v2\\\\nevent_gated_v4_s1\\\\nevent_gated_v5_s1\\\\nexp_008a_fixed_dt2_no_subsample\\\\nexp_008c_fixed_dt2_no_subsample_h8\\\\nexp_008d_subsample_on_h8\\\\nexp_008e_v2_contaminated_20260514_1228\\\\nexp_008e_v2_dead_20260514_1227\\\\nexp_008e_v3_subsample_on_dt1_h15\\\\nexp_008e_v3_walker_s1\\\\nexp_008e_v3_walker_s2\\\\nexp_008f_no_dt_embed_subsample_on_h8\\\\nexp_009a_baseline_walker_s2\\\\nexp_009b_008d_walker_s2\\\\nexp_009c_008f_walker_s2\\\\nexp_009d_baseline_walker_s0\\\\nexp_009d_baseline_walker_s1\\\\nexp_009e_008d_walker_s1\\\\nexp_015b_frozen_dt_emb\\\\nexp_015b_frozen_dt_emb_bak_1778847895\\\\nextract_all_metrics.py\\\\nfixed_dt2_v1_s1\\\\nfixed_dt4_diag\\\\nfixed_dt4_v1_s1\\\\nfixed_dt4_v2_s1\\\\npaper_data_walker_walk.json\\\\npaper_figure_data.json\\\\npaper_figure_data_compact.json\\\\nplan015_dryrun\\\\nplan017_dryrun\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"aggregate_walker.py\\nanalysis_actor_entropy_value_calibration.json\\nanalysis_rssm_prediction_quality.json\\nanalysis_rssm_prediction_quality.py\\nbaseline_s1\\nbaseline_s1.log\\ncheetah_dryrun_200step\\ndryrun_cheetah_baseline\\nevent_gated_s1.log\\nevent_gated_s1_v1_failed\\nevent_gated_s1_v2\\nevent_gated_v4_s1\\nevent_gated_v5_s1\\nexp_008a_fixed_dt2_no_subsample\\nexp_008c_fixed_dt2_no_subsample_h8\\nexp_008d_subsample_on_h8\\nexp_008e_v2_contaminated_20260514_1228\\nexp_008e_v2_dead_20260514_1227\\nexp_008e_v3_subsample_on_dt1_h15\\nexp_008e_v3_walker_s1\\nexp_008e_v3_walker_s2\\nexp_008f_no_dt_embed_subsample_on_h8\\nexp_009a_baseline_walker_s2\\nexp_009b_008d_walker_s2\\nexp_009c_008f_walker_s2\\nexp_009d_baseline_walker_s0\\nexp_009d_baseline_walker_s1\\nexp_009e_008d_walker_s1\\nexp_015b_frozen_dt_emb\\nexp_015b_frozen_dt_emb_bak_1778847895\\nextract_all_metrics.py\\nfixed_dt2_v1_s1\\nfixed_dt4_diag\\nfixed_dt4_v1_s1\\nfixed_dt4_v2_s1\\npaper_data_walker_walk.json\\npaper_figure_data.json\\npaper_figure_data_compact.json\\nplan015_dryrun\\nplan017_dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see the directory names are slightly different. `exp_008a_no_subsample_dt2` is stored as `exp_008a_fixed_dt2_no_subsample`. Let me check.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "9a052b98-4e6f-47a4-aa56-755317d289a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8ZhXEVpPwqTbyV3t8DX3v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 40448,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SLXxF2hwtNsKkSLrjDYwSk`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"35000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "f6dce3af-03b9-479e-bcfe-841ceeb89ad3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8ZhXEVpPwqTbyV3t8DX3v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 719,
+      "cache_read_input_tokens": 40448,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 719
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T12:55:21.248Z_
+
+<details><summary>↩ Tool result · `toolu_01SLXxF2hwtNsKkSLrjDYwSk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 35000}\\n{\\\"step\\\": 35000, \\\"eval_return\\\": 500.8415557861328, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 35000, \\\"model_loss\\\": 4.381832599639893, \\\"model_grad_norm\\\": 10.440691947937012, \\\"height_loss\\\": 0.002696221461519599, \\\"orientations_loss\\\": 0.125412717461586, \\\"velocity_loss\\\": 0.6341045498847961, \\\"reward_loss\\\": 0.6387626528739929, \\\"cont_loss\\\": 1.46246691201668e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.968094348907471, \\\"rep_loss\\\": 4.968094348907471, \\\"kl\\\": 4.962757587432861, \\\"prior_ent\\\": 37.49773025512695, \\\"post_ent\\\": 32.26074981689453, \\\"normed_target_mean\\\": 0.687530517578125, \\\"normed_target_std\\\": 0.30902647972106934, \\\"normed_target_min\\\": -0.5279408097267151, \\\"normed_target_max\\\": 1.680029273033142, \\\"EMA_005\\\": 72.81875610351562, \\\"EMA_095\\\": 85.39461517333984, \\\"value_mean\\\": 78.67060089111328, \\\"value_std\\\": 3.325448513031006, \\\"value_min\\\": 49.41718292236328, \\\"value_max\\\": 83.17815399169922, \\\"target_mean\\\": 81.45541381835938, \\\"target_std\\\": 3.880844831466675, \\\"target_min\\\": 66.09370422363281, \\\"target_max\\\": 93.8758544921875, \\\"imag_reward_mean\\\": 0.6009355187416077, \\\"imag_reward_std\\\": 0.594963788986206, \\\"imag_reward_min\\\": 0.010549752041697502, \\\"imag_reward_max\\\": 2.002840757369995, \\\"imag_action_mean\\\": 0.0687950924038887, \\\"imag_action_std\\\": 0.7939678430557251, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.141646862030029, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.21242864429950714, \\\"actor_grad_norm\\\": 0.45319366455078125, \\\"value_loss\\\": 1.242978572845459, \\\"value_grad_norm\\\": 0.48125502467155457, \\\"update_count\\\": 7599.0, \\\"fps\\\": 6.51740889662616}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "e301d627-f4a0-4eee-ab62-5305c268bfe0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 35000}\\\\n{\\\\\\\"step\\\\\\\": 35000, \\\\\\\"eval_return\\\\\\\": 500.8415557861328, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 35000, \\\\\\\"model_loss\\\\\\\": 4.381832599639893, \\\\\\\"model_grad_norm\\\\\\\": 10.440691947937012, \\\\\\\"height_loss\\\\\\\": 0.002696221461519599, \\\\\\\"orientations_loss\\\\\\\": 0.125412717461586, \\\\\\\"velocity_loss\\\\\\\": 0.6341045498847961, \\\\\\\"reward_loss\\\\\\\": 0.6387626528739929, \\\\\\\"cont_loss\\\\\\\": 1.46246691201668e-07, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.968094348907471, \\\\\\\"rep_loss\\\\\\\": 4.968094348907471, \\\\\\\"kl\\\\\\\": 4.962757587432861, \\\\\\\"prior_ent\\\\\\\": 37.49773025512695, \\\\\\\"post_ent\\\\\\\": 32.26074981689453, \\\\\\\"normed_target_mean\\\\\\\": 0.687530517578125, \\\\\\\"normed_target_std\\\\\\\": 0.30902647972106934, \\\\\\\"normed_target_min\\\\\\\": -0.5279408097267151, \\\\\\\"normed_target_max\\\\\\\": 1.680029273033142, \\\\\\\"EMA_005\\\\\\\": 72.81875610351562, \\\\\\\"EMA_095\\\\\\\": 85.39461517333984, \\\\\\\"value_mean\\\\\\\": 78.67060089111328, \\\\\\\"value_std\\\\\\\": 3.325448513031006, \\\\\\\"value_min\\\\\\\": 49.41718292236328, \\\\\\\"value_max\\\\\\\": 83.17815399169922, \\\\\\\"target_mean\\\\\\\": 81.45541381835938, \\\\\\\"target_std\\\\\\\": 3.880844831466675, \\\\\\\"target_min\\\\\\\": 66.09370422363281, \\\\\\\"target_max\\\\\\\": 93.8758544921875, \\\\\\\"imag_reward_mean\\\\\\\": 0.6009355187416077, \\\\\\\"imag_reward_std\\\\\\\": 0.594963788986206, \\\\\\\"imag_reward_min\\\\\\\": 0.010549752041697502, \\\\\\\"imag_reward_max\\\\\\\": 2.002840757369995, \\\\\\\"imag_action_mean\\\\\\\": 0.0687950924038887, \\\\\\\"imag_action_std\\\\\\\": 0.7939678430557251, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -5.141646862030029, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.21242864429950714, \\\\\\\"actor_grad_norm\\\\\\\": 0.45319366455078125, \\\\\\\"value_loss\\\\\\\": 1.242978572845459, \\\\\\\"value_grad_norm\\\\\\\": 0.48125502467155457, \\\\\\\"update_count\\\\\\\": 7599.0, \\\\\\\"fps\\\\\\\": 6.51740889662616}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 35000}\\n{\\\"step\\\": 35000, \\\"eval_return\\\": 500.8415557861328, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 35000, \\\"model_loss\\\": 4.381832599639893, \\\"model_grad_norm\\\": 10.440691947937012, \\\"height_loss\\\": 0.002696221461519599, \\\"orientations_loss\\\": 0.125412717461586, \\\"velocity_loss\\\": 0.6341045498847961, \\\"reward_loss\\\": 0.6387626528739929, \\\"cont_loss\\\": 1.46246691201668e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.968094348907471, \\\"rep_loss\\\": 4.968094348907471, \\\"kl\\\": 4.962757587432861, \\\"prior_ent\\\": 37.49773025512695, \\\"post_ent\\\": 32.26074981689453, \\\"normed_target_mean\\\": 0.687530517578125, \\\"normed_target_std\\\": 0.30902647972106934, \\\"normed_target_min\\\": -0.5279408097267151, \\\"normed_target_max\\\": 1.680029273033142, \\\"EMA_005\\\": 72.81875610351562, \\\"EMA_095\\\": 85.39461517333984, \\\"value_mean\\\": 78.67060089111328, \\\"value_std\\\": 3.325448513031006, \\\"value_min\\\": 49.41718292236328, \\\"value_max\\\": 83.17815399169922, \\\"target_mean\\\": 81.45541381835938, \\\"target_std\\\": 3.880844831466675, \\\"target_min\\\": 66.09370422363281, \\\"target_max\\\": 93.8758544921875, \\\"imag_reward_mean\\\": 0.6009355187416077, \\\"imag_reward_std\\\": 0.594963788986206, \\\"imag_reward_min\\\": 0.010549752041697502, \\\"imag_reward_max\\\": 2.002840757369995, \\\"imag_action_mean\\\": 0.0687950924038887, \\\"imag_action_std\\\": 0.7939678430557251, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.141646862030029, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.21242864429950714, \\\"actor_grad_norm\\\": 0.45319366455078125, \\\"value_loss\\\": 1.242978572845459, \\\"value_grad_norm\\\": 0.48125502467155457, \\\"update_count\\\": 7599.0, \\\"fps\\\": 6.51740889662616}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HBrBj8qckHDppqVXCzFK7v`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"45000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "7ec7e5b6-9055-423e-877b-804d74077d44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BruZKe8z2JNqzaQ9nDqihn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1468,
+      "cache_read_input_tokens": 41167,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1468
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T12:55:24.367Z_
+
+<details><summary>↩ Tool result · `toolu_01HBrBj8qckHDppqVXCzFK7v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 45000}\\n{\\\"step\\\": 45000, \\\"eval_return\\\": 563.4127410888672, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 45000, \\\"model_loss\\\": 4.106132984161377, \\\"model_grad_norm\\\": 10.144996643066406, \\\"height_loss\\\": 0.0021136226132512093, \\\"orientations_loss\\\": 0.09972987323999405, \\\"velocity_loss\\\": 0.5593224167823792, \\\"reward_loss\\\": 0.6341435313224792, \\\"cont_loss\\\": 4.90056812907369e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.684706211090088, \\\"rep_loss\\\": 4.684706211090088, \\\"kl\\\": 4.677286624908447, \\\"prior_ent\\\": 37.89433288574219, \\\"post_ent\\\": 33.00434112548828, \\\"normed_target_mean\\\": 0.6927140355110168, \\\"normed_target_std\\\": 0.3098122477531433, \\\"normed_target_min\\\": -1.2326068878173828, \\\"normed_target_max\\\": 1.4962575435638428, \\\"EMA_005\\\": 123.7646484375, \\\"EMA_095\\\": 139.033447265625, \\\"value_mean\\\": 131.94679260253906, \\\"value_std\\\": 4.548666477203369, \\\"value_min\\\": 58.15651321411133, \\\"value_max\\\": 138.13807678222656, \\\"target_mean\\\": 134.36480712890625, \\\"target_std\\\": 4.7288007736206055, \\\"target_min\\\": 105.262451171875, \\\"target_max\\\": 146.58348083496094, \\\"imag_reward_mean\\\": 0.7273868918418884, \\\"imag_reward_std\\\": 0.6375598907470703, \\\"imag_reward_min\\\": 0.005770935211330652, \\\"imag_reward_max\\\": 2.004239559173584, \\\"imag_action_mean\\\": 0.1067642793059349, \\\"imag_action_std\\\": 0.7913655042648315, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.2004194259643555, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.15127016603946686, \\\"actor_grad_norm\\\": 0.4507341682910919, \\\"value_loss\\\": 1.0255643129348755, \\\"value_grad_norm\\\": 0.27038687467575073, \\\"update_count\\\": 10099.0, \\\"fps\\\": 6.675988202545774}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "7a33b610-0530-465a-8094-60642a21c6b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 45000}\\\\n{\\\\\\\"step\\\\\\\": 45000, \\\\\\\"eval_return\\\\\\\": 563.4127410888672, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 45000, \\\\\\\"model_loss\\\\\\\": 4.106132984161377, \\\\\\\"model_grad_norm\\\\\\\": 10.144996643066406, \\\\\\\"height_loss\\\\\\\": 0.0021136226132512093, \\\\\\\"orientations_loss\\\\\\\": 0.09972987323999405, \\\\\\\"velocity_loss\\\\\\\": 0.5593224167823792, \\\\\\\"reward_loss\\\\\\\": 0.6341435313224792, \\\\\\\"cont_loss\\\\\\\": 4.90056812907369e-08, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.684706211090088, \\\\\\\"rep_loss\\\\\\\": 4.684706211090088, \\\\\\\"kl\\\\\\\": 4.677286624908447, \\\\\\\"prior_ent\\\\\\\": 37.89433288574219, \\\\\\\"post_ent\\\\\\\": 33.00434112548828, \\\\\\\"normed_target_mean\\\\\\\": 0.6927140355110168, \\\\\\\"normed_target_std\\\\\\\": 0.3098122477531433, \\\\\\\"normed_target_min\\\\\\\": -1.2326068878173828, \\\\\\\"normed_target_max\\\\\\\": 1.4962575435638428, \\\\\\\"EMA_005\\\\\\\": 123.7646484375, \\\\\\\"EMA_095\\\\\\\": 139.033447265625, \\\\\\\"value_mean\\\\\\\": 131.94679260253906, \\\\\\\"value_std\\\\\\\": 4.548666477203369, \\\\\\\"value_min\\\\\\\": 58.15651321411133, \\\\\\\"value_max\\\\\\\": 138.13807678222656, \\\\\\\"target_mean\\\\\\\": 134.36480712890625, \\\\\\\"target_std\\\\\\\": 4.7288007736206055, \\\\\\\"target_min\\\\\\\": 105.262451171875, \\\\\\\"target_max\\\\\\\": 146.58348083496094, \\\\\\\"imag_reward_mean\\\\\\\": 0.7273868918418884, \\\\\\\"imag_reward_std\\\\\\\": 0.6375598907470703, \\\\\\\"imag_reward_min\\\\\\\": 0.005770935211330652, \\\\\\\"imag_reward_max\\\\\\\": 2.004239559173584, \\\\\\\"imag_action_mean\\\\\\\": 0.1067642793059349, \\\\\\\"imag_action_std\\\\\\\": 0.7913655042648315, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -5.2004194259643555, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.15127016603946686, \\\\\\\"actor_grad_norm\\\\\\\": 0.4507341682910919, \\\\\\\"value_loss\\\\\\\": 1.0255643129348755, \\\\\\\"value_grad_norm\\\\\\\": 0.27038687467575073, \\\\\\\"update_count\\\\\\\": 10099.0, \\\\\\\"fps\\\\\\\": 6.675988202545774}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 45000}\\n{\\\"step\\\": 45000, \\\"eval_return\\\": 563.4127410888672, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 45000, \\\"model_loss\\\": 4.106132984161377, \\\"model_grad_norm\\\": 10.144996643066406, \\\"height_loss\\\": 0.0021136226132512093, \\\"orientations_loss\\\": 0.09972987323999405, \\\"velocity_loss\\\": 0.5593224167823792, \\\"reward_loss\\\": 0.6341435313224792, \\\"cont_loss\\\": 4.90056812907369e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.684706211090088, \\\"rep_loss\\\": 4.684706211090088, \\\"kl\\\": 4.677286624908447, \\\"prior_ent\\\": 37.89433288574219, \\\"post_ent\\\": 33.00434112548828, \\\"normed_target_mean\\\": 0.6927140355110168, \\\"normed_target_std\\\": 0.3098122477531433, \\\"normed_target_min\\\": -1.2326068878173828, \\\"normed_target_max\\\": 1.4962575435638428, \\\"EMA_005\\\": 123.7646484375, \\\"EMA_095\\\": 139.033447265625, \\\"value_mean\\\": 131.94679260253906, \\\"value_std\\\": 4.548666477203369, \\\"value_min\\\": 58.15651321411133, \\\"value_max\\\": 138.13807678222656, \\\"target_mean\\\": 134.36480712890625, \\\"target_std\\\": 4.7288007736206055, \\\"target_min\\\": 105.262451171875, \\\"target_max\\\": 146.58348083496094, \\\"imag_reward_mean\\\": 0.7273868918418884, \\\"imag_reward_std\\\": 0.6375598907470703, \\\"imag_reward_min\\\": 0.005770935211330652, \\\"imag_reward_max\\\": 2.004239559173584, \\\"imag_action_mean\\\": 0.1067642793059349, \\\"imag_action_std\\\": 0.7913655042648315, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.2004194259643555, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.15127016603946686, \\\"actor_grad_norm\\\": 0.4507341682910919, \\\"value_loss\\\": 1.0255643129348755, \\\"value_grad_norm\\\": 0.27038687467575073, \\\"update_count\\\": 10099.0, \\\"fps\\\": 6.675988202545774}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TYGY2uem3moJ7aU8Va3ezA`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep \"45000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008c_fixed_dt2_no_subsample_h8/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "e6b04bf8-ef17-47e2-a33a-1a9d19e3f496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fr54ParyjppY6xSuEwYwRa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 42635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1412
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T12:55:27.741Z_
+
+<details><summary>↩ Tool result · `toolu_01TYGY2uem3moJ7aU8Va3ezA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 45000}\\n{\\\"step\\\": 45000, \\\"eval_return\\\": 226.55097351074218, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 45000, \\\"model_loss\\\": 3.173736095428467, \\\"model_grad_norm\\\": 9.41657829284668, \\\"height_loss\\\": 0.0011374711757525802, \\\"orientations_loss\\\": 0.05250214412808418, \\\"velocity_loss\\\": 0.3586815297603607, \\\"reward_loss\\\": 0.6137587428092957, \\\"cont_loss\\\": 4.8830521848231e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 3.5794270038604736, \\\"rep_loss\\\": 3.5794270038604736, \\\"kl\\\": 3.5610735416412354, \\\"prior_ent\\\": 38.905181884765625, \\\"post_ent\\\": 35.226287841796875, \\\"normed_target_mean\\\": 0.8072272539138794, \\\"normed_target_std\\\": 0.3141796290874481, \\\"normed_target_min\\\": -0.6098988056182861, \\\"normed_target_max\\\": 1.976762056350708, \\\"EMA_005\\\": 54.87791061401367, \\\"EMA_095\\\": 58.751686096191406, \\\"value_mean\\\": 57.483726501464844, \\\"value_std\\\": 1.2009754180908203, \\\"value_min\\\": 39.72337341308594, \\\"value_max\\\": 59.71160125732422, \\\"target_mean\\\": 58.010475158691406, \\\"target_std\\\": 1.213423252105713, \\\"target_min\\\": 52.57120132446289, \\\"target_max\\\": 62.48033142089844, \\\"imag_reward_mean\\\": 0.377704381942749, \\\"imag_reward_std\\\": 0.2044653445482254, \\\"imag_reward_min\\\": 0.00689751747995615, \\\"imag_reward_max\\\": 1.6425384283065796, \\\"imag_action_mean\\\": 0.2971029281616211, \\\"imag_action_std\\\": 0.753333330154419, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.222586154937744, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.13564789295196533, \\\"actor_grad_norm\\\": 0.26721158623695374, \\\"value_loss\\\": 0.9429673552513123, \\\"value_grad_norm\\\": 0.1178235113620758, \\\"update_count\\\": 10099.0, \\\"fps\\\": 7.627637598440191}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "cd08d68f-fdaf-42c3-b933-aea543e668cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 45000}\\\\n{\\\\\\\"step\\\\\\\": 45000, \\\\\\\"eval_return\\\\\\\": 226.55097351074218, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 45000, \\\\\\\"model_loss\\\\\\\": 3.173736095428467, \\\\\\\"model_grad_norm\\\\\\\": 9.41657829284668, \\\\\\\"height_loss\\\\\\\": 0.0011374711757525802, \\\\\\\"orientations_loss\\\\\\\": 0.05250214412808418, \\\\\\\"velocity_loss\\\\\\\": 0.3586815297603607, \\\\\\\"reward_loss\\\\\\\": 0.6137587428092957, \\\\\\\"cont_loss\\\\\\\": 4.8830521848231e-08, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 3.5794270038604736, \\\\\\\"rep_loss\\\\\\\": 3.5794270038604736, \\\\\\\"kl\\\\\\\": 3.5610735416412354, \\\\\\\"prior_ent\\\\\\\": 38.905181884765625, \\\\\\\"post_ent\\\\\\\": 35.226287841796875, \\\\\\\"normed_target_mean\\\\\\\": 0.8072272539138794, \\\\\\\"normed_target_std\\\\\\\": 0.3141796290874481, \\\\\\\"normed_target_min\\\\\\\": -0.6098988056182861, \\\\\\\"normed_target_max\\\\\\\": 1.976762056350708, \\\\\\\"EMA_005\\\\\\\": 54.87791061401367, \\\\\\\"EMA_095\\\\\\\": 58.751686096191406, \\\\\\\"value_mean\\\\\\\": 57.483726501464844, \\\\\\\"value_std\\\\\\\": 1.2009754180908203, \\\\\\\"value_min\\\\\\\": 39.72337341308594, \\\\\\\"value_max\\\\\\\": 59.71160125732422, \\\\\\\"target_mean\\\\\\\": 58.010475158691406, \\\\\\\"target_std\\\\\\\": 1.213423252105713, \\\\\\\"target_min\\\\\\\": 52.57120132446289, \\\\\\\"target_max\\\\\\\": 62.48033142089844, \\\\\\\"imag_reward_mean\\\\\\\": 0.377704381942749, \\\\\\\"imag_reward_std\\\\\\\": 0.2044653445482254, \\\\\\\"imag_reward_min\\\\\\\": 0.00689751747995615, \\\\\\\"imag_reward_max\\\\\\\": 1.6425384283065796, \\\\\\\"imag_action_mean\\\\\\\": 0.2971029281616211, \\\\\\\"imag_action_std\\\\\\\": 0.753333330154419, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -5.222586154937744, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.13564789295196533, \\\\\\\"actor_grad_norm\\\\\\\": 0.26721158623695374, \\\\\\\"value_loss\\\\\\\": 0.9429673552513123, \\\\\\\"value_grad_norm\\\\\\\": 0.1178235113620758, \\\\\\\"update_count\\\\\\\": 10099.0, \\\\\\\"fps\\\\\\\": 7.627637598440191}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 45000}\\n{\\\"step\\\": 45000, \\\"eval_return\\\": 226.55097351074218, \\\"eval_length\\\": 500.0, \\\"eval_episodes\\\": 10.0}\\n{\\\"step\\\": 45000, \\\"model_loss\\\": 3.173736095428467, \\\"model_grad_norm\\\": 9.41657829284668, \\\"height_loss\\\": 0.0011374711757525802, \\\"orientations_loss\\\": 0.05250214412808418, \\\"velocity_loss\\\": 0.3586815297603607, \\\"reward_loss\\\": 0.6137587428092957, \\\"cont_loss\\\": 4.8830521848231e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 3.5794270038604736, \\\"rep_loss\\\": 3.5794270038604736, \\\"kl\\\": 3.5610735416412354, \\\"prior_ent\\\": 38.905181884765625, \\\"post_ent\\\": 35.226287841796875, \\\"normed_target_mean\\\": 0.8072272539138794, \\\"normed_target_std\\\": 0.3141796290874481, \\\"normed_target_min\\\": -0.6098988056182861, \\\"normed_target_max\\\": 1.976762056350708, \\\"EMA_005\\\": 54.87791061401367, \\\"EMA_095\\\": 58.751686096191406, \\\"value_mean\\\": 57.483726501464844, \\\"value_std\\\": 1.2009754180908203, \\\"value_min\\\": 39.72337341308594, \\\"value_max\\\": 59.71160125732422, \\\"target_mean\\\": 58.010475158691406, \\\"target_std\\\": 1.213423252105713, \\\"target_min\\\": 52.57120132446289, \\\"target_max\\\": 62.48033142089844, \\\"imag_reward_mean\\\": 0.377704381942749, \\\"imag_reward_std\\\": 0.2044653445482254, \\\"imag_reward_min\\\": 0.00689751747995615, \\\"imag_reward_max\\\": 1.6425384283065796, \\\"imag_action_mean\\\": 0.2971029281616211, \\\"imag_action_std\\\": 0.753333330154419, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -5.222586154937744, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.13564789295196533, \\\"actor_grad_norm\\\": 0.26721158623695374, \\\"value_loss\\\": 0.9429673552513123, \\\"value_grad_norm\\\": 0.1178235113620758, \\\"update_count\\\": 10099.0, \\\"fps\\\": 7.627637598440191}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compile:
+
+**exp_008a @ 35K**: eval_return=500.84, value_mean=78.67 → ve_ratio = 78.67/500.84 = 0.157 → nve = 0.157/0.241 = 0.65
+**exp_008a @ 45K**: eval_return=563.41, value_mean=131.95 → ve_ratio = 131.95/563.41 = 0.234 → nve = 0.234/0.331 = 0.71
+
+
+**exp_008c @ 45K**: eval_return=226.55, value_mean=57.48 → ve_ratio = 57.48/226.55 = 0.254 → nve = 0.254/0.331 = 0.77
+
+Now I need to calculate the normalized value-eval ratios for the remaining experiments, starting with exp_008d at 35K where the ve_ratio is 0.411.
+
+For exp_008d across all checkpoints, the normalized ratios climb from 1.71 at 35K up to 2.09 at 45K and 4.12 at 55K, showing a strong improvement trajectory. Meanwhile, exp_006_fixed_dt2 shows more modest gains, with normalized ratios ranging from 1.29 at 35K to 2.31 at 55K, and reaching 2.722 at the 65K checkpoint.
+
+Now I'm compiling the complete normalized trajectories for each experiment starting from the 35K step onward, organizing them by whether the model was trained with the embedding layer or not. Looking at exp_006, the NVE values climb dramatically through the checkpoints, peaking at 4.83 by 65K with sustained high performance across multiple thresholds. Now examining the negative control case with exp_008f, which shows much lower NVE values throughout, maxing out at 0.97. Looking at the performance metrics for exp_008c with the h8 configuration, it shows similar stability to exp_008a but peaks at 0.90. Moving to exp_008e_v3, the trained embedding with dt=1 constraint performs notably better across the board, maintaining scores in the 0.72-0.94 range with a max of 0.94, and the second seed variant appears to follow a similar pattern.
+
+However, exp_008e_v3_s2 shows something concerning—it stays relatively stable through 85K but then experiences a dramatic late-stage collapse, jumping from 1.34 at 95K to 3.78 at 105K. This is unusual since the instability doesn't emerge until well past the initial 35K checkpoint window. Now I'm moving on to evaluate these experiments against classification criteria based on their NVE thresholds.
+
+Generating classification table... Now I'm verifying the classification results by manually checking each threshold against the actual data—at 1.2, I'm getting 3 true positives, 1 false positive, 5 true negatives, and no false negatives for an 88.9% accuracy, which holds steady through threshold 1.5 before dropping off at higher thresholds. Now I'm checking each experiment to see if it has at least 2 consecutive checkpoints exceeding the threshold. For exp_008d, the NVE values consistently exceed every threshold from 1.2 up through 2.0, with multiple consecutive checkpoints passing each one. For exp_009b, the values start strong but then decline, so I need to see where the consecutive streak breaks. Looking at the threshold analysis for exp_006, I need to correct my earlier assessment—35K at 1.29 doesn't meet the ≥1.3 threshold, so only the three consecutive values from 45K onward qualify. Moving through the remaining experiments, most of them max out well below 1.2, so they fail all thresholds, while exp_008e_v3_s2 appears to have started a new data sequence.
+
+Now I'm examining the performance metrics across different thresholds, checking which experiments meet the criteria for at least 2 consecutive values. The classification table shows how many true positives, false positives, true negatives, and false negatives we get when applying the ≥1.2 threshold with the consecutive requirement. Looking at the results across all thresholds with the consecutive criterion, they're all converging on 88.9% accuracy, which is striking. The threshold of 1.5 with the consecutive requirement seems to work best—it correctly identifies the two experiments that actually diverged while avoiding false positives on the borderline cases, though exp_009b slips through as a false negative since it only briefly touched 1.62 once before self-correcting. What's particularly useful is that thresholds from 1.5 to 2.0 all successfully filter out exp_008e_v3_s2, which was causing issues before.
+
+Now I'm computing AUROC using the maximum NVE value for each experiment as the scoring metric. The positive examples have max scores of 4.12, 1.62, and 4.83, while the negative examples range from 0.90 to 3.78, so there's some overlap I need to account for when ranking them. Now I'm counting how many negative experiments each positive one outperforms to calculate the concordant pairs, which gives me an AUROC of 0.944. I'm considering whether using a different scoring approach like consecutive max NVE values would change things, but the single max point is the standard metric for this kind of analysis. I'm also thinking about whether restricting to an earlier time window might reveal different patterns in early detection capability.
+
+Actually, I should move forward with writing up the analysis rather than exploring those tangents further. There's an important edge case with experiment 008e_v3_s2 that I need to highlight—it was classified as negative despite having trained dt_emb because its imagination uses dt=1, but it later showed a collapse at 105K steps. This creates a false positive at lower thresholds, though the consecutive criterion at ≥1.5 correctly reclassifies it as negative since only one checkpoint exceeds that threshold.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "002a11fa-d260-4adf-93c9-aeced5a72889",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKN9oBVWT3uTh52xoGsEpD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 44047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1418
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+所有数据就绪。现在计算 NVE 敏感性分析并写入 artifacts。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "3c691da2-1e90-419d-97e6-b04f2b855352",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKN9oBVWT3uTh52xoGsEpD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 44047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1418
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01B6iTb6obb95jGeek3emQ7p`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/",
+  "description": "Check artifacts directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "c6f5a022-06a3-48c4-bb4f-91c329678171",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UKN9oBVWT3uTh52xoGsEpD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 44047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1418
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T12:56:38.619Z_
+
+<details><summary>↩ Tool result · `toolu_01B6iTb6obb95jGeek3emQ7p`</summary>
+
+```text
+008e_dryrun_check.md
+009b_literature_search.md
+_project
+actor_loss_timeseries.json
+analysis
+analysis_actor_entropy_plan031.md
+analysis_rssm_prediction_quality.json
+bernoulli_st_pessimism_designs.md
+checkpoint_monitor.py
+code
+code_survey_dreamerv3.md
+dream_reports
+eval_mvp.py
+exp_001_baseline
+exp_002_event_gated
+exp_005_event_gated_v4
+exp_006
+exp_006_fixed_dt2
+exp_008e_v3_walker_s2
+exp_009b_008d_walker_s2
+exp_010a_cheetah_baseline_s1
+exp_015
+figures
+figures_data
+gen_bib.py
+implementation_design.md
+literature_gap_analysis_20260514.md
+literature_map.yaml
+literature_scan_20260515.md
+literature_survey_summary.md
+manifest.yaml
+method_section_draft.md
+metrics_summary_table.md
+negative_pattern_analysis.md
+paper_drafts
+paper_figures
+pessimism_mechanism_design.md
+pivot_gate_survey.md
+plot_figures.py
+preflight_008e_v3_s2.md
+progress_check_20260515.md
+related_work_draft.md
+report_server_status.md
+review_issues.yaml
+review_reports
+rssm_prediction_quality_analysis.json
+training_progress_check_20260514.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "689b337c-e772-447e-ac0d-df1eb61d9de6",
+  "tool_use_result": {
+    "stdout": "008e_dryrun_check.md\n009b_literature_search.md\n_project\nactor_loss_timeseries.json\nanalysis\nanalysis_actor_entropy_plan031.md\nanalysis_rssm_prediction_quality.json\nbernoulli_st_pessimism_designs.md\ncheckpoint_monitor.py\ncode\ncode_survey_dreamerv3.md\ndream_reports\neval_mvp.py\nexp_001_baseline\nexp_002_event_gated\nexp_005_event_gated_v4\nexp_006\nexp_006_fixed_dt2\nexp_008e_v3_walker_s2\nexp_009b_008d_walker_s2\nexp_010a_cheetah_baseline_s1\nexp_015\nfigures\nfigures_data\ngen_bib.py\nimplementation_design.md\nliterature_gap_analysis_20260514.md\nliterature_map.yaml\nliterature_scan_20260515.md\nliterature_survey_summary.md\nmanifest.yaml\nmethod_section_draft.md\nmetrics_summary_table.md\nnegative_pattern_analysis.md\npaper_drafts\npaper_figures\npessimism_mechanism_design.md\npivot_gate_survey.md\nplot_figures.py\npreflight_008e_v3_s2.md\nprogress_check_20260515.md\nrelated_work_draft.md\nreport_server_status.md\nreview_issues.yaml\nreview_reports\nrssm_prediction_quality_analysis.json\ntraining_progress_check_20260514.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01DChcaQJrz7dgB1bLXBS54U`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_sensitivity_analysis.md",
+  "content": "# NVE Sensitivity Analysis — Threshold Selection for Delusional Critic Diagnosis\n\n**Date**: 2026-05-15\n**Task**: plan_034\n\n## 1. Experiment Groups\n\n### Positive Class (Trained dt_emb, expected high NVE)\n| Experiment | Seed | Env | Notes |\n|---|---|---|---|\n| exp_008d_subsample_on_h8 | 1 | cheetah | Collapsed (eval 167→83) |\n| exp_009b_008d_walker_s2 | 2 | walker | Self-corrected (nve 2.05x@25K→0.38x@105K) |\n| exp_006_fixed_dt2 | 0 | cheetah | Collapsed (eval 485→133) |\n\n### Negative Class (No/Untrained dt_emb, expected low NVE)\n| Experiment | Seed | Env | Notes |\n|---|---|---|---|\n| exp_008f_no_dt_embed_subsample_on_h8 | 1 | cheetah | dt_embed_dim=0, recovered to 503@105K |\n| exp_009c_008f_walker_s2 | 2 | walker | dt_embed_dim=0, declined after 75K |\n| exp_008a_no_subsample_dt2 | 0 | cheetah | Untrained dt_emb, recovered to 778@105K |\n| exp_008c_no_subsample_dt2_h8 | 0 | cheetah | Untrained dt_emb, h8, plateau ~241 |\n| exp_008e_v3_subsample_on_dt1_h15 | 1 | cheetah | Trained dt_emb but dt=1 imagination |\n| exp_008e_v3_walker_s2 | 2 | walker | Trained dt_emb but dt=1; **late-onset collapse @105K** |\n\n## 2. NVE Trajectories (step ≥ 35K)\n\nNormalized VE = raw_ve_ratio / exp_001_ve_ratio. Baseline exp_001 (seed 1) ve: 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656.\n\n### Positive Class\n\n| Step | exp_008d (s1) | exp_009b (s2) | exp_006 (s0) |\n|------|--------------|--------------|-------------|\n| 35K  | **1.71** | **1.24** | **1.29** |\n| 45K  | **2.09** | **1.62** | **1.61** |\n| 55K  | **4.12** | **1.41** | **2.31** |\n| 65K  | — | 0.94 | **4.83** |\n| 75K  | — | 0.66 | — |\n| 85K  | — | 0.51 | — |\n| 95K  | — | 0.43 | — |\n| 105K | — | 0.38 | — |\n| **Max** | **4.12** | **1.62** | **4.83** |\n\nexp_008d terminated at 55K (collapse). exp_006 terminated at 65K (collapse). exp_009b self-corrected after 55K.\n\n### Negative Class\n\n| Step | exp_008f (s1) | exp_009c (s2) | exp_008a (s0) | exp_008c (s0) | exp_008e_v3 (s1) | exp_008e_v3_s2 (s2) |\n|------|-------------|-------------|-------------|-------------|-----------------|-------------------|\n| 35K  | 0.73 | 0.79 | 0.65 | 0.90 | 0.94 | 1.03 |\n| 45K  | 0.83 | 0.72 | 0.71 | 0.77 | 0.88 | 1.06 |\n| 55K  | 0.97 | 0.66 | 0.93 | 0.72 | 0.87 | 1.02 |\n| 65K  | 0.37 | 0.53 | 0.66 | 0.58 | 0.72 | 0.90 |\n| 75K  | 0.42 | 0.33 | 0.75 | — | 0.73 | 0.66 |\n| 85K  | 0.65 | 0.60 | 0.68 | — | 0.76 | 0.68 |\n| 95K  | 0.54 | 0.90 | 0.79 | — | 0.75 | **1.34** |\n| 105K | 0.30 | 1.14 | 0.59 | — | 0.80 | **3.78** |\n| **Max** | **0.97** | **1.14** | **0.93** | **0.90** | **0.94** | **3.78** |\n\nexp_008c terminated at 68K. **exp_008e_v3_s2** has late-onset collapse: NVE ≤1.06 for steps 35K–85K, then spikes to 1.34@95K and 3.78@105K.\n\n## 3. Classification Results\n\n### Criterion A: Single Checkpoint NVE ≥ Threshold (any step ≥ 35K)\n\n| Threshold | TP | FP | TN | FN | Accuracy | Precision | Recall | F1 |\n|-----------|----|----|----|----|----------|-----------|--------|-----|\n| **1.2** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.3** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.5** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.7** | 2 | 1 | 5 | 1 | 77.8% | 66.7% | 66.7% | 66.7% |\n| **2.0** | 2 | 1 | 5 | 1 | 77.8% | 66.7% | 66.7% | 66.7% |\n\n- FP at all thresholds: **exp_008e_v3_s2** (late-onset collapse at 105K)\n- FN at ≥1.7: **exp_009b** (max NVE 1.62, self-corrected)\n\n### Criterion B: ≥2 Consecutive Checkpoints NVE ≥ Threshold\n\n| Threshold | TP | FP | TN | FN | Accuracy | Precision | Recall | F1 |\n|-----------|----|----|----|----|----------|-----------|--------|-----|\n| **1.2** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.3** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.5** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n| **1.7** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n| **2.0** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n\n- At ≥1.5 consecutive: exp_008e_v3_s2 eliminated as FP (only 1 checkpoint ≥1.5 at 105K)\n- FN at ≥1.5: exp_009b (only 1 checkpoint ≥1.5: 45K@1.62)\n\n### Consecutive Criterion Detail\n\n| Experiment | ≥2 consec ≥1.2 | ≥2 consec ≥1.3 | ≥2 consec ≥1.5 | ≥2 consec ≥1.7 | ≥2 consec ≥2.0 |\n|---|---|---|---|---|---|\n| exp_008d (P) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (45-55K) |\n| exp_009b (P) | ✓ (35-45-55K) | ✓ (45-55K) | ✗ | ✗ | ✗ |\n| exp_006 (P) | ✓ (35-45-55-65K) | ✓ (45-55-65K) | ✓ (45-55-65K) | ✓ (55-65K) | ✓ (55-65K) |\n| exp_008f (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_009c (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008a (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008c (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008e_v3 (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008e_v3_s2 (N) | ✓ (95-105K) | ✓ (95-105K) | ✗ | ✗ | ✗ |\n\n## 4. AUROC\n\nUsing max NVE (step ≥ 35K) as the continuous score, N=9 (3 positive, 6 negative):\n\nScores sorted descending:\n| Rank | Experiment | Max NVE | Class |\n|------|-----------|---------|-------|\n| 1 | exp_006 | 4.83 | P |\n| 2 | exp_008d | 4.12 | P |\n| 3 | exp_008e_v3_s2 | 3.78 | N |\n| 4 | exp_009b | 1.62 | P |\n| 5 | exp_009c | 1.14 | N |\n| 6 | exp_008f | 0.97 | N |\n| 7 | exp_008e_v3 | 0.94 | N |\n| 8 | exp_008a | 0.93 | N |\n| 9 | exp_008c | 0.90 | N |\n\nConcordant P-N pairs: 18 total pairs, 17 concordant (exp_009b at 1.62 beats 5/6 negatives but loses to exp_008e_v3_s2 at 3.78).\n\n**AUROC = 17/18 = 0.944**\n\n## 5. Optimal Threshold Recommendation\n\n**Recommended: NVE ≥ 1.5, single-checkpoint criterion**\n- Accuracy 88.9%, Recall 100%, Precision 75%\n- Catches all trained dt_emb experiments including the transient episode (exp_009b@45K: 1.62)\n- Only FP is the special-case late-onset collapse (exp_008e_v3_s2)\n\n**Alternative: NVE ≥ 1.5, ≥2-consecutive-checkpoint criterion**\n- Accuracy 88.9%, Recall 66.7%, **Precision 100%**\n- Zero false positives — eliminates exp_008e_v3_s2 FP\n- Misses exp_009b (which self-corrected anyway, so this FN is arguably acceptable)\n- Best for **early warning with high confidence**: if triggered, nearly certain the model has pathological value overestimation\n\n**Trade-off**: Single-point ≥1.5 optimizes for catching all pathological episodes (high recall); consecutive ≥1.5 optimizes for actionable alerts (high precision, no false alarms).\n\nFor a practical monitoring threshold, **consecutive ≥1.5** is preferred: it generates no false positives and the only false negative (exp_009b) self-corrected without intervention.\n\n## 6. Special Case: exp_008e_v3_s2 Late-Onset Collapse\n\nexp_008e_v3_s2 is an unusual case:\n- **Configuration**: trained dt_emb, but imagination always uses dt=1 (gating locked)\n- **NVE trajectory**: stable at 0.66–1.06 from 35K–85K, then sudden onset at 95K (1.34) → 105K (3.78)\n- **Collapse onset**: 95K — 60K steps after the 35K monitoring window start, and well after most trained-dt_emb pathology manifests (typically 35K–55K)\n- **Mechanism**: despite dt=1 imagination, the trained dt_emb still contributes to state representation; late-stage overfit of the value function to dt_emb features can trigger delayed collapse\n\nClassification implications:\n- Under single-checkpoint criterion: always a FP (max NVE=3.78 exceeds all thresholds)\n- Under consecutive criterion at ≥1.5: correctly classified as TN (only 1 checkpoint ≥1.5)\n- The late onset (95K) vs. typical early onset (35K–55K) could also be used as a temporal filter, but the sample size is too small to formalize this\n\n## 7. Summary Table\n\n| Criterion | Best Threshold | Accuracy | Precision | Recall | AUROC | Recommendation |\n|---|---|---|---|---|---|---|\n| Single checkpoint | 1.2–1.5 | 88.9% | 75% | 100% | 0.944 | Screening / early warning |\n| ≥2 consecutive | 1.5–2.0 | 88.9% | 100% | 66.7% | — | Confirmed diagnosis |\n\nThe 1.5x NVE threshold provides the best balance. Below 1.5x, no additional true positives are gained. Above 1.5x, recall drops without improving precision (under the consecutive criterion).\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "1dd28241-6c73-47e7-86a3-a0f0d1adb09d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiCzTo6k3KyJj4etHPZnoZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5413,
+      "cache_read_input_tokens": 45465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5413
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T12:57:38.607Z_
+
+<details><summary>↩ Tool result · `toolu_01DChcaQJrz7dgB1bLXBS54U`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_sensitivity_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "5954ebbe-3d5a-4d25-8a0a-00d7e2592e1f",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_sensitivity_analysis.md",
+    "content": "# NVE Sensitivity Analysis — Threshold Selection for Delusional Critic Diagnosis\n\n**Date**: 2026-05-15\n**Task**: plan_034\n\n## 1. Experiment Groups\n\n### Positive Class (Trained dt_emb, expected high NVE)\n| Experiment | Seed | Env | Notes |\n|---|---|---|---|\n| exp_008d_subsample_on_h8 | 1 | cheetah | Collapsed (eval 167→83) |\n| exp_009b_008d_walker_s2 | 2 | walker | Self-corrected (nve 2.05x@25K→0.38x@105K) |\n| exp_006_fixed_dt2 | 0 | cheetah | Collapsed (eval 485→133) |\n\n### Negative Class (No/Untrained dt_emb, expected low NVE)\n| Experiment | Seed | Env | Notes |\n|---|---|---|---|\n| exp_008f_no_dt_embed_subsample_on_h8 | 1 | cheetah | dt_embed_dim=0, recovered to 503@105K |\n| exp_009c_008f_walker_s2 | 2 | walker | dt_embed_dim=0, declined after 75K |\n| exp_008a_no_subsample_dt2 | 0 | cheetah | Untrained dt_emb, recovered to 778@105K |\n| exp_008c_no_subsample_dt2_h8 | 0 | cheetah | Untrained dt_emb, h8, plateau ~241 |\n| exp_008e_v3_subsample_on_dt1_h15 | 1 | cheetah | Trained dt_emb but dt=1 imagination |\n| exp_008e_v3_walker_s2 | 2 | walker | Trained dt_emb but dt=1; **late-onset collapse @105K** |\n\n## 2. NVE Trajectories (step ≥ 35K)\n\nNormalized VE = raw_ve_ratio / exp_001_ve_ratio. Baseline exp_001 (seed 1) ve: 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656.\n\n### Positive Class\n\n| Step | exp_008d (s1) | exp_009b (s2) | exp_006 (s0) |\n|------|--------------|--------------|-------------|\n| 35K  | **1.71** | **1.24** | **1.29** |\n| 45K  | **2.09** | **1.62** | **1.61** |\n| 55K  | **4.12** | **1.41** | **2.31** |\n| 65K  | — | 0.94 | **4.83** |\n| 75K  | — | 0.66 | — |\n| 85K  | — | 0.51 | — |\n| 95K  | — | 0.43 | — |\n| 105K | — | 0.38 | — |\n| **Max** | **4.12** | **1.62** | **4.83** |\n\nexp_008d terminated at 55K (collapse). exp_006 terminated at 65K (collapse). exp_009b self-corrected after 55K.\n\n### Negative Class\n\n| Step | exp_008f (s1) | exp_009c (s2) | exp_008a (s0) | exp_008c (s0) | exp_008e_v3 (s1) | exp_008e_v3_s2 (s2) |\n|------|-------------|-------------|-------------|-------------|-----------------|-------------------|\n| 35K  | 0.73 | 0.79 | 0.65 | 0.90 | 0.94 | 1.03 |\n| 45K  | 0.83 | 0.72 | 0.71 | 0.77 | 0.88 | 1.06 |\n| 55K  | 0.97 | 0.66 | 0.93 | 0.72 | 0.87 | 1.02 |\n| 65K  | 0.37 | 0.53 | 0.66 | 0.58 | 0.72 | 0.90 |\n| 75K  | 0.42 | 0.33 | 0.75 | — | 0.73 | 0.66 |\n| 85K  | 0.65 | 0.60 | 0.68 | — | 0.76 | 0.68 |\n| 95K  | 0.54 | 0.90 | 0.79 | — | 0.75 | **1.34** |\n| 105K | 0.30 | 1.14 | 0.59 | — | 0.80 | **3.78** |\n| **Max** | **0.97** | **1.14** | **0.93** | **0.90** | **0.94** | **3.78** |\n\nexp_008c terminated at 68K. **exp_008e_v3_s2** has late-onset collapse: NVE ≤1.06 for steps 35K–85K, then spikes to 1.34@95K and 3.78@105K.\n\n## 3. Classification Results\n\n### Criterion A: Single Checkpoint NVE ≥ Threshold (any step ≥ 35K)\n\n| Threshold | TP | FP | TN | FN | Accuracy | Precision | Recall | F1 |\n|-----------|----|----|----|----|----------|-----------|--------|-----|\n| **1.2** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.3** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.5** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.7** | 2 | 1 | 5 | 1 | 77.8% | 66.7% | 66.7% | 66.7% |\n| **2.0** | 2 | 1 | 5 | 1 | 77.8% | 66.7% | 66.7% | 66.7% |\n\n- FP at all thresholds: **exp_008e_v3_s2** (late-onset collapse at 105K)\n- FN at ≥1.7: **exp_009b** (max NVE 1.62, self-corrected)\n\n### Criterion B: ≥2 Consecutive Checkpoints NVE ≥ Threshold\n\n| Threshold | TP | FP | TN | FN | Accuracy | Precision | Recall | F1 |\n|-----------|----|----|----|----|----------|-----------|--------|-----|\n| **1.2** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.3** | 3 | 1 | 5 | 0 | **88.9%** | 75.0% | 100% | 85.7% |\n| **1.5** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n| **1.7** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n| **2.0** | 2 | 0 | 6 | 1 | **88.9%** | 100% | 66.7% | 80.0% |\n\n- At ≥1.5 consecutive: exp_008e_v3_s2 eliminated as FP (only 1 checkpoint ≥1.5 at 105K)\n- FN at ≥1.5: exp_009b (only 1 checkpoint ≥1.5: 45K@1.62)\n\n### Consecutive Criterion Detail\n\n| Experiment | ≥2 consec ≥1.2 | ≥2 consec ≥1.3 | ≥2 consec ≥1.5 | ≥2 consec ≥1.7 | ≥2 consec ≥2.0 |\n|---|---|---|---|---|---|\n| exp_008d (P) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (35-45-55K) | ✓ (45-55K) |\n| exp_009b (P) | ✓ (35-45-55K) | ✓ (45-55K) | ✗ | ✗ | ✗ |\n| exp_006 (P) | ✓ (35-45-55-65K) | ✓ (45-55-65K) | ✓ (45-55-65K) | ✓ (55-65K) | ✓ (55-65K) |\n| exp_008f (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_009c (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008a (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008c (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008e_v3 (N) | ✗ | ✗ | ✗ | ✗ | ✗ |\n| exp_008e_v3_s2 (N) | ✓ (95-105K) | ✓ (95-105K) | ✗ | ✗ | ✗ |\n\n## 4. AUROC\n\nUsing max NVE (step ≥ 35K) as the continuous score, N=9 (3 positive, 6 negative):\n\nScores sorted descending:\n| Rank | Experiment | Max NVE | Class |\n|------|-----------|---------|-------|\n| 1 | exp_006 | 4.83 | P |\n| 2 | exp_008d | 4.12 | P |\n| 3 | exp_008e_v3_s2 | 3.78 | N |\n| 4 | exp_009b | 1.62 | P |\n| 5 | exp_009c | 1.14 | N |\n| 6 | exp_008f | 0.97 | N |\n| 7 | exp_008e_v3 | 0.94 | N |\n| 8 | exp_008a | 0.93 | N |\n| 9 | exp_008c | 0.90 | N |\n\nConcordant P-N pairs: 18 total pairs, 17 concordant (exp_009b at 1.62 beats 5/6 negatives but loses to exp_008e_v3_s2 at 3.78).\n\n**AUROC = 17/18 = 0.944**\n\n## 5. Optimal Threshold Recommendation\n\n**Recommended: NVE ≥ 1.5, single-checkpoint criterion**\n- Accuracy 88.9%, Recall 100%, Precision 75%\n- Catches all trained dt_emb experiments including the transient episode (exp_009b@45K: 1.62)\n- Only FP is the special-case late-onset collapse (exp_008e_v3_s2)\n\n**Alternative: NVE ≥ 1.5, ≥2-consecutive-checkpoint criterion**\n- Accuracy 88.9%, Recall 66.7%, **Precision 100%**\n- Zero false positives — eliminates exp_008e_v3_s2 FP\n- Misses exp_009b (which self-corrected anyway, so this FN is arguably acceptable)\n- Best for **early warning with high confidence**: if triggered, nearly certain the model has pathological value overestimation\n\n**Trade-off**: Single-point ≥1.5 optimizes for catching all pathological episodes (high recall); consecutive ≥1.5 optimizes for actionable alerts (high precision, no false alarms).\n\nFor a practical monitoring threshold, **consecutive ≥1.5** is preferred: it generates no false positives and the only false negative (exp_009b) self-corrected without intervention.\n\n## 6. Special Case: exp_008e_v3_s2 Late-Onset Collapse\n\nexp_008e_v3_s2 is an unusual case:\n- **Configuration**: trained dt_emb, but imagination always uses dt=1 (gating locked)\n- **NVE trajectory**: stable at 0.66–1.06 from 35K–85K, then sudden onset at 95K (1.34) → 105K (3.78)\n- **Collapse onset**: 95K — 60K steps after the 35K monitoring window start, and well after most trained-dt_emb pathology manifests (typically 35K–55K)\n- **Mechanism**: despite dt=1 imagination, the trained dt_emb still contributes to state representation; late-stage overfit of the value function to dt_emb features can trigger delayed collapse\n\nClassification implications:\n- Under single-checkpoint criterion: always a FP (max NVE=3.78 exceeds all thresholds)\n- Under consecutive criterion at ≥1.5: correctly classified as TN (only 1 checkpoint ≥1.5)\n- The late onset (95K) vs. typical early onset (35K–55K) could also be used as a temporal filter, but the sample size is too small to formalize this\n\n## 7. Summary Table\n\n| Criterion | Best Threshold | Accuracy | Precision | Recall | AUROC | Recommendation |\n|---|---|---|---|---|---|---|\n| Single checkpoint | 1.2–1.5 | 88.9% | 75% | 100% | 0.944 | Screening / early warning |\n| ≥2 consecutive | 1.5–2.0 | 88.9% | 100% | 66.7% | — | Confirmed diagnosis |\n\nThe 1.5x NVE threshold provides the best balance. Below 1.5x, no additional true positives are gained. Above 1.5x, recall drops without improving precision (under the consecutive criterion).\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01HbJVipbGa1GphNyeSArbNc`</summary>
+
+```json
+{
+  "name": "NVE Sensitivity Analysis",
+  "type": "report",
+  "description": "NVE threshold sensitivity analysis for delusional critic diagnosis — classification accuracy at 5 thresholds × 2 criteria across 9 experiments, AUROC=0.944, recommends NVE≥1.5x",
+  "project": "event-gated-adaptive-horizon",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_sensitivity_analysis.md",
+  "tags": [
+    "plan_034",
+    "nve",
+    "threshold",
+    "classification",
+    "diagnostics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "93f19e1f-9974-44c1-b415-32a50b49eb33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FhBbyaCBzwJArQAGaakaur",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4010,
+      "cache_read_input_tokens": 50878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4010
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T12:57:44.088Z_
+
+<details><summary>↩ Tool result · `toolu_01HbJVipbGa1GphNyeSArbNc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_104cb7\", \"name\": \"NVE Sensitivity Analysis\", \"type\": \"report\", \"description\": \"NVE threshold sensitivity analysis for delusional critic diagnosis — classification accuracy at 5 thresholds × 2 criteria across 9 experiments, AUROC=0.944, recommends NVE≥1.5x\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/nve_sensitivity_analysis.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:57:43.875574+00:00\", \"tags\": [\"plan_034\", \"nve\", \"threshold\", \"classification\", \"diagnostics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "d9f1e5de-f605-4321-a7c7-a6b9b0080ac3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_104cb7\\\", \\\"name\\\": \\\"NVE Sensitivity Analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"NVE threshold sensitivity analysis for delusional critic diagnosis — classification accuracy at 5 thresholds × 2 criteria across 9 experiments, AUROC=0.944, recommends NVE≥1.5x\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/nve_sensitivity_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:57:43.875574+00:00\\\", \\\"tags\\\": [\\\"plan_034\\\", \\\"nve\\\", \\\"threshold\\\", \\\"classification\\\", \\\"diagnostics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_104cb7\", \"name\": \"NVE Sensitivity Analysis\", \"type\": \"report\", \"description\": \"NVE threshold sensitivity analysis for delusional critic diagnosis — classification accuracy at 5 thresholds × 2 criteria across 9 experiments, AUROC=0.944, recommends NVE≥1.5x\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/nve_sensitivity_analysis.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:57:43.875574+00:00\", \"tags\": [\"plan_034\", \"nve\", \"threshold\", \"classification\", \"diagnostics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+分析完成。核心结果：
+
+- **AUROC = 0.944**（3 正类 vs 6 负类，max NVE 作为连续分数）
+- **最优阈值 NVE ≥ 1.5x**：
+  - 单次触发：accuracy 88.9%, recall 100%, precision 75%（唯一 FP 是 008e_v3_s2 的 late-onset collapse）
+  - ≥2 连续 checkpoint 触发：accuracy 88.9%, **precision 100%**, recall 66.7%（唯一 FN 是 009b，它自行恢复了）
+- 正类 NVE 范围 1.29–4.83，负类（除 008e_v3_s2 外）NVE 范围 0.30–1.14，分离度很好
+- 008e_v3_s2 是唯一的 edge case：NVE 在 85K 前始终 ≤1.06，95K 突然跳到 1.34 再到 105K 的 3.78，consecutive ≥1.5 准则可正确排除
+
+报告已写入 `artifacts/nve_sensitivity_analysis.md` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "uuid": "9bf97ad0-1600-467a-a654-163cc22c1c31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014uKzGXEe63vRLWfFJA6q4M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 54888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+分析完成。核心结果：
+
+- **AUROC = 0.944**（3 正类 vs 6 负类，max NVE 作为连续分数）
+- **最优阈值 NVE ≥ 1.5x**：
+  - 单次触发：accuracy 88.9%, recall 100%, precision 75%（唯一 FP 是 008e_v3_s2 的 late-onset collapse）
+  - ≥2 连续 checkpoint 触发：accuracy 88.9%, **precision 100%**, recall 66.7%（唯一 FN 是 009b，它自行恢复了）
+- 正类 NVE 范围 1.29–4.83，负类（除 008e_v3_s2 外）NVE 范围 0.30–1.14，分离度很好
+- 008e_v3_s2 是唯一的 edge case：NVE 在 85K 前始终 ≤1.06，95K 突然跳到 1.34 再到 105K 的 3.78，consecutive ≥1.5 准则可正确排除
+
+报告已写入 `artifacts/nve_sensitivity_analysis.md` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 278998,
+  "duration_api_ms": 275543,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "c9fc2c6d-2a2d-4aef-b4d9-e7c051b5425a",
+  "total_cost_usd": 1.064217,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 43626,
+    "cache_read_input_tokens": 693219,
+    "output_tokens": 17711,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 43626,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 339,
+        "cache_read_input_tokens": 54888,
+        "cache_creation_input_tokens": 579,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 579
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1950,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0020499999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 24,
+      "outputTokens": 17711,
+      "cacheReadInputTokens": 693219,
+      "cacheCreationInputTokens": 43626,
+      "webSearchRequests": 0,
+      "costUSD": 1.062167,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e61e1145-1c36-4d7e-9c95-656b80480c57"
+}
+```
+
+</details>
+
+---

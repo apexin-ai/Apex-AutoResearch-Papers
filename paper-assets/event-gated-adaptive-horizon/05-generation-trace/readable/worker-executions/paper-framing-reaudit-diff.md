@@ -1,0 +1,2197 @@
+# paper framing reaudit diff
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_paper_framing-reaudit-diff_20260515T224855.log`
+- **Structured JSON:** [`6f789b8dcd13c3bfa183.json`](../../sessions/6f/6f789b8dcd13c3bfa183.json)
+
+## Before a recorded user message
+
+35 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6a336b83-8bb1-4926-8ea6-23ed7a65bf90",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778887200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0401ba11-6b60-4ba9-b1f0-a21470dea4da",
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll read the paper framing document and current paper sections, then produce the diff checklist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "8ac9f0f8-ee1d-45ef-8671-3580bee2499c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VZLZ3FseCyjyRTRaC33rqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11984,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11984
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SFLUD7M2kuz6MkyURPyS2P`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "d812549d-cfdd-4d45-b6d3-ff7124bb0e92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VZLZ3FseCyjyRTRaC33rqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11984,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11984
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T22:49:07.511Z_
+
+<details><summary>↩ Tool result · `toolu_01SFLUD7M2kuz6MkyURPyS2P`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "59bfb5d5-a9f1-4fd9-bff7-c940a39a8567",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the paper framing document and find the paper section files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "fdfb3d66-2522-454d-a1a1-57539deba607",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjpmLuUrvujY2AriwaYj5G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 23431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1332
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UckRkNdSFPZ6bFikUXsC7Q`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "8cfd3d86-3c84-478b-aee6-4e1953c7c61d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjpmLuUrvujY2AriwaYj5G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 23431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1332
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T22:49:13.227Z_
+
+<details><summary>↩ Tool result · `toolu_01UckRkNdSFPZ6bFikUXsC7Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **SGS (reward detach) 不阻断 CIVO** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. SGS delays onset ~50K steps (008d@45K vs 016e@95K) and raises peak 2x (327 vs 167), but collapse is more severe (NVE 10.42x vs 4.12x). **Reward gradient pathway is a contributing factor (explains delay) but not the sole root cause** — CIVO operates at representation level through world model training. |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\n\\n### 6. Implications for Future Work\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from critic~~ **已实测否定（exp_016e: reward_dt_emb_detach=True, v/e=658%@95K）— SGS 延迟崩溃 ~50K 步并提高峰值 2x（327 vs 167），说明 reward 梯度通路是贡献因素之一，但阻断它不足以防止 CIVO。根因在 representation level：world model training 本身将 dt>1 dynamics 编码进 dt_emb，使 critic 在 imagination 中系统性高估。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\n\\n### Priority Actions Before Submission\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\"multiple vulnerability pathways\\\" (CIVO Pathway A + non-CIVO Pathway B)\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: SGS delays CIVO onset ~50K steps (peak 327@75K vs 008d peak 167@35K) but does not prevent collapse (31.7@95K, NVE=10.42x). Reward gradient pathway is contributing factor (partial) but not sole root cause. CIVO is representation-level.\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 33051, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "f6216c63-a162-4a37-8689-8ed446a5d834",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. ~~**\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**~~ (deprecated — \\\\\\\"delusional critic\\\\\\\" conflicts with Lu et al. 2018)\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"** ← preferred after D037 terminology decision\\\\n4. **\\\\\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\\\\\"**\\\\n\\\\n**⚠️ D037 术语决定**: \\\\\\\"delusional critic\\\\\\\" → **\\\\\\\"conditioning-induced value overestimation\\\\\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\\\\\"delusional critic\\\\\\\" → \\\\\\\"conditioning-induced value overestimation\\\\\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\\\n\\\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\\\\\"known failure class 的 specific instance\\\\\\\" 升级为 \\\\\\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\\\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\\\n\\\\n## Venue\\\\n\\\\n**CoRL 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\\\n\\\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\\\n\\\\n---\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\\\n\\\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\\\n\\\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\\\n\\\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\\\n\\\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\\\n\\\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\\\n\\\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\\\n\\\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\\\n\\\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\\\\\"point of no return\\\\\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\\\n\\\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\\\n| **SGS (reward detach) 不阻断 CIVO** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. SGS delays onset ~50K steps (008d@45K vs 016e@95K) and raises peak 2x (327 vs 167), but collapse is more severe (NVE 10.42x vs 4.12x). **Reward gradient pathway is a contributing factor (explains delay) but not the sole root cause** — CIVO operates at representation level through world model training. |\\\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\\\n\\\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\\\\\"eliminates\\\\\\\" 改为 \\\\\\\"significantly delays and reduces\\\\\\\"。推荐方案仍是 008e_v3（C6）**。\\\\n\\\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\\\n\\\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\\\n|-------|------------|------------|---------|---------------|---------------|------------|\\\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\\\n\\\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\\\n\\\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\\\n\\\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\\\n\\\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\\\n\\\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\\\n\\\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\\\n\\\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\\\n\\\\n### C4: Longer dt amplifies the problem\\\\n\\\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\\\n\\\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\\\n\\\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\\\n\\\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\\\n\\\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\\\n\\\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\\\n\\\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\\\n\\\\n原假设\\\\\\\"dt=1 imagination = practical mitigation\\\\\\\"被**否证**。跨 seed 数据：\\\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\\\n- **独立 seed 崩溃率: 1/2 (50%)**\\\\n\\\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\\\n\\\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\\\n\\\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\\\n\\\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\\\n|------|---------------------|---------------------|\\\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\\\n\\\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\\\n\\\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\\\\\"seed 2 本身不稳定\\\\\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\\\n\\\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\\\n|------|-------------------|------------|------|\\\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\\\n\\\\n**C6 最终状态: PARTIALLY FALSIFIED**\\\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\\\n- 崩溃是配置导致的，不是 seed 特异性\\\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\\\n\\\\n**论文表述建议**: \\\\\\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\\\\\"\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\\\n\\\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\\\n\\\\n---\\\\n\\\\n## Story Arc\\\\n\\\\n### 1. Introduction\\\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\\\n\\\\n### 2. Background & Related Work\\\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\\\n- World-model RL (Dreamer family, IRIS, TWM)\\\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\\\n\\\\n### 3. Methodology\\\\n- DreamerV3 as base architecture\\\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\\\n\\\\n### 4. Results\\\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\\\\\"smoking gun\\\\\\\" comparison (008c vs 008d)\\\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\\\n- **Finding 4**: Longer dt amplifies (C4)\\\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\\\n\\\\n### 5. Discussion\\\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\\\n\\\\n### 6. Implications for Future Work\\\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from critic~~ **已实测否定（exp_016e: reward_dt_emb_detach=True, v/e=658%@95K）— SGS 延迟崩溃 ~50K 步并提高峰值 2x（327 vs 167），说明 reward 梯度通路是贡献因素之一，但阻断它不足以防止 CIVO。根因在 representation level：world model training 本身将 dt>1 dynamics 编码进 dt_emb，使 critic 在 imagination 中系统性高估。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\\\n- Need for diagnostic methodology in temporal abstraction research\\\\n\\\\n---\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"Limited to one environment / one base algorithm\\\\\\\"\\\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\\\n\\\\n### R2: \\\\\\\"No proposed solution — what's the actionable takeaway?\\\\\\\"\\\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\\\n\\\\n### R3: \\\\\\\"Value/eval ratio is a crude proxy for overestimation\\\\\\\"\\\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\\\n\\\\n### R4: \\\\\\\"The factorial design is incomplete — missing cells in the grid\\\\\\\"\\\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\\\n\\\\n### R5: \\\\\\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\\\\\"\\\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\\\n\\\\n### R6: \\\\\\\"All results from a single seed — how robust are the conclusions?\\\\\\\"\\\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\\\n\\\\n### R7: \\\\\\\"The factorial design confounds dt_embedding training with training data composition\\\\\\\"\\\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\\\n\\\\n### R8: \\\\\\\"008f reward prediction degradation undermines the causal control\\\\\\\"\\\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\\\\\"去掉 dt_embedding → 不崩塌\\\\\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\\\n\\\\n---\\\\n\\\\n## Experiment Coverage Assessment\\\\n\\\\n| Claim | Evidence Status | Gaps |\\\\n|-------|----------------|------|\\\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\\\n\\\\n### Priority Actions Before Submission\\\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\\\\\"multiple vulnerability pathways\\\\\\\" (CIVO Pathway A + non-CIVO Pathway B)\\\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: SGS delays CIVO onset ~50K steps (peak 327@75K vs 008d peak 167@35K) but does not prevent collapse (31.7@95K, NVE=10.42x). Reward gradient pathway is contributing factor (partial) but not sole root cause. CIVO is representation-level.\\\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\\\n\\\\n---\\\\n\\\\n## Key Figures (Planned)\\\\n\\\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\\\n\\\", \\\"total_chars\\\": 33051, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **SGS (reward detach) 不阻断 CIVO** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. SGS delays onset ~50K steps (008d@45K vs 016e@95K) and raises peak 2x (327 vs 167), but collapse is more severe (NVE 10.42x vs 4.12x). **Reward gradient pathway is a contributing factor (explains delay) but not the sole root cause** — CIVO operates at representation level through world model training. |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**Strength**: Moderate-strong (D032 update: causal direction + diagnostic marker confirmed; collapse stochastic). The **nve>1.5x threshold** achieves 4/4 perfect separation: all trained dt_emb seeds (008d, 009b) exceed 1.5x; no untrained seeds (008f, 009c) exceed 1.5x. This is the paper's strongest quantitative result for C2. **Collapse** is stochastic (1/2 trained seeds): 008d seed 1 shows sustained nve>1.5x → collapse; 009b seed 2 shows transient nve>1.5x → self-correction. The **causal direction** is unambiguous across all 4 data points. Pending: 009e (008d seed 1) to determine collapse probability (1/3 vs 2/3); 009f (008f seed 1) for third untrained seed; 009c extension to 200K.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x) — trained dt_emb 让 reward head 在 dt=2 时产生系统性偏差，这是 critic 被误导的直接来源\\n- 008f 的 reward 退化 trade-off：去掉 dt_embedding 避免崩塌但牺牲 reward 预测质量\\n- **D040: Multiple vulnerability pathways**: 008e_v3_s2 在 dt=1 imagination 下崩溃 (nve=3.78x@105K)，但机制与 008d 的 CIVO 不同：008d = value explosion → eval decline → entropy ↓；008e_v3_s2 = eval crash → value stable → entropy ↑。009a baseline s2 稳定排除 seed 脆弱。Trained dt_embedding creates vulnerability through multiple pathways: Pathway A (CIVO, value-driven) requires dt>1 imagination; Pathway B (non-CIVO policy instability, eval-driven) operates independently of imagination dt\\n- Connection to existing theory: non-delusional Q-learning (Lu et al., 2018), model exploitation in MBRL\\n- Why this is specific to world-model RL (model-free temporal abstraction doesn't suffer the same failure mode)\\n- **D032: Value self-correction mechanism (009b)**: 009b (008d seed 2) demonstrates that pathological overestimation (nve>1.5x) is not always irreversible. Value peaked at 110.9@65K then monotonically self-corrected to 67.3@105K, while eval simultaneously improved (172→268). Hypothesized mechanism: when the critic's overestimation does not yet dominate the actor's gradient signal (transient vs sustained nve>1.5x), the actor can still learn from real environment returns, creating a corrective force. In 008d seed 1, the sustained overestimation (3 consecutive checkpoints >1.5x at 35K+) overwhelmed this correction. The bifurcation likely depends on early training stochasticity — initialization and data sampling order determine whether the overestimation feedback loop locks in before correction can take hold (consistent with primacy bias in MBRL, Qiao et al. 2023; early outlier runs, Bjorck et al. 2022). This makes nve>1.5x a **necessary condition** for collapse but not sufficient — the temporal persistence of overestimation is the second gate.\\n\\n### 6. Implications for Future Work\\n- **D038 update**: dt=1 imagination is NOT sufficient — trained dt_embedding in critic is the fundamental vulnerability, regardless of imagination strategy\\n- Don't use trained dt_embedding for temporal conditioning in imagination-based actor-critic training without safeguards (TAWM shows this works in MPC — the vulnerability is specific to imagination-based training)\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Potential safeguards: (a) ~~detach dt_embedding gradients from critic~~ **已实测否定（exp_016e: reward_dt_emb_detach=True, v/e=658%@95K）— SGS 延迟崩溃 ~50K 步并提高峰值 2x（327 vs 167），说明 reward 梯度通路是贡献因素之一，但阻断它不足以防止 CIVO。根因在 representation level：world model training 本身将 dt>1 dynamics 编码进 dt_emb，使 critic 在 imagination 中系统性高估。**, (b) stop-gradient on dt>1 critic targets, (c) pessimistic value ensemble for dt>1 transitions, (d) uncertainty-gated truncation\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. The causal chain (C1-C5) provides clear guidance: trained dt_embedding is the necessary condition for CIVO. Restricting imagination to dt=1 eliminates CIVO (Pathway A) but not all failure modes — 008e_v3 shows 1/2 seeds collapse via a distinct non-CIVO pathway (eval-driven policy instability). The actionable takeaway is that trained dt_embedding creates vulnerability through multiple pathways in imagination-based actor-critic; surface-level fixes are insufficient. Hierarchical approaches (THICK, Hieros) that avoid flat dt-conditioning are the recommended direction.\\n**Mitigation**: Present the dual-pathway finding as a key diagnostic contribution (Section 5). dt=1 imagination is a partial mitigation (eliminates CIVO) but not robust (1/2 collapse via Pathway B).\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but the specific mechanism through temporal abstraction's dt_embedding is novel. Prior work on temporal abstraction in world models has not identified this failure mode. Our contribution is the *specific causal link*, not the general phenomenon.\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations (005, 006, 007) all negative | Could add 1 more environment |\\n| C2 (reliable pathological overestimation) | ⚠️ Moderate-strong (D032) — nve>1.5x threshold: 4/4 perfect separation (trained 2/2 exceed, untrained 0/2 exceed). Collapse stochastic: 1/2 trained seeds. Causal direction unambiguous. | 009e (008d seed 1) to narrow collapse probability; 009f (008f seed 1) for third untrained seed; 009c→200K |\\n| C3 (preventing optimistic drift) | ✅ Strong (105K confirmed) — 008a@105K=778 (85% baseline), normalized v/e=0.59x, two V-shaped recoveries | None — long-term structural suppression confirmed |\\n| C4 (dt amplification) | ⚠️ Moderate — only dt=2 vs dt=4 | Would benefit from dt=3, but not blocking |\\n| C5 (horizon/subsample) | ⚠️ Moderate — confounded with other factors | Need 008c-equivalent with H=15 + subsample ON + untrained dt_emb for clean isolation |\\n| C6 (dt=1 imag as mitigation) | ⚠️ **D040: PARTIALLY FALSIFIED** — s2 collapsed (nve=3.78x) but via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable → config-caused. **Repositioned**: trained dt_embedding creates multiple vulnerability pathways; dt=1 imagination eliminates CIVO pathway but not policy instability pathway. Onset delay ~70K steps is a positive finding. | Need s3-s4 to narrow collapse rate. Characterize Pathway B mechanism. Consider: trained dt_emb + subsample OFF + dt=1 imag (no dt>1 in training data) |\\n\\n### Priority Actions Before Submission\\n1. ~~**Check exp_008a@65K**~~ — ✅ Done: 608 (-1.3% baseline), B+ confirmed\\n2. ~~**008e_v3 B+ confound**~~ — ✅ Done: 869.9@105K (95% baseline), B+ confirmed\\n3. ~~**008f C2 causal control**~~ — ✅ Done: V-recovery to 503@105K, normalized v/e=0.30x\\n4. ~~**008e_v3_s2 (seed=2)**~~ — ❌ D040: **COLLAPSED via non-CIVO pathway** (eval-driven, entropy ↑). C6 partially falsified — multiple vulnerability pathways.\\n5. ~~**Multi-seed replication**~~ — ✅ D040: 009a baseline s2 DONE (stable). All Walker Walk seeds complete.\\n6. ~~**Narrative pivot**~~ — ✅ D040: C6 reframed as \\\"multiple vulnerability pathways\\\" (CIVO Pathway A + non-CIVO Pathway B)\\n6.5. ~~**SGS (reward_dt_emb_detach) 验证**~~ — ❌ exp_016e: SGS delays CIVO onset ~50K steps (peak 327@75K vs 008d peak 167@35K) but does not prevent collapse (31.7@95K, NVE=10.42x). Reward gradient pathway is contributing factor (partial) but not sole root cause. CIVO is representation-level.\\n7. **考虑新实验**: trained dt_emb + subsample OFF + dt=1 imag — 如果 stable → 确认 training data dt>1 transitions 是 trigger\\n8. **Cheetah Run cross-environment** — P0 priority, addresses R1\\n9. **Figures** — learning curves, normalized v/e (含 008e_v3_s2 崩溃轨迹), RSSM fidelity table\\n10. **Threshold sensitivity analysis** — plan_034, 0 GPU cost\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 33051, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_017YVT5VmkvK5nR8hJWt1qEN`</summary>
+
+```json
+{
+  "pattern": "docs/paper/sections/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "6db9c9e2-bbc9-40c7-9b82-c7c86db0605c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjpmLuUrvujY2AriwaYj5G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 23431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1332
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T22:49:13.382Z_
+
+<details><summary>↩ Tool result · `toolu_017YVT5VmkvK5nR8hJWt1qEN`</summary>
+
+```text
+docs/paper/sections/related_work.tex
+docs/paper/sections/abstract.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/analysis.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/results.tex
+docs/paper/sections/methodology.tex
+docs/paper/sections/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "997870aa-b9b8-4c6a-8ddc-c0e8931e7acb",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/analysis.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/results.tex",
+      "docs/paper/sections/methodology.tex",
+      "docs/paper/sections/appendix.tex"
+    ],
+    "durationMs": 40,
+    "numFiles": 8,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read all the paper sections in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "eb53282f-1748-4270-9318-a407fefaed89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now reading all 8 paper sections in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "714bb736-500e-452f-b065-1b4c4d23a01c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BM9gNfbg8mm8p3vCj6UjuD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "1a2d805f-dac6-47ac-8a23-720e0ee2ff3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T22:49:18.250Z_
+
+<details><summary>↩ Tool result · `toolu_01BM9gNfbg8mm8p3vCj6UjuD`</summary>
+
+```text
+1	\begin{abstract}
+2	Temporal abstraction via variable-rate imagination is a natural extension of world-model reinforcement learning, yet we find that every variable-rate configuration of DreamerV3 degrades performance---despite the success of identical $\Delta t$-conditioning in MPC-based methods. Through a factorial diagnostic on Walker Walk, we identify trained temporal embedding as the causal factor and characterize the resulting failure mode: \emph{conditioning-induced value overestimation} (CIVO). The trained embedding enables the RSSM reward head to develop a $2.78\times$ prediction gap between $\Delta t{=}1$ and $\Delta t{=}2$, which the critic internalizes as optimistic values. A normalized value-to-eval threshold of $1.5\times$ (35K+ training window) achieves 7/8 classification ($n{=}8$, Walker Walk), with the single false positive arising from a mechanistically distinct non-CIVO collapse. The same CIVO trigger produces stochastic downstream outcomes across seeds---full collapse, transient CIVO with self-correction, and oscillatory degradation---from identical configurations. Critically, restricting imagination to $\Delta t{=}1$ does not prevent collapse: one of two seeds fails via a distinct non-CIVO pathway with increasing entropy, revealing that trained temporal conditioning creates vulnerability through multiple mechanisms. Our analysis identifies the feedback architecture---imagination-based actor-critic bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.
+3	\end{abstract}
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "9f8ce244-7ead-46e4-939e-17188cffff94",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract.tex",
+      "content": "\\begin{abstract}\nTemporal abstraction via variable-rate imagination is a natural extension of world-model reinforcement learning, yet we find that every variable-rate configuration of DreamerV3 degrades performance---despite the success of identical $\\Delta t$-conditioning in MPC-based methods. Through a factorial diagnostic on Walker Walk, we identify trained temporal embedding as the causal factor and characterize the resulting failure mode: \\emph{conditioning-induced value overestimation} (CIVO). The trained embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\Delta t{=}1$ and $\\Delta t{=}2$, which the critic internalizes as optimistic values. A normalized value-to-eval threshold of $1.5\\times$ (35K+ training window) achieves 7/8 classification ($n{=}8$, Walker Walk), with the single false positive arising from a mechanistically distinct non-CIVO collapse. The same CIVO trigger produces stochastic downstream outcomes across seeds---full collapse, transient CIVO with self-correction, and oscillatory degradation---from identical configurations. Critically, restricting imagination to $\\Delta t{=}1$ does not prevent collapse: one of two seeds fails via a distinct non-CIVO pathway with increasing entropy, revealing that trained temporal conditioning creates vulnerability through multiple mechanisms. Our analysis identifies the feedback architecture---imagination-based actor-critic bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.\n\\end{abstract}\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01M2xRyNV3XYt7Yg43R9U5ET`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "a89d17e0-0299-4d87-b978-cdb0e63cd28b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T22:49:18.782Z_
+
+<details><summary>↩ Tool result · `toolu_01M2xRyNV3XYt7Yg43R9U5ET`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	TAWM \citep{nhu2025tawm} shows that conditioning a world model on step size $\dt$ yields consistent gains within TD-MPC2's MPC framework \citep{hansen2024tdmpc2}. Can the same $\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?
+5	
+6	We find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\dt{=}2$ collapses to $14\%$ of baseline, fixed $\dt{=}4$ never exceeds $19\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\%$. Through a factorial analysis on Walker Walk \citep{tassa2018dmcontrol}, we isolate the \emph{trained} $\dt$-embedding as the causal factor. This embedding enables the RSSM reward head to develop a $2.78\times$ prediction gap between $\dt{=}1$ and $\dt{=}2$, which the critic internalizes as optimistic value estimates---a failure mode we term \emph{conditioning-induced value overestimation} (CIVO). A $\nve \geq 1.5\times$ threshold (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, single environment), with one non-CIVO false positive---a failure mode analogous to delusional bias \citep{lu2018nondelusional} but arising from model imprecision amplified by learned temporal conditioning.
+7	
+8	Three further findings complicate the picture: (1)~the same CIVO trigger produces stochastic downstream outcomes---full collapse, transient CIVO with self-correction, and oscillatory degradation---across seeds of identical configurations; (2)~restricting imagination to $\dt{=}1$ while retaining the trained embedding does not prevent collapse, with one of two seeds failing via a qualitatively distinct non-CIVO pathway (evaluation-driven, increasing entropy); and (3)~the contrast with TAWM identifies the feedback architecture---imagination-based bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "3d8f42a6-6aa6-4307-980e-603fbef49fdc",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nTAWM \\citep{nhu2025tawm} shows that conditioning a world model on step size $\\dt$ yields consistent gains within TD-MPC2's MPC framework \\citep{hansen2024tdmpc2}. Can the same $\\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \\citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?\n\nWe find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\\dt{=}2$ collapses to $14\\%$ of baseline, fixed $\\dt{=}4$ never exceeds $19\\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\\%$. Through a factorial analysis on Walker Walk \\citep{tassa2018dmcontrol}, we isolate the \\emph{trained} $\\dt$-embedding as the causal factor. This embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$, which the critic internalizes as optimistic value estimates---a failure mode we term \\emph{conditioning-induced value overestimation} (CIVO). A $\\nve \\geq 1.5\\times$ threshold (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, single environment), with one non-CIVO false positive---a failure mode analogous to delusional bias \\citep{lu2018nondelusional} but arising from model imprecision amplified by learned temporal conditioning.\n\nThree further findings complicate the picture: (1)~the same CIVO trigger produces stochastic downstream outcomes---full collapse, transient CIVO with self-correction, and oscillatory degradation---across seeds of identical configurations; (2)~restricting imagination to $\\dt{=}1$ while retaining the trained embedding does not prevent collapse, with one of two seeds failing via a qualitatively distinct non-CIVO pathway (evaluation-driven, increasing entropy); and (3)~the contrast with TAWM identifies the feedback architecture---imagination-based bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.\n",
+      "numLines": 9,
+      "startLine": 1,
+      "totalLines": 9
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tw6sibonFZzhdnTHm8ExF4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "35e2b1d0-87f1-445d-a9d3-a0c205251021",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T22:49:19.258Z_
+
+<details><summary>↩ Tool result · `toolu_01Tw6sibonFZzhdnTHm8ExF4`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{Temporal Abstraction.}
+5	The options framework \citep{sutton1999options} and model-free action-repetition methods \citep{sharma2017figar, biedenkapp2021temporl, lakshminarayanan2017dynamic} achieve temporal abstraction by training values on real transitions, insulating them from model-induced bias. In world-model RL, the Dreamer family \citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3} and transformer-based variants \citep{micheli2023iris, robine2023twm, hafner2025dreamerv4} train policies in imagination at fixed $\dt{=}1$. Several works introduce temporal abstraction via hierarchical representations \citep{gumbsch2024thick, mattes2024hieros}, goal-conditioned jumps \citep{li2025lsimagine}, or multi-scale state-space models \citep{shaj2023mts3}, but none conditions a flat dynamics model on $\dt$ for imagination-based policy training.
+6	
+7	\paragraph{TAWM and the MPC--Imagination Contrast.}
+8	TAWM \citep{nhu2025tawm} conditions a world model on $\dt$ within TD-MPC2 \citep{hansen2024tdmpc2} and achieves consistent gains. The critical distinction is architectural: TAWM re-plans from real states at every step, so model errors do not accumulate into the critic. We show that identical $\dt$-conditioning fails in DreamerV3's imagination loop, where errors compound through bootstrapping---transforming manageable imprecision into pathological value overestimation.
+9	
+10	\paragraph{Value Overestimation.}
+11	Value overestimation is well-studied in model-free \citep{fujimoto2018td3, vanhasselt2016double} and model-based settings \citep{janner2019mbpo, yu2020mopo}. \citet{lu2018nondelusional} identify delusional bias from policy-class constraints; our CIVO is mechanistically distinct, arising from model imprecision amplified by learned temporal conditioning. \citet{tallec2019making} show Q-function degradation with temporal resolution mismatches, underpinning our finding at $\dt > 1$. \citet{frauenknecht2025rollouts} demonstrate rollout-quality dominance in MBRL; we identify the specific $\dt$-embedding-induced reward bias by which rollout divergence corrupts values. Our factorial diagnostic approach follows \citet{engstrom2020implementation} and \citet{andrychowicz2021whatmatters}.
+12	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "bf44ec1b-99c3-4a89-a0c2-6c07ae0b5455",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Temporal Abstraction.}\nThe options framework \\citep{sutton1999options} and model-free action-repetition methods \\citep{sharma2017figar, biedenkapp2021temporl, lakshminarayanan2017dynamic} achieve temporal abstraction by training values on real transitions, insulating them from model-induced bias. In world-model RL, the Dreamer family \\citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3} and transformer-based variants \\citep{micheli2023iris, robine2023twm, hafner2025dreamerv4} train policies in imagination at fixed $\\dt{=}1$. Several works introduce temporal abstraction via hierarchical representations \\citep{gumbsch2024thick, mattes2024hieros}, goal-conditioned jumps \\citep{li2025lsimagine}, or multi-scale state-space models \\citep{shaj2023mts3}, but none conditions a flat dynamics model on $\\dt$ for imagination-based policy training.\n\n\\paragraph{TAWM and the MPC--Imagination Contrast.}\nTAWM \\citep{nhu2025tawm} conditions a world model on $\\dt$ within TD-MPC2 \\citep{hansen2024tdmpc2} and achieves consistent gains. The critical distinction is architectural: TAWM re-plans from real states at every step, so model errors do not accumulate into the critic. We show that identical $\\dt$-conditioning fails in DreamerV3's imagination loop, where errors compound through bootstrapping---transforming manageable imprecision into pathological value overestimation.\n\n\\paragraph{Value Overestimation.}\nValue overestimation is well-studied in model-free \\citep{fujimoto2018td3, vanhasselt2016double} and model-based settings \\citep{janner2019mbpo, yu2020mopo}. \\citet{lu2018nondelusional} identify delusional bias from policy-class constraints; our CIVO is mechanistically distinct, arising from model imprecision amplified by learned temporal conditioning. \\citet{tallec2019making} show Q-function degradation with temporal resolution mismatches, underpinning our finding at $\\dt > 1$. \\citet{frauenknecht2025rollouts} demonstrate rollout-quality dominance in MBRL; we identify the specific $\\dt$-embedding-induced reward bias by which rollout divergence corrupts values. Our factorial diagnostic approach follows \\citet{engstrom2020implementation} and \\citet{andrychowicz2021whatmatters}.\n",
+      "numLines": 12,
+      "startLine": 1,
+      "totalLines": 12
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FdCcoScpcgEzQPihQkLe23`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/methodology.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "860dd03a-8e25-46d9-8bbe-0f626d6d2fa5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T22:49:19.735Z_
+
+<details><summary>↩ Tool result · `toolu_01FdCcoScpcgEzQPihQkLe23`</summary>
+
+```text
+1	\section{Experimental Setup}
+2	\label{sec:methodology}
+3	
+4	\subsection{Base Architecture}
+5	\label{sec:base_arch}
+6	
+7	All experiments build on DreamerV3 \citep{hafner2023dreamerv3}, which learns a recurrent state-space model (RSSM) with discrete latent states ($32$ categories $\times$ $32$ classes), uses symlog-transformed predictions, and trains an actor-critic entirely within imagined trajectories. The standard configuration imagines $H{=}15$ steps at a fixed temporal resolution of $\dt{=}1$, meaning each imagination step corresponds to one environment transition.
+8	
+9	\subsection{Variable-Rate Imagination Mechanism}
+10	\label{sec:variable_rate}
+11	
+12	We introduce three orthogonal architectural modifications that enable variable-rate imagination in DreamerV3. Each can be independently toggled to isolate its contribution.
+13	
+14	\paragraph{Temporal embedding.}
+15	A learned embedding $e(\dt)$ is concatenated to the RSSM input at each imagination step, conditioning state predictions on the temporal scale. We test three modes:
+16	\begin{itemize}[nosep,leftmargin=*]
+17	\item \textbf{Trained}: embedding parameters are updated via backpropagation through the world model loss, allowing the RSSM to co-adapt its dynamics and reward predictions to the temporal scale.
+18	\item \textbf{Untrained}: a fixed random projection of identical dimensionality. The RSSM receives a temporal signal but cannot co-adapt to it.
+19	\item \textbf{Removed}: embedding dimension set to zero; no temporal conditioning signal is provided.
+20	\end{itemize}
+21	The trained-vs-untrained contrast is the key causal control: it isolates the effect of \emph{learning} the temporal conditioning from its mere architectural presence.
+22	
+23	\paragraph{Temporal subsampling.}
+24	When enabled, the replay buffer augments training data with variable-$\dt$ transitions by subsampling consecutive frames. Concretely, with a maximum subsampling factor of~2, the RSSM trains on both $\dt{=}1$ and $\dt{=}2$ transitions drawn from the same episodes. When disabled, only standard $\dt{=}1$ transitions are used. This factor controls whether the world model has seen multi-scale dynamics during training.
+25	
+26	\paragraph{Imagination horizon and step size.}
+27	The imagination horizon $H$ sets the number of rollout steps. We test $H{=}15$ (default) and $H{=}8$. The reduced horizon controls for compounding error: $H{=}8$ steps at $\dt{=}2$ covers $16$ physical time steps, comparable to the $15$ physical steps of the default configuration. Additionally, the parameter \texttt{gate\_fixed\_dt} forces all imagination steps to use a specific $\dt$ value ($1$, $2$, or $4$), separating the effect of $\dt$-conditioning from any learned gating policy.
+28	
+29	\subsection{Factorial Design}
+30	\label{sec:factorial}
+31	
+32	We adopt a structured factorial ablation across four factors: $\dt$-embedding mode (trained / untrained / none), temporal subsampling (on / off), imagination horizon ($H{=}15$ / $H{=}8$), and imagination step size ($\dt{=}1$, $2$, or $4$). Table~\ref{tab:factorial_design} summarizes the nine configurations.
+33	
+34	\begin{table}[t]
+35	\centering
+36	\caption{Factorial design. Each row specifies one experimental configuration. \textbf{Emb}: $\dt$-embedding mode. \textbf{Sub}: temporal subsampling. \textbf{H}: imagination horizon. \textbf{Imag $\dt$}: temporal resolution used during imagination.}
+37	\label{tab:factorial_design}
+38	\small
+39	\setlength{\tabcolsep}{3.5pt}
+40	\begin{tabular}{@{}llcccc@{}}
+41	\toprule
+42	\textbf{ID} & \textbf{Purpose} & \textbf{Emb} & \textbf{Sub} & \textbf{H} & \textbf{Imag $\dt$} \\
+43	\midrule
+44	001 & Reference baseline & --- & off & 15 & 1 \\
+45	006 & Fixed $\dt{=}2$ & trn & off & 15 & 2 \\
+46	007 & Fixed $\dt{=}4$ & trn & off & 15 & 4 \\
+47	005 & Learned gate & trn & on & 15 & learned \\
+48	\midrule
+49	008d & Full treatment & trn & on & 8 & 2 \\
+50	008f & Isolate emb & --- & on & 8 & 2 \\
+51	008a & Isolate subsample & utr & off & 15 & 2 \\
+52	008c & Isolate horizon & utr & off & 8 & 2 \\
+53	\midrule
+54	008e\_v3 & Mitigation ($\dt{=}1$ imag) & trn & on & 15 & 1 \\
+55	\bottomrule
+56	\end{tabular}
+57	\vspace{-2pt}
+58	{\raggedright\footnotesize trn = trained, utr = untrained (frozen random projection), --- = removed.\par}
+59	\end{table}
+60	
+61	The design targets three diagnostic questions. First, comparing 008d (trained embedding) against 008f (no embedding) with all other factors held constant isolates whether \emph{training} the temporal conditioning triggers pathological dynamics. Second, comparing 008a and 008c (both untrained, differing only in $H$) against 008d (trained) separates embedding training from horizon and subsampling effects. Third, the mitigation configuration 008e\_v3 retains the trained embedding for observation conditioning but restricts imagination to $\dt{=}1$, testing whether constraining the imagination channel alone prevents collapse.
+62	
+63	Each non-baseline configuration is run with 2--3 seeds. The baseline uses 2 seeds (seeds 1 and 2) to establish reference variance; a third seed (seed 0) is in progress. Following \citet{agarwal2021precipice}, we report per-seed trajectories rather than aggregated means to surface stochastic divergence across seeds.
+64	
+65	\subsection{Diagnostic Metrics}
+66	\label{sec:metrics}
+67	
+68	\paragraph{Evaluation return.}
+69	The primary performance metric: mean return over 10 evaluation episodes, computed every 10K training steps with a deterministic policy.
+70	
+71	\paragraph{Value-to-eval ratio.}
+72	We define the value-to-eval ratio $v/e$ as the ratio of the critic's mean imagined value to the evaluation return at each checkpoint. This tracks how well value estimates match realized performance. A ratio near~1 indicates calibrated value predictions; values substantially above~1 indicate systematic overestimation.
+73	
+74	\paragraph{Normalized value-to-eval ratio ($\nve$).}
+75	To control for the baseline's natural $v/e$ dynamics (\eg, the ratio naturally increases during early training as the critic learns), we normalize:
+76	\begin{equation}
+77	\nve_t = \frac{(v/e)_{\text{config},\,t}}{(v/e)_{\text{baseline},\,t}}
+78	\label{eq:nve}
+79	\end{equation}
+80	where $(v/e)_{\text{baseline},\,t}$ is from the single baseline seed (exp\_001, seed~1, 505K steps).  We restrict to a \textbf{35K+ window} ($t \geq 35\text{K}$) because the baseline $v/e$ is near zero in early training, causing spurious $\nve$ inflation.  We use $\nve \geq 1.5\times$ (peak within this window) as a warning threshold; across 8 evaluable seeds, this achieves 7/8 accuracy (AUROC${=}0.933$), with one non-CIVO false positive (\S\ref{sec:f6}).  The threshold is sensitive but not perfectly specific to CIVO; mechanistic attribution requires joint analysis with collapse signatures (\S\ref{sec:pathways}).
+81	
+82	\paragraph{RSSM fidelity.}
+83	To probe the mechanism underlying value drift, we evaluate world model prediction quality at different temporal scales from the same checkpoint. Specifically, we compute observation MSE and reward MAE on held-out $\dt{=}1$ versus $\dt{=}2$ transitions, and report the gap ratio between them. A large gap indicates that the world model produces systematically different prediction quality across temporal scales---providing the channel for critic exploitation.
+84	
+85	\paragraph{Supplementary diagnostics.}
+86	Two additional metrics target failure modes that $\nve$ may miss.
+87	\emph{Actor loss sign}: DreamerV3's actor loss is normally negative (policy improvement direction). A sign flip to positive values directly signals that the critic is misleading the actor, providing a more targeted marker of delusional-critic damage than the aggregate $\nve$ ratio.
+88	\emph{Value standard deviation}: exponential growth in value variance across imagination rollouts captures oscillatory instability during ``false recovery'' phases where $\nve$ may temporarily decrease even as the underlying value landscape destabilizes.
+89	
+90	\subsection{Environment and Training Details}
+91	\label{sec:env_details}
+92	
+93	All experiments use the Walker Walk task from the DeepMind Control Suite \citep{tassa2018dmcontrol} with proprioceptive observations. The baseline runs for 500K environment steps, sufficient for convergence (peak return 970.4). Treatment configurations run for 105K steps, which is sufficient to observe both collapse onset and the diagnostic markers described above. All DreamerV3 hyperparameters follow the defaults from \citet{hafner2023dreamerv3} without task-specific tuning. Training uses a single NVIDIA RTX 6000 Ada GPU with JIT compilation disabled (\texttt{-{}-compile False}) for reproducibility across runs. The codebase extends DreamerV3 with the variable-rate modules described in \S\ref{sec:variable_rate}; no other architectural modifications are made.
+94	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "a889dfc0-267b-43e8-b752-f2e9c4631ae4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/methodology.tex",
+      "content": "\\section{Experimental Setup}\n\\label{sec:methodology}\n\n\\subsection{Base Architecture}\n\\label{sec:base_arch}\n\nAll experiments build on DreamerV3 \\citep{hafner2023dreamerv3}, which learns a recurrent state-space model (RSSM) with discrete latent states ($32$ categories $\\times$ $32$ classes), uses symlog-transformed predictions, and trains an actor-critic entirely within imagined trajectories. The standard configuration imagines $H{=}15$ steps at a fixed temporal resolution of $\\dt{=}1$, meaning each imagination step corresponds to one environment transition.\n\n\\subsection{Variable-Rate Imagination Mechanism}\n\\label{sec:variable_rate}\n\nWe introduce three orthogonal architectural modifications that enable variable-rate imagination in DreamerV3. Each can be independently toggled to isolate its contribution.\n\n\\paragraph{Temporal embedding.}\nA learned embedding $e(\\dt)$ is concatenated to the RSSM input at each imagination step, conditioning state predictions on the temporal scale. We test three modes:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Trained}: embedding parameters are updated via backpropagation through the world model loss, allowing the RSSM to co-adapt its dynamics and reward predictions to the temporal scale.\n\\item \\textbf{Untrained}: a fixed random projection of identical dimensionality. The RSSM receives a temporal signal but cannot co-adapt to it.\n\\item \\textbf{Removed}: embedding dimension set to zero; no temporal conditioning signal is provided.\n\\end{itemize}\nThe trained-vs-untrained contrast is the key causal control: it isolates the effect of \\emph{learning} the temporal conditioning from its mere architectural presence.\n\n\\paragraph{Temporal subsampling.}\nWhen enabled, the replay buffer augments training data with variable-$\\dt$ transitions by subsampling consecutive frames. Concretely, with a maximum subsampling factor of~2, the RSSM trains on both $\\dt{=}1$ and $\\dt{=}2$ transitions drawn from the same episodes. When disabled, only standard $\\dt{=}1$ transitions are used. This factor controls whether the world model has seen multi-scale dynamics during training.\n\n\\paragraph{Imagination horizon and step size.}\nThe imagination horizon $H$ sets the number of rollout steps. We test $H{=}15$ (default) and $H{=}8$. The reduced horizon controls for compounding error: $H{=}8$ steps at $\\dt{=}2$ covers $16$ physical time steps, comparable to the $15$ physical steps of the default configuration. Additionally, the parameter \\texttt{gate\\_fixed\\_dt} forces all imagination steps to use a specific $\\dt$ value ($1$, $2$, or $4$), separating the effect of $\\dt$-conditioning from any learned gating policy.\n\n\\subsection{Factorial Design}\n\\label{sec:factorial}\n\nWe adopt a structured factorial ablation across four factors: $\\dt$-embedding mode (trained / untrained / none), temporal subsampling (on / off), imagination horizon ($H{=}15$ / $H{=}8$), and imagination step size ($\\dt{=}1$, $2$, or $4$). Table~\\ref{tab:factorial_design} summarizes the nine configurations.\n\n\\begin{table}[t]\n\\centering\n\\caption{Factorial design. Each row specifies one experimental configuration. \\textbf{Emb}: $\\dt$-embedding mode. \\textbf{Sub}: temporal subsampling. \\textbf{H}: imagination horizon. \\textbf{Imag $\\dt$}: temporal resolution used during imagination.}\n\\label{tab:factorial_design}\n\\small\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\n\\textbf{ID} & \\textbf{Purpose} & \\textbf{Emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Imag $\\dt$} \\\\\n\\midrule\n001 & Reference baseline & --- & off & 15 & 1 \\\\\n006 & Fixed $\\dt{=}2$ & trn & off & 15 & 2 \\\\\n007 & Fixed $\\dt{=}4$ & trn & off & 15 & 4 \\\\\n005 & Learned gate & trn & on & 15 & learned \\\\\n\\midrule\n008d & Full treatment & trn & on & 8 & 2 \\\\\n008f & Isolate emb & --- & on & 8 & 2 \\\\\n008a & Isolate subsample & utr & off & 15 & 2 \\\\\n008c & Isolate horizon & utr & off & 8 & 2 \\\\\n\\midrule\n008e\\_v3 & Mitigation ($\\dt{=}1$ imag) & trn & on & 15 & 1 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\raggedright\\footnotesize trn = trained, utr = untrained (frozen random projection), --- = removed.\\par}\n\\end{table}\n\nThe design targets three diagnostic questions. First, comparing 008d (trained embedding) against 008f (no embedding) with all other factors held constant isolates whether \\emph{training} the temporal conditioning triggers pathological dynamics. Second, comparing 008a and 008c (both untrained, differing only in $H$) against 008d (trained) separates embedding training from horizon and subsampling effects. Third, the mitigation configuration 008e\\_v3 retains the trained embedding for observation conditioning but restricts imagination to $\\dt{=}1$, testing whether constraining the imagination channel alone prevents collapse.\n\nEach non-baseline configuration is run with 2--3 seeds. The baseline uses 2 seeds (seeds 1 and 2) to establish reference variance; a third seed (seed 0) is in progress. Following \\citet{agarwal2021precipice}, we report per-seed trajectories rather than aggregated means to surface stochastic divergence across seeds.\n\n\\subsection{Diagnostic Metrics}\n\\label{sec:metrics}\n\n\\paragraph{Evaluation return.}\nThe primary performance metric: mean return over 10 evaluation episodes, computed every 10K training steps with a deterministic policy.\n\n\\paragraph{Value-to-eval ratio.}\nWe define the value-to-eval ratio $v/e$ as the ratio of the critic's mean imagined value to the evaluation return at each checkpoint. This tracks how well value estimates match realized performance. A ratio near~1 indicates calibrated value predictions; values substantially above~1 indicate systematic overestimation.\n\n\\paragraph{Normalized value-to-eval ratio ($\\nve$).}\nTo control for the baseline's natural $v/e$ dynamics (\\eg, the ratio naturally increases during early training as the critic learns), we normalize:\n\\begin{equation}\n\\nve_t = \\frac{(v/e)_{\\text{config},\\,t}}{(v/e)_{\\text{baseline},\\,t}}\n\\label{eq:nve}\n\\end{equation}\nwhere $(v/e)_{\\text{baseline},\\,t}$ is from the single baseline seed (exp\\_001, seed~1, 505K steps).  We restrict to a \\textbf{35K+ window} ($t \\geq 35\\text{K}$) because the baseline $v/e$ is near zero in early training, causing spurious $\\nve$ inflation.  We use $\\nve \\geq 1.5\\times$ (peak within this window) as a warning threshold; across 8 evaluable seeds, this achieves 7/8 accuracy (AUROC${=}0.933$), with one non-CIVO false positive (\\S\\ref{sec:f6}).  The threshold is sensitive but not perfectly specific to CIVO; mechanistic attribution requires joint analysis with collapse signatures (\\S\\ref{sec:pathways}).\n\n\\paragraph{RSSM fidelity.}\nTo probe the mechanism underlying value drift, we evaluate world model prediction quality at different temporal scales from the same checkpoint. Specifically, we compute observation MSE and reward MAE on held-out $\\dt{=}1$ versus $\\dt{=}2$ transitions, and report the gap ratio between them. A large gap indicates that the world model produces systematically different prediction quality across temporal scales---providing the channel for critic exploitation.\n\n\\paragraph{Supplementary diagnostics.}\nTwo additional metrics target failure modes that $\\nve$ may miss.\n\\emph{Actor loss sign}: DreamerV3's actor loss is normally negative (policy improvement direction). A sign flip to positive values directly signals that the critic is misleading the actor, providing a more targeted marker of delusional-critic damage than the aggregate $\\nve$ ratio.\n\\emph{Value standard deviation}: exponential growth in value variance across imagination rollouts captures oscillatory instability during ``false recovery'' phases where $\\nve$ may temporarily decrease even as the underlying value landscape destabilizes.\n\n\\subsection{Environment and Training Details}\n\\label{sec:env_details}\n\nAll experiments use the Walker Walk task from the DeepMind Control Suite \\citep{tassa2018dmcontrol} with proprioceptive observations. The baseline runs for 500K environment steps, sufficient for convergence (peak return 970.4). Treatment configurations run for 105K steps, which is sufficient to observe both collapse onset and the diagnostic markers described above. All DreamerV3 hyperparameters follow the defaults from \\citet{hafner2023dreamerv3} without task-specific tuning. Training uses a single NVIDIA RTX 6000 Ada GPU with JIT compilation disabled (\\texttt{-{}-compile False}) for reproducibility across runs. The codebase extends DreamerV3 with the variable-rate modules described in \\S\\ref{sec:variable_rate}; no other architectural modifications are made.\n",
+      "numLines": 94,
+      "startLine": 1,
+      "totalLines": 94
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AAzZzZ1y3gRjrEaX9R92kv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "f041b77e-88c4-4ebb-8aba-c3edf34385ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T22:49:20.218Z_
+
+<details><summary>↩ Tool result · `toolu_01AAzZzZ1y3gRjrEaX9R92kv`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We organize results around six findings (F1--F6) that establish a causal chain from trained temporal conditioning to pathological value dynamics and performance collapse. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\nve$), defined as the ratio of a configuration's imagined value to evaluation return, normalized by the baseline's ratio at the same training step.
+5	
+6	%% ============================================================
+7	%% TABLE 1: Main results summary
+8	%% ============================================================
+9	
+10	\begin{table*}[t]
+11	\centering
+12	\caption{All configurations and outcomes. NVE reports peak $\nve$ in the 35K+ window (\S\ref{sec:metrics}). CIVO-positive seeds are shaded; $\dagger$\,marks a false positive (non-CIVO collapse with elevated NVE).}
+13	\label{tab:main_results}
+14	\footnotesize
+15	\setlength{\tabcolsep}{4pt}
+16	\begin{tabular}{llcccccl}
+17	\toprule
+18	\textbf{Exp} & \textbf{Config} & \textbf{dt\_emb} & \textbf{Sub} & \textbf{H} & \textbf{Eval@final} & \textbf{NVE} & \textbf{Outcome} \\
+19	\midrule
+20	001 & Baseline ($\dt{=}1$) & --- & OFF & 15 & 915.7 @105K & 1.00$\times$ & Healthy \\
+21	\rowcolor{gray!15}
+22	006 & Fixed $\dt{=}2$ & trained & OFF & 15 & 132.9 @65K & 4.83$\times$ & Collapsed \\
+23	007 & Fixed $\dt{=}4$ & trained & OFF & 15 & 152.5 @55K & --- & Collapsed \\
+24	005 & Learned gate & trained & ON & 15 & 98.8 @145K & --- & Collapsed \\
+25	\midrule
+26	\rowcolor{gray!15}
+27	008d & Factorial (s0) & trained & ON & 8 & 82.8 @55K & 4.12$\times$ & Full collapse \\
+28	\rowcolor{gray!15}
+29	009b & Factorial (s2) & trained & ON & 8 & 267.9 @105K & 1.62$\times$ & Transient CIVO \\
+30	\rowcolor{gray!15}
+31	009e & Factorial (s1) & trained & ON & 8 & 131.1 @105K & 4.12$\times$ & Oscillatory \\
+32	008f & No dt\_emb (s0) & none & ON & 8 & 503.0 @105K & 0.97$\times$ & Healthy \\
+33	009c & No dt\_emb (s2) & none & ON & 8 & 148.3 @105K & 1.14$\times$ & Declining \\
+34	008a & No subsample & untrained & OFF & 15 & 777.7 @105K & 0.93$\times$ & Healthy \\
+35	008c & No subsample & untrained & OFF & 8 & 240.9 @65K & 0.58$\times$ & Slow learner \\
+36	\midrule
+37	008e\_v3 s1 & Mitigation & trained & ON & 15 & 869.9 @105K & 0.94$\times$ & Healthy \\
+38	008e\_v3 s2$^\dagger$ & Mitigation & trained & ON & 15 & 137.0 @105K & 3.78$\times$ & Non-CIVO collapse \\
+39	009a & Baseline (s2) & --- & OFF & 15 & 836.5 @105K & --- & Healthy \\
+40	\bottomrule
+41	\end{tabular}
+42	\end{table*}
+43	
+44	%% ============================================================
+45	%% F1: All dt>1 degrade
+46	%% ============================================================
+47	
+48	\subsection{F1: All Variable-Rate Configurations Degrade}
+49	\label{sec:f1}
+50	
+51	Every configuration that introduces $\dt > 1$ imagination degrades relative to the $\dt{=}1$ baseline, regardless of mechanism (Figure~\ref{fig:learning_curves}). The baseline (exp\_001) reaches 915.7 at 105K steps and peaks at 970.4 at 505K. In contrast, fixed $\dt{=}2$ (exp\_006) peaks at 485.3 at 35K before collapsing to 132.9 by 65K---a $-73\%$ decline from its own peak (14\% of baseline). Fixed $\dt{=}4$ (exp\_007) peaks at only 176.9 at 25K and never exceeds 152.5 thereafter. The learned-gate configuration (exp\_005) peaks at 541.2 at 55K but collapses to 98.8 by 145K. This uniform degradation motivates the factorial analysis that follows.
+52	
+53	\begin{figure}[t]
+54	\centering
+55	\includegraphics[width=\columnwidth]{figures/paper/fig1_learning_curves.pdf}
+56	\caption{Learning curves for all configurations. The $\dt{=}1$ baseline (black) reaches 915.7 at 105K; all variable-rate configurations degrade, with fixed $\dt{=}4$ and the learned gate collapsing most severely.}
+57	\label{fig:learning_curves}
+58	\end{figure}
+59	
+60	%% ============================================================
+61	%% F2: Trained dt_embedding → nve > 1.5x
+62	%% ============================================================
+63	
+64	\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}
+65	\label{sec:f2}
+66	
+67	The factorial design isolates trained $\dt$-embedding as the factor that reliably triggers pathological value overestimation. The key causal control compares exp\_008d (trained $\dt$-embedding, subsampling ON, $H{=}8$) against exp\_008f (identical configuration but \emph{no} trained $\dt$-embedding). As shown in Figure~\ref{fig:nve_trajectory}:
+68	
+69	\begin{itemize}[nosep,leftmargin=*]
+70	\item \textbf{008d} (trained): $\nve = 1.78\times$ at 25K $\rightarrow$ $4.12\times$ at 55K $\rightarrow$ collapse (eval 167$\rightarrow$82.8).
+71	\item \textbf{008f} (no dt\_emb): $\nve = 1.02\times$ at 25K $\rightarrow$ $0.30\times$ at 105K $\rightarrow$ no collapse (eval 503.0 at 105K).
+72	\end{itemize}
+73	
+74	In the 35K+ window (\S\ref{sec:metrics}), the $\nve \geq 1.5\times$ threshold correctly classifies 7/8 seeds (AUROC${=}0.933$, Clopper--Pearson 95\% CI $[0.47, 1.0]$): 3 CIVO-positive (exp\_006, 008d, 009b) and 4 CIVO-negative, with one non-CIVO false positive (008e\_v3 s2, $3.78\times$; \S\ref{sec:f6}).  The gap between the lowest true positive ($1.62\times$) and the highest true negative ($1.00\times$) is $0.62$.
+75	
+76	\begin{figure}[t]
+77	\centering
+78	\includegraphics[width=\columnwidth]{figures/paper/fig2_nve_trajectory.pdf}
+79	\caption{Normalized value-to-eval ratio ($\nve$) trajectories. The dashed line marks the $1.5\times$ threshold. All trained-embedding configurations with $\dt > 1$ imagination (red/orange) exceed this threshold; the mitigation configuration (008e\_v3 s1, dash-dot) with $\dt{=}1$-only imagination remains below it.}
+80	\label{fig:nve_trajectory}
+81	\end{figure}
+82	
+83	\paragraph{Three post-CIVO outcomes.}
+84	Running the 008d configuration with two independent seeds (s0, s2) and an extended replication of seed 1 (009e, continuing the same training run) reveals that trained $\dt$-embedding triggers CIVO---yet the downstream consequence is stochastic:
+85	
+86	%% ============================================================
+87	%% TABLE 3: Three post-CIVO outcomes
+88	%% ============================================================
+89	
+90	\begin{table}[t]
+91	\centering
+92	\caption{Post-CIVO outcomes for the 008d configuration. Peak/Final NVE measured in the 35K+ window. Seeds 0 and 2 are independent runs; seed 1 (009e) is an extended replication.}
+93	\label{tab:post_civo}
+94	\footnotesize
+95	\setlength{\tabcolsep}{3pt}
+96	\begin{tabular}{lcccl}
+97	\toprule
+98	\textbf{Seed} & \textbf{Peak} & \textbf{Final} & \textbf{Eval} & \textbf{Outcome} \\
+99	\midrule
+100	s0 (008d) & 4.12$\times$ & 4.12$\times$ & 82.8 & Full collapse \\
+101	s2 (009b) & 1.62$\times$ & 0.38$\times$ & 267.9 & Transient CIVO \\
+102	s1 (009e) & 4.12$\times$ & 1.57$\times$ & 131.1 & Oscillatory \\
+103	\bottomrule
+104	\end{tabular}
+105	\end{table}
+106	
+107	\noindent\textbf{Seed 0 (008d):} Full collapse (Pathway A). Value explosion ($+130\%$), evaluation declines from 167 to 82.8, entropy decreases---the classic CIVO feedback loop.
+108	
+109	\noindent\textbf{Seed 2 (009b):} Transient CIVO. The $\nve$ reaches $1.62\times$ at 45K (35K+ window), exceeding the $1.5\times$ threshold, but the value function self-corrects to $0.38\times$ by 105K, and evaluation recovers to 267.9. This demonstrates the threshold's sensitivity to early CIVO signals even in cases that spontaneously recover.
+110	
+111	\noindent\textbf{Seed 1 (009e):} Oscillatory degradation. Evaluation oscillates between 82.7 and 250 before settling at 131.1; the value function rises then reverses (peak $\nve = 4.12\times$ at 55K, final $1.57\times$).
+112	
+113	All runs exceed $\nve \geq 1.5\times$ in the 35K+ window, confirming deterministic CIVO triggering, but downstream outcomes are seed-dependent (1/2 persistent collapse rate among independent seeds).
+114	
+115	%% ============================================================
+116	%% F3: Untrained dt_embedding prevents drift
+117	%% ============================================================
+118	
+119	\subsection{F3: Untrained Temporal Embedding Prevents Drift}
+120	\label{sec:f3}
+121	
+122	\begin{figure}[t]
+123	\centering
+124	\includegraphics[width=\columnwidth]{figures/paper/fig3_factorial_grid.pdf}
+125	\caption{Factorial experiment summary. Each cell shows final evaluation return and $\nve$ status. Trained $\dt$-embedding is the sole factor that separates collapsed (red) from healthy (green) configurations.}
+126	\label{fig:factorial_grid}
+127	\end{figure}
+128	
+129	When the $\dt$-embedding is present but \emph{untrained} (fixed random projection), value dynamics remain healthy: exp\_008a reaches 777.7 ($\nve = 0.59\times$) and exp\_008c reaches 240.9 ($\nve = 0.58\times$), with no pathological overestimation.  This identifies \emph{training} of the temporal embedding---not its architectural presence---as the causal factor: the untrained embedding provides a temporal signal without co-adapting with the reward head.
+130	
+131	%% ============================================================
+132	%% F4: dt=2 > dt=4 monotonic degradation
+133	%% ============================================================
+134	
+135	\subsection{F4: Degradation Scales Monotonically with \texorpdfstring{$\dt$}{dt}}
+136	\label{sec:f4}
+137	
+138	\begin{figure}[t]
+139	\centering
+140	\includegraphics[width=\columnwidth]{figures/paper/fig5_dt_amplification.pdf}
+141	\caption{Peak evaluation return as a function of imagination $\dt$. Performance degrades monotonically: $\dt{=}1$ (915.7) $>$ $\dt{=}2$ (485.3, $-47\%$) $>$ $\dt{=}4$ (176.9, $-81\%$).}
+142	\label{fig:dt_amplification}
+143	\end{figure}
+144	
+145	The magnitude of degradation scales monotonically with the imagination step size (Figure~\ref{fig:dt_amplification}). From the $\dt{=}1$ baseline (915.7 at 105K), fixed $\dt{=}2$ (exp\_006) achieves a peak of only 485.3 ($-47\%$), and fixed $\dt{=}4$ (exp\_007) peaks at 176.9 ($-81\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.
+146	
+147	%% ============================================================
+148	%% F5: Horizon and subsample secondary
+149	%% ============================================================
+150	
+151	\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}
+152	\label{sec:f5}
+153	
+154	Neither horizon length nor temporal subsampling triggers collapse without a trained $\dt$-embedding: both untrained configurations maintain $\nve < 0.6\times$ (\S\ref{sec:f3}), while the trained counterpart (008d) collapses with $\nve = 4.12\times$.  The no-embedding configurations show cross-seed variance (008f: 503.0 vs.\ 009c: 148.3) but neither exhibits $\nve > 1.5\times$---confirming that low evaluation alone does not indicate CIVO.
+155	
+156	%% ============================================================
+157	%% F6: dt=1 imagination does not prevent collapse
+158	%% ============================================================
+159	
+160	\subsection{F6: Restricting Imagination to \texorpdfstring{$\dt{=}1$}{dt=1} Does Not Prevent Collapse}
+161	\label{sec:f6}
+162	
+163	\begin{figure}[t]
+164	\centering
+165	\includegraphics[width=\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+166	\caption{Contrasting collapse dynamics. \textbf{Left:} 008d (classic CIVO)---value explosion precedes evaluation decline, entropy decreases. \textbf{Right:} 008e\_v3 seed 2 (non-CIVO)---evaluation crashes while value remains stable, entropy \emph{increases}. Baseline seed 2 (009a, dashed) remains stable at 836.5, ruling out seed fragility.}
+167	\label{fig:multiple_pathways}
+168	\end{figure}
+169	
+170	The mitigation experiment exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained $\dt$-embedding for observation conditioning. If CIVO were the sole vulnerability pathway, this restriction should prevent collapse. Results are mixed:
+171	
+172	\begin{itemize}[nosep,leftmargin=*]
+173	\item \textbf{Seed 1} (008e\_v3\_s1): Healthy. Eval 869.9 at 105K ($95\%$ of baseline), $\nve = 0.80\times$.
+174	\item \textbf{Seed 2} (008e\_v3\_s2): Collapsed. Eval drops from 715 to 137 at 105K, $\nve = 3.78\times$.
+175	\end{itemize}
+176	
+177	The baseline with seed 2 (exp\_009a) is stable at 836.5 at 105K, ruling out inherent seed fragility as the explanation.
+178	
+179	\paragraph{Distinct collapse mechanisms.}
+180	The collapse dynamics of 008e\_v3\_s2 differ qualitatively from the classic CIVO observed in 008d (Table~\ref{tab:main_results}, Figure~\ref{fig:multiple_pathways}):
+181	
+182	\begin{itemize}[nosep,leftmargin=*]
+183	\item \textbf{008d (CIVO, Pathway A):} value explosion ($+130\%$) $\rightarrow$ evaluation decline $\rightarrow$ entropy decreases.
+184	\item \textbf{008e\_v3\_s2 (non-CIVO, Pathway B):} evaluation crashes ($-81\%$) $\rightarrow$ value remains stable $\rightarrow$ entropy \emph{increases} ($-5.21 \rightarrow -3.83$).
+185	\end{itemize}
+186	
+187	In Pathway A, the critic drives collapse through systematic overestimation; in Pathway B, the actor destabilizes independently while the critic remains initially well-calibrated. Restricting imagination to $\dt{=}1$ prevents the CIVO mechanism---no early $\nve$ spike, no reward amplification---but seed-dependent late-stage policy instability (Pathway B) can still occur.
+188	
+189	This case also produces the sole false positive in the $\nve \geq 1.5\times$ classification: 008e\_v3\_s2's late evaluation decline inflates $\nve$ to $3.78\times$ through a non-CIVO mechanism (\S\ref{sec:pathways}).
+190	
+191	%% ============================================================
+192	%% TABLE 2: RSSM Fidelity
+193	%% ============================================================
+194	
+195	\begin{table}[t]
+196	\centering
+197	\caption{RSSM fidelity at $\dt{=}1$ vs.\ $\dt{=}2$. Trained embedding (008d) produces $2.78\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}
+198	\label{tab:rssm_fidelity}
+199	\footnotesize
+200	\setlength{\tabcolsep}{4pt}
+201	\begin{tabular}{lcccccc}
+202	\toprule
+203	& \multicolumn{3}{c}{\textbf{obs\_MSE}} & \multicolumn{3}{c}{\textbf{reward\_MAE}} \\
+204	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+205	\textbf{Config} & $\dt{=}1$ & $\dt{=}2$ & Gap & $\dt{=}1$ & $\dt{=}2$ & Gap \\
+206	\midrule
+207	Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+208	008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & 2.78$\times$ \\
+209	008f (no emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+210	\bottomrule
+211	\end{tabular}
+212	\end{table}
+213	
+214	\paragraph{RSSM fidelity analysis.}
+215	Table~\ref{tab:rssm_fidelity} reveals the mechanism underlying CIVO. The trained $\dt$-embedding in 008d produces a $2.78\times$ gap in reward prediction error between $\dt{=}1$ and $\dt{=}2$ trajectories. This asymmetric fidelity means the reward head systematically overpredicts rewards at $\dt{=}2$, which the critic internalizes as optimistic value estimates. In contrast, 008f (no embedding) shows a $1.01\times$ gap---the reward head cannot distinguish temporal scales, which eliminates the exploitation channel but at the cost of severely degraded absolute reward prediction ($0.7469$ MAE vs.\ $0.0568$ for 008d at $\dt{=}1$).
+216	
+217	\paragraph{Summary.}
+218	F1--F5 establish trained $\dt$-embedding as the causal factor (7/8 classification, one non-CIVO false positive), with degradation scaling monotonically with $\dt$.  F6 shows that restricting imagination to $\dt{=}1$ prevents CIVO but not all collapse modes: $\nve$ is a sensitive but non-specific warning indicator requiring joint analysis with collapse signatures for mechanistic attribution.
+219	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "7327f654-4879-45a7-93a1-637ae1f26b66",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around six findings (F1--F6) that establish a causal chain from trained temporal conditioning to pathological value dynamics and performance collapse. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$), defined as the ratio of a configuration's imagined value to evaluation return, normalized by the baseline's ratio at the same training step.\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & OFF & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trained & OFF & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trained & OFF & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & trained & ON & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s0) & trained & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trained & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n\\rowcolor{gray!15}\n009e & Factorial (s1) & trained & ON & 8 & 131.1 @105K & 4.12$\\times$ & Oscillatory \\\\\n008f & No dt\\_emb (s0) & none & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n009c & No dt\\_emb (s2) & none & ON & 8 & 148.3 @105K & 1.14$\\times$ & Declining \\\\\n008a & No subsample & untrained & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n008c & No subsample & untrained & OFF & 8 & 240.9 @65K & 0.58$\\times$ & Slow learner \\\\\n\\midrule\n008e\\_v3 s1 & Mitigation & trained & ON & 15 & 869.9 @105K & 0.94$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trained & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n009a & Baseline (s2) & --- & OFF & 15 & 836.5 @105K & --- & Healthy \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline, regardless of mechanism (Figure~\\ref{fig:learning_curves}). The baseline (exp\\_001) reaches 915.7 at 105K steps and peaks at 970.4 at 505K. In contrast, fixed $\\dt{=}2$ (exp\\_006) peaks at 485.3 at 35K before collapsing to 132.9 by 65K---a $-73\\%$ decline from its own peak (14\\% of baseline). Fixed $\\dt{=}4$ (exp\\_007) peaks at only 176.9 at 25K and never exceeds 152.5 thereafter. The learned-gate configuration (exp\\_005) peaks at 541.2 at 55K but collapses to 98.8 by 145K. This uniform degradation motivates the factorial analysis that follows.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves for all configurations. The $\\dt{=}1$ baseline (black) reaches 915.7 at 105K; all variable-rate configurations degrade, with fixed $\\dt{=}4$ and the learned gate collapsing most severely.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the factor that reliably triggers pathological value overestimation. The key causal control compares exp\\_008d (trained $\\dt$-embedding, subsampling ON, $H{=}8$) against exp\\_008f (identical configuration but \\emph{no} trained $\\dt$-embedding). As shown in Figure~\\ref{fig:nve_trajectory}:\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{008d} (trained): $\\nve = 1.78\\times$ at 25K $\\rightarrow$ $4.12\\times$ at 55K $\\rightarrow$ collapse (eval 167$\\rightarrow$82.8).\n\\item \\textbf{008f} (no dt\\_emb): $\\nve = 1.02\\times$ at 25K $\\rightarrow$ $0.30\\times$ at 105K $\\rightarrow$ no collapse (eval 503.0 at 105K).\n\\end{itemize}\n\nIn the 35K+ window (\\S\\ref{sec:metrics}), the $\\nve \\geq 1.5\\times$ threshold correctly classifies 7/8 seeds (AUROC${=}0.933$, Clopper--Pearson 95\\% CI $[0.47, 1.0]$): 3 CIVO-positive (exp\\_006, 008d, 009b) and 4 CIVO-negative, with one non-CIVO false positive (008e\\_v3 s2, $3.78\\times$; \\S\\ref{sec:f6}).  The gap between the lowest true positive ($1.62\\times$) and the highest true negative ($1.00\\times$) is $0.62$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig2_nve_trajectory.pdf}\n\\caption{Normalized value-to-eval ratio ($\\nve$) trajectories. The dashed line marks the $1.5\\times$ threshold. All trained-embedding configurations with $\\dt > 1$ imagination (red/orange) exceed this threshold; the mitigation configuration (008e\\_v3 s1, dash-dot) with $\\dt{=}1$-only imagination remains below it.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\n\\paragraph{Three post-CIVO outcomes.}\nRunning the 008d configuration with two independent seeds (s0, s2) and an extended replication of seed 1 (009e, continuing the same training run) reveals that trained $\\dt$-embedding triggers CIVO---yet the downstream consequence is stochastic:\n\n%% ============================================================\n%% TABLE 3: Three post-CIVO outcomes\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{Post-CIVO outcomes for the 008d configuration. Peak/Final NVE measured in the 35K+ window. Seeds 0 and 2 are independent runs; seed 1 (009e) is an extended replication.}\n\\label{tab:post_civo}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{lcccl}\n\\toprule\n\\textbf{Seed} & \\textbf{Peak} & \\textbf{Final} & \\textbf{Eval} & \\textbf{Outcome} \\\\\n\\midrule\ns0 (008d) & 4.12$\\times$ & 4.12$\\times$ & 82.8 & Full collapse \\\\\ns2 (009b) & 1.62$\\times$ & 0.38$\\times$ & 267.9 & Transient CIVO \\\\\ns1 (009e) & 4.12$\\times$ & 1.57$\\times$ & 131.1 & Oscillatory \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent\\textbf{Seed 0 (008d):} Full collapse (Pathway A). Value explosion ($+130\\%$), evaluation declines from 167 to 82.8, entropy decreases---the classic CIVO feedback loop.\n\n\\noindent\\textbf{Seed 2 (009b):} Transient CIVO. The $\\nve$ reaches $1.62\\times$ at 45K (35K+ window), exceeding the $1.5\\times$ threshold, but the value function self-corrects to $0.38\\times$ by 105K, and evaluation recovers to 267.9. This demonstrates the threshold's sensitivity to early CIVO signals even in cases that spontaneously recover.\n\n\\noindent\\textbf{Seed 1 (009e):} Oscillatory degradation. Evaluation oscillates between 82.7 and 250 before settling at 131.1; the value function rises then reverses (peak $\\nve = 4.12\\times$ at 55K, final $1.57\\times$).\n\nAll runs exceed $\\nve \\geq 1.5\\times$ in the 35K+ window, confirming deterministic CIVO triggering, but downstream outcomes are seed-dependent (1/2 persistent collapse rate among independent seeds).\n\n%% ============================================================\n%% F3: Untrained dt_embedding prevents drift\n%% ============================================================\n\n\\subsection{F3: Untrained Temporal Embedding Prevents Drift}\n\\label{sec:f3}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\n\\caption{Factorial experiment summary. Each cell shows final evaluation return and $\\nve$ status. Trained $\\dt$-embedding is the sole factor that separates collapsed (red) from healthy (green) configurations.}\n\\label{fig:factorial_grid}\n\\end{figure}\n\nWhen the $\\dt$-embedding is present but \\emph{untrained} (fixed random projection), value dynamics remain healthy: exp\\_008a reaches 777.7 ($\\nve = 0.59\\times$) and exp\\_008c reaches 240.9 ($\\nve = 0.58\\times$), with no pathological overestimation.  This identifies \\emph{training} of the temporal embedding---not its architectural presence---as the causal factor: the untrained embedding provides a temporal signal without co-adapting with the reward head.\n\n%% ============================================================\n%% F4: dt=2 > dt=4 monotonic degradation\n%% ============================================================\n\n\\subsection{F4: Degradation Scales Monotonically with \\texorpdfstring{$\\dt$}{dt}}\n\\label{sec:f4}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig5_dt_amplification.pdf}\n\\caption{Peak evaluation return as a function of imagination $\\dt$. Performance degrades monotonically: $\\dt{=}1$ (915.7) $>$ $\\dt{=}2$ (485.3, $-47\\%$) $>$ $\\dt{=}4$ (176.9, $-81\\%$).}\n\\label{fig:dt_amplification}\n\\end{figure}\n\nThe magnitude of degradation scales monotonically with the imagination step size (Figure~\\ref{fig:dt_amplification}). From the $\\dt{=}1$ baseline (915.7 at 105K), fixed $\\dt{=}2$ (exp\\_006) achieves a peak of only 485.3 ($-47\\%$), and fixed $\\dt{=}4$ (exp\\_007) peaks at 176.9 ($-81\\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.\n\n%% ============================================================\n%% F5: Horizon and subsample secondary\n%% ============================================================\n\n\\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}\n\\label{sec:f5}\n\nNeither horizon length nor temporal subsampling triggers collapse without a trained $\\dt$-embedding: both untrained configurations maintain $\\nve < 0.6\\times$ (\\S\\ref{sec:f3}), while the trained counterpart (008d) collapses with $\\nve = 4.12\\times$.  The no-embedding configurations show cross-seed variance (008f: 503.0 vs.\\ 009c: 148.3) but neither exhibits $\\nve > 1.5\\times$---confirming that low evaluation alone does not indicate CIVO.\n\n%% ============================================================\n%% F6: dt=1 imagination does not prevent collapse\n%% ============================================================\n\n\\subsection{F6: Restricting Imagination to \\texorpdfstring{$\\dt{=}1$}{dt=1} Does Not Prevent Collapse}\n\\label{sec:f6}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (classic CIVO)---value explosion precedes evaluation decline, entropy decreases. \\textbf{Right:} 008e\\_v3 seed 2 (non-CIVO)---evaluation crashes while value remains stable, entropy \\emph{increases}. Baseline seed 2 (009a, dashed) remains stable at 836.5, ruling out seed fragility.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\nThe mitigation experiment exp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained $\\dt$-embedding for observation conditioning. If CIVO were the sole vulnerability pathway, this restriction should prevent collapse. Results are mixed:\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Seed 1} (008e\\_v3\\_s1): Healthy. Eval 869.9 at 105K ($95\\%$ of baseline), $\\nve = 0.80\\times$.\n\\item \\textbf{Seed 2} (008e\\_v3\\_s2): Collapsed. Eval drops from 715 to 137 at 105K, $\\nve = 3.78\\times$.\n\\end{itemize}\n\nThe baseline with seed 2 (exp\\_009a) is stable at 836.5 at 105K, ruling out inherent seed fragility as the explanation.\n\n\\paragraph{Distinct collapse mechanisms.}\nThe collapse dynamics of 008e\\_v3\\_s2 differ qualitatively from the classic CIVO observed in 008d (Table~\\ref{tab:main_results}, Figure~\\ref{fig:multiple_pathways}):\n\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{008d (CIVO, Pathway A):} value explosion ($+130\\%$) $\\rightarrow$ evaluation decline $\\rightarrow$ entropy decreases.\n\\item \\textbf{008e\\_v3\\_s2 (non-CIVO, Pathway B):} evaluation crashes ($-81\\%$) $\\rightarrow$ value remains stable $\\rightarrow$ entropy \\emph{increases} ($-5.21 \\rightarrow -3.83$).\n\\end{itemize}\n\nIn Pathway A, the critic drives collapse through systematic overestimation; in Pathway B, the actor destabilizes independently while the critic remains initially well-calibrated. Restricting imagination to $\\dt{=}1$ prevents the CIVO mechanism---no early $\\nve$ spike, no reward amplification---but seed-dependent late-stage policy instability (Pathway B) can still occur.\n\nThis case also produces the sole false positive in the $\\nve \\geq 1.5\\times$ classification: 008e\\_v3\\_s2's late evaluation decline inflates $\\nve$ to $3.78\\times$ through a non-CIVO mechanism (\\S\\ref{sec:pathways}).\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{RSSM fidelity analysis.}\nTable~\\ref{tab:rssm_fidelity} reveals the mechanism underlying CIVO. The trained $\\dt$-embedding in 008d produces a $2.78\\times$ gap in reward prediction error between $\\dt{=}1$ and $\\dt{=}2$ trajectories. This asymmetric fidelity means the reward head systematically overpredicts rewards at $\\dt{=}2$, which the critic internalizes as optimistic value estimates. In contrast, 008f (no embedding) shows a $1.01\\times$ gap---the reward head cannot distinguish temporal scales, which eliminates the exploitation channel but at the cost of severely degraded absolute reward prediction ($0.7469$ MAE vs.\\ $0.0568$ for 008d at $\\dt{=}1$).\n\n\\paragraph{Summary.}\nF1--F5 establish trained $\\dt$-embedding as the causal factor (7/8 classification, one non-CIVO false positive), with degradation scaling monotonically with $\\dt$.  F6 shows that restricting imagination to $\\dt{=}1$ prevents CIVO but not all collapse modes: $\\nve$ is a sensitive but non-specific warning indicator requiring joint analysis with collapse signatures for mechanistic attribution.\n",
+      "numLines": 219,
+      "startLine": 1,
+      "totalLines": 219
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VnwHsa4pGmVHpmpxUhtC3R`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "5ac93e63-72b3-4205-a963-ca9bc06394b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T22:49:21.128Z_
+
+<details><summary>↩ Tool result · `toolu_01VnwHsa4pGmVHpmpxUhtC3R`</summary>
+
+```text
+1	\section{Analysis \& Discussion}
+2	\label{sec:analysis}
+3	
+4	The preceding results establish that trained $\dt$-embedding is the causal factor behind pathological value dynamics in variable-rate DreamerV3. In this section, we synthesize these findings into a mechanistic account of conditioning-induced value overestimation (CIVO), explain why the same CIVO trigger produces divergent outcomes across seeds, contrast the imagination-based setting with MPC-based temporal conditioning, and discuss the fundamental tension inherent in the $\dt$-embedding design.
+5	
+6	\subsection{The CIVO Mechanism}
+7	\label{sec:civo_mechanism}
+8	
+9	The RSSM fidelity analysis (Table~\ref{tab:rssm_fidelity}) reveals the mechanistic core of CIVO.  The trained $\dt$-embedding enables the reward head to learn temporally differentiated predictions, but these predictions are asymmetrically accurate: reward MAE at $\dt{=}1$ is $0.0568$, while at $\dt{=}2$ it rises to $0.1579$---a $2.78\times$ gap.  This gap is not an artifact of prediction difficulty alone; the no-embedding configuration (008f) exhibits a $1.01\times$ gap, and the baseline shows $1.56\times$.  The trained embedding actively amplifies the fidelity discrepancy by allowing the reward head to co-adapt with the temporal signal.
+10	
+11	This asymmetric fidelity initiates a feedback loop with four stages: (1) the trained $\dt$-embedding causes RSSM predictions at $\dt > 1$ to carry systematically biased reward estimates; (2) the critic, trained entirely on imagined trajectories, internalizes these biased rewards as optimistic value estimates; (3) the actor exploits the overestimated regions of the value landscape, shifting its policy toward states that appear high-value only under the biased model; and (4) this policy shift further skews the distribution of imagined states, reinforcing the bias.  The diagnostic signature is a sustained $\nve$ above $1.5\times$, followed by evaluation collapse.
+12	
+13	A random-policy control experiment ($N{=}100$ rollouts, 95\% bootstrap CI) decomposes CIVO into two necessary stages.  \textbf{Stage~1 (dynamics bias):} even under a random policy, $\dt{=}2$ imagination produces $1.68\times$ higher mean reward than $\dt{=}1$ in the trained-embedding model (008d)---the RSSM prior already generates reward-favorable trajectories at $\dt > 1$, independent of actor behavior.  \textbf{Stage~2 (actor exploitation):} the trained actor learns to exploit these biased regions, amplifying the ratio to $2.90\times$.  In the no-embedding control (008f), neither stage is present: the random-policy ratio is $1.11\times$ and the trained-actor ratio is $0.98\times$.  The decomposition attributes $\approx 36\%$ of the total effect to dynamics bias and $\approx 64\%$ to actor exploitation, confirming that both stages are necessary for CIVO to manifest.
+14	
+15	This mechanism is analogous to delusional bias \citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced---the reward head's co-adaptation with the temporal embedding produces systematically upward-biased predictions at $\dt > 1$.  The consequence (policy exploitation of overestimated regions) is similar, but the causal pathway is distinct.
+16	
+17	\subsection{Three Post-CIVO Outcomes: Why Seeds Diverge}
+18	\label{sec:seed_divergence}
+19	
+20	The three post-CIVO outcomes (Table~\ref{tab:post_civo})---full collapse, transient CIVO, and oscillatory degradation---all cross the $\nve > 1.5\times$ threshold, yet the downstream damage is stochastic.  We hypothesize that the divergence relates to the critic's representational capacity at the time of CIVO onset.  \citet{lyle2022capacity} demonstrate that deep RL networks suffer progressive capacity loss, in which early-learned features become increasingly difficult to overwrite.  If the critic's capacity is already partially consumed when CIVO injects overestimation, the network cannot recalibrate (seed~0); if sufficient capacity remains, the critic can absorb transient overestimation and recover (seed~2).  The oscillatory pattern (seed~1, 009e) represents an intermediate regime: the value function rises then reverses while evaluation oscillates, and entropy remains elevated---suggesting the actor has not fully committed to the overestimated policy but cannot escape it.  This partial capacity loss allows the critic to respond to new data without fully correcting its biases.
+21	
+22	\subsection{Why MPC Is Immune}
+23	\label{sec:mpc_immune}
+24	
+25	\citet{nhu2025tawm} show that $\dt$-conditioning benefits TD-MPC2, raising the question of why it fails in DreamerV3.  The critical difference is that MPC re-plans from real states at every step---imagination errors do not accumulate into the training signal because there is no critic bootstrapping from imagined trajectories.  In DreamerV3, the actor-critic trains entirely within imagination, and any systematic reward-prediction bias at $\dt > 1$ is amplified through the closed actor-critic loop.  In terms of the two-stage decomposition (\S\ref{sec:civo_mechanism}), MPC is immune because Stage~2 cannot occur: without imagination-based bootstrapping, the actor cannot exploit the dynamics bias.  This aligns with \citet{frauenknecht2025rollouts}, who find that rollout quality dominates model-based RL performance, and with \citet{tallec2019making}'s analysis of how temporal resolution mismatches destabilize value learning.
+26	
+27	\subsection{The \texorpdfstring{$\dt$}{dt}-Embedding Dilemma}
+28	\label{sec:embedding_dilemma}
+29	
+30	The factorial results reveal a fundamental tension: removing the $\dt$-embedding (008f) eliminates CIVO but at a $13\times$ cost to reward prediction quality ($0.7469$ vs.\ $0.0568$ MAE)---the world model cannot distinguish temporal scales.  Restricting imagination to $\dt{=}1$ while retaining the trained embedding (008e\_v3) prevents CIVO in 1 of 2 seeds but the other collapses via Pathway~B (\S\ref{sec:f6}).  Neither approach alone provides a complete solution.
+31	
+32	\subsection{Multiple Vulnerability Pathways}
+33	\label{sec:pathways}
+34	
+35	The two collapse mechanisms identified in \S\ref{sec:f6}---CIVO (Pathway~A, value-driven, entropy decreasing) and non-CIVO instability (Pathway~B, eval-driven, entropy increasing)---have distinct diagnostic signatures but a shared root cause: the trained $\dt$-embedding's learned features affect both reward prediction across temporal scales (Pathway~A) and the representation space in which the actor operates (Pathway~B).  This explains why $\nve$ is sensitive but not perfectly specific: Pathway~B's late evaluation decline inflates $\nve$ through the same arithmetic as CIVO, yielding the sole false positive ($3.78\times$ for 008e\_v3 s2).  Distinguishing the two requires examining the temporal profile and entropy direction of collapse.  The existence of multiple pathways suggests that mitigation strategies focused exclusively on the imagination channel---restricting $\dt$, truncating rollouts, or smoothing rewards \citep{lee2024dreamsmooth}---may be insufficient.
+36	
+37	\subsection{Implications for Temporal Abstraction in World Models}
+38	\label{sec:implications}
+39	
+40	CIVO identifies a structural incompatibility between flat temporal conditioning and imagination-based actor-critic training: the RSSM cannot maintain prediction fidelity across temporal resolutions when the embedding co-adapts with the reward head.  Hierarchical approaches---THICK \citep{gumbsch2024thick}, Hieros \citep{mattes2024hieros}, LS-Imagine \citep{li2025lsimagine}---may avoid this by maintaining separate dynamics per temporal scale.  Whether CIVO transfers to transformer-based world models (DreamerV4; \citealt{hafner2025dreamerv4}) depends on whether attention weights co-adapt with temporal embeddings analogously.  Regularization of the $\dt$-embedding (\eg, gradient stopping or spectral normalization) could preserve the temporal signal while preventing co-adaptation; we leave empirical evaluation to future work.
+41	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "bb91900c-618c-4eed-ba1a-f0b8a2f49940",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex",
+      "content": "\\section{Analysis \\& Discussion}\n\\label{sec:analysis}\n\nThe preceding results establish that trained $\\dt$-embedding is the causal factor behind pathological value dynamics in variable-rate DreamerV3. In this section, we synthesize these findings into a mechanistic account of conditioning-induced value overestimation (CIVO), explain why the same CIVO trigger produces divergent outcomes across seeds, contrast the imagination-based setting with MPC-based temporal conditioning, and discuss the fundamental tension inherent in the $\\dt$-embedding design.\n\n\\subsection{The CIVO Mechanism}\n\\label{sec:civo_mechanism}\n\nThe RSSM fidelity analysis (Table~\\ref{tab:rssm_fidelity}) reveals the mechanistic core of CIVO.  The trained $\\dt$-embedding enables the reward head to learn temporally differentiated predictions, but these predictions are asymmetrically accurate: reward MAE at $\\dt{=}1$ is $0.0568$, while at $\\dt{=}2$ it rises to $0.1579$---a $2.78\\times$ gap.  This gap is not an artifact of prediction difficulty alone; the no-embedding configuration (008f) exhibits a $1.01\\times$ gap, and the baseline shows $1.56\\times$.  The trained embedding actively amplifies the fidelity discrepancy by allowing the reward head to co-adapt with the temporal signal.\n\nThis asymmetric fidelity initiates a feedback loop with four stages: (1) the trained $\\dt$-embedding causes RSSM predictions at $\\dt > 1$ to carry systematically biased reward estimates; (2) the critic, trained entirely on imagined trajectories, internalizes these biased rewards as optimistic value estimates; (3) the actor exploits the overestimated regions of the value landscape, shifting its policy toward states that appear high-value only under the biased model; and (4) this policy shift further skews the distribution of imagined states, reinforcing the bias.  The diagnostic signature is a sustained $\\nve$ above $1.5\\times$, followed by evaluation collapse.\n\nA random-policy control experiment ($N{=}100$ rollouts, 95\\% bootstrap CI) decomposes CIVO into two necessary stages.  \\textbf{Stage~1 (dynamics bias):} even under a random policy, $\\dt{=}2$ imagination produces $1.68\\times$ higher mean reward than $\\dt{=}1$ in the trained-embedding model (008d)---the RSSM prior already generates reward-favorable trajectories at $\\dt > 1$, independent of actor behavior.  \\textbf{Stage~2 (actor exploitation):} the trained actor learns to exploit these biased regions, amplifying the ratio to $2.90\\times$.  In the no-embedding control (008f), neither stage is present: the random-policy ratio is $1.11\\times$ and the trained-actor ratio is $0.98\\times$.  The decomposition attributes $\\approx 36\\%$ of the total effect to dynamics bias and $\\approx 64\\%$ to actor exploitation, confirming that both stages are necessary for CIVO to manifest.\n\nThis mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced---the reward head's co-adaptation with the temporal embedding produces systematically upward-biased predictions at $\\dt > 1$.  The consequence (policy exploitation of overestimated regions) is similar, but the causal pathway is distinct.\n\n\\subsection{Three Post-CIVO Outcomes: Why Seeds Diverge}\n\\label{sec:seed_divergence}\n\nThe three post-CIVO outcomes (Table~\\ref{tab:post_civo})---full collapse, transient CIVO, and oscillatory degradation---all cross the $\\nve > 1.5\\times$ threshold, yet the downstream damage is stochastic.  We hypothesize that the divergence relates to the critic's representational capacity at the time of CIVO onset.  \\citet{lyle2022capacity} demonstrate that deep RL networks suffer progressive capacity loss, in which early-learned features become increasingly difficult to overwrite.  If the critic's capacity is already partially consumed when CIVO injects overestimation, the network cannot recalibrate (seed~0); if sufficient capacity remains, the critic can absorb transient overestimation and recover (seed~2).  The oscillatory pattern (seed~1, 009e) represents an intermediate regime: the value function rises then reverses while evaluation oscillates, and entropy remains elevated---suggesting the actor has not fully committed to the overestimated policy but cannot escape it.  This partial capacity loss allows the critic to respond to new data without fully correcting its biases.\n\n\\subsection{Why MPC Is Immune}\n\\label{sec:mpc_immune}\n\n\\citet{nhu2025tawm} show that $\\dt$-conditioning benefits TD-MPC2, raising the question of why it fails in DreamerV3.  The critical difference is that MPC re-plans from real states at every step---imagination errors do not accumulate into the training signal because there is no critic bootstrapping from imagined trajectories.  In DreamerV3, the actor-critic trains entirely within imagination, and any systematic reward-prediction bias at $\\dt > 1$ is amplified through the closed actor-critic loop.  In terms of the two-stage decomposition (\\S\\ref{sec:civo_mechanism}), MPC is immune because Stage~2 cannot occur: without imagination-based bootstrapping, the actor cannot exploit the dynamics bias.  This aligns with \\citet{frauenknecht2025rollouts}, who find that rollout quality dominates model-based RL performance, and with \\citet{tallec2019making}'s analysis of how temporal resolution mismatches destabilize value learning.\n\n\\subsection{The \\texorpdfstring{$\\dt$}{dt}-Embedding Dilemma}\n\\label{sec:embedding_dilemma}\n\nThe factorial results reveal a fundamental tension: removing the $\\dt$-embedding (008f) eliminates CIVO but at a $13\\times$ cost to reward prediction quality ($0.7469$ vs.\\ $0.0568$ MAE)---the world model cannot distinguish temporal scales.  Restricting imagination to $\\dt{=}1$ while retaining the trained embedding (008e\\_v3) prevents CIVO in 1 of 2 seeds but the other collapses via Pathway~B (\\S\\ref{sec:f6}).  Neither approach alone provides a complete solution.\n\n\\subsection{Multiple Vulnerability Pathways}\n\\label{sec:pathways}\n\nThe two collapse mechanisms identified in \\S\\ref{sec:f6}---CIVO (Pathway~A, value-driven, entropy decreasing) and non-CIVO instability (Pathway~B, eval-driven, entropy increasing)---have distinct diagnostic signatures but a shared root cause: the trained $\\dt$-embedding's learned features affect both reward prediction across temporal scales (Pathway~A) and the representation space in which the actor operates (Pathway~B).  This explains why $\\nve$ is sensitive but not perfectly specific: Pathway~B's late evaluation decline inflates $\\nve$ through the same arithmetic as CIVO, yielding the sole false positive ($3.78\\times$ for 008e\\_v3 s2).  Distinguishing the two requires examining the temporal profile and entropy direction of collapse.  The existence of multiple pathways suggests that mitigation strategies focused exclusively on the imagination channel---restricting $\\dt$, truncating rollouts, or smoothing rewards \\citep{lee2024dreamsmooth}---may be insufficient.\n\n\\subsection{Implications for Temporal Abstraction in World Models}\n\\label{sec:implications}\n\nCIVO identifies a structural incompatibility between flat temporal conditioning and imagination-based actor-critic training: the RSSM cannot maintain prediction fidelity across temporal resolutions when the embedding co-adapts with the reward head.  Hierarchical approaches---THICK \\citep{gumbsch2024thick}, Hieros \\citep{mattes2024hieros}, LS-Imagine \\citep{li2025lsimagine}---may avoid this by maintaining separate dynamics per temporal scale.  Whether CIVO transfers to transformer-based world models (DreamerV4; \\citealt{hafner2025dreamerv4}) depends on whether attention weights co-adapt with temporal embeddings analogously.  Regularization of the $\\dt$-embedding (\\eg, gradient stopping or spectral normalization) could preserve the temporal signal while preventing co-adaptation; we leave empirical evaluation to future work.\n",
+      "numLines": 41,
+      "startLine": 1,
+      "totalLines": 41
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SdCwyxXEaZPgEAcY1TyPyx`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "3b73cbe9-8b9c-4ab3-9c6f-1260c779f4d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T22:49:21.632Z_
+
+<details><summary>↩ Tool result · `toolu_01SdCwyxXEaZPgEAcY1TyPyx`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We have presented a systematic factorial diagnostic of temporal abstraction in DreamerV3, identifying trained $\dt$-embedding as the causal factor behind conditioning-induced value overestimation (CIVO). The key findings are:
+5	
+6	\begin{enumerate}[nosep,leftmargin=*]
+7	\item Every variable-rate imagination configuration degrades relative to the $\dt{=}1$ baseline, with degradation scaling monotonically with $\dt$.
+8	\item A normalized value-to-eval threshold of $\nve \geq 1.5\times$ (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, 87.5\%), with the single false positive arising from a mechanistically distinct non-CIVO collapse. Trained $\dt$-embedding is the causal factor; untrained or removed embeddings prevent overestimation.
+9	\item The RSSM reward head develops a $2.78\times$ prediction gap between $\dt{=}1$ and $\dt{=}2$ under trained conditioning, providing the systematic bias that drives critic overestimation.
+10	\item The same CIVO trigger produces stochastic downstream outcomes---full collapse, transient CIVO with self-correction, and oscillatory degradation---across seeds of identical configurations.
+11	\item Restricting imagination to $\dt{=}1$ does not fully prevent collapse: one of two seeds fails via a qualitatively distinct non-CIVO pathway (eval-driven with increasing entropy), demonstrating that the trained $\dt$-embedding creates vulnerability through multiple mechanisms.
+12	\end{enumerate}
+13	
+14	The contrast with TAWM's success in MPC identifies the feedback architecture as the critical factor: $\dt$-conditioning succeeds when errors are contained by re-planning from real states, but fails when errors compound through imagination-based actor-critic bootstrapping.
+15	
+16	\paragraph{Limitations.}
+17	Our experiments focus on a single environment (Walker Walk) and a single world-model architecture (DreamerV3/RSSM). While multi-seed replication establishes robustness within this setting, generalization to other environments and architectures---particularly transformer-based world models such as DreamerV4---remains an open question. The $\nve$ threshold ($1.5\times$, 35K+ window) is sensitive to value overestimation broadly but not perfectly specific to CIVO (7/8, one non-CIVO false positive; margin $0.62$ excluding the outlier); generalization to other tasks and architectures is pending validation.
+18	
+19	\paragraph{Future directions.}
+20	Our findings suggest three avenues. First, hierarchical temporal abstraction at the representation level---as in THICK and Hieros---may avoid the flat-conditioning failure mode by maintaining separate dynamics for each temporal scale. Second, regularization of the $\dt$-embedding (\eg, gradient stopping or spectral normalization) could potentially preserve the temporal signal while preventing co-adaptation with the reward head. Third, extending this diagnostic framework to transformer-based world models and continuous-control benchmarks would clarify whether CIVO is RSSM-specific or a broader vulnerability of temporal conditioning in imagination-based RL.
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "b0c400bf-efe3-4685-be7c-d6ebb0e31885",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe have presented a systematic factorial diagnostic of temporal abstraction in DreamerV3, identifying trained $\\dt$-embedding as the causal factor behind conditioning-induced value overestimation (CIVO). The key findings are:\n\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item Every variable-rate imagination configuration degrades relative to the $\\dt{=}1$ baseline, with degradation scaling monotonically with $\\dt$.\n\\item A normalized value-to-eval threshold of $\\nve \\geq 1.5\\times$ (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, 87.5\\%), with the single false positive arising from a mechanistically distinct non-CIVO collapse. Trained $\\dt$-embedding is the causal factor; untrained or removed embeddings prevent overestimation.\n\\item The RSSM reward head develops a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning, providing the systematic bias that drives critic overestimation.\n\\item The same CIVO trigger produces stochastic downstream outcomes---full collapse, transient CIVO with self-correction, and oscillatory degradation---across seeds of identical configurations.\n\\item Restricting imagination to $\\dt{=}1$ does not fully prevent collapse: one of two seeds fails via a qualitatively distinct non-CIVO pathway (eval-driven with increasing entropy), demonstrating that the trained $\\dt$-embedding creates vulnerability through multiple mechanisms.\n\\end{enumerate}\n\nThe contrast with TAWM's success in MPC identifies the feedback architecture as the critical factor: $\\dt$-conditioning succeeds when errors are contained by re-planning from real states, but fails when errors compound through imagination-based actor-critic bootstrapping.\n\n\\paragraph{Limitations.}\nOur experiments focus on a single environment (Walker Walk) and a single world-model architecture (DreamerV3/RSSM). While multi-seed replication establishes robustness within this setting, generalization to other environments and architectures---particularly transformer-based world models such as DreamerV4---remains an open question. The $\\nve$ threshold ($1.5\\times$, 35K+ window) is sensitive to value overestimation broadly but not perfectly specific to CIVO (7/8, one non-CIVO false positive; margin $0.62$ excluding the outlier); generalization to other tasks and architectures is pending validation.\n\n\\paragraph{Future directions.}\nOur findings suggest three avenues. First, hierarchical temporal abstraction at the representation level---as in THICK and Hieros---may avoid the flat-conditioning failure mode by maintaining separate dynamics for each temporal scale. Second, regularization of the $\\dt$-embedding (\\eg, gradient stopping or spectral normalization) could potentially preserve the temporal signal while preventing co-adaptation with the reward head. Third, extending this diagnostic framework to transformer-based world models and continuous-control benchmarks would clarify whether CIVO is RSSM-specific or a broader vulnerability of temporal conditioning in imagination-based RL.\n",
+      "numLines": 21,
+      "startLine": 1,
+      "totalLines": 21
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VWJ6Mmjs8TBCuMsu94F1T1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "569edf2c-a8c4-45ed-84f4-f88fcca3b6cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011XMr8w828Y2DDNgGphxAxB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12905,
+      "cache_read_input_tokens": 24763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T22:49:21.878Z_
+
+<details><summary>↩ Tool result · `toolu_01VWJ6Mmjs8TBCuMsu94F1T1`</summary>
+
+```text
+1	% --- APPENDIX: NVE Threshold Sensitivity Analysis ---
+2	
+3	\appendix
+4	\section{NVE Threshold Sensitivity Analysis}
+5	\label{sec:appendix_sensitivity}
+6	
+7	We report the full sensitivity analysis for the NVE diagnostic framework introduced in Section~\ref{sec:results}. The main text reports Task~B2 (any CIVO detection, $\nve \geq 1.5\times$). Here we additionally present Task~B1, which restricts the positive class to \emph{sustained} CIVO---experiments exhibiting persistent, accelerating value overestimation that progresses to performance collapse. Transient CIVO cases (e.g., exp~009b, which self-corrects after a brief excursion above the threshold) are classified as negative in B1.
+8	
+9	\subsection{Per-Experiment NVE Values}
+10	
+11	Table~\ref{tab:nve_raw} lists the NVE values at 35K+ training steps for all eight factorial experiments. Experiments are sorted by descending NVE. Experiment 008e\_v3\_s2 exhibits elevated NVE ($3.78\times$) due to Imagination-Reality Divergence (IRD), a mechanistically distinct phenomenon from CIVO, and is classified as negative in both tasks.
+12	
+13	\begin{table}[h]
+14	\centering
+15	\caption{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\ = transient CIVO with self-correction.}
+16	\label{tab:nve_raw}
+17	\small
+18	\begin{tabular}{@{}lrccc@{}}
+19	\toprule
+20	Experiment & NVE & Mechanism & B1 & B2 \\
+21	\midrule
+22	006          & 4.84 & sustained CIVO & $+$ & $+$ \\
+23	008d         & 4.13 & sustained CIVO & $+$ & $+$ \\
+24	008e\_v3\_s2 & 3.78 & IRD (non-CIVO) & $-$ & $-$ \\
+25	009b         & 1.62 & transient CIVO & $-$ & $+$ \\
+26	001          & 1.00 & non-CIVO       & $-$ & $-$ \\
+27	008f         & 0.97 & non-CIVO       & $-$ & $-$ \\
+28	008e\_v3\_s1 & 0.94 & non-CIVO       & $-$ & $-$ \\
+29	008a         & 0.93 & non-CIVO       & $-$ & $-$ \\
+30	\bottomrule
+31	\end{tabular}
+32	\end{table}
+33	
+34	\subsection{Multi-Threshold Classification Performance}
+35	
+36	Table~\ref{tab:sensitivity_b1} reports Task~B1 classification metrics across six NVE thresholds. Task~B1 achieves $\text{AUROC} = 1.000$ because the minimum positive NVE ($4.13\times$, exp~008d) exceeds the maximum negative NVE ($3.78\times$, exp~008e\_v3\_s2), yielding perfect rank separation. The optimal threshold lies in the interval $(3.78, 4.13]$; we report $\geq 3.9\times$ as a representative value. Table~\ref{tab:sensitivity_b2} provides the corresponding analysis for Task~B2 ($\text{AUROC} = 0.933$, imperfect separation due to 008e\_v3\_s2).
+37	
+38	\begin{table*}[t]
+39	\centering
+40	\caption{\textbf{Task~B1}: Sustained CIVO detection sensitivity analysis ($n_{\text{pos}}=2$, $n_{\text{neg}}=6$, $n=8$, $\text{AUROC}=1.000$). All confidence intervals are two-sided Clopper-Pearson exact binomial ($\alpha=0.05$). Thresholds 1.2$\times$/1.5$\times$ and 1.7$\times$/2.0$\times$ yield identical operating points (no NVE values in those intervals). $^\dagger$Optimal threshold in $(3.78, 4.13]$.}
+41	\label{tab:sensitivity_b1}
+42	\small
+43	\setlength{\tabcolsep}{5pt}
+44	\begin{tabular}{@{}lcccccccc@{}}
+45	\toprule
+46	Threshold & TP & FP & FN & TN & Accuracy [95\% CI] & Precision & Recall & F1 \\
+47	\midrule
+48	$\geq 1.0\times$ & 2 & 3 & 0 & 3 & 62.5\% \; [24.5, 91.5] & 40.0\% & 100\% & 57.1\% \\
+49	$\geq 1.2\times$ & 2 & 2 & 0 & 4 & 75.0\% \; [34.9, 96.8] & 50.0\% & 100\% & 66.7\% \\
+50	$\geq 1.5\times$ & 2 & 2 & 0 & 4 & 75.0\% \; [34.9, 96.8] & 50.0\% & 100\% & 66.7\% \\
+51	\rowcolor{gray!15}
+52	$\geq 1.7\times$ & 2 & 1 & 0 & 5 & 87.5\% \; [47.3, 99.7] & 66.7\% & 100\% & 80.0\% \\
+53	$\geq 2.0\times$ & 2 & 1 & 0 & 5 & 87.5\% \; [47.3, 99.7] & 66.7\% & 100\% & 80.0\% \\
+54	\rowcolor{gray!15}
+55	$\geq 3.9\times^\dagger$ & 2 & 0 & 0 & 6 & 100\% \; [63.1, 100] & 100\% & 100\% & 100\% \\
+56	\bottomrule
+57	\end{tabular}
+58	\end{table*}
+59	
+60	\begin{table*}[t]
+61	\centering
+62	\caption{\textbf{Task~B2}: Any CIVO detection sensitivity analysis ($n_{\text{pos}}=3$, $n_{\text{neg}}=5$, $n=8$, $\text{AUROC}=0.933$). The single false positive at $\geq 1.5\times$ is 008e\_v3\_s2 (IRD mechanism, not CIVO). The $1.5\times$ threshold (highlighted) maximizes F1 while maintaining perfect recall.}
+63	\label{tab:sensitivity_b2}
+64	\small
+65	\setlength{\tabcolsep}{5pt}
+66	\begin{tabular}{@{}lcccccccc@{}}
+67	\toprule
+68	Threshold & TP & FP & FN & TN & Accuracy [95\% CI] & Precision & Recall & F1 \\
+69	\midrule
+70	$\geq 1.0\times$ & 3 & 2 & 0 & 3 & 75.0\% \; [34.9, 96.8] & 60.0\% & 100\% & 75.0\% \\
+71	$\geq 1.2\times$ & 3 & 1 & 0 & 4 & 87.5\% \; [47.3, 99.7] & 75.0\% & 100\% & 85.7\% \\
+72	\rowcolor{gray!15}
+73	$\geq 1.5\times$ & 3 & 1 & 0 & 4 & 87.5\% \; [47.3, 99.7] & 75.0\% & 100\% & 85.7\% \\
+74	$\geq 1.7\times$ & 2 & 1 & 1 & 4 & 75.0\% \; [34.9, 96.8] & 66.7\% & 66.7\% & 66.7\% \\
+75	$\geq 2.0\times$ & 2 & 1 & 1 & 4 & 75.0\% \; [34.9, 96.8] & 66.7\% & 66.7\% & 66.7\% \\
+76	$\geq 3.9\times$ & 2 & 0 & 1 & 5 & 87.5\% \; [47.3, 99.7] & 100\% & 66.7\% & 80.0\% \\
+77	\bottomrule
+78	\end{tabular}
+79	\end{table*}
+80	
+81	\subsection{Threshold Recommendation}
+82	
+83	For the main diagnostic (Task~B2), we recommend $\nve \geq 1.5\times$ as the operating threshold for three reasons:
+84	
+85	\begin{enumerate}[nosep,leftmargin=*]
+86	\item \textbf{Maximum recall.} The $1.5\times$ threshold achieves 100\% recall, detecting all three CIVO cases including the transient case (009b, $\nve = 1.62\times$). Raising the threshold to $1.7\times$ loses 009b, dropping recall to 66.7\%.
+87	\item \textbf{Best F1.} At $1.5\times$, F1 = 85.7\%, the highest among all tested thresholds for B2. The single false positive (008e\_v3\_s2) is mechanistically identifiable as IRD rather than CIVO.
+88	\item \textbf{Sensitivity--specificity tradeoff.} Lower thresholds ($1.0\times$) add false positives without gaining true positives. Higher thresholds ($\geq 1.7\times$) sacrifice recall without eliminating the 008e\_v3\_s2 false positive (which requires $\tau > 3.78$).
+89	\end{enumerate}
+90	
+91	For Task~B1 (sustained CIVO only), perfect classification is achievable at $\nve \geq 3.9\times$, but with only $n_{\text{pos}} = 2$ the statistical power is severely limited (accuracy 95\% CI: [63.1\%, 100\%]).
+92	
+93	\paragraph{Limitations.} With $n = 8$ experiments, all Clopper-Pearson confidence intervals are wide (e.g., 87.5\% accuracy has 95\% CI [47.3\%, 99.7\%]). These results should be interpreted as a diagnostic proof-of-concept rather than a validated clinical threshold. Replication across additional environments and seeds is needed to establish tighter bounds.
+94	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "3bfc43c7-613c-4780-8f5d-0fbdc29f868e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+      "content": "% --- APPENDIX: NVE Threshold Sensitivity Analysis ---\n\n\\appendix\n\\section{NVE Threshold Sensitivity Analysis}\n\\label{sec:appendix_sensitivity}\n\nWe report the full sensitivity analysis for the NVE diagnostic framework introduced in Section~\\ref{sec:results}. The main text reports Task~B2 (any CIVO detection, $\\nve \\geq 1.5\\times$). Here we additionally present Task~B1, which restricts the positive class to \\emph{sustained} CIVO---experiments exhibiting persistent, accelerating value overestimation that progresses to performance collapse. Transient CIVO cases (e.g., exp~009b, which self-corrects after a brief excursion above the threshold) are classified as negative in B1.\n\n\\subsection{Per-Experiment NVE Values}\n\nTable~\\ref{tab:nve_raw} lists the NVE values at 35K+ training steps for all eight factorial experiments. Experiments are sorted by descending NVE. Experiment 008e\\_v3\\_s2 exhibits elevated NVE ($3.78\\times$) due to Imagination-Reality Divergence (IRD), a mechanistically distinct phenomenon from CIVO, and is classified as negative in both tasks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-experiment NVE values (35K+ steps) and ground truth labels. $+$ = positive (CIVO), $-$ = negative. IRD = Imagination-Reality Divergence; trans.\\ = transient CIVO with self-correction.}\n\\label{tab:nve_raw}\n\\small\n\\begin{tabular}{@{}lrccc@{}}\n\\toprule\nExperiment & NVE & Mechanism & B1 & B2 \\\\\n\\midrule\n006          & 4.84 & sustained CIVO & $+$ & $+$ \\\\\n008d         & 4.13 & sustained CIVO & $+$ & $+$ \\\\\n008e\\_v3\\_s2 & 3.78 & IRD (non-CIVO) & $-$ & $-$ \\\\\n009b         & 1.62 & transient CIVO & $-$ & $+$ \\\\\n001          & 1.00 & non-CIVO       & $-$ & $-$ \\\\\n008f         & 0.97 & non-CIVO       & $-$ & $-$ \\\\\n008e\\_v3\\_s1 & 0.94 & non-CIVO       & $-$ & $-$ \\\\\n008a         & 0.93 & non-CIVO       & $-$ & $-$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Multi-Threshold Classification Performance}\n\nTable~\\ref{tab:sensitivity_b1} reports Task~B1 classification metrics across six NVE thresholds. Task~B1 achieves $\\text{AUROC} = 1.000$ because the minimum positive NVE ($4.13\\times$, exp~008d) exceeds the maximum negative NVE ($3.78\\times$, exp~008e\\_v3\\_s2), yielding perfect rank separation. The optimal threshold lies in the interval $(3.78, 4.13]$; we report $\\geq 3.9\\times$ as a representative value. Table~\\ref{tab:sensitivity_b2} provides the corresponding analysis for Task~B2 ($\\text{AUROC} = 0.933$, imperfect separation due to 008e\\_v3\\_s2).\n\n\\begin{table*}[t]\n\\centering\n\\caption{\\textbf{Task~B1}: Sustained CIVO detection sensitivity analysis ($n_{\\text{pos}}=2$, $n_{\\text{neg}}=6$, $n=8$, $\\text{AUROC}=1.000$). All confidence intervals are two-sided Clopper-Pearson exact binomial ($\\alpha=0.05$). Thresholds 1.2$\\times$/1.5$\\times$ and 1.7$\\times$/2.0$\\times$ yield identical operating points (no NVE values in those intervals). $^\\dagger$Optimal threshold in $(3.78, 4.13]$.}\n\\label{tab:sensitivity_b1}\n\\small\n\\setlength{\\tabcolsep}{5pt}\n\\begin{tabular}{@{}lcccccccc@{}}\n\\toprule\nThreshold & TP & FP & FN & TN & Accuracy [95\\% CI] & Precision & Recall & F1 \\\\\n\\midrule\n$\\geq 1.0\\times$ & 2 & 3 & 0 & 3 & 62.5\\% \\; [24.5, 91.5] & 40.0\\% & 100\\% & 57.1\\% \\\\\n$\\geq 1.2\\times$ & 2 & 2 & 0 & 4 & 75.0\\% \\; [34.9, 96.8] & 50.0\\% & 100\\% & 66.7\\% \\\\\n$\\geq 1.5\\times$ & 2 & 2 & 0 & 4 & 75.0\\% \\; [34.9, 96.8] & 50.0\\% & 100\\% & 66.7\\% \\\\\n\\rowcolor{gray!15}\n$\\geq 1.7\\times$ & 2 & 1 & 0 & 5 & 87.5\\% \\; [47.3, 99.7] & 66.7\\% & 100\\% & 80.0\\% \\\\\n$\\geq 2.0\\times$ & 2 & 1 & 0 & 5 & 87.5\\% \\; [47.3, 99.7] & 66.7\\% & 100\\% & 80.0\\% \\\\\n\\rowcolor{gray!15}\n$\\geq 3.9\\times^\\dagger$ & 2 & 0 & 0 & 6 & 100\\% \\; [63.1, 100] & 100\\% & 100\\% & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\begin{table*}[t]\n\\centering\n\\caption{\\textbf{Task~B2}: Any CIVO detection sensitivity analysis ($n_{\\text{pos}}=3$, $n_{\\text{neg}}=5$, $n=8$, $\\text{AUROC}=0.933$). The single false positive at $\\geq 1.5\\times$ is 008e\\_v3\\_s2 (IRD mechanism, not CIVO). The $1.5\\times$ threshold (highlighted) maximizes F1 while maintaining perfect recall.}\n\\label{tab:sensitivity_b2}\n\\small\n\\setlength{\\tabcolsep}{5pt}\n\\begin{tabular}{@{}lcccccccc@{}}\n\\toprule\nThreshold & TP & FP & FN & TN & Accuracy [95\\% CI] & Precision & Recall & F1 \\\\\n\\midrule\n$\\geq 1.0\\times$ & 3 & 2 & 0 & 3 & 75.0\\% \\; [34.9, 96.8] & 60.0\\% & 100\\% & 75.0\\% \\\\\n$\\geq 1.2\\times$ & 3 & 1 & 0 & 4 & 87.5\\% \\; [47.3, 99.7] & 75.0\\% & 100\\% & 85.7\\% \\\\\n\\rowcolor{gray!15}\n$\\geq 1.5\\times$ & 3 & 1 & 0 & 4 & 87.5\\% \\; [47.3, 99.7] & 75.0\\% & 100\\% & 85.7\\% \\\\\n$\\geq 1.7\\times$ & 2 & 1 & 1 & 4 & 75.0\\% \\; [34.9, 96.8] & 66.7\\% & 66.7\\% & 66.7\\% \\\\\n$\\geq 2.0\\times$ & 2 & 1 & 1 & 4 & 75.0\\% \\; [34.9, 96.8] & 66.7\\% & 66.7\\% & 66.7\\% \\\\\n$\\geq 3.9\\times$ & 2 & 0 & 1 & 5 & 87.5\\% \\; [47.3, 99.7] & 100\\% & 66.7\\% & 80.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Threshold Recommendation}\n\nFor the main diagnostic (Task~B2), we recommend $\\nve \\geq 1.5\\times$ as the operating threshold for three reasons:\n\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item \\textbf{Maximum recall.} The $1.5\\times$ threshold achieves 100\\% recall, detecting all three CIVO cases including the transient case (009b, $\\nve = 1.62\\times$). Raising the threshold to $1.7\\times$ loses 009b, dropping recall to 66.7\\%.\n\\item \\textbf{Best F1.} At $1.5\\times$, F1 = 85.7\\%, the highest among all tested thresholds for B2. The single false positive (008e\\_v3\\_s2) is mechanistically identifiable as IRD rather than CIVO.\n\\item \\textbf{Sensitivity--specificity tradeoff.} Lower thresholds ($1.0\\times$) add false positives without gaining true positives. Higher thresholds ($\\geq 1.7\\times$) sacrifice recall without eliminating the 008e\\_v3\\_s2 false positive (which requires $\\tau > 3.78$).\n\\end{enumerate}\n\nFor Task~B1 (sustained CIVO only), perfect classification is achievable at $\\nve \\geq 3.9\\times$, but with only $n_{\\text{pos}} = 2$ the statistical power is severely limited (accuracy 95\\% CI: [63.1\\%, 100\\%]).\n\n\\paragraph{Limitations.} With $n = 8$ experiments, all Clopper-Pearson confidence intervals are wide (e.g., 87.5\\% accuracy has 95\\% CI [47.3\\%, 99.7\\%]). These results should be interpreted as a diagnostic proof-of-concept rather than a validated clinical threshold. Replication across additional environments and seeds is needed to establish tighter bounds.\n",
+      "numLines": 94,
+      "startLine": 1,
+      "totalLines": 94
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me produce the diff checklist for each section, incorporating the Framing B changes (016e SGS as informative negative result).
+
+Key changes needed:
+1. 016e SGS experiment results need to be integrated
+2. SGS data: delays onset ~50K steps, raises peak 2x (327 vs 167), but collapse more severe (NVE 10.42x vs 4.12x)
+3. Positioning: reward gradient pathway is contributing factor but not sole root cause; CIVO is representation-level effect
+
+
+4. Full-SGS as planned future experiment
+
+Going through each section now: the Abstract needs to mention SGS as an informative negative result, the Introduction should add SGS to the contribution bullets, Related Work requires coverage of gradient intervention approaches in MBRL, Methodology needs the SGS method description with the reward detachment mechanism, and Results requires a subsection for the 016e findings.
+
+The Analysis section currently flags gradient stopping as a potential safeguard in the implications—now that we've empirically tested it and found it partially ineffective, that needs updating. The Conclusion should add the gradient pathway analysis to the contributions and update the future directions since gradient stopping has been tested. The 016e detailed metrics belong in the Appendix.
+
+Now I'll work through the diff checklist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "d9402ea8-3bbc-4088-b951-06b37983e1dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138TikqTrydXJhNSLmibknM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16850,
+      "cache_read_input_tokens": 37668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+All sections read. Now producing the diff checklist.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "1b31b022-a2be-499b-a880-bf044eba292a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138TikqTrydXJhNSLmibknM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16850,
+      "cache_read_input_tokens": 37668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01QEGuPyFxEEnAyyLLmVxeiH`</summary>
+
+```json
+{
+  "name": "Framing B Re-audit Diff Checklist",
+  "type": "report",
+  "description": "Per-section diff checklist for integrating 016e SGS informative negative into Framing B diagnostic paper",
+  "project": "event-gated-adaptive-horizon",
+  "content_filename": "framing_b_reaudit_diff.md",
+  "content": "# Framing B Re-audit: 逐章节 Diff 清单\n\n**日期**: 2026-05-15\n**背景**: 016e SGS (reward_dt_emb_detach=True) 结果加入论文，定位为 informative negative — \"reward 梯度通路是贡献因素之一但非唯一根因，CIVO 是 representation-level 效应\"\n**016e 关键数据**: peak 326.7@75K → collapse 31.7@95K, NVE=10.42x; delays onset ~50K steps vs 008d, raises peak 2x (327 vs 167), but collapse more severe\n\n---\n\n## 1. abstract.tex — 小修\n\n**修改级别**: 小修（加 1 句）\n\n### 新增\n- 在 \"restricting imagination to $\\dt{=}1$ does not prevent collapse\" 句之后（或 \"multiple mechanisms\" 句之前），加入 SGS 结论：\n  > \"Selectively detaching reward-head gradients from the temporal embedding (SGS) delays CIVO onset by ~50K steps and doubles peak performance, but ultimately produces the most severe collapse observed (NVE 10.42×), confirming that the vulnerability operates at the representation level rather than solely through the reward gradient pathway.\"\n\n### 无需删除的旧 claim\n- 现有所有 claim 保持成立。SGS 结果**强化**而非矛盾现有叙事。\n\n---\n\n## 2. introduction.tex — 小修\n\n**修改级别**: 小修（加 1 条 finding）\n\n### 新增\n- 当前 \"Three further findings complicate the picture: (1)...(2)...(3)...\" 扩展为 **四条**，新增 (4)：\n  > \"(4) selectively detaching reward-head gradients from the temporal embedding delays CIVO onset by ${\\sim}50$K steps and doubles peak performance, yet collapse is ultimately more severe ($\\nve = 10.42\\times$ vs.\\ $4.12\\times$), establishing that the reward gradient pathway contributes to CIVO timing but the root vulnerability operates at the representation level.\"\n\n### 无需修改的旧 claim\n- \"every variable-rate configuration degrades\" — 016e 也崩溃，**强化**此 claim\n- TAWM contrast — 不受影响\n- Contribution framing — 不受影响\n\n---\n\n## 3. related_work.tex — 小修\n\n**修改级别**: 小修（加 1 段 ~5 句）\n\n### 新增\n- 在 \"Value Overestimation\" paragraph 之后（或之内），新增一段 **Gradient Intervention in MBRL**：\n  > \"\\paragraph{Gradient Intervention in Model-Based RL.}\n  > Several works address gradient conflicts in world-model training. PCGrad \\citep{yu2020pcgrad} projects conflicting task gradients to mitigate negative transfer in multi-task learning. HarmonyDream \\citep{hao2024harmonydream} balances observation and reward reconstruction gradients in Dreamer-style agents. VaGraM \\citep{voelcker2024vagram} uses value-gradient-weighted model learning to prioritize value-relevant dynamics. Our SGS experiment (selective gradient stopping on the reward head's $\\dt$-embedding path) tests whether the reward gradient pathway is the primary channel for CIVO; the negative result—SGS delays but does not prevent collapse—distinguishes CIVO from gradient-conflict phenomena and localizes the failure at the representation level.\"\n\n### 无需修改的旧内容\n- Temporal Abstraction paragraph — 不变\n- TAWM paragraph — 不变\n- 现有 Value Overestimation paragraph — 不变（SGS 新段是补充，不是替换）\n\n---\n\n## 4. methodology.tex — 小修\n\n**修改级别**: 小修（加 1 段方法描述 + 更新 factorial table）\n\n### 新增\n- §3.2 (Variable-Rate Imagination Mechanism) 末尾新增一段 **Selective Gradient Stopping (SGS)**：\n  > \"\\paragraph{Selective gradient stopping (SGS).}\n  > To test whether the reward gradient pathway is a primary driver of CIVO, we introduce a stop-gradient operation on the $\\dt$-embedding input specifically for the reward prediction head. Concretely, during the world model forward pass, the reward head receives $\\texttt{sg}(e(\\dt))$ (detached temporal embedding) while all other heads (observation, continuation, dynamics) receive the full $e(\\dt)$ with gradients intact. This isolates the reward head from co-adapting its predictions with the temporal signal, blocking one hypothesized channel for CIVO while preserving $\\dt$-conditioning for dynamics and observation predictions.\"\n\n- Table 1 (factorial_design) 新增一行：\n  > `016e & SGS (reward detach) & trn* & on & 8 & 2`\n  > 脚注加 `*reward head receives sg(e(dt))`\n\n- §3.3 (Factorial Design) 文字中加入第四个 diagnostic question：\n  > \"Fourth, exp\\_016e applies selective gradient stopping to the reward head's $\\dt$-embedding path, testing whether the reward gradient is the primary channel for CIVO or whether the vulnerability operates at the representation level independently of reward co-adaptation.\"\n\n### 无需修改的旧内容\n- Temporal embedding 三种 mode 描述 — 不变\n- Temporal subsampling 描述 — 不变\n- Diagnostic metrics — 不变\n- Environment and Training Details — 不变\n\n---\n\n## 5. results.tex — 重写局部（新增 F7 subsection + 更新 Table 1 + 更新 summary）\n\n**修改级别**: 中修（新增 ~0.5 页 subsection）\n\n### 新增\n\n#### Table 1 (main_results) 新增一行\n在 008e_v3 s2 行之后：\n> `016e & SGS (reward detach) & trained* & ON & 8 & 31.7 @95K & 10.42× & Delayed collapse`\n\n#### 新增 F7 subsection（在 F6 之后、RSSM fidelity analysis 之前）\n\n> \"\\subsection{F7: Selective Gradient Stopping Delays but Does Not Prevent Collapse}\n> \\label{sec:f7}\n>\n> Exp\\_016e applies selective gradient stopping (SGS) to the reward head's $\\dt$-embedding input (\\S\\ref{sec:methodology}), testing whether the reward gradient pathway is the primary driver of CIVO. If CIVO were predominantly a reward-gradient phenomenon, blocking this pathway should substantially mitigate or prevent collapse.\n>\n> SGS produces a striking partial effect (Figure~\\ref{fig:sgs_comparison}):\n> \\begin{itemize}[nosep,leftmargin=*]\n> \\item \\textbf{Delayed onset}: CIVO onset is delayed by ${\\sim}50$K steps (008d: $\\nve > 1.5\\times$ at 35K; 016e: not until ${\\sim}85$K).\n> \\item \\textbf{Higher peak}: Peak evaluation doubles (016e: 326.7 at 75K vs.\\ 008d: 167.1 at 35K).\n> \\item \\textbf{More severe collapse}: Once triggered, collapse is the most severe observed ($\\nve = 10.42\\times$ at 95K vs.\\ 008d: $4.12\\times$; evaluation: 31.7 vs.\\ 82.8).\n> \\end{itemize}\n>\n> \\begin{table}[t]\n> \\centering\n> \\caption{SGS (016e) vs.\\ full trained embedding (008d). SGS delays onset and raises peak but produces more severe collapse.}\n> \\label{tab:sgs_comparison}\n> \\footnotesize\n> \\begin{tabular}{lcccc}\n> \\toprule\n> & \\textbf{Onset} & \\textbf{Peak eval} & \\textbf{Final eval} & \\textbf{Peak NVE} \\\\\n> \\midrule\n> 008d (no SGS) & ${\\sim}$35K & 167.1 & 82.8 & 4.12$\\times$ \\\\\n> 016e (SGS) & ${\\sim}$85K & 326.7 & 31.7 & 10.42$\\times$ \\\\\n> \\bottomrule\n> \\end{tabular}\n> \\end{table}\n>\n> The delay confirms that the reward gradient pathway is a \\emph{contributing factor} to CIVO timing: blocking it slows the feedback loop's onset. However, the eventual collapse—more severe than the unmodified version—demonstrates that the root vulnerability operates at the representation level. The trained $\\dt$-embedding's learned features are embedded in the world model's latent dynamics through the observation and continuation heads (which retain full gradients under SGS), and these features alone are sufficient to drive CIVO once the critic accumulates enough exposure to biased $\\dt > 1$ trajectories. SGS does not block this channel—it merely removes the reward head's direct contribution to the co-adaptation, which delays but cannot prevent the representation-level bias from reaching the critic.\"\n\n#### Summary paragraph 更新\n现有 summary \"F1--F5 establish trained $\\dt$-embedding as the causal factor...F6 shows that restricting imagination...\" 改为：\n> \"F1--F5 establish trained $\\dt$-embedding as the causal factor (7/8 classification, one non-CIVO false positive), with degradation scaling monotonically with $\\dt$. F6 shows that restricting imagination to $\\dt{=}1$ prevents CIVO but not all collapse modes. F7 demonstrates that selectively detaching reward gradients delays CIVO onset by ${\\sim}50$K steps but produces even more severe eventual collapse ($\\nve = 10.42\\times$), localizing the root vulnerability at the representation level rather than the reward gradient pathway.\"\n\n### 需修改的旧 claim\n- **无旧 claim 需删除**。所有 F1-F6 findings 保持成立。016e 是**新增证据**，不矛盾任何现有发现。\n\n---\n\n## 6. analysis.tex — 中修（更新 §5.1 CIVO Mechanism + §5.5 Implications + 新增 §5.X SGS 段）\n\n**修改级别**: 中修\n\n### 新增\n\n#### 新增 subsection（建议放在 §5.4 Multiple Vulnerability Pathways 之后，§5.6 Implications 之前）\n\n> \"\\subsection{Gradient Pathway Analysis: SGS as Informative Negative}\n> \\label{sec:sgs_analysis}\n>\n> The SGS result (F7) decomposes the CIVO feedback loop into two contribution channels:\n>\n> \\textbf{Channel 1 (reward gradient pathway):} The reward head co-adapts with $e(\\dt)$, learning temporally differentiated but asymmetrically biased predictions. SGS blocks this channel. The ${\\sim}50$K onset delay under SGS quantifies this channel's contribution to CIVO timing.\n>\n> \\textbf{Channel 2 (representation-level pathway):} The dynamics and observation heads retain full $e(\\dt)$ gradients under SGS. Through world model training on $\\dt > 1$ transitions, the temporal embedding's learned features become entangled with the latent state representation. The critic, trained on imagined trajectories through these latent states, absorbs the bias indirectly—not through reward prediction error, but through the systematic distortion of the state space at $\\dt > 1$.\n>\n> SGS eliminates Channel 1 but leaves Channel 2 intact. The result—delayed but more severe collapse—has a natural interpretation: blocking the reward gradient pathway removes an \\emph{early warning} signal that would otherwise trigger collapse sooner (when the agent has accumulated less training and the representations are less entangled). By the time Channel 2 alone drives the critic past the tipping point, the representation-level bias is more deeply embedded, making the collapse harder to recover from.\n>\n> This result has direct implications for mitigation: interventions targeting the reward head alone (gradient stopping, reward smoothing \\citep{lee2024dreamsmooth}) are insufficient. Effective mitigation must address the representation-level entanglement—either through architectural separation of temporal scales (THICK, Hieros) or through regularization that prevents the temporal embedding from distorting the shared latent space.\"\n\n#### §5.1 (CIVO Mechanism) 更新\n- 在 four-stage feedback loop 描述末尾加入 SGS 佐证：\n  > \"The SGS experiment (exp\\_016e, \\S\\ref{sec:f7}) provides a partial decomposition: blocking stage (1) specifically for the reward head delays but does not prevent CIVO, confirming that the bias also propagates through the dynamics model's latent representations independently of direct reward co-adaptation.\"\n\n#### §5.6 (Implications) 更新\n- 现有文字 \"Regularization of the $\\dt$-embedding (e.g., gradient stopping or spectral normalization) could preserve the temporal signal while preventing co-adaptation\" **需修改为**：\n  > \"Our SGS experiment directly tested gradient stopping on the reward head's $\\dt$-embedding path; the result—delayed but more severe collapse—demonstrates that reward-pathway intervention alone is insufficient. Effective regularization must target the representation level, preventing $e(\\dt)$ from distorting the shared latent space used by dynamics and observation heads. Spectral normalization of $e(\\dt)$ or orthogonality constraints that decouple temporal features from task-relevant latent dimensions are potential directions, but our results suggest that architectural separation (as in THICK and Hieros) may be more robust than regularization-based approaches.\"\n\n### 需修改的旧 claim\n| 位置 | 旧文字 | 修改方式 |\n|------|--------|----------|\n| §5.6 最后一段 | \"Regularization of the $\\dt$-embedding (e.g., gradient stopping or spectral normalization) could preserve the temporal signal while preventing co-adaptation; we leave empirical evaluation to future work.\" | **替换** — gradient stopping 已实测否定，不再是纯 future work（见上方新文字） |\n\n---\n\n## 7. conclusion.tex — 小修\n\n**修改级别**: 小修（contribution list 加 1 条 + future directions 更新）\n\n### 新增\n- Contribution list (enumerate) 在第 5 条之后加第 6 条：\n  > \"\\item Selective gradient stopping on the reward head delays CIVO onset by ${\\sim}50$K steps but produces more severe eventual collapse ($\\nve = 10.42\\times$), establishing that the vulnerability operates primarily at the representation level rather than through the reward gradient pathway alone.\"\n\n### 需修改的旧 claim\n| 位置 | 旧文字 | 修改方式 |\n|------|--------|----------|\n| Future directions, 第 2 条 | \"regularization of the $\\dt$-embedding (e.g., gradient stopping or spectral normalization) could potentially preserve the temporal signal while preventing co-adaptation with the reward head\" | **修改为**: \"Our SGS experiment shows that gradient stopping on the reward head alone is insufficient; stronger interventions targeting the shared representation—such as spectral normalization of $e(\\dt)$ or orthogonality constraints—remain to be tested.\" |\n\n---\n\n## 8. appendix.tex — 小修\n\n**修改级别**: 小修（新增 016e 详细 metrics section）\n\n### 新增\n- 在现有 NVE Threshold Sensitivity Analysis 之后，新增：\n\n> \"\\section{SGS Experiment Details}\n> \\label{sec:appendix_sgs}\n>\n> Table~\\ref{tab:sgs_detailed} reports per-checkpoint metrics for exp\\_016e (SGS: reward\\_dt\\_emb\\_detach=True, subsample ON, H=8, seed 1).\n>\n> [表格: step, eval_return, value, v/e ratio, nve, actor_entropy, reward_MAE_dt1, reward_MAE_dt2]\"\n\n- Table 1 in appendix (nve_raw) 新增 016e 行：\n  > `016e & 10.42 & delayed CIVO & $+$ & $+$`\n\n- Table B1/B2 sensitivity tables 需重新计算（n 从 8 变为 9），或在 limitation 中注明 016e 未纳入 threshold analysis（因其配置不同于 factorial grid）。**建议**：保持 n=8 不变，在 limitation 中注明 016e 为独立验证实验，不纳入 threshold 统计。\n\n### 无需修改的旧内容\n- NVE threshold recommendation — 保持不变（016e 不改变 n=8 grid 的统计结论）\n\n---\n\n## 总览\n\n| 章节 | 修改级别 | 主要变更 |\n|------|----------|----------|\n| abstract | 小修 | +1 句 SGS 结论 |\n| introduction | 小修 | finding (3) → (4)，新增 SGS 发现 |\n| related_work | 小修 | +1 段 gradient intervention in MBRL (PCGrad, HarmonyDream, VaGraM) |\n| methodology | 小修 | +1 段 SGS 方法描述 + table 新增 016e 行 |\n| results | 中修 | +F7 subsection (~0.5 页) + table 更新 + summary 更新 |\n| analysis | 中修 | +1 subsection SGS 分析 (~0.4 页) + 更新 CIVO mechanism + **修改 implications 中 gradient stopping 为已验证** |\n| conclusion | 小修 | +1 条 contribution + 修改 future directions gradient stopping claim |\n| appendix | 小修 | +016e 详细 metrics table + nve_raw table 新增行 |\n\n## 需删除/修改的旧 Claim 汇总\n\n仅 **2 处旧 claim 需修改**（无需删除任何 claim）：\n\n1. **analysis.tex §5.6**: \"gradient stopping...could preserve the temporal signal while preventing co-adaptation; we leave empirical evaluation to future work\" → 已实测，需改为已验证的 negative result\n2. **conclusion.tex future directions**: 同上 — gradient stopping 不再是纯 future work\n\n所有其他现有 claim (C1-C6 / F1-F6) **完全保持成立**。016e SGS 是纯增量证据，强化而非矛盾现有叙事。\n",
+  "tags": [
+    "paper",
+    "framing-b",
+    "016e",
+    "sgs",
+    "diff-checklist"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "631086db-751e-4fad-8cd4-b566ea2a2eaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138TikqTrydXJhNSLmibknM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16850,
+      "cache_read_input_tokens": 37668,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16850
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T22:51:19.872Z_
+
+<details><summary>↩ Tool result · `toolu_01QEGuPyFxEEnAyyLLmVxeiH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_8c32ec\", \"name\": \"Framing B Re-audit Diff Checklist\", \"type\": \"report\", \"description\": \"Per-section diff checklist for integrating 016e SGS informative negative into Framing B diagnostic paper\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/framing_b_reaudit_diff.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T22:51:19.616510+00:00\", \"tags\": [\"paper\", \"framing-b\", \"016e\", \"sgs\", \"diff-checklist\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "e1556fdf-774b-4aaa-925d-161ddb081165",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8c32ec\\\", \\\"name\\\": \\\"Framing B Re-audit Diff Checklist\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Per-section diff checklist for integrating 016e SGS informative negative into Framing B diagnostic paper\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/framing_b_reaudit_diff.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T22:51:19.616510+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"framing-b\\\", \\\"016e\\\", \\\"sgs\\\", \\\"diff-checklist\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_8c32ec\", \"name\": \"Framing B Re-audit Diff Checklist\", \"type\": \"report\", \"description\": \"Per-section diff checklist for integrating 016e SGS informative negative into Framing B diagnostic paper\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/framing_b_reaudit_diff.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T22:51:19.616510+00:00\", \"tags\": [\"paper\", \"framing-b\", \"016e\", \"sgs\", \"diff-checklist\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Diff 清单已生成并注册为 artifact `framing_b_reaudit_diff.md`。
+
+核心结论：
+
+**仅 2 处旧 claim 需修改**（均在 analysis.tex §5.6 和 conclusion.tex future directions — "gradient stopping...we leave to future work" → 已实测为 negative result）。所有 F1-F6 完全保持成立，016e 是纯增量证据。
+
+**修改量分布**：
+- **中修**：results.tex（+F7 subsection ~0.5 页）、analysis.tex（+SGS 分析段 ~0.4 页 + 更新 implications）
+- **小修**：abstract（+1句）、introduction（+1条 finding）、related_work（+1段 gradient intervention lit）、methodology（+SGS 方法描述 + table 行）、conclusion（+1条 contribution + 修改 future directions）、appendix（+016e metrics table）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "uuid": "3a5d4db1-c4f0-4292-aa7a-2b5100e02250",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DjwANrNK8dN1UecFysVduz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5733,
+      "cache_read_input_tokens": 54518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5733
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 35_
+
+Diff 清单已生成并注册为 artifact `framing_b_reaudit_diff.md`。
+
+核心结论：
+
+**仅 2 处旧 claim 需修改**（均在 analysis.tex §5.6 和 conclusion.tex future directions — "gradient stopping...we leave to future work" → 已实测为 negative result）。所有 F1-F6 完全保持成立，016e 是纯增量证据。
+
+**修改量分布**：
+- **中修**：results.tex（+F7 subsection ~0.5 页）、analysis.tex（+SGS 分析段 ~0.4 页 + 更新 implications）
+- **小修**：abstract（+1句）、introduction（+1条 finding）、related_work（+1段 gradient intervention lit）、methodology（+SGS 方法描述 + table 行）、conclusion（+1条 contribution + 修改 future directions）、appendix（+016e metrics table）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 142301,
+  "duration_api_ms": 142938,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "8dfa0838-6bbe-4684-ac22-67aea18461f6",
+  "total_cost_usd": 0.5507205,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 48804,
+    "cache_read_input_tokens": 151827,
+    "output_tokens": 6729,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 48804,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 261,
+        "cache_read_input_tokens": 54518,
+        "cache_creation_input_tokens": 5733,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5733
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1422,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015170000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 6729,
+      "cacheReadInputTokens": 151827,
+      "cacheCreationInputTokens": 48804,
+      "webSearchRequests": 0,
+      "costUSD": 0.5492035,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6988490c-0f23-4fee-a42e-77da3807d97a"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c6aa7741474ea4215db",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "extract s4 ve profile",
+  "task_key": "worker_extract_s4_ve_profile_20260519T230704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_s4_ve_profile_20260519T230704_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "7f86b998f047a18ac7b005522e71155f0605d8438dcc2f32252caf45503ac597"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 seed 的 ve_ratio profile CSV 全部就位：\n\n| 文件 | 行数 | Step 范围 |\n|------|------|-----------|\n| `exp_001_baseline_s1_ve_profile_full.csv` | 已有 | — |\n| `exp_001_baseline_s2_ve_profile_full.csv` | 52 | 5,000 – 512,000 |\n| `exp_001_baseline_s3_ve_profile_full.csv` | 52 | 5,000 – 510,000 |\n| `exp_001_baseline_s4_ve_profile_full.csv` | 52 | 5,000 – 512,000 |\n\n所有 CSV 保存在 `artifacts/` 目录下。s3 最终 step 为 510K（比其余少 2K），其余三个都跑到 512K。末期 ve_ratio 均收敛到 ~0.69–0.71 区间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-s4-ve-profile.md"
+}

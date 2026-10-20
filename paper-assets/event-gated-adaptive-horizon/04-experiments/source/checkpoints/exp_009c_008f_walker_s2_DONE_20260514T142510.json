@@ -1,0 +1,150 @@
+{
+  "exp_id": "exp_009c_008f_walker_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:17:26.154Z",
+    "updated_at": "2026-05-14T14:25:10.321Z",
+    "hypothesis": "Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）",
+    "parent": "exp_008f_no_dt_embed_subsample_on_h8",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-45299",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T07:19:10.835Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009c_008f_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "code_commit": "09876d7080affdb0fb329e24753a46d998da9d8e",
+      "finished_at": "2026-05-14T14:15:57.425Z",
+      "training_hours": 6.95
+    },
+    "spec": {
+      "model_name": "DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)",
+      "seed": 2,
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2",
+      "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/metrics.jsonl"
+    },
+    "pid": "140980",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_009c_008f_walker_s2.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T14:15:58.982844+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "current_step": 105000,
+      "target_steps": 105000,
+      "eval_checkpoints": [
+        {
+          "step": 5000,
+          "eval_return": 30.37,
+          "value_mean": 0.0013,
+          "ve_ratio": null,
+          "baseline_ve": null,
+          "normalized_ve": null
+        },
+        {
+          "step": 15000,
+          "eval_return": 157.15,
+          "value_mean": 3.057,
+          "ve_ratio": 0.019,
+          "baseline_ve": null,
+          "normalized_ve": null
+        },
+        {
+          "step": 25000,
+          "eval_return": 168.75,
+          "value_mean": 18.536,
+          "ve_ratio": 0.11,
+          "baseline_ve": 0.087,
+          "normalized_ve": 1.26
+        },
+        {
+          "step": 35000,
+          "eval_return": 178.94,
+          "value_mean": 34.263,
+          "ve_ratio": 0.191,
+          "baseline_ve": 0.241,
+          "normalized_ve": 0.79
+        },
+        {
+          "step": 45000,
+          "eval_return": 211.08,
+          "value_mean": 50.099,
+          "ve_ratio": 0.237,
+          "baseline_ve": 0.331,
+          "normalized_ve": 0.72
+        },
+        {
+          "step": 55000,
+          "eval_return": 238.91,
+          "value_mean": 63.267,
+          "ve_ratio": 0.265,
+          "baseline_ve": 0.404,
+          "normalized_ve": 0.66
+        },
+        {
+          "step": 65000,
+          "eval_return": 244.15,
+          "value_mean": 72.717,
+          "ve_ratio": 0.298,
+          "baseline_ve": 0.563,
+          "normalized_ve": 0.53
+        },
+        {
+          "step": 75000,
+          "eval_return": 359.14,
+          "value_mean": 83.91,
+          "ve_ratio": 0.234,
+          "baseline_ve": 0.719,
+          "normalized_ve": 0.33
+        },
+        {
+          "step": 85000,
+          "eval_return": 227.43,
+          "value_mean": 96.071,
+          "ve_ratio": 0.422,
+          "baseline_ve": 0.701,
+          "normalized_ve": 0.6
+        },
+        {
+          "step": 95000,
+          "eval_return": 190.94,
+          "value_mean": 108.29,
+          "ve_ratio": 0.567,
+          "baseline_ve": 0.632,
+          "normalized_ve": 0.9
+        },
+        {
+          "step": 105000,
+          "eval_return": 148.34,
+          "value_mean": 111.247,
+          "ve_ratio": 0.75,
+          "baseline_ve": 0.656,
+          "normalized_ve": 1.14
+        }
+      ],
+      "trend": "Peak 359@75K then monotonic decline to 148@105K; no recovery pattern unlike 008f seed 1's zigzag recovery to 503",
+      "verdict": "NEGATIVE - no delusional critic (normalized v/e < 1.5x) but persistent decline after 75K; cross-seed consistency with 008f seed 1 NOT confirmed",
+      "baseline_105K": 915.67,
+      "vs_baseline_105K": "-83.8%",
+      "causal_conclusion": "Seed 2 does NOT replicate seed 1's zigzag recovery. 008f seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent and not robust."
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt",
+    "completed_at": "2026-05-14T22:15:00Z",
+    "notes": "D030: 延长到 200K 步观察 v/e 是否越过 1.5x。当前 105K 结论暂挂。105K 指标: eval=148, nve=1.14x, peak=359@75K then decline。等 cuda:1 释放后恢复训练。"
+  },
+  "timestamp": "2026-05-14T14:25:10.392974+00:00",
+  "trigger": "update_registry"
+}

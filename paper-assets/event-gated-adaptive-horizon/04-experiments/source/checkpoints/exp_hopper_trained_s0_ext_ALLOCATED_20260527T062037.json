@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_hopper_trained_s0_ext",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T06:00:49.737Z",
+    "updated_at": "2026-05-27T06:20:36.783Z",
+    "hypothesis": "Continuing trained_s0 from 105K to 150K will confirm delayed CIVO: ve_ratio (0.897 at 105K, exponentially rising) will cross NVE>1.5 threshold by ~115-125K, upgrading from emerging to confirmed delayed CIVO. Parent: exp_hopper_trained_s0.",
+    "parent": "exp_hopper_trained_s0",
+    "spec": {
+      "server": "westd-51268",
+      "gpu": "cuda:1",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_trained_s0 --steps 150000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "model_name": "dreamerv3",
+      "data_path": "dmc_hopper_hop (online)",
+      "data_count": "150000 steps (resume from 105K)",
+      "seed": 0,
+      "checkpoint_source": "logdir/exp_hopper_trained_s0/latest.pt"
+    }
+  },
+  "timestamp": "2026-05-27T06:20:37.615359+00:00",
+  "trigger": "update_registry"
+}

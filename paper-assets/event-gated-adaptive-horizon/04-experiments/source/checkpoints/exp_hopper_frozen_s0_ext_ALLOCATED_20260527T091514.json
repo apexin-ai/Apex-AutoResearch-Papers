@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_hopper_frozen_s0_ext",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T09:14:24.513Z",
+    "updated_at": "2026-05-27T09:15:13.569Z",
+    "hypothesis": "Extending frozen_s0 from 105K→150K will show eval_return recovery (rising like trained_s0_ext: 3.26→81.58) with ve_ratio declining, confirming frozen_s0's 'degenerate CIVO' @95K is transient instability during severe learning delay, not true CIVO mechanism. Source: D163.",
+    "parent": "exp_hopper_frozen_s0",
+    "plan_id": "D163",
+    "server": "westd-51268",
+    "gpu": "cuda:0",
+    "spec": {
+      "server": "westd-51268",
+      "gpu": "cuda:0",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_hopper_hop --logdir logdir/exp_hopper_frozen_s0 --steps 150000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\"",
+      "model_name": "dreamerv3",
+      "data_path": "dmc_hopper_hop (online)",
+      "data_count": "150000 steps (resume from 105K)",
+      "seed": 0,
+      "checkpoint_source": "logdir/exp_hopper_frozen_s0/latest.pt"
+    }
+  },
+  "timestamp": "2026-05-27T09:15:14.025040+00:00",
+  "trigger": "update_registry"
+}

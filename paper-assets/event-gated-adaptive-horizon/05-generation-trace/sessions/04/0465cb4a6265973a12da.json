@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0465cb4a6265973a12da",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code cheetah tcn and ablation configs",
+  "task_key": "worker_code_cheetah_tcn_and_ablation_configs_20260520T082823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cheetah_tcn_and_ablation_configs_20260520T082823_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "9e0a305336e849c20923207c446f3aa320b0bc6457451a09af882d6a4f415074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建。\n\n总结：\n\n- **兼容性**：TCN 完全环境无关，仅操作 `dt_embedding` 的高斯噪声注入（`networks.py:256-258`），Cheetah 只需换 `--task dmc_cheetah_run`\n- **6 个实验命令**已生成：Walker 多 seed (029a/b)、Cheetah 跨环境 (030a/b)、剂量响应 σ=0.1 (029c)、dt=1 对照 (029d)\n- 所有命令标准化了 `--gate_subsample_max_dt 2`（之前 σ=0.2 实验漏了此参数）\n- GPU 需求：dmc_proprio 纯 MLP，~5GB 显存，单卡可并行 2 个实验\n- 输出路径：`artifacts/code/ablation_commands.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cheetah-tcn-and-ablation-configs.md"
+}

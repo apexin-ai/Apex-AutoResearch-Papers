@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "217960c0c484f9d0283f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 008f s3 nve ci update",
+  "task_key": "worker_analysis_008f_s3-nve-ci-update_20260516T201039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_008f_s3-nve-ci-update_20260516T201039_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "099bd355e8748c14a4a7cabf0279c9c8179a880cf2da35ba016d2f5bd712db52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已更新。总结:\n\n**008f_s3 NVE 提取结果:**\n- 35K+ 窗口 NVE peak: **0.8509** @ step 95K\n- 全步数 NVE peak: **0.8667** @ step 25K\n- 35K+ sustained avg: **0.5731**\n- eval_return_peak: 594.18 @ step 85K\n- eval_return_final: 420.71\n- collapse: 0（无崩溃）\n\n**已更新的文件（共 10 个）:**\n\n| 文件 | 更新内容 |\n|------|---------|\n| `bootstrap_ci_results.json` × 2 | no_dt_emb n=3, peaks=[0.97, 0.82, 0.85], mean=0.88, CI=[0.82, 0.97] |\n| `bootstrap_cis/bootstrap_cis.json` + `_project/data/bootstrap_cis.json` | no_dt_emb n=3, nve_peak mean=1.05 CI=[0.87, 1.26] |\n| `artifacts/bootstrap_cis.json` | no_dt_emb n_seeds=3, mean=0.9879 CI=[0.8509, 1.1425] |\n| `bootstrap_ci_summary.md` × 3 | no_dt_emb 行: n=3, status ⚠️→✓, 更新 effect sizes |\n| `compute_bootstrap_cis.py` | 加入 008f_s3 原始数据 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-008f-s3-nve-ci-update.md"
+}

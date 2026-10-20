@@ -1,0 +1,127 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sutton1999options}
+\citation{vezhnevets2017feudal}
+\citation{hafner2023dreamerv3}
+\citation{nhu2025tawm}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sutton1999options}
+\citation{sharma2017figar}
+\citation{lakshminarayanan2017dynamic}
+\citation{hafner2023dreamerv3}
+\citation{micheli2023iris}
+\citation{robine2023twm}
+\citation{nhu2025tawm}
+\citation{hansen2024tdmpc2}
+\citation{janner2019mbpo}
+\citation{chua2018pets}
+\citation{lu2018nondelusional}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal abstraction in RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-model RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Variable-rate planning.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value overestimation in MBRL.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Architecture: DreamerV3 with Temporal Conditioning}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal subsampling.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Imagination process.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Diagnostic Metrics}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalized Value/Eval ratio (NVE).}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Actor entropy.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Experimental Configurations}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Trained dt-Embedding Reliably Triggers CIVO (Walker Walk)}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:walker_civo}{{4.1}{3}{Trained dt-Embedding Reliably Triggers CIVO (Walker Walk)}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Walker Walk 008d (trained dt-embedding): NVE trajectory across seeds.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:walker_008d}{{1}{3}{Walker Walk 008d (trained dt-embedding): NVE trajectory across seeds}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Causal Control: Removing dt-Embedding Eliminates CIVO}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:walker_causal}{{4.2}{3}{Causal Control: Removing dt-Embedding Eliminates CIVO}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Walker Walk 008f (no dt-embedding): NVE stays below threshold.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:walker_008f}{{2}{4}{Walker Walk 008f (no dt-embedding): NVE stays below threshold}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Untrained dt-Embedding: Value Growth Suppression}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:walker_untrained}{{4.3}{4}{Untrained dt-Embedding: Value Growth Suppression}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Walker Walk 008a (untrained dt-embedding): consistent value suppression (3 seeds).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:walker_008a}{{3}{4}{Walker Walk 008a (untrained dt-embedding): consistent value suppression (3 seeds)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Dual-Pathway Vulnerability: dt$=$1 Imagination Does Not Eliminate Collapse}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:dual_pathway}{{4.4}{4}{Dual-Pathway Vulnerability: dt$=$1 Imagination Does Not Eliminate Collapse}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Walker Walk 008e\_v3 ($\Delta t = 1$ imagination, trained dt-embedding): 4 seeds.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:dual_pathway}{{4}{4}{Walker Walk 008e\_v3 ($\Delta t = 1$ imagination, trained dt-embedding): 4 seeds}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pathway A (CIVO) vs.\ Pathway B (policy instability): diagnostic signatures.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:pathway_comparison}{{5}{5}{Pathway A (CIVO) vs.\ Pathway B (policy instability): diagnostic signatures}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Environment Generalization: Cheetah Run}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:cheetah}{{4.5}{5}{Cross-Environment Generalization: Cheetah Run}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trained dt-embedding (3 seeds).}{5}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cheetah Run trained dt-embedding: NVE trajectories (3 seeds).}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:cheetah_trained}{{6}{5}{Cheetah Run trained dt-embedding: NVE trajectories (3 seeds)}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{No dt-embedding (causal control, 3 seeds).}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Untrained dt-embedding (3 seeds).}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-environment comparison.}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-environment CIVO comparison (trained dt-embedding).}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:cross_env}{{7}{5}{Cross-environment CIVO comparison (trained dt-embedding)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Environment Generalization: Cartpole Swingup}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:cartpole}{{4.6}{6}{Cross-Environment Generalization: Cartpole Swingup}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trained dt-embedding (3 seeds).}{6}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cartpole Swingup trained dt-embedding: NVE trajectories (3 seeds).}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:cartpole_trained}{{8}{6}{Cartpole Swingup trained dt-embedding: NVE trajectories (3 seeds)}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{No dt-embedding (3 seeds).}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Environment Generalization: Hopper Hop}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:hopper}{{4.7}{6}{Cross-Environment Generalization: Hopper Hop}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Hopper Hop CIVO generalization (3 seeds per config).}}{6}{table.9}\protected@file@percent }
+\newlabel{tab:hopper}{{9}{6}{Hopper Hop CIVO generalization (3 seeds per config)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}NVE Threshold Sensitivity Analysis}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:threshold}{{4.8}{6}{NVE Threshold Sensitivity Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces NVE threshold sensitivity analysis (16 seeds across 4 environments). The 1.5$\times $ threshold achieves perfect separation.}}{6}{table.10}\protected@file@percent }
+\newlabel{tab:threshold}{{10}{6}{NVE threshold sensitivity analysis (16 seeds across 4 environments). The 1.5$\times $ threshold achieves perfect separation}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}RSSM Prediction Fidelity Analysis}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:rssm}{{4.9}{7}{RSSM Prediction Fidelity Analysis}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces RSSM prediction fidelity: $\Delta t = 1$ vs.\ $\Delta t = 2$ (absolute errors and gap ratios).}}{7}{table.11}\protected@file@percent }
+\newlabel{tab:rssm}{{11}{7}{RSSM prediction fidelity: $\Delta t = 1$ vs.\ $\Delta t = 2$ (absolute errors and gap ratios)}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Actor Entropy Analysis}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:entropy}{{4.10}{7}{Actor Entropy Analysis}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Actor entropy trajectories by pathway (Walker Walk).}}{7}{table.12}\protected@file@percent }
+\newlabel{tab:entropy}{{12}{7}{Actor entropy trajectories by pathway (Walker Walk)}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Value Calibration Analysis}{7}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:value_calibration}{{4.11}{7}{Value Calibration Analysis}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}dt-Embedding Cosine Similarity Evolution}{7}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:cosine}{{4.12}{7}{dt-Embedding Cosine Similarity Evolution}{subsection.4.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Value calibration: $V(s)$ vs.\ MC returns correlation and overestimation.}}{8}{table.13}\protected@file@percent }
+\newlabel{tab:value_calibration}{{13}{8}{Value calibration: $V(s)$ vs.\ MC returns correlation and overestimation}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Cosine similarity between dt$=$1 and dt$=$2 embedding vectors over training.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:cosine}{{14}{8}{Cosine similarity between dt$=$1 and dt$=$2 embedding vectors over training}{table.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Frozen dt-Embedding: Training is Necessary for CIVO}{8}{subsection.4.13}\protected@file@percent }
+\newlabel{sec:frozen}{{4.13}{8}{Frozen dt-Embedding: Training is Necessary for CIVO}{subsection.4.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces dt-Embedding state determines failure mode (Walker Walk, 105K steps).}}{8}{table.15}\protected@file@percent }
+\newlabel{tab:frozen}{{15}{8}{dt-Embedding state determines failure mode (Walker Walk, 105K steps)}{table.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.14}Gradient Decomposition and Full-SGS Intervention}{8}{subsection.4.14}\protected@file@percent }
+\newlabel{sec:gradient}{{4.14}{8}{Gradient Decomposition and Full-SGS Intervention}{subsection.4.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces dt-Embedding gradient decomposition by source.}}{9}{table.16}\protected@file@percent }
+\newlabel{tab:gradient_decomp}{{16}{9}{dt-Embedding gradient decomposition by source}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Gradient intervention comparison (Walker Walk).}}{9}{table.17}\protected@file@percent }
+\newlabel{tab:full_sgs}{{17}{9}{Gradient intervention comparison (Walker Walk)}{table.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.15}Uncertainty-Gated Imagination Truncation}{9}{subsection.4.15}\protected@file@percent }
+\newlabel{sec:truncation}{{4.15}{9}{Uncertainty-Gated Imagination Truncation}{subsection.4.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Uncertainty-gated truncation pilot (Walker Walk).}}{9}{table.18}\protected@file@percent }
+\newlabel{tab:truncation}{{18}{9}{Uncertainty-gated truncation pilot (Walker Walk)}{table.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Architecture-Specific Vulnerability}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Dual-Pathway Fragility Taxonomy}{9}{subsection.5.2}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{sutton1999options}{1}
+\bibcite{vezhnevets2017feudal}{2}
+\bibcite{hafner2023dreamerv3}{3}
+\bibcite{nhu2025tawm}{4}
+\bibcite{hansen2024tdmpc2}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Value Self-Correction Mechanism}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Practical Implications}{10}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\bibcite{micheli2023iris}{6}
+\bibcite{robine2023twm}{7}
+\bibcite{janner2019mbpo}{8}
+\bibcite{chua2018pets}{9}
+\bibcite{lu2018nondelusional}{10}
+\bibcite{sharma2017figar}{11}
+\bibcite{lakshminarayanan2017dynamic}{12}
+\bibcite{agarwal2021deep}{13}
+\gdef \@abspage@last{11}

@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "n_bootstrap": 10000,
+    "date": "2026-05-17",
+    "update_reason": "008d_s3 completed, n=3 for trained_dt_emb"
+  },
+  "trained_dt_emb": {
+    "n_seeds": 3,
+    "seeds": [
+      "008d (seed=0)",
+      "009b (seed=2)",
+      "008d_s3 (seed=3)"
+    ],
+    "eval_return_final": {
+      "values": [
+        83.0,
+        268.0,
+        268.0
+      ],
+      "mean": 206.3,
+      "ci_lower": 83.0,
+      "ci_upper": 268.0,
+      "footnote": "seed=3 eval=268@105K is transitional (train returns still declining 470→121). Actual terminal value likely lower."
+    },
+    "nve_peak": {
+      "values": [
+        4.12,
+        2.05,
+        1.5
+      ],
+      "mean": 2.56,
+      "ci_lower": 1.5,
+      "ci_upper": 4.12
+    },
+    "collapse_rate": {
+      "rate": 0.6667,
+      "k": 2,
+      "n": 3,
+      "ci_lower": 0.094,
+      "ci_upper": 0.992,
+      "detail": "seed=0 early-onset collapse, seed=3 late-onset collapse in progress. seed=2 self-corrects."
+    },
+    "self_correction_rate": {
+      "rate": 0.3333,
+      "k": 1,
+      "n": 3,
+      "detail": "Only seed=2 self-corrects to stable degraded state"
+    },
+    "performance_vs_baseline": {
+      "baseline_eval": 970.41,
+      "mean_pct": 21.3,
+      "all_below_30pct": true,
+      "footnote": "All values at 105K checkpoint. seed=3 still declining at this point."
+    },
+    "nve_universal_onset": {
+      "threshold": 1.5,
+      "seeds_exceeding": 3,
+      "seeds_total": 3,
+      "rate": 1.0
+    }
+  }
+}

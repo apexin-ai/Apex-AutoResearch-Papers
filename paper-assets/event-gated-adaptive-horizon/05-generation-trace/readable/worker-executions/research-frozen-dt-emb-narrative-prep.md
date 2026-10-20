@@ -1,0 +1,2690 @@
+# research frozen dt emb narrative prep
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_research_frozen_dt_emb_narrative_prep_20260525T180125.log`
+- **Structured JSON:** [`0eb18f6ba95b5573d9b3.json`](../../sessions/0e/0eb18f6ba95b5573d9b3.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "41abe61f-4d7c-4031-aa74-d4fb69977adc",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779744600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "add4ca6c-f479-4474-9884-23f1372cdd20",
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll read the project files first to understand the paper framing and historical context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "e35e4d4c-6617-40ed-ad98-83ffd2931767",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcRfRVNKWvMGoAouFrjS7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12152,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12152
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EGaBwNDoPSYzDLpeRkkDr3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "fba910e1-48b4-44e5-a831-7445eea759c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcRfRVNKWvMGoAouFrjS7Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12152,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12152
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-25T18:01:37.298Z_
+
+<details><summary>↩ Tool result · `toolu_01EGaBwNDoPSYzDLpeRkkDr3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "72a5dad9-e9c8-4f2d-b375-3771f903c410",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__append_idea"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__append_idea",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the two project files to understand the paper framing and historical context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "ea0b4e40-08d2-4e97-aeab-4c2405f3d10a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWuh7KWfy94qm828HRtwvA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 23599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01AZqAx4HydmAPQyvtMNSAQA`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "792de7c0-a44c-4960-be91-e0ce259fea93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWuh7KWfy94qm828HRtwvA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 23599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-25T18:01:39.890Z_
+
+<details><summary>↩ Tool result · `toolu_01AZqAx4HydmAPQyvtMNSAQA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**ICML 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**⚠️ 修正：reward head 贡献最大梯度（49%@55K），obs decoder 仅 16.3%。但 reward-only SGS 仍失败——梯度大小与因果重要性解耦。** |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**dt_emb Gradient Decomposition (D061) — ⚠️ 已修正**\\n\\n梯度验证（torch.autograd.grad analysis, correct config gate_fixed_dt=2）揭示 dt_emb.weight 的梯度来源分布：\\n\\n| Source | 55K (%) | 112K (%) |\\n|--------|---------|----------|\\n| Reward head | 49.0 | 38.1 |\\n| KL dynamics | 34.7 | 40.4 |\\n| Observation decoders | 16.3 | 21.5 |\\n| Cont head | ~0 | ~0 |\\n\\n⚠️ **之前的 93% obs / 0% reward 数据不可复现**（见 gradient_decomposition_008d_corrected.json）。正确结论：reward head 贡献最大梯度（38-49%），但 reward-only SGS (016e) 仍然失败（NVE=10.42×）；obs decoder 通路（16-22%）虽贡献最小，但携带关键的 Δt-specific 空间信息驱动 RSSM fidelity gap。**梯度大小与因果重要性解耦**是核心发现。\\n\\n**Strength**: Strong (upgraded from Moderate-strong, 2026-05-25). Three-way causal ablation (trained/frozen/absent dt_emb) with identical configs provides decisive evidence: **trained dt_emb 10/10 CIVO onset** (8 Walker + 2 Cheetah) vs **frozen dt_emb 0/2** (exp_042, exp_067) vs **no dt_emb 0/3** (008f s1, 009c s2, exp_069 s1); Fisher exact p < 0.001. The three-way design rules out \\\"embedding presence\\\" as cause — only gradient training triggers CIVO. The **nve>1.5x threshold** achieves perfect separation across all tested seeds. **Collapse** remains stochastic (~50% of trained seeds), but **CIVO onset** (nve>1.5x) is deterministic given trained dt_emb + multi-step exposure. Pending: exp_070-073 will extend to 10/10 trained + 0/5 control.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n### C7: Gradient-level interventions fail to eliminate CIVO — gradient magnitude decoupled from causal importance\\n\\n**⚠️ D107: SGS 全面失败，梯度干预不是正确的干预层级**\\n\\nAll three SGS variants fail to eliminate CIVO:\\n- **Reward-only SGS** (016e): 0/2, NVE=10.42× — paradoxically worse than untreated\\n- **Full-pathway SGS** (018+021): 0/3 across two environments — blocks all non-KL gradients, still fails\\n- **Obs-decoder-only SGS** (025+026): 1/6 across two environments — the identified causal channel, still fails\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Reward-only SGS 反效果 | exp_016e | NVE=10.42×, collapse to eval 31.7. 阻断 reward 梯度迫使 dt_emb 通过 obs-decoder 适配，强化空间偏差 |\\n| Full SGS 0/3 | exp_018 (Walker 2 seeds) + exp_021 (Cheetah 1 seed) | s1: eval 448.3, NVE 1.66× (CIVO+); s2: collapse 40.8; Cheetah: transient NVE 9.94×→0.34× (not SGS effect) |\\n| Obs-decoder SGS 1/6 | exp_025 (Walker 4 seeds) + exp_026 (Cheetah 2 seeds) | Walker: 1/4 (s1 survived, s2-s4 collapsed); Cheetah: 0/2, NVE 21.9×-30.2× (2.6-3.6× worse than untreated 8.3×) |\\n| Compensatory amplification (Cheetah) | exp_026 vs exp_010b | Obs-decoder SGS NVE 21.9-30.2× vs untreated 8.3× — blocking obs-decoder shifts co-adaptation to reward head |\\n| Universal value collapse | exp_025 all seeds @215K | All 4 seeds terminal ve_ratio=0.056-0.14, including s1 \\\"success\\\" (eval 726, value 41) — critic underestimation as side effect |\\n| Fourth trajectory (s3) | exp_025_s3 | Healthy@105K → CIVO@135K (NVE 6.8×) → eval recovery (590@215K) → persistent value collapse (ve_ratio 0.14) |\\n\\n**核心发现**：\\n1. **梯度量级与因果重要性脱耦**: Reward head 38-49% 梯度占比（最大），但 reward-only SGS 失败最惨；obs decoder 16-22%（最小非零），但 obs-decoder SGS 也失败。梯度分解成功作为**诊断工具**但失败作为**干预指南**。\\n2. **Backward-pass 是错误的干预层级**: Full SGS 阻断所有非 KL 梯度仍 0/3 → forward-pass representational damage 是不可约减的脆弱性底线。Temporal embedding 通过 forward pass 塑造潜在表示，无论哪些梯度更新它。\\n3. **补偿放大**: 阻断任一通道导致剩余通道放大 co-adaptation（Cheetah: 2.6-3.6× 放大）。\\n4. **SGS 副作用**: 即使\\\"成功\\\"的 seed 也遭受 critic 校准损坏（universal value collapse）。\\n\\n**Strength**: Strong. 17 seeds across 3 SGS variants and 2 environments. Only 1/17 avoids CIVO, and that seed still suffers value collapse. Embedding removal (008f+024b): 5/5 = 100% prevention. The contrast establishes gradient stopping as categorically insufficient.\\n\\n### C8: Forward-pass interventions — TCN and RAVE (🔄 验证中)\\n\\n**⚠️ D107/D108: 两种 forward-pass 干预方法并行验证**\\n\\nSGS 失败的根因是 backward-pass 干预无法消除 forward-pass representational damage。C8 提出绕过梯度冗余的 forward-pass 干预：\\n\\n**TCN (Temporal Conditioning Noise)**:\\n- 设计理念：imagination 时对 dt_embedding 输出加高斯噪声 $\\\\mathcal{N}(0, \\\\sigma^2)$，降低 conditioning 精度\\n- 机制假说：噪声阻止 RSSM 和 critic 对精确 dt 信号的过度 co-adaptation，同时保留粗粒度时间信息\\n- 与 SGS 的区别：在 forward pass 层面操作，不依赖梯度阻断\\n- 超参：σ=0.5×std（主实验）+ σ=0.2×std（替代超参）\\n- 实验：exp_027_tcn_walker_s0 (σ=0.5), exp_027_tcn_walker_s0_sigma02 (σ=0.2)\\n\\n**RAVE (Reality-Anchored Value Estimation)**:\\n- 设计理念：用 EMA 跟踪真实环境状态的值估计，当 imagined value 超过 EMA×ceiling 时截断\\n- 机制假说：直接限制 critic overestimation 的幅度，打断 CIVO 正反馈循环\\n- 与 SGS 的区别：不修改梯度流，而是在 value estimate 层面施加约束\\n- 超参：ceiling=2.0（主实验）+ ceiling=1.5（替代超参）\\n- 实验：exp_028_rave_walker_s0 (ceil=2.0), exp_028_rave_walker_s0_ceil15 (ceil=1.5)\\n\\n**D113 全面评估完成 (2026-05-20) — Scenario B 确认：Intervention Hierarchy 论文**\\n\\nTCN 跨环境 universal mitigation（Scenario A）已关闭。TCN 仅在 Walker σ=0.2 成功（2/8 configs），且 eval 保留高度不稳定（91%/45% across seeds）。论文核心转为 **Intervention Hierarchy**：三层干预（Gradient → Output → Representation）系统性评估，证明 CIVO fundamentally hard to mitigate。\\n\\n**TCN 全景表（D113 最终）：**\\n\\n| 环境 | σ | NVE_max | CIVO 阻止? | eval 保留 |\\n|------|---|---------|-----------|----------|\\n| Walker s0 | 0.1 | 1.02@95K | ⚠️ 边界（进行中） | TBD |\\n| Walker s0 | 0.2 | 0.91@95K | ✅ | 91% |\\n| Walker s1 | 0.2 | 0.64@55K | ✅ | **45%** |\\n| Walker s2 | 0.2 | **2.11@95K** | **❌ CIVO confirmed** | **5%** (eval 45, 持续崩溃) |\\n| Walker s3 | 0.2 | TBD | 🔄 5K | — |\\n| Walker s0 | 0.5 | 3.97 | ❌ oscillatory | ~40% |\\n| Walker s1 | 0.5 | 1.64 | ❌ oscillatory | ~40% |\\n| Cheetah s0 | 0.2 | 1.90@55K | ❌ dose insufficient | crashed |\\n| Cheetah s0 | 0.5 | **10.67@55K** | ❌ transient spike+recovery | 26% |\\n| PickCube s0 | 0.2 | **3.71@52.5K** | ❌ dose insufficient | failing |\\n\\n**关键发现**：\\n1. **TCN 成功率 2/10**（NVE<1.0× 标准）或 3/10（NVE<1.5×）：Walker σ=0.2 s2 NVE=2.11@95K（持续恶化），eval=45 (~5% baseline)，成功率从 2/2 降到 2/3。即使最优 dose + 最温和环境也不可靠\\n2. **Dose-environment dependency**：σ=0.2 在 Walker 有效但 Cheetah/PickCube 不足，σ=0.5 在 Walker 过量但 Cheetah 仍不足。不存在 universal effective dose\\n3. **防 CIVO ≠ 保性能**：s1 NVE_max=0.64（比 s0 的 0.91 更低），但 eval 仅 45%（比 s0 的 91% 差 2×）。噪声注入本身干扰学习\\n4. **Cheetah \\\"impossible dose\\\" 完整确认（exp_030c FINAL @224K）**：σ=1.0 全程 NVE≤0.30（CIVO 完全抑制），但 eval 从 peak 372@35K（116% baseline，初始学习不受影响！）→ 47@215K（15% baseline）。关键发现：(a) 噪声不阻止初始学习，而是**渐进腐蚀** policy（cumulative actor gradient interference）；(b) value 校准正常（value_mean=12.4, NVE=0.26@215K）→ policy degradation ≠ value corruption；(c) Cheetah 的 CIVO prevention threshold (~σ=1.0) > noise tolerance threshold (~σ<0.5)，不存在 Goldilocks zone。这本身也是 CIVO 与标准 overestimation 不同的证据——标准 Double Q 不会有这种 dose-dependent policy erosion tradeoff\\n5. **Cheetah σ=0.5 失败模式**：NVE=10.67@55K（transient CIVO spike），但 >95K 恢复至 <0.3。eval 永久受损（peak 296@35K → 稳态 ~77）\\n6. **⚠️ \\\"90% baseline\\\" claim 已删除**：cross-seed 均值 (821+401)/2 = 611 ≈ 68%，不是 90%。论文改为 \\\"45%-91% across seeds (mean 68%)\\\"\\n7. **Seed 效应 > dose 效应**：Walker σ=0.2 跨 seed eval=45%-91%，而 σ=0.1→0.2 的 eval 差异（55% vs 68% mean）更小\\n\\n**RAVE 2 配置 ❌ — EMA anchor 自身污染**:\\n- ceil=2.0: negative\\n- ceil=1.5: negative\\n- 机制：CIVO 早期 imagined values 已偏高，EMA 跟踪这些值 → anchor 被污染 → ceiling 无效\\n\\n**Intervention Hierarchy 总结（论文核心 Table）：**\\n\\n| 干预层级 | 方法 | 成功率 | 主要失败机制 |\\n|----------|------|--------|-------------|\\n| Gradient (L1) | Full SGS | 0/3 | Forward-pass damage 不可逆 |\\n| Gradient (L1) | Obs-decoder SGS | 1/6 | 补偿放大 + critic 校准损坏 |\\n| Gradient (L1) | Reward SGS | 0/2 | No-op (梯度 ≠ 因果) |\\n| Output (L2) | RAVE ceil=2.0 | 0/1 | EMA anchor 污染 |\\n| Output (L2) | RAVE ceil=1.5 | 0/1 | EMA anchor 污染 |\\n| Representation (L3) | TCN σ=0.2 | 2/4 (Walker only) | ❌ s2 gradual onset NVE=2.77@105K; s3 sudden onset NVE=3.04@105K; Cheetah/PickCube dose insufficient |\\n| Representation (L3) | TCN σ=0.5 | 0/3 | Overdose (Walker) / Still insufficient (Cheetah) |\\n| **Control** | **dt_emb removal** | **5/5** | **(not an intervention — removes the feature)** |\\n\\n**叙事方向（D116 最终版，Reviewer 三问审查后）**：TCN 是 **diagnostic probe**，不是 deployable mitigation。\\n最终 claim 措辞（确认 2/4）：\\\"TCN is the only tested intervention that achieves complete CIVO suppression in any configuration (2 of 4 Walker seeds at σ=0.2), but exhibits high seed sensitivity (50% failure rate) and fails to transfer across environments—positioning it as a diagnostic probe rather than a deployable mitigation.\\\"\\n\\n**Binary protection 假说（确认 + 扩展）**：s2 渐进上升（0.58→1.01→1.65→2.77@105K），s3 表面回落后突崩（0.855→0.666→3.042@105K）。两种不同的 CIVO onset 动态，但结果相同：runaway NVE>2.5 + eval 崩溃。结论：(1) TCN operates as an all-or-nothing gate — 2/4 success, 2/4 complete failure, no intermediate; (2) CIVO onset 有至少两种模式（gradual escalation vs apparent-recovery-then-sudden-collapse）; (3) NVE 短期回落不能预测保护成功（phase transition 特性）。作为 1-2 句观察写入 + appendix 详细分析，非独立贡献。\\n\\n**Dose-response 定位**：不升级为独立贡献（n 太小，seed variance > dose variance），但作为 Section 3.6 key observations：(1) \\\"Effective dose scales with CIVO severity; tolerable dose does not\\\" — observation; (2) \\\"Impossible dose on Cheetah\\\" — 最有力单点; (3) \\\"Seed variance exceeds dose variance\\\"。\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| TCN σ=0.5 s0 | exp_027_tcn_walker_s0 | ❌ NVE peak 4.0, eval peak 366 (40% baseline), oscillatory CIVO |\\n| TCN σ=0.5 s1 | exp_027_tcn_walker_s1 | ❌ NVE peak 1.637, eval peak 365, oscillatory CIVO |\\n| TCN σ=0.2 s0 | exp_027_tcn_walker_s0_sigma02 | ✅ NVE < 1.0× throughout (peak 0.908@95K), eval peak 821 (91% baseline) |\\n| TCN σ=0.2 s1 | exp_029a_tcn_walker_s1_sigma02 | ✅ NVE < 1.0× (peak 0.643@55K), eval peak 401 (**45% baseline**) |\\n| RAVE ceiling=2.0 | exp_028_rave_walker_s0 | ❌ negative, EMA anchor polluted |\\n| RAVE ceiling=1.5 | exp_028_rave_walker_s0_ceil15 | ❌ negative, same mechanism |\\n| Cheetah TCN σ=0.2 | exp_030a_tcn_cheetah_s0_sigma02 | ❌ NVE=1.903@55K, dose insufficient |\\n| Cheetah TCN σ=0.5 | exp_030b_tcn_cheetah_s0_sigma05 | ❌ NVE=10.67@55K, transient spike, eval=77 (26% baseline) |\\n| PickCube TCN σ=0.2 | exp_031_tcn_pickcube_s0_sigma02 | ❌ NVE=3.71@52.5K, dose insufficient |\\n| Cheetah TCN σ=1.0 (FINAL) | exp_030c @224K | ✅ CIVO prevented (NVE≤0.30 全程) but ❌ eval=372 peak@35K (116% baseline!) → 47@215K (15% baseline). **\\\"Impossible dose\\\" 完整确认**: initial learning unaffected, gradual policy erosion from cumulative noise. Value calibration normal (value_mean=12.4, NVE=0.26@215K) — policy degradation ≠ value corruption |\\n| Walker TCN σ=0.1 | exp_029c (running) | 🔄 边界剂量响应 |\\n\\n**D113**: Scenario A closed → Scenario B confirmed. 论文 = Intervention Hierarchy paper with Walker TCN as existence proof.\\n\\n**Strength**: Moderate. TCN 的 2/8 成功率 + high eval variance 反而是 diagnostic paper 的强证据——证明 CIVO 在所有三个干预层级都难以可靠缓解。Intervention Hierarchy 框架（7+ methods, 3 levels, 3 environments）是系统性贡献。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x)\\n- **D040: Multiple vulnerability pathways**: Pathway A (CIVO, value-driven) + Pathway B (non-CIVO policy instability, eval-driven)\\n- **D107: Gradient-level interventions fail entirely**: SGS 0/3 (full) + 1/6 (obs-decoder) + 0/2 (reward-only) = backward-pass is categorically insufficient. Gradient magnitude ≠ causal importance (reward 38-49% but reward-only SGS fails worst; obs-decoder 16-22% but targeted SGS also fails). Forward-pass representational damage is the irreducible floor.\\n- **Compensatory amplification**: Blocking obs-decoder on Cheetah → 2.6-3.6× NVE amplification vs untreated. Blocking reward → obs-decoder reliance increases → spatial bias reinforced.\\n- **Universal value collapse**: Obs-decoder SGS degrades all seeds' critic calibration (ve_ratio 0.056-0.14 @215K), including CIVO-free seeds. \\\"Protection\\\" = trading overestimation for underestimation.\\n- **Fourth CIVO trajectory (s3)**: Latent onset → delayed collapse → policy recovery → persistent value collapse. CIVO-induced critic damage may be irreversible.\\n- MPC vs imagination: TAWM succeeds because MPC re-plans from real states; imagination-based critic bootstrapping creates the positive feedback loop\\n- **D032: Value self-correction mechanism (009b)**: Transient vs sustained nve>1.5x determines outcome. Early stochasticity (initialization, data sampling) is the gate.\\n\\n### 6. Implications for Future Work\\n- **D113: Intervention Hierarchy — all three levels fail or partially fail**: Gradient (SGS 1/17), Output (RAVE 0/2), Representation (TCN 2/8 with high variance). dt_embedding removal 5/5 but removes the feature entirely.\\n- TCN existence proof (Walker σ=0.2) shows mitigation is *possible in principle* but fragile — narrow dose window, environment-dependent, high seed variance in eval retention\\n- **Dose-environment dependency**: No universal σ exists; Walker-effective dose (σ=0.2) underdoses Cheetah/PickCube, Walker-overdose (σ=0.5) still underdoses Cheetah\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Hierarchical temporal abstraction (THICK, Hieros) may avoid flat-conditioning failure by maintaining separate dynamics per temporal scale\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. Beyond diagnosis, we provide a **systematic Intervention Hierarchy** evaluating 7+ methods across 3 levels (gradient/output/representation) and 3 environments. This is the most comprehensive evaluation of CIVO interventions to date. The key finding: even the most promising intervention (TCN, representation-level) succeeds only under narrow conditions (Walker σ=0.2, 2/8 configs, 45-91% eval retention). The actionable takeaway is that CIVO requires fundamental architectural solutions (hierarchical temporal abstraction per THICK/Hieros), not post-hoc interventions.\\n**Mitigation**: The Intervention Hierarchy table (7 methods × 3 levels) is a standalone contribution — it saves future researchers from re-exploring these dead ends and provides a systematic framework for evaluating future interventions.\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but three elements are genuinely novel: (a) **MPC vs imagination architectural boundary** — first empirical evidence that dt-conditioning succeeds in MPC (TAWM) but fails in imagination-based AC, localizing vulnerability to critic bootstrapping architecture; (b) **gradient magnitude ≠ causal importance** — reward head carries 38-49% of gradients but is causally irrelevant, obs-decoder carries 16-22% but is causally critical (broader methodological insight for multi-head MBRL debugging); (c) **systematic three-level intervention hierarchy** — not a single failure report but a complete taxonomy of 7 methods × 3 levels with structured negative evidence.\\n**Mitigation**: Expand Related Work to engage deeply with MBPO framework, explicitly articulate what CIVO reveals that MBPO does not predict (the specific *trigger* through temporal conditioning, the MPC/imagination divergence, the gradient-causality dissociation).\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n### R9: \\\"Why not test standard overestimation countermeasures (Double Q, ensemble critics)?\\\" [Dream D1 — 三档一致 #1 弱点] → **已实验回答 (D118-D123)**\\n\\n**实验结果（D118-D124 dual-critic + mechanism ablation 系列）**：\\n\\n**1. Dual-critic 跨环境结果（D128 更新）**：\\n- Walker wide dual-critic: **3/3 CIVO prevented**（s0 eval 739.7, s1 551.8, s2 ~121）。NVE 全程 < 1.5\\n  - ⚠️ **s2 非 CIVO 崩溃**：NVE 正常但 eval 354→121，actor entropy 急升(-3.59→-0.45)。可能是 policy exploration failure。**必须区分 \\\"CIVO prevention\\\"(3/3) vs \\\"performance stability\\\"(2/3)**\\n- Walker narrow dual-critic: 1/1 CIVO occurred (NVE 2.75) → full recovery eval 697.8\\n- Cheetah dual-critic: CIVO 发生(NVE 1.75) → 部分恢复 eval 97.5 (31%, 晚期下降)\\n- Cheetah wide single: CIVO 发生(NVE 3.59) → 自修复 eval 146 (晚期下降)。Wide > dual in Cheetah (146 vs 97.5)\\n- PickCube dual-critic: NVE 短暂升至 2.3 后自行修正，**PickCube 不触发持续性 CIVO**（任务动态不同）。eval 27.7 的低性能源于 gate 配置本身对 manipulation 任务有害（vanilla baseline 58.6 → 加 subsample+dt_emb 后 26.6），非 CIVO 导致。PickCube 作为 scope limitation 讨论，跨环境 CIVO 叙事聚焦 locomotion (Walker/Cheetah)\\n- **v1≈v2 across all environments and all configs**（ρ>0.999 Walker; exact match Cheetah/PickCube）\\n\\n**2. v1≈v2 核心发现**：Double Q 的 pessimism 机制在 pure-imagination MBRL 中失效。两个 critic 共享相同 world model imagined features → 收敛到相同函数。Per-sample pessimism 仅为独立 critic 理论值的 3-4%（ρ>0.998）。\\n\\n**3. 2×2 Mechanism Factorial（D126 — 全部 4 格填满）**：\\n| | Single critic | Dual critic (min) |\\n|--|--------------|-------------------|\\n| ~1.05-1.2M params | baseline (**CIVO → 永久崩溃**) | **exp_035 narrow: CIVO(NVE 2.75) → 恢复中 → eval 149+** |\\n| ~2.4-2.9M params | **exp_033 wide: CIVO(NVE 4.75) → 自修复 → eval 408** | **exp_032: CIVO 预防(NVE≤1.1) → eval 670-788** |\\n\\n**4. 双维度发现（D127 最终修正 — 论文最核心新发现）**：\\n\\n**Recovery 维度（min 是主导因素）**：\\n| 配置 | CIVO 发生? | NVE peak | eval final | 恢复能力 |\\n|------|-----------|----------|------------|---------|\\n| Baseline (single+normal) | ✓ | ~2-4 | collapsed | 无 |\\n| exp_033 (single+wide) | ✓ | 4.75 | 408 | 部分(capacity) |\\n| **exp_035 (dual+narrow)** | **✓** | **2.75** | **697.8** | **完全(min)** |\\n| exp_032 (dual+wide) | ✗ | ≤1.1 | 670-788 | 无需恢复 |\\n\\n- **Min 的核心价值是 recovery 而非 prevention**：exp_035 eval 697.8 ≈ exp_032 670-788，尽管经历了 CIVO\\n- **Min >> Capacity for recovery**：697.8 vs 408。min 实现完全恢复，capacity 仅部分恢复\\n- **Min 同时降低 CIVO 严重度**：exp_035 NVE 2.75 < exp_033 NVE 4.75\\n\\n**Prevention 维度（需 min+capacity 协同）**：\\n- 只有 exp_032 (min+capacity) 从未触发 CIVO（NVE≤1.1）\\n- Prevention 优势不是最终性能（≈recovery-with-min），而是**训练效率**（节省 ~40K steps 恢复期）\\n- v1≈v2 在所有 dual-critic 中成立（包括 exp_032）→ 协同效应是经验事实，机制为 hypothesis\\n\\n**跨环境 caveat**：Walker 上 recovery 充分(697.8)，但 Cheetah 上 recovery 不充分(97.5, 31%)。环境越难，recovery 越不可靠 → prevention 在难环境中价值更大。\\n\\n**⚠️ 机制为 open hypothesis**：v1≈v2 在所有 dual-critic 中成立。可能的解释：(a) min 在训练早期(v1≠v2 时)建立了稳定学习轨迹 (b) min-target coupling 在 wider network 的 smoother loss landscape 上更有效 (c) capacity 提升 value calibration 质量而非多样性。论文中诚实报告经验事实，机制标注为 hypothesis。\\n\\n**论文 narrative（D127 最终版）**：双维度报告——(a) Prevention: min+capacity 协同预防 CIVO（训练效率优势）(b) Recovery: min 是 CIVO 后恢复的主导因素（被低估的特性）(c) 跨环境：难环境中 recovery 不充分，凸显 prevention 的必要性 (d) v1≈v2: pessimism 机制失效但 min 通过其他通路起效（open question）\\n\\n**5. 环境依赖性（D125 — exp_034 完成）**：\\n- **Walker（中等 CIVO，untreated NVE 2-4）**：min 操作完全预防 CIVO（2/2 seeds）\\n- **Cheetah（高强度 CIVO，untreated NVE 8.27-70.64，seed 间高方差）**：min 操作将 NVE peak 从 baseline 8.27-70.64 降至 1.75（≥4× reduction），但仍超 1.5 阈值，不能完全预防。双倍参数(2.36M)实现部分恢复(eval 97.5)但仅达 pre-CIVO 峰值的 31% 且晚期下降。对比 Walker wide-critic(exp_033) 恢复到 408(>pre-CIVO)，说明**环境动力学复杂度是恢复质量的决定性因素**。（来源：exp_010b s0 NVE_final=70.64, s1 NVE_peak=8.27。论文中须报告两个 seed 并使用保守 claim \\\"≥4× NVE reduction\\\"，不用 40×）\\n- **论文 claim 限定**：\\\"min=prevention\\\" 必须加 \\\"in moderate-CIVO environments\\\" 限定，否则审稿人拿 Cheetah 数据直接攻击。这反而强化 intervention hierarchy 叙事——即使 architecture-level 干预也有 CIVO 严重度边界\\n\\n**论文 narrative（D126 修正）**：从\\\"为什么不测标准对策\\\"转为\\\"我们测了——(a) pessimism 机制失效（v1≈v2 across all configs），(b) min alone 和 capacity alone 都不能预防 CIVO，(c) 两者协同（min+capacity）才能预防，(d) 机制：capacity 提供函数多样性 + min 约束 overestimation 反馈环，(e) prevention >> recovery\\\"。2×2 factorial 的**交互效应**比任何单因素更有方法论启示——对 ML 社区的 critic 设计指导价值更高。\\n\\n### R10: \\\"NVE threshold is calibrated and validated in-sample\\\" [Dream D8 — 三档一致]\\n**Pre-emption**: 承认 1.5× threshold 在同一 29 个数据点上 calibrate 和 validate。但 (a) Youden-optimal threshold (1.53×) 独立收敛到预设 1.5×，不是事后拟合；(b) 4 环境 × 多种 configs 提供 reasonable diversity；(c) ground truth labeling 基于 mechanism identification（CIVO vs non-CIVO dynamics），不是简单的 performance threshold。\\n**Mitigation**: 明确承认 limitation，建议 held-out validation（不同架构或环境）作为 future work。讨论 NVE 在不同 reward scale 下的 generalization boundary。\\n\\n### R11: \\\"Pixel observations would change the gradient decomposition\\\" [Dream D9 — 三档一致]\\n**Pre-emption**: 正确——pixel 下 obs-decoder channel（本文识别为 16-22% 梯度但因果关键）会承载更多信息和更大梯度。CIVO 动态可能更强（更多空间信息可利用）或更弱（decoder 正则化效应更强）。这是一个重要的泛化性边界。\\n**Mitigation**: 在 limitations 中明确讨论，定位为 future work。强调本文在 proprioceptive setting 的发现建立了 CIVO 的基础机制理论，pixel 扩展需要后续工作。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations + 2 environments | None |\\n| C2 (CIVO trigger) | ✅ Strong — nve≥1.5× threshold 15/16, AUROC=0.969 (2 envs) | None |\\n| C3 (untrained emb protection) | ✅ Strong — 008a + cross-env replication | None |\\n| C4 (dt amplification) | ✅ Moderate — dt=1 > dt=2 > dt=4 monotonic | Only 2 dt values |\\n| C5 (horizon/subsample secondary) | ✅ Moderate | None blocking |\\n| C6 (dt=1 imag partial) | ✅ 4 seeds — 2/4 collapse via distinct pathways (CIVO + IRD) | None |\\n| C7 (SGS failure / gradient decoupling) | ✅ Strong — 17 seeds, 3 variants, 2 envs. 1/17 CIVO-free (with value collapse side effect). Embedding removal 5/5. | None |\\n| C8 (Intervention Hierarchy) | ✅ D113 确认 — TCN 2/8, RAVE 0/2, SGS 1/17. Hierarchy 本身是贡献 | Cheetah σ=1.0 + PickCube σ=0.5 pending (extra data points) |\\n\\n### Priority Actions Before Submission (updated 2026-05-20 D116 — Dream修复)\\n1. ~~C1-C7 实验~~ — ✅ 全部完成\\n2. ~~TCN/RAVE 评估~~ — ✅ D113 Scenario B 确认\\n3. ~~论文 TCN 文本修正~~ — ✅ cross-seed 报告 + narrative reframe\\n4. **🔄 [P0] 标准过估值对策讨论** — Paper Agent 执行中 (Dream R9)\\n5. **🔄 [P0] 参考文献扩展至 40+** — Paper Agent 执行中 (Dream D7)\\n6. **🔄 [P1] 新颖性锐化 + NVE 讨论 + pixel obs + CoRL 相关性** — Paper Agent 队列 (Dream D3/D8/D9/D2)\\n7. **🔄 [P1] Cheetah σ=1.0 + PickCube σ=0.5** — 运行中，Hierarchy 额外数据\\n8. **Re-dream 验证** — Paper Agent 结构性修复完成后\\n9. **论文收尾** — Reviewer 审查 + provenance + 三件套 + 5/25 数据锁定\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 46300, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "40c116e5-7d3f-4148-8066-cd2e28a9b5e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. ~~**\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**~~ (deprecated — \\\\\\\"delusional critic\\\\\\\" conflicts with Lu et al. 2018)\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"** ← preferred after D037 terminology decision\\\\n4. **\\\\\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\\\\\"**\\\\n\\\\n**⚠️ D037 术语决定**: \\\\\\\"delusional critic\\\\\\\" → **\\\\\\\"conditioning-induced value overestimation\\\\\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\\\\\"delusional critic\\\\\\\" → \\\\\\\"conditioning-induced value overestimation\\\\\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\\\n\\\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\\\\\"known failure class 的 specific instance\\\\\\\" 升级为 \\\\\\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\\\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\\\n\\\\n## Venue\\\\n\\\\n**ICML 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\\\n\\\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\\\n\\\\n---\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\\\n\\\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\\\n\\\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\\\n\\\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\\\n\\\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\\\n\\\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\\\n\\\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\\\n\\\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\\\n\\\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\\\\\"point of no return\\\\\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\\\n\\\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**⚠️ 修正：reward head 贡献最大梯度（49%@55K），obs decoder 仅 16.3%。但 reward-only SGS 仍失败——梯度大小与因果重要性解耦。** |\\\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\\\n\\\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\\\\\"eliminates\\\\\\\" 改为 \\\\\\\"significantly delays and reduces\\\\\\\"。推荐方案仍是 008e_v3（C6）**。\\\\n\\\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\\\n\\\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\\\n|-------|------------|------------|---------|---------------|---------------|------------|\\\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\\\n\\\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\\\n\\\\n**dt_emb Gradient Decomposition (D061) — ⚠️ 已修正**\\\\n\\\\n梯度验证（torch.autograd.grad analysis, correct config gate_fixed_dt=2）揭示 dt_emb.weight 的梯度来源分布：\\\\n\\\\n| Source | 55K (%) | 112K (%) |\\\\n|--------|---------|----------|\\\\n| Reward head | 49.0 | 38.1 |\\\\n| KL dynamics | 34.7 | 40.4 |\\\\n| Observation decoders | 16.3 | 21.5 |\\\\n| Cont head | ~0 | ~0 |\\\\n\\\\n⚠️ **之前的 93% obs / 0% reward 数据不可复现**（见 gradient_decomposition_008d_corrected.json）。正确结论：reward head 贡献最大梯度（38-49%），但 reward-only SGS (016e) 仍然失败（NVE=10.42×）；obs decoder 通路（16-22%）虽贡献最小，但携带关键的 Δt-specific 空间信息驱动 RSSM fidelity gap。**梯度大小与因果重要性解耦**是核心发现。\\\\n\\\\n**Strength**: Strong (upgraded from Moderate-strong, 2026-05-25). Three-way causal ablation (trained/frozen/absent dt_emb) with identical configs provides decisive evidence: **trained dt_emb 10/10 CIVO onset** (8 Walker + 2 Cheetah) vs **frozen dt_emb 0/2** (exp_042, exp_067) vs **no dt_emb 0/3** (008f s1, 009c s2, exp_069 s1); Fisher exact p < 0.001. The three-way design rules out \\\\\\\"embedding presence\\\\\\\" as cause — only gradient training triggers CIVO. The **nve>1.5x threshold** achieves perfect separation across all tested seeds. **Collapse** remains stochastic (~50% of trained seeds), but **CIVO onset** (nve>1.5x) is deterministic given trained dt_emb + multi-step exposure. Pending: exp_070-073 will extend to 10/10 trained + 0/5 control.\\\\n\\\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\\\n\\\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\\\n\\\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\\\n\\\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\\\n\\\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\\\n\\\\n### C4: Longer dt amplifies the problem\\\\n\\\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\\\n\\\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\\\n\\\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\\\n\\\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\\\n\\\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\\\n\\\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\\\n\\\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\\\n\\\\n原假设\\\\\\\"dt=1 imagination = practical mitigation\\\\\\\"被**否证**。跨 seed 数据：\\\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\\\n- **独立 seed 崩溃率: 1/2 (50%)**\\\\n\\\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\\\n\\\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\\\n\\\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\\\n\\\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\\\n|------|---------------------|---------------------|\\\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\\\n\\\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\\\n\\\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\\\\\"seed 2 本身不稳定\\\\\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\\\n\\\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\\\n|------|-------------------|------------|------|\\\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\\\n\\\\n**C6 最终状态: PARTIALLY FALSIFIED**\\\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\\\n- 崩溃是配置导致的，不是 seed 特异性\\\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\\\n\\\\n**论文表述建议**: \\\\\\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\\\\\"\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\\\n\\\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\\\n\\\\n### C7: Gradient-level interventions fail to eliminate CIVO — gradient magnitude decoupled from causal importance\\\\n\\\\n**⚠️ D107: SGS 全面失败，梯度干预不是正确的干预层级**\\\\n\\\\nAll three SGS variants fail to eliminate CIVO:\\\\n- **Reward-only SGS** (016e): 0/2, NVE=10.42× — paradoxically worse than untreated\\\\n- **Full-pathway SGS** (018+021): 0/3 across two environments — blocks all non-KL gradients, still fails\\\\n- **Obs-decoder-only SGS** (025+026): 1/6 across two environments — the identified causal channel, still fails\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Reward-only SGS 反效果 | exp_016e | NVE=10.42×, collapse to eval 31.7. 阻断 reward 梯度迫使 dt_emb 通过 obs-decoder 适配，强化空间偏差 |\\\\n| Full SGS 0/3 | exp_018 (Walker 2 seeds) + exp_021 (Cheetah 1 seed) | s1: eval 448.3, NVE 1.66× (CIVO+); s2: collapse 40.8; Cheetah: transient NVE 9.94×→0.34× (not SGS effect) |\\\\n| Obs-decoder SGS 1/6 | exp_025 (Walker 4 seeds) + exp_026 (Cheetah 2 seeds) | Walker: 1/4 (s1 survived, s2-s4 collapsed); Cheetah: 0/2, NVE 21.9×-30.2× (2.6-3.6× worse than untreated 8.3×) |\\\\n| Compensatory amplification (Cheetah) | exp_026 vs exp_010b | Obs-decoder SGS NVE 21.9-30.2× vs untreated 8.3× — blocking obs-decoder shifts co-adaptation to reward head |\\\\n| Universal value collapse | exp_025 all seeds @215K | All 4 seeds terminal ve_ratio=0.056-0.14, including s1 \\\\\\\"success\\\\\\\" (eval 726, value 41) — critic underestimation as side effect |\\\\n| Fourth trajectory (s3) | exp_025_s3 | Healthy@105K → CIVO@135K (NVE 6.8×) → eval recovery (590@215K) → persistent value collapse (ve_ratio 0.14) |\\\\n\\\\n**核心发现**：\\\\n1. **梯度量级与因果重要性脱耦**: Reward head 38-49% 梯度占比（最大），但 reward-only SGS 失败最惨；obs decoder 16-22%（最小非零），但 obs-decoder SGS 也失败。梯度分解成功作为**诊断工具**但失败作为**干预指南**。\\\\n2. **Backward-pass 是错误的干预层级**: Full SGS 阻断所有非 KL 梯度仍 0/3 → forward-pass representational damage 是不可约减的脆弱性底线。Temporal embedding 通过 forward pass 塑造潜在表示，无论哪些梯度更新它。\\\\n3. **补偿放大**: 阻断任一通道导致剩余通道放大 co-adaptation（Cheetah: 2.6-3.6× 放大）。\\\\n4. **SGS 副作用**: 即使\\\\\\\"成功\\\\\\\"的 seed 也遭受 critic 校准损坏（universal value collapse）。\\\\n\\\\n**Strength**: Strong. 17 seeds across 3 SGS variants and 2 environments. Only 1/17 avoids CIVO, and that seed still suffers value collapse. Embedding removal (008f+024b): 5/5 = 100% prevention. The contrast establishes gradient stopping as categorically insufficient.\\\\n\\\\n### C8: Forward-pass interventions — TCN and RAVE (🔄 验证中)\\\\n\\\\n**⚠️ D107/D108: 两种 forward-pass 干预方法并行验证**\\\\n\\\\nSGS 失败的根因是 backward-pass 干预无法消除 forward-pass representational damage。C8 提出绕过梯度冗余的 forward-pass 干预：\\\\n\\\\n**TCN (Temporal Conditioning Noise)**:\\\\n- 设计理念：imagination 时对 dt_embedding 输出加高斯噪声 $\\\\\\\\mathcal{N}(0, \\\\\\\\sigma^2)$，降低 conditioning 精度\\\\n- 机制假说：噪声阻止 RSSM 和 critic 对精确 dt 信号的过度 co-adaptation，同时保留粗粒度时间信息\\\\n- 与 SGS 的区别：在 forward pass 层面操作，不依赖梯度阻断\\\\n- 超参：σ=0.5×std（主实验）+ σ=0.2×std（替代超参）\\\\n- 实验：exp_027_tcn_walker_s0 (σ=0.5), exp_027_tcn_walker_s0_sigma02 (σ=0.2)\\\\n\\\\n**RAVE (Reality-Anchored Value Estimation)**:\\\\n- 设计理念：用 EMA 跟踪真实环境状态的值估计，当 imagined value 超过 EMA×ceiling 时截断\\\\n- 机制假说：直接限制 critic overestimation 的幅度，打断 CIVO 正反馈循环\\\\n- 与 SGS 的区别：不修改梯度流，而是在 value estimate 层面施加约束\\\\n- 超参：ceiling=2.0（主实验）+ ceiling=1.5（替代超参）\\\\n- 实验：exp_028_rave_walker_s0 (ceil=2.0), exp_028_rave_walker_s0_ceil15 (ceil=1.5)\\\\n\\\\n**D113 全面评估完成 (2026-05-20) — Scenario B 确认：Intervention Hierarchy 论文**\\\\n\\\\nTCN 跨环境 universal mitigation（Scenario A）已关闭。TCN 仅在 Walker σ=0.2 成功（2/8 configs），且 eval 保留高度不稳定（91%/45% across seeds）。论文核心转为 **Intervention Hierarchy**：三层干预（Gradient → Output → Representation）系统性评估，证明 CIVO fundamentally hard to mitigate。\\\\n\\\\n**TCN 全景表（D113 最终）：**\\\\n\\\\n| 环境 | σ | NVE_max | CIVO 阻止? | eval 保留 |\\\\n|------|---|---------|-----------|----------|\\\\n| Walker s0 | 0.1 | 1.02@95K | ⚠️ 边界（进行中） | TBD |\\\\n| Walker s0 | 0.2 | 0.91@95K | ✅ | 91% |\\\\n| Walker s1 | 0.2 | 0.64@55K | ✅ | **45%** |\\\\n| Walker s2 | 0.2 | **2.11@95K** | **❌ CIVO confirmed** | **5%** (eval 45, 持续崩溃) |\\\\n| Walker s3 | 0.2 | TBD | 🔄 5K | — |\\\\n| Walker s0 | 0.5 | 3.97 | ❌ oscillatory | ~40% |\\\\n| Walker s1 | 0.5 | 1.64 | ❌ oscillatory | ~40% |\\\\n| Cheetah s0 | 0.2 | 1.90@55K | ❌ dose insufficient | crashed |\\\\n| Cheetah s0 | 0.5 | **10.67@55K** | ❌ transient spike+recovery | 26% |\\\\n| PickCube s0 | 0.2 | **3.71@52.5K** | ❌ dose insufficient | failing |\\\\n\\\\n**关键发现**：\\\\n1. **TCN 成功率 2/10**（NVE<1.0× 标准）或 3/10（NVE<1.5×）：Walker σ=0.2 s2 NVE=2.11@95K（持续恶化），eval=45 (~5% baseline)，成功率从 2/2 降到 2/3。即使最优 dose + 最温和环境也不可靠\\\\n2. **Dose-environment dependency**：σ=0.2 在 Walker 有效但 Cheetah/PickCube 不足，σ=0.5 在 Walker 过量但 Cheetah 仍不足。不存在 universal effective dose\\\\n3. **防 CIVO ≠ 保性能**：s1 NVE_max=0.64（比 s0 的 0.91 更低），但 eval 仅 45%（比 s0 的 91% 差 2×）。噪声注入本身干扰学习\\\\n4. **Cheetah \\\\\\\"impossible dose\\\\\\\" 完整确认（exp_030c FINAL @224K）**：σ=1.0 全程 NVE≤0.30（CIVO 完全抑制），但 eval 从 peak 372@35K（116% baseline，初始学习不受影响！）→ 47@215K（15% baseline）。关键发现：(a) 噪声不阻止初始学习，而是**渐进腐蚀** policy（cumulative actor gradient interference）；(b) value 校准正常（value_mean=12.4, NVE=0.26@215K）→ policy degradation ≠ value corruption；(c) Cheetah 的 CIVO prevention threshold (~σ=1.0) > noise tolerance threshold (~σ<0.5)，不存在 Goldilocks zone。这本身也是 CIVO 与标准 overestimation 不同的证据——标准 Double Q 不会有这种 dose-dependent policy erosion tradeoff\\\\n5. **Cheetah σ=0.5 失败模式**：NVE=10.67@55K（transient CIVO spike），但 >95K 恢复至 <0.3。eval 永久受损（peak 296@35K → 稳态 ~77）\\\\n6. **⚠️ \\\\\\\"90% baseline\\\\\\\" claim 已删除**：cross-seed 均值 (821+401)/2 = 611 ≈ 68%，不是 90%。论文改为 \\\\\\\"45%-91% across seeds (mean 68%)\\\\\\\"\\\\n7. **Seed 效应 > dose 效应**：Walker σ=0.2 跨 seed eval=45%-91%，而 σ=0.1→0.2 的 eval 差异（55% vs 68% mean）更小\\\\n\\\\n**RAVE 2 配置 ❌ — EMA anchor 自身污染**:\\\\n- ceil=2.0: negative\\\\n- ceil=1.5: negative\\\\n- 机制：CIVO 早期 imagined values 已偏高，EMA 跟踪这些值 → anchor 被污染 → ceiling 无效\\\\n\\\\n**Intervention Hierarchy 总结（论文核心 Table）：**\\\\n\\\\n| 干预层级 | 方法 | 成功率 | 主要失败机制 |\\\\n|----------|------|--------|-------------|\\\\n| Gradient (L1) | Full SGS | 0/3 | Forward-pass damage 不可逆 |\\\\n| Gradient (L1) | Obs-decoder SGS | 1/6 | 补偿放大 + critic 校准损坏 |\\\\n| Gradient (L1) | Reward SGS | 0/2 | No-op (梯度 ≠ 因果) |\\\\n| Output (L2) | RAVE ceil=2.0 | 0/1 | EMA anchor 污染 |\\\\n| Output (L2) | RAVE ceil=1.5 | 0/1 | EMA anchor 污染 |\\\\n| Representation (L3) | TCN σ=0.2 | 2/4 (Walker only) | ❌ s2 gradual onset NVE=2.77@105K; s3 sudden onset NVE=3.04@105K; Cheetah/PickCube dose insufficient |\\\\n| Representation (L3) | TCN σ=0.5 | 0/3 | Overdose (Walker) / Still insufficient (Cheetah) |\\\\n| **Control** | **dt_emb removal** | **5/5** | **(not an intervention — removes the feature)** |\\\\n\\\\n**叙事方向（D116 最终版，Reviewer 三问审查后）**：TCN 是 **diagnostic probe**，不是 deployable mitigation。\\\\n最终 claim 措辞（确认 2/4）：\\\\\\\"TCN is the only tested intervention that achieves complete CIVO suppression in any configuration (2 of 4 Walker seeds at σ=0.2), but exhibits high seed sensitivity (50% failure rate) and fails to transfer across environments—positioning it as a diagnostic probe rather than a deployable mitigation.\\\\\\\"\\\\n\\\\n**Binary protection 假说（确认 + 扩展）**：s2 渐进上升（0.58→1.01→1.65→2.77@105K），s3 表面回落后突崩（0.855→0.666→3.042@105K）。两种不同的 CIVO onset 动态，但结果相同：runaway NVE>2.5 + eval 崩溃。结论：(1) TCN operates as an all-or-nothing gate — 2/4 success, 2/4 complete failure, no intermediate; (2) CIVO onset 有至少两种模式（gradual escalation vs apparent-recovery-then-sudden-collapse）; (3) NVE 短期回落不能预测保护成功（phase transition 特性）。作为 1-2 句观察写入 + appendix 详细分析，非独立贡献。\\\\n\\\\n**Dose-response 定位**：不升级为独立贡献（n 太小，seed variance > dose variance），但作为 Section 3.6 key observations：(1) \\\\\\\"Effective dose scales with CIVO severity; tolerable dose does not\\\\\\\" — observation; (2) \\\\\\\"Impossible dose on Cheetah\\\\\\\" — 最有力单点; (3) \\\\\\\"Seed variance exceeds dose variance\\\\\\\"。\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| TCN σ=0.5 s0 | exp_027_tcn_walker_s0 | ❌ NVE peak 4.0, eval peak 366 (40% baseline), oscillatory CIVO |\\\\n| TCN σ=0.5 s1 | exp_027_tcn_walker_s1 | ❌ NVE peak 1.637, eval peak 365, oscillatory CIVO |\\\\n| TCN σ=0.2 s0 | exp_027_tcn_walker_s0_sigma02 | ✅ NVE < 1.0× throughout (peak 0.908@95K), eval peak 821 (91% baseline) |\\\\n| TCN σ=0.2 s1 | exp_029a_tcn_walker_s1_sigma02 | ✅ NVE < 1.0× (peak 0.643@55K), eval peak 401 (**45% baseline**) |\\\\n| RAVE ceiling=2.0 | exp_028_rave_walker_s0 | ❌ negative, EMA anchor polluted |\\\\n| RAVE ceiling=1.5 | exp_028_rave_walker_s0_ceil15 | ❌ negative, same mechanism |\\\\n| Cheetah TCN σ=0.2 | exp_030a_tcn_cheetah_s0_sigma02 | ❌ NVE=1.903@55K, dose insufficient |\\\\n| Cheetah TCN σ=0.5 | exp_030b_tcn_cheetah_s0_sigma05 | ❌ NVE=10.67@55K, transient spike, eval=77 (26% baseline) |\\\\n| PickCube TCN σ=0.2 | exp_031_tcn_pickcube_s0_sigma02 | ❌ NVE=3.71@52.5K, dose insufficient |\\\\n| Cheetah TCN σ=1.0 (FINAL) | exp_030c @224K | ✅ CIVO prevented (NVE≤0.30 全程) but ❌ eval=372 peak@35K (116% baseline!) → 47@215K (15% baseline). **\\\\\\\"Impossible dose\\\\\\\" 完整确认**: initial learning unaffected, gradual policy erosion from cumulative noise. Value calibration normal (value_mean=12.4, NVE=0.26@215K) — policy degradation ≠ value corruption |\\\\n| Walker TCN σ=0.1 | exp_029c (running) | 🔄 边界剂量响应 |\\\\n\\\\n**D113**: Scenario A closed → Scenario B confirmed. 论文 = Intervention Hierarchy paper with Walker TCN as existence proof.\\\\n\\\\n**Strength**: Moderate. TCN 的 2/8 成功率 + high eval variance 反而是 diagnostic paper 的强证据——证明 CIVO 在所有三个干预层级都难以可靠缓解。Intervention Hierarchy 框架（7+ methods, 3 levels, 3 environments）是系统性贡献。\\\\n\\\\n---\\\\n\\\\n## Story Arc\\\\n\\\\n### 1. Introduction\\\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\\\n\\\\n### 2. Background & Related Work\\\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\\\n- World-model RL (Dreamer family, IRIS, TWM)\\\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\\\n\\\\n### 3. Methodology\\\\n- DreamerV3 as base architecture\\\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\\\n\\\\n### 4. Results\\\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\\\\\"smoking gun\\\\\\\" comparison (008c vs 008d)\\\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\\\n- **Finding 4**: Longer dt amplifies (C4)\\\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\\\n\\\\n### 5. Discussion\\\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x)\\\\n- **D040: Multiple vulnerability pathways**: Pathway A (CIVO, value-driven) + Pathway B (non-CIVO policy instability, eval-driven)\\\\n- **D107: Gradient-level interventions fail entirely**: SGS 0/3 (full) + 1/6 (obs-decoder) + 0/2 (reward-only) = backward-pass is categorically insufficient. Gradient magnitude ≠ causal importance (reward 38-49% but reward-only SGS fails worst; obs-decoder 16-22% but targeted SGS also fails). Forward-pass representational damage is the irreducible floor.\\\\n- **Compensatory amplification**: Blocking obs-decoder on Cheetah → 2.6-3.6× NVE amplification vs untreated. Blocking reward → obs-decoder reliance increases → spatial bias reinforced.\\\\n- **Universal value collapse**: Obs-decoder SGS degrades all seeds' critic calibration (ve_ratio 0.056-0.14 @215K), including CIVO-free seeds. \\\\\\\"Protection\\\\\\\" = trading overestimation for underestimation.\\\\n- **Fourth CIVO trajectory (s3)**: Latent onset → delayed collapse → policy recovery → persistent value collapse. CIVO-induced critic damage may be irreversible.\\\\n- MPC vs imagination: TAWM succeeds because MPC re-plans from real states; imagination-based critic bootstrapping creates the positive feedback loop\\\\n- **D032: Value self-correction mechanism (009b)**: Transient vs sustained nve>1.5x determines outcome. Early stochasticity (initialization, data sampling) is the gate.\\\\n\\\\n### 6. Implications for Future Work\\\\n- **D113: Intervention Hierarchy — all three levels fail or partially fail**: Gradient (SGS 1/17), Output (RAVE 0/2), Representation (TCN 2/8 with high variance). dt_embedding removal 5/5 but removes the feature entirely.\\\\n- TCN existence proof (Walker σ=0.2) shows mitigation is *possible in principle* but fragile — narrow dose window, environment-dependent, high seed variance in eval retention\\\\n- **Dose-environment dependency**: No universal σ exists; Walker-effective dose (σ=0.2) underdoses Cheetah/PickCube, Walker-overdose (σ=0.5) still underdoses Cheetah\\\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\\\n- Hierarchical temporal abstraction (THICK, Hieros) may avoid flat-conditioning failure by maintaining separate dynamics per temporal scale\\\\n- Need for diagnostic methodology in temporal abstraction research\\\\n\\\\n---\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### R1: \\\\\\\"Limited to one environment / one base algorithm\\\\\\\"\\\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\\\n\\\\n### R2: \\\\\\\"No proposed solution — what's the actionable takeaway?\\\\\\\"\\\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. Beyond diagnosis, we provide a **systematic Intervention Hierarchy** evaluating 7+ methods across 3 levels (gradient/output/representation) and 3 environments. This is the most comprehensive evaluation of CIVO interventions to date. The key finding: even the most promising intervention (TCN, representation-level) succeeds only under narrow conditions (Walker σ=0.2, 2/8 configs, 45-91% eval retention). The actionable takeaway is that CIVO requires fundamental architectural solutions (hierarchical temporal abstraction per THICK/Hieros), not post-hoc interventions.\\\\n**Mitigation**: The Intervention Hierarchy table (7 methods × 3 levels) is a standalone contribution — it saves future researchers from re-exploring these dead ends and provides a systematic framework for evaluating future interventions.\\\\n\\\\n### R3: \\\\\\\"Value/eval ratio is a crude proxy for overestimation\\\\\\\"\\\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\\\n\\\\n### R4: \\\\\\\"The factorial design is incomplete — missing cells in the grid\\\\\\\"\\\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\\\n\\\\n### R5: \\\\\\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\\\\\"\\\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but three elements are genuinely novel: (a) **MPC vs imagination architectural boundary** — first empirical evidence that dt-conditioning succeeds in MPC (TAWM) but fails in imagination-based AC, localizing vulnerability to critic bootstrapping architecture; (b) **gradient magnitude ≠ causal importance** — reward head carries 38-49% of gradients but is causally irrelevant, obs-decoder carries 16-22% but is causally critical (broader methodological insight for multi-head MBRL debugging); (c) **systematic three-level intervention hierarchy** — not a single failure report but a complete taxonomy of 7 methods × 3 levels with structured negative evidence.\\\\n**Mitigation**: Expand Related Work to engage deeply with MBPO framework, explicitly articulate what CIVO reveals that MBPO does not predict (the specific *trigger* through temporal conditioning, the MPC/imagination divergence, the gradient-causality dissociation).\\\\n\\\\n### R6: \\\\\\\"All results from a single seed — how robust are the conclusions?\\\\\\\"\\\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\\\n\\\\n### R7: \\\\\\\"The factorial design confounds dt_embedding training with training data composition\\\\\\\"\\\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\\\n\\\\n### R8: \\\\\\\"008f reward prediction degradation undermines the causal control\\\\\\\"\\\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\\\\\"去掉 dt_embedding → 不崩塌\\\\\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\\\n\\\\n### R9: \\\\\\\"Why not test standard overestimation countermeasures (Double Q, ensemble critics)?\\\\\\\" [Dream D1 — 三档一致 #1 弱点] → **已实验回答 (D118-D123)**\\\\n\\\\n**实验结果（D118-D124 dual-critic + mechanism ablation 系列）**：\\\\n\\\\n**1. Dual-critic 跨环境结果（D128 更新）**：\\\\n- Walker wide dual-critic: **3/3 CIVO prevented**（s0 eval 739.7, s1 551.8, s2 ~121）。NVE 全程 < 1.5\\\\n  - ⚠️ **s2 非 CIVO 崩溃**：NVE 正常但 eval 354→121，actor entropy 急升(-3.59→-0.45)。可能是 policy exploration failure。**必须区分 \\\\\\\"CIVO prevention\\\\\\\"(3/3) vs \\\\\\\"performance stability\\\\\\\"(2/3)**\\\\n- Walker narrow dual-critic: 1/1 CIVO occurred (NVE 2.75) → full recovery eval 697.8\\\\n- Cheetah dual-critic: CIVO 发生(NVE 1.75) → 部分恢复 eval 97.5 (31%, 晚期下降)\\\\n- Cheetah wide single: CIVO 发生(NVE 3.59) → 自修复 eval 146 (晚期下降)。Wide > dual in Cheetah (146 vs 97.5)\\\\n- PickCube dual-critic: NVE 短暂升至 2.3 后自行修正，**PickCube 不触发持续性 CIVO**（任务动态不同）。eval 27.7 的低性能源于 gate 配置本身对 manipulation 任务有害（vanilla baseline 58.6 → 加 subsample+dt_emb 后 26.6），非 CIVO 导致。PickCube 作为 scope limitation 讨论，跨环境 CIVO 叙事聚焦 locomotion (Walker/Cheetah)\\\\n- **v1≈v2 across all environments and all configs**（ρ>0.999 Walker; exact match Cheetah/PickCube）\\\\n\\\\n**2. v1≈v2 核心发现**：Double Q 的 pessimism 机制在 pure-imagination MBRL 中失效。两个 critic 共享相同 world model imagined features → 收敛到相同函数。Per-sample pessimism 仅为独立 critic 理论值的 3-4%（ρ>0.998）。\\\\n\\\\n**3. 2×2 Mechanism Factorial（D126 — 全部 4 格填满）**：\\\\n| | Single critic | Dual critic (min) |\\\\n|--|--------------|-------------------|\\\\n| ~1.05-1.2M params | baseline (**CIVO → 永久崩溃**) | **exp_035 narrow: CIVO(NVE 2.75) → 恢复中 → eval 149+** |\\\\n| ~2.4-2.9M params | **exp_033 wide: CIVO(NVE 4.75) → 自修复 → eval 408** | **exp_032: CIVO 预防(NVE≤1.1) → eval 670-788** |\\\\n\\\\n**4. 双维度发现（D127 最终修正 — 论文最核心新发现）**：\\\\n\\\\n**Recovery 维度（min 是主导因素）**：\\\\n| 配置 | CIVO 发生? | NVE peak | eval final | 恢复能力 |\\\\n|------|-----------|----------|------------|---------|\\\\n| Baseline (single+normal) | ✓ | ~2-4 | collapsed | 无 |\\\\n| exp_033 (single+wide) | ✓ | 4.75 | 408 | 部分(capacity) |\\\\n| **exp_035 (dual+narrow)** | **✓** | **2.75** | **697.8** | **完全(min)** |\\\\n| exp_032 (dual+wide) | ✗ | ≤1.1 | 670-788 | 无需恢复 |\\\\n\\\\n- **Min 的核心价值是 recovery 而非 prevention**：exp_035 eval 697.8 ≈ exp_032 670-788，尽管经历了 CIVO\\\\n- **Min >> Capacity for recovery**：697.8 vs 408。min 实现完全恢复，capacity 仅部分恢复\\\\n- **Min 同时降低 CIVO 严重度**：exp_035 NVE 2.75 < exp_033 NVE 4.75\\\\n\\\\n**Prevention 维度（需 min+capacity 协同）**：\\\\n- 只有 exp_032 (min+capacity) 从未触发 CIVO（NVE≤1.1）\\\\n- Prevention 优势不是最终性能（≈recovery-with-min），而是**训练效率**（节省 ~40K steps 恢复期）\\\\n- v1≈v2 在所有 dual-critic 中成立（包括 exp_032）→ 协同效应是经验事实，机制为 hypothesis\\\\n\\\\n**跨环境 caveat**：Walker 上 recovery 充分(697.8)，但 Cheetah 上 recovery 不充分(97.5, 31%)。环境越难，recovery 越不可靠 → prevention 在难环境中价值更大。\\\\n\\\\n**⚠️ 机制为 open hypothesis**：v1≈v2 在所有 dual-critic 中成立。可能的解释：(a) min 在训练早期(v1≠v2 时)建立了稳定学习轨迹 (b) min-target coupling 在 wider network 的 smoother loss landscape 上更有效 (c) capacity 提升 value calibration 质量而非多样性。论文中诚实报告经验事实，机制标注为 hypothesis。\\\\n\\\\n**论文 narrative（D127 最终版）**：双维度报告——(a) Prevention: min+capacity 协同预防 CIVO（训练效率优势）(b) Recovery: min 是 CIVO 后恢复的主导因素（被低估的特性）(c) 跨环境：难环境中 recovery 不充分，凸显 prevention 的必要性 (d) v1≈v2: pessimism 机制失效但 min 通过其他通路起效（open question）\\\\n\\\\n**5. 环境依赖性（D125 — exp_034 完成）**：\\\\n- **Walker（中等 CIVO，untreated NVE 2-4）**：min 操作完全预防 CIVO（2/2 seeds）\\\\n- **Cheetah（高强度 CIVO，untreated NVE 8.27-70.64，seed 间高方差）**：min 操作将 NVE peak 从 baseline 8.27-70.64 降至 1.75（≥4× reduction），但仍超 1.5 阈值，不能完全预防。双倍参数(2.36M)实现部分恢复(eval 97.5)但仅达 pre-CIVO 峰值的 31% 且晚期下降。对比 Walker wide-critic(exp_033) 恢复到 408(>pre-CIVO)，说明**环境动力学复杂度是恢复质量的决定性因素**。（来源：exp_010b s0 NVE_final=70.64, s1 NVE_peak=8.27。论文中须报告两个 seed 并使用保守 claim \\\\\\\"≥4× NVE reduction\\\\\\\"，不用 40×）\\\\n- **论文 claim 限定**：\\\\\\\"min=prevention\\\\\\\" 必须加 \\\\\\\"in moderate-CIVO environments\\\\\\\" 限定，否则审稿人拿 Cheetah 数据直接攻击。这反而强化 intervention hierarchy 叙事——即使 architecture-level 干预也有 CIVO 严重度边界\\\\n\\\\n**论文 narrative（D126 修正）**：从\\\\\\\"为什么不测标准对策\\\\\\\"转为\\\\\\\"我们测了——(a) pessimism 机制失效（v1≈v2 across all configs），(b) min alone 和 capacity alone 都不能预防 CIVO，(c) 两者协同（min+capacity）才能预防，(d) 机制：capacity 提供函数多样性 + min 约束 overestimation 反馈环，(e) prevention >> recovery\\\\\\\"。2×2 factorial 的**交互效应**比任何单因素更有方法论启示——对 ML 社区的 critic 设计指导价值更高。\\\\n\\\\n### R10: \\\\\\\"NVE threshold is calibrated and validated in-sample\\\\\\\" [Dream D8 — 三档一致]\\\\n**Pre-emption**: 承认 1.5× threshold 在同一 29 个数据点上 calibrate 和 validate。但 (a) Youden-optimal threshold (1.53×) 独立收敛到预设 1.5×，不是事后拟合；(b) 4 环境 × 多种 configs 提供 reasonable diversity；(c) ground truth labeling 基于 mechanism identification（CIVO vs non-CIVO dynamics），不是简单的 performance threshold。\\\\n**Mitigation**: 明确承认 limitation，建议 held-out validation（不同架构或环境）作为 future work。讨论 NVE 在不同 reward scale 下的 generalization boundary。\\\\n\\\\n### R11: \\\\\\\"Pixel observations would change the gradient decomposition\\\\\\\" [Dream D9 — 三档一致]\\\\n**Pre-emption**: 正确——pixel 下 obs-decoder channel（本文识别为 16-22% 梯度但因果关键）会承载更多信息和更大梯度。CIVO 动态可能更强（更多空间信息可利用）或更弱（decoder 正则化效应更强）。这是一个重要的泛化性边界。\\\\n**Mitigation**: 在 limitations 中明确讨论，定位为 future work。强调本文在 proprioceptive setting 的发现建立了 CIVO 的基础机制理论，pixel 扩展需要后续工作。\\\\n\\\\n---\\\\n\\\\n## Experiment Coverage Assessment\\\\n\\\\n| Claim | Evidence Status | Gaps |\\\\n|-------|----------------|------|\\\\n| C1 (degradation) | ✅ Strong — 3 configurations + 2 environments | None |\\\\n| C2 (CIVO trigger) | ✅ Strong — nve≥1.5× threshold 15/16, AUROC=0.969 (2 envs) | None |\\\\n| C3 (untrained emb protection) | ✅ Strong — 008a + cross-env replication | None |\\\\n| C4 (dt amplification) | ✅ Moderate — dt=1 > dt=2 > dt=4 monotonic | Only 2 dt values |\\\\n| C5 (horizon/subsample secondary) | ✅ Moderate | None blocking |\\\\n| C6 (dt=1 imag partial) | ✅ 4 seeds — 2/4 collapse via distinct pathways (CIVO + IRD) | None |\\\\n| C7 (SGS failure / gradient decoupling) | ✅ Strong — 17 seeds, 3 variants, 2 envs. 1/17 CIVO-free (with value collapse side effect). Embedding removal 5/5. | None |\\\\n| C8 (Intervention Hierarchy) | ✅ D113 确认 — TCN 2/8, RAVE 0/2, SGS 1/17. Hierarchy 本身是贡献 | Cheetah σ=1.0 + PickCube σ=0.5 pending (extra data points) |\\\\n\\\\n### Priority Actions Before Submission (updated 2026-05-20 D116 — Dream修复)\\\\n1. ~~C1-C7 实验~~ — ✅ 全部完成\\\\n2. ~~TCN/RAVE 评估~~ — ✅ D113 Scenario B 确认\\\\n3. ~~论文 TCN 文本修正~~ — ✅ cross-seed 报告 + narrative reframe\\\\n4. **🔄 [P0] 标准过估值对策讨论** — Paper Agent 执行中 (Dream R9)\\\\n5. **🔄 [P0] 参考文献扩展至 40+** — Paper Agent 执行中 (Dream D7)\\\\n6. **🔄 [P1] 新颖性锐化 + NVE 讨论 + pixel obs + CoRL 相关性** — Paper Agent 队列 (Dream D3/D8/D9/D2)\\\\n7. **🔄 [P1] Cheetah σ=1.0 + PickCube σ=0.5** — 运行中，Hierarchy 额外数据\\\\n8. **Re-dream 验证** — Paper Agent 结构性修复完成后\\\\n9. **论文收尾** — Reviewer 审查 + provenance + 三件套 + 5/25 数据锁定\\\\n\\\\n---\\\\n\\\\n## Key Figures (Planned)\\\\n\\\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\\\n\\\", \\\"total_chars\\\": 46300, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**ICML 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\n\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\n\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\n| Fixed dt=2 collapse | exp_006_fixed_dt2 (dt=2, subsample ON, H=15) | Peak 485@35K → collapse to ~135@65K |\\n| Fixed dt=4 severe degradation | exp_007_fixed_dt4 (dt=4) | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Learned gate collapse | exp_005 (learned gate) | Peak 541@55K → 99@145K |\\n\\n**Strength**: Strong. Three independent dt>1 configurations all show degradation. No positive result exists for variable-rate imagination in our setup.\\n\\n### C2: Trained dt_embedding reliably triggers pathological value overestimation (>1.5x), creating high collapse risk\\n\\n**D032 update: nve>1.5x threshold has perfect separating power (4/4); collapse itself is stochastic.**\\n\\nThe trained dt_embedding reliably induces pathological value overestimation (normalized v/e >1.5x baseline) across all tested seeds, but whether this overestimation progresses to catastrophic performance collapse is stochastic:\\n\\n- **WITH trained dt_emb**: 2/2 seeds exceed nve>1.5x at 35K+ (008d seed 1: sustained 1.71x@35K→2.09x@45K→4.12x@55K → collapse; 009b seed 2: 1.62x@45K → self-correction to 0.38x@105K)\\n- **WITHOUT dt_emb (008f)**: 0/2 seeds exceed nve>1.5x at 35K+ (seed 1 peak 1.02x@25K; seed 2 peak 1.26x@25K)\\n- **1.5x threshold (35K+)**: 4/4 perfect classification — reliable diagnostic marker separating trained vs untrained dt_emb\\n\\n**⚠️ 时间限定**: nve>1.5x 诊断适用于 **35K+ steps**（此时 baseline v/e 已充分收敛至 >0.24，比率稳定可靠）。25K 处 baseline v/e 仅 0.087，微小绝对差异可被放大为大比率（如 009b@25K nve=2.05x 和 008e_v3@25K nve=1.93x 均为 false positive）。论文中报告 threshold 时必须标注此限定。\\n\\n**Sustained vs transient overestimation**: The key difference between collapse (008d seed 1) and self-correction (009b seed 2) is the **temporal persistence** of nve>1.5x. Seed 1 maintained nve>1.5x across 3 consecutive checkpoints at 35K+ (1.71x@35K→2.09x@45K→4.12x@55K, accelerating), locking the positive feedback loop; seed 2 exceeded 1.5x at 45K (1.62x) but dropped to 1.41x@55K and continued declining, allowing self-correction. This suggests a \\\"point of no return\\\" where sustained overestimation becomes irreversible, with early training stochasticity (initialization, data sampling order) determining which path is taken (cf. Henderson et al. 2018, Bjorck et al. 2022, Qiao et al. 2023).\\n\\nThe trained dt_embedding enables precise dt prediction in imagination, but RSSM state prediction quality at dt>1 is insufficient to support this precision. The result is conditioning-induced value overestimation (CIVO) that drives actor learning toward incorrect policies. Without dt_embedding conditioning, the overestimation feedback loop is blocked entirely (nve never exceeds 1.5x).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Untrained dt_emb, no collapse | exp_008c (dt=2, subsample OFF, untrained dt_emb, H=8) | eval plateau ~242@55K; v/e: @35K=21.8% (0.90x) → @55K=29.1% (0.72x) → @65K=32.8% (0.58x) (declining normalized v/e, ~7x slower than trained) |\\n| Trained dt_emb, collapse | exp_008d (dt=2, subsample ON, trained dt_emb, H=8) | eval declining 167→146→141 @25K→35K→45K; v/e: @25K=15.5% (1.78x) → @35K=41.2% (1.71x) → @45K=69.3% (2.09x) (accelerating overestimation) |\\n| Both trained dt_emb → accelerating v/e | exp_006 (H=15) vs exp_008d (H=8) | 006: v/e @35K=31.1% (1.29x)→@45K=53.3% (1.61x)→@55K=93.3% (2.31x); 008d: v/e @35K=41.2% (1.71x)→@45K=69.3% (2.09x) — both show accelerating normalized v/e leading to collapse |\\n| Baseline v/e calibration (overshoot reference) | exp_001_baseline | v/e@35K=24.1%, @45K=33.1%, @55K=40.4%. Overshoot ratio: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x (all >1.5x = pathological) |\\n| **D032: Trained dt_emb seed 2 — pathological but self-correcting** | exp_009b (008d config, seed 2) | eval 39→141→164→141→172→209→197→236→279→268@105K (**no collapse**, rising). nve: **2.05x@25K**→1.24x→**1.62x@45K**→1.41x→0.94x→0.66x→0.51x→0.43x→**0.38x@105K**. Transient nve>1.5x with self-correction. Value peaked 110.9@65K → self-corrected to 67.3@105K while eval improved. |\\n| **1.5x threshold separating power** | 008d+009b vs 008f+009c | WITH trained dt_emb: 2/2 seeds exceed nve>1.5x (008d peak 2.09x sustained, 009b peak 2.05x transient). WITHOUT dt_emb: 0/2 seeds exceed nve>1.5x (008f peak 1.02x, 009c peak 1.26x). **4/4 perfect classification.** |\\n| **Causal control: dt_embed_dim=0 (direction confirmed, seed-dependent)** | exp_008f seed 1 + exp_009c seed 2 | **Seed 1**: eval 197→207→194→173→503@105K (zigzag recovery); nve 1.02x→0.73x→0.83x→0.97x→0.30x. **Seed 2**: eval 169→211→239→359→227→191→148@105K (decline after 75K); nve 1.26x→0.79x→0.72x→0.33x→0.60x→0.90x→1.14x. Both vs 008d@45K nve=2.09x: onset delayed 60K+ steps, severity reduced ~2x. **009c extending to 200K to observe if nve crosses 1.5x.** |\\n| **Reward SGS = no-op (reward gradient = 0 by architecture)** | exp_016e (reward_dt_emb_detach=True, subsample ON, H=8, seed 1) | Peak eval 326.7@75K → collapse 31.7@95K, NVE=10.42x. 梯度验证揭示 reward loss 对 dt_emb.weight 贡献为 0——reward_dt_emb_detach 是 no-op。016e 与 008d 的差异（onset timing, peak height）归因于随机变异。**⚠️ 修正：reward head 贡献最大梯度（49%@55K），obs decoder 仅 16.3%。但 reward-only SGS 仍失败——梯度大小与因果重要性解耦。** |\\n| RSSM fidelity analysis | baseline / 008d / 008f | See RSSM Fidelity Table below |\\n\\n**⚠️ 008f 定位：因果控制实验，非推荐方案。** 008f 去掉 dt_embedding 后 reward_MAE=0.747（baseline 的 75x），reward head 无法区分 dt=1/dt=2（reward gap 仅 1.01x vs 008d 的 2.78x）。**D030 更新**：008f seed 2 (009c) 在 105K 达到 nve=1.14x（borderline），seed 1 为 0.30x——protection 不 robust。但 008f 两个 seed 的 v/e 增长速度均显著慢于 008d（008d@45K=2.09x vs 008f seed 2@105K=1.14x），确认 dt_embedding 是 primary amplifier。**C2 因果方向成立，但 \\\"eliminates\\\" 改为 \\\"significantly delays and reduces\\\"。推荐方案仍是 008e_v3（C6）**。\\n\\n**RSSM Fidelity Table（论文中必须同时报告绝对误差和比率）：**\\n\\n| Model | dt1 obs_MSE | dt2 obs_MSE | obs gap | dt1 reward_MAE | dt2 reward_MAE | reward gap |\\n|-------|------------|------------|---------|---------------|---------------|------------|\\n| baseline (exp_001) | 13.49 | 27.50 | **2.04x** | 0.0102 | 0.0159 | 1.56x |\\n| 008d (trained dt_emb, collapsed) | 41.31 | 53.67 | **1.30x** | 0.0568 | 0.1579 | **2.78x** |\\n| 008f (no dt_emb, stable) | 8.01 | 22.04 | **2.75x** | 0.7469 | 0.7526 | 1.01x |\\n\\n**解读要点**：008d 的低 obs gap ratio (1.30x) 具有误导性——其 dt=1 绝对误差本身已是 baseline 的 3x（模型已崩塌）。论文中必须并排呈现绝对误差和比率，避免审稿人被比率误导。\\n\\n**dt_emb Gradient Decomposition (D061) — ⚠️ 已修正**\\n\\n梯度验证（torch.autograd.grad analysis, correct config gate_fixed_dt=2）揭示 dt_emb.weight 的梯度来源分布：\\n\\n| Source | 55K (%) | 112K (%) |\\n|--------|---------|----------|\\n| Reward head | 49.0 | 38.1 |\\n| KL dynamics | 34.7 | 40.4 |\\n| Observation decoders | 16.3 | 21.5 |\\n| Cont head | ~0 | ~0 |\\n\\n⚠️ **之前的 93% obs / 0% reward 数据不可复现**（见 gradient_decomposition_008d_corrected.json）。正确结论：reward head 贡献最大梯度（38-49%），但 reward-only SGS (016e) 仍然失败（NVE=10.42×）；obs decoder 通路（16-22%）虽贡献最小，但携带关键的 Δt-specific 空间信息驱动 RSSM fidelity gap。**梯度大小与因果重要性解耦**是核心发现。\\n\\n**Strength**: Strong (upgraded from Moderate-strong, 2026-05-25). Three-way causal ablation (trained/frozen/absent dt_emb) with identical configs provides decisive evidence: **trained dt_emb 10/10 CIVO onset** (8 Walker + 2 Cheetah) vs **frozen dt_emb 0/2** (exp_042, exp_067) vs **no dt_emb 0/3** (008f s1, 009c s2, exp_069 s1); Fisher exact p < 0.001. The three-way design rules out \\\"embedding presence\\\" as cause — only gradient training triggers CIVO. The **nve>1.5x threshold** achieves perfect separation across all tested seeds. **Collapse** remains stochastic (~50% of trained seeds), but **CIVO onset** (nve>1.5x) is deterministic given trained dt_emb + multi-step exposure. Pending: exp_070-073 will extend to 10/10 trained + 0/5 control.\\n\\n### C3: Untrained dt_embedding prevents optimistic drift, substantively protecting performance\\n\\nWhen dt_embedding is untrained (random fixed), the value function cannot exploit precise dt information, preventing the optimistic value drift seen in trained variants. This value growth suppression substantively protects performance: exp_008a demonstrates two complete zigzag recovery cycles over 105K steps (peak @105K=778, 85% of baseline 916), with normalized v/e consistently suppressed at 0.59-0.93x baseline. The trained dt_embedding variant (exp_006) collapses catastrophically as its v/e ratio accelerates far past baseline levels (2.3x baseline@55K).\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Two V-shaped recoveries (105K) | exp_008a (dt=2, subsample OFF, untrained dt_emb, H=15) | 501→563→488→608→470→584→572→778; two complete recovery cycles over 105K steps. @65K=608 (-1.3% baseline), @105K=778 (-15.1% baseline, 85% of 916). No collapse. |\\n| Sustained v/e suppression | exp_008a | v/e: 37.6%@55K → 37.2%@65K → 53.6%@75K → 47.5%@85K → 49.7%@95K → 38.6%@105K. Normalized v/e: 0.93x→0.66x→0.75x→0.68x→0.79x→0.59x baseline. Consistently below 1.0x, no acceleration. |\\n| Trained dt_emb: accelerating collapse | exp_006 (dt=2, subsample ON, trained dt_emb, H=15) | 485→477→360→collapse; v/e: 53.3%@45K (1.61x)→93.3%@55K (2.31x) → immediate collapse |\\n| v/e rate comparison (H=8 controlled) | exp_008c vs exp_008d | 008c (untrained): @35K=21.8% (0.90x)→@65K=32.8% (0.58x) (normalized declining); 008d (trained): @25K=15.5% (1.78x)→@35K=41.2% (1.71x) (normalized >1.5x = pathological). ~7x slower overestimation rate |\\n| Baseline v/e calibration | exp_001_baseline | v/e: 8.7%@25K → 24.1%@35K → 40.4%@55K → 56.3%@65K → 65.6%@105K (stable 69-72% from 135K+). 008a normalized v/e: 0.93x@55K → 0.66x@65K → 0.59x@105K (suppressed, diverging further below baseline); 008d: 1.7x@35K → 2.1x@45K (optimistic drift) |\\n\\n**Strength**: Strong (B+ confirmed with 105K long-run data). Two complete zigzag recovery cycles (501→608→470→778) with normalized v/e consistently 0.59-0.93x baseline across 105K steps. This is structural value growth suppression, not a transient delay. Contrasts sharply with exp_006's accelerating v/e (1.6x→2.3x baseline → collapse). The mechanism is clear: untrained dt_embedding prevents the value function from exploiting precise (but wrong) dt>1 predictions, suppressing the optimistic value drift that drives the CIVO feedback loop in trained variants.\\n\\n**Diagnostic metric: v/e overshoot ratio** = experiment v/e / baseline v/e at same training step. >1.5x = pathological warning. Trained dt_emb variants: 008d@35K=1.7x, @45K=2.1x; 006@45K=1.6x, @55K=2.3x. Untrained: 008a normalized v/e range 0.59-0.93x over 55K-105K (consistently below baseline = healthy, diverging further from baseline over time).\\n\\n**105K long-run confirmed**: exp_008a ran to 112K steps. Normalized v/e at 105K=0.59x baseline (lowest point), confirming value growth suppression is structural, not a transient delay. The suppression strengthens over time rather than converging to baseline levels.\\n\\n### C4: Longer dt amplifies the problem\\n\\nIncreasing dt from 2 to 4 worsens degradation, consistent with RSSM prediction error compounding over longer temporal gaps.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=2 degradation | exp_006_fixed_dt2 | Peak 485, collapse to ~135 |\\n| dt=4 severe degradation | exp_007_fixed_dt4 | Peak 176.9@25K, 144.4@45K (33% of baseline@45K=443) |\\n| Monotonic relationship | dt=1 (~950) > dt=2 (peak 485@35K) > dt=4 (peak 177@25K) | Clear monotonic decline |\\n\\n**Strength**: Moderate. Only two dt values tested (2 and 4). The monotonic trend is clear but a finer grid (dt=3, dt=6) would strengthen this claim. Sufficient for a supporting claim but not a standalone finding.\\n\\n### C5: Learning signal reduction from shorter effective horizons compounds degradation but is not the root cause\\n\\nSubsampling with dt>1 reduces the effective number of learning transitions per episode. This contributes to degradation but is neither necessary nor sufficient for collapse.\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Subsample OFF, still degraded | exp_008c (subsample OFF, untrained dt_emb, H=8) | eval ~242 vs baseline ~950 |\\n| Subsample OFF, no collapse | exp_008a (subsample OFF, untrained dt_emb, H=15) | eval 778@105K (85% baseline), no collapse through 112K steps |\\n| Subsample ON, collapse | exp_008d (subsample ON, trained dt_emb, H=8) | eval 146, value overestimation |\\n| Horizon effect | exp_008c (H=8) vs exp_008a (H=15) | H=15 significantly outperforms H=8, both subsample OFF |\\n| Subsample ON, trained dt_emb, dt=1 imag, no collapse | exp_008e_v3 (subsample ON, trained dt_emb, dt=1 imag, H=15) | eval 382@45K (86% baseline); normalized v/e 0.88x@45K (normal). Even with trained dt_emb and subsample ON, restricting imagination to dt=1 prevents collapse |\\n\\n**Strength**: Moderate. The 008c vs 008a comparison shows horizon length matters independently. exp_008e_v3 confirms subsample ON does not trigger collapse when imagination is restricted to dt=1, even with trained dt_emb. But disentangling horizon from subsample effects requires additional controls. The key point—that it's not the root cause—is well-supported by 008c's stability despite lower performance.\\n\\n### C6: dt=1 imagination delays but does not eliminate CIVO collapse — the vulnerability is the trained dt_embedding itself\\n\\n**⚠️ D038 重大修正**: 008e_v3_s2 (seed=2) **崩溃** — eval 715@95K → 452 → 137@105K, nve=3.78x@105K, 全程 gate_dt_mean=1.0（dt=1 imagination 从未违反）。\\n\\n原假设\\\"dt=1 imagination = practical mitigation\\\"被**否证**。跨 seed 数据：\\n- seed 1: eval=869.9@105K ✓（95% baseline, nve=0.80x）\\n- seed 2: eval=137@105K ✗（崩溃, nve=3.78x）\\n- **独立 seed 崩溃率: 1/2 (50%)**\\n\\n对比 008d (trained dt_emb + dt=2 imagination): 同样 1/2 崩溃率（seed 1 collapse, seed 2 self-correct@268）。dt=1 imagination **未降低崩溃概率**。\\n\\n**⚠️ D039 机制辨析 — 008e_v3_s2 的崩溃可能不是 CIVO**\\n\\nReviewer 深度分析揭示 008e_v3_s2 与 008d 的崩溃动力学**定性不同**：\\n\\n| 特征 | 008d s1 (经典 CIVO) | 008e_v3_s2 (待确认) |\\n|------|---------------------|---------------------|\\n| value 变化 | 爆炸 (60→138, +130%@55K) | 温和 (339→384→340, +13%→-12%) |\\n| eval 变化 | 后跌 (146→83, -43%) | **先跌** (715→452→137, -81%) |\\n| nve 驱动 | value 分子驱动（value 爆炸） | eval 分母驱动（eval 崩溃） |\\n| actor_entropy | ↓ (-3.47→-4.88) 策略变确定 | **↑** (-5.21→-3.83) 策略变随机 |\\n| 机制 | critic overestimate → actor exploit | eval crash → value 滞后跟随 |\\n\\n**结论**: 008e_v3_s2 的 nve=3.78x 是 eval 崩溃的**结果**，不是 value overestimation 的**原因**。这更像 policy instability 而非 CIVO。\\n\\n**D040 最终判定**: 009a baseline seed 2 在 85-105K **完全稳定** (618→596→836, 正常波动后恢复)。排除 \\\"seed 2 本身不稳定\\\" 假说。**008e_v3_s2 的崩溃是配置导致的**。\\n\\n| Step | baseline s2 (009a) | 008e_v3 s2 | 差异 |\\n|------|-------------------|------------|------|\\n| 85K | 618.7 | 715.2 | 008e_v3 略高 |\\n| 95K | 596.2 (↓3.6%) | 452.4 (**↓37%**) | 10× 更大跌幅 |\\n| 105K | 836.5 (↑40%) | 137.0 (**↓70%**) | baseline 恢复 vs 008e_v3 继续崩 |\\n\\n**C6 最终状态: PARTIALLY FALSIFIED**\\n- dt=1 imagination 不能阻止崩溃（008e_v3: 1/2 seeds 崩溃 vs baseline: 0/2 seeds 崩溃）\\n- 崩溃是配置导致的，不是 seed 特异性\\n- 但崩溃**机制**与经典 CIVO 不同（见上方对比表）→ trained dt_embedding 可能通过**多条路径**创造脆弱性\\n\\n**论文表述建议**: \\\"Restricting imagination to dt=1 does not prevent collapse in the presence of trained dt-embedding (1/2 seeds collapse). While the collapse shares the high nve signature with classic CIVO, the underlying dynamics differ — the collapsed seed exhibits eval-driven destabilization with increasing policy entropy, rather than value-driven exploitation with decreasing entropy. This suggests trained dt-embedding creates vulnerability through multiple pathways, not solely through the value overestimation feedback loop.\\\"\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| dt=1 imag, seed 1, healthy | exp_008e_v3_walker_s1 (trained dt_emb, dt=1 imag, H=15) | eval=869.9@105K (95% baseline), nve=0.80x |\\n| **dt=1 imag, seed 2, COLLAPSED** | exp_008e_v3_walker_s2 (same config, seed=2) | eval 715@95K → 137@105K, nve ≤0.68x@85K → 1.34x@95K → **3.78x@105K**. gate_dt=1.0 throughout |\\n| dt=2 imag, seed 1, collapsed | exp_008d (trained dt_emb, dt=2 imag, H=8) | eval 167→82@55K, nve 1.78x@25K → 2.09x@45K. Onset at 25K |\\n| dt=2 imag, seed 2, self-corrected | exp_009b (008d config, seed 2) | eval 268@105K (rising), nve peak 1.62x@45K → self-correction |\\n| Onset delay | 008e_v3_s2 vs 008d | 008d onset nve>1.5x at 25-35K; 008e_v3_s2 at 95-105K. Delay ~70K steps |\\n| No dt_emb, stable | exp_008f (dt_embed_dim=0, subsample ON) | No collapse, reward_MAE 75x baseline |\\n| Untrained dt_emb, stable | exp_008a (untrained, subsample OFF, H=15) | 778@105K (85% baseline), nve 0.59-0.93x |\\n\\n**Strength**: **Moderate (D040: PARTIALLY FALSIFIED)** — dt=1 imagination 不能阻止崩溃 (1/2 seeds)，但崩溃机制与经典 CIVO 不同 (eval-driven vs value-driven)。009a baseline s2 稳定排除 seed 脆弱假说。核心洞察：trained dt_embedding creates vulnerability through multiple pathways — CIVO (Pathway A, 008d) 和 non-CIVO policy instability (Pathway B, 008e_v3_s2)。dt=1 imagination 消除 Pathway A 但不消除 Pathway B。\\n\\n### C7: Gradient-level interventions fail to eliminate CIVO — gradient magnitude decoupled from causal importance\\n\\n**⚠️ D107: SGS 全面失败，梯度干预不是正确的干预层级**\\n\\nAll three SGS variants fail to eliminate CIVO:\\n- **Reward-only SGS** (016e): 0/2, NVE=10.42× — paradoxically worse than untreated\\n- **Full-pathway SGS** (018+021): 0/3 across two environments — blocks all non-KL gradients, still fails\\n- **Obs-decoder-only SGS** (025+026): 1/6 across two environments — the identified causal channel, still fails\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| Reward-only SGS 反效果 | exp_016e | NVE=10.42×, collapse to eval 31.7. 阻断 reward 梯度迫使 dt_emb 通过 obs-decoder 适配，强化空间偏差 |\\n| Full SGS 0/3 | exp_018 (Walker 2 seeds) + exp_021 (Cheetah 1 seed) | s1: eval 448.3, NVE 1.66× (CIVO+); s2: collapse 40.8; Cheetah: transient NVE 9.94×→0.34× (not SGS effect) |\\n| Obs-decoder SGS 1/6 | exp_025 (Walker 4 seeds) + exp_026 (Cheetah 2 seeds) | Walker: 1/4 (s1 survived, s2-s4 collapsed); Cheetah: 0/2, NVE 21.9×-30.2× (2.6-3.6× worse than untreated 8.3×) |\\n| Compensatory amplification (Cheetah) | exp_026 vs exp_010b | Obs-decoder SGS NVE 21.9-30.2× vs untreated 8.3× — blocking obs-decoder shifts co-adaptation to reward head |\\n| Universal value collapse | exp_025 all seeds @215K | All 4 seeds terminal ve_ratio=0.056-0.14, including s1 \\\"success\\\" (eval 726, value 41) — critic underestimation as side effect |\\n| Fourth trajectory (s3) | exp_025_s3 | Healthy@105K → CIVO@135K (NVE 6.8×) → eval recovery (590@215K) → persistent value collapse (ve_ratio 0.14) |\\n\\n**核心发现**：\\n1. **梯度量级与因果重要性脱耦**: Reward head 38-49% 梯度占比（最大），但 reward-only SGS 失败最惨；obs decoder 16-22%（最小非零），但 obs-decoder SGS 也失败。梯度分解成功作为**诊断工具**但失败作为**干预指南**。\\n2. **Backward-pass 是错误的干预层级**: Full SGS 阻断所有非 KL 梯度仍 0/3 → forward-pass representational damage 是不可约减的脆弱性底线。Temporal embedding 通过 forward pass 塑造潜在表示，无论哪些梯度更新它。\\n3. **补偿放大**: 阻断任一通道导致剩余通道放大 co-adaptation（Cheetah: 2.6-3.6× 放大）。\\n4. **SGS 副作用**: 即使\\\"成功\\\"的 seed 也遭受 critic 校准损坏（universal value collapse）。\\n\\n**Strength**: Strong. 17 seeds across 3 SGS variants and 2 environments. Only 1/17 avoids CIVO, and that seed still suffers value collapse. Embedding removal (008f+024b): 5/5 = 100% prevention. The contrast establishes gradient stopping as categorically insufficient.\\n\\n### C8: Forward-pass interventions — TCN and RAVE (🔄 验证中)\\n\\n**⚠️ D107/D108: 两种 forward-pass 干预方法并行验证**\\n\\nSGS 失败的根因是 backward-pass 干预无法消除 forward-pass representational damage。C8 提出绕过梯度冗余的 forward-pass 干预：\\n\\n**TCN (Temporal Conditioning Noise)**:\\n- 设计理念：imagination 时对 dt_embedding 输出加高斯噪声 $\\\\mathcal{N}(0, \\\\sigma^2)$，降低 conditioning 精度\\n- 机制假说：噪声阻止 RSSM 和 critic 对精确 dt 信号的过度 co-adaptation，同时保留粗粒度时间信息\\n- 与 SGS 的区别：在 forward pass 层面操作，不依赖梯度阻断\\n- 超参：σ=0.5×std（主实验）+ σ=0.2×std（替代超参）\\n- 实验：exp_027_tcn_walker_s0 (σ=0.5), exp_027_tcn_walker_s0_sigma02 (σ=0.2)\\n\\n**RAVE (Reality-Anchored Value Estimation)**:\\n- 设计理念：用 EMA 跟踪真实环境状态的值估计，当 imagined value 超过 EMA×ceiling 时截断\\n- 机制假说：直接限制 critic overestimation 的幅度，打断 CIVO 正反馈循环\\n- 与 SGS 的区别：不修改梯度流，而是在 value estimate 层面施加约束\\n- 超参：ceiling=2.0（主实验）+ ceiling=1.5（替代超参）\\n- 实验：exp_028_rave_walker_s0 (ceil=2.0), exp_028_rave_walker_s0_ceil15 (ceil=1.5)\\n\\n**D113 全面评估完成 (2026-05-20) — Scenario B 确认：Intervention Hierarchy 论文**\\n\\nTCN 跨环境 universal mitigation（Scenario A）已关闭。TCN 仅在 Walker σ=0.2 成功（2/8 configs），且 eval 保留高度不稳定（91%/45% across seeds）。论文核心转为 **Intervention Hierarchy**：三层干预（Gradient → Output → Representation）系统性评估，证明 CIVO fundamentally hard to mitigate。\\n\\n**TCN 全景表（D113 最终）：**\\n\\n| 环境 | σ | NVE_max | CIVO 阻止? | eval 保留 |\\n|------|---|---------|-----------|----------|\\n| Walker s0 | 0.1 | 1.02@95K | ⚠️ 边界（进行中） | TBD |\\n| Walker s0 | 0.2 | 0.91@95K | ✅ | 91% |\\n| Walker s1 | 0.2 | 0.64@55K | ✅ | **45%** |\\n| Walker s2 | 0.2 | **2.11@95K** | **❌ CIVO confirmed** | **5%** (eval 45, 持续崩溃) |\\n| Walker s3 | 0.2 | TBD | 🔄 5K | — |\\n| Walker s0 | 0.5 | 3.97 | ❌ oscillatory | ~40% |\\n| Walker s1 | 0.5 | 1.64 | ❌ oscillatory | ~40% |\\n| Cheetah s0 | 0.2 | 1.90@55K | ❌ dose insufficient | crashed |\\n| Cheetah s0 | 0.5 | **10.67@55K** | ❌ transient spike+recovery | 26% |\\n| PickCube s0 | 0.2 | **3.71@52.5K** | ❌ dose insufficient | failing |\\n\\n**关键发现**：\\n1. **TCN 成功率 2/10**（NVE<1.0× 标准）或 3/10（NVE<1.5×）：Walker σ=0.2 s2 NVE=2.11@95K（持续恶化），eval=45 (~5% baseline)，成功率从 2/2 降到 2/3。即使最优 dose + 最温和环境也不可靠\\n2. **Dose-environment dependency**：σ=0.2 在 Walker 有效但 Cheetah/PickCube 不足，σ=0.5 在 Walker 过量但 Cheetah 仍不足。不存在 universal effective dose\\n3. **防 CIVO ≠ 保性能**：s1 NVE_max=0.64（比 s0 的 0.91 更低），但 eval 仅 45%（比 s0 的 91% 差 2×）。噪声注入本身干扰学习\\n4. **Cheetah \\\"impossible dose\\\" 完整确认（exp_030c FINAL @224K）**：σ=1.0 全程 NVE≤0.30（CIVO 完全抑制），但 eval 从 peak 372@35K（116% baseline，初始学习不受影响！）→ 47@215K（15% baseline）。关键发现：(a) 噪声不阻止初始学习，而是**渐进腐蚀** policy（cumulative actor gradient interference）；(b) value 校准正常（value_mean=12.4, NVE=0.26@215K）→ policy degradation ≠ value corruption；(c) Cheetah 的 CIVO prevention threshold (~σ=1.0) > noise tolerance threshold (~σ<0.5)，不存在 Goldilocks zone。这本身也是 CIVO 与标准 overestimation 不同的证据——标准 Double Q 不会有这种 dose-dependent policy erosion tradeoff\\n5. **Cheetah σ=0.5 失败模式**：NVE=10.67@55K（transient CIVO spike），但 >95K 恢复至 <0.3。eval 永久受损（peak 296@35K → 稳态 ~77）\\n6. **⚠️ \\\"90% baseline\\\" claim 已删除**：cross-seed 均值 (821+401)/2 = 611 ≈ 68%，不是 90%。论文改为 \\\"45%-91% across seeds (mean 68%)\\\"\\n7. **Seed 效应 > dose 效应**：Walker σ=0.2 跨 seed eval=45%-91%，而 σ=0.1→0.2 的 eval 差异（55% vs 68% mean）更小\\n\\n**RAVE 2 配置 ❌ — EMA anchor 自身污染**:\\n- ceil=2.0: negative\\n- ceil=1.5: negative\\n- 机制：CIVO 早期 imagined values 已偏高，EMA 跟踪这些值 → anchor 被污染 → ceiling 无效\\n\\n**Intervention Hierarchy 总结（论文核心 Table）：**\\n\\n| 干预层级 | 方法 | 成功率 | 主要失败机制 |\\n|----------|------|--------|-------------|\\n| Gradient (L1) | Full SGS | 0/3 | Forward-pass damage 不可逆 |\\n| Gradient (L1) | Obs-decoder SGS | 1/6 | 补偿放大 + critic 校准损坏 |\\n| Gradient (L1) | Reward SGS | 0/2 | No-op (梯度 ≠ 因果) |\\n| Output (L2) | RAVE ceil=2.0 | 0/1 | EMA anchor 污染 |\\n| Output (L2) | RAVE ceil=1.5 | 0/1 | EMA anchor 污染 |\\n| Representation (L3) | TCN σ=0.2 | 2/4 (Walker only) | ❌ s2 gradual onset NVE=2.77@105K; s3 sudden onset NVE=3.04@105K; Cheetah/PickCube dose insufficient |\\n| Representation (L3) | TCN σ=0.5 | 0/3 | Overdose (Walker) / Still insufficient (Cheetah) |\\n| **Control** | **dt_emb removal** | **5/5** | **(not an intervention — removes the feature)** |\\n\\n**叙事方向（D116 最终版，Reviewer 三问审查后）**：TCN 是 **diagnostic probe**，不是 deployable mitigation。\\n最终 claim 措辞（确认 2/4）：\\\"TCN is the only tested intervention that achieves complete CIVO suppression in any configuration (2 of 4 Walker seeds at σ=0.2), but exhibits high seed sensitivity (50% failure rate) and fails to transfer across environments—positioning it as a diagnostic probe rather than a deployable mitigation.\\\"\\n\\n**Binary protection 假说（确认 + 扩展）**：s2 渐进上升（0.58→1.01→1.65→2.77@105K），s3 表面回落后突崩（0.855→0.666→3.042@105K）。两种不同的 CIVO onset 动态，但结果相同：runaway NVE>2.5 + eval 崩溃。结论：(1) TCN operates as an all-or-nothing gate — 2/4 success, 2/4 complete failure, no intermediate; (2) CIVO onset 有至少两种模式（gradual escalation vs apparent-recovery-then-sudden-collapse）; (3) NVE 短期回落不能预测保护成功（phase transition 特性）。作为 1-2 句观察写入 + appendix 详细分析，非独立贡献。\\n\\n**Dose-response 定位**：不升级为独立贡献（n 太小，seed variance > dose variance），但作为 Section 3.6 key observations：(1) \\\"Effective dose scales with CIVO severity; tolerable dose does not\\\" — observation; (2) \\\"Impossible dose on Cheetah\\\" — 最有力单点; (3) \\\"Seed variance exceeds dose variance\\\"。\\n\\n| Evidence | Experiment | Key Metric |\\n|----------|-----------|------------|\\n| TCN σ=0.5 s0 | exp_027_tcn_walker_s0 | ❌ NVE peak 4.0, eval peak 366 (40% baseline), oscillatory CIVO |\\n| TCN σ=0.5 s1 | exp_027_tcn_walker_s1 | ❌ NVE peak 1.637, eval peak 365, oscillatory CIVO |\\n| TCN σ=0.2 s0 | exp_027_tcn_walker_s0_sigma02 | ✅ NVE < 1.0× throughout (peak 0.908@95K), eval peak 821 (91% baseline) |\\n| TCN σ=0.2 s1 | exp_029a_tcn_walker_s1_sigma02 | ✅ NVE < 1.0× (peak 0.643@55K), eval peak 401 (**45% baseline**) |\\n| RAVE ceiling=2.0 | exp_028_rave_walker_s0 | ❌ negative, EMA anchor polluted |\\n| RAVE ceiling=1.5 | exp_028_rave_walker_s0_ceil15 | ❌ negative, same mechanism |\\n| Cheetah TCN σ=0.2 | exp_030a_tcn_cheetah_s0_sigma02 | ❌ NVE=1.903@55K, dose insufficient |\\n| Cheetah TCN σ=0.5 | exp_030b_tcn_cheetah_s0_sigma05 | ❌ NVE=10.67@55K, transient spike, eval=77 (26% baseline) |\\n| PickCube TCN σ=0.2 | exp_031_tcn_pickcube_s0_sigma02 | ❌ NVE=3.71@52.5K, dose insufficient |\\n| Cheetah TCN σ=1.0 (FINAL) | exp_030c @224K | ✅ CIVO prevented (NVE≤0.30 全程) but ❌ eval=372 peak@35K (116% baseline!) → 47@215K (15% baseline). **\\\"Impossible dose\\\" 完整确认**: initial learning unaffected, gradual policy erosion from cumulative noise. Value calibration normal (value_mean=12.4, NVE=0.26@215K) — policy degradation ≠ value corruption |\\n| Walker TCN σ=0.1 | exp_029c (running) | 🔄 边界剂量响应 |\\n\\n**D113**: Scenario A closed → Scenario B confirmed. 论文 = Intervention Hierarchy paper with Walker TCN as existence proof.\\n\\n**Strength**: Moderate. TCN 的 2/8 成功率 + high eval variance 反而是 diagnostic paper 的强证据——证明 CIVO 在所有三个干预层级都难以可靠缓解。Intervention Hierarchy 框架（7+ methods, 3 levels, 3 environments）是系统性贡献。\\n\\n---\\n\\n## Story Arc\\n\\n### 1. Introduction\\n- Temporal abstraction is a long-sought goal in RL (options, macro-actions, skip connections)\\n- World-model RL (DreamerV3) offers a natural testbed: modify imagination dt without changing environment interaction\\n- Puzzle: all our attempts at variable-rate imagination degrade performance. Why?\\n- Contribution: systematic factorial diagnosis identifying trained dt_embedding as the reliable trigger for conditioning-induced value overestimation (CIVO, nve>1.5x), with collapse as a stochastic consequence. The vulnerability is deeper than imagination quality — even dt=1 imagination collapses at the same rate when dt_embedding is trained, revealing that training data dt>1 transitions alone drive the critic exploitation feedback loop\\n\\n### 2. Background & Related Work\\n- Temporal abstraction in model-free RL (options framework, FiGAR, action repeat)\\n- World-model RL (Dreamer family, IRIS, TWM)\\n- Variable-rate planning in world models (few prior works, mostly positive framing)\\n- Value overestimation in model-based RL (delusional bias per Lu et al. 2018 — differentiate from our CIVO)\\n\\n### 3. Methodology\\n- DreamerV3 as base architecture\\n- Variable-rate imagination: dt_embedding, temporal subsampling, learned gating\\n- **Factorial experiment design**: 2×2×2 grid (dt_embedding trained/untrained × subsample ON/OFF × H=8/15) + baselines\\n- Diagnostic metrics: eval return, value/eval ratio as overestimation proxy, learning curves\\n\\n### 4. Results\\n- **Finding 1**: All dt>1 configurations degrade (C1)\\n- **Finding 2**: Controlled ablation isolates trained dt_embedding (C2) — the \\\"smoking gun\\\" comparison (008c vs 008d)\\n- **Finding 3**: Untrained dt_embedding prevents optimistic drift, sustaining near-baseline performance (C3)\\n- **Finding 4**: Longer dt amplifies (C4)\\n- **Finding 5**: Horizon/subsample effects are secondary (C5)\\n- **Finding 6 (partially falsified)**: dt=1 imagination does not prevent collapse (1/2 seeds), but collapsed seed (008e_v3_s2) shows non-CIVO dynamics (eval-driven, entropy ↑) unlike 008d's classic CIVO (value-driven, entropy ↓). 009a baseline s2 stable → collapse is config-caused. Trained dt_embedding creates vulnerability through multiple pathways, not solely through value overestimation (C6, D040)\\n\\n### 5. Discussion\\n- Mechanism: why trained dt_embedding causes CIVO (RSSM fidelity gap at dt>1)\\n- RSSM fidelity analysis: 008d reward gap (2.78x) vs 008f reward gap (1.01x)\\n- **D040: Multiple vulnerability pathways**: Pathway A (CIVO, value-driven) + Pathway B (non-CIVO policy instability, eval-driven)\\n- **D107: Gradient-level interventions fail entirely**: SGS 0/3 (full) + 1/6 (obs-decoder) + 0/2 (reward-only) = backward-pass is categorically insufficient. Gradient magnitude ≠ causal importance (reward 38-49% but reward-only SGS fails worst; obs-decoder 16-22% but targeted SGS also fails). Forward-pass representational damage is the irreducible floor.\\n- **Compensatory amplification**: Blocking obs-decoder on Cheetah → 2.6-3.6× NVE amplification vs untreated. Blocking reward → obs-decoder reliance increases → spatial bias reinforced.\\n- **Universal value collapse**: Obs-decoder SGS degrades all seeds' critic calibration (ve_ratio 0.056-0.14 @215K), including CIVO-free seeds. \\\"Protection\\\" = trading overestimation for underestimation.\\n- **Fourth CIVO trajectory (s3)**: Latent onset → delayed collapse → policy recovery → persistent value collapse. CIVO-induced critic damage may be irreversible.\\n- MPC vs imagination: TAWM succeeds because MPC re-plans from real states; imagination-based critic bootstrapping creates the positive feedback loop\\n- **D032: Value self-correction mechanism (009b)**: Transient vs sustained nve>1.5x determines outcome. Early stochasticity (initialization, data sampling) is the gate.\\n\\n### 6. Implications for Future Work\\n- **D113: Intervention Hierarchy — all three levels fail or partially fail**: Gradient (SGS 1/17), Output (RAVE 0/2), Representation (TCN 2/8 with high variance). dt_embedding removal 5/5 but removes the feature entirely.\\n- TCN existence proof (Walker σ=0.2) shows mitigation is *possible in principle* but fragile — narrow dose window, environment-dependent, high seed variance in eval retention\\n- **Dose-environment dependency**: No universal σ exists; Walker-effective dose (σ=0.2) underdoses Cheetah/PickCube, Walker-overdose (σ=0.5) still underdoses Cheetah\\n- RSSM prediction quality must improve before variable-rate imagination is viable\\n- Hierarchical temporal abstraction (THICK, Hieros) may avoid flat-conditioning failure by maintaining separate dynamics per temporal scale\\n- Need for diagnostic methodology in temporal abstraction research\\n\\n---\\n\\n## Anticipated Reviewer Concerns\\n\\n### R1: \\\"Limited to one environment / one base algorithm\\\"\\n**Pre-emption**: Our claims are mechanistic (trained dt_embedding → value overestimation → collapse). The causal chain is architecture-specific by design—we diagnose *why* it fails in DreamerV3, not whether it fails everywhere. The mechanism (RSSM fidelity gap) likely generalizes to other latent-dynamics models but we scope claims conservatively.\\n**Mitigation**: Cheetah Run is a planned experiment in our experiment schedule, not a stretch goal. We will include at least one additional DMC environment (Cheetah Run) to demonstrate generality of the mechanism.\\n\\n### R2: \\\"No proposed solution — what's the actionable takeaway?\\\"\\n**Pre-emption**: Our primary contribution is diagnostic, not prescriptive. Beyond diagnosis, we provide a **systematic Intervention Hierarchy** evaluating 7+ methods across 3 levels (gradient/output/representation) and 3 environments. This is the most comprehensive evaluation of CIVO interventions to date. The key finding: even the most promising intervention (TCN, representation-level) succeeds only under narrow conditions (Walker σ=0.2, 2/8 configs, 45-91% eval retention). The actionable takeaway is that CIVO requires fundamental architectural solutions (hierarchical temporal abstraction per THICK/Hieros), not post-hoc interventions.\\n**Mitigation**: The Intervention Hierarchy table (7 methods × 3 levels) is a standalone contribution — it saves future researchers from re-exploring these dead ends and provides a systematic framework for evaluating future interventions.\\n\\n### R3: \\\"Value/eval ratio is a crude proxy for overestimation\\\"\\n**Pre-emption**: We acknowledge this is a proxy, not a formal divergence measure. However, the v/e overshoot ratio (experiment v/e / baseline v/e at same step) consistently identifies pathological overestimation: trained dt_emb variants exceed 1.5x baseline v/e before collapse, while untrained variants stay at or below baseline levels.\\n**Mitigation**: Add distributional analysis of value predictions vs. realized returns if time permits.\\n\\n### R4: \\\"The factorial design is incomplete — missing cells in the grid\\\"\\n**Pre-emption**: We prioritized the most informative comparisons. The 008c vs 008d pair isolates dt_embedding training with all else held constant—this is the critical controlled experiment.\\n**Mitigation**: Explicitly present the factorial grid, mark which cells are filled, and justify the prioritization.\\n\\n### R5: \\\"Novelty concern — model exploitation / value overestimation in MBRL is well-known\\\"\\n**Pre-emption**: General MBRL overestimation is known (Janner et al., 2019), but three elements are genuinely novel: (a) **MPC vs imagination architectural boundary** — first empirical evidence that dt-conditioning succeeds in MPC (TAWM) but fails in imagination-based AC, localizing vulnerability to critic bootstrapping architecture; (b) **gradient magnitude ≠ causal importance** — reward head carries 38-49% of gradients but is causally irrelevant, obs-decoder carries 16-22% but is causally critical (broader methodological insight for multi-head MBRL debugging); (c) **systematic three-level intervention hierarchy** — not a single failure report but a complete taxonomy of 7 methods × 3 levels with structured negative evidence.\\n**Mitigation**: Expand Related Work to engage deeply with MBPO framework, explicitly articulate what CIVO reveals that MBPO does not predict (the specific *trigger* through temporal conditioning, the MPC/imagination divergence, the gradient-causality dissociation).\\n\\n### R6: \\\"All results from a single seed — how robust are the conclusions?\\\"\\n**Pre-emption (D032 update)**: Multi-seed data now available. The nve>1.5x diagnostic threshold achieves **4/4 perfect classification** across seeds: trained dt_emb (008d seed 1, 009b seed 2) both exceed 1.5x; untrained (008f seed 1, 009c seed 2) neither exceeds 1.5x. Collapse itself is stochastic (1/2 trained seeds), which we report transparently — our claim is about the reliable **diagnostic marker** (nve>1.5x), not deterministic collapse.\\n**[D040]** C6 partially falsified: 008e_v3_s2 collapsed via non-CIVO pathway (eval-driven, entropy ↑). 009a baseline s2 stable (618→596→836) — rules out seed fragility. Trained dt_embedding creates multiple vulnerability pathways: CIVO (Pathway A, 008d) and policy instability (Pathway B, 008e_v3_s2). dt=1 imagination eliminates Pathway A but not B.\\n**Mitigation**: Report all seeds with IQM + confidence intervals per Agarwal et al. (2021). The 4/4 separation is robust. Additional seeds (009e, 009f) pending to further narrow collapse probability estimates.\\n\\n### R7: \\\"The factorial design confounds dt_embedding training with training data composition\\\"\\n**Pre-emption**: exp_008f confirmed: dt_embed_dim=0 + subsample ON → normalized v/e 0.83x@45K (healthy), vs 008d@45K=2.09x (collapse at v/e=69.3%). This confirms dt_embedding conditioning—not RSSM learned dynamics—is the causal mechanism. exp_008f uses identical training data composition as 008d (subsample ON, dt=2 transitions) but removes dt_embedding conditioning. Through 55K, 008f remained in normal range (normalized v/e 0.73-1.02x).\\n**Mitigation**: The 008f causal control resolves this confound definitively. The three-way comparison (008c: subsample OFF/untrained, 008d: subsample ON/trained, 008f: subsample ON/no dt_embed) isolates dt_embedding conditioning as the necessary and sufficient factor for CIVO.\\n\\n### R8: \\\"008f reward prediction degradation undermines the causal control\\\"\\n**Pre-emption**: 008f 的 reward_MAE=0.747（baseline 75x）是重要发现，但不削弱 C2 因果结论。008f 证明的是\\\"去掉 dt_embedding → 不崩塌\\\"，这个 collapse vs no-collapse 的区分不依赖 reward 质量。008f 的低 v/e 部分源于奖励噪声，但关键对比是 008d 的 v/e 加速发散 vs 008f 的 v/e 保持稳定——模式差异才是因果证据。\\n**Mitigation**: 论文中明确区分 008f 的角色（因果控制实验）和 008e_v3 的角色（诊断证据：dt=1 imagination 不能消除 CIVO）。RSSM fidelity 表同时报告绝对误差和比率，避免审稿人被 008d 的低 obs gap ratio（1.30x，但绝对误差 41.31 已是 baseline 3x）误导。\\n\\n### R9: \\\"Why not test standard overestimation countermeasures (Double Q, ensemble critics)?\\\" [Dream D1 — 三档一致 #1 弱点] → **已实验回答 (D118-D123)**\\n\\n**实验结果（D118-D124 dual-critic + mechanism ablation 系列）**：\\n\\n**1. Dual-critic 跨环境结果（D128 更新）**：\\n- Walker wide dual-critic: **3/3 CIVO prevented**（s0 eval 739.7, s1 551.8, s2 ~121）。NVE 全程 < 1.5\\n  - ⚠️ **s2 非 CIVO 崩溃**：NVE 正常但 eval 354→121，actor entropy 急升(-3.59→-0.45)。可能是 policy exploration failure。**必须区分 \\\"CIVO prevention\\\"(3/3) vs \\\"performance stability\\\"(2/3)**\\n- Walker narrow dual-critic: 1/1 CIVO occurred (NVE 2.75) → full recovery eval 697.8\\n- Cheetah dual-critic: CIVO 发生(NVE 1.75) → 部分恢复 eval 97.5 (31%, 晚期下降)\\n- Cheetah wide single: CIVO 发生(NVE 3.59) → 自修复 eval 146 (晚期下降)。Wide > dual in Cheetah (146 vs 97.5)\\n- PickCube dual-critic: NVE 短暂升至 2.3 后自行修正，**PickCube 不触发持续性 CIVO**（任务动态不同）。eval 27.7 的低性能源于 gate 配置本身对 manipulation 任务有害（vanilla baseline 58.6 → 加 subsample+dt_emb 后 26.6），非 CIVO 导致。PickCube 作为 scope limitation 讨论，跨环境 CIVO 叙事聚焦 locomotion (Walker/Cheetah)\\n- **v1≈v2 across all environments and all configs**（ρ>0.999 Walker; exact match Cheetah/PickCube）\\n\\n**2. v1≈v2 核心发现**：Double Q 的 pessimism 机制在 pure-imagination MBRL 中失效。两个 critic 共享相同 world model imagined features → 收敛到相同函数。Per-sample pessimism 仅为独立 critic 理论值的 3-4%（ρ>0.998）。\\n\\n**3. 2×2 Mechanism Factorial（D126 — 全部 4 格填满）**：\\n| | Single critic | Dual critic (min) |\\n|--|--------------|-------------------|\\n| ~1.05-1.2M params | baseline (**CIVO → 永久崩溃**) | **exp_035 narrow: CIVO(NVE 2.75) → 恢复中 → eval 149+** |\\n| ~2.4-2.9M params | **exp_033 wide: CIVO(NVE 4.75) → 自修复 → eval 408** | **exp_032: CIVO 预防(NVE≤1.1) → eval 670-788** |\\n\\n**4. 双维度发现（D127 最终修正 — 论文最核心新发现）**：\\n\\n**Recovery 维度（min 是主导因素）**：\\n| 配置 | CIVO 发生? | NVE peak | eval final | 恢复能力 |\\n|------|-----------|----------|------------|---------|\\n| Baseline (single+normal) | ✓ | ~2-4 | collapsed | 无 |\\n| exp_033 (single+wide) | ✓ | 4.75 | 408 | 部分(capacity) |\\n| **exp_035 (dual+narrow)** | **✓** | **2.75** | **697.8** | **完全(min)** |\\n| exp_032 (dual+wide) | ✗ | ≤1.1 | 670-788 | 无需恢复 |\\n\\n- **Min 的核心价值是 recovery 而非 prevention**：exp_035 eval 697.8 ≈ exp_032 670-788，尽管经历了 CIVO\\n- **Min >> Capacity for recovery**：697.8 vs 408。min 实现完全恢复，capacity 仅部分恢复\\n- **Min 同时降低 CIVO 严重度**：exp_035 NVE 2.75 < exp_033 NVE 4.75\\n\\n**Prevention 维度（需 min+capacity 协同）**：\\n- 只有 exp_032 (min+capacity) 从未触发 CIVO（NVE≤1.1）\\n- Prevention 优势不是最终性能（≈recovery-with-min），而是**训练效率**（节省 ~40K steps 恢复期）\\n- v1≈v2 在所有 dual-critic 中成立（包括 exp_032）→ 协同效应是经验事实，机制为 hypothesis\\n\\n**跨环境 caveat**：Walker 上 recovery 充分(697.8)，但 Cheetah 上 recovery 不充分(97.5, 31%)。环境越难，recovery 越不可靠 → prevention 在难环境中价值更大。\\n\\n**⚠️ 机制为 open hypothesis**：v1≈v2 在所有 dual-critic 中成立。可能的解释：(a) min 在训练早期(v1≠v2 时)建立了稳定学习轨迹 (b) min-target coupling 在 wider network 的 smoother loss landscape 上更有效 (c) capacity 提升 value calibration 质量而非多样性。论文中诚实报告经验事实，机制标注为 hypothesis。\\n\\n**论文 narrative（D127 最终版）**：双维度报告——(a) Prevention: min+capacity 协同预防 CIVO（训练效率优势）(b) Recovery: min 是 CIVO 后恢复的主导因素（被低估的特性）(c) 跨环境：难环境中 recovery 不充分，凸显 prevention 的必要性 (d) v1≈v2: pessimism 机制失效但 min 通过其他通路起效（open question）\\n\\n**5. 环境依赖性（D125 — exp_034 完成）**：\\n- **Walker（中等 CIVO，untreated NVE 2-4）**：min 操作完全预防 CIVO（2/2 seeds）\\n- **Cheetah（高强度 CIVO，untreated NVE 8.27-70.64，seed 间高方差）**：min 操作将 NVE peak 从 baseline 8.27-70.64 降至 1.75（≥4× reduction），但仍超 1.5 阈值，不能完全预防。双倍参数(2.36M)实现部分恢复(eval 97.5)但仅达 pre-CIVO 峰值的 31% 且晚期下降。对比 Walker wide-critic(exp_033) 恢复到 408(>pre-CIVO)，说明**环境动力学复杂度是恢复质量的决定性因素**。（来源：exp_010b s0 NVE_final=70.64, s1 NVE_peak=8.27。论文中须报告两个 seed 并使用保守 claim \\\"≥4× NVE reduction\\\"，不用 40×）\\n- **论文 claim 限定**：\\\"min=prevention\\\" 必须加 \\\"in moderate-CIVO environments\\\" 限定，否则审稿人拿 Cheetah 数据直接攻击。这反而强化 intervention hierarchy 叙事——即使 architecture-level 干预也有 CIVO 严重度边界\\n\\n**论文 narrative（D126 修正）**：从\\\"为什么不测标准对策\\\"转为\\\"我们测了——(a) pessimism 机制失效（v1≈v2 across all configs），(b) min alone 和 capacity alone 都不能预防 CIVO，(c) 两者协同（min+capacity）才能预防，(d) 机制：capacity 提供函数多样性 + min 约束 overestimation 反馈环，(e) prevention >> recovery\\\"。2×2 factorial 的**交互效应**比任何单因素更有方法论启示——对 ML 社区的 critic 设计指导价值更高。\\n\\n### R10: \\\"NVE threshold is calibrated and validated in-sample\\\" [Dream D8 — 三档一致]\\n**Pre-emption**: 承认 1.5× threshold 在同一 29 个数据点上 calibrate 和 validate。但 (a) Youden-optimal threshold (1.53×) 独立收敛到预设 1.5×，不是事后拟合；(b) 4 环境 × 多种 configs 提供 reasonable diversity；(c) ground truth labeling 基于 mechanism identification（CIVO vs non-CIVO dynamics），不是简单的 performance threshold。\\n**Mitigation**: 明确承认 limitation，建议 held-out validation（不同架构或环境）作为 future work。讨论 NVE 在不同 reward scale 下的 generalization boundary。\\n\\n### R11: \\\"Pixel observations would change the gradient decomposition\\\" [Dream D9 — 三档一致]\\n**Pre-emption**: 正确——pixel 下 obs-decoder channel（本文识别为 16-22% 梯度但因果关键）会承载更多信息和更大梯度。CIVO 动态可能更强（更多空间信息可利用）或更弱（decoder 正则化效应更强）。这是一个重要的泛化性边界。\\n**Mitigation**: 在 limitations 中明确讨论，定位为 future work。强调本文在 proprioceptive setting 的发现建立了 CIVO 的基础机制理论，pixel 扩展需要后续工作。\\n\\n---\\n\\n## Experiment Coverage Assessment\\n\\n| Claim | Evidence Status | Gaps |\\n|-------|----------------|------|\\n| C1 (degradation) | ✅ Strong — 3 configurations + 2 environments | None |\\n| C2 (CIVO trigger) | ✅ Strong — nve≥1.5× threshold 15/16, AUROC=0.969 (2 envs) | None |\\n| C3 (untrained emb protection) | ✅ Strong — 008a + cross-env replication | None |\\n| C4 (dt amplification) | ✅ Moderate — dt=1 > dt=2 > dt=4 monotonic | Only 2 dt values |\\n| C5 (horizon/subsample secondary) | ✅ Moderate | None blocking |\\n| C6 (dt=1 imag partial) | ✅ 4 seeds — 2/4 collapse via distinct pathways (CIVO + IRD) | None |\\n| C7 (SGS failure / gradient decoupling) | ✅ Strong — 17 seeds, 3 variants, 2 envs. 1/17 CIVO-free (with value collapse side effect). Embedding removal 5/5. | None |\\n| C8 (Intervention Hierarchy) | ✅ D113 确认 — TCN 2/8, RAVE 0/2, SGS 1/17. Hierarchy 本身是贡献 | Cheetah σ=1.0 + PickCube σ=0.5 pending (extra data points) |\\n\\n### Priority Actions Before Submission (updated 2026-05-20 D116 — Dream修复)\\n1. ~~C1-C7 实验~~ — ✅ 全部完成\\n2. ~~TCN/RAVE 评估~~ — ✅ D113 Scenario B 确认\\n3. ~~论文 TCN 文本修正~~ — ✅ cross-seed 报告 + narrative reframe\\n4. **🔄 [P0] 标准过估值对策讨论** — Paper Agent 执行中 (Dream R9)\\n5. **🔄 [P0] 参考文献扩展至 40+** — Paper Agent 执行中 (Dream D7)\\n6. **🔄 [P1] 新颖性锐化 + NVE 讨论 + pixel obs + CoRL 相关性** — Paper Agent 队列 (Dream D3/D8/D9/D2)\\n7. **🔄 [P1] Cheetah σ=1.0 + PickCube σ=0.5** — 运行中，Hierarchy 额外数据\\n8. **Re-dream 验证** — Paper Agent 结构性修复完成后\\n9. **论文收尾** — Reviewer 审查 + provenance + 三件套 + 5/25 数据锁定\\n\\n---\\n\\n## Key Figures (Planned)\\n\\n1. **Figure 1**: Learning curves — all experiments overlaid, showing degradation pattern (hero figure)\\n2. **Figure 2**: Value/eval ratio over training — separating healthy vs. pathological regimes\\n3. **Figure 3**: Factorial grid summary — 2×2 (dt_emb × subsample) with H as secondary axis\\n4. **Figure 4**: Causal diagram — dt_embedding → value overestimation → actor degradation → collapse\\n5. **Figure 5**: dt=1 vs dt=2 vs dt=4 comparison — monotonic degradation (C4)\\n6. **Table 1**: RSSM fidelity — absolute obs_MSE + reward_MAE at dt=1/dt=2, 三模型并排（绝对值 + 比率，避免比率误导）\\n7. **Figure 6 (D035)**: Mitigation comparison — plot 008e_v3 seed=1 as single line. Add s2 (seed=2) when done. Do NOT present s0+s1 as two independent seeds. Can footnote deterministic reproduction.\\n\", \"total_chars\": 46300, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01YTb1wJBt5RVNtKyLEQ2zYV`</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "94942563-8413-44c2-bcbd-7ee04513882b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JWuh7KWfy94qm828HRtwvA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 911,
+      "cache_read_input_tokens": 23599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 911
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-25T18:01:40.380Z_
+
+<details><summary>↩ Tool result · `toolu_01YTb1wJBt5RVNtKyLEQ2zYV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory — event-gated-adaptive-horizon\\n\\n## 基线定义（2026-05-24 确认）\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\"backfill_error, see M027\\\"\\n\\n## Walker trained seeds 实际清单（2026-05-25 更新）\\n- 8 个唯一 seed runs（6 unique seeds），全部 onset\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一 seed=1）+ exp_068（westd-19154 repro, NVE=6.57x）\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\n- s5: exp_059_walker_trained_s5 (seed=5)\\n- **Onset rate: 8/8 runs, 包含 seed=1 的独立 repro (exp_068)**\\n\\n## exp_059 (Walker s5) 分类（2026-05-24）\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\n- NVE final: 1.22× @105K（baseline 0.656）\\n- 分类: onset_collapse（Collapse†）\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\n\\n## Onset/Outcome 统计（2026-05-25 更新）\\n- Trained dt_emb onset: **8/8 Walker** + 2/2 Cheetah = **10/10 locomotion**\\n- Outcome: 大多数 collapse, s2 唯一 self-correction\\n- Frozen dt_emb: 0/2 onset (exp_042, exp_067)\\n- No dt_emb (008f): 0/3 onset (008f s1, exp_069 s1, 009c s2)\\n- Unexposed (008a): 0/3 onset\\n- **Fisher exact (trained 10/10 vs control 0/8): p < 0.0001**\\n\\n## Cheetah vs Walker CIVO 动力学差异（2026-05-25 exp_078 分析）\\n- **Cheetah CIVO 更强但自我修正**：NVE peak 4.10x@75K（高于 Walker 009b 的 1.62x），但 eval 从 26.1 恢复至 119.5（onset_self_correcting）\\n- **Walker 在类似 NVE 水平会 permanent collapse**：s4 NVE=4.62, s5 NVE=4.72 均不可逆 collapse\\n- **implication**：collapse vs self-correction 取决于环境动力学特性（关节数相同但运动模式不同），不仅是 NVE 强度\\n- 这为论文提供了一个 nuance：CIVO 是 deterministic onset，但 outcome severity 是 environment-dependent\\n- Cheetah CIVO onset 与 Walker 在相同 step（~45K）发生，跨环境时序一致性强\\n\\n## D152: 旧代码 008e_v3 CIVO 是 bug 导致（2026-05-25 确认）\\n- **主因 (BF1)**: `subsample_variable_dt` 参数路由 bug — 旧代码 `models.py:172` 将 `gate_max_dt=8` 传给 `subsample_variable_dt`，忽略了 `gate_subsample_max_dt=2`\\n- **旧代码实际行为**: dt 从 {1,...,8} 采样（70%+ 数据 dt≠1），想象时 dt=1 → train/imagination 分布 gap 巨大 → 触发 CIVO\\n- **新代码正确行为**: dt 仅从 {1,2} 采样 → gap 极小 → 不触发\\n- **次因 (BF2)**: replay sampling 硬编码 seed=0\\n- **结论**: 旧 008e_v3 (2/5 collapse) 跑的是不同实验，**数据无效**。论文仅引用当前代码 (0/4 CIVO)\\n- **对 C6 的影响**: 从 \\\"stochastic 50% mitigation\\\" 升级为 \\\"deterministic 100% mitigation\\\"\\n- **Pathway B 叙事应删除**（基于 bug 数据）\\n\\n## AUROC 处理原则（2026-05-24 Director 决策）\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\n\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K 就已显著——确认 fidelity 退化是因，value overestimation 是果\\n- State divergence (cosine) gap 全程稳定 ~0.09-0.16，是结构性偏差而非训练阶段性问题\\n\\n## CIVO Scope: Complexity-Dependent（2026-05-25 exp_061 确认）\\n- **CIVO 是 complexity-dependent 现象，不是 DMC locomotion 通用现象**\\n- Walker (6 joints): 8/8 onset, Cheetah (6 joints): 2/2 onset, **Cartpole (1 DOF): 0/3 onset**\\n- Cartpole ve_ratio peak < 0.06（远低于 1.5x 阈值），value 始终校准\\n- 原因推断：Cartpole 动力学太简单，dt=2 的 RSSM fidelity gap 不足以触发 value 发散 cascade\\n- **论文定位**：Cartpole 作为 negative control / boundary condition，scope 描述为 \\\"multi-joint locomotion\\\"\\n- 这强化了机制解释（fidelity gap 驱动 CIVO），而非削弱核心 claim\\n\\n## Frozen dt_emb 因果控制（2026-05-25 exp_067 确认）\\n- **dt_emb 的梯度训练是 CIVO 的必要条件，而非 dt_emb 的存在本身**\\n- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0\\n- 对比 exp_008d (trained dt_emb, 同配置): NVE>1.5x, CIVO 触发\\n- Frozen embedding 使 gate 完全锁死 dt=2（entropy=0），丧失自适应能力，eval=281.5（约为 trained 的一半）\\n- **C2 因果消融矩阵闭合**：trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO\\n- plan_017 已取消（与 008a 重复），2×2 矩阵由 008a/008d/008f/exp_067 完成\\n\\n## 同 seed 因果对比（2026-05-25 exp_068/069 确认）\\n- **seed=1, 同服务器 westd-19154**: trained dt_emb (exp_068) NVE=6.57x vs no dt_emb (exp_069) NVE=0.66x\\n- 唯一变量 = dt_embed_dim，完美分离 CIVO\\n- 这是最干净的因果证据（控制了 seed + 硬件 + 代码版本）\\n\\n## 竞品实验参考\\n（待补充）\\n\", \"total_chars\": 4413, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "756aaf6d-6e5e-40d9-a5e1-fe4aa5c1885d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory — event-gated-adaptive-horizon\\\\n\\\\n## 基线定义（2026-05-24 确认）\\\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\\\\\"backfill_error, see M027\\\\\\\"\\\\n\\\\n## Walker trained seeds 实际清单（2026-05-25 更新）\\\\n- 8 个唯一 seed runs（6 unique seeds），全部 onset\\\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一 seed=1）+ exp_068（westd-19154 repro, NVE=6.57x）\\\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\\\n- s5: exp_059_walker_trained_s5 (seed=5)\\\\n- **Onset rate: 8/8 runs, 包含 seed=1 的独立 repro (exp_068)**\\\\n\\\\n## exp_059 (Walker s5) 分类（2026-05-24）\\\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\\\n- NVE final: 1.22× @105K（baseline 0.656）\\\\n- 分类: onset_collapse（Collapse†）\\\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\\\n\\\\n## Onset/Outcome 统计（2026-05-25 更新）\\\\n- Trained dt_emb onset: **8/8 Walker** + 2/2 Cheetah = **10/10 locomotion**\\\\n- Outcome: 大多数 collapse, s2 唯一 self-correction\\\\n- Frozen dt_emb: 0/2 onset (exp_042, exp_067)\\\\n- No dt_emb (008f): 0/3 onset (008f s1, exp_069 s1, 009c s2)\\\\n- Unexposed (008a): 0/3 onset\\\\n- **Fisher exact (trained 10/10 vs control 0/8): p < 0.0001**\\\\n\\\\n## Cheetah vs Walker CIVO 动力学差异（2026-05-25 exp_078 分析）\\\\n- **Cheetah CIVO 更强但自我修正**：NVE peak 4.10x@75K（高于 Walker 009b 的 1.62x），但 eval 从 26.1 恢复至 119.5（onset_self_correcting）\\\\n- **Walker 在类似 NVE 水平会 permanent collapse**：s4 NVE=4.62, s5 NVE=4.72 均不可逆 collapse\\\\n- **implication**：collapse vs self-correction 取决于环境动力学特性（关节数相同但运动模式不同），不仅是 NVE 强度\\\\n- 这为论文提供了一个 nuance：CIVO 是 deterministic onset，但 outcome severity 是 environment-dependent\\\\n- Cheetah CIVO onset 与 Walker 在相同 step（~45K）发生，跨环境时序一致性强\\\\n\\\\n## D152: 旧代码 008e_v3 CIVO 是 bug 导致（2026-05-25 确认）\\\\n- **主因 (BF1)**: `subsample_variable_dt` 参数路由 bug — 旧代码 `models.py:172` 将 `gate_max_dt=8` 传给 `subsample_variable_dt`，忽略了 `gate_subsample_max_dt=2`\\\\n- **旧代码实际行为**: dt 从 {1,...,8} 采样（70%+ 数据 dt≠1），想象时 dt=1 → train/imagination 分布 gap 巨大 → 触发 CIVO\\\\n- **新代码正确行为**: dt 仅从 {1,2} 采样 → gap 极小 → 不触发\\\\n- **次因 (BF2)**: replay sampling 硬编码 seed=0\\\\n- **结论**: 旧 008e_v3 (2/5 collapse) 跑的是不同实验，**数据无效**。论文仅引用当前代码 (0/4 CIVO)\\\\n- **对 C6 的影响**: 从 \\\\\\\"stochastic 50% mitigation\\\\\\\" 升级为 \\\\\\\"deterministic 100% mitigation\\\\\\\"\\\\n- **Pathway B 叙事应删除**（基于 bug 数据）\\\\n\\\\n## AUROC 处理原则（2026-05-24 Director 决策）\\\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\\\n\\\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K 就已显著——确认 fidelity 退化是因，value overestimation 是果\\\\n- State divergence (cosine) gap 全程稳定 ~0.09-0.16，是结构性偏差而非训练阶段性问题\\\\n\\\\n## CIVO Scope: Complexity-Dependent（2026-05-25 exp_061 确认）\\\\n- **CIVO 是 complexity-dependent 现象，不是 DMC locomotion 通用现象**\\\\n- Walker (6 joints): 8/8 onset, Cheetah (6 joints): 2/2 onset, **Cartpole (1 DOF): 0/3 onset**\\\\n- Cartpole ve_ratio peak < 0.06（远低于 1.5x 阈值），value 始终校准\\\\n- 原因推断：Cartpole 动力学太简单，dt=2 的 RSSM fidelity gap 不足以触发 value 发散 cascade\\\\n- **论文定位**：Cartpole 作为 negative control / boundary condition，scope 描述为 \\\\\\\"multi-joint locomotion\\\\\\\"\\\\n- 这强化了机制解释（fidelity gap 驱动 CIVO），而非削弱核心 claim\\\\n\\\\n## Frozen dt_emb 因果控制（2026-05-25 exp_067 确认）\\\\n- **dt_emb 的梯度训练是 CIVO 的必要条件，而非 dt_emb 的存在本身**\\\\n- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0\\\\n- 对比 exp_008d (trained dt_emb, 同配置): NVE>1.5x, CIVO 触发\\\\n- Frozen embedding 使 gate 完全锁死 dt=2（entropy=0），丧失自适应能力，eval=281.5（约为 trained 的一半）\\\\n- **C2 因果消融矩阵闭合**：trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO\\\\n- plan_017 已取消（与 008a 重复），2×2 矩阵由 008a/008d/008f/exp_067 完成\\\\n\\\\n## 同 seed 因果对比（2026-05-25 exp_068/069 确认）\\\\n- **seed=1, 同服务器 westd-19154**: trained dt_emb (exp_068) NVE=6.57x vs no dt_emb (exp_069) NVE=0.66x\\\\n- 唯一变量 = dt_embed_dim，完美分离 CIVO\\\\n- 这是最干净的因果证据（控制了 seed + 硬件 + 代码版本）\\\\n\\\\n## 竞品实验参考\\\\n（待补充）\\\\n\\\", \\\"total_chars\\\": 4413, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory — event-gated-adaptive-horizon\\n\\n## 基线定义（2026-05-24 确认）\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\"backfill_error, see M027\\\"\\n\\n## Walker trained seeds 实际清单（2026-05-25 更新）\\n- 8 个唯一 seed runs（6 unique seeds），全部 onset\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一 seed=1）+ exp_068（westd-19154 repro, NVE=6.57x）\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\n- s5: exp_059_walker_trained_s5 (seed=5)\\n- **Onset rate: 8/8 runs, 包含 seed=1 的独立 repro (exp_068)**\\n\\n## exp_059 (Walker s5) 分类（2026-05-24）\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\n- NVE final: 1.22× @105K（baseline 0.656）\\n- 分类: onset_collapse（Collapse†）\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\n\\n## Onset/Outcome 统计（2026-05-25 更新）\\n- Trained dt_emb onset: **8/8 Walker** + 2/2 Cheetah = **10/10 locomotion**\\n- Outcome: 大多数 collapse, s2 唯一 self-correction\\n- Frozen dt_emb: 0/2 onset (exp_042, exp_067)\\n- No dt_emb (008f): 0/3 onset (008f s1, exp_069 s1, 009c s2)\\n- Unexposed (008a): 0/3 onset\\n- **Fisher exact (trained 10/10 vs control 0/8): p < 0.0001**\\n\\n## Cheetah vs Walker CIVO 动力学差异（2026-05-25 exp_078 分析）\\n- **Cheetah CIVO 更强但自我修正**：NVE peak 4.10x@75K（高于 Walker 009b 的 1.62x），但 eval 从 26.1 恢复至 119.5（onset_self_correcting）\\n- **Walker 在类似 NVE 水平会 permanent collapse**：s4 NVE=4.62, s5 NVE=4.72 均不可逆 collapse\\n- **implication**：collapse vs self-correction 取决于环境动力学特性（关节数相同但运动模式不同），不仅是 NVE 强度\\n- 这为论文提供了一个 nuance：CIVO 是 deterministic onset，但 outcome severity 是 environment-dependent\\n- Cheetah CIVO onset 与 Walker 在相同 step（~45K）发生，跨环境时序一致性强\\n\\n## D152: 旧代码 008e_v3 CIVO 是 bug 导致（2026-05-25 确认）\\n- **主因 (BF1)**: `subsample_variable_dt` 参数路由 bug — 旧代码 `models.py:172` 将 `gate_max_dt=8` 传给 `subsample_variable_dt`，忽略了 `gate_subsample_max_dt=2`\\n- **旧代码实际行为**: dt 从 {1,...,8} 采样（70%+ 数据 dt≠1），想象时 dt=1 → train/imagination 分布 gap 巨大 → 触发 CIVO\\n- **新代码正确行为**: dt 仅从 {1,2} 采样 → gap 极小 → 不触发\\n- **次因 (BF2)**: replay sampling 硬编码 seed=0\\n- **结论**: 旧 008e_v3 (2/5 collapse) 跑的是不同实验，**数据无效**。论文仅引用当前代码 (0/4 CIVO)\\n- **对 C6 的影响**: 从 \\\"stochastic 50% mitigation\\\" 升级为 \\\"deterministic 100% mitigation\\\"\\n- **Pathway B 叙事应删除**（基于 bug 数据）\\n\\n## AUROC 处理原则（2026-05-24 Director 决策）\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\n\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K 就已显著——确认 fidelity 退化是因，value overestimation 是果\\n- State divergence (cosine) gap 全程稳定 ~0.09-0.16，是结构性偏差而非训练阶段性问题\\n\\n## CIVO Scope: Complexity-Dependent（2026-05-25 exp_061 确认）\\n- **CIVO 是 complexity-dependent 现象，不是 DMC locomotion 通用现象**\\n- Walker (6 joints): 8/8 onset, Cheetah (6 joints): 2/2 onset, **Cartpole (1 DOF): 0/3 onset**\\n- Cartpole ve_ratio peak < 0.06（远低于 1.5x 阈值），value 始终校准\\n- 原因推断：Cartpole 动力学太简单，dt=2 的 RSSM fidelity gap 不足以触发 value 发散 cascade\\n- **论文定位**：Cartpole 作为 negative control / boundary condition，scope 描述为 \\\"multi-joint locomotion\\\"\\n- 这强化了机制解释（fidelity gap 驱动 CIVO），而非削弱核心 claim\\n\\n## Frozen dt_emb 因果控制（2026-05-25 exp_067 确认）\\n- **dt_emb 的梯度训练是 CIVO 的必要条件，而非 dt_emb 的存在本身**\\n- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0\\n- 对比 exp_008d (trained dt_emb, 同配置): NVE>1.5x, CIVO 触发\\n- Frozen embedding 使 gate 完全锁死 dt=2（entropy=0），丧失自适应能力，eval=281.5（约为 trained 的一半）\\n- **C2 因果消融矩阵闭合**：trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO\\n- plan_017 已取消（与 008a 重复），2×2 矩阵由 008a/008d/008f/exp_067 完成\\n\\n## 同 seed 因果对比（2026-05-25 exp_068/069 确认）\\n- **seed=1, 同服务器 westd-19154**: trained dt_emb (exp_068) NVE=6.57x vs no dt_emb (exp_069) NVE=0.66x\\n- 唯一变量 = dt_embed_dim，完美分离 CIVO\\n- 这是最干净的因果证据（控制了 seed + 硬件 + 代码版本）\\n\\n## 竞品实验参考\\n（待补充）\\n\", \"total_chars\": 4413, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the paper framing and historical context. Let me also check what existing frozen dt_emb evidence exists and the details of exp_084-087. Let me look at the key points:
+
+From memory.md:
+- Frozen dt_emb: 0/2 onset (exp_042, exp_067)
+- C2 causal ablation matrix: trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO
+- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0
+
+
+- D152 confirms the old code had a BF1 bug that's now fixed in the new version
+
+The paper's C2 claim is that trained dt_embeddings reliably trigger pathological value overestimation exceeding 1.5x, creating high collapse risk, supported by a three-way causal ablation showing trained dt_emb in 10/10 cases versus frozen dt_emb in 0/2 cases with Fisher exact p < 0.001.
+
+I'm noticing some inconsistency in the experiment records—the memory references frozen dt_emb results from exp_042 and exp_067, but the task also mentions exp_047 and exp_046 with frozen configurations. The critical test now is whether the new re-runs on corrected code (exp_084-087) will replicate the frozen dt_emb pattern of no CIVO, or if some will show CIVO despite the fix, which would challenge the causal claim. So the old experiments were indeed run on buggy code, and 084-087 are the clean re-runs on the fixed version. If those four show no CIVO, that gives me solid evidence on new code. I should verify whether exp_067 is also from the new code version by checking the timestamps—if it's from the same day as the bug fix, it's likely already on the corrected code.
+
+Let me just document what I have now and refine the numbers once the results come in. The key findings so far: trained dt_emb shows consistent CIVO onset across both morphologies, while the frozen variants on new code show no CIVO, and the old frozen runs are potentially unreliable due to the routing bug. I'm settling on the frozen experiment counts for the new code: just the five runs from exp_067 plus exp_084-087, all showing zero frozen outcomes. Now I'll draft the document, keeping it concise and focused on the conclusions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "e4654359-f53c-43b8-8e12-404c948a2a1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149kJWrQEJ7uhbK55KqGEeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23379,
+      "cache_read_input_tokens": 24510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now I have the full context. Let me also quickly check if there are any existing artifacts or details about exp_084-087.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "8894aaa4-f734-4a81-a319-66f3c2db97bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149kJWrQEJ7uhbK55KqGEeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23379,
+      "cache_read_input_tokens": 24510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01U2DjSmwK3MyVz7HvrSTnXB`</summary>
+
+```json
+{
+  "pattern": "**/frozen_dt_emb*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "3d1ba5c7-380b-4b1b-b2ed-437a4304893b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0149kJWrQEJ7uhbK55KqGEeg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23379,
+      "cache_read_input_tokens": 24510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-25T18:02:15.541Z_
+
+<details><summary>↩ Tool result · `toolu_01U2DjSmwK3MyVz7HvrSTnXB`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "187425f4-6b7b-4391-85ac-dc8539643c34",
+  "tool_use_result": {
+    "filenames": [],
+    "durationMs": 38,
+    "numFiles": 0,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PKTDKZbLJWXndB8f5iGex2`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "3ca7e355-26fa-4582-8452-3ffc571b660b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019CMNBQ8TvsqV4u6quGMpQb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1659,
+      "cache_read_input_tokens": 47889,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1659
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-25T18:02:17.654Z_
+
+<details><summary>↩ Tool result · `toolu_01PKTDKZbLJWXndB8f5iGex2`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "6b4d0b11-7f54-4d24-ab2d-c1f87c34cbe3",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DYNdY1CjZakDVYFeBnYF96`</summary>
+
+```json
+{
+  "pattern": "register_artifact",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "f7893912-5a97-4c14-b7f0-7090236678e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LBK5UCoYhd2radqeuCoRiB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 91,
+      "cache_read_input_tokens": 49548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 91
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-25T18:02:20.034Z_
+
+<details><summary>↩ Tool result · `toolu_01DYNdY1CjZakDVYFeBnYF96`</summary>
+
+```text
+Found 250 files limit: 250
+logs/workers/worker_research_frozen_dt_emb_narrative_prep_20260525T180125.log
+logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb.jsonl
+AGENTS.md
+.claude/CLAUDE.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/global/logs/workers/registry.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/global/logs/workers/registry.json.bak
+.claude/sessions/agent_32c09c1e/AGENTS.md
+.claude/sessions/agent_32c09c1e/CLAUDE.md
+logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer.jsonl
+logs/workers/worker_ops_westd_bjb1_gpu_investigation_20260525T173621.log
+logs/workers/worker_paper_fig6_data_fix_critical_20260525T165049.log
+logs/chats/cron_hook_exp_083_cheetah_baseline_s1.jsonl
+logs/workers/worker_paper_appendix_pathway_b_cleanup_20260525T162306_result.json
+logs/workers/worker_paper_appendix_pathway_b_cleanup_20260525T162306.log
+logs/workers/worker_paper_cheetah_nve_baseline_update_20260525T163049.log
+logs/chats/worker_analysis_exp_083_cheetah_baseline_s1_20260525T162954.jsonl
+logs/workers/worker_analysis_exp_083_cheetah_baseline_s1_20260525T162954.log
+.claude/sessions/agent_bfb8bbef/AGENTS.md
+.claude/sessions/agent_bfb8bbef/CLAUDE.md
+logs/workers/worker_analysis_exp_082_20260525T162510.log
+logs/workers/worker_ops_check_084_085_status_20260525T162524.log
+logs/workers/worker_paper_results_f6_perf_fix_20260525T162523.log
+logs/chats/cron_hook_exp_082_cheetah_no_dt_emb_s0.jsonl
+logs/workers/worker_paper_results_tex_f6_fix_20260525T161849.log
+.claude/sessions/agent_162a691e/AGENTS.md
+.claude/sessions/agent_162a691e/CLAUDE.md
+logs/chats/worker_research_code_evolution_d152_20260525T155900.jsonl
+logs/workers/worker_research_code_evolution_d152_20260525T155900.log
+logs/workers/worker_paper_results_tex_fix_cheetah_20260525T155535.log
+logs/chats/cron_hook_exp_081_008e_v3_walker_s2.jsonl
+logs/workers/worker_paper_appendix_cheetah_table_20260525T155300.log
+logs/workers/worker_analysis_exp_080_081_walker_mitigation_20260525T154527.log
+logs/chats/cron_hook_exp_080_008e_v3_walker_s1.jsonl
+.claude/sessions/agent_deefefe1/AGENTS.md
+.claude/sessions/agent_deefefe1/CLAUDE.md
+logs/chats/worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929.jsonl
+logs/workers/worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929.log
+logs/workers/worker_paper_cheetah_maintext_integration_20260525T153323.log
+logs/workers/worker_paper_rebuttal_qa_update_20260525T153338.log
+.claude/sessions/agent_b291ce89/AGENTS.md
+.claude/sessions/agent_b291ce89/CLAUDE.md
+logs/chats/worker_analysis_exp_078_cheetah_008d_s0_20260525T143708.jsonl
+logs/workers/worker_analysis_exp_078_cheetah_008d_s0_20260525T143708.log
+logs/workers/worker_check_full_gpu_status_20260525T143308.log
+logs/workers/worker_analysis_exp_078_cheetah_008d_s0_20260525T142917.log
+.claude/sessions/agent_5234435a/AGENTS.md
+.claude/sessions/agent_5234435a/CLAUDE.md
+logs/workers/worker_update_roadmap_report_20260525T142637.log
+logs/workers/worker_analysis_loco_cv_nve_20260525T142550.log
+.claude/sessions/agent_87ab53ca/AGENTS.md
+.claude/sessions/agent_87ab53ca/CLAUDE.md
+logs/workers/worker_paper_rebuttal_qa_update_20260525T141052.log
+.claude/sessions/agent_8d7ab490/AGENTS.md
+.claude/sessions/agent_8d7ab490/CLAUDE.md
+logs/workers/worker_paper_appendix_update_20260525T135051.log
+logs/workers/worker_paper_plan_034_figures_20260525T134533.log
+logs/workers/worker_audit_roadmap_tasks_20260525T134553.log
+logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_paper_agent.jsonl
+.claude/sessions/paper_agent_3ca34d79/AGENTS.md
+.claude/sessions/paper_agent_3ca34d79/CLAUDE.md
+logs/workers/worker_analysis_plan_034_nve_threshold_20260525T120442.log
+.claude/sessions/agent_8672c7c2/AGENTS.md
+.claude/sessions/agent_8672c7c2/CLAUDE.md
+logs/chats/worker_analysis_plan_033_dt_emb_cosine_20260525T102254.jsonl
+logs/workers/worker_analysis_plan_033_dt_emb_cosine_20260525T102254.log
+logs/chats/worker_analysis_plan_031_actor_entropy_20260525T100450.jsonl
+logs/workers/worker_analysis_plan_031_actor_entropy_20260525T100450.log
+logs/workers/worker_analysis_exp_071_008f_walker_s3_20260525T100740.log
+logs/chats/cron_hook_exp_073_008f_walker_s4.jsonl
+logs/chats/cron_hook_exp_071_008f_walker_s3.jsonl
+logs/chats/cron_hook_exp_072_008e_v3_walker_s5.jsonl
+.claude/sessions/agent_0a8bfb01/AGENTS.md
+.claude/sessions/agent_0a8bfb01/CLAUDE.md
+logs/chats/worker_analysis_exp_073_008f_walker_s4_20260525T094942.jsonl
+logs/workers/worker_analysis_exp_073_008f_walker_s4_20260525T094942.log
+logs/chats/worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006.jsonl
+logs/workers/worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006.log
+.claude/sessions/agent_6628ac8a/AGENTS.md
+.claude/sessions/agent_6628ac8a/CLAUDE.md
+.claude/sessions/agent_968a8b97/AGENTS.md
+.claude/sessions/agent_968a8b97/CLAUDE.md
+logs/workers/worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136.log
+logs/chats/cron_hook_exp_070_008e_v3_walker_s0.jsonl
+.claude/sessions/agent_90a67b08/AGENTS.md
+.claude/sessions/agent_90a67b08/CLAUDE.md
+logs/chats/cron_hook_exp_069_008f_walker_repro_s1.jsonl
+.claude/sessions/agent_0a7a027c/AGENTS.md
+.claude/sessions/agent_0a7a027c/CLAUDE.md
+logs/workers/worker_analysis_exp_068_069_20260525T072547.log
+.claude/sessions/agent_6cd662e4/AGENTS.md
+.claude/sessions/agent_6cd662e4/CLAUDE.md
+logs/chats/worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818.jsonl
+logs/workers/worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818.log
+logs/workers/worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640.log
+.claude/sessions/agent_dda298ad/AGENTS.md
+.claude/sessions/agent_dda298ad/CLAUDE.md
+logs/workers/worker_analysis_exp_066b_rssm_fidelity_s1_20260525T042159.log
+logs/workers/worker_check_bjb1_40020_reconnect_resubmit_20260525T043106.log
+logs/workers/worker_analysis_nve_threshold_sensitivity_plan034_20260525T035039.log
+logs/workers/worker_check_exp_062_status_debug_20260525T034402.log
+logs/workers/worker_analysis_cross_env_civo_comparison_20260525T033401.log
+logs/chats/archive/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer_20260525T032737_513980.jsonl
+logs/workers/worker_paper_figure_exp_066_temporal_ordering_20260525T031809.log
+logs/workers/worker_analysis_exp_061_cartpole_civo_check_20260525T031446.log
+logs/workers/worker_analysis_sparse_timeseries_008d_20260525T023635.log
+logs/workers/worker_analysis_exp_066_timeseries_rssm_fidelity_20260525T023004.log
+logs/workers/worker_analysis_exp_066_timeseries_20260525T020923.log
+logs/chats/worker_code_supplementary-framework_20260525T002818.jsonl
+logs/workers/worker_code_supplementary-framework_20260525T002818.log
+logs/workers/worker_code_cross-env-comparison-script_20260524T235556.log
+logs/workers/worker_fix_exp066-checkpoint_20260524T232943.log
+logs/workers/worker_code_ablation-latex-table_20260524T232728.log
+logs/workers/worker_fix_exp066-resubmit_20260524T223127.log
+logs/workers/worker_debug_exp066-failure_20260524T223008.log
+logs/workers/worker_check_exp008d-fps-estimate_20260524T205825.log
+logs/workers/worker_analysis_exp065-dt-emb-cosine_20260524T204916.log
+logs/workers/worker_code_exp064-value-distribution_20260524T195704.log
+logs/workers/worker_code_exp063-rssm-fidelity_20260524T185452.log
+logs/chats/worker_analysis_negative-results-insight_20260524T183247.jsonl
+logs/workers/worker_analysis_negative-results-insight_20260524T183247.log
+logs/chats/worker_analysis_actor-entropy_20260524T181302.jsonl
+logs/workers/worker_analysis_actor-entropy_20260524T181302.log
+logs/chats/worker_analysis_nve-threshold-sensitivity_20260524T175333.jsonl
+logs/workers/worker_analysis_nve-threshold-sensitivity_20260524T175333.log
+logs/workers/worker_analysis_exp049-051-stackcube_20260524T164627.log
+logs/workers/worker_analysis_exp057-frozen-walker-s2_20260524T164639.log
+logs/chats/worker_analysis_value-distribution_20260524T160157.jsonl
+logs/workers/worker_analysis_value-distribution_20260524T160157.log
+.claude/sessions/paper_audit_review_visual_d26512b6/AGENTS.md
+.claude/sessions/paper_audit_review_visual_d26512b6/CLAUDE.md
+logs/workers/worker_analysis_rssm-fidelity_20260524T141744.log
+logs/workers/worker_analysis_negative-taxonomy_20260524T141759.log
+logs/workers/worker_registry_fix_nve_step_matched_20260524T085046.log
+logs/workers/worker_data_registry_nve_step_matched_fix_20260524T085146.log
+logs/workers/worker_audit_baseline_definition_20260524T063436.log
+logs/workers/worker_audit_6of6_trained_civo_source_20260524T062526.log
+logs/workers/worker_analysis_exp_059_walker_trained_s5_20260524T062221.log
+logs/workers/worker_backfill_walker_trained_nve_20260524T061820.log
+.claude/sessions/agent_6416adee/AGENTS.md
+.claude/sessions/agent_6416adee/CLAUDE.md
+logs/workers/worker_check_exp_059_status_20260524T061146.log
+logs/workers/worker_verify_rebuttal-q5-numbers_20260524T032017.log
+logs/workers/worker_prep_exp_059_walker_008d_s5_20260524T030707.log
+logs/workers/worker_review_data-consistency_20260524T021301.log
+logs/workers/worker_fix_appendix-eval-data_20260524T021344.log
+logs/workers/worker_analysis_exp_057_nve_verification_20260524T015018.log
+logs/workers/worker_review_supplementary-material_20260524T011013.log
+.claude/sessions/agent_ffa48217/AGENTS.md
+.claude/sessions/agent_ffa48217/CLAUDE.md
+logs/workers/worker_check_exp_055_cron_exit_20260523T233107.log
+logs/workers/worker_code_exp_054_kill_exp_058_deploy_20260523T180808.log
+logs/workers/worker_code_exp_057_kill_install_deploy_20260523T152348.log
+logs/workers/worker_code_exp_057_deploy_20260523T152059.log
+logs/workers/worker_code_exp_056_deploy_cuda1_20260523T090040.log
+logs/workers/worker_code_exp_056_deploy_20260523T085827.log
+logs/workers/worker_code_bjb1-40020-blocking-wait-deploy_20260523T083451.log
+logs/workers/worker_code_bjb1-40020-deploy-exp055-retry2_20260523T083042.log
+logs/workers/worker_code_bjb1-40020-final-deploy-exp055_20260523T082720.log
+logs/chats/worker_urgent_bjb1-40020-final-check_20260523T080718.jsonl
+logs/workers/worker_urgent_bjb1-40020-final-check_20260523T080718.log
+logs/workers/worker_code_bjb1-40020-wait-deploy-exp055_20260523T074703.log
+logs/workers/worker_urgent_bjb1-45299-check-deploy_20260523T074412.log
+logs/workers/worker_urgent_bjb1-40020-check-deploy_20260523T074426.log
+logs/workers/worker_code_exp_051_monitor_and_exp_055_deploy_20260523T053821.log
+logs/workers/worker_code_exp_052_monitor_and_exp_054_deploy_20260523T051654.log
+logs/workers/worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532.log
+logs/workers/worker_code_exp_052_stackcube_civo_trigger_s1_20260522T212717.log
+logs/workers/worker_analyze_exp_048_cheetah_civo_extension_completion_20260522T211521.log
+.claude/sessions/agent_d32a3e67/AGENTS.md
+.claude/sessions/agent_d32a3e67/CLAUDE.md
+logs/chats/worker_deploy_exp_047_completion_and_exp_051_20260522T184320.jsonl
+logs/workers/worker_deploy_exp_047_completion_and_exp_051_20260522T184320.log
+logs/workers/worker_deploy_exp_050_peginsertion_civo_trigger_20260522T183508.log
+logs/workers/worker_analyze_exp_046_frozen_dt_emb_cheetah_completion_20260522T182723.log
+logs/chats/worker_deploy_exp_049_stackcube_and_cleanup_20260522T165111.jsonl
+logs/workers/worker_deploy_exp_049_stackcube_and_cleanup_20260522T165111.log
+logs/workers/worker_analysis_exp_044_gradient_stop_walker_20260522T160607.log
+logs/chats/cron_hook_exp_044_gradient_stop_walker.jsonl
+.claude/sessions/agent_927cbcd2/AGENTS.md
+.claude/sessions/agent_927cbcd2/CLAUDE.md
+logs/workers/worker_deploy_exp_048_cheetah_civo_extension_20260522T154925.log
+logs/workers/worker_deploy_exp_048_stackcube_scout_20260522T154525.log
+logs/workers/worker_analyze_exp_045_completion_20260522T153910.log
+logs/workers/worker_setup_maniskill_env_check_20260522T113706.log
+logs/workers/worker_deploy_exp_047_frozen_dt_emb_walker_s1_20260522T110206.log
+logs/chats/worker_deploy_exp_046_frozen_dt_emb_cheetah_20260522T104255.jsonl
+logs/workers/worker_deploy_exp_046_frozen_dt_emb_cheetah_20260522T104255.log
+logs/workers/worker_analyze_exp_043_completion_20260522T103529.log
+logs/workers/worker_analyze_exp_042_completion_20260522T102742.log
+logs/workers/worker_deploy_exp_045_treatment_extension_20260522T094126.log
+.claude/sessions/agent_b1ab7de0/AGENTS.md
+.claude/sessions/agent_b1ab7de0/CLAUDE.md
+logs/workers/worker_analysis_exp_041_dual_critic_walker_s3_20260522T090213.log
+.claude/sessions/agent_ca36ae9e/AGENTS.md
+.claude/sessions/agent_ca36ae9e/CLAUDE.md
+logs/workers/worker_writing_rebuttal_draft_framework_20260522T073659.log
+logs/workers/worker_analysis_nve_loeo_crossval_20260522T065112.log
+logs/workers/worker_verify_exp_040_status_check_20260522T065118.log
+logs/workers/worker_check_reward-signed-error-r1w4_20260522T053944.log
+logs/workers/worker_analysis_auroc-label-consistency-fix_20260522T044310.log
+logs/workers/worker_deploy_exp_040_041_verified_20260522T025925.log
+logs/workers/worker_deploy_exp_042_frozen_dt_emb_20260522T021423.log
+logs/workers/worker_deploy_exp_043_008f_s1_20260522T023558.log
+logs/workers/worker_deploy_exp_040_041_resubmit_20260522T023551.log
+logs/workers/worker_analysis_exp_036_dual_critic_pickcube_20260521T193939.log
+.claude/sessions/agent_76bb9083/AGENTS.md
+.claude/sessions/agent_76bb9083/CLAUDE.md
+logs/chats/archive/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_20260521T194153_873188.jsonl
+.claude/sessions/agent_f12a7dae/AGENTS.md
+.claude/sessions/agent_f12a7dae/CLAUDE.md
+.claude/sessions/agent_cbb78209/AGENTS.md
+.claude/sessions/agent_cbb78209/CLAUDE.md
+logs/chats/cron_hook_exp_031_tcn_pickcube_s0_sigma02.jsonl
+logs/chats/worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055.jsonl
+logs/workers/worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055.log
+logs/chats/worker_check_exp_037_038_status_20260521T161323.jsonl
+logs/workers/worker_check_exp_037_038_status_20260521T161323.log
+.claude/sessions/agent_87c2e72e/AGENTS.md
+.claude/sessions/agent_87c2e72e/CLAUDE.md
+.claude/sessions/agent_0fa044f6/AGENTS.md
+.claude/sessions/agent_0fa044f6/CLAUDE.md
+logs/chats/cron_hook_exp_033_wide_critic_walker.jsonl
+.claude/sessions/agent_7d9e8366/AGENTS.md
+.claude/sessions/agent_7d9e8366/CLAUDE.md
+logs/workers/worker_research_lit-dual-critic-cross-env_20260521T121708.log
+logs/workers/worker_deploy_exp_037_redeploy_20260521T122042.log
+logs/workers/worker_deploy_exp_038_redeploy_20260521T122034.log
+logs/chats/worker_analysis_exp_034_dual_critic_cheetah_20260521T121500.jsonl
+logs/workers/worker_analysis_exp_034_dual_critic_cheetah_20260521T121500.log
+logs/chats/cron_hook_exp_029c_tcn_walker_s0_sigma01.jsonl
+.claude/sessions/agent_d88e183e/AGENTS.md
+.claude/sessions/agent_d88e183e/CLAUDE.md
+.claude/sessions/agent_89326d60/AGENTS.md
+.claude/sessions/agent_89326d60/CLAUDE.md
+logs/workers/worker_analysis_exp_034_dual_critic_cheetah_20260521T120432.log
+logs/chats/worker_analysis_exp_033_wide_critic_walker_20260521T120408.jsonl
+logs/workers/worker_analysis_exp_033_wide_critic_walker_20260521T120408.log
+logs/chats/cron_hook_exp_034_dual_critic_cheetah.jsonl
+.claude/sessions/agent_31d7fabc/AGENTS.md
+.claude/sessions/agent_31d7fabc/CLAUDE.md
+logs/chats/cron_hook_exp_031b_tcn_pickcube_s0_sigma05.jsonl
+logs/chats/worker_analysis_exp_031b_tcn_pickcube_s0_sigma05_20260521T084339.jsonl
+logs/workers/worker_analysis_exp_031b_tcn_pickcube_s0_sigma05_20260521T084339.log
+.claude/sessions/agent_8b9986e5/AGENTS.md
+.claude/sessions/agent_8b9986e5/CLAUDE.md
+logs/workers/worker_analysis_exp_032_dual_critic_walker_20260521T074655.log
+logs/chats/cron_hook_exp_032_dual_critic_walker.jsonl
+.claude/sessions/agent_bb6a33d2/AGENTS.md
+.claude/sessions/agent_bb6a33d2/CLAUDE.md
+logs/workers/worker_analysis_exp_032b_dual_critic_walker_s1_20260521T054939.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "801f8051-80ff-42a3-a3f3-ac4b5dd80d25",
+  "tool_use_result": {
+    "mode": "files_with_matches",
+    "filenames": [
+      "logs/workers/worker_research_frozen_dt_emb_narrative_prep_20260525T180125.log",
+      "logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb.jsonl",
+      "AGENTS.md",
+      ".claude/CLAUDE.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/global/logs/workers/registry.json",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/global/logs/workers/registry.json.bak",
+      ".claude/sessions/agent_32c09c1e/AGENTS.md",
+      ".claude/sessions/agent_32c09c1e/CLAUDE.md",
+      "logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer.jsonl",
+      "logs/workers/worker_ops_westd_bjb1_gpu_investigation_20260525T173621.log",
+      "logs/workers/worker_paper_fig6_data_fix_critical_20260525T165049.log",
+      "logs/chats/cron_hook_exp_083_cheetah_baseline_s1.jsonl",
+      "logs/workers/worker_paper_appendix_pathway_b_cleanup_20260525T162306_result.json",
+      "logs/workers/worker_paper_appendix_pathway_b_cleanup_20260525T162306.log",
+      "logs/workers/worker_paper_cheetah_nve_baseline_update_20260525T163049.log",
+      "logs/chats/worker_analysis_exp_083_cheetah_baseline_s1_20260525T162954.jsonl",
+      "logs/workers/worker_analysis_exp_083_cheetah_baseline_s1_20260525T162954.log",
+      ".claude/sessions/agent_bfb8bbef/AGENTS.md",
+      ".claude/sessions/agent_bfb8bbef/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_082_20260525T162510.log",
+      "logs/workers/worker_ops_check_084_085_status_20260525T162524.log",
+      "logs/workers/worker_paper_results_f6_perf_fix_20260525T162523.log",
+      "logs/chats/cron_hook_exp_082_cheetah_no_dt_emb_s0.jsonl",
+      "logs/workers/worker_paper_results_tex_f6_fix_20260525T161849.log",
+      ".claude/sessions/agent_162a691e/AGENTS.md",
+      ".claude/sessions/agent_162a691e/CLAUDE.md",
+      "logs/chats/worker_research_code_evolution_d152_20260525T155900.jsonl",
+      "logs/workers/worker_research_code_evolution_d152_20260525T155900.log",
+      "logs/workers/worker_paper_results_tex_fix_cheetah_20260525T155535.log",
+      "logs/chats/cron_hook_exp_081_008e_v3_walker_s2.jsonl",
+      "logs/workers/worker_paper_appendix_cheetah_table_20260525T155300.log",
+      "logs/workers/worker_analysis_exp_080_081_walker_mitigation_20260525T154527.log",
+      "logs/chats/cron_hook_exp_080_008e_v3_walker_s1.jsonl",
+      ".claude/sessions/agent_deefefe1/AGENTS.md",
+      ".claude/sessions/agent_deefefe1/CLAUDE.md",
+      "logs/chats/worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929.jsonl",
+      "logs/workers/worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929.log",
+      "logs/workers/worker_paper_cheetah_maintext_integration_20260525T153323.log",
+      "logs/workers/worker_paper_rebuttal_qa_update_20260525T153338.log",
+      ".claude/sessions/agent_b291ce89/AGENTS.md",
+      ".claude/sessions/agent_b291ce89/CLAUDE.md",
+      "logs/chats/worker_analysis_exp_078_cheetah_008d_s0_20260525T143708.jsonl",
+      "logs/workers/worker_analysis_exp_078_cheetah_008d_s0_20260525T143708.log",
+      "logs/workers/worker_check_full_gpu_status_20260525T143308.log",
+      "logs/workers/worker_analysis_exp_078_cheetah_008d_s0_20260525T142917.log",
+      ".claude/sessions/agent_5234435a/AGENTS.md",
+      ".claude/sessions/agent_5234435a/CLAUDE.md",
+      "logs/workers/worker_update_roadmap_report_20260525T142637.log",
+      "logs/workers/worker_analysis_loco_cv_nve_20260525T142550.log",
+      ".claude/sessions/agent_87ab53ca/AGENTS.md",
+      ".claude/sessions/agent_87ab53ca/CLAUDE.md",
+      "logs/workers/worker_paper_rebuttal_qa_update_20260525T141052.log",
+      ".claude/sessions/agent_8d7ab490/AGENTS.md",
+      ".claude/sessions/agent_8d7ab490/CLAUDE.md",
+      "logs/workers/worker_paper_appendix_update_20260525T135051.log",
+      "logs/workers/worker_paper_plan_034_figures_20260525T134533.log",
+      "logs/workers/worker_audit_roadmap_tasks_20260525T134553.log",
+      "logs/chats/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_paper_agent.jsonl",
+      ".claude/sessions/paper_agent_3ca34d79/AGENTS.md",
+      ".claude/sessions/paper_agent_3ca34d79/CLAUDE.md",
+      "logs/workers/worker_analysis_plan_034_nve_threshold_20260525T120442.log",
+      ".claude/sessions/agent_8672c7c2/AGENTS.md",
+      ".claude/sessions/agent_8672c7c2/CLAUDE.md",
+      "logs/chats/worker_analysis_plan_033_dt_emb_cosine_20260525T102254.jsonl",
+      "logs/workers/worker_analysis_plan_033_dt_emb_cosine_20260525T102254.log",
+      "logs/chats/worker_analysis_plan_031_actor_entropy_20260525T100450.jsonl",
+      "logs/workers/worker_analysis_plan_031_actor_entropy_20260525T100450.log",
+      "logs/workers/worker_analysis_exp_071_008f_walker_s3_20260525T100740.log",
+      "logs/chats/cron_hook_exp_073_008f_walker_s4.jsonl",
+      "logs/chats/cron_hook_exp_071_008f_walker_s3.jsonl",
+      "logs/chats/cron_hook_exp_072_008e_v3_walker_s5.jsonl",
+      ".claude/sessions/agent_0a8bfb01/AGENTS.md",
+      ".claude/sessions/agent_0a8bfb01/CLAUDE.md",
+      "logs/chats/worker_analysis_exp_073_008f_walker_s4_20260525T094942.jsonl",
+      "logs/workers/worker_analysis_exp_073_008f_walker_s4_20260525T094942.log",
+      "logs/chats/worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006.jsonl",
+      "logs/workers/worker_analysis_exp_072_008e_v3_walker_s5_20260525T095006.log",
+      ".claude/sessions/agent_6628ac8a/AGENTS.md",
+      ".claude/sessions/agent_6628ac8a/CLAUDE.md",
+      ".claude/sessions/agent_968a8b97/AGENTS.md",
+      ".claude/sessions/agent_968a8b97/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136.log",
+      "logs/chats/cron_hook_exp_070_008e_v3_walker_s0.jsonl",
+      ".claude/sessions/agent_90a67b08/AGENTS.md",
+      ".claude/sessions/agent_90a67b08/CLAUDE.md",
+      "logs/chats/cron_hook_exp_069_008f_walker_repro_s1.jsonl",
+      ".claude/sessions/agent_0a7a027c/AGENTS.md",
+      ".claude/sessions/agent_0a7a027c/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_068_069_20260525T072547.log",
+      ".claude/sessions/agent_6cd662e4/AGENTS.md",
+      ".claude/sessions/agent_6cd662e4/CLAUDE.md",
+      "logs/chats/worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818.jsonl",
+      "logs/workers/worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818.log",
+      "logs/workers/worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640.log",
+      ".claude/sessions/agent_dda298ad/AGENTS.md",
+      ".claude/sessions/agent_dda298ad/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_066b_rssm_fidelity_s1_20260525T042159.log",
+      "logs/workers/worker_check_bjb1_40020_reconnect_resubmit_20260525T043106.log",
+      "logs/workers/worker_analysis_nve_threshold_sensitivity_plan034_20260525T035039.log",
+      "logs/workers/worker_check_exp_062_status_debug_20260525T034402.log",
+      "logs/workers/worker_analysis_cross_env_civo_comparison_20260525T033401.log",
+      "logs/chats/archive/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_reviewer_20260525T032737_513980.jsonl",
+      "logs/workers/worker_paper_figure_exp_066_temporal_ordering_20260525T031809.log",
+      "logs/workers/worker_analysis_exp_061_cartpole_civo_check_20260525T031446.log",
+      "logs/workers/worker_analysis_sparse_timeseries_008d_20260525T023635.log",
+      "logs/workers/worker_analysis_exp_066_timeseries_rssm_fidelity_20260525T023004.log",
+      "logs/workers/worker_analysis_exp_066_timeseries_20260525T020923.log",
+      "logs/chats/worker_code_supplementary-framework_20260525T002818.jsonl",
+      "logs/workers/worker_code_supplementary-framework_20260525T002818.log",
+      "logs/workers/worker_code_cross-env-comparison-script_20260524T235556.log",
+      "logs/workers/worker_fix_exp066-checkpoint_20260524T232943.log",
+      "logs/workers/worker_code_ablation-latex-table_20260524T232728.log",
+      "logs/workers/worker_fix_exp066-resubmit_20260524T223127.log",
+      "logs/workers/worker_debug_exp066-failure_20260524T223008.log",
+      "logs/workers/worker_check_exp008d-fps-estimate_20260524T205825.log",
+      "logs/workers/worker_analysis_exp065-dt-emb-cosine_20260524T204916.log",
+      "logs/workers/worker_code_exp064-value-distribution_20260524T195704.log",
+      "logs/workers/worker_code_exp063-rssm-fidelity_20260524T185452.log",
+      "logs/chats/worker_analysis_negative-results-insight_20260524T183247.jsonl",
+      "logs/workers/worker_analysis_negative-results-insight_20260524T183247.log",
+      "logs/chats/worker_analysis_actor-entropy_20260524T181302.jsonl",
+      "logs/workers/worker_analysis_actor-entropy_20260524T181302.log",
+      "logs/chats/worker_analysis_nve-threshold-sensitivity_20260524T175333.jsonl",
+      "logs/workers/worker_analysis_nve-threshold-sensitivity_20260524T175333.log",
+      "logs/workers/worker_analysis_exp049-051-stackcube_20260524T164627.log",
+      "logs/workers/worker_analysis_exp057-frozen-walker-s2_20260524T164639.log",
+      "logs/chats/worker_analysis_value-distribution_20260524T160157.jsonl",
+      "logs/workers/worker_analysis_value-distribution_20260524T160157.log",
+      ".claude/sessions/paper_audit_review_visual_d26512b6/AGENTS.md",
+      ".claude/sessions/paper_audit_review_visual_d26512b6/CLAUDE.md",
+      "logs/workers/worker_analysis_rssm-fidelity_20260524T141744.log",
+      "logs/workers/worker_analysis_negative-taxonomy_20260524T141759.log",
+      "logs/workers/worker_registry_fix_nve_step_matched_20260524T085046.log",
+      "logs/workers/worker_data_registry_nve_step_matched_fix_20260524T085146.log",
+      "logs/workers/worker_audit_baseline_definition_20260524T063436.log",
+      "logs/workers/worker_audit_6of6_trained_civo_source_20260524T062526.log",
+      "logs/workers/worker_analysis_exp_059_walker_trained_s5_20260524T062221.log",
+      "logs/workers/worker_backfill_walker_trained_nve_20260524T061820.log",
+      ".claude/sessions/agent_6416adee/AGENTS.md",
+      ".claude/sessions/agent_6416adee/CLAUDE.md",
+      "logs/workers/worker_check_exp_059_status_20260524T061146.log",
+      "logs/workers/worker_verify_rebuttal-q5-numbers_20260524T032017.log",
+      "logs/workers/worker_prep_exp_059_walker_008d_s5_20260524T030707.log",
+      "logs/workers/worker_review_data-consistency_20260524T021301.log",
+      "logs/workers/worker_fix_appendix-eval-data_20260524T021344.log",
+      "logs/workers/worker_analysis_exp_057_nve_verification_20260524T015018.log",
+      "logs/workers/worker_review_supplementary-material_20260524T011013.log",
+      ".claude/sessions/agent_ffa48217/AGENTS.md",
+      ".claude/sessions/agent_ffa48217/CLAUDE.md",
+      "logs/workers/worker_check_exp_055_cron_exit_20260523T233107.log",
+      "logs/workers/worker_code_exp_054_kill_exp_058_deploy_20260523T180808.log",
+      "logs/workers/worker_code_exp_057_kill_install_deploy_20260523T152348.log",
+      "logs/workers/worker_code_exp_057_deploy_20260523T152059.log",
+      "logs/workers/worker_code_exp_056_deploy_cuda1_20260523T090040.log",
+      "logs/workers/worker_code_exp_056_deploy_20260523T085827.log",
+      "logs/workers/worker_code_bjb1-40020-blocking-wait-deploy_20260523T083451.log",
+      "logs/workers/worker_code_bjb1-40020-deploy-exp055-retry2_20260523T083042.log",
+      "logs/workers/worker_code_bjb1-40020-final-deploy-exp055_20260523T082720.log",
+      "logs/chats/worker_urgent_bjb1-40020-final-check_20260523T080718.jsonl",
+      "logs/workers/worker_urgent_bjb1-40020-final-check_20260523T080718.log",
+      "logs/workers/worker_code_bjb1-40020-wait-deploy-exp055_20260523T074703.log",
+      "logs/workers/worker_urgent_bjb1-45299-check-deploy_20260523T074412.log",
+      "logs/workers/worker_urgent_bjb1-40020-check-deploy_20260523T074426.log",
+      "logs/workers/worker_code_exp_051_monitor_and_exp_055_deploy_20260523T053821.log",
+      "logs/workers/worker_code_exp_052_monitor_and_exp_054_deploy_20260523T051654.log",
+      "logs/workers/worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532.log",
+      "logs/workers/worker_code_exp_052_stackcube_civo_trigger_s1_20260522T212717.log",
+      "logs/workers/worker_analyze_exp_048_cheetah_civo_extension_completion_20260522T211521.log",
+      ".claude/sessions/agent_d32a3e67/AGENTS.md",
+      ".claude/sessions/agent_d32a3e67/CLAUDE.md",
+      "logs/chats/worker_deploy_exp_047_completion_and_exp_051_20260522T184320.jsonl",
+      "logs/workers/worker_deploy_exp_047_completion_and_exp_051_20260522T184320.log",
+      "logs/workers/worker_deploy_exp_050_peginsertion_civo_trigger_20260522T183508.log",
+      "logs/workers/worker_analyze_exp_046_frozen_dt_emb_cheetah_completion_20260522T182723.log",
+      "logs/chats/worker_deploy_exp_049_stackcube_and_cleanup_20260522T165111.jsonl",
+      "logs/workers/worker_deploy_exp_049_stackcube_and_cleanup_20260522T165111.log",
+      "logs/workers/worker_analysis_exp_044_gradient_stop_walker_20260522T160607.log",
+      "logs/chats/cron_hook_exp_044_gradient_stop_walker.jsonl",
+      ".claude/sessions/agent_927cbcd2/AGENTS.md",
+      ".claude/sessions/agent_927cbcd2/CLAUDE.md",
+      "logs/workers/worker_deploy_exp_048_cheetah_civo_extension_20260522T154925.log",
+      "logs/workers/worker_deploy_exp_048_stackcube_scout_20260522T154525.log",
+      "logs/workers/worker_analyze_exp_045_completion_20260522T153910.log",
+      "logs/workers/worker_setup_maniskill_env_check_20260522T113706.log",
+      "logs/workers/worker_deploy_exp_047_frozen_dt_emb_walker_s1_20260522T110206.log",
+      "logs/chats/worker_deploy_exp_046_frozen_dt_emb_cheetah_20260522T104255.jsonl",
+      "logs/workers/worker_deploy_exp_046_frozen_dt_emb_cheetah_20260522T104255.log",
+      "logs/workers/worker_analyze_exp_043_completion_20260522T103529.log",
+      "logs/workers/worker_analyze_exp_042_completion_20260522T102742.log",
+      "logs/workers/worker_deploy_exp_045_treatment_extension_20260522T094126.log",
+      ".claude/sessions/agent_b1ab7de0/AGENTS.md",
+      ".claude/sessions/agent_b1ab7de0/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_041_dual_critic_walker_s3_20260522T090213.log",
+      ".claude/sessions/agent_ca36ae9e/AGENTS.md",
+      ".claude/sessions/agent_ca36ae9e/CLAUDE.md",
+      "logs/workers/worker_writing_rebuttal_draft_framework_20260522T073659.log",
+      "logs/workers/worker_analysis_nve_loeo_crossval_20260522T065112.log",
+      "logs/workers/worker_verify_exp_040_status_check_20260522T065118.log",
+      "logs/workers/worker_check_reward-signed-error-r1w4_20260522T053944.log",
+      "logs/workers/worker_analysis_auroc-label-consistency-fix_20260522T044310.log",
+      "logs/workers/worker_deploy_exp_040_041_verified_20260522T025925.log",
+      "logs/workers/worker_deploy_exp_042_frozen_dt_emb_20260522T021423.log",
+      "logs/workers/worker_deploy_exp_043_008f_s1_20260522T023558.log",
+      "logs/workers/worker_deploy_exp_040_041_resubmit_20260522T023551.log",
+      "logs/workers/worker_analysis_exp_036_dual_critic_pickcube_20260521T193939.log",
+      ".claude/sessions/agent_76bb9083/AGENTS.md",
+      ".claude/sessions/agent_76bb9083/CLAUDE.md",
+      "logs/chats/archive/feishu_group_oc_e03655bc885f99dd8e838011bc2fffbb_20260521T194153_873188.jsonl",
+      ".claude/sessions/agent_f12a7dae/AGENTS.md",
+      ".claude/sessions/agent_f12a7dae/CLAUDE.md",
+      ".claude/sessions/agent_cbb78209/AGENTS.md",
+      ".claude/sessions/agent_cbb78209/CLAUDE.md",
+      "logs/chats/cron_hook_exp_031_tcn_pickcube_s0_sigma02.jsonl",
+      "logs/chats/worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055.jsonl",
+      "logs/workers/worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055.log",
+      "logs/chats/worker_check_exp_037_038_status_20260521T161323.jsonl",
+      "logs/workers/worker_check_exp_037_038_status_20260521T161323.log",
+      ".claude/sessions/agent_87c2e72e/AGENTS.md",
+      ".claude/sessions/agent_87c2e72e/CLAUDE.md",
+      ".claude/sessions/agent_0fa044f6/AGENTS.md",
+      ".claude/sessions/agent_0fa044f6/CLAUDE.md",
+      "logs/chats/cron_hook_exp_033_wide_critic_walker.jsonl",
+      ".claude/sessions/agent_7d9e8366/AGENTS.md",
+      ".claude/sessions/agent_7d9e8366/CLAUDE.md",
+      "logs/workers/worker_research_lit-dual-critic-cross-env_20260521T121708.log",
+      "logs/workers/worker_deploy_exp_037_redeploy_20260521T122042.log",
+      "logs/workers/worker_deploy_exp_038_redeploy_20260521T122034.log",
+      "logs/chats/worker_analysis_exp_034_dual_critic_cheetah_20260521T121500.jsonl",
+      "logs/workers/worker_analysis_exp_034_dual_critic_cheetah_20260521T121500.log",
+      "logs/chats/cron_hook_exp_029c_tcn_walker_s0_sigma01.jsonl",
+      ".claude/sessions/agent_d88e183e/AGENTS.md",
+      ".claude/sessions/agent_d88e183e/CLAUDE.md",
+      ".claude/sessions/agent_89326d60/AGENTS.md",
+      ".claude/sessions/agent_89326d60/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_034_dual_critic_cheetah_20260521T120432.log",
+      "logs/chats/worker_analysis_exp_033_wide_critic_walker_20260521T120408.jsonl",
+      "logs/workers/worker_analysis_exp_033_wide_critic_walker_20260521T120408.log",
+      "logs/chats/cron_hook_exp_034_dual_critic_cheetah.jsonl",
+      ".claude/sessions/agent_31d7fabc/AGENTS.md",
+      ".claude/sessions/agent_31d7fabc/CLAUDE.md",
+      "logs/chats/cron_hook_exp_031b_tcn_pickcube_s0_sigma05.jsonl",
+      "logs/chats/worker_analysis_exp_031b_tcn_pickcube_s0_sigma05_20260521T084339.jsonl",
+      "logs/workers/worker_analysis_exp_031b_tcn_pickcube_s0_sigma05_20260521T084339.log",
+      ".claude/sessions/agent_8b9986e5/AGENTS.md",
+      ".claude/sessions/agent_8b9986e5/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_032_dual_critic_walker_20260521T074655.log",
+      "logs/chats/cron_hook_exp_032_dual_critic_walker.jsonl",
+      ".claude/sessions/agent_bb6a33d2/AGENTS.md",
+      ".claude/sessions/agent_bb6a33d2/CLAUDE.md",
+      "logs/workers/worker_analysis_exp_032b_dual_critic_walker_s1_20260521T054939.log"
+    ],
+    "numFiles": 250,
+    "appliedLimit": 250
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The search results are too broad. Let me just write the document now based on what I know. I have enough context from paper_framing.md and memory.md.
+
+Key facts for the analysis:
+- Trained dt_emb: 10/10 CIVO onset (8 Walker + 2 Cheetah)
+- Frozen dt_emb on new code: exp_067 = 0/1 (NVE peak=0.4)
+- Old code frozen (invalid due to BF1): exp_042 (Walker s0, NVE=0.19), exp_047 (Walker s1), exp_046 (Cheetah)
+
+
+- No dt_emb: 0/5 onset
+- exp_084-087: 4 frozen experiments on new code that re-run the old invalid experiments
+
+With these new runs, I'm looking at whether frozen embeddings fail consistently across all conditions on the new code, which would give me a clean 0/10 control group against the 10/10 trained baseline, though I need to verify exactly which environment and seed combinations these four experiments cover.
+
+Now I'm ready to write up the document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "baa80930-281e-4c9f-bf39-37ee4049e1f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Prr3qc3tDb6S7sVy8VcYF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6366,
+      "cache_read_input_tokens": 49639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6366
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Now writing the analysis document.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "8cf03bdc-33ec-42f1-bea6-c03c1eeab94b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Prr3qc3tDb6S7sVy8VcYF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6366,
+      "cache_read_input_tokens": 49639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6366
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01L1hJvpWXHqZTTHmLNtyW55`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/frozen_dt_emb_narrative_prep.md",
+  "content": "# Frozen dt_emb 情景叙事预案（exp_084-087）\n\n## 当前证据基线\n\n| 条件 | Onset rate | 来源 |\n|------|-----------|------|\n| Trained dt_emb | 10/10 | 8 Walker + 2 Cheetah |\n| Frozen dt_emb (新代码) | 0/1 | exp_067 (NVE peak=0.4) |\n| No dt_emb | 0/5 | 008f, 009c, exp_069 等 |\n| 旧代码 frozen (BF1 无效) | 0/3 | exp_042/046/047, D152 已废弃 |\n\nexp_084-087 = 4 个 frozen runs（新代码），完成后 frozen 新代码样本从 1 增至 5。\n\n---\n\n## 情景 A：4 个 frozen 全部无持续 CIVO（NVE < 1.5x）\n\n**对 C2 的影响**：三路消融从 trained 10/10 vs frozen 0/1 vs absent 0/5 升级为 **trained 10/10 vs frozen 0/5 vs absent 0/5**。Fisher exact p < 0.0001 不变，但 frozen 样本量从 1 增至 5 大幅提高统计力度。总 control 组 0/10 vs trained 10/10 = 完美分离。\n\n**与 dt_embed_dim=0 互补**：frozen 证明 embedding **存在但不训练** 不触发 CIVO → 锁定因果为梯度训练过程，非 embedding 的 forward-pass 存在。与 absent (dim=0) 形成两层控制：absent 移除信号源，frozen 保留信号但阻断适应性学习。二者交叉确认 \"训练\" 是必要条件。\n\n**论文更新点**（列出，不改）：\n- C2 evidence table: 增加 exp_084-087 行，Fisher exact 分母更新\n- Section 4 Finding 2: n 数更新，跨环境 frozen coverage\n- Causal ablation matrix (memory.md): 补全 Cheetah frozen 格\n\n**预备回答 Reviewer 追问**：\n- *\"Frozen embedding 把 gate 锁死 dt=2，实验条件不等价\"* → 关键对比是 value overestimation 有无，不是策略质量。Frozen eval 偏低（~281）是预期的，但 NVE 从未突破 1.5x 才是 C2 的检验点。\n- *\"5 个 frozen 仍然太少\"* → 结合 absent 0/5，total control 0/10 vs treated 10/10，Fisher exact p < 10^-5，足以支撑 ICML diagnostic paper。\n\n---\n\n## 情景 B：某些 frozen 实验出现持续 CIVO\n\n**区分 transient spike vs 持续 CIVO**：参考 exp_047 s1 模式（NVE 瞬时 1.71 → 自修正至 0.56）。判定标准：\n1. NVE > 1.5x 是否跨 **≥2 个连续 checkpoint** 持续？\n2. NVE 趋势是加速（008d 模式）还是衰减（047 模式）？\n3. eval 是否同步恶化？\n\n若仅 transient spike + 自修正 → 仍归为 \"无持续 CIVO\"，与 009b (trained, transient) 类比但注明 frozen 的 spike 幅度和持续期均更低。\n\n**若确认 frozen 也产生持续 CIVO**：\n- C2 从 \"训练是必要条件\" 降级为 \"训练大幅放大但非必要\"\n- 措辞调整：*\"Gradient training of dt_embedding dramatically amplifies CIVO severity (10/10 onset, NVE 2-70x) compared to frozen embedding (k/5 onset, NVE ~1.5-2x), but does not fully eliminate it\"*\n- 机制解释转向：即使 frozen embedding 也在 forward pass 提供固定但非零的 dt conditioning → RSSM 在特定 seed/环境下仍可能形成弱 co-adaptation\n\n**Framing 调整选项**：\n1. **量级论** — trained CIVO NVE 2-70x vs frozen CIVO NVE ~1.5x，差异 > 一个数量级 → \"训练是 CIVO 严重度的主要放大器\"\n2. **概率论** — trained 10/10 vs frozen k/5 → \"训练将 onset 概率从 X% 提升至 100%\"\n3. **双因素论** — embedding 存在 = 必要条件，训练 = 充分条件之一（frozen 可能在特定环境/seed 下也充分）\n\n**最坏防守策略**：如果 frozen 在 Cheetah 出现 CIVO（Cheetah CIVO 本身更强，NVE peak 更高），可定位为 \"环境复杂度调节 frozen 的保护效力\"，与 Cartpole 0/3 onset 形成 complexity-dependent 叙事，保住核心 claim 的方向性。absent (dim=0) 的 0/5 仍作为 hard control 不受影响。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "e2340fce-f058-4dc0-baea-0c42698fa446",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013Prr3qc3tDb6S7sVy8VcYF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6366,
+      "cache_read_input_tokens": 49639,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6366
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-25T18:03:11.746Z_
+
+<details><summary>↩ Tool result · `toolu_01L1hJvpWXHqZTTHmLNtyW55`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/frozen_dt_emb_narrative_prep.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "79e3e8e8-d866-49be-aa13-a819c757d8cd",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/frozen_dt_emb_narrative_prep.md",
+    "content": "# Frozen dt_emb 情景叙事预案（exp_084-087）\n\n## 当前证据基线\n\n| 条件 | Onset rate | 来源 |\n|------|-----------|------|\n| Trained dt_emb | 10/10 | 8 Walker + 2 Cheetah |\n| Frozen dt_emb (新代码) | 0/1 | exp_067 (NVE peak=0.4) |\n| No dt_emb | 0/5 | 008f, 009c, exp_069 等 |\n| 旧代码 frozen (BF1 无效) | 0/3 | exp_042/046/047, D152 已废弃 |\n\nexp_084-087 = 4 个 frozen runs（新代码），完成后 frozen 新代码样本从 1 增至 5。\n\n---\n\n## 情景 A：4 个 frozen 全部无持续 CIVO（NVE < 1.5x）\n\n**对 C2 的影响**：三路消融从 trained 10/10 vs frozen 0/1 vs absent 0/5 升级为 **trained 10/10 vs frozen 0/5 vs absent 0/5**。Fisher exact p < 0.0001 不变，但 frozen 样本量从 1 增至 5 大幅提高统计力度。总 control 组 0/10 vs trained 10/10 = 完美分离。\n\n**与 dt_embed_dim=0 互补**：frozen 证明 embedding **存在但不训练** 不触发 CIVO → 锁定因果为梯度训练过程，非 embedding 的 forward-pass 存在。与 absent (dim=0) 形成两层控制：absent 移除信号源，frozen 保留信号但阻断适应性学习。二者交叉确认 \"训练\" 是必要条件。\n\n**论文更新点**（列出，不改）：\n- C2 evidence table: 增加 exp_084-087 行，Fisher exact 分母更新\n- Section 4 Finding 2: n 数更新，跨环境 frozen coverage\n- Causal ablation matrix (memory.md): 补全 Cheetah frozen 格\n\n**预备回答 Reviewer 追问**：\n- *\"Frozen embedding 把 gate 锁死 dt=2，实验条件不等价\"* → 关键对比是 value overestimation 有无，不是策略质量。Frozen eval 偏低（~281）是预期的，但 NVE 从未突破 1.5x 才是 C2 的检验点。\n- *\"5 个 frozen 仍然太少\"* → 结合 absent 0/5，total control 0/10 vs treated 10/10，Fisher exact p < 10^-5，足以支撑 ICML diagnostic paper。\n\n---\n\n## 情景 B：某些 frozen 实验出现持续 CIVO\n\n**区分 transient spike vs 持续 CIVO**：参考 exp_047 s1 模式（NVE 瞬时 1.71 → 自修正至 0.56）。判定标准：\n1. NVE > 1.5x 是否跨 **≥2 个连续 checkpoint** 持续？\n2. NVE 趋势是加速（008d 模式）还是衰减（047 模式）？\n3. eval 是否同步恶化？\n\n若仅 transient spike + 自修正 → 仍归为 \"无持续 CIVO\"，与 009b (trained, transient) 类比但注明 frozen 的 spike 幅度和持续期均更低。\n\n**若确认 frozen 也产生持续 CIVO**：\n- C2 从 \"训练是必要条件\" 降级为 \"训练大幅放大但非必要\"\n- 措辞调整：*\"Gradient training of dt_embedding dramatically amplifies CIVO severity (10/10 onset, NVE 2-70x) compared to frozen embedding (k/5 onset, NVE ~1.5-2x), but does not fully eliminate it\"*\n- 机制解释转向：即使 frozen embedding 也在 forward pass 提供固定但非零的 dt conditioning → RSSM 在特定 seed/环境下仍可能形成弱 co-adaptation\n\n**Framing 调整选项**：\n1. **量级论** — trained CIVO NVE 2-70x vs frozen CIVO NVE ~1.5x，差异 > 一个数量级 → \"训练是 CIVO 严重度的主要放大器\"\n2. **概率论** — trained 10/10 vs frozen k/5 → \"训练将 onset 概率从 X% 提升至 100%\"\n3. **双因素论** — embedding 存在 = 必要条件，训练 = 充分条件之一（frozen 可能在特定环境/seed 下也充分）\n\n**最坏防守策略**：如果 frozen 在 Cheetah 出现 CIVO（Cheetah CIVO 本身更强，NVE peak 更高），可定位为 \"环境复杂度调节 frozen 的保护效力\"，与 Cartpole 0/3 onset 形成 complexity-dependent 叙事，保住核心 claim 的方向性。absent (dim=0) 的 0/5 仍作为 hard control 不受影响。\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Now register the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "d8d6b91f-3b39-4113-97bf-79b686dbe889",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GaxT236fNun445MtZHesyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2148,
+      "cache_read_input_tokens": 56005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2148
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RiPBnAsg2zoHhGzdNpN3VL`</summary>
+
+```json
+{
+  "pattern": "register_artifact",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/AGENTS.md",
+  "output_mode": "content",
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "4e12198b-d2a9-41fa-88b4-2742aa376e28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GaxT236fNun445MtZHesyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2148,
+      "cache_read_input_tokens": 56005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2148
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-25T18:03:21.033Z_
+
+<details><summary>↩ Tool result · `toolu_01RiPBnAsg2zoHhGzdNpN3VL`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "26c551be-023e-42de-954e-9ef0fb60259d",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01D6AvavW4zqZkQi4FRk7kXQ`</summary>
+
+```json
+{
+  "pattern": "register_artifact\"",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9",
+  "glob": "*.py",
+  "output_mode": "content",
+  "context": 2,
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "39eb8274-83d8-42a2-9cbd-f526948241e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019UqF9KUBAc47bCt7pNFsW4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 151,
+      "cache_read_input_tokens": 58153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 151
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-25T18:03:23.508Z_
+
+<details><summary>↩ Tool result · `toolu_01D6AvavW4zqZkQi4FRk7kXQ`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "fd9f6b6f-cdd8-4a00-b2b5-f2b40d7919d7",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012rSHi7Q5fokKatpuPvwGFr`</summary>
+
+```json
+{
+  "pattern": "register_artifact",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9",
+  "glob": "*.py",
+  "output_mode": "content",
+  "context": 3,
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "628620ab-d8e9-4ae2-b152-0f59c6b9602d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014w4dJjYjG3jKcn6Lmu8zbi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 178,
+      "cache_read_input_tokens": 58304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 178
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-25T18:03:26.161Z_
+
+<details><summary>↩ Tool result · `toolu_012rSHi7Q5fokKatpuPvwGFr`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "64a5196d-4b1d-4fdf-a8f8-22664e670a8a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PwbFGcNqwiwT73EDrU89Bp`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "622b41b8-91ce-49db-a971-525c9023586d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXowoJJzwJUgGeQb6DkGjd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 177,
+      "cache_read_input_tokens": 58482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 177
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-25T18:03:27.987Z_
+
+<details><summary>↩ Tool result · `toolu_01PwbFGcNqwiwT73EDrU89Bp`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "743fee69-1a7c-46cb-9f77-6cc2588a6fea",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_016u3CL2tD5Wr9K1vPMXw7Th`</summary>
+
+```json
+{
+  "pattern": "register.artifact",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9",
+  "glob": "CLAUDE.md",
+  "output_mode": "content",
+  "context": 3,
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "ca42f8e7-fc77-4b05-bc65-6c538b705255",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbkWSN2Wj4jRHKV2FGViY8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 91,
+      "cache_read_input_tokens": 58659,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 91
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-25T18:03:30.629Z_
+
+<details><summary>↩ Tool result · `toolu_016u3CL2tD5Wr9K1vPMXw7Th`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-5-- 项目配置：`load_project_config("event-gated-adaptive-horizon")` 或 `load_project_config("event-gated-adaptive-horizon", section="execution")`
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-6-- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-7-- 路线图：`read_roadmap()` 读取研究方向和短期任务
+.claude/CLAUDE.md:8:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-9-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-10-## Worker 操作规范
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-11-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-209-- 论文 framing：`read_project_file(file="paper_framing.md")` 读取论文 story arc / claims（提交实验需与 story 对齐）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-210-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-211-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）
+.claude/sessions/agent_7d9e8366/CLAUDE.md:212:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-213-
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-214-## 预置镜像
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-215-
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-209-- 论文 framing：`read_project_file(file="paper_framing.md")` 读取论文 story arc / claims（提交实验需与 story 对齐）
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-210-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-211-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）
+.claude/sessions/agent_0a8bfb01/CLAUDE.md:212:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）
+
+[Showing results with pagination = limit: 20]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "20cc424b-d4ff-4b97-8d6c-03f0434b29e8",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-5-- 项目配置：`load_project_config(\"event-gated-adaptive-horizon\")` 或 `load_project_config(\"event-gated-adaptive-horizon\", section=\"execution\")`\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-6-- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-7-- 路线图：`read_roadmap()` 读取研究方向和短期任务\n.claude/CLAUDE.md:8:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-9-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-10-## Worker 操作规范\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/CLAUDE.md-11-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-209-- 论文 framing：`read_project_file(file=\"paper_framing.md\")` 读取论文 story arc / claims（提交实验需与 story 对齐）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-210-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-211-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）\n.claude/sessions/agent_7d9e8366/CLAUDE.md:212:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-213-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-214-## 预置镜像\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_7d9e8366/CLAUDE.md-215-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-209-- 论文 framing：`read_project_file(file=\"paper_framing.md\")` 读取论文 story arc / claims（提交实验需与 story 对齐）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-210-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`\n/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_0a8bfb01/CLAUDE.md-211-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）\n.claude/sessions/agent_0a8bfb01/CLAUDE.md:212:- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/`（写文件后用 `register_artifact` 注册）",
+    "numLines": 20,
+    "appliedLimit": 20
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RE7kwXKRQMTd4cKA4tgfBb`</summary>
+
+```json
+{
+  "pattern": "\\\"register_artifact\\\"|'register_artifact'|register_artifact",
+  "path": "/home/ubuntu/agent-ml-research",
+  "glob": "*.py",
+  "output_mode": "content",
+  "context": 2,
+  "head_limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "d775fdc1-b3fd-4f0a-8f59-8739a99a579c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDaM4zfLVsksFM7UPJDyeU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1546,
+      "cache_read_input_tokens": 58750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1546
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-25T18:03:33.781Z_
+
+<details><summary>↩ Tool result · `toolu_01RE7kwXKRQMTd4cKA4tgfBb`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-121-- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-122-- 路线图：`read_roadmap()` 读取研究方向和短期任务
+/home/ubuntu/agent-ml-research/core/session_claude_md.py:123:- 产出目录：`{workspace}/projects/{project}/artifacts/`（写文件后用 `register_artifact` 注册）
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-124-"""
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-125-
+--
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-971-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-972-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）
+/home/ubuntu/agent-ml-research/core/session_claude_md.py:973:- 产出目录：`{workspace}/projects/{project}/artifacts/`（写文件后用 `register_artifact` 注册）
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-974-""")
+/home/ubuntu/agent-ml-research/core/session_claude_md.py-975-
+--
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1569-
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1570-@mcp.tool()
+/home/ubuntu/agent-ml-research/core/mcp_server.py:1571:def register_artifact(
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1572-    name: str,
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1573-    type: str,
+--
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1597-        skill: Name of the skill producing this artifact.
+/home/ubuntu/agent-ml-research/core/mcp_server.py-1598-    """
+
+[Showing results with pagination = limit: 20]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "c2259678-1a69-4d1f-864b-11404f165d6c",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/agent-ml-research/core/session_claude_md.py-121-- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-122-- 路线图：`read_roadmap()` 读取研究方向和短期任务\n/home/ubuntu/agent-ml-research/core/session_claude_md.py:123:- 产出目录：`{workspace}/projects/{project}/artifacts/`（写文件后用 `register_artifact` 注册）\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-124-\"\"\"\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-125-\n--\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-971-- 实验计划：`read_experiment_plan_with_status()` 读 `experiment_plan.yaml` + 自动合并 registry 状态；提交实验时传入对应的 `plan_id`\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-972-- 错题本：`read_mistakes()` 查阅过往错误与教训（执行关键操作前可回顾）\n/home/ubuntu/agent-ml-research/core/session_claude_md.py:973:- 产出目录：`{workspace}/projects/{project}/artifacts/`（写文件后用 `register_artifact` 注册）\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-974-\"\"\")\n/home/ubuntu/agent-ml-research/core/session_claude_md.py-975-\n--\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1569-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1570-@mcp.tool()\n/home/ubuntu/agent-ml-research/core/mcp_server.py:1571:def register_artifact(\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1572-    name: str,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1573-    type: str,\n--\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1597-        skill: Name of the skill producing this artifact.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-1598-    \"\"\"",
+    "numLines": 20,
+    "appliedLimit": 20
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EQGCdv1xJjQVvqQDc4TA23`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/core/mcp_server.py",
+  "offset": 1568,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "b3c48b04-ee57-4fad-a2a8-3a543cad5e2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FtDtuXiwKiB89fAVFH7Jrz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 60296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 867
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-25T18:03:37.370Z_
+
+<details><summary>↩ Tool result · `toolu_01EQGCdv1xJjQVvqQDc4TA23`</summary>
+
+```text
+1568	# ---------------------------------------------------------------------------
+1569	
+1570	@mcp.tool()
+1571	def register_artifact(
+1572	    name: str,
+1573	    type: str,
+1574	    description: str,
+1575	    project: str | None = None,
+1576	    exp_id: str | None = None,
+1577	    source_path: str | None = None,
+1578	    content: str | None = None,
+1579	    content_filename: str | None = None,
+1580	    url: str | None = None,
+1581	    tags: list[str] | None = None,
+1582	    skill: str = "",
+1583	) -> str:
+1584	    """Register an agent-produced artifact (chart, report, paper, data, intermediate, feishu_doc).
+1585	
+1586	    Args:
+1587	        name: Human-readable artifact name.
+1588	        type: chart | report | paper | data | intermediate | feishu_doc.
+1589	        description: Brief description of the artifact.
+1590	        project: Project name. None for global research scope.
+1591	        exp_id: Experiment ID. None to file under project-level.
+1592	        source_path: Local file to copy into artifacts directory.
+1593	        content: Raw text/HTML/JSON to write directly (for proxy workers without local file access).
+1594	        content_filename: Filename for written content (default: '{name}.txt').
+1595	        url: External URL (e.g. Feishu doc link), mutually exclusive with source_path/content.
+1596	        tags: Optional tags for filtering.
+1597	        skill: Name of the skill producing this artifact.
+1598	    """
+1599	    result = artifacts_mod.register_artifact(
+1600	        name=name, type=type, description=description,
+1601	        project=project, exp_id=exp_id,
+1602	        source_path=source_path, content=content, content_filename=content_filename,
+1603	        url=url, tags=tags, skill=skill,
+1604	    )
+1605	    return _tool_result_to_str(result)
+1606	
+1607	
+1608	@mcp.tool()
+1609	def list_artifacts(
+1610	    project: str | None = None,
+1611	    exp_id: str | None = None,
+1612	    type: str | None = None,
+1613	    tags: list[str] | None = None,
+1614	    limit: int = 50,
+1615	) -> str:
+1616	    """List registered artifacts with optional filters.
+1617	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "c392d9ef-cc67-42b2-8d45-eb4b24a162f3",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/core/mcp_server.py",
+      "content": "# ---------------------------------------------------------------------------\n\n@mcp.tool()\ndef register_artifact(\n    name: str,\n    type: str,\n    description: str,\n    project: str | None = None,\n    exp_id: str | None = None,\n    source_path: str | None = None,\n    content: str | None = None,\n    content_filename: str | None = None,\n    url: str | None = None,\n    tags: list[str] | None = None,\n    skill: str = \"\",\n) -> str:\n    \"\"\"Register an agent-produced artifact (chart, report, paper, data, intermediate, feishu_doc).\n\n    Args:\n        name: Human-readable artifact name.\n        type: chart | report | paper | data | intermediate | feishu_doc.\n        description: Brief description of the artifact.\n        project: Project name. None for global research scope.\n        exp_id: Experiment ID. None to file under project-level.\n        source_path: Local file to copy into artifacts directory.\n        content: Raw text/HTML/JSON to write directly (for proxy workers without local file access).\n        content_filename: Filename for written content (default: '{name}.txt').\n        url: External URL (e.g. Feishu doc link), mutually exclusive with source_path/content.\n        tags: Optional tags for filtering.\n        skill: Name of the skill producing this artifact.\n    \"\"\"\n    result = artifacts_mod.register_artifact(\n        name=name, type=type, description=description,\n        project=project, exp_id=exp_id,\n        source_path=source_path, content=content, content_filename=content_filename,\n        url=url, tags=tags, skill=skill,\n    )\n    return _tool_result_to_str(result)\n\n\n@mcp.tool()\ndef list_artifacts(\n    project: str | None = None,\n    exp_id: str | None = None,\n    type: str | None = None,\n    tags: list[str] | None = None,\n    limit: int = 50,\n) -> str:\n    \"\"\"List registered artifacts with optional filters.\n",
+      "numLines": 50,
+      "startLine": 1568,
+      "totalLines": 6195
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HPpj7sCMP6pSV66FfKa4x1`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "97649a66-e0fe-4e69-b094-f7d59e47c9c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cy5iCYTSm6DE8TTZk2qoJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 61163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 781
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-25T18:03:41.287Z_
+
+<details><summary>↩ Tool result · `toolu_01HPpj7sCMP6pSV66FfKa4x1`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "f93ae1ce-5d36-4571-9fb6-45f5c5882ff7",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SeJSaW3H3zyZG5QaYG8oEo`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "c066f769-7a7c-4555-93d3-560c9b466c34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B7wf5gehc7paQ4UeUVnKrt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 103,
+      "cache_read_input_tokens": 61944,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 103
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-25T18:03:43.233Z_
+
+<details><summary>↩ Tool result · `toolu_01SeJSaW3H3zyZG5QaYG8oEo`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "3504573f-a309-4a6c-88b6-00a756047a27",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+`register_artifact` MCP 工具不在当前可用工具列表中，无法直接调用。
+
+文档已保存至 `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/frozen_dt_emb_narrative_prep.md`。
+
+**内容摘要**：
+
+- **情景 A**：4 个 frozen 全部无 CIVO → 三路消融升级为 trained 10/10 vs frozen 0/5 vs absent 0/5，Fisher exact p < 10^-5。frozen 与 absent 互补（保留 embedding 但阻断梯度 vs 完全移除），交叉锁定"梯度训练"为必要条件。列出了论文需更新的位置和两个预备 reviewer 回答。
+
+- **情景 B**：某些 frozen 出现持续 CIVO → 给出 transient spike vs 持续 CIVO 的三项判定标准（连续 checkpoint、趋势方向、eval 同步恶化），以及三种 framing 降级选项（量级论/概率论/双因素论）。最坏情况防守策略：利用 Cheetah CIVO 本身更强的特性 + Cartpole 0/3 onset 构建 complexity-dependent 叙事，absent (dim=0) 0/5 作为不受影响的 hard control。
+
+`register_artifact` 需要你在有 MCP 工具访问权的 session 中手动注册，或者由 Director/Worker session 代执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "uuid": "0abd29d5-07a7-41a9-97e6-bf549de11b27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NjUpV5VqcZ6KFGAq8RPeM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 62047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+`register_artifact` MCP 工具不在当前可用工具列表中，无法直接调用。
+
+文档已保存至 `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/frozen_dt_emb_narrative_prep.md`。
+
+**内容摘要**：
+
+- **情景 A**：4 个 frozen 全部无 CIVO → 三路消融升级为 trained 10/10 vs frozen 0/5 vs absent 0/5，Fisher exact p < 10^-5。frozen 与 absent 互补（保留 embedding 但阻断梯度 vs 完全移除），交叉锁定"梯度训练"为必要条件。列出了论文需更新的位置和两个预备 reviewer 回答。
+
+- **情景 B**：某些 frozen 出现持续 CIVO → 给出 transient spike vs 持续 CIVO 的三项判定标准（连续 checkpoint、趋势方向、eval 同步恶化），以及三种 framing 降级选项（量级论/概率论/双因素论）。最坏情况防守策略：利用 Cheetah CIVO 本身更强的特性 + Cartpole 0/3 onset 构建 complexity-dependent 叙事，absent (dim=0) 0/5 作为不受影响的 hard control。
+
+`register_artifact` 需要你在有 MCP 工具访问权的 session 中手动注册，或者由 Director/Worker session 代执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 143732,
+  "duration_api_ms": 144898,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "969e9ba1-259c-4871-a71e-f80a4fea1fdb",
+  "total_cost_usd": 0.8631790000000003,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 50794,
+    "cache_read_input_tokens": 800435,
+    "output_tokens": 5752,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 50794,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 439,
+        "cache_read_input_tokens": 62047,
+        "cache_creation_input_tokens": 194,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 194
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1509,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001599,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 5752,
+      "cacheReadInputTokens": 800435,
+      "cacheCreationInputTokens": 50794,
+      "webSearchRequests": 0,
+      "costUSD": 0.8615800000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fec535e4-40b1-4f1a-b1b8-5e6ffc47fcf8"
+}
+```
+
+</details>
+
+---

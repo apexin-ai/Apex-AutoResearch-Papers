@@ -1,0 +1,67 @@
+# reviewer / loop_23.md
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_23.md`
+- **Structured JSON:** [`170455472f61f2dd5354.json`](../../sessions/17/170455472f61f2dd5354.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 23
+reason: max_wall_time
+updated: '2026-05-25T03:27:37+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- bjb1-45299 本项目用 GPU 1（gpu_ids=[1]）。GPU 0 低占用但不属于本项目，不要动。
+- bjb1-40020 本项目用 GPU 0（gpu_ids=[0]）。GPU 1 空闲但未分配。
+- 远程代码根目录是 `/root/autodl-tmp/event-gated-adaptive-horizon`，不是 `/root/dreamerv3-torch`（exp_066 第一次失败就是用错路径）。
+- `--eval_every 999999` 会阻止 checkpoint 保存（save 代码在 simulate() 循环外），已踩坑浪费 ~5h GPU。正确值 `--eval_every 5000`。
+- exp_057 的 nve_peak 是 1.88（不是 worker 曾报的 1.3，那是 ve_ratio_peak=1.283 被混淆了）。论文用 1.88 是对的。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：bjb1-45299(root) + bjb1-40020(root)
+- 远程工作目录：`/root/autodl-tmp/event-gated-adaptive-horizon`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon`
+- 论文 tex：`docs/paper/sections/*.tex`，编译入口 `docs/paper/main.tex`
+- Registry：`registry.yaml`（本地 workspace 根目录）
+- 活跃进程（截至 2026-05-25 ~03:30 UTC）：
+  - exp_062_cartpole_control: bjb1-40020 cuda:0, PID 491125, seed 2 约 108K/112K，预计 1-2h 完成
+  - exp_060: DONE, exp_061: DONE, exp_066: DONE
+
+### 3. 📊 当前状态
+刚完成 exp_061 Cartpole CIVO trigger 审查，已 post 给 Director：
+- **核心发现**：Cartpole 0/3 seeds 触发 CIVO（ve_ratio < 0.06），论文两处 "CIVO is locomotion-specific"（results.tex:100, introduction.tex:11）需修正为 "multi-joint locomotion"。[severity: warning] 已提交。
+- Registry RUNNING：仅 exp_062_cartpole_control（seed 2 即将完成）
+- 等待：exp_062 完成后可做完整 Cartpole 三组对比（baseline/trigger/control）
+- C2 claim 措辞已定稿两个 scenario（A: exp_066b 复现 → "provides evidence that"；B: 不复现 → "converging evidence supports"），等 Director 决定是否跑 exp_066b
+
+### 4. 📋 待办
+- exp_062 完成通知 → 核实 3 seeds metrics，确认 Cartpole control 也不触发 CIVO（预期 ve_ratio 极低），与 exp_061 形成因果对比完整闭环
+- Director 更新 "locomotion-specific" 措辞后 → 审查新 tex 是否与 registry 数据一致
+- 若 exp_066b 启动 → 跟踪第二个 seed 的时序 fidelity 数据，决定 C2 scenario A vs B
+- 论文写作审查请求到达 → 按 Step 5 模板评分，必读 paper-quality-lessons.skill.md
+
+### 5. 🎯 战略上下文
+- **DDL**：ICML 2026-05-29 投稿，数据锁定 2026-05-27
+- **核心结论**：CIVO 在 trained dt_emb + multi-rate 下触发（Walker 7/7, Cheetah 2/2），Cartpole 0/3, ManiSkill 0/5。NVE ≥1.5× 检测器 AUROC=0.961 (n=32), LOEO AUROC=0.988
+- **论文数字体系**：body 用 n=32 AUROC=0.961（Extended Validation，含 Cheetah）；appendix 另有 n=30 AUROC=0.957（Walker-only expanded ROC）和 n=22 LOEO。三套数字各有出处，不要混淆
+- **C2 claim 不能升级到 "demonstrates"**：已评估 3+ 次。exp_066 是 n=1 seed，V/MC 有 on-policy/off-policy confound（baseline V/MC=3.31），exp_063/064 是 post-hoc 单 checkpoint。"converging evidence supports" 是合适强度
+- **易错点**：frozen Walker 2/4 transient spikes（047: 1.71×, 057: 1.88×）是 FP 不是 CIVO failure。论文 tab:three_way_emb 计 4 seeds（Walker-only），tab:intervention_hierarchy 计 7 seeds（Walker 5 + Cheetah 2），两个表的分母不同但各自自洽
+
+
+---

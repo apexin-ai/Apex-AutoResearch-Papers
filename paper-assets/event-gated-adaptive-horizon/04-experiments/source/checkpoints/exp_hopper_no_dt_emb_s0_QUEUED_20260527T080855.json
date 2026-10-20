@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_hopper_no_dt_emb_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T08:08:47.870Z",
+    "updated_at": "2026-05-27T08:08:54.557Z",
+    "hypothesis": "Removing dt_embedding entirely (dt_embed_dim=0) while keeping gate+dt=2+subsample ON will still show severe learning delay in Hopper, confirming gate mechanism itself (not dt_emb) is the root cause of Hopper's failure. Source: D162 diagnostic.",
+    "parent": "exp_hopper_trained_s0"
+  },
+  "timestamp": "2026-05-27T08:08:55.017360+00:00",
+  "trigger": "update_registry"
+}

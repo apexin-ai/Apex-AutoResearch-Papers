@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_093_cheetah_no_dt_emb_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:52:27.267Z",
+    "updated_at": "2026-05-26T02:00:30.757Z",
+    "hypothesis": "Cheetah Run dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=2 — 跨 seed 复制 exp_082 (s0, NVE=0.33×, no CIVO, success)。dt_embedding 完全移除后预期无 CIVO，加强 C2 cross-env causal control 多 seed 证据基础。plan_022。（重提交 exp_090，修正 CLI flag: --gate_dt_embed_dim 0）",
+    "parent": "exp_082_cheetah_no_dt_emb_s0",
+    "spec": {
+      "data_path": "dmc_cheetah_run",
+      "data_count": 105000,
+      "model_name": "DreamerV3 (gate_dt_embed_dim=0, Cheetah causal control)",
+      "seed": 2,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "dmc_cheetah_run (online eval)",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_093_cheetah_no_dt_emb_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "313815",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_093_cheetah_no_dt_emb_s2.log",
+      "submitted_at": "2026-05-25T22:52:44Z"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-26T02:00:29.129Z"
+    }
+  },
+  "timestamp": "2026-05-26T02:00:31.213970+00:00",
+  "trigger": "update_registry"
+}

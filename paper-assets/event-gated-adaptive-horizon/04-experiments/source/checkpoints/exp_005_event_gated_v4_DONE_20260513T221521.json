@@ -1,0 +1,101 @@
+{
+  "exp_id": "exp_005_event_gated_v4",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:08:06.061Z",
+    "updated_at": "2026-05-13T22:15:21.423Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/event_gated_v5_s1 --steps 500000 --seed 1 --compile False --device cuda:0 --gate_enabled True",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "51721",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_005_event_gated_v4.log",
+      "submitted_at": "2026-05-13T16:08:11.913Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "修复 gate_target/masking 维度不匹配 + effective_max_dt 单一来源架构 + 全量审计后，event gate return >= 80% baseline",
+      "model_name": "DreamerV3+EventGate_v4",
+      "seed": 1,
+      "data_path": "dmc_walker_walk",
+      "data_count": 500000,
+      "wall_clock_seconds": 22029.4,
+      "gpu_hours": 6.12
+    },
+    "metrics": {
+      "step": 112000,
+      "eval_return_5K": 31,
+      "eval_return_15K": 153.9,
+      "eval_return_35K": 290.8,
+      "eval_return_55K": 541.2,
+      "eval_return_65K": 465.7,
+      "eval_return_85K": 319.3,
+      "eval_return_105K": 337.8,
+      "eval_return_105K_std": 125.9,
+      "return_ratio_105K": 0.354,
+      "return_trend_105K": "TRENDING_UP (+17.6/10K)",
+      "gate_scale_105K": 0.5,
+      "gate_dt_mean_105K": 2.054,
+      "gate_dt_std_105K": 0.907,
+      "gate_entropy_105K": 1.255,
+      "gate_dt_distribution_105K": {
+        "dt1": 0.315,
+        "dt2": 0.387,
+        "dt3": 0.227,
+        "dt4": 0.071
+      },
+      "fps": 6.69,
+      "mvp_C2_entropy": "PASS (1.255)",
+      "mvp_C3_heff": "PASS (2.054x)",
+      "mvp_C4_structure": "PASS (std=0.907)"
+    },
+    "latest_metrics": {
+      "step": 65000,
+      "eval_return": 465.67,
+      "prev_eval_return": 541.18,
+      "eval_return_trajectory": {
+        "5K": 31,
+        "15K": 153.9,
+        "25K": 254.2,
+        "35K": 290.8,
+        "45K": 443,
+        "55K": 541.2,
+        "65K": 465.7
+      },
+      "gate_scale": 0.10004,
+      "gate_dt_mean": 1.035,
+      "gate_dt_std": 0.036,
+      "gate_dt_1_frac": 0.965,
+      "gate_dt_2_frac": 0.035,
+      "gate_empirical_entropy": 0.0499,
+      "gate_entropy_ratio": 0.072,
+      "gate_loss": 0.00663,
+      "gate_entropy_bonus": 0.0865,
+      "train_return_latest": 569.8,
+      "train_return_range": [
+        535.4,
+        602.1
+      ],
+      "fps": 6.69,
+      "process_status": "running",
+      "pid": 51721,
+      "uptime": "2h31m",
+      "phase2_status": "gate刚进入phase2 (gate_scale=0.1), dt=1占比96.5%, gate几乎未激活。eval_return在55K→65K出现14%下降(541→466), 与phase2启动时机吻合, 类似exp_003崩塌前兆。但baseline同期也有小幅回调(626→616, -1.6%), 且gate尚未真正激活, 需继续观察75K数据确认是正常波动还是collapse。",
+      "alert": "return_declining_at_phase2_onset",
+      "baseline_at_65K": 615.9,
+      "gap_vs_baseline": -150.2,
+      "checked_at": "2026-05-13"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "N/A - killed due to structural failure of hard Gumbel gate",
+    "completed_at": "2026-05-13T22:15:21.359Z"
+  },
+  "timestamp": "2026-05-13T22:15:21.459117+00:00",
+  "trigger": "update_registry"
+}

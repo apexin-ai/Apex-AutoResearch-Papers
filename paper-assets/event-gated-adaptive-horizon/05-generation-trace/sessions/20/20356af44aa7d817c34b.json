@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20356af44aa7d817c34b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill ghost 024",
+  "task_key": "worker_ops_kill-ghost-024_20260517T225724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-ghost-024_20260517T225724_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "a0fca1c729d83d28a502414bc712a6aba345af89ec2eca09b24cdf398dfa7649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **已 kill**: PID 705253 (`exp_024_cheetah_no_dt_emb_s0`，幽灵进程）— 已不存在\n- **仍在运行**: PID 705742 (`exp_024b_cheetah_no_dt_emb_s0`) — 正常运行在 cuda:0\n- **GPU 状态**: cuda:0 上只剩 PID 705742 一个 Python 进程，占用 3257MiB，GPU 利用率 20%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-ghost-024.md"
+}

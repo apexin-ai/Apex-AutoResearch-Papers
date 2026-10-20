@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_059_walker_trained_s5",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T03:08:46.842Z",
+    "updated_at": "2026-05-24T03:15:43.839Z",
+    "hypothesis": "Walker CIVO trigger 第5个独立seed验证。当前4/4 seeds触发sustained CIVO（p=0.0625 binomial test）。如果s5也触发 → p=0.03125，达到统计显著性阈值。关联 Claim 1: CIVO reproducibility。",
+    "parent": "exp_008d_civo_trigger_s3",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "186176",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log",
+      "submitted_at": "2026-05-24T03:15:40.649Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "pid": "186176",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_059_walker_trained_s5.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --gate_subsample_min_dt 1 --imag_horizon 8 --seed 5 --steps 105000 --checkpoint_every 25000 --compile False --device cuda:0 --logdir logdir/exp_059_walker_trained_s5\"",
+      "code_commit": "fb56c860a88292ad60b6183effc1102a01205086"
+    }
+  },
+  "timestamp": "2026-05-24T03:15:44.503748+00:00",
+  "trigger": "update_registry"
+}

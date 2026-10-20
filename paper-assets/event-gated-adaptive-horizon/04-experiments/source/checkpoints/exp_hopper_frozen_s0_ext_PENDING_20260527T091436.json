@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_hopper_frozen_s0_ext",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-27T09:14:24.513Z",
+    "updated_at": "2026-05-27T09:14:35.698Z",
+    "hypothesis": "Extending frozen_s0 from 105K→150K will show eval_return recovery (rising like trained_s0_ext: 3.26→81.58) with ve_ratio declining, confirming frozen_s0's 'degenerate CIVO' @95K is transient instability during severe learning delay, not true CIVO mechanism. Source: D163.",
+    "parent": "exp_hopper_frozen_s0",
+    "plan_id": "D163"
+  },
+  "timestamp": "2026-05-27T09:14:36.665755+00:00",
+  "trigger": "update_registry"
+}

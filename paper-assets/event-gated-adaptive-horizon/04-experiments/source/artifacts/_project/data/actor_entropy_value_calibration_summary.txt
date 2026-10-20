@@ -1,0 +1,10 @@
+Server path: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/analysis_actor_entropy_value_calibration.json
+
+Key findings:
+1. Value calibration (v/R ratio) is the strongest diagnostic signal for collapse
+2. Collapsed experiments: exp_008d v/R=1.87 at 55K, exp_006 v/R=2.43 at 65K (delusional critic)
+3. Healthy experiments: baseline v/R ~0.7, event-gated healthy v/R 0.2-0.6 (consistent underestimation)
+4. Normalized to baseline: collapsed 5.27x-5.66x, healthy 0.2x-1.1x
+5. Classification accuracy: 100% (v/R > 1.5 perfectly separates collapsed from healthy)
+6. Actor entropy: collapsed experiments converge slower (entropy positive at 15K) vs healthy (negative)
+7. Baseline shows unique entropy recovery from -5.2 to -0.8 after 105K steps

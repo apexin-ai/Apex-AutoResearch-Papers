@@ -1,0 +1,43 @@
+{
+  "description": "Threshold sensitivity analysis for CIVO detector magnitude threshold (tau_mag)",
+  "velocity_threshold_fixed": 0.1,
+  "acceleration_condition": "delta_ve > prev_delta_ve AND prev_delta_ve > 0.1",
+  "eval_decline_condition": ">=2 of last 3 checkpoints decline",
+  "experiments_evaluated": 10,
+  "ground_truth": {
+    "positive": ["exp_008d_s0", "exp_010b_cheetah", "exp_008d_s3"],
+    "negative": ["exp_008f_s3", "exp_009c_008f_s2", "exp_009b_008d_walker_s2", "exp_009a_baseline_walker_s2", "baseline_s1", "exp_009d_baseline_walker_s0", "exp_009d_baseline_walker_s1"]
+  },
+  "critical_ve_ratios": {
+    "exp_008d_s3_trigger": 0.4969,
+    "exp_008d_s0_first_trigger": 0.6929,
+    "exp_008d_s0_second_trigger": 1.6663,
+    "exp_010b_cheetah_trigger": 3.1829,
+    "exp_009a_FP_trigger": 0.7281,
+    "exp_009c_FP_trigger": 0.7499
+  },
+  "non_triggering_negatives": {
+    "experiments": ["exp_008f_s3", "exp_009b_008d_walker_s2", "baseline_s1", "exp_009d_baseline_walker_s0", "exp_009d_baseline_walker_s1"],
+    "reason": "No checkpoint has acceleration=true AND eval_decline_count>=2 simultaneously, regardless of magnitude threshold"
+  },
+  "results": [
+    {"threshold": 0.30, "TP": 3, "FP": 2, "TN": 5, "FN": 0, "TPR": 1.000, "FPR": 0.286, "J": 0.714},
+    {"threshold": 0.35, "TP": 3, "FP": 2, "TN": 5, "FN": 0, "TPR": 1.000, "FPR": 0.286, "J": 0.714},
+    {"threshold": 0.40, "TP": 3, "FP": 2, "TN": 5, "FN": 0, "TPR": 1.000, "FPR": 0.286, "J": 0.714},
+    {"threshold": 0.45, "TP": 3, "FP": 2, "TN": 5, "FN": 0, "TPR": 1.000, "FPR": 0.286, "J": 0.714},
+    {"threshold": 0.50, "TP": 2, "FP": 2, "TN": 5, "FN": 1, "TPR": 0.667, "FPR": 0.286, "J": 0.381},
+    {"threshold": 0.55, "TP": 2, "FP": 2, "TN": 5, "FN": 1, "TPR": 0.667, "FPR": 0.286, "J": 0.381},
+    {"threshold": 0.60, "TP": 2, "FP": 2, "TN": 5, "FN": 1, "TPR": 0.667, "FPR": 0.286, "J": 0.381},
+    {"threshold": 0.65, "TP": 2, "FP": 2, "TN": 5, "FN": 1, "TPR": 0.667, "FPR": 0.286, "J": 0.381},
+    {"threshold": 0.70, "TP": 2, "FP": 2, "TN": 5, "FN": 1, "TPR": 0.667, "FPR": 0.286, "J": 0.381}
+  ],
+  "optimal": {
+    "threshold_range": [0.30, 0.4969],
+    "chosen_threshold": 0.49,
+    "J": 0.714,
+    "TPR": 1.000,
+    "FPR": 0.286
+  },
+  "conclusion": "tau_mag=0.49 is the tightest (most conservative) threshold that achieves maximum Youden's J=0.714. The operating curve has a sharp cliff at tau=0.50 where exp_008d_s3 (ve_ratio=0.4969) drops out, reducing J from 0.714 to 0.381. FPR is invariant across [0.30, 0.70] because both FP cases (exp_009c at 0.7499, exp_009a at 0.7281) have trigger ve_ratios above 0.70. The 2 FPs cannot be eliminated by magnitude threshold alone without also losing 2/3 TPs. Lowering tau below 0.49 gains nothing (no new TPs or FPs). The current threshold 0.49 is optimal: it sits just below the critical ve_ratio of exp_008d_s3 (0.4969), capturing all true positives at minimum false alarm rate achievable within the [0.30, 0.70] range.",
+  "insight": "The magnitude threshold primarily gates the most marginal TP case (exp_008d_s3). The 2 FP cases have high ve_ratios (0.73, 0.75) and cannot be separated from TPs by magnitude alone. Reducing FPR requires improving other conditions (e.g., temporal persistence, minimum trigger step, or acceleration threshold)."
+}

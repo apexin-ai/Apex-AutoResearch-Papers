@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_066b_timeseries_rssm_fidelity_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T02:34:14.574Z",
+    "updated_at": "2026-05-25T02:37:09.167Z",
+    "hypothesis": "复现 exp_066 的 fidelity gap precedes VE 时序 pattern（seed=1），验证 RSSM fidelity gap → value overestimation 因果链的跨 seed 稳健性。Reviewer caveat #1 指出 n=1 不足，本实验将样本量从 n=1 升到 n=2。来源: plan_032 + exp_066 Reviewer 反馈。",
+    "parent": "exp_066_timeseries_rssm_fidelity"
+  },
+  "timestamp": "2026-05-25T02:37:09.553321+00:00",
+  "trigger": "update_registry"
+}

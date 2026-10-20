@@ -1,0 +1,45 @@
+# diagnose bjb1 full status 20260526 v2
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diagnose_bjb1_full_status_20260526_v2_20260526T011441_result.json`
+- **Structured JSON:** [`923ac121c587ad4a6d80.json`](../../sessions/92/923ac121c587ad4a6d80.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## GPU 状态
+| GPU | 型号 | 显存使用 | GPU-Util | 进程 |
+|-----|------|---------|----------|------|
+| 0 | RTX PRO 6000 (98GB) | 3801 MiB | 23% | PID 313538 (exp_092, 3257MiB) + PID 313815 (515MiB溢出) |
+| 1 | RTX PRO 6000 (98GB) | 2751 MiB | 30% | PID 313815 (exp_093, 2742MiB) |
+
+## 实验进度
+| exp_id | 当前 step | total steps | 最新 eval_return | 状态 |
+|--------|----------|-------------|-----------------|------|
+| exp_092_cheetah_no_dt_emb_s1 | **88000** | **105000** | 104.5 (@ 85K) | running |
+| exp_093_cheetah_no_dt_emb_s2 | **88000** | **105000** | 153.9 (@ 85K) | running |
+
+## 关键发现
+
+- **`--steps 105000` 已正确解析。** 两个进程的 cmdline 都确认是 `--steps 105000`，不是 500K。之前 worker 报告 "36K / 500K" 是误判。
+- **实验正常运行中，未卡住。** fps ≈ 9.9，剩余 17K steps ≈ **~29 分钟**完成。下一个 eval 在 95K，最终 eval 在 105K。
+- **gate 完全退化：** 两个 seed 的 `gate_dt_mean=2.0, gate_dt_2_frac=1.0, gate_empirical_entropy=0.0`——gate 始终选择 dt=2（固定值），没有学到自适应行为。这是 `--gate_fixed_dt 2` 的预期行为（消融实验 baseline）。
+- **磁盘正常：** 根分区 57% (14GB free)，数据盘 38% (158GB free)。
+- **tmux 无法通过 read_only 查看**（被拦截），但两个进程确认在跑。
+
+**结论：无需干预，约 30 分钟内两个实验将自然完成到 105K steps。**
+
+---

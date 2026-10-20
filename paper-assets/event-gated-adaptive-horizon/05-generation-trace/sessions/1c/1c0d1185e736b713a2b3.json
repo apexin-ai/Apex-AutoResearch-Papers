@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c0d1185e736b713a2b3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 029c walker sigma01 v2",
+  "task_key": "worker_submit_exp_029c_walker_sigma01_v2_20260520T111215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_029c_walker_sigma01_v2_20260520T111215_result.json",
+    "occurrence": 1,
+    "bytes": 85,
+    "sha256": "62d0e248af1a55ff6d7822bc9587e77fdfa9c998642ba9bb603a09dea1587c5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验在 208K/210K，还在跑。已安排 2 分钟后重新检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029c-walker-sigma01-v2.md"
+}

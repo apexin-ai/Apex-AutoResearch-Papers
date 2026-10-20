@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_015b_frozen_dt_emb",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T10:21:05.572Z",
+    "updated_at": "2026-05-15T12:17:22.659Z",
+    "hypothesis": "Walker Walk frozen dt_emb + subsample ON + dt=2 imagination + H=8 seed 1 — 2×2 消融矩阵: 隔离 dt_emb 训练 vs 存在的因果效应。如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在（plan_015B, D041）",
+    "parent": "exp_008d_subsample_on_h8",
+    "notes": "第二次提交。首次失败原因: --device cuda:1 但 CUDA_VISIBLE_DEVICES=1 后进程内只有 cuda:0。已修正为 --device cuda:0。PID 144831, 从头开始 (step=0)。预计 ~5h 完成 105K steps。",
+    "completed_at": "2026-05-15T12:12:25.846Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第二次提交。首次失败原因: --device cuda:1 但 CUDA_VISIBLE_DEVICES=1 后进程内只有 cuda:0。已修正为 --device cuda:0。PID 144831, 从头开始 (step=0)。预计 ~5h 完成 105K steps。"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T12:17:22.758373+00:00",
+  "trigger": "update_registry"
+}

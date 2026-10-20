@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a3134ed4473c87d6669",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_26_1779983873.md",
+  "task_key": "loop_26_1779983873",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_26_1779983873.md",
+    "occurrence": 1,
+    "bytes": 3319,
+    "sha256": "3c4cff04c0d67bb2d8a79aad99134e1d15a83810e70f3792c0f0bae30f86cc9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 26\nreason: idle_timeout\nupdated: '2026-05-28T15:57:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-51268 cuda:0, cuda:1（仅此两张，其他设备号禁止使用）\n- 数据锁定 D171 生效中：所有实验数据和论文数值冻结，禁止修改任何数值/统计/表格/图表数据，仅允许 prose polish\n- CoRL 2026 DDL：UTC 2026-05-28 12:00\n- CIVO 检测阈值 τ=2.0（D165 上调，不是 1.5）\n- C2 Walker CIVO onset rate 定义为 2/3（D167），009b 归类为 sub-threshold\n- exp_cheetah_008a_s3 的 105K 数据已确认可用（NVE=0.3, no CIVO），虽然 conclusion=failed(SIGTERM)，但数据本身有效——不要误删或忽略\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-51268，2× RTX PRO 6000 Blackwell\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 环境变量：MUJOCO_GL=egl, PYOPENGL_PLATFORM=egl\n- 磁盘：/autodl-tmp 5.3T/7.3T 可用(24%)\n- 活跃进程：无训练进程运行，两张 GPU 均空闲\n- Worker：`worker_ops_kill-and-diagnose-tier2-hang_20260527T231952` 仍在运行（CPU 任务），可能即将返回\n\n### 3. 📊 当前状态\n刚处理了三个 Tier 2 rebuttal reserve 实验的 SIGTERM 失败回调（exp_walker_008d_s6, s7, exp_cheetah_008a_s3），均为 ops Worker 主动 kill，非程序崩溃。已更新 registry notes 并向 Director 汇报。\n\nRegistry 状态：206 个实验全部 DONE（success 103 / negative 43 / failed 19 / killed 40）。无 RUNNING/PREPARING/ALLOCATED 实验。\n\n等待中：\n- `ops:kill-and-diagnose-tier2-hang` Worker 回调——应返回 Tier 2 实验被 kill 的详细原因（可能是 hang 在初始化）\n- Director 对是否投稿后重跑 Walker 008d s6/s7 的决策\n- 论文投稿流程（提交给 Review Director / 投稿材料准备由 Group C 负责）\n\n### 4. 📋 待办\n- ops Worker 回调到达 → 读取诊断结论，更新 registry notes，若发现代码 bug 则汇报 Director\n- Director 指示投稿 → 按 ROADMAP 执行（submit_paper_to_review / prose polish）\n- Director 指示重跑 Walker 008d s6/s7 → 用相同命令重新 submit_training_job 到 cuda:0/cuda:1\n- exp_walker_no_dt_emb_s0 在待处理列表（report.md 中标注\"已分配，等待提交\"）→ 需 Director 确认是否在数据锁定后仍需执行\n\n### 5. 🎯 战略上下文\n- 项目核心：DreamerV3 中 trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 可稳健阻止。8 个 Claims 全部 ✅ Strong/Moderate。\n- 论文 31 页已编译通过，Reviewer 最终审查 PASS（D171 前完成）。\n- 最容易判断错的事：数据锁定已生效，不要因为 GPU 空闲就冲动重跑实验并试图更新论文数值。Tier 2 实验（D172）是 rebuttal 储备，结果不进当前论文。\n- exp_cheetah_008a_s3 虽然 conclusion=failed，但 notes 里明确记录 105K 数据可用——这是个 edge case，别按 failed 常规逻辑处理。\n- 关键决策链：D165(τ=2.0) → D167(onset 2/3) → D169(C3 framing) → D170(s0 数据确认) → D171(数据锁定) → D172(rebuttal reserve)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-26-1779983873.md"
+}

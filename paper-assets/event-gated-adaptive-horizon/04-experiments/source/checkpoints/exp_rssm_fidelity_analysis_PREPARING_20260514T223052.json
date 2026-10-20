@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_rssm_fidelity_analysis",
+  "project": "event-gated-adaptive-horizon",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:09:52.237Z",
+    "updated_at": "2026-05-14T22:30:51.923Z",
+    "metrics": {
+      "baseline": {
+        "dt1_obs_mse": 13.49,
+        "dt2_obs_mse": 27.5,
+        "obs_gap": 2.04,
+        "dt1_reward_mae": 0.0102,
+        "dt2_reward_mae": 0.0159,
+        "reward_gap": 1.56
+      },
+      "008d_trained_dtEmb": {
+        "dt1_obs_mse": 41.31,
+        "dt2_obs_mse": 53.67,
+        "obs_gap": 1.3,
+        "dt1_reward_mae": 0.0568,
+        "dt2_reward_mae": 0.1579,
+        "reward_gap": 2.78
+      },
+      "008f_no_dtEmb": {
+        "dt1_obs_mse": 8.01,
+        "dt2_obs_mse": 22.04,
+        "obs_gap": 2.75,
+        "dt1_reward_mae": 0.7469,
+        "dt2_reward_mae": 0.7526,
+        "reward_gap": 1.01
+      }
+    },
+    "conclusion": "success",
+    "hypothesis": "RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)"
+  },
+  "timestamp": "2026-05-14T22:30:52.005298+00:00",
+  "trigger": "update_registry"
+}

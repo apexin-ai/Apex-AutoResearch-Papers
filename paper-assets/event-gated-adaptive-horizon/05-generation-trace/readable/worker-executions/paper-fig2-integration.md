@@ -1,0 +1,2603 @@
+# paper fig2 integration
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 40
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_paper_fig2-integration_20260517T010117.log`
+- **Structured JSON:** [`f8aab581021998640ac6.json`](../../sessions/f8/f8aab581021998640ac6.json)
+
+## Before a recorded user message
+
+40 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0eafde3c-8254-4de4-a46d-eaad2611eea4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778997000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "137e3b91-0882-4ae2-84b2-a7db8c852392",
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the paper files in the project directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "e9e06210-8ad5-4f43-b913-a9f59cb7b055",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnwY8gmS62nv4mEwv48rVo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13122,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13122
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01DPqaWpMeYzEyG8zb5NSTEx`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "270c190f-e84e-456c-8549-e3e028a282b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnwY8gmS62nv4mEwv48rVo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13122,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13122
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T01:01:32.154Z_
+
+<details><summary>↩ Tool result · `toolu_01DPqaWpMeYzEyG8zb5NSTEx`</summary>
+
+```text
+docs/paper/_corl_template/corl_2026_template_submission/example.tex
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex
+artifacts/dream_reports/dream_20260514T062606/best/paper.tex
+artifacts/dream_reports/dream_20260514T062606/median/paper.tex
+artifacts/dream_reports/dream_20260515T004704/best/paper.tex
+artifacts/dream_reports/dream_20260515T004704/median/paper.tex
+artifacts/dream_reports/dream_20260515T004704/worst/paper.tex
+artifacts/figures/archive/tab_rssm_fidelity.tex
+artifacts/_project/paper/nve_sensitivity_table_37b680.tex
+artifacts/_project/paper/nve_sensitivity_table.tex
+paper/tables/nve_sensitivity_table.tex
+artifacts/dream_reports/dream_20260514T062606/worst/paper.tex
+artifacts/dream_reports/dream_20260516T115400/best/paper.tex
+artifacts/dream_reports/dream_20260516T115400/median/paper.tex
+artifacts/dream_reports/dream_20260516T115400/worst/paper.tex
+docs/paper/sections/abstract.tex
+artifacts/dream_reports/dream_20260516T133210/best/paper.tex
+artifacts/dream_reports/dream_20260516T133210/median/paper.tex
+artifacts/dream_reports/dream_20260516T133210/worst/paper.tex
+artifacts/dream_reports/dream_20260516T172011/best/paper.tex
+artifacts/dream_reports/dream_20260516T172011/median/paper.tex
+artifacts/dream_reports/dream_20260516T172011/worst/paper.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/methodology.tex
+docs/paper/main.tex
+docs/paper/sections/abstract_body.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/analysis.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/results.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "a1ece4aa-b872-4474-baec-32f938acd491",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/_corl_template/corl_2026_template_submission/example.tex",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex",
+      "artifacts/dream_reports/dream_20260514T062606/best/paper.tex",
+      "artifacts/dream_reports/dream_20260514T062606/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T004704/best/paper.tex",
+      "artifacts/dream_reports/dream_20260515T004704/median/paper.tex",
+      "artifacts/dream_reports/dream_20260515T004704/worst/paper.tex",
+      "artifacts/figures/archive/tab_rssm_fidelity.tex",
+      "artifacts/_project/paper/nve_sensitivity_table_37b680.tex",
+      "artifacts/_project/paper/nve_sensitivity_table.tex",
+      "paper/tables/nve_sensitivity_table.tex",
+      "artifacts/dream_reports/dream_20260514T062606/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260516T115400/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T115400/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T115400/worst/paper.tex",
+      "docs/paper/sections/abstract.tex",
+      "artifacts/dream_reports/dream_20260516T133210/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T133210/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T133210/worst/paper.tex",
+      "artifacts/dream_reports/dream_20260516T172011/best/paper.tex",
+      "artifacts/dream_reports/dream_20260516T172011/median/paper.tex",
+      "artifacts/dream_reports/dream_20260516T172011/worst/paper.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/methodology.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/abstract_body.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/analysis.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/results.tex"
+    ],
+    "durationMs": 10,
+    "numFiles": 31,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_014h4hfZAUV1LYeuYwmV9b2S`</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "0066609d-3116-400e-90b5-42e876a96a22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnwY8gmS62nv4mEwv48rVo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13122,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13122
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T01:01:32.739Z_
+
+<details><summary>↩ Tool result · `toolu_014h4hfZAUV1LYeuYwmV9b2S`</summary>
+
+```text
+docs/paper/_corl_template/corl_2026_template_submission/corlabbrvnat.bst
+docs/paper/_corl_template/corl_2026_template_submission/example.bib
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._corlabbrvnat.bst
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.bib
+docs/paper/_corl_template/corl_2026_template_submission/.DS_Store
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._.DS_Store
+docs/paper/_corl_template/corl_2026_template_submission/corl_2026.sty
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._corl_2026.sty
+docs/paper/_corl_template/__MACOSX/._corl_2026_template_submission
+docs/paper/_corl_template/corl_2026_template_submission/example.tex
+docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex
+artifacts/_project/paper/narrative_frameworks_95c2c8.md
+artifacts/_project/paper/narrative_frameworks.md
+artifacts/_project/paper/related_work_section_6c6fde.md
+artifacts/_project/paper/related_work_section.md
+artifacts/_project/paper/experimental_setup_c0856a.md
+artifacts/_project/paper/experimental_setup.md
+artifacts/_project/paper/reference_audit_report.md
+artifacts/_project/paper/method.md
+artifacts/_project/paper/method_90ca4b.md
+artifacts/_project/paper/related_work_draft_0456d1.md
+artifacts/_project/paper/related_work_draft.md
+artifacts/figures/paper/fig_style.py
+artifacts/figures/paper/fig1_learning_curves.py
+artifacts/figures/paper/fig4_mechanism_diagram.py
+artifacts/figures/paper/fig5_dt_amplification.py
+artifacts/figures/paper/__pycache__/fig_style.cpython-314.pyc
+artifacts/figures/paper/fig1_learning_curves.pdf
+artifacts/figures/paper/fig1_learning_curves.png
+artifacts/figures/paper/fig4_mechanism_diagram.pdf
+artifacts/figures/paper/fig4_mechanism_diagram.png
+artifacts/figures/paper/fig5_dt_amplification.pdf
+artifacts/figures/paper/fig5_dt_amplification.png
+artifacts/figures/paper/fig3_factorial_grid.py
+artifacts/figures/paper/fig3_factorial_grid.pdf
+artifacts/figures/paper/fig3_factorial_grid.png
+artifacts/figures/paper/README.md
+artifacts/figures/paper/actor_loss_data.json
+artifacts/figures/paper/fig2_nve_trajectory.pdf
+artifacts/figures/paper/fig2_nve_trajectory.png
+artifacts/_project/paper/nve_sensitivity_table_37b680.tex
+artifacts/_project/paper/nve_sensitivity_table.tex
+artifacts/figures/paper/fig2_nve_trajectory.py
+artifacts/figures/paper/fig3_nve_diagnostic_d054.py
+artifacts/figures/paper/fig6_collapse_pathways_d054.py
+artifacts/figures/paper/fig6_collapse_pathways_d054.pdf
+artifacts/figures/paper/fig6_collapse_pathways_d054.png
+paper/tables/nve_sensitivity_table.tex
+artifacts/figures/paper/fig6_multiple_pathways.py
+artifacts/figures/paper/fig3_nve_diagnostic_d054.pdf
+artifacts/figures/paper/fig3_nve_diagnostic_d054.png
+artifacts/figures/paper/fig6_multiple_pathways.pdf
+artifacts/figures/paper/fig6_multiple_pathways.png
+paper/framing_b_reaudit.md
+artifacts/_project/paper/sgs_gradient_analysis.md
+paper/sections/sgs_informative_negative.md
+paper/sections/related_work.md
+paper/sections/sgs_gradient_analysis.md
+paper/method.md
+paper/sections/limitations.md
+paper/sections/experimental_setup.md
+paper/sections/results.md
+artifacts/018/paper/018_prewrite_two_versions.md
+docs/paper/sections/abstract.tex
+docs/paper/references.bib
+docs/paper/_pdf_images/main_p11.png
+docs/paper/_pdf_images/main_p12.png
+docs/paper/_pdf_images/main_p10.png
+docs/paper/_pdf_images/main_p8.png
+docs/paper/_pdf_images/main_p9.png
+docs/paper/corl2026_template.zip
+docs/paper/corl_2026.sty
+docs/paper/corlabbrvnat.bst
+docs/paper/main.tex.bak
+artifacts/_project/paper/claim_audit_report.md
+artifacts/_project/paper/results.md
+artifacts/_project/paper/method_framingB_reaudit_v2.md
+artifacts/_project/paper/related_work_expanded_704dea.md
+artifacts/_project/paper/related_work_expanded.md
+artifacts/_project/paper/gradient_decomposition_methodology.md
+artifacts/_project/paper/cross_env_results.md
+artifacts/_project/paper/results_section_draft.md
+artifacts/_project/paper/introduction_draft.md
+artifacts/_project/paper/discussion_conclusion_draft.md
+docs/paper/sections/related_work.tex
+docs/paper/sections/methodology.tex
+docs/paper/main.tex
+docs/paper/sections/abstract_body.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/conclusion.tex
+docs/paper/sections/analysis.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/results.tex
+docs/paper/main.blg
+docs/paper/main.bbl
+docs/paper/main.aux
+docs/paper/main.out
+docs/paper/main.fls
+docs/paper/main.log
+docs/paper/main.pdf
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "d566906e-90d3-4c18-89e5-9d1f016fe5c1",
+  "tool_use_result": {
+    "filenames": [
+      "docs/paper/_corl_template/corl_2026_template_submission/corlabbrvnat.bst",
+      "docs/paper/_corl_template/corl_2026_template_submission/example.bib",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._corlabbrvnat.bst",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.bib",
+      "docs/paper/_corl_template/corl_2026_template_submission/.DS_Store",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._.DS_Store",
+      "docs/paper/_corl_template/corl_2026_template_submission/corl_2026.sty",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._corl_2026.sty",
+      "docs/paper/_corl_template/__MACOSX/._corl_2026_template_submission",
+      "docs/paper/_corl_template/corl_2026_template_submission/example.tex",
+      "docs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex",
+      "artifacts/_project/paper/narrative_frameworks_95c2c8.md",
+      "artifacts/_project/paper/narrative_frameworks.md",
+      "artifacts/_project/paper/related_work_section_6c6fde.md",
+      "artifacts/_project/paper/related_work_section.md",
+      "artifacts/_project/paper/experimental_setup_c0856a.md",
+      "artifacts/_project/paper/experimental_setup.md",
+      "artifacts/_project/paper/reference_audit_report.md",
+      "artifacts/_project/paper/method.md",
+      "artifacts/_project/paper/method_90ca4b.md",
+      "artifacts/_project/paper/related_work_draft_0456d1.md",
+      "artifacts/_project/paper/related_work_draft.md",
+      "artifacts/figures/paper/fig_style.py",
+      "artifacts/figures/paper/fig1_learning_curves.py",
+      "artifacts/figures/paper/fig4_mechanism_diagram.py",
+      "artifacts/figures/paper/fig5_dt_amplification.py",
+      "artifacts/figures/paper/__pycache__/fig_style.cpython-314.pyc",
+      "artifacts/figures/paper/fig1_learning_curves.pdf",
+      "artifacts/figures/paper/fig1_learning_curves.png",
+      "artifacts/figures/paper/fig4_mechanism_diagram.pdf",
+      "artifacts/figures/paper/fig4_mechanism_diagram.png",
+      "artifacts/figures/paper/fig5_dt_amplification.pdf",
+      "artifacts/figures/paper/fig5_dt_amplification.png",
+      "artifacts/figures/paper/fig3_factorial_grid.py",
+      "artifacts/figures/paper/fig3_factorial_grid.pdf",
+      "artifacts/figures/paper/fig3_factorial_grid.png",
+      "artifacts/figures/paper/README.md",
+      "artifacts/figures/paper/actor_loss_data.json",
+      "artifacts/figures/paper/fig2_nve_trajectory.pdf",
+      "artifacts/figures/paper/fig2_nve_trajectory.png",
+      "artifacts/_project/paper/nve_sensitivity_table_37b680.tex",
+      "artifacts/_project/paper/nve_sensitivity_table.tex",
+      "artifacts/figures/paper/fig2_nve_trajectory.py",
+      "artifacts/figures/paper/fig3_nve_diagnostic_d054.py",
+      "artifacts/figures/paper/fig6_collapse_pathways_d054.py",
+      "artifacts/figures/paper/fig6_collapse_pathways_d054.pdf",
+      "artifacts/figures/paper/fig6_collapse_pathways_d054.png",
+      "paper/tables/nve_sensitivity_table.tex",
+      "artifacts/figures/paper/fig6_multiple_pathways.py",
+      "artifacts/figures/paper/fig3_nve_diagnostic_d054.pdf",
+      "artifacts/figures/paper/fig3_nve_diagnostic_d054.png",
+      "artifacts/figures/paper/fig6_multiple_pathways.pdf",
+      "artifacts/figures/paper/fig6_multiple_pathways.png",
+      "paper/framing_b_reaudit.md",
+      "artifacts/_project/paper/sgs_gradient_analysis.md",
+      "paper/sections/sgs_informative_negative.md",
+      "paper/sections/related_work.md",
+      "paper/sections/sgs_gradient_analysis.md",
+      "paper/method.md",
+      "paper/sections/limitations.md",
+      "paper/sections/experimental_setup.md",
+      "paper/sections/results.md",
+      "artifacts/018/paper/018_prewrite_two_versions.md",
+      "docs/paper/sections/abstract.tex",
+      "docs/paper/references.bib",
+      "docs/paper/_pdf_images/main_p11.png",
+      "docs/paper/_pdf_images/main_p12.png",
+      "docs/paper/_pdf_images/main_p10.png",
+      "docs/paper/_pdf_images/main_p8.png",
+      "docs/paper/_pdf_images/main_p9.png",
+      "docs/paper/corl2026_template.zip",
+      "docs/paper/corl_2026.sty",
+      "docs/paper/corlabbrvnat.bst",
+      "docs/paper/main.tex.bak",
+      "artifacts/_project/paper/claim_audit_report.md",
+      "artifacts/_project/paper/results.md",
+      "artifacts/_project/paper/method_framingB_reaudit_v2.md",
+      "artifacts/_project/paper/related_work_expanded_704dea.md",
+      "artifacts/_project/paper/related_work_expanded.md",
+      "artifacts/_project/paper/gradient_decomposition_methodology.md",
+      "artifacts/_project/paper/cross_env_results.md",
+      "artifacts/_project/paper/results_section_draft.md",
+      "artifacts/_project/paper/introduction_draft.md",
+      "artifacts/_project/paper/discussion_conclusion_draft.md",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/methodology.tex",
+      "docs/paper/main.tex",
+      "docs/paper/sections/abstract_body.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/conclusion.tex",
+      "docs/paper/sections/analysis.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/results.tex",
+      "docs/paper/main.blg",
+      "docs/paper/main.bbl",
+      "docs/paper/main.aux",
+      "docs/paper/main.out",
+      "docs/paper/main.fls",
+      "docs/paper/main.log",
+      "docs/paper/main.pdf"
+    ],
+    "durationMs": 17,
+    "numFiles": 100,
+    "truncated": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014wMTjkEafrVrXvWKZfPXfL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "69c37370-358e-4c43-b1aa-c410c260ed2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01465fwo7FVVUVNHj7Yd4xh1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2351,
+      "cache_read_input_tokens": 24569,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2351
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T01:01:36.000Z_
+
+<details><summary>↩ Tool result · `toolu_014wMTjkEafrVrXvWKZfPXfL`</summary>
+
+```text
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\nve$, \S\ref{sec:metrics}).
+5	
+6	%% ============================================================
+7	%% TABLE 1: Main results summary
+8	%% ============================================================
+9	
+10	\begin{table*}[t]
+11	\centering
+12	\caption{All configurations and outcomes. NVE reports peak $\nve$ in the 35K+ window (\S\ref{sec:metrics}). CIVO-positive seeds are shaded; $\dagger$\,marks a false positive (non-CIVO collapse with elevated NVE).}
+13	\label{tab:main_results}
+14	\footnotesize
+15	\setlength{\tabcolsep}{4pt}
+16	\begin{tabular}{llcccccl}
+17	\toprule
+18	\textbf{Exp} & \textbf{Config} & \textbf{dt\_emb} & \textbf{Sub} & \textbf{H} & \textbf{Eval@final} & \textbf{NVE} & \textbf{Outcome} \\
+19	\midrule
+20	001 & Baseline ($\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\times$ & Healthy \\
+21	\rowcolor{gray!15}
+22	006 & Fixed $\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\times$ & Collapsed \\
+23	007 & Fixed $\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\
+24	005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\
+25	\midrule
+26	\rowcolor{gray!15}
+27	008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\times$ & Full collapse \\
+28	\rowcolor{gray!15}
+29	009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\times$ & Transient CIVO \\
+30	008f & No dt\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\times$ & Healthy \\
+31	008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\times$ & Healthy \\
+32	015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\times$ & Grad.\ starvation \\
+33	\midrule
+34	018 s1 & Full-SGS & trn$^\ddagger$ & ON & 8 & \sgseval{} @105K & \sgsnve{}$\times$$^*$ & No collapse \\
+35	\rowcolor{gray!15}
+36	018 s2 & Full-SGS & trn$^\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\
+37	008e\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\times$ & Healthy \\
+38	008e\_v3 s2$^\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\times$ & Non-CIVO collapse \\
+39	\midrule
+40	\multicolumn{8}{l}{\textit{Cross-environment validation (Cheetah Run)}} \\
+41	\rowcolor{gray!15}
+42	010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\times$ & Collapsed \\
+43	\bottomrule
+44	\end{tabular}
+45	\vspace{1pt}
+46	{\raggedright\footnotesize
+47	trn = trained ($d{=}32$, subsample ON);
+48	trn$^\ddagger$ = full-pathway SGS (all non-KL gradients detached);
+49	exp$^a$ = trained, subsample OFF;
+50	frz$^b$ = frozen ($d{=}32$, \texttt{requires\_grad=False});
+51	--- = removed ($d{=}0$).\\
+52	$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\times$ at 35K, 1.66$\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\par}
+53	\end{table*}
+54	
+55	%% ============================================================
+56	%% F1: All dt>1 degrade
+57	%% ============================================================
+58	
+59	\subsection{F1: All Variable-Rate Configurations Degrade}
+60	\label{sec:f1}
+61	
+62	Every configuration that introduces $\dt > 1$ imagination degrades relative to the $\dt{=}1$ baseline (Figure~\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\%$ of baseline); fixed $\dt{=}4$ (007) never exceeds 176.9 ($19\%$); the learned gate (005) collapses to 98.8 ($11\%$).
+63	
+64	\begin{figure}[t]
+65	\centering
+66	\includegraphics[width=0.65\columnwidth]{figures/paper/fig1_learning_curves.pdf}
+67	\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}
+68	\label{fig:learning_curves}
+69	\end{figure}
+70	
+71	%% ============================================================
+72	%% F2: Trained dt_embedding → nve > 1.5x
+73	%% ============================================================
+74	
+75	\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}
+76	\label{sec:f2}
+77	
+78	The factorial design isolates trained $\dt$-embedding as the causal trigger. Comparing exp\_008d (trained, subsample ON) against exp\_008f (no embedding, subsample ON): 008d reaches $\nve = 4.12\times$ and collapses (eval 82.8), while 008f maintains $\nve \leq 0.97\times$ (eval 503.0). The $\nve \geq 1.5\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\ref{fig:nve_trajectory}).
+79	
+80	\begin{figure}[t]
+81	\centering
+82	\includegraphics[width=0.65\columnwidth]{figures/fig1_nve_trajectory.pdf}
+83	\caption{NVE trajectories (mean $\pm$ seed range). Trained $\dt$-embedding (red, $n{=}2$) exceeds the $1.5\times$ threshold (dashed); no-embedding control (blue) remains near $1.0\times$. Dotted line marks the 35K diagnostic window onset.}
+84	\label{fig:nve_trajectory}
+85	\end{figure}
+86	
+87	The same CIVO trigger produces stochastic downstream outcomes: seed~1 (008d) undergoes full collapse ($\nve = 4.12\times$, eval 82.8), while seed~2 (009b) self-corrects after transient $\nve = 1.62\times$ (eval 267.9). Both exceed $\nve \geq 1.5\times$, confirming deterministic triggering with seed-dependent outcomes (Appendix~\ref{sec:seed_divergence}).
+88	
+89	%% ============================================================
+90	%% F3--F5: Summary (details in Appendix B)
+91	%% ============================================================
+92	
+93	\subsection{F3--F5: Factorial Ablation (Appendix~\ref{sec:appendix_factorial})}
+94	\label{sec:f3f5_summary}
+95	
+96	Trained $\dt$-embedding and multi-rate data exposure are \emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\leq 0.93\times$, frozen embedding (015b) never exceeds $0.47\times$, and removed embedding (008f) shows NVE $\leq 0.97\times$. Degradation scales monotonically with $\dt$ ($-47\%$ at $\dt{=}2$, $-81\%$ at $\dt{=}4$).
+97	
+98	%% ============================================================
+99	%% F6--F7: Interventions and cross-environment
+100	%% ============================================================
+101	
+102	\subsection{F6--F7: Interventions and Multiple Pathways}
+103	\label{sec:f6}
+104	
+105	\paragraph{F6: $\dt{=}1$ imagination does not prevent all collapse.}
+106	Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\nve = 0.80\times$); seed~2 collapses (eval $715 \rightarrow 137$, $\nve = 3.78\times$)---but via a qualitatively distinct mechanism (Figure~\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\_v3\_s2 (Pathway~B) shows evaluation crash with \emph{increasing} entropy ($-5.21 \rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.
+107	
+108	\begin{figure}[t]
+109	\centering
+110	\includegraphics[width=0.65\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+111	\caption{Contrasting collapse dynamics. \textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \textbf{Right:} 008e\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}
+112	\label{fig:multiple_pathways}
+113	\end{figure}
+114	
+115	\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+116	Exp\_018 detaches all non-KL gradients from $e_{\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \sgseval{}, peak NVE $\sgsnve{}\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\%$); peak NVE $14.59\times$.
+117	
+118	%% ============================================================
+119	%% TABLE 2: RSSM Fidelity
+120	%% ============================================================
+121	
+122	\begin{table}[t]
+123	\centering
+124	\caption{RSSM fidelity at $\dt{=}1$ vs.\ $\dt{=}2$. Trained embedding (008d) produces $2.78\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}
+125	\label{tab:rssm_fidelity}
+126	\footnotesize
+127	\setlength{\tabcolsep}{4pt}
+128	\begin{tabular}{lcccccc}
+129	\toprule
+130	& \multicolumn{3}{c}{\textbf{obs\_MSE}} & \multicolumn{3}{c}{\textbf{reward\_MAE}} \\
+131	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+132	\textbf{Config} & $\dt{=}1$ & $\dt{=}2$ & Gap & $\dt{=}1$ & $\dt{=}2$ & Gap \\
+133	\midrule
+134	Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+135	008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & 2.78$\times$ \\
+136	008f (no emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+137	\bottomrule
+138	\end{tabular}
+139	\end{table}
+140	
+141	The trained embedding in 008d produces a $2.78\times$ reward prediction gap between $\dt{=}1$ and $\dt{=}2$ (Table~\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.
+142	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "e03d2a6b-e25e-4ab9-b28e-b7cc87964895",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n\\midrule\n018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n\\rowcolor{gray!15}\n018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\ntrn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\\times$ at 35K, 1.66$\\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the causal trigger. Comparing exp\\_008d (trained, subsample ON) against exp\\_008f (no embedding, subsample ON): 008d reaches $\\nve = 4.12\\times$ and collapses (eval 82.8), while 008f maintains $\\nve \\leq 0.97\\times$ (eval 503.0). The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\\ref{fig:nve_trajectory}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, $n{=}2$) exceeds the $1.5\\times$ threshold (dashed); no-embedding control (blue) remains near $1.0\\times$. Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe same CIVO trigger produces stochastic downstream outcomes: seed~1 (008d) undergoes full collapse ($\\nve = 4.12\\times$, eval 82.8), while seed~2 (009b) self-corrects after transient $\\nve = 1.62\\times$ (eval 267.9). Both exceed $\\nve \\geq 1.5\\times$, confirming deterministic triggering with seed-dependent outcomes (Appendix~\\ref{sec:seed_divergence}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\\leq 0.93\\times$, frozen embedding (015b) never exceeds $0.47\\times$, and removed embedding (008f) shows NVE $\\leq 0.97\\times$. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$).\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+      "numLines": 142,
+      "startLine": 1,
+      "totalLines": 142
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to understand the current state. The results section has F6-F7 where the Full-SGS (exp_018) is mentioned in paragraph F7. I need to:
+
+1. Insert a figure (Fig 2) showing the CIVO decomposition bar chart
+2. Write a self-contained caption
+3. Ensure the text references Fig 2 properly
+
+Let me check what figures currently exist and how they're numbered. Looking at the results section:
+- Figure 1: `fig:learning_curves` (learning curves)
+
+
+- Figure 2: `fig:nve_trajectory` (NVE trajectories)
+- Figure 3: `fig:multiple_pathways` (contrasting collapse dynamics)
+
+And there's Table 1 (`tab:main_results`) and Table 2 (`tab:rssm_fidelity`).
+
+The task mentions "Fig 2 (CIVO Decomposition)" as a new figure, so I need to insert it and renumber the existing figures accordingly. Let me locate the figure file in the artifacts directory.
+
+Looking at the current figure numbering, `fig:nve_trajectory` is already positioned as Figure 2, and `fig:multiple_pathways` is Figure 3. The CIVO decomposition figure compares baseline and trained conditions across peak and final evaluation returns, which seems most relevant to the full-pathway gradient stopping section. I need to determine where this fits in the overall structure and adjust the numbering. figure early in the results.
+
+Actually, looking at the task description more carefully: "Fig 2 (CIVO Decomposition)" - so this should be placed as Figure 2. That means the existing `fig:nve_trajectory` would need to be renumbered, or the new figure should be inserted before it.
+
+Wait, let me reconsider. The figure label doesn't determine the figure number - LaTeX auto-numbers. The task says "Fig 2" which suggests it should appear as the second figure in the paper. Currently:
+- Figure 1: learning_curves (in F1)
+- Figure 2: nve_trajectory (in F2)
+- Figure 3: multiple_pathways (in F6-F7)
+
+So if I want this to be "Fig 2", it needs to go between the current Figure 1 and Figure 2, meaning the existing figures would shift. But that might cause issues with existing references.
+
+Actually, re-reading the task: I should find where Fig 2 is referenced or locate a suitable insertion point. Since this figure compares baseline, trained dt-emb, and Full-SGS conditions across multiple findings, it works well as a summary overview. It could go at the start of the results section or in the F7 section where SGS is discussed, depending on whether the main emphasis is on CIVO decomposition or the SGS intervention itself.
+
+Looking at the figure files, there's already `fig2_nve_trajectory.py` and the new figure is `fig2_civo_decomposition.pdf`. The naming suggests this might be intended to replace or coexist with the existing Figure 2. I should check the main.tex file to understand how figures are currently referenced and organized.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "53b46705-29f8-4baa-a993-d2d26d0adaaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dLXd7GozkUHWZYmsFAqGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3760,
+      "cache_read_input_tokens": 26920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BieWzLrXk4dKXmSgBDFKhL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "475a490d-4a11-4500-823c-b1e41adda912",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dLXd7GozkUHWZYmsFAqGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3760,
+      "cache_read_input_tokens": 26920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T01:02:04.874Z_
+
+<details><summary>↩ Tool result · `toolu_01BieWzLrXk4dKXmSgBDFKhL`</summary>
+
+```text
+1	\documentclass{article}
+2	
+3	% Load xcolor before corl_2026 (which loads color internally)
+4	\usepackage[table]{xcolor}
+5	\usepackage{corl_2026}
+6	
+7	\usepackage[utf8]{inputenc}
+8	\usepackage[T1]{fontenc}
+9	\usepackage{amsmath,amssymb}
+10	\usepackage{booktabs}
+11	\usepackage{multirow}
+12	\usepackage{graphicx}
+13	\graphicspath{{../../artifacts/}}
+14	\usepackage{colortbl}
+15	\usepackage{caption}
+16	\usepackage{subcaption}
+17	\usepackage{array}
+18	\usepackage{enumitem}
+19	\usepackage{wrapfig}
+20	
+21	% Custom commands
+22	\newcommand{\dt}{\mathrm{dt}}
+23	\newcommand{\nve}{\mathrm{nve}}
+24	% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)
+25	\newcommand{\sgseval}{448.3}
+26	\newcommand{\sgsnve}{1.66}
+27	\newcommand{\sgsclaim}{prevented collapse in one of two seeds}
+28	\newcommand{\ie}{\textit{i.e.}}
+29	\newcommand{\eg}{\textit{e.g.}}
+30	\newcommand{\cf}{\textit{cf.}}
+31	\newcommand{\etal}{\textit{et al.}}
+32	
+33	\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\
+34	A Diagnostic Analysis of Variable-Rate DreamerV3}
+35	
+36	\author{
+37	  Anonymous Authors
+38	}
+39	
+40	\begin{document}
+41	\maketitle
+42	
+43	\begin{abstract}
+44	\input{sections/abstract_body}
+45	\end{abstract}
+46	
+47	\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}
+48	
+49	% --- INTRODUCTION ---
+50	\input{sections/introduction}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "2bd3cbba-d8f0-4bcd-9395-bc60e7b86350",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+      "content": "\\documentclass{article}\n\n% Load xcolor before corl_2026 (which loads color internally)\n\\usepackage[table]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\graphicspath{{../../artifacts/}}\n\\usepackage{colortbl}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{array}\n\\usepackage{enumitem}\n\\usepackage{wrapfig}\n\n% Custom commands\n\\newcommand{\\dt}{\\mathrm{dt}}\n\\newcommand{\\nve}{\\mathrm{nve}}\n% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n\\newcommand{\\sgseval}{448.3}\n\\newcommand{\\sgsnve}{1.66}\n\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n\\newcommand{\\ie}{\\textit{i.e.}}\n\\newcommand{\\eg}{\\textit{e.g.}}\n\\newcommand{\\cf}{\\textit{cf.}}\n\\newcommand{\\etal}{\\textit{et al.}}\n\n\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\nA Diagnostic Analysis of Variable-Rate DreamerV3}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{sections/abstract_body}\n\\end{abstract}\n\n\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n\n% --- INTRODUCTION ---\n\\input{sections/introduction}",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 75
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BhkRiTvZpDSW4X9QUyc82m`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+  "offset": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "b4a9884c-0bcd-4681-bf3c-a98b83814536",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUjmR8jyHBgqx46KdcyG7y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1734,
+      "cache_read_input_tokens": 30680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1734
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T01:02:08.109Z_
+
+<details><summary>↩ Tool result · `toolu_01BhkRiTvZpDSW4X9QUyc82m`</summary>
+
+```text
+50	\input{sections/introduction}
+51	
+52	% --- RELATED WORK ---
+53	\input{sections/related_work}
+54	
+55	% --- METHODOLOGY ---
+56	\input{sections/methodology}
+57	
+58	% --- RESULTS ---
+59	\input{sections/results}
+60	
+61	% --- ANALYSIS ---
+62	\input{sections/analysis}
+63	
+64	% --- CONCLUSION ---
+65	\input{sections/conclusion}
+66	
+67	% no \bibliographystyle needed — corl_2026.sty sets it automatically
+68	\bibliography{references}
+69	
+70	% --- APPENDIX ---
+71	\appendix
+72	\input{sections/appendix}
+73	
+74	\end{document}
+75	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "f8867013-d181-42c3-915d-e90f11ede08a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+      "content": "\\input{sections/introduction}\n\n% --- RELATED WORK ---\n\\input{sections/related_work}\n\n% --- METHODOLOGY ---\n\\input{sections/methodology}\n\n% --- RESULTS ---\n\\input{sections/results}\n\n% --- ANALYSIS ---\n\\input{sections/analysis}\n\n% --- CONCLUSION ---\n\\input{sections/conclusion}\n\n% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n\\bibliography{references}\n\n% --- APPENDIX ---\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n",
+      "numLines": 26,
+      "startLine": 50,
+      "totalLines": 75
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `\graphicspath{{../../artifacts/}}` line tells me that figure paths in the tex files are relative to the `artifacts/` directory. So if I want to include `artifacts/figures/fig2_civo_decomposition.pdf`, the path in the tex would be `figures/fig2_civo_decomposition.pdf`.
+
+Now, looking at the results section, the current figures are:
+- `figures/paper/fig1_learning_curves.pdf` → Figure labeled `fig:learning_curves`
+
+
+- `figures/fig1_nve_trajectory.pdf` → Figure labeled `fig:nve_trajectory`
+- `figures/paper/fig6_multiple_pathways.pdf` → Figure labeled `fig:multiple_pathways`
+
+The CIVO decomposition figure fits naturally in the F7 paragraph where SGS results are discussed, as it visually demonstrates the intervention's impact across Baseline, dt-emb trained, and Full-SGS conditions. Given the task specifies "Fig 2 (CIVO Decomposition)" and the narrative structure, this appears to be a summary figure that should be positioned accordingly.
+
+The figure shows peak and final evaluation returns for key conditions, and placing it in F7 makes the most sense since that's where Full-SGS is introduced and the figure provides direct visual evidence for those findings by comparing all relevant conditions. I need to check the existing F7 text to see what reference updates are needed.
+
+Looking at the Exp_018 results, the intervention that detaches non-KL gradients from the embedding shows inconsistent outcomes across seeds—one avoids collapse while the other collapses—suggesting this gradient pathway is necessary but insufficient for preventing the issue.
+
+Now I'm deciding where to place the comparison figure showing baseline, trained dt-emb, and both SGS seeds. Since the SGS section discusses how the intervention partially helps, this decomposition figure belongs there to visually demonstrate the performance degradation from baseline through trained conditions and the mixed results from SGS. I'm setting up the figure reference with the correct path and verifying the file location.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "65c22d36-3c96-4404-87e3-dc98a6c6884f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qj69JwE3LMNNAtVAJV8vzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 32414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014zKr7KZtmd14parQ976m9B`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures/fig2_civo_decomposition.pdf",
+  "description": "Verify figure file exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "a7476f6f-e9b6-4418-a766-0b713c09de08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qj69JwE3LMNNAtVAJV8vzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 32414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 314
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T01:02:31.730Z_
+
+<details><summary>↩ Tool result · `toolu_014zKr7KZtmd14parQ976m9B`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu 21131 May 17 00:00 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures/fig2_civo_decomposition.pdf
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "785b2137-22eb-4968-8386-eb1a9b7a86f0",
+  "tool_use_result": {
+    "stdout": "-rw-r--r-- 1 ubuntu ubuntu 21131 May 17 00:00 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures/fig2_civo_decomposition.pdf",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Figure exists. Now I'll integrate it into the F7 paragraph of the results section. The figure fits naturally in the SGS discussion since it compares baseline, trained dt-emb, and Full-SGS conditions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "69417e47-3788-43be-8564-6055890fe431",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VC5Q5v7jYRu5HPypqFzPcD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 32728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VyavfDSa1WUaNG7kTmenk4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "offset": 98
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "c67007ef-a2a8-40da-ba9d-95948bc57342",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VC5Q5v7jYRu5HPypqFzPcD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 32728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T01:02:36.251Z_
+
+<details><summary>↩ Tool result · `toolu_01VyavfDSa1WUaNG7kTmenk4`</summary>
+
+```text
+98	%% ============================================================
+99	%% F6--F7: Interventions and cross-environment
+100	%% ============================================================
+101	
+102	\subsection{F6--F7: Interventions and Multiple Pathways}
+103	\label{sec:f6}
+104	
+105	\paragraph{F6: $\dt{=}1$ imagination does not prevent all collapse.}
+106	Exp\_008e\_v3 restricts imagination to $\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\nve = 0.80\times$); seed~2 collapses (eval $715 \rightarrow 137$, $\nve = 3.78\times$)---but via a qualitatively distinct mechanism (Figure~\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\_v3\_s2 (Pathway~B) shows evaluation crash with \emph{increasing} entropy ($-5.21 \rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.
+107	
+108	\begin{figure}[t]
+109	\centering
+110	\includegraphics[width=0.65\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}
+111	\caption{Contrasting collapse dynamics. \textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \textbf{Right:} 008e\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}
+112	\label{fig:multiple_pathways}
+113	\end{figure}
+114	
+115	\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+116	Exp\_018 detaches all non-KL gradients from $e_{\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \sgseval{}, peak NVE $\sgsnve{}\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\%$); peak NVE $14.59\times$.
+117	
+118	%% ============================================================
+119	%% TABLE 2: RSSM Fidelity
+120	%% ============================================================
+121	
+122	\begin{table}[t]
+123	\centering
+124	\caption{RSSM fidelity at $\dt{=}1$ vs.\ $\dt{=}2$. Trained embedding (008d) produces $2.78\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}
+125	\label{tab:rssm_fidelity}
+126	\footnotesize
+127	\setlength{\tabcolsep}{4pt}
+128	\begin{tabular}{lcccccc}
+129	\toprule
+130	& \multicolumn{3}{c}{\textbf{obs\_MSE}} & \multicolumn{3}{c}{\textbf{reward\_MAE}} \\
+131	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+132	\textbf{Config} & $\dt{=}1$ & $\dt{=}2$ & Gap & $\dt{=}1$ & $\dt{=}2$ & Gap \\
+133	\midrule
+134	Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+135	008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & 2.78$\times$ \\
+136	008f (no emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+137	\bottomrule
+138	\end{tabular}
+139	\end{table}
+140	
+141	The trained embedding in 008d produces a $2.78\times$ reward prediction gap between $\dt{=}1$ and $\dt{=}2$ (Table~\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.
+142	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "27753155-5924-4f53-a30d-ae43cec414cd",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+      "numLines": 45,
+      "startLine": 98,
+      "totalLines": 142
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. I need to:
+
+1. Insert the figure in the F7 paragraph
+2. Update the F7 text to reference the figure
+3. Fix the em-dash issues in the surrounding text (I see `---` which produces em-dashes)
+
+Let me craft the edit. I'll insert the figure after the F7 paragraph text and before the RSSM Fidelity table. I'll also update the F7 paragraph to reference the figure.
+
+
+Looking at the F7 paragraph itself, I can see it describes an experiment where detaching non-KL gradients produces mixed results—one seed avoids collapse while another fails, suggesting the intervention is necessary but insufficient. The reward-only variant completely fails, and there's validation on another environment that's cut off mid-sentence.
+
+Now I'm looking at the continuation with the Cheetah Run results and the cross-environment validation numbers. The peak evaluation reaches 321.9 before dropping sharply to 22.7, with a peak NVE of 14.59×. I need to integrate this into the paragraph to complete the thought about CIVO's generalization across environments.
+
+For the figure, I'm planning to create a comparison showing the baseline vanilla DreamerV3 against the trained temporal embedding variant and the full selective gradient stopping approach. The caption needs to highlight how the trained embedding causes significant degradation (−73% peak, −86% final), while the full-SGS approach with seed 1 maintains better stability at −51% final evaluation without collapsing, contrasted against seed 2's failure and the unreliable reward-only variant. I'm averaging the two seeds for the trained dt-emb condition to get a single degradation metric, then cross-referencing with the task description's reported values to make sure I'm interpreting the peak and final eval returns correctly.
+
+Now I need to fix the em-dash formatting issues scattered through the figure captions and text—there are a few instances where em-dashes need to be properly escaped in the LaTeX.
+
+Let me focus on the Fig 2 integration task specifically: I'll update the F7 paragraph to reference the figure, ensure the data points match what's shown (collapse_rate=0.5, -51% for s1, -96% for s2), and write a self-contained caption that explains the key findings.
+
+Now I'm realizing there's a numbering issue—if I want this to be Figure 2 in the LaTeX output, I need to place it between the current Figure 1 (learning_curves) and Figure 2 (nve_trajectory), which means inserting it in or right after the F1 section. But the figure content comparing baseline, trained dt-emb, and Full-SGS doesn't align well with F1's focus on variable-rate configs, so I need to reconsider where this figure actually belongs in the document structure. at the narrative flow, I see the CIVO decomposition figure works best in the F7 section since it references Full-SGS data that hasn't been introduced yet. I'll place it after the F7 text and before the RSSM table, letting LaTeX handle the numbering naturally rather than forcing it to be Figure 2.
+
+Now I'm double-checking the figure structure—it should show 4 groups of bars representing Baseline 001, the two trained dt-emb variants, and the two Full-SGS seeds, though I need to clarify whether the dt-emb versions are combined or displayed separately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "80a6e4a2-a19e-4403-8365-6e29eb7bfac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DNJRucGKSk3QNBAD29XYSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1389,
+      "cache_read_input_tokens": 33810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Now I'll insert the figure and update the F7 paragraph to reference it with the correct data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "d688af41-9bd3-40b8-98dd-7ce45f23ea8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DNJRucGKSk3QNBAD29XYSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1389,
+      "cache_read_input_tokens": 33810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MjeXFvXmrFqfH7VUnfUNyR`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "old_string": "\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.",
+  "new_string": "\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n\\label{fig:civo_decomposition}\n\\end{figure}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "7d12c97f-d42c-4b06-83f6-239293112bf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DNJRucGKSk3QNBAD29XYSf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1389,
+      "cache_read_input_tokens": 33810,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1389
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T01:03:37.673Z_
+
+<details><summary>↩ Tool result · `toolu_01MjeXFvXmrFqfH7VUnfUNyR`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "1450c3c2-bc21-40c2-8047-ae8a080f26e4",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+    "oldString": "\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.",
+    "newString": "\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n\\label{fig:civo_decomposition}\n\\end{figure}",
+    "originalFile": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n\\midrule\n018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n\\rowcolor{gray!15}\n018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\ntrn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\\times$ at 35K, 1.66$\\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the causal trigger. Comparing exp\\_008d (trained, subsample ON) against exp\\_008f (no embedding, subsample ON): 008d reaches $\\nve = 4.12\\times$ and collapses (eval 82.8), while 008f maintains $\\nve \\leq 0.97\\times$ (eval 503.0). The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\\ref{fig:nve_trajectory}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, $n{=}2$) exceeds the $1.5\\times$ threshold (dashed); no-embedding control (blue) remains near $1.0\\times$. Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe same CIVO trigger produces stochastic downstream outcomes: seed~1 (008d) undergoes full collapse ($\\nve = 4.12\\times$, eval 82.8), while seed~2 (009b) self-corrects after transient $\\nve = 1.62\\times$ (eval 267.9). Both exceed $\\nve \\geq 1.5\\times$, confirming deterministic triggering with seed-dependent outcomes (Appendix~\\ref{sec:seed_divergence}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\\leq 0.93\\times$, frozen embedding (015b) never exceeds $0.47\\times$, and removed embedding (008f) shows NVE $\\leq 0.97\\times$. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$).\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 113,
+        "oldLines": 8,
+        "newStart": 113,
+        "newLines": 15,
+        "lines": [
+          " \\end{figure}",
+          " ",
+          " \\paragraph{F7: Full-pathway gradient stopping shows mixed results.}",
+          "-Exp\\_018 detaches all non-KL gradients from $e_{\\dt}$. This intervention yields seed-dependent outcomes: seed~1 avoids collapse (eval \\sgseval{}, peak NVE $\\sgsnve{}\\times$) while seed~2 collapses (eval 40.8), indicating that cutting the observation decoder gradient pathway is necessary but not sufficient (50\\% prevention rate). Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.",
+          "+Exp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.",
+          " ",
+          "+\\begin{figure}[t]",
+          "+\\centering",
+          "+\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}",
+          "+\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}",
+          "+\\label{fig:civo_decomposition}",
+          "+\\end{figure}",
+          "+",
+          " %% ============================================================",
+          " %% TABLE 2: RSSM Fidelity",
+          " %% ============================================================"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Now let me verify the final state of the F7 section and check for any em-dash or style issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "4bc82f59-3a0f-4355-aea5-e22f4dbd61d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197rDtHdDBt5mn2hXkeCqqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3410,
+      "cache_read_input_tokens": 35199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3410
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018yA6XEQPAhu1eCEo2Tk3g7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+  "offset": 114,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "0ad8efca-7002-4ce5-b8aa-f04511036160",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0197rDtHdDBt5mn2hXkeCqqW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3410,
+      "cache_read_input_tokens": 35199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3410
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T01:03:42.871Z_
+
+<details><summary>↩ Tool result · `toolu_018yA6XEQPAhu1eCEo2Tk3g7`</summary>
+
+```text
+114	
+115	\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+116	Exp\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\dt$-embedding alone produces $-73\%$ peak and $-86\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \sgseval{}, $-51\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\%$), yielding a 50\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\%$); peak NVE $14.59\times$.
+117	
+118	\begin{figure}[t]
+119	\centering
+120	\includegraphics[width=0.75\columnwidth]{figures/fig2_civo_decomposition.pdf}
+121	\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\dt}$, two seeds. Trained $\dt$-embedding degrades peak eval by $73\%$ and final eval by $86\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\%$ final, no collapse) but seed~2 collapses ($-96\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\%$). All percentages relative to Baseline 001.}
+122	\label{fig:civo_decomposition}
+123	\end{figure}
+124	
+125	%% ============================================================
+126	%% TABLE 2: RSSM Fidelity
+127	%% ============================================================
+128	
+129	\begin{table}[t]
+130	\centering
+131	\caption{RSSM fidelity at $\dt{=}1$ vs.\ $\dt{=}2$. Trained embedding (008d) produces $2.78\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}
+132	\label{tab:rssm_fidelity}
+133	\footnotesize
+134	\setlength{\tabcolsep}{4pt}
+135	\begin{tabular}{lcccccc}
+136	\toprule
+137	& \multicolumn{3}{c}{\textbf{obs\_MSE}} & \multicolumn{3}{c}{\textbf{reward\_MAE}} \\
+138	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+139	\textbf{Config} & $\dt{=}1$ & $\dt{=}2$ & Gap & $\dt{=}1$ & $\dt{=}2$ & Gap \\
+140	\midrule
+141	Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+142	008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & 2.78$\times$ \\
+143	008f (no emb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "cd9a3b52-ed9d-45d9-b33d-38e534298ec1",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+      "content": "\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n\\label{fig:civo_decomposition}\n\\end{figure}\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\",
+      "numLines": 30,
+      "startLine": 114,
+      "totalLines": 149
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The edit looks good. Let me also check the F6 paragraph that has em-dashes which should be fixed per writing norms. Let me look at line 106:
+
+```
+seed~2 collapses (eval $715 \rightarrow 137$, $\nve = 3.78\times$)---but via a qualitatively distinct mechanism
+```
+
+And the figure caption on line 111:
+```
+\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. 
+
+\textbf{Right:} 008e\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.
+```
+
+These have em-dashes that should be fixed. But the task specifically asks me to "确保正文引用 Fig 2 的段落与新数据一致" - it's focused on the Fig 2 integration, not a full style audit of other paragraphs. Let me focus on making sure my new text has no violations.
+
+Let me check my new text for:
+1. Em-dashes: none in my additions
+2. -ing phrase endings: let me check... "blocking the observation decoder pathway" - this is mid-sentence, not a sentence ending, so it's fine.
+3. "Furthermore/Moreover/Additionally": none
+4. Caption self-contained: yes, it defines all conditions and reports key numbers
+
+The text looks clean. Let me also verify there are no other references to "Fig 2" or "Figure 2" in the results file that might need updating.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "c26def35-fec4-4be9-90be-589c38d40131",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHCVja4TbpyZ6BnVaiDUXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 38609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Let me check if there are any other references to Figure 2 or the CIVO decomposition figure elsewhere in the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "33a337c9-ffcc-4079-afb9-bcb6192ed18c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHCVja4TbpyZ6BnVaiDUXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 38609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UHnzjQhZPKsxLLbihfbaXB`</summary>
+
+```json
+{
+  "pattern": "fig:civo_decomposition|Fig\\.?\\s*2|Figure\\s*2",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "b272894d-d132-4a14-9361-0f31e3c1d83c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHCVja4TbpyZ6BnVaiDUXB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 38609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T01:03:54.591Z_
+
+<details><summary>↩ Tool result · `toolu_01UHnzjQhZPKsxLLbihfbaXB`</summary>
+
+```text
+docs/paper/sections/results.tex:116:[Omitted long matching line]
+docs/paper/sections/results.tex:122:\label{fig:civo_decomposition}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "c92ec7dd-a80b-4a92-9b74-d76619b1cddb",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/results.tex:116:[Omitted long matching line]\ndocs/paper/sections/results.tex:122:\\label{fig:civo_decomposition}",
+    "numLines": 2
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - no other references to Fig 2 or civo_decomposition elsewhere. The only references are in the results.tex file I just edited.
+
+Now let me also check whether there are references to "Figure~\ref{fig:civo" anywhere else, or if the introduction/analysis/conclusion sections reference this figure. Let me also look at whether the analysis or appendix section mentions the SGS result in a way that should reference this figure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "d4a07590-4256-4790-afe0-6e95def01850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7FeHUz6maqujMZ1rwBmKK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 39885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 587
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01PWJpRZGtG43PnGGtSYiXe7`</summary>
+
+```json
+{
+  "pattern": "SGS|Full-SGS|018|gradient stopping",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "0e45b1da-f474-4da6-9087-98eb35ae9514",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7FeHUz6maqujMZ1rwBmKK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 587,
+      "cache_read_input_tokens": 39885,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 587
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T01:04:01.443Z_
+
+<details><summary>↩ Tool result · `toolu_01PWJpRZGtG43PnGGtSYiXe7`</summary>
+
+```text
+docs/paper/sections/introduction.tex:6:[Omitted long matching line]
+docs/paper/sections/results.tex:34:018 s1 & Full-SGS & trn$^\ddagger$ & ON & 8 & \sgseval{} @105K & \sgsnve{}$\times$$^*$ & No collapse \\
+docs/paper/sections/results.tex:36:018 s2 & Full-SGS & trn$^\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\
+docs/paper/sections/results.tex:48:trn$^\ddagger$ = full-pathway SGS (all non-KL gradients detached);
+docs/paper/sections/results.tex:115:\paragraph{F7: Full-pathway gradient stopping shows mixed results.}
+docs/paper/sections/results.tex:116:[Omitted long matching line]
+docs/paper/sections/results.tex:121:[Omitted long matching line]
+docs/paper/sections/methodology.tex:56:018 & Full-SGS & trn$^\ddagger$ & on & 8 & 2 \\
+docs/paper/sections/methodology.tex:102:To identify which gradient pathway through $e_{\Delta t}$ drives CIVO, we introduce \textit{selective gradient stopping} (SGS): during the backward pass, $e_{\Delta t}$ is detached before entering selected prediction heads via the stop-gradient operator $\operatorname{sg}(\cdot)$, preventing those loss gradients from updating $e_{\Delta t}$'s parameters while preserving its forward-pass contribution.
+docs/paper/sections/methodology.tex:104:[Omitted long matching line]
+docs/paper/sections/methodology.tex:109:[Omitted long matching line]
+docs/paper/sections/abstract.tex:2:[Omitted long matching line]
+docs/paper/sections/appendix.tex:183:This mechanism is analogous to delusional bias \citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced---the reward head's co-adaptation with the temporal embedding produces systematically upward-biased predictions at $\dt > 1$.  The consequence (policy exploitation of overestimated regions) is similar, but the causal pathway is distinct.
+docs/paper/sections/appendix.tex:194:\caption{Gradient contribution to $e_{\Delta t}$ by loss component at two training checkpoints. The reward head contributes the largest share (38--49\%) yet reward-only SGS (exp\_016e) fails; the observation decoder channel (16--22\%) carries the critical $\dt$-specific spatial information that drives the RSSM fidelity gap.}
+docs/paper/sections/appendix.tex:198:Exp\_016e collapses in the same qualitative pattern as the unmodified control: peak evaluation 326.7 at 75K steps followed by catastrophic decline to 31.7 at 95K, with NVE reaching $10.42\times$. The SGS intervention neither prevented nor attenuated CIVO.
+docs/paper/sections/appendix.tex:220:[Omitted long matching line]
+docs/paper/sections/appendix.tex:224:[Omitted long matching line]
+docs/paper/sections/appendix.tex:231:[Omitted long matching line]
+docs/paper/sections/appendix.tex:233:[Omitted long matching line]
+docs/paper/sections/appendix.tex:243:\caption{Actor entropy trajectories for three configurations. All start at ${\sim}8$ nats and converge to similar values (${\sim}{-}4.5$ to ${-}5$). The CIVO-triggering configuration (008d, red) follows a normal entropy reduction trajectory; the divergence from the control (008f) is subtle in entropy space, consistent with CIVO operating through the value channel rather than the entropy channel. 018v2 (Full-SGS, seed~1) shows slightly lower terminal entropy.}
+docs/paper/sections/appendix.tex:250:[Omitted long matching line]
+docs/paper/sections/related_work.tex:11:[Omitted long matching line]
+docs/paper/sections/related_work.tex:17:The primacy bias \citep{nikishin2022primacy} and progressive capacity loss \citep{lyle2022capacity, nikishin2023plasticity} provide our framework for seed-dependent CIVO outcomes (\S\ref{sec:seed_divergence}). Our factorial diagnostic approach follows \citet{henderson2018deep}, \citet{engstrom2020implementation}, and \citet{andrychowicz2021whatmatters} in systematically isolating design-choice effects, extending this tradition to model-based temporal conditioning.
+docs/paper/sections/conclusion.tex:20:[Omitted long matching line]
+docs/paper/sections/abstract_body.tex:1:[Omitted long matching line]
+docs/paper/sections/analysis.tex:7:[Omitted long matching line]
+docs/paper/sections/analysis.tex:11:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "5e764ae9-3a9c-4642-9121-3cbfeaf6a7ff",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/sections/introduction.tex:6:[Omitted long matching line]\ndocs/paper/sections/results.tex:34:018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\ndocs/paper/sections/results.tex:36:018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\ndocs/paper/sections/results.tex:48:trn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\ndocs/paper/sections/results.tex:115:\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\ndocs/paper/sections/results.tex:116:[Omitted long matching line]\ndocs/paper/sections/results.tex:121:[Omitted long matching line]\ndocs/paper/sections/methodology.tex:56:018 & Full-SGS & trn$^\\ddagger$ & on & 8 & 2 \\\\\ndocs/paper/sections/methodology.tex:102:To identify which gradient pathway through $e_{\\Delta t}$ drives CIVO, we introduce \\textit{selective gradient stopping} (SGS): during the backward pass, $e_{\\Delta t}$ is detached before entering selected prediction heads via the stop-gradient operator $\\operatorname{sg}(\\cdot)$, preventing those loss gradients from updating $e_{\\Delta t}$'s parameters while preserving its forward-pass contribution.\ndocs/paper/sections/methodology.tex:104:[Omitted long matching line]\ndocs/paper/sections/methodology.tex:109:[Omitted long matching line]\ndocs/paper/sections/abstract.tex:2:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:183:This mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced---the reward head's co-adaptation with the temporal embedding produces systematically upward-biased predictions at $\\dt > 1$.  The consequence (policy exploitation of overestimated regions) is similar, but the causal pathway is distinct.\ndocs/paper/sections/appendix.tex:194:\\caption{Gradient contribution to $e_{\\Delta t}$ by loss component at two training checkpoints. The reward head contributes the largest share (38--49\\%) yet reward-only SGS (exp\\_016e) fails; the observation decoder channel (16--22\\%) carries the critical $\\dt$-specific spatial information that drives the RSSM fidelity gap.}\ndocs/paper/sections/appendix.tex:198:Exp\\_016e collapses in the same qualitative pattern as the unmodified control: peak evaluation 326.7 at 75K steps followed by catastrophic decline to 31.7 at 95K, with NVE reaching $10.42\\times$. The SGS intervention neither prevented nor attenuated CIVO.\ndocs/paper/sections/appendix.tex:220:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:224:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:231:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:233:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:243:\\caption{Actor entropy trajectories for three configurations. All start at ${\\sim}8$ nats and converge to similar values (${\\sim}{-}4.5$ to ${-}5$). The CIVO-triggering configuration (008d, red) follows a normal entropy reduction trajectory; the divergence from the control (008f) is subtle in entropy space, consistent with CIVO operating through the value channel rather than the entropy channel. 018v2 (Full-SGS, seed~1) shows slightly lower terminal entropy.}\ndocs/paper/sections/appendix.tex:250:[Omitted long matching line]\ndocs/paper/sections/related_work.tex:11:[Omitted long matching line]\ndocs/paper/sections/related_work.tex:17:The primacy bias \\citep{nikishin2022primacy} and progressive capacity loss \\citep{lyle2022capacity, nikishin2023plasticity} provide our framework for seed-dependent CIVO outcomes (\\S\\ref{sec:seed_divergence}). Our factorial diagnostic approach follows \\citet{henderson2018deep}, \\citet{engstrom2020implementation}, and \\citet{andrychowicz2021whatmatters} in systematically isolating design-choice effects, extending this tradition to model-based temporal conditioning.\ndocs/paper/sections/conclusion.tex:20:[Omitted long matching line]\ndocs/paper/sections/abstract_body.tex:1:[Omitted long matching line]\ndocs/paper/sections/analysis.tex:7:[Omitted long matching line]\ndocs/paper/sections/analysis.tex:11:[Omitted long matching line]",
+    "numLines": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JCS3PQR14rAj2ScvE3itJ2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+  "offset": 1,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "a3f5da4f-08cb-475b-b97e-3a3859feb4ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XzkQfV7cKc5J9X6kKPWDZZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 40472,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1514
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T01:04:06.260Z_
+
+<details><summary>↩ Tool result · `toolu_01JCS3PQR14rAj2ScvE3itJ2`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	TAWM \citep{nhu2025tawm} shows that conditioning a world model on step size $\dt$ yields consistent gains within TD-MPC2's MPC framework \citep{hansen2024tdmpc2}. Can the same $\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?
+5	
+6	We find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\dt{=}2$ collapses to $14\%$ of baseline, fixed $\dt{=}4$ never exceeds $19\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\%$. Through a factorial analysis on Walker Walk \citep{tassa2018dmcontrol}, we isolate the combination of a \emph{trained} $\dt$-embedding and multi-rate data exposure as the causal factor within the factorial design tested. This trained-and-exposed embedding enables the RSSM reward head to develop a $2.78\times$ prediction gap between $\dt{=}1$ and $\dt{=}2$, which the critic internalizes as optimistic value estimates---a failure mode we term \emph{conditioning-induced value overestimation} (CIVO). A $\nve \geq 1.5\times$ threshold (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, single environment), with one non-CIVO false positive---a failure mode analogous to delusional bias \citep{lu2018nondelusional} but arising from model imprecision amplified by learned temporal conditioning. Gradient decomposition reveals a non-obvious mechanism: the reward head contributes the largest gradient share (38--49\%) but does not encode $\dt$-specific structural information, while the observation decoder channel (16--22\%) carries the critical spatial predictions that drive the RSSM fidelity gap. Reward-only gradient stopping fails (NVE $10.42\times$) despite targeting the largest pathway; full-pathway SGS that removes observation decoder gradients from the temporal embedding \sgsclaim{} (eval \sgseval{} vs.\ collapse at 40.8), revealing that this intervention is necessary but not sufficient---the 50\% prevention rate exposes additional mechanisms beyond gradient-mediated co-adaptation.
+7	
+8	Three further findings complicate the picture: (1)~the same CIVO trigger produces stochastic downstream outcomes---full collapse and transient CIVO with self-correction---across seeds of identical configurations; (2)~restricting imagination to $\dt{=}1$ while retaining the trained embedding does not prevent collapse, with one of two seeds failing via a qualitatively distinct non-CIVO pathway (evaluation-driven, increasing entropy); and (3)~the contrast with TAWM identifies the feedback architecture---imagination-based bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "93bf04a1-773f-4f91-be2d-eacd7e6c817a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nTAWM \\citep{nhu2025tawm} shows that conditioning a world model on step size $\\dt$ yields consistent gains within TD-MPC2's MPC framework \\citep{hansen2024tdmpc2}. Can the same $\\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \\citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?\n\nWe find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\\dt{=}2$ collapses to $14\\%$ of baseline, fixed $\\dt{=}4$ never exceeds $19\\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\\%$. Through a factorial analysis on Walker Walk \\citep{tassa2018dmcontrol}, we isolate the combination of a \\emph{trained} $\\dt$-embedding and multi-rate data exposure as the causal factor within the factorial design tested. This trained-and-exposed embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$, which the critic internalizes as optimistic value estimates---a failure mode we term \\emph{conditioning-induced value overestimation} (CIVO). A $\\nve \\geq 1.5\\times$ threshold (35K+ window) achieves 7/8 CIVO classification ($n{=}8$, single environment), with one non-CIVO false positive---a failure mode analogous to delusional bias \\citep{lu2018nondelusional} but arising from model imprecision amplified by learned temporal conditioning. Gradient decomposition reveals a non-obvious mechanism: the reward head contributes the largest gradient share (38--49\\%) but does not encode $\\dt$-specific structural information, while the observation decoder channel (16--22\\%) carries the critical spatial predictions that drive the RSSM fidelity gap. Reward-only gradient stopping fails (NVE $10.42\\times$) despite targeting the largest pathway; full-pathway SGS that removes observation decoder gradients from the temporal embedding \\sgsclaim{} (eval \\sgseval{} vs.\\ collapse at 40.8), revealing that this intervention is necessary but not sufficient---the 50\\% prevention rate exposes additional mechanisms beyond gradient-mediated co-adaptation.\n\nThree further findings complicate the picture: (1)~the same CIVO trigger produces stochastic downstream outcomes---full collapse and transient CIVO with self-correction---across seeds of identical configurations; (2)~restricting imagination to $\\dt{=}1$ while retaining the trained embedding does not prevent collapse, with one of two seeds failing via a qualitatively distinct non-CIVO pathway (evaluation-driven, increasing entropy); and (3)~the contrast with TAWM identifies the feedback architecture---imagination-based bootstrapping versus MPC re-planning---as the structural factor that transforms manageable model imprecision into pathological value dynamics.\n",
+      "numLines": 9,
+      "startLine": 1,
+      "totalLines": 9
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the introduction already mentions the SGS results and the 50% prevention rate. The introduction text is consistent with the new figure data. Let me check if there are any specific "Figure 2" references in other sections that need updating.
+
+Looking at the grep results, I don't see any explicit "Figure~\ref{fig:civo_decomposition}" references elsewhere. The introduction mentions the SGS data but doesn't reference a specific figure for it. The analysis section might reference it. Let me check.
+
+Actually, I notice the introduction has many em-dashes (---) which violates the writing norms, but fixing those is outside the scope of this task. The task is specifically about integrating Fig 2.
+
+
+I've verified the text meets all the requirements: no em-dashes, proper phrasing, accurate numbers matching the spec, and a self-contained caption. The figure is now properly integrated into the F7 section where SGS is discussed with the correct reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "2ffb7bad-278c-4d19-a6e3-9492df9e37b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DFcsZuzh1281QESTuqz4pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 41986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Integration complete. The figure is placed in the F7 section (`\label{fig:civo_decomposition}`) with:
+
+- **Updated F7 paragraph**: references `Figure~\ref{fig:civo_decomposition}`, reports the key percentages (-73% peak, -86% final for trained dt-emb; -51% and -96% for Full-SGS s1/s2), and frames SGS as "reduces but does not eliminate CIVO risk."
+- **Self-contained caption**: defines all four conditions (Baseline, Trained dt-emb, Full-SGS s1/s2), reports quantitative findings, and explicitly notes the 50% prevention rate without overclaiming.
+- **Figure path**: `figures/fig2_civo_decomposition.pdf` resolves correctly via the existing `\graphicspath{{../../artifacts/}}`.
+- **Style compliance**: no em-dashes, no -ing phrase endings, no transition-word stacking.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "uuid": "9f724339-0b34-4d35-b903-d79aa5d59d04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DFcsZuzh1281QESTuqz4pJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 41986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 40_
+
+Integration complete. The figure is placed in the F7 section (`\label{fig:civo_decomposition}`) with:
+
+- **Updated F7 paragraph**: references `Figure~\ref{fig:civo_decomposition}`, reports the key percentages (-73% peak, -86% final for trained dt-emb; -51% and -96% for Full-SGS s1/s2), and frames SGS as "reduces but does not eliminate CIVO risk."
+- **Self-contained caption**: defines all four conditions (Baseline, Trained dt-emb, Full-SGS s1/s2), reports quantitative findings, and explicitly notes the 50% prevention rate without overclaiming.
+- **Figure path**: `figures/fig2_civo_decomposition.pdf` resolves correctly via the existing `\graphicspath{{../../artifacts/}}`.
+- **Style compliance**: no em-dashes, no -ing phrase endings, no transition-word stacking.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 174097,
+  "duration_api_ms": 174668,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "a668f643-c52d-4c84-ac35-042d8c57f2cb",
+  "total_cost_usd": 0.58167125,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 31435,
+    "cache_read_input_tokens": 388719,
+    "output_tokens": 7575,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31435,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 560,
+        "cache_read_input_tokens": 41986,
+        "cache_creation_input_tokens": 896,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 896
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1308,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001398,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 7575,
+      "cacheReadInputTokens": 388719,
+      "cacheCreationInputTokens": 31435,
+      "webSearchRequests": 0,
+      "costUSD": 0.58027325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "86787346-5ce6-4292-9602-0e2737720df4"
+}
+```
+
+</details>
+
+---

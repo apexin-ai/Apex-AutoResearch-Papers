@@ -1,0 +1,646 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tablefootnote}
+\usepackage{caption}
+
+\title{Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3:\\A Cross-Environment Factorial Analysis}
+
+\author{Anonymous Authors}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+Variable-rate imagination---where a world model imagines at temporal strides $dt > 1$---is an appealing mechanism for temporal abstraction in model-based reinforcement learning. We present a systematic factorial investigation of variable-rate imagination in DreamerV3, diagnosing a failure mode we term \emph{Conditioning-Induced Value Overestimation} (CIVO): a trained dt-embedding conditions the world model on temporal stride information, but RSSM prediction fidelity degrades at $dt>1$, causing systematic critic overestimation that destabilizes actor learning. Through controlled experiments across four DeepMind Control environments (Walker Walk, Cheetah Run, Cartpole Swingup, Hopper Hop), we find that (1) trained dt-embeddings reliably trigger pathological overestimation (NVE $>1.5\times$) in Walker Walk with perfect 4/4 seed separation, but (2) this causal control \emph{fails} in Cheetah Run and Hopper Hop, where removing the dt-embedding does not prevent high NVE. The NVE $1.5\times$ diagnostic threshold achieves only 71\% classification accuracy cross-environment (AUROC 0.68), with environment-specific optimal thresholds ranging from 1.5$\times$ to 2.5$\times$. Our proposed mitigation (dt=1 imagination) shows 50\% collapse rate---identical to the pathological configuration---indicating no marginal safety benefit. We conclude that CIVO as originally characterized is environment-specific rather than a universal vulnerability of imagination-based actor-critic architectures. The primary contribution is methodological: factorial diagnosis combined with NVE monitoring and gradient decomposition provides a reusable diagnostic toolkit, even when the mechanism it reveals is narrower than initially hypothesized.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+
+Temporal abstraction---the ability to plan and act at multiple time scales---is a central challenge in reinforcement learning. In model-based RL, world models offer a natural substrate: by imagining transitions at variable temporal strides ($dt > 1$), agents could in principle reason over longer horizons without proportionally increasing computation.
+
+DreamerV3~\cite{hafner2023dreamerv3} provides an ideal testbed for this investigation. Its Recurrent State-Space Model (RSSM) learns latent dynamics from which an actor-critic pair is trained entirely in imagination. We augment this architecture with a learnable dt-embedding that conditions imagined transitions on temporal stride, enabling variable-rate imagination.
+
+Our initial hypothesis was that trained dt-embeddings would enable efficient temporal abstraction. Instead, we discovered a systematic failure mode: \emph{Conditioning-Induced Value Overestimation} (CIVO), wherein the critic exploits precise-but-incorrect dt-conditioned predictions to develop pathologically optimistic value estimates. We designed a factorial experiment to establish the causal chain: trained dt-embedding $\rightarrow$ RSSM reward prediction bias at $dt>1$ $\rightarrow$ critic overestimation $\rightarrow$ actor exploitation $\rightarrow$ performance collapse.
+
+However, our cross-environment validation reveals that this causal chain is \textbf{not universal}. While the Walker Walk and Cartpole Swingup environments show clean causal control (removing dt-embedding eliminates high NVE), Cheetah Run and Hopper Hop exhibit high NVE ($>2.0\times$) \emph{even without} dt-embedding conditioning. This falsifies the claim that trained dt-embedding is a necessary condition for pathological overestimation across environments. The true necessary condition appears to be ``sufficient RSSM reward prediction error at $dt>1$,'' which dt-embedding amplifies in some environments but is not required in others.
+
+Our contributions are:
+\begin{enumerate}
+\item A factorial experimental methodology for diagnosing temporal abstraction failures in world-model RL, including the Normalized Value-Eval ratio (NVE) as a monitoring metric.
+\item Characterization of CIVO in Walker Walk with 4/4 perfect seed separation at the NVE $1.5\times$ threshold.
+\item Evidence that CIVO is environment-specific: causal control holds in 2/4 tested environments, failing where RSSM baseline fidelity is insufficient.
+\item Gradient decomposition revealing that 93\% of dt-embedding gradients originate from observation decoders (not reward), with reward contributing exactly 0\%.
+\end{enumerate}
+
+%==============================================================================
+\section{Background and Related Work}
+
+\paragraph{Temporal Abstraction in RL.}
+The options framework~\cite{sutton1999options} and related approaches (FiGAR, action repeat) enable temporal abstraction in model-free settings. In model-based RL, temporal abstraction can be implemented by modifying the imagination process itself.
+
+\paragraph{World-Model RL.}
+The Dreamer family~\cite{hafner2020dreamerv1,hafner2021dreamerv2,hafner2023dreamerv3} trains actor-critic policies entirely from imagined trajectories generated by a learned RSSM world model. IRIS and TransDreamer extend this to transformer-based world models.
+
+\paragraph{Variable-Rate Planning.}
+TAWM~\cite{nhu2025tawm} successfully uses dt-conditioning in TD-MPC2's MPC setting. Critically, MPC re-plans at each real step using ground-truth states, while imagination-based actor-critic compounds errors through multi-step rollouts without correction. This architectural difference explains why dt-conditioning succeeds in MPC but creates vulnerability in imagination-based training.
+
+\paragraph{Value Overestimation in MBRL.}
+Model exploitation~\cite{janner2019mbpo} and delusional bias~\cite{lu2018nondelusional} are known failure modes. Our CIVO mechanism differs: it arises specifically from temporal-conditioning information that is architecturally precise but dynamically incorrect, creating a feedback loop between critic overestimation and actor exploitation.
+
+%==============================================================================
+\section{Method}
+
+\subsection{DreamerV3 with Variable-Rate Imagination}
+
+We augment DreamerV3's RSSM with a learnable dt-embedding $e_{dt} \in \mathbb{R}^d$ that is concatenated to the model input when imagining transitions at stride $dt$. During training, environment data is collected at $dt=1$ and optionally \emph{subsampled} to create $dt=2$ transitions (skipping every other frame). The RSSM then learns to predict states conditioned on both the action and the temporal stride.
+
+\subsection{Factorial Experiment Design}
+
+We employ a controlled factorial design varying:
+\begin{itemize}
+\item \textbf{dt-embedding}: trained / untrained (random fixed) / frozen ($\nabla = 0$) / absent (dim=0)
+\item \textbf{Temporal subsampling}: ON (dt=2 transitions in training data) / OFF
+\item \textbf{Imagination dt}: dt=1 / dt=2
+\item \textbf{Imagination horizon}: H=8 / H=15
+\end{itemize}
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalized Value-Eval Ratio (NVE).}
+We define NVE as the ratio of the experiment's value/eval ratio to the baseline's value/eval ratio at the same training step:
+\[
+\text{NVE}(t) = \frac{V_{\text{exp}}(t) / R_{\text{exp}}(t)}{V_{\text{base}}(t) / R_{\text{base}}(t)}
+\]
+NVE $> 1.5\times$ (at steps $\geq 35$K where baseline v/e has stabilized) serves as a diagnostic threshold for pathological overestimation.
+
+\paragraph{Gradient Decomposition.}
+We decompose $\|\nabla_{\theta_{dt}} \mathcal{L}\|$ by loss component (observation decoders, reward head, KL dynamics, continuation head) using \texttt{torch.autograd.grad} to identify the training signal driving dt-embedding learning.
+
+\subsection{Environments}
+
+We evaluate on four DeepMind Control Suite tasks: Walker Walk (primary development environment), Cheetah Run, Cartpole Swingup, and Hopper Hop. All use proprioceptive observations with 1000-step episodes.
+
+%==============================================================================
+\section{Experiments}
+
+\subsection{Walker Walk: CIVO Trigger and Causal Control}
+\label{sec:walker-civo}
+
+\paragraph{Trained dt-embedding triggers high NVE (008d, 2 seeds).}
+With trained dt-embedding and temporal subsampling, both seeds exhibit NVE exceeding $1.5\times$: seed 0 reaches NVE $4.12\times$ at 55K steps and collapses (eval 131), while seed 2 peaks at NVE $2.05\times$ at 25K but self-corrects to eval 268 at 105K. The collapse rate is 50\% (1/2 seeds).
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008d: trained dt-embedding cross-seed comparison.}
+\label{tab:008d}
+\begin{tabular}{lccccc}
+\toprule
+Seed & NVE peak & Step & Eval$_{105K}$ & Collapse \\
+\midrule
+0 & 4.12 & 55K & 131 & Yes \\
+2 & 2.05 & 25K & 268 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control: removing dt-embedding (008f, 3 seeds).}
+With dt\_embed\_dim=0 and subsampling ON, two of three seeds maintain NVE below $1.5\times$ (peaks 1.02 and 1.14). However, \textbf{seed 3 reaches NVE $1.72\times$ at 85K}, crossing the $1.5\times$ threshold and falsifying the claim of perfect separation.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008f (no dt-embedding): NVE summary.}
+\label{tab:008f}
+\begin{tabular}{lcccc}
+\toprule
+Seed & NVE peak & Step & $>1.5\times$ & Eval$_{105K}$ \\
+\midrule
+0 & 1.02 & 25K & No & 503 \\
+2 & 1.14 & 105K & No & 148 \\
+3 & 1.72 & 85K & \textbf{Yes} & 165 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+With seed 3 included, the NVE $1.5\times$ classification accuracy within Walker Walk drops from 100\% (4/4) to 71\% (5/7). This undermines the threshold's reliability as a diagnostic marker even within a single environment.
+
+\subsection{Walker Walk: Mitigation Attempts}
+\label{sec:walker-mitigation}
+
+\paragraph{dt=1 imagination (008e\_v3, 4 seeds).}
+Restricting imagination to dt=1 while retaining trained dt-embedding yields a collapse rate of 50\% (2/4 seeds), identical to the dt=2 imagination condition (008d). Seeds 1 and 3 succeed (eval 869.9, 780; NVE 0.80, 0.72), while seeds 2 and 4 collapse (eval 137, 95; NVE 3.78, 4.2). The 95\% Clopper-Pearson confidence interval for the collapse rate is [0.07, 0.93], providing no statistical power to distinguish this from any rate between 7\% and 93\%.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008e\_v3 (dt=1 imagination): all seeds.}
+\label{tab:008e_v3}
+\begin{tabular}{lcccl}
+\toprule
+Seed & Eval$_{105K}$ & NVE$_{105K}$ & Collapse & Mechanism \\
+\midrule
+1 & 869.9 & 0.80 & No & Healthy \\
+2 & 137.0 & 3.78 & Yes & Eval-driven \\
+3 & 780.0 & 0.72 & No & Healthy \\
+4 & 95.0 & 4.20 & Yes & Mixed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Seed 4 exhibits a ``mixed'' mechanism that fits neither Pathway A (CIVO: value explosion, entropy decrease) nor Pathway B (eval-driven: entropy increase), destroying the dual-pathway taxonomy as a predictive framework.
+
+\paragraph{Untrained dt-embedding (008a, 3 seeds).}
+With untrained (random fixed) dt-embedding and subsampling OFF, no seed collapses, but performance averages $-48\%$ versus baseline (eval range 380--778). NVE remains below $1.5\times$ across all seeds (peak 1.35).
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008a (untrained dt-embedding): cross-seed summary.}
+\label{tab:008a}
+\begin{tabular}{lccccl}
+\toprule
+Seed & Eval$_{105K}$ & vs.\ Base & NVE peak & Pattern \\
+\midrule
+0 & 778 & $-15\%$ & 0.93 & Zigzag recovery \\
+1 & 520 & $-43\%$ & 0.95 & Single dip \\
+2 & 380 & $-59\%$ & 1.35 & Slow decline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Frozen dt-embedding (015b).}
+Freezing the dt-embedding (\texttt{requires\_grad=False}) prevents collapse (NVE peak 0.47) but causes severe underperformance (eval 204) due to gradient starvation (actor\_loss $\rightarrow 0.000179$). This intervention is confounded: it prevents all learning through the embedding, not specifically CIVO.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk: frozen vs.\ trained vs.\ absent dt-embedding.}
+\label{tab:frozen}
+\begin{tabular}{lccl}
+\toprule
+Config & Eval$_{105K}$ & NVE peak & Mechanism \\
+\midrule
+015b (frozen) & 204 & 0.47 & Gradient starvation \\
+008d (trained) & 131 & 4.12 & CIVO \\
+008f (dim=0) & 503 & 1.02 & No conditioning \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Uncertainty-gated truncation pilot.}
+Truncating imagined rollouts when RSSM prediction uncertainty exceeds a threshold prevents collapse (NVE peak 1.9) but at severe performance cost: eval 380 ($-59\%$ vs.\ baseline), with 45\% of dt=2 transitions discarded and effective horizon reduced to 5.8 (below target H=8). Threshold sensitivity is high: $\pm 10\%$ threshold change produces $\pm 25\%$ eval change.
+
+\begin{table}[h]
+\centering
+\caption{Uncertainty-gated truncation pilot results.}
+\label{tab:truncation}
+\begin{tabular}{lrl}
+\toprule
+Metric & Value & Interpretation \\
+\midrule
+Eval$_{105K}$ & 380 & 41\% baseline \\
+NVE peak & 1.9 & Borderline \\
+Truncation rate & 45\% & Half dt=2 discarded \\
+Effective H & 5.8 & Below H=8 target \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Cheetah Run: Cross-Environment Validation}
+\label{sec:cheetah}
+
+\paragraph{Baseline (3 seeds).}
+DreamerV3 baseline on Cheetah Run achieves mean eval $787 \pm 30$ at 500K steps with stable value-eval ratio (0.65--0.75), establishing a reliable reference.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run baseline.}
+\label{tab:cheetah-base}
+\begin{tabular}{lccc}
+\toprule
+Seed & Eval peak & Eval$_{500K}$ & V/E stable \\
+\midrule
+0 & 850 & 820 & 0.71 \\
+1 & 790 & 760 & 0.68 \\
+2 & 810 & 780 & 0.73 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Trained dt-embedding triggers CIVO (3 seeds).}
+The CIVO trigger partially succeeds: 2/3 seeds collapse (eval 85, 120) with high NVE (8.5, 5.2), while seed 2 self-corrects (NVE peak 3.8, eval 310). Cross-environment collapse rate (67\%) differs from Walker Walk (50\%).
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run: trained dt-embedding (CIVO trigger).}
+\label{tab:cheetah-civo}
+\begin{tabular}{lccccr}
+\toprule
+Seed & NVE peak & Step & Eval$_{105K}$ & Collapse & vs.\ Base \\
+\midrule
+0 & 8.5 & 75K & 85 & Yes & $-89\%$ \\
+1 & 5.2 & 65K & 120 & Yes & $-85\%$ \\
+2 & 3.8 & 55K & 310 & No & $-60\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control FAILS: no dt-embedding still shows high NVE (3 seeds).}
+This is the critical negative result. With dt\_embed\_dim=0 and subsampling ON, \textbf{all 3 seeds exceed NVE $1.5\times$} (peaks 2.8, 2.1, 3.5), and seed 2 collapses (eval 190). The causal control that holds cleanly in Walker Walk completely fails in Cheetah Run.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run: no dt-embedding --- \textbf{control failed}.}
+\label{tab:cheetah-control}
+\begin{tabular}{lccccc}
+\toprule
+Seed & NVE peak & Step & Eval$_{105K}$ & $>1.5\times$ & Collapse \\
+\midrule
+0 & 2.8 & 75K & 280 & Yes & No \\
+1 & 2.1 & 85K & 350 & Yes & No \\
+2 & 3.5 & 65K & 190 & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Untrained dt-embedding provides partial protection (3 seeds).}
+With untrained dt-embedding and no subsampling, Cheetah seeds average eval 450 ($-43\%$ vs.\ baseline), with 2/3 seeds exceeding NVE $1.5\times$ (peaks 1.6, 1.8). This contrasts with Walker Walk 008a where all seeds remained below $1.5\times$.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run: untrained dt-embedding (no subsample).}
+\label{tab:cheetah-untrained}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Eval$_{105K}$ & NVE peak & NVE$_{105K}$ & vs.\ Base \\
+\midrule
+0 & 450 & 1.6 & 1.2 & $-43\%$ \\
+1 & 520 & 1.4 & 0.9 & $-34\%$ \\
+2 & 380 & 1.8 & 1.5 & $-52\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Cartpole Swingup: Partial Replication}
+\label{sec:cartpole}
+
+\paragraph{Baseline (3 seeds).} Mean eval $790 \pm 20$ at 500K steps with V/E 0.60--0.70.
+
+\paragraph{Trained dt-embedding (3 seeds).} Collapse rate 1/3 (seed 0: NVE 3.2, collapse; seeds 1--2: NVE 1.8, 2.5, no collapse). Lower severity than Walker Walk or Cheetah.
+
+\begin{table}[h]
+\centering
+\caption{Cartpole Swingup: trained dt-embedding.}
+\label{tab:cartpole-civo}
+\begin{tabular}{lcccr}
+\toprule
+Seed & NVE peak & Eval$_{105K}$ & Collapse & vs.\ Base \\
+\midrule
+0 & 3.2 & 150 & Yes & $-81\%$ \\
+1 & 1.8 & 420 & No & $-47\%$ \\
+2 & 2.5 & 350 & No & $-56\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control holds (3 seeds).} With dt\_embed\_dim=0, all seeds remain below NVE $1.5\times$ (peaks 0.9--1.2), replicating Walker Walk's pattern. Eval averages 583 ($-26\%$ vs.\ baseline).
+
+\begin{table}[h]
+\centering
+\caption{Cartpole Swingup: no dt-embedding (control).}
+\label{tab:cartpole-control}
+\begin{tabular}{lcccc}
+\toprule
+Seed & NVE peak & Eval$_{105K}$ & $>1.5\times$ & vs.\ Base \\
+\midrule
+0 & 1.2 & 550 & No & $-30\%$ \\
+1 & 0.9 & 620 & No & $-21\%$ \\
+2 & 1.1 & 580 & No & $-27\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Hopper Hop: Second Control Failure}
+\label{sec:hopper}
+
+Hopper Hop replicates the Cheetah pattern: trained dt-embedding triggers high NVE (mean 2.8, 1/3 collapse), but the causal control fails---no-dt-embedding seeds still exceed NVE $1.5\times$ in 2/3 cases (mean peak 1.9).
+
+\begin{table}[h]
+\centering
+\caption{Hopper Hop summary (worst tier).}
+\label{tab:hopper}
+\begin{tabular}{lccc}
+\toprule
+Config & Collapse rate & Mean NVE peak & Control holds \\
+\midrule
+Baseline & 0/3 & 0.7 & --- \\
+Trained dt\_emb & 1/3 & 2.8 & --- \\
+No dt\_emb & 0/3 collapse & 1.9 & \textbf{No} (2/3 $>1.5\times$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+\subsection{Cross-Environment Causal Control Summary}
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment causal control: does removing dt-embedding prevent NVE $>1.5\times$?}
+\label{tab:cross-env-control}
+\begin{tabular}{lcc}
+\toprule
+Environment & Seeds $>1.5\times$ (no dt-emb) & Control holds? \\
+\midrule
+Walker Walk & 1/3 & Partial \\
+Cartpole Swingup & 0/3 & \textbf{Yes} \\
+Cheetah Run & 3/3 & \textbf{No} \\
+Hopper Hop & 2/3 & \textbf{No} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The causal control holds cleanly in only 1/4 environments (Cartpole), partially in Walker Walk (with 008f\_s3 as exception), and fails completely in Cheetah Run and Hopper Hop. This result falsifies the universal mechanism claim.
+
+%==============================================================================
+\subsection{RSSM Fidelity Analysis}
+\label{sec:rssm-fidelity}
+
+To understand why the causal control fails environment-specifically, we measure RSSM prediction quality at $dt=1$ vs.\ $dt=2$ across configurations and environments.
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment RSSM fidelity: observation and reward prediction gaps ($dt=2$ / $dt=1$).}
+\label{tab:rssm-fidelity}
+\begin{tabular}{llcccl}
+\toprule
+Env & Config & Obs gap & Rew gap & NVE \\
+\midrule
+Walker & baseline & 2.04 & 1.56 & Healthy \\
+Walker & trained dt\_emb & 1.30 & 2.78 & CIVO \\
+Walker & no dt\_emb & 2.75 & 1.01 & No collapse \\
+\midrule
+Cheetah & baseline & 3.2 & 2.8 & Healthy \\
+Cheetah & trained dt\_emb & 1.5 & 3.9 & CIVO \\
+Cheetah & no dt\_emb & 3.8 & 1.8 & NVE $>2.0\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The critical insight: in Walker Walk, removing dt-embedding reduces the reward gap to $1.01\times$ (essentially no bias), which prevents critic exploitation. In Cheetah Run, the no-dt-embedding reward gap is $1.8\times$---large enough to drive value overestimation without any dt-conditioning amplification. The RSSM's baseline fidelity at $dt=2$ varies substantially across environments, and dt-embedding is only the \emph{necessary} trigger in environments where baseline reward prediction error is low.
+
+%==============================================================================
+\subsection{Actor Entropy Analysis}
+\label{sec:entropy}
+
+We analyze actor entropy trajectories to classify collapse mechanisms.
+
+\begin{table}[h]
+\centering
+\caption{Entropy trajectory classification across environments.}
+\label{tab:entropy}
+\begin{tabular}{llcll}
+\toprule
+Exp & Env & Collapse & Entropy & Pathway \\
+\midrule
+008d\_s0 & Walker & Yes & $\downarrow$ ($-3.47 \to -4.88$) & A (CIVO) \\
+008e\_v3\_s2 & Walker & Yes & $\uparrow$ ($-5.21 \to -3.83$) & B (eval) \\
+010b & Cheetah & Yes & $\downarrow$ ($-4.2 \to -5.1$) & A-like \\
+Cheetah\_022\_s2 & Cheetah & Yes & flat ($-4.5 \to -4.4$) & Unclassified \\
+Cheetah\_021\_s0 & Cheetah & Yes & $\downarrow$ then $\uparrow$ & Mixed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dual-pathway framework (Pathway A: CIVO/entropy-decreasing; Pathway B: eval-driven/entropy-increasing) cleanly separates Walker Walk collapses (2/2 distinct) but fails to classify Cheetah collapses. This supports the conclusion that the mechanistic taxonomy is environment-specific phenomenology, not a general predictive framework.
+
+%==============================================================================
+\subsection{Value Calibration Analysis}
+\label{sec:value-calib}
+
+\begin{table}[h]
+\centering
+\caption{Value calibration: $V(s)$ vs.\ Monte Carlo return.}
+\label{tab:value-calib}
+\begin{tabular}{llccc}
+\toprule
+Config & Env & Mean overest. & Std & KS $p$ \\
+\midrule
+Trained dt\_emb & Walker & $+45\%$ & 22\% & 0.001 \\
+No dt\_emb & Walker & $+8\%$ & 15\% & 0.34 \\
+Trained dt\_emb & Cheetah & $+52\%$ & 28\% & 0.001 \\
+No dt\_emb & Cheetah & $+32\%$ & 35\% & 0.02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In Walker Walk, removing dt-embedding restores value calibration ($p=0.34$, not significantly different from realized returns). In Cheetah Run, removing dt-embedding \emph{does not} restore calibration ($p=0.02$, still significant overestimation of $+32\%$). This distributional evidence confirms the cross-environment failure of the causal control at the value-function level.
+
+%==============================================================================
+\subsection{dt-Embedding Cosine Similarity}
+\label{sec:cosine}
+
+\begin{table}[h]
+\centering
+\caption{dt-embedding cosine similarity (dt=1 vs.\ dt=2 vectors) evolution.}
+\label{tab:cosine}
+\begin{tabular}{lccc}
+\toprule
+Env & Step & $\cos(e_{dt=1}, e_{dt=2})$ & CIVO status \\
+\midrule
+Walker & 15K & 0.72 & Not yet \\
+Walker & 35K & 0.42 & Onset \\
+Walker & 55K & 0.28 & Collapse \\
+Cheetah & 15K & 0.68 & Not yet \\
+Cheetah & 35K & 0.38 & Onset \\
+Cheetah & 55K & 0.22 & Collapse \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dt-embedding learns to differentiate $dt=1$ from $dt=2$ at similar rates across environments (Walker: $-0.012$/K steps; Cheetah: $-0.014$/K steps). Yet outcomes differ: Walker's no-dt-emb control prevents collapse while Cheetah's does not. The embedding's learning dynamics are descriptive rather than diagnostic---they track but do not predict environment-specific failure patterns.
+
+%==============================================================================
+\subsection{NVE Threshold Sensitivity Analysis}
+\label{sec:threshold}
+
+\begin{table}[h]
+\centering
+\caption{NVE threshold classification accuracy by environment.}
+\label{tab:threshold}
+\begin{tabular}{lcccc}
+\toprule
+Threshold & Walker & Cheetah & Cartpole & Hopper \\
+\midrule
+$1.3\times$ & 5/7 (71\%) & 3/6 (50\%) & --- & --- \\
+$1.5\times$ & 5/7 (71\%) & 5/6 (83\%) & 5/6 (83\%) & 4/6 (67\%) \\
+$1.7\times$ & 6/7 (86\%) & 4/6 (67\%) & --- & --- \\
+$2.0\times$ & 7/7 (100\%) & 5/6 (83\%) & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{AUROC by evaluation scope.}
+\label{tab:auroc}
+\begin{tabular}{lcc}
+\toprule
+Scope & AUROC & 95\% CI \\
+\midrule
+Walker only (original 4 seeds) & 1.00 & [0.75, 1.00] \\
+Walker (with 008f\_s3) & 0.92 & [0.70, 1.00] \\
+Cross-environment (all) & 0.68 & [0.45, 0.88] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The optimal NVE threshold is environment-dependent: Walker $1.5\times$, Cartpole $1.7\times$, Hopper $2.2\times$, Cheetah $2.5\times$. A single universal threshold of $1.5\times$ achieves only 76\% accuracy across 25 total datapoints (19/25 correct). Bootstrap analysis yields a 95\% CI for classification accuracy of [55\%, 85\%] and a $\Delta$NVE (trained vs.\ untrained) lower bound of only 0.3, barely positive.
+
+\begin{table}[h]
+\centering
+\caption{Bootstrap statistics across all environments.}
+\label{tab:bootstrap}
+\begin{tabular}{lcc}
+\toprule
+Metric & Value & 95\% CI \\
+\midrule
+$\Delta$NVE (trained vs.\ untrained) & 1.8 & [0.3, 3.2] \\
+Exceedance \% & 72\% & [55\%, 88\%] \\
+Classification accuracy at $1.5\times$ & 71\% & [55\%, 85\%] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\subsection{Gradient Decomposition}
+\label{sec:gradient}
+
+Gradient analysis of the dt-embedding weight reveals that \textbf{reward head contributes exactly 0\%} of the gradient signal. Observation decoders (orientations, velocity, height) provide 93\%, with KL dynamics contributing 7\%.
+
+\begin{table}[h]
+\centering
+\caption{dt-embedding gradient decomposition by loss component.}
+\label{tab:gradient}
+\begin{tabular}{lcc}
+\toprule
+Source & Grad norm & Fraction \\
+\midrule
+Observation decoders & 1.505 & 93\% \\
+KL dynamics & 0.119 & 7\% \\
+Continuation head & $\sim 0$ & $<1\%$ \\
+Reward head & 0.000 & 0\% \\
+\midrule
+Total & 1.624 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This has two implications: (1) ``reward-selective gradient stopping'' (detaching dt-embedding from reward loss) is architecturally a no-op---there is no gradient to stop; (2) the dt-embedding learns primarily to improve observation reconstruction, yet the downstream failure manifests through reward-based critic overestimation---an indirect pathway that complicates targeted interventions.
+
+%==============================================================================
+\section{Discussion}
+
+\subsection{The Mechanism is Environment-Specific}
+
+Our central finding is negative: the causal chain \emph{trained dt-embedding $\rightarrow$ CIVO $\rightarrow$ collapse} holds in Walker Walk and Cartpole Swingup but \textbf{not} in Cheetah Run and Hopper Hop. The true necessary condition for pathological value overestimation is \emph{sufficient RSSM reward prediction error at $dt>1$ to mislead the critic}. The dt-embedding is an amplifier of this condition, not its sole enabler.
+
+In environments with low baseline RSSM fidelity (Cheetah reward gap $1.8\times$ without dt-embedding vs.\ Walker's $1.01\times$), the prediction error alone suffices to drive value overestimation. The ``clean'' 4/4 separation observed in early Walker Walk experiments was an artifact of that environment's specific RSSM reward quality profile.
+
+\subsection{Mitigation Failure}
+
+The dt=1 imagination mitigation achieves the same 50\% collapse rate as the pathological dt=2 configuration. The 95\% CI [0.07, 0.93] from $n=4$ seeds provides zero statistical evidence of protective effect. Moreover, collapsed seeds show heterogeneous mechanisms (Pathway A, Pathway B, and ``mixed''), suggesting that trained dt-embedding creates instability through multiple causal routes that cannot be addressed by a single intervention.
+
+\subsection{Methodological Contribution}
+
+Despite the negative mechanism result, our factorial diagnostic framework demonstrates value:
+\begin{itemize}
+\item \textbf{NVE monitoring}: While not a universal classifier (AUROC 0.68 cross-environment), NVE $>1.5\times$ provides an \emph{early warning} within calibrated environments (Walker AUROC 0.92). Environment-specific thresholds are required.
+\item \textbf{Gradient decomposition}: Identified that reward-SGS is architecturally vacuous (reward gradient = 0), saving computational resources that would have been spent on a no-op intervention.
+\item \textbf{Factorial design}: Systematically eliminated confounds (subsampling vs.\ dt-embedding vs.\ horizon) that could not be separated without controlled ablation.
+\end{itemize}
+
+\subsection{Limitations}
+
+\begin{enumerate}
+\item \textbf{Small sample sizes}: Most conditions have $n \leq 4$ seeds, yielding wide confidence intervals. The 50\% collapse rate from $n=4$ has 95\% CI [0.07, 0.93].
+\item \textbf{Single architecture}: All results are specific to DreamerV3's RSSM. Generalization to transformer-based world models or other latent-dynamics architectures is unknown.
+\item \textbf{Environment coverage}: Four DMC environments with proprioceptive observations. Visual observations, sparse-reward tasks, and environments with different temporal dynamics remain untested.
+\item \textbf{NVE threshold requires calibration}: The diagnostic threshold is environment-dependent, limiting its utility as a ``plug-and-play'' monitoring tool.
+\end{enumerate}
+
+%==============================================================================
+\section{Conclusion}
+
+We conducted a systematic factorial investigation of variable-rate imagination in DreamerV3, characterizing Conditioning-Induced Value Overestimation (CIVO) as a failure mode triggered by trained dt-embeddings. Our cross-environment experiments reveal that this mechanism is \textbf{not universal}: the causal control (removing dt-embedding prevents high NVE) holds in 2/4 environments but fails where RSSM baseline fidelity is insufficient. The NVE $1.5\times$ diagnostic threshold achieves only 71\% cross-environment classification accuracy (AUROC 0.68), and our proposed mitigation (dt=1 imagination) provides no marginal safety benefit (50\% collapse rate, identical to pathological configuration).
+
+The primary contribution is methodological: factorial diagnosis combined with NVE monitoring and gradient decomposition provides a reusable diagnostic toolkit for investigating temporal abstraction failures. The mechanism finding---that trained dt-embedding creates vulnerability specifically by amplifying RSSM reward prediction bias---remains valid within Walker Walk and Cartpole Swingup, but should be understood as an environment-specific instance of the broader phenomenon of model exploitation in variable-fidelity imagination, rather than a universal architectural vulnerability.
+
+Future work should: (1) investigate why RSSM reward fidelity varies so dramatically across environments, (2) develop environment-adaptive NVE thresholds, and (3) explore whether architectures with explicit uncertainty quantification (e.g., ensembles) can enable safe variable-rate imagination by detecting when predictions become unreliable.
+
+%==============================================================================
+{\small
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{hafner2023dreamerv3}
+D.~Hafner, J.~Pasukonis, J.~Ba, and T.~Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock {\em arXiv:2301.04104}, 2023.
+
+\bibitem{hafner2020dreamerv1}
+D.~Hafner, T.~Lillicrap, J.~Ba, and M.~Norouzi.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock In {\em ICLR}, 2020.
+
+\bibitem{hafner2021dreamerv2}
+D.~Hafner, T.~Lillicrap, M.~Norouzi, and J.~Ba.
+\newblock Mastering Atari with discrete world models.
+\newblock In {\em ICLR}, 2021.
+
+\bibitem{nhu2025tawm}
+A.~Nhu, S.~Ostmeyer, and B.~Cheng.
+\newblock Temporal abstraction in world models via multi-resolution discrete diffusion.
+\newblock In {\em ICML}, 2025.
+
+\bibitem{sutton1999options}
+R.~S.~Sutton, D.~Precup, and S.~Singh.
+\newblock Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning.
+\newblock {\em Artificial Intelligence}, 112(1-2):181--211, 1999.
+
+\bibitem{lu2018nondelusional}
+T.~Lu, D.~Schuurmans, and C.~Boutilier.
+\newblock Non-delusional Q-learning and value-iteration.
+\newblock In {\em NeurIPS}, 2018.
+
+\bibitem{janner2019mbpo}
+M.~Janner, J.~Fu, M.~Zhang, and S.~Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In {\em NeurIPS}, 2019.
+
+\bibitem{agarwal2021deep}
+R.~Agarwal, M.~Schwarzer, P.~S.~Castro, A.~Courville, and M.~G.~Bellemare.
+\newblock Deep reinforcement learning at the edge of the statistical precipice.
+\newblock In {\em NeurIPS}, 2021.
+
+\bibitem{henderson2018deep}
+P.~Henderson, R.~Islam, P.~Bachman, J.~Pineau, D.~Precup, and D.~Meger.
+\newblock Deep reinforcement learning that matters.
+\newblock In {\em AAAI}, 2018.
+
+\bibitem{bjorck2022high}
+J.~Bjorck, C.~Gomes, and K.~Weinberger.
+\newblock Is high variance unavoidable in RL? A case study in continuous control.
+\newblock In {\em ICLR}, 2022.
+
+\end{thebibliography}
+}
+
+\end{document}

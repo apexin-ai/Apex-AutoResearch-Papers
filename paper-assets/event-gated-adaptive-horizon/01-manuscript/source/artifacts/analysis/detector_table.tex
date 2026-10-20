@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{CIVO Detector Validation Results. Trigger Step indicates when the detector first fires. Detection Type classifies timing relative to 20\% eval decline from peak.}
+\label{tab:detector-validation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+Experiment & Config & Verdict & Trigger & Det. Type & Peak Eval & $r_\text{ve}$@trig \\
+\midrule
+  exp\_008d\_s0 & dt_embed, subsample_on, h=8,.. & TP & 45K & predictive & 167 & 0.69 \\
+  exp\_010b\_cheetah & dt_embed, cheetah, seed=1 & TP & 65K & reactive & 322 & 3.18 \\
+  exp\_008d\_s3 & dt_embed, subsample_on, seed=3 & TP & 45K & predictive & 452 & 0.50 \\
+  exp\_008f\_s3 & no_dt_embed, subsample_on, s.. & TN & -- & -- & 594 & -- \\
+  exp\_009c\_008f\_s2 & no_dt_embed, walker, seed=2 & FP & 105K & reactive & 359 & 0.75 \\
+  exp\_009b\_008d\_walker\_s2 & dt_embed, walker, seed=2 (se.. & TN & -- & -- & 279 & -- \\
+  exp\_009a\_baseline\_walker\_s2 & vanilla DreamerV3 baseline, .. & FP & 85K & predictive & 967 & 0.73 \\
+  baseline\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 970 & -- \\
+  exp\_009d\_baseline\_walker\_s0 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 951 & -- \\
+  exp\_009d\_baseline\_walker\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 920 & -- \\
+\midrule
+  \multicolumn{7}{l}{TPR = 3/3 (1.00), FPR = 2/7 (0.286)} \\
+\bottomrule
+\end{tabular}}
+\end{table}

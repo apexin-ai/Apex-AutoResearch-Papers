@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e07885cc4678f9f2889",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 027 tcn walker s0",
+  "task_key": "worker_analysis_exp_027_tcn_walker_s0_20260520T062805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_027_tcn_walker_s0_20260520T062805_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "b70c0fcee394b68631ab644e4779c0b312e8016376b1ed5117df6e395f10da2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the final analysis:\n\n---\n\n## exp_027_tcn_walker_s0 — **NEGATIVE**\n\n**Hypothesis**: TCN (σ=0.5 Gaussian noise on dt_embedding) suppresses CIVO (NVE < 1.5×) while maintaining eval > 450.\n\n### Results\n\n| Metric | Target | Actual |\n|--------|--------|--------|\n| NVE < 1.5× | All checkpoints | 3 breaches: 55K(1.68×), 65K(1.54×), **85K(3.97×)** |\n| eval_return > 450 | Sustained | Peak 240 (35K), avg 117 in latter half |\n| Training extent | 210K | Stopped at 120K |\n\n### Key Findings\n\n1. **CIVO not suppressed** — Peak NVE 3.97× at 85K is *worse* than typical CIVO, suggesting TCN noise destabilizes rather than prevents value exploitation.\n2. **CIVO signature confirmed** — 85K NVE spike (3.97×) coincides with eval collapse to 36, classic CIVO pattern.\n3. **Gate behavior unchanged** — dt=2 fixed throughout, zero entropy. Noise on embedding didn't influence gate selection.\n4. **σ=0.5 insufficient** — The critic can learn through this noise level. The dt conditioning signal-to-noise ratio remains high enough for value bias to develop.\n\n### Implication\n\nBoth gradient-level (SGS, exp_025) and forward-pass noise (TCN, this experiment) fail to suppress CIVO. The critic's dt-specific value bias is robust to perturbation-based interventions — may need architectural separation (e.g., dt-agnostic critic) or value normalization approaches instead."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-027-tcn-walker-s0-copy-2.md"
+}

@@ -1,0 +1,4504 @@
+# fix camera ready issues
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 90
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_fix_camera-ready-issues_20260524T133919.log`
+- **Structured JSON:** [`8170e2e929190cde2ed7.json`](../../sessions/81/8170e2e929190cde2ed7.json)
+
+## Before a recorded user message
+
+90 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "eb3ceb6b-28e6-42b0-a763-ee11ec0a9fe3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779639000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "dcff3000-1271-42f7-87e4-9294bdd0a66f",
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task into steps:
+
+1. Read the references.bib file from the server
+2. Search for author full names for the 18 entries
+3. Fix the bib entries
+4. Fix lambert2020objective conference name
+5. Fix sutton1999options journal field
+6. Read appendix.tex and add figure references
+7. Compile and verify
+
+Let me start by reading the files from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "8a3a47f5-616a-4dc7-a59e-932821425e77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7MQzmEtjbCxEo3w1NCxmd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11734,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11734
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我先读取服务器上的 references.bib 和 appendix.tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "51f60120-a3ab-405c-8b5a-fc60b749cd4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7MQzmEtjbCxEo3w1NCxmd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11734,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11734
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VkzdUTStbu5JUEni1ZYMft`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,WebSearch",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "013e5321-6389-4bfc-92d4-862b5c984b06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7MQzmEtjbCxEo3w1NCxmd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11734,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11734
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-24T13:39:38.885Z_
+
+<details><summary>↩ Tool result · `toolu_01VkzdUTStbu5JUEni1ZYMft`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "e8b298de-6270-488e-9228-5d5593344ff3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "WebSearch"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,WebSearch",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kq7LNLXKNXr6RWq93EVbFS`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "347257be-a0f0-4539-a5c2-9c4c0bf65141",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUc5tJ8mvxWEbBZzjH5yUc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1510,
+      "cache_read_input_tokens": 23575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1510
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T13:39:47.118Z_
+
+<details><summary>↩ Tool result · `toolu_01Kq7LNLXKNXr6RWq93EVbFS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905.13320},\\n  eprint = {1905.13320},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hansen2024tdmpc2,\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\n  author = {Hansen, N and Su, H and Wang, X},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2310.16828},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{yu2020mopo,\\n  title = {MOPO: Model-based Offline Policy Optimization},\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2005.13239},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{thrun1993issues,\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\n  author = {Thrun, S and Schwartz, A},\\n  year = {1993},\\n  booktitle = {Connectionist Models Summer School},\\n}\\n\\n@inproceedings{vanhasselt2016double,\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\n  year = {2016},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{fujimoto2018td3,\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\n  year = {2018},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{lu2018nondelusional,\\n  title = {Non-delusional Q-learning and Value-Iteration},\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{biedenkapp2021temporl,\\n  title = {TempoRL: Learning When to Act},\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\n  year = {2021},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{hafner2021dreamerv2,\\n  title = {Mastering Atari with Discrete World Models},\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{gumbsch2\\n\\n... [截断: 输出过长，省略 4745 字符] ...\\n\\ntitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{parr1998ham,\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\n  author = {Parr, Ronald and Russell, Stuart},\\n  year = {1998},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{dietterich2000maxq,\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\n  author = {Dietterich, Thomas G.},\\n  year = {2000},\\n  journal = {Journal of Artificial Intelligence Research},\\n  volume = {13},\\n  pages = {227--303},\\n}\\n\\n@inproceedings{bradtke1995smdp,\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\n  year = {1995},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{kidambi2020morel,\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{yu2021combo,\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{hamrick2021planning,\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\v{c}}kovi{\\\\'c}, Petar and Weber, Th{\\\\'e}ophane},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{lee2024dreamsmooth,\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{wu2023daydreamer,\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\n  year = {2023},\\n  booktitle = {Conference on Robot Learning},\\n  eprint = {2206.14176},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{park2021timediscretization,\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2111.03941},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{wang2024elastic,\\n  title = {Reinforcement Learning with Elastic Time Steps},\\n  author = {Wang, Dong and Beltrame, Giovanni},\\n  year = {2024},\\n  journal = {arXiv preprint arXiv:2402.14961},\\n  eprint = {2402.14961},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{colas2018seeds,\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\n  author = {Colas, C{\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1806.08295},\\n  eprint = {1806.08295},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{benechehab2023multitimestep,\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\n  year = {2023},\\n  journal = {arXiv preprint arXiv:2310.05672},\\n  eprint = {2310.05672},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hafner2022director,\\n  title = {Deep Hierarchical Planning from Pixels},\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\n  year = {2022},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "1e66eb11-8ba2-4dd6-823a-d9d7099b4231",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Auto-generated from literature_map.yaml\\\\n% 44 entries\\\\n\\\\n@inproceedings{micheli2023iris,\\\\n  title = {Transformers are Sample-Efficient World Models},\\\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\\\\\c{c}}ois},\\\\n  year = {2023},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@article{sutton1999options,\\\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\\\n  year = {1999},\\\\n  journal = {Artificial Intelligence 112},\\\\n}\\\\n\\\\n@inproceedings{hafner2020dreamerv1,\\\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\\\n  year = {2020},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@article{hafner2023dreamerv3,\\\\n  title = {Mastering Diverse Domains through World Models},\\\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\\\n  year = {2025},\\\\n  journal = {Nature},\\\\n  eprint = {2301.04104},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{sharma2017figar,\\\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\\\n  year = {2017},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{janner2019mbpo,\\\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\\\n  year = {2019},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{asadi2019combating,\\\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\\\n  year = {2019},\\\\n  journal = {arXiv preprint arXiv:1905.13320},\\\\n  eprint = {1905.13320},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{hansen2024tdmpc2,\\\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\\\n  author = {Hansen, N and Su, H and Wang, X},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2310.16828},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{yu2020mopo,\\\\n  title = {MOPO: Model-based Offline Policy Optimization},\\\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\\\n  year = {2020},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n  eprint = {2005.13239},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{thrun1993issues,\\\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\\\n  author = {Thrun, S and Schwartz, A},\\\\n  year = {1993},\\\\n  booktitle = {Connectionist Models Summer School},\\\\n}\\\\n\\\\n@inproceedings{vanhasselt2016double,\\\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\\\n  year = {2016},\\\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\\\n}\\\\n\\\\n@inproceedings{fujimoto2018td3,\\\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\\\n  year = {2018},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n}\\\\n\\\\n@inproceedings{lu2018nondelusional,\\\\n  title = {Non-delusional Q-learning and Value-Iteration},\\\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\\\n  year = {2018},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{biedenkapp2021temporl,\\\\n  title = {TempoRL: Learning When to Act},\\\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n}\\\\n\\\\n@inproceedings{hafner2021dreamerv2,\\\\n  title = {Mastering Atari with Discrete World Models},\\\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{gumbsch2\\\\n\\\\n... [截断: 输出过长，省略 4745 字符] ...\\\\n\\\\ntitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{parr1998ham,\\\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\\\n  author = {Parr, Ronald and Russell, Stuart},\\\\n  year = {1998},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{dietterich2000maxq,\\\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\\\n  author = {Dietterich, Thomas G.},\\\\n  year = {2000},\\\\n  journal = {Journal of Artificial Intelligence Research},\\\\n  volume = {13},\\\\n  pages = {227--303},\\\\n}\\\\n\\\\n@inproceedings{bradtke1995smdp,\\\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\\\n  year = {1995},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{kidambi2020morel,\\\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\\\n  year = {2020},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{yu2021combo,\\\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{hamrick2021planning,\\\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\\\\\v{c}}kovi{\\\\\\\\'c}, Petar and Weber, Th{\\\\\\\\'e}ophane},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{lee2024dreamsmooth,\\\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{wu2023daydreamer,\\\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\\\n  year = {2023},\\\\n  booktitle = {Conference on Robot Learning},\\\\n  eprint = {2206.14176},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{park2021timediscretization,\\\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n  eprint = {2111.03941},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{wang2024elastic,\\\\n  title = {Reinforcement Learning with Elastic Time Steps},\\\\n  author = {Wang, Dong and Beltrame, Giovanni},\\\\n  year = {2024},\\\\n  journal = {arXiv preprint arXiv:2402.14961},\\\\n  eprint = {2402.14961},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{colas2018seeds,\\\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\\\n  author = {Colas, C{\\\\\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\\\n  year = {2018},\\\\n  journal = {arXiv preprint arXiv:1806.08295},\\\\n  eprint = {1806.08295},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{benechehab2023multitimestep,\\\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\\\n  year = {2023},\\\\n  journal = {arXiv preprint arXiv:2310.05672},\\\\n  eprint = {2310.05672},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{hafner2022director,\\\\n  title = {Deep Hierarchical Planning from Pixels},\\\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\\\n  year = {2022},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905.13320},\\n  eprint = {1905.13320},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hansen2024tdmpc2,\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\n  author = {Hansen, N and Su, H and Wang, X},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2310.16828},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{yu2020mopo,\\n  title = {MOPO: Model-based Offline Policy Optimization},\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2005.13239},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{thrun1993issues,\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\n  author = {Thrun, S and Schwartz, A},\\n  year = {1993},\\n  booktitle = {Connectionist Models Summer School},\\n}\\n\\n@inproceedings{vanhasselt2016double,\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\n  year = {2016},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{fujimoto2018td3,\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\n  year = {2018},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{lu2018nondelusional,\\n  title = {Non-delusional Q-learning and Value-Iteration},\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{biedenkapp2021temporl,\\n  title = {TempoRL: Learning When to Act},\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\n  year = {2021},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{hafner2021dreamerv2,\\n  title = {Mastering Atari with Discrete World Models},\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{gumbsch2\\n\\n... [截断: 输出过长，省略 4745 字符] ...\\n\\ntitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{parr1998ham,\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\n  author = {Parr, Ronald and Russell, Stuart},\\n  year = {1998},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{dietterich2000maxq,\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\n  author = {Dietterich, Thomas G.},\\n  year = {2000},\\n  journal = {Journal of Artificial Intelligence Research},\\n  volume = {13},\\n  pages = {227--303},\\n}\\n\\n@inproceedings{bradtke1995smdp,\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\n  year = {1995},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{kidambi2020morel,\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{yu2021combo,\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{hamrick2021planning,\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\v{c}}kovi{\\\\'c}, Petar and Weber, Th{\\\\'e}ophane},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{lee2024dreamsmooth,\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{wu2023daydreamer,\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\n  year = {2023},\\n  booktitle = {Conference on Robot Learning},\\n  eprint = {2206.14176},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{park2021timediscretization,\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2111.03941},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{wang2024elastic,\\n  title = {Reinforcement Learning with Elastic Time Steps},\\n  author = {Wang, Dong and Beltrame, Giovanni},\\n  year = {2024},\\n  journal = {arXiv preprint arXiv:2402.14961},\\n  eprint = {2402.14961},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{colas2018seeds,\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\n  author = {Colas, C{\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1806.08295},\\n  eprint = {1806.08295},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{benechehab2023multitimestep,\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\n  year = {2023},\\n  journal = {arXiv preprint arXiv:2310.05672},\\n  eprint = {2310.05672},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hafner2022director,\\n  title = {Deep Hierarchical Planning from Pixels},\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\n  year = {2022},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EMyCqhAqd7iogx1vswU6Mq`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "dc6135e5-0606-4710-9089-bb917c054af7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUc5tJ8mvxWEbBZzjH5yUc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1510,
+      "cache_read_input_tokens": 23575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1510
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T13:39:54.376Z_
+
+<details><summary>↩ Tool result · `toolu_01EMyCqhAqd7iogx1vswU6Mq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/event-gated-adaptive-horizon/paper/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "ad5a8c66-5ecd-4dc8-9ba3-83f48e5f8ba3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/event-gated-adaptive-horizon/paper/appendix.tex: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/event-gated-adaptive-horizon/paper/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix.tex file doesn't exist at that path. Let me find the correct location of the appendix file, and also get the full bib file since it was truncated.
+
+Let me search for the appendix file and also get the truncated portion of the bib file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "1eeff61c-5fcd-4117-9cfa-89ac081b922f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn9BK5TxiTiimEKazgviSy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3540,
+      "cache_read_input_tokens": 25085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3540
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+appendix.tex 路径不对，需要查找。同时 bib 文件被截断了，需要获取完整内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "faed1b0d-f5f9-4707-971b-ac0443806f93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn9BK5TxiTiimEKazgviSy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3540,
+      "cache_read_input_tokens": 25085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3540
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dnsn12q41M9FSP41pvyDQ7`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/paper/ -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "daee78ce-3ecd-4bfe-bb51-f092292857f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn9BK5TxiTiimEKazgviSy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3540,
+      "cache_read_input_tokens": 25085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3540
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T13:40:02.022Z_
+
+<details><summary>↩ Tool result · `toolu_01Dnsn12q41M9FSP41pvyDQ7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/abstract_body.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/conclusion.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/analysis.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/introduction.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/related_work.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/methodology.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/results.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/example_paper.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "956037fd-94ca-4486-afde-c8df9d49158c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/abstract_body.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/conclusion.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/analysis.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/introduction.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/related_work.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/methodology.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/results.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/example_paper.tex\\\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/abstract_body.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/conclusion.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/analysis.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/introduction.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/related_work.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/methodology.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/results.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/example_paper.tex\\n/root/autodl-tmp/event-gated-adaptive-horizon/paper/main.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VnYKuxJnXXs1zM3p8rhdxV`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "wc -l /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "492d3368-1e82-4d93-9137-67ac5984233f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cn9BK5TxiTiimEKazgviSy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3540,
+      "cache_read_input_tokens": 25085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3540
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T13:40:02.499Z_
+
+<details><summary>↩ Tool result · `toolu_01VnYKuxJnXXs1zM3p8rhdxV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"345 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "1d250aef-53b4-4409-8be1-ec917a488be0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"345 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"345 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found appendix at `/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex`. Let me read it and also get the truncated part of references.bib.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6dbc5f3c-47de-42f4-81bb-d54740321c7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW2UVZVs5PS9e9uq3zqHLv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 28625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 853
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Psa6x53SMWRkm5wSScEBGJ`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "4cb9187a-5d26-45d7-8992-668048f03ef6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW2UVZVs5PS9e9uq3zqHLv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 28625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 853
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T13:40:08.860Z_
+
+<details><summary>↩ Tool result · `toolu_01Psa6x53SMWRkm5wSScEBGJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 71223 字符] ...\\n\\n results. Walker Walk unless noted.}\\n\\\\label{tab:dual_critic_full}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{Params} & \\\\textbf{NVE} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n008d & Single narrow & 1.2M & 4.12$\\\\times$ & 82.8 & Collapse \\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\times$ & 407.9 & CIVO $\\\\to$ self-repair \\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\times$ & 697.8 & CIVO $\\\\to$ recovery \\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\times$ & 592.7 & CIVO $\\\\to$ recovery \\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\leq$1.1$\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\leq$0.3$\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{Cross-environment}} \\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\times$ & 97.5 & Partial recovery (31\\\\%) \\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\times$ & 146.1 & CIVO $\\\\to$ self-repair \\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^*$CIVO prevented (NVE $\\\\leq 0.3\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{Critic Convergence (\\\\texorpdfstring{$v_1 \\\\approx v_2$}{v1 ≈ v2})}\\n\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\mathbb{E}[\\\\max(v_1, v_2) - \\\\min(v_1, v_2)]$ is 3--4\\\\% of the theoretical bound for independent critics.\\n\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\n\\n\\\\subsection{Recovery vs.\\\\ Prevention Mechanism}\\n\\nThe $2{\\\\times}2$ factorial reveals two separable dimensions:\\n\\n\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\_035 (s0, $\\\\nve = 2.75\\\\times$, eval $33.8 \\\\to 697.8$, recovery ratio $20.6\\\\times$) and exp\\\\_039 (s1, $\\\\nve = 2.19\\\\times$, eval $35.9 \\\\to 592.7$, recovery ratio $16.5\\\\times$). Both outperform wide single-critic (exp\\\\_033, 2.4M params, eval 407.9) despite $2\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\times$ vs.\\\\ 4.75$\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\n\\n\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\n\\n\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\_034) reduces NVE from $8.27\\\\times$ (untreated baseline) to $1.75\\\\times$ ($\\\\geq 4\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "335070e9-33fd-4c0a-b01b-f58c54360454",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% --- APPENDIX ---\\\\n\\\\n\\\\\\\\section{Complete Experimental Results}\\\\n\\\\\\\\label{sec:complete_results}\\\\n\\\\nTable~\\\\\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\\\\\_s3, 008d\\\\\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\\\\\_s0), and mitigation experiments (008e\\\\\\\\_v3).\\\\n\\\\n\\\\\\\\begin{table*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Complete experimental results. NVE reports peak $\\\\\\\\nve$ in the 35K+ window (\\\\\\\\S\\\\\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\\\\\dagger$\\\\\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\\\n\\\\\\\\label{tab:complete_results}\\\\n\\\\\\\\scriptsize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\begin{tabular}{llcccccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Exp} & \\\\\\\\textbf{Config} & \\\\\\\\textbf{dt\\\\\\\\_emb} & \\\\\\\\textbf{Sub} & \\\\\\\\textbf{H} & \\\\\\\\textbf{Eval@final} & \\\\\\\\textbf{NVE} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n001 & Baseline ($\\\\\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n001 s2 & Baseline ($\\\\\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n006 & Fixed $\\\\\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n007 & Fixed $\\\\\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\\\\\heartsuit$ & 4.12$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\\\\\times$ & Transient CIVO \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\\\\\diamond$ @105K & 1.53$\\\\\\\\times$ & Late-onset collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\\\\\times$ & Collapse$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n008f & No dt\\\\\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008f s4 & No dt\\\\\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n009c s3 & No dt\\\\\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\\\\\times$ & Grad.\\\\\\\\ starvation \\\\\\\\\\\\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\\\\\times$ & No CIVO \\\\\\\\\\\\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n018 s1 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & \\\\\\\\sgseval{} @105K & \\\\\\\\sgsnve{}$\\\\\\\\times$$^*$ & Partial mitig.\\\\\\\\ (CIVO+) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n018 s2 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s2$^\\\\\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\\\\\times$ & Non-CIVO collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008e\\\\\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\\\\\times$ & CIVO collapse \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{l}{\\\\\\\\textit{Cross-environment validation}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b\\\\\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n021 & Cheetah Run & trn$^\\\\\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\\\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\\\n\\\\n... [截断: 输出过长，省略 71223 字符] ...\\\\n\\\\n results. Walker Walk unless noted.}\\\\n\\\\\\\\label{tab:dual_critic_full}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llcccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Exp} & \\\\\\\\textbf{Config} & \\\\\\\\textbf{Params} & \\\\\\\\textbf{NVE} & \\\\\\\\textbf{Eval} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n008d & Single narrow & 1.2M & 4.12$\\\\\\\\times$ & 82.8 & Collapse \\\\\\\\\\\\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\\\\\times$ & 407.9 & CIVO $\\\\\\\\to$ self-repair \\\\\\\\\\\\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\\\\\times$ & 697.8 & CIVO $\\\\\\\\to$ recovery \\\\\\\\\\\\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\\\\\times$ & 592.7 & CIVO $\\\\\\\\to$ recovery \\\\\\\\\\\\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\\\\\leq$1.1$\\\\\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\\\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\\\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\\\\\leq$0.3$\\\\\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\textit{Cross-environment}} \\\\\\\\\\\\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\\\\\times$ & 97.5 & Partial recovery (31\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\\\\\times$ & 146.1 & CIVO $\\\\\\\\to$ self-repair \\\\\\\\\\\\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\vspace{1pt}\\\\n{\\\\\\\\raggedright\\\\\\\\footnotesize $^*$CIVO prevented (NVE $\\\\\\\\leq 0.3\\\\\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\\\\\par}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Critic Convergence (\\\\\\\\texorpdfstring{$v_1 \\\\\\\\approx v_2$}{v1 ≈ v2})}\\\\n\\\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\\\\\mathbb{E}[\\\\\\\\max(v_1, v_2) - \\\\\\\\min(v_1, v_2)]$ is 3--4\\\\\\\\% of the theoretical bound for independent critics.\\\\n\\\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\\\n\\\\n\\\\\\\\subsection{Recovery vs.\\\\\\\\ Prevention Mechanism}\\\\n\\\\nThe $2{\\\\\\\\times}2$ factorial reveals two separable dimensions:\\\\n\\\\n\\\\\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\\\\\_035 (s0, $\\\\\\\\nve = 2.75\\\\\\\\times$, eval $33.8 \\\\\\\\to 697.8$, recovery ratio $20.6\\\\\\\\times$) and exp\\\\\\\\_039 (s1, $\\\\\\\\nve = 2.19\\\\\\\\times$, eval $35.9 \\\\\\\\to 592.7$, recovery ratio $16.5\\\\\\\\times$). Both outperform wide single-critic (exp\\\\\\\\_033, 2.4M params, eval 407.9) despite $2\\\\\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\\\\\times$ vs.\\\\\\\\ 4.75$\\\\\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\\\n\\\\n\\\\\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\\\n\\\\n\\\\\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\\\\\_034) reduces NVE from $8.27\\\\\\\\times$ (untreated baseline) to $1.75\\\\\\\\times$ ($\\\\\\\\geq 4\\\\\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 71223 字符] ...\\n\\n results. Walker Walk unless noted.}\\n\\\\label{tab:dual_critic_full}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{Params} & \\\\textbf{NVE} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n008d & Single narrow & 1.2M & 4.12$\\\\times$ & 82.8 & Collapse \\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\times$ & 407.9 & CIVO $\\\\to$ self-repair \\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\times$ & 697.8 & CIVO $\\\\to$ recovery \\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\times$ & 592.7 & CIVO $\\\\to$ recovery \\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\leq$1.1$\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\leq$0.3$\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{Cross-environment}} \\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\times$ & 97.5 & Partial recovery (31\\\\%) \\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\times$ & 146.1 & CIVO $\\\\to$ self-repair \\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^*$CIVO prevented (NVE $\\\\leq 0.3\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{Critic Convergence (\\\\texorpdfstring{$v_1 \\\\approx v_2$}{v1 ≈ v2})}\\n\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\mathbb{E}[\\\\max(v_1, v_2) - \\\\min(v_1, v_2)]$ is 3--4\\\\% of the theoretical bound for independent critics.\\n\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\n\\n\\\\subsection{Recovery vs.\\\\ Prevention Mechanism}\\n\\nThe $2{\\\\times}2$ factorial reveals two separable dimensions:\\n\\n\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\_035 (s0, $\\\\nve = 2.75\\\\times$, eval $33.8 \\\\to 697.8$, recovery ratio $20.6\\\\times$) and exp\\\\_039 (s1, $\\\\nve = 2.19\\\\times$, eval $35.9 \\\\to 592.7$, recovery ratio $16.5\\\\times$). Both outperform wide single-critic (exp\\\\_033, 2.4M params, eval 407.9) despite $2\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\times$ vs.\\\\ 4.75$\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\n\\n\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\n\\n\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\_034) reduces NVE from $8.27\\\\times$ (untreated baseline) to $1.75\\\\times$ ($\\\\geq 4\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A3YUS5dYADZbaAiqP7Ydr2`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -n 200 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "37e024c4-ec25-4902-b89f-8b21ff4d5620",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MW2UVZVs5PS9e9uq3zqHLv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 853,
+      "cache_read_input_tokens": 28625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 853
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T13:40:09.294Z_
+
+<details><summary>↩ Tool result · `toolu_01A3YUS5dYADZbaAiqP7Ydr2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{tassa2018dmcontrol,\\n  title = {DeepMind Control Suite},\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1801.00690},\\n  eprint = {1801.00690},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{hafner2025dreamerv4,\\n  title = {Training Agents Inside of Scalable World Models},\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {arXiv preprint arXiv:2509.24527},\\n  eprint = {2509.24527},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{lyle2022capacity,\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\n  year = {2022},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2204.09560},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{nhu2025tawm,\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\n  year = {2025},\\n  booktitle = {International Conference on Machine Learning},\\n  eprint = {2506.08441},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{li2025lsimagine,\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\n  year = {2025},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2410.03618},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{chen2021redq,\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2101.05982},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{bacon2017optioncritc,\\n  title = {The Option-Critic Architecture},\\n  author = {Bacon, Pierre-Luc and Harb, Jean and Precup, Doina},\\n  year = {2017},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{buckman2018steve,\\n  title = {Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion},\\n  author = {Buckman, Jacob and Hafner, Danijar and Tucker, George and Brevdo, Eugene and Lee, Honglak},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{chua2018pets,\\n  title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},\\n  author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{bishop1995noise,\\n  title = {Training with Noise is Equivalent to {Tikhonov} Regularization},\\n  author = {Bishop, Chris M.},\\n  year = {1995},\\n  journal = {Neural Computation},\\n  volume = {7},\\n  number = {1},\\n  pages = {108--116},\\n}\\n\\n@inproceedings{fortunato2018noisynet,\\n  title = {Noisy Networks for Exploration},\\n  author = {Fortunato, Meire and Azar, Mohammad Gheshlaghi and Piot, Bilal and Menick, Jacob and Osband, Ian and Graves, Alex and Mnih, Vlad and Munos, R{\\\\'e}mi and Hassabis, Demis and Pietquin, Olivier and Blundell, Charles and Legg, Shane},\\n  year = {2018},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{parr1998ham,\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\n  author = {Parr, Ronald and Russell, Stuart},\\n  year = {1998},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{dietterich2000maxq,\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\n  author = {Dietterich, Thomas G.},\\n  year = {2000},\\n  journal = {Journal of Artificial Intelligence Research},\\n  volume = {13},\\n  pages = {227--303},\\n}\\n\\n@inproceedings{bradtke1995smdp,\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\n  year = {1995},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{kidambi2020morel,\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{yu2021combo,\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{hamrick2021planning,\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\v{c}}kovi{\\\\'c}, Petar and Weber, Th{\\\\'e}ophane},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{lee2024dreamsmooth,\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{wu2023daydreamer,\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\n  year = {2023},\\n  booktitle = {Conference on Robot Learning},\\n  eprint = {2206.14176},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{park2021timediscretization,\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2111.03941},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{wang2024elastic,\\n  title = {Reinforcement Learning with Elastic Time Steps},\\n  author = {Wang, Dong and Beltrame, Giovanni},\\n  year = {2024},\\n  journal = {arXiv preprint arXiv:2402.14961},\\n  eprint = {2402.14961},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{colas2018seeds,\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\n  author = {Colas, C{\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1806.08295},\\n  eprint = {1806.08295},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{benechehab2023multitimestep,\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\n  year = {2023},\\n  journal = {arXiv preprint arXiv:2310.05672},\\n  eprint = {2310.05672},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hafner2022director,\\n  title = {Deep Hierarchical Planning from Pixels},\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\n  year = {2022},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "15220f9c-553a-4d45-a831-900b02d2e2fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{tassa2018dmcontrol,\\\\n  title = {DeepMind Control Suite},\\\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\\\n  year = {2018},\\\\n  journal = {arXiv preprint arXiv:1801.00690},\\\\n  eprint = {1801.00690},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{hafner2025dreamerv4,\\\\n  title = {Training Agents Inside of Scalable World Models},\\\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\\\n  year = {2025},\\\\n  journal = {arXiv preprint arXiv:2509.24527},\\\\n  eprint = {2509.24527},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{lyle2022capacity,\\\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\\\n  year = {2022},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2204.09560},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{nhu2025tawm,\\\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\\\n  year = {2025},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n  eprint = {2506.08441},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{li2025lsimagine,\\\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\\\n  year = {2025},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2410.03618},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{chen2021redq,\\\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2101.05982},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{bacon2017optioncritc,\\\\n  title = {The Option-Critic Architecture},\\\\n  author = {Bacon, Pierre-Luc and Harb, Jean and Precup, Doina},\\\\n  year = {2017},\\\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\\\n}\\\\n\\\\n@inproceedings{buckman2018steve,\\\\n  title = {Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion},\\\\n  author = {Buckman, Jacob and Hafner, Danijar and Tucker, George and Brevdo, Eugene and Lee, Honglak},\\\\n  year = {2018},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{chua2018pets,\\\\n  title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},\\\\n  author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},\\\\n  year = {2018},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{bishop1995noise,\\\\n  title = {Training with Noise is Equivalent to {Tikhonov} Regularization},\\\\n  author = {Bishop, Chris M.},\\\\n  year = {1995},\\\\n  journal = {Neural Computation},\\\\n  volume = {7},\\\\n  number = {1},\\\\n  pages = {108--116},\\\\n}\\\\n\\\\n@inproceedings{fortunato2018noisynet,\\\\n  title = {Noisy Networks for Exploration},\\\\n  author = {Fortunato, Meire and Azar, Mohammad Gheshlaghi and Piot, Bilal and Menick, Jacob and Osband, Ian and Graves, Alex and Mnih, Vlad and Munos, R{\\\\\\\\'e}mi and Hassabis, Demis and Pietquin, Olivier and Blundell, Charles and Legg, Shane},\\\\n  year = {2018},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{parr1998ham,\\\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\\\n  author = {Parr, Ronald and Russell, Stuart},\\\\n  year = {1998},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{dietterich2000maxq,\\\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\\\n  author = {Dietterich, Thomas G.},\\\\n  year = {2000},\\\\n  journal = {Journal of Artificial Intelligence Research},\\\\n  volume = {13},\\\\n  pages = {227--303},\\\\n}\\\\n\\\\n@inproceedings{bradtke1995smdp,\\\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\\\n  year = {1995},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{kidambi2020morel,\\\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\\\n  year = {2020},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{yu2021combo,\\\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{hamrick2021planning,\\\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\\\\\v{c}}kovi{\\\\\\\\'c}, Petar and Weber, Th{\\\\\\\\'e}ophane},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{lee2024dreamsmooth,\\\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{wu2023daydreamer,\\\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\\\n  year = {2023},\\\\n  booktitle = {Conference on Robot Learning},\\\\n  eprint = {2206.14176},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{park2021timediscretization,\\\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n  eprint = {2111.03941},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{wang2024elastic,\\\\n  title = {Reinforcement Learning with Elastic Time Steps},\\\\n  author = {Wang, Dong and Beltrame, Giovanni},\\\\n  year = {2024},\\\\n  journal = {arXiv preprint arXiv:2402.14961},\\\\n  eprint = {2402.14961},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{colas2018seeds,\\\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\\\n  author = {Colas, C{\\\\\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\\\n  year = {2018},\\\\n  journal = {arXiv preprint arXiv:1806.08295},\\\\n  eprint = {1806.08295},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{benechehab2023multitimestep,\\\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\\\n  year = {2023},\\\\n  journal = {arXiv preprint arXiv:2310.05672},\\\\n  eprint = {2310.05672},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{hafner2022director,\\\\n  title = {Deep Hierarchical Planning from Pixels},\\\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\\\n  year = {2022},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{tassa2018dmcontrol,\\n  title = {DeepMind Control Suite},\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1801.00690},\\n  eprint = {1801.00690},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{hafner2025dreamerv4,\\n  title = {Training Agents Inside of Scalable World Models},\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {arXiv preprint arXiv:2509.24527},\\n  eprint = {2509.24527},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{lyle2022capacity,\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\n  year = {2022},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2204.09560},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{nhu2025tawm,\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\n  year = {2025},\\n  booktitle = {International Conference on Machine Learning},\\n  eprint = {2506.08441},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{li2025lsimagine,\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\n  year = {2025},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2410.03618},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{chen2021redq,\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2101.05982},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{bacon2017optioncritc,\\n  title = {The Option-Critic Architecture},\\n  author = {Bacon, Pierre-Luc and Harb, Jean and Precup, Doina},\\n  year = {2017},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{buckman2018steve,\\n  title = {Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion},\\n  author = {Buckman, Jacob and Hafner, Danijar and Tucker, George and Brevdo, Eugene and Lee, Honglak},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{chua2018pets,\\n  title = {Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models},\\n  author = {Chua, Kurtland and Calandra, Roberto and McAllister, Rowan and Levine, Sergey},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{bishop1995noise,\\n  title = {Training with Noise is Equivalent to {Tikhonov} Regularization},\\n  author = {Bishop, Chris M.},\\n  year = {1995},\\n  journal = {Neural Computation},\\n  volume = {7},\\n  number = {1},\\n  pages = {108--116},\\n}\\n\\n@inproceedings{fortunato2018noisynet,\\n  title = {Noisy Networks for Exploration},\\n  author = {Fortunato, Meire and Azar, Mohammad Gheshlaghi and Piot, Bilal and Menick, Jacob and Osband, Ian and Graves, Alex and Mnih, Vlad and Munos, R{\\\\'e}mi and Hassabis, Demis and Pietquin, Olivier and Blundell, Charles and Legg, Shane},\\n  year = {2018},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{parr1998ham,\\n  title = {Reinforcement Learning with Hierarchies of Abstract Machines},\\n  author = {Parr, Ronald and Russell, Stuart},\\n  year = {1998},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{dietterich2000maxq,\\n  title = {Hierarchical Reinforcement Learning with the {MAXQ} Value Function Decomposition},\\n  author = {Dietterich, Thomas G.},\\n  year = {2000},\\n  journal = {Journal of Artificial Intelligence Research},\\n  volume = {13},\\n  pages = {227--303},\\n}\\n\\n@inproceedings{bradtke1995smdp,\\n  title = {Reinforcement Learning Methods for Continuous-Time {Markov} Decision Problems},\\n  author = {Bradtke, Steven J. and Duff, Michael O.},\\n  year = {1995},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{kidambi2020morel,\\n  title = {{MOReL}: Model-Based Offline Reinforcement Learning},\\n  author = {Kidambi, Rahul and Rajeswaran, Aravind and Netrapalli, Praneeth and Joachims, Thorsten},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{yu2021combo,\\n  title = {{COMBO}: Conservative Offline Model-Based Policy Optimization},\\n  author = {Yu, Tianhe and Kumar, Aviral and Rafailov, Rafael and Rajeswaran, Aravind and Levine, Sergey and Finn, Chelsea},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{hamrick2021planning,\\n  title = {On the Role of Planning in Model-Based Deep Reinforcement Learning},\\n  author = {Hamrick, Jessica B. and Friesen, Abram L. and Behbahani, Feryal and Guez, Arthur and Viola, Fabio and Witherspoon, Sims and Anthony, Thomas and Buesing, Lars and Veli{\\\\v{c}}kovi{\\\\'c}, Petar and Weber, Th{\\\\'e}ophane},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{lee2024dreamsmooth,\\n  title = {{DreamSmooth}: Improving Model-based Reinforcement Learning via Reward Smoothing},\\n  author = {Lee, Vint and Abbeel, Pieter and Lee, Youngwoon},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{wu2023daydreamer,\\n  title = {DayDreamer: World Models for Physical Robot Learning},\\n  author = {Wu, Philipp and Escontrela, Alejandro and Hafner, Danijar and Abbeel, Pieter and Goldberg, Ken},\\n  year = {2023},\\n  booktitle = {Conference on Robot Learning},\\n  eprint = {2206.14176},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{park2021timediscretization,\\n  title = {Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods},\\n  author = {Park, Seohong and Kim, Jaekyeom and Kim, Gunhee},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2111.03941},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{wang2024elastic,\\n  title = {Reinforcement Learning with Elastic Time Steps},\\n  author = {Wang, Dong and Beltrame, Giovanni},\\n  year = {2024},\\n  journal = {arXiv preprint arXiv:2402.14961},\\n  eprint = {2402.14961},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{colas2018seeds,\\n  title = {How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments},\\n  author = {Colas, C{\\\\'e}dric and Sigaud, Olivier and Oudeyer, Pierre-Yves},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1806.08295},\\n  eprint = {1806.08295},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{benechehab2023multitimestep,\\n  title = {Multi-timestep models for Model-based Reinforcement Learning},\\n  author = {Benechehab, Abdelhakim and Couairon, Guillaume and Leurent, Edouard and Bloch, Balázs Kégl},\\n  year = {2023},\\n  journal = {arXiv preprint arXiv:2310.05672},\\n  eprint = {2310.05672},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hafner2022director,\\n  title = {Deep Hierarchical Planning from Pixels},\\n  author = {Hafner, Danijar and Lee, Kuang-Huei and Fischer, Ian and Abbeel, Pieter},\\n  year = {2022},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full bib file content and the appendix. The appendix is very long and was truncated. Let me identify the entries that need fixing and the specific sections in appendix.tex.
+
+Let me first extract the 18 entries that need author name fixes. From the bib file I can see:
+
+1. `sutton1999options`: `Sutton, R.S and Precup, D and Singh, S`
+2. `hafner2020dreamerv1`: `Hafner, D and Lillicrap, T and Ba, J and Norouzi, M`
+
+
+3. `sharma2017figar`: `Sharma, S and Lakshminarayanan, A.S and Ravindran, B`
+4. `janner2019mbpo`: `Janner, M and Fu, J and Zhang, M and Levine, S`
+5. `asadi2019combating`: `Asadi, K and Misra, D and Kim, S and Littman, M.L`
+6. `hansen2024tdmpc2`: `Hansen, N and Su, H and Wang, X`
+7. `yu2020mopo`: `Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn`
+
+I'm continuing to fill in the bibliography with the remaining author citations, including entries for Thrun and Schwartz on issues in learning, Lu, Schuurmans, and Boutilier on nondelusional approaches, Biedenkapp's work on temporal reinforcement learning, and Hafner's DreamerV2 paper, while noting a few entries that still need their full author lists retrieved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "2ea75668-4296-4a50-820c-1028ed3d743b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbexFABNQh7u9Xqif5UniQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7310,
+      "cache_read_input_tokens": 29478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+需要获取 bib 文件的中间部分（被截断的部分）以及 appendix 中相关段落。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6ecbd361-7fba-4f03-abd1-e705100b34b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbexFABNQh7u9Xqif5UniQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7310,
+      "cache_read_input_tokens": 29478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QzHRrat323Yx6XtRv9txQd`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"gumbsch2024\\|mattes2024\\|henderson2018\\|lambert2020\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "a25a3999-2029-43d4-bd88-839a5c933ba0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbexFABNQh7u9Xqif5UniQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7310,
+      "cache_read_input_tokens": 29478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T13:40:30.040Z_
+
+<details><summary>↩ Tool result · `toolu_01QzHRrat323Yx6XtRv9txQd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "d44621ea-2ee9-478b-b69c-5d79415b3877",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017aN9SYHvxE6vXHLVXcHbEi`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "head -n 200 /root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "a98c986b-01f6-4ac3-9c33-e399c9124392",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbexFABNQh7u9Xqif5UniQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7310,
+      "cache_read_input_tokens": 29478,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7310
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T13:40:31.326Z_
+
+<details><summary>↩ Tool result · `toolu_017aN9SYHvxE6vXHLVXcHbEi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905.13320},\\n  eprint = {1905.13320},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hansen2024tdmpc2,\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\n  author = {Hansen, N and Su, H and Wang, X},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2310.16828},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{yu2020mopo,\\n  title = {MOPO: Model-based Offline Policy Optimization},\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2005.13239},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{thrun1993issues,\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\n  author = {Thrun, S and Schwartz, A},\\n  year = {1993},\\n  booktitle = {Connectionist Models Summer School},\\n}\\n\\n@inproceedings{vanhasselt2016double,\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\n  year = {2016},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{fujimoto2018td3,\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\n  year = {2018},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{lu2018nondelusional,\\n  title = {Non-delusional Q-learning and Value-Iteration},\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{biedenkapp2021temporl,\\n  title = {TempoRL: Learning When to Act},\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\n  year = {2021},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{hafner2021dreamerv2,\\n  title = {Mastering Atari with Discrete World Models},\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{gumbsch2024thick,\\n  title = {Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics},\\n  author = {Gumbsch, C and Sajid, N and Martius, G and Butz, M.V},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{mattes2024hieros,\\n  title = {Hieros: Hierarchical Imagination on Structured State Space Sequence World Models},\\n  author = {Mattes, P and Schlosser, R and Herbrich, R},\\n  year = {2024},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{henderson2018deep,\\n  title = {Deep Reinforcement Learning that Matters},\\n  author = {Henderson, P and Islam, R and Bachman, P and Pineau, J and Precup, D and Meger, D},\\n  year = {2018},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{lambert2020objective,\\n  title = {Objective Mismatch in Model-based Reinforcement Learning},\\n  author = {Lambert, N and Amos, B and Yadan, O and Calandra, R},\\n  year = {2020},\\n  booktitle = {L4DC},\\n}\\n\\n@inproceedings{agarwal2021precipice,\\n  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{tassa2018dmcontrol,\\n  title = {DeepMind Control Suite},\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1801.00690},\\n  eprint = {1801.00690},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{hafner2025dreamerv4,\\n  title = {Training Agents Inside of Scalable World Models},\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {arXiv preprint arXiv:2509.24527},\\n  eprint = {2509.24527},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{lyle2022capacity,\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\n  year = {2022},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2204.09560},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{nhu2025tawm,\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\n  year = {2025},\\n  booktitle = {International Conference on Machine Learning},\\n  eprint = {2506.08441},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{li2025lsimagine,\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\n  year = {2025},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2410.03618},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{chen2021redq,\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\n  year = {2021},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "08a25e0c-2428-4ec9-944e-83c1c9bd54e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Auto-generated from literature_map.yaml\\\\n% 44 entries\\\\n\\\\n@inproceedings{micheli2023iris,\\\\n  title = {Transformers are Sample-Efficient World Models},\\\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\\\\\c{c}}ois},\\\\n  year = {2023},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@article{sutton1999options,\\\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\\\n  year = {1999},\\\\n  journal = {Artificial Intelligence 112},\\\\n}\\\\n\\\\n@inproceedings{hafner2020dreamerv1,\\\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\\\n  year = {2020},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@article{hafner2023dreamerv3,\\\\n  title = {Mastering Diverse Domains through World Models},\\\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\\\n  year = {2025},\\\\n  journal = {Nature},\\\\n  eprint = {2301.04104},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{sharma2017figar,\\\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\\\n  year = {2017},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{janner2019mbpo,\\\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\\\n  year = {2019},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{asadi2019combating,\\\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\\\n  year = {2019},\\\\n  journal = {arXiv preprint arXiv:1905.13320},\\\\n  eprint = {1905.13320},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{hansen2024tdmpc2,\\\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\\\n  author = {Hansen, N and Su, H and Wang, X},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2310.16828},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{yu2020mopo,\\\\n  title = {MOPO: Model-based Offline Policy Optimization},\\\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\\\n  year = {2020},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n  eprint = {2005.13239},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{thrun1993issues,\\\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\\\n  author = {Thrun, S and Schwartz, A},\\\\n  year = {1993},\\\\n  booktitle = {Connectionist Models Summer School},\\\\n}\\\\n\\\\n@inproceedings{vanhasselt2016double,\\\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\\\n  year = {2016},\\\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\\\n}\\\\n\\\\n@inproceedings{fujimoto2018td3,\\\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\\\n  year = {2018},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n}\\\\n\\\\n@inproceedings{lu2018nondelusional,\\\\n  title = {Non-delusional Q-learning and Value-Iteration},\\\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\\\n  year = {2018},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@inproceedings{biedenkapp2021temporl,\\\\n  title = {TempoRL: Learning When to Act},\\\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n}\\\\n\\\\n@inproceedings{hafner2021dreamerv2,\\\\n  title = {Mastering Atari with Discrete World Models},\\\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\\\n  year = {2021},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{gumbsch2024thick,\\\\n  title = {Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics},\\\\n  author = {Gumbsch, C and Sajid, N and Martius, G and Butz, M.V},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n}\\\\n\\\\n@inproceedings{mattes2024hieros,\\\\n  title = {Hieros: Hierarchical Imagination on Structured State Space Sequence World Models},\\\\n  author = {Mattes, P and Schlosser, R and Herbrich, R},\\\\n  year = {2024},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n}\\\\n\\\\n@inproceedings{henderson2018deep,\\\\n  title = {Deep Reinforcement Learning that Matters},\\\\n  author = {Henderson, P and Islam, R and Bachman, P and Pineau, J and Precup, D and Meger, D},\\\\n  year = {2018},\\\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\\\n}\\\\n\\\\n@inproceedings{lambert2020objective,\\\\n  title = {Objective Mismatch in Model-based Reinforcement Learning},\\\\n  author = {Lambert, N and Amos, B and Yadan, O and Calandra, R},\\\\n  year = {2020},\\\\n  booktitle = {L4DC},\\\\n}\\\\n\\\\n@inproceedings{agarwal2021precipice,\\\\n  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\\\n  year = {2021},\\\\n  booktitle = {Advances in Neural Information Processing Systems},\\\\n}\\\\n\\\\n@article{tassa2018dmcontrol,\\\\n  title = {DeepMind Control Suite},\\\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\\\n  year = {2018},\\\\n  journal = {arXiv preprint arXiv:1801.00690},\\\\n  eprint = {1801.00690},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@article{hafner2025dreamerv4,\\\\n  title = {Training Agents Inside of Scalable World Models},\\\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\\\n  year = {2025},\\\\n  journal = {arXiv preprint arXiv:2509.24527},\\\\n  eprint = {2509.24527},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{lyle2022capacity,\\\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\\\n  year = {2022},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2204.09560},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{nhu2025tawm,\\\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\\\n  year = {2025},\\\\n  booktitle = {International Conference on Machine Learning},\\\\n  eprint = {2506.08441},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{li2025lsimagine,\\\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\\\n  year = {2025},\\\\n  booktitle = {International Conference on Learning Representations},\\\\n  eprint = {2410.03618},\\\\n  archivePrefix = {arXiv},\\\\n}\\\\n\\\\n@inproceedings{chen2021redq,\\\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\\\n  year = {2021},\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% Auto-generated from literature_map.yaml\\n% 44 entries\\n\\n@inproceedings{micheli2023iris,\\n  title = {Transformers are Sample-Efficient World Models},\\n  author = {Micheli, Vincent and Alonso, Eloi and Fleuret, Fran{\\\\c{c}}ois},\\n  year = {2023},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{sutton1999options,\\n  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\\n  author = {Sutton, R.S and Precup, D and Singh, S},\\n  year = {1999},\\n  journal = {Artificial Intelligence 112},\\n}\\n\\n@inproceedings{hafner2020dreamerv1,\\n  title = {Dream to Control: Learning Behaviors by Latent Imagination},\\n  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\\n  year = {2020},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@article{hafner2023dreamerv3,\\n  title = {Mastering Diverse Domains through World Models},\\n  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {Nature},\\n  eprint = {2301.04104},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{sharma2017figar,\\n  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\\n  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\\n  year = {2017},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{janner2019mbpo,\\n  title = {When to Trust Your Model: Model-Based Policy Optimization},\\n  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\\n  year = {2019},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{asadi2019combating,\\n  title = {Combating the Compounding-Error Problem with a Multi-step Model},\\n  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\\n  year = {2019},\\n  journal = {arXiv preprint arXiv:1905.13320},\\n  eprint = {1905.13320},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{hansen2024tdmpc2,\\n  title = {TD-MPC2: Scalable, Robust World Models for Continuous Control},\\n  author = {Hansen, N and Su, H and Wang, X},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2310.16828},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{yu2020mopo,\\n  title = {MOPO: Model-based Offline Policy Optimization},\\n  author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T},\\n  year = {2020},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n  eprint = {2005.13239},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{thrun1993issues,\\n  title = {Issues in Using Function Approximation for Reinforcement Learning},\\n  author = {Thrun, S and Schwartz, A},\\n  year = {1993},\\n  booktitle = {Connectionist Models Summer School},\\n}\\n\\n@inproceedings{vanhasselt2016double,\\n  title = {Deep Reinforcement Learning with Double Q-Learning},\\n  author = {van Hasselt, Hado and Guez, Arthur and Silver, David},\\n  year = {2016},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{fujimoto2018td3,\\n  title = {Addressing Function Approximation Error in Actor-Critic Methods},\\n  author = {Fujimoto, Scott and {van Hoof}, Herke and Meger, David},\\n  year = {2018},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{lu2018nondelusional,\\n  title = {Non-delusional Q-learning and Value-Iteration},\\n  author = {Lu, T and Schuurmans, D and Boutilier, C},\\n  year = {2018},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@inproceedings{biedenkapp2021temporl,\\n  title = {TempoRL: Learning When to Act},\\n  author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M},\\n  year = {2021},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{hafner2021dreamerv2,\\n  title = {Mastering Atari with Discrete World Models},\\n  author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J},\\n  year = {2021},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{gumbsch2024thick,\\n  title = {Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics},\\n  author = {Gumbsch, C and Sajid, N and Martius, G and Butz, M.V},\\n  year = {2024},\\n  booktitle = {International Conference on Learning Representations},\\n}\\n\\n@inproceedings{mattes2024hieros,\\n  title = {Hieros: Hierarchical Imagination on Structured State Space Sequence World Models},\\n  author = {Mattes, P and Schlosser, R and Herbrich, R},\\n  year = {2024},\\n  booktitle = {International Conference on Machine Learning},\\n}\\n\\n@inproceedings{henderson2018deep,\\n  title = {Deep Reinforcement Learning that Matters},\\n  author = {Henderson, P and Islam, R and Bachman, P and Pineau, J and Precup, D and Meger, D},\\n  year = {2018},\\n  booktitle = {AAAI Conference on Artificial Intelligence},\\n}\\n\\n@inproceedings{lambert2020objective,\\n  title = {Objective Mismatch in Model-based Reinforcement Learning},\\n  author = {Lambert, N and Amos, B and Yadan, O and Calandra, R},\\n  year = {2020},\\n  booktitle = {L4DC},\\n}\\n\\n@inproceedings{agarwal2021precipice,\\n  title = {Deep Reinforcement Learning at the Edge of the Statistical Precipice},\\n  author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M},\\n  year = {2021},\\n  booktitle = {Advances in Neural Information Processing Systems},\\n}\\n\\n@article{tassa2018dmcontrol,\\n  title = {DeepMind Control Suite},\\n  author = {Tassa, Yuval and Doron, Yotam and Muldal, Alistair and Erez, Tom and Li, Yazhe and de Las Casas, Diego and Budden, David and Abdolmaleki, Abbas and Merel, Josh and Lefrancq, Andrew and Lillicrap, Timothy and Riedmiller, Martin},\\n  year = {2018},\\n  journal = {arXiv preprint arXiv:1801.00690},\\n  eprint = {1801.00690},\\n  archivePrefix = {arXiv},\\n}\\n\\n@article{hafner2025dreamerv4,\\n  title = {Training Agents Inside of Scalable World Models},\\n  author = {Hafner, Danijar and Yan, Wilson and Lillicrap, Timothy},\\n  year = {2025},\\n  journal = {arXiv preprint arXiv:2509.24527},\\n  eprint = {2509.24527},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{lyle2022capacity,\\n  title = {Understanding and Preventing Capacity Loss in Reinforcement Learning},\\n  author = {Lyle, C and Rowland, M and Dabney, W},\\n  year = {2022},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2204.09560},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{nhu2025tawm,\\n  title = {Time-Aware World Model for Adaptive Prediction and Control},\\n  author = {Nhu, Anh N. and Son, Sanghyun and Lin, Ming C.},\\n  year = {2025},\\n  booktitle = {International Conference on Machine Learning},\\n  eprint = {2506.08441},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{li2025lsimagine,\\n  title = {Open-World Reinforcement Learning over Long Short-Term Imagination},\\n  author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X},\\n  year = {2025},\\n  booktitle = {International Conference on Learning Representations},\\n  eprint = {2410.03618},\\n  archivePrefix = {arXiv},\\n}\\n\\n@inproceedings{chen2021redq,\\n  title = {Randomized Ensembled Double Q-Learning: Learning Fast Without a Model},\\n  author = {Chen, Xinyue and Wang, Che and Zhou, Zijian and Ross, Keith},\\n  year = {2021},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 18 bib entries. Let me also find the relevant sections in appendix.tex for the figure references. The appendix was very long and truncated. Let me search for the specific labels and sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "0786759d-16df-4c82-80d9-12357d777666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pm5XW4DfTb8zWfPFngauFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4025,
+      "cache_read_input_tokens": 36788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+Now I have all the bib entries. Let me find the figure labels and surrounding context in appendix.tex.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "d901651d-de60-44b6-b6f5-c7bf23e6cf50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pm5XW4DfTb8zWfPFngauFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4025,
+      "cache_read_input_tokens": 36788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019DhE4jhVKeGLZeBKBv1mta`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"fig:factorial_grid\\|fig:entropy_dynamics\\|fig:gradient_decomp\\|Factorial Ablation\\|Entropy Dynamics\\|Gradient Decomposition\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "b2fea912-395a-4df9-997e-952595f1cf83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pm5XW4DfTb8zWfPFngauFS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4025,
+      "cache_read_input_tokens": 36788,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4025
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T13:40:39.040Z_
+
+<details><summary>↩ Tool result · `toolu_019DhE4jhVKeGLZeBKBv1mta`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "9041fea8-17c3-4ef4-a5b5-26ccdf44ae6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AVy66NpzywKrsyeZhqUxLa`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"fig:factorial_grid\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "d2fcc91b-b29a-4924-92df-a9322a86c697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C16DDAoJj5J8myPHb4Mxwp`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"fig:entropy_dynamics\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "282abb83-9aa7-4e52-99fc-3c3e2c71ace1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-24T13:40:45.266Z_
+
+<details><summary>↩ Tool result · `toolu_01AVy66NpzywKrsyeZhqUxLa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"385:\\\\label{fig:factorial_grid}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "9ec17da7-74f1-4195-8b30-295c1bf96822",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"385:\\\\\\\\label{fig:factorial_grid}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"385:\\\\label{fig:factorial_grid}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TcXNNFMX5uGJgCvKNUbkQw`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"fig:gradient_decomp\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "8bf47467-447f-4849-8a71-c4fefd4f38cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-24T13:40:45.694Z_
+
+<details><summary>↩ Tool result · `toolu_01C16DDAoJj5J8myPHb4Mxwp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"584:\\\\label{fig:entropy_dynamics}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6b3f8854-6e1c-4147-bc04-74e035650c7d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"584:\\\\\\\\label{fig:entropy_dynamics}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"584:\\\\label{fig:entropy_dynamics}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T13:40:46.110Z_
+
+<details><summary>↩ Tool result · `toolu_01TcXNNFMX5uGJgCvKNUbkQw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"525:\\\\label{fig:gradient_decomp}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "7d21bc37-09d5-4719-96ef-96aad322fbd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"525:\\\\\\\\label{fig:gradient_decomp}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"525:\\\\label{fig:gradient_decomp}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EoCuA1N7Vw3LiZjKTRNaVP`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "grep -n \"Factorial Ablation\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "a00fe2ca-f475-4def-bab9-66f7f844c368",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T13:40:46.985Z_
+
+<details><summary>↩ Tool result · `toolu_01EoCuA1N7Vw3LiZjKTRNaVP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"307:% --- APPENDIX B: Factorial Ablation Details ---\\n309:\\\\section{Factorial Ablation Details}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "9fc05fcf-2b97-44bf-b292-e5466218cca0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"307:% --- APPENDIX B: Factorial Ablation Details ---\\\\n309:\\\\\\\\section{Factorial Ablation Details}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"307:% --- APPENDIX B: Factorial Ablation Details ---\\n309:\\\\section{Factorial Ablation Details}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019Qy18gZjpHRRP4VVyj8vQw`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"Entropy Dynamics\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "7fd52a52-37de-4923-8919-f66828932612",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-24T13:40:47.458Z_
+
+<details><summary>↩ Tool result · `toolu_019Qy18gZjpHRRP4VVyj8vQw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"577:\\\\subsubsection{Entropy Dynamics Across Configurations}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "b308af2a-0f85-4aea-95fd-745a5a908f99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"577:\\\\\\\\subsubsection{Entropy Dynamics Across Configurations}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"577:\\\\subsubsection{Entropy Dynamics Across Configurations}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018TFQfx6uFrt7MW9SvSXyVg`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -n \"Gradient Decomposition\" /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "9f788699-797f-4440-a49b-a933e7483c48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xQJkeYAs1avCfK5xqKxJ1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 353,
+      "cache_read_input_tokens": 40813,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 353
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T13:40:48.210Z_
+
+<details><summary>↩ Tool result · `toolu_018TFQfx6uFrt7MW9SvSXyVg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"515:\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\n518:\\\\subsubsection{Gradient Decomposition Results}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "094511fb-5014-431a-9c28-b98099e0e776",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"515:\\\\\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\\\n518:\\\\\\\\subsubsection{Gradient Decomposition Results}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"515:\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\n518:\\\\subsubsection{Gradient Decomposition Results}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the specific sections around these figures and labels to understand the context for inserting figure references. I need to read:
+1. Around line 309 (Factorial Ablation section) and line 385 (fig:factorial_grid label)
+2. Around line 518 (Gradient Decomposition section) and line 525 (fig:gradient_decomp label)
+3. Around line 577 (Entropy Dynamics section) and line 584 (fig:entropy_dynamics label)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "90fb81df-1adf-419d-b0be-6b967d918a0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153qmY89gFcbBHj4aLmXW6k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 41166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1461
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VGNBtADQLmmsnbWvz8oLPA`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "sed -n '307,400p' /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "7a017a24-81b3-4e10-a0b1-850ac2cdc192",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153qmY89gFcbBHj4aLmXW6k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 41166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1461
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-24T13:40:54.739Z_
+
+<details><summary>↩ Tool result · `toolu_01VGNBtADQLmmsnbWvz8oLPA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "c13372ab-d60c-4577-a18a-987b21a65cc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F2j16oaqkFidN1ZPtMhAz7`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "sed -n '515,545p' /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "59fcb58e-4121-45f6-83d8-ac393b0e417d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153qmY89gFcbBHj4aLmXW6k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 41166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1461
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-24T13:40:55.756Z_
+
+<details><summary>↩ Tool result · `toolu_01F2j16oaqkFidN1ZPtMhAz7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "48dd1569-8b5f-415e-ae5f-f26004b32846",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JWYHDGsReb8rUSqGy9v9iK`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "sed -n '574,600p' /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "b6bb7e3f-eb3b-4af0-9411-91414e2542e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153qmY89gFcbBHj4aLmXW6k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 41166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1461
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T13:40:56.088Z_
+
+<details><summary>↩ Tool result · `toolu_01JWYHDGsReb8rUSqGy9v9iK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "ecea8c44-199f-47e6-bc84-1d3132e2a309",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GVZPvaDwJGkCsK9N1uYg5r`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "head -n 400 /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "030b0a13-43bb-4170-9add-d6d02dd9f99b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MycrDjWyQnNH4GsjmMAErw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 42627,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 967
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-24T13:40:59.427Z_
+
+<details><summary>↩ Tool result · `toolu_01GVZPvaDwJGkCsK9N1uYg5r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 23211 字符] ...\\n\\n($d{=}0$).\\\\\\\\\\n$^\\\\dagger$ \\\\texttt{reward\\\\_dt\\\\_emb\\\\_detach=True}; $^\\\\ddagger$ all non-KL gradients to \\\\texttt{dt\\\\_emb} detached.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{F3: Unexposed Temporal Embedding Suppresses Value Drift}\\n\\\\label{sec:f3}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\\n\\\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\\n\\\\label{fig:factorial_grid}\\n\\\\end{figure}\\n\\nThe empirical finding that trained embedding \\\\emph{plus} multi-rate exposure jointly predict CIVO rests on two complementary controls that each remove one factor while holding the other constant.\\n\\n\\\\paragraph{Evidence A: exposure is necessary (exp\\\\_008a).}\\nExp\\\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\\\dt{>}1$ transitions during world-model training (subsample OFF). Despite sharing the same embedding architecture as exp\\\\_008d, its NVE remains in the $0.83$--$0.93\\\\times$ range across 3 seeds (105K steps). Performance follows two V-shaped recovery cycles, reaching 777.7 at 105K (85\\\\% of baseline). The critical factor is not the embedding's capacity to represent temporal information, but its adaptation to multi-rate data that enables precise but inaccurate $\\\\dt{>}1$ state predictions within the RSSM.\\n\\nThis contrasts with exp\\\\_006 (trained $e_{\\\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\\\times$ at 45K to $2.31\\\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\\\dt{>}1$ transitions during training. This confirms that multi-rate data exposure, not embedding architecture, is the operative variable.\\n\\n\\\\paragraph{Evidence B: trainability is necessary (exp\\\\_015b).}\\nExp\\\\_015b uses a frozen random-projection embedding ($d{=}32$, \\\\texttt{requires\\\\_grad=False}, subsample ON, $H{=}8$), the same multi-rate data regime as exp\\\\_008d, but with a non-trainable temporal signal. Despite full exposure to $\\\\dt{>}1$ transitions, the NVE peaks at $1.45\\\\times$ at 55K but does not sustain escalation: it retreats to $0.65\\\\times$ by 65K and settles at $0.42\\\\times$ by 105K (trajectory: $0.81 \\\\rightarrow 1.26 \\\\rightarrow 1.45 \\\\rightarrow 0.65 \\\\rightarrow 1.05 \\\\rightarrow 0.47 \\\\rightarrow 0.39 \\\\rightarrow 0.42$). The transient peak approaches but does not exceed the $1.5\\\\times$ CIVO threshold, and critically, the ratio self-corrects rather than exhibiting the monotonic escalation seen in trained-embedding runs. Final evaluation reaches only 204.2 at 105K, low but through a qualitatively different failure mode than CIVO. Actor loss approaches zero (gradient starvation; see \\\\S\\\\ref{sec:pathways}), the frozen embedding provides no useful gradient signal for temporal adaptation.\\n\\nThe contrast with exp\\\\_008d is stark: under identical data conditions (subsample ON, $H{=}8$), the trained embedding drives NVE to $4.12\\\\times$ with sustained monotonic escalation ($1.78 \\\\rightarrow 1.71 \\\\rightarrow 2.09 \\\\rightarrow 4.12$) and precedes full collapse (eval 82.8), while the frozen embedding peaks transiently at $1.45\\\\times$ before self-correcting to $0.42\\\\times$, a qualitative difference between sustained and transient overestimation. This demonstrates that a $\\\\dt$-embedding must be able to \\\\emph{co-adapt} with RSSM dynamics to produce the systematic reward-prediction bias that drives CIVO; a static random projection, regardless of its exposure to multi-rate data, cannot create this bias.\\n\\nTogether, these two controls establish that in all tested configurations, CIVO occurs only with the \\\\emph{joint} presence of (i)~a trainable embedding that can co-adapt with RSSM dynamics, and (ii)~multi-rate training data that drives this co-adaptation toward biased temporal predictions. Neither factor alone is sufficient.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "e4071a15-69db-45c5-a524-735c85770562",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% --- APPENDIX ---\\\\n\\\\n\\\\\\\\section{Complete Experimental Results}\\\\n\\\\\\\\label{sec:complete_results}\\\\n\\\\nTable~\\\\\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\\\\\_s3, 008d\\\\\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\\\\\_s0), and mitigation experiments (008e\\\\\\\\_v3).\\\\n\\\\n\\\\\\\\begin{table*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Complete experimental results. NVE reports peak $\\\\\\\\nve$ in the 35K+ window (\\\\\\\\S\\\\\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\\\\\dagger$\\\\\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\\\n\\\\\\\\label{tab:complete_results}\\\\n\\\\\\\\scriptsize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\begin{tabular}{llcccccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Exp} & \\\\\\\\textbf{Config} & \\\\\\\\textbf{dt\\\\\\\\_emb} & \\\\\\\\textbf{Sub} & \\\\\\\\textbf{H} & \\\\\\\\textbf{Eval@final} & \\\\\\\\textbf{NVE} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n001 & Baseline ($\\\\\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n001 s2 & Baseline ($\\\\\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n006 & Fixed $\\\\\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n007 & Fixed $\\\\\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\\\\\heartsuit$ & 4.12$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\\\\\times$ & Transient CIVO \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\\\\\diamond$ @105K & 1.53$\\\\\\\\times$ & Late-onset collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\\\\\times$ & Collapse$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n008f & No dt\\\\\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008f s4 & No dt\\\\\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n009c s3 & No dt\\\\\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\\\\\times$ & Grad.\\\\\\\\ starvation \\\\\\\\\\\\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\\\\\times$ & No CIVO \\\\\\\\\\\\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n018 s1 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & \\\\\\\\sgseval{} @105K & \\\\\\\\sgsnve{}$\\\\\\\\times$$^*$ & Partial mitig.\\\\\\\\ (CIVO+) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n018 s2 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s2$^\\\\\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\\\\\times$ & Non-CIVO collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008e\\\\\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\\\\\times$ & CIVO collapse \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{l}{\\\\\\\\textit{Cross-environment validation}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b\\\\\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n021 & Cheetah Run & trn$^\\\\\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\\\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\\\n\\\\n... [截断: 输出过长，省略 23211 字符] ...\\\\n\\\\n($d{=}0$).\\\\\\\\\\\\\\\\\\\\n$^\\\\\\\\dagger$ \\\\\\\\texttt{reward\\\\\\\\_dt\\\\\\\\_emb\\\\\\\\_detach=True}; $^\\\\\\\\ddagger$ all non-KL gradients to \\\\\\\\texttt{dt\\\\\\\\_emb} detached.\\\\\\\\par}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{F3: Unexposed Temporal Embedding Suppresses Value Drift}\\\\n\\\\\\\\label{sec:f3}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\\\\n\\\\\\\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\\\\\\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\\\\n\\\\\\\\label{fig:factorial_grid}\\\\n\\\\\\\\end{figure}\\\\n\\\\nThe empirical finding that trained embedding \\\\\\\\emph{plus} multi-rate exposure jointly predict CIVO rests on two complementary controls that each remove one factor while holding the other constant.\\\\n\\\\n\\\\\\\\paragraph{Evidence A: exposure is necessary (exp\\\\\\\\_008a).}\\\\nExp\\\\\\\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\\\\\\\dt{>}1$ transitions during world-model training (subsample OFF). Despite sharing the same embedding architecture as exp\\\\\\\\_008d, its NVE remains in the $0.83$--$0.93\\\\\\\\times$ range across 3 seeds (105K steps). Performance follows two V-shaped recovery cycles, reaching 777.7 at 105K (85\\\\\\\\% of baseline). The critical factor is not the embedding's capacity to represent temporal information, but its adaptation to multi-rate data that enables precise but inaccurate $\\\\\\\\dt{>}1$ state predictions within the RSSM.\\\\n\\\\nThis contrasts with exp\\\\\\\\_006 (trained $e_{\\\\\\\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\\\\\\\times$ at 45K to $2.31\\\\\\\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\\\\\\\dt{>}1$ transitions during training. This confirms that multi-rate data exposure, not embedding architecture, is the operative variable.\\\\n\\\\n\\\\\\\\paragraph{Evidence B: trainability is necessary (exp\\\\\\\\_015b).}\\\\nExp\\\\\\\\_015b uses a frozen random-projection embedding ($d{=}32$, \\\\\\\\texttt{requires\\\\\\\\_grad=False}, subsample ON, $H{=}8$), the same multi-rate data regime as exp\\\\\\\\_008d, but with a non-trainable temporal signal. Despite full exposure to $\\\\\\\\dt{>}1$ transitions, the NVE peaks at $1.45\\\\\\\\times$ at 55K but does not sustain escalation: it retreats to $0.65\\\\\\\\times$ by 65K and settles at $0.42\\\\\\\\times$ by 105K (trajectory: $0.81 \\\\\\\\rightarrow 1.26 \\\\\\\\rightarrow 1.45 \\\\\\\\rightarrow 0.65 \\\\\\\\rightarrow 1.05 \\\\\\\\rightarrow 0.47 \\\\\\\\rightarrow 0.39 \\\\\\\\rightarrow 0.42$). The transient peak approaches but does not exceed the $1.5\\\\\\\\times$ CIVO threshold, and critically, the ratio self-corrects rather than exhibiting the monotonic escalation seen in trained-embedding runs. Final evaluation reaches only 204.2 at 105K, low but through a qualitatively different failure mode than CIVO. Actor loss approaches zero (gradient starvation; see \\\\\\\\S\\\\\\\\ref{sec:pathways}), the frozen embedding provides no useful gradient signal for temporal adaptation.\\\\n\\\\nThe contrast with exp\\\\\\\\_008d is stark: under identical data conditions (subsample ON, $H{=}8$), the trained embedding drives NVE to $4.12\\\\\\\\times$ with sustained monotonic escalation ($1.78 \\\\\\\\rightarrow 1.71 \\\\\\\\rightarrow 2.09 \\\\\\\\rightarrow 4.12$) and precedes full collapse (eval 82.8), while the frozen embedding peaks transiently at $1.45\\\\\\\\times$ before self-correcting to $0.42\\\\\\\\times$, a qualitative difference between sustained and transient overestimation. This demonstrates that a $\\\\\\\\dt$-embedding must be able to \\\\\\\\emph{co-adapt} with RSSM dynamics to produce the systematic reward-prediction bias that drives CIVO; a static random projection, regardless of its exposure to multi-rate data, cannot create this bias.\\\\n\\\\nTogether, these two controls establish that in all tested configurations, CIVO occurs only with the \\\\\\\\emph{joint} presence of (i)~a trainable embedding that can co-adapt with RSSM dynamics, and (ii)~multi-rate training data that drives this co-adaptation toward biased temporal predictions. Neither factor alone is sufficient.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 23211 字符] ...\\n\\n($d{=}0$).\\\\\\\\\\n$^\\\\dagger$ \\\\texttt{reward\\\\_dt\\\\_emb\\\\_detach=True}; $^\\\\ddagger$ all non-KL gradients to \\\\texttt{dt\\\\_emb} detached.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{F3: Unexposed Temporal Embedding Suppresses Value Drift}\\n\\\\label{sec:f3}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\\n\\\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\\n\\\\label{fig:factorial_grid}\\n\\\\end{figure}\\n\\nThe empirical finding that trained embedding \\\\emph{plus} multi-rate exposure jointly predict CIVO rests on two complementary controls that each remove one factor while holding the other constant.\\n\\n\\\\paragraph{Evidence A: exposure is necessary (exp\\\\_008a).}\\nExp\\\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\\\dt{>}1$ transitions during world-model training (subsample OFF). Despite sharing the same embedding architecture as exp\\\\_008d, its NVE remains in the $0.83$--$0.93\\\\times$ range across 3 seeds (105K steps). Performance follows two V-shaped recovery cycles, reaching 777.7 at 105K (85\\\\% of baseline). The critical factor is not the embedding's capacity to represent temporal information, but its adaptation to multi-rate data that enables precise but inaccurate $\\\\dt{>}1$ state predictions within the RSSM.\\n\\nThis contrasts with exp\\\\_006 (trained $e_{\\\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\\\times$ at 45K to $2.31\\\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\\\dt{>}1$ transitions during training. This confirms that multi-rate data exposure, not embedding architecture, is the operative variable.\\n\\n\\\\paragraph{Evidence B: trainability is necessary (exp\\\\_015b).}\\nExp\\\\_015b uses a frozen random-projection embedding ($d{=}32$, \\\\texttt{requires\\\\_grad=False}, subsample ON, $H{=}8$), the same multi-rate data regime as exp\\\\_008d, but with a non-trainable temporal signal. Despite full exposure to $\\\\dt{>}1$ transitions, the NVE peaks at $1.45\\\\times$ at 55K but does not sustain escalation: it retreats to $0.65\\\\times$ by 65K and settles at $0.42\\\\times$ by 105K (trajectory: $0.81 \\\\rightarrow 1.26 \\\\rightarrow 1.45 \\\\rightarrow 0.65 \\\\rightarrow 1.05 \\\\rightarrow 0.47 \\\\rightarrow 0.39 \\\\rightarrow 0.42$). The transient peak approaches but does not exceed the $1.5\\\\times$ CIVO threshold, and critically, the ratio self-corrects rather than exhibiting the monotonic escalation seen in trained-embedding runs. Final evaluation reaches only 204.2 at 105K, low but through a qualitatively different failure mode than CIVO. Actor loss approaches zero (gradient starvation; see \\\\S\\\\ref{sec:pathways}), the frozen embedding provides no useful gradient signal for temporal adaptation.\\n\\nThe contrast with exp\\\\_008d is stark: under identical data conditions (subsample ON, $H{=}8$), the trained embedding drives NVE to $4.12\\\\times$ with sustained monotonic escalation ($1.78 \\\\rightarrow 1.71 \\\\rightarrow 2.09 \\\\rightarrow 4.12$) and precedes full collapse (eval 82.8), while the frozen embedding peaks transiently at $1.45\\\\times$ before self-correcting to $0.42\\\\times$, a qualitative difference between sustained and transient overestimation. This demonstrates that a $\\\\dt$-embedding must be able to \\\\emph{co-adapt} with RSSM dynamics to produce the systematic reward-prediction bias that drives CIVO; a static random projection, regardless of its exposure to multi-rate data, cannot create this bias.\\n\\nTogether, these two controls establish that in all tested configurations, CIVO occurs only with the \\\\emph{joint} presence of (i)~a trainable embedding that can co-adapt with RSSM dynamics, and (ii)~multi-rate training data that drives this co-adaptation toward biased temporal predictions. Neither factor alone is sufficient.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the first section (Factorial Ablation Details) around lines 307-400. The figure `fig:factorial_grid` is at line 385, inside a figure environment. I need to find where to add a reference to it. Looking at the text after the figure (section F3), the text starts with "The empirical finding that trained embedding..." Let me see if this section already references the figure. Looking at the text, I don't see `Figure~\ref{fig:factorial_grid}` anywhere in the output. I need to add it naturally.
+
+Let me read the text around lines 307-390 more carefully and the sections around lines 515-545 and 574-600.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "e40f64a9-1b1b-40f6-8310-a466c5613485",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KWuQ7UBMc65UV3uQxaN2P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 43594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XicDux1M76MVhM4xKWkoQt`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "head -n 550 /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "efa47f60-2ff0-4eff-a940-2facc1519b43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017KWuQ7UBMc65UV3uQxaN2P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 43594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T13:41:09.715Z_
+
+<details><summary>↩ Tool result · `toolu_01XicDux1M76MVhM4xKWkoQt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 35263 字符] ...\\n\\norable trajectories at $\\\\dt > 1$ (Stage~1 above, $1.68\\\\times$ ratio under random policy), and the critic accumulates these into overestimated returns. The one-step reward prediction is negatively biased when conditioned on real observations, but this posterior correction is unavailable during imagination. This also distinguishes CIVO from generic compounding error, which would produce \\\\emph{positive} signed error accumulating with horizon; the negative observation-level bias confirms that CIVO is a prior-drift phenomenon, not a reward-prediction artifact.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Signed reward error (predicted $-$ actual) on posterior-conditioned RSSM predictions. Negative values indicate underprediction. The trained-embedding model underpredicts at $\\\\dt{=}2$, ruling out observation-level reward overprediction as the CIVO mechanism.}\\n\\\\label{tab:signed_error}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{4pt}\\n\\\\begin{tabular}{llrrrrr}\\n\\\\toprule\\n\\\\textbf{Config} & $\\\\dt$ & \\\\textbf{Mean SE} & \\\\textbf{Std} & \\\\textbf{\\\\%Over} & \\\\textbf{Actual} & \\\\textbf{Pred} \\\\\\\\\\n\\\\midrule\\nBaseline & 1 & $+0.001$ & 0.023 & 39.6\\\\% & 1.893 & 1.894 \\\\\\\\\\n\\\\midrule\\n008d (trained) & 1 & $+0.018$ & 0.072 & 61.8\\\\% & 0.361 & 0.379 \\\\\\\\\\n008d (trained) & 2 & $\\\\mathbf{-0.599}$ & 0.722 & 8.0\\\\% & 0.721 & 0.121 \\\\\\\\\\n\\\\midrule\\n008f (no emb) & 1 & $-0.710$ & 0.704 & 14.0\\\\% & 0.921 & 0.211 \\\\\\\\\\n008f (no emb) & 2 & $-1.645$ & 1.485 & 5.0\\\\% & 1.840 & 0.195 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\n\\\\label{sec:sgs_gradient_analysis}\\n\\n\\\\subsubsection{Gradient Decomposition Results}\\n\\\\label{sec:gradient_decomposition}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.75\\\\columnwidth]{figures/fig3_gradient_decomposition.pdf}\\n\\\\caption{Gradient contribution to $e_{\\\\Delta t}$ by loss component at two training checkpoints. The reward head contributes the largest share (38--49\\\\%) yet reward-only SGS (exp\\\\_016e) fails; the observation decoder channel (16--22\\\\%) carries the critical $\\\\dt$-specific spatial information that drives the RSSM fidelity gap.}\\n\\\\label{fig:gradient_decomp}\\n\\\\end{figure}\\n\\nExp\\\\_016e collapses in the same qualitative pattern as the unmodified control: peak evaluation 326.7 at 75K steps followed by catastrophic decline to 31.7 at 95K, with NVE reaching $10.42\\\\times$. The SGS intervention neither prevented nor attenuated CIVO.\\n\\nTo explain this null result, we performed a gradient decomposition analysis using \\\\texttt{torch.autograd.grad} to measure each loss component's contribution to $\\\\nabla_\\\\theta e_{\\\\Delta t}$, where $\\\\theta$ denotes the temporal embedding parameters. Table~\\\\ref{tab:gradient_decomposition} reports the results.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\caption{Gradient contributions to the temporal embedding $e_{\\\\Delta t}$ by loss component, measured via \\\\texttt{torch.autograd.grad} with training configuration \\\\texttt{gate\\\\_fixed\\\\_dt=2}. Gradient norms are $\\\\ell_2$ norms of $\\\\nabla_\\\\theta \\\\mathcal{L}_i$ for each loss $\\\\mathcal{L}_i$.}\\n\\\\label{tab:gradient_decomposition}\\n\\\\small\\n\\\\begin{tabular}{lrrrr}\\n\\\\toprule\\n& \\\\multicolumn{2}{c}{\\\\textbf{@55K}} & \\\\multicolumn{2}{c}{\\\\textbf{@112K}} \\\\\\\\\\n\\\\cmidrule(lr){2-3} \\\\cmidrule(lr){4-5}\\nLoss component & Share & (\\\\%) & Share & (\\\\%) \\\\\\\\\\n\\\\midrule\\nReward head & --- & 49.0 & --- & 38.1 \\\\\\\\\\nKL dynamics & --- & 34.7 & --- & 40.4 \\\\\\\\\\nObservation decoders & --- & 16.3 & --- & 21.5 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe gradient decomposition reveals a counterintuitive structure: the reward head provides the largest gradient contribution (49.0\\\\% at 55K, 38.1\\\\% at 112K), yet reward-only SGS (exp\\\\_016e) fails catastrophically (NVE $10.42\\\\times$). The observation decoder channel contributes the smallest share (16.3\\\\% at 55K, 21.5\\\\% at 112K) yet carries the critical $\\\\dt$-specific spatial information.  This dissociation between gradient magnitude and causal importance explains why exp\\\\_016e, which targets the largest pathway, is functionally insufficient for CIVO prevention.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "170dc4ab-3e3e-4233-9380-f459b5cfd567",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% --- APPENDIX ---\\\\n\\\\n\\\\\\\\section{Complete Experimental Results}\\\\n\\\\\\\\label{sec:complete_results}\\\\n\\\\nTable~\\\\\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\\\\\_s3, 008d\\\\\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\\\\\_s0), and mitigation experiments (008e\\\\\\\\_v3).\\\\n\\\\n\\\\\\\\begin{table*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Complete experimental results. NVE reports peak $\\\\\\\\nve$ in the 35K+ window (\\\\\\\\S\\\\\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\\\\\dagger$\\\\\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\\\n\\\\\\\\label{tab:complete_results}\\\\n\\\\\\\\scriptsize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\begin{tabular}{llcccccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Exp} & \\\\\\\\textbf{Config} & \\\\\\\\textbf{dt\\\\\\\\_emb} & \\\\\\\\textbf{Sub} & \\\\\\\\textbf{H} & \\\\\\\\textbf{Eval@final} & \\\\\\\\textbf{NVE} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n001 & Baseline ($\\\\\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n001 s2 & Baseline ($\\\\\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n006 & Fixed $\\\\\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n007 & Fixed $\\\\\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\\\\\heartsuit$ & 4.12$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\\\\\times$ & Transient CIVO \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\\\\\diamond$ @105K & 1.53$\\\\\\\\times$ & Late-onset collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008d\\\\\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\\\\\times$ & Collapse$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n008f & No dt\\\\\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008f s4 & No dt\\\\\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n009c s3 & No dt\\\\\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008a\\\\\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\\\\\times$ & Grad.\\\\\\\\ starvation \\\\\\\\\\\\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\\\\\times$ & No CIVO \\\\\\\\\\\\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\\\\\times$ & Transient (self-corr.) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n018 s1 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & \\\\\\\\sgseval{} @105K & \\\\\\\\sgsnve{}$\\\\\\\\times$$^*$ & Partial mitig.\\\\\\\\ (CIVO+) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n018 s2 & Full-SGS & trn$^\\\\\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s2$^\\\\\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\\\\\times$ & Non-CIVO collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n008e\\\\\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\\\\\times$ & CIVO collapse \\\\\\\\\\\\\\\\\\\\n008e\\\\\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\\\\\times$ & Healthy \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{8}{l}{\\\\\\\\textit{Cross-environment validation}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\\\\\times$ & Collapsed \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n010b\\\\\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\\\\\times$ & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\rowcolor{gray!15}\\\\n021 & Cheetah Run & trn$^\\\\\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\\\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\\\n\\\\n... [截断: 输出过长，省略 35263 字符] ...\\\\n\\\\norable trajectories at $\\\\\\\\dt > 1$ (Stage~1 above, $1.68\\\\\\\\times$ ratio under random policy), and the critic accumulates these into overestimated returns. The one-step reward prediction is negatively biased when conditioned on real observations, but this posterior correction is unavailable during imagination. This also distinguishes CIVO from generic compounding error, which would produce \\\\\\\\emph{positive} signed error accumulating with horizon; the negative observation-level bias confirms that CIVO is a prior-drift phenomenon, not a reward-prediction artifact.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Signed reward error (predicted $-$ actual) on posterior-conditioned RSSM predictions. Negative values indicate underprediction. The trained-embedding model underpredicts at $\\\\\\\\dt{=}2$, ruling out observation-level reward overprediction as the CIVO mechanism.}\\\\n\\\\\\\\label{tab:signed_error}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{4pt}\\\\n\\\\\\\\begin{tabular}{llrrrrr}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Config} & $\\\\\\\\dt$ & \\\\\\\\textbf{Mean SE} & \\\\\\\\textbf{Std} & \\\\\\\\textbf{\\\\\\\\%Over} & \\\\\\\\textbf{Actual} & \\\\\\\\textbf{Pred} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nBaseline & 1 & $+0.001$ & 0.023 & 39.6\\\\\\\\% & 1.893 & 1.894 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n008d (trained) & 1 & $+0.018$ & 0.072 & 61.8\\\\\\\\% & 0.361 & 0.379 \\\\\\\\\\\\\\\\\\\\n008d (trained) & 2 & $\\\\\\\\mathbf{-0.599}$ & 0.722 & 8.0\\\\\\\\% & 0.721 & 0.121 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n008f (no emb) & 1 & $-0.710$ & 0.704 & 14.0\\\\\\\\% & 0.921 & 0.211 \\\\\\\\\\\\\\\\\\\\n008f (no emb) & 2 & $-1.645$ & 1.485 & 5.0\\\\\\\\% & 1.840 & 0.195 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\\\n\\\\\\\\label{sec:sgs_gradient_analysis}\\\\n\\\\n\\\\\\\\subsubsection{Gradient Decomposition Results}\\\\n\\\\\\\\label{sec:gradient_decomposition}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.75\\\\\\\\columnwidth]{figures/fig3_gradient_decomposition.pdf}\\\\n\\\\\\\\caption{Gradient contribution to $e_{\\\\\\\\Delta t}$ by loss component at two training checkpoints. The reward head contributes the largest share (38--49\\\\\\\\%) yet reward-only SGS (exp\\\\\\\\_016e) fails; the observation decoder channel (16--22\\\\\\\\%) carries the critical $\\\\\\\\dt$-specific spatial information that drives the RSSM fidelity gap.}\\\\n\\\\\\\\label{fig:gradient_decomp}\\\\n\\\\\\\\end{figure}\\\\n\\\\nExp\\\\\\\\_016e collapses in the same qualitative pattern as the unmodified control: peak evaluation 326.7 at 75K steps followed by catastrophic decline to 31.7 at 95K, with NVE reaching $10.42\\\\\\\\times$. The SGS intervention neither prevented nor attenuated CIVO.\\\\n\\\\nTo explain this null result, we performed a gradient decomposition analysis using \\\\\\\\texttt{torch.autograd.grad} to measure each loss component's contribution to $\\\\\\\\nabla_\\\\\\\\theta e_{\\\\\\\\Delta t}$, where $\\\\\\\\theta$ denotes the temporal embedding parameters. Table~\\\\\\\\ref{tab:gradient_decomposition} reports the results.\\\\n\\\\n\\\\\\\\begin{table}[ht]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Gradient contributions to the temporal embedding $e_{\\\\\\\\Delta t}$ by loss component, measured via \\\\\\\\texttt{torch.autograd.grad} with training configuration \\\\\\\\texttt{gate\\\\\\\\_fixed\\\\\\\\_dt=2}. Gradient norms are $\\\\\\\\ell_2$ norms of $\\\\\\\\nabla_\\\\\\\\theta \\\\\\\\mathcal{L}_i$ for each loss $\\\\\\\\mathcal{L}_i$.}\\\\n\\\\\\\\label{tab:gradient_decomposition}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lrrrr}\\\\n\\\\\\\\toprule\\\\n& \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{@55K}} & \\\\\\\\multicolumn{2}{c}{\\\\\\\\textbf{@112K}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-3} \\\\\\\\cmidrule(lr){4-5}\\\\nLoss component & Share & (\\\\\\\\%) & Share & (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nReward head & --- & 49.0 & --- & 38.1 \\\\\\\\\\\\\\\\\\\\nKL dynamics & --- & 34.7 & --- & 40.4 \\\\\\\\\\\\\\\\\\\\nObservation decoders & --- & 16.3 & --- & 21.5 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nThe gradient decomposition reveals a counterintuitive structure: the reward head provides the largest gradient contribution (49.0\\\\\\\\% at 55K, 38.1\\\\\\\\% at 112K), yet reward-only SGS (exp\\\\\\\\_016e) fails catastrophically (NVE $10.42\\\\\\\\times$). The observation decoder channel contributes the smallest share (16.3\\\\\\\\% at 55K, 21.5\\\\\\\\% at 112K) yet carries the critical $\\\\\\\\dt$-specific spatial information.  This dissociation between gradient magnitude and causal importance explains why exp\\\\\\\\_016e, which targets the largest pathway, is functionally insufficient for CIVO prevention.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"% --- APPENDIX ---\\n\\n\\\\section{Complete Experimental Results}\\n\\\\label{sec:complete_results}\\n\\nTable~\\\\ref{tab:complete_results} reports all 43 experimental configurations. The main text (Table~\\\\ref{tab:main_results}) presents the subset most relevant to the causal argument; this table includes the additional variable-rate configurations (006, 007, 005), multi-seed factorial runs (009b, 008d\\\\_s3, 008d\\\\_s4), SGS interventions (018), cross-environment seeds (010b\\\\_s0), and mitigation experiments (008e\\\\_v3).\\n\\n\\\\begin{table*}[t]\\n\\\\centering\\n\\\\caption{Complete experimental results. NVE reports peak $\\\\nve$ in the 35K+ window (\\\\S\\\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\\\dagger$\\\\,marks a false positive (non-CIVO collapse with elevated NVE).}\\n\\\\label{tab:complete_results}\\n\\\\scriptsize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\begin{tabular}{llcccccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{dt\\\\_emb} & \\\\textbf{Sub} & \\\\textbf{H} & \\\\textbf{Eval@final} & \\\\textbf{NVE} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n001 & Baseline ($\\\\dt{=}1$, s1) & --- & --- & 15 & 915.7 @105K & 1.00$\\\\times$ & Healthy \\\\\\\\\\n001 s2 & Baseline ($\\\\dt{=}1$, s2) & --- & --- & 15 & 443.5 @105K & ---$^e$ & Healthy \\\\\\\\\\n\\\\rowcolor{gray!15}\\n006 & Fixed $\\\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\\\times$ & Collapsed \\\\\\\\\\n007 & Fixed $\\\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\\\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\\\\\\n\\\\midrule\\n\\\\rowcolor{gray!15}\\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K$^\\\\heartsuit$ & 4.12$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\\\times$ & Transient CIVO \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\\\diamond$ @105K & 1.53$\\\\times$ & Late-onset collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008d\\\\_s4 & Factorial (s4) & trn & ON & 8 & 63.6 @105K & 4.62$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n059 & Factorial (s5) & trn & ON & 8 & 95.8 @105K & 4.72$\\\\times$ & Collapse$^\\\\dagger$ \\\\\\\\\\n008f & No dt\\\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\\\times$ & Healthy \\\\\\\\\\n008f s4 & No dt\\\\_emb (s4) & --- & ON & 8 & 306.5 @105K & 1.41$\\\\times$ & Healthy \\\\\\\\\\n009c s3 & No dt\\\\_emb (s3) & --- & ON & 8 & 311.9 @105K & 1.04$\\\\times$ & Healthy \\\\\\\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s1 & Unexposed emb & exp$^a$ & OFF & 15 & 630.9 @105K & 0.83$\\\\times$ & Healthy \\\\\\\\\\n008a\\\\_s2 & Unexposed emb & exp$^a$ & OFF & 15 & 899.4 @105K & 0.89$\\\\times$ & Healthy \\\\\\\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\\\times$ & Grad.\\\\ starvation \\\\\\\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\\\times$ & No CIVO \\\\\\\\\\n042 & Frozen emb (dedicated) & frz$^b$ & ON & 8 & 612.0 @105K & 0.19$\\\\times$ & Healthy \\\\\\\\\\n047 & Frozen emb (s1) & frz$^b$ & ON & 8 & 144.2 @215K & 1.71$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n057 & Frozen emb (s2) & frz$^b$ & ON & 8 & 123.9 @215K & 1.88$\\\\times$ & Transient (self-corr.) \\\\\\\\\\n\\\\midrule\\n018 s1 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & \\\\sgseval{} @105K & \\\\sgsnve{}$\\\\times$$^*$ & Partial mitig.\\\\ (CIVO+) \\\\\\\\\\n\\\\rowcolor{gray!15}\\n018 s2 & Full-SGS & trn$^\\\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\\\\\\n008e\\\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\\\times$ & Healthy \\\\\\\\\\n008e\\\\_v3 s2$^\\\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\\\times$ & Non-CIVO collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n008e\\\\_v3 s3 & Mitigation & trn & ON & 15 & 92.7 @105K & 4.02$\\\\times$ & CIVO collapse \\\\\\\\\\n008e\\\\_v3 s4 & Mitigation & trn & ON & 15 & 899.3 @105K & 0.99$\\\\times$ & Healthy \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{8}{l}{\\\\textit{Cross-environment validation}} \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 8.27$\\\\times$ & Collapsed \\\\\\\\\\n\\\\rowcolor{gray!15}\\n010b\\\\_s0 & Cheetah Run & trn & ON & 8 & 0.83 @105K & 108.52$\\\\times$ & Full collapse \\\\\\\\\\n\\\\rowcolor{gray!15}\\n021 & Cheetah Run & trn$^\\\\ddagger$ & ON & 8 & 221.5 @105K & 9.94$\\\\times$$^d$ & Transient CIVO (self-corr.) \\\\\\\\\\n024b s0 & Cheetah Run & --- & ON & 8 & \\n\\n... [截断: 输出过长，省略 35263 字符] ...\\n\\norable trajectories at $\\\\dt > 1$ (Stage~1 above, $1.68\\\\times$ ratio under random policy), and the critic accumulates these into overestimated returns. The one-step reward prediction is negatively biased when conditioned on real observations, but this posterior correction is unavailable during imagination. This also distinguishes CIVO from generic compounding error, which would produce \\\\emph{positive} signed error accumulating with horizon; the negative observation-level bias confirms that CIVO is a prior-drift phenomenon, not a reward-prediction artifact.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\caption{Signed reward error (predicted $-$ actual) on posterior-conditioned RSSM predictions. Negative values indicate underprediction. The trained-embedding model underpredicts at $\\\\dt{=}2$, ruling out observation-level reward overprediction as the CIVO mechanism.}\\n\\\\label{tab:signed_error}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{4pt}\\n\\\\begin{tabular}{llrrrrr}\\n\\\\toprule\\n\\\\textbf{Config} & $\\\\dt$ & \\\\textbf{Mean SE} & \\\\textbf{Std} & \\\\textbf{\\\\%Over} & \\\\textbf{Actual} & \\\\textbf{Pred} \\\\\\\\\\n\\\\midrule\\nBaseline & 1 & $+0.001$ & 0.023 & 39.6\\\\% & 1.893 & 1.894 \\\\\\\\\\n\\\\midrule\\n008d (trained) & 1 & $+0.018$ & 0.072 & 61.8\\\\% & 0.361 & 0.379 \\\\\\\\\\n008d (trained) & 2 & $\\\\mathbf{-0.599}$ & 0.722 & 8.0\\\\% & 0.721 & 0.121 \\\\\\\\\\n\\\\midrule\\n008f (no emb) & 1 & $-0.710$ & 0.704 & 14.0\\\\% & 0.921 & 0.211 \\\\\\\\\\n008f (no emb) & 2 & $-1.645$ & 1.485 & 5.0\\\\% & 1.840 & 0.195 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Selective Gradient Stopping and Gradient Decomposition}\\n\\\\label{sec:sgs_gradient_analysis}\\n\\n\\\\subsubsection{Gradient Decomposition Results}\\n\\\\label{sec:gradient_decomposition}\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=0.75\\\\columnwidth]{figures/fig3_gradient_decomposition.pdf}\\n\\\\caption{Gradient contribution to $e_{\\\\Delta t}$ by loss component at two training checkpoints. The reward head contributes the largest share (38--49\\\\%) yet reward-only SGS (exp\\\\_016e) fails; the observation decoder channel (16--22\\\\%) carries the critical $\\\\dt$-specific spatial information that drives the RSSM fidelity gap.}\\n\\\\label{fig:gradient_decomp}\\n\\\\end{figure}\\n\\nExp\\\\_016e collapses in the same qualitative pattern as the unmodified control: peak evaluation 326.7 at 75K steps followed by catastrophic decline to 31.7 at 95K, with NVE reaching $10.42\\\\times$. The SGS intervention neither prevented nor attenuated CIVO.\\n\\nTo explain this null result, we performed a gradient decomposition analysis using \\\\texttt{torch.autograd.grad} to measure each loss component's contribution to $\\\\nabla_\\\\theta e_{\\\\Delta t}$, where $\\\\theta$ denotes the temporal embedding parameters. Table~\\\\ref{tab:gradient_decomposition} reports the results.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\caption{Gradient contributions to the temporal embedding $e_{\\\\Delta t}$ by loss component, measured via \\\\texttt{torch.autograd.grad} with training configuration \\\\texttt{gate\\\\_fixed\\\\_dt=2}. Gradient norms are $\\\\ell_2$ norms of $\\\\nabla_\\\\theta \\\\mathcal{L}_i$ for each loss $\\\\mathcal{L}_i$.}\\n\\\\label{tab:gradient_decomposition}\\n\\\\small\\n\\\\begin{tabular}{lrrrr}\\n\\\\toprule\\n& \\\\multicolumn{2}{c}{\\\\textbf{@55K}} & \\\\multicolumn{2}{c}{\\\\textbf{@112K}} \\\\\\\\\\n\\\\cmidrule(lr){2-3} \\\\cmidrule(lr){4-5}\\nLoss component & Share & (\\\\%) & Share & (\\\\%) \\\\\\\\\\n\\\\midrule\\nReward head & --- & 49.0 & --- & 38.1 \\\\\\\\\\nKL dynamics & --- & 34.7 & --- & 40.4 \\\\\\\\\\nObservation decoders & --- & 16.3 & --- & 21.5 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe gradient decomposition reveals a counterintuitive structure: the reward head provides the largest gradient contribution (49.0\\\\% at 55K, 38.1\\\\% at 112K), yet reward-only SGS (exp\\\\_016e) fails catastrophically (NVE $10.42\\\\times$). The observation decoder channel contributes the smallest share (16.3\\\\% at 55K, 21.5\\\\% at 112K) yet carries the critical $\\\\dt$-specific spatial information.  This dissociation between gradient magnitude and causal importance explains why exp\\\\_016e, which targets the largest pathway, is functionally insufficient for CIVO prevention.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me get the entropy dynamics section (around lines 574-600).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "83a46d3d-e2c2-4d06-8536-271986501a60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wEqaksQPf6GkbcnzFjoLT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 47371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UFzBoTRYKPGdHCeRPCdyYo`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -n +574 /root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "d2717276-c71b-47cf-a15a-d3e670331844",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wEqaksQPf6GkbcnzFjoLT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 47371,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4248
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-24T13:41:15.807Z_
+
+<details><summary>↩ Tool result · `toolu_01UFzBoTRYKPGdHCeRPCdyYo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\\\paragraph{Connection to RSSM fidelity analysis.} The trained-embedding condition (exp\\\\_008d) shows a $2.78\\\\times$ reward gap between $\\\\Delta t{=}1$ and $\\\\Delta t{=}2$ transitions (Table~\\\\ref{tab:rssm_fidelity}).  This gap arises because the observation decoder gradients shape $e_{\\\\Delta t}$ to produce latent states that are spatially biased at $\\\\dt{>}1$, and the reward head inherits these biases \\\\textit{through the latent state} rather than learning them directly.  The reward head's large gradient contribution reflects sensitivity to $e_{\\\\Delta t}$'s parameters but not causal responsibility for the fidelity gap.\\n\\n\\\\subsubsection{Entropy Dynamics Across Configurations}\\n\\\\label{sec:entropy_dynamics}\\n\\n\\\\begin{figure}[ht]\\n\\\\centering\\n\\\\includegraphics[width=0.85\\\\columnwidth]{figures/fig4_entropy_dynamics.pdf}\\n\\\\caption{Actor entropy trajectories for three configurations. All start at ${\\\\sim}8$ nats and converge to similar values (${\\\\sim}{-}4.5$ to ${-}5$). The CIVO-triggering configuration (008d, red) follows a normal entropy reduction trajectory; the divergence from the control (008f) is subtle in entropy space, consistent with CIVO operating through the value channel rather than the entropy channel. 018v2 (Full-SGS, seed~1) shows slightly lower terminal entropy.}\\n\\\\label{fig:entropy_dynamics}\\n\\\\end{figure}\\n\\n\\\\subsubsection{Exp\\\\_016e Reinterpreted as Stochastic Variation}\\n\\\\label{sec:016e_reinterp}\\n\\nThe gradient decomposition establishes that exp\\\\_016e targets the largest gradient pathway (reward: 38--49\\\\%) but not the informationally critical one (observation decoders: 16--22\\\\%).  The apparent timing differences between exp\\\\_016e and exp\\\\_008d (later collapse onset, 75K vs.\\\\ 25K, and higher peak evaluation, 326.7 vs.\\\\ 167.2) must be attributed to stochastic variation rather than SGS effects, since the critical observation decoder channel remains intact.  All three trajectories (exp\\\\_008d, exp\\\\_009b, exp\\\\_016e) share the invariant identified by the NVE diagnostic: each crosses the $1.5\\\\times$ pathological threshold at some point during training.\\n\\n\\\\subsection{Post-CIVO Outcomes: Why Seeds Diverge}\\n\\\\label{sec:seed_divergence}\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\caption{Post-CIVO outcomes for all seven CIVO-positive seeds across two environments. Peak/Final NVE measured in the 35K+ window.}\\n\\\\label{tab:post_civo}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Env} & \\\\textbf{Seed} & \\\\textbf{Peak} & \\\\textbf{Final} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\nWalker & s1 (008d) & 4.12$\\\\times$ & 4.12$\\\\times$ & 82.8 & Full collapse \\\\\\\\\\nWalker & s2 (009b) & 1.62$\\\\times$ & 0.38$\\\\times$ & 267.9 & Transient CIVO \\\\\\\\\\nWalker & s3 (008d\\\\_s3) & 1.53$\\\\times$ & 1.53$\\\\times$ & 268$^\\\\diamond$ & Late-onset collapse \\\\\\\\\\nWalker & s4 (008d\\\\_s4) & 4.62$\\\\times$ & 4.62$\\\\times$ & 63.6 & Full collapse \\\\\\\\\\nWalker & s5 (059) & 4.72$\\\\times$ & 1.22$\\\\times$ & 95.8 & Collapse$^\\\\dagger$ \\\\\\\\\\n\\\\midrule\\nCheetah & s1 (010b) & 8.27$\\\\times$ & 8.27$\\\\times$ & 51.7 & Full collapse \\\\\\\\\\nCheetah & s0 (010b\\\\_s0) & 108.52$\\\\times$ & 108.52$\\\\times$ & 0.83 & Full collapse \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^\\\\diamond$ Transitional; train returns still declining at 105K. $^\\\\dagger$~NVE self-corrected ($4.72\\\\times$ $\\\\to$ $1.22\\\\times$) but policy did not recover (eval 10.5\\\\% of baseline).\\\\par}\\n\\\\end{table}\\n\\nAll seven CIVO-positive seeds cross the $\\\\nve > 1.5\\\\times$ threshold (Table~\\\\ref{tab:post_civo}), yet the downstream damage is stochastic.\\\\footnote{Exp\\\\_009e was excluded from multi-seed analyses due to a seed configuration error (default seed=0, identical to exp\\\\_008d).}  Full collapse is the majority outcome (6/7 seeds), with one self-correction case (Walker seed 2); seed 5 exemplifies a dissociation where NVE self-corrects ($4.72\\\\times \\\\to 1.22\\\\times$) while the policy remains collapsed (eval 10.5\\\\% of baseline). Cheetah seeds exhibit more extreme overestimation (peak NVE $8.27$--$108.52\\\\times$ vs.\\\\\\n\\n... [截断: 输出过长，省略 22279 字符] ...\\n\\n results. Walker Walk unless noted.}\\n\\\\label{tab:dual_critic_full}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{Params} & \\\\textbf{NVE} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n008d & Single narrow & 1.2M & 4.12$\\\\times$ & 82.8 & Collapse \\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\times$ & 407.9 & CIVO $\\\\to$ self-repair \\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\times$ & 697.8 & CIVO $\\\\to$ recovery \\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\times$ & 592.7 & CIVO $\\\\to$ recovery \\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\leq$1.1$\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\leq$0.3$\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{Cross-environment}} \\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\times$ & 97.5 & Partial recovery (31\\\\%) \\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\times$ & 146.1 & CIVO $\\\\to$ self-repair \\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^*$CIVO prevented (NVE $\\\\leq 0.3\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{Critic Convergence (\\\\texorpdfstring{$v_1 \\\\approx v_2$}{v1 ≈ v2})}\\n\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\mathbb{E}[\\\\max(v_1, v_2) - \\\\min(v_1, v_2)]$ is 3--4\\\\% of the theoretical bound for independent critics.\\n\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\n\\n\\\\subsection{Recovery vs.\\\\ Prevention Mechanism}\\n\\nThe $2{\\\\times}2$ factorial reveals two separable dimensions:\\n\\n\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\_035 (s0, $\\\\nve = 2.75\\\\times$, eval $33.8 \\\\to 697.8$, recovery ratio $20.6\\\\times$) and exp\\\\_039 (s1, $\\\\nve = 2.19\\\\times$, eval $35.9 \\\\to 592.7$, recovery ratio $16.5\\\\times$). Both outperform wide single-critic (exp\\\\_033, 2.4M params, eval 407.9) despite $2\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\times$ vs.\\\\ 4.75$\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\n\\n\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\n\\n\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\_034) reduces NVE from $8.27\\\\times$ (untreated baseline) to $1.75\\\\times$ ($\\\\geq 4\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "03b2f3b6-4cae-4d82-ac76-18767e0c3b43",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\\\\\paragraph{Connection to RSSM fidelity analysis.} The trained-embedding condition (exp\\\\\\\\_008d) shows a $2.78\\\\\\\\times$ reward gap between $\\\\\\\\Delta t{=}1$ and $\\\\\\\\Delta t{=}2$ transitions (Table~\\\\\\\\ref{tab:rssm_fidelity}).  This gap arises because the observation decoder gradients shape $e_{\\\\\\\\Delta t}$ to produce latent states that are spatially biased at $\\\\\\\\dt{>}1$, and the reward head inherits these biases \\\\\\\\textit{through the latent state} rather than learning them directly.  The reward head's large gradient contribution reflects sensitivity to $e_{\\\\\\\\Delta t}$'s parameters but not causal responsibility for the fidelity gap.\\\\n\\\\n\\\\\\\\subsubsection{Entropy Dynamics Across Configurations}\\\\n\\\\\\\\label{sec:entropy_dynamics}\\\\n\\\\n\\\\\\\\begin{figure}[ht]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.85\\\\\\\\columnwidth]{figures/fig4_entropy_dynamics.pdf}\\\\n\\\\\\\\caption{Actor entropy trajectories for three configurations. All start at ${\\\\\\\\sim}8$ nats and converge to similar values (${\\\\\\\\sim}{-}4.5$ to ${-}5$). The CIVO-triggering configuration (008d, red) follows a normal entropy reduction trajectory; the divergence from the control (008f) is subtle in entropy space, consistent with CIVO operating through the value channel rather than the entropy channel. 018v2 (Full-SGS, seed~1) shows slightly lower terminal entropy.}\\\\n\\\\\\\\label{fig:entropy_dynamics}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\subsubsection{Exp\\\\\\\\_016e Reinterpreted as Stochastic Variation}\\\\n\\\\\\\\label{sec:016e_reinterp}\\\\n\\\\nThe gradient decomposition establishes that exp\\\\\\\\_016e targets the largest gradient pathway (reward: 38--49\\\\\\\\%) but not the informationally critical one (observation decoders: 16--22\\\\\\\\%).  The apparent timing differences between exp\\\\\\\\_016e and exp\\\\\\\\_008d (later collapse onset, 75K vs.\\\\\\\\ 25K, and higher peak evaluation, 326.7 vs.\\\\\\\\ 167.2) must be attributed to stochastic variation rather than SGS effects, since the critical observation decoder channel remains intact.  All three trajectories (exp\\\\\\\\_008d, exp\\\\\\\\_009b, exp\\\\\\\\_016e) share the invariant identified by the NVE diagnostic: each crosses the $1.5\\\\\\\\times$ pathological threshold at some point during training.\\\\n\\\\n\\\\\\\\subsection{Post-CIVO Outcomes: Why Seeds Diverge}\\\\n\\\\\\\\label{sec:seed_divergence}\\\\n\\\\n\\\\\\\\begin{table}[ht]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Post-CIVO outcomes for all seven CIVO-positive seeds across two environments. Peak/Final NVE measured in the 35K+ window.}\\\\n\\\\\\\\label{tab:post_civo}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llcccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Env} & \\\\\\\\textbf{Seed} & \\\\\\\\textbf{Peak} & \\\\\\\\textbf{Final} & \\\\\\\\textbf{Eval} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nWalker & s1 (008d) & 4.12$\\\\\\\\times$ & 4.12$\\\\\\\\times$ & 82.8 & Full collapse \\\\\\\\\\\\\\\\\\\\nWalker & s2 (009b) & 1.62$\\\\\\\\times$ & 0.38$\\\\\\\\times$ & 267.9 & Transient CIVO \\\\\\\\\\\\\\\\\\\\nWalker & s3 (008d\\\\\\\\_s3) & 1.53$\\\\\\\\times$ & 1.53$\\\\\\\\times$ & 268$^\\\\\\\\diamond$ & Late-onset collapse \\\\\\\\\\\\\\\\\\\\nWalker & s4 (008d\\\\\\\\_s4) & 4.62$\\\\\\\\times$ & 4.62$\\\\\\\\times$ & 63.6 & Full collapse \\\\\\\\\\\\\\\\\\\\nWalker & s5 (059) & 4.72$\\\\\\\\times$ & 1.22$\\\\\\\\times$ & 95.8 & Collapse$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nCheetah & s1 (010b) & 8.27$\\\\\\\\times$ & 8.27$\\\\\\\\times$ & 51.7 & Full collapse \\\\\\\\\\\\\\\\\\\\nCheetah & s0 (010b\\\\\\\\_s0) & 108.52$\\\\\\\\times$ & 108.52$\\\\\\\\times$ & 0.83 & Full collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\vspace{1pt}\\\\n{\\\\\\\\raggedright\\\\\\\\footnotesize $^\\\\\\\\diamond$ Transitional; train returns still declining at 105K. $^\\\\\\\\dagger$~NVE self-corrected ($4.72\\\\\\\\times$ $\\\\\\\\to$ $1.22\\\\\\\\times$) but policy did not recover (eval 10.5\\\\\\\\% of baseline).\\\\\\\\par}\\\\n\\\\\\\\end{table}\\\\n\\\\nAll seven CIVO-positive seeds cross the $\\\\\\\\nve > 1.5\\\\\\\\times$ threshold (Table~\\\\\\\\ref{tab:post_civo}), yet the downstream damage is stochastic.\\\\\\\\footnote{Exp\\\\\\\\_009e was excluded from multi-seed analyses due to a seed configuration error (default seed=0, identical to exp\\\\\\\\_008d).}  Full collapse is the majority outcome (6/7 seeds), with one self-correction case (Walker seed 2); seed 5 exemplifies a dissociation where NVE self-corrects ($4.72\\\\\\\\times \\\\\\\\to 1.22\\\\\\\\times$) while the policy remains collapsed (eval 10.5\\\\\\\\% of baseline). Cheetah seeds exhibit more extreme overestimation (peak NVE $8.27$--$108.52\\\\\\\\times$ vs.\\\\\\\\\\\\n\\\\n... [截断: 输出过长，省略 22279 字符] ...\\\\n\\\\n results. Walker Walk unless noted.}\\\\n\\\\\\\\label{tab:dual_critic_full}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\setlength{\\\\\\\\tabcolsep}{3pt}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llcccl}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Exp} & \\\\\\\\textbf{Config} & \\\\\\\\textbf{Params} & \\\\\\\\textbf{NVE} & \\\\\\\\textbf{Eval} & \\\\\\\\textbf{Outcome} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n008d & Single narrow & 1.2M & 4.12$\\\\\\\\times$ & 82.8 & Collapse \\\\\\\\\\\\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\\\\\times$ & 407.9 & CIVO $\\\\\\\\to$ self-repair \\\\\\\\\\\\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\\\\\times$ & 697.8 & CIVO $\\\\\\\\to$ recovery \\\\\\\\\\\\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\\\\\times$ & 592.7 & CIVO $\\\\\\\\to$ recovery \\\\\\\\\\\\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\\\\\leq$1.1$\\\\\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\\\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\\\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\\\\\leq$0.3$\\\\\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\textit{Cross-environment}} \\\\\\\\\\\\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\\\\\times$ & 97.5 & Partial recovery (31\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\\\\\times$ & 146.1 & CIVO $\\\\\\\\to$ self-repair \\\\\\\\\\\\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\vspace{1pt}\\\\n{\\\\\\\\raggedright\\\\\\\\footnotesize $^*$CIVO prevented (NVE $\\\\\\\\leq 0.3\\\\\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\\\\\par}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Critic Convergence (\\\\\\\\texorpdfstring{$v_1 \\\\\\\\approx v_2$}{v1 ≈ v2})}\\\\n\\\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\\\\\mathbb{E}[\\\\\\\\max(v_1, v_2) - \\\\\\\\min(v_1, v_2)]$ is 3--4\\\\\\\\% of the theoretical bound for independent critics.\\\\n\\\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\\\n\\\\n\\\\\\\\subsection{Recovery vs.\\\\\\\\ Prevention Mechanism}\\\\n\\\\nThe $2{\\\\\\\\times}2$ factorial reveals two separable dimensions:\\\\n\\\\n\\\\\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\\\\\_035 (s0, $\\\\\\\\nve = 2.75\\\\\\\\times$, eval $33.8 \\\\\\\\to 697.8$, recovery ratio $20.6\\\\\\\\times$) and exp\\\\\\\\_039 (s1, $\\\\\\\\nve = 2.19\\\\\\\\times$, eval $35.9 \\\\\\\\to 592.7$, recovery ratio $16.5\\\\\\\\times$). Both outperform wide single-critic (exp\\\\\\\\_033, 2.4M params, eval 407.9) despite $2\\\\\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\\\\\times$ vs.\\\\\\\\ 4.75$\\\\\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\\\n\\\\n\\\\\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\\\n\\\\n\\\\\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\\\\\_034) reduces NVE from $8.27\\\\\\\\times$ (untreated baseline) to $1.75\\\\\\\\times$ ($\\\\\\\\geq 4\\\\\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\\\paragraph{Connection to RSSM fidelity analysis.} The trained-embedding condition (exp\\\\_008d) shows a $2.78\\\\times$ reward gap between $\\\\Delta t{=}1$ and $\\\\Delta t{=}2$ transitions (Table~\\\\ref{tab:rssm_fidelity}).  This gap arises because the observation decoder gradients shape $e_{\\\\Delta t}$ to produce latent states that are spatially biased at $\\\\dt{>}1$, and the reward head inherits these biases \\\\textit{through the latent state} rather than learning them directly.  The reward head's large gradient contribution reflects sensitivity to $e_{\\\\Delta t}$'s parameters but not causal responsibility for the fidelity gap.\\n\\n\\\\subsubsection{Entropy Dynamics Across Configurations}\\n\\\\label{sec:entropy_dynamics}\\n\\n\\\\begin{figure}[ht]\\n\\\\centering\\n\\\\includegraphics[width=0.85\\\\columnwidth]{figures/fig4_entropy_dynamics.pdf}\\n\\\\caption{Actor entropy trajectories for three configurations. All start at ${\\\\sim}8$ nats and converge to similar values (${\\\\sim}{-}4.5$ to ${-}5$). The CIVO-triggering configuration (008d, red) follows a normal entropy reduction trajectory; the divergence from the control (008f) is subtle in entropy space, consistent with CIVO operating through the value channel rather than the entropy channel. 018v2 (Full-SGS, seed~1) shows slightly lower terminal entropy.}\\n\\\\label{fig:entropy_dynamics}\\n\\\\end{figure}\\n\\n\\\\subsubsection{Exp\\\\_016e Reinterpreted as Stochastic Variation}\\n\\\\label{sec:016e_reinterp}\\n\\nThe gradient decomposition establishes that exp\\\\_016e targets the largest gradient pathway (reward: 38--49\\\\%) but not the informationally critical one (observation decoders: 16--22\\\\%).  The apparent timing differences between exp\\\\_016e and exp\\\\_008d (later collapse onset, 75K vs.\\\\ 25K, and higher peak evaluation, 326.7 vs.\\\\ 167.2) must be attributed to stochastic variation rather than SGS effects, since the critical observation decoder channel remains intact.  All three trajectories (exp\\\\_008d, exp\\\\_009b, exp\\\\_016e) share the invariant identified by the NVE diagnostic: each crosses the $1.5\\\\times$ pathological threshold at some point during training.\\n\\n\\\\subsection{Post-CIVO Outcomes: Why Seeds Diverge}\\n\\\\label{sec:seed_divergence}\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\caption{Post-CIVO outcomes for all seven CIVO-positive seeds across two environments. Peak/Final NVE measured in the 35K+ window.}\\n\\\\label{tab:post_civo}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Env} & \\\\textbf{Seed} & \\\\textbf{Peak} & \\\\textbf{Final} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\nWalker & s1 (008d) & 4.12$\\\\times$ & 4.12$\\\\times$ & 82.8 & Full collapse \\\\\\\\\\nWalker & s2 (009b) & 1.62$\\\\times$ & 0.38$\\\\times$ & 267.9 & Transient CIVO \\\\\\\\\\nWalker & s3 (008d\\\\_s3) & 1.53$\\\\times$ & 1.53$\\\\times$ & 268$^\\\\diamond$ & Late-onset collapse \\\\\\\\\\nWalker & s4 (008d\\\\_s4) & 4.62$\\\\times$ & 4.62$\\\\times$ & 63.6 & Full collapse \\\\\\\\\\nWalker & s5 (059) & 4.72$\\\\times$ & 1.22$\\\\times$ & 95.8 & Collapse$^\\\\dagger$ \\\\\\\\\\n\\\\midrule\\nCheetah & s1 (010b) & 8.27$\\\\times$ & 8.27$\\\\times$ & 51.7 & Full collapse \\\\\\\\\\nCheetah & s0 (010b\\\\_s0) & 108.52$\\\\times$ & 108.52$\\\\times$ & 0.83 & Full collapse \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^\\\\diamond$ Transitional; train returns still declining at 105K. $^\\\\dagger$~NVE self-corrected ($4.72\\\\times$ $\\\\to$ $1.22\\\\times$) but policy did not recover (eval 10.5\\\\% of baseline).\\\\par}\\n\\\\end{table}\\n\\nAll seven CIVO-positive seeds cross the $\\\\nve > 1.5\\\\times$ threshold (Table~\\\\ref{tab:post_civo}), yet the downstream damage is stochastic.\\\\footnote{Exp\\\\_009e was excluded from multi-seed analyses due to a seed configuration error (default seed=0, identical to exp\\\\_008d).}  Full collapse is the majority outcome (6/7 seeds), with one self-correction case (Walker seed 2); seed 5 exemplifies a dissociation where NVE self-corrects ($4.72\\\\times \\\\to 1.22\\\\times$) while the policy remains collapsed (eval 10.5\\\\% of baseline). Cheetah seeds exhibit more extreme overestimation (peak NVE $8.27$--$108.52\\\\times$ vs.\\\\\\n\\n... [截断: 输出过长，省略 22279 字符] ...\\n\\n results. Walker Walk unless noted.}\\n\\\\label{tab:dual_critic_full}\\n\\\\footnotesize\\n\\\\setlength{\\\\tabcolsep}{3pt}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccl}\\n\\\\toprule\\n\\\\textbf{Exp} & \\\\textbf{Config} & \\\\textbf{Params} & \\\\textbf{NVE} & \\\\textbf{Eval} & \\\\textbf{Outcome} \\\\\\\\\\n\\\\midrule\\n008d & Single narrow & 1.2M & 4.12$\\\\times$ & 82.8 & Collapse \\\\\\\\\\n033 & Wide single & 2.4M & 4.75$\\\\times$ & 407.9 & CIVO $\\\\to$ self-repair \\\\\\\\\\n035 s0 & Narrow dual (min) & 1.2M & 2.75$\\\\times$ & 697.8 & CIVO $\\\\to$ recovery \\\\\\\\\\n039 s1 & Narrow dual (min) & 1.2M & 2.19$\\\\times$ & 592.7 & CIVO $\\\\to$ recovery \\\\\\\\\\n032 s0 & Wide dual (min) & 2.4M & $\\\\leq$1.1$\\\\times$ & 739.7 & CIVO prevented \\\\\\\\\\n032b s1 & Wide dual (min) & 2.4M & 1.4$\\\\times$ & 551.8 & CIVO prevented \\\\\\\\\\n038 s2 & Wide dual (min) & 2.4M & $\\\\leq$0.3$\\\\times$ & 120.9$^*$ & Non-CIVO collapse \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{Cross-environment}} \\\\\\\\\\n034 & Cheetah dual & 2.4M & 1.75$\\\\times$ & 97.5 & Partial recovery (31\\\\%) \\\\\\\\\\n037 & Cheetah wide single & 2.4M & 3.60$\\\\times$ & 146.1 & CIVO $\\\\to$ self-repair \\\\\\\\\\n036 & PickCube dual & 2.4M & 2.3$\\\\times$ & 27.7 & Transient CIVO \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\vspace{1pt}\\n{\\\\raggedright\\\\footnotesize $^*$CIVO prevented (NVE $\\\\leq 0.3\\\\times$) but non-CIVO eval collapse: eval peaked at 354 (155K), then declined to 120.9 (224K) with actor entropy increasing from $-3.59$ to $-0.45$.\\\\par}\\n\\\\end{table}\\n\\n\\\\subsection{Critic Convergence (\\\\texorpdfstring{$v_1 \\\\approx v_2$}{v1 ≈ v2})}\\n\\nAcross all dual-critic configurations and environments, the two critics converge to near-identical value functions. On Walker Walk, Pearson $\\\\rho > 0.999$ between $v_1$ and $v_2$ outputs; on Cheetah Run and PickCube-v1, the gap is $< 0.2$ (exact match within numerical precision). Per-sample pessimism $\\\\mathbb{E}[\\\\max(v_1, v_2) - \\\\min(v_1, v_2)]$ is 3--4\\\\% of the theoretical bound for independent critics.\\n\\nThis convergence occurs because both critics train on the same RSSM-generated latent features. Unlike model-free Double Q-learning, where each critic sees different mini-batches of real transitions and develops distinct function approximation errors, pure-imagination critics share identical inputs from the world model. The min operation therefore cannot provide the pessimism bias that makes Double Q effective in model-free settings.\\n\\n\\\\subsection{Recovery vs.\\\\ Prevention Mechanism}\\n\\nThe $2{\\\\times}2$ factorial reveals two separable dimensions:\\n\\n\\\\paragraph{Recovery (min-dominated).} The min operation is the primary factor enabling recovery from CIVO. Both narrow dual-critic seeds experience CIVO and recover fully: exp\\\\_035 (s0, $\\\\nve = 2.75\\\\times$, eval $33.8 \\\\to 697.8$, recovery ratio $20.6\\\\times$) and exp\\\\_039 (s1, $\\\\nve = 2.19\\\\times$, eval $35.9 \\\\to 592.7$, recovery ratio $16.5\\\\times$). Both outperform wide single-critic (exp\\\\_033, 2.4M params, eval 407.9) despite $2\\\\times$ fewer parameters. The min operation reduces both peak CIVO severity (2.19--2.75$\\\\times$ vs.\\\\ 4.75$\\\\times$ for the comparable single-critic) and enables consistent full recovery across seeds.\\n\\n\\\\paragraph{Prevention (min $+$ capacity synergy).} CIVO prevention (NVE remaining below the $1.5\\\\times$ threshold) requires both the min operation and increased capacity: only the wide dual-critic (exp\\\\_032, 3 seeds) achieves this. The mechanism for this synergy is an open question; we hypothesize that increased capacity improves value calibration quality while the min operation constrains the overestimation feedback loop during early training when the two critics briefly diverge.\\n\\n\\\\paragraph{Cross-environment limits.} On Cheetah Run, the wide dual-critic (exp\\\\_034) reduces NVE from $8.27\\\\times$ (untreated baseline) to $1.75\\\\times$ ($\\\\geq 4\\\\times$ reduction) but cannot prevent CIVO onset, and recovery reaches only 31\\\\% of the pre-CIVO peak. This confirms that the min $+$ capacity synergy has environment-dependent limits: in high-CIVO-severity environments, architecture-level interventions attenuate but do not eliminate the pathology.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me plan and execute the modifications.
+
+Let me compile the needed changes:
+
+### 1. Author name fixes for 18 bib entries
+
+I know most of these authors from the RL/ML literature:
+
+1. `sutton1999options`: `Sutton, R.S and Precup, D and Singh, S` → `Sutton, Richard S. and Precup, Doina and Singh, Satinder`
+2. `hafner2020dreamerv1`: `Hafner, D and Lillicrap, T and Ba, J and Norouzi, M` → `Hafner, Danijar and Lillicrap, Timothy and Ba, Jimmy and Norouzi, Mohammad`
+
+
+3. `sharma2017figar`: `Sharma, S and Lakshminarayanan, A.S and Ravindran, B` → `Sharma, Sahil and Lakshminarayanan, Aravind S. and Ravindran, Balaraman`
+4. `janner2019mbpo`: `Janner, M and Fu, J and Zhang, M and Levine, S` → `Janner, Michael and Fu, Justin and Zhang, Marvin and Levine, Sergey`
+5. `asadi2019combating`: `Asadi, K and Misra, D and Kim, S and Littman` → continuing with the remaining author expansions... Continuing to expand the author abbreviations in the bibliography entries, filling in full first and last names for the remaining citations. Continuing to expand the author names in the bibliography entries, filling in full first names and middle initials where they were abbreviated. Now I'm going through the authors I'm more confident about — Janner, Fu, Zhang, and Levine from that work, along with Hansen, Su, and Wang for TD-MPC2, plus several others like Thrun, Schwartz, Lu, Schuurmans, Boutilier, Biedenkapp, Rajan, Hutter, Lindauer, Lyle, Rowland, and Dabney. I'm less certain about Sharma and Lakshminarayanan's full details.
+
+Continuing with the moderately confident group — Asadi, Misra, Kim, and Littman, then Gumbsch, Sajid, Martius, and Butz from FiGAR, Mattes, Schlosser, and Herbrich from Hieros, plus Henderson, Islam, Bachman, Pineau, Precup, and Meger, Lambert, Amos, Yadan, and Calandra, and Agarwal, Schwarzer, Castro, Courville, and Bellemare. I still need to track down the authors for that li2025lsimagine paper. I'm filling in the remaining author details—David Meger completes the henderson2018deep paper, and I have the full author lists for lambert2020objective and agarwal2021precipice confirmed. Now I'll search for verification on the ones I'm still uncertain about.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "79f34f22-af7e-45d6-9b2d-1f1ae713a781",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Now I have all the data needed. Let me search for author full names for the entries I'm less certain about.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "26c9f839-74af-46b2-9fac-2d476ede1aa5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TGkfLfUCtcX9hGFDrrbKbH`</summary>
+
+```json
+{
+  "query": "Sharma Lakshminarayanan Ravindran \"Fine Grained Action Repetition\" FiGAR 2017 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "371b663d-5290-4281-bd83-a7d6f6cfada2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B3Lbf5qYfkC1vdVWNdSWyp`</summary>
+
+```json
+{
+  "query": "Asadi Misra Kim Littman \"Combating the Compounding-Error Problem\" 2019 authors full names"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "1646e811-e9b4-4489-86e5-805f374de029",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016RSZLe8FFRz9JUuDpRJyKb`</summary>
+
+```json
+{
+  "query": "Gumbsch Sajid Martius Butz \"Learning Hierarchical World Models with Adaptive Temporal Abstractions\" 2024 ICLR authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "dcca5881-5c43-4ea4-86b1-541d5794afb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V8zYEszgez4dUuFKAwUJoQ`</summary>
+
+```json
+{
+  "query": "Mattes Schlosser Herbrich \"Hieros Hierarchical Imagination\" ICML 2024 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "d76dcc57-0575-4d49-800b-9f06fa9295f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ivtHbHHnxH2MvHD4omMmX`</summary>
+
+```json
+{
+  "query": "Li Wang Wang Jin Li Zeng Yang \"Open-World Reinforcement Learning over Long Short-Term Imagination\" ICLR 2025 arXiv 2410.03618"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "08678582-d2e6-4aa8-a3d3-41d1e0fbeb80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CwNXwpUTSRovCicjCt6PmK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3487,
+      "cache_read_input_tokens": 51619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3487
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-24T13:42:02.787Z_
+
+<details><summary>↩ Tool result · `toolu_01TGkfLfUCtcX9hGFDrrbKbH`</summary>
+
+```text
+Web search results for query: "Sharma Lakshminarayanan Ravindran "Fine Grained Action Repetition" FiGAR 2017 authors"
+
+Links: [{"title":"[1702.06054] Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning","url":"https://arxiv.org/abs/1702.06054"},{"title":"[PDF] Online Multi-Task Learning Using Biased Sampling | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Online-Multi-Task-Learning-Using-Biased-Sampling-Sharma-Ravindran/05db7bf6be4d309ecd71ed74a061eaa17f15cff2"},{"title":"Dynamic Action Repetition for Deep Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Dynamic-Action-Repetition-for-Deep-Reinforcement-Srinivas-Sharma/e997dcda4a10be86f520e88d6ca845dc5346b14f"},{"title":"Learning to repeat: Fine grained action repetition for deep reinforcement learning | Robert Bosch Centre for Data Science and Artificial Intelligence","url":"https://rbcdsai.iitm.ac.in/publications/learning-to-repeat-fine-grained-action-repetition/"},{"title":"Fine Grained Action Repetition for Deep Reinforcement ...","url":"https://www.semanticscholar.org/paper/DEEP-REINFORCEMENT-LEARNING-Sharma-Lakshminarayanan/2d6075ffa9ef3fbfe338bfeb469a50883242bdcd"},{"title":"Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning","url":"https://www.groundai.com/project/learning-to-repeat-fine-grained-action-repetition-for-deep-reinforcement-learning/1"},{"title":"Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=B1GOWV5eg"},{"title":"Published as a conference paper at ICLR 2017 LEARNING TO REPEAT:","url":"https://arxiv.org/pdf/1702.06054"},{"title":"Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning | DeepAI","url":"https://deepai.org/publication/learning-to-repeat-fine-grained-action-repetition-for-deep-reinforcement-learning"}]
+
+Based on the search results, I found information about the FiGAR paper from 2017. The authors of "Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning" are Sahil Sharma, Aravind S Lakshminarayanan, and B Ravindran. 
+
+The paper was published as a conference paper at ICLR 2017, introducing a novel framework, Fine Grained Action Repetition (FiGAR), which enables the agent to decide the action as well as the time scale of repeating it.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "465f6b95-f6da-4a4d-92ec-a279c7d7ddc9",
+  "tool_use_result": {
+    "query": "Sharma Lakshminarayanan Ravindran \"Fine Grained Action Repetition\" FiGAR 2017 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019CSP1bQh4Kj8EoSBNmbwZC",
+        "content": [
+          {
+            "title": "[1702.06054] Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/1702.06054"
+          },
+          {
+            "title": "[PDF] Online Multi-Task Learning Using Biased Sampling | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Online-Multi-Task-Learning-Using-Biased-Sampling-Sharma-Ravindran/05db7bf6be4d309ecd71ed74a061eaa17f15cff2"
+          },
+          {
+            "title": "Dynamic Action Repetition for Deep Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Dynamic-Action-Repetition-for-Deep-Reinforcement-Srinivas-Sharma/e997dcda4a10be86f520e88d6ca845dc5346b14f"
+          },
+          {
+            "title": "Learning to repeat: Fine grained action repetition for deep reinforcement learning | Robert Bosch Centre for Data Science and Artificial Intelligence",
+            "url": "https://rbcdsai.iitm.ac.in/publications/learning-to-repeat-fine-grained-action-repetition/"
+          },
+          {
+            "title": "Fine Grained Action Repetition for Deep Reinforcement ...",
+            "url": "https://www.semanticscholar.org/paper/DEEP-REINFORCEMENT-LEARNING-Sharma-Lakshminarayanan/2d6075ffa9ef3fbfe338bfeb469a50883242bdcd"
+          },
+          {
+            "title": "Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning",
+            "url": "https://www.groundai.com/project/learning-to-repeat-fine-grained-action-repetition-for-deep-reinforcement-learning/1"
+          },
+          {
+            "title": "Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=B1GOWV5eg"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2017 LEARNING TO REPEAT:",
+            "url": "https://arxiv.org/pdf/1702.06054"
+          },
+          {
+            "title": "Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning | DeepAI",
+            "url": "https://deepai.org/publication/learning-to-repeat-fine-grained-action-repetition-for-deep-reinforcement-learning"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the FiGAR paper from 2017. The authors of \"Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning\" are Sahil Sharma, Aravind S Lakshminarayanan, and B Ravindran. \n\nThe paper was published as a conference paper at ICLR 2017, introducing a novel framework, Fine Grained Action Repetition (FiGAR), which enables the agent to decide the action as well as the time scale of repeating it."
+    ],
+    "durationSeconds": 3.4482797809999903
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-24T13:42:04.416Z_
+
+<details><summary>↩ Tool result · `toolu_01V8zYEszgez4dUuFKAwUJoQ`</summary>
+
+```text
+Web search results for query: "Mattes Schlosser Herbrich "Hieros Hierarchical Imagination" ICML 2024 authors"
+
+Links: [{"title":"ICML Poster Hieros: Hierarchical Imagination on Structured State Space Sequence World Models","url":"https://icml.cc/virtual/2024/poster/34428"},{"title":"Hieros: Hierarchical Imagination on Structured State Space Sequence World Models","url":"https://arxiv.org/html/2310.05167v2"},{"title":"Publications – Ralf Herbrich’s Homepage","url":"https://herbrich.me/publications/"},{"title":"[2310.05167] Hieros: Hierarchical Imagination on Structured State Space Sequence World Models","url":"https://arxiv.org/abs/2310.05167"},{"title":"(PDF) Hieros: Hierarchical Imagination on Structured State Space Sequence World Models","url":"https://www.researchgate.net/publication/378745771_Hieros_Hierarchical_Imagination_on_Structured_State_Space_Sequence_World_Models"},{"title":"Hieros: Hierarchical Imagination on Structured State Space Sequence   World Models","url":"https://arxiv.org/pdf/2310.05167"},{"title":"GitHub - Event-AHU/Mamba_State_Space_Model_Paper_List: [Mamba-Survey-2024] Paper list for State-Space-Model/Mamba and it's Applications · GitHub","url":"https://github.com/Event-AHU/Mamba_State_Space_Model_Paper_List"},{"title":"GitHub - opendilab/awesome-model-based-RL: A curated list of awesome model based RL resources (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-model-based-RL"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=Hieros:+Hierarchical+Imagination+on+Structured+State+Space+Sequence+World+Models."}]
+
+Based on the search results, the authors of "Hieros: Hierarchical Imagination on Structured State Space Sequence World Models" are Paul Mattes, Rainer Schlosser, and Ralf Herbrich from the Digital Engineering Faculty at the Hasso Plattner Institute, University of Potsdam, Germany.
+
+The paper was published in the Proceedings of the 41st International Conference on Machine Learning in 2024 (ICML 2024).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "0c9c4775-55a6-46bf-a8ae-ca0ed88e950e",
+  "tool_use_result": {
+    "query": "Mattes Schlosser Herbrich \"Hieros Hierarchical Imagination\" ICML 2024 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ChUYPuboQDtsj6zGyyAYZE",
+        "content": [
+          {
+            "title": "ICML Poster Hieros: Hierarchical Imagination on Structured State Space Sequence World Models",
+            "url": "https://icml.cc/virtual/2024/poster/34428"
+          },
+          {
+            "title": "Hieros: Hierarchical Imagination on Structured State Space Sequence World Models",
+            "url": "https://arxiv.org/html/2310.05167v2"
+          },
+          {
+            "title": "Publications – Ralf Herbrich’s Homepage",
+            "url": "https://herbrich.me/publications/"
+          },
+          {
+            "title": "[2310.05167] Hieros: Hierarchical Imagination on Structured State Space Sequence World Models",
+            "url": "https://arxiv.org/abs/2310.05167"
+          },
+          {
+            "title": "(PDF) Hieros: Hierarchical Imagination on Structured State Space Sequence World Models",
+            "url": "https://www.researchgate.net/publication/378745771_Hieros_Hierarchical_Imagination_on_Structured_State_Space_Sequence_World_Models"
+          },
+          {
+            "title": "Hieros: Hierarchical Imagination on Structured State Space Sequence   World Models",
+            "url": "https://arxiv.org/pdf/2310.05167"
+          },
+          {
+            "title": "GitHub - Event-AHU/Mamba_State_Space_Model_Paper_List: [Mamba-Survey-2024] Paper list for State-Space-Model/Mamba and it's Applications · GitHub",
+            "url": "https://github.com/Event-AHU/Mamba_State_Space_Model_Paper_List"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-model-based-RL: A curated list of awesome model based RL resources (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-model-based-RL"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar?q=Hieros:+Hierarchical+Imagination+on+Structured+State+Space+Sequence+World+Models."
+          }
+        ]
+      },
+      "Based on the search results, the authors of \"Hieros: Hierarchical Imagination on Structured State Space Sequence World Models\" are Paul Mattes, Rainer Schlosser, and Ralf Herbrich from the Digital Engineering Faculty at the Hasso Plattner Institute, University of Potsdam, Germany.\n\nThe paper was published in the Proceedings of the 41st International Conference on Machine Learning in 2024 (ICML 2024)."
+    ],
+    "durationSeconds": 3.3754636480000046
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-24T13:42:04.737Z_
+
+<details><summary>↩ Tool result · `toolu_01B3Lbf5qYfkC1vdVWNdSWyp`</summary>
+
+```text
+Web search results for query: "Asadi Misra Kim Littman "Combating the Compounding-Error Problem" 2019 authors full names"
+
+Links: [{"title":"Combating the Compounding-Error Problem with a Multi-step Model — Grokipedia","url":"https://grokipedia.com/page/190513320"},{"title":"Enhancing model learning in reinforcement learning through Q-function-guided trajectory alignment | Applied Intelligence | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10489-024-06083-9"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190513320A/abstract"},{"title":"[1905.13320] Combating the Compounding-Error Problem with a Multi-step Model","url":"https://arxiv.org/abs/1905.13320"},{"title":"Combating the Compounding-Error Problem with a Multi-step Model Kavosh Asadi","url":"https://arxiv.org/pdf/1905.13320"},{"title":"(PDF) Combating the Compounding-Error Problem with a Multi-step Model","url":"https://www.researchgate.net/publication/333564721_Combating_the_Compounding-Error_Problem_with_a_Multi-step_Model"},{"title":"[PDF] Investigating Compounding Prediction Errors in Learned Dynamics Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Investigating-Compounding-Prediction-Errors-in-Lambert-Pister/0ea5518a745a3c1f6fc53d2e7ec5b0bd016cb8d5"}]
+
+Based on the search results, here are the full names of the authors of the 2019 paper "Combating the Compounding-Error Problem with a Multi-step Model":
+
+1. Kavosh Asadi
+2. Dipendra Misra
+3. Seungchan Kim
+4. Michel L. Littman
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "9b561967-dcaf-4af4-be5b-434276bc6087",
+  "tool_use_result": {
+    "query": "Asadi Misra Kim Littman \"Combating the Compounding-Error Problem\" 2019 authors full names",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011JTspirwDYdASTmGuC6PWD",
+        "content": [
+          {
+            "title": "Combating the Compounding-Error Problem with a Multi-step Model — Grokipedia",
+            "url": "https://grokipedia.com/page/190513320"
+          },
+          {
+            "title": "Enhancing model learning in reinforcement learning through Q-function-guided trajectory alignment | Applied Intelligence | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10489-024-06083-9"
+          },
+          {
+            "title": "Combating the Compounding-Error Problem with a Multi-step Model - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2019arXiv190513320A/abstract"
+          },
+          {
+            "title": "[1905.13320] Combating the Compounding-Error Problem with a Multi-step Model",
+            "url": "https://arxiv.org/abs/1905.13320"
+          },
+          {
+            "title": "Combating the Compounding-Error Problem with a Multi-step Model Kavosh Asadi",
+            "url": "https://arxiv.org/pdf/1905.13320"
+          },
+          {
+            "title": "(PDF) Combating the Compounding-Error Problem with a Multi-step Model",
+            "url": "https://www.researchgate.net/publication/333564721_Combating_the_Compounding-Error_Problem_with_a_Multi-step_Model"
+          },
+          {
+            "title": "[PDF] Investigating Compounding Prediction Errors in Learned Dynamics Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Investigating-Compounding-Prediction-Errors-in-Lambert-Pister/0ea5518a745a3c1f6fc53d2e7ec5b0bd016cb8d5"
+          }
+        ]
+      },
+      "Based on the search results, here are the full names of the authors of the 2019 paper \"Combating the Compounding-Error Problem with a Multi-step Model\":\n\n1. Kavosh Asadi\n2. Dipendra Misra\n3. Seungchan Kim\n4. Michel L. Littman"
+    ],
+    "durationSeconds": 5.391540167
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T13:42:07.159Z_
+
+<details><summary>↩ Tool result · `toolu_016RSZLe8FFRz9JUuDpRJyKb`</summary>
+
+```text
+Web search results for query: "Gumbsch Sajid Martius Butz "Learning Hierarchical World Models with Adaptive Temporal Abstractions" 2024 ICLR authors"
+
+Links: [{"title":"GitHub - CognitiveModeling/THICK · GitHub","url":"https://github.com/CognitiveModeling/THICK"},{"title":"Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | Autonomous Learning – MPI-IS","url":"https://is.mpg.de/al/publications/gumbsch2024-thickworldmodels"},{"title":"dblp: Georg Martius","url":"https://dblp.org/pid/47/2706.html"},{"title":"ICLR Poster Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics","url":"https://iclr.cc/virtual/2024/poster/18558"},{"title":"Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | OpenReview","url":"https://openreview.net/forum?id=TjCDNssXKU"},{"title":"Published as a conference paper at ICLR 2024 LEARNING HIERARCHICAL WORLD MODELS","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/13b45b44e26c353c64cba9529bf4724f-Paper-Conference.pdf"},{"title":"Chris Gumbsch","url":"https://cgumbsch.github.io/"},{"title":"Learning World Models With Hierarchical Temporal Abstractions: A Probabilistic Perspective","url":"https://arxiv.org/pdf/2404.16078"},{"title":"【DL輪読会】Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | ドクセル","url":"https://www.docswell.com/s/DeepLearning2023/5DEY1D-2024-07-05-090032"},{"title":"Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | Max Planck Institute for Intelligent Systems","url":"https://is.mpg.de/de/publications/gumbsch2024-thickworldmodels"}]
+
+Based on the search results, I found information about the paper you're looking for:
+
+The paper "Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics" was published at ICLR 2024 with authors Christian Gumbsch, Noor Sajid, Georg Martius, and Martin V. Butz.
+
+Christian Gumbsch is affiliated with Neuro-Cognitive Modeling at the University of Tübingen, Noor Sajid is with the Wellcome Centre for Human Neuroimaging at University College London, Georg Martius is at the Autonomous Learning group of the Max Planck Institute for Intelligent Systems, and Martin V. Butz is also at the University of Tübingen.
+
+The paper proposes THICK (Temporal Hierarchies from Invariant Context Kernels), an algorithm that learns a world model hierarchy via discrete latent dynamics.
+
+The paper can be accessed on OpenReview at: https://openreview.net/forum?id=TjCDNssXKU
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "f1b4100d-d54c-4da3-8243-873c037fa6b4",
+  "tool_use_result": {
+    "query": "Gumbsch Sajid Martius Butz \"Learning Hierarchical World Models with Adaptive Temporal Abstractions\" 2024 ICLR authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Lrtgbi97sWnjAv2MZLpdQW",
+        "content": [
+          {
+            "title": "GitHub - CognitiveModeling/THICK · GitHub",
+            "url": "https://github.com/CognitiveModeling/THICK"
+          },
+          {
+            "title": "Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | Autonomous Learning – MPI-IS",
+            "url": "https://is.mpg.de/al/publications/gumbsch2024-thickworldmodels"
+          },
+          {
+            "title": "dblp: Georg Martius",
+            "url": "https://dblp.org/pid/47/2706.html"
+          },
+          {
+            "title": "ICLR Poster Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics",
+            "url": "https://iclr.cc/virtual/2024/poster/18558"
+          },
+          {
+            "title": "Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | OpenReview",
+            "url": "https://openreview.net/forum?id=TjCDNssXKU"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 LEARNING HIERARCHICAL WORLD MODELS",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/13b45b44e26c353c64cba9529bf4724f-Paper-Conference.pdf"
+          },
+          {
+            "title": "Chris Gumbsch",
+            "url": "https://cgumbsch.github.io/"
+          },
+          {
+            "title": "Learning World Models With Hierarchical Temporal Abstractions: A Probabilistic Perspective",
+            "url": "https://arxiv.org/pdf/2404.16078"
+          },
+          {
+            "title": "【DL輪読会】Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | ドクセル",
+            "url": "https://www.docswell.com/s/DeepLearning2023/5DEY1D-2024-07-05-090032"
+          },
+          {
+            "title": "Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics | Max Planck Institute for Intelligent Systems",
+            "url": "https://is.mpg.de/de/publications/gumbsch2024-thickworldmodels"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you're looking for:\n\nThe paper \"Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics\" was published at ICLR 2024 with authors Christian Gumbsch, Noor Sajid, Georg Martius, and Martin V. Butz.\n\nChristian Gumbsch is affiliated with Neuro-Cognitive Modeling at the University of Tübingen, Noor Sajid is with the Wellcome Centre for Human Neuroimaging at University College London, Georg Martius is at the Autonomous Learning group of the Max Planck Institute for Intelligent Systems, and Martin V. Butz is also at the University of Tübingen.\n\nThe paper proposes THICK (Temporal Hierarchies from Invariant Context Kernels), an algorithm that learns a world model hierarchy via discrete latent dynamics.\n\nThe paper can be accessed on OpenReview at: https://openreview.net/forum?id=TjCDNssXKU"
+    ],
+    "durationSeconds": 6.890674158999987
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-24T13:42:09.526Z_
+
+<details><summary>↩ Tool result · `toolu_018ivtHbHHnxH2MvHD4omMmX`</summary>
+
+```text
+Web search results for query: "Li Wang Wang Jin Li Zeng Yang "Open-World Reinforcement Learning over Long Short-Term Imagination" ICLR 2025 arXiv 2410.03618"
+
+Links: [{"title":"Open-World Reinforcement Learning over Long Short-Term Imagination","url":"https://iclr.cc/media/iclr-2025/Slides/27879_NlVoPXk.pdf"},{"title":"ICLR 2025 Open-World Reinforcement Learning over Long Short-Term Imagination Oral","url":"https://iclr.cc/virtual/2025/oral/31740"},{"title":"LS-Imagine","url":"https://qiwang067.github.io/ls-imagine"},{"title":"Open-World Reinforcement Learning over Long Short-Term Imagination | OpenReview","url":"https://openreview.net/forum?id=vzItLaEoDa"},{"title":"GitHub - qiwang067/LS-Imagine: [ICLR 2025 Oral] PyTorch code for the paper \"Open-World Reinforcement Learning over Long Short-Term Imagination\" · GitHub","url":"https://github.com/qiwang067/LS-Imagine"},{"title":"ICLR Poster Open-World Reinforcement Learning over Long Short-Term Imagination","url":"https://iclr.cc/virtual/2025/poster/27879"},{"title":"[2410.03618] Open-World Reinforcement Learning over Long Short-Term Imagination","url":"https://arxiv.org/abs/2410.03618"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.03618"},{"title":"ICLR 2025 Schedule","url":"https://iclr.cc/virtual/2025/calendar"}]
+
+I found the paper! Here's what I can tell you about it:
+
+## "Open-World Reinforcement Learning over Long Short-Term Imagination"
+
+The paper is authored by Jiajian Li, Qi Wang, Yunbo Wang, Xin Jin, Yang Li, Wenjun Zeng, and Xiaokang Yang and was published at ICLR 2025.
+
+The paper presents LS-Imagine, which extends the imagination horizon within a limited number of state transition steps, enabling the agent to explore behaviors that potentially lead to promising long-term feedback.
+
+**Key Challenge Addressed:**
+While various model-based methods have improved sample efficiency by learning interactive world models, these agents tend to be "short-sighted", as they are typically trained on short snippets of imagined experiences. The primary challenge in open-world decision-making is improving the exploration efficiency across a vast state space, especially for tasks that demand consideration of long-horizon payoffs.
+
+**Technical Approach:**
+To achieve this, the approach simulates goal-conditioned jumpy state transitions and compute corresponding affordance maps by zooming in on specific areas within single images.
+
+**Results:**
+The method demonstrates significant improvements over state-of-the-art techniques in MineDojo.
+
+The arXiv preprint is available at arXiv:2410.03618, and the paper was accepted as an oral presentation at ICLR 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "7e18c356-01e0-4073-a7a4-aacddd4ff3e2",
+  "tool_use_result": {
+    "query": "Li Wang Wang Jin Li Zeng Yang \"Open-World Reinforcement Learning over Long Short-Term Imagination\" ICLR 2025 arXiv 2410.03618",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RyynjXyoLzsdnbfPbMFtCi",
+        "content": [
+          {
+            "title": "Open-World Reinforcement Learning over Long Short-Term Imagination",
+            "url": "https://iclr.cc/media/iclr-2025/Slides/27879_NlVoPXk.pdf"
+          },
+          {
+            "title": "ICLR 2025 Open-World Reinforcement Learning over Long Short-Term Imagination Oral",
+            "url": "https://iclr.cc/virtual/2025/oral/31740"
+          },
+          {
+            "title": "LS-Imagine",
+            "url": "https://qiwang067.github.io/ls-imagine"
+          },
+          {
+            "title": "Open-World Reinforcement Learning over Long Short-Term Imagination | OpenReview",
+            "url": "https://openreview.net/forum?id=vzItLaEoDa"
+          },
+          {
+            "title": "GitHub - qiwang067/LS-Imagine: [ICLR 2025 Oral] PyTorch code for the paper \"Open-World Reinforcement Learning over Long Short-Term Imagination\" · GitHub",
+            "url": "https://github.com/qiwang067/LS-Imagine"
+          },
+          {
+            "title": "ICLR Poster Open-World Reinforcement Learning over Long Short-Term Imagination",
+            "url": "https://iclr.cc/virtual/2025/poster/27879"
+          },
+          {
+            "title": "[2410.03618] Open-World Reinforcement Learning over Long Short-Term Imagination",
+            "url": "https://arxiv.org/abs/2410.03618"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.03618"
+          },
+          {
+            "title": "ICLR 2025 Schedule",
+            "url": "https://iclr.cc/virtual/2025/calendar"
+          }
+        ]
+      },
+      "I found the paper! Here's what I can tell you about it:\n\n## \"Open-World Reinforcement Learning over Long Short-Term Imagination\"\n\nThe paper is authored by Jiajian Li, Qi Wang, Yunbo Wang, Xin Jin, Yang Li, Wenjun Zeng, and Xiaokang Yang and was published at ICLR 2025.\n\nThe paper presents LS-Imagine, which extends the imagination horizon within a limited number of state transition steps, enabling the agent to explore behaviors that potentially lead to promising long-term feedback.\n\n**Key Challenge Addressed:**\nWhile various model-based methods have improved sample efficiency by learning interactive world models, these agents tend to be \"short-sighted\", as they are typically trained on short snippets of imagined experiences. The primary challenge in open-world decision-making is improving the exploration efficiency across a vast state space, especially for tasks that demand consideration of long-horizon payoffs.\n\n**Technical Approach:**\nTo achieve this, the approach simulates goal-conditioned jumpy state transitions and compute corresponding affordance maps by zooming in on specific areas within single images.\n\n**Results:**\nThe method demonstrates significant improvements over state-of-the-art techniques in MineDojo.\n\nThe arXiv preprint is available at arXiv:2410.03618, and the paper was accepted as an oral presentation at ICLR 2025."
+    ],
+    "durationSeconds": 8.13345820199998
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the author full names. Let me also check a couple more:
+
+For hansen2024tdmpc2: I need to verify. The TD-MPC2 paper authors are Nicklas Hansen, Hao Su, and Xiaolong Wang. Yes, I'm confident.
+
+For henderson2018deep: Peter Henderson, Riashat Islam, Philip Bachman, Joelle Pineau, Doina Precup, David Meger. I'm very confident about this one.
+
+For lambert2020objective: Nathan Lambert, Brandon Amos, Omry Yadan, Roberto Calandra. Very confident.
+
+
+For agarwal2021precipice: Rishabh Agarwal, Max Schwarzer, Pablo Samuel Castro, Aaron Courville, Marc G. Bellemare. I'm very confident. For asadi2019combating, I noticed the search result had "Michel L. Littman" but the correct spelling is "Michael L. Littman" - I'll use the correct version. I've also verified a few more author names including Sharma, Sahil, Lakshminarayanan, Aravind S., and Ravindran, Balaraman.
+
+Now I'm going to write a Python script to handle all the author name replacements in the bib file at once, rather than doing individual sed commands. Continuing through more author name expansions, filling in the full names for several key papers in reinforcement learning and related fields. Continuing to expand author names in the bibliography entries...
+
+finishing Agarwal's full names, then moving through Lyle and Li's entries. I also need to update Lambert's booktitle from the abbreviation to the full conference name, and fix Sutton's journal field.
+
+Now I'm writing a Python script to handle all these bibliography corrections systematically rather than doing them manually with sed commands. For the appendix, I need to figure out where to insert the figure references—specifically adding citations to the factorial grid figure and the other two figures in the appropriate sections of the document.
+
+Looking at section F3 on temporal embedding, I can work the factorial grid reference naturally into the existing text about empirical findings by inserting it parenthetically where the analysis is discussed. For the gradient decomposition figure, I'll need to find the right spot in section D.2.1 where the results are being explained. I notice that section D.2.3 only contains the figure with no accompanying text—the next subsection starts immediately after. The figure caption describes actor entropy trajectories across configurations, showing convergence patterns and highlighting how the CIVO-triggering configuration behaves differently. I should add explanatory text to this section that references the figure and discusses what these entropy dynamics reveal about the model's behavior.
+
+Now I'm writing a Python script to handle both the bibliography fixes and the appendix text insertion. I'm realizing the JSON escaping is layered—the SSH tool's JSON output uses `\\` to represent a single backslash, so when I see `\\\\c{c}` that's actually `\c{c}` in the file, which is correct LaTeX. For my Python script running on the server, I can work directly with the proper LaTeX syntax without worrying about JSON encoding.
+
+Writing the author replacement script... I'm running into escaping issues with the special characters in these author names, so I'll switch to writing the Python script to a file and executing it directly on the server instead of trying to construct it inline. I need to handle the LaTeX escaping carefully for the author names—using a raw string like `r"Biedenkapp, Andr{\'e}"` will preserve the backslash properly. For the Hansen entry, I'm verifying it has exactly three authors: Nicklas Hansen, Hao Su, and Xiaolong Wang from the TD-MPC2 paper. Now I'll write out the script to append these corrected entries to the bib file.
+
+I'm identifying three figure reference insertions needed in the LaTeX document: adding a reference to `fig:factorial_grid` in section F3, inserting `fig:gradient_decomp` in section D.2.1, and adding text with `fig:entropy_dynamics` in section D.2.3 where there's currently no body text.
+
+Writing Python script... Writing the Python script... Continuing with more author name corrections... Writing bibliography fixes... Writing LaTeX fixes...
+
+I'm realizing there's an issue with how I'm handling the Biedenkapp name formatting in the BibTeX entry—the accent mark needs proper escaping in Python strings, so I should use a raw string or double backslashes to preserve the LaTeX command correctly. I'm working through the Python string escaping to get the right LaTeX output—in Python, `"\\'e"` produces the literal string `\'e`, so `"Biedenkapp, Andr{\\'e}"` will write exactly what I need to the file: `Biedenkapp, Andr{\'e}`.
+
+The real challenge is handling the escaping chain when this command runs through SSH—the string gets processed by the shell first, then by Python. Rather than wrestling with nested escaping, I'll write the Python script to a temporary file on the server using a heredoc, then execute it separately. Writing the Python script... Then I need to verify the full author string for the yu2020mopo entry to ensure it's unique across the file. Looking at the complete list, the full author sequence appears distinct, so replacing it should be safe without accidentally matching partial strings elsewhere.
+
+For the appendix.tex edits, I'm identifying the exact text passages where figure references need to be inserted—specifically finding the sentence about the empirical finding regarding trained embeddings and multi-rate exposure, then positioning the reference before "rests on". I'm working through the LaTeX escaping to figure out the actual underscore syntax in the file—whether it's `\_016e` or `_016e`—by tracing through the JSON encoding layers to see what the raw file actually contains. I'm realizing the escaping is getting complicated, so let me try a simpler approach by matching a more unique substring that's easier to handle in Python without worrying too much about all the backslash escaping. Writing the string replacement... Writing the Python script... Writing appendix fixes... I'm realizing the marker string needs to include the `\label` part since that's what actually appears in the file before the `\end{figure}` tag, so my current pattern won't match what's really there. I need to escape the backslash properly in the Python string so that `{\'e}` renders correctly in the LaTeX output—using `{\\'e}` will give me the literal backslash and single quote I need. I'm verifying that the single-quoted heredoc won't expand shell variables, so the Python code gets written exactly as intended with proper escape sequences that Python will then interpret correctly. Now I need to finalize the script and add the remaining fields.
+
+Looking at the bibliography entries, I can see the Lambert paper has `booktitle = {L4DC},` with a comma, so my replacement pattern should match that. For the Sutton entry, I notice it's missing the `booktitle` field entirely—it only has a journal field, so I'll need to add the proper conference information there. Checking the author replacement string—it matches the substring without the trailing comma, so Python's replace will handle it correctly and preserve the comma that follows in the file.
+
+I should be careful about format variations like `author={...}` without spaces, but looking at the file, all entries consistently use `author = {` with spaces. To be extra safe, I'm including the full `author = {...}` pattern in my search strings rather than just the names, which makes the replacement much more specific and less likely to accidentally match content elsewhere. I'm realizing the author names alone are distinctive enough that I don't strictly need the `author = {` prefix, but including it makes the replacement more robust and ensures I'm only matching in the correct field rather than accidentally hitting author names elsewhere in the file.
+
+Now I need to verify the remaining author names I haven't checked yet—Lyle, Rowland, and Dabney are definitely correct, and I've confirmed the longer list of seven authors as well. I'm confident in all the replacements, so let me write out the final script and handle the LaTeX encoding for Biedenkapp's name.
+
+Looking at how other accented characters are encoded in the bibliography file, I can see the pattern: `{\'e}` for é, `{\c{c}}` for ç, and similar constructions for other diacritics. So for André, I need to use `Andr{\'e}`, which in a Python string becomes `"Andr{\\'e}"`. Let me verify this matches the existing encoding conventions in the bib file.
+
+Now I'm tracing through the JSON encoding layers to understand what's actually stored. The SSH tool returns JSON with escaped backslashes, so `\\\\` in the raw JSON text represents `\\` in the actual JSON string value, which then represents a single backslash in the file content. I need to work through this carefully to make sure my Python string produces the correct output in the final bib file. I'm realizing that Python will correctly interpret the escaped backslash, so `\\'` becomes a single backslash in the string, which means the file will contain the proper LaTeX syntax `Andr{\'e}`. Now I need to decide on the best way to execute this—I could use a heredoc with ssh_execute to run the Python script directly, or construct it piece by piece with sed commands, but the heredoc approach seems cleaner for handling all the replacements at once.
+
+Before I finalize, I should verify the author corrections are accurate. For the TD-MPC2 paper, the authors are Nicklas Hansen, Hao Su, and Xiaolong Wang, and I need to make sure the `booktitle = {L4DC}` gets expanded to the full name "Learning for Dynamics and Control". Let me construct the complete fix script now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "66754b57-1422-408e-96da-0ade779045bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpLYBc6KL9gEk18s7uf5RN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6212,
+      "cache_read_input_tokens": 55106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+已收集所有信息。现在执行修复——通过一个 Python 脚本在服务器上完成所有修改。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "3c62b168-b741-4bbe-a53d-3cde8181758c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpLYBc6KL9gEk18s7uf5RN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6212,
+      "cache_read_input_tokens": 55106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RjPkxg9TXjnSf6cv8Wo82J`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "cat > /tmp/fix_paper.py << 'PYEOF'\n#!/usr/bin/env python3\n\n# ===== Fix references.bib =====\nbib_path = '/root/autodl-tmp/event-gated-adaptive-horizon/paper/references.bib'\nwith open(bib_path, 'r') as f:\n    bib = f.read()\n\n# 1. Author name replacements (18 entries)\nauthor_fixes = [\n    ('author = {Sutton, R.S and Precup, D and Singh, S}',\n     'author = {Sutton, Richard S. and Precup, Doina and Singh, Satinder}'),\n    ('author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M}',\n     'author = {Hafner, Danijar and Lillicrap, Timothy and Ba, Jimmy and Norouzi, Mohammad}'),\n    ('author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B}',\n     'author = {Sharma, Sahil and Lakshminarayanan, Aravind S. and Ravindran, Balaraman}'),\n    ('author = {Janner, M and Fu, J and Zhang, M and Levine, S}',\n     'author = {Janner, Michael and Fu, Justin and Zhang, Marvin and Levine, Sergey}'),\n    ('author = {Asadi, K and Misra, D and Kim, S and Littman, M.L}',\n     'author = {Asadi, Kavosh and Misra, Dipendra and Kim, Seungchan and Littman, Michael L.}'),\n    ('author = {Hansen, N and Su, H and Wang, X}',\n     'author = {Hansen, Nicklas and Su, Hao and Wang, Xiaolong}'),\n    ('author = {Yu, T and Thomas, G and Yu, L and Ermon, S and Zou, J and Levine, S and Finn, C and Ma, T}',\n     'author = {Yu, Tianhe and Thomas, Garrett and Yu, Lantao and Ermon, Stefano and Zou, James and Levine, Sergey and Finn, Chelsea and Ma, Tengyu}'),\n    ('author = {Thrun, S and Schwartz, A}',\n     'author = {Thrun, Sebastian and Schwartz, Anton}'),\n    ('author = {Lu, T and Schuurmans, D and Boutilier, C}',\n     'author = {Lu, Tyler and Schuurmans, Dale and Boutilier, Craig}'),\n    ('author = {Biedenkapp, A and Rajan, R and Hutter, F and Lindauer, M}',\n     \"author = {Biedenkapp, Andr{\\\\'e} and Rajan, Raghu and Hutter, Frank and Lindauer, Marius}\"),\n    ('author = {Hafner, D and Lillicrap, T and Norouzi, M and Ba, J}',\n     'author = {Hafner, Danijar and Lillicrap, Timothy and Norouzi, Mohammad and Ba, Jimmy}'),\n    ('author = {Gumbsch, C and Sajid, N and Martius, G and Butz, M.V}',\n     'author = {Gumbsch, Christian and Sajid, Noor and Martius, Georg and Butz, Martin V.}'),\n    ('author = {Mattes, P and Schlosser, R and Herbrich, R}',\n     'author = {Mattes, Paul and Schlosser, Rainer and Herbrich, Ralf}'),\n    ('author = {Henderson, P and Islam, R and Bachman, P and Pineau, J and Precup, D and Meger, D}',\n     'author = {Henderson, Peter and Islam, Riashat and Bachman, Philip and Pineau, Joelle and Precup, Doina and Meger, David}'),\n    ('author = {Lambert, N and Amos, B and Yadan, O and Calandra, R}',\n     'author = {Lambert, Nathan and Amos, Brandon and Yadan, Omry and Calandra, Roberto}'),\n    ('author = {Agarwal, R and Schwarzer, M and Castro, P.S and Courville, A.C and Bellemare, M}',\n     'author = {Agarwal, Rishabh and Schwarzer, Max and Castro, Pablo Samuel and Courville, Aaron C. and Bellemare, Marc G.}'),\n    ('author = {Lyle, C and Rowland, M and Dabney, W}',\n     'author = {Lyle, Clare and Rowland, Mark and Dabney, Will}'),\n    ('author = {Li, J and Wang, Q and Wang, Y and Jin, X and Li, Y and Zeng, W and Yang, X}',\n     'author = {Li, Jiajian and Wang, Qi and Wang, Yunbo and Jin, Xin and Li, Yang and Zeng, Wenjun and Yang, Xiaokang}'),\n]\n\nfor old, new in author_fixes:\n    if old in bib:\n        bib = bib.replace(old, new)\n        print(f'  OK: {old[12:50]}...')\n    else:\n        print(f'  MISS: {old[12:50]}...')\n\n# 2. lambert2020objective booktitle fix\nif 'booktitle = {L4DC}' in bib:\n    bib = bib.replace('booktitle = {L4DC}', 'booktitle = {Learning for Dynamics and Control}')\n    print('  OK: lambert booktitle L4DC -> full name')\nelse:\n    print('  MISS: lambert booktitle')\n\n# 3. sutton1999options journal/volume/pages fix\nold_j = 'journal = {Artificial Intelligence 112},'\nnew_j = 'journal = {Artificial Intelligence},\\n  volume = {112},\\n  pages = {181--215},'\nif old_j in bib:\n    bib = bib.replace(old_j, new_j)\n    print('  OK: sutton journal split + pages added')\nelse:\n    print('  MISS: sutton journal')\n\nwith open(bib_path, 'w') as f:\n    f.write(bib)\nprint('SAVED references.bib')\n\n# ===== Fix appendix.tex =====\napp_path = '/root/autodl-tmp/event-gated-adaptive-horizon/paper/sections/appendix.tex'\nwith open(app_path, 'r') as f:\n    app = f.read()\n\n# 4a. fig:factorial_grid reference\nold_t = 'jointly predict CIVO rests on'\nnew_t = 'jointly predict CIVO (Figure~\\\\ref{fig:factorial_grid}) rests on'\nif old_t in app:\n    app = app.replace(old_t, new_t, 1)\n    print('  OK: factorial_grid ref added')\nelse:\n    print('  MISS: factorial_grid context')\n\n# 4b. fig:gradient_decomp reference\nold_t = 'The gradient decomposition reveals a counterintuitive structure:'\nnew_t = 'The gradient decomposition (Figure~\\\\ref{fig:gradient_decomp}) reveals a counterintuitive structure:'\nif old_t in app:\n    app = app.replace(old_t, new_t, 1)\n    print('  OK: gradient_decomp ref added')\nelse:\n    print('  MISS: gradient_decomp context')\n\n# 4c. fig:entropy_dynamics - add body text after the figure\nmarker = '\\\\label{fig:entropy_dynamics}\\n\\\\end{figure}'\nif marker in app:\n    insert_text = '\\n\\nFigure~\\\\ref{fig:entropy_dynamics} confirms that actor entropy dynamics alone do not distinguish CIVO-triggering configurations from healthy ones, consistent with CIVO operating primarily through the value estimation channel rather than entropy collapse.'\n    # Find the marker + blank line, insert text between figure end and next subsection\n    old_block = marker + '\\n\\n'\n    new_block = marker + insert_text + '\\n\\n'\n    app = app.replace(old_block, new_block, 1)\n    print('  OK: entropy_dynamics ref added')\nelse:\n    print('  MISS: entropy_dynamics marker')\n\nwith open(app_path, 'w') as f:\n    f.write(app)\nprint('SAVED appendix.tex')\nPYEOF\npython3 /tmp/fix_paper.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "2cbaafac-a9ee-4133-9aa1-c2442841e20e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpLYBc6KL9gEk18s7uf5RN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6212,
+      "cache_read_input_tokens": 55106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6212
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-24T13:46:57.087Z_
+
+<details><summary>↩ Tool result · `toolu_01RjPkxg9TXjnSf6cv8Wo82J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  OK: tton, R.S and Precup, D and Singh, S}...\\n  OK: fner, D and Lillicrap, T and Ba, J and...\\n  OK: arma, S and Lakshminarayanan, A.S and ...\\n  OK: nner, M and Fu, J and Zhang, M and Lev...\\n  OK: adi, K and Misra, D and Kim, S and Lit...\\n  OK: nsen, N and Su, H and Wang, X}...\\n  OK: , T and Thomas, G and Yu, L and Ermon,...\\n  OK: run, S and Schwartz, A}...\\n  OK: , T and Schuurmans, D and Boutilier, C...\\n  OK: edenkapp, A and Rajan, R and Hutter, F...\\n  OK: fner, D and Lillicrap, T and Norouzi, ...\\n  OK: mbsch, C and Sajid, N and Martius, G a...\\n  OK: ttes, P and Schlosser, R and Herbrich,...\\n  OK: nderson, P and Islam, R and Bachman, P...\\n  OK: mbert, N and Amos, B and Yadan, O and ...\\n  OK: arwal, R and Schwarzer, M and Castro, ...\\n  OK: le, C and Rowland, M and Dabney, W}...\\n  OK: , J and Wang, Q and Wang, Y and Jin, X...\\n  OK: lambert booktitle L4DC -> full name\\n  OK: sutton journal split + pages added\\nSAVED references.bib\\n  OK: factorial_grid ref added\\n  OK: gradient_decomp ref added\\n  OK: entropy_dynamics ref added\\nSAVED appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "ac604fba-77f2-4bb9-a943-e875ac6c8fa5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  OK: tton, R.S and Precup, D and Singh, S}...\\\\n  OK: fner, D and Lillicrap, T and Ba, J and...\\\\n  OK: arma, S and Lakshminarayanan, A.S and ...\\\\n  OK: nner, M and Fu, J and Zhang, M and Lev...\\\\n  OK: adi, K and Misra, D and Kim, S and Lit...\\\\n  OK: nsen, N and Su, H and Wang, X}...\\\\n  OK: , T and Thomas, G and Yu, L and Ermon,...\\\\n  OK: run, S and Schwartz, A}...\\\\n  OK: , T and Schuurmans, D and Boutilier, C...\\\\n  OK: edenkapp, A and Rajan, R and Hutter, F...\\\\n  OK: fner, D and Lillicrap, T and Norouzi, ...\\\\n  OK: mbsch, C and Sajid, N and Martius, G a...\\\\n  OK: ttes, P and Schlosser, R and Herbrich,...\\\\n  OK: nderson, P and Islam, R and Bachman, P...\\\\n  OK: mbert, N and Amos, B and Yadan, O and ...\\\\n  OK: arwal, R and Schwarzer, M and Castro, ...\\\\n  OK: le, C and Rowland, M and Dabney, W}...\\\\n  OK: , J and Wang, Q and Wang, Y and Jin, X...\\\\n  OK: lambert booktitle L4DC -> full name\\\\n  OK: sutton journal split + pages added\\\\nSAVED references.bib\\\\n  OK: factorial_grid ref added\\\\n  OK: gradient_decomp ref added\\\\n  OK: entropy_dynamics ref added\\\\nSAVED appendix.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  OK: tton, R.S and Precup, D and Singh, S}...\\n  OK: fner, D and Lillicrap, T and Ba, J and...\\n  OK: arma, S and Lakshminarayanan, A.S and ...\\n  OK: nner, M and Fu, J and Zhang, M and Lev...\\n  OK: adi, K and Misra, D and Kim, S and Lit...\\n  OK: nsen, N and Su, H and Wang, X}...\\n  OK: , T and Thomas, G and Yu, L and Ermon,...\\n  OK: run, S and Schwartz, A}...\\n  OK: , T and Schuurmans, D and Boutilier, C...\\n  OK: edenkapp, A and Rajan, R and Hutter, F...\\n  OK: fner, D and Lillicrap, T and Norouzi, ...\\n  OK: mbsch, C and Sajid, N and Martius, G a...\\n  OK: ttes, P and Schlosser, R and Herbrich,...\\n  OK: nderson, P and Islam, R and Bachman, P...\\n  OK: mbert, N and Amos, B and Yadan, O and ...\\n  OK: arwal, R and Schwarzer, M and Castro, ...\\n  OK: le, C and Rowland, M and Dabney, W}...\\n  OK: , J and Wang, Q and Wang, Y and Jin, X...\\n  OK: lambert booktitle L4DC -> full name\\n  OK: sutton journal split + pages added\\nSAVED references.bib\\n  OK: factorial_grid ref added\\n  OK: gradient_decomp ref added\\n  OK: entropy_dynamics ref added\\nSAVED appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 18 author fixes, the lambert booktitle fix, the sutton journal fix, and all 3 appendix figure references were applied successfully. Now let me compile the paper to verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "089a5821-0099-4fe2-a4b8-8c51b043847c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUuy4D9jsPAz8zP1UGrbZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17619,
+      "cache_read_input_tokens": 61318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+全部 20 项修改成功。现在编译验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "1b03e2e1-caee-479a-ba81-97e9b8939aaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUuy4D9jsPAz8zP1UGrbZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17619,
+      "cache_read_input_tokens": 61318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MPKpRNFdkxfdKtLGrgJFnx`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "837fa54d-0f24-4d2f-8b16-b933519a2848",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JUuy4D9jsPAz8zP1UGrbZd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17619,
+      "cache_read_input_tokens": 61318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17619
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-24T13:47:08.169Z_
+
+<details><summary>↩ Tool result · `toolu_01MPKpRNFdkxfdKtLGrgJFnx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633089 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6f5953a8-bb3e-4d67-950e-8dfda94731a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\\\n/times/utmri8a.pfb>\\\\nOutput written on main.pdf (24 pages, 633089 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633089 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01S8Q5xNc5582jAeBJBDAyR8`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && bibtex main 2>&1 | tail -10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "63f06c96-1507-4b40-94de-d44c7a082c5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GYJXT1Y2K6hxNQt9fGdBub",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 424,
+      "cache_read_input_tokens": 78937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 424
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-24T13:47:12.715Z_
+
+<details><summary>↩ Tool result · `toolu_01S8Q5xNc5582jAeBJBDAyR8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)\\nThe top-level auxiliary file: main.aux\\nThe style file: icml2026.bst\\nDatabase file #1: references.bib\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "3886533d-0e17-4252-8e08-c91bbc79383b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)\\\\nThe top-level auxiliary file: main.aux\\\\nThe style file: icml2026.bst\\\\nDatabase file #1: references.bib\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)\\nThe top-level auxiliary file: main.aux\\nThe style file: icml2026.bst\\nDatabase file #1: references.bib\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011PzbBAN9X8rt3jzvqeGJtx`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "7e272448-7f06-48ce-9890-a2901e4e5951",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JW64RpX7mGA4XBmLvVr4dq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 270,
+      "cache_read_input_tokens": 79361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 270
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-24T13:47:19.242Z_
+
+<details><summary>↩ Tool result · `toolu_011PzbBAN9X8rt3jzvqeGJtx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633133 bytes).\\nTranscript written on main.log.\\nive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633133 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "74f237f5-e30f-4629-a8a3-34b907abf3d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\\\n/times/utmri8a.pfb>\\\\nOutput written on main.pdf (24 pages, 633133 bytes).\\\\nTranscript written on main.log.\\\\nive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\\\n/times/utmri8a.pfb>\\\\nOutput written on main.pdf (24 pages, 633133 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633133 bytes).\\nTranscript written on main.log.\\nive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/\\nfonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw\\n/times/utmri8a.pfb>\\nOutput written on main.pdf (24 pages, 633133 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JNv1D38Rfzxfc6BKJNkQUL`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && grep -c \"^!\" main.log && grep -ic \"undefined\" main.log && grep -ic \"citation.*undefined\" main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "fa046d00-e79c-4fe3-94b2-55e5c7482031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FyonERXinWpwDVZstynCdC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 79631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 503
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-24T13:47:23.928Z_
+
+<details><summary>↩ Tool result · `toolu_01JNv1D38Rfzxfc6BKJNkQUL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && grep -c \\\"^!\\\" main.log && grep -ic \\\"undefined\\\" main.log && grep -ic \\\"citation.*undefined\\\" main.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n0\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "373ce8f9-cdec-4df7-94ea-12c08748c22b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && grep -c \\\\\\\"^!\\\\\\\" main.log && grep -ic \\\\\\\"undefined\\\\\\\" main.log && grep -ic \\\\\\\"citation.*undefined\\\\\\\" main.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n0\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && grep -c \\\"^!\\\" main.log && grep -ic \\\"undefined\\\" main.log && grep -ic \\\"citation.*undefined\\\" main.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n0\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The first grep returned 0 (no errors starting with `!`). The second grep (checking for "undefined") returned exit code 1, meaning no matches found — no undefined references or citations.
+
+Let me verify this more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "609481a1-3c7e-4b08-aa70-fd4ee8e11a04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136As28sQ8WNSWFNDnEFRmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 80134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dyit5ghoWEMfd2v9AZDJms`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "account": "root",
+  "warn": true,
+  "command": "cd /root/autodl-tmp/event-gated-adaptive-horizon/paper/ && grep -c \"^!\" main.log; grep -ic \"undefined\" main.log; grep -ic \"Warning.*Citation\" main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6a6b8096-4906-4608-a460-e5fd1b780fb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0136As28sQ8WNSWFNDnEFRmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 80134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-24T13:47:33.301Z_
+
+<details><summary>↩ Tool result · `toolu_01Dyit5ghoWEMfd2v9AZDJms`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n0\\n0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "6fcaa07e-9fd0-469e-9053-a7520961fdf7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n0\\\\n0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n0\\n0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 89_
+
+编译通过，0 errors，0 undefined references，0 citation warnings。
+
+修改汇总：
+
+**references.bib**（20 项修改）：
+- 18 条 bib 条目的作者名从缩写改为全名（Sutton R.S → Richard S.、Hafner D → Danijar 等）
+- `lambert2020objective` booktitle: `L4DC` → `Learning for Dynamics and Control`
+- `sutton1999options` journal: `{Artificial Intelligence 112}` 拆为 `journal = {Artificial Intelligence}, volume = {112}, pages = {181--215}`
+
+**sections/appendix.tex**（3 项修改）：
+- F3 节（~line 388）：插入 `(Figure~\ref{fig:factorial_grid})` 
+- D.2.1 节（~line 550）：插入 `(Figure~\ref{fig:gradient_decomp})`
+- D.2.3 节（~line 586）：添加引用 `fig:entropy_dynamics` 的段落文字
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "uuid": "de2613c4-fd64-4cfa-8c28-9386303bd024",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1bn9nZvD2hc36NAUh1qni",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 80453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 90_
+
+编译通过，0 errors，0 undefined references，0 citation warnings。
+
+修改汇总：
+
+**references.bib**（20 项修改）：
+- 18 条 bib 条目的作者名从缩写改为全名（Sutton R.S → Richard S.、Hafner D → Danijar 等）
+- `lambert2020objective` booktitle: `L4DC` → `Learning for Dynamics and Control`
+- `sutton1999options` journal: `{Artificial Intelligence 112}` 拆为 `journal = {Artificial Intelligence}, volume = {112}, pages = {181--215}`
+
+**sections/appendix.tex**（3 项修改）：
+- F3 节（~line 388）：插入 `(Figure~\ref{fig:factorial_grid})` 
+- D.2.1 节（~line 550）：插入 `(Figure~\ref{fig:gradient_decomp})`
+- D.2.3 节（~line 586）：添加引用 `fig:entropy_dynamics` 的段落文字
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 496245,
+  "duration_api_ms": 510031,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "a4cf8e85-02c7-47cf-a70a-b24dc2df622d",
+  "total_cost_usd": 1.63380225,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 68933,
+    "cache_read_input_tokens": 937522,
+    "output_tokens": 24934,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 68933,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 279,
+        "cache_read_input_tokens": 80453,
+        "cache_creation_input_tokens": 321,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 321
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 53615,
+      "outputTokens": 1426,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 5,
+      "costUSD": 0.11074500000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 24934,
+      "cacheReadInputTokens": 937522,
+      "cacheCreationInputTokens": 68933,
+      "webSearchRequests": 0,
+      "costUSD": 1.52305725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3f1e25d5-06f1-4b78-a2b1-aace968ae2e9"
+}
+```
+
+</details>
+
+---

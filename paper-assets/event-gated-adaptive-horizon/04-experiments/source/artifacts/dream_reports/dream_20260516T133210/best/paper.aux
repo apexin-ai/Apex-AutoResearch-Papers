@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sutton1999options}
+\citation{lakshminarayanan2017dynamic}
+\citation{hafner2020dreamer,hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{sutton1999options}
+\citation{sharma2017figar}
+\citation{hafner2023dreamerv3}
+\citation{hafner2020dreamer,hafner2021dreamerv2,hafner2023dreamerv3}
+\citation{micheli2023iris}
+\citation{robine2023twm}
+\citation{nhu2025tawm}
+\citation{janner2019mbpo}
+\citation{hafner2023dreamerv3}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal abstraction in RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{World-model RL.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal abstraction in world models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value overestimation in MBRL.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Base Architecture}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Variable-Rate Imagination}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Factorial Experiment Design}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Diagnostic Metrics}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Normalized Value-to-Eval ratio (NVE).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Actor entropy.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{dt-embedding cosine similarity.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Environments}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}All Variable-Rate Configurations Degrade Performance (C1)}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variable-rate imagination consistently degrades performance in Walker Walk.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:c1}{{1}{3}{Variable-rate imagination consistently degrades performance in Walker Walk}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Trained dt-Embedding Triggers Pathological Value Overestimation (C2)}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:c2}{{4.2}{3}{Trained dt-Embedding Triggers Pathological Value Overestimation (C2)}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-seed NVE trajectories.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Causal control: dt\_embed\_dim$=$0.}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 2$\times $2 dt-embedding ablation matrix (Walker Walk, H$=$8). Only trained dt-embedding with active gradient flow produces pathological NVE.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{4}{2$\times $2 dt-embedding ablation matrix (Walker Walk, H$=$8). Only trained dt-embedding with active gradient flow produces pathological NVE}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces NVE trajectory comparison for trained dt-embedding (008d), Walker Walk. Both seeds cross the 1.5$\times $ threshold; collapse is stochastic.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:nve_seeds}{{3}{4}{NVE trajectory comparison for trained dt-embedding (008d), Walker Walk. Both seeds cross the 1.5$\times $ threshold; collapse is stochastic}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Untrained dt-Embedding Provides Structural Protection (C3)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}RSSM Fidelity Gap Drives CIVO (Mechanistic Evidence)}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:rssm}{{4.4}{4}{RSSM Fidelity Gap Drives CIVO (Mechanistic Evidence)}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gradient decomposition.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{dt-embedding cosine similarity.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Value Prediction Distribution Analysis}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces dt\_embed\_dim$=$0 extended trajectory (008f seed 2). NVE never crosses 1.5$\times $.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:008f}{{4}{5}{dt\_embed\_dim$=$0 extended trajectory (008f seed 2). NVE never crosses 1.5$\times $}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-seed V-recovery with untrained dt-embedding (008a, Walker Walk). NVE is structurally suppressed below 1.0$\times $ at 35K+.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:008a}{{5}{5}{Cross-seed V-recovery with untrained dt-embedding (008a, Walker Walk). NVE is structurally suppressed below 1.0$\times $ at 35K+}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Environment Replication}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cheetah Run.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cartpole Swingup.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hopper Hop.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-environment summary.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}NVE Threshold Sensitivity Analysis}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Actor Entropy Distinguishes Two Collapse Pathways}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RSSM prediction fidelity. The trained dt-embedding (008d) shows a 2.78$\times $ reward gap---the direct driver of CIVO. Note: 008d's low obs gap ratio (1.30$\times $) is misleading; its dt$=$1 absolute error (41.31) is already 3$\times $ baseline.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:rssm}{{6}{6}{RSSM prediction fidelity. The trained dt-embedding (008d) shows a 2.78$\times $ reward gap---the direct driver of CIVO. Note: 008d's low obs gap ratio (1.30$\times $) is misleading; its dt$=$1 absolute error (41.31) is already 3$\times $ baseline}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces dt-embedding gradient decomposition. 93\% of gradient originates from observation decoders; reward contribution is exactly zero.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:grad}{{7}{6}{dt-embedding gradient decomposition. 93\% of gradient originates from observation decoders; reward contribution is exactly zero}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Pathway A vs.\ Pathway B: Detailed Comparison}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}dt$=$1 Imagination as Partial Mitigation (C6)}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Frozen dt-Embedding: Gradient Starvation}{6}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Uncertainty-Gated Imagination Truncation (Pilot)}{6}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The CIVO mechanism.}{6}{section*.16}\protected@file@percent }
+\citation{nhu2025tawm}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces dt-embedding cosine similarity ($e_{\text  {dt}=1}$ vs.\ $e_{\text  {dt}=2}$). Trained embedding divergence correlates with NVE onset.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:cosine}{{8}{7}{dt-embedding cosine similarity ($e_{\text {dt}=1}$ vs.\ $e_{\text {dt}=2}$). Trained embedding divergence correlates with NVE onset}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cheetah Run CIVO NVE trajectories. All 3 seeds exceed the 1.5$\times $ threshold (dashed line).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:cheetah_civo}{{9}{7}{Cheetah Run CIVO NVE trajectories. All 3 seeds exceed the 1.5$\times $ threshold (dashed line)}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why TAWM succeeds but imagination fails.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multiple vulnerability pathways.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Value self-correction.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{hafner2020dreamer}{{1}{2020}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2021dreamerv2}{{2}{2021}{{Hafner et~al.}}{{}}}
+\bibcite{hafner2023dreamerv3}{{3}{2023}{{Hafner et~al.}}{{}}}
+\bibcite{sutton1999options}{{4}{1999}{{Sutton et~al.}}{{}}}
+\bibcite{lakshminarayanan2017dynamic}{{5}{2017}{{Lakshminarayanan et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-environment CIVO summary. Trained dt-embedding reliably triggers NVE$>$1.5$\times $ regardless of observation dimensionality. Threshold accuracy: 16/16 (trained above) + 0/16 false positives.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:cross_env}{{10}{8}{Cross-environment CIVO summary. Trained dt-embedding reliably triggers NVE$>$1.5$\times $ regardless of observation dimensionality. Threshold accuracy: 16/16 (trained above) + 0/16 false positives}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces NVE threshold sensitivity analysis (Walker Walk, 35K+ window). 1.5$\times $ is the unique threshold achieving perfect classification.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:threshold}{{11}{8}{NVE threshold sensitivity analysis (Walker Walk, 35K+ window). 1.5$\times $ is the unique threshold achieving perfect classification}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{sharma2017figar}{{6}{2017}{{Sharma et~al.}}{{}}}
+\bibcite{micheli2023iris}{{7}{2023}{{Micheli et~al.}}{{}}}
+\bibcite{robine2023twm}{{8}{2023}{{Robine et~al.}}{{}}}
+\bibcite{nhu2025tawm}{{9}{2025}{{Nhu et~al.}}{{}}}
+\bibcite{lu2018nondelusional}{{10}{2018}{{Lu et~al.}}{{}}}
+\bibcite{janner2019mbpo}{{11}{2019}{{Janner et~al.}}{{}}}
+\bibcite{agarwal2021deep}{{12}{2021}{{Agarwal et~al.}}{{}}}
+\bibcite{henderson2018deep}{{13}{2018}{{Henderson et~al.}}{{}}}
+\bibcite{qiao2023primacy}{{14}{2023}{{Qiao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-environment threshold accuracy at 1.5$\times $ NVE.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:cross_threshold}{{12}{9}{Cross-environment threshold accuracy at 1.5$\times $ NVE}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Actor entropy at collapse/stability. Pathway A (CIVO) and Pathway B show opposite entropy dynamics.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:entropy}{{13}{9}{Actor entropy at collapse/stability. Pathway A (CIVO) and Pathway B show opposite entropy dynamics}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Pathway A (CIVO, dt$=$2 imagination) vs.\ Pathway B (eval-driven, dt$=$1 imagination). Qualitatively distinct dynamics despite both producing high NVE.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:pathways}{{14}{10}{Pathway A (CIVO, dt$=$2 imagination) vs.\ Pathway B (eval-driven, dt$=$1 imagination). Qualitatively distinct dynamics despite both producing high NVE}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces 008e\_v3 cross-seed summary (dt$=$1 imagination, trained dt-embedding). Pathway A is eliminated; Pathway B affects 1/4 seeds.}}{10}{table.15}\protected@file@percent }
+\newlabel{tab:mitigation}{{15}{10}{008e\_v3 cross-seed summary (dt$=$1 imagination, trained dt-embedding). Pathway A is eliminated; Pathway B affects 1/4 seeds}{table.15}{}}
+\gdef \@abspage@last{10}

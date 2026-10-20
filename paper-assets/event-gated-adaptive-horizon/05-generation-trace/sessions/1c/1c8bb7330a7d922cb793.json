@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c8bb7330a7d922cb793",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose westd 19154 connectivity",
+  "task_key": "worker_diagnose_westd-19154-connectivity_20260526T004353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-19154-connectivity_20260526T004353_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "f2ed02c77c5b0bb3f236f460517cb710457bd5a8040a6a4e4b62ffd2c1c0b66f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**服务器不可达。** 错误信息：`Unable to connect to port 19154 on 36.103.198.204`\n\n与实验失败时的错误完全一致，说明实例仍处于关机/重启状态，或端口已变更。\n\n### 结论\n\n| 项目 | 状态 |\n|------|------|\n| SSH 连接 | **失败** — 端口 19154 不通 |\n| 3 个实验 | **无法确认** — 需要恢复连接后检查 |\n\n### 建议操作\n\nAutoDL 实例重启后端口会变。需要去 AutoDL 控制台确认：\n1. 实例是否还存在（可能因欠费/超时被释放）\n2. 如果实例仍在，获取新的 SSH 端口号，更新 `~/.ssh/config` 中 westd-19154 的配置后重试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-19154-connectivity.md"
+}

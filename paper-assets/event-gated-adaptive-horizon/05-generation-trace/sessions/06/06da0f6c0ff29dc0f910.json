@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06da0f6c0ff29dc0f910",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779849142.md",
+  "task_key": "loop_24_1779849142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779849142.md",
+    "occurrence": 1,
+    "bytes": 3307,
+    "sha256": "4c63fd3fb3125e3eac28b40829e25fcb820af3b7f150d1389552adadbeebcb11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:28:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: westd-51268 cuda:0 + cuda:1（无其他服务器可用，bjb1-45299 宕机无卡）\n- **数据锁定截止 2026-05-27**，ICML 2026 投稿 DDL 2026-05-29。禁止启动新训练实验\n- RSSM 数据只用 v3_standardized 版本（v1/v2/dry-run 全部废弃，论文中不得引用旧版本数字）\n- exp_102/103 已被 D157 取消，不要重新提交\n- 008e_v3 旧数据（gate_max_dt=8 bug）已废弃，C6 只用当前代码 4/4 数据（exp_070/072/080/081）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-51268，2× RTX PRO 6000 Blackwell (96GB)，CUDA 13.2\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon/`\n- **Python**: `/root/miniconda3/bin/python`（conda base env，不是 venv）\n- **项目目录**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/`\n- **代码已从 bjb1 rsync 到 westd-51268**，CLI flag 统一为 `--gate_dt_embed_dim`\n- **活跃进程**: 无（0 running experiments，GPU 全空闲）\n- **活跃 cron**: 无（需 reconcile 确认）\n- **旧服务器**: bjb1-45299 无卡不可用；westd-19154 已退役，旧 checkpoint 全丢（metrics 在 registry）\n\n### 3. 📊 当前状态\n**刚完成**: Paper Agent 已完成 D158 RSSM 叙事同步到 6 个 tex 文件（ROADMAP 第 34 行已打勾），Reviewer 审查通过（3 处残留已修复）。\n\n**实验全景**: 184 个实验全部完成（94 success / 41 negative / 16 failed / 0 running）。核心 claims C1-C6 全部 CONFIRMED：\n- C2 onset rate 6/7 (86%), Fisher p<0.0001\n- C6 mitigation 4/4 deterministic (当前代码)\n- RSSM v3: Walker reward gap 1.63×, Cheetah 1.00×\n\n**等待中**: 仅等用户确认 → 数据锁定声明。无 Worker/Cron 回调待处理。\n\n### 4. 📋 待办（条件触发式）\n- 用户确认数据锁定 → 声明 data lock，进入提交准备（reference audit + LaTeX 编译 + 最终 PDF 校对）\n- Director 指示提交 → spawn Worker 做 reference-audit + LaTeX compile + 上传 ICML portal\n- 如果 Director 要求补实验（不太可能） → 只能用 westd-51268 cuda:0/1，注意数据盘重启后会清空\n\n### 5. 🎯 战略上下文\n**论文核心**: DreamerV3 中 trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），是 multi-joint locomotion 特异性现象。Frozen/removed dt_emb 可阻止。这是 diagnostic analysis paper（非 method paper）。\n\n**D158 关键决策**: RSSM fidelity gap 从\"普适机制\"降级为\"Walker 特异传导路径\"。Cheetah reward gap = 1.00× 但仍有 3/4 CIVO onset → trained dt_emb 是统一根因，但传导路径因环境而异。**不要把 RSSM gap 说成 universal mechanism。**\n\n**最易判断错的事**:\n- 008e_v3 有历史混淆：旧代码有 parameter routing bug (gate_max_dt=8)，产生了 2/5 CIVO。**当前代码 4/4 clean**。不要被旧数据误导\n- NVE 诊断不能用单一阈值 >1.5×（frozen exp 有 transient spikes），必须用三维组合标准（peak + 持续性 + 时序因果）\n- Cheetah CIVO onset 是 stochastic (3/4)，不要说 \"consistently\" 或 \"always\"\n- ve_ratio 恢复 ≠ policy 恢复（exp_097 证明 CIVO 造成不可逆 policy 损伤）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779849142.md"
+}

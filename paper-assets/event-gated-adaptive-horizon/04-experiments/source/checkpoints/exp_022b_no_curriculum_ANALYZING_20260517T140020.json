@@ -1,0 +1,66 @@
+{
+  "exp_id": "exp_022b_no_curriculum",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:49:08.181Z",
+    "updated_at": "2026-05-17T14:00:20.677Z",
+    "hypothesis": "Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing the gate to learn meaningful temporal abstraction (gate_dt_1_frac < 1.0). exp_022 was inconclusive because curriculum locked gate for the entire run; this rerun removes that confound.",
+    "parent": "exp_022_untrained_dt_emb_learned_gate",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "670554",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log",
+      "submitted_at": "2026-05-17T10:51:56.898Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "670554",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_022b_no_curriculum.log",
+    "reproduce": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --gate_curriculum_phase1 0 --gate_curriculum_phase2 0 --imag_horizon 8 --logdir ./logdir/exp_022b_no_curriculum\"",
+      "code_commit": "3328f53cb32cda27e85b099d560256aeb01db998",
+      "finished_at": "2026-05-17T13:56:27.483Z"
+    },
+    "metrics": {
+      "latest_step": 35000,
+      "total_steps": 105000,
+      "progress_pct": 34,
+      "eval_return_25K": 169.5,
+      "eval_return_35K": 140.4,
+      "value_mean_35K": 21.4,
+      "ve_ratio_35K": 0.152,
+      "gate_dt_mean": 3.48,
+      "gate_dt_1_frac": 0.124,
+      "gate_entropy": 1.88,
+      "gate_dt_std": 1.7,
+      "gate_exploring": true,
+      "civo_alert": 0,
+      "eta_hours": 1.8
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T13:56:29.726988+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_022b_no_curriculum/checkpoint.ckpt",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T14:00:20.995296+00:00",
+  "trigger": "update_registry"
+}

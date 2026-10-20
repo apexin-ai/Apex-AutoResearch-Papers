@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19d6286940659d3d6cee",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops stop s4ext launch extensions",
+  "task_key": "worker_ops_stop-s4ext-launch-extensions_20260519T090137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_stop-s4ext-launch-extensions_20260519T090137_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "de25f489e7f624538f38b05921482757fc8bd1192954ddb0fe9e17a674d66109"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成。\n\n**任务 A** — `exp_023_cheetah_baseline_s4_extended` 已通过 Ctrl-C 停止（tmux session `exp_023_s4_ext` 已退出），registry 更新为 DONE/success，metrics 已录入。\n\n**任务 B** — `exp_001_baseline_s3_extended` 在 cuda:0 运行中，seed=3，从 120K step resume，目标 505K。tmux session: `exp_s3_ext`。\n\n**任务 C** — `exp_001_baseline_s4_extended` 在 cuda:1 运行中，seed=4，从 112K step resume，目标 505K。tmux session: `exp_s4_ext`。与 `exp_s2_ext` 共享 cuda:1。\n\n当前服务器 tmux sessions: `exp_s2_ext`（cuda:1）、`exp_s3_ext`（cuda:0）、`exp_s4_ext`（cuda:1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-stop-s4ext-launch-extensions.md"
+}

@@ -1,0 +1,107 @@
+{
+  "exp_id": "exp_009e_008d_walker_s1",
+  "project": "event-gated-adaptive-horizon",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:09:15.367Z",
+    "updated_at": "2026-05-15T11:26:28.756Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）",
+    "parent": "exp_008d_subsample_on_h8",
+    "notes": "008d config replication (seed 1). At 80K/105K, ~1.5h to completion. Classic CIVO pattern replicating: eval declining 167→83@55K while value inflating 26→138. nve peaked 4.12x@55K. 65K eval bounced to 250 (transient) but 75K back to 178. If collapse sustains through 105K, this is the 2nd confirmed collapse out of 3 seeds (008d s0 collapsed, 009b s2 self-corrected, 009e s1 collapsing) → C2 collapse rate = 2/3 for trained dt_emb + subsample ON.",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "pid": 119108,
+    "spec": {
+      "command": "python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009e_008d_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "119108",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_009e_008d_walker_s1.log",
+      "submitted_at": "2026-05-15T06:01:00Z",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DreamerV3+FixedDt2_Subsample_H8",
+      "seed": 1,
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "checkpoint_source": "N/A - training from scratch",
+      "eval_data": "N/A - training experiment"
+    },
+    "metrics": {
+      "current_step": 80000,
+      "target_steps": 105000,
+      "eval_checkpoints": [
+        {
+          "step": 5000,
+          "eval_return": 31,
+          "value_mean": 0,
+          "ve_ratio": 0
+        },
+        {
+          "step": 15000,
+          "eval_return": 153.7,
+          "value_mean": 3.4,
+          "ve_ratio": 0.022
+        },
+        {
+          "step": 25000,
+          "eval_return": 167.2,
+          "value_mean": 25.9,
+          "ve_ratio": 0.155,
+          "baseline_ve": 0.087,
+          "normalized_ve": 1.78
+        },
+        {
+          "step": 35000,
+          "eval_return": 146.3,
+          "value_mean": 60.2,
+          "ve_ratio": 0.411,
+          "baseline_ve": 0.241,
+          "normalized_ve": 1.71
+        },
+        {
+          "step": 45000,
+          "eval_return": 140.8,
+          "value_mean": 97.5,
+          "ve_ratio": 0.693,
+          "baseline_ve": 0.331,
+          "normalized_ve": 2.09
+        },
+        {
+          "step": 55000,
+          "eval_return": 82.7,
+          "value_mean": 137.9,
+          "ve_ratio": 1.666,
+          "baseline_ve": 0.404,
+          "normalized_ve": 4.12
+        },
+        {
+          "step": 65000,
+          "eval_return": 250,
+          "value_mean": 173.8,
+          "ve_ratio": 0.695,
+          "baseline_ve": 0.563,
+          "normalized_ve": 1.23
+        },
+        {
+          "step": 75000,
+          "eval_return": 178.1,
+          "value_mean": 189.9,
+          "ve_ratio": 1.066,
+          "baseline_ve": 0.719,
+          "normalized_ve": 1.48
+        }
+      ],
+      "trend": "Classic CIVO replication: eval 167→146→141→83@55K (collapse), bounce 250@65K, back 178@75K. Value monotonically rising 26→60→98→138→174→190. v/e peaked 1.666@55K (nve=4.12x). Matches 008d pattern exactly.",
+      "interim_verdict": "COLLAPSE REPLICATING — nve>1.5x sustained at 25K-55K (1.78x→1.71x→2.09x→4.12x), matching 008d seed 0 collapse signature"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T11:26:28.867591+00:00",
+  "trigger": "update_registry"
+}

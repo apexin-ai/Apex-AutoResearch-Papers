@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_064_value_distribution",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T19:23:05.483Z",
+    "updated_at": "2026-05-24T20:14:38.439Z",
+    "hypothesis": "V(s) vs Monte Carlo return 分布对比：trained dt_emb (exp_008d collapsed) 的 value estimate 在 dt=2 imagination 步骤系统性高估，而 untrained/absent dt_emb (exp_008f control) 和 baseline (exp_001) 的 value 分布与 MC return 紧密跟踪。直观展示 CIVO 的 value divergence 位置和形态。",
+    "server": "bjb1-40020",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-40020",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-24T19:56:27.179Z"
+    },
+    "spec": {
+      "command": "python scripts/value_distribution_analysis.py --device cuda:0",
+      "server": "bjb1-40020",
+      "data_path": "logdir/exp_001_baseline + logdir/exp_008d + logdir/exp_008f",
+      "data_count": 500,
+      "model_name": "DreamerV3 (baseline + collapsed + control checkpoints)",
+      "seed": 0,
+      "gpu_ids": [
+        1
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T20:14:38.759278+00:00",
+  "trigger": "update_registry"
+}

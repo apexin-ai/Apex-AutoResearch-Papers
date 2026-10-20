@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp_walker_008d_s6_r2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T23:23:54.680Z",
+    "updated_at": "2026-05-28T00:02:47.355Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON (gate_subsample_max_dt=2) + gate_fixed_dt=2 + H=8, seed=6 — C2 onset rate rebuttal reserve. Retry after GPU collision bug (s6/s7 both on cuda:0). Source: D172 Tier 2.",
+    "parent": "exp_008d_subsample_on_h8",
+    "server": "westd-51268",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"rm -rf /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_008d_s6_r2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_008d_s6_r2 --steps 105000 --seed 6 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "662076",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_walker_008d_s6_r2.log",
+      "submitted_at": "2026-05-27T23:25:10.090Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1634.1,
+      "gpu_hours": 0.45
+    },
+    "pid": "662076",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_walker_008d_s6_r2.log",
+    "reproduce": {
+      "command": "bash -c \"rm -rf /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_008d_s6_r2 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_008d_s6_r2 --steps 105000 --seed 6 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "finished_at": "2026-05-27T23:52:20.546Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T23:52:24.141Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-27T23:52:29.479674+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: 进程在 step 15000 \"Start evaluation.\" 处静默死亡，无 Traceback/错误。日志仅 49 行。疑似 OOM kill 或系统级终止。Wall clock ~27min, 仅完成 14% (15K/105K)。| 已有成果: 无（未产生 W&B metrics）| 状态: Worker 深查中"
+  },
+  "timestamp": "2026-05-28T00:02:47.851312+00:00",
+  "trigger": "update_registry"
+}

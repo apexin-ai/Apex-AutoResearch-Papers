@@ -1,0 +1,78 @@
+# analysis actor entropy contrast
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_actor-entropy-contrast_20260517T115251_result.json`
+- **Structured JSON:** [`961e30491e92582bacb3.json`](../../sessions/96/961e30491e92582bacb3.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+产出完成。下面是分析报告。
+
+---
+
+## Actor Entropy 对比分析报告
+
+### 1. 数据概览
+
+| 实验 | 类型 | 步数范围 | Entropy 起始→终止 | 数据点 |
+|------|------|----------|-------------------|--------|
+| 008d_subsample_on_h8 | collapsed | 5K→55K | 8.16→-4.88 | 6 |
+| fixed_dt2_v1_s1 | collapsed | 5K→65K | 8.16→-5.12 | 7 |
+| 008a_fixed_dt2_no_sub | collapsed | 5K→105K | 8.16→-5.24 | 11 |
+| baseline_s1 | healthy | 5K→505K | 8.10→-1.51 | 51 |
+| 008f_no_dt_emb | healthy | 5K→105K | 8.11→-4.85 | 11 |
+| 008e_v3_walker_s2 | reference | 5K→105K | 8.24→-3.83 | 11 |
+
+### 2. 核心发现：原始假设需要修正
+
+**原假设**：collapsed configs 的 entropy 先降后异常变化（策略变确定→over-exploitation）。
+
+**实际发现**：**所有实验**（无论 collapsed/healthy）在前 55K 步的 entropy 轨迹几乎完全一致，都从 ~8 快速下降到 ~-5。早期 entropy 下降是 DreamerV3 actor 学习的正常行为，不是 collapse 的前兆。
+
+### 3. 真正的区分信号：Entropy Recovery
+
+关键差异出现在 entropy 到达最低点（~-5.2，约 75-95K 步）之后：
+
+- **Baseline (healthy)**：entropy 在 85K 触底 -5.232，然后持续回升到 -1.51（505K），呈现 exploration-exploitation 动态平衡
+- **008e_v3_s2 (reference)**：entropy 在 75K 触底 -5.224，然后回升到 -3.83（105K），与 results.tex 中 "increasing entropy" 描述一致
+- **008a (collapsed)**：entropy 在 95K 触底 -5.256，到 105K 仍在 -5.237，**没有任何回升迹象**，策略被锁死在局部最优
+- **008f (healthy)**：entropy 在 55K 触底 -4.77 后小幅回弹至 -4.52（65K），但 105K 时又降至 -4.85，处于轻微振荡中，幅度小于 baseline
+
+### 4. 修正后的 Entropy Dynamics 叙事
+
+collapse 不是因为 "entropy 下降太快导致 over-exploitation"，而是：
+
+> **所有 runs 都经历自然的 entropy 最低点。Collapse 发生在 entropy 无法从最低点恢复时（entropy trap）。** Healthy runs 的 entropy 在触底后反弹，表明策略重新探索；collapsed runs 的 entropy 被锁在最低点，策略完全固化。
+
+### 5. 对论文 claim 的影响
+
+- results.tex 中 008e_v3_s2 "increasing entropy" 描述**得到确认**（75K→105K 回升 1.4 nats）
+- 如果论文要讲 "entropy dynamics" story，需要强调的是 **recovery phase** 的差异，而非 descent phase
+- 建议 framing："collapsed configurations exhibit entropy trapping at the natural minimum, while healthy configurations show entropy recovery indicating sustained exploration"
+
+### 6. 局限性
+
+- 008d 和 fixed_dt2 在 55-65K 被终止，早于 recovery window（85K+），无法直接确认 entropy trap
+- 只有 008a 在 105K 提供了 post-minimum 数据支撑 entropy trap 模式
+- 008f (healthy) 在 105K 时 entropy 仍在下降（-4.85），尚未表现出 baseline 那样的回升，可能需要更长训练
+
+### 产出文件
+
+- 远程：`/root/autodl-tmp/event-gated-adaptive-horizon/artifacts/actor_entropy_contrast.pdf` + `.png`
+- 本地：`artifacts/analysis/actor_entropy_data.json`（含完整轨迹 + 分析结论）
+
+---

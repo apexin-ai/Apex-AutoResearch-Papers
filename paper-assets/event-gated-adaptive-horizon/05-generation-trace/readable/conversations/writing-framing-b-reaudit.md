@@ -1,0 +1,1233 @@
+# writing framing b reaudit
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_writing_framing-b-reaudit_20260516T014508.jsonl`
+- **Structured JSON:** [`e7d426894d74708c8531.json`](../../sessions/e7/e7d426894d74708c8531.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T01:49:11.032297+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T01:49:11.032791+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T01:49:11.033130+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T01:49:11.033682+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure 
+…[truncated 32605 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T01:49:11.033989+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "ROADMAP.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "ROADMAP.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T01:49:11.034292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-15 23:30 UTC | 更新原因: D061 梯度分解发现：016e 是 no-op (reward gradient=0)，核心方向+SGS 表+任务更新\\n\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 14 天)\\n\\n## 核心方向\\n**Diagnostic Analysis of Temporal Abstraction in World-Model RL**\\n核心因果链（D049）：**Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件**。Frozen dt_emb 仅产生 sub-threshold transient overestimation 并自修正。dim=0 完全阻断。\\nNVE 诊断力（D054 定稿）：CIVO 检测 **7/8 (87.5%)**，AUROC=0.933，1 FP (008e_v3_s2 non-CIVO late collapse)。NVE 是敏感但非完美特异的 value overestimation 预警；NVE + 机制分析联合区分 CIVO vs non-CIVO。\\n梯度分解（D061）：dt_emb 梯度 **93% 来自 observation decoders，7% KL，0% reward**。016e reward-only SGS 是架构级 no-op（reward→dt_emb 梯度恒为 0），之前\\\"SGS 延迟 collapse\\\"解读撤回。Full-SGS (018) 才是真正的 gradient-level intervention。\\n论文定位：**Framing B — 诊断论文 + SGS 作为 informative negative result**。016e SGS（reward-only detach）是 no-op（梯度=0），不改变任何训练动态。Full-SGS (018) 移除 93% 梯度（obs decoders），是真正的干预实验。目标 CoRL 2026。\\n\\n## 阶段\\n**Research + Writing** — 2×2 消融矩阵已闭合 (D049)。016e SGS negative → D059 Framing B 批准。NVE 分析定稿 (D054)。Framing B re-audit 进行中。Cheetah cross-env 验证启动。\\n\\n## 当前实验\\n\\n| 实验 | GPU | 状态 | 用途 |\\n|------|-----|------|------|\\n| **010a (Cheetah baseline s1)** | cuda:1 | RUNNING (PID 536890) | 跨环境验证 R1 concern, ~52h |\\n| **009d (baseline s0)** | cuda:0 | RUNNING ~228K/500K | baseline 第三 seed, ~10h |\\n\\n## 2×2 消融矩阵（D049 修正版）\\n\\n| | Subsample ON | Subsample OFF |\\n|---|---|---|\\n| dt_emb trained | 008d → **CIVO 4.12x@55K, collapse** ✓ | 008a → safe, 85% baseline ✓ |\\n| dt_emb frozen | **015b → peak 1.45x@55K, self-corrected to 0.65x@65K, then gradient starvation collapse** (D049) | N/A |\\n| dt_emb removed (dim=0) | 008f → **no CIVO, ≤1.02x** ✓ | N/A |\\n\\n**SGS 干预实验（D059 Framing B）**\\n| 干预 | 实验 | 结果 |\\n|------|------|----
+…[truncated 3409 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T01:49:11.034530+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T01:49:11.034952+00:00_
+
+Error: result (59,173 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T01:49:11.035212+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "paper/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "paper/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T01:49:11.035410+00:00_
+
+paper/sections/experimental_setup.md
+paper/method.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T01:49:11.035609+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "paper/**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "paper/**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T01:49:11.035835+00:00_
+
+paper/tables/nve_sensitivity_table.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T01:49:11.036078+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T01:49:11.036442+00:00_
+
+1	% Method — Draft v1
+2	% Target: CoRL 2026
+3	% Status: Draft, pending Director review
+4	% Note: Complements experimental_setup.md (Section 4). Some overlap in
+5	%   diagnostic framework and factorial design is intentional—final paper
+6	%   may merge or redistribute content between Sections 3 and 4.
+7	
+8	# 3. Methodology
+9	
+10	We present a systematic diagnostic methodology for identifying why variable-rate imagination fails in world-model reinforcement learning. Our approach combines (i) controlled factorial experiments that isolate individual causal factors, (ii) a normalized diagnostic metric that separates pathological value overestimation from benign overshoot, and (iii) a world-model fidelity analysis that grounds the failure mechanism in prediction error. All experiments use DreamerV3 \citep{hafner2023dreamerv3} on Walker Walk from the DeepMind Control Suite \citep{tassa2018deepmind}; we scope claims to this architecture and report single-environment results throughout.
+11	
+12	
+13	## 3.1 Background: DreamerV3 and Variable-Rate Imagination
+14	
+15	### World-Model Actor-Critic
+16	
+17	DreamerV3 \citep{hafner2023dreamerv3} learns a latent dynamics model---the Recurrent State-Space Model (RSSM)---from environment interactions and trains an actor-critic entirely within imagined trajectories. The RSSM maintains a latent state $s_t = (h_t, z_t)$ consisting of a deterministic recurrent component $h_t$ and a stochastic discrete representation $z_t$. At each imagination step, the model predicts:
+18	
+19	$$h_{t+1} = f_\theta(h_t, z_t, a_t), \quad \hat{z}_{t+1} \sim p_\theta(\cdot \mid h_{t+1})$$
+20	
+21	An actor $\pi_\psi$ selects actions and a critic $V_\xi$ estimates $\lambda$-returns, both trained on imagined trajectories of horizon $H$ steps. In the standard configuration, each imagination step corresponds to one environment transition ($\Delta t = 1$) and $H = 15$.
+22	
+23	### Temporal Abstraction via Variable-Rate Imagination
+24	
+25	Temporal abstraction---reasoning at m
+…[truncated 14305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T01:49:11.036721+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/experimental_setup.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/experimental_setup.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T01:49:11.037092+00:00_
+
+1	% Experimental Setup — Draft v1
+2	% Target: CoRL 2026
+3	% Status: Draft, pending Director review
+4	
+5	\section{Experimental Setup}
+6	\label{sec:experimental_setup}
+7	
+8	We design a controlled factorial experiment to isolate the mechanisms by which variable-rate imagination degrades performance in world-model reinforcement learning. All experiments use DreamerV3 \citep{hafner2023dreamerv3} as the base architecture, with modifications limited to the imagination rollout mechanism and temporal conditioning.
+9	
+10	\subsection{Base Architecture and Modifications}
+11	\label{sec:base_arch}
+12	
+13	Our base agent is DreamerV3 \citep{hafner2023dreamerv3} with its Recurrent State-Space Model (RSSM) world model. The RSSM learns latent dynamics from experience and generates imagined trajectories for actor-critic learning. In the standard configuration, each imagination step corresponds to a single environment transition ($\Delta t = 1$).
+14	
+15	We introduce an \textit{event-gated variable-rate imagination} mechanism that modifies two components of the standard pipeline:
+16	
+17	\paragraph{Temporal embedding.} We add a temporal step-size embedding $e_{\Delta t} \in \mathbb{R}^{d}$ that conditions the RSSM transition function on the imagination step size $\Delta t$. We study three configurations:
+18	\begin{itemize}
+19	    \item \textbf{Trained} ($d{=}32$, gradients enabled): the embedding is jointly optimized with the world model, allowing the RSSM to specialize its predictions for different $\Delta t$ values.
+20	    \item \textbf{Untrained} ($d{=}32$, gradients disabled): the embedding is randomly initialized and frozen, providing a fixed but uninformative temporal signal.
+21	    \item \textbf{Removed} ($d{=}0$): no temporal conditioning is provided to the RSSM.
+22	\end{itemize}
+23	
+24	\paragraph{Temporal subsampling.} When enabled (\textsc{subsample on}), the replay buffer stores both $\Delta t{=}1$ and $\Delta t{=}2$ transitions, exposing the world model to multi-rate dynamics 
+…[truncated 10765 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T01:49:11.037360+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables/nve_sensitivity_table.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/tables/nve_sensitivity_table.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T01:49:11.037601+00:00_
+
+1	\begin{table}[h]
+2	\centering
+3	\caption{NVE threshold sensitivity analysis for CIVO detection (summary). Task~B2 (main text) uses $\nve \geq 1.5\times$ yielding one false positive (008e\_v3\_s2, identified as non-CIVO Imagination-Reality Divergence). Task~B1 (Appendix~\ref{sec:appendix_sensitivity}) restricts the positive class to sustained CIVO ($n_{\text{pos}}=2$), achieving perfect rank separation ($\text{AUROC}=1.000$). All CIs are two-sided Clopper-Pearson exact binomial ($\alpha = 0.05$).}
+4	\label{tab:nve_sensitivity}
+5	\small
+6	\setlength{\tabcolsep}{4pt}
+7	\begin{tabular}{@{}lccccccc@{}}
+8	\toprule
+9	Task & Threshold & $n_{\text{pos}}/n_{\text{neg}}$ & AUROC & Accuracy & 95\% CI & F1 & Note \\
+10	\midrule
+11	B2 (main) & $\geq 1.5\times$ & 3\,/\,5 & 0.933 & 87.5\% & [47.3, 99.7] & 85.7\% & 1 FP (IRD) \\
+12	B1 (app.) & $\geq 3.9\times$ & 2\,/\,6 & 1.000 & 100\% & [63.1, 100] & 100\% & $n_{\text{pos}}\!=\!2$ \\
+13	\bottomrule
+14	\end{tabular}
+15	\end{table}
+16	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T01:49:11.037867+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, yaml\n\n# Read decisions.yaml\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\ndecisions = yaml.safe_load(content)\n\n# Extract D059, D061\nfor d in decisions:\n    if d.get('id') in ['D059', 'D061']:\n        print(f'--- {d[\\\"id\\\"]} ---')\n        for k, v in d.items():\n            print(f'{k}: {v}')\n        print()\n\"\n",
+  "description": "Extract D059 and D061 from decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json, yaml\n\n# Read decisions.yaml\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\ndecisions = yaml.safe_load(content)\n\n# Extract D059, D061\nfor d in decisions:\n    if d.get('id') in ['D059', 'D061']:\n        print(f'--- {d[\\\"id\\\"]} ---')\n        for k, v in d.items():\n            print(f'{k}: {v}')\n        print()\n\"\n",
+    "description": "Extract D059 and D061 from decisions.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T01:49:11.038121+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "paper/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "paper/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T01:49:11.038340+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 14, in &lt;module>
+    if d.get('id') in ['D059', 'D061']:
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T01:49:11.038549+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+import json, yaml
+
+# Read d…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T01:49:11.038835+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, yaml\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\n\n# Parse as yaml - check structure first\ndecisions = yaml.safe_load(content)\nprint(type(decisions))\nif isinstance(decisions, dict):\n    print(list(decisions.keys())[:10])\nelif isinstance(decisions, list):\n    print(len(decisions), type(decisions[0]))\nelse:\n    print(repr(decisions)[:500])\n\"\n",
+  "description": "Check decisions.yaml structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json, yaml\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\n\n# Parse as yaml - check structure first\ndecisions = yaml.safe_load(content)\nprint(type(decisions))\nif isinstance(decisions, dict):\n    print(list(decisions.keys())[:10])\nelif isinstance(decisions, list):\n    print(len(decisions), type(decisions[0]))\nelse:\n    print(repr(decisions)[:500])\n\"\n",
+    "description": "Check decisions.yaml structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T01:49:11.039071+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "paper/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "paper/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T01:49:11.039288+00:00_
+
+&lt;class 'dict'>
+['_next_id', 'decisions']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T01:49:11.039495+00:00_
+
+paper/sections/experimental_setup.md
+paper/method.md
+paper/tables/nve_sensitivity_table.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T01:49:11.039707+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json, yaml\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\ndecisions = yaml.safe_load(content)\n\nfor d in decisions['decisions']:\n    if d.get('id') in ['D059', 'D061']:\n        print(f'=== {d[\\\"id\\\"]} ===')\n        for k, v in d.items():\n            print(f'{k}: {v}')\n        print()\n\"\n",
+  "description": "Extract D059 and D061 from decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json, yaml\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/02042320-1bdc-4267-aaa1-463fefbd8c92/tool-results/mcp-agent-ml-research-read_project_file-1778895927972.txt') as f:\n    raw = json.load(f)\n\ndata = json.loads(raw['result'])\ncontent = data['data']['content']\ndecisions = yaml.safe_load(content)\n\nfor d in decisions['decisions']:\n    if d.get('id') in ['D059', 'D061']:\n        print(f'=== {d[\\\"id\\\"]} ===')\n        for k, v in d.items():\n            print(f'{k}: {v}')\n        print()\n\"\n",
+    "description": "Extract D059 and D061 from decisions.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T01:49:11.039991+00:00_
+
+=== D059 ===
+id: D059
+date: 2026-05-15 22:26 UTC
+summary: D059: Framing 选 B（diagnostic + SGS negative），cuda:1 优先排 Cheetah baseline（010a）而非 008f seed 0
+rationale: CoRL DDL 5/29（14 天）。B 选项：016e SGS 作为 informative negative result 加入论文，证明 CIVO 是全路径系统性问题（reward 梯度通路是贡献因素之一但非唯一）。不做 Full-SGS（C 太冒险）。cuda:1 优先跑 Cheetah baseline 而非 008f seed 0：R1（limited to one environment）是最可能的 reviewer 攻击面，跨环境验证优先级高于多 seed（已有 4/4 nve threshold separation）。
+related_experiments: [{'exp_id': '016e', 'role': 'evidence', 'result': "SGS delays collapse ~50K but doesn't prevent (v/e=658%)"}, {'exp_id': '010a', 'role': 'planned', 'result': 'Cheetah baseline, P0 for R1'}]
+depends_on: ['D058']
+
+=== D061 ===
+id: D061
+date: 2026-05-15 23:31 UTC
+summary: D061: 016e reward SGS 是 no-op（reward→dt_emb 梯度=0）。撤回"SGS 部分有效"解读。CIVO 梯度通路是 observation decoder（93%），非 reward head
+rationale: Full-SGS 实现中的梯度验证发现：reward loss 对 dt_emb.weight 梯度贡献始终为 0。016e 的 reward_dt_emb_detach 切断了一个不存在的通路（no-op）。dt_emb 梯度真正来源：observation decoders 93%（orientations 1.11 + velocity 0.90 + height 0.76）、cont 0.27、KL 0.119、reward 0.0。016e 与 008d 的差异（onset 延迟、更高峰值）是随机变异，不是 SGS 效果。D057/D058 中"SGS 部分有效/延迟 collapse"的解读需全部撤回。reward gradient=0 本身是重要发现——否定了 reward head 是 CIVO 梯度通路的直觉。Full-SGS (018) 移除 93% 梯度才是真正的 gradient vs representation 测试。
+related_experiments: [{'exp_id': '016e', 'role': 'evidence', 'result': 'no-op: reward grad to dt_emb = 0'}, {'exp_id': '018', 'role': 'planned', 'result': 'Full-SGS removes 93% dt_emb grad, real test'}]
+depends_on: ['D058', 'D060']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T01:49:11.040294+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "abstract|introduction|related.work|discussion|conclusion|limitation",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper",
+  "-i": "True",
+  "output_mode": "content",
+  "head_limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "abstract|introduction|related.work|discussion|conclusion|limitation",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper",
+    "-i": "True",
+    "output_mode": "content",
+    "head_limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T01:49:11.040534+00:00_
+
+paper/method.md:23:### Temporal Abstraction via Variable-Rate Imagination
+paper/method.md:25:Temporal abstraction---reasoning at multiple timescales---is a longstanding goal in RL \citep{sutton1999options, precup2000temporal}. World-model RL provides a natural setting: by setting the imagination step size $\Delta t > 1$, the agent can plan over longer temporal horizons without increasing the number of imagination steps. An $H$-step rollout at $\Delta t = 2$ covers $2H$ environment steps of lookahead at the same computational cost as the standard $H$-step rollout.
+paper/method.md:143:We note two limitations of the current evidence for this mitigation: (1) the result rests on a single independent seed (seed 1; seed 2 is in progress as exp\_008e\_v3\_walker\_s2), and (2) it has been tested on a single environment (Walker Walk). Cross-seed and cross-environment validation are ongoing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T01:49:11.040778+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "delusional critic|delusional",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper",
+  "-i": "True",
+  "output_mode": "content",
+  "head_limit": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "delusional critic|delusional",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper",
+    "-i": "True",
+    "output_mode": "content",
+    "head_limit": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T01:49:11.041026+00:00_
+
+paper/method.md:39:### The Delusional Critic Hypothesis
+paper/method.md:43:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T01:49:11.041309+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/",
+  "description": "Check paper directory structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/",
+    "description": "Check paper directory structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T01:49:11.041534+00:00_
+
+method.md
+sections
+tables
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T01:49:11.041869+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md",
+  "content": "# Framing B Re-Audit: Per-Section Diff Checklist\n\n> Date: 2026-05-16 | Framing: **B — Diagnostic paper + SGS as informative negative result**\n> Governing decisions: D059 (Framing B approved), D061 (gradient decomposition: reward=0, obs=93%)\n> NVE diagnostic: 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)\n\n---\n\n## 1. Abstract\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Diagnostic analysis paper positioning (not method paper)\n- Core question: \"Why does temporal abstraction fail in world-model RL?\"\n- Key findings: trained dt_embedding → CIVO → stochastic collapse\n- NVE diagnostic framework: 7/8, AUROC=0.933\n- Gradient decomposition: 93% obs decoders, 0% reward → reward-only SGS is architectural no-op\n- TAWM contrast: dt-conditioning succeeds in MPC (TAWM, ICML 2025) but fails in imagination-based AC\n- Scope: DreamerV3 + Walker Walk (+ Cheetah pending)\n\n**Outline (≤150 words):**\n1. Temporal abstraction via variable-rate imagination is a natural extension of world-model RL, but consistently degrades performance [1 sentence]\n2. We present a systematic diagnostic analysis identifying trained dt-embedding as the necessary condition for conditioning-induced value overestimation (CIVO) [1 sentence]\n3. Gradient decomposition reveals 93% of dt_emb gradients come from observation decoders (0% reward), making reward-only stop-gradient an architectural no-op [1 sentence]\n4. NVE diagnostic threshold achieves AUROC=0.933 for CIVO detection [1 sentence]\n5. Contrast with TAWM: dt-conditioning succeeds in MPC but fails in imagination-based AC — architecture-specific vulnerability [1 sentence]\n6. Scoped to DreamerV3/RSSM; actionable guidelines for future temporal abstraction work [1 sentence]\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## 2. Introduction\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Open with temporal abstraction as longstanding RL goal (options, macro-actions)\n- World-model RL as natural testbed (modify imagination dt without changing env interaction)\n- Puzzle framing: all attempts at variable-rate imagination degrade performance — why?\n- TAWM contrast as novelty anchor: dt-conditioning works in MPC (TD-MPC2) but fails in imagination-based AC → architecture-specific vulnerability, not a generic negative\n- Contribution list:\n  1. Causal chain: trained dt_emb → CIVO (NVE>1.5x) → stochastic collapse\n  2. NVE diagnostic framework (7/8 accuracy, AUROC=0.933)\n  3. Gradient decomposition revealing reward=0 pathway (SGS = no-op)\n  4. 2×2 ablation matrix closing the causal loop (D049)\n- NOT a method paper — no new algorithm proposed\n- Scope disclaimer: DreamerV3 + RSSM\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section. Must be written from scratch per story arc in paper_framing.md.\n\n---\n\n## 3. Related Work\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Temporal abstraction in model-free RL: options framework (Sutton 1999), FiGAR, action repeat\n- World-model RL: Dreamer family, IRIS, TWM\n- **TAWM (Nhu et al., ICML 2025)** — CRITICAL: dt-conditioning succeeds in TD-MPC2 (MPC setting). Must position as: \"dt-conditioning is not inherently broken; the vulnerability is specific to imagination-based actor-critic.\" This is the key novelty upgrade (D037)\n- Variable-rate planning in world models (limited prior work)\n- Value overestimation in MBRL: Lu et al. 2018 (delusional bias), Janner et al. 2019 (model exploitation). **Must explicitly differentiate** CIVO from Lu et al.'s delusional bias (different mechanism: model imprecision + learned conditioning amplification vs policy-class constraints)\n- Diagnostic/analysis papers as a genre (precedent for non-method contributions)\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section. TAWM positioning is the single most important item for novelty defense.\n\n---\n\n## 4. Method (paper/method.md)\n\n**Current status:** DRAFT v1, 144 lines. Covers §3.1 (Background), §3.2 (NVE diagnostic), §3.3 (Causal analysis + RSSM fidelity + mitigation).\n\n### 4.1 Diff items\n\n**DIFF-M1: §3 title — consider repositioning as \"Methodology\" or \"Diagnostic Framework\"**\n- Current: \"3. Methodology\" — acceptable for diagnostic paper\n- No change needed\n\n**DIFF-M2: \"The Delusional Critic Hypothesis\" heading (line 39) → rename**\n- Current: `### The Delusional Critic Hypothesis`\n- Required: `### Conditioning-Induced Value Overestimation (CIVO)`\n- The subsection body (lines 41-43) already uses \"CIVO\" and differentiates from Lu et al. Good.\n- But line 43 still says: `We term this the *CIVO*, drawing on Lu & Schuurmans' concept of delusional policies, where function approximation introduces inconsistencies in Q-learning backups.`\n- **Action:** Rename heading. Revise body to lead with CIVO definition, then note Lu et al. analogy as secondary (not \"drawing on\" — that implies derivation). Emphasize: CIVO is model-induced (temporal extrapolation error), Lu et al.'s delusion is policy-class-induced. Keep distinction explicit per D037.\n\n**DIFF-M3: §3.3 \"Mitigation: dt=1 Imagination\" (lines 135-143) — MAJOR UPDATE NEEDED**\n- Current: Presents 008e_v3 seed 1 as 95% baseline recovery, single-seed success. Lines 142-143 say \"seed 2 is in progress.\"\n- Framing B reality: **008e_v3_s2 COLLAPSED** (eval 715→137, nve=3.78x). C6 partially falsified (D038/D040).\n- **Actions:**\n  1. Remove \"Mitigation\" framing entirely — dt=1 imagination is NOT a robust mitigation\n  2. Rewrite as \"Imagination Step Size as Causal Variable\" — the diagnostic point (trained dt_emb + dt=1 still collapses at 1/2 rate) is the finding\n  3. Add s2 collapse data with mechanism contrast table (value-driven CIVO in 008d vs eval-driven instability in 008e_v3_s2)\n  4. Add 009a baseline s2 stability data ruling out seed fragility\n  5. Reframe: trained dt_embedding creates vulnerability through multiple pathways (Pathway A: CIVO via dt>1 imagination; Pathway B: non-CIVO policy instability independent of imagination dt)\n  6. Remove lines 142-143 (\"ongoing\" language for s2)\n\n**DIFF-M4: Add §3.X — Gradient Decomposition of dt_embedding (NEW SUBSECTION)**\n- Not in current draft at all. This is a D061 finding.\n- **Content:**\n  - torch.autograd.grad analysis on dt_emb.weight\n  - Gradient source breakdown: obs decoders 93% (1.505), KL 7% (0.119), reward 0% (0.000)\n  - Implication 1: reward_dt_emb_detach (016e) is architectural no-op\n  - Implication 2: dt_emb training is driven by observation reconstruction, not reward\n  - Implication 3: Full-SGS (018) removing obs decoder gradients is the real gradient-level intervention\n- **Placement:** After RSSM fidelity analysis (before or after the mitigation/causal-variable section)\n\n**DIFF-M5: Add SGS as informative negative result (NEW SUBSECTION or folded into gradient decomposition)**\n- 016e experiment: reward_dt_emb_detach=True\n- Result: collapse at 95K (nve=10.42x), indistinguishable from 008d stochastic variation\n- Interpretation: reward-only SGS is no-op because reward gradient to dt_emb = 0 by architecture\n- Previously interpreted as \"SGS delays collapse ~50K\" — **this interpretation is WITHDRAWN** (D061)\n- Frame as: \"The null result is informative: it eliminates reward head as CIVO gradient pathway and redirects attention to observation decoders\"\n\n**DIFF-M6: 2×2 ablation matrix (D049) — not yet in method.md**\n- The 2×2 matrix (trained/frozen/removed × subsample ON/OFF) is referenced in ROADMAP but not in method section\n- Should add 015b (frozen dt_emb, subsample ON) result: peak nve 1.45x@55K → self-corrected → gradient starvation collapse\n- This fills the ablation picture: trained=CIVO, frozen=sub-threshold transient, removed=blocked\n\n**DIFF-M7: NVE diagnostic power update**\n- Current draft (lines 70-71): \"4/4 classification accuracy\" — still accurate for threshold separation\n- Framing B adds: AUROC=0.933, 7/8 overall accuracy, 1 FP (008e_v3_s2 non-CIVO late collapse)\n- **Action:** Add AUROC=0.933 and 7/8 framing after the 4/4 threshold statement. Reference nve_sensitivity_table.tex. Clarify: 4/4 is for trained-vs-removed at threshold; 7/8 includes all conditions with 008e_v3_s2 as FP due to non-CIVO mechanism.\n\n### 4.2 Legacy framing risks in method.md\n\n| Line(s) | Issue | Action |\n|---------|-------|--------|\n| 39 | \"The Delusional Critic Hypothesis\" heading | Rename to \"Conditioning-Induced Value Overestimation (CIVO)\" |\n| 43 | \"drawing on Lu & Schuurmans' concept of delusional policies\" | Weaken to \"analogous to\" and add explicit differentiation |\n| 135 | \"Mitigation: dt=1 Imagination with Multi-Rate Training\" | Remove \"Mitigation\" framing; rewrite as diagnostic finding |\n| 137-139 | \"zero-cost mitigation\" / \"achieves eval return 869.9\" (single seed only) | Remove mitigation language; add s2 collapse data |\n| 142-143 | \"seed 2 is in progress\" | Replace with s2 collapse results + mechanism analysis |\n\n### 4.3 Missing content in method.md\n\n| Item | Priority | Notes |\n|------|----------|-------|\n| Gradient decomposition subsection (D061) | P0 | Core Framing B contribution |\n| SGS informative negative (016e + D061) | P0 | Required by Framing B |\n| 015b frozen dt_emb results | P1 | Completes 2×2 matrix |\n| 008e_v3_s2 collapse + dual pathway analysis | P0 | C6 partially falsified |\n| AUROC=0.933 / 7/8 framing | P1 | NVE strength update |\n\n---\n\n## 5. Experimental Setup (paper/sections/experimental_setup.md)\n\n**Current status:** DRAFT v1, 130 lines. Covers §4.1 (Base architecture), §4.2 (Environment), §4.3 (Factorial design + Table 1), §4.4 (NVE diagnostic), §4.5 (Training details).\n\n### 5.1 Diff items\n\n**DIFF-E1: Table 1 (factorial table, lines 55-78) — needs new rows**\n- Missing experiments: 015b (frozen dt_emb), 016e (SGS/reward detach), 009a/009b/009c (seeds)\n- **Action:** Add rows for:\n  - 015b: frozen dt_emb, subsample ON, H=15, dt=2 imag → \"Frozen embedding control\"\n  - 016e: trained dt_emb + reward_dt_emb_detach, subsample ON, H=8, dt=2 imag → \"Stop-gradient (reward)\" or \"SGS control\"\n  - Possibly 018 (planned) as a footnote row\n- Seed replication rows (009a/b/c) can be listed as notes under existing rows rather than separate rows\n\n**DIFF-E2: §4.2 Environment — update cross-env status**\n- Lines 35-41: mentions Cheetah Run and Cartpole Swingup with footnote \"in progress\"\n- 010a Cheetah baseline is now RUNNING (ROADMAP)\n- **Action:** Keep footnote but update wording if 010a completes before submission. Remove Cartpole Swingup if it won't be run (focus resources on Cheetah).\n\n**DIFF-E3: §4.4 NVE diagnostic — add AUROC and 7/8 framing**\n- Current: 4/4 classification (lines 111-113)\n- **Action:** Add paragraph after threshold definition:\n  - AUROC=0.933 across all 8 experimental conditions (task B2)\n  - 7/8 accuracy with 1 FP (008e_v3_s2, identified as non-CIVO late collapse via trajectory analysis)\n  - Reference nve_sensitivity_table.tex\n  - Supplementary task B1 (@1.7x): AUROC=1.0, 8/8\n\n**DIFF-E4: §4.5 Training details — update seed info**\n- Line 129: \"key conditions (baseline, 008d, 008f, 008e_v3) add seed 2\"\n- **Action:** Update to reflect completed seed 2 runs: 009a (baseline s2, complete, stable), 009b (008d s2, complete, self-corrected), 009c (008f s2, complete), 008e_v3_s2 (complete, collapsed via non-CIVO pathway). Remove \"in progress\" language.\n\n**DIFF-E5: \"event-gated variable-rate imagination\" naming (line 15)**\n- Current: \"We introduce an *event-gated variable-rate imagination* mechanism\"\n- Framing B is a diagnostic paper — the mechanism being studied failed. The naming suggests we're proposing it.\n- **Action:** Reword: \"We study a *variable-rate imagination* mechanism...\" or \"We investigate the following modifications to the DreamerV3 imagination pipeline...\"\n\n### 5.2 Legacy framing risks in experimental_setup.md\n\n| Line(s) | Issue | Action |\n|---------|-------|--------|\n| 15 | \"We introduce an event-gated variable-rate imagination mechanism\" | Reword — we study/investigate, not introduce |\n| 57 | Table caption: \"unless noted\" for dt=2 default | Fine, but add 016e row |\n| 87 | \"mitigation condition (008e_v3)\" | Remove \"mitigation\" label — partially falsified |\n| 109 | \"we will update to the mean of seeds 1 and 2 once...\" | Update: 009a baseline s2 is now complete; update normalization |\n\n### 5.3 Missing content in experimental_setup.md\n\n| Item | Priority | Notes |\n|------|----------|-------|\n| 016e (SGS) in factorial table | P0 | Core Framing B experiment |\n| 015b (frozen) in factorial table | P1 | Completes 2×2 matrix |\n| AUROC/7/8 in diagnostic section | P1 | Matched with method.md update |\n| Updated seed status | P1 | Remove \"in progress\" language |\n\n---\n\n## 6. Results\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\nStructure as diagnostic findings, not performance claims:\n\n**Finding 1 (C1):** All dt>1 configurations degrade performance\n- 3 configs: 005 (learned gate), 006 (fixed dt=2), 007 (fixed dt=4)\n- Learning curves overlay (hero figure)\n\n**Finding 2 (C2):** Trained dt_embedding is the necessary condition for CIVO\n- 008d vs 008f (primary causal comparison): trained → nve 2.09x → collapse; removed → nve ≤1.02x → stable\n- 4/4 threshold separation across seeds\n- 2×2 matrix: trained/frozen/removed × subsample\n\n**Finding 3 (C3):** Untrained dt_embedding suppresses value drift\n- 008a: 85% baseline at 105K, nve 0.59-0.93x\n- 008c vs 008a: horizon effect\n\n**Finding 4 (C4):** Longer dt amplifies degradation\n- dt=1 (~950) > dt=2 (485) > dt=4 (177) monotonic\n\n**Finding 5 (C5):** Subsampling/horizon are secondary factors\n- 008e_v3 s1: subsample ON + dt=1 imag → 95% baseline\n\n**Finding 6 (C6, partially falsified):** dt=1 imagination does not prevent collapse\n- 008e_v3_s2 collapsed (eval 715→137, nve=3.78x)\n- Dual pathway analysis: CIVO (Pathway A, 008d) vs non-CIVO policy instability (Pathway B, 008e_v3_s2)\n- 009a baseline s2 stable → config-caused\n\n**Finding 7 (NEW — Framing B core):** Gradient decomposition reveals reward=0 pathway\n- dt_emb gradient: obs decoders 93%, KL 7%, reward 0%\n- 016e SGS = no-op (informative negative)\n- Reframes understanding of which pathways drive dt_emb training\n\n**Finding 8: NVE diagnostic framework performance**\n- task B2: 7/8, AUROC=0.933, 1 FP\n- task B1 (supplementary): 8/8, AUROC=1.0\n- Threshold sensitivity analysis (nve_sensitivity_table.tex)\n\n**Legacy framing risks:** N/A (not yet written, but must NOT include):\n- \"SGS delays collapse\" — WITHDRAWN (D061)\n- \"dt=1 imagination as practical mitigation\" — PARTIALLY FALSIFIED (D038/D040)\n- \"delusional critic\" terminology\n\n**Missing content:** Entire section\n\n---\n\n## 7. Discussion\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n\n1. **CIVO mechanism explanation**: Why trained dt_embedding causes overestimation\n   - RSSM fidelity gap at dt>1 (Table: absolute errors + ratios)\n   - 008d reward gap (2.78x) = critic receives confident but biased reward signals\n   - 008f reward gap (1.01x) = no differentiation → no bias → no CIVO\n\n2. **Gradient decomposition implications** (D061)\n   - dt_emb is trained by observation reconstruction, not reward\n   - Reward-only SGS is no-op → future interventions must target obs decoder pathway\n   - Full-SGS (018) as the correct gradient-level test\n\n3. **Dual vulnerability pathways** (D040)\n   - Pathway A (CIVO): value-driven, entropy ↓, requires dt>1 imagination (008d)\n   - Pathway B (non-CIVO policy instability): eval-driven, entropy ↑, independent of imagination dt (008e_v3_s2)\n   - Trained dt_embedding as common root, but mechanisms diverge\n\n4. **Value self-correction** (009b)\n   - Transient nve>1.5x → self-correction (009b s2) vs sustained → collapse (008d s1)\n   - Hypothesis: \"point of no return\" where feedback loop locks\n   - Connection to primacy bias (Qiao et al. 2023), early outlier runs (Bjorck et al. 2022)\n\n5. **TAWM contrast** (D037 — CRITICAL for novelty)\n   - TAWM: dt-conditioning succeeds in TD-MPC2 (MPC)\n   - Our finding: fails in imagination-based AC\n   - Key difference: MPC re-plans from real states; imagination-based AC compounds errors across full rollout\n   - Novelty upgrade: \"architecture-specific vulnerability, not generic failure\"\n\n6. **Connection to MBRL overestimation literature**\n   - Lu et al. 2018: delusional bias (policy-class) — differentiate from CIVO (model-induced)\n   - Janner et al. 2019: model exploitation — CIVO is a specific instance mediated by temporal conditioning\n   - Why model-free temporal abstraction doesn't suffer the same failure\n\n**Legacy framing risks:** Must ensure:\n- No \"SGS delays collapse\" claim\n- No \"delusional critic\" usage\n- No \"dt=1 imagination solves the problem\" framing\n- 008f positioned as causal control, not recommended approach\n\n**Missing content:** Entire section\n\n---\n\n## 8. Limitations\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n1. Single primary environment (Walker Walk) — Cheetah pending (010a)\n2. Limited seed count (2 seeds per key condition; stochastic collapse hard to characterize)\n3. NVE threshold calibrated and evaluated on same data (not independent validation)\n4. NVE confidence intervals wide: 95% CI = [47.3%, 99.7%] for 7/8\n5. Only one base algorithm (DreamerV3); generalizability to other world-model architectures discussed but not tested\n6. No formal causal inference framework (interventional, not observational, but not a formal DAG-based analysis)\n7. Full-SGS (018) and Cheetah cross-env results pending at submission\n8. 008e_v3_s2 collapse mechanism (Pathway B) not fully characterized — entropy increase noted but root cause unclear\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## 9. Conclusion\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Restate core finding: trained dt_embedding is the necessary condition for CIVO in imagination-based AC\n- Gradient decomposition: 93% obs decoders, 0% reward → reward pathway is architectural null\n- NVE as practical diagnostic tool (AUROC=0.933)\n- TAWM contrast: dt-conditioning is not inherently broken — the vulnerability is specific to imagination + learned dynamics\n- Actionable guidance: don't use trained dt_embedding in imagination-based AC without safeguards; target obs decoder pathway for interventions\n- Open questions: Full-SGS effectiveness (018), cross-environment generality, Pathway B characterization\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## Global Diff Items (cross-cutting)\n\n### G1: \"delusional critic\" → CIVO full-text replacement (D037)\n\n**Affected files:**\n- `paper/method.md` line 39: heading \"The Delusional Critic Hypothesis\"\n- `paper/method.md` line 43: \"We term this the *CIVO*, drawing on Lu & Schuurmans'\"\n\n**Action:** Rename heading; rewrite body to define CIVO first, Lu et al. as analogy (not derivation). Search entire paper directory for any other occurrences before declaring clean.\n\n### G2: 016e narrative — MUST be \"no-op\", not \"delays collapse\" (D061)\n\n**Old claim (D057/D058, WITHDRAWN):** \"SGS delays collapse ~50K steps\"\n**Correct claim (D061):** \"016e reward_dt_emb_detach is a no-op; reward gradient to dt_emb = 0 by architecture. Observed timing differences from 008d are stochastic variation.\"\n\n**Affected files:** Not yet in any written section (016e hasn't been written up yet), but MUST be checked in any future draft. The paper_framing.md exp_016e entry is already updated.\n\n### G3: 008e_v3 — NOT a mitigation, partially falsified (D038/D040)\n\n**Old claim:** \"dt=1 imagination = practical mitigation (95% baseline recovery)\"\n**Correct claim:** \"dt=1 imagination does not prevent collapse (1/2 seeds collapse via non-CIVO pathway). Trained dt_embedding creates vulnerability through multiple pathways.\"\n\n**Affected files:**\n- `paper/method.md` lines 135-143: entire \"Mitigation\" subsection must be rewritten\n- `paper/sections/experimental_setup.md` line 87: \"mitigation condition (008e_v3)\"\n\n### G4: TAWM positioning (D037 novelty upgrade)\n\n**Status:** Not in any existing section.\n**Required in:** Related Work (primary), Introduction (contribution claim), Discussion (mechanism contrast)\n**Key sentence:** \"TAWM (Nhu et al., ICML 2025) demonstrates that dt-conditioning succeeds in MPC settings (TD-MPC2), establishing that the vulnerability we identify is specific to imagination-based actor-critic training, not an inherent limitation of temporal conditioning.\"\n\n### G5: 2×2 ablation matrix (D049)\n\n**Status:** Referenced in ROADMAP but not yet in paper sections.\n**Required in:** Results section, Discussion\n**Content:** trained/frozen/removed × subsample ON/OFF matrix showing CIVO status per cell\n\n### G6: Figures needed\n\n| Figure | Status | Content |\n|--------|--------|---------|\n| Fig 1: Learning curves (hero) | Not created | All experiments overlaid |\n| Fig 2: NVE trajectories | Not created | Healthy vs pathological separation |\n| Fig 3: Factorial grid | Exists (updated per ROADMAP) | 2×2 matrix visualization |\n| Fig 4: Causal diagram | Not created | dt_emb → CIVO → collapse chain |\n| Fig 5: dt magnitude comparison | Not created | dt=1/2/4 monotonic decline |\n| Fig 6: 008e_v3 dual seed | Exists (updated per ROADMAP) | s1 healthy + s2 collapse |\n| Table: RSSM fidelity | In method.md | Needs absolute + ratio side-by-side |\n| Table: NVE sensitivity | nve_sensitivity_table.tex | AUROC=0.933, exists |\n| Table: Gradient decomposition | Not created | obs 93%, KL 7%, reward 0% |\n\n---\n\n## Priority-Ordered Execution Plan\n\n### P0 — Blocking for submission\n\n1. Rewrite `paper/method.md` §3.3 \"Mitigation\" → dual pathway finding (DIFF-M3)\n2. Add gradient decomposition subsection to method.md (DIFF-M4)\n3. Add SGS informative negative subsection (DIFF-M5)\n4. Rename \"Delusional Critic Hypothesis\" → CIVO (DIFF-M2)\n5. Write Results section (Section 5)\n6. Write Introduction\n7. Write Abstract\n8. Write Discussion (especially TAWM contrast, dual pathways, gradient implications)\n9. Add 016e to factorial table (DIFF-E1)\n10. Update NVE diagnostic with AUROC=0.933 (DIFF-M7, DIFF-E3)\n\n### P1 — Important but not blocking\n\n11. Write Related Work (especially TAWM)\n12. Write Limitations\n13. Write Conclusion\n14. Add 015b to factorial table and results\n15. Update seed status / remove \"in progress\" language (DIFF-E4)\n16. Reword \"event-gated\" as diagnostic study language (DIFF-E5)\n17. Create gradient decomposition table\n18. Update baseline normalization with 009a (DIFF-E4, experimental_setup.md line 109)\n\n### P2 — Polish\n\n19. Create missing figures (Fig 1, 2, 4, 5)\n20. Cross-reference consistency check (method ↔ experimental_setup)\n21. Final \"delusional critic\" grep across all files\n22. Ensure RSSM fidelity table shows absolute + ratio everywhere\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md",
+    "content": "# Framing B Re-Audit: Per-Section Diff Checklist\n\n> Date: 2026-05-16 | Framing: **B — Diagnostic paper + SGS as informative negative result**\n> Governing decisions: D059 (Framing B approved), D061 (gradient decomposition: reward=0, obs=93%)\n> NVE diagnostic: 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)\n\n---\n\n## 1. Abstract\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Diagnostic analysis paper positioning (not method paper)\n- Core question: \"Why does temporal abstraction fail in world-model RL?\"\n- Key findings: trained dt_embedding → CIVO → stochastic collapse\n- NVE diagnostic framework: 7/8, AUROC=0.933\n- Gradient decomposition: 93% obs decoders, 0% reward → reward-only SGS is architectural no-op\n- TAWM contrast: dt-conditioning succeeds in MPC (TAWM, ICML 2025) but fails in imagination-based AC\n- Scope: DreamerV3 + Walker Walk (+ Cheetah pending)\n\n**Outline (≤150 words):**\n1. Temporal abstraction via variable-rate imagination is a natural extension of world-model RL, but consistently degrades performance [1 sentence]\n2. We present a systematic diagnostic analysis identifying trained dt-embedding as the necessary condition for conditioning-induced value overestimation (CIVO) [1 sentence]\n3. Gradient decomposition reveals 93% of dt_emb gradients come from observation decoders (0% reward), making reward-only stop-gradient an architectural no-op [1 sentence]\n4. NVE diagnostic threshold achieves AUROC=0.933 for CIVO detection [1 sentence]\n5. Contrast with TAWM: dt-conditioning succeeds in MPC but fails in imagination-based AC — architecture-specific vulnerability [1 sentence]\n6. Scoped to DreamerV3/RSSM; actionable guidelines for future temporal abstraction work [1 sentence]\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## 2. Introduction\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Open with temporal abstraction as longstanding RL goal (options, macro-actions)\n- World-model RL as natural testbed (modify imagination dt without changing env interaction)\n- Puzzle framing: all attempts at variable-rate imagination degrade performance — why?\n- TAWM contrast as novelty anchor: dt-conditioning works in MPC (TD-MPC2) but fails in imagination-based AC → architecture-specific vulnerability, not a generic negative\n- Contribution list:\n  1. Causal chain: trained dt_emb → CIVO (NVE>1.5x) → stochastic collapse\n  2. NVE diagnostic framework (7/8 accuracy, AUROC=0.933)\n  3. Gradient decomposition revealing reward=0 pathway (SGS = no-op)\n  4. 2×2 ablation matrix closing the causal loop (D049)\n- NOT a method paper — no new algorithm proposed\n- Scope disclaimer: DreamerV3 + RSSM\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section. Must be written from scratch per story arc in paper_framing.md.\n\n---\n\n## 3. Related Work\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Temporal abstraction in model-free RL: options framework (Sutton 1999), FiGAR, action repeat\n- World-model RL: Dreamer family, IRIS, TWM\n- **TAWM (Nhu et al., ICML 2025)** — CRITICAL: dt-conditioning succeeds in TD-MPC2 (MPC setting). Must position as: \"dt-conditioning is not inherently broken; the vulnerability is specific to imagination-based actor-critic.\" This is the key novelty upgrade (D037)\n- Variable-rate planning in world models (limited prior work)\n- Value overestimation in MBRL: Lu et al. 2018 (delusional bias), Janner et al. 2019 (model exploitation). **Must explicitly differentiate** CIVO from Lu et al.'s delusional bias (different mechanism: model imprecision + learned conditioning amplification vs policy-class constraints)\n- Diagnostic/analysis papers as a genre (precedent for non-method contributions)\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section. TAWM positioning is the single most important item for novelty defense.\n\n---\n\n## 4. Method (paper/method.md)\n\n**Current status:** DRAFT v1, 144 lines. Covers §3.1 (Background), §3.2 (NVE diagnostic), §3.3 (Causal analysis + RSSM fidelity + mitigation).\n\n### 4.1 Diff items\n\n**DIFF-M1: §3 title — consider repositioning as \"Methodology\" or \"Diagnostic Framework\"**\n- Current: \"3. Methodology\" — acceptable for diagnostic paper\n- No change needed\n\n**DIFF-M2: \"The Delusional Critic Hypothesis\" heading (line 39) → rename**\n- Current: `### The Delusional Critic Hypothesis`\n- Required: `### Conditioning-Induced Value Overestimation (CIVO)`\n- The subsection body (lines 41-43) already uses \"CIVO\" and differentiates from Lu et al. Good.\n- But line 43 still says: `We term this the *CIVO*, drawing on Lu & Schuurmans' concept of delusional policies, where function approximation introduces inconsistencies in Q-learning backups.`\n- **Action:** Rename heading. Revise body to lead with CIVO definition, then note Lu et al. analogy as secondary (not \"drawing on\" — that implies derivation). Emphasize: CIVO is model-induced (temporal extrapolation error), Lu et al.'s delusion is policy-class-induced. Keep distinction explicit per D037.\n\n**DIFF-M3: §3.3 \"Mitigation: dt=1 Imagination\" (lines 135-143) — MAJOR UPDATE NEEDED**\n- Current: Presents 008e_v3 seed 1 as 95% baseline recovery, single-seed success. Lines 142-143 say \"seed 2 is in progress.\"\n- Framing B reality: **008e_v3_s2 COLLAPSED** (eval 715→137, nve=3.78x). C6 partially falsified (D038/D040).\n- **Actions:**\n  1. Remove \"Mitigation\" framing entirely — dt=1 imagination is NOT a robust mitigation\n  2. Rewrite as \"Imagination Step Size as Causal Variable\" — the diagnostic point (trained dt_emb + dt=1 still collapses at 1/2 rate) is the finding\n  3. Add s2 collapse data with mechanism contrast table (value-driven CIVO in 008d vs eval-driven instability in 008e_v3_s2)\n  4. Add 009a baseline s2 stability data ruling out seed fragility\n  5. Reframe: trained dt_embedding creates vulnerability through multiple pathways (Pathway A: CIVO via dt>1 imagination; Pathway B: non-CIVO policy instability independent of imagination dt)\n  6. Remove lines 142-143 (\"ongoing\" language for s2)\n\n**DIFF-M4: Add §3.X — Gradient Decomposition of dt_embedding (NEW SUBSECTION)**\n- Not in current draft at all. This is a D061 finding.\n- **Content:**\n  - torch.autograd.grad analysis on dt_emb.weight\n  - Gradient source breakdown: obs decoders 93% (1.505), KL 7% (0.119), reward 0% (0.000)\n  - Implication 1: reward_dt_emb_detach (016e) is architectural no-op\n  - Implication 2: dt_emb training is driven by observation reconstruction, not reward\n  - Implication 3: Full-SGS (018) removing obs decoder gradients is the real gradient-level intervention\n- **Placement:** After RSSM fidelity analysis (before or after the mitigation/causal-variable section)\n\n**DIFF-M5: Add SGS as informative negative result (NEW SUBSECTION or folded into gradient decomposition)**\n- 016e experiment: reward_dt_emb_detach=True\n- Result: collapse at 95K (nve=10.42x), indistinguishable from 008d stochastic variation\n- Interpretation: reward-only SGS is no-op because reward gradient to dt_emb = 0 by architecture\n- Previously interpreted as \"SGS delays collapse ~50K\" — **this interpretation is WITHDRAWN** (D061)\n- Frame as: \"The null result is informative: it eliminates reward head as CIVO gradient pathway and redirects attention to observation decoders\"\n\n**DIFF-M6: 2×2 ablation matrix (D049) — not yet in method.md**\n- The 2×2 matrix (trained/frozen/removed × subsample ON/OFF) is referenced in ROADMAP but not in method section\n- Should add 015b (frozen dt_emb, subsample ON) result: peak nve 1.45x@55K → self-corrected → gradient starvation collapse\n- This fills the ablation picture: trained=CIVO, frozen=sub-threshold transient, removed=blocked\n\n**DIFF-M7: NVE diagnostic power update**\n- Current draft (lines 70-71): \"4/4 classification accuracy\" — still accurate for threshold separation\n- Framing B adds: AUROC=0.933, 7/8 overall accuracy, 1 FP (008e_v3_s2 non-CIVO late collapse)\n- **Action:** Add AUROC=0.933 and 7/8 framing after the 4/4 threshold statement. Reference nve_sensitivity_table.tex. Clarify: 4/4 is for trained-vs-removed at threshold; 7/8 includes all conditions with 008e_v3_s2 as FP due to non-CIVO mechanism.\n\n### 4.2 Legacy framing risks in method.md\n\n| Line(s) | Issue | Action |\n|---------|-------|--------|\n| 39 | \"The Delusional Critic Hypothesis\" heading | Rename to \"Conditioning-Induced Value Overestimation (CIVO)\" |\n| 43 | \"drawing on Lu & Schuurmans' concept of delusional policies\" | Weaken to \"analogous to\" and add explicit differentiation |\n| 135 | \"Mitigation: dt=1 Imagination with Multi-Rate Training\" | Remove \"Mitigation\" framing; rewrite as diagnostic finding |\n| 137-139 | \"zero-cost mitigation\" / \"achieves eval return 869.9\" (single seed only) | Remove mitigation language; add s2 collapse data |\n| 142-143 | \"seed 2 is in progress\" | Replace with s2 collapse results + mechanism analysis |\n\n### 4.3 Missing content in method.md\n\n| Item | Priority | Notes |\n|------|----------|-------|\n| Gradient decomposition subsection (D061) | P0 | Core Framing B contribution |\n| SGS informative negative (016e + D061) | P0 | Required by Framing B |\n| 015b frozen dt_emb results | P1 | Completes 2×2 matrix |\n| 008e_v3_s2 collapse + dual pathway analysis | P0 | C6 partially falsified |\n| AUROC=0.933 / 7/8 framing | P1 | NVE strength update |\n\n---\n\n## 5. Experimental Setup (paper/sections/experimental_setup.md)\n\n**Current status:** DRAFT v1, 130 lines. Covers §4.1 (Base architecture), §4.2 (Environment), §4.3 (Factorial design + Table 1), §4.4 (NVE diagnostic), §4.5 (Training details).\n\n### 5.1 Diff items\n\n**DIFF-E1: Table 1 (factorial table, lines 55-78) — needs new rows**\n- Missing experiments: 015b (frozen dt_emb), 016e (SGS/reward detach), 009a/009b/009c (seeds)\n- **Action:** Add rows for:\n  - 015b: frozen dt_emb, subsample ON, H=15, dt=2 imag → \"Frozen embedding control\"\n  - 016e: trained dt_emb + reward_dt_emb_detach, subsample ON, H=8, dt=2 imag → \"Stop-gradient (reward)\" or \"SGS control\"\n  - Possibly 018 (planned) as a footnote row\n- Seed replication rows (009a/b/c) can be listed as notes under existing rows rather than separate rows\n\n**DIFF-E2: §4.2 Environment — update cross-env status**\n- Lines 35-41: mentions Cheetah Run and Cartpole Swingup with footnote \"in progress\"\n- 010a Cheetah baseline is now RUNNING (ROADMAP)\n- **Action:** Keep footnote but update wording if 010a completes before submission. Remove Cartpole Swingup if it won't be run (focus resources on Cheetah).\n\n**DIFF-E3: §4.4 NVE diagnostic — add AUROC and 7/8 framing**\n- Current: 4/4 classification (lines 111-113)\n- **Action:** Add paragraph after threshold definition:\n  - AUROC=0.933 across all 8 experimental conditions (task B2)\n  - 7/8 accuracy with 1 FP (008e_v3_s2, identified as non-CIVO late collapse via trajectory analysis)\n  - Reference nve_sensitivity_table.tex\n  - Supplementary task B1 (@1.7x): AUROC=1.0, 8/8\n\n**DIFF-E4: §4.5 Training details — update seed info**\n- Line 129: \"key conditions (baseline, 008d, 008f, 008e_v3) add seed 2\"\n- **Action:** Update to reflect completed seed 2 runs: 009a (baseline s2, complete, stable), 009b (008d s2, complete, self-corrected), 009c (008f s2, complete), 008e_v3_s2 (complete, collapsed via non-CIVO pathway). Remove \"in progress\" language.\n\n**DIFF-E5: \"event-gated variable-rate imagination\" naming (line 15)**\n- Current: \"We introduce an *event-gated variable-rate imagination* mechanism\"\n- Framing B is a diagnostic paper — the mechanism being studied failed. The naming suggests we're proposing it.\n- **Action:** Reword: \"We study a *variable-rate imagination* mechanism...\" or \"We investigate the following modifications to the DreamerV3 imagination pipeline...\"\n\n### 5.2 Legacy framing risks in experimental_setup.md\n\n| Line(s) | Issue | Action |\n|---------|-------|--------|\n| 15 | \"We introduce an event-gated variable-rate imagination mechanism\" | Reword — we study/investigate, not introduce |\n| 57 | Table caption: \"unless noted\" for dt=2 default | Fine, but add 016e row |\n| 87 | \"mitigation condition (008e_v3)\" | Remove \"mitigation\" label — partially falsified |\n| 109 | \"we will update to the mean of seeds 1 and 2 once...\" | Update: 009a baseline s2 is now complete; update normalization |\n\n### 5.3 Missing content in experimental_setup.md\n\n| Item | Priority | Notes |\n|------|----------|-------|\n| 016e (SGS) in factorial table | P0 | Core Framing B experiment |\n| 015b (frozen) in factorial table | P1 | Completes 2×2 matrix |\n| AUROC/7/8 in diagnostic section | P1 | Matched with method.md update |\n| Updated seed status | P1 | Remove \"in progress\" language |\n\n---\n\n## 6. Results\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\nStructure as diagnostic findings, not performance claims:\n\n**Finding 1 (C1):** All dt>1 configurations degrade performance\n- 3 configs: 005 (learned gate), 006 (fixed dt=2), 007 (fixed dt=4)\n- Learning curves overlay (hero figure)\n\n**Finding 2 (C2):** Trained dt_embedding is the necessary condition for CIVO\n- 008d vs 008f (primary causal comparison): trained → nve 2.09x → collapse; removed → nve ≤1.02x → stable\n- 4/4 threshold separation across seeds\n- 2×2 matrix: trained/frozen/removed × subsample\n\n**Finding 3 (C3):** Untrained dt_embedding suppresses value drift\n- 008a: 85% baseline at 105K, nve 0.59-0.93x\n- 008c vs 008a: horizon effect\n\n**Finding 4 (C4):** Longer dt amplifies degradation\n- dt=1 (~950) > dt=2 (485) > dt=4 (177) monotonic\n\n**Finding 5 (C5):** Subsampling/horizon are secondary factors\n- 008e_v3 s1: subsample ON + dt=1 imag → 95% baseline\n\n**Finding 6 (C6, partially falsified):** dt=1 imagination does not prevent collapse\n- 008e_v3_s2 collapsed (eval 715→137, nve=3.78x)\n- Dual pathway analysis: CIVO (Pathway A, 008d) vs non-CIVO policy instability (Pathway B, 008e_v3_s2)\n- 009a baseline s2 stable → config-caused\n\n**Finding 7 (NEW — Framing B core):** Gradient decomposition reveals reward=0 pathway\n- dt_emb gradient: obs decoders 93%, KL 7%, reward 0%\n- 016e SGS = no-op (informative negative)\n- Reframes understanding of which pathways drive dt_emb training\n\n**Finding 8: NVE diagnostic framework performance**\n- task B2: 7/8, AUROC=0.933, 1 FP\n- task B1 (supplementary): 8/8, AUROC=1.0\n- Threshold sensitivity analysis (nve_sensitivity_table.tex)\n\n**Legacy framing risks:** N/A (not yet written, but must NOT include):\n- \"SGS delays collapse\" — WITHDRAWN (D061)\n- \"dt=1 imagination as practical mitigation\" — PARTIALLY FALSIFIED (D038/D040)\n- \"delusional critic\" terminology\n\n**Missing content:** Entire section\n\n---\n\n## 7. Discussion\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n\n1. **CIVO mechanism explanation**: Why trained dt_embedding causes overestimation\n   - RSSM fidelity gap at dt>1 (Table: absolute errors + ratios)\n   - 008d reward gap (2.78x) = critic receives confident but biased reward signals\n   - 008f reward gap (1.01x) = no differentiation → no bias → no CIVO\n\n2. **Gradient decomposition implications** (D061)\n   - dt_emb is trained by observation reconstruction, not reward\n   - Reward-only SGS is no-op → future interventions must target obs decoder pathway\n   - Full-SGS (018) as the correct gradient-level test\n\n3. **Dual vulnerability pathways** (D040)\n   - Pathway A (CIVO): value-driven, entropy ↓, requires dt>1 imagination (008d)\n   - Pathway B (non-CIVO policy instability): eval-driven, entropy ↑, independent of imagination dt (008e_v3_s2)\n   - Trained dt_embedding as common root, but mechanisms diverge\n\n4. **Value self-correction** (009b)\n   - Transient nve>1.5x → self-correction (009b s2) vs sustained → collapse (008d s1)\n   - Hypothesis: \"point of no return\" where feedback loop locks\n   - Connection to primacy bias (Qiao et al. 2023), early outlier runs (Bjorck et al. 2022)\n\n5. **TAWM contrast** (D037 — CRITICAL for novelty)\n   - TAWM: dt-conditioning succeeds in TD-MPC2 (MPC)\n   - Our finding: fails in imagination-based AC\n   - Key difference: MPC re-plans from real states; imagination-based AC compounds errors across full rollout\n   - Novelty upgrade: \"architecture-specific vulnerability, not generic failure\"\n\n6. **Connection to MBRL overestimation literature**\n   - Lu et al. 2018: delusional bias (policy-class) — differentiate from CIVO (model-induced)\n   - Janner et al. 2019: model exploitation — CIVO is a specific instance mediated by temporal conditioning\n   - Why model-free temporal abstraction doesn't suffer the same failure\n\n**Legacy framing risks:** Must ensure:\n- No \"SGS delays collapse\" claim\n- No \"delusional critic\" usage\n- No \"dt=1 imagination solves the problem\" framing\n- 008f positioned as causal control, not recommended approach\n\n**Missing content:** Entire section\n\n---\n\n## 8. Limitations\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n1. Single primary environment (Walker Walk) — Cheetah pending (010a)\n2. Limited seed count (2 seeds per key condition; stochastic collapse hard to characterize)\n3. NVE threshold calibrated and evaluated on same data (not independent validation)\n4. NVE confidence intervals wide: 95% CI = [47.3%, 99.7%] for 7/8\n5. Only one base algorithm (DreamerV3); generalizability to other world-model architectures discussed but not tested\n6. No formal causal inference framework (interventional, not observational, but not a formal DAG-based analysis)\n7. Full-SGS (018) and Cheetah cross-env results pending at submission\n8. 008e_v3_s2 collapse mechanism (Pathway B) not fully characterized — entropy increase noted but root cause unclear\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## 9. Conclusion\n\n**Current status:** NOT WRITTEN\n\n**Framing B requirements:**\n- Restate core finding: trained dt_embedding is the necessary condition for CIVO in imagination-based AC\n- Gradient decomposition: 93% obs decoders, 0% reward → reward pathway is architectural null\n- NVE as practical diagnostic tool (AUROC=0.933)\n- TAWM contrast: dt-conditioning is not inherently broken — the vulnerability is specific to imagination + learned dynamics\n- Actionable guidance: don't use trained dt_embedding in imagination-based AC without safeguards; target obs decoder pathway for interventions\n- Open questions: Full-SGS effectiveness (018), cross-environment generality, Pathway B characterization\n\n**Legacy framing risks:** N/A (not yet written)\n\n**Missing content:** Entire section\n\n---\n\n## Global Diff Items (cross-cutting)\n\n### G1: \"delusional critic\" → CIVO full-text replacement (D037)\n\n**Affected files:**\n- `paper/method.md` line 39: heading \"The Delusional Critic Hypothesis\"\n- `paper/method.md` line 43: \"We term this the *CIVO*, drawing on Lu & Schuurmans'\"\n\n**Action:** Rename heading; rewrite body to define CIVO first, Lu et al. as analogy (not derivation). Search entire paper directory for any other occurrences before declaring clean.\n\n### G2: 016e narrative — MUST be \"no-op\", not \"delays collapse\" (D061)\n\n**Old claim (D057/D058, WITHDRAWN):** \"SGS delays collapse ~50K steps\"\n**Correct claim (D061):** \"016e reward_dt_emb_detach is a no-op; reward gradient to dt_emb = 0 by architecture. Observed timing differences from 008d are stochastic variation.\"\n\n**Affected files:** Not yet in any written section (016e hasn't been written up yet), but MUST be checked in any future draft. The paper_framing.md exp_016e entry is already updated.\n\n### G3: 008e_v3 — NOT a mitigation, partially falsified (D038/D040)\n\n**Old claim:** \"dt=1 imagination = practical mitigation (95% baseline recovery)\"\n**Correct claim:** \"dt=1 imagination does not prevent collapse (1/2 seeds collapse via non-CIVO pathway). Trained dt_embedding creates vulnerability through multiple pathways.\"\n\n**Affected files:**\n- `paper/method.md` lines 135-143: entire \"Mitigation\" subsection must be rewritten\n- `paper/sections/experimental_setup.md` line 87: \"mitigation condition (008e_v3)\"\n\n### G4: TAWM positioning (D037 novelty upgrade)\n\n**Status:** Not in any existing section.\n**Required in:** Related Work (primary), Introduction (contribution claim), Discussion (mechanism contrast)\n**Key sentence:** \"TAWM (Nhu et al., ICML 2025) demonstrates that dt-conditioning succeeds in MPC settings (TD-MPC2), establishing that the vulnerability we identify is specific to imagination-based actor-critic training, not an inherent limitation of temporal conditioning.\"\n\n### G5: 2×2 ablation matrix (D049)\n\n**Status:** Referenced in ROADMAP but not yet in paper sections.\n**Required in:** Results section, Discussion\n**Content:** trained/frozen/removed × subsample ON/OFF matrix showing CIVO status per cell\n\n### G6: Figures needed\n\n| Figure | Status | Content |\n|--------|--------|---------|\n| Fig 1: Learning curves (hero) | Not created | All experiments overlaid |\n| Fig 2: NVE trajectories | Not created | Healthy vs pathological separation |\n| Fig 3: Factorial grid | Exists (updated per ROADMAP) | 2×2 matrix visualization |\n| Fig 4: Causal diagram | Not created | dt_emb → CIVO → collapse chain |\n| Fig 5: dt magnitude comparison | Not created | dt=1/2/4 monotonic decline |\n| Fig 6: 008e_v3 dual seed | Exists (updated per ROADMAP) | s1 healthy + s2 collapse |\n| Table: RSSM fidelity | In method.md | Needs absolute + ratio side-by-side |\n| Table: NVE sensitivity | nve_sensitivity_table.tex | AUROC=0.933, exists |\n| Table: Gradient decomposition | Not created | obs 93%, KL 7%, reward 0% |\n\n---\n\n## Priority-Ordered Execution Plan\n\n### P0 — Blocking for submission\n\n1. Rewrite `paper/method.md` §3.3 \"Mitigation\" → dual pathway finding (DIFF-M3)\n2. Add gradient decomposition subsection to method.md (DIFF-M4)\n3. Add SGS informative negative subsection (DIFF-M5)\n4. Rename \"Delusional Critic Hypothesis\" → CIVO (DIFF-M2)\n5. Write Results section (Section 5)\n6. Write Introduction\n7. Write Abstract\n8. Write Discussion (especially TAWM contrast, dual pathways, gradient implications)\n9. Add 016e to factorial table (DIFF-E1)\n10. Update NVE diagnostic with AUROC=0.933 (DIFF-M7, DIFF-E3)\n\n### P1 — Important but not blocking\n\n11. Write Related Work (especially TAWM)\n12. Write Limitations\n13. Write Conclusion\n14. Add 015b to factorial table and results\n15. Update seed status / remove \"in progress\" language (DIFF-E4)\n16. Reword \"event-gated\" as diagnostic study language (DIFF-E5)\n17. Create gradient decomposition table\n18. Update baseline normalization with 009a (DIFF-E4, experimental_setup.md line 109)\n\n### P2 — Polish\n\n19. Create missing figures (Fig 1, 2, 4, 5)\n20. Cross-reference consistency check (method ↔ experimental_setup)\n21. Final \"delusional critic\" grep across all files\n22. Ensure RSSM fidelity table shows absolute + ratio everywhere\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T01:49:11.042614+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T01:49:11.042896+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "Framing B Re-Audit Diff Checklist",
+  "type": "report",
+  "description": "Per-section diff checklist for Framing B (diagnostic paper + SGS informative negative). Covers all 9 paper sections: identifies 7 specific diffs in method.md, 5 in experimental_setup.md, 6 global cross-cutting items, and outlines required content for 6 unwritten sections. Priority-ordered execution plan with P0/P1/P2 tiers.",
+  "project": "event-gated-adaptive-horizon",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md",
+  "tags": "['framing-b', 'reaudit', 'paper', 'corl2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "Framing B Re-Audit Diff Checklist",
+    "type": "report",
+    "description": "Per-section diff checklist for Framing B (diagnostic paper + SGS informative negative). Covers all 9 paper sections: identifies 7 specific diffs in method.md, 5 in experimental_setup.md, 6 global cross-cutting items, and outlines required content for 6 unwritten sections. Priority-ordered execution plan with P0/P1/P2 tiers.",
+    "project": "event-gated-adaptive-horizon",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md",
+    "tags": "['framing-b', 'reaudit', 'paper', 'corl2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T01:49:11.043176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_fa353b\", \"name\": \"Framing B Re-Audit Diff Checklist\", \"type\": \"report\", \"description\": \"Per-section diff checklist for Framing B (diagnostic paper + SGS informative negative). Covers all 9 paper sections: identifies 7 specific diffs in method.md, 5 in experimental_setup.md, 6 global cross-cutting items, and outlines required content for 6 unwritten sections. Priority-ordered execution plan with P0/P1/P2 tiers.\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/framing_b_reaudit.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T01:49:02.600781+00:00\", \"tags\": [\"framing-b\", \"reaudit\", \"paper\", \"corl2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-16T01:49:11.043472+00:00_
+
+产出已保存并注册 (`art_20260516_fa353b`)。
+
+**审计摘要：**
+
+- **已有章节 (2):** method.md 需 7 处修改（最大的是 §3.3 "Mitigation" 重写 + gradient decomposition 新增 + SGS 新增），experimental_setup.md 需 5 处修改（factorial table 加 016e/015b 行 + AUROC 更新 + 去 "mitigation" 标签）
+- **未写章节 (6):** Abstract / Introduction / Related Work / Results / Discussion / Limitations / Conclusion 全部缺失
+- **全局交叉项 (6):** "delusional critic"→CIVO 替换、016e 叙述=no-op、008e_v3 非 mitigation、TAWM 定位、2×2 矩阵、缺失图表
+- **P0 阻塞项 10 条**，按优先级排序在文档末尾
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_framing-b-reaudit_20260516T014508"
+}
+```
+
+</details>
+
+---

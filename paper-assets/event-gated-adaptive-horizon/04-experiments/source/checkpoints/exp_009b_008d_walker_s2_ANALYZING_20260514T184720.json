@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_009b_008d_walker_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:17:25.186Z",
+    "updated_at": "2026-05-14T18:47:20.781Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）",
+    "parent": "exp_008d_subsample_on_h8",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "DreamerV3+FixedDt2_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, trained dt_embed)",
+      "seed": 2,
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000
+    },
+    "pid": "887053",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_009b_008d_walker_s2.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009b_008d_walker_s2 --steps 105000 --seed 2 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "code_commit": "09876d7080affdb0fb329e24753a46d998da9d8e",
+      "finished_at": "2026-05-14T18:47:20.636Z"
+    },
+    "metrics": {
+      "current_step": 5000,
+      "target_step": 105000,
+      "progress_pct": 4.8,
+      "latest_eval_return": 39.27,
+      "eval_return_step": 5000,
+      "value_mean": 0.0013,
+      "value_eval_ratio_pct": 0.003,
+      "gate_dt_mean": 2,
+      "gate_dt_2_frac": 1,
+      "gate_empirical_entropy": 0,
+      "gate_entropy_ratio": 0,
+      "fps_estimated": 7.5,
+      "eta_hours": 3.7,
+      "delusional_critic_risk": "too_early_to_assess",
+      "checked_at": "2026-05-14"
+    }
+  },
+  "timestamp": "2026-05-14T18:47:20.845761+00:00",
+  "trigger": "update_registry"
+}

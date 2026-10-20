@@ -1,0 +1,650 @@
+# writing method p0 rewrites
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/chats/worker_writing_method-p0-rewrites_20260516T030109.jsonl`
+- **Structured JSON:** [`6154481dd9bc59c2356b.json`](../../sessions/61/6154481dd9bc59c2356b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+19 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T03:04:03.018839+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T03:04:03.019575+00:00_
+
+1	% Method — Draft v1
+2	% Target: CoRL 2026
+3	% Status: Draft, pending Director review
+4	% Note: Complements experimental_setup.md (Section 4). Some overlap in
+5	%   diagnostic framework and factorial design is intentional—final paper
+6	%   may merge or redistribute content between Sections 3 and 4.
+7	
+8	# 3. Methodology
+9	
+10	We present a systematic diagnostic methodology for identifying why variable-rate imagination fails in world-model reinforcement learning. Our approach combines (i) controlled factorial experiments that isolate individual causal factors, (ii) a normalized diagnostic metric that separates pathological value overestimation from benign overshoot, and (iii) a world-model fidelity analysis that grounds the failure mechanism in prediction error. All experiments use DreamerV3 \citep{hafner2023dreamerv3} on Walker Walk from the DeepMind Control Suite \citep{tassa2018deepmind}; we scope claims to this architecture and report single-environment results throughout.
+11	
+12	
+13	## 3.1 Background: DreamerV3 and Variable-Rate Imagination
+14	
+15	### World-Model Actor-Critic
+16	
+17	DreamerV3 \citep{hafner2023dreamerv3} learns a latent dynamics model---the Recurrent State-Space Model (RSSM)---from environment interactions and trains an actor-critic entirely within imagined trajectories. The RSSM maintains a latent state $s_t = (h_t, z_t)$ consisting of a deterministic recurrent component $h_t$ and a stochastic discrete representation $z_t$. At each imagination step, the model predicts:
+18	
+19	$$h_{t+1} = f_\theta(h_t, z_t, a_t), \quad \hat{z}_{t+1} \sim p_\theta(\cdot \mid h_{t+1})$$
+20	
+21	An actor $\pi_\psi$ selects actions and a critic $V_\xi$ estimates $\lambda$-returns, both trained on imagined trajectories of horizon $H$ steps. In the standard configuration, each imagination step corresponds to one environment transition ($\Delta t = 1$) and $H = 15$.
+22	
+23	### Temporal Abstraction via Variable-Rate Imagination
+24	
+25	Temporal abstraction---reasoning at m
+…[truncated 19787 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T03:04:03.021745+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T03:04:03.022347+00:00_
+
+1	# Framing B Re-Audit: Per-Section Diff Checklist
+2	
+3	> Date: 2026-05-16 | Framing: **B — Diagnostic paper + SGS as informative negative result**
+4	> Governing decisions: D059 (Framing B approved), D061 (gradient decomposition: reward=0, obs=93%)
+5	> NVE diagnostic: 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)
+6	
+7	---
+8	
+9	## 1. Abstract
+10	
+11	**Current status:** NOT WRITTEN
+12	
+13	**Framing B requirements:**
+14	- Diagnostic analysis paper positioning (not method paper)
+15	- Core question: "Why does temporal abstraction fail in world-model RL?"
+16	- Key findings: trained dt_embedding → CIVO → stochastic collapse
+17	- NVE diagnostic framework: 7/8, AUROC=0.933
+18	- Gradient decomposition: 93% obs decoders, 0% reward → reward-only SGS is architectural no-op
+19	- TAWM contrast: dt-conditioning succeeds in MPC (TAWM, ICML 2025) but fails in imagination-based AC
+20	- Scope: DreamerV3 + Walker Walk (+ Cheetah pending)
+21	
+22	**Outline (≤150 words):**
+23	1. Temporal abstraction via variable-rate imagination is a natural extension of world-model RL, but consistently degrades performance [1 sentence]
+24	2. We present a systematic diagnostic analysis identifying trained dt-embedding as the necessary condition for conditioning-induced value overestimation (CIVO) [1 sentence]
+25	3. Gradient decomposition reveals 93% of dt_emb gradients come from observation decoders (0% reward), making reward-only stop-gradient an architectural no-op [1 sentence]
+26	4. NVE diagnostic threshold achieves AUROC=0.933 for CIVO detection [1 sentence]
+27	5. Contrast with TAWM: dt-conditioning succeeds in MPC but fails in imagination-based AC — architecture-specific vulnerability [1 sentence]
+28	6. Scoped to DreamerV3/RSSM; actionable guidelines for future temporal abstraction work [1 sentence]
+29	
+30	**Legacy framing risks:** N/A (not yet written)
+31	
+32	**Missing content:** Entire section
+33	
+34	---
+35	
+36	## 2. Introduction
+37	
+38	**Current status:** NOT WRITTEN
+39	
+40	**Framing B requ
+…[truncated 22306 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T03:04:03.022644+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T03:04:03.022874+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T03:04:03.023126+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T03:04:03.023521+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-16: Reviewer 写作规则（所有 paper Worker 必须遵守）\\n\\n1. **梯度分解 Table caption 必须标注具体 step number**（不能只说 \\\"representative step\\\"）\\n2. **\\\"exactly zero\\\" → \\\"numerically negligible—zero to within floating-point precision\\\"**（reward gradient）\\n3. **NVE 列统一用 normalized 值**：016e 用 10.42x (normalized)，不是 6.59x (raw ratio)\\n4. **\\\"statistically indistinguishable\\\" → \\\"consistent with cross-seed variation\\\"**（016e vs 008d timing 差异）\\n\\n## 2026-05-16: 009b Peak Eval 修正（Reviewer 更正）\\n\\n009b peak eval = **278.5@95K**，不是 268.3@105K。Registry 数据确认：95K eval=278.54, 105K eval=267.93。论文中引用 009b 时用 278.5@95K 作为 peak。\\n\\n## 2026-05-16: D061 梯度文献联动 — 必引论文\\n\\n016e/gradient decomposition section 必须引用：\\n- **Hafner et al. 2023** (DreamerV3 消融：reconstruction vs reward loss 量级差异)\\n- **Shang et al. 2024** (HarmonyDream：量化 loss 差异 2 个数量级，但未做 backward pass 分解)\\n- **Chen et al. 2018** (GradNorm：multi-task gradient 方法论基础)\\n\\n我们的新颖性：(1) gradient-level 定量分解 (93%/7%/0%)，(2) reward=0 比 \\\"小两个数量级\\\" 更强，(3) SGS 作为因果诊断工具无先例。\\n\\n## 2026-05-15: 016e SGS Deep Analysis — Entropy 保留 + Actor Loss Sign Flip\\n\\n**016e vs 008d 逐步对比关键发现**：\\n1. **Onset 延迟 ~50K steps**：008d 25K 开始衰退，016e 稳定到 75K peak 才崩\\n2. **SGS 核心作用是保留 entropy**：35K 时 016e entropy 比 008d 高 1.35 nats（-2.12 vs -3.47）→ 探索更充分 → 2x 更高 peak（327 vs 167）\\n3. **Actor loss sign flip 是崩溃标志**：016e@95K actor_loss 翻正（+0.014），value critic 开始推 actor 向更差动作。008d 从未翻正\\n4. **Value 完全脱钩**：016e@95K value=209 but eval=32，disconnect ratio 6.58x（vs 008d 1.67x）\\n5. **SGS 治标不治本**：延迟 CIVO 但让积累的 value overestimation 更高（215 vs 138），崩溃更惨烈（NVE 10.42x vs 4.12x）\\n\\n**D061 修正**：上述 016e vs 008d 的差异（onset timing, peak height）现归因于 cross-seed variation，因为 016e reward-only SGS 是 architectural no-op (reward gradient=0)。\\\"SGS delays collapse\\\" 解读已撤回。\\n\\
+…[truncated 3731 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T03:04:03.024029+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T03:04:03.024667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure 
+…[truncated 32605 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T03:04:03.025132+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+  "old_string": "% Method — Draft v1\n% Target: CoRL 2026\n% Status: Draft, pending Director review",
+  "new_string": "% Method — Draft v2\n% Target: CoRL 2026\n% Status: Updated 2026-05-16 — DIFF-M6 (2×2 ablation matrix), DIFF-M7 (NVE AUROC/7-of-8). DIFF-M2, DIFF-M3 already applied."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+    "old_string": "% Method — Draft v1\n% Target: CoRL 2026\n% Status: Draft, pending Director review",
+    "new_string": "% Method — Draft v2\n% Target: CoRL 2026\n% Status: Updated 2026-05-16 — DIFF-M6 (2×2 ablation matrix), DIFF-M7 (NVE AUROC/7-of-8). DIFF-M2, DIFF-M3 already applied."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T03:04:03.025475+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T03:04:03.025701+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+  "old_string": "### Supporting Analyses",
+  "new_string": "### 2$\\times$2 Ablation Matrix\n\nTo close the causal loop, we cross dt\\_embedding configuration (trained / frozen / removed) with temporal subsampling (ON / OFF), isolating the necessary condition for sustained CIVO:\n\n| dt\\_embedding | Subsample | Exp | Peak NVE (35K+) | Outcome |\n|:---:|:---:|:---:|:---:|:---:|\n| Trained ($d{=}32$) | ON | 008d | 4.12$\\times$@55K (sustained $\\uparrow$) | CIVO $\\to$ collapse |\n| Trained ($d{=}32$) | OFF | 008a | 0.93$\\times$@55K | Stable, 85\\% baseline@105K |\n| Frozen ($d{=}32$) | ON | 015b | 1.45$\\times$@55K $\\to$ 0.65$\\times$@65K | Sub-threshold transient; gradient starvation collapse |\n| Removed ($d{=}0$) | ON | 008f | $\\leq$1.02$\\times$ | No CIVO |\n\nTrained dt\\_embedding is the necessary condition for sustained CIVO (NVE $>$ 1.5$\\times$ across consecutive checkpoints). Frozen embedding produces sub-threshold transient overestimation (exp\\_015b: peak 1.45$\\times$@55K) that self-corrects to 0.65$\\times$@65K before collapsing through a distinct gradient starvation mechanism (actor loss $\\to$ 0 as the frozen embedding drifts from the RSSM's evolving representations). Removing the embedding entirely (exp\\_008f, $d{=}0$) blocks CIVO: NVE never exceeds 1.02$\\times$. The subsample-OFF condition (exp\\_008a) confirms that a trained embedding without exposure to $\\Delta t{>}1$ training data also avoids CIVO, establishing that both embedding capacity *and* multi-rate training data are jointly required to trigger the overestimation feedback loop.\n\n### Supporting Analyses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+    "old_string": "### Supporting Analyses",
+    "new_string": "### 2$\\times$2 Ablation Matrix\n\nTo close the causal loop, we cross dt\\_embedding configuration (trained / frozen / removed) with temporal subsampling (ON / OFF), isolating the necessary condition for sustained CIVO:\n\n| dt\\_embedding | Subsample | Exp | Peak NVE (35K+) | Outcome |\n|:---:|:---:|:---:|:---:|:---:|\n| Trained ($d{=}32$) | ON | 008d | 4.12$\\times$@55K (sustained $\\uparrow$) | CIVO $\\to$ collapse |\n| Trained ($d{=}32$) | OFF | 008a | 0.93$\\times$@55K | Stable, 85\\% baseline@105K |\n| Frozen ($d{=}32$) | ON | 015b | 1.45$\\times$@55K $\\to$ 0.65$\\times$@65K | Sub-threshold transient; gradient starvation collapse |\n| Removed ($d{=}0$) | ON | 008f | $\\leq$1.02$\\times$ | No CIVO |\n\nTrained dt\\_embedding is the necessary condition for sustained CIVO (NVE $>$ 1.5$\\times$ across consecutive checkpoints). Frozen embedding produces sub-threshold transient overestimation (exp\\_015b: peak 1.45$\\times$@55K) that self-corrects to 0.65$\\times$@65K before collapsing through a distinct gradient starvation mechanism (actor loss $\\to$ 0 as the frozen embedding drifts from the RSSM's evolving representations). Removing the embedding entirely (exp\\_008f, $d{=}0$) blocks CIVO: NVE never exceeds 1.02$\\times$. The subsample-OFF condition (exp\\_008a) confirms that a trained embedding without exposure to $\\Delta t{>}1$ training data also avoids CIVO, establishing that both embedding capacity *and* multi-rate training data are jointly required to trigger the overestimation feedback loop.\n\n### Supporting Analyses"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T03:04:03.026182+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T03:04:03.026415+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+  "old_string": "### Properties of the NVE Metric",
+  "new_string": "**Aggregate diagnostic power.** Evaluating the 1.5$\\times$ threshold across all eight experimental conditions (task B2), the NVE diagnostic achieves AUROC = 0.933 with 7/8 classification accuracy (Table~\\ref{tab:nve_sensitivity}). The single false positive is exp\\_008e\\_v3\\_s2, which exhibits late-onset NVE = 3.78$\\times$ driven by eval collapse rather than value overestimation---a non-CIVO failure pathway analyzed in \\S3.3. At a stricter threshold of 1.7$\\times$ (task B1), the metric achieves 8/8 accuracy and AUROC = 1.0 (supplementary material).\n\n### Properties of the NVE Metric"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md",
+    "old_string": "### Properties of the NVE Metric",
+    "new_string": "**Aggregate diagnostic power.** Evaluating the 1.5$\\times$ threshold across all eight experimental conditions (task B2), the NVE diagnostic achieves AUROC = 0.933 with 7/8 classification accuracy (Table~\\ref{tab:nve_sensitivity}). The single false positive is exp\\_008e\\_v3\\_s2, which exhibits late-onset NVE = 3.78$\\times$ driven by eval collapse rather than value overestimation---a non-CIVO failure pathway analyzed in \\S3.3. At a stricter threshold of 1.7$\\times$ (task B1), the metric achieves 8/8 accuracy and AUROC = 1.0 (supplementary material).\n\n### Properties of the NVE Metric"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T03:04:03.026741+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T03:04:03.027017+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T03:04:03.027447+00:00_
+
+1	% Method — Draft v2
+2	% Target: CoRL 2026
+3	% Status: Updated 2026-05-16 — DIFF-M6 (2×2 ablation matrix), DIFF-M7 (NVE AUROC/7-of-8). DIFF-M2, DIFF-M3 already applied.
+4	% Note: Complements experimental_setup.md (Section 4). Some overlap in
+5	%   diagnostic framework and factorial design is intentional—final paper
+6	%   may merge or redistribute content between Sections 3 and 4.
+7	
+8	# 3. Methodology
+9	
+10	We present a systematic diagnostic methodology for identifying why variable-rate imagination fails in world-model reinforcement learning. Our approach combines (i) controlled factorial experiments that isolate individual causal factors, (ii) a normalized diagnostic metric that separates pathological value overestimation from benign overshoot, and (iii) a world-model fidelity analysis that grounds the failure mechanism in prediction error. All experiments use DreamerV3 \citep{hafner2023dreamerv3} on Walker Walk from the DeepMind Control Suite \citep{tassa2018deepmind}; we scope claims to this architecture and report single-environment results throughout.
+11	
+12	
+13	## 3.1 Background: DreamerV3 and Variable-Rate Imagination
+14	
+15	### World-Model Actor-Critic
+16	
+17	DreamerV3 \citep{hafner2023dreamerv3} learns a latent dynamics model---the Recurrent State-Space Model (RSSM)---from environment interactions and trains an actor-critic entirely within imagined trajectories. The RSSM maintains a latent state $s_t = (h_t, z_t)$ consisting of a deterministic recurrent component $h_t$ and a stochastic discrete representation $z_t$. At each imagination step, the model predicts:
+18	
+19	$$h_{t+1} = f_\theta(h_t, z_t, a_t), \quad \hat{z}_{t+1} \sim p_\theta(\cdot \mid h_{t+1})$$
+20	
+21	An actor $\pi_\psi$ selects actions and a critic $V_\xi$ estimates $\lambda$-returns, both trained on imagined trajectories of horizon $H$ steps. In the standard configuration, each imagination step corresponds to one environment transition ($\Delta t = 1$) and $H = 15$.
+22	
+23	### Temporal Abs
+…[truncated 21980 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T03:04:03.027749+00:00_
+
+文件验证完毕，所有修改正确。
+
+修改总结：
+- **DIFF-M2**：已在当前文件中（heading 已为 CIVO，body 正确区分 Lu et al. analogy）
+- **DIFF-M3**：已在当前文件中（§3.3 "Imagination Step Size as Causal Variable" 含 s2 collapse + dual-pathway + 009a baseline）
+- **DIFF-M6**：新增 2×2 ablation matrix（lines 113-124），含 008d/008a/015b/008f 四个条件及 trained dt\_emb 必要条件结论
+- **DIFF-M7**：新增 aggregate diagnostic power 段落（line 78），含 AUROC=0.933、7/8 accuracy、1 FP (008e\_v3\_s2)、task B1 supplementary reference
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_method-p0-rewrites_20260516T030109"
+}
+```
+
+</details>
+
+---

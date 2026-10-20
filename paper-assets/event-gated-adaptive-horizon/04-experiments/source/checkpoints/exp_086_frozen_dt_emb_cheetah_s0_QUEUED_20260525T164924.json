@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_086_frozen_dt_emb_cheetah_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T16:24:01.866Z",
+    "updated_at": "2026-05-25T16:49:24.337Z",
+    "hypothesis": "Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Cheetah Run does not trigger CIVO — cross-environment validation that dt_emb TRAINING is CIVO necessary condition. Expected NVE<1.0, consistent with exp_082 (no dt_emb). Paired with exp_078 (trained dt_emb, NVE=4.1×).",
+    "parent": "exp_078_cheetah_008d_s0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_086_frozen_dt_emb_cheetah_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\"",
+      "server": "westd-19154",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_086_frozen_dt_emb_cheetah_s0.log",
+      "submitted_at": "2026-05-25T16:24:17.774Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-25T16:49:24.731418+00:00",
+  "trigger": "update_registry"
+}

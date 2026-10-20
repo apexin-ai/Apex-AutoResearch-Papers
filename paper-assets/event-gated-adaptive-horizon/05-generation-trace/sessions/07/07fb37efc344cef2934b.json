@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07fb37efc344cef2934b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis auroc ci method fix",
+  "task_key": "worker_analysis_auroc_ci_method_fix_20260515T173053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_auroc_ci_method_fix_20260515T173053_result.json",
+    "occurrence": 1,
+    "bytes": 1832,
+    "sha256": "2167dcea1ce6ecdfa6c1be52c552a79273f9a984b649840a9437941af99c6218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已保存。以下是完整结论：\n\n---\n\n## 1. 当前 v3 CI 方法确认\n\n- **方法**: Bootstrap percentile CI, 1000 resamples, seed=42\n- **缺陷**: 跳过单类 resample，但对 perfect separation 无特殊处理。所有含两类的 resample 仍给 AUROC=1.0 → CI=[1.0, 1.0]\n- **数学上正确，但对 reviewer 无说服力**\n\n## 2. 修正后统计量\n\n### Task B1 (009b=negative, AUROC=1.0)\n| 指标 | 值 |\n|------|-----|\n| n | 8 (pos=3, neg=5) |\n| pos_min NVE | 3.7801 |\n| neg_max NVE | 1.619 |\n| **margin** | **2.1611** |\n| Bootstrap (2000 resamples) | CI=[1.0, 1.0], valid=1956, skipped=44, unique_values=1 |\n| **Accuracy Clopper-Pearson 95% CI** | **[0.6877, 1.0]** |\n\n### Task B2 (009b=positive, AUROC=1.0)\n| 指标 | 值 |\n|------|-----|\n| n | 8 (pos=4, neg=4) |\n| pos_min NVE | 1.619 |\n| neg_max NVE | 1.0 |\n| **margin** | **0.619** |\n| Bootstrap (2000 resamples) | CI=[1.0, 1.0], valid=1982, skipped=18, unique_values=1 |\n| **Accuracy Clopper-Pearson 95% CI** | **[0.6877, 1.0]** |\n\n### Task A (AUROC=0.8667, 非完美分离)\n| 指标 | 值 |\n|------|-----|\n| n | 8 (pos=5, neg=3) |\n| margin | -0.0589 (有重叠) |\n| Bootstrap AUROC 95% CI | **[0.5, 1.0]** |\n| Accuracy Clopper-Pearson 95% CI | [0.4735, 0.9968] (7/8 correct) |\n\n## 3. 论文应报告的数字\n\n对于 AUROC=1.0 的 Task B1/B2：\n1. **n 和样本构成** (pos/neg counts)\n2. **Separation margin**: pos_min − neg_max (B1: 2.16, B2: 0.62)\n3. **Clopper-Pearson exact binomial 95% CI on accuracy**: [0.69, 1.0]\n4. **说明**: \"All CI methods (DeLong, bootstrap, BCa) degenerate to [1,1] under perfect separation; the Clopper-Pearson CI on classification accuracy provides the more informative uncertainty bound.\"\n\n产出文件: `artifacts/nve_threshold_v3_ci_supplement.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-auroc-ci-method-fix.md"
+}

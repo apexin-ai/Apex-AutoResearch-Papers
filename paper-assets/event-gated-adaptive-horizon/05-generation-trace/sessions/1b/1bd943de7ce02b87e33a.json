@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bd943de7ce02b87e33a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code full sgs implementation",
+  "task_key": "worker_code_full-sgs-implementation_20260515T223906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full-sgs-implementation_20260515T223906_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "2965aee8d5649501e03bf8c3657cadec90b4695896a3d389f81a618695986c7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### Full-SGS 实现\n\n**代码改动** (commit `5fc8e49`):\n\n1. **`configs.yaml`** — 添加 `full_sgs: false` 配置项\n2. **`models.py` WorldModel._train** — Full-SGS 分支：用 `torch.autograd.grad` 计算所有 head loss（decoder+reward+cont）对 `dt_emb.weight` 的梯度，通过 `register_hook` 在 backward 时减去，只保留 dynamics (KL) loss 的梯度分量\n3. **`models.py` ImagBehavior._train** — `full_sgs=True` 时在 actor/value 优化阶段禁用 `dt_emb.weight.requires_grad`\n\n**梯度验证结果**（关键发现）：\n\n| 模式 | dt_emb grad norm | 来源 |\n|------|------------------|------|\n| no_sgs | 1.624 | KL + 所有 head |\n| reward_sgs | 1.624 | KL + decoder + cont（**reward=0，完全无效**）|\n| full_sgs | 0.119 | 仅 KL |\n\n**核心发现：reward loss 对 dt_emb 的梯度贡献为 0**。016e 的 reward_dt_emb_detach 无效正是因为此。真正的梯度来源是 decoder heads（observation reconstruction）：orientations=1.11, velocity=0.90, height=0.76, cont=0.27。Full-SGS 移除了 93% 的梯度。\n\n**使用方式**：\n```bash\npython dreamer.py --configs defaults dmc_proprio --full_sgs True --gate_enabled True --gate_fixed_dt 2 ...\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-sgs-implementation.md"
+}

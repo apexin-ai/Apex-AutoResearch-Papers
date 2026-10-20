@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "008167b240970ec7a724",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 008e v3 s4",
+  "task_key": "worker_submit_exp_008e_v3_s4_20260518T081602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_008e_v3_s4_20260518T081602_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "15fef3536c4c6ff8434d87b620bca472d9823840b007162063daf7e49ea42033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 733613，cuda:1，tmux session `exp_008e_v3_s4`\n- **Registry**: RUNNING，spec 已写入\n- cuda:0 上的 exp_008e_v3_s3 (PID 732934) 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-008e-v3-s4.md"
+}

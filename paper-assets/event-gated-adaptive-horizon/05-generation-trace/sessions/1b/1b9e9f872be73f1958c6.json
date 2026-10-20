@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b9e9f872be73f1958c6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp003 crash",
+  "task_key": "worker_check_exp003-crash_20260513T064842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003-crash_20260513T064842_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "b7f9929dc4e6a705b97e522ef2f51011f378ac95b6b2ac262c8e889f1bbc05dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程 PID 24438 没有退出，当前正常运行中。**\n\n状态汇总：\n\n| 项目 | 状态 |\n|------|------|\n| PID 24438 | **运行中** (`Rl`, CPU 1382%, 启动于 14:44) |\n| GPU 1 | 4252MiB / 97887MiB, 温度 41°C |\n| 当前 step | **52000** / 500000 |\n| 最新 eval_return | 416.37 |\n| 最新 train_return | ~424-533 (step 48k-52k) |\n| 错误 | 无 traceback，仅有 deprecation warnings (torch.cuda.amp) |\n\n日志中只有 gym 过时警告和 `torch.cuda.amp` 的 FutureWarning，无任何错误或异常。\n\n另外 baseline 实验 (PID 9409, GPU 0) 也在正常运行。\n\n**结论：进程未退出，正在正常训练，无需干预。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-crash.md"
+}

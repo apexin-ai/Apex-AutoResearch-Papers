@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_walker_008d_s7",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-27T21:05:17.669Z",
+    "updated_at": "2026-05-27T23:21:27.102Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample ON (gate_subsample_max_dt=2) + gate_fixed_dt=2 + H=8, seed=7 — C2 onset rate rebuttal reserve. Trained dt_emb with multi-dt data exposure triggers CIVO. Additional seed to narrow CI on 2/3 onset rate. Source: D172 Tier 2.",
+    "parent": "exp_008d_subsample_on_h8",
+    "server": "westd-51268",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"kill 652815 2>/dev/null; sleep 2; kill -9 652815 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_008d_s7 --steps 105000 --seed 7 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "server": "westd-51268",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "660802",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_walker_008d_s7.log",
+      "submitted_at": "2026-05-27T23:09:27.654Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 709.9,
+      "gpu_hours": 0.2
+    },
+    "pid": "660802",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_walker_008d_s7.log",
+    "reproduce": {
+      "command": "bash -c \"kill 652815 2>/dev/null; sleep 2; kill -9 652815 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=1 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_walker_008d_s7 --steps 105000 --seed 7 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8\"",
+      "finished_at": "2026-05-27T23:21:20.324Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-27T23:21:17.585Z"
+  },
+  "timestamp": "2026-05-27T23:21:29.100724+00:00",
+  "trigger": "update_registry"
+}

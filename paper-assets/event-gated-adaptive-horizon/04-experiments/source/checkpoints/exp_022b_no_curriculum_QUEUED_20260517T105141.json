@@ -1,0 +1,19 @@
+{
+  "exp_id": "exp_022b_no_curriculum",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:49:08.181Z",
+    "updated_at": "2026-05-17T10:51:40.876Z",
+    "hypothesis": "Frozen dt_emb (random init, no gradients) + learned gate WITHOUT curriculum (phase1=0, phase2=0, gate fully unlocked from step 0). Tests whether frozen dt_emb prevents CIVO (NVE < 1.5×) while allowing the gate to learn meaningful temporal abstraction (gate_dt_1_frac < 1.0). exp_022 was inconclusive because curriculum locked gate for the entire run; this rerun removes that confound.",
+    "parent": "exp_022_untrained_dt_emb_learned_gate",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root"
+  },
+  "timestamp": "2026-05-17T10:51:41.164115+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp_018v2_full_sgs_walker_s1",
+  "checkpoints_found": [
+    "checkpoint_25000.pt",
+    "checkpoint_75000.pt",
+    "latest.pt"
+  ],
+  "with_sgs": {
+    "description": "Actual training gradient (Full-SGS active, obs+reward+cont pathway blocked from dt_emb)",
+    "steps": [
+      {
+        "step": 25000,
+        "obs_norm": 0.0,
+        "reward_norm": 0.0,
+        "kl_norm": 1.0838184118270875,
+        "cont_norm": 0.0,
+        "obs_pct": 0.0,
+        "reward_pct": 0.0,
+        "kl_pct": 100.0,
+        "cont_pct": 0.0
+      },
+      {
+        "step": 75000,
+        "obs_norm": 0.0,
+        "reward_norm": 0.0,
+        "kl_norm": 0.6388978958129883,
+        "cont_norm": 0.0,
+        "obs_pct": 0.0,
+        "reward_pct": 0.0,
+        "kl_pct": 100.0,
+        "cont_pct": 0.0
+      },
+      {
+        "step": 112000,
+        "obs_norm": 0.0,
+        "reward_norm": 0.0,
+        "kl_norm": 0.5902197152376175,
+        "cont_norm": 0.0,
+        "obs_pct": 0.0,
+        "reward_pct": 0.0,
+        "kl_pct": 100.0,
+        "cont_pct": 0.0
+      }
+    ]
+  },
+  "without_sgs": {
+    "description": "Counterfactual gradient (SGS disabled, shows underlying gradient structure)",
+    "steps": [
+      {
+        "step": 25000,
+        "obs_norm": 0.2090948037803173,
+        "reward_norm": 0.5035642325878144,
+        "kl_norm": 1.0838184118270875,
+        "cont_norm": 2.8342378399770495e-08,
+        "obs_pct": 11.6,
+        "reward_pct": 28.0,
+        "kl_pct": 60.3,
+        "cont_pct": 0.0
+      },
+      {
+        "step": 75000,
+        "obs_norm": 0.23308221697807313,
+        "reward_norm": 0.24678695425391198,
+        "kl_norm": 0.6388978958129883,
+        "cont_norm": 5.388185765620168e-11,
+        "obs_pct": 20.8,
+        "reward_pct": 22.1,
+        "kl_pct": 57.1,
+        "cont_pct": 0.0
+      },
+      {
+        "step": 112000,
+        "obs_norm": 0.23308221697807313,
+        "reward_norm": 0.2544807016849518,
+        "kl_norm": 0.5902197152376175,
+        "cont_norm": 2.314690279725529e-12,
+        "obs_pct": 24.2,
+        "reward_pct": 22.8,
+        "kl_pct": 53.0,
+        "cont_pct": 0.0
+      }
+    ]
+  },
+  "comparison_with_008d": {
+    "note": "008d at 55K: obs=25.8%, reward=23.5%, KL=50.7%. At 105K: obs=93%, reward=0%, KL=7%.",
+    "finding": "018v2 counterfactual: obs goes from 11.6% (step 25000) to 24.2% (step 112000). KL goes from 60.3% to 53.0%. With Full-SGS active, dt_emb only sees KL gradient (100%) throughout training. Unlike 008d which saw obs explode to 93% by 105K (CIVO), 018v2's counterfactual obs only grows moderately (11.6→24.2%), suggesting SGS successfully prevents the positive feedback loop that causes CIVO."
+  }
+}

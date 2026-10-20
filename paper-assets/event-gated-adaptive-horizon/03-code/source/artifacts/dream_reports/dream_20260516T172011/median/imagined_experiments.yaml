@@ -1,0 +1,1048 @@
+tier: median
+narrative_guidance: "核心因果方向（trained dt_emb → CIVO → collapse risk）跨 Walker 和 Cheetah\
+  \ 成立，\n但边界不如 best-case 干净。三个关键软化点：\n(1) NVE 1.5× 阈值分类精度降至 ~83%（6/7），因 008f_s3 或\
+  \ Cheetah 控制出现 1 个 borderline case；\n(2) Cheetah 控制实验 NVE 峰值在 1.3-2.0× 区间（方向正确但不如\
+  \ Walker 的 <1.3× 干净），\n    削弱 \"eliminates\" 措辞 → 改为 \"significantly reduces\"；\n\
+  (3) CIVO 独立贡献从 \"35pp\" 降为 \"20-35pp range\"，需 sensitivity analysis 展示\n    different\
+  \ decomposition assumptions 的影响；\n(4) 跨环境叙事从 \"replicated\" 改为 \"directionally consistent\"\
+  ；\n(5) Cartpole 来不及完成，论文只有 2 个环境。\n仍可投 CoRL，但 rebuttal 需准备额外 seed 或 Cartpole 数据。\n"
+imagined_experiments:
+- name: Walker Walk 008d (trained dt_emb, collapse) seeds 1-2
+  plan_id: plan_011
+  description: 2 额外 seed 复制 CIVO 崩溃
+  expected_results:
+    seed1_009e_eval_105K: 131
+    seed1_009e_nve_peak: 4.12
+    seed1_009e_nve_peak_step: 55000
+    seed1_009e_collapse: true
+    seed1_009e_nve_sustained_above_1_5x: true
+    seed2_009b_eval_105K: 268
+    seed2_009b_nve_peak: 2.05
+    seed2_009b_nve_peak_step: 25000
+    seed2_009b_collapse: false
+    seed2_009b_self_corrected: true
+    seed2_009b_nve_105K: 0.38
+    collapse_rate_across_seeds: 1/2 (50%)
+    nve_exceeds_1_5x_rate: 2/2 (100%)
+  result_rationale: 'Median 档预期 walker_trained_dt_emb_collapse_rate 在 0.25-0.75 区间。
+
+    50% 崩溃率（1/2 独立 seed）落在区间中心。两个 seed 都超过 nve>1.5×，
+
+    确认 trained dt_emb 可靠触发病理性高估，但是否级联为崩溃取决于
+
+    早期训练随机性（初始化 + 数据采样顺序）。seed 1 的 nve 在 35K+ 连续
+
+    3 个 checkpoint 维持 >1.5×（1.71→2.09→4.12），锁定正反馈环；
+
+    seed 2 的 nve 在 45K 短暂达 1.62× 后立即回落至 1.41×，自校正力
+
+    在反馈环锁定前占据主导。这与 Henderson et al. (2018) 关于 RL
+
+    结果高方差的文献一致——崩溃是随机的，但诊断标记（nve>1.5×）是确定性的。
+
+    '
+  tables:
+  - title: 008d cross-seed NVE trajectory (35K+)
+    rows:
+    - seed: 0 (008d)
+      nve_35K: 1.71
+      nve_45K: 2.09
+      nve_55K: 4.12
+      outcome: COLLAPSE
+    - seed: 1 (009e)
+      nve_35K: 1.71
+      nve_45K: 2.09
+      nve_55K: 4.12
+      outcome: COLLAPSE
+    - seed: 2 (009b)
+      nve_25K: 2.05
+      nve_45K: 1.62
+      nve_55K: 1.41
+      nve_105K: 0.38
+      outcome: SELF-CORRECTED
+  figures_description:
+  - NVE 时间序列（3 seeds 叠加），标注 1.5× 阈值线和崩溃/自校正区域
+  analysis: 'C2 因果方向在 Walker Walk 跨 seed 得到确认：所有 trained dt_emb seed 均触发
+
+    nve>1.5×（3/3 counting seed 0），崩溃率 ~50%（2/3 counting seed 0）。
+
+    seed 0 和 seed 1 共享 seed=1 故只计 1 个独立观测，独立崩溃率 1/2。
+
+    关键洞察：nve>1.5× 是必要但非充分的崩溃条件——temporal persistence 是第二道门。
+
+    '
+- name: Walker Walk 008f (dt_embed_dim=0) seeds 1-2
+  plan_id: plan_012
+  description: 2 额外 seed 复制因果控制稳定性
+  expected_results:
+    seed1_009f_eval_105K: 380
+    seed1_009f_nve_peak: 1.05
+    seed1_009f_nve_105K: 0.35
+    seed1_009f_collapse: false
+    seed1_009f_trajectory: zigzag recovery, 173→375→290→380
+    seed2_009c_eval_105K: 148
+    seed2_009c_nve_peak: 1.26
+    seed2_009c_nve_105K: 1.14
+    seed2_009c_collapse: false
+    seed2_009c_trajectory: peak 359@75K then monotonic decline
+    cross_seed_nve_below_1_5x: 2/2
+    cross_seed_eval_variance: high (148-503 at 105K across 3 seeds)
+  result_rationale: 'Median 档中 008f 的保护方向成立（nve 均未超 1.5×），但跨 seed 一致性差。
+
+    seed 2 (009c) 出现 75K 后持续下降而非 seed 0 的 zigzag 恢复，nve 从 0.33@75K
+
+    上升至 1.14@105K，逼近但未突破 1.5× 阈值。seed 1 (009f) 的恢复比 seed 0
+
+    弱但保持稳定。高 eval 方差（3 seeds: 503, 380, 148）说明 dt_embed_dim=0
+
+    虽然阻断 CIVO 但引入了自身的不稳定性（reward_MAE = 0.747, baseline 75×），
+
+    并非推荐方案。这支持 paper 中 008f 定位为因果控制而非实用缓解的叙事。
+
+    '
+  tables:
+  - title: 008f cross-seed summary at 105K
+    rows:
+    - seed: 0 (008f)
+      eval_105K: 503
+      nve_105K: 0.3
+      nve_peak: 1.02
+      trend: zigzag recovery ↑
+    - seed: 1 (009f)
+      eval_105K: 380
+      nve_105K: 0.35
+      nve_peak: 1.05
+      trend: moderate recovery
+    - seed: 2 (009c)
+      eval_105K: 148
+      nve_105K: 1.14
+      nve_peak: 1.26
+      trend: decline after 75K
+  figures_description:
+  - 008f 3-seed eval 学习曲线 + 阴影 IQR，对比 008d 3-seed
+  analysis: '008f 因果控制结论成立但不如 best-case 干净。所有 seed nve<1.5×（3/3），
+
+    但 009c nve=1.14@105K 且仍在上升，若延长至 200K 可能接近阈值。
+
+    关键：009c 的 performance decline 不是 CIVO（value 没有爆炸），
+
+    而是 reward prediction 噪声导致的 critic 质量退化——这正是 008f
+
+    去掉 dt_embedding 的副作用。论文中需明确区分因果控制（成功）
+
+    和性能恢复（不成功）。
+
+    '
+- name: Walker Walk 008a (untrained dt_emb) seeds 1-2
+  plan_id: plan_013
+  description: 2 额外 seed 复制 value growth suppression
+  expected_results:
+    seed1_eval_105K: 680
+    seed1_nve_range: 0.55-0.85
+    seed1_nve_105K: 0.65
+    seed1_recovery_pattern: single V-recovery, less pronounced than seed 0
+    seed1_collapse: false
+    seed2_eval_105K: 550
+    seed2_nve_range: 0.60-0.95
+    seed2_nve_105K: 0.78
+    seed2_recovery_pattern: gradual rise without clear V-shape
+    seed2_collapse: false
+    cross_seed_mean_eval_105K: 669
+    cross_seed_vs_baseline_105K: -27%
+    cross_seed_nve_all_below_1x: partial — seed 2 briefly touches 0.95x
+  result_rationale: 'Median 档中 008a 的 value suppression 方向一致但效果量跨 seed 有差异。
+
+    seed 0 达到 778@105K（85% baseline），但额外 seed 预期稍弱（680, 550），
+
+    因为 zigzag recovery 的恢复幅度依赖训练随机性。seed 2 可能更慢恢复，
+
+    105K 时仅达 ~60% baseline。关键指标 nve 在所有 seed 保持 <1.0×，
+
+    确认 value growth suppression 是结构性的（untrained dt_emb 阻止 value
+
+    利用 dt 信息），但绝对性能差异大于 seed 0 报告值。
+
+    论文中报告 IQM 时需包含这个方差。
+
+    '
+  tables:
+  - title: 008a cross-seed V-recovery comparison
+    rows:
+    - seed: 0
+      eval_55K: 488
+      eval_75K: 470
+      eval_105K: 778
+      nve_105K: 0.59
+      recovery_cycles: 2
+    - seed: 1
+      eval_55K: 420
+      eval_75K: 520
+      eval_105K: 680
+      nve_105K: 0.65
+      recovery_cycles: 1
+    - seed: 2
+      eval_55K: 350
+      eval_75K: 400
+      eval_105K: 550
+      nve_105K: 0.78
+      recovery_cycles: 0
+  figures_description:
+  - 008a 3-seed eval 曲线对比 baseline 3-seed，展示 value suppression 效果的跨 seed 方差
+  analysis: 'C3 方向一致但 seed 间效果量差异显著（778 vs 550 at 105K）。
+
+    IQM = ~669，约 73% baseline。论文措辞应为 "untrained dt_emb provides
+
+    directionally consistent value suppression (nve 0.55-0.95× across all seeds)
+
+    and prevents catastrophic collapse, but absolute recovery varies substantially"。
+
+    '
+- name: Walker Walk 008e_v3 (dt=1 imagination) seeds 1-2
+  plan_id: plan_014
+  description: 多 seed 验证 dt=1 imagination 作为缓解策略
+  expected_results:
+    seed1_eval_105K: 870
+    seed1_nve_105K: 0.8
+    seed1_collapse: false
+    seed1_vs_baseline: -5%
+    seed2_eval_105K: 137
+    seed2_nve_105K: 3.78
+    seed2_collapse: true
+    seed2_collapse_onset: 95000
+    seed2_collapse_mechanism: non-CIVO (eval-driven, entropy ↑)
+    seed2_actor_entropy_at_collapse: -3.83
+    collapse_rate: 1/2 (50%)
+    gate_dt_mean_both_seeds: 1.0
+  result_rationale: 'Median 档中 C6 部分否证是核心发现之一。seed 1 健康（95% baseline），
+
+    seed 2 崩溃但机制与经典 CIVO 不同：008d 崩溃时 value 爆炸 + entropy ↓
+
+    （actor exploit 错误 critic），008e_v3_s2 崩溃时 eval 先跌 + entropy ↑
+
+    （policy destabilization）。gate_dt=1.0 贯穿始终证明崩溃并非 dt>1
+
+    imagination 引起。009a baseline s2 在同期完全稳定（618→596→837），
+
+    排除 seed 2 本身脆弱的假说。这意味着 trained dt_embedding 的风险
+
+    不仅仅是 CIVO：即使 imagination 全部用 dt=1，训练数据中的 dt>1
+
+    transitions + trained dt_emb 就足以创造另一条脆弱性通路（Pathway B）。
+
+    '
+  tables:
+  - title: 008e_v3 collapse pathway comparison
+    rows:
+    - feature: value 变化
+      008d_s1_CIVO: 爆炸 (+130%)
+      008e_v3_s2_PathwayB: 温和 (+13%→-12%)
+    - feature: eval 变化
+      008d_s1_CIVO: 后跌 (-43%)
+      008e_v3_s2_PathwayB: 先跌 (-81%)
+    - feature: nve 驱动
+      008d_s1_CIVO: value 分子驱动
+      008e_v3_s2_PathwayB: eval 分母驱动
+    - feature: actor_entropy
+      008d_s1_CIVO: ↓ (-3.47→-4.88)
+      008e_v3_s2_PathwayB: ↑ (-5.21→-3.83)
+    - feature: 机制
+      008d_s1_CIVO: critic overestimate → actor exploit
+      008e_v3_s2_PathwayB: eval crash → value 滞后
+  figures_description:
+  - 008e_v3 seed 1 vs seed 2 的 eval/value/entropy 三指标对比面板
+  - Pathway A (CIVO) vs Pathway B (non-CIVO) 的因果图
+  analysis: 'C6 从 "dt=1 imagination = mitigation" 修正为 "trained dt_embedding creates
+
+    vulnerability through multiple pathways"。dt=1 消除 Pathway A（CIVO）
+
+    但不消除 Pathway B（policy instability）。崩溃率 50% 与 008d 相同，
+
+    意味着 dt=1 imagination 未降低崩溃概率。论文 Discussion 中应将此
+
+    作为关键发现：根本脆弱性在于 trained dt_embedding 本身，不在 imagination dt。
+
+    '
+- name: Walker Walk FROZEN dt_emb + subsample ON + dt=2 imag + H=8
+  plan_id: plan_015
+  description: Frozen dt_embedding（requires_grad=False）诊断 training 是否为 CIVO 必要条件
+  expected_results:
+    eval_105K: 204
+    nve_range: 0.39-0.47
+    nve_105K: 0.42
+    collapse: false
+    civo_detected: false
+    actor_loss_105K: 0.000179
+    actor_entropy_105K: -4.855
+    gate_dt_mean: 2.0
+    gradient_starvation_detected: true
+    eval_trajectory: volatile 80-238, no convergence
+  result_rationale: 'Frozen dt_emb 提供随机固定的 temporal conditioning，RSSM 无法通过
+
+    梯度学习利用它。结果：(1) nve 远低于 1.0×（critic 系统性低估而非高估），
+
+    不触发 CIVO；(2) actor_loss→0 表明梯度饥饿——frozen random embeddings
+
+    在 state space 中引入不可学习的噪声维度，actor 无法从 critic
+
+    获得有意义的策略梯度；(3) 性能极不稳定（80-238），无法收敛。
+
+    与 008d（trained dt_emb, 崩溃）对比确认：dt_emb 的 TRAINING
+
+    是 CIVO 的必要条件。frozen dt_emb 不触发 CIVO 但也不提供任何
+
+    有用信息，造成学习退化。这完善了 2×2 消融矩阵：
+
+    trained+exposed=CIVO, trained+unexposed=value suppression,
+
+    frozen=gradient starvation, absent=reward degradation。
+
+    '
+  tables:
+  - title: dt_emb 状态 × CIVO outcome 消融矩阵
+    rows:
+    - dt_emb: trained + exposed (008d)
+      nve_regime: '>1.5× (CIVO)'
+      eval_105K: 131
+      mechanism: value explosion
+    - dt_emb: trained + unexposed (008a)
+      nve_regime: <1.0× (suppressed)
+      eval_105K: 778
+      mechanism: value growth suppression
+    - dt_emb: frozen random (015b)
+      nve_regime: <0.5× (starved)
+      eval_105K: 204
+      mechanism: gradient starvation
+    - dt_emb: absent (008f)
+      nve_regime: <1.0× (stable)
+      eval_105K: 503
+      mechanism: reward degradation
+  figures_description:
+  - 2×2 消融矩阵热力图：行=dt_emb state, 列=key metric (nve, eval)
+  analysis: '015b 确认 dt_emb training 是 CIVO 的必要条件。frozen random embedding
+
+    创造了一种独特的失败模式（gradient starvation），与 CIVO（value explosion）
+
+    和 reward degradation（008f）都不同。论文中可在 Table 形式呈现完整消融矩阵。
+
+    '
+- name: Walker Walk 008e_v3 additional seeds (3-4)
+  plan_id: plan_016
+  description: 缩窄 008e_v3 崩溃概率估计
+  expected_results:
+    seed3_eval_105K: 145
+    seed3_collapse: true
+    seed3_collapse_onset: 90000
+    seed3_nve_105K: 2.9
+    seed3_collapse_mechanism: non-CIVO pathway B (entropy ↑)
+    seed4_eval_105K: 820
+    seed4_collapse: false
+    seed4_nve_105K: 0.75
+    seed4_vs_baseline: -10%
+    cumulative_collapse_rate: 2/4 (50%)
+    collapse_pathway_distribution: 0/2 CIVO (Pathway A), 2/2 non-CIVO (Pathway B)
+  result_rationale: 'Median 档预期 008e_v3 崩溃率维持 ~50%（walker_trained_dt_emb_collapse_rate
+
+    区间 0.25-0.75 的中位值）。4 个独立 seed 中 2 个崩溃（seed 2 和 seed 3），
+
+    2 个健康（seed 1 和 seed 4），与 008d（dt=2 imagination）的 50% 崩溃率
+
+    一致。这强化了 C6 否证：dt=1 imagination 未降低崩溃概率。
+
+    所有 008e_v3 崩溃 seed 均展示 Pathway B 动力学（eval-driven, entropy ↑），
+
+    不同于 008d 的 Pathway A（value-driven, entropy ↓），确认 dt=1 imagination
+
+    确实消除了 CIVO 但 Pathway B 的崩溃率填补了空缺。
+
+    '
+  tables:
+  - title: 008e_v3 4-seed collapse summary
+    rows:
+    - seed: 1
+      eval_105K: 870
+      nve_105K: 0.8
+      collapsed: 'No'
+    - seed: 2
+      eval_105K: 137
+      nve_105K: 3.78
+      collapsed: Yes (Pathway B)
+    - seed: 3
+      eval_105K: 145
+      nve_105K: 2.9
+      collapsed: Yes (Pathway B)
+    - seed: 4
+      eval_105K: 820
+      nve_105K: 0.75
+      collapsed: 'No'
+  figures_description:
+  - 008e_v3 4-seed eval 曲线面板，崩溃 seed 用红色标注
+  analysis: '50% 崩溃率 + 纯 Pathway B 崩溃确认：trained dt_emb 的风险是多通路的。
+
+    论文措辞："dt=1 imagination eliminates the CIVO feedback loop (Pathway A)
+
+    but does not reduce overall collapse probability; a distinct instability
+
+    pathway (Pathway B) manifests at the same rate."
+
+    '
+- name: Cheetah Run baseline (3 seeds)
+  plan_id: plan_020
+  description: Cheetah Run dt=1 baseline
+  expected_results:
+    seed0_eval_peak: 850
+    seed0_eval_last10_mean: 820
+    seed1_eval_peak: 810
+    seed1_eval_last10_mean: 780
+    seed2_eval_peak: 830
+    seed2_eval_last10_mean: 800
+    cross_seed_iqm_peak: 830
+    cross_seed_iqm_last10: 800
+    ve_stable_range: 0.65-0.75
+    convergence_step: ~150K
+  result_rationale: 'Cheetah Run 是 DMC 标准环境，DreamerV3 在 500K steps 通常达到 ~800-850。
+
+    010a seed 1 已验证 849.8，额外 seed 预期在 780-830 范围，与 Walker Walk
+
+    baseline 稳定性一致。v/e 收敛至 0.65-0.75 区间提供跨环境 baseline
+
+    calibration。Cheetah 的 obs space 更大（velocity, position），可能
+
+    v/e 收敛略慢于 Walker。
+
+    '
+  tables:
+  - title: Cheetah baseline key checkpoints
+    rows:
+    - metric: eval@105K (IQM)
+      value: ~420
+    - metric: eval@205K (IQM)
+      value: ~650
+    - metric: eval@505K (IQM)
+      value: ~800
+    - metric: v/e stable
+      value: 0.65-0.75 from ~200K
+  figures_description:
+  - Cheetah 3-seed baseline 学习曲线 + IQR 阴影
+  analysis: 'Cheetah baseline 建立后可用于计算 normalized v/e 和 CIVO trigger
+
+    对比。baseline 方差预计与 Walker 相当（seeds 间 ~5-8% 差异）。
+
+    '
+- name: Cheetah Run trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_021
+  description: Cheetah Run CIVO trigger 跨环境复制
+  expected_results:
+    seed0_eval_105K: 55
+    seed0_nve_peak: 14.6
+    seed0_collapse: true
+    seed0_collapse_onset: 55000
+    seed1_eval_105K: 120
+    seed1_nve_peak: 9.2
+    seed1_collapse: true
+    seed1_collapse_onset: 65000
+    seed2_eval_105K: 180
+    seed2_nve_peak: 6.8
+    seed2_collapse: false
+    seed2_nve_105K: 2.3
+    seed2_self_corrected: false
+    seed2_trajectory: partial decline, not full collapse
+    cross_seed_collapse_rate: 2/3
+    cross_seed_nve_mean_peak: 10.2
+  result_rationale: 'Median 档预期 cheetah_civo_trigger_nve_peak 在 8-15×。010b seed 0
+
+    已显示 NVE 14.59× 和崩溃确认。额外 seed 预期展示 CIVO 但严重程度
+
+    有差异：seed 1 崩溃较温和（NVE 9.2×, 晚 onset），seed 2 可能仅
+
+    部分退化而非完全崩溃（NVE 6.8×, 位于区间低端），使跨环境叙事
+
+    从 "replicated" 降为 "directionally consistent"。Cheetah 的奖励
+
+    结构（前进速度主导）与 Walker（步态稳定主导）不同，可能使
+
+    CIVO 的表现形式有差异——Cheetah 的 reward 更连续，value 估计
+
+    可能有更多自校正机会。
+
+    '
+  tables:
+  - title: Cheetah CIVO trigger cross-seed
+    rows:
+    - seed: 0 (010b)
+      nve_peak: 14.59
+      nve_peak_step: 65K
+      eval_105K: 52
+      outcome: COLLAPSE
+    - seed: 1
+      nve_peak: 9.2
+      nve_peak_step: 75K
+      eval_105K: 120
+      outcome: COLLAPSE
+    - seed: 2
+      nve_peak: 6.8
+      nve_peak_step: 55K
+      eval_105K: 180
+      outcome: PARTIAL DECLINE
+  figures_description:
+  - Cheetah CIVO trigger 3-seed NVE 曲线，标注 Walker 的 NVE 范围作为参考
+  analysis: 'CIVO 方向在 Cheetah 确认（3/3 seeds NVE >2×, 2/3 崩溃），但噪声大于 Walker。
+
+    seed 2 的 NVE 6.8× 仍远超健康范围但未触发完全崩溃，可能反映 Cheetah
+
+    reward landscape 的某些自校正属性。论文措辞："CIVO mechanism is directionally
+
+    consistent across environments, with quantitative differences in severity."
+
+    '
+- name: Cheetah Run dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_022
+  description: Cheetah Run 因果控制——关键 borderline 实验
+  expected_results:
+    seed0_eval_105K: 280
+    seed0_nve_peak: 1.45
+    seed0_nve_105K: 0.6
+    seed0_collapse: false
+    seed1_eval_105K: 320
+    seed1_nve_peak: 1.3
+    seed1_nve_105K: 0.5
+    seed1_collapse: false
+    seed2_eval_105K: 200
+    seed2_nve_peak: 1.75
+    seed2_nve_105K: 0.95
+    seed2_collapse: false
+    cross_seed_nve_all_below_2x: true
+    cross_seed_nve_borderline: seed 2 peak 1.75× (borderline for 1.5× threshold)
+  result_rationale: 'Median 档关键预测：cheetah_control_nve_peak 在 1.3-2.0× 区间。
+
+    这是 median 区别于 best-case 的核心——Walker 008f 的 control nve peak
+
+    仅 1.02-1.26×（远低于 1.5×），但 Cheetah 的 control 更嘈杂。
+
+    seed 2 nve peak 达 1.75×——超过 1.5× 阈值但低于 2.0×——这就是
+
+    那个 "borderline case" 削弱 threshold 分类完美性的来源。
+
+    原因在于 Cheetah 的 RSSM fidelity gap 可能天然更大（obs space 更丰富），
+
+    即使没有 trained dt_emb，dt=2 transitions 的 reward 预测噪声
+
+    也更严重，导致 v/e 比率在某些 seed 偶然偏高。
+
+    保护方向仍然正确（没有崩溃），但不再是 "eliminates" 而是 "significantly reduces"。
+
+    '
+  tables:
+  - title: Cheetah control NVE peaks vs Walker control
+    rows:
+    - environment: Walker 008f s0
+      nve_peak: 1.02
+      threshold_violation: 'No'
+    - environment: Walker 008f s1 (009f)
+      nve_peak: 1.05
+      threshold_violation: 'No'
+    - environment: Walker 009c s2
+      nve_peak: 1.26
+      threshold_violation: 'No'
+    - environment: Cheetah s0
+      nve_peak: 1.45
+      threshold_violation: 'No'
+    - environment: Cheetah s1
+      nve_peak: 1.3
+      threshold_violation: 'No'
+    - environment: Cheetah s2
+      nve_peak: 1.75
+      threshold_violation: YES (borderline)
+  figures_description:
+  - Control NVE peak 分布：Walker (3 seeds) vs Cheetah (3 seeds)，标注 1.5× 阈值
+  analysis: 'Cheetah control 的 seed 2 nve peak=1.75× 是 median 档的定义性事件。
+
+    它将 NVE 1.5× 阈值的分类精度从 perfect (6/6) 降至 5/6 ≈ 83%。
+
+    论文需承认："The 1.5× NVE threshold achieves ~83% classification accuracy
+
+    across environments; one control seed in Cheetah Run shows borderline
+
+    exceedance (1.75×) without performance collapse, indicating the threshold
+
+    is environment-sensitive." 但保护方向成立：所有 control seeds 无崩溃。
+
+    '
+- name: Cheetah Run untrained dt_emb + no subsample (3 seeds)
+  plan_id: plan_023
+  description: Cheetah Run value growth suppression 复制
+  expected_results:
+    seed0_eval_105K: 450
+    seed0_nve_range: 0.50-0.85
+    seed0_nve_105K: 0.65
+    seed1_eval_105K: 380
+    seed1_nve_range: 0.55-0.90
+    seed1_nve_105K: 0.75
+    seed2_eval_105K: 350
+    seed2_nve_range: 0.60-0.95
+    seed2_nve_105K: 0.8
+    cross_seed_vs_baseline: -45% to -55%
+    cross_seed_nve_all_below_1x: true
+    recovery_pattern: directionally consistent but weaker than Walker
+  result_rationale: 'Untrained dt_emb 的 value suppression 机制是架构级的，应跨环境保持方向一致。
+
+    但 Cheetah 的绝对恢复程度预期弱于 Walker（Walker 008a@105K=778=85% baseline
+
+    vs Cheetah 预期 ~450=~53% baseline），因为 (1) Cheetah 的 action space
+
+    和 obs space 对 horizon 更敏感，(2) subsample OFF 配置在 Cheetah
+
+    中可能引入更多数据效率损失。nve 保持 <1.0× 确认 suppression 方向正确，
+
+    但效果量差异支持 "directionally consistent" 而非 "replicated" 的措辞。
+
+    '
+  tables: []
+  figures_description:
+  - Walker 008a vs Cheetah untrained dt_emb 的 normalized v/e 对比
+  analysis: 'C3 在 Cheetah 方向一致但效果量不同——与 median 档 "environments_with_clean_replication:
+    1-2"
+
+    一致（Walker 干净，Cheetah 有差异）。论文表述："Value growth suppression
+
+    from untrained dt_embedding is directionally consistent across environments
+
+    (nve < 1.0× in all seeds), though recovery magnitude differs with environment
+    complexity."
+
+    '
+- name: 'RSSM prediction quality: dt=1 vs dt=2 transitions'
+  plan_id: plan_030
+  description: 量化 RSSM fidelity gap 作为 CIVO 机制基础
+  expected_results:
+    baseline_dt1_obs_mse: 13.49
+    baseline_dt2_obs_mse: 27.5
+    baseline_obs_gap: 2.04
+    exp008d_dt1_obs_mse: 41.31
+    exp008d_dt2_obs_mse: 53.67
+    exp008d_obs_gap: 1.3
+    exp008d_dt1_obs_mse_vs_baseline: 3.06×
+    exp008f_dt1_obs_mse: 8.01
+    exp008f_dt2_obs_mse: 22.04
+    exp008f_obs_gap: 2.75
+    exp008d_reward_gap: 2.78
+    exp008f_reward_gap: 1.01
+  result_rationale: 'RSSM fidelity analysis 已完成。关键发现：008d 的低 obs gap ratio (1.30×)
+
+    具有误导性——其 dt=1 绝对误差 41.31 已是 baseline 3×（模型整体已退化）。
+
+    008d 的 reward gap 2.78× 意味着 dt=2 reward 预测系统性偏差，
+
+    这直接导致 critic 在 dt>1 imagination steps 获得错误 value targets。
+
+    008f reward gap 1.01× 表明没有 dt_embedding 时 reward head 无法
+
+    区分 dt=1/dt=2（reward 预测都很差但均匀差），消除了系统性偏差。
+
+    '
+  tables:
+  - title: RSSM Fidelity Table（论文 Table 1）
+    rows:
+    - model: baseline
+      dt1_obs_MSE: 13.49
+      dt2_obs_MSE: 27.5
+      obs_gap: 2.04×
+      dt1_reward_MAE: 0.0102
+      dt2_reward_MAE: 0.0159
+      reward_gap: 1.56×
+    - model: 008d (trained dt_emb)
+      dt1_obs_MSE: 41.31
+      dt2_obs_MSE: 53.67
+      obs_gap: 1.30×
+      dt1_reward_MAE: 0.0568
+      dt2_reward_MAE: 0.1579
+      reward_gap: 2.78×
+    - model: 008f (no dt_emb)
+      dt1_obs_MSE: 8.01
+      dt2_obs_MSE: 22.04
+      obs_gap: 2.75×
+      dt1_reward_MAE: 0.7469
+      dt2_reward_MAE: 0.7526
+      reward_gap: 1.01×
+  figures_description:
+  - 双轴柱状图：绝对误差（左轴）+ gap ratio（右轴），三模型并排
+  analysis: '论文必须同时报告绝对误差和比率，避免 008d 的低 obs gap ratio (1.30×)
+
+    误导审稿人认为 "trained dt_emb 改善了 dt=2 预测"——实际上是 dt=1
+
+    也变差了。核心证据链：trained dt_emb + RSSM fidelity gap → dt=2
+
+    reward 系统性偏差 → critic 在 imagination 中积累错误 value → CIVO。
+
+    '
+- name: Actor entropy analysis
+  plan_id: plan_031
+  description: 健康 vs 崩溃配置的 actor entropy 动力学
+  expected_results:
+    collapsed_008d_s0_entropy_55K: -4.88
+    collapsed_008d_s0_entropy_trend: monotonic decrease → exploitation
+    healthy_008a_s0_entropy_105K: -4.2
+    healthy_008a_s0_entropy_trend: stable after initial decrease
+    pathway_b_008e_v3_s2_entropy_95K: -4.53
+    pathway_b_008e_v3_s2_entropy_105K: -3.83
+    pathway_b_entropy_trend: decrease then INCREASE at collapse
+    baseline_entropy_105K: -5.0
+    baseline_entropy_trend: monotonic decrease then stable ~-5.0
+  result_rationale: 'Entropy 动力学是区分 Pathway A（CIVO）和 Pathway B（non-CIVO）的关键。
+
+    Pathway A（008d）：entropy 持续下降（actor 变得越来越确定，exploitation
+
+    被错误 critic 驱动向错误方向）→ 这是经典 value overestimation 签名。
+
+    Pathway B（008e_v3_s2）：entropy 先正常下降后在崩溃前上升（-5.21→-3.83），
+
+    表明 actor 变得不确定/随机 → 这是 policy destabilization 而非 exploitation。
+
+    健康配置（008a）：entropy 正常下降后稳定，无异常。
+
+    这个分析 0 GPU cost，直接从 metrics.jsonl 提取。
+
+    '
+  tables:
+  - title: Entropy signature by collapse pathway
+    rows:
+    - pathway: Healthy (008a, baseline)
+      entropy_pattern: ↓ then stable
+      late_training_entropy: -4.2 to -5.0
+    - pathway: Pathway A / CIVO (008d)
+      entropy_pattern: ↓↓ monotonic
+      late_training_entropy: -4.88 (exploitation)
+    - pathway: Pathway B / non-CIVO (008e_v3_s2)
+      entropy_pattern: ↓ then ↑
+      late_training_entropy: -3.83 (destabilization)
+  figures_description:
+  - Actor entropy vs training step，4 配置叠加，标注崩溃 onset
+  analysis: 'Entropy 分析为 dual-pathway 论证提供独立支持证据。
+
+    可直接用作论文 Figure（或 appendix figure）区分两种崩溃机制。
+
+    '
+- name: Value prediction distribution vs realized returns
+  plan_id: plan_032
+  description: V(s) vs Monte Carlo return 分布对比
+  expected_results:
+    trained_dt_emb_dt2_value_mean: 97.5
+    trained_dt_emb_dt2_mc_return_mean: 55
+    trained_dt_emb_dt2_overestimation_gap: +77%
+    trained_dt_emb_dt1_value_mean: 60
+    trained_dt_emb_dt1_mc_return_mean: 58
+    trained_dt_emb_dt1_gap: +3%
+    untrained_dt_emb_dt2_value_mean: 50
+    untrained_dt_emb_dt2_mc_return_mean: 52
+    untrained_dt_emb_dt2_gap: -4%
+    overlap_coefficient: 0.35
+  result_rationale: '分布分析比标量 v/e 更 informative——能直接展示 trained dt_emb 在 dt=2
+
+    transitions 上的系统性右偏。预期 trained dt_emb 的 dt=2 value 分布
+
+    明显右移（overestimate ~77%），但存在重叠区域（overlap coefficient ~0.35），
+
+    使得分析不如 best-case 干净。dt=1 transitions 在所有配置下大致校准（gap <5%），
+
+    确认过高估仅在 dt>1 触发。untrained dt_emb 的 dt=2 value 轻微低估（-4%），
+
+    与 nve<1.0× 一致。
+
+    '
+  tables: []
+  figures_description:
+  - 核密度图：V(s) vs MC return，训练/未训练 dt_emb × dt=1/dt=2 四面板
+  analysis: '分布分析强化 C2 但因重叠区域存在，证据强度为 moderate 而非 strong。
+
+    论文中可放 appendix。
+
+    '
+- name: dt_embedding cosine similarity analysis
+  plan_id: plan_033
+  description: 训练过程中 dt=1 和 dt=2 embedding 向量的相似度演化
+  expected_results:
+    cosine_sim_init: 0.92
+    cosine_sim_25K: 0.65
+    cosine_sim_55K: 0.4
+    cosine_sim_105K: 0.32
+    frozen_cosine_sim: 0.91
+    l2_distance_growth: monotonic increase from 0.3 to 2.1
+  result_rationale: 'Trained dt_emb 的 dt=1 和 dt=2 embedding 在训练中逐渐分化（cosine similarity
+
+    从 ~0.92 降至 ~0.32），表明网络学会了区分不同 temporal scales。
+
+    这个分化本身是正确的学习行为——问题在于 RSSM 的预测质量不支持
+
+    这种区分精度。在 frozen 配置中 cosine similarity 保持固定（~0.91），
+
+    确认分化是 training-driven。分析有趣但不是核心诊断指标，放 appendix。
+
+    '
+  tables: []
+  figures_description:
+  - Cosine similarity vs training step，叠加 trained/frozen/untrained 配置
+  analysis: 'Supplementary evidence：dt_emb 确实学习了 temporal discrimination，
+
+    但这反而成了问题——越精确的 dt conditioning + 越不精确的 RSSM =
+
+    越严重的 CIVO。放 appendix。
+
+    '
+- name: NVE threshold sensitivity analysis
+  plan_id: plan_034
+  description: 0 GPU cost——从已有指标计算不同阈值的分类精度
+  expected_results:
+    threshold_1_3x:
+      accuracy: 0.71
+      false_positives: 2
+      false_negatives: 0
+      note: 009c nve=1.14 和 Cheetah control 部分 seed 的 transient exceedance
+    threshold_1_5x:
+      accuracy: 0.83
+      false_positives: 1
+      false_negatives: 0
+      note: Cheetah control seed 2 nve peak 1.75× 是唯一 borderline case
+    threshold_1_7x:
+      accuracy: 0.92
+      false_positives: 0
+      false_negatives: 0
+      note: all trained seeds exceed; no control seeds exceed
+    threshold_2_0x:
+      accuracy: 0.92
+      false_positives: 0
+      false_negatives: 1
+      note: 009b peak nve=2.05× 仅在 25K (unreliable timepoint)
+    auroc: 0.88
+    optimal_threshold: 1.7
+    recommended_threshold: 1.5
+    recommended_threshold_note: 1.5× 更保守，更适合诊断预警
+    sample_size: ~12 data points (6 trained, 6 control across 2 environments)
+  result_rationale: 'Median 档核心预测：nve_threshold_classification_accuracy 在 0.75-0.90。
+
+    1.5× 阈值精度 ~83%（6/7 或类似）因 Cheetah control 出现 1 个 borderline case。
+
+    这是 median 与 best-case 的关键差异——best-case 中 Walker 4/4 完美分类
+
+    扩展到跨环境仍然完美。AUROC ~0.88 仍然表明 NVE 是有意义的诊断指标，
+
+    但不再是 "perfect separator"。1.7× 阈值实现 0/0 error 但丧失了对
+
+    transient overestimation 的早期预警能力。论文推荐 1.5× 并注明
+
+    环境敏感性。
+
+    '
+  tables:
+  - title: NVE threshold classification performance
+    rows:
+    - threshold: 1.3×
+      accuracy: 71% (5/7)
+      sensitivity: 100%
+      specificity: 67%
+    - threshold: 1.5×
+      accuracy: 83% (5/6)
+      sensitivity: 100%
+      specificity: 83%
+    - threshold: 1.7×
+      accuracy: 92%
+      sensitivity: 100%
+      specificity: 100%
+    - threshold: 2.0×
+      accuracy: 92%
+      sensitivity: 83%
+      specificity: 100%
+  - title: Bootstrap CI for trained vs control Δ NVE
+    rows:
+    - metric: Mean Δ NVE (trained - control)
+      value: '+2.1'
+      ci_95: '[+0.5, +3.2]'
+    - metric: Exceedance probability P(trained > control)
+      value: 90%
+  figures_description:
+  - ROC 曲线：NVE 阈值对 CIVO/non-CIVO 的分类性能
+  - Threshold sensitivity 柱状图：accuracy vs threshold level
+  analysis: 'NVE 1.5× 阈值从 "perfect separator" 降级为 "strong but imperfect diagnostic"。
+
+    论文措辞需要调整：从 "4/4 perfect classification" 到 "83-92% classification
+
+    accuracy depending on threshold, with one borderline control case in
+
+    Cheetah Run." Bootstrap CI lower bound = 0.5（在 median 档的 0.1-0.9 范围内），
+
+    exceedance probability = 90%（在 80-95% 范围内）。
+
+    '
+- name: Cartpole Swingup baseline (3 seeds)
+  plan_id: plan_050
+  description: 第三环境 dt=1 baseline
+  expected_results:
+    status: NOT_COMPLETED_BEFORE_DEADLINE
+    estimated_baseline_if_run: ~800-860 (DreamerV3 typical)
+    gpu_hours_needed: 15
+    reason_skipped: GPU budget 和 deadline 限制
+  result_rationale: 'Median 档核心假设之一："Cartpole 实验来不及完成（仅 2 环境）"。
+
+    CoRL 2026-05-29 deadline 前 GPU 预算不足以完成 3 个 Cartpole 配置
+
+    × 3 seeds。论文以 Walker + Cheetah 两环境提交。
+
+    Reviewers 可能质疑仅 2 环境的泛化性——rebuttal 中承诺提供 Cartpole 数据。
+
+    这是 median 档与 best-case 的第二大差异（best-case 有 3 环境）。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '论文 limitations 需明确声明："Results are demonstrated in two DMC
+
+    locomotion environments (Walker Walk, Cheetah Run). Generalization to
+
+    non-locomotion tasks requires further investigation."
+
+    '
+- name: Cartpole Swingup trained dt_emb + subsample ON (3 seeds)
+  plan_id: plan_051
+  description: Cartpole CIVO 触发
+  expected_results:
+    status: NOT_COMPLETED_BEFORE_DEADLINE
+  result_rationale: 依赖 plan_050 baseline，无法在 deadline 前完成。
+  tables: []
+  figures_description: []
+  analysis: 跳过，与 plan_050 相同原因。
+- name: Cartpole Swingup dt_embed_dim=0 + subsample ON (3 seeds)
+  plan_id: plan_052
+  description: Cartpole 因果控制
+  expected_results:
+    status: NOT_COMPLETED_BEFORE_DEADLINE
+  result_rationale: 依赖 plan_050 baseline，无法在 deadline 前完成。
+  tables: []
+  figures_description: []
+  analysis: 跳过，与 plan_050 相同原因。
+- name: Uncertainty-gated imagination truncation pilot
+  plan_id: plan_060
+  description: 基于 RSSM 预测不确定性截断 imagination rollout
+  expected_results:
+    eval_105K: 580
+    vs_baseline: -37%
+    nve_peak: 1.3
+    collapse: false
+    collapse_rate_if_multi_seed: ~25% (1/4 estimate)
+    truncation_rate_avg: 40% of dt=2 steps truncated
+    effective_horizon: ~11 steps (vs H=15 nominal)
+  result_rationale: 'Uncertainty-gated truncation 在 RSSM 预测不确定性超过阈值时截断 imagination。
+
+    Median 档预期：方法在单 seed 试点中表现有希望（无崩溃，nve<1.5×），
+
+    但性能恢复有限（仅 ~63% baseline），因为 truncation 过于激进
+
+    （40% dt=2 步被截断，effective horizon 缩短至 11 步）。
+
+    这说明 truncation 地址了 Pathway A 但可能引入新的性能限制。
+
+    作为 Discussion 中的 future work 方向有价值，但作为独立 contribution 不足。
+
+    '
+  tables: []
+  figures_description:
+  - Truncation rate vs training step 叠加 NVE 曲线
+  analysis: 'Pilot 结果可放 appendix 或 Discussion 的 future work 段。
+
+    不足以作为论文的 mitigation contribution（那需要多 seed + 跨环境验证）。
+
+    '
+- name: Hopper Hop validation (3 seeds × 3 configs)
+  plan_id: plan_040
+  description: 第三环境（非提交优先级）
+  expected_results:
+    status: NOT_COMPLETED_BEFORE_DEADLINE
+    gpu_hours_needed: 45
+  result_rationale: 'P2 优先级 + 45 GPU hours 需求，在 CoRL deadline 前不可行。
+
+    即使 Cartpole 完成，Hopper 也超出预算。留作后续工作。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: P2 实验，不影响当前提交。
+- name: '008f_s3 borderline NVE (registry: exp_008f_s3_no_dt_embed_walker)'
+  plan_id: registry_only
+  description: Walker Walk 008f 第 3 个 seed——median 档 borderline case
+  expected_results:
+    eval_105K: 250
+    nve_peak: 1.42
+    nve_peak_step: 85000
+    nve_105K: 1.1
+    collapse: false
+    borderline_for_threshold: true
+  result_rationale: 'Median 档核心假设：''008f_s3 NVE 在 1.2-1.6×（borderline，削弱 threshold
+    完美分类）''。
+
+    seed 0 nve peak=1.02, seed 1 nve peak=1.05, seed 2 (009c) nve peak=1.26。
+
+    seed 3 预期 nve peak ~1.42×，接近但未超过 1.5× 阈值。如果 Cheetah control
+
+    没有提供 borderline case，008f_s3 就是削弱分类精度的数据点。
+
+    即使 nve peak <1.5×，其值（1.42×）足够高以引起审稿人对阈值鲁棒性的质疑。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: '008f_s3 + Cheetah control seed 2 合计提供 1-2 个 borderline cases，
+
+    将 NVE 1.5× 阈值精度从 perfect 降至 ~83%。
+
+    '
+- name: '018v2 Full-SGS 确认分析 (registry: exp_018v2_full_sgs_walker_s1)'
+  plan_id: registry_only
+  description: Full-SGS 消除 CIVO 但不恢复性能
+  expected_results:
+    eval_105K: 448
+    vs_baseline: 49% (448/916)
+    nve_sustained: 1.05
+    nve_peak: 1.25
+    civo_eliminated: true
+    performance_recovery: partial (49%)
+    civo_independent_contribution_pp: 28
+  result_rationale: 'Median 档预期 full_sgs_018v2_nve_sustained 在 0.8-1.3× 区间，
+
+    eval 仅恢复到 ~49% baseline。018v2 通过 Full-SGS（移除 observation
+
+    decoder 对 dt_emb 的 93% 梯度通路）消除 CIVO（nve ≤ 1.25×），
+
+    但性能仅恢复到 448（vs 008d 崩溃至 131，baseline 916）。
+
+    CIVO 独立贡献 = 008d@105K baseline ratio - 018v2@105K baseline ratio
+
+    = (916-131)/916 - (916-448)/916 ≈ 86% - 51% = 35pp（上界）。
+
+    但 median 档承认 inherent multi-dt cost confound：018v2 的 49%
+
+    恢复意味着至少 51% 的退化来自 inherent cost（非 CIVO 因素），
+
+    使 CIVO 独立贡献的下界为 ~20pp。范围：20-35pp。
+
+    Sensitivity analysis 展示不同分解假设下的结果。
+
+    '
+  tables:
+  - title: CIVO decomposition sensitivity analysis
+    rows:
+    - assumption: 'Upper bound: all 008d-018v2 gap = CIVO'
+      civo_pp: 35
+      inherent_cost_pp: 51
+    - assumption: 'Mid estimate: 018v2 inherent cost = 008a inherent cost'
+      civo_pp: 28
+      inherent_cost_pp: 58
+    - assumption: 'Lower bound: inherent cost dominant'
+      civo_pp: 20
+      inherent_cost_pp: 66
+  figures_description:
+  - 'Stacked bar chart: baseline performance decomposed into retained + inherent cost
+    + CIVO contribution'
+  analysis: 'CIVO 独立贡献 20-35pp 是 median 档的核心量化发现。
+
+    论文措辞从 "35pp independent contribution" 改为 "20-35pp range,
+
+    with the upper bound limited by potential confounding from inherent
+
+    multi-dt training cost." Sensitivity analysis 是必须的附加材料。'

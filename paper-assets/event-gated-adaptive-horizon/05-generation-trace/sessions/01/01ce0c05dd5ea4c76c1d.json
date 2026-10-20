@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01ce0c05dd5ea4c76c1d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose recover failed experiments",
+  "task_key": "worker_diagnose_recover_failed_experiments_20260518T021421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_recover_failed_experiments_20260518T021421_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "60550132e46ffbbdda067328ead79c4f51de96c0d7566fb938ddb6a3e8d17649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：两个实验均存活，正在正常训练\n\n| 实验 | PID | 设备 | 当前 Step | 目标 Step | 最新 logdir 写入 | train_return |\n|------|-----|------|-----------|-----------|-----------------|--------------|\n| **exp_008d_civo_trigger_s4** (walker_walk) | 715124 | cuda:0 | 12000 | 105000 | 10:14 (1分钟前) | ~117.9 |\n| **exp_010b_cheetah_civo_trigger_s0** (cheetah_run) | 715412 | cuda:1 | 12000 | 105000 | 10:15 (刚刚) | ~11.8 |\n\n**状态**: 两个进程都在活跃运行（CPU 占用 ~1100%，logdir 文件在持续写入）。它们于 10:02 启动，当前运行约 13 分钟，已完成 ~11.4% 的训练。\n\n**需要操作**: 重新注册 cron 监控，避免再次被误标为 failed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-recover-failed-experiments.md"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_023a_cheetah_baseline_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:53:19.690Z",
+    "updated_at": "2026-05-17T20:31:35.177Z",
+    "hypothesis": "Cheetah Run vanilla DreamerV3 baseline (dt=1, no temporal embedding, no gate). Establishes Cheetah-specific baseline for NVE normalization and cross-environment validation. Comparison target for 010b (Cheetah CIVO trigger, NVE 14.59×).",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/event-gated-adaptive-horizon && bash scripts/exp_023a_cheetah_baseline_s0.sh\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "683708",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_023a_cheetah_baseline_s0.log",
+      "submitted_at": "2026-05-17T14:54:17.553Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "seed": 0,
+      "model_name": "DreamerV3",
+      "data_path": "dmc_cheetah_run",
+      "data_count": "N/A (online RL)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T20:31:34.777Z"
+    }
+  },
+  "timestamp": "2026-05-17T20:31:35.358426+00:00",
+  "trigger": "update_registry"
+}

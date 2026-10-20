@@ -1,0 +1,126 @@
+{
+  "conditions": {
+    "trained_dt_emb": {
+      "n": 2,
+      "nve_peaks": [
+        4.12,
+        2.05
+      ],
+      "nve_mean": 3.085,
+      "nve_ci_95": [
+        2.05,
+        4.12
+      ],
+      "collapse_rate": 0.5,
+      "collapse_ci_95": [
+        0.095,
+        0.905
+      ],
+      "experiments": [
+        "exp_008d_subsample_on_h8_s0",
+        "exp_009b_008d_walker_s2"
+      ],
+      "notes": "Walker-only condition. 009e excluded (seed=0 duplicate of 008d). 010b excluded (Cheetah Run, reported separately in cross_env). Effective n=2: seed 0 + seed 2."
+    },
+    "no_dt_emb": {
+      "n": 3,
+      "nve_peaks": [
+        0.97,
+        0.82,
+        0.85
+      ],
+      "nve_mean": 0.88,
+      "nve_ci_95": [
+        0.82,
+        0.97
+      ],
+      "collapse_rate": 0.0,
+      "collapse_ci_95": [
+        0.0,
+        0.562
+      ],
+      "experiments": [
+        "exp_008f_no_dt_embed_s1",
+        "exp_009c_008f_walker_s2",
+        "exp_008f_s3_no_dt_embed_walker"
+      ],
+      "notes": "009c NVE estimated from qualitative 'normalized v/e < 1.5x'. 008f_s3 NVE peak (35K+) = 0.85 @ step 95K. exp_020 excluded — vanilla DreamerV3 (no gate/subsample), different experimental design from no_dt_emb (which has gate+subsample but dt_embed_dim=0)."
+    },
+    "vanilla_baseline": {
+      "n": 1,
+      "nve_peaks": [
+        0.93
+      ],
+      "nve_mean": 0.93,
+      "nve_ci_95": [
+        0.93,
+        0.93
+      ],
+      "collapse_rate": 0.0,
+      "collapse_ci_95": [
+        0.0,
+        0.841
+      ],
+      "experiments": [
+        "exp_020_vanilla_dreamerv3_s2"
+      ],
+      "notes": "Vanilla DreamerV3 (no gate, no dt_emb, no subsample). C6 control experiment — proves trained dt_emb is necessary for Pathway B collapse."
+    },
+    "full_sgs": {
+      "n": 1,
+      "nve_peaks": [
+        1.66
+      ],
+      "nve_mean": 1.66,
+      "nve_ci_95": [
+        1.66,
+        1.66
+      ],
+      "collapse_rate": 0.0,
+      "collapse_ci_95": [
+        0.0,
+        0.841
+      ],
+      "experiments": [
+        "exp_018v2_full_sgs_walker_s1"
+      ],
+      "notes": "exp_018 excluded — invalid config (gate_enabled=false, D065). Only 018v2 is valid Full-SGS. NVE 1.66× is 35K+ window peak."
+    }
+  },
+  "cross_env_classification": {
+    "threshold": 1.5,
+    "accuracy": 0.889,
+    "accuracy_ci_95": [
+      0.565,
+      0.98
+    ],
+    "n_total": 9,
+    "n_correct": 8,
+    "by_env": {
+      "walker": {
+        "n": 8,
+        "correct": 7,
+        "accuracy": 0.875
+      },
+      "cheetah": {
+        "n": 1,
+        "correct": 1,
+        "accuracy": 1.0
+      }
+    },
+    "confusion": {
+      "true_positive": 4,
+      "true_negative": 4,
+      "false_positive": 1,
+      "false_negative": 0
+    },
+    "false_positive_detail": "exp_008e_v3_s2: NVE 3.78× but collapse is Pathway B (eval-driven entropy divergence), not CIVO"
+  },
+  "method": "bootstrap 10000 resamples, percentile method; Wilson interval for binomial proportions",
+  "effect_size": {
+    "cohens_d_trained_vs_no_dt": 2.60,
+    "mean_difference": 2.205,
+    "interpretation": "large",
+    "note": "trained_dt_emb (n=2, mean=3.085; Walker-only, 009e excluded as seed=0 duplicate, 010b excluded as Cheetah) vs no_dt_emb (n=3, mean=0.88)"
+  }
+}

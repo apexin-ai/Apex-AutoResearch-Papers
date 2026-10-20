@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_019a_pickcube_baseline",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:23:50.639Z",
+    "updated_at": "2026-05-16T03:23:50.639Z"
+  },
+  "timestamp": "2026-05-16T03:23:50.805324+00:00",
+  "trigger": "update_registry"
+}

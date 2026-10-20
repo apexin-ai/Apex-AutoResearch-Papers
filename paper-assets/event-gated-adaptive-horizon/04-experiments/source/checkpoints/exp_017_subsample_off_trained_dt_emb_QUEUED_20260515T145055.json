@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_017_subsample_off_trained_dt_emb",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:44:24.756Z",
+    "updated_at": "2026-05-15T14:50:54.952Z",
+    "hypothesis": "Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2）",
+    "parent": "exp_008a_no_subsample_dt2",
+    "notes": "plan_017, claim C2。Config: gate_enabled=True, gate_fixed_dt=2, gate_subsample_max_dt=1 (subsample OFF), gate_dt_embed_dim=32, imag_horizon=15, seed=1, device=cuda:1。排期: cuda:1 上 009e → plan_015B → plan_017。关键对照: 008a (untrained dt_emb, subsample OFF, H=15) — 唯一差异是 dt_emb trained vs untrained。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T14:50:55.155268+00:00",
+  "trigger": "update_registry"
+}

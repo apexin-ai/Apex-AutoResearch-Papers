@@ -1,0 +1,128 @@
+{
+  "analysis": "RSSM Prediction Quality Analysis (plan_030)",
+  "date": "2026-05-14",
+  "purpose": "Quantify RSSM prediction quality difference across subsample ON/OFF and dt_embedding conditions for C2 claim evidence",
+
+  "experiments": {
+    "baseline": {
+      "config": "Standard DreamerV3, no subsample, no dt concept",
+      "logdir": "baseline_s1",
+      "training_steps": 505000,
+      "imagination_dt": "N/A (pure dt=1)"
+    },
+    "008a": {
+      "config": "subsample OFF (dt=1 only training), fixed dt=2 imagination",
+      "logdir": "exp_008a_fixed_dt2_no_subsample",
+      "training_steps": 105000,
+      "imagination_dt": 2
+    },
+    "008d": {
+      "config": "subsample ON (dt=1+dt=2 training), dt_embed_dim=32, dt=2 imagination, horizon=8",
+      "logdir": "exp_008d_subsample_on_h8",
+      "training_steps": 55000,
+      "imagination_dt": 2,
+      "note": "Only 6 data points, may not have converged"
+    },
+    "008e_v3": {
+      "config": "subsample ON (dt=1+dt=2 training), dt=1 imagination, horizon=15",
+      "logdir": "exp_008e_v3_subsample_on_dt1_h15",
+      "training_steps": 105000,
+      "imagination_dt": 1
+    },
+    "008f": {
+      "config": "subsample ON (dt=1+dt=2 training), dt_embed_dim=0 (no embedding), dt=2 imagination, horizon=8",
+      "logdir": "exp_008f_no_dt_embed_subsample_on_h8",
+      "training_steps": 105000,
+      "imagination_dt": 2
+    }
+  },
+
+  "model_loss_trajectory": {
+    "step_25K": {"baseline": 4.725, "008a": 4.676, "008d": 5.330, "008e_v3": 5.306, "008f": 5.085},
+    "step_35K": {"baseline": 4.299, "008a": 4.382, "008d": 5.073, "008e_v3": 5.029, "008f": 4.604},
+    "step_45K": {"baseline": 4.135, "008a": 4.106, "008d": 4.995, "008e_v3": 4.964, "008f": 4.453},
+    "step_55K": {"baseline": 4.046, "008a": 3.992, "008d": 5.014, "008e_v3": 4.963, "008f": 4.359},
+    "step_65K": {"baseline": 3.944, "008a": 3.918, "008d": null,  "008e_v3": 4.972, "008f": 4.543},
+    "step_75K": {"baseline": 3.866, "008a": 3.822, "008d": null,  "008e_v3": 4.915, "008f": 4.598},
+    "step_85K": {"baseline": 3.796, "008a": 3.796, "008d": null,  "008e_v3": 4.827, "008f": 4.619},
+    "step_95K": {"baseline": 3.735, "008a": 3.784, "008d": null,  "008e_v3": 4.757, "008f": 4.609},
+    "step_105K": {"baseline": 3.654, "008a": 3.766, "008d": null, "008e_v3": 4.634, "008f": 4.559}
+  },
+
+  "loss_breakdown_at_55K": {
+    "height_loss":       {"baseline": 0.0021, "008a": 0.0018, "008d": 0.0017, "008e_v3": 0.0017, "008f": 0.0014},
+    "orientations_loss": {"baseline": 0.100,  "008a": 0.086,  "008d": 0.117,  "008e_v3": 0.115,  "008f": 0.087},
+    "velocity_loss":     {"baseline": 0.560,  "008a": 0.527,  "008d": 0.704,  "008e_v3": 0.679,  "008f": 0.574},
+    "reward_loss":       {"baseline": 0.609,  "008a": 0.624,  "008d": 0.588,  "008e_v3": 0.623,  "008f": 0.593},
+    "kl":                {"baseline": 4.614,  "008a": 4.580,  "008d": 5.882,  "008e_v3": 5.798,  "008f": 5.059},
+    "dyn_loss":          {"baseline": 4.624,  "008a": 4.589,  "008d": 6.004,  "008e_v3": 5.907,  "008f": 5.173}
+  },
+
+  "loss_breakdown_at_105K": {
+    "height_loss":       {"baseline": 0.0012, "008a": 0.0012, "008e_v3": 0.0011, "008f": 0.0012},
+    "orientations_loss": {"baseline": 0.066,  "008a": 0.069,  "008e_v3": 0.085,  "008f": 0.091},
+    "velocity_loss":     {"baseline": 0.472,  "008a": 0.488,  "008e_v3": 0.606,  "008f": 0.607},
+    "reward_loss":       {"baseline": 0.508,  "008a": 0.575,  "008e_v3": 0.576,  "008f": 0.603},
+    "kl":                {"baseline": 4.332,  "008a": 4.377,  "008e_v3": 5.477,  "008f": 5.292},
+    "dyn_loss":          {"baseline": 4.344,  "008a": 4.388,  "008e_v3": 5.610,  "008f": 5.427}
+  },
+
+  "key_comparisons": {
+    "subsample_ON_vs_OFF": {
+      "finding": "Subsample ON increases model_loss by ~0.8-0.9 at 105K (21-24% increase)",
+      "at_105K": {
+        "subsample_OFF_avg": 3.71,
+        "subsample_ON_avg": 4.60,
+        "delta": 0.89,
+        "percent_increase": "24%"
+      },
+      "primary_driver": "KL divergence: subsample OFF kl=4.35 vs subsample ON kl=5.38 (+24%), indicating RSSM dynamics model struggles with dt=2 state transitions",
+      "secondary_driver": "velocity_loss: subsample OFF=0.48 vs subsample ON=0.61 (+27%), physically expected since dt=2 skips frames causing larger velocity changes"
+    },
+
+    "dt_embedding_effect": {
+      "finding": "dt_embedding (dim=32) INCREASES model_loss compared to no embedding",
+      "at_55K_matched": {
+        "008d_with_embed": 5.014,
+        "008f_no_embed": 4.359,
+        "delta": 0.655,
+        "percent_increase": "15%"
+      },
+      "kl_comparison": {
+        "008d_kl": 5.882,
+        "008f_kl": 5.059,
+        "delta": 0.823
+      },
+      "interpretation": "dt_embedding does NOT help RSSM predict dt=2 transitions better. Instead, it creates separate representational branches for dt=1 and dt=2 that increase prior-posterior divergence. This is consistent with the delusional critic hypothesis: the embedding gives the critic a learnable signal to exploit, but doesn't actually improve world model accuracy."
+    },
+
+    "imagination_dt_effect": {
+      "finding": "dt=1 imagination (008e_v3) has slightly higher model_loss than dt=2 imagination (008f) after 85K steps",
+      "at_105K": {
+        "008e_v3_dt1_imag": 4.634,
+        "008f_dt2_imag": 4.559,
+        "delta": 0.075
+      },
+      "note": "Both have subsample ON, so training data is identical. The difference reflects how imagination dt affects data collection via the actor, which in turn affects training distribution."
+    }
+  },
+
+  "conclusions": {
+    "C2_evidence": {
+      "claim": "dt=2 transitions are harder for RSSM to predict, creating model uncertainty that the critic exploits",
+      "evidence": [
+        "subsample ON (mixed dt=1+dt=2 training) → model_loss 24% higher than subsample OFF at 105K",
+        "The gap is primarily driven by KL divergence (+24%) and velocity prediction (+27%)",
+        "dt_embedding paradoxically increases model_loss by 15%, suggesting it creates exploitable structure rather than reducing prediction error",
+        "008d (subsample ON + dt_embed) has the worst model_loss trajectory and plateaus at ~5.0 — the same experiment where delusional critic behavior was confirmed"
+      ]
+    },
+    "mechanism_narrative": "When RSSM trains on dt=2 transitions (subsample ON), it faces fundamentally harder prediction: larger state jumps in velocity/orientation spaces cause higher reconstruction loss and larger prior-posterior divergence (KL). The dt_embedding (dim=32) allows the model to create separate internal dynamics for dt=1 and dt=2, but this actually increases KL (5.88 vs 5.06 without embedding) — the prior becomes less aligned with the posterior. The critic can then exploit this structural gap: it learns different value estimates for dt=1 and dt=2 latent states, and the dt_embedding provides a clean signal for this exploitation. Without dt_embedding (008f), the model has lower KL and the critic has no clean dt signal to exploit, which is why 008f performs better than 008d despite both using subsample ON."
+  },
+
+  "limitations": [
+    "metrics.jsonl does NOT break down loss by dt type — model_loss is averaged over all transitions in the batch. Cannot directly measure RSSM loss on dt=2-only vs dt=1-only transitions.",
+    "008d only has 6 data points (up to 55K steps), may not have fully converged. Comparison at 55K is valid but later-step comparison is unavailable.",
+    "All subsample ON experiments show higher model_loss, but we cannot rule out that the increase is partly due to increased dataset diversity (more varied transitions) rather than prediction difficulty per se."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_cheetah_008a_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-27T20:21:22.462Z",
+    "updated_at": "2026-05-27T20:21:43.284Z",
+    "hypothesis": "Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF, gate_subsample_max_dt=1) + gate_fixed_dt=2 + H=15, seed=3 — C3 cross-env value growth suppression rebuttal reserve. Expect no CIVO (NVE < 2.0), value suppression consistent with s0/s1. Source: D172 rebuttal reserve.",
+    "parent": "exp_008a_no_subsample_dt2"
+  },
+  "timestamp": "2026-05-27T20:21:43.773640+00:00",
+  "trigger": "update_registry"
+}

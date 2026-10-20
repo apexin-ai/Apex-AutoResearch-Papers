@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05998e6cbb28017e5864",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops auto eval checkpoint monitor",
+  "task_key": "worker_ops_auto_eval_checkpoint_monitor_20260514T031718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_auto_eval_checkpoint_monitor_20260514T031718_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "5f83a46778df1733fc4f6e65b826c67c3989ab1d9c21fe73635a04f878c8faec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已成功运行并产出首批判定结果：\n\n| 实验 | 检查点 | eval_return | 阈值 | 判定 |\n|------|--------|-------------|------|------|\n| **008a** | 35K | 500.84 | 320 | **OK** |\n| **008c** | 35K | 185.10 | 320 | **WARN** |\n| **008d** | — | 尚未到 35K | — | 等待中 |\n\n监控脚本 `checkpoint_monitor.py` 已部署在服务器后台 (PID 113940)，每 60 秒轮询一次。结果写入 `checkpoint_results.jsonl`，后续 65K/105K 检查点达到时会自动判定。\n\n注意 **exp_008c 在 35K 触发了 WARN**（185 vs 阈值 320），需要关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-auto-eval-checkpoint-monitor.md"
+}

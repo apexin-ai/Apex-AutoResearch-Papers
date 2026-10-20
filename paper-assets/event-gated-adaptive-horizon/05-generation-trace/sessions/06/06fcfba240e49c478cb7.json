@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06fcfba240e49c478cb7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitoring eta check 20260525 1450",
+  "task_key": "worker_monitoring_eta_check_20260525_1450_20260525T145511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_eta_check_20260525_1450_20260525T145511_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "c2a462b06a75a35ab71f2eae39e499c0e5189de7e5132a427c665600c98695eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验进程存活。\n\n| exp_id | step | target | progress | FPS | eval_return | 剩余时间 |\n|--------|------|--------|----------|-----|-------------|----------|\n| exp_080 (walker_s1) | 92K | 105K | 87.6% | 7.0 | 803.8 @85K | ~31 min |\n| exp_081 (walker_s2) | 92K | 105K | 87.6% | 9.0 | 449.0 @85K | ~24 min |\n| exp_082 (cheetah_no_dt_emb_s0) | 40K | 105K | 38.1% | 14.4 | 119.4 @35K | ~75 min |\n| exp_083 (cheetah_baseline_s1) | 28K | 105K | 26.7% | 15.9 | 300.2 @25K | ~81 min |\n\n进度对比上次（~15 min 前）：exp_080 84K→92K (+8K), exp_081 80K→92K (+12K), exp_082 25K→40K (+15K), exp_083 8K→28K (+20K)。\n\nbjb1 上两个 walker 实验约半小时内完成；westd 上两个 cheetah 实验还需 ~1.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-eta-check-20260525-1450.md"
+}

@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_077_cheetah_baseline_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T10:48:21.685Z",
+    "updated_at": "2026-05-25T14:12:41.181Z",
+    "hypothesis": "Cheetah Run dt=1 baseline seed=0。建立 v/e ratio 校准基线，用于归一化同时运行的 exp_078 (Cheetah 008d) 的 VE。plan_020 第一个 seed。",
+    "server": "westd-19154",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\"",
+      "server": "westd-19154",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "21683",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log",
+      "submitted_at": "2026-05-25T11:21:44.224Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 10257.0,
+      "gpu_hours": 2.85
+    },
+    "pid": "21683",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_077_cheetah_baseline_s0.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && export MUJOCO_EGL_DEVICE_ID=0 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_077_cheetah_baseline_s0 --steps 105000 --seed 0 --compile False --device cuda:0\"",
+      "finished_at": "2026-05-25T14:07:47.479Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-25T14:07:53.264245+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "eval_return_105K": 448.1,
+      "eval_trajectory": {
+        "5K": 12.2,
+        "15K": 18.4,
+        "25K": 182.9,
+        "35K": 356,
+        "45K": 377.2,
+        "55K": 441,
+        "65K": 317.3,
+        "75K": 340.9,
+        "85K": 309.3,
+        "95K": 418.4,
+        "105K": 448.1
+      },
+      "ve_ratio_105K": 0.611,
+      "ve_ratio_peak": 0.739,
+      "ve_ratio_peak_step": "85K",
+      "civo_alert": 0,
+      "model_loss_105K": 1.83,
+      "total_steps": 112000
+    },
+    "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_077_cheetah_baseline_s0/latest.pt",
+    "completed_at": "2026-05-25T14:12:41.181Z"
+  },
+  "timestamp": "2026-05-25T14:12:41.583662+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,157 @@
+{
+  "description": "RSSM world model prediction fidelity across experimental conditions. obs_loss = sum of height_loss + orientations_loss + velocity_loss (symlog MSE). reward_loss = negative log prob under reward head distribution. dyn_loss = KL divergence dynamics loss. All values from metrics.jsonl logged during training.",
+  "comparison_at_105K": {
+    "note": "Values at step closest to 105K for fair comparison. 008d only ran to 55K, so 009e (same config, different seed) is used for 105K comparison.",
+    "conditions": [
+      {
+        "exp_id": "008d",
+        "description": "Trained dt-emb (CIVO, original run)",
+        "step": 55000,
+        "obs_loss": 0.823407,
+        "height_loss": 0.001686,
+        "orientations_loss": 0.117382,
+        "velocity_loss": 0.704339,
+        "reward_loss": 0.588283,
+        "dyn_loss": 6.004187,
+        "model_loss": 5.014202,
+        "eval_return": 82.75,
+        "note": "Only ran to 55K before collapse"
+      },
+      {
+        "exp_id": "009e",
+        "description": "008d config extended (same config, seed 1)",
+        "step": 105000,
+        "obs_loss": 0.682286,
+        "height_loss": 0.001173,
+        "orientations_loss": 0.086015,
+        "velocity_loss": 0.595098,
+        "reward_loss": 0.574432,
+        "dyn_loss": 5.437873,
+        "model_loss": 4.519443,
+        "eval_return": 131.08,
+        "note": "Extended 008d config to 112K, still shows CIVO degradation"
+      },
+      {
+        "exp_id": "008f",
+        "description": "No dt-emb (control)",
+        "step": 105000,
+        "obs_loss": 0.699388,
+        "height_loss": 0.001237,
+        "orientations_loss": 0.090990,
+        "velocity_loss": 0.607161,
+        "reward_loss": 0.603350,
+        "dyn_loss": 5.426561,
+        "model_loss": 4.558675,
+        "eval_return": 503.21
+      },
+      {
+        "exp_id": "018v2",
+        "description": "Full-SGS",
+        "step": 105000,
+        "obs_loss": 0.718174,
+        "height_loss": 0.001108,
+        "orientations_loss": 0.092337,
+        "velocity_loss": 0.624730,
+        "reward_loss": 0.598952,
+        "dyn_loss": 5.705470,
+        "model_loss": 4.740408,
+        "eval_return": 448.34
+      },
+      {
+        "exp_id": "009d",
+        "description": "DreamerV3 baseline (no gate mechanism)",
+        "step": 108000,
+        "obs_loss": 0.452209,
+        "height_loss": 0.001044,
+        "orientations_loss": 0.049825,
+        "velocity_loss": 0.401341,
+        "reward_loss": 0.594477,
+        "dyn_loss": 3.820057,
+        "model_loss": 3.338720,
+        "eval_return": 915.67,
+        "note": "Baseline ran to 508K; value at ~108K for fair comparison"
+      }
+    ]
+  },
+  "trajectories": {
+    "008d": {
+      "description": "Trained dt-emb (CIVO)",
+      "data": [
+        {"step": 5000, "obs_loss": 12.805443, "reward_loss": 3.351594, "dyn_loss": 8.075676},
+        {"step": 15000, "obs_loss": 1.908834, "reward_loss": 0.659024, "dyn_loss": 8.193980},
+        {"step": 25000, "obs_loss": 0.940772, "reward_loss": 0.600072, "dyn_loss": 6.315994},
+        {"step": 35000, "obs_loss": 0.842207, "reward_loss": 0.595797, "dyn_loss": 6.058951},
+        {"step": 45000, "obs_loss": 0.818835, "reward_loss": 0.588893, "dyn_loss": 5.978330},
+        {"step": 55000, "obs_loss": 0.823407, "reward_loss": 0.588283, "dyn_loss": 6.004187}
+      ]
+    },
+    "008f": {
+      "description": "No dt-emb (control)",
+      "data": [
+        {"step": 5000, "obs_loss": 12.851752, "reward_loss": 3.357035, "dyn_loss": 8.051959},
+        {"step": 15000, "obs_loss": 1.904416, "reward_loss": 0.689796, "dyn_loss": 8.107961},
+        {"step": 25000, "obs_loss": 0.880092, "reward_loss": 0.626281, "dyn_loss": 5.964736},
+        {"step": 35000, "obs_loss": 0.735662, "reward_loss": 0.612189, "dyn_loss": 5.427628},
+        {"step": 45000, "obs_loss": 0.692227, "reward_loss": 0.601319, "dyn_loss": 5.265686},
+        {"step": 55000, "obs_loss": 0.662705, "reward_loss": 0.593075, "dyn_loss": 5.172548},
+        {"step": 65000, "obs_loss": 0.716073, "reward_loss": 0.596204, "dyn_loss": 5.384325},
+        {"step": 75000, "obs_loss": 0.724554, "reward_loss": 0.606907, "dyn_loss": 5.445001},
+        {"step": 85000, "obs_loss": 0.720035, "reward_loss": 0.609559, "dyn_loss": 5.482531},
+        {"step": 95000, "obs_loss": 0.715509, "reward_loss": 0.608714, "dyn_loss": 5.473995},
+        {"step": 105000, "obs_loss": 0.699388, "reward_loss": 0.603350, "dyn_loss": 5.426561}
+      ]
+    },
+    "018v2": {
+      "description": "Full-SGS",
+      "data": [
+        {"step": 5000, "obs_loss": 12.552477, "reward_loss": 3.338789, "dyn_loss": 8.203544},
+        {"step": 15000, "obs_loss": 1.901486, "reward_loss": 0.658322, "dyn_loss": 8.093588},
+        {"step": 25000, "obs_loss": 1.002280, "reward_loss": 0.607496, "dyn_loss": 6.257478},
+        {"step": 35000, "obs_loss": 0.871773, "reward_loss": 0.612018, "dyn_loss": 5.850740},
+        {"step": 45000, "obs_loss": 0.809139, "reward_loss": 0.610682, "dyn_loss": 5.691102},
+        {"step": 55000, "obs_loss": 0.792323, "reward_loss": 0.618169, "dyn_loss": 5.716462},
+        {"step": 65000, "obs_loss": 0.784677, "reward_loss": 0.618050, "dyn_loss": 5.784166},
+        {"step": 75000, "obs_loss": 0.765412, "reward_loss": 0.616913, "dyn_loss": 5.783788},
+        {"step": 85000, "obs_loss": 0.752725, "reward_loss": 0.610458, "dyn_loss": 5.799376},
+        {"step": 95000, "obs_loss": 0.735128, "reward_loss": 0.604657, "dyn_loss": 5.755043},
+        {"step": 105000, "obs_loss": 0.718174, "reward_loss": 0.598952, "dyn_loss": 5.705470}
+      ]
+    },
+    "009d_baseline": {
+      "description": "DreamerV3 baseline (no gate)",
+      "data_sampled": [
+        {"step": 8000, "obs_loss": 12.255556, "reward_loss": 3.272504, "dyn_loss": 9.659364},
+        {"step": 18000, "obs_loss": 1.787216, "reward_loss": 0.677302, "dyn_loss": 7.645596},
+        {"step": 48000, "obs_loss": 0.564799, "reward_loss": 0.618637, "dyn_loss": 4.087526},
+        {"step": 68000, "obs_loss": 0.491141, "reward_loss": 0.607296, "dyn_loss": 3.867054},
+        {"step": 108000, "obs_loss": 0.452209, "reward_loss": 0.594477, "dyn_loss": 3.820057},
+        {"step": 208000, "obs_loss": 0.437723, "reward_loss": 0.578011, "dyn_loss": 3.986786},
+        {"step": 308000, "obs_loss": 0.450539, "reward_loss": 0.538049, "dyn_loss": 4.299161},
+        {"step": 508000, "obs_loss": 0.417293, "reward_loss": 0.417200, "dyn_loss": 4.399824}
+      ],
+      "note": "Baseline ran 508K steps. Obs loss converges much lower than gated variants, likely because standard RSSM without variable dt has simpler prediction task."
+    },
+    "009e": {
+      "description": "008d config extended (same config, seed 1)",
+      "data": [
+        {"step": 5000, "obs_loss": 12.805443, "reward_loss": 3.351594, "dyn_loss": 8.075676},
+        {"step": 15000, "obs_loss": 1.908834, "reward_loss": 0.659024, "dyn_loss": 8.193980},
+        {"step": 25000, "obs_loss": 0.940772, "reward_loss": 0.600072, "dyn_loss": 6.315994},
+        {"step": 35000, "obs_loss": 0.842207, "reward_loss": 0.595797, "dyn_loss": 6.058951},
+        {"step": 45000, "obs_loss": 0.818835, "reward_loss": 0.588893, "dyn_loss": 5.978330},
+        {"step": 55000, "obs_loss": 0.823407, "reward_loss": 0.588283, "dyn_loss": 6.004187},
+        {"step": 65000, "obs_loss": 0.787640, "reward_loss": 0.582388, "dyn_loss": 5.824172},
+        {"step": 75000, "obs_loss": 0.797309, "reward_loss": 0.596161, "dyn_loss": 5.939562},
+        {"step": 85000, "obs_loss": 0.772105, "reward_loss": 0.592986, "dyn_loss": 5.881048},
+        {"step": 95000, "obs_loss": 0.733021, "reward_loss": 0.588385, "dyn_loss": 5.704837},
+        {"step": 105000, "obs_loss": 0.682286, "reward_loss": 0.574432, "dyn_loss": 5.437873}
+      ]
+    }
+  },
+  "key_findings": {
+    "obs_gap": "At 105K: baseline (0.452) < 009e/008d-config (0.682) < 008f/no-dt (0.699) < 018v2/SGS (0.718). Gated variants have ~50-60% higher obs loss than baseline, reflecting the harder prediction task with variable dt.",
+    "reward_gap": "Reward loss is similar across gated variants (~0.57-0.60) and baseline (~0.59 at 108K). Reward prediction is relatively unaffected by the gate mechanism.",
+    "dyn_loss": "Higher dyn_loss for gated variants (5.4-5.7) vs baseline (3.8) indicates the RSSM finds variable-dt dynamics harder to model. 008d shows slightly higher dyn_loss (6.0 at 55K) coinciding with CIVO onset.",
+    "civo_signature": "008d's obs_loss plateaus/increases after 35K (0.84 -> 0.82 -> 0.82) while 008f continues decreasing (0.74 -> 0.69 -> 0.66), suggesting CIVO disrupts observation reconstruction."
+  }
+}

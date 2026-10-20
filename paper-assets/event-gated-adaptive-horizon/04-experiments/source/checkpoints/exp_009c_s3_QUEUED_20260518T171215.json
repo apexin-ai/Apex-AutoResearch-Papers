@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_009c_s3",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:12:00.539Z",
+    "updated_at": "2026-05-18T17:12:15.776Z",
+    "hypothesis": "Walker Walk no-dt-emb (gate_dt_embed_dim=0) + subsample ON + fixed dt=2 + H=8, seed=3. Additional seed for 009c (seed=2 NVE 1.14x at 105K on upward trajectory); tests whether NVE rise is reproducible across independent seeds or stochastic.",
+    "parent": "exp_009c_008f_walker_s2"
+  },
+  "timestamp": "2026-05-18T17:12:15.968954+00:00",
+  "trigger": "update_registry"
+}

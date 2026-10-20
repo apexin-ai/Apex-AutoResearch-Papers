@@ -1,0 +1,3766 @@
+# check 4exp progress parallel
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_check_4exp_progress_parallel_20260523T194210.log`
+- **Structured JSON:** [`5639cc32b6f49b20a09a.json`](../../sessions/56/5639cc32b6f49b20a09a.json)
+
+## Before a recorded user message
+
+81 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "94379d76-42df-4ffc-b416-3deae147ace6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779579600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "951ee037-12f1-4bde-aa0f-a031d028cbba",
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to check training progress on two servers with 4 experiments total. I need to use ssh_read_only for all checks. Let me first load the MCP tool schemas.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "56a7da03-5f77-4ec5-b00b-669796f2ede5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAgTyjFW36Sz2PfEQvfdYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13361,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13361
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PPsWFWSaEheHxpdpPs8uDd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "8db666b3-273a-4418-a0af-728111cf04a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MAgTyjFW36Sz2PfEQvfdYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13361,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13361
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T19:42:25.236Z_
+
+<details><summary>↩ Tool result · `toolu_01PPsWFWSaEheHxpdpPs8uDd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "6d3c026c-c03e-4077-b1a2-a121236bf2b3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the checks on both servers in parallel. I'll start with process checks and GPU status on both servers simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "c26feba2-19b4-4edc-9373-36c0704fd288",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+检查两台服务器的进程和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "35ca5f35-5605-4384-8652-899c52c6a579",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wx6wMiXeYZZNSh8MHJhRke`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ps -p 164830 -o pid,etime --no-headers 2>/dev/null || echo \"PID 164830 DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "75688d9e-8f22-4eab-9651-bfa89b2b24f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T19:42:30.583Z_
+
+<details><summary>↩ Tool result · `toolu_01Wx6wMiXeYZZNSh8MHJhRke`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "cd69f388-3497-4ecc-9b9b-209197a736cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PQC1Vyaysc8FnbtQ8xSvCT`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ps -p 157775 -o pid,etime --no-headers 2>/dev/null || echo \"PID 157775 DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "1acf2202-6f9e-47b6-96df-8988f1b64a4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T19:42:31.525Z_
+
+<details><summary>↩ Tool result · `toolu_01PQC1Vyaysc8FnbtQ8xSvCT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "9b238388-16de-494f-883a-40d61b9385a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012xgpye5zYkuKDFFQfzoZdB`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "875650c9-aad9-43f8-9587-ed8659535e0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012MPAJxwSaRDrFV3gbiJDqN`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 345223 -o pid,etime --no-headers 2>/dev/null || echo \"PID 345223 DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "d78d7b74-b34c-46b4-81e3-59e2d007b0b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T19:42:34.333Z_
+
+<details><summary>↩ Tool result · `toolu_012xgpye5zYkuKDFFQfzoZdB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"164830, 3257 MiB\\n157775, 3257 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "46248acd-6345-46ab-a957-6a34435d1887",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"164830, 3257 MiB\\\\n157775, 3257 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"164830, 3257 MiB\\n157775, 3257 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T19:42:34.341Z_
+
+<details><summary>↩ Tool result · `toolu_012MPAJxwSaRDrFV3gbiJDqN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "072f6439-ca27-4a52-9155-1c5d1471ae41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UbcLoDQFa5erkM6v531mcH`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 346430 -o pid,etime --no-headers 2>/dev/null || echo \"PID 346430 DEAD\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "f40169d4-4a7c-4364-b3cf-399b95f8a9d7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T19:42:35.034Z_
+
+<details><summary>↩ Tool result · `toolu_01UbcLoDQFa5erkM6v531mcH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "810f3af1-d61a-4220-81d1-f2a189dd86d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KfLRU5371TcZjUBeG7EHp7`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "26af14aa-df5d-4ca6-b0b4-19babfe97bf2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHyr4VHJJBeop6WTQWUU5v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 24808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T19:42:36.402Z_
+
+<details><summary>↩ Tool result · `toolu_01KfLRU5371TcZjUBeG7EHp7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"345223, 2575 MiB\\n345223, 2575 MiB\\n346430, 435 MiB\\n346430, 435 MiB\\n346430, 2528 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "db5dcb4b-71bd-4014-b990-406a179a4f61",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"345223, 2575 MiB\\\\n345223, 2575 MiB\\\\n346430, 435 MiB\\\\n346430, 435 MiB\\\\n346430, 2528 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"345223, 2575 MiB\\n345223, 2575 MiB\\n346430, 435 MiB\\n346430, 435 MiB\\n346430, 2528 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so `||` is blocked. Let me use `ps` directly without the fallback. The nvidia-smi results show:
+
+**bjb1-45299**: Both PIDs 164830 and 157775 are alive (using GPU memory 3257 MiB each)
+**bjb1-40020**: Both PIDs 345223 and 346430 are alive (345223 using 2575 MiB, 346430 using 435+2528 MiB)
+
+Now let me get the process uptimes and metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "ce621ead-886d-409d-bd7d-17c61201d868",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+两台服务器 4 个进程都在运行。现在查进程运行时间和实验指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "c6279c26-8efc-45dc-abbd-3cd49390ab8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0198ThDu76BoMa3je332xb27`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "ps -p 164830,157775 -o pid,etime --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "3d4b7f0f-5484-48fb-b97e-a89207239194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T19:42:43.530Z_
+
+<details><summary>↩ Tool result · `toolu_0198ThDu76BoMa3je332xb27`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"157775    04:17:41\\n164830    01:33:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "b7646d99-ba9a-4b31-bd80-438ee32803f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"157775    04:17:41\\\\n164830    01:33:17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"157775    04:17:41\\n164830    01:33:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R7LiCx3LR4N21yPdW89W3t`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "ps -p 345223,346430 -o pid,etime --no-headers",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "b7251edc-bd37-4660-84c3-4172e1f2437d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T19:42:44.482Z_
+
+<details><summary>↩ Tool result · `toolu_01R7LiCx3LR4N21yPdW89W3t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"345223    10:55:55\\n346430    10:41:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "7e0a1a31-4387-4bdb-9d7f-30455c96a5ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"345223    10:55:55\\\\n346430    10:41:17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"345223    10:55:55\\n346430    10:41:17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012DxAiZG4kBnkK4EqYqoTdd`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "python3 -c \"\nimport json, os\nlogdir = 'logdir/exp_058_frozen_dt_emb_cheetah_s1'\nos.chdir('/root/autodl-tmp/event-gated-adaptive-horizon')\nfor root, dirs, files in os.walk(logdir):\n    for f in files:\n        if f == 'metrics.jsonl':\n            path = os.path.join(root, f)\n            with open(path) as fh:\n                lines = fh.readlines()\n            for line in lines:\n                d = json.loads(line)\n                step = d.get('step', 0)\n                ve = None\n                for k in ['civo/ve_ratio', 've_ratio', 'civo/nve']:\n                    if k in d:\n                        ve = d[k]\n                        break\n                ret = None\n                for k in ['eval/return', 'episode/return']:\n                    if k in d:\n                        ret = d[k]\n                        break\n                if ve is not None or ret is not None:\n                    print(f'step={step}, ve_ratio={ve}, eval_return={ret}')\n            last = json.loads(lines[-1])\n            print(f'CURRENT_STEP={last.get(\\\"step\\\",\\\"?\\\")}')\n            break\n    else:\n        print('No metrics.jsonl found yet')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "e36433e6-6b3b-44d4-8053-a699a5a4f5a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T19:42:51.786Z_
+
+<details><summary>↩ Tool result · `toolu_012DxAiZG4kBnkK4EqYqoTdd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "a4e18a3c-8972-4b18-a9e4-68d4a9d5618d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Vvcod6cmUtCkmXSsgmTUD`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "python3 -c \"\nimport json, os\nlogdir = 'logdir/exp_057_frozen_dt_emb_walker_s2'\nos.chdir('/root/autodl-tmp/event-gated-adaptive-horizon')\nfor root, dirs, files in os.walk(logdir):\n    for f in files:\n        if f == 'metrics.jsonl':\n            path = os.path.join(root, f)\n            with open(path) as fh:\n                lines = fh.readlines()\n            for line in lines:\n                d = json.loads(line)\n                step = d.get('step', 0)\n                ve = None\n                for k in ['civo/ve_ratio', 've_ratio', 'civo/nve']:\n                    if k in d:\n                        ve = d[k]\n                        break\n                ret = None\n                for k in ['eval/return', 'episode/return']:\n                    if k in d:\n                        ret = d[k]\n                        break\n                if ve is not None or ret is not None:\n                    print(f'step={step}, ve_ratio={ve}, eval_return={ret}')\n            last = json.loads(lines[-1])\n            print(f'CURRENT_STEP={last.get(\\\"step\\\",\\\"?\\\")}')\n            break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "75579df8-d013-4154-af5f-e6a174858996",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T19:42:54.203Z_
+
+<details><summary>↩ Tool result · `toolu_018Vvcod6cmUtCkmXSsgmTUD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "bedd72ed-19a8-4b62-8d5e-bf36f6a495fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XKLTUttuaAP9nJQEhD7JBQ`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "python3 -c \"\nimport json, os\nlogdir = 'logdir/exp_055_peginsertion_civo_trigger_s1'\nos.chdir('/root/autodl-tmp/event-gated-adaptive-horizon')\nfor root, dirs, files in os.walk(logdir):\n    for f in files:\n        if f == 'metrics.jsonl':\n            path = os.path.join(root, f)\n            with open(path) as fh:\n                lines = fh.readlines()\n            last_ve = None; last_ve_step = None\n            last_ret = None; last_ret_step = None\n            for line in lines:\n                d = json.loads(line)\n                step = d.get('step', 0)\n                ve = None\n                for k in ['civo/ve_ratio', 've_ratio']:\n                    if k in d:\n                        ve = d[k]\n                        break\n                ret = None\n                for k in ['eval/return', 'episode/return']:\n                    if k in d:\n                        ret = d[k]\n                        break\n                if ve is not None or ret is not None:\n                    print(f'step={step}, ve_ratio={ve}, eval_return={ret}')\n                if ve is not None:\n                    last_ve = ve; last_ve_step = step\n                if ret is not None:\n                    last_ret = ret; last_ret_step = step\n            last = json.loads(lines[-1])\n            print(f'CURRENT_STEP={last.get(\\\"step\\\",\\\"?\\\")}')\n            print(f'VE_RATIO_FINAL={last_ve}@{last_ve_step}')\n            print(f'EVAL_FINAL={last_ret}@{last_ret_step}')\n            break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "edd93c48-150f-410c-a8b2-422b3d788772",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T19:42:59.415Z_
+
+<details><summary>↩ Tool result · `toolu_01XKLTUttuaAP9nJQEhD7JBQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "92c03875-d604-4a8a-a0ca-255ecd45d255",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qh7o6poJ2aKQKp4fx1Sysp`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "python3 -c \"\nimport json, os\nlogdir = 'logdir/exp_056_peginsertion_frozen_s1'\nos.chdir('/root/autodl-tmp/event-gated-adaptive-horizon')\nfor root, dirs, files in os.walk(logdir):\n    for f in files:\n        if f == 'metrics.jsonl':\n            path = os.path.join(root, f)\n            with open(path) as fh:\n                lines = fh.readlines()\n            last_ve = None; last_ve_step = None\n            last_ret = None; last_ret_step = None\n            for line in lines:\n                d = json.loads(line)\n                step = d.get('step', 0)\n                ve = None\n                for k in ['civo/ve_ratio', 've_ratio']:\n                    if k in d:\n                        ve = d[k]\n                        break\n                ret = None\n                for k in ['eval/return', 'episode/return']:\n                    if k in d:\n                        ret = d[k]\n                        break\n                if ve is not None or ret is not None:\n                    print(f'step={step}, ve_ratio={ve}, eval_return={ret}')\n                if ve is not None:\n                    last_ve = ve; last_ve_step = step\n                if ret is not None:\n                    last_ret = ret; last_ret_step = step\n            last = json.loads(lines[-1])\n            print(f'CURRENT_STEP={last.get(\\\"step\\\",\\\"?\\\")}')\n            print(f'VE_RATIO_FINAL={last_ve}@{last_ve_step}')\n            print(f'EVAL_FINAL={last_ret}@{last_ret_step}')\n            break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "03d925df-89a0-47a4-97be-2fedc5c2e51d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGuYDp9CcZZmT5rvsnwh1X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1533,
+      "cache_read_input_tokens": 25290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1533
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T19:43:02.692Z_
+
+<details><summary>↩ Tool result · `toolu_01Qh7o6poJ2aKQKp4fx1Sysp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "e9ac1fe0-4268-416d-a037-61a2302196bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `open(` call is blocked in python read-only mode, and `;` is blocked too. I need to use `cat` or `tail` to read the metrics files instead. Let me first find the metrics files, then use `tail` to read them.
+
+Process status summary so far:
+- **bjb1-45299**: PID 157775 running for 4h17m, PID 164830 running for 1h33m, both using 3257 MiB GPU
+- **bjb1-40020**: PID 345223 running for 10h55m, PID 346430 running for 10h41m
+
+
+- Now I'll search for the metrics files and use `tail` to examine their contents and `wc -l` to check how many lines they contain.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "a628dac1-1d6b-4454-9afe-61830445967d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+python `open()` 和 `;` 被 read_only 拦截了。改用 `find`+`tail` 读取指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "a9b52e6e-12ce-47b1-8a3e-f1bef32131ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R6P1rS9aJavweWYXWbJG5c`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1 -name metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "22a470ad-d8cf-444a-8088-01f64040210f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T19:43:13.667Z_
+
+<details><summary>↩ Tool result · `toolu_01R6P1rS9aJavweWYXWbJG5c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "f2f52699-1e84-4a4a-9ea4-c4536c73a662",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016PJddzbMogSQHR6VcsGaaQ`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2 -name metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "470628da-a819-4300-bc1a-1fcbe37163fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T19:43:14.634Z_
+
+<details><summary>↩ Tool result · `toolu_016PJddzbMogSQHR6VcsGaaQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "78215c8b-c6e5-4356-8414-3b2a6e9cf334",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013m47hAgLzfjqHGhnYRfE4P`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1 -name metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "35a4b32c-ecfb-447c-9e1b-f0c57f61298e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T19:43:16.051Z_
+
+<details><summary>↩ Tool result · `toolu_013m47hAgLzfjqHGhnYRfE4P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "69febec5-67c4-4a94-9489-b46ca0ddf06e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0118wCrVTbhFkwkAbTLLgTDd`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "find /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1 -name metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "7adf0541-bd33-4cf4-9df8-b2675046f8d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp9xUWMXBtMjCeJQrABYBZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3140,
+      "cache_read_input_tokens": 26823,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3140
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T19:43:16.759Z_
+
+<details><summary>↩ Tool result · `toolu_0118wCrVTbhFkwkAbTLLgTDd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "40084b1f-da80-4144-9e54-e0f4431f2709",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 4 metrics files exist. Now let me read the last few lines and also grep for key metrics. I'll use `tail` for the last line (current step) and `grep` for ve_ratio and eval/return entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "2e0e46b1-aadc-4989-b673-6dd1c9f9bf82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+4 个 metrics.jsonl 都存在。读取最后几行和关键指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "88f5d68e-2043-4c14-94f5-a6e70f6b80eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EKHbgfZFS8sS9cS8Nwi6mB`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -1 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "f10fb7f0-6bf9-4e2f-847a-3b33f0c06c13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T19:43:24.450Z_
+
+<details><summary>↩ Tool result · `toolu_01EKHbgfZFS8sS9cS8Nwi6mB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 60000, \\\"dataset_size\\\": 30000.0, \\\"train_return\\\": 65.01401194088976, \\\"train_length\\\": 500.0, \\\"train_episodes\\\": 60.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "372fd76b-4a9f-4389-bca7-49389e3fc10b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 60000, \\\\\\\"dataset_size\\\\\\\": 30000.0, \\\\\\\"train_return\\\\\\\": 65.01401194088976, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 60.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 60000, \\\"dataset_size\\\": 30000.0, \\\"train_return\\\": 65.01401194088976, \\\"train_length\\\": 500.0, \\\"train_episodes\\\": 60.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ARUmhZjNJFj922YRkoAPRp`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -c \"\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "30448a07-1764-4431-9648-1d2d90f080e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T19:43:25.732Z_
+
+<details><summary>↩ Tool result · `toolu_01ARUmhZjNJFj922YRkoAPRp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"78\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "f8d21702-7c0a-478f-9226-0f898e7e66cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"78\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"78\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PuUwrnEk8C1hN4Vh49pmp7`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep ve_ratio /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "41e4edbd-ab80-4658-afa2-f1ee4a0e819f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T19:43:26.531Z_
+
+<details><summary>↩ Tool result · `toolu_01PuUwrnEk8C1hN4Vh49pmp7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 15000, \\\"civo/ve_ratio\\\": 0.011079620935804566, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.439634084701538, \\\"model_grad_norm\\\": 7.13875150680542, \\\"position_loss\\\": 0.03709936887025833, \\\"velocity_loss\\\": 0.7172110676765442, \\\"reward_loss\\\": 0.2554723620414734, \\\"cont_loss\\\": 1.970604353118688e-05, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.049719333648682, \\\"rep_loss\\\": 4.049719333648682, \\\"kl\\\": 3.9739277362823486, \\\"prior_ent\\\": 46.79640197753906, \\\"post_ent\\\": 42.59819412231445, \\\"normed_target_mean\\\": 0.4468642473220825, \\\"normed_target_std\\\": 0.26176950335502625, \\\"normed_target_min\\\": -0.0013304096646606922, \\\"normed_target_max\\\": 1.1624864339828491, \\\"EMA_005\\\": 0.22460922598838806, \\\"EMA_095\\\": 1.9068857431411743, \\\"value_mean\\\": 1.1074347496032715, \\\"value_std\\\": 0.4628746509552002, \\\"value_min\\\": 0.20643652975559235, \\\"value_max\\\": 1.4622039794921875, \\\"target_mean\\\": 1.3399205207824707, \\\"target_std\\\": 0.6306334733963013, \\\"target_min\\\": 0.2153535932302475, \\\"target_max\\\": 2.896944999694824, \\\"imag_reward_mean\\\": 0.05637504160404205, \\\"imag_reward_std\\\": 0.06577636301517487, \\\"imag_reward_min\\\": 0.0022623869590461254, \\\"imag_reward_max\\\": 0.29702648520469666, \\\"imag_action_mean\\\": 0.34584474563598633, \\\"imag_action_std\\\": 0.7506150603294373, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 0.20528645813465118, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.1388375163078308, \\\"actor_grad_norm\\\": 0.03972733020782471, \\\"value_loss\\\": 2.348318338394165, \\\"value_grad_norm\\\": 4.232219219207764, \\\"update_count\\\": 2599.0, \\\"fps\\\": 10.140638248459666}\\n{\\\"step\\\": 25000, \\\"civo/ve_ratio\\\": 0.030258787123798075, \\\"civo/delta_ve\\\": 0.019179166187993507, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.5417592525482178, \\\"model_grad_norm\\\": 5.267343044281006, \\\"position_loss\\\": 0.019463688135147095, \\\"velocity_loss\\\": 0.4076599180698395, \\\"reward_loss\\\": 0.2904711067676544, \\\"cont_loss\\\": 1.0772224641186767e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 3.040271759033203, \\\"rep_loss\\\": 3.040271759033203, \\\"kl\\\": 2.9003512859344482, \\\"prior_ent\\\": 39.203399658203125, \\\"post_ent\\\": 36.43443298339844, \\\"normed_target_mean\\\": 0.5962278246879578, \\\"normed_target_std\\\": 0.3703608810901642, \\\"normed_target_min\\\": -0.014998120255768299, \\\"normed_target_max\\\": 1.3683885335922241, \\\"EMA_005\\\": 1.1872761249542236, \\\"EMA_095\\\": 9.679220199584961, \\\"value_mean\\\": 5.803997039794922, \\\"value_std\\\": 2.883967876434326, \\\"value_min\\\": 0.998430073261261, \\\"value_max\\\": 9.183120727539062, \\\"target_mean\\\": 6.133662700653076, \\\"target_std\\\": 3.1459147930145264, \\\"target_min\\\": 1.0304958820343018, \\\"target_max\\\": 12.804612159729004, \\\"imag_reward_mean\\\": 0.10908946394920349, \\\"imag_reward_std\\\": 0.15878616273403168, \\\"imag_reward_min\\\": -1.9084978703176603e-05, \\\"imag_reward_max\\\": 0.8468308448791504, \\\"imag_action_mean\\\": 0.19434814155101776, \\\"imag_action_std\\\": 0.7981358766555786, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.5136722326278687, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.04119119793176651, \\\"actor_grad_norm\\\": 0.05321574583649635, \\\"value_loss\\\": 1.5957040786743164, \\\"value_grad_norm\\\": 0.8710836172103882, \\\"update_count\\\": 5099.0, \\\"fps\\\": 10.032708017784998}\\n{\\\"step\\\": 35000, \\\"civo/ve_ratio\\\": 0.054246636565640466, \\\"civo/delta_ve\\\": 0.02398784944184239, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.4325878620147705, \\\"model_grad_norm\\\": \\n\\n... [截断: 输出过长，省略 1596 字符] ...\\n\\n_grad_norm\\\": 0.06055101379752159, \\\"value_loss\\\": 1.6392066478729248, \\\"value_grad_norm\\\": 1.1739978790283203, \\\"update_count\\\": 7599.0, \\\"fps\\\": 9.894786754176238}\\n{\\\"step\\\": 45000, \\\"civo/ve_ratio\\\": 0.23143475528380678, \\\"civo/delta_ve\\\": 0.1771881187181663, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.3707327842712402, \\\"model_grad_norm\\\": 4.360249042510986, \\\"position_loss\\\": 0.014603296294808388, \\\"velocity_loss\\\": 0.33875927329063416, \\\"reward_loss\\\": 0.3549225628376007, \\\"cont_loss\\\": 6.674062547062931e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 2.7707459926605225, \\\"rep_loss\\\": 2.7707459926605225, \\\"kl\\\": 2.589210271835327, \\\"prior_ent\\\": 36.207679748535156, \\\"post_ent\\\": 33.84026336669922, \\\"normed_target_mean\\\": 0.3488001525402069, \\\"normed_target_std\\\": 0.31837794184684753, \\\"normed_target_min\\\": -0.009221348911523819, \\\"normed_target_max\\\": 1.279785394668579, \\\"EMA_005\\\": 2.08410906791687, \\\"EMA_095\\\": 29.572650909423828, \\\"value_mean\\\": 11.515145301818848, \\\"value_std\\\": 8.445201873779297, \\\"value_min\\\": 1.8151452541351318, \\\"value_max\\\": 31.087949752807617, \\\"target_mean\\\": 11.640083312988281, \\\"target_std\\\": 8.746847152709961, \\\"target_min\\\": 1.839125633239746, \\\"target_max\\\": 37.26511764526367, \\\"imag_reward_mean\\\": 0.21795654296875, \\\"imag_reward_std\\\": 0.3073757290840149, \\\"imag_reward_min\\\": 4.621505809154769e-07, \\\"imag_reward_max\\\": 1.595281720161438, \\\"imag_action_mean\\\": 0.12003742903470993, \\\"imag_action_std\\\": 0.789389967918396, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.3566399812698364, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0041263108141720295, \\\"actor_grad_norm\\\": 0.0517314150929451, \\\"value_loss\\\": 1.5351507663726807, \\\"value_grad_norm\\\": 1.2090421915054321, \\\"update_count\\\": 10099.0, \\\"fps\\\": 10.08434679497425}\\n{\\\"step\\\": 55000, \\\"civo/ve_ratio\\\": 0.08125176763420709, \\\"civo/delta_ve\\\": -0.1501829876495997, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.361933946609497, \\\"model_grad_norm\\\": 4.091092586517334, \\\"position_loss\\\": 0.013264854438602924, \\\"velocity_loss\\\": 0.3275107443332672, \\\"reward_loss\\\": 0.3446912467479706, \\\"cont_loss\\\": 2.2766744933733207e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 2.794111728668213, \\\"rep_loss\\\": 2.794111728668213, \\\"kl\\\": 2.5824661254882812, \\\"prior_ent\\\": 36.583335876464844, \\\"post_ent\\\": 34.024505615234375, \\\"normed_target_mean\\\": 0.3221699297428131, \\\"normed_target_std\\\": 0.31282326579093933, \\\"normed_target_min\\\": -0.001840653014369309, \\\"normed_target_max\\\": 1.28480064868927, \\\"EMA_005\\\": 1.5098977088928223, \\\"EMA_095\\\": 33.784603118896484, \\\"value_mean\\\": 11.808496475219727, \\\"value_std\\\": 9.865653038024902, \\\"value_min\\\": 1.4293328523635864, \\\"value_max\\\": 37.94596862792969, \\\"target_mean\\\": 11.904343605041504, \\\"target_std\\\": 10.095874786376953, \\\"target_min\\\": 1.4507578611373901, \\\"target_max\\\": 42.968990325927734, \\\"imag_reward_mean\\\": 0.21957994997501373, \\\"imag_reward_std\\\": 0.29560360312461853, \\\"imag_reward_min\\\": 2.3627281109384057e-07, \\\"imag_reward_max\\\": 1.5983489751815796, \\\"imag_action_mean\\\": 0.13183949887752533, \\\"imag_action_std\\\": 0.773551344871521, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -0.5970001220703125, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.002756435889750719, \\\"actor_grad_norm\\\": 0.05400611460208893, \\\"value_loss\\\": 1.4874216318130493, \\\"value_grad_norm\\\": 1.3751171827316284, \\\"update_count\\\": 12599.0, \\\"fps\\\": 9.935409293754581}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "db618d8e-623a-4327-a84e-ffa1fae11b89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 15000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.011079620935804566, \\\\\\\"civo/delta_ve\\\\\\\": 0.0, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 3.439634084701538, \\\\\\\"model_grad_norm\\\\\\\": 7.13875150680542, \\\\\\\"position_loss\\\\\\\": 0.03709936887025833, \\\\\\\"velocity_loss\\\\\\\": 0.7172110676765442, \\\\\\\"reward_loss\\\\\\\": 0.2554723620414734, \\\\\\\"cont_loss\\\\\\\": 1.970604353118688e-05, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.049719333648682, \\\\\\\"rep_loss\\\\\\\": 4.049719333648682, \\\\\\\"kl\\\\\\\": 3.9739277362823486, \\\\\\\"prior_ent\\\\\\\": 46.79640197753906, \\\\\\\"post_ent\\\\\\\": 42.59819412231445, \\\\\\\"normed_target_mean\\\\\\\": 0.4468642473220825, \\\\\\\"normed_target_std\\\\\\\": 0.26176950335502625, \\\\\\\"normed_target_min\\\\\\\": -0.0013304096646606922, \\\\\\\"normed_target_max\\\\\\\": 1.1624864339828491, \\\\\\\"EMA_005\\\\\\\": 0.22460922598838806, \\\\\\\"EMA_095\\\\\\\": 1.9068857431411743, \\\\\\\"value_mean\\\\\\\": 1.1074347496032715, \\\\\\\"value_std\\\\\\\": 0.4628746509552002, \\\\\\\"value_min\\\\\\\": 0.20643652975559235, \\\\\\\"value_max\\\\\\\": 1.4622039794921875, \\\\\\\"target_mean\\\\\\\": 1.3399205207824707, \\\\\\\"target_std\\\\\\\": 0.6306334733963013, \\\\\\\"target_min\\\\\\\": 0.2153535932302475, \\\\\\\"target_max\\\\\\\": 2.896944999694824, \\\\\\\"imag_reward_mean\\\\\\\": 0.05637504160404205, \\\\\\\"imag_reward_std\\\\\\\": 0.06577636301517487, \\\\\\\"imag_reward_min\\\\\\\": 0.0022623869590461254, \\\\\\\"imag_reward_max\\\\\\\": 0.29702648520469666, \\\\\\\"imag_action_mean\\\\\\\": 0.34584474563598633, \\\\\\\"imag_action_std\\\\\\\": 0.7506150603294373, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": 0.20528645813465118, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.1388375163078308, \\\\\\\"actor_grad_norm\\\\\\\": 0.03972733020782471, \\\\\\\"value_loss\\\\\\\": 2.348318338394165, \\\\\\\"value_grad_norm\\\\\\\": 4.232219219207764, \\\\\\\"update_count\\\\\\\": 2599.0, \\\\\\\"fps\\\\\\\": 10.140638248459666}\\\\n{\\\\\\\"step\\\\\\\": 25000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.030258787123798075, \\\\\\\"civo/delta_ve\\\\\\\": 0.019179166187993507, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 2.5417592525482178, \\\\\\\"model_grad_norm\\\\\\\": 5.267343044281006, \\\\\\\"position_loss\\\\\\\": 0.019463688135147095, \\\\\\\"velocity_loss\\\\\\\": 0.4076599180698395, \\\\\\\"reward_loss\\\\\\\": 0.2904711067676544, \\\\\\\"cont_loss\\\\\\\": 1.0772224641186767e-06, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 3.040271759033203, \\\\\\\"rep_loss\\\\\\\": 3.040271759033203, \\\\\\\"kl\\\\\\\": 2.9003512859344482, \\\\\\\"prior_ent\\\\\\\": 39.203399658203125, \\\\\\\"post_ent\\\\\\\": 36.43443298339844, \\\\\\\"normed_target_mean\\\\\\\": 0.5962278246879578, \\\\\\\"normed_target_std\\\\\\\": 0.3703608810901642, \\\\\\\"normed_target_min\\\\\\\": -0.014998120255768299, \\\\\\\"normed_target_max\\\\\\\": 1.3683885335922241, \\\\\\\"EMA_005\\\\\\\": 1.1872761249542236, \\\\\\\"EMA_095\\\\\\\": 9.679220199584961, \\\\\\\"value_mean\\\\\\\": 5.803997039794922, \\\\\\\"value_std\\\\\\\": 2.883967876434326, \\\\\\\"value_min\\\\\\\": 0.998430073261261, \\\\\\\"value_max\\\\\\\": 9.183120727539062, \\\\\\\"target_mean\\\\\\\": 6.133662700653076, \\\\\\\"target_std\\\\\\\": 3.1459147930145264, \\\\\\\"target_min\\\\\\\": 1.0304958820343018, \\\\\\\"target_max\\\\\\\": 12.804612159729004, \\\\\\\"imag_reward_mean\\\\\\\": 0.10908946394920349, \\\\\\\"imag_reward_std\\\\\\\": 0.15878616273403168, \\\\\\\"imag_reward_min\\\\\\\": -1.9084978703176603e-05, \\\\\\\"imag_reward_max\\\\\\\": 0.8468308448791504, \\\\\\\"imag_action_mean\\\\\\\": 0.19434814155101776, \\\\\\\"imag_action_std\\\\\\\": 0.7981358766555786, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.5136722326278687, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.04119119793176651, \\\\\\\"actor_grad_norm\\\\\\\": 0.05321574583649635, \\\\\\\"value_loss\\\\\\\": 1.5957040786743164, \\\\\\\"value_grad_norm\\\\\\\": 0.8710836172103882, \\\\\\\"update_count\\\\\\\": 5099.0, \\\\\\\"fps\\\\\\\": 10.032708017784998}\\\\n{\\\\\\\"step\\\\\\\": 35000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.054246636565640466, \\\\\\\"civo/delta_ve\\\\\\\": 0.02398784944184239, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 2.4325878620147705, \\\\\\\"model_grad_norm\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 1596 字符] ...\\\\n\\\\n_grad_norm\\\\\\\": 0.06055101379752159, \\\\\\\"value_loss\\\\\\\": 1.6392066478729248, \\\\\\\"value_grad_norm\\\\\\\": 1.1739978790283203, \\\\\\\"update_count\\\\\\\": 7599.0, \\\\\\\"fps\\\\\\\": 9.894786754176238}\\\\n{\\\\\\\"step\\\\\\\": 45000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.23143475528380678, \\\\\\\"civo/delta_ve\\\\\\\": 0.1771881187181663, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 2.3707327842712402, \\\\\\\"model_grad_norm\\\\\\\": 4.360249042510986, \\\\\\\"position_loss\\\\\\\": 0.014603296294808388, \\\\\\\"velocity_loss\\\\\\\": 0.33875927329063416, \\\\\\\"reward_loss\\\\\\\": 0.3549225628376007, \\\\\\\"cont_loss\\\\\\\": 6.674062547062931e-08, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 2.7707459926605225, \\\\\\\"rep_loss\\\\\\\": 2.7707459926605225, \\\\\\\"kl\\\\\\\": 2.589210271835327, \\\\\\\"prior_ent\\\\\\\": 36.207679748535156, \\\\\\\"post_ent\\\\\\\": 33.84026336669922, \\\\\\\"normed_target_mean\\\\\\\": 0.3488001525402069, \\\\\\\"normed_target_std\\\\\\\": 0.31837794184684753, \\\\\\\"normed_target_min\\\\\\\": -0.009221348911523819, \\\\\\\"normed_target_max\\\\\\\": 1.279785394668579, \\\\\\\"EMA_005\\\\\\\": 2.08410906791687, \\\\\\\"EMA_095\\\\\\\": 29.572650909423828, \\\\\\\"value_mean\\\\\\\": 11.515145301818848, \\\\\\\"value_std\\\\\\\": 8.445201873779297, \\\\\\\"value_min\\\\\\\": 1.8151452541351318, \\\\\\\"value_max\\\\\\\": 31.087949752807617, \\\\\\\"target_mean\\\\\\\": 11.640083312988281, \\\\\\\"target_std\\\\\\\": 8.746847152709961, \\\\\\\"target_min\\\\\\\": 1.839125633239746, \\\\\\\"target_max\\\\\\\": 37.26511764526367, \\\\\\\"imag_reward_mean\\\\\\\": 0.21795654296875, \\\\\\\"imag_reward_std\\\\\\\": 0.3073757290840149, \\\\\\\"imag_reward_min\\\\\\\": 4.621505809154769e-07, \\\\\\\"imag_reward_max\\\\\\\": 1.595281720161438, \\\\\\\"imag_action_mean\\\\\\\": 0.12003742903470993, \\\\\\\"imag_action_std\\\\\\\": 0.789389967918396, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.3566399812698364, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.0041263108141720295, \\\\\\\"actor_grad_norm\\\\\\\": 0.0517314150929451, \\\\\\\"value_loss\\\\\\\": 1.5351507663726807, \\\\\\\"value_grad_norm\\\\\\\": 1.2090421915054321, \\\\\\\"update_count\\\\\\\": 10099.0, \\\\\\\"fps\\\\\\\": 10.08434679497425}\\\\n{\\\\\\\"step\\\\\\\": 55000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.08125176763420709, \\\\\\\"civo/delta_ve\\\\\\\": -0.1501829876495997, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 2.361933946609497, \\\\\\\"model_grad_norm\\\\\\\": 4.091092586517334, \\\\\\\"position_loss\\\\\\\": 0.013264854438602924, \\\\\\\"velocity_loss\\\\\\\": 0.3275107443332672, \\\\\\\"reward_loss\\\\\\\": 0.3446912467479706, \\\\\\\"cont_loss\\\\\\\": 2.2766744933733207e-08, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 2.794111728668213, \\\\\\\"rep_loss\\\\\\\": 2.794111728668213, \\\\\\\"kl\\\\\\\": 2.5824661254882812, \\\\\\\"prior_ent\\\\\\\": 36.583335876464844, \\\\\\\"post_ent\\\\\\\": 34.024505615234375, \\\\\\\"normed_target_mean\\\\\\\": 0.3221699297428131, \\\\\\\"normed_target_std\\\\\\\": 0.31282326579093933, \\\\\\\"normed_target_min\\\\\\\": -0.001840653014369309, \\\\\\\"normed_target_max\\\\\\\": 1.28480064868927, \\\\\\\"EMA_005\\\\\\\": 1.5098977088928223, \\\\\\\"EMA_095\\\\\\\": 33.784603118896484, \\\\\\\"value_mean\\\\\\\": 11.808496475219727, \\\\\\\"value_std\\\\\\\": 9.865653038024902, \\\\\\\"value_min\\\\\\\": 1.4293328523635864, \\\\\\\"value_max\\\\\\\": 37.94596862792969, \\\\\\\"target_mean\\\\\\\": 11.904343605041504, \\\\\\\"target_std\\\\\\\": 10.095874786376953, \\\\\\\"target_min\\\\\\\": 1.4507578611373901, \\\\\\\"target_max\\\\\\\": 42.968990325927734, \\\\\\\"imag_reward_mean\\\\\\\": 0.21957994997501373, \\\\\\\"imag_reward_std\\\\\\\": 0.29560360312461853, \\\\\\\"imag_reward_min\\\\\\\": 2.3627281109384057e-07, \\\\\\\"imag_reward_max\\\\\\\": 1.5983489751815796, \\\\\\\"imag_action_mean\\\\\\\": 0.13183949887752533, \\\\\\\"imag_action_std\\\\\\\": 0.773551344871521, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -0.5970001220703125, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.002756435889750719, \\\\\\\"actor_grad_norm\\\\\\\": 0.05400611460208893, \\\\\\\"value_loss\\\\\\\": 1.4874216318130493, \\\\\\\"value_grad_norm\\\\\\\": 1.3751171827316284, \\\\\\\"update_count\\\\\\\": 12599.0, \\\\\\\"fps\\\\\\\": 9.935409293754581}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 15000, \\\"civo/ve_ratio\\\": 0.011079620935804566, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.439634084701538, \\\"model_grad_norm\\\": 7.13875150680542, \\\"position_loss\\\": 0.03709936887025833, \\\"velocity_loss\\\": 0.7172110676765442, \\\"reward_loss\\\": 0.2554723620414734, \\\"cont_loss\\\": 1.970604353118688e-05, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.049719333648682, \\\"rep_loss\\\": 4.049719333648682, \\\"kl\\\": 3.9739277362823486, \\\"prior_ent\\\": 46.79640197753906, \\\"post_ent\\\": 42.59819412231445, \\\"normed_target_mean\\\": 0.4468642473220825, \\\"normed_target_std\\\": 0.26176950335502625, \\\"normed_target_min\\\": -0.0013304096646606922, \\\"normed_target_max\\\": 1.1624864339828491, \\\"EMA_005\\\": 0.22460922598838806, \\\"EMA_095\\\": 1.9068857431411743, \\\"value_mean\\\": 1.1074347496032715, \\\"value_std\\\": 0.4628746509552002, \\\"value_min\\\": 0.20643652975559235, \\\"value_max\\\": 1.4622039794921875, \\\"target_mean\\\": 1.3399205207824707, \\\"target_std\\\": 0.6306334733963013, \\\"target_min\\\": 0.2153535932302475, \\\"target_max\\\": 2.896944999694824, \\\"imag_reward_mean\\\": 0.05637504160404205, \\\"imag_reward_std\\\": 0.06577636301517487, \\\"imag_reward_min\\\": 0.0022623869590461254, \\\"imag_reward_max\\\": 0.29702648520469666, \\\"imag_action_mean\\\": 0.34584474563598633, \\\"imag_action_std\\\": 0.7506150603294373, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 0.20528645813465118, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.1388375163078308, \\\"actor_grad_norm\\\": 0.03972733020782471, \\\"value_loss\\\": 2.348318338394165, \\\"value_grad_norm\\\": 4.232219219207764, \\\"update_count\\\": 2599.0, \\\"fps\\\": 10.140638248459666}\\n{\\\"step\\\": 25000, \\\"civo/ve_ratio\\\": 0.030258787123798075, \\\"civo/delta_ve\\\": 0.019179166187993507, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.5417592525482178, \\\"model_grad_norm\\\": 5.267343044281006, \\\"position_loss\\\": 0.019463688135147095, \\\"velocity_loss\\\": 0.4076599180698395, \\\"reward_loss\\\": 0.2904711067676544, \\\"cont_loss\\\": 1.0772224641186767e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 3.040271759033203, \\\"rep_loss\\\": 3.040271759033203, \\\"kl\\\": 2.9003512859344482, \\\"prior_ent\\\": 39.203399658203125, \\\"post_ent\\\": 36.43443298339844, \\\"normed_target_mean\\\": 0.5962278246879578, \\\"normed_target_std\\\": 0.3703608810901642, \\\"normed_target_min\\\": -0.014998120255768299, \\\"normed_target_max\\\": 1.3683885335922241, \\\"EMA_005\\\": 1.1872761249542236, \\\"EMA_095\\\": 9.679220199584961, \\\"value_mean\\\": 5.803997039794922, \\\"value_std\\\": 2.883967876434326, \\\"value_min\\\": 0.998430073261261, \\\"value_max\\\": 9.183120727539062, \\\"target_mean\\\": 6.133662700653076, \\\"target_std\\\": 3.1459147930145264, \\\"target_min\\\": 1.0304958820343018, \\\"target_max\\\": 12.804612159729004, \\\"imag_reward_mean\\\": 0.10908946394920349, \\\"imag_reward_std\\\": 0.15878616273403168, \\\"imag_reward_min\\\": -1.9084978703176603e-05, \\\"imag_reward_max\\\": 0.8468308448791504, \\\"imag_action_mean\\\": 0.19434814155101776, \\\"imag_action_std\\\": 0.7981358766555786, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.5136722326278687, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.04119119793176651, \\\"actor_grad_norm\\\": 0.05321574583649635, \\\"value_loss\\\": 1.5957040786743164, \\\"value_grad_norm\\\": 0.8710836172103882, \\\"update_count\\\": 5099.0, \\\"fps\\\": 10.032708017784998}\\n{\\\"step\\\": 35000, \\\"civo/ve_ratio\\\": 0.054246636565640466, \\\"civo/delta_ve\\\": 0.02398784944184239, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.4325878620147705, \\\"model_grad_norm\\\": \\n\\n... [截断: 输出过长，省略 1596 字符] ...\\n\\n_grad_norm\\\": 0.06055101379752159, \\\"value_loss\\\": 1.6392066478729248, \\\"value_grad_norm\\\": 1.1739978790283203, \\\"update_count\\\": 7599.0, \\\"fps\\\": 9.894786754176238}\\n{\\\"step\\\": 45000, \\\"civo/ve_ratio\\\": 0.23143475528380678, \\\"civo/delta_ve\\\": 0.1771881187181663, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.3707327842712402, \\\"model_grad_norm\\\": 4.360249042510986, \\\"position_loss\\\": 0.014603296294808388, \\\"velocity_loss\\\": 0.33875927329063416, \\\"reward_loss\\\": 0.3549225628376007, \\\"cont_loss\\\": 6.674062547062931e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 2.7707459926605225, \\\"rep_loss\\\": 2.7707459926605225, \\\"kl\\\": 2.589210271835327, \\\"prior_ent\\\": 36.207679748535156, \\\"post_ent\\\": 33.84026336669922, \\\"normed_target_mean\\\": 0.3488001525402069, \\\"normed_target_std\\\": 0.31837794184684753, \\\"normed_target_min\\\": -0.009221348911523819, \\\"normed_target_max\\\": 1.279785394668579, \\\"EMA_005\\\": 2.08410906791687, \\\"EMA_095\\\": 29.572650909423828, \\\"value_mean\\\": 11.515145301818848, \\\"value_std\\\": 8.445201873779297, \\\"value_min\\\": 1.8151452541351318, \\\"value_max\\\": 31.087949752807617, \\\"target_mean\\\": 11.640083312988281, \\\"target_std\\\": 8.746847152709961, \\\"target_min\\\": 1.839125633239746, \\\"target_max\\\": 37.26511764526367, \\\"imag_reward_mean\\\": 0.21795654296875, \\\"imag_reward_std\\\": 0.3073757290840149, \\\"imag_reward_min\\\": 4.621505809154769e-07, \\\"imag_reward_max\\\": 1.595281720161438, \\\"imag_action_mean\\\": 0.12003742903470993, \\\"imag_action_std\\\": 0.789389967918396, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.3566399812698364, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0041263108141720295, \\\"actor_grad_norm\\\": 0.0517314150929451, \\\"value_loss\\\": 1.5351507663726807, \\\"value_grad_norm\\\": 1.2090421915054321, \\\"update_count\\\": 10099.0, \\\"fps\\\": 10.08434679497425}\\n{\\\"step\\\": 55000, \\\"civo/ve_ratio\\\": 0.08125176763420709, \\\"civo/delta_ve\\\": -0.1501829876495997, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 2.361933946609497, \\\"model_grad_norm\\\": 4.091092586517334, \\\"position_loss\\\": 0.013264854438602924, \\\"velocity_loss\\\": 0.3275107443332672, \\\"reward_loss\\\": 0.3446912467479706, \\\"cont_loss\\\": 2.2766744933733207e-08, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 2.794111728668213, \\\"rep_loss\\\": 2.794111728668213, \\\"kl\\\": 2.5824661254882812, \\\"prior_ent\\\": 36.583335876464844, \\\"post_ent\\\": 34.024505615234375, \\\"normed_target_mean\\\": 0.3221699297428131, \\\"normed_target_std\\\": 0.31282326579093933, \\\"normed_target_min\\\": -0.001840653014369309, \\\"normed_target_max\\\": 1.28480064868927, \\\"EMA_005\\\": 1.5098977088928223, \\\"EMA_095\\\": 33.784603118896484, \\\"value_mean\\\": 11.808496475219727, \\\"value_std\\\": 9.865653038024902, \\\"value_min\\\": 1.4293328523635864, \\\"value_max\\\": 37.94596862792969, \\\"target_mean\\\": 11.904343605041504, \\\"target_std\\\": 10.095874786376953, \\\"target_min\\\": 1.4507578611373901, \\\"target_max\\\": 42.968990325927734, \\\"imag_reward_mean\\\": 0.21957994997501373, \\\"imag_reward_std\\\": 0.29560360312461853, \\\"imag_reward_min\\\": 2.3627281109384057e-07, \\\"imag_reward_max\\\": 1.5983489751815796, \\\"imag_action_mean\\\": 0.13183949887752533, \\\"imag_action_std\\\": 0.773551344871521, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -0.5970001220703125, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.002756435889750719, \\\"actor_grad_norm\\\": 0.05400611460208893, \\\"value_loss\\\": 1.4874216318130493, \\\"value_grad_norm\\\": 1.3751171827316284, \\\"update_count\\\": 12599.0, \\\"fps\\\": 9.935409293754581}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D2re9QKW89QJ1FfA97Lhpx`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep eval/return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_058_frozen_dt_emb_cheetah_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "b80d95b1-ebe8-4dca-a3d7-fac9056da7c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T19:43:27.458Z_
+
+<details><summary>↩ Tool result · `toolu_01D2re9QKW89QJ1FfA97Lhpx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "ca449e99-9587-4537-999f-9b699c919000",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HMhrRrpXAeX2cEhggXUQnY`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "tail -1 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "71b7f523-eadc-4f0b-b6fd-c98d68ea0930",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T19:43:28.414Z_
+
+<details><summary>↩ Tool result · `toolu_01HMhrRrpXAeX2cEhggXUQnY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 165000, \\\"civo/ve_ratio\\\": 0.2715040611677859, \\\"civo/delta_ve\\\": -0.18047980602303276, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.726571798324585, \\\"model_grad_norm\\\": 5.610911846160889, \\\"height_loss\\\": 0.0007465826929546893, \\\"orientations_loss\\\": 0.05700722709298134, \\\"velocity_loss\\\": 0.49248096346855164, \\\"reward_loss\\\": 0.5169638395309448, \\\"cont_loss\\\": 2.178213165393572e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.432288646697998, \\\"rep_loss\\\": 4.432288646697998, \\\"kl\\\": 4.274878025054932, \\\"prior_ent\\\": 37.68878936767578, \\\"post_ent\\\": 33.671199798583984, \\\"normed_target_mean\\\": 0.3647252321243286, \\\"normed_target_std\\\": 0.3488326072692871, \\\"normed_target_min\\\": -0.005571470130234957, \\\"normed_target_max\\\": 1.2695974111557007, \\\"EMA_005\\\": 9.052605628967285, \\\"EMA_095\\\": 70.17825317382812, \\\"value_mean\\\": 31.254331588745117, \\\"value_std\\\": 21.008033752441406, \\\"value_min\\\": 8.894850730895996, \\\"value_max\\\": 86.13446044921875, \\\"target_mean\\\": 31.35479736328125, \\\"target_std\\\": 21.323862075805664, \\\"target_min\\\": 8.71334171295166, \\\"target_max\\\": 86.64642333984375, \\\"imag_reward_mean\\\": 0.45640790462493896, \\\"imag_reward_std\\\": 0.7075377106666565, \\\"imag_reward_min\\\": 1.6689301052252858e-09, \\\"imag_reward_max\\\": 3.797102451324463, \\\"imag_action_mean\\\": -0.022211434319615364, \\\"imag_action_std\\\": 0.7990097403526306, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6271705627441406, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0010876167798414826, \\\"actor_grad_norm\\\": 0.08306683599948883, \\\"value_loss\\\": 1.548429250717163, \\\"value_grad_norm\\\": 1.1175899505615234, \\\"update_count\\\": 40099.0, \\\"fps\\\": 9.927812586726036}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "2bbeb49c-247a-476e-8973-e2708b043dae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 165000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.2715040611677859, \\\\\\\"civo/delta_ve\\\\\\\": -0.18047980602303276, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 3.726571798324585, \\\\\\\"model_grad_norm\\\\\\\": 5.610911846160889, \\\\\\\"height_loss\\\\\\\": 0.0007465826929546893, \\\\\\\"orientations_loss\\\\\\\": 0.05700722709298134, \\\\\\\"velocity_loss\\\\\\\": 0.49248096346855164, \\\\\\\"reward_loss\\\\\\\": 0.5169638395309448, \\\\\\\"cont_loss\\\\\\\": 2.178213165393572e-11, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.432288646697998, \\\\\\\"rep_loss\\\\\\\": 4.432288646697998, \\\\\\\"kl\\\\\\\": 4.274878025054932, \\\\\\\"prior_ent\\\\\\\": 37.68878936767578, \\\\\\\"post_ent\\\\\\\": 33.671199798583984, \\\\\\\"normed_target_mean\\\\\\\": 0.3647252321243286, \\\\\\\"normed_target_std\\\\\\\": 0.3488326072692871, \\\\\\\"normed_target_min\\\\\\\": -0.005571470130234957, \\\\\\\"normed_target_max\\\\\\\": 1.2695974111557007, \\\\\\\"EMA_005\\\\\\\": 9.052605628967285, \\\\\\\"EMA_095\\\\\\\": 70.17825317382812, \\\\\\\"value_mean\\\\\\\": 31.254331588745117, \\\\\\\"value_std\\\\\\\": 21.008033752441406, \\\\\\\"value_min\\\\\\\": 8.894850730895996, \\\\\\\"value_max\\\\\\\": 86.13446044921875, \\\\\\\"target_mean\\\\\\\": 31.35479736328125, \\\\\\\"target_std\\\\\\\": 21.323862075805664, \\\\\\\"target_min\\\\\\\": 8.71334171295166, \\\\\\\"target_max\\\\\\\": 86.64642333984375, \\\\\\\"imag_reward_mean\\\\\\\": 0.45640790462493896, \\\\\\\"imag_reward_std\\\\\\\": 0.7075377106666565, \\\\\\\"imag_reward_min\\\\\\\": 1.6689301052252858e-09, \\\\\\\"imag_reward_max\\\\\\\": 3.797102451324463, \\\\\\\"imag_action_mean\\\\\\\": -0.022211434319615364, \\\\\\\"imag_action_std\\\\\\\": 0.7990097403526306, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.6271705627441406, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.0010876167798414826, \\\\\\\"actor_grad_norm\\\\\\\": 0.08306683599948883, \\\\\\\"value_loss\\\\\\\": 1.548429250717163, \\\\\\\"value_grad_norm\\\\\\\": 1.1175899505615234, \\\\\\\"update_count\\\\\\\": 40099.0, \\\\\\\"fps\\\\\\\": 9.927812586726036}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 165000, \\\"civo/ve_ratio\\\": 0.2715040611677859, \\\"civo/delta_ve\\\": -0.18047980602303276, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.726571798324585, \\\"model_grad_norm\\\": 5.610911846160889, \\\"height_loss\\\": 0.0007465826929546893, \\\"orientations_loss\\\": 0.05700722709298134, \\\"velocity_loss\\\": 0.49248096346855164, \\\"reward_loss\\\": 0.5169638395309448, \\\"cont_loss\\\": 2.178213165393572e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.432288646697998, \\\"rep_loss\\\": 4.432288646697998, \\\"kl\\\": 4.274878025054932, \\\"prior_ent\\\": 37.68878936767578, \\\"post_ent\\\": 33.671199798583984, \\\"normed_target_mean\\\": 0.3647252321243286, \\\"normed_target_std\\\": 0.3488326072692871, \\\"normed_target_min\\\": -0.005571470130234957, \\\"normed_target_max\\\": 1.2695974111557007, \\\"EMA_005\\\": 9.052605628967285, \\\"EMA_095\\\": 70.17825317382812, \\\"value_mean\\\": 31.254331588745117, \\\"value_std\\\": 21.008033752441406, \\\"value_min\\\": 8.894850730895996, \\\"value_max\\\": 86.13446044921875, \\\"target_mean\\\": 31.35479736328125, \\\"target_std\\\": 21.323862075805664, \\\"target_min\\\": 8.71334171295166, \\\"target_max\\\": 86.64642333984375, \\\"imag_reward_mean\\\": 0.45640790462493896, \\\"imag_reward_std\\\": 0.7075377106666565, \\\"imag_reward_min\\\": 1.6689301052252858e-09, \\\"imag_reward_max\\\": 3.797102451324463, \\\"imag_action_mean\\\": -0.022211434319615364, \\\"imag_action_std\\\": 0.7990097403526306, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6271705627441406, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0010876167798414826, \\\"actor_grad_norm\\\": 0.08306683599948883, \\\"value_loss\\\": 1.548429250717163, \\\"value_grad_norm\\\": 1.1175899505615234, \\\"update_count\\\": 40099.0, \\\"fps\\\": 9.927812586726036}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017K1yeiRRf9beQnHzYRkGFt`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep -c \"\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "33917208-928e-4945-9055-eb351550d559",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T19:43:29.667Z_
+
+<details><summary>↩ Tool result · `toolu_017K1yeiRRf9beQnHzYRkGFt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"215\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "b6927a98-f34c-439d-9b83-8130c1fa486f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"215\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"215\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L4HX83vTM79G9jtSTjDDTc`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep ve_ratio /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "1c71cb7d-783b-443d-8484-d4f06885fdfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T19:43:30.652Z_
+
+<details><summary>↩ Tool result · `toolu_01L4HX83vTM79G9jtSTjDDTc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 15000, \\\"civo/ve_ratio\\\": 0.02043346130244566, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 7.464046478271484, \\\"model_grad_norm\\\": 10.419979095458984, \\\"height_loss\\\": 0.0072965603321790695, \\\"orientations_loss\\\": 0.42948538064956665, \\\"velocity_loss\\\": 1.4743252992630005, \\\"reward_loss\\\": 0.6690932512283325, \\\"cont_loss\\\": 2.034002318396233e-05, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 8.139710426330566, \\\"rep_loss\\\": 8.139710426330566, \\\"kl\\\": 8.067819595336914, \\\"prior_ent\\\": 51.489891052246094, \\\"post_ent\\\": 43.31338882446289, \\\"normed_target_mean\\\": 0.5938174724578857, \\\"normed_target_std\\\": 0.30864274501800537, \\\"normed_target_min\\\": 0.014792019501328468, \\\"normed_target_max\\\": 1.6781271696090698, \\\"EMA_005\\\": 1.964381217956543, \\\"EMA_095\\\": 5.634596347808838, \\\"value_mean\\\": 3.7249157428741455, \\\"value_std\\\": 0.7325336337089539, \\\"value_min\\\": 1.9245104789733887, \\\"value_max\\\": 4.199141979217529, \\\"target_mean\\\": 4.55250358581543, \\\"target_std\\\": 1.1877470016479492, \\\"target_min\\\": 2.0016398429870605, \\\"target_max\\\": 8.452418327331543, \\\"imag_reward_mean\\\": 0.19031791388988495, \\\"imag_reward_std\\\": 0.18633174896240234, \\\"imag_reward_min\\\": 0.009486347436904907, \\\"imag_reward_max\\\": 0.8520527482032776, \\\"imag_action_mean\\\": -0.03243599832057953, \\\"imag_action_std\\\": 0.7799263000488281, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 1.5165446996688843, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.24737051129341125, \\\"actor_grad_norm\\\": 0.07795962691307068, \\\"value_loss\\\": 2.899601459503174, \\\"value_grad_norm\\\": 3.568213939666748, \\\"update_count\\\": 2599.0, \\\"fps\\\": 11.044435005358215}\\n{\\\"step\\\": 25000, \\\"civo/ve_ratio\\\": 0.13694016201979062, \\\"civo/delta_ve\\\": 0.11650670071734495, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 5.085658073425293, \\\"model_grad_norm\\\": 8.248001098632812, \\\"height_loss\\\": 0.002727009356021881, \\\"orientations_loss\\\": 0.13941435515880585, \\\"velocity_loss\\\": 0.758927047252655, \\\"reward_loss\\\": 0.5982608199119568, \\\"cont_loss\\\": 1.0842114761544508e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 5.9772138595581055, \\\"rep_loss\\\": 5.9772138595581055, \\\"kl\\\": 5.869959354400635, \\\"prior_ent\\\": 40.10260009765625, \\\"post_ent\\\": 34.24803924560547, \\\"normed_target_mean\\\": 0.6506182551383972, \\\"normed_target_std\\\": 0.3133474588394165, \\\"normed_target_min\\\": -0.3844016194343567, \\\"normed_target_max\\\": 1.672959804534912, \\\"EMA_005\\\": 19.587900161743164, \\\"EMA_095\\\": 30.56304359436035, \\\"value_mean\\\": 25.215248107910156, \\\"value_std\\\": 2.7610743045806885, \\\"value_min\\\": 7.17938756942749, \\\"value_max\\\": 28.40974998474121, \\\"target_mean\\\": 26.716419219970703, \\\"target_std\\\": 3.445701837539673, \\\"target_min\\\": 15.284299850463867, \\\"target_max\\\": 37.568382263183594, \\\"imag_reward_mean\\\": 0.4136808514595032, \\\"imag_reward_std\\\": 0.4729730486869812, \\\"imag_reward_min\\\": 3.118391032330692e-05, \\\"imag_reward_max\\\": 2.5412755012512207, \\\"imag_action_mean\\\": 0.14067424833774567, \\\"imag_action_std\\\": 0.8295711874961853, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -2.432910919189453, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.14718420803546906, \\\"actor_grad_norm\\\": 0.09714353829622269, \\\"value_loss\\\": 1.542451024055481, \\\"value_grad_norm\\\": 0.7063494920730591, \\\"update_count\\\": 5099.0, \\\"fps\\\": 10.99527371324713}\\n{\\\"step\\\": 35000, \\\"civo/ve_ratio\\\": 0.4945184112553616, \\\"civo/delta_ve\\\": 0.357578249235571, \\\"civo/alert\\\": 0.\\n\\n... [截断: 输出过长，省略 23305 字符] ...\\n\\nd_norm\\\": 1.092942714691162, \\\"update_count\\\": 35099.0, \\\"fps\\\": 9.982013353918685}\\n{\\\"step\\\": 155000, \\\"civo/ve_ratio\\\": 0.4519838671908187, \\\"civo/delta_ve\\\": -0.7113879681616948, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.682328939437866, \\\"model_grad_norm\\\": 5.607029914855957, \\\"height_loss\\\": 0.0007620605174452066, \\\"orientations_loss\\\": 0.05708809942007065, \\\"velocity_loss\\\": 0.4839038550853729, \\\"reward_loss\\\": 0.5169504284858704, \\\"cont_loss\\\": 2.5899496089443197e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.372707366943359, \\\"rep_loss\\\": 4.372707366943359, \\\"kl\\\": 4.210456848144531, \\\"prior_ent\\\": 37.56892776489258, \\\"post_ent\\\": 33.5811882019043, \\\"normed_target_mean\\\": 0.37165603041648865, \\\"normed_target_std\\\": 0.3487195372581482, \\\"normed_target_min\\\": -0.006604108959436417, \\\"normed_target_max\\\": 1.2587487697601318, \\\"EMA_005\\\": 10.563117027282715, \\\"EMA_095\\\": 70.06642150878906, \\\"value_mean\\\": 32.51809310913086, \\\"value_std\\\": 20.390907287597656, \\\"value_min\\\": 10.288022994995117, \\\"value_max\\\": 83.45567321777344, \\\"target_mean\\\": 32.68284225463867, \\\"target_std\\\": 20.75123405456543, \\\"target_min\\\": 10.166926383972168, \\\"target_max\\\": 85.4621353149414, \\\"imag_reward_mean\\\": 0.45551660656929016, \\\"imag_reward_std\\\": 0.6880135536193848, \\\"imag_reward_min\\\": 6.680488695565145e-08, \\\"imag_reward_max\\\": 3.8063812255859375, \\\"imag_action_mean\\\": -0.009016563184559345, \\\"imag_action_std\\\": 0.799365222454071, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6450461149215698, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0022049087565392256, \\\"actor_grad_norm\\\": 0.08785448223352432, \\\"value_loss\\\": 1.527682900428772, \\\"value_grad_norm\\\": 1.1436028480529785, \\\"update_count\\\": 37599.0, \\\"fps\\\": 9.96498786096809}\\n{\\\"step\\\": 165000, \\\"civo/ve_ratio\\\": 0.2715040611677859, \\\"civo/delta_ve\\\": -0.18047980602303276, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.726571798324585, \\\"model_grad_norm\\\": 5.610911846160889, \\\"height_loss\\\": 0.0007465826929546893, \\\"orientations_loss\\\": 0.05700722709298134, \\\"velocity_loss\\\": 0.49248096346855164, \\\"reward_loss\\\": 0.5169638395309448, \\\"cont_loss\\\": 2.178213165393572e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.432288646697998, \\\"rep_loss\\\": 4.432288646697998, \\\"kl\\\": 4.274878025054932, \\\"prior_ent\\\": 37.68878936767578, \\\"post_ent\\\": 33.671199798583984, \\\"normed_target_mean\\\": 0.3647252321243286, \\\"normed_target_std\\\": 0.3488326072692871, \\\"normed_target_min\\\": -0.005571470130234957, \\\"normed_target_max\\\": 1.2695974111557007, \\\"EMA_005\\\": 9.052605628967285, \\\"EMA_095\\\": 70.17825317382812, \\\"value_mean\\\": 31.254331588745117, \\\"value_std\\\": 21.008033752441406, \\\"value_min\\\": 8.894850730895996, \\\"value_max\\\": 86.13446044921875, \\\"target_mean\\\": 31.35479736328125, \\\"target_std\\\": 21.323862075805664, \\\"target_min\\\": 8.71334171295166, \\\"target_max\\\": 86.64642333984375, \\\"imag_reward_mean\\\": 0.45640790462493896, \\\"imag_reward_std\\\": 0.7075377106666565, \\\"imag_reward_min\\\": 1.6689301052252858e-09, \\\"imag_reward_max\\\": 3.797102451324463, \\\"imag_action_mean\\\": -0.022211434319615364, \\\"imag_action_std\\\": 0.7990097403526306, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6271705627441406, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0010876167798414826, \\\"actor_grad_norm\\\": 0.08306683599948883, \\\"value_loss\\\": 1.548429250717163, \\\"value_grad_norm\\\": 1.1175899505615234, \\\"update_count\\\": 40099.0, \\\"fps\\\": 9.927812586726036}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "675a436f-8762-40d6-b1d2-06f9447fe37b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 15000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.02043346130244566, \\\\\\\"civo/delta_ve\\\\\\\": 0.0, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 7.464046478271484, \\\\\\\"model_grad_norm\\\\\\\": 10.419979095458984, \\\\\\\"height_loss\\\\\\\": 0.0072965603321790695, \\\\\\\"orientations_loss\\\\\\\": 0.42948538064956665, \\\\\\\"velocity_loss\\\\\\\": 1.4743252992630005, \\\\\\\"reward_loss\\\\\\\": 0.6690932512283325, \\\\\\\"cont_loss\\\\\\\": 2.034002318396233e-05, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 8.139710426330566, \\\\\\\"rep_loss\\\\\\\": 8.139710426330566, \\\\\\\"kl\\\\\\\": 8.067819595336914, \\\\\\\"prior_ent\\\\\\\": 51.489891052246094, \\\\\\\"post_ent\\\\\\\": 43.31338882446289, \\\\\\\"normed_target_mean\\\\\\\": 0.5938174724578857, \\\\\\\"normed_target_std\\\\\\\": 0.30864274501800537, \\\\\\\"normed_target_min\\\\\\\": 0.014792019501328468, \\\\\\\"normed_target_max\\\\\\\": 1.6781271696090698, \\\\\\\"EMA_005\\\\\\\": 1.964381217956543, \\\\\\\"EMA_095\\\\\\\": 5.634596347808838, \\\\\\\"value_mean\\\\\\\": 3.7249157428741455, \\\\\\\"value_std\\\\\\\": 0.7325336337089539, \\\\\\\"value_min\\\\\\\": 1.9245104789733887, \\\\\\\"value_max\\\\\\\": 4.199141979217529, \\\\\\\"target_mean\\\\\\\": 4.55250358581543, \\\\\\\"target_std\\\\\\\": 1.1877470016479492, \\\\\\\"target_min\\\\\\\": 2.0016398429870605, \\\\\\\"target_max\\\\\\\": 8.452418327331543, \\\\\\\"imag_reward_mean\\\\\\\": 0.19031791388988495, \\\\\\\"imag_reward_std\\\\\\\": 0.18633174896240234, \\\\\\\"imag_reward_min\\\\\\\": 0.009486347436904907, \\\\\\\"imag_reward_max\\\\\\\": 0.8520527482032776, \\\\\\\"imag_action_mean\\\\\\\": -0.03243599832057953, \\\\\\\"imag_action_std\\\\\\\": 0.7799263000488281, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": 1.5165446996688843, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.24737051129341125, \\\\\\\"actor_grad_norm\\\\\\\": 0.07795962691307068, \\\\\\\"value_loss\\\\\\\": 2.899601459503174, \\\\\\\"value_grad_norm\\\\\\\": 3.568213939666748, \\\\\\\"update_count\\\\\\\": 2599.0, \\\\\\\"fps\\\\\\\": 11.044435005358215}\\\\n{\\\\\\\"step\\\\\\\": 25000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.13694016201979062, \\\\\\\"civo/delta_ve\\\\\\\": 0.11650670071734495, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 5.085658073425293, \\\\\\\"model_grad_norm\\\\\\\": 8.248001098632812, \\\\\\\"height_loss\\\\\\\": 0.002727009356021881, \\\\\\\"orientations_loss\\\\\\\": 0.13941435515880585, \\\\\\\"velocity_loss\\\\\\\": 0.758927047252655, \\\\\\\"reward_loss\\\\\\\": 0.5982608199119568, \\\\\\\"cont_loss\\\\\\\": 1.0842114761544508e-06, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 5.9772138595581055, \\\\\\\"rep_loss\\\\\\\": 5.9772138595581055, \\\\\\\"kl\\\\\\\": 5.869959354400635, \\\\\\\"prior_ent\\\\\\\": 40.10260009765625, \\\\\\\"post_ent\\\\\\\": 34.24803924560547, \\\\\\\"normed_target_mean\\\\\\\": 0.6506182551383972, \\\\\\\"normed_target_std\\\\\\\": 0.3133474588394165, \\\\\\\"normed_target_min\\\\\\\": -0.3844016194343567, \\\\\\\"normed_target_max\\\\\\\": 1.672959804534912, \\\\\\\"EMA_005\\\\\\\": 19.587900161743164, \\\\\\\"EMA_095\\\\\\\": 30.56304359436035, \\\\\\\"value_mean\\\\\\\": 25.215248107910156, \\\\\\\"value_std\\\\\\\": 2.7610743045806885, \\\\\\\"value_min\\\\\\\": 7.17938756942749, \\\\\\\"value_max\\\\\\\": 28.40974998474121, \\\\\\\"target_mean\\\\\\\": 26.716419219970703, \\\\\\\"target_std\\\\\\\": 3.445701837539673, \\\\\\\"target_min\\\\\\\": 15.284299850463867, \\\\\\\"target_max\\\\\\\": 37.568382263183594, \\\\\\\"imag_reward_mean\\\\\\\": 0.4136808514595032, \\\\\\\"imag_reward_std\\\\\\\": 0.4729730486869812, \\\\\\\"imag_reward_min\\\\\\\": 3.118391032330692e-05, \\\\\\\"imag_reward_max\\\\\\\": 2.5412755012512207, \\\\\\\"imag_action_mean\\\\\\\": 0.14067424833774567, \\\\\\\"imag_action_std\\\\\\\": 0.8295711874961853, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -2.432910919189453, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.14718420803546906, \\\\\\\"actor_grad_norm\\\\\\\": 0.09714353829622269, \\\\\\\"value_loss\\\\\\\": 1.542451024055481, \\\\\\\"value_grad_norm\\\\\\\": 0.7063494920730591, \\\\\\\"update_count\\\\\\\": 5099.0, \\\\\\\"fps\\\\\\\": 10.99527371324713}\\\\n{\\\\\\\"step\\\\\\\": 35000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.4945184112553616, \\\\\\\"civo/delta_ve\\\\\\\": 0.357578249235571, \\\\\\\"civo/alert\\\\\\\": 0.\\\\n\\\\n... [截断: 输出过长，省略 23305 字符] ...\\\\n\\\\nd_norm\\\\\\\": 1.092942714691162, \\\\\\\"update_count\\\\\\\": 35099.0, \\\\\\\"fps\\\\\\\": 9.982013353918685}\\\\n{\\\\\\\"step\\\\\\\": 155000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.4519838671908187, \\\\\\\"civo/delta_ve\\\\\\\": -0.7113879681616948, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 3.682328939437866, \\\\\\\"model_grad_norm\\\\\\\": 5.607029914855957, \\\\\\\"height_loss\\\\\\\": 0.0007620605174452066, \\\\\\\"orientations_loss\\\\\\\": 0.05708809942007065, \\\\\\\"velocity_loss\\\\\\\": 0.4839038550853729, \\\\\\\"reward_loss\\\\\\\": 0.5169504284858704, \\\\\\\"cont_loss\\\\\\\": 2.5899496089443197e-11, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.372707366943359, \\\\\\\"rep_loss\\\\\\\": 4.372707366943359, \\\\\\\"kl\\\\\\\": 4.210456848144531, \\\\\\\"prior_ent\\\\\\\": 37.56892776489258, \\\\\\\"post_ent\\\\\\\": 33.5811882019043, \\\\\\\"normed_target_mean\\\\\\\": 0.37165603041648865, \\\\\\\"normed_target_std\\\\\\\": 0.3487195372581482, \\\\\\\"normed_target_min\\\\\\\": -0.006604108959436417, \\\\\\\"normed_target_max\\\\\\\": 1.2587487697601318, \\\\\\\"EMA_005\\\\\\\": 10.563117027282715, \\\\\\\"EMA_095\\\\\\\": 70.06642150878906, \\\\\\\"value_mean\\\\\\\": 32.51809310913086, \\\\\\\"value_std\\\\\\\": 20.390907287597656, \\\\\\\"value_min\\\\\\\": 10.288022994995117, \\\\\\\"value_max\\\\\\\": 83.45567321777344, \\\\\\\"target_mean\\\\\\\": 32.68284225463867, \\\\\\\"target_std\\\\\\\": 20.75123405456543, \\\\\\\"target_min\\\\\\\": 10.166926383972168, \\\\\\\"target_max\\\\\\\": 85.4621353149414, \\\\\\\"imag_reward_mean\\\\\\\": 0.45551660656929016, \\\\\\\"imag_reward_std\\\\\\\": 0.6880135536193848, \\\\\\\"imag_reward_min\\\\\\\": 6.680488695565145e-08, \\\\\\\"imag_reward_max\\\\\\\": 3.8063812255859375, \\\\\\\"imag_action_mean\\\\\\\": -0.009016563184559345, \\\\\\\"imag_action_std\\\\\\\": 0.799365222454071, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.6450461149215698, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.0022049087565392256, \\\\\\\"actor_grad_norm\\\\\\\": 0.08785448223352432, \\\\\\\"value_loss\\\\\\\": 1.527682900428772, \\\\\\\"value_grad_norm\\\\\\\": 1.1436028480529785, \\\\\\\"update_count\\\\\\\": 37599.0, \\\\\\\"fps\\\\\\\": 9.96498786096809}\\\\n{\\\\\\\"step\\\\\\\": 165000, \\\\\\\"civo/ve_ratio\\\\\\\": 0.2715040611677859, \\\\\\\"civo/delta_ve\\\\\\\": -0.18047980602303276, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 3.726571798324585, \\\\\\\"model_grad_norm\\\\\\\": 5.610911846160889, \\\\\\\"height_loss\\\\\\\": 0.0007465826929546893, \\\\\\\"orientations_loss\\\\\\\": 0.05700722709298134, \\\\\\\"velocity_loss\\\\\\\": 0.49248096346855164, \\\\\\\"reward_loss\\\\\\\": 0.5169638395309448, \\\\\\\"cont_loss\\\\\\\": 2.178213165393572e-11, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 4.432288646697998, \\\\\\\"rep_loss\\\\\\\": 4.432288646697998, \\\\\\\"kl\\\\\\\": 4.274878025054932, \\\\\\\"prior_ent\\\\\\\": 37.68878936767578, \\\\\\\"post_ent\\\\\\\": 33.671199798583984, \\\\\\\"normed_target_mean\\\\\\\": 0.3647252321243286, \\\\\\\"normed_target_std\\\\\\\": 0.3488326072692871, \\\\\\\"normed_target_min\\\\\\\": -0.005571470130234957, \\\\\\\"normed_target_max\\\\\\\": 1.2695974111557007, \\\\\\\"EMA_005\\\\\\\": 9.052605628967285, \\\\\\\"EMA_095\\\\\\\": 70.17825317382812, \\\\\\\"value_mean\\\\\\\": 31.254331588745117, \\\\\\\"value_std\\\\\\\": 21.008033752441406, \\\\\\\"value_min\\\\\\\": 8.894850730895996, \\\\\\\"value_max\\\\\\\": 86.13446044921875, \\\\\\\"target_mean\\\\\\\": 31.35479736328125, \\\\\\\"target_std\\\\\\\": 21.323862075805664, \\\\\\\"target_min\\\\\\\": 8.71334171295166, \\\\\\\"target_max\\\\\\\": 86.64642333984375, \\\\\\\"imag_reward_mean\\\\\\\": 0.45640790462493896, \\\\\\\"imag_reward_std\\\\\\\": 0.7075377106666565, \\\\\\\"imag_reward_min\\\\\\\": 1.6689301052252858e-09, \\\\\\\"imag_reward_max\\\\\\\": 3.797102451324463, \\\\\\\"imag_action_mean\\\\\\\": -0.022211434319615364, \\\\\\\"imag_action_std\\\\\\\": 0.7990097403526306, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.6271705627441406, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.0010876167798414826, \\\\\\\"actor_grad_norm\\\\\\\": 0.08306683599948883, \\\\\\\"value_loss\\\\\\\": 1.548429250717163, \\\\\\\"value_grad_norm\\\\\\\": 1.1175899505615234, \\\\\\\"update_count\\\\\\\": 40099.0, \\\\\\\"fps\\\\\\\": 9.927812586726036}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 15000, \\\"civo/ve_ratio\\\": 0.02043346130244566, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 7.464046478271484, \\\"model_grad_norm\\\": 10.419979095458984, \\\"height_loss\\\": 0.0072965603321790695, \\\"orientations_loss\\\": 0.42948538064956665, \\\"velocity_loss\\\": 1.4743252992630005, \\\"reward_loss\\\": 0.6690932512283325, \\\"cont_loss\\\": 2.034002318396233e-05, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 8.139710426330566, \\\"rep_loss\\\": 8.139710426330566, \\\"kl\\\": 8.067819595336914, \\\"prior_ent\\\": 51.489891052246094, \\\"post_ent\\\": 43.31338882446289, \\\"normed_target_mean\\\": 0.5938174724578857, \\\"normed_target_std\\\": 0.30864274501800537, \\\"normed_target_min\\\": 0.014792019501328468, \\\"normed_target_max\\\": 1.6781271696090698, \\\"EMA_005\\\": 1.964381217956543, \\\"EMA_095\\\": 5.634596347808838, \\\"value_mean\\\": 3.7249157428741455, \\\"value_std\\\": 0.7325336337089539, \\\"value_min\\\": 1.9245104789733887, \\\"value_max\\\": 4.199141979217529, \\\"target_mean\\\": 4.55250358581543, \\\"target_std\\\": 1.1877470016479492, \\\"target_min\\\": 2.0016398429870605, \\\"target_max\\\": 8.452418327331543, \\\"imag_reward_mean\\\": 0.19031791388988495, \\\"imag_reward_std\\\": 0.18633174896240234, \\\"imag_reward_min\\\": 0.009486347436904907, \\\"imag_reward_max\\\": 0.8520527482032776, \\\"imag_action_mean\\\": -0.03243599832057953, \\\"imag_action_std\\\": 0.7799263000488281, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 1.5165446996688843, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.24737051129341125, \\\"actor_grad_norm\\\": 0.07795962691307068, \\\"value_loss\\\": 2.899601459503174, \\\"value_grad_norm\\\": 3.568213939666748, \\\"update_count\\\": 2599.0, \\\"fps\\\": 11.044435005358215}\\n{\\\"step\\\": 25000, \\\"civo/ve_ratio\\\": 0.13694016201979062, \\\"civo/delta_ve\\\": 0.11650670071734495, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 5.085658073425293, \\\"model_grad_norm\\\": 8.248001098632812, \\\"height_loss\\\": 0.002727009356021881, \\\"orientations_loss\\\": 0.13941435515880585, \\\"velocity_loss\\\": 0.758927047252655, \\\"reward_loss\\\": 0.5982608199119568, \\\"cont_loss\\\": 1.0842114761544508e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 5.9772138595581055, \\\"rep_loss\\\": 5.9772138595581055, \\\"kl\\\": 5.869959354400635, \\\"prior_ent\\\": 40.10260009765625, \\\"post_ent\\\": 34.24803924560547, \\\"normed_target_mean\\\": 0.6506182551383972, \\\"normed_target_std\\\": 0.3133474588394165, \\\"normed_target_min\\\": -0.3844016194343567, \\\"normed_target_max\\\": 1.672959804534912, \\\"EMA_005\\\": 19.587900161743164, \\\"EMA_095\\\": 30.56304359436035, \\\"value_mean\\\": 25.215248107910156, \\\"value_std\\\": 2.7610743045806885, \\\"value_min\\\": 7.17938756942749, \\\"value_max\\\": 28.40974998474121, \\\"target_mean\\\": 26.716419219970703, \\\"target_std\\\": 3.445701837539673, \\\"target_min\\\": 15.284299850463867, \\\"target_max\\\": 37.568382263183594, \\\"imag_reward_mean\\\": 0.4136808514595032, \\\"imag_reward_std\\\": 0.4729730486869812, \\\"imag_reward_min\\\": 3.118391032330692e-05, \\\"imag_reward_max\\\": 2.5412755012512207, \\\"imag_action_mean\\\": 0.14067424833774567, \\\"imag_action_std\\\": 0.8295711874961853, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -2.432910919189453, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.14718420803546906, \\\"actor_grad_norm\\\": 0.09714353829622269, \\\"value_loss\\\": 1.542451024055481, \\\"value_grad_norm\\\": 0.7063494920730591, \\\"update_count\\\": 5099.0, \\\"fps\\\": 10.99527371324713}\\n{\\\"step\\\": 35000, \\\"civo/ve_ratio\\\": 0.4945184112553616, \\\"civo/delta_ve\\\": 0.357578249235571, \\\"civo/alert\\\": 0.\\n\\n... [截断: 输出过长，省略 23305 字符] ...\\n\\nd_norm\\\": 1.092942714691162, \\\"update_count\\\": 35099.0, \\\"fps\\\": 9.982013353918685}\\n{\\\"step\\\": 155000, \\\"civo/ve_ratio\\\": 0.4519838671908187, \\\"civo/delta_ve\\\": -0.7113879681616948, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.682328939437866, \\\"model_grad_norm\\\": 5.607029914855957, \\\"height_loss\\\": 0.0007620605174452066, \\\"orientations_loss\\\": 0.05708809942007065, \\\"velocity_loss\\\": 0.4839038550853729, \\\"reward_loss\\\": 0.5169504284858704, \\\"cont_loss\\\": 2.5899496089443197e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.372707366943359, \\\"rep_loss\\\": 4.372707366943359, \\\"kl\\\": 4.210456848144531, \\\"prior_ent\\\": 37.56892776489258, \\\"post_ent\\\": 33.5811882019043, \\\"normed_target_mean\\\": 0.37165603041648865, \\\"normed_target_std\\\": 0.3487195372581482, \\\"normed_target_min\\\": -0.006604108959436417, \\\"normed_target_max\\\": 1.2587487697601318, \\\"EMA_005\\\": 10.563117027282715, \\\"EMA_095\\\": 70.06642150878906, \\\"value_mean\\\": 32.51809310913086, \\\"value_std\\\": 20.390907287597656, \\\"value_min\\\": 10.288022994995117, \\\"value_max\\\": 83.45567321777344, \\\"target_mean\\\": 32.68284225463867, \\\"target_std\\\": 20.75123405456543, \\\"target_min\\\": 10.166926383972168, \\\"target_max\\\": 85.4621353149414, \\\"imag_reward_mean\\\": 0.45551660656929016, \\\"imag_reward_std\\\": 0.6880135536193848, \\\"imag_reward_min\\\": 6.680488695565145e-08, \\\"imag_reward_max\\\": 3.8063812255859375, \\\"imag_action_mean\\\": -0.009016563184559345, \\\"imag_action_std\\\": 0.799365222454071, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6450461149215698, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0022049087565392256, \\\"actor_grad_norm\\\": 0.08785448223352432, \\\"value_loss\\\": 1.527682900428772, \\\"value_grad_norm\\\": 1.1436028480529785, \\\"update_count\\\": 37599.0, \\\"fps\\\": 9.96498786096809}\\n{\\\"step\\\": 165000, \\\"civo/ve_ratio\\\": 0.2715040611677859, \\\"civo/delta_ve\\\": -0.18047980602303276, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 3.726571798324585, \\\"model_grad_norm\\\": 5.610911846160889, \\\"height_loss\\\": 0.0007465826929546893, \\\"orientations_loss\\\": 0.05700722709298134, \\\"velocity_loss\\\": 0.49248096346855164, \\\"reward_loss\\\": 0.5169638395309448, \\\"cont_loss\\\": 2.178213165393572e-11, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 4.432288646697998, \\\"rep_loss\\\": 4.432288646697998, \\\"kl\\\": 4.274878025054932, \\\"prior_ent\\\": 37.68878936767578, \\\"post_ent\\\": 33.671199798583984, \\\"normed_target_mean\\\": 0.3647252321243286, \\\"normed_target_std\\\": 0.3488326072692871, \\\"normed_target_min\\\": -0.005571470130234957, \\\"normed_target_max\\\": 1.2695974111557007, \\\"EMA_005\\\": 9.052605628967285, \\\"EMA_095\\\": 70.17825317382812, \\\"value_mean\\\": 31.254331588745117, \\\"value_std\\\": 21.008033752441406, \\\"value_min\\\": 8.894850730895996, \\\"value_max\\\": 86.13446044921875, \\\"target_mean\\\": 31.35479736328125, \\\"target_std\\\": 21.323862075805664, \\\"target_min\\\": 8.71334171295166, \\\"target_max\\\": 86.64642333984375, \\\"imag_reward_mean\\\": 0.45640790462493896, \\\"imag_reward_std\\\": 0.7075377106666565, \\\"imag_reward_min\\\": 1.6689301052252858e-09, \\\"imag_reward_max\\\": 3.797102451324463, \\\"imag_action_mean\\\": -0.022211434319615364, \\\"imag_action_std\\\": 0.7990097403526306, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -1.6271705627441406, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0010876167798414826, \\\"actor_grad_norm\\\": 0.08306683599948883, \\\"value_loss\\\": 1.548429250717163, \\\"value_grad_norm\\\": 1.1175899505615234, \\\"update_count\\\": 40099.0, \\\"fps\\\": 9.927812586726036}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018UsRacXd5i6U9Fo1zd9WeZ`</summary>
+
+```json
+{
+  "server": "bjb1-45299",
+  "command": "grep eval/return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_057_frozen_dt_emb_walker_s2/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "0b966ab1-92e7-4eb3-88f2-e1af36afda74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T19:43:31.576Z_
+
+<details><summary>↩ Tool result · `toolu_018UsRacXd5i6U9Fo1zd9WeZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "27f022a8-85bb-4099-a883-839a8b3983d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01STXHRC5xyn2yk8fQNWw9hY`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "tail -1 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "84c361cc-5c9f-444f-b712-29b10d48be40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T19:43:32.499Z_
+
+<details><summary>↩ Tool result · `toolu_01STXHRC5xyn2yk8fQNWw9hY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 167000, \\\"dataset_size\\\": 167000.0, \\\"train_return\\\": 5.051065444946289, \\\"train_length\\\": 200.0, \\\"train_episodes\\\": 835.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "aa8f3e16-5683-4ba6-b722-f380f32dd8d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 167000, \\\\\\\"dataset_size\\\\\\\": 167000.0, \\\\\\\"train_return\\\\\\\": 5.051065444946289, \\\\\\\"train_length\\\\\\\": 200.0, \\\\\\\"train_episodes\\\\\\\": 835.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 167000, \\\"dataset_size\\\": 167000.0, \\\"train_return\\\": 5.051065444946289, \\\"train_length\\\": 200.0, \\\"train_episodes\\\": 835.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013P7WKgdkm3c7wvEubZB9BX`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep -c \"\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "45ed6e9f-126f-42c8-8132-b546fd927208",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T19:43:33.446Z_
+
+<details><summary>↩ Tool result · `toolu_013P7WKgdkm3c7wvEubZB9BX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"886\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "570201a7-768e-4a6e-8546-07089ee4b54e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"886\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"886\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E1E2G3c3HNJoWauTih6GUi`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep ve_ratio /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "9b4ce48b-64d3-4f41-b9cb-72712df02309",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T19:43:34.444Z_
+
+<details><summary>↩ Tool result · `toolu_01E1E2G3c3HNJoWauTih6GUi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 12500, \\\"civo/ve_ratio\\\": 0.1901173245221058, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3738665580749512, \\\"model_grad_norm\\\": 5.0613179206848145, \\\"state_loss\\\": 0.27785518765449524, \\\"reward_loss\\\": 0.2679399251937866, \\\"cont_loss\\\": 8.284204341180157e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.3801053762435913, \\\"rep_loss\\\": 1.3801053762435913, \\\"kl\\\": 1.0833394527435303, \\\"prior_ent\\\": 46.41245651245117, \\\"post_ent\\\": 44.61863708496094, \\\"normed_target_mean\\\": 0.45582401752471924, \\\"normed_target_std\\\": 0.22038120031356812, \\\"normed_target_min\\\": -0.09162583947181702, \\\"normed_target_max\\\": 1.0070067644119263, \\\"EMA_005\\\": 1.592728853225708, \\\"EMA_095\\\": 2.2808210849761963, \\\"value_mean\\\": 1.9234099388122559, \\\"value_std\\\": 0.15087123215198517, \\\"value_min\\\": 1.4570399522781372, \\\"value_max\\\": 2.0942983627319336, \\\"target_mean\\\": 2.0485873222351074, \\\"target_std\\\": 0.22039668262004852, \\\"target_min\\\": 1.5010955333709717, \\\"target_max\\\": 2.5998075008392334, \\\"imag_reward_mean\\\": 0.03339039161801338, \\\"imag_reward_std\\\": 0.02925727143883705, \\\"imag_reward_min\\\": 0.0016117490595206618, \\\"imag_reward_max\\\": 0.11013811081647873, \\\"imag_action_mean\\\": 0.015432840213179588, \\\"imag_action_std\\\": 0.7948571443557739, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 1.654448390007019, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.12396751344203949, \\\"actor_grad_norm\\\": 0.033803220838308334, \\\"value_loss\\\": 1.491838812828064, \\\"value_grad_norm\\\": 1.8776025772094727, \\\"update_count\\\": 5100.0, \\\"fps\\\": 4.405575414511567}\\n{\\\"step\\\": 22500, \\\"civo/ve_ratio\\\": 0.806578111262742, \\\"civo/delta_ve\\\": 0.6164607867406362, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3010637760162354, \\\"model_grad_norm\\\": 2.1787843704223633, \\\"state_loss\\\": 0.11933556944131851, \\\"reward_loss\\\": 0.3519270718097687, \\\"cont_loss\\\": 1.5030630606815976e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.383001685142517, \\\"rep_loss\\\": 1.383001685142517, \\\"kl\\\": 1.0263440608978271, \\\"prior_ent\\\": 31.139293670654297, \\\"post_ent\\\": 29.48628807067871, \\\"normed_target_mean\\\": 0.665558934211731, \\\"normed_target_std\\\": 0.28735029697418213, \\\"normed_target_min\\\": -0.3642638027667999, \\\"normed_target_max\\\": 1.4663137197494507, \\\"EMA_005\\\": 8.711038589477539, \\\"EMA_095\\\": 9.689236640930176, \\\"value_mean\\\": 9.255389213562012, \\\"value_std\\\": 0.27805840969085693, \\\"value_min\\\": 7.439352989196777, \\\"value_max\\\": 9.672986030578613, \\\"target_mean\\\": 9.405515670776367, \\\"target_std\\\": 0.29952630400657654, \\\"target_min\\\": 8.333504676818848, \\\"target_max\\\": 10.237526893615723, \\\"imag_reward_mean\\\": 0.060960374772548676, \\\"imag_reward_std\\\": 0.043322619050741196, \\\"imag_reward_min\\\": 1.1953448847634718e-05, \\\"imag_reward_max\\\": 0.24572163820266724, \\\"imag_action_mean\\\": 0.08713650703430176, \\\"imag_action_std\\\": 0.7666797041893005, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.875503063201904, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.14063158631324768, \\\"actor_grad_norm\\\": 0.11779067665338516, \\\"value_loss\\\": 0.9549017548561096, \\\"value_grad_norm\\\": 0.290210485458374, \\\"update_count\\\": 10100.0, \\\"fps\\\": 4.386574306750656}\\n{\\\"step\\\": 32500, \\\"civo/ve_ratio\\\": 1.3537471538161738, \\\"civo/delta_ve\\\": 0.5471690425534318, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3008315563201904, \\\"model_grad_norm\\\": 1.5909309387207031, \\\"state_loss\\\": 0.09349936246871948, \\\"reward_loss\\\": 0.39686140418052\\n\\n... [截断: 输出过长，省略 22109 字符] ...\\n\\nate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0003480087616480887, \\\"actor_grad_norm\\\": 0.17454031109809875, \\\"value_loss\\\": 1.2179763317108154, \\\"value_grad_norm\\\": 0.7291717529296875, \\\"update_count\\\": 70100.0, \\\"fps\\\": 4.018550515164884}\\n{\\\"step\\\": 152500, \\\"civo/ve_ratio\\\": 0.5458808784226056, \\\"civo/delta_ve\\\": -0.1995011171917408, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3023688793182373, \\\"model_grad_norm\\\": 0.8647714853286743, \\\"state_loss\\\": 0.09408330172300339, \\\"reward_loss\\\": 0.37362292408943176, \\\"cont_loss\\\": 7.749325486861025e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.3911042213439941, \\\"rep_loss\\\": 1.3911042213439941, \\\"kl\\\": 1.0141708850860596, \\\"prior_ent\\\": 33.2564697265625, \\\"post_ent\\\": 32.534664154052734, \\\"normed_target_mean\\\": 0.365483820438385, \\\"normed_target_std\\\": 0.31656455993652344, \\\"normed_target_min\\\": -0.043783459812402725, \\\"normed_target_max\\\": 1.5359299182891846, \\\"EMA_005\\\": 8.041606903076172, \\\"EMA_095\\\": 21.004253387451172, \\\"value_mean\\\": 12.772109031677246, \\\"value_std\\\": 3.9660141468048096, \\\"value_min\\\": 7.679228782653809, \\\"value_max\\\": 27.586261749267578, \\\"target_mean\\\": 12.781558990478516, \\\"target_std\\\": 4.103207588195801, \\\"target_min\\\": 7.47424840927124, \\\"target_max\\\": 27.935762405395508, \\\"imag_reward_mean\\\": 0.07400300353765488, \\\"imag_reward_std\\\": 0.10813254117965698, \\\"imag_reward_min\\\": 1.461744290054412e-07, \\\"imag_reward_max\\\": 0.7615305781364441, \\\"imag_action_mean\\\": -0.010174301452934742, \\\"imag_action_std\\\": 0.7287939190864563, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.460041522979736, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0005466104485094547, \\\"actor_grad_norm\\\": 0.16994255781173706, \\\"value_loss\\\": 1.295046091079712, \\\"value_grad_norm\\\": 0.8367562294006348, \\\"update_count\\\": 75100.0, \\\"fps\\\": 4.0238355998750945}\\n{\\\"step\\\": 162500, \\\"civo/ve_ratio\\\": 1.1732855059330423, \\\"civo/delta_ve\\\": 0.6274046275104367, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.2969160079956055, \\\"model_grad_norm\\\": 0.8428119421005249, \\\"state_loss\\\": 0.09215541929006577, \\\"reward_loss\\\": 0.3719264566898346, \\\"cont_loss\\\": 7.065617622231679e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.388056993484497, \\\"rep_loss\\\": 1.388056993484497, \\\"kl\\\": 1.0108463764190674, \\\"prior_ent\\\": 33.3685417175293, \\\"post_ent\\\": 32.628238677978516, \\\"normed_target_mean\\\": 0.3438521921634674, \\\"normed_target_std\\\": 0.31723839044570923, \\\"normed_target_min\\\": -0.028832102194428444, \\\"normed_target_max\\\": 1.5870963335037231, \\\"EMA_005\\\": 6.374996662139893, \\\"EMA_095\\\": 18.841093063354492, \\\"value_mean\\\": 10.641515731811523, \\\"value_std\\\": 3.814735174179077, \\\"value_min\\\": 6.192404270172119, \\\"value_max\\\": 25.653270721435547, \\\"target_mean\\\": 10.662158966064453, \\\"target_std\\\": 3.9543635845184326, \\\"target_min\\\": 6.01532506942749, \\\"target_max\\\": 26.156185150146484, \\\"imag_reward_mean\\\": 0.07429982721805573, \\\"imag_reward_std\\\": 0.1089138314127922, \\\"imag_reward_min\\\": 0.0, \\\"imag_reward_max\\\": 0.7643271684646606, \\\"imag_action_mean\\\": -0.00806571077555418, \\\"imag_action_std\\\": 0.7253402471542358, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -3.973832130432129, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0005020787939429283, \\\"actor_grad_norm\\\": 0.17703911662101746, \\\"value_loss\\\": 1.3350112438201904, \\\"value_grad_norm\\\": 0.894534170627594, \\\"update_count\\\": 80100.0, \\\"fps\\\": 4.113523687636188}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "ccf49ae3-ab2f-4e49-9438-79fb85fda2bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 12500, \\\\\\\"civo/ve_ratio\\\\\\\": 0.1901173245221058, \\\\\\\"civo/delta_ve\\\\\\\": 0.0, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.3738665580749512, \\\\\\\"model_grad_norm\\\\\\\": 5.0613179206848145, \\\\\\\"state_loss\\\\\\\": 0.27785518765449524, \\\\\\\"reward_loss\\\\\\\": 0.2679399251937866, \\\\\\\"cont_loss\\\\\\\": 8.284204341180157e-06, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.3801053762435913, \\\\\\\"rep_loss\\\\\\\": 1.3801053762435913, \\\\\\\"kl\\\\\\\": 1.0833394527435303, \\\\\\\"prior_ent\\\\\\\": 46.41245651245117, \\\\\\\"post_ent\\\\\\\": 44.61863708496094, \\\\\\\"normed_target_mean\\\\\\\": 0.45582401752471924, \\\\\\\"normed_target_std\\\\\\\": 0.22038120031356812, \\\\\\\"normed_target_min\\\\\\\": -0.09162583947181702, \\\\\\\"normed_target_max\\\\\\\": 1.0070067644119263, \\\\\\\"EMA_005\\\\\\\": 1.592728853225708, \\\\\\\"EMA_095\\\\\\\": 2.2808210849761963, \\\\\\\"value_mean\\\\\\\": 1.9234099388122559, \\\\\\\"value_std\\\\\\\": 0.15087123215198517, \\\\\\\"value_min\\\\\\\": 1.4570399522781372, \\\\\\\"value_max\\\\\\\": 2.0942983627319336, \\\\\\\"target_mean\\\\\\\": 2.0485873222351074, \\\\\\\"target_std\\\\\\\": 0.22039668262004852, \\\\\\\"target_min\\\\\\\": 1.5010955333709717, \\\\\\\"target_max\\\\\\\": 2.5998075008392334, \\\\\\\"imag_reward_mean\\\\\\\": 0.03339039161801338, \\\\\\\"imag_reward_std\\\\\\\": 0.02925727143883705, \\\\\\\"imag_reward_min\\\\\\\": 0.0016117490595206618, \\\\\\\"imag_reward_max\\\\\\\": 0.11013811081647873, \\\\\\\"imag_action_mean\\\\\\\": 0.015432840213179588, \\\\\\\"imag_action_std\\\\\\\": 0.7948571443557739, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": 1.654448390007019, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.12396751344203949, \\\\\\\"actor_grad_norm\\\\\\\": 0.033803220838308334, \\\\\\\"value_loss\\\\\\\": 1.491838812828064, \\\\\\\"value_grad_norm\\\\\\\": 1.8776025772094727, \\\\\\\"update_count\\\\\\\": 5100.0, \\\\\\\"fps\\\\\\\": 4.405575414511567}\\\\n{\\\\\\\"step\\\\\\\": 22500, \\\\\\\"civo/ve_ratio\\\\\\\": 0.806578111262742, \\\\\\\"civo/delta_ve\\\\\\\": 0.6164607867406362, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.3010637760162354, \\\\\\\"model_grad_norm\\\\\\\": 2.1787843704223633, \\\\\\\"state_loss\\\\\\\": 0.11933556944131851, \\\\\\\"reward_loss\\\\\\\": 0.3519270718097687, \\\\\\\"cont_loss\\\\\\\": 1.5030630606815976e-07, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.383001685142517, \\\\\\\"rep_loss\\\\\\\": 1.383001685142517, \\\\\\\"kl\\\\\\\": 1.0263440608978271, \\\\\\\"prior_ent\\\\\\\": 31.139293670654297, \\\\\\\"post_ent\\\\\\\": 29.48628807067871, \\\\\\\"normed_target_mean\\\\\\\": 0.665558934211731, \\\\\\\"normed_target_std\\\\\\\": 0.28735029697418213, \\\\\\\"normed_target_min\\\\\\\": -0.3642638027667999, \\\\\\\"normed_target_max\\\\\\\": 1.4663137197494507, \\\\\\\"EMA_005\\\\\\\": 8.711038589477539, \\\\\\\"EMA_095\\\\\\\": 9.689236640930176, \\\\\\\"value_mean\\\\\\\": 9.255389213562012, \\\\\\\"value_std\\\\\\\": 0.27805840969085693, \\\\\\\"value_min\\\\\\\": 7.439352989196777, \\\\\\\"value_max\\\\\\\": 9.672986030578613, \\\\\\\"target_mean\\\\\\\": 9.405515670776367, \\\\\\\"target_std\\\\\\\": 0.29952630400657654, \\\\\\\"target_min\\\\\\\": 8.333504676818848, \\\\\\\"target_max\\\\\\\": 10.237526893615723, \\\\\\\"imag_reward_mean\\\\\\\": 0.060960374772548676, \\\\\\\"imag_reward_std\\\\\\\": 0.043322619050741196, \\\\\\\"imag_reward_min\\\\\\\": 1.1953448847634718e-05, \\\\\\\"imag_reward_max\\\\\\\": 0.24572163820266724, \\\\\\\"imag_action_mean\\\\\\\": 0.08713650703430176, \\\\\\\"imag_action_std\\\\\\\": 0.7666797041893005, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -4.875503063201904, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.14063158631324768, \\\\\\\"actor_grad_norm\\\\\\\": 0.11779067665338516, \\\\\\\"value_loss\\\\\\\": 0.9549017548561096, \\\\\\\"value_grad_norm\\\\\\\": 0.290210485458374, \\\\\\\"update_count\\\\\\\": 10100.0, \\\\\\\"fps\\\\\\\": 4.386574306750656}\\\\n{\\\\\\\"step\\\\\\\": 32500, \\\\\\\"civo/ve_ratio\\\\\\\": 1.3537471538161738, \\\\\\\"civo/delta_ve\\\\\\\": 0.5471690425534318, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.3008315563201904, \\\\\\\"model_grad_norm\\\\\\\": 1.5909309387207031, \\\\\\\"state_loss\\\\\\\": 0.09349936246871948, \\\\\\\"reward_loss\\\\\\\": 0.39686140418052\\\\n\\\\n... [截断: 输出过长，省略 22109 字符] ...\\\\n\\\\nate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": 0.0003480087616480887, \\\\\\\"actor_grad_norm\\\\\\\": 0.17454031109809875, \\\\\\\"value_loss\\\\\\\": 1.2179763317108154, \\\\\\\"value_grad_norm\\\\\\\": 0.7291717529296875, \\\\\\\"update_count\\\\\\\": 70100.0, \\\\\\\"fps\\\\\\\": 4.018550515164884}\\\\n{\\\\\\\"step\\\\\\\": 152500, \\\\\\\"civo/ve_ratio\\\\\\\": 0.5458808784226056, \\\\\\\"civo/delta_ve\\\\\\\": -0.1995011171917408, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.3023688793182373, \\\\\\\"model_grad_norm\\\\\\\": 0.8647714853286743, \\\\\\\"state_loss\\\\\\\": 0.09408330172300339, \\\\\\\"reward_loss\\\\\\\": 0.37362292408943176, \\\\\\\"cont_loss\\\\\\\": 7.749325486861025e-12, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.3911042213439941, \\\\\\\"rep_loss\\\\\\\": 1.3911042213439941, \\\\\\\"kl\\\\\\\": 1.0141708850860596, \\\\\\\"prior_ent\\\\\\\": 33.2564697265625, \\\\\\\"post_ent\\\\\\\": 32.534664154052734, \\\\\\\"normed_target_mean\\\\\\\": 0.365483820438385, \\\\\\\"normed_target_std\\\\\\\": 0.31656455993652344, \\\\\\\"normed_target_min\\\\\\\": -0.043783459812402725, \\\\\\\"normed_target_max\\\\\\\": 1.5359299182891846, \\\\\\\"EMA_005\\\\\\\": 8.041606903076172, \\\\\\\"EMA_095\\\\\\\": 21.004253387451172, \\\\\\\"value_mean\\\\\\\": 12.772109031677246, \\\\\\\"value_std\\\\\\\": 3.9660141468048096, \\\\\\\"value_min\\\\\\\": 7.679228782653809, \\\\\\\"value_max\\\\\\\": 27.586261749267578, \\\\\\\"target_mean\\\\\\\": 12.781558990478516, \\\\\\\"target_std\\\\\\\": 4.103207588195801, \\\\\\\"target_min\\\\\\\": 7.47424840927124, \\\\\\\"target_max\\\\\\\": 27.935762405395508, \\\\\\\"imag_reward_mean\\\\\\\": 0.07400300353765488, \\\\\\\"imag_reward_std\\\\\\\": 0.10813254117965698, \\\\\\\"imag_reward_min\\\\\\\": 1.461744290054412e-07, \\\\\\\"imag_reward_max\\\\\\\": 0.7615305781364441, \\\\\\\"imag_action_mean\\\\\\\": -0.010174301452934742, \\\\\\\"imag_action_std\\\\\\\": 0.7287939190864563, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -4.460041522979736, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": 0.0005466104485094547, \\\\\\\"actor_grad_norm\\\\\\\": 0.16994255781173706, \\\\\\\"value_loss\\\\\\\": 1.295046091079712, \\\\\\\"value_grad_norm\\\\\\\": 0.8367562294006348, \\\\\\\"update_count\\\\\\\": 75100.0, \\\\\\\"fps\\\\\\\": 4.0238355998750945}\\\\n{\\\\\\\"step\\\\\\\": 162500, \\\\\\\"civo/ve_ratio\\\\\\\": 1.1732855059330423, \\\\\\\"civo/delta_ve\\\\\\\": 0.6274046275104367, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.2969160079956055, \\\\\\\"model_grad_norm\\\\\\\": 0.8428119421005249, \\\\\\\"state_loss\\\\\\\": 0.09215541929006577, \\\\\\\"reward_loss\\\\\\\": 0.3719264566898346, \\\\\\\"cont_loss\\\\\\\": 7.065617622231679e-12, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.388056993484497, \\\\\\\"rep_loss\\\\\\\": 1.388056993484497, \\\\\\\"kl\\\\\\\": 1.0108463764190674, \\\\\\\"prior_ent\\\\\\\": 33.3685417175293, \\\\\\\"post_ent\\\\\\\": 32.628238677978516, \\\\\\\"normed_target_mean\\\\\\\": 0.3438521921634674, \\\\\\\"normed_target_std\\\\\\\": 0.31723839044570923, \\\\\\\"normed_target_min\\\\\\\": -0.028832102194428444, \\\\\\\"normed_target_max\\\\\\\": 1.5870963335037231, \\\\\\\"EMA_005\\\\\\\": 6.374996662139893, \\\\\\\"EMA_095\\\\\\\": 18.841093063354492, \\\\\\\"value_mean\\\\\\\": 10.641515731811523, \\\\\\\"value_std\\\\\\\": 3.814735174179077, \\\\\\\"value_min\\\\\\\": 6.192404270172119, \\\\\\\"value_max\\\\\\\": 25.653270721435547, \\\\\\\"target_mean\\\\\\\": 10.662158966064453, \\\\\\\"target_std\\\\\\\": 3.9543635845184326, \\\\\\\"target_min\\\\\\\": 6.01532506942749, \\\\\\\"target_max\\\\\\\": 26.156185150146484, \\\\\\\"imag_reward_mean\\\\\\\": 0.07429982721805573, \\\\\\\"imag_reward_std\\\\\\\": 0.1089138314127922, \\\\\\\"imag_reward_min\\\\\\\": 0.0, \\\\\\\"imag_reward_max\\\\\\\": 0.7643271684646606, \\\\\\\"imag_action_mean\\\\\\\": -0.00806571077555418, \\\\\\\"imag_action_std\\\\\\\": 0.7253402471542358, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -3.973832130432129, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.0005020787939429283, \\\\\\\"actor_grad_norm\\\\\\\": 0.17703911662101746, \\\\\\\"value_loss\\\\\\\": 1.3350112438201904, \\\\\\\"value_grad_norm\\\\\\\": 0.894534170627594, \\\\\\\"update_count\\\\\\\": 80100.0, \\\\\\\"fps\\\\\\\": 4.113523687636188}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 12500, \\\"civo/ve_ratio\\\": 0.1901173245221058, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3738665580749512, \\\"model_grad_norm\\\": 5.0613179206848145, \\\"state_loss\\\": 0.27785518765449524, \\\"reward_loss\\\": 0.2679399251937866, \\\"cont_loss\\\": 8.284204341180157e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.3801053762435913, \\\"rep_loss\\\": 1.3801053762435913, \\\"kl\\\": 1.0833394527435303, \\\"prior_ent\\\": 46.41245651245117, \\\"post_ent\\\": 44.61863708496094, \\\"normed_target_mean\\\": 0.45582401752471924, \\\"normed_target_std\\\": 0.22038120031356812, \\\"normed_target_min\\\": -0.09162583947181702, \\\"normed_target_max\\\": 1.0070067644119263, \\\"EMA_005\\\": 1.592728853225708, \\\"EMA_095\\\": 2.2808210849761963, \\\"value_mean\\\": 1.9234099388122559, \\\"value_std\\\": 0.15087123215198517, \\\"value_min\\\": 1.4570399522781372, \\\"value_max\\\": 2.0942983627319336, \\\"target_mean\\\": 2.0485873222351074, \\\"target_std\\\": 0.22039668262004852, \\\"target_min\\\": 1.5010955333709717, \\\"target_max\\\": 2.5998075008392334, \\\"imag_reward_mean\\\": 0.03339039161801338, \\\"imag_reward_std\\\": 0.02925727143883705, \\\"imag_reward_min\\\": 0.0016117490595206618, \\\"imag_reward_max\\\": 0.11013811081647873, \\\"imag_action_mean\\\": 0.015432840213179588, \\\"imag_action_std\\\": 0.7948571443557739, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 1.654448390007019, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.12396751344203949, \\\"actor_grad_norm\\\": 0.033803220838308334, \\\"value_loss\\\": 1.491838812828064, \\\"value_grad_norm\\\": 1.8776025772094727, \\\"update_count\\\": 5100.0, \\\"fps\\\": 4.405575414511567}\\n{\\\"step\\\": 22500, \\\"civo/ve_ratio\\\": 0.806578111262742, \\\"civo/delta_ve\\\": 0.6164607867406362, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3010637760162354, \\\"model_grad_norm\\\": 2.1787843704223633, \\\"state_loss\\\": 0.11933556944131851, \\\"reward_loss\\\": 0.3519270718097687, \\\"cont_loss\\\": 1.5030630606815976e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.383001685142517, \\\"rep_loss\\\": 1.383001685142517, \\\"kl\\\": 1.0263440608978271, \\\"prior_ent\\\": 31.139293670654297, \\\"post_ent\\\": 29.48628807067871, \\\"normed_target_mean\\\": 0.665558934211731, \\\"normed_target_std\\\": 0.28735029697418213, \\\"normed_target_min\\\": -0.3642638027667999, \\\"normed_target_max\\\": 1.4663137197494507, \\\"EMA_005\\\": 8.711038589477539, \\\"EMA_095\\\": 9.689236640930176, \\\"value_mean\\\": 9.255389213562012, \\\"value_std\\\": 0.27805840969085693, \\\"value_min\\\": 7.439352989196777, \\\"value_max\\\": 9.672986030578613, \\\"target_mean\\\": 9.405515670776367, \\\"target_std\\\": 0.29952630400657654, \\\"target_min\\\": 8.333504676818848, \\\"target_max\\\": 10.237526893615723, \\\"imag_reward_mean\\\": 0.060960374772548676, \\\"imag_reward_std\\\": 0.043322619050741196, \\\"imag_reward_min\\\": 1.1953448847634718e-05, \\\"imag_reward_max\\\": 0.24572163820266724, \\\"imag_action_mean\\\": 0.08713650703430176, \\\"imag_action_std\\\": 0.7666797041893005, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.875503063201904, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.14063158631324768, \\\"actor_grad_norm\\\": 0.11779067665338516, \\\"value_loss\\\": 0.9549017548561096, \\\"value_grad_norm\\\": 0.290210485458374, \\\"update_count\\\": 10100.0, \\\"fps\\\": 4.386574306750656}\\n{\\\"step\\\": 32500, \\\"civo/ve_ratio\\\": 1.3537471538161738, \\\"civo/delta_ve\\\": 0.5471690425534318, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3008315563201904, \\\"model_grad_norm\\\": 1.5909309387207031, \\\"state_loss\\\": 0.09349936246871948, \\\"reward_loss\\\": 0.39686140418052\\n\\n... [截断: 输出过长，省略 22109 字符] ...\\n\\nate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0003480087616480887, \\\"actor_grad_norm\\\": 0.17454031109809875, \\\"value_loss\\\": 1.2179763317108154, \\\"value_grad_norm\\\": 0.7291717529296875, \\\"update_count\\\": 70100.0, \\\"fps\\\": 4.018550515164884}\\n{\\\"step\\\": 152500, \\\"civo/ve_ratio\\\": 0.5458808784226056, \\\"civo/delta_ve\\\": -0.1995011171917408, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3023688793182373, \\\"model_grad_norm\\\": 0.8647714853286743, \\\"state_loss\\\": 0.09408330172300339, \\\"reward_loss\\\": 0.37362292408943176, \\\"cont_loss\\\": 7.749325486861025e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.3911042213439941, \\\"rep_loss\\\": 1.3911042213439941, \\\"kl\\\": 1.0141708850860596, \\\"prior_ent\\\": 33.2564697265625, \\\"post_ent\\\": 32.534664154052734, \\\"normed_target_mean\\\": 0.365483820438385, \\\"normed_target_std\\\": 0.31656455993652344, \\\"normed_target_min\\\": -0.043783459812402725, \\\"normed_target_max\\\": 1.5359299182891846, \\\"EMA_005\\\": 8.041606903076172, \\\"EMA_095\\\": 21.004253387451172, \\\"value_mean\\\": 12.772109031677246, \\\"value_std\\\": 3.9660141468048096, \\\"value_min\\\": 7.679228782653809, \\\"value_max\\\": 27.586261749267578, \\\"target_mean\\\": 12.781558990478516, \\\"target_std\\\": 4.103207588195801, \\\"target_min\\\": 7.47424840927124, \\\"target_max\\\": 27.935762405395508, \\\"imag_reward_mean\\\": 0.07400300353765488, \\\"imag_reward_std\\\": 0.10813254117965698, \\\"imag_reward_min\\\": 1.461744290054412e-07, \\\"imag_reward_max\\\": 0.7615305781364441, \\\"imag_action_mean\\\": -0.010174301452934742, \\\"imag_action_std\\\": 0.7287939190864563, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.460041522979736, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0005466104485094547, \\\"actor_grad_norm\\\": 0.16994255781173706, \\\"value_loss\\\": 1.295046091079712, \\\"value_grad_norm\\\": 0.8367562294006348, \\\"update_count\\\": 75100.0, \\\"fps\\\": 4.0238355998750945}\\n{\\\"step\\\": 162500, \\\"civo/ve_ratio\\\": 1.1732855059330423, \\\"civo/delta_ve\\\": 0.6274046275104367, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.2969160079956055, \\\"model_grad_norm\\\": 0.8428119421005249, \\\"state_loss\\\": 0.09215541929006577, \\\"reward_loss\\\": 0.3719264566898346, \\\"cont_loss\\\": 7.065617622231679e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.388056993484497, \\\"rep_loss\\\": 1.388056993484497, \\\"kl\\\": 1.0108463764190674, \\\"prior_ent\\\": 33.3685417175293, \\\"post_ent\\\": 32.628238677978516, \\\"normed_target_mean\\\": 0.3438521921634674, \\\"normed_target_std\\\": 0.31723839044570923, \\\"normed_target_min\\\": -0.028832102194428444, \\\"normed_target_max\\\": 1.5870963335037231, \\\"EMA_005\\\": 6.374996662139893, \\\"EMA_095\\\": 18.841093063354492, \\\"value_mean\\\": 10.641515731811523, \\\"value_std\\\": 3.814735174179077, \\\"value_min\\\": 6.192404270172119, \\\"value_max\\\": 25.653270721435547, \\\"target_mean\\\": 10.662158966064453, \\\"target_std\\\": 3.9543635845184326, \\\"target_min\\\": 6.01532506942749, \\\"target_max\\\": 26.156185150146484, \\\"imag_reward_mean\\\": 0.07429982721805573, \\\"imag_reward_std\\\": 0.1089138314127922, \\\"imag_reward_min\\\": 0.0, \\\"imag_reward_max\\\": 0.7643271684646606, \\\"imag_action_mean\\\": -0.00806571077555418, \\\"imag_action_std\\\": 0.7253402471542358, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -3.973832130432129, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.0005020787939429283, \\\"actor_grad_norm\\\": 0.17703911662101746, \\\"value_loss\\\": 1.3350112438201904, \\\"value_grad_norm\\\": 0.894534170627594, \\\"update_count\\\": 80100.0, \\\"fps\\\": 4.113523687636188}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VhAUU7F8ec8ehz6u9BNg3j`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep eval/return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_055_peginsertion_civo_trigger_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "527b9cf8-fa94-44ea-a9ad-5a27853f8899",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T19:43:35.419Z_
+
+<details><summary>↩ Tool result · `toolu_01VhAUU7F8ec8ehz6u9BNg3j`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "e2e2effa-063f-4b4e-91d9-b532fb76cb3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XeLTJscn8c9SsnAccPBuEv`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "tail -1 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "179e1fea-1b5b-4896-858f-b9fc2e05304f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T19:43:36.271Z_
+
+<details><summary>↩ Tool result · `toolu_01XeLTJscn8c9SsnAccPBuEv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 160400, \\\"dataset_size\\\": 160400.0, \\\"train_return\\\": 5.454073905944824, \\\"train_length\\\": 200.0, \\\"train_episodes\\\": 802.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "29d985d0-5bbf-4b61-acfe-46752ae2db6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 160400, \\\\\\\"dataset_size\\\\\\\": 160400.0, \\\\\\\"train_return\\\\\\\": 5.454073905944824, \\\\\\\"train_length\\\\\\\": 200.0, \\\\\\\"train_episodes\\\\\\\": 802.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 160400, \\\"dataset_size\\\": 160400.0, \\\"train_return\\\": 5.454073905944824, \\\"train_length\\\": 200.0, \\\"train_episodes\\\": 802.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013Lh7WCYNFsm5t9LvK4Vpwk`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep -c \"\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "690c96ba-560c-4a54-9e5f-0b41f5055220",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T19:43:37.447Z_
+
+<details><summary>↩ Tool result · `toolu_013Lh7WCYNFsm5t9LvK4Vpwk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"850\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "9f714a06-2350-456c-8d9a-12a3a05fbba3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"850\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"850\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GWhC1uTSQXa1cpnbJ5XWe7`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep ve_ratio /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "1a0573a1-2c0b-4c7a-a725-4c56cfcc8c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T19:43:38.218Z_
+
+<details><summary>↩ Tool result · `toolu_01GWhC1uTSQXa1cpnbJ5XWe7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 12500, \\\"civo/ve_ratio\\\": 0.3157529230075847, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4811022281646729, \\\"model_grad_norm\\\": 5.236473560333252, \\\"state_loss\\\": 0.31202030181884766, \\\"reward_loss\\\": 0.28565922379493713, \\\"cont_loss\\\": 8.267915291071404e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.4723572731018066, \\\"rep_loss\\\": 1.4723572731018066, \\\"kl\\\": 1.2222673892974854, \\\"prior_ent\\\": 47.25794982910156, \\\"post_ent\\\": 45.44901657104492, \\\"normed_target_mean\\\": 0.49734827876091003, \\\"normed_target_std\\\": 0.2533945143222809, \\\"normed_target_min\\\": -0.07164774090051651, \\\"normed_target_max\\\": 1.0423898696899414, \\\"EMA_005\\\": 1.3204973936080933, \\\"EMA_095\\\": 2.2402353286743164, \\\"value_mean\\\": 1.8152722120285034, \\\"value_std\\\": 0.24305444955825806, \\\"value_min\\\": 1.2018284797668457, \\\"value_max\\\": 2.0473079681396484, \\\"target_mean\\\": 1.9395761489868164, \\\"target_std\\\": 0.3098643124103546, \\\"target_min\\\": 1.2466639280319214, \\\"target_max\\\": 2.5862576961517334, \\\"imag_reward_mean\\\": 0.03218899667263031, \\\"imag_reward_std\\\": 0.029504645615816116, \\\"imag_reward_min\\\": 0.0015737861394882202, \\\"imag_reward_max\\\": 0.11775346845388412, \\\"imag_action_mean\\\": 0.02165239490568638, \\\"imag_action_std\\\": 0.807499885559082, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 5.105813980102539, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.10553238540887833, \\\"actor_grad_norm\\\": 0.034142207354307175, \\\"value_loss\\\": 1.4778861999511719, \\\"value_grad_norm\\\": 1.8756715059280396, \\\"update_count\\\": 5100.0, \\\"fps\\\": 4.379242257096927}\\n{\\\"step\\\": 22500, \\\"civo/ve_ratio\\\": 0.9750282575584752, \\\"civo/delta_ve\\\": 0.6592753345508906, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4528381824493408, \\\"model_grad_norm\\\": 2.538851737976074, \\\"state_loss\\\": 0.17455606162548065, \\\"reward_loss\\\": 0.3494552671909332, \\\"cont_loss\\\": 1.4890234467657137e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.5480444431304932, \\\"rep_loss\\\": 1.5480444431304932, \\\"kl\\\": 1.2626616954803467, \\\"prior_ent\\\": 30.730506896972656, \\\"post_ent\\\": 29.446474075317383, \\\"normed_target_mean\\\": 0.6490309834480286, \\\"normed_target_std\\\": 0.31737279891967773, \\\"normed_target_min\\\": -0.30233529210090637, \\\"normed_target_max\\\": 1.5125032663345337, \\\"EMA_005\\\": 8.231436729431152, \\\"EMA_095\\\": 9.787084579467773, \\\"value_mean\\\": 9.067570686340332, \\\"value_std\\\": 0.42342397570610046, \\\"value_min\\\": 7.486327171325684, \\\"value_max\\\": 9.685676574707031, \\\"target_mean\\\": 9.22911262512207, \\\"target_std\\\": 0.49317529797554016, \\\"target_min\\\": 7.763117790222168, \\\"target_max\\\": 10.602057456970215, \\\"imag_reward_mean\\\": 0.05844813212752342, \\\"imag_reward_std\\\": 0.05232299864292145, \\\"imag_reward_min\\\": 8.823513780953363e-06, \\\"imag_reward_max\\\": 0.2988673746585846, \\\"imag_action_mean\\\": -0.0125920744612813, \\\"imag_action_std\\\": 0.7983975410461426, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -3.0889055728912354, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.10368362069129944, \\\"actor_grad_norm\\\": 0.10948709398508072, \\\"value_loss\\\": 0.9798782467842102, \\\"value_grad_norm\\\": 0.3508966863155365, \\\"update_count\\\": 10100.0, \\\"fps\\\": 4.335675053802311}\\n{\\\"step\\\": 32500, \\\"civo/ve_ratio\\\": 1.8390939168925524, \\\"civo/delta_ve\\\": 0.8640656593340772, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4378836154937744, \\\"model_grad_norm\\\": 2.040128231048584, \\\"state_loss\\\": 0.14671173691749573, \\\"reward_loss\\\": 0.37690490484237\\n\\n... [截断: 输出过长，省略 20168 字符] ...\\n\\natio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0037833310198038816, \\\"actor_grad_norm\\\": 0.18244731426239014, \\\"value_loss\\\": 1.0538278818130493, \\\"value_grad_norm\\\": 0.46424540877342224, \\\"update_count\\\": 65100.0, \\\"fps\\\": 3.973416016369587}\\n{\\\"step\\\": 142500, \\\"civo/ve_ratio\\\": 2.193667315526084, \\\"civo/delta_ve\\\": 1.351776397563961, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3151525259017944, \\\"model_grad_norm\\\": 0.9807289242744446, \\\"state_loss\\\": 0.09974025934934616, \\\"reward_loss\\\": 0.36562180519104004, \\\"cont_loss\\\": 9.38850473058972e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.416317343711853, \\\"rep_loss\\\": 1.416317343711853, \\\"kl\\\": 1.0752718448638916, \\\"prior_ent\\\": 33.09165573120117, \\\"post_ent\\\": 32.32526779174805, \\\"normed_target_mean\\\": 0.2736586034297943, \\\"normed_target_std\\\": 0.3342381715774536, \\\"normed_target_min\\\": -0.06786256283521652, \\\"normed_target_max\\\": 1.7561148405075073, \\\"EMA_005\\\": 14.255516052246094, \\\"EMA_095\\\": 24.090599060058594, \\\"value_mean\\\": 16.96239471435547, \\\"value_std\\\": 3.1554155349731445, \\\"value_min\\\": 13.768446922302246, \\\"value_max\\\": 31.157543182373047, \\\"target_mean\\\": 16.946287155151367, \\\"target_std\\\": 3.287598133087158, \\\"target_min\\\": 13.590232849121094, \\\"target_max\\\": 31.517230987548828, \\\"imag_reward_mean\\\": 0.06832927465438843, \\\"imag_reward_std\\\": 0.08633235841989517, \\\"imag_reward_min\\\": 3.0755997748599384e-09, \\\"imag_reward_max\\\": 0.6323688626289368, \\\"imag_action_mean\\\": 0.02568257413804531, \\\"imag_action_std\\\": 0.7524132132530212, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.401571750640869, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0028578080236911774, \\\"actor_grad_norm\\\": 0.18237939476966858, \\\"value_loss\\\": 1.0710468292236328, \\\"value_grad_norm\\\": 0.534112274646759, \\\"update_count\\\": 70100.0, \\\"fps\\\": 3.9827334503131637}\\n{\\\"step\\\": 152500, \\\"civo/ve_ratio\\\": 2.2025462862455845, \\\"civo/delta_ve\\\": 0.0088789707195005, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.318628191947937, \\\"model_grad_norm\\\": 0.968678891658783, \\\"state_loss\\\": 0.09927322715520859, \\\"reward_loss\\\": 0.36763933300971985, \\\"cont_loss\\\": 8.966254821940467e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.419526219367981, \\\"rep_loss\\\": 1.419526219367981, \\\"kl\\\": 1.076860785484314, \\\"prior_ent\\\": 33.517555236816406, \\\"post_ent\\\": 32.786582946777344, \\\"normed_target_mean\\\": 0.272169828414917, \\\"normed_target_std\\\": 0.3349337577819824, \\\"normed_target_min\\\": -0.05887329578399658, \\\"normed_target_max\\\": 1.802416443824768, \\\"EMA_005\\\": 11.05349063873291, \\\"EMA_095\\\": 20.55374526977539, \\\"value_mean\\\": 13.648537635803223, \\\"value_std\\\": 3.0427753925323486, \\\"value_min\\\": 10.703662872314453, \\\"value_max\\\": 27.792861938476562, \\\"target_mean\\\": 13.640341758728027, \\\"target_std\\\": 3.1837141513824463, \\\"target_min\\\": 10.501155853271484, \\\"target_max\\\": 28.15095329284668, \\\"imag_reward_mean\\\": 0.06820248067378998, \\\"imag_reward_std\\\": 0.08733999729156494, \\\"imag_reward_min\\\": -6.866454960174906e-09, \\\"imag_reward_max\\\": 0.6366663575172424, \\\"imag_action_mean\\\": 0.01717822253704071, \\\"imag_action_std\\\": 0.7484807968139648, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.462400913238525, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0021150470711290836, \\\"actor_grad_norm\\\": 0.17606200277805328, \\\"value_loss\\\": 1.1400748491287231, \\\"value_grad_norm\\\": 0.5966032147407532, \\\"update_count\\\": 75100.0, \\\"fps\\\": 4.033457523153739}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "6d2d86a1-734c-4007-83a2-b19f37a7b20d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 12500, \\\\\\\"civo/ve_ratio\\\\\\\": 0.3157529230075847, \\\\\\\"civo/delta_ve\\\\\\\": 0.0, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.4811022281646729, \\\\\\\"model_grad_norm\\\\\\\": 5.236473560333252, \\\\\\\"state_loss\\\\\\\": 0.31202030181884766, \\\\\\\"reward_loss\\\\\\\": 0.28565922379493713, \\\\\\\"cont_loss\\\\\\\": 8.267915291071404e-06, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.4723572731018066, \\\\\\\"rep_loss\\\\\\\": 1.4723572731018066, \\\\\\\"kl\\\\\\\": 1.2222673892974854, \\\\\\\"prior_ent\\\\\\\": 47.25794982910156, \\\\\\\"post_ent\\\\\\\": 45.44901657104492, \\\\\\\"normed_target_mean\\\\\\\": 0.49734827876091003, \\\\\\\"normed_target_std\\\\\\\": 0.2533945143222809, \\\\\\\"normed_target_min\\\\\\\": -0.07164774090051651, \\\\\\\"normed_target_max\\\\\\\": 1.0423898696899414, \\\\\\\"EMA_005\\\\\\\": 1.3204973936080933, \\\\\\\"EMA_095\\\\\\\": 2.2402353286743164, \\\\\\\"value_mean\\\\\\\": 1.8152722120285034, \\\\\\\"value_std\\\\\\\": 0.24305444955825806, \\\\\\\"value_min\\\\\\\": 1.2018284797668457, \\\\\\\"value_max\\\\\\\": 2.0473079681396484, \\\\\\\"target_mean\\\\\\\": 1.9395761489868164, \\\\\\\"target_std\\\\\\\": 0.3098643124103546, \\\\\\\"target_min\\\\\\\": 1.2466639280319214, \\\\\\\"target_max\\\\\\\": 2.5862576961517334, \\\\\\\"imag_reward_mean\\\\\\\": 0.03218899667263031, \\\\\\\"imag_reward_std\\\\\\\": 0.029504645615816116, \\\\\\\"imag_reward_min\\\\\\\": 0.0015737861394882202, \\\\\\\"imag_reward_max\\\\\\\": 0.11775346845388412, \\\\\\\"imag_action_mean\\\\\\\": 0.02165239490568638, \\\\\\\"imag_action_std\\\\\\\": 0.807499885559082, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": 5.105813980102539, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.10553238540887833, \\\\\\\"actor_grad_norm\\\\\\\": 0.034142207354307175, \\\\\\\"value_loss\\\\\\\": 1.4778861999511719, \\\\\\\"value_grad_norm\\\\\\\": 1.8756715059280396, \\\\\\\"update_count\\\\\\\": 5100.0, \\\\\\\"fps\\\\\\\": 4.379242257096927}\\\\n{\\\\\\\"step\\\\\\\": 22500, \\\\\\\"civo/ve_ratio\\\\\\\": 0.9750282575584752, \\\\\\\"civo/delta_ve\\\\\\\": 0.6592753345508906, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.4528381824493408, \\\\\\\"model_grad_norm\\\\\\\": 2.538851737976074, \\\\\\\"state_loss\\\\\\\": 0.17455606162548065, \\\\\\\"reward_loss\\\\\\\": 0.3494552671909332, \\\\\\\"cont_loss\\\\\\\": 1.4890234467657137e-07, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.5480444431304932, \\\\\\\"rep_loss\\\\\\\": 1.5480444431304932, \\\\\\\"kl\\\\\\\": 1.2626616954803467, \\\\\\\"prior_ent\\\\\\\": 30.730506896972656, \\\\\\\"post_ent\\\\\\\": 29.446474075317383, \\\\\\\"normed_target_mean\\\\\\\": 0.6490309834480286, \\\\\\\"normed_target_std\\\\\\\": 0.31737279891967773, \\\\\\\"normed_target_min\\\\\\\": -0.30233529210090637, \\\\\\\"normed_target_max\\\\\\\": 1.5125032663345337, \\\\\\\"EMA_005\\\\\\\": 8.231436729431152, \\\\\\\"EMA_095\\\\\\\": 9.787084579467773, \\\\\\\"value_mean\\\\\\\": 9.067570686340332, \\\\\\\"value_std\\\\\\\": 0.42342397570610046, \\\\\\\"value_min\\\\\\\": 7.486327171325684, \\\\\\\"value_max\\\\\\\": 9.685676574707031, \\\\\\\"target_mean\\\\\\\": 9.22911262512207, \\\\\\\"target_std\\\\\\\": 0.49317529797554016, \\\\\\\"target_min\\\\\\\": 7.763117790222168, \\\\\\\"target_max\\\\\\\": 10.602057456970215, \\\\\\\"imag_reward_mean\\\\\\\": 0.05844813212752342, \\\\\\\"imag_reward_std\\\\\\\": 0.05232299864292145, \\\\\\\"imag_reward_min\\\\\\\": 8.823513780953363e-06, \\\\\\\"imag_reward_max\\\\\\\": 0.2988673746585846, \\\\\\\"imag_action_mean\\\\\\\": -0.0125920744612813, \\\\\\\"imag_action_std\\\\\\\": 0.7983975410461426, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -3.0889055728912354, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": -0.10368362069129944, \\\\\\\"actor_grad_norm\\\\\\\": 0.10948709398508072, \\\\\\\"value_loss\\\\\\\": 0.9798782467842102, \\\\\\\"value_grad_norm\\\\\\\": 0.3508966863155365, \\\\\\\"update_count\\\\\\\": 10100.0, \\\\\\\"fps\\\\\\\": 4.335675053802311}\\\\n{\\\\\\\"step\\\\\\\": 32500, \\\\\\\"civo/ve_ratio\\\\\\\": 1.8390939168925524, \\\\\\\"civo/delta_ve\\\\\\\": 0.8640656593340772, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.4378836154937744, \\\\\\\"model_grad_norm\\\\\\\": 2.040128231048584, \\\\\\\"state_loss\\\\\\\": 0.14671173691749573, \\\\\\\"reward_loss\\\\\\\": 0.37690490484237\\\\n\\\\n... [截断: 输出过长，省略 20168 字符] ...\\\\n\\\\natio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": 0.0037833310198038816, \\\\\\\"actor_grad_norm\\\\\\\": 0.18244731426239014, \\\\\\\"value_loss\\\\\\\": 1.0538278818130493, \\\\\\\"value_grad_norm\\\\\\\": 0.46424540877342224, \\\\\\\"update_count\\\\\\\": 65100.0, \\\\\\\"fps\\\\\\\": 3.973416016369587}\\\\n{\\\\\\\"step\\\\\\\": 142500, \\\\\\\"civo/ve_ratio\\\\\\\": 2.193667315526084, \\\\\\\"civo/delta_ve\\\\\\\": 1.351776397563961, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.3151525259017944, \\\\\\\"model_grad_norm\\\\\\\": 0.9807289242744446, \\\\\\\"state_loss\\\\\\\": 0.09974025934934616, \\\\\\\"reward_loss\\\\\\\": 0.36562180519104004, \\\\\\\"cont_loss\\\\\\\": 9.38850473058972e-12, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.416317343711853, \\\\\\\"rep_loss\\\\\\\": 1.416317343711853, \\\\\\\"kl\\\\\\\": 1.0752718448638916, \\\\\\\"prior_ent\\\\\\\": 33.09165573120117, \\\\\\\"post_ent\\\\\\\": 32.32526779174805, \\\\\\\"normed_target_mean\\\\\\\": 0.2736586034297943, \\\\\\\"normed_target_std\\\\\\\": 0.3342381715774536, \\\\\\\"normed_target_min\\\\\\\": -0.06786256283521652, \\\\\\\"normed_target_max\\\\\\\": 1.7561148405075073, \\\\\\\"EMA_005\\\\\\\": 14.255516052246094, \\\\\\\"EMA_095\\\\\\\": 24.090599060058594, \\\\\\\"value_mean\\\\\\\": 16.96239471435547, \\\\\\\"value_std\\\\\\\": 3.1554155349731445, \\\\\\\"value_min\\\\\\\": 13.768446922302246, \\\\\\\"value_max\\\\\\\": 31.157543182373047, \\\\\\\"target_mean\\\\\\\": 16.946287155151367, \\\\\\\"target_std\\\\\\\": 3.287598133087158, \\\\\\\"target_min\\\\\\\": 13.590232849121094, \\\\\\\"target_max\\\\\\\": 31.517230987548828, \\\\\\\"imag_reward_mean\\\\\\\": 0.06832927465438843, \\\\\\\"imag_reward_std\\\\\\\": 0.08633235841989517, \\\\\\\"imag_reward_min\\\\\\\": 3.0755997748599384e-09, \\\\\\\"imag_reward_max\\\\\\\": 0.6323688626289368, \\\\\\\"imag_action_mean\\\\\\\": 0.02568257413804531, \\\\\\\"imag_action_std\\\\\\\": 0.7524132132530212, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -4.401571750640869, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": 0.0028578080236911774, \\\\\\\"actor_grad_norm\\\\\\\": 0.18237939476966858, \\\\\\\"value_loss\\\\\\\": 1.0710468292236328, \\\\\\\"value_grad_norm\\\\\\\": 0.534112274646759, \\\\\\\"update_count\\\\\\\": 70100.0, \\\\\\\"fps\\\\\\\": 3.9827334503131637}\\\\n{\\\\\\\"step\\\\\\\": 152500, \\\\\\\"civo/ve_ratio\\\\\\\": 2.2025462862455845, \\\\\\\"civo/delta_ve\\\\\\\": 0.0088789707195005, \\\\\\\"civo/alert\\\\\\\": 0.0, \\\\\\\"model_loss\\\\\\\": 1.318628191947937, \\\\\\\"model_grad_norm\\\\\\\": 0.968678891658783, \\\\\\\"state_loss\\\\\\\": 0.09927322715520859, \\\\\\\"reward_loss\\\\\\\": 0.36763933300971985, \\\\\\\"cont_loss\\\\\\\": 8.966254821940467e-12, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 1.419526219367981, \\\\\\\"rep_loss\\\\\\\": 1.419526219367981, \\\\\\\"kl\\\\\\\": 1.076860785484314, \\\\\\\"prior_ent\\\\\\\": 33.517555236816406, \\\\\\\"post_ent\\\\\\\": 32.786582946777344, \\\\\\\"normed_target_mean\\\\\\\": 0.272169828414917, \\\\\\\"normed_target_std\\\\\\\": 0.3349337577819824, \\\\\\\"normed_target_min\\\\\\\": -0.05887329578399658, \\\\\\\"normed_target_max\\\\\\\": 1.802416443824768, \\\\\\\"EMA_005\\\\\\\": 11.05349063873291, \\\\\\\"EMA_095\\\\\\\": 20.55374526977539, \\\\\\\"value_mean\\\\\\\": 13.648537635803223, \\\\\\\"value_std\\\\\\\": 3.0427753925323486, \\\\\\\"value_min\\\\\\\": 10.703662872314453, \\\\\\\"value_max\\\\\\\": 27.792861938476562, \\\\\\\"target_mean\\\\\\\": 13.640341758728027, \\\\\\\"target_std\\\\\\\": 3.1837141513824463, \\\\\\\"target_min\\\\\\\": 10.501155853271484, \\\\\\\"target_max\\\\\\\": 28.15095329284668, \\\\\\\"imag_reward_mean\\\\\\\": 0.06820248067378998, \\\\\\\"imag_reward_std\\\\\\\": 0.08733999729156494, \\\\\\\"imag_reward_min\\\\\\\": -6.866454960174906e-09, \\\\\\\"imag_reward_max\\\\\\\": 0.6366663575172424, \\\\\\\"imag_action_mean\\\\\\\": 0.01717822253704071, \\\\\\\"imag_action_std\\\\\\\": 0.7484807968139648, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -4.462400913238525, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": 0.0, \\\\\\\"gate_dt_autocorr\\\\\\\": 0.0, \\\\\\\"actor_loss\\\\\\\": 0.0021150470711290836, \\\\\\\"actor_grad_norm\\\\\\\": 0.17606200277805328, \\\\\\\"value_loss\\\\\\\": 1.1400748491287231, \\\\\\\"value_grad_norm\\\\\\\": 0.5966032147407532, \\\\\\\"update_count\\\\\\\": 75100.0, \\\\\\\"fps\\\\\\\": 4.033457523153739}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"step\\\": 12500, \\\"civo/ve_ratio\\\": 0.3157529230075847, \\\"civo/delta_ve\\\": 0.0, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4811022281646729, \\\"model_grad_norm\\\": 5.236473560333252, \\\"state_loss\\\": 0.31202030181884766, \\\"reward_loss\\\": 0.28565922379493713, \\\"cont_loss\\\": 8.267915291071404e-06, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.4723572731018066, \\\"rep_loss\\\": 1.4723572731018066, \\\"kl\\\": 1.2222673892974854, \\\"prior_ent\\\": 47.25794982910156, \\\"post_ent\\\": 45.44901657104492, \\\"normed_target_mean\\\": 0.49734827876091003, \\\"normed_target_std\\\": 0.2533945143222809, \\\"normed_target_min\\\": -0.07164774090051651, \\\"normed_target_max\\\": 1.0423898696899414, \\\"EMA_005\\\": 1.3204973936080933, \\\"EMA_095\\\": 2.2402353286743164, \\\"value_mean\\\": 1.8152722120285034, \\\"value_std\\\": 0.24305444955825806, \\\"value_min\\\": 1.2018284797668457, \\\"value_max\\\": 2.0473079681396484, \\\"target_mean\\\": 1.9395761489868164, \\\"target_std\\\": 0.3098643124103546, \\\"target_min\\\": 1.2466639280319214, \\\"target_max\\\": 2.5862576961517334, \\\"imag_reward_mean\\\": 0.03218899667263031, \\\"imag_reward_std\\\": 0.029504645615816116, \\\"imag_reward_min\\\": 0.0015737861394882202, \\\"imag_reward_max\\\": 0.11775346845388412, \\\"imag_action_mean\\\": 0.02165239490568638, \\\"imag_action_std\\\": 0.807499885559082, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": 5.105813980102539, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.10553238540887833, \\\"actor_grad_norm\\\": 0.034142207354307175, \\\"value_loss\\\": 1.4778861999511719, \\\"value_grad_norm\\\": 1.8756715059280396, \\\"update_count\\\": 5100.0, \\\"fps\\\": 4.379242257096927}\\n{\\\"step\\\": 22500, \\\"civo/ve_ratio\\\": 0.9750282575584752, \\\"civo/delta_ve\\\": 0.6592753345508906, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4528381824493408, \\\"model_grad_norm\\\": 2.538851737976074, \\\"state_loss\\\": 0.17455606162548065, \\\"reward_loss\\\": 0.3494552671909332, \\\"cont_loss\\\": 1.4890234467657137e-07, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.5480444431304932, \\\"rep_loss\\\": 1.5480444431304932, \\\"kl\\\": 1.2626616954803467, \\\"prior_ent\\\": 30.730506896972656, \\\"post_ent\\\": 29.446474075317383, \\\"normed_target_mean\\\": 0.6490309834480286, \\\"normed_target_std\\\": 0.31737279891967773, \\\"normed_target_min\\\": -0.30233529210090637, \\\"normed_target_max\\\": 1.5125032663345337, \\\"EMA_005\\\": 8.231436729431152, \\\"EMA_095\\\": 9.787084579467773, \\\"value_mean\\\": 9.067570686340332, \\\"value_std\\\": 0.42342397570610046, \\\"value_min\\\": 7.486327171325684, \\\"value_max\\\": 9.685676574707031, \\\"target_mean\\\": 9.22911262512207, \\\"target_std\\\": 0.49317529797554016, \\\"target_min\\\": 7.763117790222168, \\\"target_max\\\": 10.602057456970215, \\\"imag_reward_mean\\\": 0.05844813212752342, \\\"imag_reward_std\\\": 0.05232299864292145, \\\"imag_reward_min\\\": 8.823513780953363e-06, \\\"imag_reward_max\\\": 0.2988673746585846, \\\"imag_action_mean\\\": -0.0125920744612813, \\\"imag_action_std\\\": 0.7983975410461426, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -3.0889055728912354, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": -0.10368362069129944, \\\"actor_grad_norm\\\": 0.10948709398508072, \\\"value_loss\\\": 0.9798782467842102, \\\"value_grad_norm\\\": 0.3508966863155365, \\\"update_count\\\": 10100.0, \\\"fps\\\": 4.335675053802311}\\n{\\\"step\\\": 32500, \\\"civo/ve_ratio\\\": 1.8390939168925524, \\\"civo/delta_ve\\\": 0.8640656593340772, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.4378836154937744, \\\"model_grad_norm\\\": 2.040128231048584, \\\"state_loss\\\": 0.14671173691749573, \\\"reward_loss\\\": 0.37690490484237\\n\\n... [截断: 输出过长，省略 20168 字符] ...\\n\\natio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0037833310198038816, \\\"actor_grad_norm\\\": 0.18244731426239014, \\\"value_loss\\\": 1.0538278818130493, \\\"value_grad_norm\\\": 0.46424540877342224, \\\"update_count\\\": 65100.0, \\\"fps\\\": 3.973416016369587}\\n{\\\"step\\\": 142500, \\\"civo/ve_ratio\\\": 2.193667315526084, \\\"civo/delta_ve\\\": 1.351776397563961, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.3151525259017944, \\\"model_grad_norm\\\": 0.9807289242744446, \\\"state_loss\\\": 0.09974025934934616, \\\"reward_loss\\\": 0.36562180519104004, \\\"cont_loss\\\": 9.38850473058972e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.416317343711853, \\\"rep_loss\\\": 1.416317343711853, \\\"kl\\\": 1.0752718448638916, \\\"prior_ent\\\": 33.09165573120117, \\\"post_ent\\\": 32.32526779174805, \\\"normed_target_mean\\\": 0.2736586034297943, \\\"normed_target_std\\\": 0.3342381715774536, \\\"normed_target_min\\\": -0.06786256283521652, \\\"normed_target_max\\\": 1.7561148405075073, \\\"EMA_005\\\": 14.255516052246094, \\\"EMA_095\\\": 24.090599060058594, \\\"value_mean\\\": 16.96239471435547, \\\"value_std\\\": 3.1554155349731445, \\\"value_min\\\": 13.768446922302246, \\\"value_max\\\": 31.157543182373047, \\\"target_mean\\\": 16.946287155151367, \\\"target_std\\\": 3.287598133087158, \\\"target_min\\\": 13.590232849121094, \\\"target_max\\\": 31.517230987548828, \\\"imag_reward_mean\\\": 0.06832927465438843, \\\"imag_reward_std\\\": 0.08633235841989517, \\\"imag_reward_min\\\": 3.0755997748599384e-09, \\\"imag_reward_max\\\": 0.6323688626289368, \\\"imag_action_mean\\\": 0.02568257413804531, \\\"imag_action_std\\\": 0.7524132132530212, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.401571750640869, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0028578080236911774, \\\"actor_grad_norm\\\": 0.18237939476966858, \\\"value_loss\\\": 1.0710468292236328, \\\"value_grad_norm\\\": 0.534112274646759, \\\"update_count\\\": 70100.0, \\\"fps\\\": 3.9827334503131637}\\n{\\\"step\\\": 152500, \\\"civo/ve_ratio\\\": 2.2025462862455845, \\\"civo/delta_ve\\\": 0.0088789707195005, \\\"civo/alert\\\": 0.0, \\\"model_loss\\\": 1.318628191947937, \\\"model_grad_norm\\\": 0.968678891658783, \\\"state_loss\\\": 0.09927322715520859, \\\"reward_loss\\\": 0.36763933300971985, \\\"cont_loss\\\": 8.966254821940467e-12, \\\"kl_free\\\": 1.0, \\\"dyn_scale\\\": 0.5, \\\"rep_scale\\\": 0.09999999999999999, \\\"dyn_loss\\\": 1.419526219367981, \\\"rep_loss\\\": 1.419526219367981, \\\"kl\\\": 1.076860785484314, \\\"prior_ent\\\": 33.517555236816406, \\\"post_ent\\\": 32.786582946777344, \\\"normed_target_mean\\\": 0.272169828414917, \\\"normed_target_std\\\": 0.3349337577819824, \\\"normed_target_min\\\": -0.05887329578399658, \\\"normed_target_max\\\": 1.802416443824768, \\\"EMA_005\\\": 11.05349063873291, \\\"EMA_095\\\": 20.55374526977539, \\\"value_mean\\\": 13.648537635803223, \\\"value_std\\\": 3.0427753925323486, \\\"value_min\\\": 10.703662872314453, \\\"value_max\\\": 27.792861938476562, \\\"target_mean\\\": 13.640341758728027, \\\"target_std\\\": 3.1837141513824463, \\\"target_min\\\": 10.501155853271484, \\\"target_max\\\": 28.15095329284668, \\\"imag_reward_mean\\\": 0.06820248067378998, \\\"imag_reward_std\\\": 0.08733999729156494, \\\"imag_reward_min\\\": -6.866454960174906e-09, \\\"imag_reward_max\\\": 0.6366663575172424, \\\"imag_action_mean\\\": 0.01717822253704071, \\\"imag_action_std\\\": 0.7484807968139648, \\\"imag_action_min\\\": -1.0, \\\"imag_action_max\\\": 1.0, \\\"actor_entropy\\\": -4.462400913238525, \\\"gate_dt_mean\\\": 2.0, \\\"gate_dt_std\\\": 0.0, \\\"gate_dt_min\\\": 2.0, \\\"gate_dt_max\\\": 2.0, \\\"gate_dt_1_frac\\\": 0.0, \\\"gate_dt_2_frac\\\": 1.0, \\\"gate_dt_3_frac\\\": 0.0, \\\"gate_dt_4_frac\\\": 0.0, \\\"gate_dt_5_frac\\\": 0.0, \\\"gate_dt_6_frac\\\": 0.0, \\\"gate_dt_7_frac\\\": 0.0, \\\"gate_dt_8_frac\\\": 0.0, \\\"gate_empirical_entropy\\\": 0.0, \\\"gate_entropy_ratio\\\": 0.0, \\\"gate_dt_autocorr\\\": 0.0, \\\"actor_loss\\\": 0.0021150470711290836, \\\"actor_grad_norm\\\": 0.17606200277805328, \\\"value_loss\\\": 1.1400748491287231, \\\"value_grad_norm\\\": 0.5966032147407532, \\\"update_count\\\": 75100.0, \\\"fps\\\": 4.033457523153739}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G63rTFD1hT53ZgfRfGE6TJ`</summary>
+
+```json
+{
+  "server": "bjb1-40020",
+  "command": "grep eval/return /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_056_peginsertion_frozen_s1/metrics.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "7b583ac8-eb67-4465-bdc9-79f0644c244e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdstCZBfDCXu4Z1R8E1kaU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 29963,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T19:43:38.768Z_
+
+<details><summary>↩ Tool result · `toolu_01G63rTFD1hT53ZgfRfGE6TJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "d7a3c663-2659-4aef-a797-c8c77591e458",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile the data from all the results:
+
+## bjb1-45299
+
+### exp_058 Cheetah frozen s1 (PID 164830)
+- Uptime: 1h33m
+- GPU: 3257 MiB
+- Current step: 60000 (last line of metrics.jsonl)
+- 78 lines in metrics.jsonl
+- ve_ratio data points:
+  - step=15000, ve_ratio=0.0111
+  - step=25000, ve_ratio=0.0303
+  - step=35000, ve_ratio=0.0542
+  - step=45000, ve_ratio=0.2314
+  - step=55000, ve_ratio=0.0813
+- No eval/return found (grep returned exit code 1)
+- FPS: ~9.9-10.1
+
+### exp_057 Walker frozen s2 (PID 157775)
+- Uptime: 4h17m
+- GPU: 3257 MiB
+- Current step: 165000 (last line)
+- 215 lines in metrics.jsonl
+- Checking ve_ratio data from the metrics...
+  - step=15000, ve_ratio=0.0204
+  - step=25000, ve_ratio=0.1369
+  - step=35000, ve_ratio=0.4945
+  - step=155000, ve_ratio=0.4520
+  - step=165000, ve_ratio=0.2715
+- No eval/return found
+- FPS: ~9.9
+
+## bjb1-40020
+
+### exp_055 PegInsertion trained s1 (PID 345223)
+- Uptime: 10h55m
+- GPU: 2575 MiB
+- Current step: 167000 with train_return=5.051
+- 886 lines in metrics.jsonl
+- Extracting ve_ratio values...
+
+Continuing through the data for exp_055, I'm seeing ve_ratio climb significantly through the middle steps before settling around 1.17 at step 162500, with FPS running lower at 4.0-4.4 compared to the previous experiment.
+
+### exp_056 PegInsertion frozen s1 (PID 346430)
+- Uptime: 10h41m
+- GPU: 435 + 2528 MiB
+- Current step: 160400 with train_return=5.454
+- 850 lines in metrics.jsonl
+- Pulling ve_ratio metrics...
+
+Now I'm looking at the performance trajectory for exp_058 to estimate how much longer it needs to run. At 60K steps completed in about 93 minutes, that's roughly 645 steps per minute, so the remaining 150K steps should take around 232 minutes to finish.
+
+For exp_057, which is further along at 165K of 210K steps, the rate is slightly slower at 642 steps per minute, leaving about 70 minutes of runtime remaining. exp_055 is progressing much more slowly at 255 steps per minute despite being nearly complete, so it'll need another 2.8 hours or so. exp_056 is at 76.4% completion after running for 10 hours and 41 minutes.
+
+What's striking is that all four experiments show the same critical issue: the gate mechanism is completely frozen at dt=2 with zero entropy, meaning it's not learning to vary the timestep at all. None of them are tracking evaluation returns either, only training returns during data collection, which is a notable gap in the metrics.
+
+For exp_057 specifically, I need to verify the last training return value since the tail output showed step 165000 with a ve_ratio metric, but I should confirm whether that's actually the final line or if there's a dataset collection line after it.
+
+Looking at the tail results across all experiments, exp_058 ended at step 60K with a training return of 65.01, exp_055 reached step 167K with 5.051, and exp_056 got to step 160.4K with 5.454. Now I'm ready to compile the summary table with the final metrics for each experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "8ac51469-dc0f-454d-9f4f-269348e3a6eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PKnMv7Qm1SQwBt37WKM1u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 44736,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 44736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+```
+exp_ID  | PID    | 步数/210K       | 最新 ve_ratio@step    | eval_return | 状态    | 预估剩余
+--------|--------|----------------|-----------------------|-------------|---------|--------
+exp_058 | 164830 | 60K (29%)      | 0.081@55K (峰0.231@45K) | 无          | 运行中  | ~3.9h
+exp_057 | 157775 | 165K (79%)     | 0.272@165K (峰~0.49@35K)| 无          | 运行中  | ~1.2h
+exp_055 | 345223 | 167K (80%)     | 1.173@162.5K           | 无          | 运行中  | ~2.8h
+exp_056 | 346430 | 160.4K (76%)   | 2.203@152.5K           | 无          | 运行中  | ~3.3h
+```
+
+**补充说明：**
+
+- **4 个实验全部没有 eval/return 指标**，只有 train_return（exp_058: 65.0, exp_055: 5.05, exp_056: 5.45）
+- **所有实验 gate 完全卡死在 dt=2**：gate_dt_mean=2.0, gate_dt_2_frac=1.0, gate_empirical_entropy=0.0 — gate 从未学会变化
+- bjb1-45299 FPS ~10，bjb1-40020 FPS ~4（PegInsertion 环境更重）
+- exp_057 Walker 的 ve_ratio 从 35K 峰值 0.49 一路下降到 165K 的 0.27
+- exp_055/056 PegInsertion 的 ve_ratio 显著高于 Cheetah/Walker（frozen 056 > trained 055）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "uuid": "896867f9-1b47-4f61-aa50-38caad4cdca3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012PKnMv7Qm1SQwBt37WKM1u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 44736,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 44736
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 81_
+
+```
+exp_ID  | PID    | 步数/210K       | 最新 ve_ratio@step    | eval_return | 状态    | 预估剩余
+--------|--------|----------------|-----------------------|-------------|---------|--------
+exp_058 | 164830 | 60K (29%)      | 0.081@55K (峰0.231@45K) | 无          | 运行中  | ~3.9h
+exp_057 | 157775 | 165K (79%)     | 0.272@165K (峰~0.49@35K)| 无          | 运行中  | ~1.2h
+exp_055 | 345223 | 167K (80%)     | 1.173@162.5K           | 无          | 运行中  | ~2.8h
+exp_056 | 346430 | 160.4K (76%)   | 2.203@152.5K           | 无          | 运行中  | ~3.3h
+```
+
+**补充说明：**
+
+- **4 个实验全部没有 eval/return 指标**，只有 train_return（exp_058: 65.0, exp_055: 5.05, exp_056: 5.45）
+- **所有实验 gate 完全卡死在 dt=2**：gate_dt_mean=2.0, gate_dt_2_frac=1.0, gate_empirical_entropy=0.0 — gate 从未学会变化
+- bjb1-45299 FPS ~10，bjb1-40020 FPS ~4（PegInsertion 环境更重）
+- exp_057 Walker 的 ve_ratio 从 35K 峰值 0.49 一路下降到 165K 的 0.27
+- exp_055/056 PegInsertion 的 ve_ratio 显著高于 Cheetah/Walker（frozen 056 > trained 055）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 123860,
+  "duration_api_ms": 126481,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "bc1d5e0c-5adc-4308-84d2-9fa15147a832",
+  "total_cost_usd": 0.6856644999999999,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 64598,
+    "cache_read_input_tokens": 129778,
+    "output_tokens": 8569,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 64598,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2368,
+        "cache_read_input_tokens": 11447,
+        "cache_creation_input_tokens": 44736,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 44736
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2693,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0027630000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 8569,
+      "cacheReadInputTokens": 129778,
+      "cacheCreationInputTokens": 64598,
+      "webSearchRequests": 0,
+      "costUSD": 0.6829015,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "35aa539f-6710-473e-9cab-057cb892b701"
+}
+```
+
+</details>
+
+---

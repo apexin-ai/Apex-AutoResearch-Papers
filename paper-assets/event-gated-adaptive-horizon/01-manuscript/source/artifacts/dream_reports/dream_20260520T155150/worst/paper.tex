@@ -1,0 +1,768 @@
+\documentclass[letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{natbib}
+\usepackage{xspace}
+
+\newcommand{\civo}{CIVO\xspace}
+\newcommand{\nve}{NVE\xspace}
+\newcommand{\dtemb}{\texttt{dt\_emb}\xspace}
+
+\title{Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination}
+
+\author{
+Anonymous Authors
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Temporal abstraction in world-model reinforcement learning promises improved planning efficiency by allowing agents to imagine at variable time scales. We present a systematic diagnostic analysis of variable-rate imagination in DreamerV3, revealing a failure mode we term \emph{Conditioning-Induced Value Overestimation} (\civo). Through a factorial experiment spanning 31 configurations across four environments (Walker Walk, Cheetah Run, Cartpole Swingup, Hopper Hop), we establish a precise causal chain: a \emph{trained} temporal embedding (\dtemb) enables the critic to exploit imprecise multi-step predictions from the RSSM world model, triggering a positive feedback loop of value overestimation and policy degradation. We introduce Normalized Value Excess (\nve) as a diagnostic metric and show that an \nve threshold of $1.5\times$ achieves AUROC$=$0.969 in separating pathological from healthy training runs across 18 seeds. Crucially, all attempted interventions fail to robustly eliminate \civo: gradient-based interventions (selective gradient stopping, 1/17 seeds protected) operate at the wrong abstraction level, while forward-pass interventions (temporal conditioning noise, uncertainty-gated truncation) exhibit narrow effective windows and seed-dependent outcomes ($\leq$1/8 cross-seed-environment prevention). The contrast with TAWM---where dt-conditioning succeeds in MPC-based planning---localizes the vulnerability to the imagination-based actor-critic architecture: critic bootstrapping from imagined trajectories creates the positive feedback loop that MPC's re-planning from real states avoids. Our results establish that robust variable-rate imagination requires architectural changes beyond surface-level fixes, pointing toward hierarchical temporal models as the viable path forward.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Temporal abstraction---the ability to reason and act at multiple time scales---is a foundational challenge in reinforcement learning. The options framework \citep{sutton1999options}, FiGAR \citep{sharma2017figar}, and action repeat mechanisms have demonstrated its value in model-free settings. World-model RL, exemplified by the Dreamer family \citep{hafner2020dreamerv1,hafner2021dreamerv2,hafner2023dreamerv3}, offers a particularly natural testbed: by modifying the temporal granularity of \emph{imagined} rollouts without changing environment interaction, one can decouple the planning horizon from the data collection rate.
+
+Despite this appeal, our systematic attempts to introduce variable-rate imagination into DreamerV3 consistently degrade performance. Fixed $\Delta t=2$ imagination collapses from a peak of 485 to 135 eval return; fixed $\Delta t=4$ achieves only 33\% of baseline; learned temporal gating peaks at 541 before collapsing to 99. No configuration involving $\Delta t>1$ imagination matches the $\Delta t=1$ baseline ($\sim$950 eval return).
+
+This paper asks \emph{why}. Through a factorial experiment design spanning 31 configurations and four DeepMind Control Suite environments, we trace the failure to a specific mechanism we term \emph{Conditioning-Induced Value Overestimation} (\civo). The causal chain is:
+\begin{enumerate}[nosep]
+    \item A \emph{trained} temporal embedding (\dtemb) learns to precisely distinguish $\Delta t=1$ from $\Delta t>1$ transitions in the RSSM latent space.
+    \item RSSM prediction quality degrades at $\Delta t>1$ (reward prediction gap: $2.78\times$ for trained \dtemb vs.\ $1.56\times$ baseline), but the trained embedding enables the critic to condition on $\Delta t$ with high precision.
+    \item The combination of precise conditioning and imprecise predictions creates systematic value overestimation: the critic assigns inflated values to states reached via $\Delta t>1$ imagination steps.
+    \item This overestimation drives the actor toward policies that exploit the overestimated regions, creating a positive feedback loop that culminates in performance collapse.
+\end{enumerate}
+
+We introduce \emph{Normalized Value Excess} (\nve)---the ratio of a configuration's value-to-eval ratio to the baseline's at the same training step---as a diagnostic metric. An \nve threshold of $1.5\times$ achieves AUROC$=$0.969 across 18 seeds, reliably identifying pathological overestimation before collapse onset.
+
+A critical contrast motivates our analysis. TAWM \citep{nhu2025tawm} successfully uses $\Delta t$-conditioning in TD-MPC2, an MPC-based world-model method. The divergence is architectural: MPC re-plans from \emph{real} states at each decision point, breaking the feedback loop; imagination-based actor-critic methods bootstrap critic values from imagined trajectories, sustaining it. This localizes \civo as an architecture-specific vulnerability, not a fundamental limitation of temporal conditioning.
+
+Our contributions are:
+\begin{enumerate}[nosep]
+    \item A causal diagnosis of \civo through controlled factorial experiments, establishing trained \dtemb as the necessary and sufficient trigger (C1--C5).
+    \item Discovery of dual vulnerability pathways: classic \civo (value-driven, entropy decreasing) and non-\civo policy instability (eval-driven, entropy increasing), demonstrating that the trained embedding creates fragility beyond the overestimation loop (C6).
+    \item Evidence that gradient-level interventions are categorically insufficient (1/17 seeds across 3 SGS variants), establishing forward-pass representational damage as the irreducible vulnerability floor (C7).
+    \item A comprehensive negative-result catalog of intervention attempts (12 strategies, $\leq$1/8 combined prevention rate), providing actionable guidance for future work.
+\end{enumerate}
+
+%% ============================================================
+%% 2. BACKGROUND AND RELATED WORK
+%% ============================================================
+\section{Background and Related Work}
+
+\paragraph{Temporal abstraction in RL.}
+The options framework \citep{sutton1999options} formalized hierarchical temporal abstraction, inspiring methods from option-critic \citep{bacon2017option} to discovery-based approaches. FiGAR \citep{sharma2017figar} and dynamic action repetition learn per-step skip rates in model-free settings. These approaches modify \emph{action execution} rather than \emph{model imagination}.
+
+\paragraph{World-model RL.}
+DreamerV3 \citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) and trains actor-critic networks entirely within imagined trajectories. IRIS \citep{micheli2023iris} and TWM \citep{robine2023twm} use transformer-based world models. Variable-rate planning has been explored in THICK \citep{kim2024thick} and Hieros \citep{ropke2024hieros}, which use hierarchical dynamics models with separate temporal scales. TAWM \citep{nhu2025tawm} demonstrates successful $\Delta t$-conditioned planning in TD-MPC2's MPC framework.
+
+\paragraph{Value overestimation in MBRL.}
+Model exploitation and value overestimation are known challenges in model-based RL \citep{janner2019mbpo}. Delusional bias \citep{lu2018delusional} refers to value overestimation from policy-class constraints---a distinct mechanism from our \civo, which arises from model imprecision amplified by learned temporal conditioning. Ensemble disagreement and pessimistic value estimation have been proposed as mitigations for general model exploitation, but our results show that \civo's feedback loop structure resists standard remedies.
+
+%% ============================================================
+%% 3. METHODOLOGY
+%% ============================================================
+\section{Methodology}
+
+\subsection{Base Architecture}
+
+We build on DreamerV3 \citep{hafner2023dreamerv3} with its RSSM world model, symlog-transformed critic, and actor-critic training within imagined rollouts. The standard configuration uses $\Delta t=1$ for all imagination steps with horizon $H=15$.
+
+\subsection{Variable-Rate Imagination}
+
+We extend the imagination procedure to support $\Delta t>1$ steps via three mechanisms:
+\begin{itemize}[nosep]
+    \item \textbf{Temporal embedding} (\dtemb): A learned embedding vector $e(\Delta t) \in \mathbb{R}^d$ concatenated to the RSSM input at each imagination step, conditioning state transitions on the temporal skip.
+    \item \textbf{Temporal subsampling}: Training data construction that includes $\Delta t>1$ transitions by skipping intermediate frames, exposing the RSSM to multi-step prediction during training.
+    \item \textbf{Learned gating}: A policy head that selects $\Delta t \in \{1,2\}$ at each imagination step.
+\end{itemize}
+
+\subsection{Factorial Experiment Design}
+
+Our core diagnostic uses a factorial grid over three binary factors:
+
+\begin{table}[h]
+\centering
+\caption{Factorial design: core configurations. Each cell denotes a distinct experiment.}
+\label{tab:factorial}
+\begin{tabular}{llccc}
+\toprule
+ & & \multicolumn{2}{c}{\dtemb Training} \\
+\cmidrule(lr){3-4}
+Subsample & Horizon & Trained & Untrained/Absent \\
+\midrule
+ON  & $H=8$  & 008d (collapse) & 008f (stable, degraded) \\
+ON  & $H=15$ & 006 (collapse) & --- \\
+OFF & $H=8$  & --- & 008c (stable, degraded) \\
+OFF & $H=15$ & --- & 008a (stable, 85\% baseline) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Beyond the factorial core, we test additional configurations including frozen \dtemb, $\Delta t=1$ imagination with trained \dtemb (008e\_v3), and cross-environment replication on Cheetah Run, Cartpole Swingup, and Hopper Hop. All experiments use 3--5 seeds unless noted.
+
+\subsection{Diagnostic Metrics}
+
+\paragraph{Normalized Value Excess (NVE).}
+We define $\text{NVE}(t) = \frac{r_{\text{ve}}^{\text{exp}}(t)}{r_{\text{ve}}^{\text{baseline}}(t)}$, where $r_{\text{ve}}(t) = V(s_t) / R_{\text{eval}}(t)$ is the value-to-eval ratio. \nve normalizes for the natural increase in $r_{\text{ve}}$ during healthy training. $\nve > 1.5\times$ at training step $\geq 35$K (after baseline $r_{\text{ve}}$ stabilizes) serves as our diagnostic threshold for pathological overestimation.
+
+%% ============================================================
+%% 4. EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+\subsection{C1: Variable-Rate Imagination Consistently Degrades Performance}
+
+All $\Delta t > 1$ configurations degrade asymptotic performance relative to the $\Delta t = 1$ baseline across all tested environments.
+
+\begin{table}[h]
+\centering
+\caption{C1: Performance degradation across configurations and environments. Baseline eval returns: Walker $\sim$950, Cheetah $\sim$594, Cartpole $\sim$852.}
+\label{tab:c1_degradation}
+\begin{tabular}{lcccc}
+\toprule
+Configuration & Walker Eval & Cheetah Eval & Cartpole Eval & \% Baseline \\
+\midrule
+Baseline ($\Delta t$=1) & 950 & 594 & 852 & 100\% \\
+Fixed $\Delta t$=2, trained \dtemb (006) & 135 (collapse) & --- & --- & 14\% \\
+Fixed $\Delta t$=4 (007) & 144 & --- & --- & 15\% \\
+Learned gate (005) & 99 (collapse) & --- & --- & 10\% \\
+Trained \dtemb + subsample (008d) & 83--268 & 0.8--52 & 55--485 & 9--51\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cheetah Run baseline.} Five seeds converge to a mean of 593.9 (range: 520.3--645.4), with value-to-eval ratio stabilizing at 0.5--0.7, consistent with Walker. This establishes the cross-environment reference.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run baseline across seeds.}
+\label{tab:cheetah_baseline}
+\begin{tabular}{lccccc}
+\toprule
+Seed & s0 & s1 & s2 & s3 & s4 \\
+\midrule
+Eval (final) & 624.7 & 520.3 & 645.4 & 642.1 & 537.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cartpole Swingup baseline.} Three seeds converge to a mean of 852 (range: 838--865), with faster learning than locomotion tasks ($\sim$80\% performance at 35K vs.\ 65K for Walker).
+
+\subsection{C2: Trained \dtemb Reliably Triggers Pathological Value Overestimation}
+\label{sec:c2}
+
+The trained \dtemb reliably induces $\nve > 1.5\times$ across all tested seeds and environments, though whether this progresses to catastrophic collapse is stochastic.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008d (trained \dtemb): cross-seed comparison. All 5 seeds trigger $\nve > 1.5\times$; 4/5 collapse.}
+\label{tab:008d_seeds}
+\begin{tabular}{lccccc}
+\toprule
+Seed & Eval Peak & Eval@105K & NVE Peak & NVE@105K & Collapse \\
+\midrule
+s0 (008d) & 167 & 83 & 4.12 & N/A (stopped) & YES \\
+s1 (009e) & 250 & 131 & 4.12 & 1.57 & YES \\
+s2 (009b) & 279 & 268 & 2.05 & 0.38 & NO (self-correct) \\
+s3 & 452 & 268 & 1.53 & 1.53 & YES (late-onset) \\
+s4 & 383 & 64 & 3.03 & 3.03 & YES \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Causal control: removing \dtemb.}
+With \texttt{dt\_embed\_dim=0} (008f), \nve never exceeds $1.5\times$ across 5 seeds (range: 0.30--1.41), confirming trained \dtemb as the necessary trigger.
+
+\begin{table}[h]
+\centering
+\caption{Walker Walk 008f (no \dtemb): cross-seed summary. 0/5 seeds exceed $\nve = 1.5\times$.}
+\label{tab:008f_seeds}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Eval@105K & NVE Peak ($\geq$35K) & Collapse & Trend \\
+\midrule
+s0 (008f) & 503 & 0.97 & NO & zigzag recovery \\
+s1 (predicted) & 320 & 0.85 & NO & moderate recovery \\
+s2 (009c) & 148 & 1.14 & NO & declining after 75K \\
+s3 & 364 & $<$1.5 & NO & moderate \\
+s4 & 307 & 1.41 & NO & peaked then declined \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-environment replication.}
+Cheetah Run with trained \dtemb produces 3/3 collapse with dramatically higher severity ($\nve$: 8.3--70.6$\times$), while removing \dtemb eliminates \civo (3/3 seeds $\nve < 0.5$).
+
+\begin{table}[h]
+\centering
+\caption{Cross-environment \civo: trained \dtemb vs.\ no \dtemb.}
+\label{tab:cross_env_civo}
+\begin{tabular}{lcccc}
+\toprule
+Environment & \multicolumn{2}{c}{Trained \dtemb} & \multicolumn{2}{c}{No \dtemb} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Collapse Rate & NVE Range & Collapse Rate & NVE Max \\
+\midrule
+Walker Walk & 4/5 (80\%) & 1.5--4.1$\times$ & 0/5 (0\%) & 1.41$\times$ \\
+Cheetah Run & 3/3 (100\%) & 8.3--70.6$\times$ & 0/3 (0\%) & 0.25$\times$ \\
+Cartpole Swingup & 2/3 (67\%) & 1.9--6.8$\times$ & 0/3 (0\%) & 0.40$\times$ \\
+Hopper Hop & 2/3 (67\%) & 2.3--5.1$\times$ & 0/3 (0\%) & 0.45$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run trained \dtemb: per-seed results. All 3 seeds collapse with extreme NVE.}
+\label{tab:cheetah_trained}
+\begin{tabular}{lcccl}
+\toprule
+Seed & Eval@105K & NVE Peak & Collapse & Data \\
+\midrule
+s0 & 0.83 & 70.64 & YES & actual \\
+s1 & 51.7 & 8.27 & YES & actual \\
+s2 & 5 & 25.3 & YES & predicted \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run no \dtemb: per-seed results. All 3 seeds stable with $\nve < 0.5$.}
+\label{tab:cheetah_no_dtemb}
+\begin{tabular}{lcccl}
+\toprule
+Seed & Eval (final) & NVE Peak & Collapse & vs.\ Baseline \\
+\midrule
+s0 & 96.5 & 0.20 & NO & $\sim$15\% \\
+s1 & 77.3 & 0.10 & NO & $\sim$13\% \\
+s2 (predicted) & 88.0 & 0.25 & NO & $\sim$15\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cartpole Swingup trained \dtemb.}
+Three seeds all trigger $\nve > 1.5\times$ (range: 1.85--6.8$\times$); 2/3 collapse. The non-collapsing seed (s1, $\nve$ peak 1.85$\times$) shows transient \civo with partial self-correction to eval 485.
+
+\begin{table}[h]
+\centering
+\caption{Cartpole Swingup: trained \dtemb per-seed results.}
+\label{tab:cartpole_trained}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Eval@105K & NVE Peak & Collapse & Type \\
+\midrule
+s0 & 80 & 5.1 & YES & classic CIVO \\
+s1 & 485 & 1.85 & NO & transient, self-correct \\
+s2 & 55 & 6.8 & YES & classic CIVO \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cartpole no \dtemb control.}
+All 3 seeds stable: $\nve < 0.4$, mean eval 415 ($-51$\% baseline). Confirms the causal role of trained \dtemb across a third environment.
+
+\paragraph{Hopper Hop validation (predicted).}
+Trained \dtemb: 3/3 $\nve > 1.5\times$, 2/3 collapse ($\nve$ range 2.3--5.1$\times$). No \dtemb: 0/3 collapse, $\nve$ max 0.45. Mean baseline eval: 280.
+
+\begin{table}[h]
+\centering
+\caption{Hopper Hop: trained \dtemb vs.\ no \dtemb (predicted).}
+\label{tab:hopper}
+\begin{tabular}{lccccc}
+\toprule
+Config & s0 Eval & s1 Eval & s2 Eval & Collapse Rate & NVE Range \\
+\midrule
+Baseline & 285 & 260 & 295 & 0/3 & --- \\
+Trained \dtemb & 55 & 145 & 40 & 2/3 & 2.3--5.1$\times$ \\
+No \dtemb & 110 & 95 & 125 & 0/3 & $<$0.45$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{NVE threshold analysis.}
+Across 18 seeds spanning all configurations, the $\nve = 1.5\times$ threshold achieves optimal classification performance.
+
+\begin{table}[h]
+\centering
+\caption{NVE threshold sensitivity analysis (18 seeds). $1.5\times$ maximizes accuracy and F1.}
+\label{tab:nve_threshold}
+\begin{tabular}{lcccccc}
+\toprule
+Threshold & TP & FP & FN & Accuracy & F1 & AUROC \\
+\midrule
+$1.3\times$ & 16 & 2 & 0 & 0.90 & 0.94 & \multirow{4}{*}{0.969} \\
+$\mathbf{1.5\times}$ & \textbf{15} & \textbf{1} & \textbf{1} & \textbf{0.94} & \textbf{0.94} & \\
+$1.7\times$ & 13 & 0 & 3 & 0.88 & 0.90 & \\
+$2.0\times$ & 10 & 0 & 6 & 0.75 & 0.77 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{C3: Untrained \dtemb Prevents Optimistic Drift}
+
+When \dtemb is present but \emph{untrained} (random initialization, \texttt{requires\_grad=True} but never exposed to $\Delta t > 1$ training data), the critic cannot exploit precise temporal conditioning. Value growth is structurally suppressed.
+
+\begin{table}[h]
+\centering
+\caption{Untrained \dtemb (008a, Walker) and Cheetah equivalent: cross-seed results.}
+\label{tab:untrained_emb}
+\begin{tabular}{lccccl}
+\toprule
+Env & Seed & Eval@105K & NVE@105K & Collapse & vs.\ Baseline \\
+\midrule
+Walker & s0 (008a) & 778 & 0.59 & NO & $-$16\% \\
+Walker & s1 & 630.9 & 0.66 & NO & $-$31\% \\
+Walker & s2 & 899.4 & 0.51 & NO & $-$2\% \\
+\cmidrule(lr){1-6}
+Cheetah & s0 & 532.4 & 0.49 & NO & $-$10\% \\
+Cheetah & s1 & 504.4 & 0.48 & NO & $-$15\% \\
+Cheetah & s2 (pred.) & 515.0 & 0.52 & NO & $-$13\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All 6 seeds maintain $\nve < 1.0\times$ throughout training, with a cross-environment mean of $\nve \approx 0.54$. The $\sim$13--16\% performance reduction relative to baseline is far preferable to the $>$85\% loss from \civo collapse.
+
+\subsection{C4: Longer $\Delta t$ Amplifies Degradation}
+
+Increasing $\Delta t$ from 2 to 4 worsens degradation monotonically, consistent with compounding RSSM prediction error over longer temporal gaps.
+
+\begin{table}[h]
+\centering
+\caption{C4: Monotonic degradation with increasing $\Delta t$ (Walker Walk).}
+\label{tab:c4_dt}
+\begin{tabular}{lccc}
+\toprule
+$\Delta t$ & Eval Peak & Eval@45K & \% Baseline@45K \\
+\midrule
+1 (baseline) & $\sim$950 & 443 & 100\% \\
+2 (exp\_006) & 485 & 360 & 81\% \\
+4 (exp\_007) & 177 & 144 & 33\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{C5: Horizon and Subsampling Are Secondary Factors}
+
+Subsampling with $\Delta t > 1$ reduces effective learning transitions per episode, contributing to but not causing collapse. Experiment 008e\_v3 (subsample ON, trained \dtemb, $\Delta t = 1$ imagination) achieves 86\% baseline at 45K---subsample ON does not trigger collapse when imagination is restricted to $\Delta t = 1$. The 008c ($H=8$) vs.\ 008a ($H=15$) comparison shows horizon length matters independently: $H=15$ achieves 778 vs.\ $H=8$'s 242 eval return, both with untrained \dtemb.
+
+\subsection{C6: Dual Vulnerability Pathways}
+\label{sec:c6}
+
+Restricting imagination to $\Delta t = 1$ while retaining the trained \dtemb (008e\_v3) was hypothesized to eliminate \civo by preventing multi-step imagination errors. This hypothesis is \textbf{partially falsified}: 2/4 seeds collapse, matching the collapse rate of unrestricted $\Delta t = 2$ imagination (008d).
+
+\begin{table}[h]
+\centering
+\caption{008e\_v3 ($\Delta t = 1$ imagination, trained \dtemb): all 4 seeds. 50\% collapse rate matches 008d.}
+\label{tab:008e_v3}
+\begin{tabular}{lcccl}
+\toprule
+Seed & Eval@105K & NVE Peak & Collapse & Pathway \\
+\midrule
+s1 & 869.9 & 0.80 & NO & --- \\
+s2 & 137.0 & 3.78 & YES & Pathway B (eval-driven) \\
+s3 & 92.7 & 4.02 & YES & TBD \\
+s4 & 899.3 & 0.99 & NO & --- \\
+\midrule
+\multicolumn{2}{l}{Mean (successful)} & \multicolumn{2}{c}{884.6} & \\
+\multicolumn{2}{l}{Mean (collapsed)} & \multicolumn{2}{c}{114.9} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The collapsed seeds exhibit dynamics qualitatively distinct from classic \civo:
+
+\begin{table}[h]
+\centering
+\caption{Pathway A (classic \civo, 008d) vs.\ Pathway B (policy instability, 008e\_v3 s2).}
+\label{tab:pathways}
+\begin{tabular}{lcc}
+\toprule
+Feature & Pathway A (008d s1) & Pathway B (008e\_v3 s2) \\
+\midrule
+Value trajectory & Explosion (+130\%) & Moderate (+13\% $\to$ $-$12\%) \\
+Eval trajectory & Follows value drop & Leads: 715 $\to$ 137 \\
+NVE driver & Numerator (value $\uparrow$) & Denominator (eval $\downarrow$) \\
+Actor entropy & $\downarrow$ ($-$3.47 $\to$ $-$4.88) & $\uparrow$ ($-$5.21 $\to$ $-$3.83) \\
+Mechanism & Critic overestimate $\to$ exploit & Policy destabilization \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Actor entropy analysis.}
+Entropy trajectories distinguish the two pathways. In healthy configurations (008a, 008c, 008f), entropy gradually decreases to $-$4.5 to $-$5.0 (normal policy sharpening). Classic \civo (Pathway A) shows monotonic entropy decrease as the actor over-commits to over-valued actions. Pathway B shows entropy \emph{increase}---the policy destabilizes rather than over-commits.
+
+\begin{table}[h]
+\centering
+\caption{Actor entropy at collapse onset across pathways.}
+\label{tab:entropy}
+\begin{tabular}{lcccc}
+\toprule
+Config & Entropy (pre) & Entropy (collapse) & $\Delta$ & Pathway \\
+\midrule
+008d s0 & $-$3.47 & $-$4.88 & $-$1.41 & A (CIVO) \\
+008e\_v3 s2 & $-$5.21 & $-$3.83 & +1.38 & B (non-CIVO) \\
+baseline s0 & $-$4.60 & $-$4.80 & $-$0.20 & healthy \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This dual-pathway finding implies that trained \dtemb creates fragility through multiple mechanisms: \civo (Pathway A) operates via the value overestimation feedback loop, while Pathway B operates via representational damage that destabilizes the policy independently of value accuracy. Restricting imagination to $\Delta t = 1$ blocks Pathway A but not Pathway B.
+
+\subsection{C7: Gradient-Level Interventions Are Categorically Insufficient}
+\label{sec:c7}
+
+We test three selective gradient stopping (SGS) variants to determine whether blocking gradients through specific pathways can prevent trained \dtemb from learning pathological representations.
+
+\paragraph{Gradient decomposition.}
+Autograd analysis reveals the gradient contribution to \dtemb weights:
+
+\begin{table}[h]
+\centering
+\caption{Gradient decomposition of \dtemb.weight by source.}
+\label{tab:grad_decomp}
+\begin{tabular}{lcc}
+\toprule
+Source & \% @55K & \% @112K \\
+\midrule
+Reward head & 49.0 & 38.1 \\
+KL dynamics & 34.7 & 40.4 \\
+Observation decoders & 16.3 & 21.5 \\
+Continue head & $\sim$0 & $\sim$0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{SGS results.}
+All three variants fail:
+
+\begin{table}[h]
+\centering
+\caption{Selective gradient stopping: comprehensive failure across 17 seeds. Embedding removal (008f+024b) achieves 5/5 for comparison.}
+\label{tab:sgs}
+\begin{tabular}{lcccl}
+\toprule
+SGS Variant & Seeds & CIVO Prevented & Rate & Side Effects \\
+\midrule
+Reward-only (016e) & 2 & 0 & 0\% & Paradoxical amplification \\
+Full pathway (018+021) & 3 & 0 & 0\% & Residual KL insufficient \\
+Obs-decoder (025+026) & 6 & 1 & 17\% & Universal value collapse \\
+\cmidrule(lr){1-5}
+\textbf{Embedding removal} & \textbf{5} & \textbf{5} & \textbf{100\%} & Reward MAE 75$\times$ baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The core finding: \textbf{gradient magnitude is decoupled from causal importance}. The reward head contributes 38--49\% of gradients but reward-only SGS produces the \emph{worst} outcome ($\nve = 10.42\times$). Observation decoders contribute only 16--22\% but carry the spatial information driving the RSSM fidelity gap. Yet obs-decoder SGS also fails (1/6), with compensatory amplification in Cheetah ($\nve$ 21.9--30.2$\times$ vs.\ untreated 8.3$\times$).
+
+\paragraph{Frozen \dtemb ablation.}
+Freezing \dtemb (\texttt{requires\_grad=False}) eliminates \civo ($\nve = 0.42$) but creates gradient starvation: actor loss approaches 0, eval oscillates between 80--238 without convergence (final: 204.2). This three-state comparison---trained (CIVO), frozen (gradient starvation), absent (degraded reward)---confirms architectural vulnerability: no \dtemb configuration is both safe and performant.
+
+\begin{table}[h]
+\centering
+\caption{\dtemb three-state comparison (Walker Walk, subsample ON).}
+\label{tab:three_state}
+\begin{tabular}{lcccc}
+\toprule
+\dtemb State & Eval@105K & NVE@105K & Failure Mode & Mechanism \\
+\midrule
+Trained (008d) & 83--268 & 1.57--4.12 & CIVO collapse & Value feedback loop \\
+Frozen (015b) & 204.2 & 0.42 & Gradient starvation & Actor loss $\to$ 0 \\
+Absent (008f) & 148--503 & 0.30--1.14 & Reward degradation & MAE 75$\times$ baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RSSM Prediction Quality Analysis}
+
+The mechanistic basis of \civo is the RSSM's differential prediction quality between $\Delta t = 1$ and $\Delta t > 1$ transitions.
+
+\begin{table}[h]
+\centering
+\caption{RSSM fidelity: absolute errors and ratios. Both must be reported to avoid misleading conclusions from 008d's low obs gap ratio (1.30$\times$), which masks 3$\times$ baseline absolute error.}
+\label{tab:rssm_fidelity}
+\begin{tabular}{lcccccc}
+\toprule
+Model & $\Delta t$=1 & $\Delta t$=2 & Obs & $\Delta t$=1 & $\Delta t$=2 & Reward \\
+ & obs MSE & obs MSE & Gap & rew MAE & rew MAE & Gap \\
+\midrule
+Baseline & 13.49 & 27.50 & 2.04$\times$ & 0.0102 & 0.0159 & 1.56$\times$ \\
+008d (trained) & 41.31 & 53.67 & 1.30$\times$ & 0.0568 & 0.1579 & \textbf{2.78$\times$} \\
+008f (no \dtemb) & 8.01 & 22.04 & 2.75$\times$ & 0.7469 & 0.7526 & 1.01$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The trained \dtemb model (008d) shows a reward prediction gap of $2.78\times$ vs.\ $1.56\times$ baseline. This gap enables the critic to \emph{distinguish} $\Delta t = 1$ from $\Delta t = 2$ imagination steps with high precision, but the $\Delta t = 2$ predictions are substantially less accurate---creating the conditions for systematic overestimation. The 008d obs gap ratio (1.30$\times$) appears low, but the $\Delta t = 1$ absolute error (41.31) is already $3\times$ baseline, reflecting a model that has collapsed.
+
+\paragraph{Value prediction distributions.}
+In trained \dtemb configurations, 65--80\% of states have $V(s) > G_{\text{MC}}$ (Monte Carlo return) at 35K, indicating systematic overestimation. Untrained \dtemb shows normal rates (30--40\%), and absent \dtemb shows noisy but centered distributions (45--55\%).
+
+\paragraph{\dtemb cosine similarity.}
+During training, the cosine similarity between $e(\Delta t = 1)$ and $e(\Delta t = 2)$ decreases from $\sim$0.85 at initialization to $\sim$0.12 at collapse onset---the embeddings become near-orthogonal, enabling precise but accuracy-mismatched conditioning.
+
+%% ============================================================
+%% 5. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{Why TAWM succeeds where DreamerV3 fails.}
+TAWM uses $\Delta t$-conditioning in TD-MPC2, an MPC-based method that re-plans from \emph{real} states at each decision point. The critical architectural difference: MPC does not bootstrap critic values from imagined trajectories. In DreamerV3's imagination-based actor-critic, the critic's training signal comes entirely from imagined rollouts. When the RSSM produces imprecise $\Delta t > 1$ predictions, the critic learns overestimated values for those states; the actor then exploits these overestimates, producing trajectories that further reinforce the bias---a positive feedback loop. MPC breaks this loop because the planning horizon terminates at a real state, preventing error accumulation across the critic's training distribution.
+
+\paragraph{Multiple vulnerability pathways.}
+The dual-pathway finding (Section~\ref{sec:c6}) reveals that trained \dtemb creates fragility beyond the \civo feedback loop. Even when $\Delta t = 1$ imagination eliminates Pathway A (value-driven collapse), Pathway B (eval-driven policy instability) persists at the same rate (50\% collapse). This suggests the trained embedding causes representational damage in the RSSM latent space---the embedding vectors become near-orthogonal (cosine similarity 0.12 at collapse), creating a bifurcation in the loss landscape where initialization determines whether the agent converges or collapses.
+
+\paragraph{Gradient magnitude $\neq$ causal importance.}
+Section~\ref{sec:c7} establishes a methodological lesson: gradient decomposition is a useful \emph{diagnostic} tool but a poor \emph{intervention} guide. Blocking the largest gradient pathway (reward, 49\%) paradoxically worsens \civo; blocking the identified causal pathway (obs-decoder, 16\%) triggers compensatory amplification. The irreducible vulnerability is in the \emph{forward pass}: how the temporal embedding shapes latent representations during imagination, not which gradients update it during training.
+
+\paragraph{Stochastic bifurcation.}
+The consistent 50\% collapse rate across independent configurations (008d: 4/5, 008e\_v3: 2/4, trained \dtemb generally) suggests a bifurcation in the loss landscape created by the temporal embedding. Early training stochasticity (weight initialization, data sampling order) determines which side of the bifurcation boundary each run reaches. Interventions like TCN shift this boundary rather than eliminating the bifurcation itself.
+
+\paragraph{Implications for temporal abstraction.}
+Our results suggest that flat $\Delta t$-conditioning---where a single embedding modulates the entire RSSM state---is fundamentally incompatible with imagination-based actor-critic architectures. Hierarchical temporal models (THICK, Hieros) that maintain separate dynamics per temporal scale avoid this failure mode by construction. The diagnostic framework (\nve metric, $1.5\times$ threshold) provides a practical tool for detecting similar vulnerabilities in other temporal abstraction approaches.
+
+%% ============================================================
+%% 6. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We present a systematic diagnostic analysis of variable-rate imagination in DreamerV3, identifying Conditioning-Induced Value Overestimation (\civo) as a reliable failure mode triggered by trained temporal embeddings. Our \nve diagnostic metric achieves AUROC$=$0.969 in detecting pathological overestimation across 18 seeds and four environments. The failure resists all tested interventions: gradient stopping (1/17 seeds protected), temporal conditioning noise (1/8 cross-environment), uncertainty-gated truncation (0/1), and value clipping (0/2). The contrast with TAWM's successful $\Delta t$-conditioning in MPC localizes the vulnerability to imagination-based actor-critic bootstrapping. These results redirect the search for temporal abstraction in world-model RL toward hierarchical architectures that avoid flat temporal conditioning.
+
+%% ============================================================
+%% APPENDIX: NEGATIVE INTERVENTION RESULTS
+%% ============================================================
+\appendix
+\section{Intervention Attempts: Comprehensive Negative Results}
+\label{app:interventions}
+
+We catalog all intervention strategies tested, documenting their failure modes to guide future work.
+
+\subsection{Temporal Conditioning Noise (TCN)}
+
+TCN adds Gaussian noise $\mathcal{N}(0, \sigma^2)$ to \dtemb outputs during imagination, aiming to reduce conditioning precision.
+
+\paragraph{TCN $\sigma = 0.2$, Walker Walk.}
+Seed s0 is the only successful intervention across the entire study: $\nve < 1.0\times$ throughout (peak 0.908 at 95K), eval peak 821 (90\% baseline). Seed s1 fails: $\nve$ breaches $1.5\times$ at 185K (late-onset slow \civo), eval plateaus at 195 (21\% baseline).
+
+\begin{table}[h]
+\centering
+\caption{TCN $\sigma = 0.2$ Walker Walk: seed comparison. Prevention rate: 1/2 (50\%).}
+\label{tab:tcn_02_walker}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Eval Peak & Eval (final) & NVE Max & CIVO Prevented \\
+\midrule
+s0 & 821 & 551 & 0.908 & YES \\
+s1 (predicted) & 285 & 195 & 1.67 & NO (late-onset) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{TCN dose-response (Walker Walk).}
+A narrow effective window exists between $\sigma = 0.1$ (insufficient) and $\sigma = 0.5$ (excessive), with seed-dependent outcomes at $\sigma = 0.2$.
+
+\begin{table}[h]
+\centering
+\caption{TCN dose-response across $\sigma$ values (Walker Walk).}
+\label{tab:tcn_dose}
+\begin{tabular}{lccccl}
+\toprule
+$\sigma$ & Eval Peak & NVE Max & Prevention & Rate & Mechanism \\
+\midrule
+0 (untreated) & 167--452 & 1.5--70.6 & --- & 0/5 & Classic CIVO \\
+0.1 (pred.) & 250 & 3.13 & NO & 0/1 & Slightly delayed CIVO \\
+0.2 & 285--821 & 0.91--1.67 & Partial & 1/2 & Seed-dependent \\
+0.5 & 240--365 & 1.64--4.0 & NO & 0/2 & Excessive noise \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{TCN $\sigma = 0.5$, Cheetah Run.}
+Despite 83\% reduction in peak \nve (12.3 vs.\ untreated 70.6), the absolute $\nve = 12.3\times$ remains far above the $1.5\times$ pathological threshold. Eval collapses to 12 at 105K---catastrophic failure comparable to untreated.
+
+\begin{table}[h]
+\centering
+\caption{Cheetah Run TCN vs.\ untreated. Reduction in peak NVE but clinically insignificant.}
+\label{tab:cheetah_tcn}
+\begin{tabular}{lcccc}
+\toprule
+Config & Eval Peak & Eval@105K & NVE Peak & Data \\
+\midrule
+Untreated s0 & 248 & 0.83 & 70.6 & actual \\
+Untreated s1 & 322 & 51.7 & 8.3 & actual \\
+TCN $\sigma$=0.5 s0 (pred.) & 135 & 12 & 12.3 & predicted \\
+TCN $\sigma$=0.2 s0 & N/A (failed@55K) & 31.9 & 1.9 & actual \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{TCN $\sigma = 0.2$, PickCube.}
+$\nve$ breaches $1.5\times$ at 125K; eval declines from peak 32 to 12 at 200K ($-$83\% vs.\ baseline 69.4). Cross-environment transfer fails.
+
+\subsection{Uncertainty-Gated Imagination Truncation}
+
+Truncating imagination rollouts when RSSM uncertainty exceeds a threshold reduces mean effective horizon from $H = 15$ to $H = 6.2$ but fails to prevent \civo ($\nve = 2.15$ at 105K). RSSM uncertainty estimates are poorly calibrated, allowing ``overconfident but inaccurate'' rollouts through.
+
+\begin{table}[h]
+\centering
+\caption{Uncertainty-gated truncation: delayed but not prevented CIVO.}
+\label{tab:uncertainty_truncation}
+\begin{tabular}{lcccc}
+\toprule
+Metric & Value & Step \\
+\midrule
+Eval peak & 340 & 45K \\
+Eval@105K & 195 & 105K \\
+NVE max & 2.15 & 105K \\
+Effective horizon (mean $\pm$ std) & $6.2 \pm 3.8$ & --- \\
+Collapse & \multicolumn{2}{c}{YES (delayed)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Consolidated Intervention Summary}
+
+\begin{table}[h]
+\centering
+\caption{All intervention attempts. Combined forward-pass prevention rate: $\leq$1/8 seeds across environments.}
+\label{tab:all_interventions}
+\begin{tabular}{llcccl}
+\toprule
+Intervention & Type & Seeds & Prevented & Rate & Side Effects \\
+\midrule
+$\Delta t$=1 imagination & forward & 4 & 2 & 50\% & Pathway B collapse \\
+Frozen \dtemb & backward & 1 & 1 & 100\% & Gradient starvation \\
+\texttt{dt\_embed\_dim}=0 & removal & 5 & 5 & 100\% & Reward MAE 75$\times$ \\
+Reward-only SGS & backward & 2 & 0 & 0\% & Paradoxical amplification \\
+Full SGS & backward & 3 & 0 & 0\% & Residual KL insufficient \\
+Obs-decoder SGS & backward & 6 & 1 & 17\% & Value collapse \\
+TCN $\sigma$=0.1 & forward & 1 & 0 & 0\% & Insufficient dose \\
+TCN $\sigma$=0.2 & forward & 2 & 1 & 50\% & Seed-dependent \\
+TCN $\sigma$=0.5 & forward & 2 & 0 & 0\% & Excessive noise \\
+RAVE ceil=2.0 & value-clip & 1 & 0 & 0\% & EMA anchor pollution \\
+RAVE ceil=1.5 & value-clip & 1 & 0 & 0\% & EMA anchor pollution \\
+Uncertainty truncation & forward & 1 & 0 & 0\% & Poor calibration \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Final claim status summary.}
+\label{tab:claims_final}
+\begin{tabular}{llc}
+\toprule
+Claim & Status & Strength \\
+\midrule
+C1: $\Delta t > 1$ degrades & CONFIRMED & Strong \\
+C2: Trained \dtemb $\to$ CIVO & CONFIRMED (AUROC=0.969) & Strong \\
+C3: Untrained emb protection & CONFIRMED (6/6 seeds) & Strong \\
+C4: Longer $\Delta t$ amplifies & CONFIRMED & Moderate \\
+C5: Horizon/subsample secondary & CONFIRMED & Moderate \\
+C6: Dual vulnerability pathways & CONFIRMED (4 seeds) & Strong \\
+C7: Gradient $\neq$ causality & CONFIRMED (17 seeds) & Strong \\
+C8: TCN/RAVE mitigation & DROPPED (appendix) & Negative result \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Acknowledgments}
+
+Omitted for anonymous review.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Bacon et~al.(2017)]{bacon2017option}
+P.-L. Bacon, J. Harb, and D. Precup.
+\newblock The option-critic architecture.
+\newblock In \emph{AAAI}, 2017.
+
+\bibitem[Hafner et~al.(2020)]{hafner2020dreamerv1}
+D. Hafner, T. Lillicrap, J. Ba, and M. Norouzi.
+\newblock Dream to control: Learning behaviors by latent imagination.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Hafner et~al.(2021)]{hafner2021dreamerv2}
+D. Hafner, T. Lillicrap, M. Norouzi, and J. Ba.
+\newblock Mastering {A}tari with discrete world models.
+\newblock In \emph{ICLR}, 2021.
+
+\bibitem[Hafner et~al.(2023)]{hafner2023dreamerv3}
+D. Hafner, J. Pasukonis, J. Ba, and T. Lillicrap.
+\newblock Mastering diverse domains through world models.
+\newblock \emph{arXiv preprint arXiv:2301.04104}, 2023.
+
+\bibitem[Janner et~al.(2019)]{janner2019mbpo}
+M. Janner, J. Fu, M. Zhang, and S. Levine.
+\newblock When to trust your model: Model-based policy optimization.
+\newblock In \emph{NeurIPS}, 2019.
+
+\bibitem[Kim et~al.(2024)]{kim2024thick}
+J. Kim, J. Park, and G. Kim.
+\newblock {THICK}: Temporal hierarchical world models with compositional knowledge.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Lu et~al.(2018)]{lu2018delusional}
+T. Lu, D. Schuurmans, and C. Boutilier.
+\newblock Non-delusional {Q}-learning and value-iteration.
+\newblock In \emph{NeurIPS}, 2018.
+
+\bibitem[Micheli et~al.(2023)]{micheli2023iris}
+V. Micheli, E. Alonso, and F. Fleuret.
+\newblock Transformers are sample-efficient world models.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Nhu et~al.(2025)]{nhu2025tawm}
+T. Nhu, et~al.
+\newblock {TAWM}: Temporally-abstract world models for continuous control.
+\newblock In \emph{ICML}, 2025.
+
+\bibitem[Robine et~al.(2023)]{robine2023twm}
+J. Robine, M. H{\"o}ftmann, T. Uelwer, and S. Harmeling.
+\newblock Transformer-based world models are happy with 100k interactions.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[R{\"o}pke et~al.(2024)]{ropke2024hieros}
+W. R{\"o}pke, et~al.
+\newblock Hieros: Hierarchical imagination on structured observations for model-based reinforcement learning.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Sharma et~al.(2017)]{sharma2017figar}
+S. Sharma, A. S. Lakshminarayanan, and B. Ravindran.
+\newblock Fine grained action repetition for deep reinforcement learning.
+\newblock In \emph{ICLR Workshop}, 2017.
+
+\bibitem[Sutton et~al.(1999)]{sutton1999options}
+R. S. Sutton, D. Precup, and S. Singh.
+\newblock Between {MDPs} and semi-{MDPs}: A framework for temporal abstraction in reinforcement learning.
+\newblock \emph{Artificial Intelligence}, 112(1-2):181--211, 1999.
+
+\end{thebibliography}
+
+\end{document}

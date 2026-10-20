@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_082_cheetah_no_dt_emb_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T13:12:29.199Z",
+    "updated_at": "2026-05-25T13:12:49.277Z",
+    "hypothesis": "Cheetah Run causal control: dt_embed_dim=0 + subsample ON + dt=2 + H=8, seed=0。移除 dt_embedding 后预期无 CIVO，证明 trained dt_emb 是 Cheetah CIVO 的必要条件。与 exp_078 (trained dt_emb, CIVO trigger) 构成因果对。plan_022。",
+    "parent": "exp_010b_cheetah_civo_trigger"
+  },
+  "timestamp": "2026-05-25T13:12:49.645688+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1244 @@
+# cron hook exp 016 sgs walker s1
+
+**Why Temporal Abstraction Can Fail in Imagination-Based RL: A Diagnostic Analysis of Variable-Rate DreamerV3** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/cron_hook_exp_016_sgs_walker_s1.jsonl`
+- **Structured JSON:** [`771d968b679fa38454a1.json`](../../sessions/77/771d968b679fa38454a1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T05:08:31.732207+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #16。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**仅 cuda:0 和 cuda:1**（bjb1-45299），物理 RTX PRO 6000×2
+- 训练命令必须带 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl`，否则 dm_control 渲染崩溃
+- `MUJOCO_EGL_DEVICE_ID` 必须与物理 GPU 对应（cuda:0→DEVICE_ID=0, cuda:1→DEVICE_ID=1）
+- submit_training_job 命令用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd ... && python ..."`
+- 016e reward-only SGS 结论已修正为 **architectural no-op**（reward gradient=0）——论文不能 claim SGS "延迟了 collapse"
+- 008a 的 "untrained dt_emb" 实际是 "trained but unexposed to dt>1 data"——术语不能混淆
+
+### 2. 🖥️ 基础设施快照
+- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 代码 commit：`dccb867841046bf6dc7dcc654ea71f99e1181828`
+- Logdir：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`
+- 日志：`~/runs/event-gated-adaptive-horizon/&lt;exp_id>.log`
+- 活跃进程：
+  - exp_009d_baseline_walker_s0: PID 149708, tmux session, cuda:0, cron 监控中
+  - exp_010a_cheetah_baseline_s1: PID 536890, tmux session, cuda:1, cron 监控中
+- ManiSkill3 已集成到代码中（019a/b 可直接用）
+
+### 3. 📊 当前状态
+两个 baseline 实验在跑，无活跃 Worker：
+- **exp_009d** (Walker baseline s0): cuda:0, 344K/500K (68.8%), peak 949.46@328K, ~6h 剩余（预计 5/16 午完成）
+- **exp_010a** (Cheetah baseline s1): cuda:1, 165K/512K (32.2%), peak 592.59@155K, ~8.8h 剩余（预计 5/16 午后完成）
+
+等待中：
+- 009d 完成 → cron 回调触发 → 提交 018 Full-SGS (cuda:0)
+- 010a 完成 → cron 回调触发 → 提交 019a PickCube baseline (cuda:1)
+- 无待处理的 Director 决策/Worker 回调
+
+### 4. 📋 待办（条件触发式）
+- 009d cron 回调到达 → spawn worker 提交 **exp_018_full_sgs_walker_s1**（cuda:0, ~14h）：detach ALL non-KL head gradients from dt_emb + subsample ON + H=8
+- 010a cron 回调到达 → spawn worker 提交 **exp_019a_pickcube_baseline**（cuda:1, ~1-2h）：dt=1, dim=0, subsample OFF
+- 019a 完成 → 提交 **exp_019b_pickcube_civo_trigger**（cuda:1, ~1-2h）：trained dt_emb + subsample ON + dt=2 + H=8
+- 019b CIVO 确认 → 提交 019c-f（StackCube, PegInsertion 扩展）
+- 018 完成 → 关键分岔：仍崩 = CIVO is representation-level (KL training sufficient)；不崩 = decoder heads 是梯度根因
+- 论文侧：limitations.md CI 错配修复、Framing B re-audit 完成、016e section 更新为 no-op 解读（均可并行派 Writer Worker）
+
+### 5. 🎯 战略上下文
+- **目标**：CoRL 2026，DDL 2026-05-29（剩 13 天）
+- **核心因果链 (D049)**：Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件
+- **梯度分解 (D061)**：dt_emb 梯度 93% obs decoders / 7% KL / 0% reward → reward SGS 是 no-op
+- **Framing B (D059)**：诊断论文 + SGS 作为 informative negative result
+- **018 是论文的最后一块拼图**：如果 Full-SGS（移除 93% 梯度）仍然崩溃 → 证明 CIVO 是 representation-level 问题（仅 KL dynamics training 即足以导致）；如果不崩 → decoder gradient 是根因，且论文可 claim Full-SGS 作为 mitigation
+- **ManiSkill3 是 CoRL relevance 加分项**：manipulation 环境验证 CIVO 跨 domain 成立，非 DMC-specific
+- **易错点**：(1) 016e 和 008d 的 timing 差异曾被误归因于 SGS 效果，实际是 cross-seed variation——不要重蹈覆辙；(2) NVE>1.5x 有 1 FP (008e_v3_s2 是 Imagination-Reality Divergence 非 CIVO)；(3) 成功/负向比 7:13——多数实验是 negative，但 Framing B 将 negatives 作为诊断证据使用
+- **GPU 预算充裕**：13天 × 2卡 × 24h = 624 GPU·h，当前排期约用 50-100h
+
+## 项目硬约束 (memory.md 节选)
+
+## 2026-05-15: 服务器代码目录确认
+
+源码在 `/root/autodl-tmp/event-gated-adaptive-horizon/`，不在 `/root/runs/event-gated-adaptive-horizon/`（后者只有日志）。
+
+## 2026-05-14: GPU 隔离确认
+
+CUDA_VISIBLE_DEVICES 隔离正确。`--device cuda:0` + `CUDA_VISIBLE_DEVICES=1` = 物理 GPU 1。
+
+## 可查的历史
+前 77 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T05:08:43.361600+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T05:08:43.362162+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T05:08:46.679994+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "event-gated-adaptive-horizon",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "event-gated-adaptive-horizon",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T05:08:46.680470+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:08:47.133642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_010a_cheetah_baseline_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:17:27.101Z\", \"updated_at\": \"2026-05-16T02:57:00.498Z\", \"hypothesis\": \"Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\", \"notes\": \"Director 排期: cuda:0 上排在 009d 之后。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"submitted_at\": \"2026-05-15T22:48:07.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-45299\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:48:05.456Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 512000 --seed 1 --compile False --device cuda:0\\\"\", \"code_commit\": \"dccb867841046bf6dc7dcc654ea71f99e1181828\"}, \"pid\": \"536890\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_010a_cheetah_baseline_s1.log\", \"metrics\": {\"step\": 165000, \"eval_return\": 582.95, \"eval_return_at_165K\": 582.95, \"eval_return_peak\"
+…[truncated 2993 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T05:08:47.184479+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T05:08:47.285403+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T05:08:50.506978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"exp_009d_baseline_walker_s0\", \"success\": true, \"actions\": [\"Job still running (pid=149708)\"]}, {\"exp_id\": \"exp_010a_cheetah_baseline_s1\", \"success\": true, \"actions\": [\"Job still running (pid=536890)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 3826
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T05:08:50.507537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_010a_cheetah_baseline_s1 | Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020） | — | — | — |\\n| exp_009d_baseline_walker_s0 | Walker Walk baseline seed 0 — 第三独立 baseline seed，建立 v/e 校准参考（plan_010） | — | — | — |\\n\\n## 待处理\\n- exp_019b_pickcube_civo_trigger: PickCube-v1 CIVO trigger — trained dt_emb, subsample ON, dt=2 imagination, H=8. 预期触发 CIVO（trained dt_emb → NVE>1.5x → collapse），验证 CIVO 在 manipulation 环境是否成立（排队等待 GPU）\\n- exp_019a_pickcube_baseline: PickCube-v1 baseline — dt=1, untrained dt_emb (dim=0), subsample OFF. 建立 manipulation 环境稳定基线，验证 CIVO 诊断在 manipulation 中的适用性（排队等待 GPU）\\n- exp_018_full_sgs_walker_s1: Walker Walk Full-SGS (detach ALL non-KL head gradients from dt_emb) + subsample ON + H=8 seed 1 — 诊断实验：016e 证明 reward SGS 是 no-op（reward gradient=0），Full-SGS 移除 93% dt_emb 梯度（decoder+reward+cont→0，仅保留 KL dynamics）。如果仍崩 → CIVO 确认是 representation-level（KL training 即足够）；如果不崩 → decoder heads 是 CIVO 梯度根因（排队等待 GPU）\\n\\n## 近期结论\\n- **exp_017_subsample_off_trained_dt_emb** (killed): Walker Walk trained dt_emb + subsample OFF + dt=2 imagination + H=15 seed 1 — 2×2 消融矩阵: 隔离 subsample 训练数据的因果效应。与 008a (untrained dt_emb, subsample OFF) 唯一差异是 dt_emb trained vs untrained。如果 017 崩而 008a 不崩 → 确认 trained dt_emb 是 CIVO 根因，即使训练数据全为 dt=1（plan_017, C2） ← 基于 exp_008a_no_subsample_dt2\\n- **016e** (killed): —\\n  [exp_016e_nve_diagnosis](/api/workspace-files/projects/event-gated-adaptive-horizon/artifacts/016e/report/exp_016e_nve_diagnosis.md)\\n- **exp_016e_sgs_walker_s1** (negative): Walker Walk SGS (Stop-Gradient on dt_emb in reward head) + subsample ON + H=8 seed 1 — 核心方法实验：reward_dt_emb_detach 阻断 CIVO reward→dt_emb 梯度通路（pl
+…[truncated 1067 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3323
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T05:08:50.558573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\", \"content\": \"# event-gated-adaptive-horizon — Research Dashboard\\n\\n> 最后更新: 2026-05-16 03:24 UTC | 更新原因: ManiSkill3 集成就绪，更新排期含 019a-f manipulation 实验\\n\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 13 天)\\n\\n## 核心方向\\n**Diagnostic Analysis of Temporal Abstraction in World-Model RL**\\n核心因果链（D049）：**Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件**。Frozen dt_emb 仅产生 sub-threshold transient overestimation 并自修正。dim=0 完全阻断。\\n梯度分解（D061）：dt_emb 梯度 **93% 来自 observation decoders，7% KL，0% reward**。016e reward-only SGS 是架构级 no-op。Full-SGS (018) 才是真正的 gradient-level intervention。\\n论文定位：**Framing B — 诊断论文 + SGS 作为 informative negative result**。目标 CoRL 2026。\\n\\n## 阶段\\n**Research + Writing** — 2×2 消融矩阵已闭合 (D049)。Framing B 批准 (D059)。NVE 分析定稿 (D054)。Cheetah 跨环境验证启动。**ManiSkill3 manipulation 环境集成已就绪，等 GPU 启动。**\\n\\n## 当前实验\\n\\n| 实验 | GPU | 状态 | 预计完成 |\\n|------|-----|------|----------|\\n| **009d (Walker baseline s0)** | cuda:0 | RUNNING 348K/500K | ~6h (5/16 午) |\\n| **010a (Cheetah baseline s1)** | cuda:1 | RUNNING 172K/512K | ~9h (5/16 午后) |\\n\\n## 排队实验\\n\\n| 实验 | GPU | 触发条件 | 用途 |\\n|------|-----|----------|------|\\n| **018 Full-SGS** | cuda:0 | 009d 完成后 | 移除 93% dt_emb 梯度，gradient vs representation 定论 (~14h) |\\n| **019a PickCube baseline** | cuda:1 | 010a 完成后 | ManiSkill3 dt=1 稳定基线 (~1-2h) |\\n| **019b PickCube CIVO trigger** | cuda:1 | 019a 完成后 | trained dt_emb + subsample ON → 验证 manipulation 环境 CIVO (~1-2h) |\\n| **019c-f StackCube/PegInsertion** | cuda:1 | 019a/b CIVO 确认后 | 扩展到 3 tasks (~4-8h) |\\n\\n## 2×2 消融矩阵（D049）\\n\\n| | Subsample ON | Subsample OFF |\\n|---|---|---|\\n| dt_emb trained | 008d → **CIVO 4.12x@55K, collapse** ✓ | 008a → safe, 85% baseline ✓ |\\n| dt_emb frozen | 015b → peak 1.45x, self-corrected, gradient starvation | N/A |\\n| dt_emb removed (dim=0) | 008f → **no CIVO, ≤1.02x** ✓ | N/
+…[truncated 2965 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3273
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T05:09:13.088971+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T05:09:13.542034+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_56231a2e.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T05:09:13.894234+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T05:09:13.997214+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\", \"content\": \"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\n\\n## Title Candidates\\n\\n1. **\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\"**\\n2. ~~**\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\"**~~ (deprecated — \\\"delusional critic\\\" conflicts with Lu et al. 2018)\\n3. **\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\"** ← preferred after D037 terminology decision\\n4. **\\\"Conditioning-Induced Value Overestimation in Variable-Rate World-Model Imagination\\\"**\\n\\n**⚠️ D037 术语决定**: \\\"delusional critic\\\" → **\\\"conditioning-induced value overestimation\\\"** (简称 CIVO)。Lu et al. 2018 的 delusional bias 指 policy-class constraints 导致不可实现的 Q 值，本文机制是 model imprecision + learned conditioning amplification，概念不同。Dream 模拟三档审稿一致指出术语误导。全文替换：\\\"delusional critic\\\" → \\\"conditioning-induced value overestimation\\\"，可 cite Lu et al. 2018 as analogy but must explicitly differentiate。\\n\\n**⚠️ D037 TAWM 对比（关键 novelty 升级）**: TAWM (Nhu et al., ICML 2025) 在 TD-MPC2 (MPC setting) 中成功使用 dt-conditioning。本文发现 dt-conditioning 在 imagination-based actor-critic 中失败 → **novelty 从 \\\"known failure class 的 specific instance\\\" 升级为 \\\"dt-conditioning succeeds in MPC but fails in imagination — here's the architecture-specific vulnerability\\\"**。TAWM 是强化 novelty 的最关键参考文献。\\n\\n## Venue\\n\\n**CoRL 2026** — Deadline: 2026-05-29\\n\\n## Narrative Positioning\\n\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\n\\nThe contribution is a **strongly supported causal chain** from mechanism to failure 
+…[truncated 10609 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T05:09:33.245783+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T05:09:33.246359+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T05:09:33.598193+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T05:09:33.598928+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_56231a2e.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T05:09:49.961061+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T05:09:50.112520+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/narrative_frameworks_95c2c8.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/narrative_frameworks.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section_6c6fde.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_section.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/experimental_setup_c0856a.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/experimental_setup.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/reference_audit_report.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/method.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/method_90ca4b.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_draft_0456d1.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/related_work_draft.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/figures/paper/README.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/paper/sgs_gradient_analysis.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/sgs_informative_negative.md
+/home/ubuntu/.ag
+…[truncated 567 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T05:09:50.113110+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T05:09:50.163680+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T05:09:55.839965+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/limitations.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/limitations.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T05:09:55.840552+00:00_
+
+1	% Limitations — Draft v1
+2	% Target: CoRL 2026
+3	% Status: Draft, pending Director review
+4	
+5	\section{Limitations}
+6	\label{sec:limitations}
+7	
+8	We scope our claims to the specific architecture and experimental conditions studied. Several limitations bear on the generalizability and completeness of our findings.
+9	
+10	\paragraph{Single primary environment.}
+11	Our diagnostic analysis centers on Walker Walk from the DeepMind Control Suite. While this task provides a well-calibrated testbed for detecting value overestimation---dense rewards, clearly distinguishable performance levels, and sufficient complexity to expose instabilities---conclusions drawn from a single environment may not capture failure modes specific to other observation structures, reward landscapes, or action dimensionalities. A Cheetah Run baseline is in progress at the time of submission but results are not yet available.
+12	
+13	\paragraph{Limited seed count.}
+14	Each key experimental condition is evaluated with two seeds. The $\text{nve}{>}1.5\text{x}$ diagnostic threshold achieves 4/4 threshold separation between trained and untrained $\Delta t$-embedding conditions; across all 8 experimental conditions, overall classification accuracy is 7/8 (AUROC\,=\,0.933), with the single false positive (008e\_v3\_s2) collapsing via a non-CIVO pathway. Stochastic collapse is inherently difficult to characterize with few seeds: observed collapse rates of 1/2 yield wide binomial confidence intervals. For instance, the true collapse probability for trained $\Delta t$-embedding with $\Delta t{=}1$ imagination could plausibly range from 5\% to 95\% given our sample size. We report all seeds transparently rather than selecting favorable outcomes.
+15	
+16	\paragraph{NVE threshold calibrated and evaluated on the same data.}
+17	The $\text{nve}{>}1.5\text{x}$ diagnostic threshold was identified from the same experiments used to evaluate its separating power. No held-out validation set was used. The threshold achi
+…[truncated 2730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T05:09:56.092351+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/sgs_gradient_analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/sgs_gradient_analysis.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T05:09:56.445002+00:00_
+
+1	% SGS Gradient Analysis — Draft v1
+2	% Target: CoRL 2026
+3	% Status: Draft, pending Director review
+4	% Depends on: method.md (Section 3), experimental_setup.md (Section 4)
+5	% Note: Supersedes sgs_informative_negative.md with tighter structure
+6	%   and stronger quantitative grounding per D061 gradient decomposition.
+7	
+8	\subsection{Selective Gradient Stopping and Gradient Decomposition}
+9	\label{sec:sgs_gradient_analysis}
+10	
+11	\subsubsection{Design and Hypothesis}
+12	\label{sec:sgs_design}
+13	
+14	The preceding analysis establishes that a trained temporal embedding $e_{\Delta t}$ is necessary for CIVO (Section~\ref{sec:civo_mechanism}). We next ask \textit{which gradient pathway} through $e_{\Delta t}$ amplifies the overestimation. In DreamerV3, the temporal embedding conditions all prediction heads simultaneously through the RSSM latent state. A natural hypothesis is that the \textit{reward head}---which directly supplies $\lambda$-return targets to the critic---is the primary amplifier: if reward predictions develop $\Delta t$-dependent biases, the critic inherits and compounds these biases across the $H$-step imagination rollout.
+15	
+16	To test this, we introduce \textit{selective gradient stopping} (SGS): during the backward pass, $e_{\Delta t}$ is detached before entering the reward head,
+17	$$\hat{r}_t = f_{\text{reward}}\big(\operatorname{sg}(e_{\Delta t}),\; h_t,\; z_t\big),$$
+18	where $\operatorname{sg}(\cdot)$ denotes the stop-gradient operator. This prevents reward-loss gradients from updating $e_{\Delta t}$'s parameters while preserving the embedding's forward-pass contribution. All other gradient pathways---observation decoders, continuation predictor, KL dynamics---remain intact. We apply this intervention to the primary CIVO-exhibiting configuration: Walker Walk, trained $e_{\Delta t}$ ($d{=}32$), subsampling enabled, $H{=}8$, $\Delta t{=}2$ imagination (exp\_016e; identical to exp\_008d except for \texttt{reward\_dt\_emb\_detach=True}).
+19	
+20	
+…[truncated 6256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "elapsed_ms": 352
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T05:09:56.445604+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/framing_b_reaudit.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T05:09:56.496495+00:00_
+
+1	# Framing B Re-Audit: Per-Section Diff Checklist
+2	
+3	> Date: 2026-05-16 | Framing: **B — Diagnostic paper + SGS as informative negative result**
+4	> Governing decisions: D059 (Framing B approved), D061 (gradient decomposition: reward=0, obs=93%)
+5	> NVE diagnostic: 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)
+6	
+7	---
+8	
+9	## 1. Abstract
+10	
+11	**Current status:** NOT WRITTEN
+12	
+13	**Framing B requirements:**
+14	- Diagnostic analysis paper positioning (not method paper)
+15	- Core question: "Why does temporal abstraction fail in world-model RL?"
+16	- Key findings: trained dt_embedding → CIVO → stochastic collapse
+17	- NVE diagnostic framework: 7/8, AUROC=0.933
+18	- Gradient decomposition: 93% obs decoders, 0% reward → reward-only SGS is architectural no-op
+19	- TAWM contrast: dt-conditioning succeeds in MPC (TAWM, ICML 2025) but fails in imagination-based AC
+20	- Scope: DreamerV3 + Walker Walk (+ Cheetah pending)
+21	
+22	**Outline (≤150 words):**
+23	1. Temporal abstraction via variable-rate imagination is a natural extension of world-model RL, but consistently degrades performance [1 sentence]
+24	2. We present a systematic diagnostic analysis identifying trained dt-embedding as the necessary condition for conditioning-induced value overestimation (CIVO) [1 sentence]
+25	3. Gradient decomposition reveals 93% of dt_emb gradients come from observation decoders (0% reward), making reward-only stop-gradient an architectural no-op [1 sentence]
+26	4. NVE diagnostic threshold achieves AUROC=0.933 for CIVO detection [1 sentence]
+27	5. Contrast with TAWM: dt-conditioning succeeds in MPC but fails in imagination-based AC — architecture-specific vulnerability [1 sentence]
+28	6. Scoped to DreamerV3/RSSM; actionable guidelines for future temporal abstraction work [1 sentence]
+29	
+30	**Legacy framing risks:** N/A (not yet written)
+31	
+32	**Missing content:** Entire section
+33	
+34	---
+35	
+36	## 2. Introduction
+37	
+38	**Current status:** NOT WRITTEN
+39	
+40	**Framing B requ
+…[truncated 22306 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T05:10:45.043008+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "event-gated-adaptive-horizon",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "event-gated-adaptive-horizon",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T05:10:45.094004+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\", \"content\": \"# Memory\\n\\n## 2026-05-16: Reviewer 写作规则（所有 paper Worker 必须遵守）\\n\\n1. **梯度分解 Table caption 必须标注具体 step number**（不能只说 \\\"representative step\\\"）\\n2. **\\\"exactly zero\\\" → \\\"numerically negligible—zero to within floating-point precision\\\"**（reward gradient）\\n3. **NVE 列统一用 normalized 值**：016e 用 10.42x (normalized)，不是 6.59x (raw ratio)\\n4. **\\\"statistically indistinguishable\\\" → \\\"consistent with cross-seed variation\\\"**（016e vs 008d timing 差异）\\n\\n## 2026-05-16: 009b Peak Eval 修正（Reviewer 更正）\\n\\n009b peak eval = **278.5@95K**，不是 268.3@105K。Registry 数据确认：95K eval=278.54, 105K eval=267.93。论文中引用 009b 时用 278.5@95K 作为 peak。\\n\\n## 2026-05-16: D061 梯度文献联动 — 必引论文\\n\\n016e/gradient decomposition section 必须引用：\\n- **Hafner et al. 2023** (DreamerV3 消融：reconstruction vs reward loss 量级差异)\\n- **Shang et al. 2024** (HarmonyDream：量化 loss 差异 2 个数量级，但未做 backward pass 分解)\\n- **Chen et al. 2018** (GradNorm：multi-task gradient 方法论基础)\\n\\n我们的新颖性：(1) gradient-level 定量分解 (93%/7%/0%)，(2) reward=0 比 \\\"小两个数量级\\\" 更强，(3) SGS 作为因果诊断工具无先例。\\n\\n## 2026-05-15: 016e SGS Deep Analysis — Entropy 保留 + Actor Loss Sign Flip\\n\\n**016e vs 008d 逐步对比关键发现**：\\n1. **Onset 延迟 ~50K steps**：008d 25K 开始衰退，016e 稳定到 75K peak 才崩\\n2. **SGS 核心作用是保留 entropy**：35K 时 016e entropy 比 008d 高 1.35 nats（-2.12 vs -3.47）→ 探索更充分 → 2x 更高 peak（327 vs 167）\\n3. **Actor loss sign flip 是崩溃标志**：016e@95K actor_loss 翻正（+0.014），value critic 开始推 actor 向更差动作。008d 从未翻正\\n4. **Value 完全脱钩**：016e@95K value=209 but eval=32，disconnect ratio 6.58x（vs 008d 1.67x）\\n5. **SGS 治标不治本**：延迟 CIVO 但让积累的 value overestimation 更高（215 vs 138），崩溃更惨烈（NVE 10.42x vs 4.12x）\\n\\n**D061 修正**：上述 016e vs 008d 的差异（onset timing, peak height）现归因于 cross-seed variation，因为 016e reward-only SGS 是 architectural no-op (reward gradient=0)。\\\"SGS delays collapse\\\" 解读已撤回。\\n\\
+…[truncated 3731 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T05:11:33.220045+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0→2 (GPU 0 / CPU 2 spawning)\n\nSession #16 启动，状态与上轮一致：\n- **exp_009d** (Walker baseline s0): cuda:0, 344K/500K (68.8%), peak 949.46@328K, 预计 5/16 午完成\n- **exp_010a** (Cheetah baseline s1): cuda:1, 165K/512K (32.2%), peak 592.59@155K, 预计 5/16 午后完成\n- Cron 监控正常，两个进程均存活\n\n**待 cron 触发**：009d→018 Full-SGS (cuda:0), 010a→019a PickCube baseline (cuda:1)\n\n**正在派发 CPU Worker**（论文 P0 任务）：\n1. method.md re-audit: 重写 §3.3 Mitigation→dual pathway、添加梯度分解子节、CIVO 术语替换\n2. experimental_setup.md + limitations.md 更新: factorial table 补 016e/015b、NVE AUROC 更新、CI 修正\n\n无需 Director 决策，正常推进中。",
+  "project": "event-gated-adaptive-horizon"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0→2 (GPU 0 / CPU 2 spawning)\n\nSession #16 启动，状态与上轮一致：\n- **exp_009d** (Walker baseline s0): cuda:0, 344K/500K (68.8%), peak 949.46@328K, 预计 5/16 午完成\n- **exp_010a** (Cheetah baseline s1): cuda:1, 165K/512K (32.2%), peak 592.59@155K, 预计 5/16 午后完成\n- Cron 监控正常，两个进程均存活\n\n**待 cron 触发**：009d→018 Full-SGS (cuda:0), 010a→019a PickCube baseline (cuda:1)\n\n**正在派发 CPU Worker**（论文 P0 任务）：\n1. method.md re-audit: 重写 §3.3 Mitigation→dual pathway、添加梯度分解子节、CIVO 术语替换\n2. experimental_setup.md + limitations.md 更新: factorial table 补 016e/015b、NVE AUROC 更新、CI 修正\n\n无需 Director 决策，正常推进中。",
+    "project": "event-gated-adaptive-horizon"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T05:12:12.183356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 38963
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T05:12:17.056389+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper:method-reaudit",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "你是论文写作 Worker。任务：对 `paper/method.md` 执行 Framing B re-audit，完成以下 P0 修改。\n\n## 背景\n这是一篇 CoRL 2026 诊断分析论文（不是方法论文），研究 DreamerV3 中 temporal abstraction 为什么失败。核心发现：trained dt_embedding 是 CIVO (Conditioning-Induced Value Overestimation) 的必要条件。\n\n## 必须完成的修改\n\n### DIFF-M2: 重命名 heading\n- 找到 \"The Delusional Critic Hypothesis\" heading → 改为 \"Conditioning-Induced Value Overestimation (CIVO)\"\n- 修改 body：CIVO 定义放首位，Lu et al. 2018 作为 analogy（不是 derivation）。明确区分：CIVO 是 model-induced（temporal extrapolation error），Lu et al. 是 policy-class-induced。\n\n### DIFF-M3: 重写 §3.3 \"Mitigation\" 子节（最重要！）\n- 当前：呈现 008e_v3 seed 1 为 \"zero-cost mitigation\"（95% baseline recovery）\n- **事实**：008e_v3_s2 已崩溃（eval 715→137, nve=3.78x），C6 部分推翻\n- **Actions**:\n  1. 删除 \"Mitigation\" framing\n  2. 改标题为 \"Imagination Step Size as Causal Variable\"\n  3. 加入 s2 崩溃数据\n  4. 加入 009a baseline s2 稳定数据（排除 seed fragility）\n  5. 重新定位：trained dt_embedding 通过多条 pathway 造成 vulnerability（Pathway A: CIVO via dt>1, Pathway B: non-CIVO policy instability independent of imagination dt）\n  6. 删除 \"seed 2 is in progress\" 等过时语言\n\n### DIFF-M4: 添加 \"Gradient Decomposition of dt_embedding\" 新子节\n放在 RSSM fidelity 分析之后。内容：\n- torch.autograd.grad 分析 dt_emb.weight（commit 5fc8e49, step 95K）\n- 梯度来源：obs decoders 93% (1.505), KL 7% (0.119), cont <0.1%, reward 0% (0.000)\n- 含义1: reward_dt_emb_detach (016e) 是 architectural no-op\n- 含义2: dt_emb 由 observation reconstruction 驱动，不是 reward\n- 含义3: Full-SGS (018) 移除 obs decoder 梯度才是真正的 gradient-level intervention\n- **必引文献**：Hafner et al. 2023 (DreamerV3 消融), Shang et al. 2024 (HarmonyDream), Chen et al. 2018 (GradNorm)\n\n### DIFF-M5: 添加 SGS informative negative 结果\n- 016e 实验：reward_dt_emb_detach=True, collapse at 95K, NVE=10.42x\n- 解读：no-op because reward gradient = 0 by architecture\n- 016e vs 008d 的 timing 差异归因于 cross-seed variation（不是 \"SGS delays collapse\"，该解读已撤回 D061）\n- 可合并到 gradient decomposition 子节或单独一段\n\n### DIFF-M6: 添加 2×2 消融矩阵 (D049)\n| | Subsample ON | Subsample OFF |\n|---|---|---|\n| dt_emb trained | 008d: CIVO 4.12x@55K, collapse | 008a: safe, 85% baseline |\n| dt_emb frozen | 015b: peak 1.45x, self-corrected, gradient starvation | N/A |\n| dt_emb removed (dim=0) | 008f: no CIVO, ≤1.02x | N/A |\n\n015b 是 gradient starvation（不是延迟 CIVO）：NVE 1.45x@55K → 0.65x@65K → self-corrected。\n\n### DIFF-M7: NVE 诊断 power 更新\n- 当前：4/4 classification accuracy\n- 添加：AUROC=0.933, 7/8 overall accuracy, 1 FP (008e_v3_s2 non-CIVO late collapse)\n- 4/4 是 trained-vs-removed at threshold; 7/8 包含所有条件\n\n## 写作规范（红线）\n1. 梯度分解 Table caption 必须标注具体 step number（step 95K）\n2. \"exactly zero\" → \"numerically negligible—zero to within floating-point precision\"（reward gradient）\n3. NVE 列统一用 normalized 值：016e 用 10.42x\n4. \"statistically indistinguishable\" → \"consistent with cross-seed variation\"（016e vs 008d timing 差异）\n5. 禁止 cherry-picking，所有数字追溯到 registry\n6. 009b peak eval = 278.5@95K（不是 268.3@105K）\n7. 不说 \"SGS delays collapse\"（D061 已撤回）\n8. 不用 \"delusional critic\" 术语（用 CIVO）\n9. 不说 \"dt=1 imagination = practical mitigation\"（C6 partially falsified）\n\n## 操作\n1. 用 `read_project_file(file=\"paper/method.md\")` 读取当前 method.md（注意这不是 read_project_file(file=\"method.md\")，用准确路径）\n2. 也读 `paper/sections/sgs_gradient_analysis.md` 作为参考（已有的 SGS 分析草稿）\n3. 执行上述所有修改\n4. 完成后在 artifacts/ 下保存修改后的文件，并用 register_artifact 注册\n\n如果 read_project_file 读不到 paper/method.md，试 read_project_file(file=\"method.md\") 或直接用 Read 读取 `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md`。",
+  "tool_groups": "['knowledge']",
+  "tools": "['register_artifact']",
+  "context": "项目: event-gated-adaptive-horizon (CoRL 2026, DDL 2026-05-29)\n论文定位: Framing B — 诊断论文 + SGS 作为 informative negative result\n核心因果链 (D049): Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件\n梯度分解 (D061): dt_emb 梯度 93% obs decoders / 7% KL / 0% reward\n术语: CIVO = Conditioning-Induced Value Overestimation（不用 \"delusional critic\"）\n论文文件路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:method-reaudit",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "你是论文写作 Worker。任务：对 `paper/method.md` 执行 Framing B re-audit，完成以下 P0 修改。\n\n## 背景\n这是一篇 CoRL 2026 诊断分析论文（不是方法论文），研究 DreamerV3 中 temporal abstraction 为什么失败。核心发现：trained dt_embedding 是 CIVO (Conditioning-Induced Value Overestimation) 的必要条件。\n\n## 必须完成的修改\n\n### DIFF-M2: 重命名 heading\n- 找到 \"The Delusional Critic Hypothesis\" heading → 改为 \"Conditioning-Induced Value Overestimation (CIVO)\"\n- 修改 body：CIVO 定义放首位，Lu et al. 2018 作为 analogy（不是 derivation）。明确区分：CIVO 是 model-induced（temporal extrapolation error），Lu et al. 是 policy-class-induced。\n\n### DIFF-M3: 重写 §3.3 \"Mitigation\" 子节（最重要！）\n- 当前：呈现 008e_v3 seed 1 为 \"zero-cost mitigation\"（95% baseline recovery）\n- **事实**：008e_v3_s2 已崩溃（eval 715→137, nve=3.78x），C6 部分推翻\n- **Actions**:\n  1. 删除 \"Mitigation\" framing\n  2. 改标题为 \"Imagination Step Size as Causal Variable\"\n  3. 加入 s2 崩溃数据\n  4. 加入 009a baseline s2 稳定数据（排除 seed fragility）\n  5. 重新定位：trained dt_embedding 通过多条 pathway 造成 vulnerability（Pathway A: CIVO via dt>1, Pathway B: non-CIVO policy instability independent of imagination dt）\n  6. 删除 \"seed 2 is in progress\" 等过时语言\n\n### DIFF-M4: 添加 \"Gradient Decomposition of dt_embedding\" 新子节\n放在 RSSM fidelity 分析之后。内容：\n- torch.autograd.grad 分析 dt_emb.weight（commit 5fc8e49, step 95K）\n- 梯度来源：obs decoders 93% (1.505), KL 7% (0.119), cont <0.1%, reward 0% (0.000)\n- 含义1: reward_dt_emb_detach (016e) 是 architectural no-op\n- 含义2: dt_emb 由 observation reconstruction 驱动，不是 reward\n- 含义3: Full-SGS (018) 移除 obs decoder 梯度才是真正的 gradient-level intervention\n- **必引文献**：Hafner et al. 2023 (DreamerV3 消融), Shang et al. 2024 (HarmonyDream), Chen et al. 2018 (GradNorm)\n\n### DIFF-M5: 添加 SGS informative negative 结果\n- 016e 实验：reward_dt_emb_detach=True, collapse at 95K, NVE=10.42x\n- 解读：no-op because reward gradient = 0 by architecture\n- 016e vs 008d 的 timing 差异归因于 cross-seed variation（不是 \"SGS delays collapse\"，该解读已撤回 D061）\n- 可合并到 gradient decomposition 子节或单独一段\n\n### DIFF-M6: 添加 2×2 消融矩阵 (D049)\n| | Subsample ON | Subsample OFF |\n|---|---|---|\n| dt_emb trained | 008d: CIVO 4.12x@55K, collapse | 008a: safe, 85% baseline |\n| dt_emb frozen | 015b: peak 1.45x, self-corrected, gradient starvation | N/A |\n| dt_emb removed (dim=0) | 008f: no CIVO, ≤1.02x | N/A |\n\n015b 是 gradient starvation（不是延迟 CIVO）：NVE 1.45x@55K → 0.65x@65K → self-corrected。\n\n### DIFF-M7: NVE 诊断 power 更新\n- 当前：4/4 classification accuracy\n- 添加：AUROC=0.933, 7/8 overall accuracy, 1 FP (008e_v3_s2 non-CIVO late collapse)\n- 4/4 是 trained-vs-removed at threshold; 7/8 包含所有条件\n\n## 写作规范（红线）\n1. 梯度分解 Table caption 必须标注具体 step number（step 95K）\n2. \"exactly zero\" → \"numerically negligible—zero to within floating-point precision\"（reward gradient）\n3. NVE 列统一用 normalized 值：016e 用 10.42x\n4. \"statistically indistinguishable\" → \"consistent with cross-seed variation\"（016e vs 008d timing 差异）\n5. 禁止 cherry-picking，所有数字追溯到 registry\n6. 009b peak eval = 278.5@95K（不是 268.3@105K）\n7. 不说 \"SGS delays collapse\"（D061 已撤回）\n8. 不用 \"delusional critic\" 术语（用 CIVO）\n9. 不说 \"dt=1 imagination = practical mitigation\"（C6 partially falsified）\n\n## 操作\n1. 用 `read_project_file(file=\"paper/method.md\")` 读取当前 method.md（注意这不是 read_project_file(file=\"method.md\")，用准确路径）\n2. 也读 `paper/sections/sgs_gradient_analysis.md` 作为参考（已有的 SGS 分析草稿）\n3. 执行上述所有修改\n4. 完成后在 artifacts/ 下保存修改后的文件，并用 register_artifact 注册\n\n如果 read_project_file 读不到 paper/method.md，试 read_project_file(file=\"method.md\") 或直接用 Read 读取 `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/method.md`。",
+    "tool_groups": "['knowledge']",
+    "tools": "['register_artifact']",
+    "context": "项目: event-gated-adaptive-horizon (CoRL 2026, DDL 2026-05-29)\n论文定位: Framing B — 诊断论文 + SGS 作为 informative negative result\n核心因果链 (D049): Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件\n梯度分解 (D061): dt_emb 梯度 93% obs decoders / 7% KL / 0% reward\n术语: CIVO = Conditioning-Induced Value Overestimation（不用 \"delusional critic\"）\n论文文件路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T05:12:39.169391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_method-reaudit_20260516T051217\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_paper_method-reaudit_20260516T051217.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_method-reaudit_20260516T051217 started. Use get_worker_status('worker_paper_method-reaudit_20260516T051217') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 22113
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T05:12:41.932093+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper:setup-limitations-update",
+  "project": "event-gated-adaptive-horizon",
+  "task_prompt": "你是论文写作 Worker。任务：更新 `paper/sections/experimental_setup.md` 和 `paper/sections/limitations.md`，完成 Framing B re-audit 的 P0/P1 修改。\n\n## 背景\nCoRL 2026 诊断分析论文，研究 DreamerV3 temporal abstraction 失败机制。Framing B：diagnostic paper + SGS informative negative。\n\n## experimental_setup.md 修改\n\n### DIFF-E1: Table 1 (factorial table) 添加新行\n- 015b: frozen dt_emb, subsample ON, H=15, dt=2 imagination → \"Frozen embedding control\"\n- 016e: trained dt_emb + reward_dt_emb_detach=True, subsample ON, H=8, dt=2 imagination → \"Stop-gradient (reward pathway)\"\n- 018 (planned): trained dt_emb + full pathway detach, subsample ON, H=8 → \"Stop-gradient (full pathway)\" 可加脚注\n\n### DIFF-E3: §4.4 NVE diagnostic 更新\n- 当前：4/4 classification\n- 添加：AUROC=0.933 across all 8 conditions (task B2), 7/8 accuracy, 1 FP (008e_v3_s2 non-CIVO)\n- Supplementary: task B1 @1.7x threshold → AUROC=1.0, 8/8\n- Clopper-Pearson 95% CI: 7/8 → [47.3%, 99.7%]; 8/8 → [63.1%, 100%]\n\n### DIFF-E4: seed 状态更新\n- 移除所有 \"in progress\" / \"seed 2 is in progress\" 语言\n- 更新为已完成状态：009a (baseline s2, stable), 009b (008d s2, self-corrected), 009c (008f s2, completed), 008e_v3_s2 (collapsed via non-CIVO pathway)\n- Cheetah baseline (010a): RUNNING, 可注脚 \"in progress at time of submission\"\n\n### DIFF-E5: \"introduce\" → \"study\"\n- 找到 \"We introduce an event-gated variable-rate imagination mechanism\" (约 line 15)\n- 改为 \"We study a variable-rate imagination mechanism...\" 或 \"We investigate the following modifications...\"\n- 这是诊断论文，不是在提出新方法\n\n### DIFF-E6: \"mitigation condition (008e_v3)\" 标签\n- 找到 line 87 附近 \"mitigation condition\"\n- 移除 \"mitigation\" 标签 — 008e_v3 s2 已崩溃，C6 partially falsified\n- 改为 \"dt=1 imagination condition\" 或 \"imagination step-size control\"\n\n## limitations.md 修改\n\n### CI 错配修复\n检查以下 CI 数值是否正确一致：\n1. Line 17: \"95% Clopper-Pearson CI of [47.3%, 99.7%]\" — 这是 7/8 accuracy 的 CI, 验证是否正确\n2. Line 17: \"8/8 with CI [63.1%, 100%]\" — 这是 supplementary B1 threshold 的 CI\n3. 确保 CI 的描述与 memory.md 记录一致：\n   - memory.md 说 \"Clopper-Pearson exact binomial 95% CI on accuracy: [0.688, 1.0]\"\n   - 但 limitations 说 8/8 CI = [63.1%, 100%]\n   - 注意：0.688 可能是其他计算方法的结果，需要确认哪个正确\n   - Clopper-Pearson for k=8, n=8: lower ≈ 0.631, 所以 [63.1%, 100%] 看起来正确\n\n### 内容更新\n1. \"A Cheetah Run baseline is in progress\" — 保留但更新措辞（010a is RUNNING at time of submission）\n2. Line 28-29 \"Full stop-gradient results pending\" — 保留（018 确实还在排队等 GPU）\n3. 确保 008e_v3_s2 的 Pathway B 描述准确：eval-driven destabilization with increasing policy entropy\n\n## 写作规范\n1. NVE 用 normalized 值\n2. 009b peak eval = 278.5@95K\n3. 不用 \"delusional critic\"（用 CIVO）\n4. 不说 \"dt=1 imagination = practical mitigation\"\n5. 禁止 cherry-picking\n\n## 操作\n1. 读取 `paper/sections/experimental_setup.md` 和 `paper/sections/limitations.md`\n2. 执行上述所有修改\n3. 保存修改后的文件（直接覆盖原文件）\n\n文件路径：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/experimental_setup.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/limitations.md`",
+  "tool_groups": "['knowledge']",
+  "context": "项目: event-gated-adaptive-horizon (CoRL 2026, DDL 2026-05-29)\n论文定位: Framing B — 诊断论文 + SGS 作为 informative negative result\n核心因果链 (D049): Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件\n梯度分解 (D061): dt_emb 梯度 93% obs decoders / 7% KL / 0% reward\nNVE 诊断: task_b2@1.5x(35K+): 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)\n论文文件路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:setup-limitations-update",
+    "project": "event-gated-adaptive-horizon",
+    "task_prompt": "你是论文写作 Worker。任务：更新 `paper/sections/experimental_setup.md` 和 `paper/sections/limitations.md`，完成 Framing B re-audit 的 P0/P1 修改。\n\n## 背景\nCoRL 2026 诊断分析论文，研究 DreamerV3 temporal abstraction 失败机制。Framing B：diagnostic paper + SGS informative negative。\n\n## experimental_setup.md 修改\n\n### DIFF-E1: Table 1 (factorial table) 添加新行\n- 015b: frozen dt_emb, subsample ON, H=15, dt=2 imagination → \"Frozen embedding control\"\n- 016e: trained dt_emb + reward_dt_emb_detach=True, subsample ON, H=8, dt=2 imagination → \"Stop-gradient (reward pathway)\"\n- 018 (planned): trained dt_emb + full pathway detach, subsample ON, H=8 → \"Stop-gradient (full pathway)\" 可加脚注\n\n### DIFF-E3: §4.4 NVE diagnostic 更新\n- 当前：4/4 classification\n- 添加：AUROC=0.933 across all 8 conditions (task B2), 7/8 accuracy, 1 FP (008e_v3_s2 non-CIVO)\n- Supplementary: task B1 @1.7x threshold → AUROC=1.0, 8/8\n- Clopper-Pearson 95% CI: 7/8 → [47.3%, 99.7%]; 8/8 → [63.1%, 100%]\n\n### DIFF-E4: seed 状态更新\n- 移除所有 \"in progress\" / \"seed 2 is in progress\" 语言\n- 更新为已完成状态：009a (baseline s2, stable), 009b (008d s2, self-corrected), 009c (008f s2, completed), 008e_v3_s2 (collapsed via non-CIVO pathway)\n- Cheetah baseline (010a): RUNNING, 可注脚 \"in progress at time of submission\"\n\n### DIFF-E5: \"introduce\" → \"study\"\n- 找到 \"We introduce an event-gated variable-rate imagination mechanism\" (约 line 15)\n- 改为 \"We study a variable-rate imagination mechanism...\" 或 \"We investigate the following modifications...\"\n- 这是诊断论文，不是在提出新方法\n\n### DIFF-E6: \"mitigation condition (008e_v3)\" 标签\n- 找到 line 87 附近 \"mitigation condition\"\n- 移除 \"mitigation\" 标签 — 008e_v3 s2 已崩溃，C6 partially falsified\n- 改为 \"dt=1 imagination condition\" 或 \"imagination step-size control\"\n\n## limitations.md 修改\n\n### CI 错配修复\n检查以下 CI 数值是否正确一致：\n1. Line 17: \"95% Clopper-Pearson CI of [47.3%, 99.7%]\" — 这是 7/8 accuracy 的 CI, 验证是否正确\n2. Line 17: \"8/8 with CI [63.1%, 100%]\" — 这是 supplementary B1 threshold 的 CI\n3. 确保 CI 的描述与 memory.md 记录一致：\n   - memory.md 说 \"Clopper-Pearson exact binomial 95% CI on accuracy: [0.688, 1.0]\"\n   - 但 limitations 说 8/8 CI = [63.1%, 100%]\n   - 注意：0.688 可能是其他计算方法的结果，需要确认哪个正确\n   - Clopper-Pearson for k=8, n=8: lower ≈ 0.631, 所以 [63.1%, 100%] 看起来正确\n\n### 内容更新\n1. \"A Cheetah Run baseline is in progress\" — 保留但更新措辞（010a is RUNNING at time of submission）\n2. Line 28-29 \"Full stop-gradient results pending\" — 保留（018 确实还在排队等 GPU）\n3. 确保 008e_v3_s2 的 Pathway B 描述准确：eval-driven destabilization with increasing policy entropy\n\n## 写作规范\n1. NVE 用 normalized 值\n2. 009b peak eval = 278.5@95K\n3. 不用 \"delusional critic\"（用 CIVO）\n4. 不说 \"dt=1 imagination = practical mitigation\"\n5. 禁止 cherry-picking\n\n## 操作\n1. 读取 `paper/sections/experimental_setup.md` 和 `paper/sections/limitations.md`\n2. 执行上述所有修改\n3. 保存修改后的文件（直接覆盖原文件）\n\n文件路径：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/experimental_setup.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/limitations.md`",
+    "tool_groups": "['knowledge']",
+    "context": "项目: event-gated-adaptive-horizon (CoRL 2026, DDL 2026-05-29)\n论文定位: Framing B — 诊断论文 + SGS 作为 informative negative result\n核心因果链 (D049): Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件\n梯度分解 (D061): dt_emb 梯度 93% obs decoders / 7% KL / 0% reward\nNVE 诊断: task_b2@1.5x(35K+): 7/8 accuracy, AUROC=0.933, 1 FP (008e_v3_s2 non-CIVO)\n论文文件路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T05:12:44.560425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_setup-limitations-update_20260516T051242\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_paper_setup-limitations-update_20260516T051242.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_setup-limitations-update_20260516T051242 started. Use get_worker_status('worker_paper_setup-limitations-update_20260516T051242') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_016_sgs_walker_s1",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2628
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T05:12:56.557364+00:00_
+
+Session #16 初始化完成。
+
+**当前状态**：
+- **GPU**: 2/2 占满（cuda:0=009d 68.8%, cuda:1=010a 32.2%），cron 正常监控
+- **Worker**: 2 个已派发（method.md re-audit + experimental_setup/limitations 更新），满足 ≥2 红线
+- **Director**: 已汇报
+
+**等待触发**：
+- 009d cron 回调 → 提交 018 Full-SGS (cuda:0)
+- 010a cron 回调 → 提交 019a PickCube baseline (cuda:1)
+- 两个 paper Worker 完成回调
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_016_sgs_walker_s1"
+}
+```
+
+</details>
+
+---

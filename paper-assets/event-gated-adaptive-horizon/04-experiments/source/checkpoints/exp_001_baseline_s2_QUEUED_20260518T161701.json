@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_001_baseline_s2",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:05:17.571Z",
+    "updated_at": "2026-05-18T16:17:00.843Z",
+    "hypothesis": "Walker Walk baseline additional seed for tighter evaluation return CI.",
+    "parent": "exp_001_baseline",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && CUDA_VISIBLE_DEVICES=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_001_baseline_s2 --steps 105000 --seed 2 --compile False --device cuda:0\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "754352",
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_001_baseline_s2.log",
+      "submitted_at": "2026-05-18T16:06:03.008Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T16:17:01.063002+00:00",
+  "trigger": "update_registry"
+}

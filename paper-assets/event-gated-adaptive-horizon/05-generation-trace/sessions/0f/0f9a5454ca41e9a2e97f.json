@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9a5454ca41e9a2e97f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code plan015B freeze dt emb",
+  "task_key": "worker_code_plan015B-freeze-dt-emb_20260515T085331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan015B-freeze-dt-emb_20260515T085331_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "bb5ce2f7240a676db3bbc88a5862ff8706c0b733a2d24ca25db1c9fc7eee9afc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n### 产出总结\n\n**1. Detach 回滚** — 3 处修改已 `git checkout` 回滚（configs.yaml, networks.py, models.py）\n\n**2. Freeze 实现** — commit `dccb867`，2 个文件 6 行改动：\n- `configs.yaml:119` — `dt_emb_freeze: false`\n- `models.py:96-98` — `WorldModel.__init__` 中 freeze（optimizer 创建前，确保 frozen param 不会被 optimizer 更新）\n- `models.py:230-231` — `_train` 中 `RequiresGrad.__enter__` 后重新 freeze（因为 `requires_grad_(True)` 会覆盖）\n\n**关键发现**: DreamerV3 的 `RequiresGrad` 上下文管理器会 `model.requires_grad_(True)` 覆盖所有参数，所以仅在 `__init__` 中 freeze 不够，必须在 `_train` 入口重新 freeze。\n\n**3. Dry run** — step 200 无报错，requires_grad 验证正确\n\n**4. 待执行提交命令**（等 009e 完成后提交到 cuda:1）：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && \\\ncd /root/autodl-tmp/event-gated-adaptive-horizon && \\\nnohup python -u dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/exp_015b_frozen_dt_emb \\\n  --steps 105000 --seed 1 --compile False --device cuda:1 \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --dt_emb_freeze True \\\n  > logdir/exp_015b_frozen_dt_emb.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan015b-freeze-dt-emb.md"
+}

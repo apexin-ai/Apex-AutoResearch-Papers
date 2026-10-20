@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_009g_008f_walker_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:54:23.385Z",
+    "updated_at": "2026-05-15T19:02:56.349Z",
+    "hypothesis": "Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 0 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）。替代 009f（seed=1 与 parent 008f 重复）",
+    "parent": "exp_008f_no_dt_embed_subsample_on_h8",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "517413",
+      "seed": 0,
+      "model_name": "DreamerV3+FixedDt2_NoDtEmbed_Subsample_H8 (gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, gate_dt_embed_dim=0)",
+      "data_path": "dmc_walker_walk",
+      "data_count": 105000,
+      "checkpoint_source": "N/A - training from scratch",
+      "note": "Replaces exp_009f which had seed=1 duplicating parent 008f. 008f series seeds: 1(008f), 2(009c), 0(009g)"
+    },
+    "pid": "517413",
+    "log_path": "~/runs/event-gated-adaptive-horizon/exp_009g_008f_walker_s0.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009g_008f_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+      "code_commit": "dccb867841046bf6dc7dcc654ea71f99e1181828",
+      "finished_at": "2026-05-15T18:59:53.840Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM). Root cause: MUJOCO_GL=egl defaults to EGL device 0 while CUDA_VISIBLE_DEVICES=1 binds CUDA to GPU 1, causing cross-GPU context conflict and eval deadlock at step 5000.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T18:59:55.315Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T18:59:59.820061+00:00"
+        }
+      ]
+    },
+    "notes": "SIGTERM after ~5min runtime. cuda:1 连续第三次异常退出（016_sgs eval hung@5K → 009f seed dup → 009g SIGTERM）。Worker diag:009g_eval_check + debug:cuda1_eval_hang_diagnosis 正在诊断。疑似 cuda:1 eval hang 同一根因——step 5000 评估阶段挂起。"
+  },
+  "timestamp": "2026-05-15T19:02:56.495339+00:00",
+  "trigger": "update_registry"
+}

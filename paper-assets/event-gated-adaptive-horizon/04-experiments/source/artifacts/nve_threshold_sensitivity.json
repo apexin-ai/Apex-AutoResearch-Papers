@@ -1,0 +1,349 @@
+{
+  "auroc": 0.9699,
+  "auroc_wmw": 0.9699,
+  "n_total": 26,
+  "n_positive": 7,
+  "n_negative": 19,
+  "optimal_threshold": 1.5,
+  "optimal_f1": 0.875,
+  "thresholds": [
+    {
+      "threshold": 1.3,
+      "tp": 7,
+      "fp": 4,
+      "tn": 15,
+      "fn": 0,
+      "precision": 0.6363636363636364,
+      "recall": 1.0,
+      "f1": 0.7777777777777778,
+      "accuracy": 0.8461538461538461
+    },
+    {
+      "threshold": 1.5,
+      "tp": 7,
+      "fp": 2,
+      "tn": 17,
+      "fn": 0,
+      "precision": 0.7777777777777778,
+      "recall": 1.0,
+      "f1": 0.8750000000000001,
+      "accuracy": 0.9230769230769231
+    },
+    {
+      "threshold": 1.7,
+      "tp": 5,
+      "fp": 2,
+      "tn": 17,
+      "fn": 2,
+      "precision": 0.7142857142857143,
+      "recall": 0.7142857142857143,
+      "f1": 0.7142857142857143,
+      "accuracy": 0.8461538461538461
+    },
+    {
+      "threshold": 2.0,
+      "tp": 5,
+      "fp": 0,
+      "tn": 19,
+      "fn": 2,
+      "precision": 1.0,
+      "recall": 0.7142857142857143,
+      "f1": 0.8333333333333333,
+      "accuracy": 0.9230769230769231
+    }
+  ],
+  "experiments": [
+    {
+      "exp_id": "exp_008d/009e (Walker s1)",
+      "nve_peak": 4.13,
+      "ground_truth": 1,
+      "env": "Walker",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_009b (Walker s2)",
+      "nve_peak": 1.62,
+      "ground_truth": 1,
+      "env": "Walker",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_008d_s3 (Walker s3)",
+      "nve_peak": 1.53,
+      "ground_truth": 1,
+      "env": "Walker",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_008d_s4 (Walker s4)",
+      "nve_peak": 4.62,
+      "ground_truth": 1,
+      "env": "Walker",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_059 (Walker s5)",
+      "nve_peak": 4.72,
+      "ground_truth": 1,
+      "env": "Walker",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_048 (Cheetah s0)",
+      "nve_peak": 70.64,
+      "ground_truth": 1,
+      "env": "Cheetah",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_010b (Cheetah s1)",
+      "nve_peak": 8.27,
+      "ground_truth": 1,
+      "env": "Cheetah",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_008f (Walker s0 no_dt_emb)",
+      "nve_peak": 1.02,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_009c (Walker s2 no_dt_emb)",
+      "nve_peak": 1.26,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_008f_s3 (Walker s3 no_dt_emb)",
+      "nve_peak": 1.2,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_008f_s4 (Walker s4 no_dt_emb)",
+      "nve_peak": 1.41,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_009c_s3 (Walker s3 no_dt_emb #2)",
+      "nve_peak": 0.52,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_042 (Walker s0 frozen)",
+      "nve_peak": 0.194,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "frozen"
+    },
+    {
+      "exp_id": "exp_047 (Walker s1 frozen)",
+      "nve_peak": 1.71,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "frozen"
+    },
+    {
+      "exp_id": "exp_057 (Walker s2 frozen)",
+      "nve_peak": 1.88,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "frozen"
+    },
+    {
+      "exp_id": "exp_046 (Cheetah s0 frozen)",
+      "nve_peak": 1.35,
+      "ground_truth": 0,
+      "env": "Cheetah",
+      "config": "frozen"
+    },
+    {
+      "exp_id": "exp_058 (Cheetah s1 frozen)",
+      "nve_peak": 0.78,
+      "ground_truth": 0,
+      "env": "Cheetah",
+      "config": "frozen"
+    },
+    {
+      "exp_id": "exp_024b_s0 (Cheetah s0 no_dt_emb)",
+      "nve_peak": 0.2,
+      "ground_truth": 0,
+      "env": "Cheetah",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_024b_s1 (Cheetah s1 no_dt_emb)",
+      "nve_peak": 0.1,
+      "ground_truth": 0,
+      "env": "Cheetah",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_060 (Cartpole baseline)",
+      "nve_peak": 1.0,
+      "ground_truth": 0,
+      "env": "Cartpole",
+      "config": "baseline"
+    },
+    {
+      "exp_id": "exp_061 (Cartpole trained dt_emb)",
+      "nve_peak": 0.9,
+      "ground_truth": 0,
+      "env": "Cartpole",
+      "config": "trained"
+    },
+    {
+      "exp_id": "exp_062 (Cartpole no_dt_emb)",
+      "nve_peak": 1.0,
+      "ground_truth": 0,
+      "env": "Cartpole",
+      "config": "no_dt_emb"
+    },
+    {
+      "exp_id": "exp_001_s1 (Walker baseline)",
+      "nve_peak": 1.0,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "baseline"
+    },
+    {
+      "exp_id": "exp_001_s2 (Walker baseline)",
+      "nve_peak": 1.13,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "baseline"
+    },
+    {
+      "exp_id": "exp_001_s3 (Walker baseline)",
+      "nve_peak": 1.05,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "baseline"
+    },
+    {
+      "exp_id": "exp_001_s4 (Walker baseline)",
+      "nve_peak": 0.95,
+      "ground_truth": 0,
+      "env": "Walker",
+      "config": "baseline"
+    }
+  ],
+  "roc_points": [
+    {
+      "fpr": 0.0,
+      "tpr": 0.0
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.1429
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.2857
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.4286
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.5714
+    },
+    {
+      "fpr": 0.0,
+      "tpr": 0.7143
+    },
+    {
+      "fpr": 0.0526,
+      "tpr": 0.7143
+    },
+    {
+      "fpr": 0.1053,
+      "tpr": 0.7143
+    },
+    {
+      "fpr": 0.1053,
+      "tpr": 0.8571
+    },
+    {
+      "fpr": 0.1053,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.1579,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.2105,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.2632,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.3158,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.3684,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.4211,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.4737,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.5263,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.5789,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.6316,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.6842,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.7368,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.7895,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.8421,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.8947,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 0.9474,
+      "tpr": 1.0
+    },
+    {
+      "fpr": 1.0,
+      "tpr": 1.0
+    }
+  ]
+}

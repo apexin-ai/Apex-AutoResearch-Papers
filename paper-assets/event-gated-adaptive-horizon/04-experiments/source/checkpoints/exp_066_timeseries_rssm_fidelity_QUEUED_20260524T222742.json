@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_066_timeseries_rssm_fidelity",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T21:07:53.125Z",
+    "updated_at": "2026-05-24T22:27:42.564Z",
+    "hypothesis": "Trained dt_embedding 导致的 RSSM fidelity 退化（dt=2 vs dt=1 reward MAE gap）在训练过程中逐步加剧，且其时序演化与 NVE（value overestimation）升高同步或先于 NVE 上升，建立 RSSM fidelity gap → value overestimation 的时序因果链。通过 12 个 dense checkpoint（每 5K 步）跟踪 0-60K 训练过程中 fidelity gap 的演化曲线。",
+    "parent": "exp_063_rssm_fidelity"
+  },
+  "timestamp": "2026-05-24T22:27:42.910528+00:00",
+  "trigger": "update_registry"
+}

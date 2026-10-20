@@ -1,0 +1,683 @@
+{
+  "schema_version": "1.0",
+  "id": "022ed2d42c4402e45f25",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "write fix related work",
+  "task_key": "worker_write_fix-related-work_20260513T090438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_fix-related-work_20260513T090438.log",
+    "occurrence": 1,
+    "bytes": 68458,
+    "sha256": "2b9e82bcf4880e82408a48621ad4acb8a34ee77f2132ec18df7ba6d74c7cb3ea"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+                "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7a22c22e-c68d-44e7-84ea-6eed76e2a7ce",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778680200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5ea36aad-a76b-49be-8fc3-36d3fd300cdc",
+                "session_id": "6105f332-087c-4161-b7af-0d51debcff8f"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading both files to understand the current state."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "454543e2-ce78-4cca-b3e7-68bda29bddbb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeFbiRK926aFCVkUEgkjXy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11918,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11918
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WNsvmzPszkfNxbgheaFFtq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/related_work_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "9cdf591c-b29a-471b-be46-914f523e10a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeFbiRK926aFCVkUEgkjXy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11918,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11918
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T09:04:52.129Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WNsvmzPszkfNxbgheaFFtq",
+              "type": "tool_result",
+              "content": "1\t# 2. Related Work\n2\t\n3\tWe situate our approach within five related lines of research: fixed-rate model-based RL, variable-rate and temporal abstraction, learned skipping for planning, imagination quality improvement, and event-aware world models.\n4\t\n5\t## 2.1 Model-Based RL with Fixed-Rate Imagination\n6\t\n7\tModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution.\n8\t\n9\tDreamerV3 \\citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) that maintains deterministic and stochastic latent states, training an actor-critic purely through $H$-step imagined trajectories. It achieves strong performance across diverse domains but operates at a fixed one-environment-step-per-latent-step resolution, limiting the effective planning horizon to $H$ environment steps regardless of episode length. NE-Dreamer \\citep{nedreamer2026} replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free latent world model that improves sample efficiency while retaining the fixed-rate imagination structure. R2-Dreamer \\citep{r2dreamer2026} similarly eliminates the observation decoder by training with redundancy-reduced latent targets, accelerating training and improving robustness. [NEED VERIFY: exact technical details of NE-Dreamer and R2-Dreamer beyond decoder-free design]\n10\t\n11\tThese methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks (e.g., 250-step manipulation episodes), a rollout of $H{=}15$ steps covers only 6\\% of the episode, creating a credit assignment bottleneck. Our method addresses this by learning to skip uneventful timesteps, extending the effective horizon to $\\sum \\Delta t_i$ environment steps (up to $H \\times K$) without additional latent computation.\n12\t\n13\t## 2.2 Variable-Rate and Temporal Abstraction\n14\t\n15\tSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.\n16\t\n17\tTAWM \\citep{freed2024tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\\Delta t$ \\emph{state-dependent} via a learned event gate. THICK \\citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \\citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. [NEED VERIFY: exact HWM architecture details beyond multi-scale planning] ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.\n18\t\n19\tOur approach avoids the multi-model exploitation problem identified by \\citet{schiewer2024hierarchical} in hierarchical world models by operating within a single RSSM, while offering finer temporal adaptation than two-level hierarchies through a continuous per-step stride selection.\n20\t\n21\t## 2.3 Learned Skipping for Planning\n22\t\n23\tA separate line of work learns explicit skip or jump decisions to extend planning horizons.\n24\t\n25\tLS-Imagine \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps. I-TAP \\citep{itap2026} learns temporal abstractions via discrete residual tokens with a VQ-VAE, performing MCTS planning in token space for offline RL. It operates in a fundamentally different paradigm---offline and autoregressive---from our online RSSM-based approach. [NEED VERIFY: exact I-TAP architecture details beyond VQ-VAE + MCTS description]\n26\t\n27\tWhile both LS-Imagine and I-TAP demonstrate the value of temporal flexibility in planning, neither addresses the specific setting of online actor-critic training with variable-rate latent imagination. Our event gate fills this gap by integrating state-dependent stride selection directly into DreamerV3's imagination pipeline.\n28\t\n29\t## 2.4 Imagination Quality Improvement\n30\t\n31\tRather than changing temporal resolution, several recent works improve the quality of fixed-rate imagination rollouts.\n32\t\n33\tDMWM \\citep{wang2025dmwm} introduces a dual-mind architecture combining an RSSM-based System~1 for intuitive transitions with a logic-informed neural network (LINN) System~2 that provides logical reasoning feedback, improving long-horizon imagination coherence through logical constraints. It shares our motivation of extending effective RSSM imagination but addresses error accumulation at fixed temporal resolution rather than extending the temporal horizon. DyMoDreamer \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, achieving strong results on visual benchmarks (Atari 100k, DMC). It operates at the observation/pixel level to improve per-step representation quality, whereas our method operates in latent space and changes the \\emph{temporal resolution} of imagination rather than the attention quality of individual steps---the two approaches target complementary axes of improvement and could in principle be combined. ELVIS \\citep{du2026elvis} introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty. While ELVIS adapts \\emph{how much} to trust each imagination step, it does not change \\emph{how many} environment steps each imagination step covers---our gate modifies the temporal resolution itself.\n34\t\n35\t## 2.5 Event-Aware World Models\n36\t\n37\tEvent-driven representations have recently been applied to world models, though primarily at the observation level.\n38\t\n39\tEA-WM \\citep{eawm2026} introduces event-aware fusion via frame-difference supervision for video world models at the pixel level, using event signals to improve generation quality of dynamic regions. While both EA-WM and our method leverage event-like signals (frame differences vs. latent-state deltas), EA-WM applies them to improve pixel-level video prediction quality, whereas we use latent-state change magnitude to drive \\emph{temporal stride selection} in the imagination loop for policy optimization. Our event gate operates entirely in the learned latent space, using state-delta magnitude as a proxy for dynamical significance to determine when fine-grained versus coarse-grained imagination is warranted.\n40\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "57ad0fa7-9ee1-4821-94e3-d4ce025f4089",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/related_work_draft.md",
+                "content": "# 2. Related Work\n\nWe situate our approach within five related lines of research: fixed-rate model-based RL, variable-rate and temporal abstraction, learned skipping for planning, imagination quality improvement, and event-aware world models.\n\n## 2.1 Model-Based RL with Fixed-Rate Imagination\n\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution.\n\nDreamerV3 \\citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) that maintains deterministic and stochastic latent states, training an actor-critic purely through $H$-step imagined trajectories. It achieves strong performance across diverse domains but operates at a fixed one-environment-step-per-latent-step resolution, limiting the effective planning horizon to $H$ environment steps regardless of episode length. NE-Dreamer \\citep{nedreamer2026} replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free latent world model that improves sample efficiency while retaining the fixed-rate imagination structure. R2-Dreamer \\citep{r2dreamer2026} similarly eliminates the observation decoder by training with redundancy-reduced latent targets, accelerating training and improving robustness. [NEED VERIFY: exact technical details of NE-Dreamer and R2-Dreamer beyond decoder-free design]\n\nThese methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks (e.g., 250-step manipulation episodes), a rollout of $H{=}15$ steps covers only 6\\% of the episode, creating a credit assignment bottleneck. Our method addresses this by learning to skip uneventful timesteps, extending the effective horizon to $\\sum \\Delta t_i$ environment steps (up to $H \\times K$) without additional latent computation.\n\n## 2.2 Variable-Rate and Temporal Abstraction\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.\n\nTAWM \\citep{freed2024tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\\Delta t$ \\emph{state-dependent} via a learned event gate. THICK \\citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \\citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. [NEED VERIFY: exact HWM architecture details beyond multi-scale planning] ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.\n\nOur approach avoids the multi-model exploitation problem identified by \\citet{schiewer2024hierarchical} in hierarchical world models by operating within a single RSSM, while offering finer temporal adaptation than two-level hierarchies through a continuous per-step stride selection.\n\n## 2.3 Learned Skipping for Planning\n\nA separate line of work learns explicit skip or jump decisions to extend planning horizons.\n\nLS-Imagine \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps. I-TAP \\citep{itap2026} learns temporal abstractions via discrete residual tokens with a VQ-VAE, performing MCTS planning in token space for offline RL. It operates in a fundamentally different paradigm---offline and autoregressive---from our online RSSM-based approach. [NEED VERIFY: exact I-TAP architecture details beyond VQ-VAE + MCTS description]\n\nWhile both LS-Imagine and I-TAP demonstrate the value of temporal flexibility in planning, neither addresses the specific setting of online actor-critic training with variable-rate latent imagination. Our event gate fills this gap by integrating state-dependent stride selection directly into DreamerV3's imagination pipeline.\n\n## 2.4 Imagination Quality Improvement\n\nRather than changing temporal resolution, several recent works improve the quality of fixed-rate imagination rollouts.\n\nDMWM \\citep{wang2025dmwm} introduces a dual-mind architecture combining an RSSM-based System~1 for intuitive transitions with a logic-informed neural network (LINN) System~2 that provides logical reasoning feedback, improving long-horizon imagination coherence through logical constraints. It shares our motivation of extending effective RSSM imagination but addresses error accumulation at fixed temporal resolution rather than extending the temporal horizon. DyMoDreamer \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, achieving strong results on visual benchmarks (Atari 100k, DMC). It operates at the observation/pixel level to improve per-step representation quality, whereas our method operates in latent space and changes the \\emph{temporal resolution} of imagination rather than the attention quality of individual steps---the two approaches target complementary axes of improvement and could in principle be combined. ELVIS \\citep{du2026elvis} introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty. While ELVIS adapts \\emph{how much} to trust each imagination step, it does not change \\emph{how many} environment steps each imagination step covers---our gate modifies the temporal resolution itself.\n\n## 2.5 Event-Aware World Models\n\nEvent-driven representations have recently been applied to world models, though primarily at the observation level.\n\nEA-WM \\citep{eawm2026} introduces event-aware fusion via frame-difference supervision for video world models at the pixel level, using event signals to improve generation quality of dynamic regions. While both EA-WM and our method leverage event-like signals (frame differences vs. latent-state deltas), EA-WM applies them to improve pixel-level video prediction quality, whereas we use latent-state change magnitude to drive \\emph{temporal stride selection} in the imagination loop for policy optimization. Our event gate operates entirely in the learned latent space, using state-delta magnitude as a proxy for dynamical significance to determine when fine-grained versus coarse-grained imagination is warranted.\n",
+                "numLines": 40,
+                "startLine": 1,
+                "totalLines": 40
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DdbnH6uB1VPqNWhJJAZMqG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/method_section_draft.md",
+                "offset": 0,
+                "limit": 300
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "81f8d61e-527b-4f9d-a234-cc4d6b38c249",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeFbiRK926aFCVkUEgkjXy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11918,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11918
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T09:04:53.057Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DdbnH6uB1VPqNWhJJAZMqG",
+              "type": "tool_result",
+              "content": "0\t# 3. Method\n1\t\n2\tWe build on DreamerV3 \\citep{hafner2023dreamerv3}, a model-based reinforcement learning agent that learns a world model in a recurrent latent space (RSSM) and optimizes a policy purely through imagined rollouts. Our key contribution is an **event gate** that selects a per-step temporal stride $\\Delta t \\in \\{1, \\dots, K\\}$, enabling variable-rate imagination. When the latent state changes slowly, the gate skips multiple environment steps in a single model transition; when the state changes rapidly, it falls back to single-step updates. This extends the effective planning horizon without a proportional increase in computation. We describe the five components of our approach below.\n3\t\n4\t## 3.1 Variable-Rate RSSM\n5\t\n6\tThe standard RSSM in DreamerV3 maintains a deterministic recurrent state $h_t$ and a stochastic state $z_t$, updated at every environment step via a GRU cell:\n7\t\n8\t$$h_t = \\text{GRU}(h_{t-1}, [z_{t-1}; a_{t-1}]).$$\n9\t\n10\tWe extend this transition to accept a temporal stride $\\Delta t \\in \\{1, \\dots, K\\}$ that specifies how many environment steps the model traverses in a single recurrence. To inform the GRU of the stride magnitude, we introduce a learned embedding $e: \\{1, \\dots, K\\} \\to \\mathbb{R}^{d_e}$ via a lookup table $\\mathbf{E} \\in \\mathbb{R}^{K \\times d_e}$ (we use $K{=}8$, $d_e{=}32$). The modified transition becomes:\n11\t\n12\t$$h_t = \\text{GRU}\\!\\left(h_{t-1},\\; [z_{t-1};\\; a_{t-1};\\; e(\\Delta t)]\\right).$$\n13\t\n14\tThe GRU input is first projected through a linear layer followed by LayerNorm and SiLU activation before entering the recurrent cell, which absorbs the scale difference introduced by the additional embedding dimension. The stochastic state $z_t$ is then sampled from a categorical distribution (with uniform mixture) parameterized by an MLP applied to $h_t$, exactly as in DreamerV3.\n15\t\n16\tWhen $\\Delta t = 1$, the model reduces to the standard RSSM. The embedding weights are initialized near zero ($\\sigma = 0.01$) so that the initial model behavior is nearly identical to vanilla DreamerV3, ensuring stable early training.\n17\t\n18\t**Training with variable strides.** To teach the RSSM to predict across different temporal strides, we sub-sample replay trajectories at variable $\\Delta t$ during training (Section 3.4). Each sub-sampled trajectory carries per-step $\\Delta t$ labels that are passed through the observation loop to the GRU, allowing the model to learn stride-conditioned dynamics.\n19\t\n20\t## 3.2 Event Gate\n21\t\n22\tThe event gate is a lightweight MLP that examines the current latent state and decides the temporal stride for the next imagination step.\n23\t\n24\t**Architecture.** The gate takes as input the feature vector $f_t = [z_t; h_t] \\in \\mathbb{R}^{d_f}$ (where $d_f = d_z \\cdot C + d_h$; for DreamerV3's default configuration, $d_f = 32 \\times 32 + 512 = 1536$). It consists of two hidden layers of 256 units each, with LayerNorm and SiLU activations, followed by a linear projection to $K$ logits:\n25\t\n26\t$$\\ell_t = W_2\\,\\text{SiLU}\\!\\left(\\text{LN}(W_1\\,f_t)\\right) \\in \\mathbb{R}^K.$$\n27\t\n28\tThe output distribution over strides is obtained via Gumbel-Softmax:\n29\t\n30\t$$\\Delta t \\sim \\text{Gumbel-Softmax}(\\ell_t, \\tau),$$\n31\t\n32\twhich provides differentiable sampling during training while producing hard (argmax) decisions during imagination. The temperature $\\tau$ is linearly annealed from $\\tau_0 = 5.0$ to $\\tau_{\\min} = 0.5$ over 200K training steps, transitioning from near-uniform exploration to confident stride selection.\n33\t\n34\t**Latent-state delta supervision.** Rather than relying solely on task reward to shape the gate, we provide a direct supervision signal derived from the rate of change in latent space. Let $\\delta_t = \\|f_t - f_{t-1}\\|_2$ be the L2 distance between consecutive feature vectors (with stop-gradient on both $f_t$ and $f_{t-1}$). We normalize $\\delta_t$ to $[0, 1]$ within each batch via min-max scaling and compute a preferred stride:\n35\t\n36\t$$\\Delta t^* = 1 + (K - 1)(1 - \\bar{\\delta}_t),$$\n37\t\n38\twhere $\\bar{\\delta}_t$ is the normalized delta. Large state changes ($\\bar{\\delta}_t \\to 1$) yield $\\Delta t^* \\to 1$ (fine resolution); small changes ($\\bar{\\delta}_t \\to 0$) yield $\\Delta t^* \\to K$ (skip ahead). The supervision target is a soft categorical distribution formed by a Gaussian kernel centered at $\\Delta t^*$:\n39\t\n40\t$$q_t(k) \\propto \\exp\\!\\left(-\\frac{(k - \\Delta t^*)^2}{2\\sigma^2}\\right), \\quad k = 1, \\dots, K,$$\n41\t\n42\twith $\\sigma = 1.0$. The gate supervision loss is the cross-entropy between the gate's predicted distribution and this soft target:\n43\t\n44\t$$\\mathcal{L}_{\\text{gate}} = -\\sum_{k=1}^{K} q_t(k) \\log p_{\\theta}(k \\mid f_t),$$\n45\t\n46\twhere $p_{\\theta}(k \\mid f_t) = \\text{softmax}(\\ell_t)_k$. Crucially, the gate loss does not backpropagate into the RSSM: the input features are detached, so the gate learns to *read* the latent dynamics rather than *shape* them.\n47\t\n48\t## 3.3 Adapted $\\lambda$-Returns\n49\t\n50\tDreamerV3 computes $\\lambda$-returns over imagined trajectories with a fixed per-step discount $\\gamma$. With variable-rate imagination, each step spans $\\Delta t$ environment steps, requiring adaptations to both the reward aggregation and the discount factor.\n51\t\n52\t**Cumulative discounted reward.** When sub-sampling a replay trajectory at stride $\\Delta t$, we pre-compute the cumulative discounted reward for each gap:\n53\t\n54\t$$r_t^{\\text{cum}} = \\sum_{k=0}^{\\Delta t - 1} \\gamma^k\\, r_{t+k}.$$\n55\t\n56\tThe reward head is trained to predict $r_t^{\\text{cum}}$ directly (the sub-sampled training data replaces per-step rewards with their cumulative-discounted aggregates), so no approximation is needed at imagination time.\n57\t\n58\t**Minimum continuation.** For the continuation signal across a gap, we take the conservative estimate:\n59\t\n60\t$$c_t^{\\min} = \\min_{k=0,\\dots,\\Delta t - 1} c_{t+k},$$\n61\t\n62\tso that if any frame within the gap is terminal, the entire interval is marked as terminal.\n63\t\n64\t**Variable-stride $\\lambda$-return.** The adapted $\\lambda$-return replaces the fixed discount $\\gamma$ with $\\gamma^{\\Delta t}$:\n65\t\n66\t$$V_t^{\\lambda} = r_t^{\\text{cum}} + \\gamma^{\\Delta t}\\!\\left[(1 - \\lambda)\\,V(s_{t+\\Delta t}) + \\lambda\\, V_{t+\\Delta t}^{\\lambda}\\right],$$\n67\t\n68\twith the recursion terminating at the bootstrap value $V(s_H)$. This is computed via the same backward scan as the standard $\\lambda$-return, but with per-step adjusted discount $(\\gamma \\cdot c_t)^{\\Delta t}$ in place of $\\gamma \\cdot c_t$. When $\\Delta t = 1$ for all steps, this expression reduces exactly to the standard DreamerV3 $\\lambda$-return.\n69\t\n70\t**Importance weights.** The per-step weights used for the actor and value losses are similarly adjusted:\n71\t\n72\t$$w_t = \\prod_{i=0}^{t-1} (\\gamma \\cdot c_i)^{\\Delta t_i},$$\n73\t\n74\tso that steps further in effective time receive appropriately decayed weight.\n75\t\n76\t## 3.4 Gate Collapse Prevention\n77\t\n78\tA central failure mode is *gate collapse*, where the gate converges to a constant stride (typically $\\Delta t = 1$ or $\\Delta t = K$), eliminating the adaptive benefit. We employ three complementary countermeasures.\n79\t\n80\t**Entropy regularization.** We add an entropy bonus to the gate loss:\n81\t\n82\t$$\\mathcal{L}_{\\text{total}} = \\lambda_g\\,\\mathcal{L}_{\\text{gate}} - \\lambda_H\\,\\mathcal{H}[p_\\theta(\\cdot \\mid f_t)],$$\n83\t\n84\twhere $\\mathcal{H}$ is the categorical entropy of the gate distribution and $\\lambda_H$ is annealed from 0.1 to 0.01 over 200K steps. The high initial $\\lambda_H$ prevents the gate from committing to a narrow $\\Delta t$ range before the RSSM has learned good multi-stride dynamics.\n85\t\n86\t**Three-phase curriculum.** We introduce the gate gradually:\n87\t\n88\t| Phase | Steps | Behavior |\n89\t|-------|-------|----------|\n90\t| 1 | $0$--$50\\text{K}$ | Gate frozen ($\\Delta t \\equiv 1$); gate loss weight $= 0$ |\n91\t| 2 | $50\\text{K}$--$150\\text{K}$ | Gate loss linearly ramped from 0 to 1; gate active in imagination |\n92\t| 3 | $> 150\\text{K}$ | Full gating; gate scale $= 1.0$ |\n93\t\n94\tPhase 1 allows the RSSM to first learn stable single-step dynamics identical to standard DreamerV3. Phase 2 gradually introduces multi-stride predictions, giving the RSSM time to adapt. Phase 3 permits unconstrained gate optimization.\n95\t\n96\tFormally, the gate scale factor is:\n97\t\n98\t$$\\alpha(s) = \\begin{cases} 0 & s < s_1 \\\\ (s - s_1) / (s_2 - s_1) & s_1 \\leq s < s_2 \\\\ 1 & s \\geq s_2 \\end{cases}$$\n99\t\n100\twhere $s$ is the training step, $s_1 = 50\\text{K}$, and $s_2 = 150\\text{K}$.\n101\t\n102\t**Synchronized sub-sampling curriculum.** A naive implementation applies full variable-$\\Delta t$ sub-sampling from step 0, forcing the RSSM to train on multi-stride data while imagination only uses $\\Delta t = 1$ during Phase 1. This train--imagination mismatch degrades performance. We resolve it by tying the sub-sampling range to the curriculum schedule:\n103\t\n104\t$$\\Delta t_{\\max}^{\\text{eff}} = 1 + \\alpha(s) \\cdot (K - 1).$$\n105\t\n106\tDuring Phase 1, $\\Delta t_{\\max}^{\\text{eff}} = 1$ and the training data is identical to vanilla DreamerV3 (no sub-sampling). During Phase 2, the maximum stride ramps linearly from 1 to $K$, synchronizing the distribution of $\\Delta t$ in training data with the gate's expanding range in imagination. During Phase 3, the full log-uniform distribution over $\\{1, \\dots, K\\}$ is used.\n107\t\n108\t## 3.5 Comparison with Related Approaches\n109\t\n110\tOur method occupies a distinct point in the design space of temporal abstraction for model-based RL. We highlight the key differences with the most closely related approaches.\n111\t\n112\t**THICK** \\citep{romac2024thick} decomposes planning into a hierarchy of coarse sub-goals and fine-grained actions, with a fixed sub-goal horizon. In contrast, our approach operates within a single-level RSSM and learns a *per-step* temporal stride, avoiding the complexity of hierarchical world models while still achieving variable temporal resolution.\n113\t\n114\t**TAWM** \\citep{freed2024tawm} introduces time-aware world models that condition on a fixed or scheduled $\\Delta t$ to predict future states. Our event gate makes $\\Delta t$ *state-dependent*---the stride is chosen dynamically based on the current latent state rather than being fixed or globally scheduled, enabling the model to allocate temporal resolution where it is most needed within a single trajectory.\n115\t\n116\t**ASI** \\citep{neitz2018adaptive} learns to skip timesteps by min-pooling over reconstruction losses, selecting intervals that are *easiest to predict*. It operates on raw observation prediction without integration into a model-based RL loop. In contrast, our gate optimizes for *dynamical significance* via latent-state deltas rather than prediction ease, and is fully integrated into the RSSM imagination pipeline for policy optimization.\n117\t\n118\t**LS-Imagine** \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, with action-independent jumps that skip over low-information states. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, rather than exploration-oriented action-independent jumps; and it selects strides based on latent-state dynamics rather than observation-space affordance maps.\n119\t\n120\t**DyMoDreamer** \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features. It operates at the observation/pixel level to improve per-step representation quality. Our method operates in latent space and changes the *temporal resolution* of imagination rather than the attention quality of individual steps, achieving complementary benefits within a single RSSM architecture.\n121\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "7109444c-d1c4-4048-b1ad-eaf8147a66be",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/method_section_draft.md",
+                "content": "# 3. Method\n\nWe build on DreamerV3 \\citep{hafner2023dreamerv3}, a model-based reinforcement learning agent that learns a world model in a recurrent latent space (RSSM) and optimizes a policy purely through imagined rollouts. Our key contribution is an **event gate** that selects a per-step temporal stride $\\Delta t \\in \\{1, \\dots, K\\}$, enabling variable-rate imagination. When the latent state changes slowly, the gate skips multiple environment steps in a single model transition; when the state changes rapidly, it falls back to single-step updates. This extends the effective planning horizon without a proportional increase in computation. We describe the five components of our approach below.\n\n## 3.1 Variable-Rate RSSM\n\nThe standard RSSM in DreamerV3 maintains a deterministic recurrent state $h_t$ and a stochastic state $z_t$, updated at every environment step via a GRU cell:\n\n$$h_t = \\text{GRU}(h_{t-1}, [z_{t-1}; a_{t-1}]).$$\n\nWe extend this transition to accept a temporal stride $\\Delta t \\in \\{1, \\dots, K\\}$ that specifies how many environment steps the model traverses in a single recurrence. To inform the GRU of the stride magnitude, we introduce a learned embedding $e: \\{1, \\dots, K\\} \\to \\mathbb{R}^{d_e}$ via a lookup table $\\mathbf{E} \\in \\mathbb{R}^{K \\times d_e}$ (we use $K{=}8$, $d_e{=}32$). The modified transition becomes:\n\n$$h_t = \\text{GRU}\\!\\left(h_{t-1},\\; [z_{t-1};\\; a_{t-1};\\; e(\\Delta t)]\\right).$$\n\nThe GRU input is first projected through a linear layer followed by LayerNorm and SiLU activation before entering the recurrent cell, which absorbs the scale difference introduced by the additional embedding dimension. The stochastic state $z_t$ is then sampled from a categorical distribution (with uniform mixture) parameterized by an MLP applied to $h_t$, exactly as in DreamerV3.\n\nWhen $\\Delta t = 1$, the model reduces to the standard RSSM. The embedding weights are initialized near zero ($\\sigma = 0.01$) so that the initial model behavior is nearly identical to vanilla DreamerV3, ensuring stable early training.\n\n**Training with variable strides.** To teach the RSSM to predict across different temporal strides, we sub-sample replay trajectories at variable $\\Delta t$ during training (Section 3.4). Each sub-sampled trajectory carries per-step $\\Delta t$ labels that are passed through the observation loop to the GRU, allowing the model to learn stride-conditioned dynamics.\n\n## 3.2 Event Gate\n\nThe event gate is a lightweight MLP that examines the current latent state and decides the temporal stride for the next imagination step.\n\n**Architecture.** The gate takes as input the feature vector $f_t = [z_t; h_t] \\in \\mathbb{R}^{d_f}$ (where $d_f = d_z \\cdot C + d_h$; for DreamerV3's default configuration, $d_f = 32 \\times 32 + 512 = 1536$). It consists of two hidden layers of 256 units each, with LayerNorm and SiLU activations, followed by a linear projection to $K$ logits:\n\n$$\\ell_t = W_2\\,\\text{SiLU}\\!\\left(\\text{LN}(W_1\\,f_t)\\right) \\in \\mathbb{R}^K.$$\n\nThe output distribution over strides is obtained via Gumbel-Softmax:\n\n$$\\Delta t \\sim \\text{Gumbel-Softmax}(\\ell_t, \\tau),$$\n\nwhich provides differentiable sampling during training while producing hard (argmax) decisions during imagination. The temperature $\\tau$ is linearly annealed from $\\tau_0 = 5.0$ to $\\tau_{\\min} = 0.5$ over 200K training steps, transitioning from near-uniform exploration to confident stride selection.\n\n**Latent-state delta supervision.** Rather than relying solely on task reward to shape the gate, we provide a direct supervision signal derived from the rate of change in latent space. Let $\\delta_t = \\|f_t - f_{t-1}\\|_2$ be the L2 distance between consecutive feature vectors (with stop-gradient on both $f_t$ and $f_{t-1}$). We normalize $\\delta_t$ to $[0, 1]$ within each batch via min-max scaling and compute a preferred stride:\n\n$$\\Delta t^* = 1 + (K - 1)(1 - \\bar{\\delta}_t),$$\n\nwhere $\\bar{\\delta}_t$ is the normalized delta. Large state changes ($\\bar{\\delta}_t \\to 1$) yield $\\Delta t^* \\to 1$ (fine resolution); small changes ($\\bar{\\delta}_t \\to 0$) yield $\\Delta t^* \\to K$ (skip ahead). The supervision target is a soft categorical distribution formed by a Gaussian kernel centered at $\\Delta t^*$:\n\n$$q_t(k) \\propto \\exp\\!\\left(-\\frac{(k - \\Delta t^*)^2}{2\\sigma^2}\\right), \\quad k = 1, \\dots, K,$$\n\nwith $\\sigma = 1.0$. The gate supervision loss is the cross-entropy between the gate's predicted distribution and this soft target:\n\n$$\\mathcal{L}_{\\text{gate}} = -\\sum_{k=1}^{K} q_t(k) \\log p_{\\theta}(k \\mid f_t),$$\n\nwhere $p_{\\theta}(k \\mid f_t) = \\text{softmax}(\\ell_t)_k$. Crucially, the gate loss does not backpropagate into the RSSM: the input features are detached, so the gate learns to *read* the latent dynamics rather than *shape* them.\n\n## 3.3 Adapted $\\lambda$-Returns\n\nDreamerV3 computes $\\lambda$-returns over imagined trajectories with a fixed per-step discount $\\gamma$. With variable-rate imagination, each step spans $\\Delta t$ environment steps, requiring adaptations to both the reward aggregation and the discount factor.\n\n**Cumulative discounted reward.** When sub-sampling a replay trajectory at stride $\\Delta t$, we pre-compute the cumulative discounted reward for each gap:\n\n$$r_t^{\\text{cum}} = \\sum_{k=0}^{\\Delta t - 1} \\gamma^k\\, r_{t+k}.$$\n\nThe reward head is trained to predict $r_t^{\\text{cum}}$ directly (the sub-sampled training data replaces per-step rewards with their cumulative-discounted aggregates), so no approximation is needed at imagination time.\n\n**Minimum continuation.** For the continuation signal across a gap, we take the conservative estimate:\n\n$$c_t^{\\min} = \\min_{k=0,\\dots,\\Delta t - 1} c_{t+k},$$\n\nso that if any frame within the gap is terminal, the entire interval is marked as terminal.\n\n**Variable-stride $\\lambda$-return.** The adapted $\\lambda$-return replaces the fixed discount $\\gamma$ with $\\gamma^{\\Delta t}$:\n\n$$V_t^{\\lambda} = r_t^{\\text{cum}} + \\gamma^{\\Delta t}\\!\\left[(1 - \\lambda)\\,V(s_{t+\\Delta t}) + \\lambda\\, V_{t+\\Delta t}^{\\lambda}\\right],$$\n\nwith the recursion terminating at the bootstrap value $V(s_H)$. This is computed via the same backward scan as the standard $\\lambda$-return, but with per-step adjusted discount $(\\gamma \\cdot c_t)^{\\Delta t}$ in place of $\\gamma \\cdot c_t$. When $\\Delta t = 1$ for all steps, this expression reduces exactly to the standard DreamerV3 $\\lambda$-return.\n\n**Importance weights.** The per-step weights used for the actor and value losses are similarly adjusted:\n\n$$w_t = \\prod_{i=0}^{t-1} (\\gamma \\cdot c_i)^{\\Delta t_i},$$\n\nso that steps further in effective time receive appropriately decayed weight.\n\n## 3.4 Gate Collapse Prevention\n\nA central failure mode is *gate collapse*, where the gate converges to a constant stride (typically $\\Delta t = 1$ or $\\Delta t = K$), eliminating the adaptive benefit. We employ three complementary countermeasures.\n\n**Entropy regularization.** We add an entropy bonus to the gate loss:\n\n$$\\mathcal{L}_{\\text{total}} = \\lambda_g\\,\\mathcal{L}_{\\text{gate}} - \\lambda_H\\,\\mathcal{H}[p_\\theta(\\cdot \\mid f_t)],$$\n\nwhere $\\mathcal{H}$ is the categorical entropy of the gate distribution and $\\lambda_H$ is annealed from 0.1 to 0.01 over 200K steps. The high initial $\\lambda_H$ prevents the gate from committing to a narrow $\\Delta t$ range before the RSSM has learned good multi-stride dynamics.\n\n**Three-phase curriculum.** We introduce the gate gradually:\n\n| Phase | Steps | Behavior |\n|-------|-------|----------|\n| 1 | $0$--$50\\text{K}$ | Gate frozen ($\\Delta t \\equiv 1$); gate loss weight $= 0$ |\n| 2 | $50\\text{K}$--$150\\text{K}$ | Gate loss linearly ramped from 0 to 1; gate active in imagination |\n| 3 | $> 150\\text{K}$ | Full gating; gate scale $= 1.0$ |\n\nPhase 1 allows the RSSM to first learn stable single-step dynamics identical to standard DreamerV3. Phase 2 gradually introduces multi-stride predictions, giving the RSSM time to adapt. Phase 3 permits unconstrained gate optimization.\n\nFormally, the gate scale factor is:\n\n$$\\alpha(s) = \\begin{cases} 0 & s < s_1 \\\\ (s - s_1) / (s_2 - s_1) & s_1 \\leq s < s_2 \\\\ 1 & s \\geq s_2 \\end{cases}$$\n\nwhere $s$ is the training step, $s_1 = 50\\text{K}$, and $s_2 = 150\\text{K}$.\n\n**Synchronized sub-sampling curriculum.** A naive implementation applies full variable-$\\Delta t$ sub-sampling from step 0, forcing the RSSM to train on multi-stride data while imagination only uses $\\Delta t = 1$ during Phase 1. This train--imagination mismatch degrades performance. We resolve it by tying the sub-sampling range to the curriculum schedule:\n\n$$\\Delta t_{\\max}^{\\text{eff}} = 1 + \\alpha(s) \\cdot (K - 1).$$\n\nDuring Phase 1, $\\Delta t_{\\max}^{\\text{eff}} = 1$ and the training data is identical to vanilla DreamerV3 (no sub-sampling). During Phase 2, the maximum stride ramps linearly from 1 to $K$, synchronizing the distribution of $\\Delta t$ in training data with the gate's expanding range in imagination. During Phase 3, the full log-uniform distribution over $\\{1, \\dots, K\\}$ is used.\n\n## 3.5 Comparison with Related Approaches\n\nOur method occupies a distinct point in the design space of temporal abstraction for model-based RL. We highlight the key differences with the most closely related approaches.\n\n**THICK** \\citep{romac2024thick} decomposes planning into a hierarchy of coarse sub-goals and fine-grained actions, with a fixed sub-goal horizon. In contrast, our approach operates within a single-level RSSM and learns a *per-step* temporal stride, avoiding the complexity of hierarchical world models while still achieving variable temporal resolution.\n\n**TAWM** \\citep{freed2024tawm} introduces time-aware world models that condition on a fixed or scheduled $\\Delta t$ to predict future states. Our event gate makes $\\Delta t$ *state-dependent*---the stride is chosen dynamically based on the current latent state rather than being fixed or globally scheduled, enabling the model to allocate temporal resolution where it is most needed within a single trajectory.\n\n**ASI** \\citep{neitz2018adaptive} learns to skip timesteps by min-pooling over reconstruction losses, selecting intervals that are *easiest to predict*. It operates on raw observation prediction without integration into a model-based RL loop. In contrast, our gate optimizes for *dynamical significance* via latent-state deltas rather than prediction ease, and is fully integrated into the RSSM imagination pipeline for policy optimization.\n\n**LS-Imagine** \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, with action-independent jumps that skip over low-information states. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, rather than exploration-oriented action-independent jumps; and it selects strides based on latent-state dynamics rather than observation-space affordance maps.\n\n**DyMoDreamer** \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features. It operates at the observation/pixel level to improve per-step representation quality. Our method operates in latent space and changes the *temporal resolution* of imagination rather than the attention quality of individual steps, achieving complementary benefits within a single RSSM architecture.\n",
+                "numLines": 122,
+                "startLine": 0,
+                "totalLines": 122
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to compare the descriptions of ASI, LS-Imagine, and DyMoDreamer between the two files.\n\n**ASI in related_work_draft.md (line 17):**\n\"ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.\"\n\n**ASI in method_section_draft.md (line 116):**\n\"ASI \\citep{neitz2018adaptive} learns to skip timesteps by min-pooling over reconstruction losses, selecting intervals that are *easiest to predict*. \n\nIt operates on raw observation prediction without integration into a model-based RL loop. In contrast, our gate optimizes for *dynamical significance* via latent-state deltas rather than prediction ease, and is fully integrated into the RSSM imagination pipeline for policy optimization.\"\n\nThe core descriptions align well—both emphasize that ASI selects easy-to-predict intervals without RL integration, while our approach prioritizes dynamical significance and integrates directly into the imagination loop.\n\n**LS-Imagine in related_work_draft.md (line 25):**\n\"LS-Imagine \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps.\"\n\nThe method section version expands slightly to clarify that LS-Imagine's jumps are action-independent and exploration-focused, while ours are policy-dependent and integrated into the actor-critic loop—a clearer contrast that emphasizes the architectural differences.\n\nNow looking at DyMoDreamer across both documents. The related work section explains how it uses inter-frame differencing to improve per-step representation quality at the pixel level, while our approach operates in latent space and modifies temporal resolution instead. The method section appears to be starting the same comparison but gets cut off mid-sentence.\n\nChecking the consistency here—both versions are describing the same core distinction: DyMoDreamer focuses on attention quality within individual steps, whereas we're changing how many steps the model imagines. The descriptions align on this fundamental difference. Now I'm checking the third comparison for DyMoDreamer—the related work description matches what the user specified, noting that it operates at the pixel level to improve representation quality per step, whereas their approach works in latent space and modulates temporal resolution instead of attention quality.\n\nAll three method comparisons check out against the related work section. For the next task, I need to add an opening to Section 2.2 that references the Options framework, FiGAR, and TempoRL, then clarify the key distinction: those prior methods do temporal abstraction during environment interaction through action repetition or temporal commitment, while the stride selection here happens purely in imagination without affecting how often the agent interacts with the environment. Temporal abstraction has a rich history in RL, with the options framework formalizing temporally extended actions, FiGAR introducing learned action repetition, and TempoRL enabling skip-length learning through a separate network. These prior approaches operate at the environment interaction level—determining how long to commit to an action—whereas stride selection in world models operates in imagination space without changing the agent's actual interaction frequency. Several works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "51b66f08-fe50-4a5e-92be-4c6a85255e5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011i5seHkjhtKHSqE9281APf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5903,
+                "cache_read_input_tokens": 23365,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5903
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 1 的三个描述在 related_work_draft.md 与 method_section_draft.md 之间一致，无需修改。\n\nTask 2：在 Section 2.2 开头补充经典时间抽象文献。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "0f93e445-35cc-41c9-8a1c-0fb4c5b2157a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011i5seHkjhtKHSqE9281APf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5903,
+                "cache_read_input_tokens": 23365,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5903
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DXm3BoYScATVHPFjAp29Fx",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/related_work_draft.md",
+                "old_string": "## 2.2 Variable-Rate and Temporal Abstraction\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.",
+                "new_string": "## 2.2 Variable-Rate and Temporal Abstraction\n\nTemporal abstraction has deep roots in RL: the options framework \\citep{sutton1999options} formalizes temporally extended actions with initiation sets and termination conditions; FiGAR \\citep{sharma2017figar} augments the policy with a learned action-repetition head [NEED VERIFY: exact FiGAR mechanism]; TempoRL \\citep{biedenkapp2021temporl} learns skip lengths via a dedicated skip network [NEED VERIFY: exact TempoRL architecture]. These approaches operate at the level of \\emph{environment interaction}---choosing how long to commit to an action---whereas our stride selection operates in \\emph{imagination space} and does not alter the agent's environment interaction frequency.\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "84d4f2a5-1df4-4805-8ef6-5a09d5728e7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011i5seHkjhtKHSqE9281APf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5903,
+                "cache_read_input_tokens": 23365,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5903
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T09:05:33.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DXm3BoYScATVHPFjAp29Fx",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/related_work_draft.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "ad04a3d8-1249-4d7f-a376-a81e39b32315",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/related_work_draft.md",
+              "oldString": "## 2.2 Variable-Rate and Temporal Abstraction\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.",
+              "newString": "## 2.2 Variable-Rate and Temporal Abstraction\n\nTemporal abstraction has deep roots in RL: the options framework \\citep{sutton1999options} formalizes temporally extended actions with initiation sets and termination conditions; FiGAR \\citep{sharma2017figar} augments the policy with a learned action-repetition head [NEED VERIFY: exact FiGAR mechanism]; TempoRL \\citep{biedenkapp2021temporl} learns skip lengths via a dedicated skip network [NEED VERIFY: exact TempoRL architecture]. These approaches operate at the level of \\emph{environment interaction}---choosing how long to commit to an action---whereas our stride selection operates in \\emph{imagination space} and does not alter the agent's environment interaction frequency.\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.",
+              "originalFile": "# 2. Related Work\n\nWe situate our approach within five related lines of research: fixed-rate model-based RL, variable-rate and temporal abstraction, learned skipping for planning, imagination quality improvement, and event-aware world models.\n\n## 2.1 Model-Based RL with Fixed-Rate Imagination\n\nModern model-based RL agents learn latent world models and optimize policies through imagined rollouts at a fixed temporal resolution.\n\nDreamerV3 \\citep{hafner2023dreamerv3} learns a Recurrent State-Space Model (RSSM) that maintains deterministic and stochastic latent states, training an actor-critic purely through $H$-step imagined trajectories. It achieves strong performance across diverse domains but operates at a fixed one-environment-step-per-latent-step resolution, limiting the effective planning horizon to $H$ environment steps regardless of episode length. NE-Dreamer \\citep{nedreamer2026} replaces pixel-level reconstruction with next-embedding prediction, yielding a decoder-free latent world model that improves sample efficiency while retaining the fixed-rate imagination structure. R2-Dreamer \\citep{r2dreamer2026} similarly eliminates the observation decoder by training with redundancy-reduced latent targets, accelerating training and improving robustness. [NEED VERIFY: exact technical details of NE-Dreamer and R2-Dreamer beyond decoder-free design]\n\nThese methods share a fundamental limitation: each imagination step covers exactly one environment timestep, so for long-horizon tasks (e.g., 250-step manipulation episodes), a rollout of $H{=}15$ steps covers only 6\\% of the episode, creating a credit assignment bottleneck. Our method addresses this by learning to skip uneventful timesteps, extending the effective horizon to $\\sum \\Delta t_i$ environment steps (up to $H \\times K$) without additional latent computation.\n\n## 2.2 Variable-Rate and Temporal Abstraction\n\nSeveral works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.\n\nTAWM \\citep{freed2024tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\\Delta t$ \\emph{state-dependent} via a learned event gate. THICK \\citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \\citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. [NEED VERIFY: exact HWM architecture details beyond multi-scale planning] ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance.\n\nOur approach avoids the multi-model exploitation problem identified by \\citet{schiewer2024hierarchical} in hierarchical world models by operating within a single RSSM, while offering finer temporal adaptation than two-level hierarchies through a continuous per-step stride selection.\n\n## 2.3 Learned Skipping for Planning\n\nA separate line of work learns explicit skip or jump decisions to extend planning horizons.\n\nLS-Imagine \\citep{li2025lsimagine} learns jumping flags based on affordance-map kurtosis for open-world exploration in MineDojo, enabling the agent to skip over low-information states during imagination. The jumps are action-independent and designed for exploration in open-world settings. Our gate differs in two key ways: it operates within the actor-critic MBRL imagination loop with policy-dependent variable-rate stepping, and it selects strides based on latent-state dynamics rather than observation-space affordance maps. I-TAP \\citep{itap2026} learns temporal abstractions via discrete residual tokens with a VQ-VAE, performing MCTS planning in token space for offline RL. It operates in a fundamentally different paradigm---offline and autoregressive---from our online RSSM-based approach. [NEED VERIFY: exact I-TAP architecture details beyond VQ-VAE + MCTS description]\n\nWhile both LS-Imagine and I-TAP demonstrate the value of temporal flexibility in planning, neither addresses the specific setting of online actor-critic training with variable-rate latent imagination. Our event gate fills this gap by integrating state-dependent stride selection directly into DreamerV3's imagination pipeline.\n\n## 2.4 Imagination Quality Improvement\n\nRather than changing temporal resolution, several recent works improve the quality of fixed-rate imagination rollouts.\n\nDMWM \\citep{wang2025dmwm} introduces a dual-mind architecture combining an RSSM-based System~1 for intuitive transitions with a logic-informed neural network (LINN) System~2 that provides logical reasoning feedback, improving long-horizon imagination coherence through logical constraints. It shares our motivation of extending effective RSSM imagination but addresses error accumulation at fixed temporal resolution rather than extending the temporal horizon. DyMoDreamer \\citep{dymodreamer2025} uses inter-frame differencing masks with stochastic categorical dynamic modulation to focus RSSM attention on motion-relevant features, achieving strong results on visual benchmarks (Atari 100k, DMC). It operates at the observation/pixel level to improve per-step representation quality, whereas our method operates in latent space and changes the \\emph{temporal resolution} of imagination rather than the attention quality of individual steps---the two approaches target complementary axes of improvement and could in principle be combined. ELVIS \\citep{du2026elvis} introduces ensemble-calibrated uncertainty-aware $\\lambda$-return gating for long-horizon RSSM-based MPC, adaptively weighting bootstrapping versus continued rollout based on epistemic uncertainty. While ELVIS adapts \\emph{how much} to trust each imagination step, it does not change \\emph{how many} environment steps each imagination step covers---our gate modifies the temporal resolution itself.\n\n## 2.5 Event-Aware World Models\n\nEvent-driven representations have recently been applied to world models, though primarily at the observation level.\n\nEA-WM \\citep{eawm2026} introduces event-aware fusion via frame-difference supervision for video world models at the pixel level, using event signals to improve generation quality of dynamic regions. While both EA-WM and our method leverage event-like signals (frame differences vs. latent-state deltas), EA-WM applies them to improve pixel-level video prediction quality, whereas we use latent-state change magnitude to drive \\emph{temporal stride selection} in the imagination loop for policy optimization. Our event gate operates entirely in the learned latent space, using state-delta magnitude as a proxy for dynamical significance to determine when fine-grained versus coarse-grained imagination is warranted.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 12,
+                  "oldLines": 6,
+                  "newStart": 12,
+                  "newLines": 8,
+                  "lines": [
+                    " ",
+                    " ## 2.2 Variable-Rate and Temporal Abstraction",
+                    " ",
+                    "+Temporal abstraction has deep roots in RL: the options framework \\citep{sutton1999options} formalizes temporally extended actions with initiation sets and termination conditions; FiGAR \\citep{sharma2017figar} augments the policy with a learned action-repetition head [NEED VERIFY: exact FiGAR mechanism]; TempoRL \\citep{biedenkapp2021temporl} learns skip lengths via a dedicated skip network [NEED VERIFY: exact TempoRL architecture]. These approaches operate at the level of \\emph{environment interaction}---choosing how long to commit to an action---whereas our stride selection operates in \\emph{imagination space} and does not alter the agent's environment interaction frequency.",
+                    "+",
+                    " Several works introduce temporal flexibility into world model dynamics, either through externally specified time gaps or learned hierarchical abstractions.",
+                    " ",
+                    " TAWM \\citep{freed2024tawm} introduces time-aware world models that condition latent dynamics on a temporal gap $\\Delta t$ via RK4/Euler integration, enabling the model to predict across variable time scales. However, $\\Delta t$ must be externally specified rather than learned, and TAWM is built on TD-MPC2's short-horizon MPC framework ($H{=}3$--$5$ with MPPI planning), where temporal skipping during planning is counterproductive. Our method adapts the variable-$\\Delta t$ conditioning principle to DreamerV3's RSSM but makes $\\Delta t$ \\emph{state-dependent} via a learned event gate. THICK \\citep{romac2024thick} learns a two-level temporal hierarchy via discrete latent dynamics, where the lower level forms invariant contexts and the upper level predicts context changes. While this achieves temporal abstraction, the fixed two-level structure cannot express continuous degrees of event significance or variable skip lengths within a single hierarchy level. HWM \\citep{zhang2026hwm} extends this line by learning multi-scale latent world models for hierarchical planning with a learned action encoder for temporal compression, but similarly relies on a fixed two-level planner architecture. [NEED VERIFY: exact HWM architecture details beyond multi-scale planning] ASI \\citep{neitz2018adaptive} learns to skip timesteps in recurrent dynamics models by min-pooling over reconstruction losses, selecting intervals that are easiest to predict. It operates on raw observation prediction without integration into a model-based RL loop and optimizes for prediction ease rather than dynamical significance."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Task 1**: ASI / LS-Imagine / DyMoDreamer 的描述在 related_work_draft.md 与 method_section_draft.md 中已一致，无需修改。\n- **Task 2**: 在 Section 2.2 开头新增一段，引入 Options (Sutton et al., 1999)、FiGAR (Sharma et al., 2017)、TempoRL (Biedenkapp et al., 2021)，并说明区别：它们在 environment interaction 层面做时间抽象，我们在 imagination space 做 stride selection。FiGAR 和 TempoRL 的具体机制细节标注了 `[NEED VERIFY]`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "uuid": "4a9a8098-a4de-4b3a-964f-70d3413f9f73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TpqzdhiQyfrYLD9ZMQFy2H",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2441,
+                "cache_read_input_tokens": 29268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2441
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Task 1**: ASI / LS-Imagine / DyMoDreamer 的描述在 related_work_draft.md 与 method_section_draft.md 中已一致，无需修改。\n- **Task 2**: 在 Section 2.2 开头新增一段，引入 Options (Sutton et al., 1999)、FiGAR (Sharma et al., 2017)、TempoRL (Biedenkapp et al., 2021)，并说明区别：它们在 environment interaction 层面做时间抽象，我们在 imagination space 做 stride selection。FiGAR 和 TempoRL 的具体机制细节标注了 `[NEED VERIFY]`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 50801,
+            "duration_api_ms": 52305,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "6105f332-087c-4161-b7af-0d51debcff8f",
+            "total_cost_usd": 0.2297765,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 20262,
+              "cache_read_input_tokens": 64080,
+              "output_tokens": 2785,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20262,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 202,
+                  "cache_read_input_tokens": 29268,
+                  "cache_creation_input_tokens": 2441,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2441
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1364,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001449,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2785,
+                "cacheReadInputTokens": 64080,
+                "cacheCreationInputTokens": 20262,
+                "webSearchRequests": 0,
+                "costUSD": 0.22832750000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ee1d7368-26d7-4cae-a516-5541f0305504"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/write-fix-related-work.md"
+}

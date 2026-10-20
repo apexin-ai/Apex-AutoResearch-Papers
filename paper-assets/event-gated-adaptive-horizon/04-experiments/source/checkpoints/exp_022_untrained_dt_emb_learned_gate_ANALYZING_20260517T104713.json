@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp_022_untrained_dt_emb_learned_gate",
+  "project": "event-gated-adaptive-horizon",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-17T04:16:57.150Z",
+    "updated_at": "2026-05-17T10:47:13.409Z",
+    "hypothesis": "Frozen dt_emb (random init, no gradients) prevents CIVO by blocking the trained-embedding-driven value overestimation feedback loop, while the learned gate (Gumbel-softmax, receives gradients) retains adaptive horizon selection capability. If successful, this decouples temporal abstraction benefits from CIVO vulnerability.",
+    "parent": "exp_008f_s3_no_dt_embed_walker + exp_005_gate_arch (combines safe dt_emb from 008f with gate architecture from 005 series)",
+    "server": "bjb1-45299",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-17T10:47:12.534Z"
+    },
+    "failure_reason": "Config error: used --configs dmc_vision (CNN+image, wrong modality) instead of dmc_proprio, and --compile True (torch.compile inductor crash). Killed and resubmitting with correct config.",
+    "completed_at": "2026-05-17T07:44:38.596Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T07:44:42.334281+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"unset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_EGL_DEVICE_ID=1 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs dmc_proprio --task dmc_walker_walk --steps 105000 --seed 0 --device cuda:1 --compile False --checkpoint_every 10000 --gate_enabled True --gate_dt_embed_dim 32 --dt_emb_freeze True --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --imag_horizon 8 --logdir ./logdir/exp_022_untrained_dt_emb_learned_gate\"",
+      "server": "bjb1-45299",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": 661595,
+      "log_path": "~/runs/event-gated-adaptive-horizon/exp_022_untrained_dt_emb_learned_gate.log",
+      "submitted_at": "2026-05-17T07:47:20.391Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_id": "cuda:1",
+      "data_path": "dmc_walker_walk (online RL, proprio obs)",
+      "data_count": 105000,
+      "model_name": "DreamerV3 + frozen dt_emb (d=32) + learned gate (Gumbel-softmax)",
+      "seed": 0,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (online RL, not eval)"
+    }
+  },
+  "timestamp": "2026-05-17T10:47:13.704550+00:00",
+  "trigger": "update_registry"
+}

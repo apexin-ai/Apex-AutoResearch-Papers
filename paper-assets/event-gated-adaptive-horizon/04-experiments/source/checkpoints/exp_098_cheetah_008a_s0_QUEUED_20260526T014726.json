@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_098_cheetah_008a_s0",
+  "project": "event-gated-adaptive-horizon",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-26T00:46:52.448Z",
+    "updated_at": "2026-05-26T01:47:25.892Z",
+    "hypothesis": "Cheetah Run trained dt_emb (unexposed to dt>1, subsample OFF) + gate_fixed_dt=2 + H=15, seed=0 — 重跑丢失的 exp_096（westd 宕机）。Cheetah 版 Walker 008a 配置，训练只用 dt=1 数据，dt_emb 的 dt=2 embedding 未被训练。预期无 CIVO，验证 C3 cross-env value suppression。plan_023。",
+    "parent": "exp_008a_no_subsample_dt2"
+  },
+  "timestamp": "2026-05-26T01:47:26.306707+00:00",
+  "trigger": "update_registry"
+}

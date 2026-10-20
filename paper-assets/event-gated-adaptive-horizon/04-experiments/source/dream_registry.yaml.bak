@@ -1,0 +1,178 @@
+dreams:
+  dream_20260514T062606:
+    dream_id: dream_20260514T062606
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key questions for reviewers: (1) Is the causal evidence from factorial
+      design (008d vs 008f) convincing enough for a mechanistic claim? (2) Does the
+      normalized v/e ratio hold up as a diagnostic tool? (3) Is a diagnostic paper
+      without a proposed solution publishable at CoRL? (4) Are Walker Walk + Cheetah
+      Run sufficient for generalization claims, or is a third environment needed?
+      (5) Single seed MVP results + planned 3-seed replication — will reviewers accept
+      cross-experiment consistency as partial compensation?'
+    what_if: []
+    pid: 283246
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6f62fefc0c4cb11c0206d9f5055
+    started_at: '2026-05-14T06:26:06+00:00'
+    updated_at: '2026-05-14T07:18:05+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 35f079ddd90d75e9b42ec5eb21247e3d56bad14441fe0a0ef53f040596882877
+  dream_20260515T004704:
+    dream_id: dream_20260515T004704
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'C6 crown jewel confirmed (2 seeds identical, 95% baseline). D032 refined
+      C2 (nve>1.5x reliable marker, collapse stochastic). D033 corrected 008e_v3 dt_embed
+      as trained (protection = imagination dt=1, not embedding training status). Focus
+      on: whether current evidence is sufficient for CoRL 2026, what remaining experiments
+      (Cheetah/Cartpole/more seeds) add most marginal value, and whether "diagnostic
+      + mitigation guideline" framing is strong enough vs "new method" papers.'
+    what_if: []
+    pid: 382773
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6f529e4094acb325bab272e21c4
+    started_at: '2026-05-15T00:47:04+00:00'
+    updated_at: '2026-05-15T02:07:40+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 5d029c9564e2eb73156868c1e2e6ec9a1e030db270247c5d246b111a99b01e8c
+  dream_20260516T115400:
+    dream_id: dream_20260516T115400
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 608200
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6fb1e345b0acb24b6c0b57e1ccc
+    started_at: '2026-05-16T11:54:00+00:00'
+    updated_at: '2026-05-16T13:08:19+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f94bffb11719813602894326d5b9c259ca7f776b78a078a0beaa1c51f3fab70b
+  dream_20260516T133210:
+    dream_id: dream_20260516T133210
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 018 Full-SGS 已确认 CIVO 是 gradient-level 现象（NVE 1.00×）。Claim 语言已从 "necessary
+      and sufficient" 改为 "necessary condition"/"causal factor"。Related work 扩展到 33
+      refs（含 REDQ, HarmonyDream, PETS, objective mismatch, plasticity loss）。重点评估：(1)
+      gradient-level mechanism 证据链是否充分，(2) 跨环境泛化（Cheetah + ManiSkill3 在跑），(3) Pathway
+      B 控制实验设计是否回应 reviewer concern
+    what_if: []
+    pid: 617112
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6fb3531ec070b22aadbd6b32827
+    started_at: '2026-05-16T13:32:10+00:00'
+    updated_at: '2026-05-16T14:35:23+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 94a3e8418a782535bf02090d6249fe0d78ffee99e2861e6811b07db7c43c3f9e
+  dream_20260516T172011:
+    dream_id: dream_20260516T172011
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: '018v2 Full-SGS 确认消除 CIVO（NVE≤1.05×, eval=448.3=49% baseline）。CIVO 独立贡献量化：35pp
+      degradation（008d 86% vs 018v2 51%）。010b Cheetah 跨环境验证成功（NVE 14.59×）。Claim 语言已改为
+      causal factor。Related work 33 refs。Bootstrap CIs: trained dt_emb Δ NVE +2.29
+      [+0.91, +3.10], exceedance 100% vs 0%。重点评估：(1) CIVO decomposition (35pp) 作为新
+      contribution 是否有力，(2) 跨环境泛化证据充分性，(3) "eliminates CIVO but not inherent cost"
+      的 narrative 是否 compelling'
+    what_if: []
+    pid: 636899
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6fbe3a0888a4b37f0912923e914
+    started_at: '2026-05-16T17:20:11+00:00'
+    updated_at: '2026-05-16T18:04:04+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 08087586e30fb5574e5aac4d1bec7f41ba94c56248c4dc55c6fb8ef364dceb7f
+  dream_20260520T155150:
+    dream_id: dream_20260520T155150
+    project: event-gated-adaptive-horizon
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: corl-2026
+    focus: ''
+    what_if: []
+    pid: 1110924
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6fe9c7b8c4a4b285ab5e18791e1
+    started_at: '2026-05-20T15:51:50+00:00'
+    updated_at: '2026-05-20T17:14:40+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 6d578f34a1083855430e73f691be0ee73af32f527805deda352754804d794d13
+    review_quality:
+      median: simulated
+      worst: simulated
+  dream_20260520T210241:
+    dream_id: dream_20260520T210241
+    project: event-gated-adaptive-horizon
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: Verify that Dream-identified structural fixes (standard countermeasures
+      discussion, expanded references to 55, sharpened novelty, NVE caveat, pixel
+      obs limitation, CoRL relevance, TCN as diagnostic contrast not mitigation) improved
+      paper quality. Pay special attention to whether the countermeasures discussion
+      convincingly distinguishes estimation error vs input-level bias.
+    what_if: []
+    pid: 1151025
+    chat_id: oc_5e879064da2e47dad864c1f891eb37a8
+    card_message_id: om_x100b6fd6599428a4b39dab71b732061
+    started_at: '2026-05-20T21:02:41+00:00'
+    updated_at: '2026-05-20T21:59:21+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b529d9095f96387d26b86ab22df7bd9a97d8a279cd25be9a8ac934b28d51ee07
+    review_quality:
+      best: simulated
+      median: simulated
