@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.0",
+  "id": "ba2fff7a3add16a9f1ab",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: gen-depth-fingerprint - 论文路径: projects/gen-depth-fingerprint/artifacts/_project/paper/m",
+  "task_key": "66e0816a-d355-4408-bc40-266254de7482",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/66e0816a-d355-4408-bc40-266254de7482.jsonl",
+    "occurrence": 1,
+    "bytes": 810940,
+    "sha256": "4afd4aeb6fe6b858edcab210f5a2ddb47db81443a30064e2d1a0df88cc967c3f"
+  },
+  "statistics": {
+    "messages": 209,
+    "user_turns": 13,
+    "tool_calls": 49,
+    "roles": {
+      "record": 64,
+      "user": 13,
+      "assistant": 34,
+      "tool_call": 49,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ba2fff7a3add16a9f1ab-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-gen-depth-fingerprint-projects-gen-depth-fingerprint-artifacts-project-paper-m-copy-16.md"
+}

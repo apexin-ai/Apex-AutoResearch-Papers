@@ -1,0 +1,794 @@
+{
+  "schema_version": "1.0",
+  "id": "e4961f104175e062254c",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need the complete contents of several TeX files for a cross-review response. Read each file fully and report every lin",
+  "task_key": "agent-a448ffe7a5ee8c0a4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a448ffe7a5ee8c0a4.jsonl",
+    "occurrence": 1,
+    "bytes": 65995,
+    "sha256": "de54ccbf3ef10a6c354b75737b579926fdc9195846454be81132cb8d44335d44"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:38:26.529Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need the complete contents of several TeX files for a cross-review response. Read each file fully and report every line:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/abstract.tex`\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/introduction.tex`\n3. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex`\n4. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex`\n5. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_finer_depth.tex`\n6. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex`\n7. `/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex`\n\nReport all text exactly as it appears."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "61314dfc-6686-4819-93b1-3ed6be83e476",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:38:34.311Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read each of these TeX files in full for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61314dfc-6686-4819-93b1-3ed6be83e476",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09d2f967-d6cf-4ce3-a1e0-b76020a990d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T06:38:34.765Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVsVtHe54w2KYmdTLYrrz6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09d2f967-d6cf-4ce3-a1e0-b76020a990d8",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3f32852a-d506-46bd-9697-5ffdaf5b2bde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T06:38:34.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QVsVtHe54w2KYmdTLYrrz6",
+              "type": "tool_result",
+              "content": "1\t% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n2\t\\begin{abstract}\n3\tLLM-generated text is increasingly recycled into training corpora---an estimated 7--17\\% of recent scientific and peer-review content is now machine-produced \\cite{mapping_llm_science,monitoring_ai_review}---yet detection methods pose only a binary human-or-machine question, ignoring \\emph{generation depth}: how many recursive LLM steps a text has undergone.\n4\tWe show that successive re-generation compresses \\emph{where} text sits in distributional space while leaving \\emph{how} it is shaped nearly unchanged, an asymmetry we term \\emph{differential depth response} (DDR).\n5\tAcross eight base-model generators spanning five families (0.6B--8B parameters) under nucleus sampling ($p{=}0.9$, $\\tau \\leq 0.7$), NLL location and lexical diversity drift monotonically with depth (Cohen's $d{=}0.76$--$1.17$) while core distributional shape features remain near-stationary ($d \\leq 0.10$); per-generator validation, convergent effect sizes, and greedy-decoding replication confirm this partition.\n6\tPrior work on iterative generation documents \\emph{what converges}; the central finding here is \\emph{what is approximately preserved} (near-stationary, $d \\leq 0.10$): shape invariance provides a cross-generator reference for depth estimation without per-generator calibration.\n7\tA lightweight 7-feature ensemble exploiting DDR achieves leak-free binary F1\\,=\\,0.694 (gen-1 vs.\\ gen-2+) under leave-one-generator-out evaluation, matching multi-detector ensembles at ${\\sim}2.4\\times$ lower cost; an end-to-end classifier reaches 3-class F1\\,=\\,0.905 (6-gen LOGO), establishing the analytical framework as the primary contribution.\n8\tInstruction tuning compresses DDR, bounding current applicability to base models.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f32852a-d506-46bd-9697-5ffdaf5b2bde",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "00c94079-f997-4abf-ab3d-18f87d18e925",
+            "sourceToolAssistantUUID": "3f32852a-d506-46bd-9697-5ffdaf5b2bde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T06:38:34.958Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XdpjqFirCN5fN6hkWx9dU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00c94079-f997-4abf-ab3d-18f87d18e925",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ece44dbe-85b2-4d2a-b33f-bab492fc0a96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:38:34.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014XdpjqFirCN5fN6hkWx9dU",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tAn estimated 7--17\\% of recent scientific publications already contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}. As these outputs re-enter training corpora \\cite{dolma,fineweb} and seed further generation, text accumulates at varying \\emph{generation depths}; each successive cycle moves distributional properties further from both the human source and the first-generation predecessor. State-of-the-art detectors \\cite{detectgpt,fast_detectgpt,binoculars,ld_score} answer only the binary question \\emph{human or machine}, discarding the depth dimension that data provenance \\cite{ccnet,dsir} and model collapse analysis \\cite{curse_of_recursion,strong_model_collapse} increasingly require.\n5\tWe find that recursive generation produces a decomposable fingerprint: distributional \\emph{location} drifts with depth while \\emph{shape} remains stable across generators, an asymmetry sufficient for cross-generator depth prediction.\n6\t\n7\tDistributional compression under recursive generation is well-documented \\cite{curious_decline,broken_telephone,markovian_chains}, yet existing analyses characterize \\emph{that} and \\emph{why} convergence occurs without decomposing what drifts from what is preserved.\n8\tWe introduce \\emph{depth fingerprinting}, classifying text by ordinal generation depth (gen-0\\,/\\,gen-1\\,/\\,gen-2+), and decompose this compression into structurally distinct components: across eight base-model generators spanning five architectural families (0.6B--8B), the NLL distribution's central tendency (mean entropy, lexical diversity) drifts monotonically with depth while its shape (entropy extremes, tail structure) remains an order of magnitude more stable ($d{=}0.76$--$1.17$ vs.\\ $d < 0.10$ for near-stationary features; boundary features show intermediate stability; convergent effect-size measures confirm this partition).\n9\tWe term this location/shape asymmetry the \\emph{differential depth response} (DDR; Figure~\\ref{fig:feature-drift}), a structural property of fixed-parameter autoregressive sampling that is mechanistically distinct from the tail-coverage erosion in model collapse \\cite{curse_of_recursion}.\n10\tThe stationary shape component provides the cross-generator reference needed for depth prediction without per-generator calibration.\n11\tWe focus exclusively on base (pretrained) models; instruction-tuned variants exhibit structurally different NLL distributions that degrade depth signal (Appendix~\\ref{app:instruct}).\n12\t\n13\tAs a proof of concept, a lightweight 7-feature ensemble informed by DDR achieves leak-free binary F1\\,=\\,0.694 under leave-one-generator-out evaluation, matching multi-detector ensembles at ${\\sim}2.4\\times$ lower cost; an end-to-end QLoRA classifier reaches 3-class F1\\,=\\,0.905 (6-gen LOGO; Appendix~\\ref{app:qlora}), confirming that the depth signal extends well beyond handcrafted features.\n14\t\n15\tOur contributions:\n16\t\\begin{enumerate}[nosep,leftmargin=*]\n17\t    \\item \\textbf{Empirical decomposition (DDR).} Across eight generators from five families, we decompose inference-chain drift into a location component that shifts monotonically ($d{=}0.76$--$1.17$) and a shape component that remains near-stationary ($d < 0.10$). Where prior work documents \\emph{what converges} \\cite{curious_decline,markovian_chains}, DDR identifies \\emph{what is preserved} and enables depth detection without per-generator calibration.\n18\t    \\item \\textbf{Task formulation and evaluation suite.} We define generation depth classification as an ordinal prediction task and construct a controlled dataset of 37K texts from eight generators across five families (0.6B--8B), with leave-one-generator-out cross-validation as the primary evaluation protocol.\n19\t    \\item \\textbf{Scope characterization.} Systematic evaluation across temperature, prompt type, instruction tuning, and model scale maps the operational envelope of depth fingerprinting, identifying key challenges in instruction-tuned models, cross-domain transfer, and perturbation robustness.\n20\t\\end{enumerate}\n21\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ece44dbe-85b2-4d2a-b33f-bab492fc0a96",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "bc51166b-d2cc-470d-9656-6a01faa5e1f2",
+            "sourceToolAssistantUUID": "ece44dbe-85b2-4d2a-b33f-bab492fc0a96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:38:35.172Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017GgdYuGvJBNCcVMNj8GxYx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc51166b-d2cc-470d-9656-6a01faa5e1f2",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2dc2485b-2ec0-4abc-b04a-caadca03b944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:38:35.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017GgdYuGvJBNCcVMNj8GxYx",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t%% Mechanism — why DDR exists\n5\tWe hypothesize that the differential depth response reflects a structural property of nucleus sampling: top-$p$ truncation preserves the conditional distribution's functional form while recursive inputs grow increasingly self-typical, compressing expected NLL monotonically (Appendix~\\ref{app:nll-distribution}); a formal derivation remains future work.\n6\tTwo testable predictions follow---increasing randomness should weaken location drift, semantic constraints should attenuate it---both confirmed: at $\\tau{=}1.0$, depth--NLL correlation collapses ($\\rho{=}{-}0.002$; Appendix~\\ref{app:sampling-sensitivity}); elaboration prompts reduce F1 to 0.730 (Appendix~\\ref{app:prompt-type}). Drifting features contribute $5.5\\times$ more (Appendix~\\ref{app:ddr-causality}).\n7\tShape stability holds even when drift is suppressed: at $\\tau{=}1.0$ ($d < 0.15$; Appendix~\\ref{app:ddr-temp-stability}), under greedy decoding (mean $|d|{=}0.05$), and with top-$k$ ($k{=}50$; Appendix~\\ref{app:decoding-strategy}).\n8\t\n9\t%% Implications — what DDR enables\n10\tDepth constitutes a new operational dimension for corpus management that binary human-vs-machine classifiers cannot access.\n11\tThe classifier supports batch contamination estimation (${\\pm}3$--$4$\\% at $n{=}1{,}000$; gen-1 per-class F1\\,=\\,0.63; Appendix~\\ref{app:error-analysis}) rather than per-document filtering; depth-stratified curation can also serve as a prophylactic against model collapse \\cite{drayson_detection_prevents_collapse}, though no downstream improvement over unfiltered baselines is detected (TOST $\\varepsilon{=}{\\pm}2\\%$; limited power with $n{=}3$ seeds; Appendix~\\ref{app:downstream}).\n12\t\n13\t%% Scope \\& Connections — where DDR works and fails\n14\tDDR is mechanistically distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: retraining erodes tail coverage by updating weights, whereas inference-chain drift at fixed parameters shifts only location (Appendix~\\ref{app:ddr-supplement}); prior work documents \\emph{that} convergence occurs \\cite{markovian_chains,curious_decline}, while DDR decomposes \\emph{what} drifts from what is preserved, extending to Gemma-2 ($-1.9$\\,pp; Appendix~\\ref{app:9gen-scale}).\n15\tThree depth classes define the resolution ceiling (5-class F1\\,$\\approx$\\,0.50; Appendix~\\ref{app:finer-depth}); QLoRA recovers to 0.905 on 3-class (Appendix~\\ref{app:qlora}) and 0.89--0.91 on instruct data despite 3.7--19.9\\,pp XGBoost degradation (Appendix~\\ref{app:instruct}); cross-domain signal persists (F1\\,=\\,0.74--0.75; Appendix~\\ref{app:domain}) and survives 10\\% token replacement (F1\\,=\\,0.614; Appendix~\\ref{app:human-edit}).\n16\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dc2485b-2ec0-4abc-b04a-caadca03b944",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "a27f5f20-7d85-4875-b35f-ffe48a5139b4",
+            "sourceToolAssistantUUID": "2dc2485b-2ec0-4abc-b04a-caadca03b944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:38:35.383Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UZYvxs631wRHfabmGSzYyE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a27f5f20-7d85-4875-b35f-ffe48a5139b4",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "47ca8316-b48a-4d60-aaab-dfecef9f7dee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:38:35.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UZYvxs631wRHfabmGSzYyE",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll eight generators are base (pretrained) models with $\\leq$8.2B parameters.\n5\tInstruction-tuned variants show substantially degraded depth signal (Appendix~\\ref{app:instruct}), and preliminary evidence from Qwen3-14B-Base suggests attenuated DDR correlations at larger scale ($|\\rho|$ decay 22--35\\%; Appendix~\\ref{app:9gen-scale}); frontier models (70B+) remain untested.\n6\t\n7\tThe evaluation assumes a fixed decoding regime (temperature 0.7, nucleus $p{=}0.9$) with English Wikipedia seeds and an English-centric reference model (Pythia-410M), limiting cross-temperature and non-English applicability (Appendix~\\ref{app:cross-temp}).\n8\t\n9\tDepth resolution is bounded at three classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+); finer-grained 5-class classification yields F1\\,$\\approx$\\,0.50 with deeper depths mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\n10\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47ca8316-b48a-4d60-aaab-dfecef9f7dee",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "4fb1948e-6ab1-4baa-91f5-4fbd8a9c09c1",
+            "sourceToolAssistantUUID": "47ca8316-b48a-4d60-aaab-dfecef9f7dee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:38:35.595Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H6KpZ2CcAroVjrmNQQoXJ9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_finer_depth.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fb1948e-6ab1-4baa-91f5-4fbd8a9c09c1",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "921202ba-87f4-4c00-89a0-67de6249eca3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T06:38:35.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H6KpZ2CcAroVjrmNQQoXJ9",
+              "type": "tool_result",
+              "content": "1\tWe evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \\S\\ref{sec:method}.\n2\t\n3\t\\begin{table}[ht]\n4\t\\centering\n5\t\\small\n6\t\\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}\n7\t\\label{tab:5class-logo}\n8\t\\resizebox{\\linewidth}{!}{%\n9\t\\begin{tabular}{lcccc}\n10\t\\toprule\n11\t\\textbf{Held-out Generator} & \\textbf{Macro F1} & \\textbf{Weighted F1} & \\textbf{Accuracy} \\\\\n12\t\\midrule\n13\tOLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\n14\tPythia-1B        & 0.543 & 0.568 & 0.575 \\\\\n15\tPythia-2.8B      & 0.523 & 0.540 & 0.560 \\\\\n16\tQwen3-0.6B      & 0.513 & 0.521 & 0.546 \\\\\n17\tQwen3-1.7B      & 0.510 & 0.536 & 0.548 \\\\\n18\tQwen3-8B        & 0.434 & 0.455 & 0.493 \\\\\n19\t\\midrule\n20\t\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\n21\t\\bottomrule\n22\t\\end{tabular}}\n23\t\\end{table}\n24\t\n25\t\\begin{table}[ht]\n26\t\\centering\n27\t\\small\n28\t\\caption{Per-class F1 averaged across all six LOGO folds.}\n29\t\\label{tab:5class-perclass}\n30\t\\resizebox{\\linewidth}{!}{%\n31\t\\begin{tabular}{lccccc}\n32\t\\toprule\n33\t\\textbf{Metric} & \\textbf{Gen-0} & \\textbf{Gen-1} & \\textbf{Gen-2} & \\textbf{Gen-3} & \\textbf{Gen-4} \\\\\n34\t\\midrule\n35\tAvg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\\\\n36\t\\bottomrule\n37\t\\end{tabular}}\n38\t\\end{table}\n39\t\n40\t\\paragraph{Analysis.}\n41\tMoving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 to approximately 0.50 (six-generator subset; the 3-class baseline for this subset is comparable to the 8-generator result of 0.762 in Table~\\ref{tab:logo-results}).\n42\tThe degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.\n43\tThe aggregated confusion matrix reveals that 36.5\\% of true gen-2 samples are misclassified as gen-1, while 37.8\\% of true gen-3 samples are predicted as gen-4.\n44\tAdjacent depths (gen-2$\\leftrightarrow$gen-3, gen-3$\\leftrightarrow$gen-4) account for the majority of errors, consistent with the intuition that deeper recursive generations converge in surface-level statistical signatures.\n45\tGen-0 (human text) remains highly distinguishable (F1 = 0.921), and gen-1 retains moderate separability (F1 = 0.634).\n46\tShape features that are near-stationary in the 3-class setting become substantially more important under 5-class evaluation: permutation importance of entropy\\_std increases by 93\\% and tail\\_decay by 400\\% relative to 3-class, yet these gains are insufficient to resolve adjacent depths.\n47\tThese results support the 3-class grouping adopted in the main paper: collapsing gen-2+ preserves the most informative boundary (human vs.\\ first-generation vs.\\ deeper recursion) while avoiding the noise introduced by near-identical adjacent depths.\n48\t\n49\t\\paragraph{Classifier comparison.}\n50\tTo verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\\,=\\,0.501, 95\\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).\n51\tAll classifiers perform comparably to the default XGBoost ensemble (0.501), indicating that classifier capacity is not the bottleneck.\n52\tThe gen-2/gen-3 boundary is the primary failure mode across all methods: these two classes are effectively inseparable with the current feature set. This establishes 3-class granularity as the practical ceiling for surface and entropy features.\n53\tAt the 3-class level, ordinal-specific methods (CORAL ordinal regression, Frank-Hall reduction) similarly fail to improve over multiclass XGBoost (\\S\\ref{sec:results}), which confirms that the bottleneck is feature separability across all granularities, not the modeling of label ordinality.\n54\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "921202ba-87f4-4c00-89a0-67de6249eca3",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "dae42065-0d6e-4a06-9852-098ae8275da8",
+            "sourceToolAssistantUUID": "921202ba-87f4-4c00-89a0-67de6249eca3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:38:35.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VTSU7kbidK9s7LAhgTQ4vj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dae42065-0d6e-4a06-9852-098ae8275da8",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "43e1bb4f-c835-46f8-aac4-e32c9ccf8013",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:38:35.810Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VTSU7kbidK9s7LAhgTQ4vj",
+              "type": "tool_result",
+              "content": "1\t% Decoding Strategy Robustness\n2\tTo verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\\tau{=}0.7$),\n3\twe repeat the generation chain experiment under two alternative decoding strategies:\n4\tgreedy decoding ($\\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\\tau{=}0.7$).\n5\tAll eight generators spanning five architectural families produce ${\\sim}$1{,}000 chains of depth 0--4 per strategy,\n6\tyielding ${\\sim}$5{,}000 texts per generator--strategy combination.\n7\t\n8\tTable~\\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\\ gen-2+) for the three shape features across strategies;\n9\tTable~\\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.\n10\t\n11\t\\begin{table}[ht]\n12\t\\centering\n13\t\\small\n14\t\\caption{Shape-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\n15\tValues below 0.20 indicate negligible drift.\n16\tShape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}\n17\t\\label{tab:decoding-shape}\n18\t\\resizebox{\\linewidth}{!}{%\n19\t\\begin{tabular}{ll ccc ccc ccc}\n20\t\\toprule\n21\t& & \\multicolumn{3}{c}{entropy\\_max} & \\multicolumn{3}{c}{entropy\\_min} & \\multicolumn{3}{c}{tail\\_decay} \\\\\n22\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11}\n23\tFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n24\t\\midrule\n25\tPythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n26\t        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\n27\tOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\n28\tQwen3   & 0.6B    & 0.01 & 0.09 & 0.02 & 0.10 & 0.02 & 0.10 & 0.08 & 0.03 & 0.13 \\\\\n29\t        & 1.7B    & 0.02 & 0.08 & 0.03 & 0.05 & 0.01 & 0.03 & 0.09 & 0.04 & 0.14 \\\\\n30\t        & 8B      & 0.04 & 0.01 & 0.05 & 0.01 & 0.06 & 0.07 & 0.15 & 0.08 & 0.17 \\\\\n31\tLlama   & 3.2-3B  & 0.01 & 0.06 & 0.08 & 0.01 & 0.07 & 0.03 & 0.19 & 0.04 & 0.20 \\\\\n32\tMistral & 7B-v0.3 & 0.00 & 0.01 & 0.06 & 0.04 & 0.02 & 0.01 & 0.16 & 0.14 & 0.12 \\\\\n33\t\\midrule\n34\t\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.06}$^{8/8}$ & \\textbf{0.10}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{8/8}$ & \\textbf{0.16}$^{8/8}$ \\\\\n35\t\\bottomrule\n36\t\\end{tabular}}\n37\t\\end{table}\n38\t\n39\t\\begin{table}[ht]\n40\t\\centering\n41\t\\small\n42\t\\caption{Drifting- and intermediate-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\n43\tDrifting features are expected to maintain large $d$ regardless of strategy.}\n44\t\\label{tab:decoding-drift}\n45\t\\resizebox{\\linewidth}{!}{%\n46\t\\begin{tabular}{ll ccc ccc ccc ccc}\n47\t\\toprule\n48\t& & \\multicolumn{3}{c}{entropy\\_mean} & \\multicolumn{3}{c}{TTR} & \\multicolumn{3}{c}{hapax\\_ratio} & \\multicolumn{3}{c}{entropy\\_std} \\\\\n49\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11} \\cmidrule(lr){12-14}\n50\tFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n51\t\\midrule\n52\tPythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n53\t        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\n54\tOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\n55\tQwen3   & 0.6B    & 0.92 & 0.82 & 0.80 & 0.63 & 0.51 & 0.58 & 0.50 & 0.46 & 0.52 & 0.56 & 0.72 & 0.30 \\\\\n56\t        & 1.7B    & 1.12 & 1.03 & 0.99 & 0.93 & 0.74 & 0.85 & 0.83 & 0.68 & 0.80 & 0.52 & 0.78 & 0.32 \\\\\n57\t        & 8B      & 0.86 & 0.98 & 0.76 & 0.71 & 0.76 & 0.68 & 0.66 & 0.76 & 0.64 & 0.37 & 0.71 & 0.27 \\\\\n58\tLlama   & 3.2-3B  & 1.15 & 1.46 & 0.77 & 1.04 & 1.27 & 0.73 & 0.98 & 1.26 & 0.71 & 0.50 & 1.01 & 0.21 \\\\\n59\tMistral & 7B-v0.3 & 0.89 & 1.31 & 0.70 & 0.82 & 1.04 & 0.64 & 0.82 & 1.03 & 0.67 & 0.23 & 0.62 & 0.15 \\\\\n60\t\\midrule\n61\t\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.16}$^{8/8}$ & \\textbf{0.79}$^{8/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.63}$^{8/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.80}$^{8/8}$ & \\textbf{0.59}$^{8/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.83}$^{8/8}$ & \\textbf{0.23}$^{8/8}$ \\\\\n62\t\\bottomrule\n63\t\\end{tabular}}\n64\t\\end{table}\n65\t\n66\t% ===== Conclusion: select ONE version below when data is available =====\n67\t\n68\t\\iffalse\n69\t% VERSION A — shape stability confirmed across all strategies (d < 0.15)\n70\tShape features (entropy\\_max, entropy\\_min, tail\\_decay) maintain near-stationary\n71\teffect sizes under both greedy and top-$k$ decoding (mean $d{=}$\\textbf{XX}, range \\textbf{XX--XX}),\n72\twhile drifting features exhibit consistently large effects (mean $d{=}$\\textbf{XX}).\n73\tThe DDR partition replicates across all eight generators and three decoding strategies,\n74\tconfirming that the location/shape asymmetry is a structural property of fixed-parameter\n75\tautoregressive sampling, independent of the specific token-selection mechanism.\n76\t\\fi\n77\t\n78\t\\iffalse\n79\t% VERSION B — shape stability partially degrades under greedy\n80\tShape features show elevated Cohen's $d$ under greedy decoding (mean $d{=}$\\textbf{XX} vs.\\\n81\t$d{=}$\\textbf{XX} under nucleus), particularly for \\textbf{[feature]} in \\textbf{[generators]}.\n82\tThis suggests that sampling stochasticity partially masks shape drift:\n83\twithout top-$p$ truncation, the deterministic mode selection in greedy decoding\n84\texposes additional depth-dependent variation in the tail structure.\n85\tThe DDR partition remains valid for nucleus and top-$k$ sampling but requires\n86\tqualification for greedy decoding.\n87\t\\fi\n88\t\n89\t% VERSION C — greedy confirms DDR; top-k partially attenuates (ACTIVE)\n90\tUnder greedy decoding ($\\tau{=}0$), shape features remain near-stationary across all eight generators\n91\t(mean $|d|{=}$\\textbf{0.05}, max \\textbf{0.14}), while core drifting features maintain large effects\n92\t(mean $d{=}$\\textbf{0.94}), confirming that DDR is a structural property of autoregressive generation\n93\tindependent of sampling truncation.\n94\tTop-$k$ sampling ($k{=}50$) partially attenuates the partition.\n95\tShape features show boundary violations in 4/8 generators under top-$k$; however, these generators exhibit comparable or higher violations under nucleus sampling (Pythia entropy\\_max: 0.21--0.25 nucleus vs.\\ 0.26--0.27 top-$k$; OLMo tail\\_decay: 0.22 under both), indicating model-intrinsic boundary effects rather than strategy-induced degradation.\n96\tCore drifting effect sizes weaken (mean $d{=}$\\textbf{0.67} vs.\\ \\textbf{0.90} under nucleus).\n97\tThis modulation is consistent with the mechanistic account in \\S\\ref{sec:discussion}:\n98\ttop-$k$ truncation introduces a fixed-width selection window that interacts differently\n99\twith depth-compressed distributions than nucleus sampling's probability-mass truncation,\n100\tpartially blurring the location/shape boundary.\n101\tThe core DDR partition---drifting features carrying depth signal while shape features\n102\tprovide cross-generator reference---remains intact under both greedy and nucleus sampling\n103\tand is attenuated but recognizable under top-$k$.\n104\tNotably, entropy\\_std exhibits strong strategy dependence (greedy mean $d{=}$0.83; nucleus 0.46; top-$k$ 0.23), suggesting its depth sensitivity is modulated by the token-selection mechanism---deterministic greedy selection amplifies entropy variance across depths, while top-$k$'s fixed window compresses it---further supporting its classification as an intermediate rather than core feature.\n105\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43e1bb4f-c835-46f8-aac4-e32c9ccf8013",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "cc61944a-6877-4164-9fc6-d09061d8f4f5",
+            "sourceToolAssistantUUID": "43e1bb4f-c835-46f8-aac4-e32c9ccf8013",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T06:38:36.038Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BkhSDSYLAaoyGnP5JWf3ui",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc61944a-6877-4164-9fc6-d09061d8f4f5",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9VWyZYv8JTAjPvSSw1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "256d5dae-7768-4e9f-ae6e-73b0b52a94d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012UosNirW8TFHYd3HjKF9b5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 17469,
+                "output_tokens": 547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 754
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 547,
+                    "cache_read_input_tokens": 17469,
+                    "cache_creation_input_tokens": 754,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 754,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:38:36.043Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BkhSDSYLAaoyGnP5JWf3ui",
+              "type": "tool_result",
+              "content": "1\tTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\n2\tAll three examine how repeated inference transforms text, but differ in chain operator, analytic lens, and downstream goal.\n3\tOur continuation-chain setting permits richer depth signal and enables the location/shape decomposition that defines DDR.\n4\t\n5\t\\begin{table*}[!b]\n6\t\\centering\n7\t\\small\n8\t\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n9\t\\label{tab:iterative-comparison}\n10\t\\resizebox{\\textwidth}{!}{%\n11\t\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n12\t\\toprule\n13\t\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n14\t\\midrule\n15\t\\citet{broken_telephone}\n16\t  & Back-translation (6 bridge langs); rephrasing (ablation)\n17\t  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n18\t  & Factuality degradation rate across iterations\n19\t  & 7--9B (3 open models)\n20\t  & 100\n21\t  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n22\t\\addlinespace\n23\t\\citet{markovian_chains}\n24\t  & Rephrasing + round-trip translation\n25\t  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n26\t  & Convergence \\& diversity dynamics of inference-time Markov chains\n27\t  & 7--8B (3 open + GPT-4o-mini)\n28\t  & 50\n29\t  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n30\t\\addlinespace\n31\t\\textbf{Ours}\n32\t  & Open-ended continuation (no meaning-preserving constraint)\n33\t  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n34\t  & Depth classification + DDR decomposition into generator \\& depth effects\n35\t  & 0.6--8B (8 models)\n36\t  & 5\n37\t  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n38\t\\bottomrule\n39\t\\end{tabular}}\n40\t\\end{table*}\n41\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "256d5dae-7768-4e9f-ae6e-73b0b52a94d7",
+            "isSidechain": true,
+            "promptId": "0e2bccd0-99b4-439e-b69a-fd50d1ad6b65",
+            "agentId": "a448ffe7a5ee8c0a4",
+            "type": "user",
+            "uuid": "3478bffc-f5c5-4bd0-9a3b-998f167ab647",
+            "sourceToolAssistantUUID": "256d5dae-7768-4e9f-ae6e-73b0b52a94d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:39:56.033Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have successfully read all seven TeX files in full. Here are the complete contents exactly as they appear:\n\n## 1. abstract.tex\n```\n% Abstract — Depth Fingerprinting of Recursive LLM Generation Chains\n\\begin{abstract}\nLLM-generated text is increasingly recycled into training corpora---an estimated 7--17\\% of recent scientific and peer-review content is now machine-produced \\cite{mapping_llm_science,monitoring_ai_review}---yet detection methods pose only a binary human-or-machine question, ignoring \\emph{generation depth}: how many recursive LLM steps a text has undergone.\nWe show that successive re-generation compresses \\emph{where} text sits in distributional space while leaving \\emph{how} it is shaped nearly unchanged, an asymmetry we term \\emph{differential depth response} (DDR).\nAcross eight base-model generators spanning five families (0.6B--8B parameters) under nucleus sampling ($p{=}0.9$, $\\tau \\leq 0.7$), NLL location and lexical diversity drift monotonically with depth (Cohen's $d{=}0.76$--$1.17$) while core distributional shape features remain near-stationary ($d \\leq 0.10$); per-generator validation, convergent effect sizes, and greedy-decoding replication confirm this partition.\nPrior work on iterative generation documents \\emph{what converges}; the central finding here is \\emph{what is approximately preserved} (near-stationary, $d \\leq 0.10$): shape invariance provides a cross-generator reference for depth estimation without per-generator calibration.\nA lightweight 7-feature ensemble exploiting DDR achieves leak-free binary F1\\,=\\,0.694 (gen-1 vs.\\ gen-2+) under leave-one-generator-out evaluation, matching multi-detector ensembles at ${\\sim}2.4\\times$ lower cost; an end-to-end classifier reaches 3-class F1\\,=\\,0.905 (6-gen LOGO), establishing the analytical framework as the primary contribution.\nInstruction tuning compresses DDR, bounding current applicability to base models.\n\\end{abstract}\n```\n\n## 2. introduction.tex\n```\n\\section{Introduction}\n\\label{sec:introduction}\n\nAn estimated 7--17\\% of recent scientific publications already contain substantial LLM-modified content \\cite{mapping_llm_science,monitoring_ai_review}. As these outputs re-enter training corpora \\cite{dolma,fineweb} and seed further generation, text accumulates at varying \\emph{generation depths}; each successive cycle moves distributional properties further from both the human source and the first-generation predecessor. State-of-the-art detectors \\cite{detectgpt,fast_detectgpt,binoculars,ld_score} answer only the binary question \\emph{human or machine}, discarding the depth dimension that data provenance \\cite{ccnet,dsir} and model collapse analysis \\cite{curse_of_recursion,strong_model_collapse} increasingly require.\nWe find that recursive generation produces a decomposable fingerprint: distributional \\emph{location} drifts with depth while \\emph{shape} remains stable across generators, an asymmetry sufficient for cross-generator depth prediction.\n\nDistributional compression under recursive generation is well-documented \\cite{curious_decline,broken_telephone,markovian_chains}, yet existing analyses characterize \\emph{that} and \\emph{why} convergence occurs without decomposing what drifts from what is preserved.\nWe introduce \\emph{depth fingerprinting}, classifying text by ordinal generation depth (gen-0\\,/\\,gen-1\\,/\\,gen-2+), and decompose this compression into structurally distinct components: across eight base-model generators spanning five architectural families (0.6B--8B), the NLL distribution's central tendency (mean entropy, lexical diversity) drifts monotonically with depth while its shape (entropy extremes, tail structure) remains an order of magnitude more stable ($d{=}0.76$--$1.17$ vs.\\ $d < 0.10$ for near-stationary features; boundary features show intermediate stability; convergent effect-size measures confirm this partition).\nWe term this location/shape asymmetry the \\emph{differential depth response} (DDR; Figure~\\ref{fig:feature-drift}), a structural property of fixed-parameter autoregressive sampling that is mechanistically distinct from the tail-coverage erosion in model collapse \\cite{curse_of_recursion}.\nThe stationary shape component provides the cross-generator reference needed for depth prediction without per-generator calibration.\nWe focus exclusively on base (pretrained) models; instruction-tuned variants exhibit structurally different NLL distributions that degrade depth signal (Appendix~\\ref{app:instruct}).\n\nAs a proof of concept, a lightweight 7-feature ensemble informed by DDR achieves leak-free binary F1\\,=\\,0.694 under leave-one-generator-out evaluation, matching multi-detector ensembles at ${\\sim}2.4\\times$ lower cost; an end-to-end QLoRA classifier reaches 3-class F1\\,=\\,0.905 (6-gen LOGO; Appendix~\\ref{app:qlora}), confirming that the depth signal extends well beyond handcrafted features.\n\nOur contributions:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item \\textbf{Empirical decomposition (DDR).} Across eight generators from five families, we decompose inference-chain drift into a location component that shifts monotonically ($d{=}0.76$--$1.17$) and a shape component that remains near-stationary ($d < 0.10$). Where prior work documents \\emph{what converges} \\cite{curious_decline,markovian_chains}, DDR identifies \\emph{what is preserved} and enables depth detection without per-generator calibration.\n    \\item \\textbf{Task formulation and evaluation suite.} We define generation depth classification as an ordinal prediction task and construct a controlled dataset of 37K texts from eight generators across five families (0.6B--8B), with leave-one-generator-out cross-validation as the primary evaluation protocol.\n    \\item \\textbf{Scope characterization.} Systematic evaluation across temperature, prompt type, instruction tuning, and model scale maps the operational envelope of depth fingerprinting, identifying key challenges in instruction-tuned models, cross-domain transfer, and perturbation robustness.\n\\end{enumerate}\n```\n\n## 3. discussion.tex\n```\n\\section{Discussion}\n\\label{sec:discussion}\n\n%% Mechanism — why DDR exists\nWe hypothesize that the differential depth response reflects a structural property of nucleus sampling: top-$p$ truncation preserves the conditional distribution's functional form while recursive inputs grow increasingly self-typical, compressing expected NLL monotonically (Appendix~\\ref{app:nll-distribution}); a formal derivation remains future work.\nTwo testable predictions follow---increasing randomness should weaken location drift, semantic constraints should attenuate it---both confirmed: at $\\tau{=}1.0$, depth--NLL correlation collapses ($\\rho{=}{-}0.002$; Appendix~\\ref{app:sampling-sensitivity}); elaboration prompts reduce F1 to 0.730 (Appendix~\\ref{app:prompt-type}). Drifting features contribute $5.5\\times$ more (Appendix~\\ref{app:ddr-causality}).\nShape stability holds even when drift is suppressed: at $\\tau{=}1.0$ ($d < 0.15$; Appendix~\\ref{app:ddr-temp-stability}), under greedy decoding (mean $|d|{=}0.05$), and with top-$k$ ($k{=}50$; Appendix~\\ref{app:decoding-strategy}).\n\n%% Implications — what DDR enables\nDepth constitutes a new operational dimension for corpus management that binary human-vs-machine classifiers cannot access.\nThe classifier supports batch contamination estimation (${\\pm}3$--$4$\\% at $n{=}1{,}000$; gen-1 per-class F1\\,=\\,0.63; Appendix~\\ref{app:error-analysis}) rather than per-document filtering; depth-stratified curation can also serve as a prophylactic against model collapse \\cite{drayson_detection_prevents_collapse}, though no downstream improvement over unfiltered baselines is detected (TOST $\\varepsilon{=}{\\pm}2$\\%; limited power with $n{=}3$ seeds; Appendix~\\ref{app:downstream}).\n\n%% Scope \\& Connections — where DDR works and fails\nDDR is mechanistically distinct from model collapse \\cite{curse_of_recursion,strong_model_collapse}: retraining erodes tail coverage by updating weights, whereas inference-chain drift at fixed parameters shifts only location (Appendix~\\ref{app:ddr-supplement}); prior work documents \\emph{that} convergence occurs \\cite{markovian_chains,curious_decline}, while DDR decomposes \\emph{what} drifts from what is preserved, extending to Gemma-2 ($-1.9$\\,pp; Appendix~\\ref{app:9gen-scale}).\nThree depth classes define the resolution ceiling (5-class F1\\,$\\approx$\\,0.50; Appendix~\\ref{app:finer-depth}); QLoRA recovers to 0.905 on 3-class (Appendix~\\ref{app:qlora}) and 0.89--0.91 on instruct data despite 3.7--19.9\\,pp XGBoost degradation (Appendix~\\ref{app:instruct}); cross-domain signal persists (F1\\,=\\,0.74--0.75; Appendix~\\ref{app:domain}) and survives 10\\% token replacement (F1\\,=\\,0.614; Appendix~\\ref{app:human-edit}).\n```\n\n## 4. limitations.tex\n```\n\\section*{Limitations}\n\\label{sec:limitations}\n\nAll eight generators are base (pretrained) models with $\\leq$8.2B parameters.\nInstruction-tuned variants show substantially degraded depth signal (Appendix~\\ref{app:instruct}), and preliminary evidence from Qwen3-14B-Base suggests attenuated DDR correlations at larger scale ($|\\rho|$ decay 22--35\\%; Appendix~\\ref{app:9gen-scale}); frontier models (70B+) remain untested.\n\nThe evaluation assumes a fixed decoding regime (temperature 0.7, nucleus $p{=}0.9$) with English Wikipedia seeds and an English-centric reference model (Pythia-410M), limiting cross-temperature and non-English applicability (Appendix~\\ref{app:cross-temp}).\n\nDepth resolution is bounded at three classes (gen-0\\,/\\,gen-1\\,/\\,gen-2+); finer-grained 5-class classification yields F1\\,$\\approx$\\,0.50 with deeper depths mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\n```\n\n## 5. appendix_finer_depth.tex\n```\nWe evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \\S\\ref{sec:method}.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}\n\\label{tab:5class-logo}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Held-out Generator} & \\textbf{Macro F1} & \\textbf{Weighted F1} & \\textbf{Accuracy} \\\\\n\\midrule\nOLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\nPythia-1B        & 0.543 & 0.568 & 0.575 \\\\\nPythia-2.8B      & 0.523 & 0.540 & 0.560 \\\\\nQwen3-0.6B      & 0.513 & 0.521 & 0.546 \\\\\nQwen3-1.7B      & 0.510 & 0.536 & 0.548 \\\\\nQwen3-8B        & 0.434 & 0.455 & 0.493 \\\\\n\\midrule\n\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Per-class F1 averaged across all six LOGO folds.}\n\\label{tab:5class-perclass}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Metric} & \\textbf{Gen-0} & \\textbf{Gen-1} & \\textbf{Gen-2} & \\textbf{Gen-3} & \\textbf{Gen-4} \\\\\n\\midrule\nAvg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Analysis.}\nMoving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 to approximately 0.50 (six-generator subset; the 3-class baseline for this subset is comparable to the 8-generator result of 0.762 in Table~\\ref{tab:logo-results}).\nThe degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.\nThe aggregated confusion matrix reveals that 36.5\\% of true gen-2 samples are misclassified as gen-1, while 37.8\\% of true gen-3 samples are predicted as gen-4.\nAdjacent depths (gen-2$\\leftrightarrow$gen-3, gen-3$\\leftrightarrow$gen-4) account for the majority of errors, consistent with the intuition that deeper recursive generations converge in surface-level statistical signatures.\nGen-0 (human text) remains highly distinguishable (F1 = 0.921), and gen-1 retains moderate separability (F1 = 0.634).\nShape features that are near-stationary in the 3-class setting become substantially more important under 5-class evaluation: permutation importance of entropy\\_std increases by 93\\% and tail\\_decay by 400\\% relative to 3-class, yet these gains are insufficient to resolve adjacent depths.\nThese results support the 3-class grouping adopted in the main paper: collapsing gen-2+ preserves the most informative boundary (human vs.\\ first-generation vs.\\ deeper recursion) while avoiding the noise introduced by near-identical adjacent depths.\n\n\\paragraph{Classifier comparison.}\nTo verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\\,=\\,0.501, 95\\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).\nAll classifiers perform comparably to the default XGBoost ensemble (0.501), indicating that classifier capacity is not the bottleneck.\nThe gen-2/gen-3 boundary is the primary failure mode across all methods: these two classes are effectively inseparable with the current feature set. This establishes 3-class granularity as the practical ceiling for surface and entropy features.\nAt the 3-class level, ordinal-specific methods (CORAL ordinal regression, Frank-Hall reduction) similarly fail to improve over multiclass XGBoost (\\S\\ref{sec:results}), which confirms that the bottleneck is feature separability across all granularities, not the modeling of label ordinality.\n```\n\n## 6. appendix_decoding_strategy.tex\n```\n% Decoding Strategy Robustness\nTo verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\\tau{=}0.7$),\nwe repeat the generation chain experiment under two alternative decoding strategies:\ngreedy decoding ($\\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\\tau{=}0.7$).\nAll eight generators spanning five architectural families produce ${\\sim}$1{,}000 chains of depth 0--4 per strategy,\nyielding ${\\sim}$5{,}000 texts per generator--strategy combination.\n\nTable~\\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\\ gen-2+) for the three shape features across strategies;\nTable~\\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Shape-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\nValues below 0.20 indicate negligible drift.\nShape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}\n\\label{tab:decoding-shape}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{ll ccc ccc ccc}\n\\toprule\n& & \\multicolumn{3}{c}{entropy\\_max} & \\multicolumn{3}{c}{entropy\\_min} & \\multicolumn{3}{c}{tail\\_decay} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11}\nFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n\\midrule\nPythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\nQwen3   & 0.6B    & 0.01 & 0.09 & 0.02 & 0.10 & 0.02 & 0.10 & 0.08 & 0.03 & 0.13 \\\\\n        & 1.7B    & 0.02 & 0.08 & 0.03 & 0.05 & 0.01 & 0.03 & 0.09 & 0.04 & 0.14 \\\\\n        & 8B      & 0.04 & 0.01 & 0.05 & 0.01 & 0.06 & 0.07 & 0.15 & 0.08 & 0.17 \\\\\nLlama   & 3.2-3B  & 0.01 & 0.06 & 0.08 & 0.01 & 0.07 & 0.03 & 0.19 & 0.04 & 0.20 \\\\\nMistral & 7B-v0.3 & 0.00 & 0.01 & 0.06 & 0.04 & 0.02 & 0.01 & 0.16 & 0.14 & 0.12 \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.06}$^{8/8}$ & \\textbf{0.10}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{8/8}$ & \\textbf{0.16}$^{8/8}$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Drifting- and intermediate-feature Cohen's $d$ (gen-1 vs.\\ gen-2+) under three decoding strategies per generator.\nDrifting features are expected to maintain large $d$ regardless of strategy.}\n\\label{tab:decoding-drift}\n\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{ll ccc ccc ccc ccc}\n\\toprule\n& & \\multicolumn{3}{c}{entropy\\_mean} & \\multicolumn{3}{c}{TTR} & \\multicolumn{3}{c}{hapax\\_ratio} & \\multicolumn{3}{c}{entropy\\_std} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8} \\cmidrule(lr){9-11} \\cmidrule(lr){12-14}\nFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\n\\midrule\nPythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\nOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\nQwen3   & 0.6B    & 0.92 & 0.82 & 0.80 & 0.63 & 0.51 & 0.58 & 0.50 & 0.46 & 0.52 & 0.56 & 0.72 & 0.30 \\\\\n        & 1.7B    & 1.12 & 1.03 & 0.99 & 0.93 & 0.74 & 0.85 & 0.83 & 0.68 & 0.80 & 0.52 & 0.78 & 0.32 \\\\\n        & 8B      & 0.86 & 0.98 & 0.76 & 0.71 & 0.76 & 0.68 & 0.66 & 0.76 & 0.64 & 0.37 & 0.71 & 0.27 \\\\\nLlama   & 3.2-3B  & 1.15 & 1.46 & 0.77 & 1.04 & 1.27 & 0.73 & 0.98 & 1.26 & 0.71 & 0.50 & 1.01 & 0.21 \\\\\nMistral & 7B-v0.3 & 0.89 & 1.31 & 0.70 & 0.82 & 1.04 & 0.64 & 0.82 & 1.03 & 0.67 & 0.23 & 0.62 & 0.15 \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.16}$^{8/8}$ & \\textbf{0.79}$^{8/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.63}$^{8/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.80}$^{8/8}$ & \\textbf{0.59}$^{8/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.83}$^{8/8}$ & \\textbf{0.23}$^{8/8}$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n% ===== Conclusion: select ONE version below when data is available =====\n\n\\iffalse\n% VERSION A — shape stability confirmed across all strategies (d < 0.15)\nShape features (entropy\\_max, entropy\\_min, tail\\_decay) maintain near-stationary\neffect sizes under both greedy and top-$k$ decoding (mean $d{=}$\\textbf{XX}, range \\textbf{XX--XX}),\nwhile drifting features exhibit consistently large effects (mean $d{=}$\\textbf{XX}).\nThe DDR partition replicates across all eight generators and three decoding strategies,\nconfirming that the location/shape asymmetry is a structural property of fixed-parameter\nautoregressive sampling, independent of the specific token-selection mechanism.\n\\fi\n\n\\iffalse\n% VERSION B — shape stability partially degrades under greedy\nShape features show elevated Cohen's $d$ under greedy decoding (mean $d{=}$\\textbf{XX} vs.\\\n$d{=}$\\textbf{XX} under nucleus), particularly for \\textbf{[feature]} in \\textbf{[generators]}.\nThis suggests that sampling stochasticity partially masks shape drift:\nwithout top-$p$ truncation, the deterministic mode selection in greedy decoding\nexposes additional depth-dependent variation in the tail structure.\nThe DDR partition remains valid for nucleus and top-$k$ sampling but requires\nqualification for greedy decoding.\n\\fi\n\n% VERSION C — greedy confirms DDR; top-k partially attenuates (ACTIVE)\nUnder greedy decoding ($\\tau{=}0$), shape features remain near-stationary across all eight generators\n(mean $|d|{=}$\\textbf{0.05}, max \\textbf{0.14}), while core drifting features maintain large effects\n(mean $d{=}$\\textbf{0.94}), confirming that DDR is a structural property of autoregressive generation\nindependent of sampling truncation.\nTop-$k$ sampling ($k{=}50$) partially attenuates the partition.\nShape features show boundary violations in 4/8 generators under top-$k$; however, these generators exhibit comparable or higher violations under nucleus sampling (Pythia entropy\\_max: 0.21--0.25 nucleus vs.\\ 0.26--0.27 top-$k$; OLMo tail\\_decay: 0.22 under both), indicating model-intrinsic boundary effects rather than strategy-induced degradation.\nCore drifting effect sizes weaken (mean $d{=}$\\textbf{0.67} vs.\\ \\textbf{0.90} under nucleus).\nThis modulation is consistent with the mechanistic account in \\S\\ref{sec:discussion}:\ntop-$k$ truncation introduces a fixed-width selection window that interacts differently\nwith depth-compressed distributions than nucleus sampling's probability-mass truncation,\npartially blurring the location/shape boundary.\nThe core DDR partition---drifting features carrying depth signal while shape features\nprovide cross-generator reference---remains intact under both greedy and nucleus sampling\nand is attenuated but recognizable under top-$k$.\nNotably, entropy\\_std exhibits strong strategy dependence (greedy mean $d{=}$0.83; nucleus 0.46; top-$k$ 0.23), suggesting its depth sensitivity is modulated by the token-selection mechanism---deterministic greedy selection amplifies entropy variance across depths, while top-$k$'s fixed window compresses it---further supporting its classification as an intermediate rather than core feature.\n```\n\n## 7. appendix_iterative_comparison.tex\n```\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in chain operator, analytic lens, and downstream goal.\nOur continuation-chain setting permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[!b]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n```\n\nAll seven files have been read completely and reported above with exact text preservation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3478bffc-f5c5-4bd0-9a3b-998f167ab647",
+            "isSidechain": true,
+            "agentId": "a448ffe7a5ee8c0a4",
+            "requestId": "req_011CbH9WDoj1aohnzVjvFuG4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ae3fafd-2f7b-43c2-a950-08f877d6de86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/.claude/sessions/review_reviewer_1_c21d58b8",
+            "sessionId": "92ada4fb-d361-47f4-9cf1-7a1312b4c08c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FacNDsg4z39zPpSUd9dkXD",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10024,
+                "cache_read_input_tokens": 18223,
+                "output_tokens": 8077,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10024
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 8077,
+                    "cache_read_input_tokens": 18223,
+                    "cache_creation_input_tokens": 10024,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10024,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-the-complete-contents-of-several-tex-files-for-a-cross-review-response.md"
+}

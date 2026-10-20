@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe09d6def41e7198279",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 SVS：用 Z3 形式验证做 LLM 推理链选择。MVP 验证核心假设：正确答案的链有更高的 internal consistency。50题 ProofWriter depth-5 × 8 chain",
+  "task_key": "d0f6b36f-c0b4-4d47-8cee-8c773f311fc7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/d0f6b36f-c0b4-4d47-8cee-8c773f311fc7.jsonl",
+    "occurrence": 1,
+    "bytes": 554953,
+    "sha256": "b64429a2c05247931587319e1b5f620a786e0e2529d232bd3fc7b704c818e72b"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 1,
+    "tool_calls": 70,
+    "roles": {
+      "record": 33,
+      "user": 1,
+      "assistant": 37,
+      "tool_call": 70,
+      "tool_result": 70
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ebe09d6def41e7198279-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 209,
+      "chunks": [
+        {
+          "path": "ebe09d6def41e7198279-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "ebe09d6def41e7198279-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-svs-z3-llm-mvp-internal-consistency50-proofwriter-depth-5-8-chai.md"
+}

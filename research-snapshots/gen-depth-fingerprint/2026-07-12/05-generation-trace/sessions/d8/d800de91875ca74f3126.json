@@ -1,0 +1,1330 @@
+{
+  "schema_version": "1.0",
+  "id": "d800de91875ca74f3126",
+  "project": "gen-depth-fingerprint--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for an academic paper about \"Broken Telephone\" in the context of LLM text generation, iterative paraphras",
+  "task_key": "agent-a1393d2486eb6b8da",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a1393d2486eb6b8da.jsonl",
+    "occurrence": 1,
+    "bytes": 56752,
+    "sha256": "91f8df786b04932bb55607d6cc812749c1939eefc4b2e3a52cd301c809b2d118"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:00:27.021Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for an academic paper about \"Broken Telephone\" in the context of LLM text generation, iterative paraphrasing, or model collapse. Possible titles include:\n- \"The Broken Telephone Effect\"\n- \"Broken Telephone: Exploring the Limits of Iterative Paraphrasing\"\n- Something about \"broken telephone\" + LLM + paraphrase\n\nUse WebSearch to find this paper. Try these queries:\n1. \"Broken Telephone\" paraphrase LLM arxiv paper\n2. \"Broken Telephone Effect\" iterative paraphrasing language model\n3. \"Broken Telephone\" \"model collapse\" text generation\n\nFor the paper you find, extract these dimensions:\n- **Full title and authors**\n- **Chain type**: what type of chain (paraphrase chain / translation chain / continuation chain / summarization chain)\n- **Feature space**: what features or metrics they use to analyze (perplexity / diversity / embedding distance / vocabulary / entropy / etc.)\n- **Analysis target**: what problem they analyze (convergence / attractor identification / quality degradation / depth classification)\n- **Generator scale**: which models they use and what parameter sizes\n- **Number of chain steps**: maximum chain depth\n- **Core insight**: one-sentence summary of the main finding\n- **Methodology details**: how they set up their experiments\n\nReport all findings with citations to specific sections/tables if possible. Be thorough — I need accurate details, not guesses."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "0ef5732a-22cd-4e9e-9fc5-bb8985622c4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:00:27.023Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0ef5732a-22cd-4e9e-9fc5-bb8985622c4d",
+                "isSidechain": true,
+                "agentId": "a1393d2486eb6b8da",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "43451bcb-9129-4c0b-910b-f0ed8a3ad7a4",
+                "timestamp": "2026-05-21T03:00:27.023Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+                "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:00:29.559Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper using multiple queries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43451bcb-9129-4c0b-910b-f0ed8a3ad7a4",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4TLRTd52VXusrQTYP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f1a27a8f-f24b-4745-8dda-1832a62fd4a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KUB4iuE8LXkH2mdtCXZoaf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6953,
+                "cache_read_input_tokens": 9196,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6953,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:00:29.871Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RviV8bwKheRtj4GeKaDmZn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1a27a8f-f24b-4745-8dda-1832a62fd4a5",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4TLRTd52VXusrQTYP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9b3ec87a-8a07-4019-b99b-4c7c8b0b7b96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KUB4iuE8LXkH2mdtCXZoaf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6953,
+                "cache_read_input_tokens": 9196,
+                "output_tokens": 87,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6953
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 87,
+                    "cache_read_input_tokens": 9196,
+                    "cache_creation_input_tokens": 6953,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6953,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:00:29.874Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RviV8bwKheRtj4GeKaDmZn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b3ec87a-8a07-4019-b99b-4c7c8b0b7b96",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "772f6f6b-3439-40bb-b305-58f1e971c51e",
+            "sourceToolAssistantUUID": "9b3ec87a-8a07-4019-b99b-4c7c8b0b7b96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:00:32.483Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me run multiple search queries in parallel to find this paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "772f6f6b-3439-40bb-b305-58f1e971c51e",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4fqzTgBh9hGANYGrJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6621de76-2b2b-4812-a1f6-1dc309d869f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171A4dTW1Ty48uen1cTB4Jt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 16149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1451,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:00:32.989Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MSXqz2iBXNasaMGBEZ2USu",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Broken Telephone\" paraphrase LLM arxiv paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6621de76-2b2b-4812-a1f6-1dc309d869f2",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4fqzTgBh9hGANYGrJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1247c582-4532-4319-9b6a-8f56f33dd04c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171A4dTW1Ty48uen1cTB4Jt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 16149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1451,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:00:33.399Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015tN9iUMxM25Kom35irrQb7",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Broken Telephone Effect\" iterative paraphrasing language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1247c582-4532-4319-9b6a-8f56f33dd04c",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4fqzTgBh9hGANYGrJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2cd32c80-5bb1-49c2-802a-78d06ad45025",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171A4dTW1Ty48uen1cTB4Jt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 16149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1451,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:00:33.684Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A8K74EhoAvy8g4RtNXEzm8",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Broken Telephone\" \"model collapse\" text generation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2cd32c80-5bb1-49c2-802a-78d06ad45025",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy4fqzTgBh9hGANYGrJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8ed1cd0-f149-4437-837c-3f876279c664",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171A4dTW1Ty48uen1cTB4Jt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 16149,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1451
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 16149,
+                    "cache_creation_input_tokens": 1451,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1451,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:00:39.528Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A8K74EhoAvy8g4RtNXEzm8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Broken Telephone\" \"model collapse\" text generation\"\n\nLinks: [{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/html/2502.20258v1\"},{\"title\":\"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://huggingface.co/papers/2502.20258\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2502.20258v1\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts ...\",\"url\":\"https://aclanthology.org/2025.acl-long.371.pdf\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394300051_LLM_as_a_Broken_Telephone_Iterative_Generation_Distorts_Information\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/pdf/2502.20258\"}]\n\nI found relevant search results about this topic. Here's what the research shows:\n\nA study inspired by the \"broken telephone\" effect in chained human communication investigates whether LLMs similarly distort information through iterative generation. Large Language Models exhibit a \"broken telephone\" effect, where iterative generation processes, such as multi-hop translation or rephrasing, consistently lead to significant information distortion and factual degradation.\n\nThe research findings include several key insights:\n\n1. **Information accumulates distortion over time**: Distortion accumulates over time, influenced by language choice and chain complexity.\n\n2. **Factors affecting distortion**: The degree of information distortion in translation chains depends on the choice of intermediate languages, influenced by their linguistic similarity to the source language and their prevalence in the model's pre-training and post-training corpora.\n\n3. **Chain complexity amplifies degradation**: Greater chain complexity, whether by adding languages or models, often amplifies distortion, with longer chains introducing more degradation regardless of the type of iterative chain.\n\n4. **Mitigation strategies**: Although distortion is unavoidable, it can be mitigated through temperature control and restricted prompting, which restrict the LLM from deviating significantly from the original text.\n\nThis research connects to broader concerns about model collapse, as the repeated processing of LLM-generated content could contribute to knowledge degradation in AI systems over time.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8ed1cd0-f149-4437-837c-3f876279c664",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "dc2acb84-24ba-4d63-969a-f64bf4f2f00f",
+            "sourceToolAssistantUUID": "f8ed1cd0-f149-4437-837c-3f876279c664",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:00:40.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015tN9iUMxM25Kom35irrQb7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Broken Telephone Effect\" iterative paraphrasing language model\"\n\nLinks: [{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/pdf/2502.20258\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/html/2502.20258v1\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2502.20258v1\"},{\"title\":\"[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/abs/2502.20258\"},{\"title\":\"[Quick Review] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://liner.com/review/llm-as-broken-telephone-iterative-generation-distorts-information\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts ...\",\"url\":\"https://aclanthology.org/2025.acl-long.371.pdf\"},{\"title\":\"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://huggingface.co/papers/2502.20258\"},{\"title\":\"[Literature Review] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://www.themoonlight.io/en/review/llm-as-a-broken-telephone-iterative-generation-distorts-information\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.371/\"}]\n\nI found comprehensive information about the \"Broken Telephone Effect\" in the context of language models. Here's what the research shows:\n\n## Overview\n\nThe \"broken telephone\" effect in LLMs investigates whether large language models similarly distort information through iterative generation, inspired by the broken telephone effect in chained human communication. The effect occurs where information gradually distorts through successive generations, similar to the childhood game where a message becomes increasingly garbled as it passes from person to person.\n\n## Key Findings\n\nThrough translation-based experiments, distortion accumulates over time, influenced by language choice and chain complexity. The broken telephone effect extended beyond translation to rephrasing tasks, confirming the phenomenon's generality across different generative tasks.\n\n## Experimental Approach\n\nThe study simulates the LLMs' broken telephone game using translation tasks across three experimental setups, comparing back-translated English versions with initial English using textual relevance and factuality measures. One experiment, called 'Bilingual Self-loop,' assesses distortion accumulation with single models translating between English and various bridge languages, finding degradation is influenced by linguistic similarity.\n\n## Mitigation\n\nWhile degradation is inevitable, it can be mitigated through strategic prompting techniques. The research demonstrates that distortion can be mitigated through strategic prompting techniques and temperature control, limiting deviations from the original text.\n\nThis research was published as an ACL 2025 paper and has significant implications for the reliability of LLM-generated content in iterative workflows.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2cd32c80-5bb1-49c2-802a-78d06ad45025",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "8187d7bc-16ab-487d-835d-c2ed3d213641",
+            "sourceToolAssistantUUID": "2cd32c80-5bb1-49c2-802a-78d06ad45025",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:00:42.476Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MSXqz2iBXNasaMGBEZ2USu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Broken Telephone\" paraphrase LLM arxiv paper\"\n\nLinks: [{\"title\":\"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://huggingface.co/papers/2502.20258\"},{\"title\":\"[Quick Review] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://liner.com/review/llm-as-broken-telephone-iterative-generation-distorts-information\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2502.20258v1\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/html/2502.20258v1\"},{\"title\":\"[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/abs/2502.20258\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/pdf/2502.20258\"},{\"title\":\"GitHub - amr-mohamedd/LLM-as-a-Broken-Telephone: [ACL 2025] Code implementation for the \\\"LLM as a Broken Telephone: Iterative Generation Distorts Information\\\" paper.\",\"url\":\"https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts ...\",\"url\":\"https://aclanthology.org/2025.acl-long.371.pdf\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n## \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n\n**Paper Details:**\n- **ArXiv ID:** 2502.20258\n- **Authors:** Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, and Guokan Shang\n- **Venue:** ACL 2025 (63rd Annual Meeting of the Association for Computational Linguistics)\n- **Published:** February 27, 2025\n\n**Overview:**\nInspired by the \"broken telephone\" effect in chained human communication, this study investigates whether LLMs similarly distort information through iterative generation, finding that distortion accumulates over time, influenced by language choice and chain complexity.\n\n**Methodology:**\nThe study explores whether LLMs act as a 'broken telephone' when content is continuously refined, paraphrased, or reprocessed across successive model iterations, simulating the game using translation tasks across three experimental setups.\n\n**Key Findings:**\nWhile degradation is inevitable, it can be mitigated through strategic prompting techniques, and these findings contribute to discussions on the long-term effects of AI-mediated information propagation.\n\n**Resources:**\n- ArXiv: https://arxiv.org/abs/2502.20258\n- GitHub Code: https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone\n- ACL Proceedings: https://aclanthology.org/2025.acl-long.371.pdf\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1247c582-4532-4319-9b6a-8f56f33dd04c",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "5dc33f99-19e2-485b-b083-62c270d2c350",
+            "sourceToolAssistantUUID": "1247c582-4532-4319-9b6a-8f56f33dd04c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:00:46.848Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The paper is identified: **\"LLM as a Broken Telephone: Iterative Generation Distorts Information\"** (arXiv:2502.20258, ACL 2025). Now let me read the full paper for detailed extraction."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5dc33f99-19e2-485b-b083-62c270d2c350",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy5bRruE2sZTEKtHg5C",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6b7c04a-e22f-4e89-b7e7-cccebf9da544",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016WNZYuU8xHv8ze75JUg4Hv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1498,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 17600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1033,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T03:00:47.139Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DXqrFJC7fSpJZdkp2sMkD6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6b7c04a-e22f-4e89-b7e7-cccebf9da544",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy5bRruE2sZTEKtHg5C",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0edc04be-4ed7-4a9f-a9a5-9d01e2d40944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016WNZYuU8xHv8ze75JUg4Hv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1498,
+                "cache_creation_input_tokens": 1033,
+                "cache_read_input_tokens": 17600,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1033
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1498,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 17600,
+                    "cache_creation_input_tokens": 1033,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1033,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:00:47.142Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DXqrFJC7fSpJZdkp2sMkD6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0edc04be-4ed7-4a9f-a9a5-9d01e2d40944",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "6e75dede-c602-4349-af83-6727db1b5bdf",
+            "sourceToolAssistantUUID": "0edc04be-4ed7-4a9f-a9a5-9d01e2d40944",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T03:00:55.945Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015gJ4xM9zwPhJkkFrYjCufp",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2502.20258v1",
+                "prompt": "Extract ALL of the following details from this paper:\n\n1. Full title and complete author list with affiliations\n2. What types of iterative chains are studied (translation chains, paraphrase chains, etc.)? List all experimental setups.\n3. What features/metrics do they use to measure distortion? (e.g., BLEU, BERTScore, perplexity, embedding distance, factuality metrics, etc.) List ALL metrics.\n4. What is the analysis target — what problem are they studying? (convergence, quality degradation, attractor states, depth classification, etc.)\n5. Which LLM models do they use and what are their parameter sizes?\n6. What is the maximum chain depth (number of iterative steps)?\n7. What are the core findings/insights — summarize each main finding in one sentence.\n8. Detailed experimental setup: how many experiments, what languages, what datasets, what prompting strategies.\n9. Any connection to \"model collapse\" or \"generation depth\" concepts.\n10. Section structure — list all section and subsection titles.\n\nBe as specific and detailed as possible. Include numbers, model names, language names, metric values where available."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e75dede-c602-4349-af83-6727db1b5bdf",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy5wdJLBGJC51xoevUd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3d63346b-66e4-4d65-bf81-1d7a6ba8afb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qt5JtHdwa5BmeUPBcs4kjR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 2148,
+                "cache_read_input_tokens": 18633,
+                "output_tokens": 345,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2148
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 345,
+                    "cache_read_input_tokens": 18633,
+                    "cache_creation_input_tokens": 2148,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2148,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:01:11.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015gJ4xM9zwPhJkkFrYjCufp",
+              "type": "tool_result",
+              "content": "# Detailed Paper Analysis: \"LLM as a Broken Telephone\"\n\n## 1. Title and Authors\n**Full Title:** \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n\n**Authors:** Amr Mohamed¹, Mingmeng Geng², Michalis Vazirgiannis¹,³, Guokan Shang¹\n- ¹MBZUAI, ²SISSA, ³Ecole Polytechnique\n\n---\n\n## 2. Iterative Chain Types & Experimental Setups\n\n**Three main experimental configurations:**\n\n- **Experiment 1 (Bilingual Self-loop):** English ↔ bridge language ↔ English, single model performing 100 iterations\n- **Experiment 2 (Bilingual Two-player):** Two different models collaborating in the same English-bridge language-English chain\n- **Experiment 3 (Multilingual Multiplayer):** \n  - Setting 1: Three languages (EN, FR, TH) with two models\n  - Setting 2: Same as Setting 1 plus Gemma model added\n  - Setting 3: Five languages (EN, FR, TH, ZH, DE) with original two models\n\n**Ablation Studies:**\n- Rephrasing chains (standalone and collaborative)\n- Temperature variation experiments\n- Prompt constraint sensitivity analysis\n\n---\n\n## 3. Distortion Measurement Metrics\n\n**Textual Relevance Metrics:**\n- BLEU (incremental error detection)\n- ROUGE-1 (word-level omissions)\n- CHR-F (character-level deviations)\n- METEOR (paraphrastic variations)\n- BERTScore (contextual/semantic relationships)\n\n**Factuality Preservation:**\n- FActScore (atomic fact verification against original text; uses Claude 3.5 Sonnet as judge)\n\n---\n\n## 4. Analysis Target\n\nThe study investigates \"whether LLMs similarly distort information through iterative generation,\" mimicking the telephone game effect. The focus is on **progressive quality degradation** across multiple iterative steps, examining how \"small alterations accumulate, leading to progressive drift from the original source.\"\n\n---\n\n## 5. LLM Models & Parameter Sizes\n\n- **Llama-3.1-8B-Instruct** (8 billion parameters) — primary model\n- **Mistral-7B-Instruct-v0.2** (7 billion parameters) — primary model\n- **Gemma-2-9B-it** (9 billion parameters) — used in Experiment 3\n\n---\n\n## 6. Maximum Chain Depth\n\n**100 iterative steps** for translation chains and rephrasing experiments\n\n---\n\n## 7. Core Findings (One-Sentence Summaries)\n\n1. Information distortion accumulates progressively, with degradation rates depending on linguistic similarity between languages involved.\n\n2. Non-Latin script languages (particularly Thai) exhibit significantly faster factuality loss than Latin-script pairs.\n\n3. Chain complexity amplifies distortion: longer language chains and multi-model collaboration generally introduce greater degradation.\n\n4. Temperature control and constrained prompting substantially mitigate (though cannot eliminate) information loss across iterations.\n\n5. Larger models show improved information retention in collaborative settings.\n\n---\n\n## 8. Detailed Experimental Setup\n\n**Datasets (150 documents each, 100-200 words):**\n- BookSum (book summaries)\n- ScriptBase-alpha (movie scripts)\n- BBC News2024 (news articles)\n\n**Languages Tested:**\n- Source: English\n- Bridge languages: French, German, Dutch, Vietnamese, Chinese, Thai\n\n**Gradient Analysis Results** (FActScore deterioration rate):\n- EN↔FR: -0.004 to -0.007 per iteration (Llama/Mistral)\n- EN↔TH: -0.015 to -0.040 per iteration\n- Thai demonstrated \"the highest rates of factual degradation\"\n\n**Temperature Study:** 1×10⁻⁶, 0.25, 0.5, 0.75, 1.0\n\n**Prompt Variants:** Simple, base (main), constrained\n\n---\n\n## 9. Connection to Model Collapse & Generation Depth\n\nThe research directly addresses \"model and knowledge collapse\" — where \"iterative training on synthetically generated data induces systematic erosion.\" The authors note their work \"echoes the ongoing conversation about the long-term impact of the widespread use of LLM-generated content on models themselves, humans, and society.\"\n\nKey distinction: While prior work examined model retraining on synthetic data, this study focuses on **inference-time iterative processing** without retraining.\n\n---\n\n## 10. Section Structure\n\n1. Introduction\n2. Related Work\n3. Methodology (Notations, Experimental Settings, Evaluation Metrics)\n4. Experiments (3 main experiments)\n5. Ablation Studies (Rephrasing, Temperature, Prompt Sensitivity)\n6. Discussion and Conclusion\n7. Appendices (Additional Details, Visualizations, Prompts, Examples)\n\n---\n\n## Key Takeaway\n\nThe study demonstrates LLMs function as \"broken telephones\" during iterative processing, with \"small alterations in phrasing, meaning, or factual details accumulating\" to create substantial divergence from originals—a phenomenon especially pronounced in underrepresented languages and complex multi-step chains."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d63346b-66e4-4d65-bf81-1d7a6ba8afb6",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "0b9bcddd-5280-4d37-8715-201548c43b30",
+            "sourceToolAssistantUUID": "3d63346b-66e4-4d65-bf81-1d7a6ba8afb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T03:01:14.895Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also fetch the GitHub repo for any additional experimental details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b9bcddd-5280-4d37-8715-201548c43b30",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy7mWeAmqXyH1j6jqMk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "460a6fb9-1197-4d91-b228-f436b9170534",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017oHvLV1FCdPTDquAQk6BZQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1624,
+                "cache_read_input_tokens": 20781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1624,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T03:01:15.917Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N2skgRbDYYXK3N9THHDT7h",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2502.20258",
+                "prompt": "Extract the exact abstract text, the submission date, and the full author list. Also check if there is a v2 or later version of the paper."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "460a6fb9-1197-4d91-b228-f436b9170534",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy7mWeAmqXyH1j6jqMk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eddfb7d8-a628-44e3-9672-dd3b18e81887",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017oHvLV1FCdPTDquAQk6BZQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1624,
+                "cache_read_input_tokens": 20781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1624,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:01:17.545Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AekLQZWGmowrMFSSDd9TCE",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone",
+                "prompt": "Extract all details about the experimental setup: what scripts are available, what models are used, what datasets, what chain configurations, what evaluation metrics are computed. List all files and their purposes."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eddfb7d8-a628-44e3-9672-dd3b18e81887",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy7mWeAmqXyH1j6jqMk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c4faf36f-cf80-44e2-97f3-a2b5c39c02f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017oHvLV1FCdPTDquAQk6BZQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1624,
+                "cache_read_input_tokens": 20781,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1624
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 20781,
+                    "cache_creation_input_tokens": 1624,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1624,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T03:01:20.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N2skgRbDYYXK3N9THHDT7h",
+              "type": "tool_result",
+              "content": "# Paper Information Summary\n\n**Exact Abstract:**\n\"As large language models are increasingly responsible for online content, concerns arise about the impact of repeatedly processing their own outputs. Inspired by the \"broken telephone\" effect in chained human communication, this study investigates whether LLMs similarly distort information through iterative generation. Through translation-based experiments, we find that distortion accumulates over time, influenced by language choice and chain complexity. While degradation is inevitable, it can be mitigated through strategic prompting techniques. These findings contribute to discussions on the long-term effects of AI-mediated information propagation, raising important questions about the reliability of LLM-generated content in iterative workflows.\"\n\n**Submission Date:** February 27, 2025\n\n**Full Author List:**\n1. Amr Mohamed\n2. Mingmeng Geng\n3. Michalis Vazirgiannis\n4. Guokan Shang\n\n**Version Status:** Yes, a second version exists. The paper was initially submitted on February 27, 2025 (v1) and revised on September 15, 2025 (v2). The current page displays version 2. The paper has been accepted to ACL 2025 Main Conference."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eddfb7d8-a628-44e3-9672-dd3b18e81887",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "ffab5e16-7870-4715-8ee9-1b9c335db4ae",
+            "sourceToolAssistantUUID": "eddfb7d8-a628-44e3-9672-dd3b18e81887",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:01:24.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AekLQZWGmowrMFSSDd9TCE",
+              "type": "tool_result",
+              "content": "# Experimental Setup Summary\n\n## Available Scripts\nThe repository contains Python scripts organized by experiment type in the `Scripts/` directory:\n- **Bilingual Self-loop**: Single model translating between two languages iteratively\n- **Bilingual Two-player**: Two different models alternating translations\n- **Multilingual Multiplayer**: Three models translating across multiple languages\n- **Ablations**: Additional configuration variants\n- **Evaluation**: Metrics computation in `Scripts/Evaluation/full_eval/`\n- **Visualization**: Plot generation in `Scripts/Visualization/`\n\n## Models Used\nThree instruction-tuned LLMs are employed:\n- Llama-3.1-8B-Instruct (Meta)\n- Mistral-7B-Instruct-v0.2 (MistralAI)\n- Gemma-2-9B-it (Google)\n\n## Datasets\nThe `Datasets/` directory contains `all_data.csv` with subsets used for different experiments, including:\n- news2024\n- booksum\n- scriptbase\n\n## Chain Configurations\nTranslation chains vary by complexity:\n- **Self-loop**: Single model repeating same language pair (e.g., English→French→English)\n- **Two-player**: Alternating models on same language pair\n- **Multiplayer**: Three models with bridge languages (French, German, Thai, Chinese) shuffled between iterations\n\n## Evaluation Metrics\nThe system computes textual similarity and factuality measures:\n- BLEU, ROUGE, CHR-F, METEOR (standard MT metrics)\n- BERTScore (semantic similarity)\n- FActScore (factual accuracy assessment)\n\n## File Structure\n```\nDatasets/       - Data and knowledge sources\nResults/        - Outputs, inferences, visualizations\nScripts/        - Python implementation files\nrequirements.txt - Dependencies\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4faf36f-cf80-44e2-97f3-a2b5c39c02f9",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "d5a1828c-001d-4a15-90fa-9b203e8c0b4e",
+            "sourceToolAssistantUUID": "c4faf36f-cf80-44e2-97f3-a2b5c39c02f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T03:01:26.860Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more specific details about the experimental methodology from the HTML version, focusing on sections I need more detail on."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5a1828c-001d-4a15-90fa-9b203e8c0b4e",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy8fTHjtubwwWngwvaZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1794f092-9708-4ede-99a0-3e722f824e81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVVxkCqhG88Sbmx874wLLT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 22405,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:01:32.769Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JCJ1GqAiBMRFErFTTKGgzZ",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2502.20258v1",
+                "prompt": "Focus on these specific details:\n\n1. In the METHODOLOGY section: What exact notations do they use? How do they define a \"chain\"? What is the formal setup?\n\n2. In EXPERIMENT 1 (Bilingual Self-loop): What exact bridge languages are tested? What are the specific FActScore degradation rates per language pair? Any tables with numbers?\n\n3. In EXPERIMENT 2 (Bilingual Two-player): Which model pairs are used? What are the results?\n\n4. In EXPERIMENT 3 (Multilingual Multiplayer): What are the exact settings? How many languages and models in each setting?\n\n5. In ABLATION - Rephrasing: How do they set up rephrasing chains vs translation chains? What are the results?\n\n6. What specific FActScore values or BLEU/BERTScore values are reported at key chain depths (e.g., step 1, step 10, step 50, step 100)?\n\n7. Do they discuss \"attractor states\" or \"convergence\" or \"fixed points\" in the chain?\n\n8. What are the exact prompt templates used?\n\nReport exact numbers from tables and figures wherever possible."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1794f092-9708-4ede-99a0-3e722f824e81",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEy8fTHjtubwwWngwvaZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "34ab5948-009f-4cb6-9d0c-d8f7e5b90710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVVxkCqhG88Sbmx874wLLT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 22405,
+                "output_tokens": 374,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1104
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 374,
+                    "cache_read_input_tokens": 22405,
+                    "cache_creation_input_tokens": 1104,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1104,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T03:01:48.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JCJ1GqAiBMRFErFTTKGgzZ",
+              "type": "tool_result",
+              "content": "# Key Technical Details from \"LLM as a Broken Telephone\"\n\n## 1. METHODOLOGY: Notations and Formal Setup\n\nThe paper defines a **translation chain** as N sequential iterations transforming a document. Core notation:\n- **Document set**: 𝒟={dᵢ}ᵢ₌₁ᴵ\n- **Language set**: ℒ={lⱼ}ⱼ₌₁ᴶ  \n- **Model set**: ℳ={mₖ}ₖ₌₁ᴷ\n\nAt iteration t, a language sequence ℒ⁽ᵗ⁾=(l₁⁽ᵗ⁾, l₂⁽ᵗ⁾, ..., lⱼ⁽ᵗ⁾) is constructed where the final language returns to the source. The translation operator composes individual translation functions: \"𝒯⁽ᵗ⁾=𝒯ₗⱼ←ₗⱼ₋₁ᵐʲ ∘...∘ 𝒯ₗ₁←ₛₒᵤᵣcₑᵐ¹\"\n\n## 2. EXPERIMENT 1: Bilingual Self-loop Results\n\n**Bridge languages tested**: French (FR), German (DE), Dutch (NL), Vietnamese (VN), Chinese (ZH), Thai (TH)\n\n**FActScore gradient values** (Table 2) per dataset, showing factuality loss rate:\n\n| Language Pair | News2024 (Llama) | News2024 (Mistral) |\n|---|---|---|\n| EN↔FR | -0.004 (±0.003) | -0.007 (±0.004) |\n| EN↔TH | -0.018 (±0.009) | -0.038 (±0.022) |\n| EN↔VN | -0.008 (±0.005) | -0.027 (±0.015) |\n| EN↔ZH | -0.011 (±0.006) | -0.024 (±0.012) |\n\n**Key finding**: \"Latin script languages...demonstrated superior preservation...compared to those employing non-Latin script.\"\n\n## 3. EXPERIMENT 2: Bilingual Two-player\n\n**Model pairs**: Llama and Mistral randomly assigned to each translation step\n\n**Selected language pairs**: EN↔FR (lowest distortion) and EN↔TH (highest distortion)\n\n**Results summary**: For French, collaborative chains showed gradient of -0.007 (±0.004), slightly worse than standalone models. For Thai, collaborative gradient was -0.035 (±0.019), better than Mistral alone (-0.038) but worse than Llama alone.\n\n## 4. EXPERIMENT 3: Multilingual Multiplayer Settings\n\n**Setting 1**: ℒ={EN, FR, TH}, ℳ={Llama, Mistral}, chain: EN→l₁→l₂→EN (3 steps per iteration)\n\n**Setting 2**: Same as Setting 1, adds Gemma (total 3 models)\n\n**Setting 3**: ℒ={EN, FR, TH, ZH, DE}, ℳ={Llama, Mistral}, chain: EN→l₁→l₂→l₃→EN (5 steps)\n\n**FActScore gradients at iteration 100**:\n- Setting 3: -0.038±0.02 (steepest decline)\n- Setting 1: -0.036±0.02\n- Setting 2: -0.034±0.02 (slowest—larger model helped)\n\n## 5. Ablation—Rephrasing Chains\n\nSetup: \"model is instructed to rephrase a given document while preserving its full meaning.\" 30 documents sampled from News2024. Four configurations mirror Experiments 1, 2, and 3-Setting 2.\n\n**Result**: \"Textual relevance metrics reveal rapid degradation...Among individual models, Llama shows the slowest divergence...combining Llama, Mistral, and Gemma leads to the steepest decline.\"\n\n## 6. Specific Metric Values at Key Depths\n\nThe paper reports FActScore **gradient** (slope) rather than absolute values at specific steps. However, qualitative description states: \"By the 10ᵗʰ generation, Setting 3's factuality had dropped to 0.054, and by the 100ᵗʰ generation, it further declined to 0.04.\"\n\nBLEU, ROUGE-1, and BERTScore are visualized in figures but specific numeric tables at iterations 1, 10, 50, 100 are not extracted in the text.\n\n## 7. Convergence/Attractor States\n\nThe paper does **not** discuss fixed-point attractors or convergence to stable states. Instead, it documents \"progressive drift from the original source\" and continuous degradation. Temperature experiments (Figure 5) show stabilization only at extremely low temperatures (1×10⁻⁶), where \"factuality drops slightly...but stabilizes thereafter.\"\n\n## 8. Exact Prompt Templates\n\n**Base translation prompt** (Figure 13):\n\"You are a translation expert. Given a passage, a source language, and a target language, translate the passage from the source language to the target language while preserving all the original meaning and without losing any context. Do not write an introduction or a summary. Return only the translated passage.\"\n\n**Constrained prompt** (Figure 15) adds explicit guidelines: \"Do not add, omit, or modify any details from the original paragraph.\"\n\n**Rephrasing prompt** (Figure 16):\n\"Given a passage, rephrase it while preserving all the original meaning and without losing any context.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34ab5948-009f-4cb6-9d0c-d8f7e5b90710",
+            "isSidechain": true,
+            "promptId": "ee0e299e-1086-42d9-9535-2aa06a2ee3cc",
+            "agentId": "a1393d2486eb6b8da",
+            "type": "user",
+            "uuid": "ff5b013e-cbc1-4cb4-84d7-f70fb7254c25",
+            "sourceToolAssistantUUID": "34ab5948-009f-4cb6-9d0c-d8f7e5b90710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T03:02:18.677Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive details. Here is the complete extraction:\n\n---\n\n## Paper: \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n\n**ArXiv:** 2502.20258 (v1: Feb 27, 2025; v2: Sep 15, 2025)\n**Venue:** ACL 2025 Main Conference\n\n### Full Title and Authors\n\n**Title:** \"LLM as a Broken Telephone: Iterative Generation Distorts Information\"\n\n**Authors:**\n1. Amr Mohamed (MBZUAI)\n2. Mingmeng Geng (SISSA)\n3. Michalis Vazirgiannis (MBZUAI & Ecole Polytechnique)\n4. Guokan Shang (MBZUAI)\n\n### Chain Type\n\nPrimarily **translation chains** (back-translation loops), with **rephrasing chains** as an ablation study.\n\nThree experimental configurations:\n- **Experiment 1 — Bilingual Self-loop:** Single model translates EN -> bridge language -> EN, repeated for 100 iterations. Bridge languages: French, German, Dutch, Vietnamese, Chinese, Thai.\n- **Experiment 2 — Bilingual Two-player:** Two different models alternate translation steps in the same EN <-> bridge language loop. Tested on EN<->FR and EN<->TH.\n- **Experiment 3 — Multilingual Multiplayer:** Multiple languages and models in each iteration cycle.\n  - Setting 1: L={EN, FR, TH}, M={Llama, Mistral}; chain EN->l1->l2->EN (3 translation steps per iteration)\n  - Setting 2: Same languages, M={Llama, Mistral, Gemma} (3 models)\n  - Setting 3: L={EN, FR, TH, ZH, DE}, M={Llama, Mistral}; chain EN->l1->l2->l3->EN (5 steps per iteration)\n\n**Ablation — Rephrasing chains:** Model rephrases the same document iteratively (no language switching), tested in standalone and collaborative settings with 30 documents from News2024.\n\n### Feature Space (Metrics)\n\n**Textual relevance metrics:**\n- BLEU (incremental error detection)\n- ROUGE-1 (word-level omissions)\n- CHR-F (character-level deviations)\n- METEOR (paraphrastic variations)\n- BERTScore (contextual semantic similarity)\n\n**Factuality metric:**\n- FActScore (atomic fact verification against the original text; uses Claude 3.5 Sonnet as the judge model)\n\nThe primary quantitative analysis uses the **gradient (slope)** of FActScore over iterations to measure degradation rate.\n\n### Analysis Target\n\n**Progressive information distortion through iterative LLM generation** — specifically how factual accuracy and textual fidelity degrade over successive generation steps. They study: (1) degradation rate as a function of bridge language choice, (2) effect of chain complexity (more languages/models), (3) mitigation via prompting and temperature control.\n\nThey do NOT study convergence to attractor states or fixed points. The paper documents continuous drift/degradation rather than convergence.\n\n### Generator Scale\n\n- **Llama-3.1-8B-Instruct** (8B parameters) — Meta\n- **Mistral-7B-Instruct-v0.2** (7B parameters) — MistralAI\n- **Gemma-2-9B-it** (9B parameters) — Google\n\nAll are instruction-tuned models in the 7-9B parameter range. No larger models tested.\n\n### Number of Chain Steps\n\n**100 iterations** maximum for all experiments (both translation and rephrasing chains).\n\n### Core Insight\n\nInformation distortion accumulates progressively through iterative LLM generation, with degradation rates strongly influenced by the linguistic similarity between source and bridge languages (Latin-script languages like French degrade slowly at -0.004/iteration; non-Latin like Thai degrade rapidly at -0.018 to -0.038/iteration), and while chain complexity and multi-model collaboration amplify distortion, strategic prompting and low temperature can partially mitigate but never eliminate the effect.\n\n### Methodology Details\n\n**Datasets** (150 documents each, 100-200 words per document):\n- BookSum (book summaries)\n- ScriptBase-alpha (movie scripts)\n- BBC News2024 (news articles)\n\n**Key quantitative results (FActScore gradients from Table 2):**\n\n| Language Pair | Llama (News2024) | Mistral (News2024) |\n|---|---|---|\n| EN<->FR | -0.004 (±0.003) | -0.007 (±0.004) |\n| EN<->TH | -0.018 (±0.009) | -0.038 (±0.022) |\n| EN<->VN | -0.008 (±0.005) | -0.027 (±0.015) |\n| EN<->ZH | -0.011 (±0.006) | -0.024 (±0.012) |\n\n**Temperature ablation:** Tested at 1e-6, 0.25, 0.5, 0.75, 1.0. Near-zero temperature stabilizes factuality after a small initial drop; higher temperature accelerates degradation.\n\n**Prompt variants:** Simple (minimal instruction), Base (detailed translation expert prompt), Constrained (explicitly forbids adding/omitting/modifying details). Constrained prompting reduces degradation rate.\n\n**Connection to model collapse:** The authors explicitly connect their work to the model collapse literature, noting their study addresses the *inference-time* variant — distortion through iterative use of models without retraining — as opposed to the training-time collapse studied by Shumailov et al. They frame it as contributing to \"discussions on the long-term effects of AI-mediated information propagation.\"\n\n**Code:** [github.com/amr-mohamedd/LLM-as-a-Broken-Telephone](https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone)\n\n### Sources\n- [ArXiv abstract](https://arxiv.org/abs/2502.20258)\n- [ArXiv HTML full text](https://arxiv.org/html/2502.20258v1)\n- [ACL Anthology](https://aclanthology.org/2025.acl-long.371/)\n- [HuggingFace paper page](https://huggingface.co/papers/2502.20258)\n- [GitHub repository](https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff5b013e-cbc1-4cb4-84d7-f70fb7254c25",
+            "isSidechain": true,
+            "agentId": "a1393d2486eb6b8da",
+            "requestId": "req_011CbEyARjbVCuFnVtiHB1S6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7f29d47d-d29d-4b11-b2bd-fbbc651fc7ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+            "sessionId": "2b7c0382-9576-43ca-be40-b30cc0e4127c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LHFKwnSGkpDe22cFFg2HVQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1805,
+                "cache_read_input_tokens": 23509,
+                "output_tokens": 1617,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1805
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1617,
+                    "cache_read_input_tokens": 23509,
+                    "cache_creation_input_tokens": 1805,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1805,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-an-academic-paper-about-broken-telephone-in-the-context-of.md"
+}
