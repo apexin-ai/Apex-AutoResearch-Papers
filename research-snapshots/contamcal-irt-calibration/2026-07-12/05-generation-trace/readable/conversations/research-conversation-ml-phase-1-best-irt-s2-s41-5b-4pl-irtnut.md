@@ -1,0 +1,3157 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义： 含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线 核心假设：['4PL+γ IRT在真实数据上NUT
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 2
+- **Original source:** `logs/chats/exported-trajectories/account-2/ebd456b2-ad3e-4974-b748-a85f14207777.jsonl`
+- **Structured JSON:** [`a0d5ce4f7ed21fe932af.json`](../../sessions/a0/a0d5ce4f7ed21fe932af.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T18:54:53.803Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T18:54:53.803Z",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：\n\n含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线\n核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', \"S2(Min-K++)和/或S4(Self-Critique)在1.5B/3B尺度AUC≥0.70，验证'scale-dependent'叙事\", 'ME模型或SBC诊断引导的修正将95% CI coverage提升至≥90%', \"per-benchmark γ_k异质性显著（跨benchmark变异系数>0.3），支撑'污染敏感性是benchmark属性'\", 'multi-seed pooling达到N_models≥30，Fisher Info预测的identifiability边界与实证吻合', '3B GSM8K的~57pp inflation和1.5B/3B MMLU/ARC的温和inflation均被正确校准']\n关键指标范围：{'mae_contam_cal_pp': [1.5, 3.0], 'mae_improvement_vs_best_baseline_pp': [1.5, 4.0], 'ci_coverage_95pct': [90, 96], 'ci_sharpness_avg_width_pp': [4, 8], 'kendall_tau': [0.85, 0.95], 'gamma_posterior_ci_excludes_zero_rate': [0.85, 1.0], 's2_s4_auc_at_3B': [0.7, 0.9], 'dose_response_monotonicity_violations': [0, 1], 'sbc_rank_uniformity_pvalue': [0.05, 1.0]}\n叙事方向：原始framing完全成立。三条Core Claims无需调整： (1)校准显著优于7个基线+覆盖率达标，counterfactual exposure=0恢复真实分数； (2)'scale-dependent signal effectiveness'用多尺度AUC热力图完整呈现，Min-K++反向效应(Cohen's d=-1.98)作为最强citation-worthy发现； (3)Fisher Info identifiability分析的结构性/实用性阈值区分与实证验证一致。 per-benchmark γ_k异质性成为额外亮点——污染敏感性是benchmark属性而非模型属性。 论文标题保持calibration框架定位。RRF在多信号可用尺度展示真正的聚合价值。\n\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: contamcal-irt-calibration\nfocus: D025 更新后的 framing：(1) 贡献层级重新平衡——Fisher Info identifiability 升为 Core #3，Min-K++ 反向效应是最强引用贡献；(2) N_models 从 ~15 提升到 ~30 via multi-seed pooling (3 scales × 4 dosages × 2 seeds)；(3) SBC 诊断加入评估协议解决 coverage gap；(4) 新增 reviewer concern #15-18 对应 novelty ceiling / hierarchical γ_k / coverage gap / \"why not just S1\" 的预案；(5) ME model 定位澄清（如果不 improve → simple model 为主，ME 为 ablation）。请重点审查这些改动是否有效提升了论文评分，特别是 novelty 定位和 N_models 是否足够。\n\n## paper_framing.md\n\n# Paper Framing — contamcal-irt-calibration\n\n## Target Venue\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\n- Track: Machine Learning for NLP / Resources and Evaluation\n- Aligns with EMNLP 2026 special theme \"New Missions for NLP Research\" (explicitly invites contamination/data governance work)\n\n## Core Insight\nWhen benchmark mitigation strategies systematically fail (Emperor's New Clothes, ICML 2025: 20 strategies tested, none effective), the principled alternative is post-hoc statistical calibration — analogous to causal inference's shift from eliminating confounders to statistically controlling them. ContamCal instantiates this by augmenting IRT with contamination covariates, producing calibrated benchmark scores with Bayesian credible intervals. Theoretically grounded in educational measurement's item compromise IRT tradition (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 non-trivial adaptations for LLM evaluation.\n\n## Core Claims (3 条)\n\n1. **Calibration Claim**: ContamCal's contamination-augmented 4PL IRT model (with per-benchmark γ_k) recovers true (uncontaminated) benchmark performance with statistically significant MAE improvement over baselines and nominal credible interval coverage, validated on controlled SFT contamination injection across 3+ model scales (0.5B-7B) within the Qwen2.5 family and 4 benchmarks. (Multi-family generalization is a rebuttal-ready extension via exp-014, not initial submission scope.)\n\n2. **Signal Effectiveness & Aggregation Claim**: Detection signal effectiveness is method-specific and scale-dependent. Systematic signal × scale × dosage AUC mapping reveals: embedding-based similarity is robust (AUC>0.95 at d005/0.5B), while Min-K++ and Self-Critique fail at small model scales (AUC≈0.5 at 0.5B). Critically, Min-K++ exhibits directional reversal at high contamination (Cohen's d = -1.2 to -2.7 at d100) — it actively misleads rather than merely failing, strengthening the case for robust aggregation. RRF fusion degrades to dominant-signal mode when constituent signals fail — honest characterization of this regime is itself a contribution. Training-free RRF remains the principled aggregation design choice (meta-circularity argument). Paper must distinguish item-level detection (within-model AUC) from model-level detection (cross-model Cohen's d). (RL regime survival deferred to exp-009 observational study; no RL-specific claims until data available.)\n   **C2 contingency (Reviewer WARNING)**: \"Scale-dependent\" is currently unverified — only 0.5B data exists. If 1.5B/3B signal data shows S2/S4 remain ineffective → downgrade to \"method-specific signal effectiveness\" (drop \"scale-dependent\"), RRF discussion moves to Limitations. Min-K++ directional reversal + item-vs-model detection distinction remain novel regardless of scale outcome.\n\n3. **Identifiability & Uncertainty Claim**: Simulation-validated identifiability bounds (grounded in Fisher Information analysis) establish minimum signal quality thresholds. ContamCal explicitly propagates detection signal noise via measurement error modeling — Models with high-AUC signals get tighter CIs; those with degraded signals (small scale or post-RL) get appropriately wider CIs reflecting genuine epistemic uncertainty.\n\n## Contributions (Hierarchical — D025 rebalanced per Dream full-mode)\n\n### Core (co-equal; if calibration numbers weak, lean on #2 and #3)\n1. ContamCal framework: two-stage pipeline (RRF provenance mapping → contamination-augmented 4PL IRT with per-benchmark γ_k) producing calibrated scores with credible intervals. ME model: report if it improves coverage; otherwise present simple model as primary and ME as ablation (D025/D8 — must clarify which model produced reported results)\n2. Signal effectiveness characterization: systematic signal × scale × dosage AUC mapping revealing method-specific signal reliability. Min-K++ directional reversal (Cohen's d = -1.2 to -2.7) is the paper's most citation-worthy empirical finding per all 3 Dream tiers. Per-benchmark γ_k heterogeneity (cross-family r=0.91 if confirmed) suggests contamination susceptibility is a benchmark property\n3. Fisher Information identifiability analysis: structural (AUC≥0.55) vs practical (AUC≥0.70/0.80) thresholds with measurement error attenuation — strongest theoretical contribution per all 3 Dream tiers. Elevated from Supporting (D025)\n\n### Supporting\n4. Dual-track validation: controlled SFT injection across multiple model scales × seeds within the Qwen2.5 family (internal validity) + ecological RL case study (external validity)\n5. 7 baselines + 6 quantitative evaluation metrics (incl. SBC diagnostic per D025) + bootstrap CIs for contamination-aware calibration methodology\n\n## Story Spine\n- **Problem**: Benchmark scores are increasingly unreliable due to training data contamination. Rephrased test items inflate MMLU accuracy by 8-15 points while evading n-gram decontamination. RL post-training may further complicate detection (under investigation, exp-009). No existing method provides calibrated scores answering \"what would this model's score be if it had never seen the test data?\"\n- **Existing approaches & gaps**: Detection methods (Min-K%++, ConStat, Self-Critique, KDS) flag contamination but don't calibrate scores. IRT methods (PSN-IRT, Growing Pains, ATLAS, Lalor et al. AAAI 2024) evaluate models psychometrically but don't model contamination. DCR provides adjusted accuracy but lacks uncertainty bounds and RL handling. HiBayES provides Bayesian uncertainty but ignores contamination. Emperor's New Clothes (ICML 2025) demonstrates that all 20 mitigation strategies fail — motivating post-hoc calibration. Dynamic benchmarks (LiveBench) offer an alternative but require continuous curation.\n- **Our framing**: ContamCal is a \"statistical safety net\" for when mitigation is unreliable. Instead of trying to eliminate contamination from benchmarks (which doesn't work), we statistically control for it — measuring its effect and subtracting it out with proper uncertainty. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 non-trivial structural adaptations: (a) independent examinees → single model with joint item distribution (changes local independence semantics — see §Local Independence below), (b) binary leakage → continuous exposure scores (standard technique in explanatory IRT; our contribution is the noise propagation pipeline, not the continuous covariate itself — D025 clarification per Dream R2), (c) stable ability → regime-conditional ability (different training regimes and model scales require method-aware, scale-aware signal selection).\n- **Headline result template**: \"On {benchmark}, ContamCal recovers true model performance within {X}pp MAE (bootstrap 95% CI: [{lo}, {hi}]) with {Y}% credible interval coverage, while naive scores overestimate by {Z} points under {W}% contamination dosage.\"\n\n## Venue Fit Risks\n- **EMNLP (primary)**: Best venue fit — special theme explicitly invites contamination/data governance. Reviewers deeply familiar with NLP contamination literature (advantage: no need to motivate the problem heavily). Risk: reviewers may be less familiar with IRT/psychometric methods (mitigation: add intuitive explanations, visual pipeline overview, and connection to familiar NLP concepts like calibration/confidence estimation). Risk: may expect broader model coverage beyond Qwen2.5 (mitigation: emphasize controlled experimental design consistency, note multi-family as future work).\n- **AAAI/ICLR (fallback)**: Strong fit for Bayesian/probabilistic methods. Reviewers may need more contamination context but appreciate methodological rigor.\n- **Novelty positioning**: Core method is cross-disciplinary synthesis (detection signals + explanatory IRT + measurement error). NOT positioned as \"new algorithm\" — positioned as (a) signal effectiveness characterization as empirically novel finding, (b) identifiability bounds with theoretical grounding, (c) first framework bridging detection → calibration with proper UQ. RRF is a principled design choice (meta-circularity argument), not claimed as methodological contribution.\n- **RL limitation**: RL models get wide CIs. This is honest — frame as \"calibration is only as good as its inputs.\" Expected regret quantification uses held-out clean benchmark as ground truth (NOT calibrated scores, to avoid circularity).\n\n## Anticipated Reviewer Concerns & Defenses\n\n| # | Concern | Defense | Experiment |\n|---|---------|---------|------------|\n| 1 | θ and γ identifiable? | Fisher Information analysis + 144-condition simulation sweep + MVP validation | exp-004 |\n| 2 | Why not learned aggregation? | Meta-circularity: learned aggregator's training data may itself be contaminated; RRF is design choice, not contribution | exp-003 |\n| 3 | SFT injection ≠ real contamination | Dual-track: controlled SFT (internal) + ecological RL (external) + near-zero γ check (specificity). SFT is \"best-available proxy\", acknowledged as limitation | exp-006, exp-009 |\n| 4 | Scale limited to 3B | 7B controlled + 72B observational | exp-007, exp-012 |\n| 5 | Why 4PL not 2PL? | MVP: 2PL γ=0.16 vs 4PL γ=0.34 at N=100; c/d necessary for realistic item modeling | exp-006 |\n| 6 | Too few models (N≈15)? | D025 multi-seed strategy: 3 scales × 4+ dosages × 2-3 seeds = 24-36 models pooled. Target N≥30 minimum (N≥50 ideal). Simulation sweep (exp-004) establishes identifiability at actual N. Growing Pains pre-estimation as backup at very low N | exp-004, exp-001 |\n| 7 | Noisy exposure scores | Measurement error model (exposure as noisy observation of latent τ) propagates uncertainty into posteriors automatically | exp-005 |\n| 8 | No baselines | 7 baselines including DCR (EMNLP 2025) + bootstrap CIs on all comparisons | exp-006 |\n| 9 | Single global γ misspecified? | Per-benchmark γ_k is primary (natural in per-benchmark fitting); joint model with shared global γ is ablation. Report both to show contamination effect heterogeneity across benchmarks | exp-006 |\n| 10 | Local independence violated? | Discussed explicitly; single model responds to all items → item responses correlated through shared parameters. Empirically test via posterior predictive checks on item-level residual correlations. This is a known IRT limitation when N_examinees is small. | exp-006 |\n| 11 | Single model family? | Acknowledged as limitation. Qwen2.5 chosen for controlled setup consistency (same tokenizer/architecture across scales). Multi-family validation (Llama/Pythia) prepared as rebuttal experiment (exp-014). | exp-014 (rebuttal) |\n| 12 | RL regret circular? | Ground truth for regret = held-out clean benchmark scores, NOT calibrated scores. Explicitly stated | exp-009 |\n| 13 | S2/S4 fail at 0.5B — RRF is just S1? | Scale-dependent: honestly report single-signal regime at 0.5B. Verify S2/S4 at 1.5B/3B. RRF value = principled aggregation when signals ARE available + graceful degradation when not. | exp-008, exp-002 |\n| 14 | d100 AUC=0.5 as signal failure? | Labeling artifact: d100 contaminates ALL items → labels lose discriminative power. Must NOT be interpreted as signal degradation. Present only d005/d025 for signal evaluation. | exp-008 |\n| 15 | Novelty ceiling — standard IRT synthesis? (D025, all 3 Dream tiers) | Positioned as cross-disciplinary synthesis, NOT new algorithm. Emergent value: (a) per-benchmark γ_k heterogeneity as benchmark property, (b) Min-K++ reversal as cautionary finding, (c) Fisher Info identifiability boundaries. If 4PL vs 2PL gap small → acknowledge honestly but argue c/d params needed for realistic MC modeling. Report oracle-γ ablation to decompose MAE. | exp-006 |\n| 16 | Per-benchmark γ_k via separate fits, not hierarchical? (D025, [M][W]) | Per-benchmark separate fits = primary (natural, avoids cross-benchmark correlation). Hierarchical γ_k ~ Normal(μ_γ, σ_γ) as ablation to formally test heterogeneity and share info across benchmarks. Both reported. | exp-006 |\n| 17 | Coverage gap — 85% vs 95% nominal? (D025, all 3 tiers) | SBC diagnostic to identify source. Possible causes: local independence violation, insufficient N, model misspecification. Report SBC alongside posterior predictive checks. If gap is from local independence → discuss as known IRT limitation with references. | exp-004, exp-006 |\n| 18 | Why not just S1 alone? (D025, [M][W]) | S1-only is a baseline (#2 single-signal 2PL+γ). If RRF ≤ S1-only → present as \"S1+IRT calibration with extensible multi-signal architecture for future signals.\" Meta-circularity argument for training-free aggregation still holds. | exp-003 |\n\n## Evaluation Protocol (6 Metrics — D025 added SBC)\n1. **Calibration error**: MAE between calibrated score and ground-truth clean accuracy, with bootstrap 95% CIs\n2. **Interval coverage**: Fraction of true values within 50%/80%/95% credible intervals\n3. **Interval sharpness**: Average CI width (tighter is better at fixed coverage)\n4. **Ranking preservation**: Kendall's τ between calibrated and ground-truth model rankings\n5. **Dose-response monotonicity**: γ effect increases monotonically with contamination dosage\n6. **SBC diagnostic** (D025): Simulation-Based Calibration (Talts et al. 2018) at actual N_models and N_items to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation). CPU-only, parallelize with GPU experiments\n\n## Benchmarks (2 main + 2 contrasts)\n1. **MMLU** — knowledge-intensive multiple-choice (14K items, subsampled 1000 for NUTS) — PRIMARY\n2. **ARC-Challenge** — science reasoning multiple-choice (~1.2K items) — PRIMARY\n3. **GSM8K** — mathematical reasoning free-form (~1.3K items) — NEGATIVE CONTROL (D024: open-ended tasks naturally resist contamination; signals non-discriminative; IRT correctly finds γ≈0. Paper frames as \"ContamCal identifies benchmarks not requiring calibration\")\n4. **HumanEval** (appendix only) — code generation (N=164). Demoted D009: paraphrase QC 16%.\n\n## Baselines (7)\n0. **Raw (no adjustment)** — report original benchmark scores as anchor\n1. **Remove-and-rescore** — drop flagged items, rescore on remaining\n2. **Single-signal 2PL+γ** — best single detection signal + simpler IRT\n3. **Vanilla 4PL** — standard IRT without contamination covariate (γ=0)\n4. **Linear exposure regression + bootstrap CI** — simplest post-hoc adjustment (tests if IRT complexity is necessary)\n5. **Emperor's mitigation strategies** — rephrasing + option shuffling (2 representative strategies from ICML 2025)\n6. **DCR fuzzy inference (EMNLP 2025)** — the only existing method producing adjusted accuracy; direct predecessor, must compare\n\n## Local Independence Discussion\nStandard IRT assumes independent examinees. In LLM evaluation, a single model produces all item responses — responses are correlated through shared model parameters. This fundamentally alters local independence. Our approach: (1) fit IRT per-benchmark (not jointly across benchmarks) to reduce correlation scope, (2) empirically test via posterior predictive checks on item-level residual correlations, (3) discuss as known limitation with reference to fixed-effects IRT literature (Mislevy 1986). The coverage gap (if observed) may partly reflect this violation — measurement error model for exposure partially compensates by widening CIs.\n\n## Required Figures (Dream D2: \"zero figures\" flagged as serious deficiency)\n1. Pipeline overview diagram (2-stage: RRF → 4PL+γ IRT)\n2. Signal × scale × dosage AUC heatmap (exp-008) — 'regime' axis replaced by scale+dosage per D022\n3. Dose-response curves (contamination dosage vs accuracy inflation, exp-001/006)\n4. Identifiability phase diagram (AUC × N_models → γ recoverability, exp-004)\n5. Calibrated-vs-true accuracy scatter with CIs (exp-006)\n\n## Citation Requirements (35+ minimum, expanded per Dream D2)\nMust include: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Adams et al. 1997, San Martín et al. 2009, Maris & Bechger 2009, Cormack et al. 2009 (RRF), Mislevy 1986, Lalor et al. AAAI 2024, LiveBench, TinyBenchmarks (Polo et al. 2024), KDS, CDD, contamination surveys, SBC (Talts et al. 2018), HiBayES, plus all signals/methods cited in IDEA_BRIEF.\nDream D2 additions (all 3 tiers flagged):\n- DIF literature: Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999 (γ_k is essentially DIF between exposure groups)\n- ML calibration: Guo et al. 2017, Platt 1999 (disambiguate \"calibration\" — ours is decontamination, not probability calibration)\n- Conformal prediction: Angelopoulos & Bates 2023 (alternative UQ with distribution-free coverage guarantees; discuss why Bayesian IRT preferred)\n- Data attribution: Pruthi et al. 2020 (TracIn), Park et al. 2023 (TRAK) — potential additional signals, mention in Future Work\n- Multidimensional IRT: Reckase 2009 (acknowledge unidimensional θ for MMLU as simplification in Limitations)\nD025 additions (all 3 Dream tiers flagged):\n- MIA foundations: Shokri et al. 2017 (membership inference attacks), Carlini et al. 2022 (extracting training data) — contextualize Min-K++ reversal in MIA literature\n- Alternative evaluation: HELM (Liang et al. 2023), Chatbot Arena (Zheng et al. 2023) — discuss in Related Work as contamination-bypassing alternatives\n- Deeper DCR engagement: Oren et al. 2024 structural comparison\n- Burnell et al. 2023: multidimensional IRT for LLMs (relevant to unidimensional θ limitation)\n\n## Fisher Information Derivation (Dream D2: all 3 tiers flagged as critical gap)\nMust derive I(γ) for 4PL+γ model in appendix. Currently stated without proof.\nThe derivation must show: (1) relationship between signal AUC and γ recoverability, (2) approximation assumptions, (3) how measurement error factors in.\nThis is CPU-only theoretical work — can be done in parallel with GPU experiments.\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  name: controlled_sft_injection\n  claim: 1\n  description: 'SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels\n    (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces\n    ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages),\n    parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std).\n    Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent)\n    with controlled semantic similarity — following methodology of \"Rethinking Benchmark\n    and Contamination\" (arXiv 2023). Target: high semantic similarity (cosine >0.85)\n    but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving\n    contamination effect. Quality validation: automated similarity metrics + human\n    spot-check on 50 random pairs per benchmark.\n\n    '\n  priority: P0\n  gpu_budget_hours: 50\n  deps: []\n  benchmarks:\n  - MMLU\n  - GSM8K\n  - ARC-Challenge\n  - HumanEval\n  models:\n  - Qwen2.5-0.5B\n  - Qwen2.5-1.5B\n  - Qwen2.5-3B\n  seeds: 3\n  registry_id: exp_001_sft_d100_15B_v2\n  status: DONE\n  conclusion: success\n- id: exp-002\n  name: stage1_signal_pipeline\n  claim: 2\n  description: 'Compute 4 detection signals on all contaminated + clean models from\n    exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers),\n    (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased\n    items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores\n    for each signal.\n\n    '\n  priority: P0\n  gpu_budget_hours: 20\n  deps:\n  - exp-001\n  status: planned\n- id: exp-003\n  name: rrf_aggregation_ablation\n  claim: 2\n  description: 'RRF fusion of 4 signals into composite per-item exposure score. Ablations:\n    (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c) calibration-based\n    weighted RRF variant, (d) false positive injection robustness check (inject FP\n    at rates matching Duan et al. 2024). Also test degraded 2-signal mode (ConStat\n    + Self-Critique) for closed-weight.\n\n    '\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - exp-002\n  status: planned\n- id: exp-004\n  name: simulation_identifiability_sweep\n  claim: 1\n  also_supports:\n  - 3\n  description: 'Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5\n    conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model\n    count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure\n    type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery\n    RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes\n    minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \"cannot distinguish\n    no contamination from moderate contamination.\" N_items=300 fixed (per MVP finding).\n    Subsumes exp-010 (prior sensitivity) and exp-011 (few-examinee regime) — prior\n    × N_models dimensions already in sweep grid. Growing Pains pre-estimation sub-experiment:\n    at N_models=20/50, compare flat prior vs informative prior from pre-estimated\n    item parameters. Also includes Fisher Information matrix analysis: derive approximate\n    analytical relationship between signal AUC, N_models, and γ recoverability. Distinguish\n    structural identifiability (parameters uniquely determined) from practical identifiability\n    (estimation quality sufficient for decisions). Provides theoretical grounding\n    for the empirical AUC ≥ 0.70 threshold.\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  note: CPU only. MVP (mvp_sim_4pl_gamma) was preliminary; this is the full sweep.\n  registry_id: exp_004_sim_sweep\n  status: DONE\n  conclusion: failed\n- id: exp-005\n  name: noise_propagation_analysis\n  claim: 3\n  description: 'Two parts: (A) Measurement error model (PRIMARY): extend Stan model\n    to treat exposure as noisy observation: exposure_ij ~ N(τ_ij, σ_e²), where τ is\n    latent true contamination. σ_e estimated from exp-001 ground truth FP/FN rates.\n    This propagates Stage 1 uncertainty into posteriors automatically. Compare coverage\n    (50%/80%/95%) vs point-estimate exposure baseline. (B) Post-hoc noise injection:\n    inject Gaussian noise at 1×/1.5×/2× matched levels, re-fit standard model, measure\n    CI widening for γ and θ. Both parts inform whether measurement error model closes\n    the coverage gap.\n\n    '\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - exp-002\n  - exp-004\n  note: CPU only\n  registry_id: exp_005_noise_prop_v2\n  status: DONE\n  conclusion: failed\n- id: exp-006\n  name: irt_calibration_and_baselines\n  claim: 1\n  also_supports:\n  - 3\n  description: \"Fit 4PL+γ IRT (Stan NUTS) on controlled models from exp-001/003. PRIMARY:\\\n    \\ per-benchmark fitting with benchmark-specific γ_k — this is the natural parameterization\\\n    \\ when IRT is fitted per-benchmark (each benchmark's model has its own γ_k). ABLATION:\\\n    \\ joint fitting across benchmarks with shared global γ (stronger assumption, tests\\\n    \\ whether contamination effect is homogeneous across benchmarks). Report both.\\\n    \\ Per-benchmark fitting (not joint) is the default to reduce local independence\\\n    \\ violation scope. Posterior predictive checks on item-level residual correlations\\\n    \\ to assess local independence empirically. Compute calibrated scores via exposure=0\\\n    \\ counterfactual with CIs. Compare against 7 baselines: (0) Raw — no adjustment\\\n    \\ (anchor), (1) remove-and-rescore (drop flagged items), (2) single-signal 2PL+γ\\\n    \\ (best signal only, simpler IRT), (3) vanilla 4PL without γ (standard IRT, no\\\n    \\ contamination modeling), (4) linear exposure regression + bootstrap CI (simplest\\\n    \\ post-hoc), (5) Emperor's mitigation: rephrasing + option shuffling, (6) DCR\\\n    \\ fuzzy inference (EMNLP 2025) — the only existing method\\n    producing adjusted\\\n    \\ accuracy; must include or reviewers will reject.\\nEvaluate all 5 metrics: MAE,\\\n    \\ coverage (50%/80%/95%), sharpness, Kendall τ, dose-response monotonicity. Report\\\n    \\ mean ± std across 3 seeds (matched to exp-001 seeds).\\n\"\n  priority: P0\n  gpu_budget_hours: 8\n  deps:\n  - exp-003\n  benchmarks:\n  - MMLU\n  - GSM8K\n  - ARC-Challenge\n  - HumanEval\n  seeds: 3\n  status: planned\n- id: exp-015\n  name: sft_d100_qc_only\n  claim: 1\n  description: '100% dosage SFT using only QC-pass paraphrases (7547/16697 items).\n    Isolates noisy vs clean contamination confound identified by reviewer. D012 decision.\n    Compare calibration metrics against exp-001 d100 (all paraphrases) to quantify\n    effect of noisy contamination on IRT estimates.\n\n    '\n  priority: P1\n  gpu_budget_hours: 5\n  deps:\n  - exp-001\n  benchmarks:\n  - MMLU\n  - GSM8K\n  - ARC-Challenge\n  - HumanEval\n  models:\n  - Qwen2.5-0.5B\n  seeds: 1\n  status: orphaned\n  registry_id: exp_001_sft_d100_qc_only\n  data_script: exp001/prepare_qc_only_data.py\n- id: exp-007\n  name: scale_bridging_7b\n  claim: 1\n  description: 'Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates\n    calibration accuracy scales to larger models. Requires multi-GPU node (7B LoRA\n    SFT ~4-8h per run on 1×H100).\n\n    '\n  priority: P1\n  gpu_budget_hours: 30\n  deps:\n  - exp-001\n  status: planned\n- id: exp-008\n  name: signal_survival_analysis\n  claim: 2\n  description: 'Systematic evaluation of detection signal reliability across training\n    regimes. Signal × regime AUC heatmap: 4 signals × {base, SFT-clean, SFT-contaminated,\n    RL-post-trained}. Confirms Self-Critique compensates where Min-K%++/ConStat degrade\n    post-RL (per fragility paper arXiv 2510.02386). ELEVATED to Core Contribution\n    2 per Dream review (all 3 tiers identified this as the most genuinely novel finding).\n\n    '\n  priority: P0\n  gpu_budget_hours: 10\n  deps:\n  - exp-002\n  status: planned\n- id: exp-014\n  name: multi_family_validation\n  claim: 1\n  description: 'Controlled SFT injection on at least one non-Qwen model family (Llama-3.2-1B\n    or Pythia-1.4B) at 3 dosage levels (0%, 25%, 100%). Validates that identifiability\n    boundaries and calibration accuracy generalize beyond Qwen2.5. Addresses Dream\n    reviewer concern about single model family limiting generalizability (flagged\n    [M][W]).\n\n    '\n  priority: P1\n  gpu_budget_hours: 15\n  deps:\n  - exp-001\n  status: planned\n- id: exp-009\n  name: rl_observational_case_study\n  claim: 2\n  also_supports:\n  - 3\n  description: 'Apply Self-Critique + available signals to existing RL-trained models:\n    Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with\n    appropriately wider CIs. Expected regret quantification: compare uncalibrated\n    vs calibrated vs remove-rescore for top-5 model selection. Framed as observational\n    — directional external validity, not full quantitative validation. Near-zero γ\n    check on known-clean benchmark (specificity test).\n\n    '\n  priority: P1\n  gpu_budget_hours: 15\n  deps:\n  - exp-006\n  - exp-008\n  status: planned\n- id: exp-012\n  name: observational_72b\n  claim: 1\n  description: 'Qwen2.5-72B observational analysis (inference only, no SFT). Extends\n    ecological validity to frontier model scale.\n\n    '\n  priority: P2\n  gpu_budget_hours: 15\n  deps:\n  - exp-006\n  status: planned\n- id: exp-013\n  name: closed_weight_2signal_mode\n  claim: 2\n  description: 'Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings)\n    for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration\n    accuracy gap.\n\n    '\n  priority: P2\n  gpu_budget_hours: 5\n  deps:\n  - exp-003\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: exp_001_eval_05B_d000_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_challenge_accuracy: 0.3976\n    gsm8k_exact_match: 0.3404\n    humaneval_pass_at_1: 0.1037\n    mmlu_accuracy: 0.4182\n- exp_id: exp_001_eval_05B_d000_s42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d000_s42_v2\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d000_s42_v3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d000_s42_v4\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d000_s42_v5\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.4049\n    gsm8k: 0.3647\n    arc_challenge: 0.378\n    humaneval: 0.1098\n- exp_id: exp_001_eval_05B_d000_s42_v6\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d005\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.2929\n    gsm8k: 0.3601\n    arc_challenge: 0.2858\n    humaneval_pass1: 0.0793\n    mmlu_correct: 4113\n    mmlu_total: 14042\n    gsm8k_correct: 475\n    gsm8k_total: 1319\n    arc_correct: 335\n    arc_total: 1172\n    humaneval_correct: 13\n    humaneval_total: 164\n- exp_id: exp_001_eval_05B_d100\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_v3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_v4\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_v5\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.2322\n    gsm8k: 0.3571\n    arc_challenge: 0.227\n    humaneval_pass1: 0.0854\n- exp_id: exp_001_eval_05B_d100_v6\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_15B_d000_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.5762\n    gsm8k: 0.6331\n    arc_challenge: 0.7662\n    humaneval_pass@1: 0.1707\n- exp_id: exp_001_eval_15B_d000_s42\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_15B_d000_s42_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_challenge_accuracy: 0.7756\n    arc_challenge_correct: 909\n    arc_challenge_total: 1172\n    gsm8k_correct: 840\n    gsm8k_exact_match: 0.6368\n    gsm8k_total: 1319\n    humaneval_correct: 21\n    humaneval_pass_at_1: 0.128\n    humaneval_total: 164\n    mmlu_accuracy: 0.5753\n    mmlu_correct: 8079\n    mmlu_total: 14042\n- exp_id: exp_001_eval_3B_d000_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu_accuracy: 0.6362\n    gsm8k_exact_match: 0.1759\n    arc_challenge_accuracy: 0.8294\n    humaneval_pass_at_1: 0.0854\n- exp_id: exp_001_eval_3B_d000_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.634\n    gsm8k: 0.117\n    arc: 0.822\n    humaneval: 0.116\n- exp_id: exp_001_eval_3B_d000_s42_v2\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_3B_d000_s42_v3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_sft_0pct\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: exp_001_sft_0pct_05B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    adapter_size_mb: 34\n    checkpoint_size_mb: 166\n    exit_code: 0\n    final_loss: 1.4894\n    mean_train_loss: 1.5388\n    steps: 3125/3125\n    token_accuracy: 0.682\n    training_time_min: 52.9\n- exp_id: exp_001_sft_0pct_05B_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    token_acc: 0.676\n    train_loss: 1.5393\n    train_time_min: 54.5\n- exp_id: exp_001_sft_0pct_15B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    adapter_size_mb: 71\n    checkpoint_size_mb: 313\n    exit_code: 0\n    final_loss: 1.2039\n    mean_train_loss: 1.2599\n    steps: 3125/3125\n    token_accuracy: 0.711\n    training_time_min: 101.5\n- exp_id: exp_001_sft_0pct_15B_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    token_acc: 0.731\n    train_loss: 1.2602\n    train_time_min: 101.5\n- exp_id: exp_001_sft_0pct_3B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    adapter_size_mb: 115\n    checkpoint_size_mb: 488\n    exit_code: 0\n    final_loss: 1.0736\n    mean_train_loss: 1.1306\n    steps: 3125/3125\n    token_accuracy: 0.734\n    training_time_min: 214.7\n- exp_id: exp_001_sft_0pct_3B_s123\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    adapter_model_mb: 114\n    adapter_size_mb: 488\n    checkpoint_size_mb: 488\n    epochs: 1\n    final_loss: 1.114\n    mean_token_accuracy: 0.7505\n    mean_train_loss: 1.1309\n    steps_completed: 3125\n    total_steps: 3125\n    total_tokens: 19555717\n    train_samples_per_second: 3.91\n    training_time_min: 213.1\n- exp_id: exp_001_sft_100pct_05B\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_sft_d005_05B\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_sft_d005_05B_r3\n  name: ''\n  status: PREPARING\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_sft_d005_05B_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_sft_d005_05B_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    checkpoint_size_mb: 166\n    entropy: 1.5874\n    epoch: 1\n    exit_code: 0\n    final_loss: 1.478\n    lora_adapter_size_mb: 33.6\n    mean_train_loss: 1.5424\n    num_tokens: 19657865\n    token_accuracy: 0.667\n    total_steps: 3177\n    train_samples_per_second: 15.09\n    train_steps_per_second: 0.943\n    training_time_min: 56.14\n    vs_baseline_0pct:\n      baseline_final_loss: 1.4894\n      baseline_mean_train_loss: 1.5388\n      baseline_token_accuracy: 0.682\n      baseline_training_time_min: 52.9\n      delta_final_loss: -0.0114\n      delta_mean_train_loss: 0.0036\n      delta_token_accuracy: -0.015\n      delta_training_time_min: 3.24\n- exp_id: exp_001_sft_d005_15B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 1.2637\n    mean_token_accuracy: 0.7308\n    train_runtime_s: 19864.7\n    epoch: 1\n- exp_id: exp_001_sft_d100_05B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    exit_code: 0\n    final_loss: 1.5943\n    mean_train_loss: 1.5662\n    num_tokens: 21575068\n    token_accuracy: 0.666\n    total_steps: 4160\n    train_samples_per_second: 16.09\n    train_steps_per_second: 1.006\n    training_time_min: 68.9\n    vs_baseline_0pct:\n      accuracy_delta: -0.016 (-2.3%)\n      loss_delta: +0.0274 (+1.8%)\n      time_delta: +16min (+30%)\n- exp_id: exp_001_sft_d100_15B\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_sft_d100_15B_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: exp_001_sft_injection\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    arc_qc_pass: 697\n    arc_qc_rate: 0.595\n    arc_total: 1172\n    gsm8k_qc_pass: 228\n    gsm8k_qc_rate: 0.173\n    gsm8k_total: 1319\n    humaneval_total: 164\n    mmlu_qc_pass: 6596\n    mmlu_qc_rate: 0.47\n    mmlu_total: 14042\n- exp_id: exp_004_sim_sweep\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_005_noise_prop\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_005_noise_prop_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_005_noise_prop_v3\n  name: ''\n  status: RUNNING\n  conclusion: null\n  metrics: {}\n- exp_id: mvp_sim_4pl_gamma\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    variant_a_nitems300:\n      divergent_pct: 0\n      fit_time_sec: 1407.5\n      gamma_ci_covers_true: true\n      gamma_ci_excludes_zero: true\n      gamma_mean: 0.466\n      gamma_rel_bias: 0.068\n      max_rhat: 1.003\n      overall: PASS\n      theta_corr: 0.943\n      theta_rmse: 0.238\n- exp_id: mvp_sim_confounding\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    actual_confound_corr: 0.3814\n    divergent_pct: 0\n    fit_time_sec: 832\n    gamma_ci_covers_true: true\n    gamma_ci_excludes_zero: true\n    gamma_mean: 0.5386\n    gamma_rel_bias: 0.0771\n    max_rhat: 1.007\n    min_ess: 1371.9\n    overall: PASS\n    theta_corr: 0.9733\n    theta_residual_exp_corr: 0.0582\n    theta_rmse: 0.2407\n- exp_id: exp_001_sft_d100_3B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 1.178\n    token_accuracy: 0.7206\n    runtime_hours: 5.2\n    steps: 4159/4159\n    epoch: 1\n- exp_id: exp_001_sft_d025_05B\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_sft_d025_05B_v2\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_sft_d025_05B_v3\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 1.5178\n    mean_train_loss: 1.5479\n    entropy: 1.5415\n    mean_token_accuracy: 0.6697\n    num_tokens: 20058085\n    total_steps: 3384\n    epoch: 1\n    train_samples_per_second: 15.52\n    train_steps_per_second: 0.97\n    training_time_min: 58.1\n    exit_code: 0\n    lora_adapter_size_mb: 33.6\n    checkpoint_size_mb: 166\n    vs_baseline_0pct:\n      baseline_final_loss: 1.4894\n      baseline_mean_train_loss: 1.5388\n      baseline_token_accuracy: 0.682\n      baseline_training_time_min: 52.9\n      delta_final_loss: 0.0284\n      delta_mean_train_loss: 0.0091\n      delta_token_accuracy: -0.0123\n      delta_training_time_min: 5.2\n- exp_id: exp_001_eval_05B_raw\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.2302\n    gsm8k: 0.1592\n    arc_challenge: 0.2261\n    humaneval: incomplete (hung at 51/164)\n- exp_id: exp_001_eval_3B_raw_gen\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    gsm8k: 0.605\n    humaneval: 0\n- exp_id: exp_004_sim_sweep_v2\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics:\n    runs_completed: 48\n    runs_total: 120\n    auc080_n50_bias: 0.006\n    auc080_n50_rmse: 0.03\n    auc080_n50_ci95_coverage: 1\n    auc080_n100_gamma_hat: 0.508\n    auc080_n100_bias: 0.008\n    auc080_n100_ci_width: 0.116\n    auc080_n100_theta_corr: 0.962\n    ci_width_ratio_n100: 1.81\n    core_findings_stable: true\n- exp_id: exp_001_eval_15B_d100_s42\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu_accuracy: 0.5933\n    mmlu_correct: 8331\n    mmlu_total: 14042\n    gsm8k_exact_match: 0.6497\n    gsm8k_correct: 857\n    gsm8k_total: 1319\n    arc_challenge_accuracy: 0.7688\n    arc_challenge_correct: 901\n    arc_challenge_total: 1172\n    humaneval_pass_at_1: 0.3049\n    humaneval_correct: 50\n    humaneval_total: 164\n- exp_id: exp_001_eval_05B_aligned_batch\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    d000_aligned_mmlu: 0.3979\n    d000_aligned_gsm8k: 0.3692\n    d000_aligned_arc: 0.4693\n    d000_aligned_humaneval: 0.1098\n    d000_para_aligned_mmlu: 0.4428\n    d000_para_aligned_gsm8k: 0.2807\n    d000_para_aligned_arc: 0.4792\n    d000_para_aligned_humaneval: 0.1154\n    d005_aligned_mmlu: 0.3255\n    d005_aligned_gsm8k: 0.3624\n    d005_aligned_arc: 0.3285\n    d005_aligned_humaneval: 0.0793\n- exp_id: exp_002_signals_05B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: exp_001_eval_15B_aligned_batch\n  name: ''\n  status: ANALYZING\n  conclusion: ''\n  metrics:\n    d000_aligned_mmlu: 0.5853\n    d000_aligned_gsm8k: 0.6543\n    d000_aligned_arc: 0.7722\n    d000_aligned_humaneval: 0.128\n- exp_id: exp_001_sft_d005_3B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    training_hours: 3.76\n    final_loss: 1.11\n    total_steps: 3177\n    epochs: 1\n- exp_id: exp_001_eval_3B_d000_aligned\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu_accuracy: 0.634\n    gsm8k_exact_match: 0.1198\n    arc_challenge_accuracy: 0.8276\n    humaneval_pass_at_1: 0.1159\n- exp_id: exp_001_eval_3B_d100_aligned\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu_accuracy: 0.6417\n    gsm8k_exact_match: 0.6967\n    arc_challenge_accuracy: 0.8396\n    humaneval_pass1: 0.122\n- exp_id: exp_001_eval_3B_d005_aligned\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.634\n    gsm8k: 0.208\n    arc_challenge: 0.829\n    humaneval_pass_at_1: 0.146\n- exp_id: exp_001_eval_05B_d025_aligned\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    MMLU: 28.03\n    GSM8K: 36.62\n    ARC: 32.51\n    HumanEval: missing - process exited before 4th benchmark\n- exp_id: exp_003_rrf_05B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics: {}\n- exp_id: exp_001_sft_d025_15B\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 1.2715\n    mean_token_accuracy: 0.7192\n    entropy: 1.2623\n    steps: 3384\n    epochs: 1\n    train_runtime_seconds: 11610.6\n- exp_id: exp_006_irt_05B\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_aligned\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_aligned_v2\n  name: ''\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d005_aligned\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    d005_aligned_mmlu: 0.3255\n    d005_aligned_gsm8k: 0.3624\n    d005_aligned_arc: 0.3285\n    d005_aligned_humaneval: 0.0793\n- exp_id: exp_001_eval_05B_d100_aligned_v3\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_001_eval_05B_d100_aligned_v4\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.2334\n    gsm8k: 0.3654\n    arc_challenge: 0.2944\n    humaneval_pass_at_1: 0\n    mmlu_delta_vs_d000: -0.1645\n    arc_delta_vs_d000: -0.1749\n    humaneval_delta_vs_d000: -0.1098\n- exp_id: exp_001_eval_05B_d005_para_aligned\n  name: ''\n  status: ANALYZING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_001_eval_05B_d025_aligned_v2\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_008_signal_survival\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    S1_d000_mmlu: 0.5049\n    S1_d000_gsm8k: 0.5502\n    S1_d000_arc: 0.427\n    S1_d005_mmlu: 0.953\n    S1_d005_gsm8k: 0.9882\n    S1_d005_arc: 0.995\n    S1_d100_mmlu: 0.4943\n    S1_d100_gsm8k: 0.4127\n    S1_d100_arc: 0.501\n    S2_d005_mmlu: 0.4655\n    S2_d005_gsm8k: 0.4649\n    S2_d005_arc: 0.4659\n    S4_d005_mmlu: 0.5165\n    S4_d005_gsm8k: 0.4947\n    S4_d005_arc: 0.4325\n    signals_surviving: 0\n    signals_total: 3\n- exp_id: exp_001_sft_3B_d000_v2\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_008_signal_survival_v4\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    S1_d005_auc_mean: 0.979\n    S2_d005_auc_mean: 0.465\n    S4_d005_auc_mean: 0.481\n    S1_d100_cross_cohens_d_mean: 3.6\n    S2_d100_cross_cohens_d_mean: -1.98\n    S4_d100_cross_cohens_d_mean: 0.45\n    effective_signals_at_05B: 1\n    d021_fix: within-model AUC only for d005; d100 uses cross-model Cohen's d\n- exp_id: exp_008_instruct_rl_proxy\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_006_irt_05B_v1\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics: {}\n- exp_id: exp_006_irt_05B_v2\n  name: ''\n  status: PREPARING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_006_irt_05B_gsm8k\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_001_eval_15B_d025_aligned\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_001_sft_d100_3B_v2\n  name: ''\n  status: QUEUED\n  conclusion: ''\n  metrics: {}\n- exp_id: exp002-signal-d025-05B\n  name: ''\n  status: RUNNING\n  conclusion: ''\n  metrics: {}\n- exp_id: exp_001_eval_15B_d005_aligned_v2\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mmlu: 0.5852\n    gsm8k: 0.6482\n    arc_challenge: 0.7688\n    humaneval_pass_at_1: 0.25\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: best\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T18:54:53.821Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T18:54:53.821Z",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T18:54:53.978Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：
+
+含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线
+核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', "S2(Min-K++)和/或S4(Self-Critique)在1.5B/3B尺度AUC≥0.70，验证'scale-dependent'叙事", 'ME模型或SBC诊断引导的修正将95% CI coverage提升至≥90%', "per-benchmark γ_k异质性显著（跨benchmark变异系数>0.3），支撑'污染敏感性是benchmark属性'", 'multi-seed pooling达到N_models≥30，Fisher Info预测的identifiability边界与实证吻合', '3B GSM8K的~57pp inflation和1.5B/3B MMLU/ARC的温和inflation均被正确校准']
+关键指标范围：{'mae_contam_cal_pp': [1.5, 3.0], 'mae_improvement_vs_best_baseline_pp': [1.5, 4.0], 'ci_coverage_95pct': [90, 96], 'ci_sharpness_avg_width_pp': [4, 8], 'kendall_tau': [0.85, 0.95], 'gamma_posterior_ci_excludes_zero_rate': [0.85, 1.0], 's2_s4_auc_at_3B': [0.7, 0.9], 'dose_response_monotonicity_violations': [0, 1], 'sbc_rank_uniformity_pvalue': [0.05, 1.0]}
+叙事方向：原始framing完全成立。三条Core Claims无需调整： (1)校准显著优于7个基线+覆盖率达标，counterfactual exposure=0恢复真实分数； (2)'scale-dependent signal effectiveness'用多尺度AUC热力图完整呈现，Min-K++反向效应(Cohen's d=-1.98)作为最强citation-worthy发现； (3)Fisher Info identifiability分析的结构性/实用性阈值区分与实证验证一致。 per-benchmark γ_k异质性成为额外亮点——污染敏感性是benchmark属性而非模型属性。 论文标题保持calibration框架定位。RRF在多信号可用尺度展示真正的聚合价值。
+
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: contamcal-irt-calibration
+focus: D025 更新后的 framing：(1) 贡献层级重新平衡——Fisher Info identifiability 升为 Core #3，Min-K++ 反向效应是最强引用贡献；(2) N_models 从 ~15 提升到 ~30 via multi-seed pooling (3 scales × 4 dosages × 2 seeds)；(3) SBC 诊断加入评估协议解决 coverage gap；(4) 新增 reviewer concern #15-18 对应 novelty ceiling / hierarchical γ_k / coverage gap / "why not just S1" 的预案；(5) ME model 定位澄清（如果不 improve → simple model 为主，ME 为 ablation）。请重点审查这些改动是否有效提升了论文评分，特别是 novelty 定位和 N_models 是否足够。
+
+## paper_framing.md
+
+# Paper Framing — contamcal-irt-calibration
+
+## Target Venue
+- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)
+- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)
+- Track: Machine Learning for NLP / Resources and Evaluation
+- Aligns with EMNLP 2026 special theme "New Missions for NLP Research" (explicitly invites contamination/data governance work)
+
+## Core Insight
+When benchmark mitigation strategies systematically fail (Emperor's New Clothes, ICML 2025: 20 strategies tested, none effective), the principled alternative is post-hoc statistical calibration — analogous to causal inference's shift from eliminating confounders to statistically controlling them. ContamCal instantiates this by augmenting IRT with contamination covariates, producing calibrated benchmark scores with Bayesian credible intervals. Theoretically grounded in educational measurement's item compromise IRT tradition (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 non-trivial adaptations for LLM evaluation.
+
+## Core Claims (3 条)
+
+1. **Calibration Claim**: ContamCal's contamination-augmented 4PL IRT model (with per-benchmark γ_k) recovers true (uncontaminated) benchmark performance with statistically significant MAE improvement over baselines and nominal credible interval coverage, validated on controlled SFT contamination injection across 3+ model scales (0.5B-7B) within the Qwen2.5 family and 4 benchmarks. (Multi-family generalization is a rebuttal-ready extension via exp-014, not initial submission scope.)
+
+2. **Signal Effectiveness & Aggregation Claim**: Detection signal effectiveness is method-specific and scale-dependent. Systematic signal × scale × dosage AUC mapping reveals: embedding-based similarity is robust (AUC>0.95 at d005/0.5B), while Min-K++ and Self-Critique fail at small model scales (AUC≈0.5 at 0.5B). Critically, Min-K++ exhibits directional reversal at high contamination (Cohen's d = -1.2 to -2.7 at d100) — it actively misleads rather than merely failing, strengthening the case for robust aggregation. RRF fusion degrades to dominant-signal mode when constituent signals fail — honest characterization of this regime is itself a contribution. Training-free RRF remains the principled aggregation design choice (meta-circularity argument). Paper must distinguish item-level detection (within-model AUC) from model-level detection (cross-model Cohen's d). (RL regime survival deferred to exp-009 observational study; no RL-specific claims until data available.)
+   **C2 contingency (Reviewer WARNING)**: "Scale-dependent" is currently unverified — only 0.5B data exists. If 1.5B/3B signal data shows S2/S4 remain ineffective → downgrade to "method-specific signal effectiveness" (drop "scale-dependent"), RRF discussion moves to Limitations. Min-K++ directional reversal + item-vs-model detection distinction remain novel regardless of scale outcome.
+
+3. **Identifiability & Uncertainty Claim**: Simulation-validated identifiability bounds (grounded in Fisher Information analysis) establish minimum signal quality thresholds. ContamCal explicitly propagates detection signal noise via measurement error modeling — Models with high-AUC signals get tighter CIs; those with degraded signals (small scale or post-RL) get appropriately wider CIs reflecting genuine epistemic uncertainty.
+
+## Contributions (Hierarchical — D025 rebalanced per Dream full-mode)
+
+### Core (co-equal; if calibration numbers weak, lean on #2 and #3)
+1. ContamCal framework: two-stage pipeline (RRF provenance mapping → contamination-augmented 4PL IRT with per-benchmark γ_k) producing calibrated scores with credible intervals. ME model: report if it improves coverage; otherwise present simple model as primary and ME as ablation (D025/D8 — must clarify which model produced reported results)
+2. Signal effectiveness characterization: systematic signal × scale × dosage AUC mapping revealing method-specific signal reliability. Min-K++ directional reversal (Cohen's d = -1.2 to -2.7) is the paper's most citation-worthy empirical finding per all 3 Dream tiers. Per-benchmark γ_k heterogeneity (cross-family r=0.91 if confirmed) suggests contamination susceptibility is a benchmark property
+3. Fisher Information identifiability analysis: structural (AUC≥0.55) vs practical (AUC≥0.70/0.80) thresholds with measurement error attenuation — strongest theoretical contribution per all 3 Dream tiers. Elevated from Supporting (D025)
+
+### Supporting
+4. Dual-track validation: controlled SFT injection across multiple model scales × seeds within the Qwen2.5 family (internal validity) + ecological RL case study (external validity)
+5. 7 baselines + 6 quantitative evaluation metrics (incl. SBC diagnostic per D025) + bootstrap CIs for contamination-aware calibration methodology
+
+## Story Spine
+- **Problem**: Benchmark scores are increasingly unreliable due to training data contamination. Rephrased test items inflate MMLU accuracy by 8-15 points while evading n-gram decontamination. RL post-training may further complicate detection (under investigation, exp-009). No existing method provides calibrated scores answering "what would this model's score be if it had never seen the test data?"
+- **Existing approaches & gaps**: Detection methods (Min-K%++, ConStat, Self-Critique, KDS) flag contamination but don't calibrate scores. IRT methods (PSN-IRT, Growing Pains, ATLAS, Lalor et al. AAAI 2024) evaluate models psychometrically but don't model contamination. DCR provides adjusted accuracy but lacks uncertainty bounds and RL handling. HiBayES provides Bayesian uncertainty but ignores contamination. Emperor's New Clothes (ICML 2025) demonstrates that all 20 mitigation strategies fail — motivating post-hoc calibration. Dynamic benchmarks (LiveBench) offer an alternative but require continuous curation.
+- **Our framing**: ContamCal is a "statistical safety net" for when mitigation is unreliable. Instead of trying to eliminate contamination from benchmarks (which doesn't work), we statistically control for it — measuring its effect and subtracting it out with proper uncertainty. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 non-trivial structural adaptations: (a) independent examinees → single model with joint item distribution (changes local independence semantics — see §Local Independence below), (b) binary leakage → continuous exposure scores (standard technique in explanatory IRT; our contribution is the noise propagation pipeline, not the continuous covariate itself — D025 clarification per Dream R2), (c) stable ability → regime-conditional ability (different training regimes and model scales require method-aware, scale-aware signal selection).
+- **Headline result template**: "On {benchmark}, ContamCal recovers true model performance within {X}pp MAE (bootstrap 95% CI: [{lo}, {hi}]) with {Y}% credible interval coverage, while naive scores overestimate by {Z} points under {W}% contamination dosage."
+
+## Venue Fit Risks
+- **EMNLP (primary)**: Best venue fit — special theme explicitly invites contamination/data governance. Reviewers deeply familiar with NLP contamination literature (advantage: no need to motivate the problem heavily). Risk: reviewers may be less familiar with IRT/psychometric methods (mitigation: add intuitive explanations, visual pipeline overview, and connection to familiar NLP concepts like calibration/confidence estimation). Risk: may expect broader model coverage beyond Qwen2.5 (mitigation: emphasize controlled experimental design consistency, note multi-family as future work).
+- **AAAI/ICLR (fallback)**: Strong fit for Bayesian/probabilistic methods. Reviewers may need more contamination context but appreciate methodological rigor.
+- **Novelty positioning**: Core method is cross-disciplinary synthesis (detection signals + explanatory IRT + measurement error). NOT positioned as "new algorithm" — positioned as (a) signal effectiveness characterization as empirically novel finding, (b) identifiability bounds with theoretical grounding, (c) first framework bridging detection → calibration with proper UQ. RRF is a principled design choice (meta-circularity argument), not claimed as methodological contribution.
+- **RL limitation**: RL models get wide CIs. This is honest — frame as "calibration is only as good as its inputs." Expected regret quantification uses held-out clean benchmark as ground truth (NOT calibrated scores, to avoid circularity).
+
+## Anticipated Reviewer Concerns & Defenses
+
+| # | Concern | Defense | Experiment |
+|---|---------|---------|------------|
+| 1 | θ and γ identifiable? | Fisher Information analysis + 144-condition simulation sweep + MVP validation | exp-004 |
+| 2 | Why not learned aggregation? | Meta-circularity: learned aggregator's training data may itself be contaminated; RRF is design choice, not contribution | exp-003 |
+| 3 | SFT injection ≠ real contamination | Dual-track: controlled SFT (internal) + ecological RL (external) + near-zero γ check (specificity). SFT is "best-available proxy", acknowledged as limitation | exp-006, exp-009 |
+| 4 | Scale limited to 3B | 7B controlled + 72B observational | exp-007, exp-012 |
+| 5 | Why 4PL not 2PL? | MVP: 2PL γ=0.16 vs 4PL γ=0.34 at N=100; c/d necessary for realistic item modeling | exp-006 |
+| 6 | Too few models (N≈15)? | D025 multi-seed strategy: 3 scales × 4+ dosages × 2-3 seeds = 24-36 models pooled. Target N≥30 minimum (N≥50 ideal). Simulation sweep (exp-004) establishes identifiability at actual N. Growing Pains pre-estimation as backup at very low N | exp-004, exp-001 |
+| 7 | Noisy exposure scores | Measurement error model (exposure as noisy observation of latent τ) propagates uncertainty into posteriors automatically | exp-005 |
+| 8 | No baselines | 7 baselines including DCR (EMNLP 2025) + bootstrap CIs on all comparisons | exp-006 |
+| 9 | Single global γ misspecified? | Per-benchmark γ_k is primary (natural in per-benchmark fitting); joint model with shared global γ is ablation. Report both to show contamination effect heterogeneity across benchmarks | exp-006 |
+| 10 | Local independence violated? | Discussed explicitly; single model responds to all items → item responses correlated through shared parameters. Empirically test via posterior predictive checks on item-level residual correlations. This is a known IRT limitation when N_examinees is small. | exp-006 |
+| 11 | Single model family? | Acknowledged as limitation. Qwen2.5 chosen for controlled setup consistency (same tokenizer/architecture across scales). Multi-family validation (Llama/Pythia) prepared as rebuttal experiment (exp-014). | exp-014 (rebuttal) |
+| 12 | RL regret circular? | Ground truth for regret = held-out clean benchmark scores, NOT calibrated scores. Explicitly stated | exp-009 |
+| 13 | S2/S4 fail at 0.5B — RRF is just S1? | Scale-dependent: honestly report single-signal regime at 0.5B. Verify S2/S4 at 1.5B/3B. RRF value = principled aggregation when signals ARE available + graceful degradation when not. | exp-008, exp-002 |
+| 14 | d100 AUC=0.5 as signal failure? | Labeling artifact: d100 contaminates ALL items → labels lose discriminative power. Must NOT be interpreted as signal degradation. Present only d005/d025 for signal evaluation. | exp-008 |
+| 15 | Novelty ceiling — standard IRT synthesis? (D025, all 3 Dream tiers) | Positioned as cross-disciplinary synthesis, NOT new algorithm. Emergent value: (a) per-benchmark γ_k heterogeneity as benchmark property, (b) Min-K++ reversal as cautionary finding, (c) Fisher Info identifiability boundaries. If 4PL vs 2PL gap small → acknowledge honestly but argue c/d params needed for realistic MC modeling. Report oracle-γ ablation to decompose MAE. | exp-006 |
+| 16 | Per-benchmark γ_k via separate fits, not hierarchical? (D025, [M][W]) | Per-benchmark separate fits = primary (natural, avoids cross-benchmark correlation). Hierarchical γ_k ~ Normal(μ_γ, σ_γ) as ablation to formally test heterogeneity and share info across benchmarks. Both reported. | exp-006 |
+| 17 | Coverage gap — 85% vs 95% nominal? (D025, all 3 tiers) | SBC diagnostic to identify source. Possible causes: local independence violation, insufficient N, model misspecification. Report SBC alongside posterior predictive checks. If gap is from local independence → discuss as known IRT limitation with references. | exp-004, exp-006 |
+| 18 | Why not just S1 alone? (D025, [M][W]) | S1-only is a baseline (#2 single-signal 2PL+γ). If RRF ≤ S1-only → present as "S1+IRT calibration with extensible multi-signal architecture for future signals." Meta-circularity argument for training-free aggregation still holds. | exp-003 |
+
+## Evaluation Protocol (6 Metrics — D025 added SBC)
+1. **Calibration error**: MAE between calibrated score and ground-truth clean accuracy, with bootstrap 95% CIs
+2. **Interval coverage**: Fraction of true values within 50%/80%/95% credible intervals
+3. **Interval sharpness**: Average CI width (tighter is better at fixed coverage)
+4. **Ranking preservation**: Kendall's τ between calibrated and ground-truth model rankings
+5. **Dose-response monotonicity**: γ effect increases monotonically with contamination dosage
+6. **SBC diagnostic** (D025): Simulation-Based Calibration (Talts et al. 2018) at actual N_models and N_items to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation). CPU-only, parallelize with GPU experiments
+
+## Benchmarks (2 main + 2 contrasts)
+1. **MMLU** — knowledge-intensive multiple-choice (14K items, subsampled 1000 for NUTS) — PRIMARY
+2. **ARC-Challenge** — science reasoning multiple-choice (~1.2K items) — PRIMARY
+3. **GSM8K** — mathematical reasoning free-form (~1.3K items) — NEGATIVE CONTROL (D024: open-ended tasks naturally resist contamination; signals non-discriminative; IRT correctly finds γ≈0. Paper frames as "ContamCal identifies benchmarks not requiring calibration")
+4. **HumanEval** (appendix only) — code generation (N=164). Demoted D009: paraphrase QC 16%.
+
+## Baselines (7)
+0. **Raw (no adjustment)** — report original benchmark scores as anchor
+1. **Remove-and-rescore** — drop flagged items, rescore on remaining
+2. **Single-signal 2PL+γ** — best single detection signal + simpler IRT
+3. **Vanilla 4PL** — standard IRT without contamination covariate (γ=0)
+4. **Linear exposure regression + bootstrap CI** — simplest post-hoc adjustment (tests if IRT complexity is necessary)
+5. **Emperor's mitigation strategies** — rephrasing + option shuffling (2 representative strategies from ICML 2025)
+6. **DCR fuzzy inference (EMNLP 2025)** — the only existing method producing adjusted accuracy; direct predecessor, must compare
+
+## Local Independence Discussion
+Standard IRT assumes independent examinees. In LLM evaluation, a single model produces all item responses — responses are correlated through shared model parameters. This fundamentally alters local independence. Our approach: (1) fit IRT per-benchmark (not jointly across benchmarks) to reduce correlation scope, (2) empirically test via posterior predictive checks on item-level residual correlations, (3) discuss as known limitation with reference to fixed-effects IRT literature (Mislevy 1986). The coverage gap (if observed) may partly reflect this violation — measurement error model for exposure partially compensates by widening CIs.
+
+## Required Figures (Dream D2: "zero figures" flagged as serious deficiency)
+1. Pipeline overview diagram (2-stage: RRF → 4PL+γ IRT)
+2. Signal × scale × dosage AUC heatmap (exp-008) — 'regime' axis replaced by scale+dosage per D022
+3. Dose-response curves (contamination dosage vs accuracy inflation, exp-001/006)
+4. Identifiability phase diagram (AUC × N_models → γ recoverability, exp-004)
+5. Calibrated-vs-true accuracy scatter with CIs (exp-006)
+
+## Citation Requirements (35+ minimum, expanded per Dream D2)
+Must include: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Adams et al. 1997, San Martín et al. 2009, Maris & Bechger 2009, Cormack et al. 2009 (RRF), Mislevy 1986, Lalor et al. AAAI 2024, LiveBench, TinyBenchmarks (Polo et al. 2024), KDS, CDD, contamination surveys, SBC (Talts et al. 2018), HiBayES, plus all signals/methods cited in IDEA_BRIEF.
+Dream D2 additions (all 3 tiers flagged):
+- DIF literature: Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999 (γ_k is essentially DIF between exposure groups)
+- ML calibration: Guo et al. 2017, Platt 1999 (disambiguate "calibration" — ours is decontamination, not probability calibration)
+- Conformal prediction: Angelopoulos & Bates 2023 (alternative UQ with distribution-free coverage guarantees; discuss why Bayesian IRT preferred)
+- Data attribution: Pruthi et al. 2020 (TracIn), Park et al. 2023 (TRAK) — potential additional signals, mention in Future Work
+- Multidimensional IRT: Reckase 2009 (acknowledge unidimensional θ for MMLU as simplification in Limitations)
+D025 additions (all 3 Dream tiers flagged):
+- MIA foundations: Shokri et al. 2017 (membership inference attacks), Carlini et al. 2022 (extracting training data) — contextualize Min-K++ reversal in MIA literature
+- Alternative evaluation: HELM (Liang et al. 2023), Chatbot Arena (Zheng et al. 2023) — discuss in Related Work as contamination-bypassing alternatives
+- Deeper DCR engagement: Oren et al. 2024 structural comparison
+- Burnell et al. 2023: multidimensional IRT for LLMs (relevant to unidimensional θ limitation)
+
+## Fisher Information Derivation (Dream D2: all 3 tiers flagged as critical gap)
+Must derive I(γ) for 4PL+γ model in appendix. Currently stated without proof.
+The derivation must show: (1) relationship between signal AUC and γ recoverability, (2) approximation assumptions, (3) how measurement error factors in.
+This is CPU-only theoretical work — can be done in parallel with GPU experiments.
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  name: controlled_sft_injection
+  claim: 1
+  description: 'SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels
+    (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces
+    ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages),
+    parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std).
+    Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent)
+    with controlled semantic similarity — following methodology of "Rethinking Benchmark
+    and Contamination" (arXiv 2023). Target: high semantic similarity (cosine >0.85)
+    but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving
+    contamination effect. Quality validation: automated similarity metrics + human
+    spot-check on 50 random pairs per benchmark.
+
+    '
+  priority: P0
+  gpu_budget_hours: 50
+  deps: []
+  benchmarks:
+  - MMLU
+  - GSM8K
+  - ARC-Challenge
+  - HumanEval
+  models:
+  - Qwen2.5-0.5B
+  - Qwen2.5-1.5B
+  - Qwen2.5-3B
+  seeds: 3
+  registry_id: exp_001_sft_d100_15B_v2
+  status: DONE
+  conclusion: success
+- id: exp-002
+  name: stage1_signal_pipeline
+  claim: 2
+  description: 'Compute 4 detection signals on all contaminated + clean models from
+    exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers),
+    (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased
+    items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores
+    for each signal.
+
+    '
+  priority: P0
+  gpu_budget_hours: 20
+  deps:
+  - exp-001
+  status: planned
+- id: exp-003
+  name: rrf_aggregation_ablation
+  claim: 2
+  description: 'RRF fusion of 4 signals into composite per-item exposure score. Ablations:
+    (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c) calibration-based
+    weighted RRF variant, (d) false positive injection robustness check (inject FP
+    at rates matching Duan et al. 2024). Also test degraded 2-signal mode (ConStat
+    + Self-Critique) for closed-weight.
+
+    '
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-002
+  status: planned
+- id: exp-004
+  name: simulation_identifiability_sweep
+  claim: 1
+  also_supports:
+  - 3
+  description: 'Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5
+    conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model
+    count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure
+    type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery
+    RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes
+    minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as "cannot distinguish
+    no contamination from moderate contamination." N_items=300 fixed (per MVP finding).
+    Subsumes exp-010 (prior sensitivity) and exp-011 (few-examinee regime) — prior
+    × N_models dimensions already in sweep grid. Growing Pains pre-estimation sub-experiment:
+    at N_models=20/50, compare flat prior vs informative prior from pre-estimated
+    item parameters. Also includes Fisher Information matrix analysis: derive approximate
+    analytical relationship between signal AUC, N_models, and γ recoverability. Distinguish
+    structural identifiability (parameters uniquely determined) from practical identifiability
+    (estimation quality sufficient for decisions). Provides theoretical grounding
+    for the empirical AUC ≥ 0.70 threshold.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  note: CPU only. MVP (mvp_sim_4pl_gamma) was preliminary; this is the full sweep.
+  registry_id: exp_004_sim_sweep
+  status: DONE
+  conclusion: failed
+- id: exp-005
+  name: noise_propagation_analysis
+  claim: 3
+  description: 'Two parts: (A) Measurement error model (PRIMARY): extend Stan model
+    to treat exposure as noisy observation: exposure_ij ~ N(τ_ij, σ_e²), where τ is
+    latent true contamination. σ_e estimated from exp-001 ground truth FP/FN rates.
+    This propagates Stage 1 uncertainty into posteriors automatically. Compare coverage
+    (50%/80%/95%) vs point-estimate exposure baseline. (B) Post-hoc noise injection:
+    inject Gaussian noise at 1×/1.5×/2× matched levels, re-fit standard model, measure
+    CI widening for γ and θ. Both parts inform whether measurement error model closes
+    the coverage gap.
+
+    '
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - exp-002
+  - exp-004
+  note: CPU only
+  registry_id: exp_005_noise_prop_v2
+  status: DONE
+  conclusion: failed
+- id: exp-006
+  name: irt_calibration_and_baselines
+  claim: 1
+  also_supports:
+  - 3
+  description: "Fit 4PL+γ IRT (Stan NUTS) on controlled models from exp-001/003. PRIMARY:\
+    \ per-benchmark fitting with benchmark-specific γ_k — this is the natural parameterization\
+    \ when IRT is fitted per-benchmark (each benchmark's model has its own γ_k). ABLATION:\
+    \ joint fitting across benchmarks with shared global γ (stronger assumption, tests\
+    \ whether contamination effect is homogeneous across benchmarks). Report both.\
+    \ Per-benchmark fitting (not joint) is the default to reduce local independence\
+    \ violation scope. Posterior predictive checks on item-level residual correlations\
+    \ to assess local independence empirically. Compute calibrated scores via exposure=0\
+    \ counterfactual with CIs. Compare against 7 baselines: (0) Raw — no adjustment\
+    \ (anchor), (1) remove-and-rescore (drop flagged items), (2) single-signal 2PL+γ\
+    \ (best signal only, simpler IRT), (3) vanilla 4PL without γ (standard IRT, no\
+    \ contamination modeling), (4) linear exposure regression + bootstrap CI (simplest\
+    \ post-hoc), (5) Emperor's mitigation: rephrasing + option shuffling, (6) DCR\
+    \ fuzzy inference (EMNLP 2025) — the only existing method\n    producing adjusted\
+    \ accuracy; must include or reviewers will reject.\nEvaluate all 5 metrics: MAE,\
+    \ coverage (50%/80%/95%), sharpness, Kendall τ, dose-response monotonicity. Report\
+    \ mean ± std across 3 seeds (matched to exp-001 seeds).\n"
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - exp-003
+  benchmarks:
+  - MMLU
+  - GSM8K
+  - ARC-Challenge
+  - HumanEval
+  seeds: 3
+  status: planned
+- id: exp-015
+  name: sft_d100_qc_only
+  claim: 1
+  description: '100% dosage SFT using only QC-pass paraphrases (7547/16697 items).
+    Isolates noisy vs clean contamination confound identified by reviewer. D012 decision.
+    Compare calibration metrics against exp-001 d100 (all paraphrases) to quantify
+    effect of noisy contamination on IRT estimates.
+
+    '
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - exp-001
+  benchmarks:
+  - MMLU
+  - GSM8K
+  - ARC-Challenge
+  - HumanEval
+  models:
+  - Qwen2.5-0.5B
+  seeds: 1
+  status: orphaned
+  registry_id: exp_001_sft_d100_qc_only
+  data_script: exp001/prepare_qc_only_data.py
+- id: exp-007
+  name: scale_bridging_7b
+  claim: 1
+  description: 'Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates
+    calibration accuracy scales to larger models. Requires multi-GPU node (7B LoRA
+    SFT ~4-8h per run on 1×H100).
+
+    '
+  priority: P1
+  gpu_budget_hours: 30
+  deps:
+  - exp-001
+  status: planned
+- id: exp-008
+  name: signal_survival_analysis
+  claim: 2
+  description: 'Systematic evaluation of detection signal reliability across training
+    regimes. Signal × regime AUC heatmap: 4 signals × {base, SFT-clean, SFT-contaminated,
+    RL-post-trained}. Confirms Self-Critique compensates where Min-K%++/ConStat degrade
+    post-RL (per fragility paper arXiv 2510.02386). ELEVATED to Core Contribution
+    2 per Dream review (all 3 tiers identified this as the most genuinely novel finding).
+
+    '
+  priority: P0
+  gpu_budget_hours: 10
+  deps:
+  - exp-002
+  status: planned
+- id: exp-014
+  name: multi_family_validation
+  claim: 1
+  description: 'Controlled SFT injection on at least one non-Qwen model family (Llama-3.2-1B
+    or Pythia-1.4B) at 3 dosage levels (0%, 25%, 100%). Validates that identifiability
+    boundaries and calibration accuracy generalize beyond Qwen2.5. Addresses Dream
+    reviewer concern about single model family limiting generalizability (flagged
+    [M][W]).
+
+    '
+  priority: P1
+  gpu_budget_hours: 15
+  deps:
+  - exp-001
+  status: planned
+- id: exp-009
+  name: rl_observational_case_study
+  claim: 2
+  also_supports:
+  - 3
+  description: 'Apply Self-Critique + available signals to existing RL-trained models:
+    Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with
+    appropriately wider CIs. Expected regret quantification: compare uncalibrated
+    vs calibrated vs remove-rescore for top-5 model selection. Framed as observational
+    — directional external validity, not full quantitative validation. Near-zero γ
+    check on known-clean benchmark (specificity test).
+
+    '
+  priority: P1
+  gpu_budget_hours: 15
+  deps:
+  - exp-006
+  - exp-008
+  status: planned
+- id: exp-012
+  name: observational_72b
+  claim: 1
+  description: 'Qwen2.5-72B observational analysis (inference only, no SFT). Extends
+    ecological validity to frontier model scale.
+
+    '
+  priority: P2
+  gpu_budget_hours: 15
+  deps:
+  - exp-006
+  status: planned
+- id: exp-013
+  name: closed_weight_2signal_mode
+  claim: 2
+  description: 'Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings)
+    for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration
+    accuracy gap.
+
+    '
+  priority: P2
+  gpu_budget_hours: 5
+  deps:
+  - exp-003
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: exp_001_eval_05B_d000_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_challenge_accuracy: 0.3976
+    gsm8k_exact_match: 0.3404
+    humaneval_pass_at_1: 0.1037
+    mmlu_accuracy: 0.4182
+- exp_id: exp_001_eval_05B_d000_s42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d000_s42_v2
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d000_s42_v3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d000_s42_v4
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d000_s42_v5
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.4049
+    gsm8k: 0.3647
+    arc_challenge: 0.378
+    humaneval: 0.1098
+- exp_id: exp_001_eval_05B_d000_s42_v6
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d005
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.2929
+    gsm8k: 0.3601
+    arc_challenge: 0.2858
+    humaneval_pass1: 0.0793
+    mmlu_correct: 4113
+    mmlu_total: 14042
+    gsm8k_correct: 475
+    gsm8k_total: 1319
+    arc_correct: 335
+    arc_total: 1172
+    humaneval_correct: 13
+    humaneval_total: 164
+- exp_id: exp_001_eval_05B_d100
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_v3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_v4
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_v5
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.2322
+    gsm8k: 0.3571
+    arc_challenge: 0.227
+    humaneval_pass1: 0.0854
+- exp_id: exp_001_eval_05B_d100_v6
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_15B_d000_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.5762
+    gsm8k: 0.6331
+    arc_challenge: 0.7662
+    humaneval_pass@1: 0.1707
+- exp_id: exp_001_eval_15B_d000_s42
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_15B_d000_s42_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_challenge_accuracy: 0.7756
+    arc_challenge_correct: 909
+    arc_challenge_total: 1172
+    gsm8k_correct: 840
+    gsm8k_exact_match: 0.6368
+    gsm8k_total: 1319
+    humaneval_correct: 21
+    humaneval_pass_at_1: 0.128
+    humaneval_total: 164
+    mmlu_accuracy: 0.5753
+    mmlu_correct: 8079
+    mmlu_total: 14042
+- exp_id: exp_001_eval_3B_d000_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu_accuracy: 0.6362
+    gsm8k_exact_match: 0.1759
+    arc_challenge_accuracy: 0.8294
+    humaneval_pass_at_1: 0.0854
+- exp_id: exp_001_eval_3B_d000_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.634
+    gsm8k: 0.117
+    arc: 0.822
+    humaneval: 0.116
+- exp_id: exp_001_eval_3B_d000_s42_v2
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_3B_d000_s42_v3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_sft_0pct
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: exp_001_sft_0pct_05B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    adapter_size_mb: 34
+    checkpoint_size_mb: 166
+    exit_code: 0
+    final_loss: 1.4894
+    mean_train_loss: 1.5388
+    steps: 3125/3125
+    token_accuracy: 0.682
+    training_time_min: 52.9
+- exp_id: exp_001_sft_0pct_05B_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    token_acc: 0.676
+    train_loss: 1.5393
+    train_time_min: 54.5
+- exp_id: exp_001_sft_0pct_15B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    adapter_size_mb: 71
+    checkpoint_size_mb: 313
+    exit_code: 0
+    final_loss: 1.2039
+    mean_train_loss: 1.2599
+    steps: 3125/3125
+    token_accuracy: 0.711
+    training_time_min: 101.5
+- exp_id: exp_001_sft_0pct_15B_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    token_acc: 0.731
+    train_loss: 1.2602
+    train_time_min: 101.5
+- exp_id: exp_001_sft_0pct_3B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    adapter_size_mb: 115
+    checkpoint_size_mb: 488
+    exit_code: 0
+    final_loss: 1.0736
+    mean_train_loss: 1.1306
+    steps: 3125/3125
+    token_accuracy: 0.734
+    training_time_min: 214.7
+- exp_id: exp_001_sft_0pct_3B_s123
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    adapter_model_mb: 114
+    adapter_size_mb: 488
+    checkpoint_size_mb: 488
+    epochs: 1
+    final_loss: 1.114
+    mean_token_accuracy: 0.7505
+    mean_train_loss: 1.1309
+    steps_completed: 3125
+    total_steps: 3125
+    total_tokens: 19555717
+    train_samples_per_second: 3.91
+    training_time_min: 213.1
+- exp_id: exp_001_sft_100pct_05B
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_sft_d005_05B
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_sft_d005_05B_r3
+  name: ''
+  status: PREPARING
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_sft_d005_05B_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_sft_d005_05B_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    checkpoint_size_mb: 166
+    entropy: 1.5874
+    epoch: 1
+    exit_code: 0
+    final_loss: 1.478
+    lora_adapter_size_mb: 33.6
+    mean_train_loss: 1.5424
+    num_tokens: 19657865
+    token_accuracy: 0.667
+    total_steps: 3177
+    train_samples_per_second: 15.09
+    train_steps_per_second: 0.943
+    training_time_min: 56.14
+    vs_baseline_0pct:
+      baseline_final_loss: 1.4894
+      baseline_mean_train_loss: 1.5388
+      baseline_token_accuracy: 0.682
+      baseline_training_time_min: 52.9
+      delta_final_loss: -0.0114
+      delta_mean_train_loss: 0.0036
+      delta_token_accuracy: -0.015
+      delta_training_time_min: 3.24
+- exp_id: exp_001_sft_d005_15B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 1.2637
+    mean_token_accuracy: 0.7308
+    train_runtime_s: 19864.7
+    epoch: 1
+- exp_id: exp_001_sft_d100_05B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    exit_code: 0
+    final_loss: 1.5943
+    mean_train_loss: 1.5662
+    num_tokens: 21575068
+    token_accuracy: 0.666
+    total_steps: 4160
+    train_samples_per_second: 16.09
+    train_steps_per_second: 1.006
+    training_time_min: 68.9
+    vs_baseline_0pct:
+      accuracy_delta: -0.016 (-2.3%)
+      loss_delta: +0.0274 (+1.8%)
+      time_delta: +16min (+30%)
+- exp_id: exp_001_sft_d100_15B
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_sft_d100_15B_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: exp_001_sft_injection
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    arc_qc_pass: 697
+    arc_qc_rate: 0.595
+    arc_total: 1172
+    gsm8k_qc_pass: 228
+    gsm8k_qc_rate: 0.173
+    gsm8k_total: 1319
+    humaneval_total: 164
+    mmlu_qc_pass: 6596
+    mmlu_qc_rate: 0.47
+    mmlu_total: 14042
+- exp_id: exp_004_sim_sweep
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_005_noise_prop
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_005_noise_prop_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_005_noise_prop_v3
+  name: ''
+  status: RUNNING
+  conclusion: null
+  metrics: {}
+- exp_id: mvp_sim_4pl_gamma
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    variant_a_nitems300:
+      divergent_pct: 0
+      fit_time_sec: 1407.5
+      gamma_ci_covers_true: true
+      gamma_ci_excludes_zero: true
+      gamma_mean: 0.466
+      gamma_rel_bias: 0.068
+      max_rhat: 1.003
+      overall: PASS
+      theta_corr: 0.943
+      theta_rmse: 0.238
+- exp_id: mvp_sim_confounding
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    actual_confound_corr: 0.3814
+    divergent_pct: 0
+    fit_time_sec: 832
+    gamma_ci_covers_true: true
+    gamma_ci_excludes_zero: true
+    gamma_mean: 0.5386
+    gamma_rel_bias: 0.0771
+    max_rhat: 1.007
+    min_ess: 1371.9
+    overall: PASS
+    theta_corr: 0.9733
+    theta_residual_exp_corr: 0.0582
+    theta_rmse: 0.2407
+- exp_id: exp_001_sft_d100_3B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 1.178
+    token_accuracy: 0.7206
+    runtime_hours: 5.2
+    steps: 4159/4159
+    epoch: 1
+- exp_id: exp_001_sft_d025_05B
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_sft_d025_05B_v2
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_sft_d025_05B_v3
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 1.5178
+    mean_train_loss: 1.5479
+    entropy: 1.5415
+    mean_token_accuracy: 0.6697
+    num_tokens: 20058085
+    total_steps: 3384
+    epoch: 1
+    train_samples_per_second: 15.52
+    train_steps_per_second: 0.97
+    training_time_min: 58.1
+    exit_code: 0
+    lora_adapter_size_mb: 33.6
+    checkpoint_size_mb: 166
+    vs_baseline_0pct:
+      baseline_final_loss: 1.4894
+      baseline_mean_train_loss: 1.5388
+      baseline_token_accuracy: 0.682
+      baseline_training_time_min: 52.9
+      delta_final_loss: 0.0284
+      delta_mean_train_loss: 0.0091
+      delta_token_accuracy: -0.0123
+      delta_training_time_min: 5.2
+- exp_id: exp_001_eval_05B_raw
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.2302
+    gsm8k: 0.1592
+    arc_challenge: 0.2261
+    humaneval: incomplete (hung at 51/164)
+- exp_id: exp_001_eval_3B_raw_gen
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    gsm8k: 0.605
+    humaneval: 0
+- exp_id: exp_004_sim_sweep_v2
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics:
+    runs_completed: 48
+    runs_total: 120
+    auc080_n50_bias: 0.006
+    auc080_n50_rmse: 0.03
+    auc080_n50_ci95_coverage: 1
+    auc080_n100_gamma_hat: 0.508
+    auc080_n100_bias: 0.008
+    auc080_n100_ci_width: 0.116
+    auc080_n100_theta_corr: 0.962
+    ci_width_ratio_n100: 1.81
+    core_findings_stable: true
+- exp_id: exp_001_eval_15B_d100_s42
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu_accuracy: 0.5933
+    mmlu_correct: 8331
+    mmlu_total: 14042
+    gsm8k_exact_match: 0.6497
+    gsm8k_correct: 857
+    gsm8k_total: 1319
+    arc_challenge_accuracy: 0.7688
+    arc_challenge_correct: 901
+    arc_challenge_total: 1172
+    humaneval_pass_at_1: 0.3049
+    humaneval_correct: 50
+    humaneval_total: 164
+- exp_id: exp_001_eval_05B_aligned_batch
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    d000_aligned_mmlu: 0.3979
+    d000_aligned_gsm8k: 0.3692
+    d000_aligned_arc: 0.4693
+    d000_aligned_humaneval: 0.1098
+    d000_para_aligned_mmlu: 0.4428
+    d000_para_aligned_gsm8k: 0.2807
+    d000_para_aligned_arc: 0.4792
+    d000_para_aligned_humaneval: 0.1154
+    d005_aligned_mmlu: 0.3255
+    d005_aligned_gsm8k: 0.3624
+    d005_aligned_arc: 0.3285
+    d005_aligned_humaneval: 0.0793
+- exp_id: exp_002_signals_05B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: exp_001_eval_15B_aligned_batch
+  name: ''
+  status: ANALYZING
+  conclusion: ''
+  metrics:
+    d000_aligned_mmlu: 0.5853
+    d000_aligned_gsm8k: 0.6543
+    d000_aligned_arc: 0.7722
+    d000_aligned_humaneval: 0.128
+- exp_id: exp_001_sft_d005_3B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    training_hours: 3.76
+    final_loss: 1.11
+    total_steps: 3177
+    epochs: 1
+- exp_id: exp_001_eval_3B_d000_aligned
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu_accuracy: 0.634
+    gsm8k_exact_match: 0.1198
+    arc_challenge_accuracy: 0.8276
+    humaneval_pass_at_1: 0.1159
+- exp_id: exp_001_eval_3B_d100_aligned
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu_accuracy: 0.6417
+    gsm8k_exact_match: 0.6967
+    arc_challenge_accuracy: 0.8396
+    humaneval_pass1: 0.122
+- exp_id: exp_001_eval_3B_d005_aligned
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.634
+    gsm8k: 0.208
+    arc_challenge: 0.829
+    humaneval_pass_at_1: 0.146
+- exp_id: exp_001_eval_05B_d025_aligned
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    MMLU: 28.03
+    GSM8K: 36.62
+    ARC: 32.51
+    HumanEval: missing - process exited before 4th benchmark
+- exp_id: exp_003_rrf_05B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics: {}
+- exp_id: exp_001_sft_d025_15B
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 1.2715
+    mean_token_accuracy: 0.7192
+    entropy: 1.2623
+    steps: 3384
+    epochs: 1
+    train_runtime_seconds: 11610.6
+- exp_id: exp_006_irt_05B
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_aligned
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_aligned_v2
+  name: ''
+  status: PREPARING
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d005_aligned
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    d005_aligned_mmlu: 0.3255
+    d005_aligned_gsm8k: 0.3624
+    d005_aligned_arc: 0.3285
+    d005_aligned_humaneval: 0.0793
+- exp_id: exp_001_eval_05B_d100_aligned_v3
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_001_eval_05B_d100_aligned_v4
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.2334
+    gsm8k: 0.3654
+    arc_challenge: 0.2944
+    humaneval_pass_at_1: 0
+    mmlu_delta_vs_d000: -0.1645
+    arc_delta_vs_d000: -0.1749
+    humaneval_delta_vs_d000: -0.1098
+- exp_id: exp_001_eval_05B_d005_para_aligned
+  name: ''
+  status: ANALYZING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_001_eval_05B_d025_aligned_v2
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_008_signal_survival
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    S1_d000_mmlu: 0.5049
+    S1_d000_gsm8k: 0.5502
+    S1_d000_arc: 0.427
+    S1_d005_mmlu: 0.953
+    S1_d005_gsm8k: 0.9882
+    S1_d005_arc: 0.995
+    S1_d100_mmlu: 0.4943
+    S1_d100_gsm8k: 0.4127
+    S1_d100_arc: 0.501
+    S2_d005_mmlu: 0.4655
+    S2_d005_gsm8k: 0.4649
+    S2_d005_arc: 0.4659
+    S4_d005_mmlu: 0.5165
+    S4_d005_gsm8k: 0.4947
+    S4_d005_arc: 0.4325
+    signals_surviving: 0
+    signals_total: 3
+- exp_id: exp_001_sft_3B_d000_v2
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_008_signal_survival_v4
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    S1_d005_auc_mean: 0.979
+    S2_d005_auc_mean: 0.465
+    S4_d005_auc_mean: 0.481
+    S1_d100_cross_cohens_d_mean: 3.6
+    S2_d100_cross_cohens_d_mean: -1.98
+    S4_d100_cross_cohens_d_mean: 0.45
+    effective_signals_at_05B: 1
+    d021_fix: within-model AUC only for d005; d100 uses cross-model Cohen's d
+- exp_id: exp_008_instruct_rl_proxy
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_006_irt_05B_v1
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics: {}
+- exp_id: exp_006_irt_05B_v2
+  name: ''
+  status: PREPARING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_006_irt_05B_gsm8k
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_001_eval_15B_d025_aligned
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_001_sft_d100_3B_v2
+  name: ''
+  status: QUEUED
+  conclusion: ''
+  metrics: {}
+- exp_id: exp002-signal-d025-05B
+  name: ''
+  status: RUNNING
+  conclusion: ''
+  metrics: {}
+- exp_id: exp_001_eval_15B_d005_aligned_v2
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mmlu: 0.5852
+    gsm8k: 0.6482
+    arc_challenge: 0.7688
+    humaneval_pass_at_1: 0.25
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: best
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2d54b275-ff38-459b-9b80-6f9db4e787de",
+  "type": "user",
+  "uuid": "cdfdab3d-87f4-43ed-bb56-904e5a2bfcd3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T18:54:53.967Z_
+
+```json
+{
+  "parentUuid": "cdfdab3d-87f4-43ed-bb56-904e5a2bfcd3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d25c2c77-0efc-4ddb-b37e-01810b34b35b",
+  "timestamp": "2026-05-14T18:54:53.967Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T18:54:53.971Z_
+
+```json
+{
+  "parentUuid": "d25c2c77-0efc-4ddb-b37e-01810b34b35b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9d021415-09dd-46f2-b981-ed7fe8c61c9d",
+  "timestamp": "2026-05-14T18:54:53.971Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线 核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', \"S2(Min-K++)和/或S4(Self-Critique)在1.5B/3…",
+  "leafUuid": "9d021415-09dd-46f2-b981-ed7fe8c61c9d",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-aware IRT calibration with Fisher identifiability analysis",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T18:54:57.694Z_
+
+I'll analyze the existing experiment data and project context to generate detailed predictions for each planned experiment under the "best" tier.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d021415-09dd-46f2-b981-ed7fe8c61c9d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yBTXUbWMnusABwmo3B",
+  "type": "assistant",
+  "uuid": "383d66db-1f2d-47bc-948a-da44518a2ea8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0124mXt6WUQep7ea5XU3UP9m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21725,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 299,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T18:55:03.371Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01B4kLpvWENgKc3MoCEMtrUt`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Gather experiment data and results",
+  "prompt": "I need to understand the current state of experiments in the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_13. \n\nSearch for:\n1. Any results files, CSV/JSON/YAML with actual metric values from completed experiments\n2. The experiment registry file (registry.yaml or similar)\n3. Signal analysis results (exp-008, exp-002, exp-003)\n4. IRT fitting results (exp-006)\n5. Simulation sweep results (exp-004)\n6. Any evaluation result files with accuracy numbers\n\nFocus on finding actual numeric results that have been produced. Look in directories like results/, outputs/, experiments/, exp001/, exp002/, etc. Also check for any analysis notebooks or summary files.\n\nBe thorough - search \"very thorough\" breadth."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "383d66db-1f2d-47bc-948a-da44518a2ea8",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yBTXUbWMnusABwmo3B",
+  "type": "assistant",
+  "uuid": "02414fbb-a5b8-4464-9cb4-d8fe2a68dfd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0124mXt6WUQep7ea5XU3UP9m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 21725,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 299,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 299,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 21725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T18:56:26.432Z_
+
+<details><summary>↩ Tool result · `toolu_01B4kLpvWENgKc3MoCEMtrUt`</summary>
+
+```text
+Perfect! Now I have a comprehensive picture. Let me create a final summary report:
+
+## Summary: Current State of Experiments in contamcal-irt-calibration Project
+
+I've completed a thorough exploration of the project's experiment results and current status. Here's what I found:
+
+---
+
+## 1. **EXPERIMENT REGISTRY & OVERALL STATUS**
+
+**Location**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/dream_registry.yaml`
+
+- **79 total experiments tracked** across the project
+- **Status breakdown**: 56 DONE (38 success, 16 failed, 2 killed), 13 PREPARING, 7 RUNNING, 2 ANALYZING, 1 QUEUED
+- **GPU allocation**: 6 GPUs assigned, 5 currently active on: SFT injection, signal pipeline, IRT calibration, eval tasks
+- **Recent completions** (as of 2026-05-14 18:30 UTC):
+  - `exp_001_eval_15B_d005_aligned_v2` [success]
+  - `exp_001_sft_d100_3B` [success]
+  - `exp_001_eval_05B_d100_aligned_v4` [success]
+
+---
+
+## 2. **ACTUAL NUMERIC RESULTS FOUND**
+
+### **EXP-008: Signal Survival Analysis (v4_D021_corrected)**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp-008/data/exp008_v4_results.json`
+
+**Key Finding**: Only 1/3 signals effective for contamination detection across dosage regimes.
+
+| Signal | d000 AUC | d005 AUC | d100 Cross-Model Cohen's d | Status |
+|--------|----------|----------|---------------------------|--------|
+| S1 Embedding | ~0.50 | 0.95-0.99 | +4.16 (significant) | STRONG at d005, effective cross-model |
+| S2 MinKPP | ~0.51 | ~0.47 | -1.22 to -2.67 (reversed) | **REVERSES at d100** |
+| S4 SelfCritique | ~0.50 | ~0.48 | +0.21 to +0.67 (weak) | Marginal |
+
+**Benchmark-level results**:
+- **MMLU** (14,042 items): S1 MMLU d005 AUC = 0.953, d100 cross-model effect = 4.16 Cohen's d
+- **GSM8K** (1,319 items): S1 GSM8K d005 AUC = 0.988, d100 cross-model effect = 2.83 Cohen's d
+- **ARC Challenge** (1,172 items): S1 ARC d005 AUC = 0.995, d100 cross-model effect = 3.80 Cohen's d
+
+**Conclusion**: "1/3 signals show effective contamination detection at d005. Signal effectiveness varies systematically with dosage; individual signals insufficient → need IRT multi-signal fusion for robust detection across regimes."
+
+---
+
+### **EXP-004: Simulation Sweep (4PL+γ IRT Model)**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md` & sweep_summary.json
+
+**Progress**: 48/120 runs complete (40%) across 4 conditions
+
+| AUC | N_models | Seeds | γ̂ Mean | RMSE | CI95 Width | Coverage | Status |
+|-----|----------|-------|--------|------|-----------|----------|--------|
+| 0.55 | 20 | 10 | 0.520 | 0.040 | 0.133 | 80% | Complete |
+| 0.55 | 50 | 10 | 0.515 | 0.026 | 0.087 | 90% | Complete |
+| 0.55 | 100 | 7 | 0.497 | 0.005 | 0.064 | 100% | Complete |
+| 0.80 | 50 | 10 | 0.506 | 0.030 | 0.163 | 100% | Complete |
+| 0.80 | 100 | 1 | 0.508 | — | 0.116 | 100% | Partial |
+
+**Key Findings**:
+1. **γ recoverable even at AUC=0.55** (near-random signals): RMSE ≤0.04, 100% power
+2. **Precision scales as O(1/√N)**: Ratio stable across N (1.81-1.95×)
+3. **Higher AUC → 1.87-1.95× wider confidence intervals** (exposure-ability collinearity)
+4. **Coverage below nominal at small N**: 80-90% at N=20, improves to 100% at N=100
+5. **MCMC Quality**: 0 divergences, worst R̂=1.010, min ESS=439
+
+---
+
+### **EXP-005: Noise Propagation (Bayesian ME Model)**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/noise_propagation_results.json`
+
+**Results** (6 seeds at most, latest v3):
+- **AUC=0.55, N=100**: γ̂=0.498 (bias -0.003), RMSE=0.004, CI95 coverage=100%, width=0.065
+- **AUC=0.55, N=20**: γ̂=0.520 (bias +0.020), RMSE=0.040, CI95 coverage=80%, width=0.133
+- **AUC=0.80, N=50**: γ̂=0.508 (bias +0.008), RMSE=0.008, CI95 coverage=100%, width=0.162
+
+**θ Recovery**: correlation 0.947-0.952 across conditions, insensitive to N within AUC level
+
+---
+
+### **EXP-001 & EXP-002: Dose-Response SFT + Signal Pipeline**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`
+
+**Completed (aligned format)**:
+| Model | d000 MMLU | d005 MMLU | d100 MMLU | Status |
+|-------|-----------|-----------|-----------|--------|
+| 0.5B | 0.3979 | 0.3255 | — | ✅ d000 aligned, d005 running |
+| 1.5B | 0.5853 | — | 0.5933 | ✅ d000/d100 aligned |
+| 3B | 0.6417* | — | — | 🏃 d000/d100 eval in progress |
+
+*3B d100 MMLU=0.6417 from in-progress eval
+
+**Key signal results** (exp-002 code status):
+- 9 tasks defined: 0.5B × {d000,d005,d100} × {mmlu,gsm8k,arc_challenge}
+- All 4 signal modules complete: S1 Embedding, S2 MinKPP, S3 ConStat, S4 SelfCritique
+- Dry-run validation passed (~23s per task, ~10-20min per production task)
+
+---
+
+### **DOSE-RESPONSE DOSE-RESPONSE TREND (0.5B fully characterized)**
+| Dosage | MMLU | GSM8K | ARC | HumanEval | Trend |
+|--------|------|-------|-----|-----------|-------|
+| d000 (baseline) | 39.79% | 36.92% | 46.93% | 10.98% | Baseline |
+| d005 (5% contam) | 32.55% | 36.24% | 32.85% | 7.93% | ↓ MMLU -7.2pp, ARC -14.1pp |
+| d100 (100% contam) | 23.22% | 35.71% | 22.70% | 8.54% | ↓↓ MMLU -16.6pp, ARC -24.2pp |
+
+**Interpretation**: Clear dose-response on MMLU and ARC with contamination dosage. GSM8K unaffected (expected, contamination targeted MMLU).
+
+---
+
+## 3. **EXPERIMENT PLAN & ROADMAP**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/experiment_plan.yaml`
+
+**Phase 3 SFT Checkpoint Status** (all 13 checkpoints):
+- **Complete** (11/13): 0.5B d000/d005/d025/d100, 1.5B d000/d005/d100, 3B d000 (both seeds)
+- **Failed** (2): 3B d005, 3B d100 (SFT training failed)
+
+**⚠️ Known Issue**: 3B GSM8K shows "catastrophic forgetting" — raw 60.5% → SFT d000 11.7-17.6% (LoRA CoT degradation). **Decision D018: Exclude 3B GSM8K from dose-response analysis.**
+
+---
+
+## 4. **CRITICAL DECISIONS & MEMORY NOTES**
+**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`
+
+**Key constraints**:
+- **D017**: MC evaluation format must use "The answer is " prefix (not "Answer: "), --mc-format aligned required
+- **D018**: 3B GSM8K excluded from dose-response (LoRA SFT CoT forgetting)
+- **D021**: exp-008 d100 label artifact fix — use cross-model comparison (d100 vs d000) instead of within-model AUC
+- **D023**: Tiered IRT calibration (GSM8K/ARC direct NUTS + MMLU 1000-item subsample)
+
+---
+
+## 5. **FILES WITH ACTUAL NUMERIC RESULTS**
+
+Comprehensive results index:
+
+| Result Type | File Path | Format | Last Updated |
+|-------------|-----------|--------|--------------|
+| exp-008 Signal AUC metrics | `/artifacts/exp-008/data/exp008_v4_results.json` | JSON | 2026-05-14 |
+| exp-008 Heatmap summary | `/artifacts/exp008_auc_heatmap.json` | JSON | 2026-05-14 |
+| exp-004 Incremental analysis | `/artifacts/exp004_incremental_analysis.md` | Markdown | 2026-05-14 |
+| exp-004 Sweep summary | `/artifacts/simulation_sweep/results/sweep_summary.json` | JSON | — |
+| exp-005 Noise propagation | `/artifacts/exp005_noise_propagation/output_v3/noise_propagation_results.json` | JSON | 2026-05-14 |
+| Dose-response eval compilation | `/artifacts/report_eval_compilation.md` | Markdown | 2026-05-14 |
+| Phase 3 progress | `/artifacts/phase3_progress.md` | Markdown | 2026-05-14 |
+| exp-002 signal pipeline status | `/artifacts/exp_002_signals_05B/intermediate/exp002_signal_pipeline_status.md` | Markdown | 2026-05-14 |
+| Project memory & decisions | `/memory.md` | Markdown | 2026-05-14 |
+| Project report & status | `/report.md` | Markdown | 2026-05-14 |
+| Paper framing & findings | `/paper_framing.md` | Markdown | 2026-05-14 |
+| ROADMAP | `/ROADMAP.md` | Markdown | 2026-05-14 |
+
+---
+
+## 6. **CURRENT RUNNING EXPERIMENTS** (as of 2026-05-14 18:45 UTC)
+
+| Exp ID | Server | GPU | Status | Purpose |
+|--------|--------|-----|--------|---------|
+| exp_001_eval_05B_d025_aligned_v2 | cqa1 | cuda:5 | Running | 0.5B d025 eval (alignment format) |
+| exp_001_sft_3B_d000_v2 | cqa1 | cuda:5 | Running | 3B d000 SFT retry |
+| exp_006_irt_05B_gsm8k | cqa1 | cuda:3 | Running | IRT calibration on GSM8K |
+| exp_001_eval_15B_d025_aligned | cqa1 | cuda:4 | Running | 1.5B d025 eval |
+| exp002-signal-d025-05B | cqa1 | cuda:2 | Running | Signal computation for d025 |
+| exp_005_noise_prop_v3 | local | ? | Running | Noise propagation v3 |
+| exp_004_sim_sweep_v2 | local | ? | Running | Simulation sweep v2 |
+
+---
+
+**Bottom Line**: The project has substantial completed experiments with actual numeric results spanning IRT model validation (exp-004), signal effectiveness analysis (exp-008), noise propagation studies (exp-005), and dose-response SFT evaluations (exp-001/002). The core contamination detection method shows promise with S1 Embedding achieving 95-99% AUC at d005 dosage across all benchmarks, though signal survival across dosage regimes remains the critical open question being addressed by ongoing IRT calibration work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02414fbb-a5b8-4464-9cb4-d8fe2a68dfd8",
+  "isSidechain": false,
+  "promptId": "2d54b275-ff38-459b-9b80-6f9db4e787de",
+  "type": "user",
+  "uuid": "ea70f6cf-7fbe-4cfb-80de-e0569ebd3a49",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to understand the current state of experiments in the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_13. \n\nSearch for:\n1. Any results files, CSV/JSON/YAML with actual metric values from completed experiments\n2. The experiment registry file (registry.yaml or similar)\n3. Signal analysis results (exp-008, exp-002, exp-003)\n4. IRT fitting results (exp-006)\n5. Simulation sweep results (exp-004)\n6. Any evaluation result files with accuracy numbers\n\nFocus on finding actual numeric results that have been produced. Look in directories like results/, outputs/, experiments/, exp001/, exp002/, etc. Also check for any analysis notebooks or summary files.\n\nBe thorough - search \"very thorough\" breadth.",
+    "agentId": "a3fc8fa5210cb7ad2",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have a comprehensive picture. Let me create a final summary report:\n\n## Summary: Current State of Experiments in contamcal-irt-calibration Project\n\nI've completed a thorough exploration of the project's experiment results and current status. Here's what I found:\n\n---\n\n## 1. **EXPERIMENT REGISTRY & OVERALL STATUS**\n\n**Location**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/dream_registry.yaml`\n\n- **79 total experiments tracked** across the project\n- **Status breakdown**: 56 DONE (38 success, 16 failed, 2 killed), 13 PREPARING, 7 RUNNING, 2 ANALYZING, 1 QUEUED\n- **GPU allocation**: 6 GPUs assigned, 5 currently active on: SFT injection, signal pipeline, IRT calibration, eval tasks\n- **Recent completions** (as of 2026-05-14 18:30 UTC):\n  - `exp_001_eval_15B_d005_aligned_v2` [success]\n  - `exp_001_sft_d100_3B` [success]\n  - `exp_001_eval_05B_d100_aligned_v4` [success]\n\n---\n\n## 2. **ACTUAL NUMERIC RESULTS FOUND**\n\n### **EXP-008: Signal Survival Analysis (v4_D021_corrected)**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp-008/data/exp008_v4_results.json`\n\n**Key Finding**: Only 1/3 signals effective for contamination detection across dosage regimes.\n\n| Signal | d000 AUC | d005 AUC | d100 Cross-Model Cohen's d | Status |\n|--------|----------|----------|---------------------------|--------|\n| S1 Embedding | ~0.50 | 0.95-0.99 | +4.16 (significant) | STRONG at d005, effective cross-model |\n| S2 MinKPP | ~0.51 | ~0.47 | -1.22 to -2.67 (reversed) | **REVERSES at d100** |\n| S4 SelfCritique | ~0.50 | ~0.48 | +0.21 to +0.67 (weak) | Marginal |\n\n**Benchmark-level results**:\n- **MMLU** (14,042 items): S1 MMLU d005 AUC = 0.953, d100 cross-model effect = 4.16 Cohen's d\n- **GSM8K** (1,319 items): S1 GSM8K d005 AUC = 0.988, d100 cross-model effect = 2.83 Cohen's d\n- **ARC Challenge** (1,172 items): S1 ARC d005 AUC = 0.995, d100 cross-model effect = 3.80 Cohen's d\n\n**Conclusion**: \"1/3 signals show effective contamination detection at d005. Signal effectiveness varies systematically with dosage; individual signals insufficient → need IRT multi-signal fusion for robust detection across regimes.\"\n\n---\n\n### **EXP-004: Simulation Sweep (4PL+γ IRT Model)**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md` & sweep_summary.json\n\n**Progress**: 48/120 runs complete (40%) across 4 conditions\n\n| AUC | N_models | Seeds | γ̂ Mean | RMSE | CI95 Width | Coverage | Status |\n|-----|----------|-------|--------|------|-----------|----------|--------|\n| 0.55 | 20 | 10 | 0.520 | 0.040 | 0.133 | 80% | Complete |\n| 0.55 | 50 | 10 | 0.515 | 0.026 | 0.087 | 90% | Complete |\n| 0.55 | 100 | 7 | 0.497 | 0.005 | 0.064 | 100% | Complete |\n| 0.80 | 50 | 10 | 0.506 | 0.030 | 0.163 | 100% | Complete |\n| 0.80 | 100 | 1 | 0.508 | — | 0.116 | 100% | Partial |\n\n**Key Findings**:\n1. **γ recoverable even at AUC=0.55** (near-random signals): RMSE ≤0.04, 100% power\n2. **Precision scales as O(1/√N)**: Ratio stable across N (1.81-1.95×)\n3. **Higher AUC → 1.87-1.95× wider confidence intervals** (exposure-ability collinearity)\n4. **Coverage below nominal at small N**: 80-90% at N=20, improves to 100% at N=100\n5. **MCMC Quality**: 0 divergences, worst R̂=1.010, min ESS=439\n\n---\n\n### **EXP-005: Noise Propagation (Bayesian ME Model)**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/noise_propagation_results.json`\n\n**Results** (6 seeds at most, latest v3):\n- **AUC=0.55, N=100**: γ̂=0.498 (bias -0.003), RMSE=0.004, CI95 coverage=100%, width=0.065\n- **AUC=0.55, N=20**: γ̂=0.520 (bias +0.020), RMSE=0.040, CI95 coverage=80%, width=0.133\n- **AUC=0.80, N=50**: γ̂=0.508 (bias +0.008), RMSE=0.008, CI95 coverage=100%, width=0.162\n\n**θ Recovery**: correlation 0.947-0.952 across conditions, insensitive to N within AUC level\n\n---\n\n### **EXP-001 & EXP-002: Dose-Response SFT + Signal Pipeline**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`\n\n**Completed (aligned format)**:\n| Model | d000 MMLU | d005 MMLU | d100 MMLU | Status |\n|-------|-----------|-----------|-----------|--------|\n| 0.5B | 0.3979 | 0.3255 | — | ✅ d000 aligned, d005 running |\n| 1.5B | 0.5853 | — | 0.5933 | ✅ d000/d100 aligned |\n| 3B | 0.6417* | — | — | 🏃 d000/d100 eval in progress |\n\n*3B d100 MMLU=0.6417 from in-progress eval\n\n**Key signal results** (exp-002 code status):\n- 9 tasks defined: 0.5B × {d000,d005,d100} × {mmlu,gsm8k,arc_challenge}\n- All 4 signal modules complete: S1 Embedding, S2 MinKPP, S3 ConStat, S4 SelfCritique\n- Dry-run validation passed (~23s per task, ~10-20min per production task)\n\n---\n\n### **DOSE-RESPONSE DOSE-RESPONSE TREND (0.5B fully characterized)**\n| Dosage | MMLU | GSM8K | ARC | HumanEval | Trend |\n|--------|------|-------|-----|-----------|-------|\n| d000 (baseline) | 39.79% | 36.92% | 46.93% | 10.98% | Baseline |\n| d005 (5% contam) | 32.55% | 36.24% | 32.85% | 7.93% | ↓ MMLU -7.2pp, ARC -14.1pp |\n| d100 (100% contam) | 23.22% | 35.71% | 22.70% | 8.54% | ↓↓ MMLU -16.6pp, ARC -24.2pp |\n\n**Interpretation**: Clear dose-response on MMLU and ARC with contamination dosage. GSM8K unaffected (expected, contamination targeted MMLU).\n\n---\n\n## 3. **EXPERIMENT PLAN & ROADMAP**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/experiment_plan.yaml`\n\n**Phase 3 SFT Checkpoint Status** (all 13 checkpoints):\n- **Complete** (11/13): 0.5B d000/d005/d025/d100, 1.5B d000/d005/d100, 3B d000 (both seeds)\n- **Failed** (2): 3B d005, 3B d100 (SFT training failed)\n\n**⚠️ Known Issue**: 3B GSM8K shows \"catastrophic forgetting\" — raw 60.5% → SFT d000 11.7-17.6% (LoRA CoT degradation). **Decision D018: Exclude 3B GSM8K from dose-response analysis.**\n\n---\n\n## 4. **CRITICAL DECISIONS & MEMORY NOTES**\n**File**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`\n\n**Key constraints**:\n- **D017**: MC evaluation format must use \"The answer is \" prefix (not \"Answer: \"), --mc-format aligned required\n- **D018**: 3B GSM8K excluded from dose-response (LoRA SFT CoT forgetting)\n- **D021**: exp-008 d100 label artifact fix — use cross-model comparison (d100 vs d000) instead of within-model AUC\n- **D023**: Tiered IRT calibration (GSM8K/ARC direct NUTS + MMLU 1000-item subsample)\n\n---\n\n## 5. **FILES WITH ACTUAL NUMERIC RESULTS**\n\nComprehensive results index:\n\n| Result Type | File Path | Format | Last Updated |\n|-------------|-----------|--------|--------------|\n| exp-008 Signal AUC metrics | `/artifacts/exp-008/data/exp008_v4_results.json` | JSON | 2026-05-14 |\n| exp-008 Heatmap summary | `/artifacts/exp008_auc_heatmap.json` | JSON | 2026-05-14 |\n| exp-004 Incremental analysis | `/artifacts/exp004_incremental_analysis.md` | Markdown | 2026-05-14 |\n| exp-004 Sweep summary | `/artifacts/simulation_sweep/results/sweep_summary.json` | JSON | — |\n| exp-005 Noise propagation | `/artifacts/exp005_noise_propagation/output_v3/noise_propagation_results.json` | JSON | 2026-05-14 |\n| Dose-response eval compilation | `/artifacts/report_eval_compilation.md` | Markdown | 2026-05-14 |\n| Phase 3 progress | `/artifacts/phase3_progress.md` | Markdown | 2026-05-14 |\n| exp-002 signal pipeline status | `/artifacts/exp_002_signals_05B/intermediate/exp002_signal_pipeline_status.md` | Markdown | 2026-05-14 |\n| Project memory & decisions | `/memory.md` | Markdown | 2026-05-14 |\n| Project report & status | `/report.md` | Markdown | 2026-05-14 |\n| Paper framing & findings | `/paper_framing.md` | Markdown | 2026-05-14 |\n| ROADMAP | `/ROADMAP.md` | Markdown | 2026-05-14 |\n\n---\n\n## 6. **CURRENT RUNNING EXPERIMENTS** (as of 2026-05-14 18:45 UTC)\n\n| Exp ID | Server | GPU | Status | Purpose |\n|--------|--------|-----|--------|---------|\n| exp_001_eval_05B_d025_aligned_v2 | cqa1 | cuda:5 | Running | 0.5B d025 eval (alignment format) |\n| exp_001_sft_3B_d000_v2 | cqa1 | cuda:5 | Running | 3B d000 SFT retry |\n| exp_006_irt_05B_gsm8k | cqa1 | cuda:3 | Running | IRT calibration on GSM8K |\n| exp_001_eval_15B_d025_aligned | cqa1 | cuda:4 | Running | 1.5B d025 eval |\n| exp002-signal-d025-05B | cqa1 | cuda:2 | Running | Signal computation for d025 |\n| exp_005_noise_prop_v3 | local | ? | Running | Noise propagation v3 |\n| exp_004_sim_sweep_v2 | local | ? | Running | Simulation sweep v2 |\n\n---\n\n**Bottom Line**: The project has substantial completed experiments with actual numeric results spanning IRT model validation (exp-004), signal effectiveness analysis (exp-008), noise propagation studies (exp-005), and dose-response SFT evaluations (exp-001/002). The core contamination detection method shows promise with S1 Embedding achieving 95-99% AUC at d005 dosage across all benchmarks, though signal survival across dosage regimes remains the critical open question being addressed by ongoing IRT calibration work."
+      }
+    ],
+    "totalDurationMs": 83025,
+    "totalTokens": 77775,
+    "totalToolUseCount": 32,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 1612,
+      "cache_read_input_tokens": 72626,
+      "output_tokens": 3535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1612
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3535,
+          "cache_read_input_tokens": 72626,
+          "cache_creation_input_tokens": 1612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1612,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 14,
+      "searchCount": 0,
+      "bashCount": 18,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "02414fbb-a5b8-4464-9cb4-d8fe2a68dfd8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T18:56:35.660Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01LUZc36BebZMUDSCdr4jzWs`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Get detailed eval metrics",
+  "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration, I need to find:\n\n1. Detailed evaluation results for 1.5B and 3B models across dosage levels (d005, d025, d100) — accuracy metrics for MMLU, GSM8K, ARC, HumanEval\n2. The exp-003 RRF aggregation results — any metrics from rrf fusion\n3. The exp-006 IRT fitting results — any Stan model outputs, calibration metrics\n4. Any compiled dose-response tables showing accuracy vs dosage across all model scales\n5. The d025 evaluation results for 0.5B, 1.5B, 3B\n\nLook in artifacts/, results/, exp003/, exp006/ directories and any summary/analysis files. Search breadth: \"very thorough\"."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea70f6cf-7fbe-4cfb-80de-e0569ebd3a49",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yJG2sMTqZ62XCSgKR3",
+  "type": "assistant",
+  "uuid": "1862c0ee-143b-4a08-b3bd-be9db92bef8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MShMp6HEsMogm3bsYZoRNX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3842,
+      "cache_read_input_tokens": 33566,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3842,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 33566,
+          "cache_creation_input_tokens": 3842,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3842
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T18:57:51.226Z_
+
+<details><summary>↩ Tool result · `toolu_01LUZc36BebZMUDSCdr4jzWs`</summary>
+
+```text
+Perfect! Now I have comprehensive information. Let me compile the final report with all the findings:
+
+## Summary of Findings
+
+I've conducted a very thorough search of the contamcal-irt-calibration project and compiled the detailed evaluation results and metrics. Here are my findings:
+
+### **1. Detailed Evaluation Results for 1.5B and 3B Models**
+
+**Aligned Format Results (Formal Analysis - as of 2026-05-14)**
+
+**1.5B Models:**
+- **d000 (0% contamination)**: MMLU=0.5853, GSM8K=0.6543, ARC=0.7722, HumanEval=0.1280 ✅ Complete
+- **d005 (5% contamination)**: Status - Running (queued in batch eval)
+- **d025 (25% contamination)**: Status - Missing (no SFT/eval started)
+- **d100 (100% contamination)**: MMLU=0.5933, GSM8K=0.6497, ARC=0.7688, HumanEval=0.3049 ✅ Complete
+
+**3B Models:**
+- **d000 (0% contamination)**: MMLU=0.6340, GSM8K=~~excluded~~ (SFT-degraded), ARC=0.8276, HumanEval=0.1159 ✅ Complete
+- **d005 (5% contamination)**: Status - Missing (SFT running on GPU 4)
+- **d025 (25% contamination)**: Status - Missing (no SFT)
+- **d100 (100% contamination)**: MMLU=0.6417 (partial), GSM8K=0.6967, ARC=0.8396, HumanEval=0.122 ✅ Mostly Complete
+
+**Key Observations:**
+- 1.5B d000→d100: MMLU +0.80pp, GSM8K −0.46pp, ARC −0.34pp (weak positive effect on MMLU only)
+- 3B GSM8K excluded from formal analysis (D018: LoRA SFT caused CoT reasoning collapse: raw 60.5% → d000 SFT ~12-18%)
+- HumanEval used as negative control benchmark (no contamination injection)
+
+**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`
+
+---
+
+### **2. d025 Evaluation Results for 0.5B, 1.5B, 3B**
+
+Currently **unavailable** — no aligned-format d025 evaluations have been completed:
+- **0.5B d025**: SFT complete, eval running (GPU 3)
+- **1.5B d025**: No SFT checkpoint exists
+- **3B d025**: No SFT, no eval
+
+The d025 point is critical as a middle interpolation for dose-response curves but remains a data gap.
+
+---
+
+### **3. EXP-003 RRF Aggregation Results**
+
+**Status**: Code ready (95%), awaiting exp-002 signal data completion
+
+**No final RRF metrics available yet.** The exp003_rrf_ablation directory contains:
+- `analyze_rrf_ablation.py` (analysis script)
+- `run_exp003.sh` (execution wrapper)
+
+**Related Finding - Signal Survival (exp-008 v3/v4):**
+- S1 Embedding: AUC ~0.5 at d000 (random), 0.95-0.995 at d005 (strong at low dose), 0.5 at d100 (pseudo-artifact)
+- S2 MinK%++: AUC ~0.47-0.51 across all dosages (weak signals)
+- S4 Self-Critique: AUC ~0.47-0.52 across all dosages (weak signals)
+- **Verdict**: No individual signal maintains AUC>0.6 across all dosage regimes → validates need for IRT multi-signal fusion
+
+**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md` (exp-008 entry)
+
+---
+
+### **4. EXP-006 IRT Fitting Results**
+
+**Status**: Code ready (95%), awaiting aligned eval completion and exposure scores from exp-003
+
+**Available MVP Simulation Results** (proof-of-concept IRT fitting):
+
+**MVP P1: 4PL+γ Base Recovery (N=50 models, 300 items)**
+- γ_mean=0.5341, γ_rel_bias=6.8%, γ CI95 covers true, CI excludes zero ✅
+- θ_corr=0.9428, θ_RMSE=0.2554
+- max_rhat=1.0064, divergent%=0.0%, min_ESS=1687.8
+- Fit time: 930.3s
+- **Verdict**: PASS — γ identified with <7% relative bias
+
+**MVP P2: Confounding Robustness (4PL+γ, θ-exposure corr=0.3814)**
+- γ_mean=0.5386, γ_rel_bias=7.7%
+- θ_corr=0.9733, θ_RMSE=0.2407
+- θ_residual_exp_corr=0.0582 (separation achieved)
+- max_rhat=1.007, divergent%=0.0%, min_ESS=1371.9
+- **Verdict**: PASS — γ separable from θ under moderate confounding
+
+**Stan Compilation Status**:
+- 4 compiled models: contam_irt_2pl, contam_irt_4pl (simple), contam_irt_4pl_me, contam_irt_4pl_me_analytic
+
+**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/`
+
+---
+
+### **5. Compiled Dose-Response Tables**
+
+**Aligned Format (Official Table)**
+
+| Model | Dosage | MMLU | GSM8K | ARC | HumanEval | Status |
+|-------|--------|------|-------|-----|-----------|--------|
+| 0.5B | 0% | 0.3979 | 0.3692 | 0.4693 | 0.1098 | ✅ |
+| 0.5B | 5% | 0.3255 | 0.3624 | 0.3285 | 0.0793 | ✅ |
+| 0.5B | 25% | — | — | — | — | 🏃 Running |
+| 0.5B | 100% | — | — | — | — | 🏃 Running |
+| 1.5B | 0% | 0.5853 | 0.6543 | 0.7722 | 0.1280 | ✅ |
+| 1.5B | 5% | — | — | — | — | 🏃 Running |
+| 1.5B | 100% | 0.5933 | 0.6497 | 0.7688 | 0.3049 | ✅ |
+| 3B | 0% | 0.6340 | ~~excl~~ | 0.8276 | 0.1159 | ✅ |
+| 3B | 5% | — | ~~excl~~ | — | — | 🏃 Running |
+| 3B | 100% | 0.6417 | 0.6967 | 0.8396 | 0.122 | ✅ |
+
+**Coverage**: 9/36 cells complete (25%), 9 running, 18 missing
+
+**Legacy Format (Diagnostic Reference Only)**
+- 0.5B d000 (s42, s123): MMLU ~0.41, GSM8K ~0.35, ARC ~0.39 (format deprecated due to MC prefix misalignment)
+- 0.5B d100: MMLU=0.2322 (−17.3pp vs d000, likely format artifact)
+
+**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`
+
+---
+
+### **6. EXP-004 Simulation Sweep Results (48/120 runs complete)**
+
+**γ Recovery Across AUC × N_models:**
+
+| AUC | N=20 | N=50 | N=100 |
+|-----|------|------|-------|
+| **0.55** | γ̂=0.520, bias=+0.020, RMSE=0.040 | γ̂=0.515, bias=+0.015, RMSE=0.026 | γ̂=0.497, bias=−0.003, RMSE=0.005 |
+| **0.80** | γ̂=0.484, bias=−0.016, RMSE=0.081 | γ̂=0.506, bias=+0.006, RMSE=0.030 | γ̂=0.508 (N=1, preliminary) |
+
+**Key Findings:**
+- **Claim 1**: γ identifiable even at AUC=0.55 (near-chance exposure): RMSE ≤0.04 (N=20), ≤0.005 (N=100), 100% power across all 48 runs ✅ Strong
+- **Claim 2**: Precision scales as O(1/√N) within ~4% per transition ✅ Strong
+- **Claim 3**: High-AUC exposure inflates γ posterior: CI95 width at AUC=0.80 is **1.87–1.95× AUC=0.55** (ability-exposure collinearity) ✅ Strong, counterintuitive
+- **Claim 4**: 100% detection power: all 48 runs CI95 excludes zero ✅ Strong
+- **Claim 5**: Coverage below nominal at small N (80% at AUC=0.55/N=20, improves to 100% at N≥50) ⚠️ Moderate
+- MCMC quality excellent: 0 divergences across 48 runs, max R̂=1.010
+
+**Still Needed**: AUC=0.65/0.90 (0/60 seeds), 9 more AUC=0.80/N=100 seeds, prior sensitivity tests
+
+**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md`
+
+---
+
+### **Key Directories**
+- Main results: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/`
+- Evaluation compilation: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`
+- MVP IRT outputs: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/`
+- exp-004 analysis: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md`
+- exp-006 code: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/`
+- Memory/status: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1862c0ee-143b-4a08-b3bd-be9db92bef8f",
+  "isSidechain": false,
+  "promptId": "2d54b275-ff38-459b-9b80-6f9db4e787de",
+  "type": "user",
+  "uuid": "137a8730-1f84-486f-ae76-86621a6c15cd",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration, I need to find:\n\n1. Detailed evaluation results for 1.5B and 3B models across dosage levels (d005, d025, d100) — accuracy metrics for MMLU, GSM8K, ARC, HumanEval\n2. The exp-003 RRF aggregation results — any metrics from rrf fusion\n3. The exp-006 IRT fitting results — any Stan model outputs, calibration metrics\n4. Any compiled dose-response tables showing accuracy vs dosage across all model scales\n5. The d025 evaluation results for 0.5B, 1.5B, 3B\n\nLook in artifacts/, results/, exp003/, exp006/ directories and any summary/analysis files. Search breadth: \"very thorough\".",
+    "agentId": "af2dd3ee5e00c8bdb",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have comprehensive information. Let me compile the final report with all the findings:\n\n## Summary of Findings\n\nI've conducted a very thorough search of the contamcal-irt-calibration project and compiled the detailed evaluation results and metrics. Here are my findings:\n\n### **1. Detailed Evaluation Results for 1.5B and 3B Models**\n\n**Aligned Format Results (Formal Analysis - as of 2026-05-14)**\n\n**1.5B Models:**\n- **d000 (0% contamination)**: MMLU=0.5853, GSM8K=0.6543, ARC=0.7722, HumanEval=0.1280 ✅ Complete\n- **d005 (5% contamination)**: Status - Running (queued in batch eval)\n- **d025 (25% contamination)**: Status - Missing (no SFT/eval started)\n- **d100 (100% contamination)**: MMLU=0.5933, GSM8K=0.6497, ARC=0.7688, HumanEval=0.3049 ✅ Complete\n\n**3B Models:**\n- **d000 (0% contamination)**: MMLU=0.6340, GSM8K=~~excluded~~ (SFT-degraded), ARC=0.8276, HumanEval=0.1159 ✅ Complete\n- **d005 (5% contamination)**: Status - Missing (SFT running on GPU 4)\n- **d025 (25% contamination)**: Status - Missing (no SFT)\n- **d100 (100% contamination)**: MMLU=0.6417 (partial), GSM8K=0.6967, ARC=0.8396, HumanEval=0.122 ✅ Mostly Complete\n\n**Key Observations:**\n- 1.5B d000→d100: MMLU +0.80pp, GSM8K −0.46pp, ARC −0.34pp (weak positive effect on MMLU only)\n- 3B GSM8K excluded from formal analysis (D018: LoRA SFT caused CoT reasoning collapse: raw 60.5% → d000 SFT ~12-18%)\n- HumanEval used as negative control benchmark (no contamination injection)\n\n**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`\n\n---\n\n### **2. d025 Evaluation Results for 0.5B, 1.5B, 3B**\n\nCurrently **unavailable** — no aligned-format d025 evaluations have been completed:\n- **0.5B d025**: SFT complete, eval running (GPU 3)\n- **1.5B d025**: No SFT checkpoint exists\n- **3B d025**: No SFT, no eval\n\nThe d025 point is critical as a middle interpolation for dose-response curves but remains a data gap.\n\n---\n\n### **3. EXP-003 RRF Aggregation Results**\n\n**Status**: Code ready (95%), awaiting exp-002 signal data completion\n\n**No final RRF metrics available yet.** The exp003_rrf_ablation directory contains:\n- `analyze_rrf_ablation.py` (analysis script)\n- `run_exp003.sh` (execution wrapper)\n\n**Related Finding - Signal Survival (exp-008 v3/v4):**\n- S1 Embedding: AUC ~0.5 at d000 (random), 0.95-0.995 at d005 (strong at low dose), 0.5 at d100 (pseudo-artifact)\n- S2 MinK%++: AUC ~0.47-0.51 across all dosages (weak signals)\n- S4 Self-Critique: AUC ~0.47-0.52 across all dosages (weak signals)\n- **Verdict**: No individual signal maintains AUC>0.6 across all dosage regimes → validates need for IRT multi-signal fusion\n\n**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md` (exp-008 entry)\n\n---\n\n### **4. EXP-006 IRT Fitting Results**\n\n**Status**: Code ready (95%), awaiting aligned eval completion and exposure scores from exp-003\n\n**Available MVP Simulation Results** (proof-of-concept IRT fitting):\n\n**MVP P1: 4PL+γ Base Recovery (N=50 models, 300 items)**\n- γ_mean=0.5341, γ_rel_bias=6.8%, γ CI95 covers true, CI excludes zero ✅\n- θ_corr=0.9428, θ_RMSE=0.2554\n- max_rhat=1.0064, divergent%=0.0%, min_ESS=1687.8\n- Fit time: 930.3s\n- **Verdict**: PASS — γ identified with <7% relative bias\n\n**MVP P2: Confounding Robustness (4PL+γ, θ-exposure corr=0.3814)**\n- γ_mean=0.5386, γ_rel_bias=7.7%\n- θ_corr=0.9733, θ_RMSE=0.2407\n- θ_residual_exp_corr=0.0582 (separation achieved)\n- max_rhat=1.007, divergent%=0.0%, min_ESS=1371.9\n- **Verdict**: PASS — γ separable from θ under moderate confounding\n\n**Stan Compilation Status**:\n- 4 compiled models: contam_irt_2pl, contam_irt_4pl (simple), contam_irt_4pl_me, contam_irt_4pl_me_analytic\n\n**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/`\n\n---\n\n### **5. Compiled Dose-Response Tables**\n\n**Aligned Format (Official Table)**\n\n| Model | Dosage | MMLU | GSM8K | ARC | HumanEval | Status |\n|-------|--------|------|-------|-----|-----------|--------|\n| 0.5B | 0% | 0.3979 | 0.3692 | 0.4693 | 0.1098 | ✅ |\n| 0.5B | 5% | 0.3255 | 0.3624 | 0.3285 | 0.0793 | ✅ |\n| 0.5B | 25% | — | — | — | — | 🏃 Running |\n| 0.5B | 100% | — | — | — | — | 🏃 Running |\n| 1.5B | 0% | 0.5853 | 0.6543 | 0.7722 | 0.1280 | ✅ |\n| 1.5B | 5% | — | — | — | — | 🏃 Running |\n| 1.5B | 100% | 0.5933 | 0.6497 | 0.7688 | 0.3049 | ✅ |\n| 3B | 0% | 0.6340 | ~~excl~~ | 0.8276 | 0.1159 | ✅ |\n| 3B | 5% | — | ~~excl~~ | — | — | 🏃 Running |\n| 3B | 100% | 0.6417 | 0.6967 | 0.8396 | 0.122 | ✅ |\n\n**Coverage**: 9/36 cells complete (25%), 9 running, 18 missing\n\n**Legacy Format (Diagnostic Reference Only)**\n- 0.5B d000 (s42, s123): MMLU ~0.41, GSM8K ~0.35, ARC ~0.39 (format deprecated due to MC prefix misalignment)\n- 0.5B d100: MMLU=0.2322 (−17.3pp vs d000, likely format artifact)\n\n**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`\n\n---\n\n### **6. EXP-004 Simulation Sweep Results (48/120 runs complete)**\n\n**γ Recovery Across AUC × N_models:**\n\n| AUC | N=20 | N=50 | N=100 |\n|-----|------|------|-------|\n| **0.55** | γ̂=0.520, bias=+0.020, RMSE=0.040 | γ̂=0.515, bias=+0.015, RMSE=0.026 | γ̂=0.497, bias=−0.003, RMSE=0.005 |\n| **0.80** | γ̂=0.484, bias=−0.016, RMSE=0.081 | γ̂=0.506, bias=+0.006, RMSE=0.030 | γ̂=0.508 (N=1, preliminary) |\n\n**Key Findings:**\n- **Claim 1**: γ identifiable even at AUC=0.55 (near-chance exposure): RMSE ≤0.04 (N=20), ≤0.005 (N=100), 100% power across all 48 runs ✅ Strong\n- **Claim 2**: Precision scales as O(1/√N) within ~4% per transition ✅ Strong\n- **Claim 3**: High-AUC exposure inflates γ posterior: CI95 width at AUC=0.80 is **1.87–1.95× AUC=0.55** (ability-exposure collinearity) ✅ Strong, counterintuitive\n- **Claim 4**: 100% detection power: all 48 runs CI95 excludes zero ✅ Strong\n- **Claim 5**: Coverage below nominal at small N (80% at AUC=0.55/N=20, improves to 100% at N≥50) ⚠️ Moderate\n- MCMC quality excellent: 0 divergences across 48 runs, max R̂=1.010\n\n**Still Needed**: AUC=0.65/0.90 (0/60 seeds), 9 more AUC=0.80/N=100 seeds, prior sensitivity tests\n\n**Source**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md`\n\n---\n\n### **Key Directories**\n- Main results: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/`\n- Evaluation compilation: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/report_eval_compilation.md`\n- MVP IRT outputs: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/`\n- exp-004 analysis: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_incremental_analysis.md`\n- exp-006 code: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/`\n- Memory/status: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md`"
+      }
+    ],
+    "totalDurationMs": 75541,
+    "totalTokens": 86016,
+    "totalToolUseCount": 33,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1570,
+      "cache_read_input_tokens": 81429,
+      "output_tokens": 3012,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1570
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 3012,
+          "cache_read_input_tokens": 81429,
+          "cache_creation_input_tokens": 1570,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1570,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 12,
+      "searchCount": 2,
+      "bashCount": 19,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "1862c0ee-143b-4a08-b3bd-be9db92bef8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线 核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', \"S2(Min-K++)和/或S4(Self-Critique)在1.5B/3…",
+  "leafUuid": "137a8730-1f84-486f-ae76-86621a6c15cd",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-aware IRT calibration with Fisher identifiability analysis",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-14T19:03:06.769Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive data. Let me synthesize the results and generate best-tier predictions for all planned experiments. Let me review the experiment plan carefully:
+
+Planned experiments (status: planned):
+- exp-002: stage1_signal_pipeline
+- exp-003: rrf_aggregation_ablation
+- exp-006: irt_calibration_and_baselines
+- exp-007: scale_bridging_7b
+- exp-008: signal_survival_analysis (already has some results)
+- exp-009: rl_observational_case_study
+
+
+- exp-012: observational_72b
+- exp-013: closed_weight_2signal_mode
+- exp-014: multi_family_validation
+
+I need to check the actual status of each experiment since some have partial or completed results already. Let me cross-reference against what's actually been run to get accurate predictions for the full set. I'm looking at the performance data I have from the 0.5B and 1.5B dose-response experiments to establish baseline anchors for predicting the planned experiments. I need to define what "best-tier" predictions mean in terms of IRT convergence, signal recovery at scale, and calibration improvements, then use the existing metrics to extrapolate expected performance across the remaining experiments.
+
+Now I'm reviewing the full dose-response curves at 1.5B and 3B scales to see how the metrics are trending across different alignment conditions. Looking at the GSM8K results more carefully, the d100 contaminated version at 69.67% actually recovers most of the raw model's performance (60.5%), suggesting the contaminated training data itself contains GSM8K examples that help restore capability lost during standard SFT. This pattern suggests contamination effects are more nuanced than simple score inflation — they can sometimes compensate for training degradation depending on what's in the contaminated data.
+
+For MMLU and ARC, the contamination effects appear more straightforward and should be easier to calibrate in the best tier. Now looking at exp-002, the signal pipeline shows interesting scale-dependent behavior: S1 maintains strong detection across all model sizes, while S2 and S4 methods that struggle at 0.5B actually recover effectiveness at larger scales, with AUC values climbing back above 0.70 at 1.5B and 3B.
+
+In exp-003, the RRF approach essentially collapses to just using S1 at 0.5B since the other signals fail, but at larger scales it should demonstrate genuine value from combining multiple working signals, ideally outperforming any single method by a few percentage points. For exp-006, the IRT calibration experiment is where the real test happens—I'm expecting the best tier to achieve mean absolute error around 1.5-3 percentage points on contamination calibration, with improvements over baseline methods in that same range.
+
+Looking at the detailed metrics for exp-006, I'm tracking confidence interval coverage around 90-96%, sharpness in the 4-8 percentage point range, and strong rank correlation above 0.85. The posterior estimates for contamination effects should exclude zero in most cases, with minimal violations of dose-response monotonicity. Now I'm examining the per-benchmark contamination effects—MMLU and ARC show moderate effects at larger scales, GSM8K initially looked like a negative control with minimal contamination, but actually at 3B it shows substantial inflation, and HumanEval varies across benchmarks. The GSM8K pattern is interesting and worth investigating further.
+
+The GSM8K dynamics are nuanced—at 0.5B the contamination signal doesn't materialize, but at 3B the d100 dataset shows dramatic inflation because the SFT training data includes paraphrased GSM8K answers that restore the chain-of-thought reasoning that LoRA fine-tuning had disrupted. So the contamination effect at 3B would actually be quite large, though D018 excludes that configuration. Now I'm moving forward with the YAML generation and need to be precise about each experiment's metrics. For exp-002 I'm tracking per-signal AUC across scales and dosages, exp-003 uses RRF composite AUC with ablation comparisons, exp-004 focuses on contamination parameter recovery with RMSE and CI properties, exp-005 measures the improvement in coverage and width from the mixture-of-experts model, and exp-006 includes MAE and coverage metrics.
+
+Now I'm laying out the remaining experiments and their evaluation criteria, then moving into the detailed predictions where the core narrative hinges on clean IRT convergence, signal recovery at scale thresholds above 1.5B, calibration superiority over baselines, and significant heterogeneity in per-benchmark contamination estimates.
+
+Let me examine the 1.5B contamination effects more closely across the three benchmarks—the differences between clean and heavily contaminated datasets are surprisingly modest, with MMLU showing only a 0.8 percentage point gap and ARC actually staying flat or declining slightly. Looking at the actual data more carefully, the 1.5B MMLU contamination effect is only +0.8pp, which is surprisingly small — this makes the calibration task trivial since all baselines would naturally get close to the true effect. The larger inflation appears at 3B scales, particularly for GSM8K where contamination causes a massive ~57pp boost due to chain-of-thought recovery, while MMLU and ARC show more moderate 3-7pp and 2-4pp gains respectively. This raises a question about whether the "best" tier's claim of significantly superior calibration still holds when some effects are genuinely minimal.
+
+Reconsidering the dosage effects, I suspect the d100 injection might actually suppress inflation compared to d025 because adding 100% benchmark data to the training set degrades overall model quality through catastrophic forgetting — similar to what we see with 3B GSM8K. At lighter dosages like d005 and d025, the contamination is small enough that SFT quality stays intact, so you'd see real inflation there. For the best tier predictions, I'm expecting modest inflation at d005 (2-5pp MMLU, 1-3pp ARC), moderate gains at d025 (5-10pp MMLU, 3-6pp ARC), and potentially smaller effects at d100 due to quality degradation, while GSM8K remains resistant to inflation at 1.5B but shows substantial gains at 3B.
+
+But looking at the actual 1.5B data we have, the MMLU scores barely move: d005 shows essentially zero inflation (58.52 vs 58.53), and even d100 only gains 0.8pp. This undermines the narrative that contamination drives significant improvements. The 1.5B model might be more robust to contamination because it already has substantial MMLU coverage from pretraining, so adding benchmark data doesn't help much. I need to work with what we actually observe and extrapolate carefully, since the contamination effect sizes clearly vary by both benchmark and model size.
+
+For the "best" tier framework, the key is that it correctly identifies and calibrates these effects regardless of magnitude. Let me compile the comprehensive YAML with what I have.
+
+Actually, I'm noticing something important: the 0.5B model shows the opposite pattern—contamination actively hurts performance. MMLU drops from 39.79 to 32.55 at d005 and plummets to 23.34 at d100. This isn't contamination inflation at all; it's SFT-induced degradation where the contaminated paraphrases in the training data disrupt the small model's learning. That's a fundamentally different phenomenon than what we see in larger models.
+
+But then 3B GSM8K at d100 shows massive inflation around 57 percentage points because the contaminated data actually teaches problem-solving. Meanwhile, MMLU at 1.5B and 3B shows minimal contamination effects since these models are already strong on that benchmark. The pattern is clear: ContamCal correctly identifies when contamination effects are negligible, when they're substantial, and when they're actually negative, which is exactly what the framework should do. Now I'll draft the full YAML with all the planned experiments.
+
+For the signal pipeline at 1.5B and 3B, I'm betting that S2 (Min-K++) and S4 (Self-Critique) both achieve AUC ≥ 0.70, which is a critical jump from their 0.47 performance at 0.5B. This makes sense theoretically—Min-K++ detects memorization patterns that become more pronounced as model capacity increases, and Self-Critique improves with scale as models develop better self-evaluation abilities. I'm predicting S2 at 1.5B will hit around 0.70-0.75 AUC.
+
+Extending that logic, S2 at 3B should reach 0.75-0.82, while S4 climbs to 0.65-0.72 at 1.5B and 0.72-0.80 at 3B. S1 (Embedding) remains the strongest signal across all scales at 0.96-0.99 AUC. When I combine these with RRF at 1.5B/3B, the composite AUC should land around 0.97-0.99, though the improvement over S1 alone is marginal since the signals are somewhat redundant—the real benefit is added robustness. Now I'm looking at how the actual dose-response data from real contamination effects plays out at 0.5B.
+
+Looking at the benchmark results across different model sizes and contamination levels, the MMLU scores show a clear pattern: at 0.5B there's significant degradation from SFT, but at 1.5B and 3B the model actually gains performance at d100 (around 0.8pp improvement). The ARC and GSM8K results follow a similar trend, with ARC showing a 1.2pp gain at 3B and GSM8K showing massive inflation that I'm excluding per the protocol. The "best tier" estimate of 1.5-3.0pp MAE aligns with what I'm seeing in these actual contamination effects.
+
+For the calibration challenge, the smaller effects at 1.5B and 3B (under 2pp) should be easier to estimate accurately since γ≈0 for minimal contamination naturally produces low error. The real test is 3B GSM8K with that 57pp inflation — if ContamCal can bring that within 3pp, that's genuinely impressive. And for 0.5B where contamination actually hurts performance, I need γ to be negative or near-zero with appropriately wide confidence intervals.
+
+Now I'm thinking through the data availability for model counting. The multi-seed pooling strategy aims for N≥30 across the combinations of model scales, dosages, and seeds.
+
+With 3 scales, 4-5 dosages, and 2-3 seeds per condition, I'm looking at somewhere between 24 and 45 total models, with the best tier requiring N≥30 using 2 seeds per condition.
+
+For the experiment descriptions, I'm starting to map out what each one needs. The simulation sweep already has 48 of 120 runs done, so I can anchor predictions on those and focus on the remaining conditions. For the noise propagation experiment, the current data shows coverage is already maxed out at higher N but struggles at N=20, so I need to see if the ME model actually improves that gap.
+
+Now I'm checking the metric ranges to make sure they're sensible — contamination MAE around 1.5-3 percentage points, improvements over baseline at 1.5-4pp, CI coverage in the 90-96% range, and ranking preservation staying above 0.85 Kendall tau.
+
+I'm also verifying that the S2/S4 signals remain effective at 3B scale, monotonicity violations are nearly nonzero, and the SBC rank uniformity test passes. Now I need to write out the full YAML configuration for all the planned experiments, starting with the stage 1 signal pipeline through the observational case studies. Looking at the experiment statuses, I can see there are 9 planned experiments total: exp-002, exp-003, exp-006, exp-007, exp-008, exp-009, exp-012, exp-013, and exp-014. The orphaned exp-015 doesn't count since the user specifically asked for planned ones.
+
+Now I'm working through what realistic "best" tier predictions would look like for each experiment, starting with exp-002 which runs signal detection across the contaminated and clean models from the first experiment.
+
+For the signal pipeline at different scales, I already have the 0.5B results showing S1 performs very well around 0.95-0.99 AUC, while S2 and S4 are much weaker at 0.47-0.48. At the larger 1.5B and 3B scales, I'd expect S1 to stay consistently strong since embedding similarity is scale-robust, S2 to improve significantly to 0.72-0.82 as the memorization signal becomes more pronounced in larger models, and S3 to show a clearer performance gap between original and paraphrased items in contaminated models since that effect should amplify with scale.
+
+For S4, the self-critique capability should also improve with model size, reaching 0.70-0.78 at the best tier. Looking at my specific predictions across the scales, S1 stays around 0.97-0.98, S2 jumps to 0.72-0.80, S3 lands in the 0.68-0.75 range, and S4 reaches 0.71-0.77 as model capacity increases.
+
+Now examining the K++ reversal patterns at d100 where S2 shows a Cohen's d of -1.5 at 1.5B but strengthens to -2.3 at 3B, indicating the reversal effect actually intensifies with scale. Moving into the RRF aggregation results, the composite scores are performing exceptionally well—hitting 0.98 at both 1.5B and 3B with d005, and reaching 0.99 at 3B where multiple signals combine effectively.
+
+The gains from RRF fusion become meaningful at larger scales: negligible at 0.5B since the weaker signals are essentially noise, but delivering 1.5 percentage points improvement at 1.5B and 2.0 points at 3B over the best single signal. The ablations show RRF outperforms equal-weight averaging by 0.5-1.0%, and the degraded two-signal mode drops significantly to 0.72-0.80 at 3B, while the system maintains robustness through 15% false positive injection before AUC dips below 90%.
+
+For the IRT calibration experiment, I'm fitting per-benchmark difficulty parameters across 30+ models with rigorous MCMC diagnostics showing excellent convergence. The estimates reveal meaningful variation: MMLU shows moderate difficulty effects around 0.15-0.25, ARC exhibits larger susceptibility at 0.20-0.35, GSM8K stays near zero as expected, and HumanEval shows small effects in the 0.05-0.15 range.
+
+Cross-benchmark analysis confirms contamination susceptibility is indeed a benchmark property with high coefficient of variation and strong seed consistency. The calibration performance is solid across the board—mean absolute error of 2.1 percentage points with 92% confidence interval coverage, outperforming the DCR baseline by 2.5 percentage points, and achieving strong ranking correlation at 0.91 Kendall τ with zero monotonicity violations.
+
+Looking at individual benchmarks, MMLU and GSM8K calibrate cleanly due to low contamination effects, while HumanEval shows higher error at 3.5 percentage points due to noise and small sample size. Comparing against the full range of baselines—from raw predictions at 8-15 percentage points error down through various mitigation approaches—ContamCal's 2.1 percentage point error is substantially better than everything else, including the previous best approach at 4.5 percentage points.
+
+Now I'm setting up the next experiment with a 7B model using controlled SFT across five dosage levels. I expect the larger model to show clear dose-response inflation patterns, with MMLU improving 4-6 percentage points and ARC improving 3-4 percentage points from baseline to maximum contamination, while GSM8K should remain relatively stable since it's open-ended. The calibration should extend cleanly to under 3 percentage points error at this scale, and the signal detection metrics should be strongest here with AUC values in the 0.82-0.90 range.
+
+For the signal survival analysis, I'm looking at how different signals perform across model scales and dosage levels. At 0.5B I've already got the baseline metrics, and I'm predicting that at 1.5B and 3B the S2 and S4 signals will strengthen significantly—S2 reaching 0.72-0.80 AUC—while the cross-model reversals become more pronounced at higher contamination levels.
+
+Now examining the instruction-tuning and RL proxy results: Self-Critique differentiates well on Instruct models while Min-K++ shows the expected degradation post-RL. For the observational case studies, I'm seeing that Qwen2.5-Instruct and DeepSeek-R1-Distill have distinct contamination profiles with appropriately wide confidence intervals, and the model selection regret stays minimal across top-5 candidates. The specificity check on clean benchmarks passes as expected. The 72B analysis is showing the strongest signal effectiveness across all metrics.
+
+Moving into the degraded 2-signal mode with just ConStat and Self-Critique, I'm getting composite AUC around 0.78-0.82 at 3B scale—still solid despite calibration MAE degrading by 1.5-2.5 percentage points and confidence intervals widening by 30-40%. The multi-family validation across Llama and Pythia is confirming that the identifiability boundaries generalize well with similar AUC thresholds, and the gamma estimates correlate consistently across families.
+
+Now I need to think through the tables and figures for each experiment and write out the full YAML with detailed result rationales. But there's a critical pattern I'm noticing: at 0.5B, contamination actually *decreases* performance, which is the opposite of what happens at larger scales. The mechanism is that 0.5B models have such limited capacity that adding contaminated paraphrases to the training data displaces genuinely useful information, hurting overall performance. At 1.5B and 3B, there's enough capacity that contaminated items cause mild inflation specifically on multiple-choice benchmarks like MMLU and ARC, but generative tasks don't show the same effect.
+
+The IRT model with per-benchmark γ_k parameters captures this perfectly—negative γ values at 0.5B reflect the SFT degradation, while positive γ at larger scales reflect genuine inflation. I'm realizing the contamination data is mixed into the regular SFT training, so at d005 we have 5% contaminated paraphrases mixed with standard SFT data like Alpaca, and at d100 we're adding 100% of benchmark items as paraphrases. The 0.5B model shows a dramatic MMLU drop from 39.79 to 32.55 with just 5% contamination—that's a 7.24 percentage point loss, which is substantial for such a small contamination ratio. So contaminated data actively hurts the smaller 0.5B model because it lacks the capacity to separate signal from noise, but at 1.5B and 3B the model is large enough to absorb the contamination with only minor positive inflation of 0.8-1.2 percentage points.
+
+The real question is whether ContamCal's 1.5-4pp improvement over baselines makes sense given these modest true contamination effects. The answer is that the calibration model is trained across all dosages and conditions—including the intermediate doses where effects are larger and the 0.5B model where contamination causes significant harm—so there's plenty of signal for it to learn from, even if the final benchmarks at full contamination show only small inflation. but the IRT fitting in exp-006 covers all benchmarks including GSM8K. So the MAE would include GSM8K calibration.
+
+Let me reconsider the MAE calculation. The MAE is across all models × benchmarks:
+- 0.5B models: contamination causes negative effects (d005: -7pp MMLU, -14pp ARC)
+- 1.5B models: tiny effects (~1pp)
+- 3B models: small effects on MMLU/ARC (~1pp), huge on GSM8K (~57pp)
+
+A naive "no contamination" baseline would have:
+- 0.5B: MAE = 0 (if it says "true score = observed score", it's correct for the wrong reason at d000, wrong by 7pp at d005)
+- Actually wait, the task is to recover the d000 (clean) score from contaminated models
+
+Looking at specific examples: the 0.5B model with MMLU at 32.55 actually has a true clean score of 39.79, so a naive approach claiming the observed score is correct would be off by 7.24pp. For the 1.5B model, the error is much smaller at 0.80pp. But the 3B model's GSM8K performance shows the real challenge—observed at 69.67 versus a true clean baseline of 12-18%, creating an error of roughly 55pp. The raw baseline's MAE would be dominated by these large discrepancies, particularly the 3B GSM8K gap and the 0.5B MMLU/ARC effects. For ContamCal to achieve an MAE of 1.5-3.0pp, it would need to successfully calibrate across all these conditions.
+
+Now I need to verify whether the 3B GSM8K data is actually included in the analysis or excluded from the dose-response monotonicity check.
+
+Looking at the d000 SFT results, GSM8K shows severe catastrophic forgetting around 12-18%, which is a known LoRA artifact. The d100 score of 69.67% represents roughly a 55 percentage point jump, but this isn't purely a contamination signal—it's partly the model recovering from being broken by SFT. For the IRT model, this would manifest as an unusually large γ_k parameter at 3B, and the question is whether ContamCal is correctly identifying a genuine contamination effect or just picking up on this artifact.
+
+Re-reading the evaluation criteria, it seems both the massive GSM8K inflation and the moderate MMLU/ARC inflation at 3B are being correctly calibrated. So the d000 baseline is artificially depressed due to CoT degradation, and the d100 "inflation" is really a combination of SFT contamination plus CoT restoration. The IRT will estimate a large γ_k for GSM8K at 3B, though d018 excludes this from dose-response analysis to avoid the monotonicity issue.
+
+Now I need to verify the contamination dosage mapping—the plan specifies 5 levels (0%, 5%, 25%, 50%, 100%), but I should check what the actual experiments used.
+
+Looking at the registry, I see d000, d005, d025, and d100, but d050 is missing. It might not have been implemented yet or could be pending, so I'll proceed with the available dosage levels for the tier predictions.
+
+Before I write the YAML, I should also note the metric constraints—specifically that s2_s4_auc_at_3B needs to fall in [0.7, 0.9], which means at 3B, either S2 or S4 must achieve an AUC of at least 0.70.
+
+For the gamma_posterior_ci_excludes_zero_rate threshold of [0.85, 1.0], I'm thinking through what this means across the different model scales and benchmarks. At smaller scales like 0.5B, contamination effects are large and negative, so the CI should exclude zero. At larger scales like 1.5B and 3B, MMLU and ARC show positive gamma values that should exclude zero. GSM8K is the tricky one since gamma is expected to be near zero, so its CI might include zero. The overall rate depends on how many conditions across all scales and benchmarks actually meet the exclusion criterion.
+
+Now I'm reconsidering whether the MMLU effect at 1.5B is large enough to exclude zero. The d100 inflation is only +0.80pp, which seems quite small. Even though the IRT model's gamma has its own posterior distribution separate from the calibrated score CI, an effect that small might not be statistically distinguishable from zero given the uncertainty in the parameter estimates.
+
+But actually, I need to clarify what we're measuring here — the definition specifies gamma's posterior CI excluding zero specifically under contaminated conditions (the d005, d025, and d100 dosages), not the control condition. So the 85-100% rate applies only to those contaminated scenarios where gamma is genuinely large enough to detect. inated conditions:
+- 0.5B d005/d100: large negative effects → |γ| large → CI should exclude 0 ✓
+- 1.5B d005/d100: small positive effects → γ may be near 0 → CI might include 0 ✗
+- 3B d005/d100 MMLU/ARC: small positive effects → similar ✗
+- 3B d100 GSM8K: massive inflation → γ very large → CI excludes 0 ✓
+
+This suggests the 85% detection rate might be optimistic in practice. But the best tier assumes it works, so I need to account for the possibility that effects are larger than raw accuracy differences show, or that IRT picks up per-item effects even when average changes are small.
+
+The key insight is that contamination operates at the item level, not the benchmark level. Even if MMLU accuracy only shifts by 0.8 percentage points on average, the contaminated items themselves could see 15-20 percentage point boosts while unaffected items stay flat. With d005 contaminating just 5% of items, that concentrated effect gets diluted in the aggregate statistic but should still be detectable by IRT, which is designed to catch exactly these kinds of item-level patterns.
+
+Now I'm ready to structure the YAML predictions, organizing by experiment and accounting for how IRT sensitivity varies across different contamination levels and model sizes.
+
+I need to clarify the distinction between exp-002 and exp-008: exp-002 computes exposure scores and evaluates their discriminative power using ground truth contamination labels from exp-001, while exp-008 focuses on how those signals persist across different model scales and contamination scenarios. So exp-002 should include AUC metrics for signal quality, whereas exp-008 examines signal robustness under varying conditions.
+
+Now I'm thinking through the quantitative thresholds for "best" tier performance across all experiments—the posterior CI constraint for γ, the AUC bounds for signals at 3B scale, calibration error limits, and improvement margins over baselines—to ensure my predictions stay internally consistent and grounded in these definitions.
+
+I'm also mapping out what tables and figures would support each experiment in the paper: per-signal AUC tables across scales, ablation comparisons, calibration metrics across benchmarks, γ estimates, and AUC heatmaps showing signal recovery patterns.
+
+Now I need to think through the dose-response curves more carefully, especially what the d025 results should show given the pattern I'm seeing in the 0.5B model data across MMLU, GSM8K, and ARC.
+
+Looking at the 1.5B results, the metrics are remarkably stable across different doses—there's barely any variation except for a slight uptick at d100, which is quite different from the downward trend I see at 0.5B.
+
+For 3B, the pattern shifts again: there's a consistent upward trend as dosage increases, with MMLU climbing from 63.40 to 64.17 and ARC rising from 82.76 to 83.96. Interpolating d025 gives me roughly 63.7 for MMLU and 83.3 for ARC.
+
+What's interesting is that at the larger model sizes (1.5B and 3B), the improvements are monotonic with dosage, whereas at 0.5B the pattern was consistently declining—suggesting the model size itself influences how it responds to this intervention.
+
+Now I'm realizing something crucial about the IRT model structure: when I fit per-benchmark, I'm actually estimating a single γ_k value for each benchmark across all models at all scales. So the MMLU γ_k comes from pooling responses across the entire set of ~30 models—including the 0.5B variants where contamination hurts performance, the 1.5B where there's a small gain, and the 3B where gains are also modest. The average effect across all these models is what determines that single parameter. γ_k_MMLU would reflect the net contamination effect across scales. Since 0.5B shows negative effects and 1.5B/3B show small positive effects, the average might be near zero or slightly positive.
+
+But this doesn't match the best tier prediction of γ CI excluding zero for 85%+ of conditions. Unless the model has scale-specific parameters or the per-item effects are detected differently.
+
+The 4PL+γ IRT model uses a single benchmark-level γ_k parameter that modifies item response probability based on exposure scores from RRF. When γ_k is positive, higher exposure increases the probability of a correct response, suggesting contamination helps; when negative, it hurts. For the 0.5B models where contamination appears harmful, the IRT framework would separate the ability effect from the contamination effect, so the lower performance would manifest as a lower estimated ability rather than purely through the γ parameter. The relative benefit interpretation makes sense—contaminated items are shielded from the overall performance degradation at 0.5B, so γ_k stays positive across all model scales. This means θ_i captures the general ability decline while the per-item contamination effect remains consistent, and the counterfactual calibration would properly account for both effects to recover the true uncontaminated score.
+
+Now I need to move forward with writing out the YAML configuration and laying out the mechanism explanations in the results section rather than continuing to spiral through the math. The core issue is that θ_i represents the model's true ability independent of contamination, estimated jointly with γ across both contaminated and clean items. When I set exposure to zero, I get the score from θ alone, which should reflect the model's genuine capability—but that's already degraded by the mixed SFT training, not the clean performance of 39.79. So there's a gap between what the IRT model estimates as "true ability" and what we observe in the uncontaminated baseline model.
+
+The real problem is that the IRT calibration can only account for per-item memorization effects through γ, not the broader training data composition effects. The d005 model's θ is fundamentally different from d000's because of the contaminated SFT mix, and that difference isn't something γ can correct for. This means the ground truth I should be calibrating against isn't the d000 score itself, but rather what the d005 model would score if it had never seen the test data at all—which is impossible to measure directly since the contamination is baked into its training.
+
+The calibration is really answering a specific counterfactual: what would this model score without per-item exposure to the test items? That's different from asking what it would score if trained on clean data entirely. For the smaller models where overall SFT quality is significantly degraded, these two questions diverge substantially, but for larger models they're closer to equivalent. The paper frames this as the per-item counterfactual, which is what the IRT approach actually targets.
+
+For computing MAE, I'm realizing the ground truth should be the d000 score—the answer to the training-level counterfactual—while the calibrated score answers the per-item question. At 1.5B and 3B where the effects are small and consistent, these align closely and MAE stays low. At 0.5B with significant SFT degradation, they diverge more, which could push MAE higher, though if most conditions have small errors the average might still fall within the expected 1.5-3.0pp range. I think I'm overthinking this—I should just write out the YAML with reasonable numbers and explain the nuances in the rationale rather than getting stuck on these edge cases.
+
+Actually, a cleaner approach: use the accuracy on held-out clean items as ground truth instead. Each benchmark has contaminated items in the SFT data and clean items that weren't, so the true clean accuracy directly measures performance on unseen material without confounding SFT quality. The calibrated score from IRT would remove the per-item boost, and comparing it to this clean-item accuracy gives a more principled MAE that should be low across dosages since both reflect the model's actual capability.
+
+Now I'm ready to write out the YAML with the experiment plan. I've identified nine experiments to document, each with careful attention to the numbers and internal consistency.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "137a8730-1f84-486f-ae76-86621a6c15cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yQWMW15uizNvqZtBLh",
+  "type": "assistant",
+  "uuid": "fd209404-c775-43fb-9bc3-3997ecdb6bc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHnimnZjCZYzUhFptbK6uu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3322,
+      "cache_read_input_tokens": 37408,
+      "output_tokens": 30735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3322,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 30735,
+          "cache_read_input_tokens": 37408,
+          "cache_creation_input_tokens": 3322,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3322
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-14T19:08:03.710Z_
+
+Now I have comprehensive data from all completed experiments. Let me construct the best-tier predictions.
+
+```yaml
+tier: best
+narrative_guidance: >
+  原始framing完全成立。三条Core Claims无需调整：
+  (1) ContamCal校准在MAE、coverage、ranking三维度显著优于全部7个基线，counterfactual exposure=0恢复真实分数，SBC诊断确认模型规格正确；
+  (2) 'scale-dependent signal effectiveness'用多尺度AUC热力图完整呈现——S2(Min-K++)和S4(Self-Critique)在≥1.5B恢复AUC≥0.70，
+  Min-K++反向效应(Cohen's d=-1.98 at 0.5B d100)作为最强citation-worthy发现，论文区分item-level AUC与cross-model Cohen's d两种检测范式；
+  (3) Fisher Info identifiability分析的structural(AUC≥0.55)/practical(AUC≥0.70)阈值区分与144-condition simulation和real-data验证一致。
+  per-benchmark γ_k异质性(CV>0.3)成为额外亮点——污染敏感性是benchmark属性而非模型属性。
+  RRF在≥1.5B多信号可用尺度展示真正的聚合价值(AUC提升+1.5-2pp vs best single signal)，在0.5B优雅退化为S1-only模式。
+  N_models通过multi-seed pooling达到≥30，Fisher Info预测的identifiability边界与实证吻合。
+  论文标题保持calibration框架定位。0.5B的SFT degradation pattern(contamination hurts small models)作为有价值的empirical observation纳入分析。
+
+imagined_experiments:
+  - name: "stage1_signal_pipeline"
+    plan_id: "exp-002"
+    description: >
+      在exp-001产出的全部contaminated+clean模型(0.5B/1.5B/3B × d000/d005/d025/d100 × 2 seeds)上
+      计算4个detection signals: S1(embedding semantic retrieval), S2(Min-K%++),
+      S3(ConStat performance gap), S4(Self-Critique entropy collapse)。
+      0.5B数据已完成(exp_002_signals_05B)，此处展开1.5B和3B的预测。
+    expected_results:
+      # --- 0.5B (已观测，锚定值) ---
+      S1_auc_05B_d005_mmlu: 0.953
+      S1_auc_05B_d005_gsm8k: 0.988
+      S1_auc_05B_d005_arc: 0.995
+      S2_auc_05B_d005_mean: 0.465
+      S4_auc_05B_d005_mean: 0.481
+      # --- 1.5B (预测) ---
+      S1_auc_15B_d005_mmlu: 0.965
+      S1_auc_15B_d005_gsm8k: 0.991
+      S1_auc_15B_d005_arc: 0.996
+      S2_auc_15B_d005_mmlu: 0.72
+      S2_auc_15B_d005_gsm8k: 0.68
+      S2_auc_15B_d005_arc: 0.74
+      S3_auc_15B_d005_mmlu: 0.67
+      S3_auc_15B_d005_arc: 0.71
+      S4_auc_15B_d005_mmlu: 0.70
+      S4_auc_15B_d005_gsm8k: 0.66
+      S4_auc_15B_d005_arc: 0.73
+      # --- 3B (预测) ---
+      S1_auc_3B_d005_mmlu: 0.972
+      S1_auc_3B_d005_gsm8k: 0.993
+      S1_auc_3B_d005_arc: 0.997
+      S2_auc_3B_d005_mmlu: 0.80
+      S2_auc_3B_d005_gsm8k: 0.76
+      S2_auc_3B_d005_arc: 0.83
+      S3_auc_3B_d005_mmlu: 0.74
+      S3_auc_3B_d005_arc: 0.78
+      S4_auc_3B_d005_mmlu: 0.77
+      S4_auc_3B_d005_gsm8k: 0.73
+      S4_auc_3B_d005_arc: 0.80
+      # --- Cross-model Cohen's d at d100 ---
+      S2_d100_cohens_d_15B_mmlu: -1.52
+      S2_d100_cohens_d_15B_arc: -1.38
+      S2_d100_cohens_d_3B_mmlu: -2.31
+      S2_d100_cohens_d_3B_arc: -2.67
+      signal_computation_time_per_model_hours: 1.5
+      total_gpu_hours: 18
+    result_rationale: >
+      S2(Min-K++)和S4(Self-Critique)的scale-dependent recovery机制：
+      (a) Min-K++依赖token-level perplexity异常检测memorization。0.5B模型容量不足，
+      即使见过contaminated paraphrases也难以形成持久的token-level记忆痕迹(AUC≈0.47)。
+      1.5B容量足以保留item-specific记忆，contaminated items呈现显著更低的token surprise(AUC→0.72)。
+      3B容量充裕，memorization痕迹更清晰(AUC→0.80)。
+      (b) Self-Critique依赖模型自我评估能力(entropy collapse on seen items)。0.5B的
+      self-evaluation不可靠(AUC≈0.48)。1.5B emergence of metacognitive capability使得
+      模型对seen items表现出过度自信(更低entropy)，AUC→0.70。3B self-evaluation更稳定(AUC→0.77)。
+      (c) S1(embedding retrieval)基于外部sentence-transformer匹配，不依赖目标模型能力，
+      因此AUC在所有scale一致≥0.95。
+      (d) Min-K++ d100 reversal持续且scale-dependent：d100将ALL items标记为contaminated，
+      模型整体token-level distribution向training data shift，导致clean items的perplexity
+      反而更接近contaminated distribution→Min-K++反向判断。3B模型更充分地拟合d100 training data，
+      reversal更强(Cohen's d=-2.67)。
+      (e) S3(ConStat)在1.5B/3B恢复，因为larger models对original vs paraphrased items的
+      performance gap更稳定、更可检测。0.5B的noise floor太高。
+    tables:
+      - name: "Table: Signal AUC × Scale × Dosage Heatmap (d005 within-model)"
+        description: >
+          4 signals × 3 scales × 3 benchmarks矩阵。Cells标注AUC值和95% bootstrap CI。
+          Color coding: green(≥0.70), yellow(0.55-0.70), red(<0.55)。
+          展示S2/S4从0.5B red到3B green的scale-dependent transition。
+      - name: "Table: Cross-model Cohen's d at d100 (d100 vs d000)"
+        description: >
+          3 signals × 3 scales × 3 benchmarks。标注Cohen's d值和方向箭头。
+          突出Min-K++ reversal: 0.5B d=-1.98, 3B d=-2.67。
+    figures_description:
+      - "Signal exposure score distribution violin plots: 对每个signal/scale/dosage，
+        展示contaminated vs clean items的exposure score分布。1.5B/3B S2/S4呈现清晰的
+        双峰分离(vs 0.5B完全重叠)。"
+    analysis: >
+      S2/S4在≥1.5B恢复effectiveness验证了'scale-dependent signal reliability'叙事。
+      这不仅是empirical observation——它反映了小模型(0.5B)缺乏足够capacity来形成
+      可检测的memorization痕迹或self-evaluation能力。ARC在所有signals表现最好(items最少、
+      contamination signal-to-noise ratio最高)。GSM8K的S2/S4 AUC略低于MMLU/ARC，
+      与open-ended format降低memorization检测力一致。S1保持scale-invariant高AUC(≥0.95)
+      确认embedding retrieval作为robust anchor signal。Min-K++ reversal随scale增强
+      (Cohen's d从-1.52到-2.67)是论文最强citation-worthy发现——它证明了naively relying
+      on individual signals can ACTIVELY mislead(不仅仅是fail)。
+
+  - name: "rrf_aggregation_ablation"
+    plan_id: "exp-003"
+    description: >
+      RRF融合4个signals为composite per-item exposure score。
+      消融实验: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4),
+      (c) calibration-based weighted RRF, (d) FP injection robustness,
+      (e) degraded 2-signal mode (ConStat+Self-Critique for closed-weight).
+    expected_results:
+      # --- 0.5B (S1-dominated regime) ---
+      rrf_composite_auc_05B_d005_mmlu: 0.955
+      rrf_composite_auc_05B_d005_arc: 0.995
+      rrf_vs_best_single_delta_05B: 0.002
+      # --- 1.5B (multi-signal regime) ---
+      rrf_composite_auc_15B_d005_mmlu: 0.975
+      rrf_composite_auc_15B_d005_arc: 0.998
+      rrf_vs_best_single_delta_15B: 0.015
+      # --- 3B (full multi-signal regime) ---
+      rrf_composite_auc_3B_d005_mmlu: 0.985
+      rrf_composite_auc_3B_d005_arc: 0.999
+      rrf_vs_best_single_delta_3B: 0.020
+      # --- Ablation results ---
+      rrf_vs_equal_weight_delta_auc_3B: 0.008
+      weighted_rrf_vs_rrf_delta_3B: 0.003
+      fp_injection_10pct_auc_retention: 0.96
+      fp_injection_20pct_auc_retention: 0.91
+      degraded_2signal_auc_3B_mmlu: 0.79
+      degraded_2signal_auc_3B_arc: 0.82
+      s1_only_auc_3B_mmlu: 0.972
+      s2_only_auc_3B_mmlu: 0.80
+      s3_only_auc_3B_mmlu: 0.74
+      s4_only_auc_3B_mmlu: 0.77
+    result_rationale: >
+      (a) 0.5B regime: S2/S3/S4均≈random(AUC<0.55)，RRF退化为S1-only模式。
+      RRF composite AUC ≈ S1 AUC(+0.002)，因为random signals的RRF ranks
+      不系统性偏移有效S1的排序。这是graceful degradation——RRF不会因无效信号
+      而比最佳单信号更差(rank fusion的鲁棒性)。
+      (b) 1.5B regime: S2/S4恢复(AUC 0.68-0.74)，RRF聚合3-4个above-chance signals。
+      Rank fusion的互补性在此显现：S1基于training-data proximity，S2基于memorization trace，
+      S4基于metacognition——不同failure modes提供正交information。AUC提升1.5pp over S1-only。
+      (c) 3B regime: 4个signals全部AUC>0.74，RRF提升2.0pp over S1-only。这是RRF展示
+      genuine aggregation value的最佳展示区间。
+      (d) RRF vs equal-weight: RRF对高排名items给予更大权重(reciprocal rank)，
+      优于uniform averaging 0.8pp——因为top-ranked items的agreement更informative。
+      (e) Calibration-based weighted RRF仅+0.3pp over vanilla RRF——marginal improvement
+      不值得引入calibration dependency(meta-circularity argument仍成立)。
+      (f) FP injection: RRF容忍10% FP rate(AUC保持96%)，20%时下降至91%。
+      Rank fusion对sparse FP鲁棒因为FP不会系统性地在多个signals中出现。
+      (g) 2-signal degraded mode(S3+S4, no logits/embeddings): AUC 0.79-0.82 at 3B，
+      sufficient for closed-weight calibration但CI会更宽。
+    tables:
+      - name: "Table: RRF Ablation Comparison (3B d005)"
+        description: >
+          Rows: RRF-4sig, RRF-3sig(no S3), S1-only, S2-only, S3-only, S4-only,
+          equal-weight, weighted-RRF, 2-signal(S3+S4)。
+          Columns: MMLU AUC, ARC AUC, GSM8K AUC, Mean AUC, Δ vs S1-only。
+      - name: "Table: FP Robustness (RRF AUC at varying FP injection rates)"
+        description: >
+          Rows: FP rate 0%, 5%, 10%, 15%, 20%。
+          Columns: MMLU, ARC, GSM8K composite AUC。
+    figures_description:
+      - "RRF value-add bar chart: 3个scales的(RRF − best_single_signal) delta。
+        0.5B bar≈0，1.5B bar=1.5pp，3B bar=2.0pp——清晰展示multi-signal aggregation
+        value随scale emergence。"
+    analysis: >
+      RRF的真正价值在≥1.5B multi-signal regime中显现——当constituent signals各自捕获
+      不同contamination facets时，rank fusion产生genuine information gain。在0.5B
+      single-signal regime，RRF优雅退化且不引入harm(不比S1-only差)。
+      Meta-circularity argument得到empirical支持：calibration-based weighting仅+0.3pp，
+      远不值得引入对training data quality的dependency。Training-free RRF保持设计选择定位。
+      2-signal mode在3B AUC≥0.79确认closed-weight applicability。
+
+  - name: "irt_calibration_and_baselines"
+    plan_id: "exp-006"
+    description: >
+      在exp-001/003产出的controlled models上拟合4PL+γ IRT(Stan NUTS)。
+      PRIMARY: per-benchmark fitting with per-benchmark γ_k。
+      ABLATION: joint fitting with global γ, hierarchical γ_k ~ Normal(μ_γ, σ_γ)。
+      N_models ≥ 30 (3 scales × 4 dosages × 2-3 seeds)。
+      Compare against 7 baselines。Report 6 evaluation metrics。
+    expected_results:
+      # --- MCMC diagnostics ---
+      max_rhat: 1.007
+      min_ess_gamma: 520
+      min_ess_theta: 380
+      divergent_transitions: 0
+      fit_time_mmlu_1000items_min: 35
+      fit_time_arc_1172items_min: 28
+      fit_time_gsm8k_1319items_min: 32
+      n_models_pooled: 32
+      # --- Per-benchmark γ_k estimates (posterior mean ± sd) ---
+      gamma_k_mmlu_mean: 0.28
+      gamma_k_mmlu_sd: 0.06
+      gamma_k_arc_mean: 0.38
+      gamma_k_arc_sd: 0.07
+      gamma_k_gsm8k_mean: 0.06
+      gamma_k_gsm8k_sd: 0.04
+      gamma_k_humaneval_mean: 0.12
+      gamma_k_humaneval_sd: 0.08
+      gamma_k_cv_across_benchmarks: 0.52
+      gamma_ci_excludes_zero_mmlu: true
+      gamma_ci_excludes_zero_arc: true
+      gamma_ci_excludes_zero_gsm8k: false
+      gamma_ci_excludes_zero_humaneval: true
+      gamma_ci_excludes_zero_rate: 0.88
+      # --- Primary calibration metrics (ContamCal, mean ± std across 3 seeds) ---
+      mae_contam_cal_pp_mean: 2.1
+      mae_contam_cal_pp_std: 0.4
+      ci_coverage_95pct: 92
+      ci_coverage_80pct: 82
+      ci_coverage_50pct: 53
+      ci_sharpness_avg_width_pp: 5.8
+      kendall_tau: 0.91
+      dose_response_monotonicity_violations: 0
+      sbc_rank_uniformity_pvalue: 0.23
+      # --- Per-benchmark MAE (pp) ---
+      mae_mmlu_pp: 1.8
+      mae_arc_pp: 2.3
+      mae_gsm8k_pp: 1.1
+      mae_humaneval_pp: 3.8
+      # --- Baseline MAE (pp, averaged across benchmarks) ---
+      mae_raw_no_adjustment_pp: 9.2
+      mae_remove_rescore_pp: 6.8
+      mae_single_signal_2pl_gamma_pp: 3.9
+      mae_vanilla_4pl_no_gamma_pp: 7.4
+      mae_linear_regression_pp: 4.3
+      mae_emperor_mitigation_pp: 8.1
+      mae_dcr_pp: 4.6
+      mae_improvement_vs_dcr_pp: 2.5
+      mae_improvement_vs_best_baseline_pp: 1.8
+      # --- Ablation: global γ vs per-benchmark γ_k ---
+      mae_global_gamma_pp: 3.1
+      mae_hierarchical_gamma_pp: 2.3
+      hierarchical_mu_gamma: 0.22
+      hierarchical_sigma_gamma: 0.14
+      # --- Ablation: oracle γ (known true exposure) ---
+      mae_oracle_gamma_pp: 1.4
+      oracle_vs_estimated_gap_pp: 0.7
+      # --- ME model vs simple model ---
+      ci_coverage_95_me_model: 93
+      ci_coverage_95_simple_model: 88
+      ci_sharpness_me_vs_simple_ratio: 1.12
+    result_rationale: >
+      (a) NUTS收敛(R̂<1.01, ESS>400): exp-004 simulation sweep已在N=50/AUC=0.80验证
+      MCMC quality(0 divergence, max R̂=1.010, min ESS=439)。Real data N=32(multi-seed pooling)
+      在simulation验证范围内。MMLU subsampled至1000 items降低计算负担同时保留statistical power。
+      (b) Per-benchmark γ_k heterogeneity(CV=0.52): ARC γ_k=0.38最大——science reasoning MC items
+      格式固定且答案模式可记忆，contamination直接提升正确选项probability。MMLU γ_k=0.28中等——
+      14K items diversity dilutes per-item memorization benefit。GSM8K γ_k≈0.06——
+      open-ended generation format天然抵抗contamination(即使见过问题，仍需自主推理得出答案)，
+      正确扮演negative control角色。HumanEval γ_k=0.12小——code generation部分受益于pattern recall
+      但functional correctness仍需正确逻辑。
+      (c) γ CI排除0的rate=0.88(≈7/8 benchmark-conditions排除0)：MMLU/ARC/HumanEval排除0，
+      GSM8K不排除(γ≈0.06±0.04, CI包含0)。这恰好验证了negative control和contamination
+      susceptibility is benchmark property的论点。
+      (d) MAE=2.1pp: IRT通过item-level response patterns检测contamination效应——即使
+      average benchmark accuracy change仅1-2pp(1.5B/3B MMLU)，contaminated items呈现
+      concentrated 15-20pp per-item accuracy boost(被95% uncontaminated items稀释)。
+      IRT的γ_k × e_ij项精确捕获这种item-level effect。Counterfactual(e=0)移除此effect
+      后recovery误差主要来自：(i)θ-γ posterior correlation残余(~0.5pp)，
+      (ii)item subsample noise for MMLU(~0.3pp)，(iii)per-item exposure score noise(~0.5pp)。
+      (e) CI coverage 92% vs nominal 95%: 3pp gap的主要来源是local independence violation
+      (single model responds to all items→item responses correlated through shared parameters)。
+      ME model通过propagating exposure noise部分补偿(88%→93%)。SBC诊断p=0.23确认
+      model specification本身正确(coverage gap来自local independence, not model misspecification)。
+      (f) Kendall τ=0.91: 校准后model ranking高度保留。少量ranking变化来自high-dosage
+      models的calibration adjustment。
+      (g) Dose-response monotonicity: γ effect单调递增(d005&lt;d025&lt;d100)，0 violations。
+      0.5B的negative overall accuracy与positive γ共存不违反单调性——γ衡量的是per-item
+      contamination benefit(正)，而θ降低反映overall SFT degradation(负)。
+      (h) DCR MAE=4.6pp vs ContamCal 2.1pp: DCR缺乏per-item resolution和Bayesian UQ，
+      只能做benchmark-level fuzzy adjustment。Linear regression MAE=4.3pp因为linear assumption
+      不能捕获IRT的nonlinear item-response relationship。
+      (i) Oracle γ gap=0.7pp: exposure score noise贡献了~0.7pp MAE overhead，
+      说明signal quality是calibration precision的binding constraint。
+    tables:
+      - name: "Table: Main Results — Calibration Metrics × 8 Methods"
+        description: >
+          Rows: Raw, Remove-rescore, Single-signal 2PL+γ, Vanilla 4PL, Linear regression,
+          Emperor mitigation, DCR, ContamCal(ours)。
+          Columns: MAE(pp)±bootstrap CI, 95% Coverage, 80% Coverage, CI Width(pp),
+          Kendall τ, Monotonicity violations。Bolded: ContamCal wins on all metrics。
+          Bottom row: Δ vs DCR with significance marker。
+      - name: "Table: Per-benchmark γ_k Estimates"
+        description: >
+          Rows: MMLU, ARC-Challenge, GSM8K, HumanEval。
+          Columns: γ_k posterior mean, 95% CI, CI excludes 0?, effect size interpretation。
+          Highlight: CV(γ_k)=0.52，支撑'contamination susceptibility is benchmark property'。
+      - name: "Table: Calibration Metrics Decomposed by Benchmark"
+        description: >
+          Rows: 4 benchmarks。Columns: MAE, Coverage, Sharpness, per-benchmark notes。
+          GSM8K row highlighted as negative control (γ≈0, MAE lowest)。
+      - name: "Table: Model Ablation — Global γ vs Per-benchmark γ_k vs Hierarchical"
+        description: >
+          3 rows × same metric columns。Per-benchmark γ_k primary; global γ loses 1.0pp MAE;
+          hierarchical γ_k intermediate (formal heterogeneity test)。
+    figures_description:
+      - "Figure: Calibrated-vs-True accuracy scatter with CIs (main result figure)。
+        Each point = one model-benchmark condition, x=ground-truth clean accuracy,
+        y=ContamCal calibrated accuracy, whiskers=95% CI。
+        Diagonal line=perfect calibration。Color by benchmark。
+        Inset: residual histogram showing approximate normality with mean≈0, sd≈2.1pp。"
+      - "Figure: Dose-response curves (4 panels, one per benchmark)。
+        x=dosage(d000/d005/d025/d100), y=accuracy。
+        Lines: Raw observed(red), ContamCal calibrated(blue), Ground truth clean(green dashed)。
+        Shaded: 95% CI bands。Blue tracks green closely; red diverges with dosage。"
+      - "Figure: γ_k forest plot across benchmarks。
+        Horizontal bars showing posterior mean and 95% CI for each benchmark's γ_k。
+        Vertical dashed line at 0。GSM8K CI crosses 0; others clearly positive。"
+    analysis: >
+      exp-006是论文核心实验。MAE=2.1pp(±0.4)显著优于DCR的4.6pp(Δ=2.5pp, p<0.01 bootstrap test)。
+      Coverage 92%接近但未达95% nominal——SBC p=0.23确认这不是model misspecification，
+      而是local independence violation的已知IRT limitation(single model→correlated item responses)。
+      ME model部分弥补(88%→93%)但complete correction需要更复杂的correlated-error model
+      (超出本文scope，acknowledged in Limitations)。Per-benchmark γ_k的CV=0.52是
+      论文的structural insight——contamination susceptibility取决于benchmark format和content characteristics，
+      不是model property。Oracle γ分析(gap=0.7pp)量化了detection signal quality的calibration ceiling——
+      future work的better signals可directly translate to tighter calibration。
+
+  - name: "scale_bridging_7b"
+    plan_id: "exp-007"
+    description: >
+      Qwen2.5-7B controlled SFT injection at 4 dosage levels(d000/d005/d025/d100)。
+      验证calibration accuracy和signal effectiveness scaling至7B。
+      LoRA SFT on 1×H100, ~6h per run。
+    expected_results:
+      # --- SFT training ---
+      sft_time_per_run_hours: 6.5
+      total_gpu_hours: 26
+      sft_d000_final_loss: 0.92
+      sft_d100_final_loss: 0.98
+      # --- Eval (aligned format) ---
+      eval_d000_mmlu: 0.735
+      eval_d000_gsm8k: 0.798
+      eval_d000_arc: 0.874
+      eval_d000_humaneval: 0.268
+      eval_d005_mmlu: 0.742
+      eval_d005_gsm8k: 0.801
+      eval_d005_arc: 0.882
+      eval_d025_mmlu: 0.756
+      eval_d025_arc: 0.893
+      eval_d100_mmlu: 0.779
+      eval_d100_gsm8k: 0.806
+      eval_d100_arc: 0.908
+      eval_d100_humaneval: 0.280
+      # --- Contamination inflation (d100 vs d000) ---
+      mmlu_inflation_pp: 4.4
+      arc_inflation_pp: 3.4
+      gsm8k_inflation_pp: 0.8
+      # --- Signal effectiveness ---
+      S1_auc_7B_d005_mean: 0.978
+      S2_auc_7B_d005_mean: 0.85
+      S4_auc_7B_d005_mean: 0.82
+      S2_d100_cohens_d_7B: -2.85
+      # --- Calibration (4PL+γ with 7B added to pool) ---
+      mae_with_7B_pp: 2.0
+      ci_coverage_95_with_7B: 93
+      gamma_k_mmlu_with_7B: 0.31
+      gamma_k_arc_with_7B: 0.40
+    result_rationale: >
+      (a) 7B contamination inflation更大(MMLU +4.4pp, ARC +3.4pp vs 1.5B/3B的<2pp)：
+      7B capacity足以在LoRA SFT中同时维持general capability和memorize contaminated items。
+      0.5B/1.5B/3B的smaller capacity forced a tradeoff(0.5B: memorization hurts general,
+      1.5B/3B: memorization barely helps)。7B跨过了capacity threshold使memorization
+      productively translate to benchmark inflation。这验证了contamination是real-world concern
+      at practical model scales。
+      (b) GSM8K inflation仅0.8pp：7B对GSM8K的CoT reasoning在SFT后保持稳定(vs 3B catastrophic
+      forgetting)，但open-ended format仍然抵抗contamination inflation。
+      (c) S2/S4 AUC在7B进一步提升(S2: 0.85, S4: 0.82)：更大模型的memorization痕迹更深，
+      token-level signals更清晰。Min-K++ reversal也更强(Cohen's d=-2.85)——7B更充分拟合
+      d100 training data distribution。
+      (d) Adding 7B to IRT pool(N_models→38-40)改善calibration(MAE 2.1→2.0pp, coverage 92→93%)：
+      更多examinees + wider ability range改善θ estimation和γ identifiability。
+      γ_k_mmlu增加(0.28→0.31)因为7B贡献了更清晰的contamination signal。
+    tables:
+      - name: "Table: 7B Dose-Response Accuracy"
+        description: >
+          Rows: d000, d005, d025, d100。Columns: MMLU, ARC, GSM8K, HumanEval。
+          Compare inflation pattern with 0.5B/1.5B/3B。
+    figures_description:
+      - "Multi-scale dose-response overlay: 4 scales(0.5B-7B)在MMLU上的dose-response curves
+        叠加显示。0.5B下降趋势、1.5B/3B平坦、7B明显上升——capacity threshold for
+        productive memorization。"
+    analysis: >
+      7B数据是scale-bridging的关键——它证明了contamination inflation随model capacity增长，
+      在practical model sizes(7B)处达到可测量且需要校准的水平(MMLU +4.4pp)。
+      同时S2/S4 AUC进一步提升验证了scale-dependent signal narrative的completeness。
+      7B加入IRT pool后calibration quality marginal improvement表明N=32已接近saturation。
+
+  - name: "signal_survival_analysis"
+    plan_id: "exp-008"
+    description: >
+      系统评估detection signal reliability across scales和dosages。
+      0.5B数据已完成(exp_008_signal_survival_v4)。
+      扩展到1.5B/3B + Instruct/RL proxy models。
+      输出: signal × scale × dosage AUC heatmap(论文Figure 2)。
+    expected_results:
+      # --- 0.5B (已观测，锚定) ---
+      S1_d005_auc_05B_mean: 0.979
+      S2_d005_auc_05B_mean: 0.465
+      S4_d005_auc_05B_mean: 0.481
+      S1_d100_cross_cohens_d_05B: 3.60
+      S2_d100_cross_cohens_d_05B: -1.98
+      S4_d100_cross_cohens_d_05B: 0.45
+      effective_signals_at_05B: 1
+      # --- 1.5B (预测) ---
+      S1_d005_auc_15B_mean: 0.970
+      S2_d005_auc_15B_mean: 0.72
+      S4_d005_auc_15B_mean: 0.70
+      S1_d100_cross_cohens_d_15B: 3.85
+      S2_d100_cross_cohens_d_15B: -1.52
+      S4_d100_cross_cohens_d_15B: 0.88
+      effective_signals_at_15B: 3
+      # --- 3B (预测) ---
+      S1_d005_auc_3B_mean: 0.980
+      S2_d005_auc_3B_mean: 0.80
+      S4_d005_auc_3B_mean: 0.77
+      S1_d100_cross_cohens_d_3B: 4.20
+      S2_d100_cross_cohens_d_3B: -2.31
+      S4_d100_cross_cohens_d_3B: 1.15
+      effective_signals_at_3B: 3
+      # --- Instruct/RL proxy ---
+      S4_instruct_vs_base_sensitivity: 0.68
+      S2_instruct_degradation_pct: 15
+      S1_instruct_stable: true
+      # --- Scale transition threshold ---
+      s2_auc_070_threshold_scale: "~1.2B (interpolated)"
+      s4_auc_070_threshold_scale: "~1.4B (interpolated)"
+    result_rationale: >
+      (a) Signal survival pattern由model capacity驱动：0.5B缺乏token-level memorization
+      depth(S2 fails)和metacognitive self-evaluation(S4 fails)。1.5B是transition point——
+      S2/S4 emergent capabilities使AUC跨过0.70 practical threshold。3B consolidates。
+      S1(embedding retrieval)依赖external encoder，始终stable。
+      (b) Min-K++ reversal机制：d100将所有items加入training data，模型的token-level distribution
+      整体shift。Min-K++基于"low perplexity tokens"检测memorization，但当EVERYTHING is memorized，
+      baseline perplexity distribution itself shifts→clean items的relative perplexity
+      paradoxically更接近contaminated profile→reversal。3B模型更充分学习d100 distribution→
+      reversal更强(d=-2.31 vs 0.5B d=-1.98)。
+      (c) S4(Self-Critique)d100 cross-model Cohen's d从0.5B=0.45增至3B=1.15：
+      larger models的self-evaluation对contaminated items更consistently confident，
+      cross-model effect size增长。
+      (d) Instruct/RL proxy: Instruct models经过RLHF/DPO，token-level distributions
+      进一步shift。S2(Min-K++)在Instruct models上AUC降低~15%(perplexity patterns被RLHF扰动)，
+      但S4(Self-Critique)在Instruct models上因为enhanced instruction-following能力
+      实际上更有效(sensitivity=0.68)。S1保持stable因为embedding retrieval不依赖target model。
+      (e) Scale transition thresholds通过linear interpolation估计：S2在~1.2B达到AUC=0.70，
+      S4在~1.4B。这与LLM capability emergence literature一致。
+    tables:
+      - name: "Table: Full Signal × Scale × Dosage AUC Matrix"
+        description: >
+          Grand matrix: 3 signals(S1/S2/S4) × 3 scales(0.5B/1.5B/3B) × 3 dosages(d005/d025/d100)
+          × 3 benchmarks(MMLU/ARC/GSM8K)。d005 cells = within-model AUC;
+          d100 cells = cross-model Cohen's d。Color: green/yellow/red threshold coding。
+      - name: "Table: Instruct/RL Proxy Signal Comparison"
+        description: >
+          Rows: Base, Instruct, RL-proxy。Columns: S1/S2/S4 sensitivity metrics。
+    figures_description:
+      - "Figure 2 (论文核心图): Signal × Scale AUC heatmap。
+        3×3 grid (signal rows × scale columns)。Cell color = AUC intensity。
+        Clear green diagonal from bottom-left(S1/0.5B: green) to top-right(S4/3B: green)。
+        S2/S4 at 0.5B: red cells。Visual证据for scale-dependent emergence。"
+      - "Min-K++ reversal visualization: Paired violin plots showing S2 score distributions
+        for d000 vs d100 at each scale。Distribution overlap at d000; clear INVERSION at d100
+        (contaminated items scored LOWER than clean)。"
+    analysis: >
+      exp-008是Core Contribution #2的实证基础。3个key findings：
+      (1) Scale-dependent emergence: S2/S4从0.5B random(AUC≈0.47)到3B effective(AUC≈0.80/0.77)，
+      transition at ~1.2-1.4B。这不是arbitrary——对应LLM capability emergence in memorization
+      and metacognition。
+      (2) Min-K++ reversal(d=-1.98 at 0.5B, d=-2.31 at 3B): 最强citation-worthy发现。
+      Warning: naive use of Min-K++ at high contamination ACTIVELY MISLEADS。机制analysis
+      (全量memorization→perplexity distribution shift→reversal)提供explanatory depth。
+      (3) Item-level vs cross-model detection范式区分：d005用within-model AUC(item discrimination)，
+      d100用cross-model Cohen's d(model discrimination)。d100 AUC=0.5是labeling artifact
+      (all items contaminated→no discriminative labels)，不是signal failure。
+
+  - name: "rl_observational_case_study"
+    plan_id: "exp-009"
+    description: >
+      对existing RL-trained models (Qwen2.5-Instruct 0.5B/1.5B/3B/7B,
+      DeepSeek-R1-Distill-1.5B/7B) 应用ContamCal pipeline。
+      Observational study——directional external validity, not full quantitative validation。
+      Near-zero γ check on known-clean benchmark作为specificity test。
+    expected_results:
+      # --- Signal quality on RL models ---
+      S1_auc_instruct_3B: 0.94
+      S2_auc_instruct_3B: 0.62
+      S4_auc_instruct_3B: 0.71
+      S1_auc_deepseek_r1_7B: 0.91
+      # --- IRT estimates (wide CIs expected) ---
+      gamma_mmlu_instruct_models: 0.18
+      gamma_mmlu_instruct_ci_width: 0.22
+      gamma_arc_instruct_models: 0.25
+      gamma_arc_instruct_ci_width: 0.19
+      gamma_mmlu_deepseek_r1: 0.14
+      gamma_mmlu_deepseek_ci_width: 0.28
+      # --- Specificity test (known-clean benchmark) ---
+      gamma_clean_benchmark_mean: 0.02
+      gamma_clean_benchmark_ci_includes_zero: true
+      specificity_pass: true
+      # --- Expected regret analysis ---
+      top5_selection_changes_uncal_vs_cal: 2
+      top5_selection_changes_cal_vs_remove_rescore: 1
+      regret_reduction_pct: 35
+      # --- CI comparison ---
+      ci_width_rl_vs_sft_ratio: 1.8
+    result_rationale: >
+      (a) Signal quality on RL models degraded但non-trivially：RLHF/DPO改变token-level
+      distributions使S2(Min-K++)AUC降至0.62(from SFT baseline ~0.80 at 3B)——RL optimization
+      partially erases memorization traces。S4(Self-Critique)更robust(AUC=0.71)因为
+      RLHF actually enhances self-evaluation capability。S1(embedding)保持高AUC(0.94)
+      因为independent of target model。
+      (b) γ estimates with wide CIs(width 0.19-0.28 vs SFT的~0.06-0.08)：
+      RL models的exposure scores更noisy(S2 degraded)→ME model propagates这些noise into
+      wider posteriors。这是honest uncertainty——calibration精度受限于input signal quality，
+      系统正确报告了这种limitation。
+      (c) Instruct models γ_mmlu=0.18(moderate)：RL post-training未fully消除SFT-phase
+      contamination。Qwen2.5-Instruct很可能在SFT phase包含了benchmark-adjacent data。
+      γ比controlled SFT experiments低(0.28)因为RL optimization partially corrects
+      memorized shortcuts。
+      (d) DeepSeek-R1-Distill γ=0.14 with wider CI：reasoning-distilled model的contamination
+      profile不同于standard RLHF。更宽CI反映更不确定的exposure estimation。
+      (e) Specificity pass(γ_clean≈0.02, CI includes 0)：关键validation——ContamCal不会
+      对genuinely clean benchmarks产生false positive校准adjustment。
+      (f) Expected regret: top-5 model selection中2 changes表明calibration有practical impact。
+      Regret reduction 35%源于高contamination model被correctly downranked。
+    tables:
+      - name: "Table: RL Model Calibration Results"
+        description: >
+          Rows: 6 RL models。Columns: Raw score, Calibrated score, 95% CI, γ estimate,
+          Signal AUC(S1/S2/S4), CI width ratio vs SFT。
+      - name: "Table: Expected Regret Analysis"
+        description: >
+          Top-5 rankings under: Raw, Remove-rescore, ContamCal。
+          Highlight position changes and regret scores。
+    figures_description:
+      - "RL model CI comparison: Bar chart showing calibrated scores with 95% CI whiskers
+        for RL models alongside SFT controlled models。RL model CIs visibly wider——
+        honest uncertainty propagation。"
+    analysis: >
+      Observational case study提供directional external validity。Key insights:
+      (1) RL post-training partially但未完全消除SFT-phase contamination(γ>0 for RL models)。
+      (2) ContamCal honestly widens CIs when signal quality degrades(CI width ratio 1.8×)——
+      这是feature not bug，正确反映epistemic uncertainty。
+      (3) Specificity test通过确认framework不会over-calibrate clean benchmarks。
+      (4) 2 top-5 ranking changes demonstrate practical impact for model selection decisions。
+      Framed as "directional"——no ground truth for RL models, acknowledged in Limitations。
+
+  - name: "observational_72b"
+    plan_id: "exp-012"
+    description: >
+      Qwen2.5-72B inference-only observational分析。
+      No SFT injection(compute prohibitive)——纯推理+signal computation+IRT calibration。
+      Extends ecological validity to frontier model scale。
+    expected_results:
+      # --- Inference benchmarks ---
+      raw_mmlu_72B: 0.847
+      raw_gsm8k_72B: 0.912
+      raw_arc_72B: 0.935
+      raw_humaneval_72B: 0.610
+      # --- Signal results ---
+      S1_exposure_summary_high_pct: 0.12
+      S2_auc_proxy_72B: 0.88
+      S4_auc_proxy_72B: 0.85
+      # --- IRT calibration ---
+      calibrated_mmlu_72B: 0.831
+      calibrated_mmlu_ci_lower: 0.805
+      calibrated_mmlu_ci_upper: 0.858
+      calibrated_arc_72B: 0.928
+      calibrated_gsm8k_72B: 0.908
+      gamma_adjustment_mmlu_pp: -1.6
+      gamma_adjustment_arc_pp: -0.7
+      gamma_adjustment_gsm8k_pp: -0.4
+      inference_time_hours: 8
+    result_rationale: >
+      (a) 72B raw scores接近ceiling(MMLU 84.7%, ARC 93.5%)。Contamination adjustment
+      相对modest(MMLU -1.6pp, ARC -0.7pp)——frontier models的high performance
+      partly comes from genuine capability, with moderate contamination inflation。
+      (b) Signal quality at 72B最强：S2 AUC proxy=0.88, S4=0.85。Largest models
+      have deepest memorization traces and strongest self-evaluation。
+      (c) CalibrationCI width moderate(MMLU: ±2.7pp)因为observational setting
+      lacks controlled ground truth——IRT model borrows strength from SFT-controlled
+      models但72B θ is extrapolated beyond training data range。
+      (d) GSM8K adjustment minimal(-0.4pp)——consistent with γ_gsm8k≈0.06 from
+      controlled experiments and 72B's genuine strong reasoning ability。
+    tables:
+      - name: "Table: 72B Observational Calibration"
+        description: >
+          Single model row: Raw vs Calibrated for 4 benchmarks, with 95% CI。
+          Context row: adjustment magnitude interpretation。
+    figures_description:
+      - "Frontier model calibration forest plot: 72B的4 benchmarks raw(red) vs
+        calibrated(blue) with CI bands。Modest but non-zero adjustments on MMLU/ARC,
+        near-zero on GSM8K。"
+    analysis: >
+      72B observational case extends ContamCal's applicability to frontier models without
+      requiring prohibitive SFT runs。Key finding: even frontier models show detectable
+      contamination signals, with calibrated MMLU -1.6pp suggesting ~2% inflation。
+      Wide CIs appropriately reflect observational uncertainty。
+      Framed as ecological validity extension, not primary quantitative validation。
+
+  - name: "closed_weight_2signal_mode"
+    plan_id: "exp-013"
+    description: >
+      Degraded 2-signal mode(ConStat + Self-Critique, no logits/embeddings)
+      for closed-weight models where S1(embedding of training data)和S2(Min-K++, needs logits)
+      不可用。量化2-signal vs 4-signal calibration accuracy gap。
+    expected_results:
+      # --- 2-signal composite AUC (3B) ---
+      composite_auc_2sig_3B_mmlu: 0.79
+      composite_auc_2sig_3B_arc: 0.82
+      composite_auc_2sig_3B_gsm8k: 0.74
+      # --- Calibration metrics (2-signal mode) ---
+      mae_2sig_pp: 3.4
+      ci_coverage_95_2sig: 87
+      ci_sharpness_2sig_pp: 8.2
+      kendall_tau_2sig: 0.84
+      # --- Gap vs 4-signal ---
+      mae_gap_vs_4sig_pp: 1.3
+      coverage_gap_vs_4sig_pct: 5
+      ci_width_ratio_2sig_vs_4sig: 1.41
+      # --- Comparison with baselines ---
+      mae_2sig_vs_dcr_improvement_pp: 1.2
+      mae_2sig_vs_linear_reg_improvement_pp: 0.9
+    result_rationale: >
+      (a) 2-signal composite AUC 0.79-0.82 at 3B: S3(ConStat)和S4(Self-Critique)
+      提供complementary information——ConStat检测performance gap between original vs paraphrased
+      items(behavioral signal)，S4检测entropy collapse on familiar items(intrinsic signal)。
+      两者不依赖logits或training data access，适用于closed-weight APIs。
+      (b) MAE从2.1pp退化到3.4pp(+1.3pp gap)：lower composite AUC→noisier exposure scores
+      →γ估计less precise→calibration误差增加。但仍优于DCR(4.6pp)1.2pp——
+      即使degraded mode, IRT框架的item-level resolution仍有价值。
+      (c) Coverage降至87%: exposure noise增加但ME model只能部分补偿
+      (2-signal noise structure不同于4-signal)。CI width增加41%反映更大的estimation uncertainty。
+      (d) Kendall τ=0.84(vs 4-signal 0.91): ranking preservation仍reasonable但degraded。
+      高contamination models的calibration less precise导致更多ranking errors。
+    tables:
+      - name: "Table: 2-signal vs 4-signal Calibration Comparison"
+        description: >
+          Two rows(2-sig, 4-sig) × 6 metric columns。
+          Third row: gap magnitude and significance。
+    figures_description:
+      - "Calibration accuracy vs number of signals: Line plot showing MAE as function
+        of signal count(1, 2, 4)。Diminishing returns but clear improvement with more signals。"
+    analysis: >
+      2-signal mode在closed-weight regime仍优于所有non-IRT baselines(MAE 3.4 vs DCR 4.6pp)。
+      1.3pp gap vs 4-signal mode quantifies the cost of limited model access。
+      Practical recommendation: use 4-signal when logits available, 2-signal otherwise。
+      CI width inflation(41%)honestly reflects reduced estimation precision。
+      Framed as "extensible architecture for future signals" in paper discussion。
+
+  - name: "multi_family_validation"
+    plan_id: "exp-014"
+    description: >
+      Controlled SFT injection on Llama-3.2-1B at 3 dosage levels(d000/d025/d100)。
+      验证identifiability boundaries和calibration accuracy跨model family泛化。
+      Rebuttal-ready experiment。
+    expected_results:
+      # --- SFT training ---
+      sft_time_per_run_hours: 3
+      total_gpu_hours: 9
+      # --- Eval ---
+      eval_d000_mmlu: 0.465
+      eval_d000_arc: 0.578
+      eval_d000_gsm8k: 0.342
+      eval_d025_mmlu: 0.472
+      eval_d025_arc: 0.589
+      eval_d100_mmlu: 0.481
+      eval_d100_arc: 0.602
+      # --- Contamination inflation ---
+      mmlu_inflation_d100_pp: 1.6
+      arc_inflation_d100_pp: 2.4
+      # --- Signal effectiveness ---
+      S1_auc_llama1B_d005: 0.96
+      S2_auc_llama1B_d005: 0.58
+      S4_auc_llama1B_d005: 0.55
+      # --- Cross-family γ_k correlation ---
+      cross_family_gamma_k_correlation: 0.91
+      gamma_k_mmlu_llama: 0.24
+      gamma_k_arc_llama: 0.36
+      gamma_k_gsm8k_llama: 0.05
+      # --- Calibration on Llama ---
+      mae_llama_pp: 2.4
+      ci_coverage_95_llama: 90
+      # --- Identifiability boundary match ---
+      fisher_info_threshold_match: true
+      practical_auc_threshold_llama: 0.72
+    result_rationale: >
+      (a) Llama-3.2-1B at ~1B scale介于Qwen2.5-0.5B和1.5B之间。
+      S2/S4 AUC(0.58/0.55)低于Qwen 1.5B(0.72/0.70)但高于Qwen 0.5B(0.47/0.48)——
+      与scale-dependent emergence curve一致，不同architecture在同一capacity range有类似behavior。
+      (b) Contamination inflation(MMLU +1.6pp, ARC +2.4pp)与Qwen同scale范围一致。
+      Llama和Qwen在contamination susceptibility上表现similar——confirmation that contamination
+      effect is primarily a capacity/benchmark property, not architecture-specific。
+      (c) Cross-family γ_k correlation r=0.91: per-benchmark contamination susceptibility
+      ranking高度一致(ARC > MMLU >> GSM8K for both families)。这是"contamination susceptibility
+      is benchmark property"的strongest evidence——如果它是model-family specific, r应该低。
+      (d) Fisher Info identifiability boundary在Llama上同样成立：practical AUC threshold=0.72
+      (vs Qwen 0.70)，structural threshold=0.55(identical)——theoretical framework generalizes。
+      (e) MAE=2.4pp(vs Qwen 2.1pp): slightly worse因为1B scale有noisier signals，
+      但在best tier range(1.5-3.0pp)内。Coverage 90%也在range。
+    tables:
+      - name: "Table: Cross-Family γ_k Comparison"
+        description: >
+          Rows: MMLU, ARC, GSM8K, HumanEval。
+          Columns: Qwen γ_k (mean±CI), Llama γ_k (mean±CI), Pearson r。
+          Bottom: overall correlation r=0.91。
+      - name: "Table: Identifiability Boundary Cross-Family Comparison"
+        description: >
+          Rows: Structural threshold, Practical threshold。
+          Columns: Qwen(observed), Llama(observed), Fisher Info(predicted)。
+    figures_description:
+      - "Cross-family γ_k scatter: x=Qwen γ_k, y=Llama γ_k, per benchmark。
+        Strong positive correlation (r=0.91), regression line near identity。
+        Key visual: benchmarks cluster by susceptibility regardless of model family。"
+    analysis: >
+      Multi-family validation是rebuttal的最强武器。r=0.91 cross-family correlation
+      表明contamination susceptibility确实是benchmark property——ARC的MC format和limited item pool
+      使其比MMLU更susceptible(γ_k_ARC > γ_k_MMLU in both families)，GSM8K的open-ended
+      format consistently resistant。Fisher Info thresholds跨family一致性确认theoretical
+      framework的generality。如果reviewer要求"show it works on non-Qwen models"——
+      这个实验直接回答，且结论更强(不仅works, 而且quantitatively consistent)。
+```
+
+9个planned实验全部展开。核心逻辑链：
+- **exp-002/008** 建立scale-dependent signal effectiveness，锚定S2/S4在≥1.5B恢复AUC≥0.70
+- **exp-003** 证明RRF在multi-signal regime有genuine aggregation value
+- **exp-006** 是中心实验，MAE=2.1pp显著优于DCR的4.6pp，per-benchmark γ_k CV=0.52支撑"benchmark property"论点
+- **exp-007/014** 分别在scale和family维度验证泛化
+- **exp-009/012** 提供ecological external validity
+- **exp-013** 量化closed-weight降级代价
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd209404-c775-43fb-9bc3-3997ecdb6bc7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yQWMW15uizNvqZtBLh",
+  "type": "assistant",
+  "uuid": "2d1df4ec-d44a-4f0a-af8a-c8b073acc4b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHnimnZjCZYzUhFptbK6uu",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3322,
+      "cache_read_input_tokens": 37408,
+      "output_tokens": 30735,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3322,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 30735,
+          "cache_read_input_tokens": 37408,
+          "cache_creation_input_tokens": 3322,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3322
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线 核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', \"S2(Min-K++)和/或S4(Self-Critique)在1.5B/3…",
+  "leafUuid": "2d1df4ec-d44a-4f0a-af8a-c8b073acc4b0",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-aware IRT calibration with Fisher identifiability analysis",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 best 档的含义：  含义：IRT拟合稳定收敛，γ在真实数据上可识别；S2/S4信号在≥1.5B恢复有效性；校准显著优于所有基线 核心假设：['4PL+γ IRT在真实数据上NUTS收敛（R̂<1.01, ESS>400），γ后验CI在受污染条件下排除0', \"S2(Min-K++)和/或S4(Self-Critique)在1.5B/3…",
+  "leafUuid": "2d1df4ec-d44a-4f0a-af8a-c8b073acc4b0",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Contamination-aware IRT calibration with Fisher identifiability analysis",
+  "sessionId": "ebd456b2-ad3e-4974-b748-a85f14207777"
+}
+```
+
+---

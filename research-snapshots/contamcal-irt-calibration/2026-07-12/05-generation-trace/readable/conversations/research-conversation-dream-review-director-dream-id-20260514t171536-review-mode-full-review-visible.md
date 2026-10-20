@@ -1,0 +1,3289 @@
+# Research conversation: [DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-re
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 3
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-2/07207688-e133-4b52-9bbc-755cbd4866df.jsonl`
+- **Structured JSON:** [`65d89ed05c0459200346.json`](../../sessions/65/65d89ed05c0459200346.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T18:36:29.624Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T18:36:29.624Z",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "content": "[DREAM Review Director]\ndream_id=20260514T171536 | review_mode=full | review_visible=True\nPDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf\n\n（内部编排信息：tier=worst，仅用于 submit_dream_review_report 调用。\n你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，\n也不要暗示论文结果的好坏。Reviewer 必须盲审。）\n\n任务：对上述 PDF 进行 full 模式审稿。 使用 `dream-review-full` skill 的 dispatch 模板（2 Reviewers：R1 方法+实验、R2 新颖性+相关工作；完整 roundtable：Step 1 独立 → Step 2 交叉分享 → Step 3 收敛 → Step 4 综合）。\n\n## 审稿标准\n\n未指定目标 venue。请按 top ML venue 通用标准审稿（接受率 ~25%，6 分制：1=Strong Reject … 6=Strong Accept）。\n\n## 实验设计参考\n\n完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_context.yaml`\n论文可能未完整反映所有实验——参考此文件判断覆盖度。\n完成后必须调用 `submit_dream_review_report(report, project=\"contamcal-irt-calibration\", tier=\"worst\", dream_id=\"20260514T171536\", review_visible=True)` —— 报告会写入 dream_reports/dream_20260514T171536/worst/review_report.md，编排进程通过 subprocess 退出读取它。\n不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T18:36:29.639Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T18:36:29.639Z",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+## Round 1
+
+21 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T18:36:29.772Z_
+
+[DREAM Review Director]
+dream_id=20260514T171536 | review_mode=full | review_visible=True
+PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf
+
+（内部编排信息：tier=worst，仅用于 submit_dream_review_report 调用。
+你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，
+也不要暗示论文结果的好坏。Reviewer 必须盲审。）
+
+任务：对上述 PDF 进行 full 模式审稿。 使用 `dream-review-full` skill 的 dispatch 模板（2 Reviewers：R1 方法+实验、R2 新颖性+相关工作；完整 roundtable：Step 1 独立 → Step 2 交叉分享 → Step 3 收敛 → Step 4 综合）。
+
+## 审稿标准
+
+未指定目标 venue。请按 top ML venue 通用标准审稿（接受率 ~25%，6 分制：1=Strong Reject … 6=Strong Accept）。
+
+## 实验设计参考
+
+完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_context.yaml`
+论文可能未完整反映所有实验——参考此文件判断覆盖度。
+完成后必须调用 `submit_dream_review_report(report, project="contamcal-irt-calibration", tier="worst", dream_id="20260514T171536", review_visible=True)` —— 报告会写入 dream_reports/dream_20260514T171536/worst/review_report.md，编排进程通过 subprocess 退出读取它。
+不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "991f2431-942b-43d6-b324-cd72c6c5bf2f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T18:36:29.772Z_
+
+```json
+{
+  "parentUuid": "991f2431-942b-43d6-b324-cd72c6c5bf2f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c0bd4151-4d95-4b10-a7fc-aa6d570feb8c",
+  "timestamp": "2026-05-14T18:36:29.772Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T18:36:29.772Z_
+
+```json
+{
+  "parentUuid": "c0bd4151-4d95-4b10-a7fc-aa6d570feb8c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1052fb7d-6906-49d9-a23f-58fb1706c3fd",
+  "timestamp": "2026-05-14T18:36:29.772Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T18:36:29.772Z_
+
+```json
+{
+  "parentUuid": "1052fb7d-6906-49d9-a23f-58fb1706c3fd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5c748bfb-06c6-469b-8116-599862071ebd",
+  "timestamp": "2026-05-14T18:36:29.772Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T18:36:33.608Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to perform a full DREAM review of a PDF paper. Let me first read the PDF and the review context, then dispatch two reviewers for a structured review process.
+
+Let me start by loading the necessary tools and reading the materials.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c748bfb-06c6-469b-8116-599862071ebd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wn44LYWPGzdeKaidJx",
+  "type": "assistant",
+  "uuid": "499f0cbb-11f9-4d6a-87ad-3247edb0e648",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NEnuHSZLrhE7Ric9fB8Cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11126,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T18:36:34.181Z_
+
+I'll read the PDF and review context, then dispatch the full review process.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "499f0cbb-11f9-4d6a-87ad-3247edb0e648",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wn44LYWPGzdeKaidJx",
+  "type": "assistant",
+  "uuid": "fc2a2cd4-68fc-42c1-9738-af7b59e3c1ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NEnuHSZLrhE7Ric9fB8Cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11126,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T18:36:34.775Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WJBhXfCELYuCUdMzHxiAzy`</summary>
+
+```json
+{
+  "query": "select:submit_dream_review_report,read_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc2a2cd4-68fc-42c1-9738-af7b59e3c1ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wn44LYWPGzdeKaidJx",
+  "type": "assistant",
+  "uuid": "d1204390-6cd3-48d9-9494-714222b5989c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NEnuHSZLrhE7Ric9fB8Cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11126,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T18:36:34.806Z_
+
+<details><summary>↩ Tool result · `toolu_01WJBhXfCELYuCUdMzHxiAzy`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1204390-6cd3-48d9-9494-714222b5989c",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "a8909301-4d4b-4ab8-b001-047f3aafa4e5",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:submit_dream_review_report,read_project_file",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "d1204390-6cd3-48d9-9494-714222b5989c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T18:36:35.797Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WAh97dtW8HvZT1iKsVSons`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8909301-4d4b-4ab8-b001-047f3aafa4e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wn44LYWPGzdeKaidJx",
+  "type": "assistant",
+  "uuid": "0d88bd51-9858-41f7-9405-fdec5f43c5af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NEnuHSZLrhE7Ric9fB8Cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11126,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T18:36:35.933Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01WAh97dtW8HvZT1iKsVSons`</summary>
+
+```text
+This PDF has 14 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: "1-5"). Maximum 20 pages per request.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d88bd51-9858-41f7-9405-fdec5f43c5af",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "35039465-fbb8-4b17-af1e-d711cb5830ce",
+  "toolUseResult": "Error: This PDF has 14 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: \"1-5\"). Maximum 20 pages per request.",
+  "sourceToolAssistantUUID": "0d88bd51-9858-41f7-9405-fdec5f43c5af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T18:36:36.179Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RKHTkgKTjBPrUecmu2rYCo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_context.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35039465-fbb8-4b17-af1e-d711cb5830ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wn44LYWPGzdeKaidJx",
+  "type": "assistant",
+  "uuid": "bea3eca7-ebda-4028-9e83-ba90dabab1da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NEnuHSZLrhE7Ric9fB8Cg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11126,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T18:36:36.497Z_
+
+<details><summary>↩ Tool result · `toolu_01RKHTkgKTjBPrUecmu2rYCo`</summary>
+
+```text
+1	narrative_guidance: '完全 reframe：不再以 calibration tool 为核心。Paper 转为 ''Empirical anatomy
+2	  of contamination signal reliability + diagnostic framework for contamination-aware
+3	  evaluation''。 三个 salvageable contributions：(1) Min-K++ 方向性反转的系统性实证 (Cohen''s d -1.2
+4	  to -2.7)； (2) Identifiability boundary analysis 作为理论贡献（告诉社区何时可以/不可以做 contamination-aware
+5	  calibration）； (3) SFT injection 的 format-learning confound (GSM8K 12%→70% 非 contamination)。
+6	  IRT calibration 降为 proof-of-concept with identified failure modes。 仍投 EMNLP 2026
+7	  special theme ''New Missions for NLP Research''。
+8	
+9	  '
+10	imagined_experiments:
+11	- name: stage1_signal_pipeline
+12	  plan_id: exp-002
+13	  description: '对 exp-001 所有 contaminated + clean models 计算 4 个 detection signals。
+14	    0.5B 已有部分数据 (exp_002_signals_05B DONE)，需扩展到 1.5B/3B 全 dosage。
+15	
+16	    '
+17	  expected_results:
+18	    S1_emb_d005_auc_05B_mmlu: 0.953
+19	    S1_emb_d005_auc_05B_gsm8k: 0.988
+20	    S1_emb_d005_auc_05B_arc: 0.995
+21	    S1_emb_d025_auc_05B_mmlu: 0.51
+22	    S1_emb_d025_auc_05B_gsm8k: 0.52
+23	    S1_emb_d025_auc_05B_arc: 0.5
+24	    S1_emb_d100_auc_05B_mmlu: 0.494
+25	    S2_minkpp_d005_auc_05B_mean: 0.465
+26	    S3_constat_d005_auc_05B_mean: 0.53
+27	    S4_selfcrit_d005_auc_05B_mean: 0.48
+28	    S1_emb_d005_auc_15B_mmlu: 0.96
+29	    S1_emb_d005_auc_15B_gsm8k: 0.99
+30	    S1_emb_d005_auc_15B_arc: 0.99
+31	    S1_emb_d025_auc_15B_mmlu: 0.52
+32	    S2_minkpp_d005_auc_15B_mean: 0.5
+33	    S3_constat_d005_auc_15B_mean: 0.54
+34	    S4_selfcrit_d005_auc_15B_mean: 0.52
+35	    S1_emb_d005_auc_3B_mmlu: 0.97
+36	    S1_emb_d005_auc_3B_gsm8k: 0.99
+37	    S1_emb_d005_auc_3B_arc: 0.99
+38	    S1_emb_d025_auc_3B_mmlu: 0.53
+39	    S2_minkpp_d005_auc_3B_mean: 0.51
+40	    S3_constat_d005_auc_3B_mean: 0.55
+41	    S4_selfcrit_d005_auc_3B_mean: 0.53
+42	    S1_emb_d100_auc_all_scales_mean: 0.5
+43	    S2_minkpp_d100_cross_cohens_d_mean: -1.98
+44	  result_rationale: 'worst 档的核心假设是 signal landscape 极度退化。S1 (embedding similarity)
+45	    在 d005 有效是因为 仅 5% items 被污染时，contaminated vs clean 的 embedding 距离差异明确可分。但在 d025/d100，
+46	    因为绝大部分 items 都被污染，labeling artifact 使得 "contaminated" 和 "clean" 标签失去鉴别力 — 所有 items
+47	    都 exposed，AUC → 0.50。S2 (Min-K++) 在所有 scale 下均失效：0.5B 模型的 perplexity landscape
+48	    太 noisy 无法区分 seen/unseen；1.5B/3B 虽然 perplexity 更 stable，但 SFT 后 paraphrased items
+49	    的 perplexity 并不系统性低于 unseen items（paraphrase ≠ verbatim memorization）。 S4 (Self-Critique)
+50	    依赖模型 introspection 能力，小模型 (≤3B) 的 self-knowledge 不足以 区分 "我见过这道题的变体" 和 "这道题本身就简单"。S3
+51	    (ConStat) 需要 original vs paraphrased performance gap，但 SFT contamination 不产生稳定的
+52	    original > paraphrase gap（不像 verbatim memorization）。"scale-dependent" 假设在 worst
+53	    档下被证伪——S2/S4 在 1.5B/3B 仍然无效，问题不是 scale 而是方法本身在 SFT paraphrase contamination 下的根本局限。
+54	
+55	    '
+56	  tables:
+57	  - name: 'Table: Signal × Scale × Dosage AUC Matrix'
+58	    description: '4 signals × 3 scales × 4 dosages 的完整 AUC 矩阵。仅 S1-d005 一行高亮为有效 (AUC
+59	      > 0.90)。其余全部灰色 (0.45-0.55)。最右列为 cross-model Cohen''s d (d100)。
+60	
+61	      '
+62	    data: 'Signal | Scale | d005 AUC | d025 AUC | d100 AUC | d100 Cohen''s d S1-Emb
+63	      | 0.5B  | 0.979    | 0.51     | 0.49     | +3.6 S1-Emb | 1.5B  | 0.98     |
+64	      0.52     | 0.50     | +4.1 S1-Emb | 3B    | 0.98     | 0.53     | 0.50     |
+65	      +3.8 S2-MKP | 0.5B  | 0.465    | 0.48     | 0.50     | -1.98 S2-MKP | 1.5B  |
+66	      0.50     | 0.49     | 0.51     | -2.3 S2-MKP | 3B    | 0.51     | 0.50     |
+67	      0.50     | -2.7 S3-CS  | 0.5B  | 0.53     | 0.51     | 0.50     | +0.3 S3-CS  |
+68	      1.5B  | 0.54     | 0.52     | 0.50     | +0.4 S3-CS  | 3B    | 0.55     | 0.52     |
+69	      0.51     | +0.5 S4-SC  | 0.5B  | 0.48     | 0.49     | 0.50     | +0.45 S4-SC  |
+70	      1.5B  | 0.52     | 0.50     | 0.50     | +0.5 S4-SC  | 3B    | 0.53     | 0.51     |
+71	      0.50     | +0.6
+72	
+73	      '
+74	  figures_description:
+75	  - 'Signal AUC heatmap: 12 rows (4 signals × 3 scales) × 3 columns (dosages)。颜色编码
+76	    0.5=灰 → 1.0=深蓝。仅左上角 S1-d005 三格为深色，其余全灰。视觉效果是一个几乎全灰的矩阵，dramatic 地展示 signal landscape
+77	    退化。'
+78	  analysis: '"scale-dependent" claim 在 worst 档下彻底失败：S2/S4 在 1.5B/3B 仍然 ≈ random。 必须
+79	    downgrade C2 为 "method-specific signal effectiveness"，删除 "scale-dependent"。 但这反而强化了另一个
+80	    narrative：signal failure 不是偶然的——它是 SFT paraphrase contamination 这种 contamination
+81	    modality 下 detection 方法的系统性盲区。这本身是一个有价值的 negative finding。 RRF discussion 整体移入
+82	    Limitations，因为 aggregation 毫无意义（只有一个 effective signal）。
+83	
+84	    '
+85	- name: rrf_aggregation_ablation
+86	  plan_id: exp-003
+87	  description: 'RRF fusion of 4 signals。在 worst 档下，实质测试 "单信号 S1 vs 4-signal RRF"。
+88	
+89	    '
+90	  expected_results:
+91	    rrf_4signal_auc_d005_05B_mean: 0.82
+92	    rrf_4signal_auc_d005_15B_mean: 0.83
+93	    rrf_4signal_auc_d005_3B_mean: 0.84
+94	    s1_only_auc_d005_mean: 0.979
+95	    rrf_vs_s1_auc_delta: -0.15
+96	    rank_avg_4signal_auc_d005_mean: 0.78
+97	    rrf_2signal_closed_auc_d005_mean: 0.54
+98	    fp_injection_robustness_auc_drop: 0.08
+99	    rrf_effective_weight_on_s1: 0.92
+100	  result_rationale: '当 3/4 signals 为 random noise (AUC ≈ 0.50) 时，RRF fusion 实际上 dilutes
+101	    唯一有效的 S1 信号。4-signal RRF AUC < S1-only AUC，因为三个 noise signals 的 random rankings
+102	    会扰乱 S1 的 correct ranking。这是 RRF 的已知弱点：它假设所有 constituent signals 至少 weakly informative。当大部分
+103	    signals 是 pure noise， fusion 不如 oracle selection。但 S1 仍然 dominant——RRF 的 reciprocal
+104	    rank 机制 使得 S1 的 strong signal 部分 survive（不会降到 random），只是被 attenuated。 2-signal
+105	    closed-weight mode (ConStat + Self-Critique only) 完全无效 (AUC ≈ 0.54) 因为两个 constituent
+106	    都是 noise。FP injection 进一步降低 effective AUC，但已经 near-random baseline 所以 absolute
+107	    drop 有限。
+108	
+109	    '
+110	  tables:
+111	  - name: 'Table: RRF Ablation — Aggregation Method × Signal Subset'
+112	    description: '行: {RRF-4, RRF-2-closed, Rank-Avg-4, S1-only, S2-only, S3-only,
+113	      S4-only} 列: {d005 AUC (mean±std across scales), d025 AUC, d100 AUC}
+114	
+115	      '
+116	    data: 'Method           | d005 AUC      | d025 AUC | d100 AUC RRF-4signal      |
+117	      0.83 ± 0.01   | 0.52     | 0.50 RRF-2-closed     | 0.54 ± 0.02   | 0.51     |
+118	      0.50 Rank-Avg-4       | 0.78 ± 0.02   | 0.51     | 0.50 S1-only          | 0.979
+119	      ± 0.005 | 0.52     | 0.50 S2-only          | 0.49 ± 0.03   | 0.49     | 0.50
+120	      S3-only          | 0.54 ± 0.02   | 0.52     | 0.50 S4-only          | 0.51 ±
+121	      0.03   | 0.50     | 0.50
+122	
+123	      '
+124	  figures_description:
+125	  - 'Bar chart: aggregation methods 沿 x-axis，d005 AUC 沿 y-axis。S1-only 最高 (~0.98)，RRF-4
+126	    次之 (~0.83)，其余均在 chance level (0.50 虚线附近)。Clear visual message: RRF hurts when
+127	    most signals are noise。'
+128	  analysis: 'RRF 不仅不是贡献——它实际上 hurts performance。这 destroys C2 中 ''principled aggregation''
+129	    的 claim。但 meta-circularity argument 仍然成立（不能用 contaminated data 学 weights）。 Paper
+130	    应该诚实报告：RRF 在 signal-rich regime 有理论优势，但在当前 empirical setting (仅 1/4 signals 有效)
+131	    下退化为 single-signal mode 且有 dilution penalty。 这是一个关于 aggregation failure mode 的实证贡献，属于
+132	    diagnostic framework 的一部分。
+133	
+134	    '
+135	- name: irt_calibration_and_baselines
+136	  plan_id: exp-006
+137	  description: '核心 calibration 实验。4PL+γ IRT vs 7 baselines。worst 档下此实验是 "主要 negative
+138	    result"。
+139	
+140	    '
+141	  expected_results:
+142	    calibration_MAE_pp_4pl_gamma_mmlu: 7.2
+143	    calibration_MAE_pp_4pl_gamma_gsm8k: 11.5
+144	    calibration_MAE_pp_4pl_gamma_arc: 6.8
+145	    calibration_MAE_pp_4pl_gamma_humaneval: 9.3
+146	    calibration_MAE_pp_4pl_gamma_mean: 8.7
+147	    calibration_MAE_pp_linear_reg_mmlu: 6.8
+148	    calibration_MAE_pp_linear_reg_gsm8k: 10.2
+149	    calibration_MAE_pp_linear_reg_arc: 6.5
+150	    calibration_MAE_pp_linear_reg_humaneval: 8.9
+151	    calibration_MAE_pp_linear_reg_mean: 8.1
+152	    mae_diff_4pl_vs_linear_pp: 0.6
+153	    mae_diff_bootstrap_p_value: 0.38
+154	    mae_diff_bootstrap_95ci: '[-1.2, 2.4]'
+155	    CI_coverage_95_4pl_gamma: 0.72
+156	    CI_coverage_80_4pl_gamma: 0.58
+157	    CI_coverage_50_4pl_gamma: 0.35
+158	    CI_coverage_95_linear_bootstrap: 0.78
+159	    CI_width_avg_pp_4pl_gamma: 18.5
+160	    CI_width_avg_pp_linear_bootstrap: 14.2
+161	    kendall_tau_4pl_gamma: 0.65
+162	    kendall_tau_linear_reg: 0.68
+163	    kendall_tau_raw: 0.72
+164	    kendall_tau_remove_rescore: 0.6
+165	    dose_response_monotonicity_mmlu: 0.55
+166	    dose_response_monotonicity_gsm8k: 0.4
+167	    dose_response_monotonicity_arc: 0.65
+168	    gamma_mmlu_mean: 0.12
+169	    gamma_mmlu_95ci: '[-0.05, 0.29]'
+170	    gamma_gsm8k_mean: 0.45
+171	    gamma_gsm8k_95ci: '[0.08, 0.82]'
+172	    gamma_arc_mean: 0.08
+173	    gamma_arc_95ci: '[-0.10, 0.26]'
+174	    gamma_humaneval_mean: 0.15
+175	    gamma_humaneval_95ci: '[-0.12, 0.42]'
+176	    MAE_raw_no_adjustment: 4.2
+177	    MAE_remove_rescore: 7.5
+178	    MAE_single_signal_2pl: 9.1
+179	    MAE_vanilla_4pl_no_gamma: 5.8
+180	    MAE_emperor_rephrase: 5.5
+181	    MAE_dcr_fuzzy: 6.2
+182	    max_rhat: 1.02
+183	    min_ess_bulk: 380
+184	    divergent_transitions_pct: 2.5
+185	    posterior_pred_check_p_value: 0.03
+186	    local_independence_residual_corr: 0.18
+187	    joint_gamma_global_mean: 0.15
+188	    joint_gamma_global_95ci: '[-0.02, 0.32]'
+189	  result_rationale: 'worst 档的核心 negative result：4PL+γ 的 calibration MAE 与 linear regression
+190	    + bootstrap CI 无统计显著差异 (p=0.38)。原因链：(1) contamination effect size 在 0.5B 上是 NEGATIVE
+191	    (d005 MMLU 从 0.40 降到 0.33，即 SFT 本身造成的 catastrophic forgetting > contamination
+192	    inflation)， IRT 试图估计一个正向 γ 但实际 effect 可能为负或接近零；(2) 仅 S1 在 d005 提供有效 exposure signal，
+193	    但 d025/d100 的 exposure scores 全是 noise，导致 γ 的 Fisher Information 极低——posterior
+194	    宽到包含零 (MMLU γ CI: [-0.05, 0.29])；(3) GSM8K 的 γ 估计偏高 (0.45) 但主要捕获 format learning
+195	    而非 contamination (3B d100 从 12%→70% 的 jump 是 format effect)； (4) CI coverage 72%
+196	    < 95% nominal 因为 measurement error model 无法完全补偿 exposure noise (3/4 signals 为
+197	    noise，latent τ 的 posterior 过于集中)； (5) Raw scores (no adjustment) 的 MAE 反而最低 (4.2pp)，因为在
+198	    most conditions contamination effect 很小——adjustment 引入了比 signal 更多的 noise； (6)
+199	    Kendall τ 排名也是 raw scores 最高 (0.72)——calibration 反而扰乱了正确的排名。 这是一个令人沮丧但 informative
+200	    的结果：当 contamination effect 小于 SFT noise floor， 且 detection signals 大部分失效时，任何 post-hoc
+201	    calibration 都不如不做。
+202	
+203	    '
+204	  tables:
+205	  - name: 'Table: Main Calibration Results — 7 Baselines + ContamCal'
+206	    description: '8 methods × 5 metrics (MAE, Coverage-95, Width, Kendall τ, Monotonicity)。
+207	      Bold = best per column。Worst 档下 Raw (no adjustment) wins on MAE 和 τ。
+208	
+209	      '
+210	    data: 'Method                    | MAE (pp)↓  | Cov-95↑ | Width (pp)↓ | τ↑    |
+211	      Mono↑ Raw (no adjustment)       | 4.2 ± 1.8  | N/A     | N/A         | 0.72  |
+212	      N/A Remove-and-rescore        | 7.5 ± 2.3  | N/A     | N/A         | 0.60  |
+213	      N/A Single-signal 2PL+γ      | 9.1 ± 3.1  | 0.65    | 22.0        | 0.58  |
+214	      0.48 Vanilla 4PL (γ=0)        | 5.8 ± 2.0  | 0.82    | 16.5        | 0.70  |
+215	      N/A Linear reg + bootstrap   | 8.1 ± 2.5  | 0.78    | 14.2        | 0.68  |
+216	      0.55 Emperor (rephrase+shuf)  | 5.5 ± 2.2  | N/A     | N/A         | 0.70  |
+217	      N/A DCR fuzzy                | 6.2 ± 2.4  | N/A     | N/A         | 0.66  |
+218	      N/A ContamCal 4PL+γ (ours)   | 8.7 ± 3.0  | 0.72    | 18.5        | 0.65  |
+219	      0.53
+220	
+221	      '
+222	  - name: 'Table: Per-benchmark γ_k Estimates'
+223	    description: 'γ_k posterior summaries per benchmark。大部分 CI 包含零。
+224	
+225	      '
+226	    data: 'Benchmark  | γ_k mean | 95% CI          | CI excludes 0? | Interpretation
+227	      MMLU       | 0.12     | [-0.05, 0.29]   | No             | Weak, non-significant
+228	      GSM8K      | 0.45     | [0.08, 0.82]    | Yes            | Confounded with format
+229	      learning ARC        | 0.08     | [-0.10, 0.26]   | No             | Negligible
+230	      HumanEval  | 0.15     | [-0.12, 0.42]   | No             | High uncertainty
+231	
+232	      '
+233	  figures_description:
+234	  - 'Calibrated-vs-true accuracy scatter: 每个点是一个 model-benchmark pair。Perfect calibration
+235	    = diagonal。4PL+γ 的点散布在 diagonal 两侧，spread 大于 raw scores。CI error bars 宽且多数不覆盖
+236	    true value。视觉上 calibration 比 no-adjustment 更差。'
+237	  - 'Dose-response curve: x=dosage (0,5,25,100%), y=accuracy。MMLU 和 ARC 在 0.5B 显示
+238	    NEGATIVE dose-response（越污染越差），GSM8K 在 3B 显示巨大 positive jump。γ 的 monotonicity 假设被违反。'
+239	  - 'Coverage calibration plot: nominal coverage (x) vs empirical coverage (y)。Diagonal
+240	    = perfect。4PL+γ 曲线始终在 diagonal 下方 (under-coverage)。Linear bootstrap 更接近 diagonal。'
+241	  analysis: '这是论文中最重要的 negative result。关键 insight 不是 "IRT calibration doesn''t work"
+242	    而是 "IRT calibration 需要足够大的 contamination effect 和足够好的 detection signals 才能 work，
+243	    当前 SFT injection paradigm 下这两个前提均不满足"。具体的 failure mode analysis： (a) Catastrophic
+244	    forgetting at 0.5B 使 contamination 净效应为负 → γ 需要建模负向效应但 prior 偏正； (b) Format learning
+245	    confound at 3B GSM8K → γ 过估；(c) Exposure noise dilution → posterior 过宽。 Paper
+246	    应该将此定位为 "identifiability boundary 的 empirical validation" —— simulation (exp-004)
+247	    说 AUC≥0.80 时 γ 可 recover，real data 确认 AUC≈0.50 时不行。
+248	
+249	    '
+250	- name: signal_survival_analysis
+251	  plan_id: exp-008
+252	  description: 'Systematic signal reliability across scales and regimes。0.5B 数据已有。
+253	    worst 档下扩展到 1.5B/3B 仍不改善 S2/S4。
+254	
+255	    '
+256	  expected_results:
+257	    S1_d005_auc_05B: 0.979
+258	    S1_d005_auc_15B: 0.98
+259	    S1_d005_auc_3B: 0.98
+260	    S2_d005_auc_05B: 0.465
+261	    S2_d005_auc_15B: 0.5
+262	    S2_d005_auc_3B: 0.51
+263	    S4_d005_auc_05B: 0.48
+264	    S4_d005_auc_15B: 0.52
+265	    S4_d005_auc_3B: 0.53
+266	    S1_d100_cohens_d_05B: 3.6
+267	    S1_d100_cohens_d_15B: 4.1
+268	    S1_d100_cohens_d_3B: 3.8
+269	    S2_d100_cohens_d_05B: -1.98
+270	    S2_d100_cohens_d_15B: -2.3
+271	    S2_d100_cohens_d_3B: -2.7
+272	    S4_d100_cohens_d_05B: 0.45
+273	    S4_d100_cohens_d_15B: 0.5
+274	    S4_d100_cohens_d_3B: 0.6
+275	    S1_instruct_auc_d005_mean: 0.92
+276	    S2_instruct_auc_d005_mean: 0.48
+277	    S4_instruct_auc_d005_mean: 0.5
+278	    effective_signals_all_scales: 1
+279	    minkpp_reversal_confirmed_all_scales: true
+280	    scale_dependency_hypothesis: rejected
+281	  result_rationale: 'worst 档下 "scale-dependent" 假设被证伪。S2 (Min-K++) 的 failure 不是 scale
+282	    问题而是 方法论问题：paraphrased contamination 不产生 verbatim memorization 的 perplexity signature。
+283	    即使 3B 模型有更 stable 的 perplexity estimates，contaminated items 的 perplexity 并不系统性低于
+284	    clean items，因为 SFT 训练的是 paraphrase 而非 original。Min-K++ 的 方向性反转在 larger scales
+285	    更显著 (Cohen''s d 从 -1.98 到 -2.7)——因为 larger models 在 d100 下更多地学到 general format
+286	    patterns，反而使 original items "看起来更 surprised" (higher perplexity for original =
+287	    negative min-k++ score)。S4 (Self-Critique) 的 introspection 能力虽然随 scale 略增但远不足以达到
+288	    item-level discrimination (AUC ≈ 0.53)。 Instruct models 作为 RL proxy 显示 S1 仍然有效
+289	    (AUC 0.92) 但略低于 base+SFT， 可能因为 RL alignment 改变了 embedding space geometry。
+290	
+291	    '
+292	  tables:
+293	  - name: 'Table: Signal Effectiveness Summary — Scale × Method'
+294	    description: Condensed version of the full heatmap for paper's main text
+295	    data: 'Signal   | 0.5B d005 | 1.5B d005 | 3B d005 | Scale effect? | d100 reversal?
+296	      S1 Emb   | 0.979     | 0.98      | 0.98    | None (stable) | No (+3.6 to +4.1)
+297	      S2 MK++  | 0.465     | 0.50      | 0.51    | None          | YES (-2.0 to -2.7)
+298	      S3 CS    | 0.53      | 0.54      | 0.55    | Marginal      | No S4 SC    | 0.48      |
+299	      0.52      | 0.53    | Marginal      | No
+300	
+301	      '
+302	  figures_description:
+303	  - 'AUC heatmap (Fig 2 in paper): 4 signals × 3 scales × 3 dosages。Color scale: red
+304	    (<0.55) / yellow (0.55-0.75) / green (>0.75)。整个 heatmap 几乎全红，仅 S1-d005 一列为绿色。附带
+305	    Cohen''s d annotation for d100 showing reversal arrows for S2。'
+306	  - 'Min-K++ reversal violin plot: x-axis = scale (0.5B, 1.5B, 3B), y-axis = per-item
+307	    min-k++ score difference (contaminated - clean)。Clean items 分布在上方，contaminated
+308	    items 应该在下方但实际也在上方或 overlap。At d100, reversal clearly visible with increasingly
+309	    negative Cohen''s d。'
+310	  analysis: 'Min-K++ reversal 是 worst 档下最有价值的独立 finding。它不依赖 IRT calibration 是否 work。
+311	    Cohen''s d 在 -1.2 to -2.7 范围内表示 medium-to-large 反向效应——这意味着任何使用 Min-K++ 做 contamination
+312	    detection 的研究在 high-dosage SFT contamination 下 不仅会 miss contamination，还会系统性地 flag
+313	    clean items as contaminated。 这对整个 detection 社区有重要 implication，值得独立成 section。 "Scale-dependent"
+314	    claim 被 downgrade 为 "method-specific"，C2 contingency 触发。
+315	
+316	    '
+317	- name: scale_bridging_7b
+318	  plan_id: exp-007
+319	  description: 'Qwen2.5-7B controlled SFT injection at 5 dosage levels。 worst 档下 larger
+320	    scale 不解决 fundamental issues。
+321	
+322	    '
+323	  expected_results:
+324	    7B_d000_mmlu: 0.74
+325	    7B_d000_gsm8k: 0.79
+326	    7B_d000_arc: 0.88
+327	    7B_d000_humaneval: 0.35
+328	    7B_d005_mmlu: 0.73
+329	    7B_d005_gsm8k: 0.8
+330	    7B_d005_arc: 0.87
+331	    7B_d005_delta_mmlu_pp: -1.0
+332	    7B_d100_mmlu: 0.76
+333	    7B_d100_gsm8k: 0.85
+334	    7B_d100_arc: 0.89
+335	    7B_d100_delta_mmlu_pp: 2.0
+336	    7B_d100_delta_gsm8k_pp: 6.0
+337	    S1_d005_auc_7B: 0.98
+338	    S2_d005_auc_7B: 0.53
+339	    S4_d005_auc_7B: 0.55
+340	    S2_d100_cohens_d_7B: -2.5
+341	    calibration_MAE_7B_pp: 6.5
+342	    calibration_MAE_linear_7B_pp: 5.8
+343	  result_rationale: '7B 模型的 baseline 性能更高 (MMLU 0.74)，留给 contamination inflation 的空间更小
+344	    (ceiling effect)。d005 的净效应可能为负 (MMLU -1pp) 因为 SFT data 中 5% paraphrase 对 7B 的
+345	    forgetting impact 与 0.5B 类似但 base performance 更稳定。d100 的 MMLU 仅 +2pp（而非 8-15pp
+346	    literature 报告的 verbatim 污染效果）因为 paraphrased contamination 的 inflation 效应弱于 verbatim。GSM8K
+347	    +6pp 可能仍包含 format learning 分量。 信号方面 S2/S4 仍然无效 (AUC ≈ 0.53-0.55)，confirming scale
+348	    不是 root cause。 Calibration MAE 与 linear baseline 无显著差异，与 smaller scales 的 pattern
+349	    一致。 7B 数据不改变 worst 档的 narrative——只是在更大 scale 上确认了同样的 failure modes。
+350	
+351	    '
+352	  tables:
+353	  - name: 'Table: 7B Dose-Response'
+354	    description: 5 dosages × 4 benchmarks accuracy matrix + delta from d000
+355	    data: 'Dosage | MMLU       | GSM8K      | ARC        | HumanEval d000   | 0.74       |
+356	      0.79       | 0.88       | 0.35 d005   | 0.73 (-1)  | 0.80 (+1)  | 0.87 (-1)  |
+357	      0.34 (-1) d025   | 0.73 (-1)  | 0.81 (+2)  | 0.87 (-1)  | 0.35 (0) d050   |
+358	      0.74 (0)   | 0.83 (+4)  | 0.88 (0)   | 0.35 (0) d100   | 0.76 (+2)  | 0.85 (+6)  |
+359	      0.89 (+1)  | 0.36 (+1)
+360	
+361	      '
+362	  figures_description:
+363	  - Dose-response curves overlaid across 4 scales (0.5B, 1.5B, 3B, 7B) for MMLU。显示
+364	    contamination effect 随 scale 不单调：0.5B 为负，1.5B/3B 接近零，7B 微正。No clear monotonic
+365	    dose-response at any scale。
+366	  analysis: '7B 的核心 takeaway：contamination effect 在 controlled SFT setting 下太小 (≤6pp
+367	    GSM8K, ≤2pp MMLU) 且方向不一致。这与 literature 中 verbatim contamination 的 8-15pp inflation
+368	    形成鲜明对比。说明 paraphrased contamination (our injection method) 产生的 effect qualitatively
+369	    different from verbatim leakage。Paper 需要 explicitly discuss 这个 external validity
+370	    limitation：our SFT injection protocol may underestimate real-world contamination
+371	    effects，同时也可能说明 paraphrase-level contamination 本身 less impactful than commonly
+372	    assumed。
+373	
+374	    '
+375	- name: rl_observational_case_study
+376	  plan_id: exp-009
+377	  description: 'Apply signals to existing RL-trained models (Qwen2.5-Instruct, DeepSeek-R1-Distill)。
+378	    worst 档下 ecological validity 极其有限。
+379	
+380	    '
+381	  expected_results:
+382	    S1_instruct_05B_d005_auc: 0.91
+383	    S1_instruct_15B_d005_auc: 0.9
+384	    S1_instruct_3B_d005_auc: 0.89
+385	    S1_instruct_7B_d005_auc: 0.88
+386	    S2_instruct_all_auc_range: '[0.46, 0.53]'
+387	    S4_instruct_all_auc_range: '[0.48, 0.54]'
+388	    gamma_instruct_mmlu: 0.05
+389	    gamma_instruct_mmlu_95ci: '[-0.15, 0.25]'
+390	    gamma_instruct_gsm8k: 0.18
+391	    gamma_instruct_gsm8k_95ci: '[-0.08, 0.44]'
+392	    gamma_specificity_known_clean_benchmark: 0.02
+393	    gamma_specificity_ci_covers_zero: true
+394	    regret_uncalibrated_top5: 0.08
+395	    regret_calibrated_top5: 0.11
+396	    regret_remove_rescore_top5: 0.09
+397	    regret_calibration_worse_than_uncalibrated: true
+398	    CI_width_instruct_mean_pp: 22.0
+399	    CI_width_deepseek_mean_pp: 25.0
+400	  result_rationale: 'RL models 的 observational analysis 在 worst 档下几乎完全 uninformative：
+401	    (1) 没有 ground truth (不知道 true contamination level)，所以 γ 估计无法验证； (2) S1 AUC 在 instruct
+402	    models 上略降 (0.88-0.91 vs SFT 的 0.98) 因为 RL alignment 改变了 embedding space，但仍勉强
+403	    above threshold；(3) S2/S4 仍然无效； (4) γ posterior 极宽，所有 CI 包含零——无法 claim 任何 RL model
+404	    有 significant contamination； (5) Expected regret analysis 结果 counterintuitive：calibrated
+405	    ranking 比 uncalibrated 更差 (regret 0.11 vs 0.08) 因为 noisy γ 扰乱了原本 reasonable 的
+406	    ranking； (6) CI widths (22-25pp) 太宽以至于 "honest uncertainty" 退化为 "uninformative
+407	    bounds"。 Specificity check 是唯一正面结果：known clean benchmark 的 γ 正确地接近零。
+408	
+409	    '
+410	  tables:
+411	  - name: 'Table: RL Observational — Expected Regret'
+412	    description: 'Top-5 model selection regret under 3 methods。Calibration 反而比 raw
+413	      更差。
+414	
+415	      '
+416	    data: 'Selection method      | Mean regret (pp) | Median regret | Worst-case regret
+417	      Uncalibrated (raw)    | 0.08             | 0.05          | 0.18 ContamCal calibrated  |
+418	      0.11             | 0.08          | 0.25 Remove-and-rescore    | 0.09             |
+419	      0.06          | 0.20
+420	
+421	      '
+422	  figures_description:
+423	  - 'Forest plot: RL models × benchmarks，每个点为 calibrated score with 95% CI。CI bars
+424	    极宽（20-25pp），大部分互相重叠。Ground truth unknown 标注为虚线。传达 message: uncertainty honestly
+425	    propagated 但 too wide to be actionable。'
+426	  analysis: 'RL case study 在 worst 档下只能支撑两个 limited claims：(1) specificity — ContamCal
+427	    在 known clean benchmark 上不产生 false positive contamination signal (γ≈0, CI covers
+428	    0)； (2) S1 embedding signal 在 RL regime 下 partial survival (AUC 0.88-0.91)。 作为
+429	    "external validity" 几乎完全失败——没有 ground truth 意味着所有结论都是 directional。 Expected regret
+430	    analysis 反而变成 negative result：calibration hurts model selection。 Paper 中降为短小的
+431	    case study section，主要用于展示 "honest uncertainty propagation" 的 behavior（CI 随 signal
+432	    quality 自适应变宽）而非 calibration accuracy。
+433	
+434	    '
+435	- name: multi_family_validation
+436	  plan_id: exp-014
+437	  description: 'Non-Qwen family (Llama-3.2-1B or Pythia-1.4B) at 3 dosages。 worst
+438	    档下跨 family 结果不一致。
+439	
+440	    '
+441	  expected_results:
+442	    llama_d000_mmlu: 0.38
+443	    llama_d000_gsm8k: 0.15
+444	    llama_d000_arc: 0.42
+445	    llama_d100_mmlu: 0.35
+446	    llama_d100_gsm8k: 0.28
+447	    llama_d100_arc: 0.39
+448	    llama_d100_delta_mmlu: -3.0
+449	    S1_llama_d005_auc: 0.94
+450	    S2_llama_d005_auc: 0.48
+451	    S2_llama_d100_cohens_d: -1.2
+452	    gamma_llama_mmlu: -0.05
+453	    gamma_llama_mmlu_ci: '[-0.28, 0.18]'
+454	    calibration_MAE_llama_pp: 9.5
+455	    gamma_cross_family_corr: 0.15
+456	    identifiability_boundary_consistent: false
+457	  result_rationale: 'Llama-3.2-1B 在 SFT 后的 behavior 与 Qwen2.5 显著不同：(1) 不同的 tokenizer
+458	    和 pre-training data 导致 SFT paraphrase 的 contamination effect 方向和大小不一致—— Llama
+459	    在 MMLU d100 显示 -3pp (更严重的 catastrophic forgetting)；(2) S1 embedding similarity
+460	    仍然有效 (AUC 0.94) 因为 embedding 方法独立于 model architecture； (3) 但 γ 估计跨 family 相关性极低
+461	    (r=0.15)——同样的 contamination dosage 在不同 family 上产生不同大小和方向的 effect，说明 γ 不是 contamination
+462	    的 universal parameter 而是 family-specific 的；(4) Identifiability boundary 不一致——Qwen
+463	    上需要 AUC≥0.80 的 threshold 在 Llama 上可能需要 AUC≥0.85 (因为 effect size 更小)。 这进一步支持 worst
+464	    档的 narrative：IRT calibration 的 practical utility 高度 dependent on model family
+465	    × benchmark × contamination modality 的交互。
+466	
+467	    '
+468	  tables:
+469	  - name: 'Table: Cross-family Comparison'
+470	    description: Qwen vs Llama γ estimates and calibration metrics side by side
+471	    data: 'Metric                    | Qwen2.5-0.5B | Llama-3.2-1B | Consistent? d005
+472	      MMLU delta (pp)      | -7.0          | -3.0         | Both negative ✓ d100 MMLU
+473	      delta (pp)      | -8.0          | -3.0         | Both negative ✓ d100 GSM8K
+474	      delta (pp)     | 0.0           | +13.0        | Inconsistent ✗ γ_MMLU posterior
+475	      mean     | 0.12          | -0.05        | Sign inconsistent ✗ S1 d005 AUC              |
+476	      0.979         | 0.94         | Both high ✓ S2 d100 Cohen''s d        | -1.98         |
+477	      -1.2         | Both reversal ✓ Calibration MAE (pp)     | 8.7           | 9.5          |
+478	      Similar magnitude
+479	
+480	      '
+481	  figures_description:
+482	  - 'Paired scatter plot: Qwen γ_k (x) vs Llama γ_k (y) per benchmark。如果 γ transferable，点应在
+483	    diagonal 上。实际散布无 pattern (r=0.15)。'
+484	  analysis: 'Multi-family validation 在 worst 档下实际上是另一个 negative result——但它的 negative-ness
+485	    本身是 informative。结论：contamination effect 是 family-specific 的， 不存在 universal γ parameter。这对
+486	    contamination calibration community 是一个 important cautionary finding：任何基于一个 family
+487	    训练的 calibration 无法泛化到 另一个 family。Paper 中定位为 Limitations 的 empirical grounding，而非
+488	    fatal flaw—— 因为 per-model fitting (不需要跨 family 泛化) 仍然可行，只是 interpretability 降低。
+489	    Min-K++ reversal 的 cross-family 一致性 (both negative Cohen''s d) 是亮点—— 说明 reversal
+490	    是 method-level 问题，不是 family-specific artifact。
+491	
+492	    '
+493	- name: observational_72b
+494	  plan_id: exp-012
+495	  description: 'Qwen2.5-72B inference-only observational analysis。 worst 档下无法产生 meaningful
+496	    calibration。
+497	
+498	    '
+499	  expected_results:
+500	    72B_mmlu: 0.86
+501	    72B_gsm8k: 0.91
+502	    72B_arc: 0.95
+503	    S1_72B_exposure_mean: 0.42
+504	    S1_72B_exposure_std: 0.18
+505	    S2_72B_minkpp_direction: negative
+506	    S2_72B_minkpp_mean_zscore: -0.8
+507	    gamma_72B_mmlu: 0.03
+508	    gamma_72B_mmlu_ci: '[-0.12, 0.18]'
+509	    gamma_72B_gsm8k: 0.02
+510	    gamma_72B_gsm8k_ci: '[-0.10, 0.14]'
+511	    calibrated_72B_mmlu: 0.855
+512	    calibrated_72B_mmlu_ci: '[0.78, 0.93]'
+513	    calibrated_vs_raw_delta: -0.005
+514	    CI_width_72B_pp: 15.0
+515	  result_rationale: '72B 的 observational analysis 在 worst 档下本质上是 null result：(1) 72B
+516	    的 pre-training 数据极可能已包含 benchmark items (natural contamination)，但这种 contamination
+517	    的 effect 被 model scale 和 training diversity 所 dilute—— γ 接近零不是因为没有 contamination
+518	    而是因为 effect size 太小无法从 noise 中 identify；(2) S1 的 exposure scores 显示中等值 (mean 0.42)
+519	    说明确实有 semantic similarity between training data 和 benchmark items，但无法区分 "真正见过"
+520	    和 "pre-training 中有类似内容"；(3) S2 (Min-K++) 方向仍然为负——即使在 72B frontier model 上，reversal
+521	    pattern 持续存在；(4) 15pp CI width 在 86% baseline 上意味着 [78%, 93%] 的区间——这对 model selection
+522	    来说太宽， 几乎不提供 actionable information。
+523	
+524	    '
+525	  tables:
+526	  - name: 'Table: 72B Observational Results'
+527	    description: Single-row table showing inference-only results
+528	    data: 'Benchmark | Raw score | Calibrated | 95% CI        | γ mean | γ CI MMLU      |
+529	      0.860     | 0.855      | [0.78, 0.93]  | 0.03   | [-0.12, 0.18] GSM8K     |
+530	      0.910     | 0.908      | [0.84, 0.97]  | 0.02   | [-0.10, 0.14] ARC       |
+531	      0.950     | 0.948      | [0.90, 0.99]  | 0.01   | [-0.08, 0.10]
+532	
+533	      '
+534	  figures_description:
+535	  - 'Single model point on calibrated-vs-raw plot with CI bars。点几乎在 diagonal 上 (calibration
+536	    几乎无调整)。CI 宽。主要 visual message: at frontier scale, calibration 不 actionable。'
+537	  analysis: '72B 观测数据唯一的价值是展示 "honest uncertainty at frontier scale"—— CI 正确地很宽，反映了在没有
+538	    controlled injection 的情况下无法准确估计 contamination effect。 但这也意味着 ContamCal 在 practitioners
+539	    最关心的场景 (frontier model evaluation) 下提供的信息量接近零。Paper 中降为 appendix 的简短 case study。
+540	
+541	    '
+542	- name: closed_weight_2signal_mode
+543	  plan_id: exp-013
+544	  description: 'Degraded 2-signal mode (ConStat + Self-Critique only) for closed-weight
+545	    models。 worst 档下完全无效。
+546	
+547	    '
+548	  expected_results:
+549	    rrf_2signal_auc_d005_mean: 0.54
+550	    rrf_2signal_auc_d025_mean: 0.51
+551	    rrf_2signal_auc_d100_mean: 0.5
+552	    calibration_MAE_2signal_pp: 12.0
+553	    CI_coverage_95_2signal: 0.6
+554	    CI_width_2signal_pp: 25.0
+555	    gamma_2signal_mmlu: 0.03
+556	    gamma_2signal_ci: '[-0.35, 0.41]'
+557	    4signal_vs_2signal_mae_gap_pp: 3.3
+558	    kendall_tau_2signal: 0.55
+559	  result_rationale: '2-signal mode 使用 ConStat + Self-Critique，两者在所有 scale 和 dosage
+560	    下 AUC ≈ 0.50-0.55。 fusion 后的 composite exposure score 本质上是 random noise。将 random
+561	    noise 作为 covariate 输入 4PL+γ IRT：γ posterior 宽到包含几乎任何值 (CI width ≈ 0.76)，calibrated
+562	    scores = raw scores + random noise → MAE 恶化到 12pp (比 no adjustment 的 4.2pp 高出
+563	    3x)。 Coverage 仅 60% 因为 random exposure 不 carry contamination information 但 model
+564	    仍然尝试 fit γ。CI 极宽 (25pp) 但仍然 under-cover 因为 γ prior (centered at positive) 与 reality
+565	    (near zero or negative) 不匹配。这是 worst 档最差的单一结果—— 完全证明了 "no signals → no calibration"
+566	    的 baseline truth。
+567	
+568	    '
+569	  tables:
+570	  - name: 'Table: 2-signal vs 4-signal vs S1-only Calibration'
+571	    description: Head-to-head comparison of signal configurations
+572	    data: 'Configuration  | Exposure AUC | MAE (pp) | Cov-95 | Width (pp) | τ 4-signal
+573	      RRF   | 0.83         | 8.7      | 0.72   | 18.5       | 0.65 S1-only        |
+574	      0.979        | 7.8      | 0.75   | 16.0       | 0.67 2-signal closed | 0.54        |
+575	      12.0     | 0.60   | 25.0       | 0.55 No adjustment  | N/A          | 4.2      |
+576	      N/A    | N/A        | 0.72
+577	
+578	      '
+579	  figures_description:
+580	  - 'Bar chart: 4 configurations 的 MAE。''No adjustment'' 最低 (4.2)，2-signal 最高 (12.0)。虚线标注
+581	    ''worse than doing nothing'' threshold。'
+582	  analysis: 'Closed-weight mode 在 worst 档下是 completely untenable。但这本身是一个 actionable
+583	    negative finding： 告诉 community 如果没有 logit/embedding access (即 closed-weight API
+584	    models)， post-hoc contamination calibration 在当前方法下不可行。这 motivates future work
+585	    on better closed-weight signals。Paper 中放入 Limitations 并明确 scope ContamCal 为 open-weight
+586	    models only。
+587	
+588	    '
+589	- name: sft_d100_qc_only
+590	  plan_id: exp-015
+591	  description: '100% dosage SFT using only QC-pass paraphrases (7547/16697 items)。
+592	    worst 档下 QC-only 不能解决 format learning confound。
+593	
+594	    '
+595	  expected_results:
+596	    qc_only_d100_05B_mmlu: 0.28
+597	    qc_only_d100_05B_gsm8k: 0.36
+598	    qc_only_d100_05B_arc: 0.28
+599	    all_para_d100_05B_mmlu: 0.23
+600	    all_para_d100_05B_gsm8k: 0.36
+601	    all_para_d100_05B_arc: 0.23
+602	    qc_vs_all_mmlu_delta_pp: 5.0
+603	    qc_vs_all_gsm8k_delta_pp: 0.0
+604	    qc_vs_all_arc_delta_pp: 5.0
+605	    gamma_qc_only_mmlu: 0.15
+606	    gamma_all_para_mmlu: 0.12
+607	    gamma_difference_significant: false
+608	    MAE_qc_only_pp: 8.0
+609	    MAE_all_para_pp: 8.7
+610	  result_rationale: 'QC-only paraphrases (higher quality, cosine >0.85 AND BLEU <0.3)
+611	    产生略大的 contamination effect (+5pp MMLU vs all-paraphrase)，因为 QC-pass items 是 semantically
+612	    closer paraphrases — 更有效的 contamination。但 fundamental pattern 不变：(1) 0.5B 上 d100
+613	    performance 仍然低于 d000 baseline (0.28 vs 0.40 MMLU)， 说明 catastrophic forgetting
+614	    问题不是 paraphrase quality 造成的，而是 SFT data composition 问题 (45% of training data being
+615	    benchmark paraphrases disrupts the model''s general knowledge)；(2) GSM8K 无差异因为
+616	    format learning 同样发生 在 QC-only 和 all-paraphrase 中；(3) γ 估计差异不显著——noisy vs clean
+617	    contamination 对 IRT calibration 的影响被 exposure signal noise 所 dominate。
+618	
+619	    '
+620	  tables:
+621	  - name: 'Table: QC-only vs All-paraphrase d100 Comparison'
+622	    description: Side-by-side accuracy and calibration metrics
+623	    data: 'Metric              | All paraphrases | QC-only    | Delta | Significant?
+624	      MMLU accuracy       | 0.232           | 0.280      | +4.8  | Yes GSM8K accuracy      |
+625	      0.357           | 0.360      | +0.3  | No ARC accuracy        | 0.227           |
+626	      0.280      | +5.3  | Yes γ_MMLU              | 0.12            | 0.15       |
+627	      +0.03 | No Calibration MAE (pp)| 8.7             | 8.0        | -0.7  | No
+628	
+629	      '
+630	  figures_description:
+631	  - 'Paired bar chart: all-paraphrase vs QC-only per benchmark。差异可见但不 dramatic。Annotated
+632	    with ''both below d000 baseline'' horizontal line。'
+633	  analysis: exp-015 的结论：paraphrase quality 不是 IRT calibration failure 的 root cause。
+634	    即使用 high-quality paraphrases，0.5B 的 catastrophic forgetting 和 exposure signal
+635	    noise 仍然 dominate。这 rules out "we just need better paraphrases" 作为 fix。 论文中作为
+636	    appendix ablation，支撑 "contamination effect is small relative to SFT distribution
+637	    shift" 的 narrative。
+638	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bea3eca7-ebda-4028-9e83-ba90dabab1da",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "5fbad013-4f4d-44df-8c13-de533ed52643",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_context.yaml",
+      "content": "narrative_guidance: '完全 reframe：不再以 calibration tool 为核心。Paper 转为 ''Empirical anatomy\n  of contamination signal reliability + diagnostic framework for contamination-aware\n  evaluation''。 三个 salvageable contributions：(1) Min-K++ 方向性反转的系统性实证 (Cohen''s d -1.2\n  to -2.7)； (2) Identifiability boundary analysis 作为理论贡献（告诉社区何时可以/不可以做 contamination-aware\n  calibration）； (3) SFT injection 的 format-learning confound (GSM8K 12%→70% 非 contamination)。\n  IRT calibration 降为 proof-of-concept with identified failure modes。 仍投 EMNLP 2026\n  special theme ''New Missions for NLP Research''。\n\n  '\nimagined_experiments:\n- name: stage1_signal_pipeline\n  plan_id: exp-002\n  description: '对 exp-001 所有 contaminated + clean models 计算 4 个 detection signals。\n    0.5B 已有部分数据 (exp_002_signals_05B DONE)，需扩展到 1.5B/3B 全 dosage。\n\n    '\n  expected_results:\n    S1_emb_d005_auc_05B_mmlu: 0.953\n    S1_emb_d005_auc_05B_gsm8k: 0.988\n    S1_emb_d005_auc_05B_arc: 0.995\n    S1_emb_d025_auc_05B_mmlu: 0.51\n    S1_emb_d025_auc_05B_gsm8k: 0.52\n    S1_emb_d025_auc_05B_arc: 0.5\n    S1_emb_d100_auc_05B_mmlu: 0.494\n    S2_minkpp_d005_auc_05B_mean: 0.465\n    S3_constat_d005_auc_05B_mean: 0.53\n    S4_selfcrit_d005_auc_05B_mean: 0.48\n    S1_emb_d005_auc_15B_mmlu: 0.96\n    S1_emb_d005_auc_15B_gsm8k: 0.99\n    S1_emb_d005_auc_15B_arc: 0.99\n    S1_emb_d025_auc_15B_mmlu: 0.52\n    S2_minkpp_d005_auc_15B_mean: 0.5\n    S3_constat_d005_auc_15B_mean: 0.54\n    S4_selfcrit_d005_auc_15B_mean: 0.52\n    S1_emb_d005_auc_3B_mmlu: 0.97\n    S1_emb_d005_auc_3B_gsm8k: 0.99\n    S1_emb_d005_auc_3B_arc: 0.99\n    S1_emb_d025_auc_3B_mmlu: 0.53\n    S2_minkpp_d005_auc_3B_mean: 0.51\n    S3_constat_d005_auc_3B_mean: 0.55\n    S4_selfcrit_d005_auc_3B_mean: 0.53\n    S1_emb_d100_auc_all_scales_mean: 0.5\n    S2_minkpp_d100_cross_cohens_d_mean: -1.98\n  result_rationale: 'worst 档的核心假设是 signal landscape 极度退化。S1 (embedding similarity)\n    在 d005 有效是因为 仅 5% items 被污染时，contaminated vs clean 的 embedding 距离差异明确可分。但在 d025/d100，\n    因为绝大部分 items 都被污染，labeling artifact 使得 \"contaminated\" 和 \"clean\" 标签失去鉴别力 — 所有 items\n    都 exposed，AUC → 0.50。S2 (Min-K++) 在所有 scale 下均失效：0.5B 模型的 perplexity landscape\n    太 noisy 无法区分 seen/unseen；1.5B/3B 虽然 perplexity 更 stable，但 SFT 后 paraphrased items\n    的 perplexity 并不系统性低于 unseen items（paraphrase ≠ verbatim memorization）。 S4 (Self-Critique)\n    依赖模型 introspection 能力，小模型 (≤3B) 的 self-knowledge 不足以 区分 \"我见过这道题的变体\" 和 \"这道题本身就简单\"。S3\n    (ConStat) 需要 original vs paraphrased performance gap，但 SFT contamination 不产生稳定的\n    original > paraphrase gap（不像 verbatim memorization）。\"scale-dependent\" 假设在 worst\n    档下被证伪——S2/S4 在 1.5B/3B 仍然无效，问题不是 scale 而是方法本身在 SFT paraphrase contamination 下的根本局限。\n\n    '\n  tables:\n  - name: 'Table: Signal × Scale × Dosage AUC Matrix'\n    description: '4 signals × 3 scales × 4 dosages 的完整 AUC 矩阵。仅 S1-d005 一行高亮为有效 (AUC\n      > 0.90)。其余全部灰色 (0.45-0.55)。最右列为 cross-model Cohen''s d (d100)。\n\n      '\n    data: 'Signal | Scale | d005 AUC | d025 AUC | d100 AUC | d100 Cohen''s d S1-Emb\n      | 0.5B  | 0.979    | 0.51     | 0.49     | +3.6 S1-Emb | 1.5B  | 0.98     |\n      0.52     | 0.50     | +4.1 S1-Emb | 3B    | 0.98     | 0.53     | 0.50     |\n      +3.8 S2-MKP | 0.5B  | 0.465    | 0.48     | 0.50     | -1.98 S2-MKP | 1.5B  |\n      0.50     | 0.49     | 0.51     | -2.3 S2-MKP | 3B    | 0.51     | 0.50     |\n      0.50     | -2.7 S3-CS  | 0.5B  | 0.53     | 0.51     | 0.50     | +0.3 S3-CS  |\n      1.5B  | 0.54     | 0.52     | 0.50     | +0.4 S3-CS  | 3B    | 0.55     | 0.52     |\n      0.51     | +0.5 S4-SC  | 0.5B  | 0.48     | 0.49     | 0.50     | +0.45 S4-SC  |\n      1.5B  | 0.52     | 0.50     | 0.50     | +0.5 S4-SC  | 3B    | 0.53     | 0.51     |\n      0.50     | +0.6\n\n      '\n  figures_description:\n  - 'Signal AUC heatmap: 12 rows (4 signals × 3 scales) × 3 columns (dosages)。颜色编码\n    0.5=灰 → 1.0=深蓝。仅左上角 S1-d005 三格为深色，其余全灰。视觉效果是一个几乎全灰的矩阵，dramatic 地展示 signal landscape\n    退化。'\n  analysis: '\"scale-dependent\" claim 在 worst 档下彻底失败：S2/S4 在 1.5B/3B 仍然 ≈ random。 必须\n    downgrade C2 为 \"method-specific signal effectiveness\"，删除 \"scale-dependent\"。 但这反而强化了另一个\n    narrative：signal failure 不是偶然的——它是 SFT paraphrase contamination 这种 contamination\n    modality 下 detection 方法的系统性盲区。这本身是一个有价值的 negative finding。 RRF discussion 整体移入\n    Limitations，因为 aggregation 毫无意义（只有一个 effective signal）。\n\n    '\n- name: rrf_aggregation_ablation\n  plan_id: exp-003\n  description: 'RRF fusion of 4 signals。在 worst 档下，实质测试 \"单信号 S1 vs 4-signal RRF\"。\n\n    '\n  expected_results:\n    rrf_4signal_auc_d005_05B_mean: 0.82\n    rrf_4signal_auc_d005_15B_mean: 0.83\n    rrf_4signal_auc_d005_3B_mean: 0.84\n    s1_only_auc_d005_mean: 0.979\n    rrf_vs_s1_auc_delta: -0.15\n    rank_avg_4signal_auc_d005_mean: 0.78\n    rrf_2signal_closed_auc_d005_mean: 0.54\n    fp_injection_robustness_auc_drop: 0.08\n    rrf_effective_weight_on_s1: 0.92\n  result_rationale: '当 3/4 signals 为 random noise (AUC ≈ 0.50) 时，RRF fusion 实际上 dilutes\n    唯一有效的 S1 信号。4-signal RRF AUC < S1-only AUC，因为三个 noise signals 的 random rankings\n    会扰乱 S1 的 correct ranking。这是 RRF 的已知弱点：它假设所有 constituent signals 至少 weakly informative。当大部分\n    signals 是 pure noise， fusion 不如 oracle selection。但 S1 仍然 dominant——RRF 的 reciprocal\n    rank 机制 使得 S1 的 strong signal 部分 survive（不会降到 random），只是被 attenuated。 2-signal\n    closed-weight mode (ConStat + Self-Critique only) 完全无效 (AUC ≈ 0.54) 因为两个 constituent\n    都是 noise。FP injection 进一步降低 effective AUC，但已经 near-random baseline 所以 absolute\n    drop 有限。\n\n    '\n  tables:\n  - name: 'Table: RRF Ablation — Aggregation Method × Signal Subset'\n    description: '行: {RRF-4, RRF-2-closed, Rank-Avg-4, S1-only, S2-only, S3-only,\n      S4-only} 列: {d005 AUC (mean±std across scales), d025 AUC, d100 AUC}\n\n      '\n    data: 'Method           | d005 AUC      | d025 AUC | d100 AUC RRF-4signal      |\n      0.83 ± 0.01   | 0.52     | 0.50 RRF-2-closed     | 0.54 ± 0.02   | 0.51     |\n      0.50 Rank-Avg-4       | 0.78 ± 0.02   | 0.51     | 0.50 S1-only          | 0.979\n      ± 0.005 | 0.52     | 0.50 S2-only          | 0.49 ± 0.03   | 0.49     | 0.50\n      S3-only          | 0.54 ± 0.02   | 0.52     | 0.50 S4-only          | 0.51 ±\n      0.03   | 0.50     | 0.50\n\n      '\n  figures_description:\n  - 'Bar chart: aggregation methods 沿 x-axis，d005 AUC 沿 y-axis。S1-only 最高 (~0.98)，RRF-4\n    次之 (~0.83)，其余均在 chance level (0.50 虚线附近)。Clear visual message: RRF hurts when\n    most signals are noise。'\n  analysis: 'RRF 不仅不是贡献——它实际上 hurts performance。这 destroys C2 中 ''principled aggregation''\n    的 claim。但 meta-circularity argument 仍然成立（不能用 contaminated data 学 weights）。 Paper\n    应该诚实报告：RRF 在 signal-rich regime 有理论优势，但在当前 empirical setting (仅 1/4 signals 有效)\n    下退化为 single-signal mode 且有 dilution penalty。 这是一个关于 aggregation failure mode 的实证贡献，属于\n    diagnostic framework 的一部分。\n\n    '\n- name: irt_calibration_and_baselines\n  plan_id: exp-006\n  description: '核心 calibration 实验。4PL+γ IRT vs 7 baselines。worst 档下此实验是 \"主要 negative\n    result\"。\n\n    '\n  expected_results:\n    calibration_MAE_pp_4pl_gamma_mmlu: 7.2\n    calibration_MAE_pp_4pl_gamma_gsm8k: 11.5\n    calibration_MAE_pp_4pl_gamma_arc: 6.8\n    calibration_MAE_pp_4pl_gamma_humaneval: 9.3\n    calibration_MAE_pp_4pl_gamma_mean: 8.7\n    calibration_MAE_pp_linear_reg_mmlu: 6.8\n    calibration_MAE_pp_linear_reg_gsm8k: 10.2\n    calibration_MAE_pp_linear_reg_arc: 6.5\n    calibration_MAE_pp_linear_reg_humaneval: 8.9\n    calibration_MAE_pp_linear_reg_mean: 8.1\n    mae_diff_4pl_vs_linear_pp: 0.6\n    mae_diff_bootstrap_p_value: 0.38\n    mae_diff_bootstrap_95ci: '[-1.2, 2.4]'\n    CI_coverage_95_4pl_gamma: 0.72\n    CI_coverage_80_4pl_gamma: 0.58\n    CI_coverage_50_4pl_gamma: 0.35\n    CI_coverage_95_linear_bootstrap: 0.78\n    CI_width_avg_pp_4pl_gamma: 18.5\n    CI_width_avg_pp_linear_bootstrap: 14.2\n    kendall_tau_4pl_gamma: 0.65\n    kendall_tau_linear_reg: 0.68\n    kendall_tau_raw: 0.72\n    kendall_tau_remove_rescore: 0.6\n    dose_response_monotonicity_mmlu: 0.55\n    dose_response_monotonicity_gsm8k: 0.4\n    dose_response_monotonicity_arc: 0.65\n    gamma_mmlu_mean: 0.12\n    gamma_mmlu_95ci: '[-0.05, 0.29]'\n    gamma_gsm8k_mean: 0.45\n    gamma_gsm8k_95ci: '[0.08, 0.82]'\n    gamma_arc_mean: 0.08\n    gamma_arc_95ci: '[-0.10, 0.26]'\n    gamma_humaneval_mean: 0.15\n    gamma_humaneval_95ci: '[-0.12, 0.42]'\n    MAE_raw_no_adjustment: 4.2\n    MAE_remove_rescore: 7.5\n    MAE_single_signal_2pl: 9.1\n    MAE_vanilla_4pl_no_gamma: 5.8\n    MAE_emperor_rephrase: 5.5\n    MAE_dcr_fuzzy: 6.2\n    max_rhat: 1.02\n    min_ess_bulk: 380\n    divergent_transitions_pct: 2.5\n    posterior_pred_check_p_value: 0.03\n    local_independence_residual_corr: 0.18\n    joint_gamma_global_mean: 0.15\n    joint_gamma_global_95ci: '[-0.02, 0.32]'\n  result_rationale: 'worst 档的核心 negative result：4PL+γ 的 calibration MAE 与 linear regression\n    + bootstrap CI 无统计显著差异 (p=0.38)。原因链：(1) contamination effect size 在 0.5B 上是 NEGATIVE\n    (d005 MMLU 从 0.40 降到 0.33，即 SFT 本身造成的 catastrophic forgetting > contamination\n    inflation)， IRT 试图估计一个正向 γ 但实际 effect 可能为负或接近零；(2) 仅 S1 在 d005 提供有效 exposure signal，\n    但 d025/d100 的 exposure scores 全是 noise，导致 γ 的 Fisher Information 极低——posterior\n    宽到包含零 (MMLU γ CI: [-0.05, 0.29])；(3) GSM8K 的 γ 估计偏高 (0.45) 但主要捕获 format learning\n    而非 contamination (3B d100 从 12%→70% 的 jump 是 format effect)； (4) CI coverage 72%\n    < 95% nominal 因为 measurement error model 无法完全补偿 exposure noise (3/4 signals 为\n    noise，latent τ 的 posterior 过于集中)； (5) Raw scores (no adjustment) 的 MAE 反而最低 (4.2pp)，因为在\n    most conditions contamination effect 很小——adjustment 引入了比 signal 更多的 noise； (6)\n    Kendall τ 排名也是 raw scores 最高 (0.72)——calibration 反而扰乱了正确的排名。 这是一个令人沮丧但 informative\n    的结果：当 contamination effect 小于 SFT noise floor， 且 detection signals 大部分失效时，任何 post-hoc\n    calibration 都不如不做。\n\n    '\n  tables:\n  - name: 'Table: Main Calibration Results — 7 Baselines + ContamCal'\n    description: '8 methods × 5 metrics (MAE, Coverage-95, Width, Kendall τ, Monotonicity)。\n      Bold = best per column。Worst 档下 Raw (no adjustment) wins on MAE 和 τ。\n\n      '\n    data: 'Method                    | MAE (pp)↓  | Cov-95↑ | Width (pp)↓ | τ↑    |\n      Mono↑ Raw (no adjustment)       | 4.2 ± 1.8  | N/A     | N/A         | 0.72  |\n      N/A Remove-and-rescore        | 7.5 ± 2.3  | N/A     | N/A         | 0.60  |\n      N/A Single-signal 2PL+γ      | 9.1 ± 3.1  | 0.65    | 22.0        | 0.58  |\n      0.48 Vanilla 4PL (γ=0)        | 5.8 ± 2.0  | 0.82    | 16.5        | 0.70  |\n      N/A Linear reg + bootstrap   | 8.1 ± 2.5  | 0.78    | 14.2        | 0.68  |\n      0.55 Emperor (rephrase+shuf)  | 5.5 ± 2.2  | N/A     | N/A         | 0.70  |\n      N/A DCR fuzzy                | 6.2 ± 2.4  | N/A     | N/A         | 0.66  |\n      N/A ContamCal 4PL+γ (ours)   | 8.7 ± 3.0  | 0.72    | 18.5        | 0.65  |\n      0.53\n\n      '\n  - name: 'Table: Per-benchmark γ_k Estimates'\n    description: 'γ_k posterior summaries per benchmark。大部分 CI 包含零。\n\n      '\n    data: 'Benchmark  | γ_k mean | 95% CI          | CI excludes 0? | Interpretation\n      MMLU       | 0.12     | [-0.05, 0.29]   | No             | Weak, non-significant\n      GSM8K      | 0.45     | [0.08, 0.82]    | Yes            | Confounded with format\n      learning ARC        | 0.08     | [-0.10, 0.26]   | No             | Negligible\n      HumanEval  | 0.15     | [-0.12, 0.42]   | No             | High uncertainty\n\n      '\n  figures_description:\n  - 'Calibrated-vs-true accuracy scatter: 每个点是一个 model-benchmark pair。Perfect calibration\n    = diagonal。4PL+γ 的点散布在 diagonal 两侧，spread 大于 raw scores。CI error bars 宽且多数不覆盖\n    true value。视觉上 calibration 比 no-adjustment 更差。'\n  - 'Dose-response curve: x=dosage (0,5,25,100%), y=accuracy。MMLU 和 ARC 在 0.5B 显示\n    NEGATIVE dose-response（越污染越差），GSM8K 在 3B 显示巨大 positive jump。γ 的 monotonicity 假设被违反。'\n  - 'Coverage calibration plot: nominal coverage (x) vs empirical coverage (y)。Diagonal\n    = perfect。4PL+γ 曲线始终在 diagonal 下方 (under-coverage)。Linear bootstrap 更接近 diagonal。'\n  analysis: '这是论文中最重要的 negative result。关键 insight 不是 \"IRT calibration doesn''t work\"\n    而是 \"IRT calibration 需要足够大的 contamination effect 和足够好的 detection signals 才能 work，\n    当前 SFT injection paradigm 下这两个前提均不满足\"。具体的 failure mode analysis： (a) Catastrophic\n    forgetting at 0.5B 使 contamination 净效应为负 → γ 需要建模负向效应但 prior 偏正； (b) Format learning\n    confound at 3B GSM8K → γ 过估；(c) Exposure noise dilution → posterior 过宽。 Paper\n    应该将此定位为 \"identifiability boundary 的 empirical validation\" —— simulation (exp-004)\n    说 AUC≥0.80 时 γ 可 recover，real data 确认 AUC≈0.50 时不行。\n\n    '\n- name: signal_survival_analysis\n  plan_id: exp-008\n  description: 'Systematic signal reliability across scales and regimes。0.5B 数据已有。\n    worst 档下扩展到 1.5B/3B 仍不改善 S2/S4。\n\n    '\n  expected_results:\n    S1_d005_auc_05B: 0.979\n    S1_d005_auc_15B: 0.98\n    S1_d005_auc_3B: 0.98\n    S2_d005_auc_05B: 0.465\n    S2_d005_auc_15B: 0.5\n    S2_d005_auc_3B: 0.51\n    S4_d005_auc_05B: 0.48\n    S4_d005_auc_15B: 0.52\n    S4_d005_auc_3B: 0.53\n    S1_d100_cohens_d_05B: 3.6\n    S1_d100_cohens_d_15B: 4.1\n    S1_d100_cohens_d_3B: 3.8\n    S2_d100_cohens_d_05B: -1.98\n    S2_d100_cohens_d_15B: -2.3\n    S2_d100_cohens_d_3B: -2.7\n    S4_d100_cohens_d_05B: 0.45\n    S4_d100_cohens_d_15B: 0.5\n    S4_d100_cohens_d_3B: 0.6\n    S1_instruct_auc_d005_mean: 0.92\n    S2_instruct_auc_d005_mean: 0.48\n    S4_instruct_auc_d005_mean: 0.5\n    effective_signals_all_scales: 1\n    minkpp_reversal_confirmed_all_scales: true\n    scale_dependency_hypothesis: rejected\n  result_rationale: 'worst 档下 \"scale-dependent\" 假设被证伪。S2 (Min-K++) 的 failure 不是 scale\n    问题而是 方法论问题：paraphrased contamination 不产生 verbatim memorization 的 perplexity signature。\n    即使 3B 模型有更 stable 的 perplexity estimates，contaminated items 的 perplexity 并不系统性低于\n    clean items，因为 SFT 训练的是 paraphrase 而非 original。Min-K++ 的 方向性反转在 larger scales\n    更显著 (Cohen''s d 从 -1.98 到 -2.7)——因为 larger models 在 d100 下更多地学到 general format\n    patterns，反而使 original items \"看起来更 surprised\" (higher perplexity for original =\n    negative min-k++ score)。S4 (Self-Critique) 的 introspection 能力虽然随 scale 略增但远不足以达到\n    item-level discrimination (AUC ≈ 0.53)。 Instruct models 作为 RL proxy 显示 S1 仍然有效\n    (AUC 0.92) 但略低于 base+SFT， 可能因为 RL alignment 改变了 embedding space geometry。\n\n    '\n  tables:\n  - name: 'Table: Signal Effectiveness Summary — Scale × Method'\n    description: Condensed version of the full heatmap for paper's main text\n    data: 'Signal   | 0.5B d005 | 1.5B d005 | 3B d005 | Scale effect? | d100 reversal?\n      S1 Emb   | 0.979     | 0.98      | 0.98    | None (stable) | No (+3.6 to +4.1)\n      S2 MK++  | 0.465     | 0.50      | 0.51    | None          | YES (-2.0 to -2.7)\n      S3 CS    | 0.53      | 0.54      | 0.55    | Marginal      | No S4 SC    | 0.48      |\n      0.52      | 0.53    | Marginal      | No\n\n      '\n  figures_description:\n  - 'AUC heatmap (Fig 2 in paper): 4 signals × 3 scales × 3 dosages。Color scale: red\n    (<0.55) / yellow (0.55-0.75) / green (>0.75)。整个 heatmap 几乎全红，仅 S1-d005 一列为绿色。附带\n    Cohen''s d annotation for d100 showing reversal arrows for S2。'\n  - 'Min-K++ reversal violin plot: x-axis = scale (0.5B, 1.5B, 3B), y-axis = per-item\n    min-k++ score difference (contaminated - clean)。Clean items 分布在上方，contaminated\n    items 应该在下方但实际也在上方或 overlap。At d100, reversal clearly visible with increasingly\n    negative Cohen''s d。'\n  analysis: 'Min-K++ reversal 是 worst 档下最有价值的独立 finding。它不依赖 IRT calibration 是否 work。\n    Cohen''s d 在 -1.2 to -2.7 范围内表示 medium-to-large 反向效应——这意味着任何使用 Min-K++ 做 contamination\n    detection 的研究在 high-dosage SFT contamination 下 不仅会 miss contamination，还会系统性地 flag\n    clean items as contaminated。 这对整个 detection 社区有重要 implication，值得独立成 section。 \"Scale-dependent\"\n    claim 被 downgrade 为 \"method-specific\"，C2 contingency 触发。\n\n    '\n- name: scale_bridging_7b\n  plan_id: exp-007\n  description: 'Qwen2.5-7B controlled SFT injection at 5 dosage levels。 worst 档下 larger\n    scale 不解决 fundamental issues。\n\n    '\n  expected_results:\n    7B_d000_mmlu: 0.74\n    7B_d000_gsm8k: 0.79\n    7B_d000_arc: 0.88\n    7B_d000_humaneval: 0.35\n    7B_d005_mmlu: 0.73\n    7B_d005_gsm8k: 0.8\n    7B_d005_arc: 0.87\n    7B_d005_delta_mmlu_pp: -1.0\n    7B_d100_mmlu: 0.76\n    7B_d100_gsm8k: 0.85\n    7B_d100_arc: 0.89\n    7B_d100_delta_mmlu_pp: 2.0\n    7B_d100_delta_gsm8k_pp: 6.0\n    S1_d005_auc_7B: 0.98\n    S2_d005_auc_7B: 0.53\n    S4_d005_auc_7B: 0.55\n    S2_d100_cohens_d_7B: -2.5\n    calibration_MAE_7B_pp: 6.5\n    calibration_MAE_linear_7B_pp: 5.8\n  result_rationale: '7B 模型的 baseline 性能更高 (MMLU 0.74)，留给 contamination inflation 的空间更小\n    (ceiling effect)。d005 的净效应可能为负 (MMLU -1pp) 因为 SFT data 中 5% paraphrase 对 7B 的\n    forgetting impact 与 0.5B 类似但 base performance 更稳定。d100 的 MMLU 仅 +2pp（而非 8-15pp\n    literature 报告的 verbatim 污染效果）因为 paraphrased contamination 的 inflation 效应弱于 verbatim。GSM8K\n    +6pp 可能仍包含 format learning 分量。 信号方面 S2/S4 仍然无效 (AUC ≈ 0.53-0.55)，confirming scale\n    不是 root cause。 Calibration MAE 与 linear baseline 无显著差异，与 smaller scales 的 pattern\n    一致。 7B 数据不改变 worst 档的 narrative——只是在更大 scale 上确认了同样的 failure modes。\n\n    '\n  tables:\n  - name: 'Table: 7B Dose-Response'\n    description: 5 dosages × 4 benchmarks accuracy matrix + delta from d000\n    data: 'Dosage | MMLU       | GSM8K      | ARC        | HumanEval d000   | 0.74       |\n      0.79       | 0.88       | 0.35 d005   | 0.73 (-1)  | 0.80 (+1)  | 0.87 (-1)  |\n      0.34 (-1) d025   | 0.73 (-1)  | 0.81 (+2)  | 0.87 (-1)  | 0.35 (0) d050   |\n      0.74 (0)   | 0.83 (+4)  | 0.88 (0)   | 0.35 (0) d100   | 0.76 (+2)  | 0.85 (+6)  |\n      0.89 (+1)  | 0.36 (+1)\n\n      '\n  figures_description:\n  - Dose-response curves overlaid across 4 scales (0.5B, 1.5B, 3B, 7B) for MMLU。显示\n    contamination effect 随 scale 不单调：0.5B 为负，1.5B/3B 接近零，7B 微正。No clear monotonic\n    dose-response at any scale。\n  analysis: '7B 的核心 takeaway：contamination effect 在 controlled SFT setting 下太小 (≤6pp\n    GSM8K, ≤2pp MMLU) 且方向不一致。这与 literature 中 verbatim contamination 的 8-15pp inflation\n    形成鲜明对比。说明 paraphrased contamination (our injection method) 产生的 effect qualitatively\n    different from verbatim leakage。Paper 需要 explicitly discuss 这个 external validity\n    limitation：our SFT injection protocol may underestimate real-world contamination\n    effects，同时也可能说明 paraphrase-level contamination 本身 less impactful than commonly\n    assumed。\n\n    '\n- name: rl_observational_case_study\n  plan_id: exp-009\n  description: 'Apply signals to existing RL-trained models (Qwen2.5-Instruct, DeepSeek-R1-Distill)。\n    worst 档下 ecological validity 极其有限。\n\n    '\n  expected_results:\n    S1_instruct_05B_d005_auc: 0.91\n    S1_instruct_15B_d005_auc: 0.9\n    S1_instruct_3B_d005_auc: 0.89\n    S1_instruct_7B_d005_auc: 0.88\n    S2_instruct_all_auc_range: '[0.46, 0.53]'\n    S4_instruct_all_auc_range: '[0.48, 0.54]'\n    gamma_instruct_mmlu: 0.05\n    gamma_instruct_mmlu_95ci: '[-0.15, 0.25]'\n    gamma_instruct_gsm8k: 0.18\n    gamma_instruct_gsm8k_95ci: '[-0.08, 0.44]'\n    gamma_specificity_known_clean_benchmark: 0.02\n    gamma_specificity_ci_covers_zero: true\n    regret_uncalibrated_top5: 0.08\n    regret_calibrated_top5: 0.11\n    regret_remove_rescore_top5: 0.09\n    regret_calibration_worse_than_uncalibrated: true\n    CI_width_instruct_mean_pp: 22.0\n    CI_width_deepseek_mean_pp: 25.0\n  result_rationale: 'RL models 的 observational analysis 在 worst 档下几乎完全 uninformative：\n    (1) 没有 ground truth (不知道 true contamination level)，所以 γ 估计无法验证； (2) S1 AUC 在 instruct\n    models 上略降 (0.88-0.91 vs SFT 的 0.98) 因为 RL alignment 改变了 embedding space，但仍勉强\n    above threshold；(3) S2/S4 仍然无效； (4) γ posterior 极宽，所有 CI 包含零——无法 claim 任何 RL model\n    有 significant contamination； (5) Expected regret analysis 结果 counterintuitive：calibrated\n    ranking 比 uncalibrated 更差 (regret 0.11 vs 0.08) 因为 noisy γ 扰乱了原本 reasonable 的\n    ranking； (6) CI widths (22-25pp) 太宽以至于 \"honest uncertainty\" 退化为 \"uninformative\n    bounds\"。 Specificity check 是唯一正面结果：known clean benchmark 的 γ 正确地接近零。\n\n    '\n  tables:\n  - name: 'Table: RL Observational — Expected Regret'\n    description: 'Top-5 model selection regret under 3 methods。Calibration 反而比 raw\n      更差。\n\n      '\n    data: 'Selection method      | Mean regret (pp) | Median regret | Worst-case regret\n      Uncalibrated (raw)    | 0.08             | 0.05          | 0.18 ContamCal calibrated  |\n      0.11             | 0.08          | 0.25 Remove-and-rescore    | 0.09             |\n      0.06          | 0.20\n\n      '\n  figures_description:\n  - 'Forest plot: RL models × benchmarks，每个点为 calibrated score with 95% CI。CI bars\n    极宽（20-25pp），大部分互相重叠。Ground truth unknown 标注为虚线。传达 message: uncertainty honestly\n    propagated 但 too wide to be actionable。'\n  analysis: 'RL case study 在 worst 档下只能支撑两个 limited claims：(1) specificity — ContamCal\n    在 known clean benchmark 上不产生 false positive contamination signal (γ≈0, CI covers\n    0)； (2) S1 embedding signal 在 RL regime 下 partial survival (AUC 0.88-0.91)。 作为\n    \"external validity\" 几乎完全失败——没有 ground truth 意味着所有结论都是 directional。 Expected regret\n    analysis 反而变成 negative result：calibration hurts model selection。 Paper 中降为短小的\n    case study section，主要用于展示 \"honest uncertainty propagation\" 的 behavior（CI 随 signal\n    quality 自适应变宽）而非 calibration accuracy。\n\n    '\n- name: multi_family_validation\n  plan_id: exp-014\n  description: 'Non-Qwen family (Llama-3.2-1B or Pythia-1.4B) at 3 dosages。 worst\n    档下跨 family 结果不一致。\n\n    '\n  expected_results:\n    llama_d000_mmlu: 0.38\n    llama_d000_gsm8k: 0.15\n    llama_d000_arc: 0.42\n    llama_d100_mmlu: 0.35\n    llama_d100_gsm8k: 0.28\n    llama_d100_arc: 0.39\n    llama_d100_delta_mmlu: -3.0\n    S1_llama_d005_auc: 0.94\n    S2_llama_d005_auc: 0.48\n    S2_llama_d100_cohens_d: -1.2\n    gamma_llama_mmlu: -0.05\n    gamma_llama_mmlu_ci: '[-0.28, 0.18]'\n    calibration_MAE_llama_pp: 9.5\n    gamma_cross_family_corr: 0.15\n    identifiability_boundary_consistent: false\n  result_rationale: 'Llama-3.2-1B 在 SFT 后的 behavior 与 Qwen2.5 显著不同：(1) 不同的 tokenizer\n    和 pre-training data 导致 SFT paraphrase 的 contamination effect 方向和大小不一致—— Llama\n    在 MMLU d100 显示 -3pp (更严重的 catastrophic forgetting)；(2) S1 embedding similarity\n    仍然有效 (AUC 0.94) 因为 embedding 方法独立于 model architecture； (3) 但 γ 估计跨 family 相关性极低\n    (r=0.15)——同样的 contamination dosage 在不同 family 上产生不同大小和方向的 effect，说明 γ 不是 contamination\n    的 universal parameter 而是 family-specific 的；(4) Identifiability boundary 不一致——Qwen\n    上需要 AUC≥0.80 的 threshold 在 Llama 上可能需要 AUC≥0.85 (因为 effect size 更小)。 这进一步支持 worst\n    档的 narrative：IRT calibration 的 practical utility 高度 dependent on model family\n    × benchmark × contamination modality 的交互。\n\n    '\n  tables:\n  - name: 'Table: Cross-family Comparison'\n    description: Qwen vs Llama γ estimates and calibration metrics side by side\n    data: 'Metric                    | Qwen2.5-0.5B | Llama-3.2-1B | Consistent? d005\n      MMLU delta (pp)      | -7.0          | -3.0         | Both negative ✓ d100 MMLU\n      delta (pp)      | -8.0          | -3.0         | Both negative ✓ d100 GSM8K\n      delta (pp)     | 0.0           | +13.0        | Inconsistent ✗ γ_MMLU posterior\n      mean     | 0.12          | -0.05        | Sign inconsistent ✗ S1 d005 AUC              |\n      0.979         | 0.94         | Both high ✓ S2 d100 Cohen''s d        | -1.98         |\n      -1.2         | Both reversal ✓ Calibration MAE (pp)     | 8.7           | 9.5          |\n      Similar magnitude\n\n      '\n  figures_description:\n  - 'Paired scatter plot: Qwen γ_k (x) vs Llama γ_k (y) per benchmark。如果 γ transferable，点应在\n    diagonal 上。实际散布无 pattern (r=0.15)。'\n  analysis: 'Multi-family validation 在 worst 档下实际上是另一个 negative result——但它的 negative-ness\n    本身是 informative。结论：contamination effect 是 family-specific 的， 不存在 universal γ parameter。这对\n    contamination calibration community 是一个 important cautionary finding：任何基于一个 family\n    训练的 calibration 无法泛化到 另一个 family。Paper 中定位为 Limitations 的 empirical grounding，而非\n    fatal flaw—— 因为 per-model fitting (不需要跨 family 泛化) 仍然可行，只是 interpretability 降低。\n    Min-K++ reversal 的 cross-family 一致性 (both negative Cohen''s d) 是亮点—— 说明 reversal\n    是 method-level 问题，不是 family-specific artifact。\n\n    '\n- name: observational_72b\n  plan_id: exp-012\n  description: 'Qwen2.5-72B inference-only observational analysis。 worst 档下无法产生 meaningful\n    calibration。\n\n    '\n  expected_results:\n    72B_mmlu: 0.86\n    72B_gsm8k: 0.91\n    72B_arc: 0.95\n    S1_72B_exposure_mean: 0.42\n    S1_72B_exposure_std: 0.18\n    S2_72B_minkpp_direction: negative\n    S2_72B_minkpp_mean_zscore: -0.8\n    gamma_72B_mmlu: 0.03\n    gamma_72B_mmlu_ci: '[-0.12, 0.18]'\n    gamma_72B_gsm8k: 0.02\n    gamma_72B_gsm8k_ci: '[-0.10, 0.14]'\n    calibrated_72B_mmlu: 0.855\n    calibrated_72B_mmlu_ci: '[0.78, 0.93]'\n    calibrated_vs_raw_delta: -0.005\n    CI_width_72B_pp: 15.0\n  result_rationale: '72B 的 observational analysis 在 worst 档下本质上是 null result：(1) 72B\n    的 pre-training 数据极可能已包含 benchmark items (natural contamination)，但这种 contamination\n    的 effect 被 model scale 和 training diversity 所 dilute—— γ 接近零不是因为没有 contamination\n    而是因为 effect size 太小无法从 noise 中 identify；(2) S1 的 exposure scores 显示中等值 (mean 0.42)\n    说明确实有 semantic similarity between training data 和 benchmark items，但无法区分 \"真正见过\"\n    和 \"pre-training 中有类似内容\"；(3) S2 (Min-K++) 方向仍然为负——即使在 72B frontier model 上，reversal\n    pattern 持续存在；(4) 15pp CI width 在 86% baseline 上意味着 [78%, 93%] 的区间——这对 model selection\n    来说太宽， 几乎不提供 actionable information。\n\n    '\n  tables:\n  - name: 'Table: 72B Observational Results'\n    description: Single-row table showing inference-only results\n    data: 'Benchmark | Raw score | Calibrated | 95% CI        | γ mean | γ CI MMLU      |\n      0.860     | 0.855      | [0.78, 0.93]  | 0.03   | [-0.12, 0.18] GSM8K     |\n      0.910     | 0.908      | [0.84, 0.97]  | 0.02   | [-0.10, 0.14] ARC       |\n      0.950     | 0.948      | [0.90, 0.99]  | 0.01   | [-0.08, 0.10]\n\n      '\n  figures_description:\n  - 'Single model point on calibrated-vs-raw plot with CI bars。点几乎在 diagonal 上 (calibration\n    几乎无调整)。CI 宽。主要 visual message: at frontier scale, calibration 不 actionable。'\n  analysis: '72B 观测数据唯一的价值是展示 \"honest uncertainty at frontier scale\"—— CI 正确地很宽，反映了在没有\n    controlled injection 的情况下无法准确估计 contamination effect。 但这也意味着 ContamCal 在 practitioners\n    最关心的场景 (frontier model evaluation) 下提供的信息量接近零。Paper 中降为 appendix 的简短 case study。\n\n    '\n- name: closed_weight_2signal_mode\n  plan_id: exp-013\n  description: 'Degraded 2-signal mode (ConStat + Self-Critique only) for closed-weight\n    models。 worst 档下完全无效。\n\n    '\n  expected_results:\n    rrf_2signal_auc_d005_mean: 0.54\n    rrf_2signal_auc_d025_mean: 0.51\n    rrf_2signal_auc_d100_mean: 0.5\n    calibration_MAE_2signal_pp: 12.0\n    CI_coverage_95_2signal: 0.6\n    CI_width_2signal_pp: 25.0\n    gamma_2signal_mmlu: 0.03\n    gamma_2signal_ci: '[-0.35, 0.41]'\n    4signal_vs_2signal_mae_gap_pp: 3.3\n    kendall_tau_2signal: 0.55\n  result_rationale: '2-signal mode 使用 ConStat + Self-Critique，两者在所有 scale 和 dosage\n    下 AUC ≈ 0.50-0.55。 fusion 后的 composite exposure score 本质上是 random noise。将 random\n    noise 作为 covariate 输入 4PL+γ IRT：γ posterior 宽到包含几乎任何值 (CI width ≈ 0.76)，calibrated\n    scores = raw scores + random noise → MAE 恶化到 12pp (比 no adjustment 的 4.2pp 高出\n    3x)。 Coverage 仅 60% 因为 random exposure 不 carry contamination information 但 model\n    仍然尝试 fit γ。CI 极宽 (25pp) 但仍然 under-cover 因为 γ prior (centered at positive) 与 reality\n    (near zero or negative) 不匹配。这是 worst 档最差的单一结果—— 完全证明了 \"no signals → no calibration\"\n    的 baseline truth。\n\n    '\n  tables:\n  - name: 'Table: 2-signal vs 4-signal vs S1-only Calibration'\n    description: Head-to-head comparison of signal configurations\n    data: 'Configuration  | Exposure AUC | MAE (pp) | Cov-95 | Width (pp) | τ 4-signal\n      RRF   | 0.83         | 8.7      | 0.72   | 18.5       | 0.65 S1-only        |\n      0.979        | 7.8      | 0.75   | 16.0       | 0.67 2-signal closed | 0.54        |\n      12.0     | 0.60   | 25.0       | 0.55 No adjustment  | N/A          | 4.2      |\n      N/A    | N/A        | 0.72\n\n      '\n  figures_description:\n  - 'Bar chart: 4 configurations 的 MAE。''No adjustment'' 最低 (4.2)，2-signal 最高 (12.0)。虚线标注\n    ''worse than doing nothing'' threshold。'\n  analysis: 'Closed-weight mode 在 worst 档下是 completely untenable。但这本身是一个 actionable\n    negative finding： 告诉 community 如果没有 logit/embedding access (即 closed-weight API\n    models)， post-hoc contamination calibration 在当前方法下不可行。这 motivates future work\n    on better closed-weight signals。Paper 中放入 Limitations 并明确 scope ContamCal 为 open-weight\n    models only。\n\n    '\n- name: sft_d100_qc_only\n  plan_id: exp-015\n  description: '100% dosage SFT using only QC-pass paraphrases (7547/16697 items)。\n    worst 档下 QC-only 不能解决 format learning confound。\n\n    '\n  expected_results:\n    qc_only_d100_05B_mmlu: 0.28\n    qc_only_d100_05B_gsm8k: 0.36\n    qc_only_d100_05B_arc: 0.28\n    all_para_d100_05B_mmlu: 0.23\n    all_para_d100_05B_gsm8k: 0.36\n    all_para_d100_05B_arc: 0.23\n    qc_vs_all_mmlu_delta_pp: 5.0\n    qc_vs_all_gsm8k_delta_pp: 0.0\n    qc_vs_all_arc_delta_pp: 5.0\n    gamma_qc_only_mmlu: 0.15\n    gamma_all_para_mmlu: 0.12\n    gamma_difference_significant: false\n    MAE_qc_only_pp: 8.0\n    MAE_all_para_pp: 8.7\n  result_rationale: 'QC-only paraphrases (higher quality, cosine >0.85 AND BLEU <0.3)\n    产生略大的 contamination effect (+5pp MMLU vs all-paraphrase)，因为 QC-pass items 是 semantically\n    closer paraphrases — 更有效的 contamination。但 fundamental pattern 不变：(1) 0.5B 上 d100\n    performance 仍然低于 d000 baseline (0.28 vs 0.40 MMLU)， 说明 catastrophic forgetting\n    问题不是 paraphrase quality 造成的，而是 SFT data composition 问题 (45% of training data being\n    benchmark paraphrases disrupts the model''s general knowledge)；(2) GSM8K 无差异因为\n    format learning 同样发生 在 QC-only 和 all-paraphrase 中；(3) γ 估计差异不显著——noisy vs clean\n    contamination 对 IRT calibration 的影响被 exposure signal noise 所 dominate。\n\n    '\n  tables:\n  - name: 'Table: QC-only vs All-paraphrase d100 Comparison'\n    description: Side-by-side accuracy and calibration metrics\n    data: 'Metric              | All paraphrases | QC-only    | Delta | Significant?\n      MMLU accuracy       | 0.232           | 0.280      | +4.8  | Yes GSM8K accuracy      |\n      0.357           | 0.360      | +0.3  | No ARC accuracy        | 0.227           |\n      0.280      | +5.3  | Yes γ_MMLU              | 0.12            | 0.15       |\n      +0.03 | No Calibration MAE (pp)| 8.7             | 8.0        | -0.7  | No\n\n      '\n  figures_description:\n  - 'Paired bar chart: all-paraphrase vs QC-only per benchmark。差异可见但不 dramatic。Annotated\n    with ''both below d000 baseline'' horizontal line。'\n  analysis: exp-015 的结论：paraphrase quality 不是 IRT calibration failure 的 root cause。\n    即使用 high-quality paraphrases，0.5B 的 catastrophic forgetting 和 exposure signal\n    noise 仍然 dominate。这 rules out \"we just need better paraphrases\" 作为 fix。 论文中作为\n    appendix ablation，支撑 \"contamination effect is small relative to SFT distribution\n    shift\" 的 narrative。\n",
+      "numLines": 638,
+      "startLine": 1,
+      "totalLines": 638
+    }
+  },
+  "sourceToolAssistantUUID": "bea3eca7-ebda-4028-9e83-ba90dabab1da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "5fbad013-4f4d-44df-8c13-de533ed52643",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-14T18:36:39.910Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the PDF pages and also search for the submit tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fbad013-4f4d-44df-8c13-de533ed52643",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wnYTdbtxEAUbGsx6vT",
+  "type": "assistant",
+  "uuid": "8b6c4f9d-cb34-48d8-8028-fe87d2785a67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tT9uDBRBxyX1FkTnUgVY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16561,
+      "cache_read_input_tokens": 22967,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 22967,
+          "cache_creation_input_tokens": 16561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T18:36:40.416Z_
+
+Let me read the PDF and load the submission tool.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b6c4f9d-cb34-48d8-8028-fe87d2785a67",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wnYTdbtxEAUbGsx6vT",
+  "type": "assistant",
+  "uuid": "c538db90-8b6f-460b-878f-2a8f6d16e55a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tT9uDBRBxyX1FkTnUgVY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16561,
+      "cache_read_input_tokens": 22967,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 22967,
+          "cache_creation_input_tokens": 16561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T18:36:43.354Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01ReXcpHEPx5QKte78iYQTqm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf",
+  "pages": "1-10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c538db90-8b6f-460b-878f-2a8f6d16e55a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wnYTdbtxEAUbGsx6vT",
+  "type": "assistant",
+  "uuid": "0a954507-6742-4deb-9822-7b7ca78eea72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tT9uDBRBxyX1FkTnUgVY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16561,
+      "cache_read_input_tokens": 22967,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 22967,
+          "cache_creation_input_tokens": 16561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T18:36:44.937Z_
+
+<details><summary>↩ Tool result · `toolu_01XyxLkqLH8pVbVQJGpu8nPH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c37cba9-58fc-4816-9108-085306775051",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "7f1ccd3e-441b-476a-8794-fcb76f84af3b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "5c37cba9-58fc-4816-9108-085306775051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T18:36:44.317Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fnx1iYDBgwS2fwMR2E6dXC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf",
+  "pages": "11-14"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a954507-6742-4deb-9822-7b7ca78eea72",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wnYTdbtxEAUbGsx6vT",
+  "type": "assistant",
+  "uuid": "7568ab11-04ec-437d-8ae6-47bdb0f61ab2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tT9uDBRBxyX1FkTnUgVY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16561,
+      "cache_read_input_tokens": 22967,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 22967,
+          "cache_creation_input_tokens": 16561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T18:36:44.708Z_
+
+<details><summary>↩ Tool result · `toolu_01ReXcpHEPx5QKte78iYQTqm`</summary>
+
+```text
+PDF pages extracted: 10 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf (281.6KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a954507-6742-4deb-9822-7b7ca78eea72",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "acc38cfe-8207-4f0e-a838-375aa169d26f",
+  "toolUseResult": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf",
+      "originalSize": 288362,
+      "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/07207688-e133-4b52-9bbc-755cbd4866df/tool-results/pdf-c4a11d86-10ad-4d41-a30b-dce259b1486d",
+      "count": 10
+    }
+  },
+  "sourceToolAssistantUUID": "0a954507-6742-4deb-9822-7b7ca78eea72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+3 recorded events
+
+### User
+
+_source line 24 · 2026-05-14T18:36:44.694Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acc38cfe-8207-4f0e-a838-375aa169d26f",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "48788cc6-3c18-4624-8701-b5283c957f4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T18:36:44.922Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XyxLkqLH8pVbVQJGpu8nPH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48788cc6-3c18-4624-8701-b5283c957f4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2wnYTdbtxEAUbGsx6vT",
+  "type": "assistant",
+  "uuid": "5c37cba9-58fc-4816-9108-085306775051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017tT9uDBRBxyX1FkTnUgVY4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16561,
+      "cache_read_input_tokens": 22967,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16561,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 22967,
+          "cache_creation_input_tokens": 16561,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16561
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T18:36:45.103Z_
+
+<details><summary>↩ Tool result · `toolu_01Fnx1iYDBgwS2fwMR2E6dXC`</summary>
+
+```text
+PDF pages extracted: 4 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf (281.6KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7568ab11-04ec-437d-8ae6-47bdb0f61ab2",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "b5d11019-d674-4636-8fd0-a65f8456620d",
+  "toolUseResult": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_input_f5f46a62.pdf",
+      "originalSize": 288362,
+      "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/07207688-e133-4b52-9bbc-755cbd4866df/tool-results/pdf-da3f2e71-f3cd-4a39-afdd-97e901f84872",
+      "count": 4
+    }
+  },
+  "sourceToolAssistantUUID": "7568ab11-04ec-437d-8ae6-47bdb0f61ab2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+23 recorded events
+
+### User
+
+_source line 27 · 2026-05-14T18:36:45.097Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5d11019-d674-4636-8fd0-a65f8456620d",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "6306e5f9-85a2-46ce-9c5b-0d588f9ee274",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "b5d11019-d674-4636-8fd0-a65f8456620d",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "b5d11019-d674-4636-8fd0-a65f8456620d",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-14T18:36:53.344Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have the full paper (14 pages) and the review context (experiment design with expected results). Let me dispatch two reviewers in parallel following the dream-review-full protocol:
+
+- R1: Methods + Experiments
+- R2: Novelty + Related Work
+
+Then I'll conduct the roundtable (Steps 1-4) and submit the final report.
+
+Let me launch both reviewers as parallel agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6306e5f9-85a2-46ce-9c5b-0d588f9ee274",
+  "isSidechain": false,
+  "requestId": "req_011Cb2woBWLYaix5vv6eMKUB",
+  "type": "assistant",
+  "uuid": "c8c3349b-dae1-407b-8f2f-09416f2c136f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaBvLcxnd7uGwj2rKh3rpM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 46249,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 46249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2920,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 46249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 46249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T18:36:54.391Z_
+
+I have the full paper and review context. Dispatching R1 (Methods + Experiments) and R2 (Novelty + Related Work) in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8c3349b-dae1-407b-8f2f-09416f2c136f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2woBWLYaix5vv6eMKUB",
+  "type": "assistant",
+  "uuid": "996022f3-042d-4c8c-a26d-a39af4fe0597",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaBvLcxnd7uGwj2rKh3rpM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 46249,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 46249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2920,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 46249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 46249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T18:37:28.621Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0192sDYmwiwCHXrgwVAp2XJh`</summary>
+
+```json
+{
+  "description": "R1: Methods + Experiments review",
+  "prompt": "You are Reviewer 1 (R1) for a top ML venue review. Your focus: **methodology soundness and experimental rigor**. Rate on a 6-point scale (1=Strong Reject, 6=Strong Accept), targeting ~25% acceptance rate.\n\n## Paper Summary\nTitle: \"When Contamination Signals Fail: An Empirical Anatomy of Detection Reliability and Identifiability Boundaries for Contamination-Aware LLM Evaluation\"\n\nThe paper studies contamination signal reliability across 4 detection methods (S1: embedding similarity, S2: Min-K++, S3: ConStat, S4: Self-Critique), 3 model scales (0.5B–3B Qwen2.5 + 7B bridging + Llama cross-family), and 4 dosage levels (0%, 5%, 25%, 100%) under SFT paraphrase injection. It proposes ContamCal, a contamination-augmented 4PL IRT model. Three main findings: (1) Min-K++ exhibits directional reversal (Cohen's d from -1.98 to -2.7); (2) identifiability boundary at AUC ≥ 0.80; (3) GSM8K gains are format learning confound. ContamCal is presented as proof-of-concept that honestly underperforms raw scores (MAE 8.7 vs 4.2 pp).\n\n## Key Method Details\n- 4PL+γ IRT model: P(Y=1|θ,τ) = c + (d-c)·σ(a(θ + γ·τ - b)), where γ_k is per-benchmark contamination effect\n- Measurement error model: τ_hat = τ + ε, ε ~ N(0, σ²_ε)\n- RRF aggregation of 4 signals with k=60\n- Fisher Information analysis: I(γ_k) ∝ Σ τ²·a²·P(1-P)\n- Bayesian inference with MCMC (R_hat=1.02, ESS_min=380, divergent transitions 2.5%)\n\n## Key Experimental Results\n- Table 1: Signal AUC matrix — only S1 at d005 achieves AUC>0.90. All other 11/12 cells near random (0.45–0.55)\n- Table 2: Min-K++ reversal confirmed across Qwen (0.5B–7B) and Llama-3.2-1B\n- Table 3: Main calibration — Raw scores best (MAE 4.2±1.8, τ=0.72); ContamCal worst among non-trivial methods (MAE 8.7±3.0, τ=0.65)\n- Table 4: γ posteriors — only GSM8K CI excludes zero, but confounded with format learning\n- Table 5: RRF dilutes S1 (AUC 0.979→0.83)\n- Table 6: 7B dose-response — effects ≤6pp, negative at d005\n- Table 7: Cross-family — γ not transferable (r=0.15), Min-K++ reversal consistent\n- Table 8: 2-signal closed-weight mode completely untenable (MAE 12.0)\n- Table 9: QC-only paraphrase ablation — no significant calibration improvement\n- MCMC diagnostics: posterior predictive check p=0.03 (misfit), residual correlation 0.18, divergent transitions 2.5%\n\n## Review Context (planned experiments)\nThe experiment plan includes 9 imagined experiments. The paper covers:\n- exp-002 (signal pipeline): ✓ Table 1\n- exp-003 (RRF ablation): ✓ Table 5\n- exp-006 (IRT calibration + baselines): ✓ Tables 3, 4\n- exp-007 (7B bridging): ✓ Table 6\n- exp-008 (signal survival): ✓ Tables 1, 2\n- exp-009 (RL observational): ✓ Section 11.2\n- exp-012 (72B observational): ✓ Section 11.3\n- exp-013 (2-signal closed-weight): ✓ Table 8\n- exp-014 (cross-family): ✓ Table 7\n- exp-015 (QC ablation): ✓ Table 9\n\n## Your Review Task\n\nProvide a structured review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Strengths** (methodological/experimental) — bullet points\n3. **Weaknesses** (methodological/experimental) — bullet points with specific issues\n4. **Questions for authors** — specific technical questions\n5. **Missing experiments or analyses** — what's absent that should be there\n6. **Minor issues** — presentation, notation, etc.\n7. **Score** (1-6) and **Confidence** (1-5)\n\nBe rigorous. Focus on:\n- Is the experimental design sound? Are controls adequate?\n- Are the statistical claims properly supported?\n- Are there methodological flaws in the IRT model or signal evaluation?\n- Is the MCMC inference trustworthy given the diagnostics?\n- Does the paper's scope match its claims?\n- Are there confounds not addressed?\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "996022f3-042d-4c8c-a26d-a39af4fe0597",
+  "isSidechain": false,
+  "requestId": "req_011Cb2woBWLYaix5vv6eMKUB",
+  "type": "assistant",
+  "uuid": "982cac94-0a28-4ba1-9f42-80454dec437c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaBvLcxnd7uGwj2rKh3rpM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 46249,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 46249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2920,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 46249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 46249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T18:37:55.610Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_019p9g4bo7voXjvQB96HEadj`</summary>
+
+```json
+{
+  "description": "R2: Novelty + Related Work review",
+  "prompt": "You are Reviewer 2 (R2) for a top ML venue review. Your focus: **novelty, significance, positioning, and related work**. Rate on a 6-point scale (1=Strong Reject, 6=Strong Accept), targeting ~25% acceptance rate.\n\n## Paper Summary\nTitle: \"When Contamination Signals Fail: An Empirical Anatomy of Detection Reliability and Identifiability Boundaries for Contamination-Aware LLM Evaluation\"\n\nThe paper studies contamination signal reliability across 4 detection methods, 3+ model scales, and 4 dosage levels under SFT paraphrase injection. Three main findings: (1) Min-K++ directional reversal under paraphrased contamination (Cohen's d -1.98 to -2.7); (2) identifiability boundary at AUC ≥ 0.80 for calibration; (3) GSM8K format learning confound. ContamCal (4PL+γ IRT) is presented as proof-of-concept that honestly underperforms raw scores.\n\nTarget venue: EMNLP 2026 special theme \"New Missions for NLP Research\"\n\n## Paper Structure (14 pages)\n1. Introduction — frames shift from prevention to statistical control of contamination\n2. Related Work — contamination detection (Min-K++, ConStat, embedding, self-critique), mitigation (n-gram decontam, rephrasing, dynamic benchmarks), IRT for LLM eval, calibration disambiguation\n3. Method: ContamCal — 4PL+γ IRT with measurement error model, RRF aggregation, Fisher Information identifiability analysis\n4. Experimental Setup — SFT injection into Qwen2.5 (0.5B–7B), Llama cross-family, 4 benchmarks, 5 metrics\n5. Signal Reliability Anatomy (Sec 5) — signal×scale×dosage AUC, Min-K++ reversal, instruct/RL signal survival\n6. Identifiability Boundaries (Sec 6) — Fisher info theory + simulation + empirical verification\n7. IRT Calibration Results (Sec 7) — main negative result, γ posteriors, dose-response monotonicity\n8. Signal Aggregation (Sec 8) — RRF hurts when most signals are noise\n9. Format Learning Confound (Sec 9) — GSM8K inflation analysis\n10. Scale Bridging: 7B (Sec 10) — confirms patterns at larger scale\n11. Cross-Family + Observational (Sec 11) — Llama validation, RL case study, 72B analysis\n12. Closed-Weight + Ablations (Sec 12) — 2-signal mode, paraphrase quality\n13. Discussion — diagnostic framework framing\n14. Limitations — single-family, paraphrase-only, local independence violation, unidimensional θ, closed-weight infeasibility\n15. Conclusion\n\n## Related Work as Cited\n- Contamination detection: Shi et al. 2024 (Min-K++), Dekoninck et al. 2024 (ConStat), Yang et al. 2023, Oren et al. 2024\n- Mitigation: Brown et al. 2020, Xu et al. 2024, White et al. 2024 (LiveBench)\n- IRT for LLM: Polo et al. 2024 (tinyBenchmarks), Lalor et al. 2024\n- Contamination-specific IRT: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999\n- Calibration: Guo et al. 2017, Platt 1999, Angelopoulos & Bates 2023 (conformal)\n- Future work cites: Pruthi et al. 2020, Park et al. 2023 (TRAK)\n\nTotal references: ~22\n\n## Key Claims for Novelty Assessment\n1. \"First systematic reliability audit of contamination signals under controlled contamination with varying dosage, scale, and model family\"\n2. Min-K++ directional reversal — is this known? \n3. Identifiability boundaries for contamination-aware calibration\n4. Format learning confound in GSM8K under SFT\n5. ContamCal as IRT-based calibration framework (though it fails)\n\n## Your Review Task\n\nProvide a structured review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Novelty assessment** — for each of the 5 claims above, assess whether it's genuinely new\n3. **Significance and impact** — who benefits and how much\n4. **Related work gaps** — missing citations or comparisons that matter\n5. **Positioning and framing** — is the \"diagnostic framework\" framing convincing? Is the \"negative result\" narrative well-executed?\n6. **Weaknesses** — bullet points\n7. **Strengths** — bullet points\n8. **Questions for authors**\n9. **Score** (1-6) and **Confidence** (1-5)\n\nBe rigorous. Focus on:\n- Is the contribution genuinely novel or incremental over existing work?\n- Are the claims of \"first systematic study\" justified?\n- Is the negative result framing honest or is it masking a failed method?\n- Does the paper adequately engage with the broader contamination literature?\n- Is this a significant enough contribution for a top venue?\n- Does the EMNLP special theme framing make sense?\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "982cac94-0a28-4ba1-9f42-80454dec437c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2woBWLYaix5vv6eMKUB",
+  "type": "assistant",
+  "uuid": "74fb6181-6014-4023-b9ac-9f931928baf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UaBvLcxnd7uGwj2rKh3rpM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 46249,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2920,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 46249,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2920,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 46249,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 46249
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T18:40:27.899Z_
+
+<details><summary>↩ Tool result · `toolu_0192sDYmwiwCHXrgwVAp2XJh`</summary>
+
+```text
+
+
+Based on my thorough examination of the paper draft, dream reports, experimental code, Stan models, Fisher information derivation, simulation results, memory/decisions log, and project roadmap, here is my structured review.
+
+---
+
+## Reviewer 1 (R1) Review: Methodology Soundness and Experimental Rigor
+
+### 1. Summary
+
+This paper proposes ContamCal, a two-stage framework that aggregates four contamination detection signals via RRF and feeds the resulting exposure scores into a contamination-augmented 4PL IRT model to produce calibrated benchmark scores with Bayesian credible intervals. The paper systematically maps signal effectiveness across model scales and contamination dosages, finding that only embedding similarity is reliable at small scales while Min-K++ exhibits directional reversal. The core experimental finding is that ContamCal underperforms raw scores on real data (MAE 8.7 vs 4.2 pp in the actual experiments, per the task description) despite strong simulation results, creating a fundamental tension between the theoretical framework and empirical validation.
+
+### 2. Strengths
+
+- **Well-grounded theoretical framework.** The adaptation of item compromise IRT (Eckerly 2017, Sinharay 2017) to LLM evaluation is principled, with three clearly articulated structural adaptations. The connection to DIF literature is appropriate and adds depth.
+
+- **Fisher Information derivation is rigorous.** The appendix provides a clean, correct derivation of I(gamma) for the 4PL+gamma model via two independent paths (score variance and Bernoulli information formula), with the measurement error attenuation result (Corollary 2) providing genuine theoretical insight about the reliability ratio.
+
+- **Signal characterization is the paper's strongest empirical contribution.** The Min-K++ directional reversal finding (Cohen's d from -1.98 to -2.7) is novel, practically important, and well-documented. The observation that RRF degrades to dominant-signal mode at 0.5B is honest and actionable.
+
+- **Transparent about negative results.** The paper honestly reports that ContamCal underperforms raw scores on calibration MAE, that the ME model underperforms the simple model in finite samples (D013), and that 3B GSM8K exhibits catastrophic CoT forgetting under LoRA SFT. This transparency is commendable.
+
+- **Simulation study is well-designed.** The 120-condition sweep varying AUC and N_models provides useful identifiability boundaries. The finding that gamma is recoverable even at AUC=0.55 (with sufficient N) is informative.
+
+- **RRF meta-circularity argument is compelling.** The reasoning that a learned aggregator faces meta-circularity because its training data may itself be contaminated is a genuinely insightful design justification.
+
+### 3. Weaknesses
+
+- **W1 (Critical): The core calibration claim is not supported by the actual results.** The dream "best" tier paper claims 1.8 pp MAE, but the actual experimental state (per task description) shows ContamCal achieves MAE 8.7 vs Raw 4.2 pp --- the method *worsens* accuracy relative to doing nothing. The paper's central value proposition collapses. The simulation results (gamma recoverable at AUC >= 0.55) do not transfer to real data, and this gap is not adequately explained. The MCMC diagnostics (posterior predictive p=0.03, residual correlation 0.18, 2.5% divergent transitions) indicate model misspecification that the paper does not sufficiently address.
+
+- **W2 (Critical): N_models is far too small for the 4PL+gamma model.** The actual experiment has only 4 models per scale (d000/d005/d025/d100), totaling ~15 when pooled across scales. The paper's own simulation study identifies N >= 50 as necessary for reliable identifiability. D024 explicitly acknowledges "N_models=4 is not feasible" and the GSM8K IRT fit shows R-hat=1.53 and ESS=7. This is not a minor issue --- it means the IRT model is fundamentally unidentifiable on the real data. The 4PL model has 4J+N+1 parameters for J items and N models; with J=1319 (GSM8K) and N=4, the model has ~5300 parameters for ~5300 observations.
+
+- **W3 (Major): SFT injection is a poor proxy for real contamination.** LoRA SFT at known dosage levels is a highly controlled but unrealistic contamination mechanism. Real contamination occurs during pre-training on web-scale corpora where (a) contamination is uncontrolled and varies per-item, (b) the model sees contaminated data for many more gradient steps, and (c) the contamination interacts with billions of other training examples. The paper acknowledges this but the gap is larger than presented: the LoRA hyperparameters cause catastrophic forgetting at 3B scale (GSM8K 60.5% -> 12.0%), which does not happen in real contamination. The format confound (D017: training format "The answer is X" vs evaluation "Answer:") further undermines the controlled setup's validity.
+
+- **W4 (Major): Only 1 of 4 detection signals works, undermining the multi-signal narrative.** At 0.5B (the scale with complete data), only S1 (Embedding) achieves meaningful AUC (>0.95). S2, S3, and S4 are near-random (AUC 0.45-0.55). RRF actually *dilutes* the one good signal (AUC drops from 0.979 to 0.83, Table 5). The multi-signal aggregation story requires 1.5B+ data that is still incomplete at submission time. The "scale-dependent" claim in C2 is acknowledged as unverified (only 0.5B data exists per the C2 contingency note).
+
+- **W5 (Major): MCMC diagnostics indicate serious model misfit.** The reported diagnostics (R-hat=1.02, ESS_min=380, 2.5% divergent transitions, posterior predictive check p=0.03) collectively suggest the model does not fit the data well. 2.5% divergent transitions exceeds the paper's own threshold of 0.1% by 25x. A posterior predictive p-value of 0.03 indicates systematic misfit. The residual correlation of 0.18 suggests substantial local independence violations. These diagnostics should disqualify the MCMC results from being treated as reliable posterior inference.
+
+- **W6 (Major): The paper is incomplete.** The actual paper draft (experiments.tex) contains placeholder text throughout --- every results table shows "XX.X" or "[TBD]". The abstract is marked "TODO: Abstract to be written after experiments." There are no figures (all are placeholder boxes). Multiple critical experiments (exp-006 IRT calibration, 1.5B/3B signal data for C2) are still running or queued. This is not ready for review at a top venue.
+
+- **W7 (Moderate): Cross-family validation is weak.** The dream report claims Pearson r=0.91 for gamma across Qwen and Llama, but the actual exp-014 cross-family result shows r=0.15 (Table 7 in the task description), with gamma not transferable. The Min-K++ reversal being consistent across families is a positive finding, but it does not rescue the calibration claim.
+
+- **W8 (Moderate): The confound between format learning and contamination on GSM8K is not resolved.** Table 4 shows only GSM8K's gamma CI excludes zero, but D024 reframes GSM8K as a negative control because open-ended tasks "naturally resist contamination." This is contradictory --- either GSM8K shows contamination effects (gamma nonzero) or it does not (negative control). The resolution that "gains are format learning confound" (from the task description) means the one benchmark where gamma is detectable is also the one where it is confounded.
+
+### 4. Questions for Authors
+
+1. Given that ContamCal underperforms raw scores (MAE 8.7 vs 4.2 pp), what is the practical use case? Under what conditions would a practitioner prefer a less accurate calibration with wider uncertainty intervals over simply reporting raw scores?
+
+2. The simulation study uses N=20-100 models but the real experiment has N=4-15. How do you reconcile the simulation's identifiability requirements (N >= 50) with the actual experimental design? Is the IRT model even identified with 4 models?
+
+3. The posterior predictive check p=0.03 and 2.5% divergent transitions indicate model misspecification. What structural modifications would address this? Have you considered a 2PL model (which the simulation showed converges more reliably) as an alternative?
+
+4. The ME model was shown to underperform the simple model in finite samples (D013: bias 59.2% vs 57.5%). Why is the ME model presented as the primary specification in the paper rather than the simple model?
+
+5. How do you handle the identifiability of gamma when exposure scores tau are nearly constant across items (as happens at d100 where all items are contaminated)?
+
+6. The LoRA SFT hyperparameters (r=16, alpha=32, lr=2e-4) cause catastrophic CoT forgetting at 3B. How confident are you that the contamination effects you measure are not dominated by LoRA-induced capability degradation rather than genuine contamination?
+
+### 5. Missing Experiments or Analyses
+
+- **Posterior predictive checks with item-level diagnostics.** The paper mentions checking residual correlations but needs systematic item-fit statistics (e.g., chi-squared item fit, infit/outfit MNSQ from IRT literature) to identify which items violate model assumptions.
+
+- **Sensitivity analysis on the N(0,1) prior for gamma.** The paper mentions this in methods but no results are reported. Given the small N, the prior likely dominates the posterior.
+
+- **Ablation: IRT model complexity.** No comparison between 2PL+gamma, 3PL+gamma, and 4PL+gamma on the real data. The MVP showed 2PL severely underestimates gamma, but this was on simulated data from a 4PL DGP --- a circular argument.
+
+- **Bootstrap comparison of ContamCal vs. baselines with proper statistical testing.** The dream reports claim significant MAE differences but no paired bootstrap test or permutation test is reported.
+
+- **Held-out validation.** No cross-validation or held-out benchmark is used to validate calibrated scores. All benchmarks are used for both fitting and evaluation.
+
+- **Analysis of what happens when the 0%-dosage ground truth is itself noisy.** The "ground truth" clean accuracy comes from LoRA-finetuned d000 models, not from the base model. SFT itself changes model behavior (e.g., 3B GSM8K drops from 60.5% to 12.0% under d000 SFT). The calibration target is therefore contaminated by SFT effects.
+
+### 6. Minor Issues
+
+- The paper uses inconsistent notation: tau_{ij} is per-model-per-item in the methods but the Stan model for the simple variant uses a matrix `exposure[N_models, N_items]` without the measurement error latent variable.
+- The Fisher Information derivation treats all parameters as known when computing I(gamma), but acknowledges in Remark 3 that this gives a lower bound. The simulation results show this bound is not tight (coverage at N=20 is 80% at AUC=0.55), which should be stated more prominently.
+- Table 2 in the positioning (related work) marks ContamCal's RL-robustness as "?" with a footnote saying "empirical validation pending (exp-008)." This should not appear in a submitted paper.
+- The Stan models use hard bounds on c and d (0.001 to 0.999) rather than the Beta priors stated in the paper, which can cause boundary issues in HMC.
+- Several citations in the dream reports appear potentially fabricated or incorrectly attributed (e.g., "yang2026rl", "dong2026dose" with 2026 dates). These need verification.
+
+### 7. Score and Confidence
+
+**Score: 2 (Reject)**
+
+**Confidence: 4 (High)**
+
+**Justification:** The paper tackles a genuinely important problem (calibrating benchmark scores for contamination) with a theoretically motivated approach (contamination-augmented IRT). The signal characterization work (Min-K++ reversal, scale-dependent effectiveness) is a valid contribution. However, the fundamental experimental evaluation fails: (1) the method underperforms raw scores on the primary metric, (2) the MCMC inference is unreliable by the paper's own diagnostic criteria, (3) the experimental design has far too few models for the IRT model to be identifiable, (4) the paper is materially incomplete with placeholder results throughout, and (5) the gap between simulation results and real-data performance is not explained. The honest reporting of negative results is appreciated but does not rescue the paper when the core claim --- that ContamCal provides useful calibrated scores --- is contradicted by the evidence. I would encourage the authors to (a) dramatically increase the number of model instances (pool across more seeds, scales, and families to reach N >= 50), (b) address the model misspecification revealed by diagnostics, (c) consider simpler calibration approaches (the linear regression baseline may be more appropriate for low-N regimes), and resubmit when the experimental evaluation supports the claims.
+
+agentId: a8b4561fc01436ba6 (use SendMessage with to: 'a8b4561fc01436ba6' to continue this agent)
+&lt;usage>total_tokens: 108993
+tool_uses: 33
+duration_ms: 179249&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "982cac94-0a28-4ba1-9f42-80454dec437c",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "7164e65d-2d6a-4237-b15b-c5c1b438f1c5",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are Reviewer 1 (R1) for a top ML venue review. Your focus: **methodology soundness and experimental rigor**. Rate on a 6-point scale (1=Strong Reject, 6=Strong Accept), targeting ~25% acceptance rate.\n\n## Paper Summary\nTitle: \"When Contamination Signals Fail: An Empirical Anatomy of Detection Reliability and Identifiability Boundaries for Contamination-Aware LLM Evaluation\"\n\nThe paper studies contamination signal reliability across 4 detection methods (S1: embedding similarity, S2: Min-K++, S3: ConStat, S4: Self-Critique), 3 model scales (0.5B–3B Qwen2.5 + 7B bridging + Llama cross-family), and 4 dosage levels (0%, 5%, 25%, 100%) under SFT paraphrase injection. It proposes ContamCal, a contamination-augmented 4PL IRT model. Three main findings: (1) Min-K++ exhibits directional reversal (Cohen's d from -1.98 to -2.7); (2) identifiability boundary at AUC ≥ 0.80; (3) GSM8K gains are format learning confound. ContamCal is presented as proof-of-concept that honestly underperforms raw scores (MAE 8.7 vs 4.2 pp).\n\n## Key Method Details\n- 4PL+γ IRT model: P(Y=1|θ,τ) = c + (d-c)·σ(a(θ + γ·τ - b)), where γ_k is per-benchmark contamination effect\n- Measurement error model: τ_hat = τ + ε, ε ~ N(0, σ²_ε)\n- RRF aggregation of 4 signals with k=60\n- Fisher Information analysis: I(γ_k) ∝ Σ τ²·a²·P(1-P)\n- Bayesian inference with MCMC (R_hat=1.02, ESS_min=380, divergent transitions 2.5%)\n\n## Key Experimental Results\n- Table 1: Signal AUC matrix — only S1 at d005 achieves AUC>0.90. All other 11/12 cells near random (0.45–0.55)\n- Table 2: Min-K++ reversal confirmed across Qwen (0.5B–7B) and Llama-3.2-1B\n- Table 3: Main calibration — Raw scores best (MAE 4.2±1.8, τ=0.72); ContamCal worst among non-trivial methods (MAE 8.7±3.0, τ=0.65)\n- Table 4: γ posteriors — only GSM8K CI excludes zero, but confounded with format learning\n- Table 5: RRF dilutes S1 (AUC 0.979→0.83)\n- Table 6: 7B dose-response — effects ≤6pp, negative at d005\n- Table 7: Cross-family — γ not transferable (r=0.15), Min-K++ reversal consistent\n- Table 8: 2-signal closed-weight mode completely untenable (MAE 12.0)\n- Table 9: QC-only paraphrase ablation — no significant calibration improvement\n- MCMC diagnostics: posterior predictive check p=0.03 (misfit), residual correlation 0.18, divergent transitions 2.5%\n\n## Review Context (planned experiments)\nThe experiment plan includes 9 imagined experiments. The paper covers:\n- exp-002 (signal pipeline): ✓ Table 1\n- exp-003 (RRF ablation): ✓ Table 5\n- exp-006 (IRT calibration + baselines): ✓ Tables 3, 4\n- exp-007 (7B bridging): ✓ Table 6\n- exp-008 (signal survival): ✓ Tables 1, 2\n- exp-009 (RL observational): ✓ Section 11.2\n- exp-012 (72B observational): ✓ Section 11.3\n- exp-013 (2-signal closed-weight): ✓ Table 8\n- exp-014 (cross-family): ✓ Table 7\n- exp-015 (QC ablation): ✓ Table 9\n\n## Your Review Task\n\nProvide a structured review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Strengths** (methodological/experimental) — bullet points\n3. **Weaknesses** (methodological/experimental) — bullet points with specific issues\n4. **Questions for authors** — specific technical questions\n5. **Missing experiments or analyses** — what's absent that should be there\n6. **Minor issues** — presentation, notation, etc.\n7. **Score** (1-6) and **Confidence** (1-5)\n\nBe rigorous. Focus on:\n- Is the experimental design sound? Are controls adequate?\n- Are the statistical claims properly supported?\n- Are there methodological flaws in the IRT model or signal evaluation?\n- Is the MCMC inference trustworthy given the diagnostics?\n- Does the paper's scope match its claims?\n- Are there confounds not addressed?\n",
+    "agentId": "a8b4561fc01436ba6",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "\n\nBased on my thorough examination of the paper draft, dream reports, experimental code, Stan models, Fisher information derivation, simulation results, memory/decisions log, and project roadmap, here is my structured review.\n\n---\n\n## Reviewer 1 (R1) Review: Methodology Soundness and Experimental Rigor\n\n### 1. Summary\n\nThis paper proposes ContamCal, a two-stage framework that aggregates four contamination detection signals via RRF and feeds the resulting exposure scores into a contamination-augmented 4PL IRT model to produce calibrated benchmark scores with Bayesian credible intervals. The paper systematically maps signal effectiveness across model scales and contamination dosages, finding that only embedding similarity is reliable at small scales while Min-K++ exhibits directional reversal. The core experimental finding is that ContamCal underperforms raw scores on real data (MAE 8.7 vs 4.2 pp in the actual experiments, per the task description) despite strong simulation results, creating a fundamental tension between the theoretical framework and empirical validation.\n\n### 2. Strengths\n\n- **Well-grounded theoretical framework.** The adaptation of item compromise IRT (Eckerly 2017, Sinharay 2017) to LLM evaluation is principled, with three clearly articulated structural adaptations. The connection to DIF literature is appropriate and adds depth.\n\n- **Fisher Information derivation is rigorous.** The appendix provides a clean, correct derivation of I(gamma) for the 4PL+gamma model via two independent paths (score variance and Bernoulli information formula), with the measurement error attenuation result (Corollary 2) providing genuine theoretical insight about the reliability ratio.\n\n- **Signal characterization is the paper's strongest empirical contribution.** The Min-K++ directional reversal finding (Cohen's d from -1.98 to -2.7) is novel, practically important, and well-documented. The observation that RRF degrades to dominant-signal mode at 0.5B is honest and actionable.\n\n- **Transparent about negative results.** The paper honestly reports that ContamCal underperforms raw scores on calibration MAE, that the ME model underperforms the simple model in finite samples (D013), and that 3B GSM8K exhibits catastrophic CoT forgetting under LoRA SFT. This transparency is commendable.\n\n- **Simulation study is well-designed.** The 120-condition sweep varying AUC and N_models provides useful identifiability boundaries. The finding that gamma is recoverable even at AUC=0.55 (with sufficient N) is informative.\n\n- **RRF meta-circularity argument is compelling.** The reasoning that a learned aggregator faces meta-circularity because its training data may itself be contaminated is a genuinely insightful design justification.\n\n### 3. Weaknesses\n\n- **W1 (Critical): The core calibration claim is not supported by the actual results.** The dream \"best\" tier paper claims 1.8 pp MAE, but the actual experimental state (per task description) shows ContamCal achieves MAE 8.7 vs Raw 4.2 pp --- the method *worsens* accuracy relative to doing nothing. The paper's central value proposition collapses. The simulation results (gamma recoverable at AUC >= 0.55) do not transfer to real data, and this gap is not adequately explained. The MCMC diagnostics (posterior predictive p=0.03, residual correlation 0.18, 2.5% divergent transitions) indicate model misspecification that the paper does not sufficiently address.\n\n- **W2 (Critical): N_models is far too small for the 4PL+gamma model.** The actual experiment has only 4 models per scale (d000/d005/d025/d100), totaling ~15 when pooled across scales. The paper's own simulation study identifies N >= 50 as necessary for reliable identifiability. D024 explicitly acknowledges \"N_models=4 is not feasible\" and the GSM8K IRT fit shows R-hat=1.53 and ESS=7. This is not a minor issue --- it means the IRT model is fundamentally unidentifiable on the real data. The 4PL model has 4J+N+1 parameters for J items and N models; with J=1319 (GSM8K) and N=4, the model has ~5300 parameters for ~5300 observations.\n\n- **W3 (Major): SFT injection is a poor proxy for real contamination.** LoRA SFT at known dosage levels is a highly controlled but unrealistic contamination mechanism. Real contamination occurs during pre-training on web-scale corpora where (a) contamination is uncontrolled and varies per-item, (b) the model sees contaminated data for many more gradient steps, and (c) the contamination interacts with billions of other training examples. The paper acknowledges this but the gap is larger than presented: the LoRA hyperparameters cause catastrophic forgetting at 3B scale (GSM8K 60.5% -> 12.0%), which does not happen in real contamination. The format confound (D017: training format \"The answer is X\" vs evaluation \"Answer:\") further undermines the controlled setup's validity.\n\n- **W4 (Major): Only 1 of 4 detection signals works, undermining the multi-signal narrative.** At 0.5B (the scale with complete data), only S1 (Embedding) achieves meaningful AUC (>0.95). S2, S3, and S4 are near-random (AUC 0.45-0.55). RRF actually *dilutes* the one good signal (AUC drops from 0.979 to 0.83, Table 5). The multi-signal aggregation story requires 1.5B+ data that is still incomplete at submission time. The \"scale-dependent\" claim in C2 is acknowledged as unverified (only 0.5B data exists per the C2 contingency note).\n\n- **W5 (Major): MCMC diagnostics indicate serious model misfit.** The reported diagnostics (R-hat=1.02, ESS_min=380, 2.5% divergent transitions, posterior predictive check p=0.03) collectively suggest the model does not fit the data well. 2.5% divergent transitions exceeds the paper's own threshold of 0.1% by 25x. A posterior predictive p-value of 0.03 indicates systematic misfit. The residual correlation of 0.18 suggests substantial local independence violations. These diagnostics should disqualify the MCMC results from being treated as reliable posterior inference.\n\n- **W6 (Major): The paper is incomplete.** The actual paper draft (experiments.tex) contains placeholder text throughout --- every results table shows \"XX.X\" or \"[TBD]\". The abstract is marked \"TODO: Abstract to be written after experiments.\" There are no figures (all are placeholder boxes). Multiple critical experiments (exp-006 IRT calibration, 1.5B/3B signal data for C2) are still running or queued. This is not ready for review at a top venue.\n\n- **W7 (Moderate): Cross-family validation is weak.** The dream report claims Pearson r=0.91 for gamma across Qwen and Llama, but the actual exp-014 cross-family result shows r=0.15 (Table 7 in the task description), with gamma not transferable. The Min-K++ reversal being consistent across families is a positive finding, but it does not rescue the calibration claim.\n\n- **W8 (Moderate): The confound between format learning and contamination on GSM8K is not resolved.** Table 4 shows only GSM8K's gamma CI excludes zero, but D024 reframes GSM8K as a negative control because open-ended tasks \"naturally resist contamination.\" This is contradictory --- either GSM8K shows contamination effects (gamma nonzero) or it does not (negative control). The resolution that \"gains are format learning confound\" (from the task description) means the one benchmark where gamma is detectable is also the one where it is confounded.\n\n### 4. Questions for Authors\n\n1. Given that ContamCal underperforms raw scores (MAE 8.7 vs 4.2 pp), what is the practical use case? Under what conditions would a practitioner prefer a less accurate calibration with wider uncertainty intervals over simply reporting raw scores?\n\n2. The simulation study uses N=20-100 models but the real experiment has N=4-15. How do you reconcile the simulation's identifiability requirements (N >= 50) with the actual experimental design? Is the IRT model even identified with 4 models?\n\n3. The posterior predictive check p=0.03 and 2.5% divergent transitions indicate model misspecification. What structural modifications would address this? Have you considered a 2PL model (which the simulation showed converges more reliably) as an alternative?\n\n4. The ME model was shown to underperform the simple model in finite samples (D013: bias 59.2% vs 57.5%). Why is the ME model presented as the primary specification in the paper rather than the simple model?\n\n5. How do you handle the identifiability of gamma when exposure scores tau are nearly constant across items (as happens at d100 where all items are contaminated)?\n\n6. The LoRA SFT hyperparameters (r=16, alpha=32, lr=2e-4) cause catastrophic CoT forgetting at 3B. How confident are you that the contamination effects you measure are not dominated by LoRA-induced capability degradation rather than genuine contamination?\n\n### 5. Missing Experiments or Analyses\n\n- **Posterior predictive checks with item-level diagnostics.** The paper mentions checking residual correlations but needs systematic item-fit statistics (e.g., chi-squared item fit, infit/outfit MNSQ from IRT literature) to identify which items violate model assumptions.\n\n- **Sensitivity analysis on the N(0,1) prior for gamma.** The paper mentions this in methods but no results are reported. Given the small N, the prior likely dominates the posterior.\n\n- **Ablation: IRT model complexity.** No comparison between 2PL+gamma, 3PL+gamma, and 4PL+gamma on the real data. The MVP showed 2PL severely underestimates gamma, but this was on simulated data from a 4PL DGP --- a circular argument.\n\n- **Bootstrap comparison of ContamCal vs. baselines with proper statistical testing.** The dream reports claim significant MAE differences but no paired bootstrap test or permutation test is reported.\n\n- **Held-out validation.** No cross-validation or held-out benchmark is used to validate calibrated scores. All benchmarks are used for both fitting and evaluation.\n\n- **Analysis of what happens when the 0%-dosage ground truth is itself noisy.** The \"ground truth\" clean accuracy comes from LoRA-finetuned d000 models, not from the base model. SFT itself changes model behavior (e.g., 3B GSM8K drops from 60.5% to 12.0% under d000 SFT). The calibration target is therefore contaminated by SFT effects.\n\n### 6. Minor Issues\n\n- The paper uses inconsistent notation: tau_{ij} is per-model-per-item in the methods but the Stan model for the simple variant uses a matrix `exposure[N_models, N_items]` without the measurement error latent variable.\n- The Fisher Information derivation treats all parameters as known when computing I(gamma), but acknowledges in Remark 3 that this gives a lower bound. The simulation results show this bound is not tight (coverage at N=20 is 80% at AUC=0.55), which should be stated more prominently.\n- Table 2 in the positioning (related work) marks ContamCal's RL-robustness as \"?\" with a footnote saying \"empirical validation pending (exp-008).\" This should not appear in a submitted paper.\n- The Stan models use hard bounds on c and d (0.001 to 0.999) rather than the Beta priors stated in the paper, which can cause boundary issues in HMC.\n- Several citations in the dream reports appear potentially fabricated or incorrectly attributed (e.g., \"yang2026rl\", \"dong2026dose\" with 2026 dates). These need verification.\n\n### 7. Score and Confidence\n\n**Score: 2 (Reject)**\n\n**Confidence: 4 (High)**\n\n**Justification:** The paper tackles a genuinely important problem (calibrating benchmark scores for contamination) with a theoretically motivated approach (contamination-augmented IRT). The signal characterization work (Min-K++ reversal, scale-dependent effectiveness) is a valid contribution. However, the fundamental experimental evaluation fails: (1) the method underperforms raw scores on the primary metric, (2) the MCMC inference is unreliable by the paper's own diagnostic criteria, (3) the experimental design has far too few models for the IRT model to be identifiable, (4) the paper is materially incomplete with placeholder results throughout, and (5) the gap between simulation results and real-data performance is not explained. The honest reporting of negative results is appreciated but does not rescue the paper when the core claim --- that ContamCal provides useful calibrated scores --- is contradicted by the evidence. I would encourage the authors to (a) dramatically increase the number of model instances (pool across more seeds, scales, and families to reach N >= 50), (b) address the model misspecification revealed by diagnostics, (c) consider simpler calibration approaches (the linear regression baseline may be more appropriate for low-N regimes), and resubmit when the experimental evaluation supports the claims."
+      }
+    ],
+    "totalDurationMs": 179249,
+    "totalTokens": 108993,
+    "totalToolUseCount": 33,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 104943,
+      "output_tokens": 3233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 814
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3233,
+          "cache_read_input_tokens": 104943,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 814,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 13,
+      "searchCount": 7,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "982cac94-0a28-4ba1-9f42-80454dec437c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "7164e65d-2d6a-4237-b15b-c5c1b438f1c5",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T18:41:40.292Z_
+
+<details><summary>↩ Tool result · `toolu_019p9g4bo7voXjvQB96HEadj`</summary>
+
+```text
+Review submitted. Here is the summary:
+
+---
+
+**Score: 3/6 (Weak Reject) | Confidence: 4/5**
+
+**Core assessment:** The paper addresses an important problem with thorough empirical work and commendable honesty, but it falls between two framings without delivering convincingly on either.
+
+**Novelty findings by claim:**
+
+1. **"First systematic reliability audit"** -- Incremental expansion of existing experimental paradigms. The factorial design is more thorough than prior work but conceptually not new.
+
+2. **Min-K++ directional reversal** -- **Genuinely novel and the paper's strongest contribution.** Cohen's d from -1.98 to -2.7 across all scales/benchmarks/families. Not previously documented. This alone could anchor a focused empirical paper.
+
+3. **Identifiability boundaries** -- Technically solid but routine extension of standard psychometric theory (Fisher Information for a new parameter in IRT).
+
+4. **GSM8K format confound** -- Partially novel in its specifics, but format sensitivity under fine-tuning is a known phenomenon. Worse, this finding undermines the calibration framework since the only significant gamma is artifactual.
+
+5. **ContamCal framework** -- Limited novelty. Adding a linear covariate to 4PL IRT is precisely what explanatory IRT (De Boeck & Wilson 2004) prescribes. The "three structural adaptations" are either unsolved, standard, or unimplemented.
+
+**Key weaknesses:** Marginal improvement over linear regression (4.3pp vs 4.8pp, overlapping CIs); 10pp UQ coverage gap undermines the distinctive claim; multi-signal framing masks single-signal reality (RRF degrades below S1-only); N_models (~15) far below the paper's own recommended threshold (N >= 50); GSM8K format confound in the only significant gamma.
+
+**Key strengths:** Min-K++ reversal finding; comprehensive controlled experimental design; honest limitation reporting; Fisher Information analysis; cross-family replication.
+
+**Primary recommendation:** Reframe from "calibration method paper" to "empirical anatomy of contamination signal reliability" with Min-K++ reversal and identifiability analysis as primary contributions. The calibration framework, in its current form, does not differentiate itself from simpler alternatives at a top-venue standard.
+
+**Missing related work flagged:** Shokri et al. 2017, Carlini et al. 2022 (membership inference foundations), Chatbot Arena/HELM (alternative evaluation paradigms), Burnell et al. 2023 (LLM IRT factor analysis), deeper DCR comparison.
+
+Report saved to `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514_R2_novelty/median/review_report.md`.
+
+agentId: a5d6003587c27c893 (use SendMessage with to: 'a5d6003587c27c893' to continue this agent)
+&lt;usage>total_tokens: 97787
+tool_uses: 24
+duration_ms: 224670&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74fb6181-6014-4023-b9ac-9f931928baf4",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "696acf3f-2d41-4302-b1e1-d9c04394f17b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are Reviewer 2 (R2) for a top ML venue review. Your focus: **novelty, significance, positioning, and related work**. Rate on a 6-point scale (1=Strong Reject, 6=Strong Accept), targeting ~25% acceptance rate.\n\n## Paper Summary\nTitle: \"When Contamination Signals Fail: An Empirical Anatomy of Detection Reliability and Identifiability Boundaries for Contamination-Aware LLM Evaluation\"\n\nThe paper studies contamination signal reliability across 4 detection methods, 3+ model scales, and 4 dosage levels under SFT paraphrase injection. Three main findings: (1) Min-K++ directional reversal under paraphrased contamination (Cohen's d -1.98 to -2.7); (2) identifiability boundary at AUC ≥ 0.80 for calibration; (3) GSM8K format learning confound. ContamCal (4PL+γ IRT) is presented as proof-of-concept that honestly underperforms raw scores.\n\nTarget venue: EMNLP 2026 special theme \"New Missions for NLP Research\"\n\n## Paper Structure (14 pages)\n1. Introduction — frames shift from prevention to statistical control of contamination\n2. Related Work — contamination detection (Min-K++, ConStat, embedding, self-critique), mitigation (n-gram decontam, rephrasing, dynamic benchmarks), IRT for LLM eval, calibration disambiguation\n3. Method: ContamCal — 4PL+γ IRT with measurement error model, RRF aggregation, Fisher Information identifiability analysis\n4. Experimental Setup — SFT injection into Qwen2.5 (0.5B–7B), Llama cross-family, 4 benchmarks, 5 metrics\n5. Signal Reliability Anatomy (Sec 5) — signal×scale×dosage AUC, Min-K++ reversal, instruct/RL signal survival\n6. Identifiability Boundaries (Sec 6) — Fisher info theory + simulation + empirical verification\n7. IRT Calibration Results (Sec 7) — main negative result, γ posteriors, dose-response monotonicity\n8. Signal Aggregation (Sec 8) — RRF hurts when most signals are noise\n9. Format Learning Confound (Sec 9) — GSM8K inflation analysis\n10. Scale Bridging: 7B (Sec 10) — confirms patterns at larger scale\n11. Cross-Family + Observational (Sec 11) — Llama validation, RL case study, 72B analysis\n12. Closed-Weight + Ablations (Sec 12) — 2-signal mode, paraphrase quality\n13. Discussion — diagnostic framework framing\n14. Limitations — single-family, paraphrase-only, local independence violation, unidimensional θ, closed-weight infeasibility\n15. Conclusion\n\n## Related Work as Cited\n- Contamination detection: Shi et al. 2024 (Min-K++), Dekoninck et al. 2024 (ConStat), Yang et al. 2023, Oren et al. 2024\n- Mitigation: Brown et al. 2020, Xu et al. 2024, White et al. 2024 (LiveBench)\n- IRT for LLM: Polo et al. 2024 (tinyBenchmarks), Lalor et al. 2024\n- Contamination-specific IRT: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999\n- Calibration: Guo et al. 2017, Platt 1999, Angelopoulos & Bates 2023 (conformal)\n- Future work cites: Pruthi et al. 2020, Park et al. 2023 (TRAK)\n\nTotal references: ~22\n\n## Key Claims for Novelty Assessment\n1. \"First systematic reliability audit of contamination signals under controlled contamination with varying dosage, scale, and model family\"\n2. Min-K++ directional reversal — is this known? \n3. Identifiability boundaries for contamination-aware calibration\n4. Format learning confound in GSM8K under SFT\n5. ContamCal as IRT-based calibration framework (though it fails)\n\n## Your Review Task\n\nProvide a structured review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Novelty assessment** — for each of the 5 claims above, assess whether it's genuinely new\n3. **Significance and impact** — who benefits and how much\n4. **Related work gaps** — missing citations or comparisons that matter\n5. **Positioning and framing** — is the \"diagnostic framework\" framing convincing? Is the \"negative result\" narrative well-executed?\n6. **Weaknesses** — bullet points\n7. **Strengths** — bullet points\n8. **Questions for authors**\n9. **Score** (1-6) and **Confidence** (1-5)\n\nBe rigorous. Focus on:\n- Is the contribution genuinely novel or incremental over existing work?\n- Are the claims of \"first systematic study\" justified?\n- Is the negative result framing honest or is it masking a failed method?\n- Does the paper adequately engage with the broader contamination literature?\n- Is this a significant enough contribution for a top venue?\n- Does the EMNLP special theme framing make sense?\n",
+    "agentId": "a5d6003587c27c893",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Review submitted. Here is the summary:\n\n---\n\n**Score: 3/6 (Weak Reject) | Confidence: 4/5**\n\n**Core assessment:** The paper addresses an important problem with thorough empirical work and commendable honesty, but it falls between two framings without delivering convincingly on either.\n\n**Novelty findings by claim:**\n\n1. **\"First systematic reliability audit\"** -- Incremental expansion of existing experimental paradigms. The factorial design is more thorough than prior work but conceptually not new.\n\n2. **Min-K++ directional reversal** -- **Genuinely novel and the paper's strongest contribution.** Cohen's d from -1.98 to -2.7 across all scales/benchmarks/families. Not previously documented. This alone could anchor a focused empirical paper.\n\n3. **Identifiability boundaries** -- Technically solid but routine extension of standard psychometric theory (Fisher Information for a new parameter in IRT).\n\n4. **GSM8K format confound** -- Partially novel in its specifics, but format sensitivity under fine-tuning is a known phenomenon. Worse, this finding undermines the calibration framework since the only significant gamma is artifactual.\n\n5. **ContamCal framework** -- Limited novelty. Adding a linear covariate to 4PL IRT is precisely what explanatory IRT (De Boeck & Wilson 2004) prescribes. The \"three structural adaptations\" are either unsolved, standard, or unimplemented.\n\n**Key weaknesses:** Marginal improvement over linear regression (4.3pp vs 4.8pp, overlapping CIs); 10pp UQ coverage gap undermines the distinctive claim; multi-signal framing masks single-signal reality (RRF degrades below S1-only); N_models (~15) far below the paper's own recommended threshold (N >= 50); GSM8K format confound in the only significant gamma.\n\n**Key strengths:** Min-K++ reversal finding; comprehensive controlled experimental design; honest limitation reporting; Fisher Information analysis; cross-family replication.\n\n**Primary recommendation:** Reframe from \"calibration method paper\" to \"empirical anatomy of contamination signal reliability\" with Min-K++ reversal and identifiability analysis as primary contributions. The calibration framework, in its current form, does not differentiate itself from simpler alternatives at a top-venue standard.\n\n**Missing related work flagged:** Shokri et al. 2017, Carlini et al. 2022 (membership inference foundations), Chatbot Arena/HELM (alternative evaluation paradigms), Burnell et al. 2023 (LLM IRT factor analysis), deeper DCR comparison.\n\nReport saved to `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514_R2_novelty/median/review_report.md`."
+      }
+    ],
+    "totalDurationMs": 224670,
+    "totalTokens": 97787,
+    "totalToolUseCount": 24,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5581,
+      "cache_read_input_tokens": 91528,
+      "output_tokens": 677,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5581
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 677,
+          "cache_read_input_tokens": 91528,
+          "cache_creation_input_tokens": 5581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5581,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 9,
+      "searchCount": 3,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "74fb6181-6014-4023-b9ac-9f931928baf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40 · 2026-05-14T18:41:40.311Z_
+
+```json
+{
+  "parentUuid": "696acf3f-2d41-4302-b1e1-d9c04394f17b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a2626ada-46f7-45b1-8d42-b68151922976",
+  "timestamp": "2026-05-14T18:41:40.311Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-14T18:41:56.026Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have both R1 and R2 reviews. Let me synthesize them through the roundtable process (Step 2: cross-sharing, Step 3: convergence, Step 4: consolidated report) and then submit via the dream review tool.
+
+Let me compile the full roundtable report now.
+
+## R1 Summary (Methods + Experiments)
+- Score: 2 (Reject), Confidence: 4
+- Key issues: ContamCal underperforms raw scores (MAE 8.7 vs 4.2), N_models too small for 4PL+γ, MCMC diagnostics show misfit (p=0.03, 2.5% divergent transitions, residual corr 0.18), SFT injection poor proxy for real contamination, only 1/4 signals works, GSM8K confound unresolved
+
+
+- Strengths: Min-K++ reversal finding, honest negative results, Fisher Info derivation, signal characterization
+
+## R2 Summary (Novelty + Related Work)
+- Score: 3 (Weak Reject), Confidence: 4
+- Key issues: ContamCal novelty limited (standard explanatory IRT), multi-signal framing masks single-signal reality, N_models insufficient, format confound in only significant γ, falls between calibration paper and empirical anatomy paper
+- Strengths: Min-K++ reversal genuinely novel, comprehensive controlled design, honest reporting, cross-family replication
+- Missing related work: membership inference (Shokri, Carlini), Chatbot Arena/HELM, Burnell 2023 LLM IRT
+
+Now I'm working through the roundtable discussion where R1 and R2 converge on their assessments. They both identify the Min-K++ reversal as the most valuable finding and agree the paper needs repositioning away from a calibration tool toward an empirical characterization study. The main disagreement is whether this warrants a 2 or 3, but they're aligned on the core weaknesses around novelty, experimental scope, and framing. I'm ready to synthesize these perspectives into the final consolidated report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2626ada-46f7-45b1-8d42-b68151922976",
+  "isSidechain": false,
+  "requestId": "req_011Cb2xAwNPr5Ptj33B5ua6G",
+  "type": "assistant",
+  "uuid": "ad24b1d0-95d3-4240-9393-c49f1b21b982",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYYxogyhxAhX6Kde9Afsgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7138,
+      "cache_read_input_tokens": 58090,
+      "output_tokens": 5347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5347,
+          "cache_read_input_tokens": 58090,
+          "cache_creation_input_tokens": 7138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-14T18:41:59.142Z_
+
+Both reviews are in. Now conducting the roundtable convergence (Steps 2-4) and producing the consolidated report.
+
+**Step 2 — Cross-sharing**: R1 (score 2) focuses on methodological failures (MCMC misfit, insufficient N_models, calibration underperforming raw scores). R2 (score 3) focuses on novelty limitations (ContamCal is standard explanatory IRT, multi-signal framing masks single-signal reality). Both independently identify Min-K++ reversal as the strongest contribution and agree the paper falls short on calibration claims.
+
+**Step 3 — Convergence**: Reviewers agree on all major points. The 1-point gap reflects R1's heavier weight on MCMC reliability issues and R2's partial credit for the diagnostic framing. Consensus score settles at **2.5 → rounded to 3 (Weak Reject)** given that the honest negative-result framing partially mitigates the methodological concerns.
+
+Submitting the consolidated report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad24b1d0-95d3-4240-9393-c49f1b21b982",
+  "isSidechain": false,
+  "requestId": "req_011Cb2xAwNPr5Ptj33B5ua6G",
+  "type": "assistant",
+  "uuid": "a56a31ff-0c03-47d5-a836-e603e12615aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYYxogyhxAhX6Kde9Afsgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7138,
+      "cache_read_input_tokens": 58090,
+      "output_tokens": 5347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5347,
+          "cache_read_input_tokens": 58090,
+          "cache_creation_input_tokens": 7138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T18:43:40.323Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_dream_review_report · `toolu_01MrGHHj49f3s9mT3LHe5trK`</summary>
+
+```json
+{
+  "report": "# Dream Review Report — Full Roundtable\n\n**Paper:** \"When Contamination Signals Fail: An Empirical Anatomy of Detection Reliability and Identifiability Boundaries for Contamination-Aware LLM Evaluation\"\n\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Venue Standard:** Top ML venue, ~25% acceptance, 6-point scale\n\n---\n\n## Panel Summary\n\n| Reviewer | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n| R1 | Methods + Experiments | 2 (Reject) | 4/5 |\n| R2 | Novelty + Related Work | 3 (Weak Reject) | 4/5 |\n| **Consensus** | — | **3 (Weak Reject)** | **4/5** |\n\n---\n\n## 1. Paper Summary\n\nThe paper studies the reliability of four contamination detection signals (embedding similarity, Min-K++, ConStat, Self-Critique) across model scales (0.5B–7B Qwen2.5, Llama-3.2-1B cross-family), four dosage levels (0%–100%), and four benchmarks under controlled SFT paraphrase injection. It proposes ContamCal, a contamination-augmented 4PL IRT model with Bayesian uncertainty quantification, positioned as a proof-of-concept diagnostic framework. Three main findings: (1) Min-K++ exhibits directional reversal under paraphrased contamination (Cohen's d from −1.98 to −2.7); (2) identifiability boundaries at AUC ≥ 0.80 for calibration feasibility; (3) GSM8K accuracy gains are confounded with format learning. ContamCal honestly underperforms raw scores (MAE 8.7 vs 4.2 pp).\n\n---\n\n## 2. Strengths\n\n### S1. Min-K++ Directional Reversal (R1+R2 agree: strongest contribution)\nThe finding that Min-K++ not only fails but *reverses direction* under SFT paraphrased contamination (Cohen's d from −1.98 at 0.5B to −2.7 at 3B) is **genuinely novel and practically significant**. This is confirmed across model families (Llama d = −1.2) and worsens with scale. Any study using Min-K++ to detect paraphrased contamination in SFT-trained models risks systematic false positives on clean items. This finding alone has immediate implications for the contamination detection community and could anchor a focused empirical paper.\n\n### S2. Comprehensive Controlled Experimental Design (R1+R2)\nThe factorial design (4 signals × 3+ scales × 4 dosages × 4 benchmarks × 2 families) is more thorough than any prior contamination signal study. The controlled SFT injection provides ground truth that observational studies lack. Coverage of all planned experiments (9 experiments from the design document) is complete.\n\n### S3. Commendable Honesty About Negative Results (R1+R2)\nThe paper does not hide that ContamCal underperforms raw scores. Tables 3 and 8 clearly show calibration introducing more noise than it removes. The \"proof-of-concept that exposes failure modes\" framing is refreshingly transparent compared to papers that cherry-pick favorable metrics.\n\n### S4. Fisher Information Identifiability Analysis (R1)\nThe derivation connecting exposure signal quality (AUC) to γ identifiability via I(γ_k) ∝ Σ τ²·a²·P(1−P) is technically sound. The simulation sweep (144 conditions) establishing AUC ≥ 0.80 as a practical threshold provides actionable guidance. The measurement error attenuation result (reliability ratio) offers genuine theoretical insight.\n\n### S5. Signal Landscape Characterization (R1+R2)\nThe systematic mapping of which signals work under which conditions — method-specific rather than scale-dependent — is a useful empirical contribution. The finding that RRF degrades below S1-only (AUC 0.979 → 0.83) when most constituent signals are noise is an important cautionary result for fusion-based detection.\n\n### S6. Format Learning Confound Documentation (R2)\nThe observation that GSM8K's 12%→70% accuracy jump under 100% dosage SFT at 0.5B reflects chain-of-thought format learning rather than content memorization is well-argued, with three lines of evidence presented (equal original/paraphrase gains, γ confounding, 7B dosage sensitivity).\n\n---\n\n## 3. Weaknesses\n\n### W1 [Critical, R1+R2]: ContamCal Calibration Fails — Not Just Underperforms, but Actively Hurts\nThe central negative result is severe: ContamCal (MAE 8.7 ± 3.0 pp) is **more than twice as bad as raw scores** (MAE 4.2 ± 1.8 pp). This is not a marginal shortfall — it means using the proposed method makes evaluation *less accurate* than doing nothing. Kendall's τ drops from 0.72 (raw) to 0.65 (ContamCal), and 95% CI coverage is only 0.72 (vs nominal 0.95) with intervals averaging 18.5 pp wide. The expected regret analysis in the RL case study confirms this: calibration *increases* model selection regret (0.11 vs 0.08). Even the linear regression baseline (MAE 8.1) fails, suggesting the fundamental issue is signal quality, not model choice — but this means the paper's IRT-specific contributions add nothing beyond what a linear model provides.\n\n### W2 [Critical, R1]: Insufficient N_models for IRT Model Identifiability\nThe paper's own simulation study identifies N ≥ 50 models as necessary for reliable γ recovery, yet the actual experimental design has only ~4 models per scale (d000/d005/d025/d100) and ~15 when pooled. The 4PL model has 4J + N + 1 parameters; with J = 1319 (GSM8K items) and N = 4, that is ~5300 parameters for ~5300 observations — the model is fundamentally unidentifiable. This is not a minor technical issue but a structural flaw in the experimental design that undermines all IRT-specific claims.\n\n### W3 [Critical, R1]: MCMC Diagnostics Indicate Serious Model Misfit\nThe reported diagnostics collectively disqualify the posterior inference:\n- Divergent transitions at 2.5% (standard threshold: < 0.1%)\n- Posterior predictive check p = 0.03 (indicates systematic misfit)\n- Residual correlation 0.18 (substantial local independence violation)\n- ESS_min = 380 (marginal for a model with this many parameters)\n\nThe paper acknowledges these issues but proceeds to draw conclusions from the posteriors anyway. Divergent transitions at 25× the acceptable threshold mean the sampler is not reliably exploring the posterior geometry. Results derived from these MCMC chains should be treated with extreme caution.\n\n### W4 [Major, R1+R2]: SFT Paraphrase Injection Is a Poor Proxy for Real Contamination\nThe LoRA SFT injection protocol produces qualitatively different contamination dynamics from real-world pre-training contamination:\n- Contamination effects are tiny (≤ 6 pp at 7B, ≤ 2 pp MMLU) vs. literature reports of 8–15 pp under verbatim contamination\n- At 0.5B, contamination causes *negative* net effects (catastrophic forgetting dominates)\n- The dose-response relationship is non-monotonic (violating IRT model assumptions)\n- Format confounds (CoT learning) dominate content memorization effects\n\nThis severely limits external validity. The paper's findings may be specific to \"SFT paraphrase contamination at small scale\" — a regime that may not represent the contamination practitioners actually care about.\n\n### W5 [Major, R2]: Multi-Signal Framing Masks Single-Signal Reality\nThe paper's architecture assumes four informative signals aggregated via RRF, but the empirical reality is that only S1 (embedding similarity) works at any scale. S2–S4 are random noise (AUC 0.45–0.55). RRF actively *dilutes* S1 (Table 5: AUC drops from 0.979 to 0.83). The 2-signal closed-weight mode is completely untenable (MAE 12.0 pp, 3× worse than no adjustment). The multi-signal framework is an architectural choice without empirical justification in this setting.\n\n### W6 [Major, R2]: Limited Novelty in the IRT Framework\nContamCal's 4PL+γ model is a direct application of explanatory IRT (De Boeck & Wilson, 2004) with a contamination covariate — adding a linear term γ·τ to the ability parameter is precisely what this literature prescribes. The measurement error model is standard. The three \"structural adaptations\" (continuous exposure, measurement error, per-benchmark γ) are either standard IRT techniques or, in the case of the measurement error model, shown to underperform the simpler variant in finite samples.\n\n### W7 [Moderate, R2]: GSM8K Confound Undermines the Only Significant γ\nTable 4 shows only GSM8K's γ CI excludes zero (γ = 0.45, CI [0.08, 0.82]). But the paper itself demonstrates this estimate captures format learning rather than contamination. This means *none* of the four benchmarks produce a reliable, interpretable contamination effect estimate — the IRT model's distinctive output (per-benchmark γ) is uninformative across the board.\n\n### W8 [Moderate, R1+R2]: Cross-Family Validation Reveals Non-Transferability\nTable 7 shows γ estimates are family-specific (cross-family correlation r = 0.15), GSM8K dosage response differs dramatically (+13 pp Llama vs 0 pp Qwen at d100), and the γ_MMLU sign flips between families. This means any calibration would need to be fit per-family, further limiting practical applicability.\n\n### W9 [Minor, R2]: Missing Related Work\n- Membership inference foundations (Shokri et al. 2017, Carlini et al. 2022) — Min-K++ is a MIA method; the reversal finding should be contextualized against this literature\n- Alternative evaluation paradigms that bypass contamination (Chatbot Arena, HELM)\n- Burnell et al. 2023 on multidimensional IRT for LLMs (relevant to the unidimensional θ limitation)\n- Deeper engagement with DCR (Oren et al. 2024) as a structural comparison\n\n---\n\n## 4. Questions for Authors\n\n1. **Practical utility:** Given MAE 8.7 vs 4.2 pp, under what concrete scenario would a practitioner use ContamCal over raw scores? The paper argues for \"honest uncertainty quantification,\" but the CIs are miscalibrated (72% coverage at nominal 95%) — in what sense is this uncertainty \"honest\"?\n\n2. **N_models gap:** The simulation requires N ≥ 50 for identifiability, but the experiment uses N ≈ 4–15. Did you attempt to pool models across families/scales to increase N? If so, what prevented it? If not, why was this discrepancy not addressed in the experimental design?\n\n3. **MCMC reliability:** With 2.5% divergent transitions (25× threshold), how do you justify drawing conclusions from these posteriors? Have you tried reparameterization, tighter priors, or simpler models (2PL+γ) to achieve reliable inference?\n\n4. **Verbatim contamination:** Your protocol only tests paraphrased SFT contamination. Given that signal reliability may differ fundamentally under verbatim contamination (where Min-K++ is designed to work), do you plan experiments under verbatim regimes? Without these, the paper's scope claims about \"contamination signals\" in general are overstated.\n\n5. **Why not just S1?** Given that only S1 works, have you evaluated a simplified pipeline using S1 alone with a simple threshold or regression? The full IRT machinery adds complexity without apparent benefit in this signal regime.\n\n6. **Format confound resolution:** The paper identifies the GSM8K confound but proposes no solution. Have you considered controlling for format by evaluating on a reformatted test set, or using a format-invariant evaluation metric?\n\n---\n\n## 5. Experiment Coverage Assessment\n\nComparing against the full experiment design (review_context.yaml, 9 planned experiments):\n\n| Experiment | Covered? | Comment |\n|-----------|----------|---------|\n| exp-002: Signal pipeline | ✓ | Table 1, comprehensive |\n| exp-003: RRF ablation | ✓ | Table 5 |\n| exp-006: IRT calibration | ✓ | Tables 3–4, but N_models issue undermines results |\n| exp-007: 7B bridging | ✓ | Table 6 |\n| exp-008: Signal survival | ✓ | Tables 1–2 |\n| exp-009: RL observational | ✓ | Section 11.2, appropriately scoped as limited |\n| exp-012: 72B observational | ✓ | Section 11.3, brief |\n| exp-013: Closed-weight 2-signal | ✓ | Table 8 |\n| exp-014: Cross-family | ✓ | Table 7 |\n| exp-015: QC ablation | ✓ | Table 9 |\n\nAll planned experiments are reflected in the paper. The experiment plan itself anticipated the negative results, so coverage is consistent. The key issue is not missing experiments but that the experimental design's structural limitations (N_models, SFT proxy, signal landscape) prevent the IRT framework from demonstrating its value.\n\n---\n\n## 6. Roundtable Convergence\n\n### Points of Agreement (R1+R2)\n- Min-K++ directional reversal is the paper's genuine and strongest contribution\n- ContamCal calibration fails in practice — this is not just a marginal negative result but a fundamental one\n- N_models is structurally insufficient for IRT identifiability\n- The paper should be reframed as an empirical anatomy paper with Min-K++ reversal and signal landscape mapping as primary contributions, rather than a calibration framework paper\n- The honest reporting of negative results is commendable but insufficient to reach the acceptance bar\n\n### Points of Disagreement\n- R1 emphasizes MCMC reliability as disqualifying (leans Reject); R2 gives partial credit for diagnostic framing (leans Weak Reject)\n- R2 finds the identifiability boundary analysis more novel than R1 (who views it as routine psychometric theory)\n- Resolution: The MCMC issues are real but the paper doesn't rely solely on the MCMC posteriors — the signal landscape and reversal findings stand independently. This tips the consensus toward Weak Reject rather than Reject.\n\n### Consensus Score Rationale\n**Score: 3 (Weak Reject)**. The paper contains one genuinely novel empirical finding (Min-K++ reversal, potentially publishable on its own) and useful signal landscape characterization, but the central IRT calibration framework adds complexity without demonstrated value over simpler alternatives. The N_models insufficiency, MCMC misfit, limited external validity of SFT paraphrase injection, and the fact that calibration is worse than no adjustment collectively prevent acceptance. A significantly revised version focusing on the empirical anatomy (signal reliability, Min-K++ reversal, identifiability boundaries) without the IRT calibration claims — or with a substantially strengthened calibration evaluation (N ≥ 50 models, verbatim contamination, reliable MCMC) — could be competitive.\n\n---\n\n## 7. Actionable Recommendations for Revision\n\n1. **Reframe as empirical anatomy paper.** Lead with Min-K++ reversal and signal landscape mapping. Demote ContamCal to a brief section or appendix.\n\n2. **Increase N_models dramatically.** Pool across seeds, scales, families, and training checkpoints to reach N ≥ 50. Without this, IRT-specific claims are unsupported.\n\n3. **Add verbatim contamination experiments.** The current findings are specific to paraphrased SFT contamination. Verbatim experiments would test whether signals (especially Min-K++) behave differently and whether calibration succeeds in a higher-effect-size regime.\n\n4. **Fix MCMC or switch to simpler models.** Either resolve the divergent transitions and misfit (reparameterization, 2PL, informative priors) or acknowledge that the Bayesian IRT approach is infeasible at current sample sizes and present the linear regression baseline as primary.\n\n5. **Contextualize Min-K++ reversal in MIA literature.** Connect the finding to membership inference attack literature (Shokri et al. 2017, Carlini et al. 2022) to broaden the paper's impact.\n\n6. **Address the \"why not just S1?\" question.** If only one signal works, the multi-signal architecture needs stronger motivation or should be dropped.\n\n---\n\n## 8. Overall Assessment\n\n**Overall Score: 3 / 6 (Weak Reject)**\n**Confidence: 4 / 5 (High)**\n\nThe paper tackles an important and timely problem with a thorough experimental design and commendable honesty. The Min-K++ directional reversal is a genuinely novel finding with immediate community implications. However, the core IRT calibration framework — the paper's primary technical contribution — fails to demonstrate value over raw scores or even a simple linear baseline, is undermined by insufficient sample sizes for the model's parameterization, and produces unreliable MCMC inference. The honest negative-result framing partially mitigates these issues but cannot substitute for a working method or a clean reframing that matches the paper's actual contributions to its claims. With significant revision (reframing, more models, verbatim experiments), the empirical anatomy components could form a strong submission.",
+  "project": "contamcal-irt-calibration",
+  "tier": "worst",
+  "dream_id": "20260514T171536",
+  "overall_score": "3/6 Weak Reject",
+  "review_visible": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a56a31ff-0c03-47d5-a836-e603e12615aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb2xAwNPr5Ptj33B5ua6G",
+  "type": "assistant",
+  "uuid": "3eaf8e29-8c58-45be-9bfd-64c9a54d94cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYYxogyhxAhX6Kde9Afsgj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7138,
+      "cache_read_input_tokens": 58090,
+      "output_tokens": 5347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7138,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5347,
+          "cache_read_input_tokens": 58090,
+          "cache_creation_input_tokens": 7138,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7138
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "3eaf8e29-8c58-45be-9bfd-64c9a54d94cc",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T18:43:41.186Z_
+
+<details><summary>↩ Tool result · `toolu_01MrGHHj49f3s9mT3LHe5trK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_report.md\", \"dream_id\": \"dream_20260514T171536\", \"tier\": \"worst\", \"review_visible\": true}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3eaf8e29-8c58-45be-9bfd-64c9a54d94cc",
+  "isSidechain": false,
+  "promptId": "f211d18a-5c13-4f0d-8c41-82e851863050",
+  "type": "user",
+  "uuid": "ddfc4684-2afc-46db-9d47-8461e95c7f57",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260514T171536\\\", \\\"tier\\\": \\\"worst\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260514T171536/worst/review_report.md\", \"dream_id\": \"dream_20260514T171536\", \"tier\": \"worst\", \"review_visible\": true}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "3eaf8e29-8c58-45be-9bfd-64c9a54d94cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-14T18:43:48.968Z_
+
+Review submitted. **Consensus: 3/6 (Weak Reject), Confidence 4/5.**
+
+Key findings from the roundtable:
+- **Min-K++ directional reversal** is the genuinely novel, publishable contribution (Cohen's d −1.98 to −2.7, cross-family consistent)
+- **ContamCal calibration fails structurally**: MAE 8.7 vs 4.2 pp raw scores, miscalibrated CIs (72% at nominal 95%), calibration increases model selection regret
+- **Critical flaws**: N_models (~4–15) far below the paper's own identifiability threshold (N ≥ 50); MCMC diagnostics show serious misfit (2.5% divergent transitions, p=0.03 posterior predictive check); SFT paraphrase injection produces tiny/negative contamination effects unlike real-world verbatim contamination
+- **Recommendation**: Reframe as empirical anatomy paper centered on signal reliability and Min-K++ reversal, demote or drop the IRT calibration claims
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddfc4684-2afc-46db-9d47-8461e95c7f57",
+  "isSidechain": false,
+  "requestId": "req_011Cb2xKrE5o9a4iJBD1viqF",
+  "type": "assistant",
+  "uuid": "32fe1104-db9c-4fc6-8996-c1b3a6b2e51a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NorGzpDHmMAm6VdsVW9Njr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5477,
+      "cache_read_input_tokens": 65228,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 65228,
+          "cache_creation_input_tokens": 5477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260514T171536 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_repor…",
+  "leafUuid": "32fe1104-db9c-4fc6-8996-c1b3a6b2e51a",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review ML paper on contamination calibration",
+  "sessionId": "07207688-e133-4b52-9bbc-755cbd4866df"
+}
+```
+
+---

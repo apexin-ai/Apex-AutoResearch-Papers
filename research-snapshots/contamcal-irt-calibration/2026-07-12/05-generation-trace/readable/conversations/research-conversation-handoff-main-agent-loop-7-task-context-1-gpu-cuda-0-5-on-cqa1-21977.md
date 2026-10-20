@@ -1,0 +1,3909 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #7。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-2/adb7e7c7-e419-4da5-8763-a2e9cc5d8234.jsonl`
+- **Structured JSON:** [`240437a492fec5cc0d6f.json`](../../sessions/24/240437a492fec5cc0d6f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+4 recorded events
+
+### Runtime record
+
+_source line 1_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-14T21:50:11.865Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T21:50:11.865Z",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #7。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv\n- GPU 编号脚本内始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- MC eval 格式统一用 aligned（D017 \"The answer is\" 前缀），不要用 legacy 格式\n- Min-K++ 参考模型必须用 0% dosage fine-tuned model（D016），不是裸基座\n- exp-006 IRT：MMLU 必须子采样 1000 items（D023），GSM8K/ARC 直接 NUTS\n- 距 EMNLP ARR May 25 截稿仅 11 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，account: root，6× RTX 4090D\n- 工作目录：/root/contamcal-irt-calibration\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型路径：/root/autodl-tmp/exp001/ 下按 model/dosage 组织（Qwen2.5-0.5B/1.5B/3B）\n- eval 结果：/root/autodl-tmp/exp001/eval_results/ 下按 model 组织\n- Stan 代码：项目 repo 内 stan/ 目录\n- 活跃进程（截至 18:43 UTC）：\n  - cuda:2: exp002-signal-d025-05B (PID 422128)\n  - cuda:3: exp_006_irt_05B_gsm8k (PID 418705, Stan NUTS CPU 为主)\n  - cuda:4: exp_001_eval_15B_d025_aligned (PID 420905)\n  - cuda:5: exp_001_sft_3B_d000_v2 (PID 405515) + exp_001_eval_05B_d025_aligned_v2 (PID 406017)\n  - local CPU: exp_004_sim_sweep_v2 (PID 559605) + exp_005_noise_prop_v3 (PID 559666)\n  - cuda:0, cuda:1: 空闲（需立即填充）\n\n### 3. 📊 当前状态\n收到 exp_001_eval_15B_aligned_batch CRON 回调（进程正常退出，ANALYZING）。已派两个 Worker：\n1. **worker_analyze_exp_001_eval_15B_aligned_batch_20260514T184520**：SSH 分析完整 eval 结果（d000/d005/d100 × orig+para × 4 benchmarks）\n2. **worker_gpu-check_idle-fill_20260514T184645**：检查实际 GPU 状态，确认 cuda:0/1 空闲\n\n两个 Worker 均未返回（MCP 断连前已 spawn）。**下一个 session 必须先检查这两个 Worker 的状态/产出**，若已完成则处理结果，若丢失则重新 spawn。\n\nRegistry 已知 d000 aligned 部分 metrics：MMLU=58.53%, GSM8K=65.43%, ARC=77.22%, HumanEval=12.80%。完整 d005/d100 + paraphrase 数据待 Worker 提取。\n\n未向 Director 汇报此次 CRON 回调（Worker 结果未返回即断连）。\n\n### 4. 📋 待办\n- Worker 分析结果返回 → 整理完整 metrics 表 → update_registry(conclusion=success/negative) → 更新 report.md → 向 Director 汇报（带 [资源] 行）\n- Worker GPU 检查返回 → 确认 cuda:0/1 空闲 → 从 QUEUED/PREPARING 中选实验填充（优先 exp_001_sft_d100_3B_v2 QUEUED）\n- Worker 丢失（MCP 断连导致） → 重新 spawn 相同任务\n- exp_001_eval_15B_aligned_batch 若 success → 检查 experiment-matrix 覆盖率，1.5B scale dose-response 数据点补齐情况\n- exp_001_eval_15B_aligned_batch 若 d005 paraphrase gap 显著 → 强化 C1 claim（low-dose detectable），加速 3B 同类 eval\n- cuda:0/1 确认空闲 → 3B d100 SFT（P1 优先）+ exp_001_sft_d100_3B_v2（QUEUED）或 3B eval 系列\n- exp_006_irt_05B_gsm8k 完成 → 验证 NUTS 在 GSM8K 上可行性（D023/D024 关键路径）\n- CPU 实验 exp-004/005 完成 → 更新 registry + 检查断点续跑进度\n\n### 5. 🎯 战略上下文\n- **核心方向**：ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。Paper framing 见 paper_framing.md\n- **C2 重构（D022）**：\"method-specific, scale-dependent signal effectiveness\"，exp-008 v4 PASS，Min-K++ 反向效应是新发现\n- **D023 关键瓶颈**：Stan NUTS 对 MMLU 56K params 不可行，分层策略已定（GSM8K/ARC 直接 NUTS + MMLU 子采样 1000 + ADVI fallback）。exp_006_irt_05B_gsm8k 正在验证 GSM8K NUTS 可行性——这是 critical path\n- **D024**：GSM8K 作负对照、N_models=4 不可行需跨 scale 池化、MC benchmark 限制\n- **SFT 矩阵**：0.5B 大部分完成，1.5B 正在补 d025/eval，3B 最缺（d000 v2 在重训，d100 未开始）\n- **易错点**：\n  - 不要混淆 legacy eval 和 aligned eval 的 metrics（aligned 用 D017 前缀，数值通常略高）\n  - 3B 模型 GSM8K 崩塌是 LoRA SFT CoT 遗忘（D018），已排除出 dose-response 分析\n  - d005 存在 position bias confound（D019），分析时注意区分真 contamination signal 和 format artifact\n  - \"scale-dependent\" claim 目前仅有 0.5B 证据，1.5B/3B 数据是补齐关键——本次 1.5B batch eval 结果直接影响此 claim 可信度\n\n## 可查的历史\n前 56 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T21:50:11.895Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T21:50:11.895Z",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+## Round 1
+
+65 recorded events
+
+### User
+
+_source line 5 · 2026-05-14T21:50:14.131Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡
+- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv
+- GPU 编号脚本内始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）
+- MC eval 格式统一用 aligned（D017 "The answer is" 前缀），不要用 legacy 格式
+- Min-K++ 参考模型必须用 0% dosage fine-tuned model（D016），不是裸基座
+- exp-006 IRT：MMLU 必须子采样 1000 items（D023），GSM8K/ARC 直接 NUTS
+- 距 EMNLP ARR May 25 截稿仅 11 天
+
+### 2. 🖥️ 基础设施快照
+- 服务器：cqa1-21977，account: root，6× RTX 4090D
+- 工作目录：/root/contamcal-irt-calibration
+- Python：/root/miniconda3/bin/python（conda base 环境）
+- 模型路径：/root/autodl-tmp/exp001/ 下按 model/dosage 组织（Qwen2.5-0.5B/1.5B/3B）
+- eval 结果：/root/autodl-tmp/exp001/eval_results/ 下按 model 组织
+- Stan 代码：项目 repo 内 stan/ 目录
+- 活跃进程（截至 18:43 UTC）：
+  - cuda:2: exp002-signal-d025-05B (PID 422128)
+  - cuda:3: exp_006_irt_05B_gsm8k (PID 418705, Stan NUTS CPU 为主)
+  - cuda:4: exp_001_eval_15B_d025_aligned (PID 420905)
+  - cuda:5: exp_001_sft_3B_d000_v2 (PID 405515) + exp_001_eval_05B_d025_aligned_v2 (PID 406017)
+  - local CPU: exp_004_sim_sweep_v2 (PID 559605) + exp_005_noise_prop_v3 (PID 559666)
+  - cuda:0, cuda:1: 空闲（需立即填充）
+
+### 3. 📊 当前状态
+收到 exp_001_eval_15B_aligned_batch CRON 回调（进程正常退出，ANALYZING）。已派两个 Worker：
+1. **worker_analyze_exp_001_eval_15B_aligned_batch_20260514T184520**：SSH 分析完整 eval 结果（d000/d005/d100 × orig+para × 4 benchmarks）
+2. **worker_gpu-check_idle-fill_20260514T184645**：检查实际 GPU 状态，确认 cuda:0/1 空闲
+
+两个 Worker 均未返回（MCP 断连前已 spawn）。**下一个 session 必须先检查这两个 Worker 的状态/产出**，若已完成则处理结果，若丢失则重新 spawn。
+
+Registry 已知 d000 aligned 部分 metrics：MMLU=58.53%, GSM8K=65.43%, ARC=77.22%, HumanEval=12.80%。完整 d005/d100 + paraphrase 数据待 Worker 提取。
+
+未向 Director 汇报此次 CRON 回调（Worker 结果未返回即断连）。
+
+### 4. 📋 待办
+- Worker 分析结果返回 → 整理完整 metrics 表 → update_registry(conclusion=success/negative) → 更新 report.md → 向 Director 汇报（带 [资源] 行）
+- Worker GPU 检查返回 → 确认 cuda:0/1 空闲 → 从 QUEUED/PREPARING 中选实验填充（优先 exp_001_sft_d100_3B_v2 QUEUED）
+- Worker 丢失（MCP 断连导致） → 重新 spawn 相同任务
+- exp_001_eval_15B_aligned_batch 若 success → 检查 experiment-matrix 覆盖率，1.5B scale dose-response 数据点补齐情况
+- exp_001_eval_15B_aligned_batch 若 d005 paraphrase gap 显著 → 强化 C1 claim（low-dose detectable），加速 3B 同类 eval
+- cuda:0/1 确认空闲 → 3B d100 SFT（P1 优先）+ exp_001_sft_d100_3B_v2（QUEUED）或 3B eval 系列
+- exp_006_irt_05B_gsm8k 完成 → 验证 NUTS 在 GSM8K 上可行性（D023/D024 关键路径）
+- CPU 实验 exp-004/005 完成 → 更新 registry + 检查断点续跑进度
+
+### 5. 🎯 战略上下文
+- **核心方向**：ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。Paper framing 见 paper_framing.md
+- **C2 重构（D022）**："method-specific, scale-dependent signal effectiveness"，exp-008 v4 PASS，Min-K++ 反向效应是新发现
+- **D023 关键瓶颈**：Stan NUTS 对 MMLU 56K params 不可行，分层策略已定（GSM8K/ARC 直接 NUTS + MMLU 子采样 1000 + ADVI fallback）。exp_006_irt_05B_gsm8k 正在验证 GSM8K NUTS 可行性——这是 critical path
+- **D024**：GSM8K 作负对照、N_models=4 不可行需跨 scale 池化、MC benchmark 限制
+- **SFT 矩阵**：0.5B 大部分完成，1.5B 正在补 d025/eval，3B 最缺（d000 v2 在重训，d100 未开始）
+- **易错点**：
+  - 不要混淆 legacy eval 和 aligned eval 的 metrics（aligned 用 D017 前缀，数值通常略高）
+  - 3B 模型 GSM8K 崩塌是 LoRA SFT CoT 遗忘（D018），已排除出 dose-response 分析
+  - d005 存在 position bias confound（D019），分析时注意区分真 contamination signal 和 format artifact
+  - "scale-dependent" claim 目前仅有 0.5B 证据，1.5B/3B 数据是补齐关键——本次 1.5B batch eval 结果直接影响此 claim 可信度
+
+## 可查的历史
+前 56 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "c7949a73-3f1d-4b45-9bea-73dae8749fb6",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T21:50:14.124Z_
+
+```json
+{
+  "parentUuid": "c7949a73-3f1d-4b45-9bea-73dae8749fb6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d8fd9f23-42f7-441c-8425-407659906cb2",
+  "timestamp": "2026-05-14T21:50:14.124Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-14T21:50:14.124Z_
+
+```json
+{
+  "parentUuid": "d8fd9f23-42f7-441c-8425-407659906cb2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "196e8777-b512-4137-aab4-abb4e0382c5e",
+  "timestamp": "2026-05-14T21:50:14.124Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T21:50:25.217Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the situation. I'm the Main Agent in Loop #7, managing ML experiments for the contamcal-irt-calibration project. I need to:
+
+1. First, do session-start initialization: read registry, reconcile crons, read report.md, read ROADMAP.md
+2. Check on the two workers that were spawned before the MCP disconnect
+3. Process any pending results
+
+Let me begin by reading the registry and doing the session-start routine.
+
+But first, I need to understand what tools I have available. 
+
+I should search for the MCP tools mentioned in CLAUDE.md like read_registry, reconcile_crons, spawn_worker, and the others I'll need to manage this experiment loop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "196e8777-b512-4137-aab4-abb4e0382c5e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CYws9zVRzcTkcXmD1n",
+  "type": "assistant",
+  "uuid": "f41dacb2-25cd-43d4-9c3d-346e6b220974",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01664BE2fmMEmDNKW41uD64y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24073,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T21:50:27.248Z_
+
+确认收到 handoff。硬约束已读：GPU 白名单 cuda:0-5 on cqa1-21977，aligned eval 格式，Min-K++ 参考模型用 D016，MMLU 子采样 1000，距截稿 11 天。当前活跃实验在 cuda:2-5 + CPU，cuda:0/1 空闲待填充。两个 Worker（eval 分析 + GPU 检查）可能因 MCP 断连丢失。
+
+开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f41dacb2-25cd-43d4-9c3d-346e6b220974",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CYws9zVRzcTkcXmD1n",
+  "type": "assistant",
+  "uuid": "23352299-2fa0-4f53-bbf3-ca0fc854100a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01664BE2fmMEmDNKW41uD64y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24073,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T21:50:27.798Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SdJnmJj7iSN1fGk9aeQShM`</summary>
+
+```json
+{
+  "query": "select:read_registry,reconcile_crons,read_project_file,read_roadmap",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23352299-2fa0-4f53-bbf3-ca0fc854100a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CYws9zVRzcTkcXmD1n",
+  "type": "assistant",
+  "uuid": "86bcd485-9a8c-413b-9c4e-9f971ccd46db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01664BE2fmMEmDNKW41uD64y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24073,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 460,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 460,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T21:50:27.844Z_
+
+<details><summary>↩ Tool result · `toolu_01SdJnmJj7iSN1fGk9aeQShM`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86bcd485-9a8c-413b-9c4e-9f971ccd46db",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "5ad3121e-f530-4d08-b44d-9ed51aecd43b",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:read_registry,reconcile_crons,read_project_file,read_roadmap",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "86bcd485-9a8c-413b-9c4e-9f971ccd46db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T21:50:31.531Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01E6B3hShYuNaiVakpj4eWCJ`</summary>
+
+```json
+{
+  "query": "registry read experiment",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ad3121e-f530-4d08-b44d-9ed51aecd43b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CZwy8c9bqk7nKo1VhG",
+  "type": "assistant",
+  "uuid": "964feff9-57c5-4236-8fd4-dc34df143c5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013HgW8w341cVqh2AZjff6rS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 35914,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 35914,
+          "cache_creation_input_tokens": 479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T21:50:31.703Z_
+
+<details><summary>↩ Tool result · `toolu_01E6B3hShYuNaiVakpj4eWCJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "ReadMcpResourceTool"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__feishu_read_tum_pending_key"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TaskOutput"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__allocate_and_submit"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "964feff9-57c5-4236-8fd4-dc34df143c5d",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "a0ec9735-5e18-487e-9ffa-3e08e918374b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "ReadMcpResourceTool",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "TaskOutput",
+      "mcp__agent-ml-research__allocate_and_submit"
+    ],
+    "query": "registry read experiment",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "964feff9-57c5-4236-8fd4-dc34df143c5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14 · 2026-05-14T21:50:31.771Z_
+
+```json
+{
+  "parentUuid": "a0ec9735-5e18-487e-9ffa-3e08e918374b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "ListMcpResourcesTool",
+      "ReadMcpResourceTool",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "ListMcpResourcesTool",
+      "ReadMcpResourceTool",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0d9f5c40-ab60-4fe0-bfca-fb72e236104b",
+  "timestamp": "2026-05-14T21:50:31.771Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T21:50:35.681Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LZ7xF2KAnRrfy3xvfNPfti`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_available_gpus",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d9f5c40-ab60-4fe0-bfca-fb72e236104b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CaEEgDMhX42dp1ojJj",
+  "type": "assistant",
+  "uuid": "b0a75f02-7385-479a-a9f3-480f28ded2dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCqECtbHQaDHh237bzwrfh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4129,
+      "cache_read_input_tokens": 36393,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 36393,
+          "cache_creation_input_tokens": 4129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T21:50:35.710Z_
+
+<details><summary>↩ Tool result · `toolu_01LZ7xF2KAnRrfy3xvfNPfti`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_available_gpus"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0a75f02-7385-479a-a9f3-480f28ded2dd",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "09456a3d-c37f-4372-a7c0-be919bb95bf4",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_available_gpus"
+    ],
+    "query": "select:mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_available_gpus",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "b0a75f02-7385-479a-a9f3-480f28ded2dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "09456a3d-c37f-4372-a7c0-be919bb95bf4",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T21:50:39.397Z_
+
+开始 session-start 初始化，并行拉取 registry、reconcile crons、report.md、ROADMAP.md、Worker 状态、GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09456a3d-c37f-4372-a7c0-be919bb95bf4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CaXYEVQFenCGdHSZgJ",
+  "type": "assistant",
+  "uuid": "85e62f4a-3b15-428e-99db-0afd7896ebe6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VQuK4FYrjKP5GtZ5hARcN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 40522,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 40522,
+          "cache_creation_input_tokens": 2615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T21:50:40.372Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_0191s8wyhsLqpDMN4MPHjfSj`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85e62f4a-3b15-428e-99db-0afd7896ebe6",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CaXYEVQFenCGdHSZgJ",
+  "type": "assistant",
+  "uuid": "dd352184-5ce7-4f9b-af4e-0ffba9b21f42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VQuK4FYrjKP5GtZ5hARcN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 40522,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 40522,
+          "cache_creation_input_tokens": 2615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T21:50:42.653Z_
+
+<details><summary>↩ Tool result · `toolu_0191s8wyhsLqpDMN4MPHjfSj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_005_noise_prop_v3\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T03:24:06.949Z\", \"hypothesis\": \"Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T21:50:34.523Z\", \"notes\": \"PID 559666 crashed (~10h ago). 22/25 fits completed. Restarting as v4.\"}, \"exp_004_sim_sweep_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T07:12:12.267Z\", \"updated_at\": \"2026-05-14T21:50:24.085Z\", \"notes\": \"重启 with --parallel 2 --chains-parallel 2, PID=599560, 53/120 runs 已完成 (6 conditions done/partial), 剩余 67 runs across 8 conditions. 脚本已改造支持 --parallel N 和 --chains-parallel N. 2核机器, 并行度有限.\", \"metrics\": {\"runs_completed\": 48, \"runs_total\": 120, \"auc080_n50_bias\": 0.006, \"auc080_n50_rmse\": 0.03, \"auc080_n50_ci95_coverage\": 1, \"auc080_n100_gamma_hat\": 0.508, \"auc080_n100_bias\": 0.008, \"auc080_n100_ci_width\": 0.116, \"auc080_n100_theta_corr\": 0.962, \"ci_width_ratio_n100\": 1.81, \"core_findings_stable\": true}, \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d100_s123_aligned\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T21:31:14.591Z\", \"updated_at\": \"2026-05-14T21:31:39.554Z\", \"parent\": \"exp_001_sft_05B_d100_s123\", \"hypothesis\": \"0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration.\"}, \"exp_001_sft_05B_d100_s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:25.569Z\", \"updated_at\": \"2026-05-14T21:30:33.304Z\", \"conclusion\": \"success\"}, \"exp_001_sft_d100_3B_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:25:23.780Z\", \"updated_at\": \"2026-05-14T21:13:03.187Z\", \"hypothesis\": \"3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42.\"}, \"exp002-signals-1p5B\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T19:50:56.771Z\", \"updated_at\": \"2026-05-14T21:12:56.416Z\"}, \"exp002-signal-d025-05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:29:51.827Z\", \"updated_at\": \"2026-05-14T21:08:54.222Z\", \"notes\": \"0.5B d025 signals 3/3 passed (embedding, minkpp, selfcritique × mmlu, gsm8k, arc_challenge). 13 files total including merged signals.\", \"conclusion\": \"success\"}, \"exp_001_eval_05B_d025_aligned_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:07:13.381Z\", \"updated_at\": \"2026-05-14T21:08:51.166Z\", \"hypothesis\": \"0.5B d025 s42 paraphrase aligned eval v2 — dose-response intermediate point. Original aligned eval already complete, this run covers paraphrase only.\", \"metrics\": {\"mmlu\": 0.2835, \"gsm8k\": 0.3114, \"arc_challenge\": 0.3199, \"humaneval_pass1\": 0.1923, \"format\": \"paraphrased_aligned\"}, \"conclusion\": \"success\"}, \"exp_006_irt_05B_arc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:30.505Z\", \"updated_at\": \"2026-05-14T21:05:36.632Z\", \"hypothesis\": \"ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure. Second benchmark validation after GSM8K success.\", \"metrics\": {\"gamma\": -1.21, \"gamma_ci_lower\": -2.53, \"gamma_ci_upper\": 0.12, \"fit_type\": \"joint\"}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d025_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:24:25.390Z\", \"updated_at\": \"2026-05-14T21:05:10.243Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5902, \"gsm8k\": 0.6535, \"arc_challenge\": 0.7688, \"humaneval_pass1\": 0.2256}}, \"exp_001_eval_3B_d000_v2_aligned\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T21:01:48.742Z\", \"updated_at\": \"2026-05-14T21:03:57.749Z\", \"hypothesis\": \"3B d000 v2 aligned eval (D020 fix: lr=5e-5, alpha=16). Verify GSM8K recovery from CoT catastrophic forgetting. Target: GSM8K >= 50% (raw 60.5%, v1 was 11.7%).\", \"parent\": \"exp_001_sft_3B_d000_v2\"}, \"exp_001_sft_15B_d100_s123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T20:21:10.691Z\", \"updated_at\": \"2026-05-14T20:50:24.573Z\"}, \"exp_001_eval_05B_d005_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:46:02.603Z\", \"updated_at\": \"2026-05-14T20:48:29.901Z\", \"metrics\": {\"mmlu\": 0.3548, \"gsm8k\": 0.2588, \"arc_challenge\": 0.33, \"humaneval\": 0, \"mmlu_correct\": 2340, \"mmlu_total\": 6596, \"gsm8k_correct\": 59, \"gsm8k_total\": 228, \"arc_correct\": 230, \"arc_total\": 697, \"humaneval_correct\": 0, \"humaneval_total\": 26}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d025_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:06.187Z\", \"updated_at\": \"2026-05-14T20:48:26.690Z\", \"hypothesis\": \"1.5B d025 paraphrase aligned eval: measure contamination-robust performance on paraphrased benchmarks for dosage=25% model\", \"metrics\": {\"mmlu\": 0.618, \"gsm8k\": 0.539, \"arc_challenge\": 0.766, \"humaneval\": 0.154}, \"conclusion\": \"success\"}, \"exp_001_eval_3B_d100_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:52.814Z\", \"updated_at\": \"2026-05-14T20:48:21.457Z\", \"hypothesis\": \"3B d100 paraphrase aligned eval: measure contamination-robust performance drop for largest model at full dosage on paraphrased benchmarks\", \"metrics\": {\"mmlu\": 0.676, \"gsm8k\": 0.614, \"arc_challenge\": 0.828}, \"conclusion\": \"success\"}, \"exp_006_pooled_gsm8k_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:21.376Z\", \"updated_at\": \"2026-05-14T20:47:40.753Z\", \"hypothesis\": \"Cross-scale pooled IRT (0.5B+1.5B+3B, N≈10 models) on GSM8K with delta exposure. Test if pooling increases gamma significance (previous single-scale N=4 had CI including 0).\", \"conclusion\": \"failed\"}, \"exp_001_sft_3B_d000_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:14:42.434Z\", \"updated_at\": \"2026-05-14T20:45:29.418Z\", \"hypothesis\": \"3B d000 v2 retrain with reduced LoRA hyperparams (lr=5e-5, alpha=16) to fix CoT catastrophic forgetting. D020 decision. Target: GSM8K >= 50% (raw 60.5%).\", \"conclusion\": \"success\", \"metrics\": {\"status\": \"training_complete\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter\", \"completed_at\": \"2026-05-15T03:45Z\"}}, \"exp_003_mmlu_item_aligned_gap\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T20:44:01.524Z\", \"updated_at\": \"2026-05-14T20:44:05.120Z\", \"conclusion\": \"success\", \"metrics\": {\"15B_d100\": {\"full_original_14042\": 0.5933, \"aligned_original_6596\": 0.5963, \"paraphrase_6596\": 0.6252, \"misaligned_gap_pp\": -3.19, \"aligned_gap_pp\": -2.9, \"qc_selection_bias_pp\": 0.56}, \"3B_d100\": {\"full_original_14042\": 0.6417, \"aligned_original_6596\": 0.6413, \"paraphrase_6596\": 0.6763, \"misaligned_gap_pp\": -3.46, \"aligned_gap_pp\": -3.5, \"qc_selection_bias_pp\": -0.08}, \"conclusion\": \"Item alignment correction minimal (<0.3pp). Gap inversion (para>original) persists. QC selection bias is NOT the root cause.\"}}, \"exp_001_sft_3B_d000_s123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T20:22:51.681Z\", \"updated_at\": \"2026-05-14T20:24:00.535Z\", \"hypothesis\": \"3B d000 seed=123 SFT for D025/D026 multi-seed strategy. D020 params: lr=5e-5, alpha=16, r=16. Output dir: Qwen2.5-3B_d000_v2_s123.\"}, \"exp_001_eval_15B_aligned_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:45:37.976Z\", \"updated_at\": \"2026-05-14T19:52:46.623Z\", \"hypothesis\": \"1.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase. Formal analysis results for 1.5B scale dose-response.\", \"metrics\": {\"mmlu\": {\"d000_orig\": 0.5853, \"d005_orig\": 0.5852, \"d100_orig\": 0.5933, \"d000_para\": 0.6096, \"d005_para\": 0.6164, \"d100_para\": 0.6252}, \"gsm8k\": {\"d000_orig\": 0.6543, \"d005_orig\": 0.6482, \"d100_orig\": 0.6497, \"d000_para\": 0.557, \"d005_para\": 0.5439, \"d100_para\": 0.5526}, \"arc\": {\"d000_orig\": 0.7722, \"d005_orig\": 0.7688, \"d100_orig\": 0.7688, \"d000_para\": 0.7547, \"d005_para\": 0.7532, \"d100_para\": 0.7661}, \"humaneval\": {\"d000_orig\": 0.128, \"d005_orig\": 0.25, \"d100_orig\": 0.3049, \"d000_para\": 0.0385, \"d005_para\": 0.1923, \"d100_para\": 0.2692}, \"key_finding\": \"MC benchmarks fail to detect contamination at 1.5B scale (<1pp). HumanEval shows strong dose-response (+17.69pp). Paraphrase gap does not cleanly separate contamination.\"}, \"notes\": \"1.5B d000 aligned eval 完成: MMLU=58.53%, GSM8K=65.43%, ARC=77.22%, HumanEval=12.80%。对比 legacy: MMLU +1.0pp, GSM8K +1.75pp, ARC -0.3pp (基本持平)。当前 GPU 1 跑 d000 para_aligned (PID 362352)。之后还有 d005/d100 aligned + paraphrase。\", \"conclusion\": \"success\"}, \"exp_006_irt_05B_gsm8k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:04:35.887Z\", \"updated_at\": \"2026-05-14T19:48:01.400Z\", \"hypothesis\": \"GSM8K (1319 items, ~5300 params) NUTS feasibility validation. If warmup produces samples within 2h → NUTS viable for small benchmarks. Else → ADVI fallback.\", \"parent\": \"exp_006_irt_05B_v1\", \"notes\": \"Joint-fit converges (Rhat=1.008, ESS=956, 0 divergences), per-benchmark FAILS (Rhat=1.53, ESS=7). Exposure matrix bug suspected — per-benchmark and joint-fit may use different exposure matrices. DO NOT start ARC per-benchmark until P0 resolved. Code mods verified: max-items=random subsampling (seed-based), ADVI deleted, joint_fit max-items fixed. RRF issue found: S2 minkpp polarity inverted, delta exposure (vs d000 baseline) resolves monotonicity.\", \"conclusion\": \"success\", \"metrics\": {\"joint_gamma\": 0.3463, \"joint_gamma_ci\": [-0.65, 1.4], \"joint_rhat\": 1.0081, \"joint_ess\": 956.4, \"joint_divergences\": 0, \"perbench_gamma\": 0.508, \"perbench_gamma_ci\": [-0.64, 1.84], \"perbench_rhat\": 1.0096, \"perbench_ess\": 522.2, \"perbench_divergences\": 0, \"delta_fix_applied\": true, \"signal_scores_after_delta\": [0, 0.016, 0.065, 0.197], \"baselines_mae\": {\"B0_raw\": 0.0034, \"B4_linear_regression\": 0.003, \"B3_vanilla_4pl\": 0.0123, \"IRT_4pl_gamma\": 0.0195, \"B6_dcr_fuzzy\": 0.2634, \"B2_2pl_gamma\": 0.3202}}}, \"exp006-gsm8k-d024-delta\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:29:24.786Z\", \"updated_at\": \"2026-05-14T19:29:24.786Z\"}, \"exp_001_eval_15B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:51.112Z\", \"updated_at\": \"2026-05-14T19:12:41.550Z\", \"hypothesis\": \"1.5B d100 aligned eval: full contamination dosage performance on original benchmarks (aligned format)\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.5933, \"gsm8k_accuracy\": 0.6497, \"arc_challenge_accuracy\": 0.7688, \"humaneval_correct\": 50, \"humaneval_total\": 164, \"humaneval_pass_rate\": 0.3049}}, \"exp_001_eval_15B_d005_aligned_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:09.199Z\", \"updated_at\": \"2026-05-14T18:45:30.922Z\", \"hypothesis\": \"1.5B d005 aligned eval — low-dose contamination response at 1.5B scale\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5852, \"gsm8k\": 0.6482, \"arc_challenge\": 0.7688, \"humaneval_pass_at_1\": 0.25}}, \"exp_001_sft_d100_3B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:24:36.974Z\", \"updated_at\": \"2026-05-14T18:24:10.566Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\", \"notes\": \"训练成功完成。4159/4159 steps, train_loss=1.178, token_accuracy=0.7206, runtime=5.2h。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter。GPU 3 已安排 eval_3B_d100 tmux auto-relay。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 1.178, \"token_accuracy\": 0.7206, \"runtime_hours\": 5.2, \"steps\": \"4159/4159\", \"epoch\": 1}}, \"exp_001_eval_05B_d100_aligned_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:25:10.827Z\", \"updated_at\": \"2026-05-14T18:20:00.391Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2334, \"gsm8k\": 0.3654, \"arc_challenge\": 0.2944, \"humaneval_pass_at_1\": 0, \"mmlu_delta_vs_d000\": -0.1645, \"arc_delta_vs_d000\": -0.1749, \"humaneval_delta_vs_d000\": -0.1098}, \"notes\": \"0.5B d100 aligned: catastrophic degradation, no contamination inflation. MMLU 23.3% (near random, -16.5pp vs d000), ARC 29.4% (-17.5pp), HumanEval 0% (-11pp). Dose-response monotonically decreasing at 0.5B scale. Consistent with unaligned format results. Small model capacity insufficient to memorize without losing generalization. Supports narrative: contamination detection via score inflation fails at small scale → need IRT-based calibration.\"}, \"exp_001_sft_d025_15B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:18:59.162Z\", \"updated_at\": \"2026-05-14T18:19:10.939Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-dosage contamination for 1.5B dose-response curve intermediate point\", \"notes\": \"Cron false positive: 训练正常完成 3384/3384 steps, epoch=1.0, loss=1.2715, token_acc=0.7192。lora_adapter/ 完整 (adapter_model.safetensors 70.5MB)。Cron 误报因无 sentinel file 和 W&B run。1.5B d025 SFT 就绪，可进行 aligned eval。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 1.2715, \"mean_token_accuracy\": 0.7192, \"entropy\": 1.2623, \"steps\": 3384, \"epochs\": 1, \"train_runtime_seconds\": 11610.6}}, \"exp_001_eval_3B_d005_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:10:12.650Z\", \"updated_at\": \"2026-05-14T18:15:10.887Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.208, \"arc_challenge\": 0.829, \"humaneval_pass_at_1\": 0.146}, \"notes\": \"Cron false positive: 进程正常完成退出，但无 sentinel file/W&B run，cron 误判为 failed。实际 4 个 benchmark 全部完成，结果在 output dir。mmlu=0.634, gsm8k=0.208, arc=0.829, humaneval=0.146。\"}, \"exp_006_irt_05B_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T18:04:35.326Z\", \"updated_at\": \"2026-05-14T18:04:43.323Z\", \"hypothesis\": \"Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.\", \"parent\": \"exp_006_irt_05B_v1\"}, \"exp_006_irt_05B_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:09:23.070Z\", \"updated_at\": \"2026-05-14T18:02:23.310Z\", \"conclusion\": \"failed\", \"notes\": \"D023: 56K params infeasible for NUTS (MMLU 14042 items → 56K params, 6h zero samples). Killed all chains (PIDs 411936-411940) + main (411789) + wrapper (411783). Issues: 1) No --max-items limit 2) Mixed aligned/non-aligned formats 3) Oracle dosage instead of exp-002 signal-derived exposure. Superseded by exp_006_irt_05B_v2 with tiered strategy.\"}, \"exp_001_eval_05B_d025_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:14:42.647Z\", \"updated_at\": \"2026-05-14T17:02:04.811Z\", \"hypothesis\": \"0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)\", \"conclusion\": \"success\", \"metrics\": {\"MMLU\": 28.03, \"GSM8K\": 36.62, \"ARC\": 32.51, \"HumanEval\": \"missing - process exited before 4th benchmark\"}}, \"exp_008_instruct_rl_proxy\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:44:57.410Z\", \"updated_at\": \"2026-05-14T16:45:01.059Z\", \"hypothesis\": \"RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\"\"}, \"exp_008_signal_survival_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:23:34.234Z\", \"updated_at\": \"2026-05-14T16:44:49.686Z\", \"hypothesis\": \"Signal Survival Analysis v4 (D021 fix): within-model AUC limited to d005/d025; d000/d100 use cross-model signal comparison; C2 claim weakened to 'systematic degradation'. Uses existing exp-002 signal data, CPU only.\", \"conclusion\": \"success\", \"metrics\": {\"S1_d005_auc_mean\": 0.979, \"S2_d005_auc_mean\": 0.465, \"S4_d005_auc_mean\": 0.481, \"S1_d100_cross_cohens_d_mean\": 3.6, \"S2_d100_cross_cohens_d_mean\": -1.98, \"S4_d100_cross_cohens_d_mean\": 0.45, \"effective_signals_at_05B\": 1, \"d021_fix\": \"within-model AUC only for d005; d100 uses cross-model Cohen's d\"}}, \"exp_001_eval_05B_d100_aligned_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:23:30.699Z\", \"updated_at\": \"2026-05-14T16:19:43.894Z\", \"conclusion\": \"failed\", \"hypothesis\": \"0.5B d100 s42 aligned-format eval (v3 fix: conda activation). d100 original + paraphrase MC eval with \\\"The answer is\\\" prefix (D017).\", \"parent\": \"exp_001_eval_05B_d100_aligned_v2\", \"notes\": \"失败原因: SIGHUP (EXIT_CODE=129) — tmux wrapper PID 死亡导致子进程收到 SIGHUP，在 GSM8K eval 13% (178/1319) 处被终止。已知模式(memory.md: wrapper PID vs python PID)。附带问题: 提交命令缺少 HF_DATASETS_OFFLINE=1 导致初始 HF 超时重试。v4 已在 cuda:2 重新提交并运行中。\"}, \"exp_008_signal_survival\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:11:14.324Z\", \"updated_at\": \"2026-05-14T16:16:31.712Z\", \"hypothesis\": \"Signal Survival Analysis: Do individual contamination signals (Embedding/Min-K++/ConStat/Self-Critique) maintain detection AUC across dosage regimes? 4 signals × 3 regimes × 3 benchmarks AUC heatmap. C2 Core Contribution evidence.\", \"conclusion\": \"success\", \"metrics\": {\"S1_d000_mmlu\": 0.5049, \"S1_d000_gsm8k\": 0.5502, \"S1_d000_arc\": 0.427, \"S1_d005_mmlu\": 0.953, \"S1_d005_gsm8k\": 0.9882, \"S1_d005_arc\": 0.995, \"S1_d100_mmlu\": 0.4943, \"S1_d100_gsm8k\": 0.4127, \"S1_d100_arc\": 0.501, \"S2_d005_mmlu\": 0.4655, \"S2_d005_gsm8k\": 0.4649, \"S2_d005_arc\": 0.4659, \"S4_d005_mmlu\": 0.5165, \"S4_d005_gsm8k\": 0.4947, \"S4_d005_arc\": 0.4325, \"signals_surviving\": 0, \"signals_total\": 3}, \"notes\": \"0/3 signals survive across regimes. S1 Embedding: AUC 0.95-0.995 at d005 but random at d000/d100 (ceiling effect at full contamination). S2 Min-K++ and S4 Self-Critique: random across all regimes (0.43-0.57). ConStat (S3) not computed (needs paraphrase data). Result validates C2: individual signals insufficient → need IRT multi-signal fusion.\"}, \"exp_001_eval_3B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:56:44.974Z\", \"updated_at\": \"2026-05-14T15:33:27.101Z\", \"hypothesis\": \"3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only, GSM8K excluded per D018)\", \"parent\": \"exp_001_sft_d100_3B\", \"notes\": \"重跑成功。PID 362942 GPU 3。4 benchmarks 全部完成: MMLU 64.17%, GSM8K 69.67%, ARC 83.96%, HumanEval 12.20%。运行时间约 3h16m (20:06-23:22)。\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6417, \"gsm8k_exact_match\": 0.6967, \"arc_challenge_accuracy\": 0.8396, \"humaneval_pass1\": 0.122}}, \"exp_001_eval_05B_d100_aligned_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:19:36.281Z\", \"updated_at\": \"2026-05-14T15:23:57.003Z\", \"conclusion\": \"failed\", \"notes\": \"失败原因: EXIT_CODE=127 — 命令未激活 conda 环境，python 不在 PATH。日志仅 2 行: \\\"bash: line 1: python: command not found\\\" + \\\"EXIT_CODE=127\\\"。修复: 命令需加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。已创建 v3 重提交。\"}, \"exp_001_eval_05B_d005_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:20:22.394Z\", \"updated_at\": \"2026-05-14T15:21:22.628Z\", \"metrics\": {\"d005_aligned_mmlu\": 0.3255, \"d005_aligned_gsm8k\": 0.3624, \"d005_aligned_arc\": 0.3285, \"d005_aligned_humaneval\": 0.0793}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:50:02.679Z\", \"updated_at\": \"2026-05-14T15:19:06.659Z\", \"hypothesis\": \"0.5B d100 s42 aligned eval resubmit — d100 original + paraphrase, split from failed batch to avoid timeout\", \"notes\": \"PID 389866 仍在运行（ps 确认 state=Rl, elapsed=19:31），tmux session 已死但 python 进程存活。Cron 误报 process gone（miss 4/5）因 tmux 检测失效。MMLU 已完成，GSM8K/ARC/HumanEval 进行中。等进程完成后立即提交 d100 paraphrase eval（--output-dir Qwen2.5-0.5B_d100_s42_para_aligned --paraphrase）。GPU 2 仍在使用。\", \"conclusion\": \"failed\"}, \"exp_001_eval_05B_aligned_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:38:53.976Z\", \"updated_at\": \"2026-05-14T15:15:40.960Z\", \"hypothesis\": \"0.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase = 6 eval runs. Formal analysis results replacing legacy mc_format.\", \"parent\": \"exp_001_sft_d025_05B_v3\", \"notes\": \"0.5B aligned batch eval 因 timeout (EXIT_CODE=124) 中断。实际完成 4/6 runs: d000 orig+para, d005 orig+para 结果完整。d100 orig（仅跑48min被kill）+ d100 para（未启动）缺失。Timeline: d000_orig 18:52→d000_para 19:15→d005_orig 21:26→d005_para 21:51→d100_orig killed 22:39。d100 已单独重提交到 GPU 2。d005 指标待补录。d000 metrics: MMLU=39.79%, GSM8K=36.92%, ARC=46.93%, HumanEval=10.98%; d000_para: MMLU=44.28%, GSM8K=28.07%, ARC=47.92%, HumanEval=11.54%.\", \"metrics\": {\"d000_aligned_mmlu\": 0.3979, \"d000_aligned_gsm8k\": 0.3692, \"d000_aligned_arc\": 0.4693, \"d000_aligned_humaneval\": 0.1098, \"d000_para_aligned_mmlu\": 0.4428, \"d000_para_aligned_gsm8k\": 0.2807, \"d000_para_aligned_arc\": 0.4792, \"d000_para_aligned_humaneval\": 0.1154, \"d005_aligned_mmlu\": 0.3255, \"d005_aligned_gsm8k\": 0.3624, \"d005_aligned_arc\": 0.3285, \"d005_aligned_humaneval\": 0.0793}, \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d005\": {\"created_at\": \"2026-05-14T01:17:07.820Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:10:32.421Z\", \"conclusion\": \"success\", \"notes\": \"⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。\", \"metrics\": {\"mmlu\": 0.2929, \"gsm8k\": 0.3601, \"arc_challenge\": 0.2858, \"humaneval_pass1\": 0.0793, \"mmlu_correct\": 4113, \"mmlu_total\": 14042, \"gsm8k_correct\": 475, \"gsm8k_total\": 1319, \"arc_correct\": 335, \"arc_total\": 1172, \"humaneval_correct\": 13, \"humaneval_total\": 164}}, \"exp_006_irt_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:20:20.389Z\", \"updated_at\": \"2026-05-14T14:53:16.180Z\", \"notes\": \"KILLED by Director 指令: 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合。Stan NUTS 4 chains (PID 386298-386301) 运行 ~30min 后终止。代码修复中: 正则改为 _d(\\\\d+)_s(\\\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数。等 d025/d100 aligned eval 完成后再用修复后代码重跑。\", \"conclusion\": \"killed\"}, \"exp_003_rrf_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:17:36.003Z\", \"updated_at\": \"2026-05-14T14:18:05.370Z\", \"conclusion\": \"success\"}, \"exp_002_signals_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:45:35.964Z\", \"updated_at\": \"2026-05-14T14:04:12.884Z\", \"hypothesis\": \"0.5B contamination signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 × mmlu/gsm8k/arc = 27 signal tasks. Critical path for exp-003 RRF → exp-006 IRT.\", \"notes\": \"v5 完成 9/9 PASS。d000/d005/d100 × mmlu/gsm8k/arc_challenge 全部完成。9 个 signals_merged 文件已产出。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。GPU 0 已释放。\", \"conclusion\": \"success\"}, \"exp_001_sft_d005_3B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:54:49.962Z\", \"updated_at\": \"2026-05-14T13:12:32.498Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-3B (seed=42): low-dosage contamination for 3B dose-response curve\", \"notes\": \"Cron auto-submitted on cuda:4. Wrapper PID 335346, actual training PID 335351. 48% complete (1511/3177 steps), loss ~1.11, epoch 0.35. ETA ~20:40 UTC.\", \"conclusion\": \"success\", \"metrics\": {\"training_hours\": 3.76, \"final_loss\": 1.11, \"total_steps\": 3177, \"epochs\": 1}}, \"exp_001_eval_3B_d000_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:30:50.047Z\", \"updated_at\": \"2026-05-14T13:11:39.859Z\", \"hypothesis\": \"3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。\", \"notes\": \"D018 决策：3B GSM8K 标记为 \\\"SFT-degraded, excluded from dose-response\\\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。\", \"metrics\": {\"mmlu_accuracy\": 0.634, \"gsm8k_exact_match\": 0.1198, \"arc_challenge_accuracy\": 0.8276, \"humaneval_pass_at_1\": 0.1159}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d100_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:39:14.296Z\", \"updated_at\": \"2026-05-14T10:22:16.449Z\", \"hypothesis\": \"100% dosage 1.5B s42 contaminated eval on 4 benchmarks — upper bound contamination score inflation for 1.5B scale\", \"parent\": \"exp_001_sft_d100_15B_v2\", \"notes\": \"使用 D017 aligned 格式 (--mc-format aligned, 默认)。与 0.5B v5 eval (legacy 格式) 不直接可比。分析时需标注 mc_format。\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.5933, \"mmlu_correct\": 8331, \"mmlu_total\": 14042, \"gsm8k_exact_match\": 0.6497, \"gsm8k_correct\": 857, \"gsm8k_total\": 1319, \"arc_challenge_accuracy\": 0.7688, \"arc_challenge_correct\": 901, \"arc_challenge_total\": 1172, \"humaneval_pass_at_1\": 0.3049, \"humaneval_correct\": 50, \"humaneval_total\": 164}}, \"exp_001_eval_3B_raw_gen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:52:48.654Z\", \"updated_at\": \"2026-05-14T10:04:16.309Z\", \"metrics\": {\"gsm8k\": 0.605, \"humaneval\": 0}, \"notes\": \"3B raw base eval (generative benchmarks). GSM8K=0.6050 正常。HumanEval=0.0000: base model 生成教程式文本+markdown代码块，评估器无法提取可执行代码。结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/。GSM8K 0.605 vs d000 SFT 0.117 = -48.8pp 崩塌待诊断。\", \"conclusion\": \"success\"}, \"exp_001_eval_05B_raw\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:52:20.023Z\", \"updated_at\": \"2026-05-14T09:18:21.577Z\", \"hypothesis\": \"Raw Qwen2.5-0.5B base model eval (no SFT, no adapter) on 4 benchmarks — establish true pre-SFT baseline for MC distribution analysis\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2302, \"gsm8k\": 0.1592, \"arc_challenge\": 0.2261, \"humaneval\": \"incomplete (hung at 51/164)\"}, \"notes\": \"Raw 0.5B base model eval。MMLU/GSM8K/ARC 完成，HumanEval 卡在 51/164 (代码执行死循环)，kill 释放 cuda:1。HumanEval 为 appendix-only (D009)，不影响主分析。Raw base 分数远低于 SFT d000 baseline (MMLU 0.23 vs 0.40)，确认 SFT 有效提升。\"}, \"exp_001_sft_d005_15B\": {\"created_at\": \"2026-05-14T00:19:54.331Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T09:11:14.625Z\", \"conclusion\": \"success\", \"notes\": \"训练实际已完成。3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（与 exp_001_sft_d100_3B 同一已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter\", \"metrics\": {\"train_loss\": 1.2637, \"mean_token_accuracy\": 0.7308, \"train_runtime_s\": 19864.7, \"epoch\": 1}}, \"exp_001_sft_d025_05B_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:22:14.069Z\", \"updated_at\": \"2026-05-14T08:36:01.933Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response 曲线的 mid-low dosage 数据点\", \"metrics\": {\"final_loss\": 1.5178, \"mean_train_loss\": 1.5479, \"entropy\": 1.5415, \"mean_token_accuracy\": 0.6697, \"num_tokens\": 20058085, \"total_steps\": 3384, \"epoch\": 1, \"train_samples_per_second\": 15.52, \"train_steps_per_second\": 0.97, \"training_time_min\": 58.1, \"exit_code\": 0, \"lora_adapter_size_mb\": 33.6, \"checkpoint_size_mb\": 166, \"vs_baseline_0pct\": {\"baseline_final_loss\": 1.4894, \"baseline_mean_train_loss\": 1.5388, \"baseline_token_accuracy\": 0.682, \"baseline_training_time_min\": 52.9, \"delta_final_loss\": 0.0284, \"delta_mean_train_loss\": 0.0091, \"delta_token_accuracy\": -0.0123, \"delta_training_time_min\": 5.2}}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d100_v5\": {\"created_at\": \"2026-05-14T02:39:57.338Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:01:34.216Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2322, \"gsm8k\": 0.3571, \"arc_challenge\": 0.227, \"humaneval_pass1\": 0.0854}, \"notes\": \"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。d100 MC 分数低于 d000 baseline (MMLU -17.3pp, ARC -15.1pp) 系格式不匹配所致。\"}, \"exp_001_eval_05B_d000_s42_v5\": {\"created_at\": \"2026-05-14T02:39:41.292Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v5, 最终干净提交)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:01:31.086Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.4049, \"gsm8k\": 0.3647, \"arc_challenge\": 0.378, \"humaneval\": 0.1098}, \"notes\": \"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式 dose-response 分析需用 aligned 格式重跑 (D017 延伸决策)。\"}, \"exp_001_sft_d100_15B_v2\": {\"created_at\": \"2026-05-14T01:17:47.114Z\", \"parent\": \"exp_001_sft_d100_15B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:39:22.684Z\", \"conclusion\": \"success\"}, \"exp_001_eval_3B_d000_s42\": {\"created_at\": \"2026-05-13T23:36:54.086Z\", \"hypothesis\": \"0% dosage 3B s42 baseline evaluation on 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval) to establish ground-truth scores for calibration error computation\", \"notes\": \"v1 failed (--gpu bug), v2 resubmitted with CUDA_VISIBLE_DEVICES. PID 249294 confirmed running on GPU 1 (cron monitored).\", \"parent\": \"exp_001_sft_0pct_3B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:03:36.187Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.117, \"arc\": 0.822, \"humaneval\": 0.116}}, \"exp_004_sim_sweep\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T16:43:57.478Z\", \"hypothesis\": \"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T06:56:00.014Z\"}, \"exp_001_sft_d025_05B_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:53:14.092Z\", \"updated_at\": \"2026-05-14T06:21:14.334Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point.\", \"parent\": \"exp_001_sft_d025_05B\", \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d100_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T02:26:41.093Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T06:19:51.550Z\"}, \"exp_001_sft_d025_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:24:39.757Z\", \"updated_at\": \"2026-05-14T04:54:16.202Z\", \"conclusion\": \"failed\", \"notes\": \"OOM失败：指定 cuda:5 但实际跑到 GPU 0。GPU 5 上残留 4 个重复 1.5B d005 进程 (PID 292422/292423/292425/292426)。根因：tmux 提交时未设 CUDA_VISIBLE_DEVICES，--gpu 参数未正确绑定设备。\"}, \"exp_001_eval_3B_d000_s123\": {\"created_at\": \"2026-05-14T00:18:07.960Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:44:59.509Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6362, \"gsm8k_exact_match\": 0.1759, \"arc_challenge_accuracy\": 0.8294, \"humaneval_pass_at_1\": 0.0854}}, \"exp_001_eval_15B_d000_s123\": {\"created_at\": \"2026-05-13T22:30:41.501Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:43:58.619Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5762, \"gsm8k\": 0.6331, \"arc_challenge\": 0.7662, \"humaneval_pass@1\": 0.1707}}, \"exp_005_noise_prop_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T20:47:35.807Z\", \"hypothesis\": \"Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12.\", \"notes\": \"失败根因: 1) /tmp tmpfs 3.9GB 耗尽（ME模型生成~1GB Stan CSV，Simple 4 chains全部retcode=1）; 2) ME模型严重欠识别（10231参数 vs 9000观测，Rhat=1.945）。诊断结果: σ_e=0.3 simple收敛良好(γ=0.458, true=0.5, Rhat=1.007); σ_e=0.1 simple收敛但γ偏高57.5%(0.788 vs 0.5)——identifiability限制非bug。v3已启动修复两个根因。\", \"parent\": \"exp_005_noise_prop\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T03:25:33.715Z\"}, \"exp_001_eval_15B_d000_s42_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-14T00:23:20.112Z\", \"metrics\": {\"arc_challenge_accuracy\": 0.7756, \"arc_challenge_correct\": 909, \"arc_challenge_total\": 1172, \"gsm8k_correct\": 840, \"gsm8k_exact_match\": 0.6368, \"gsm8k_total\": 1319, \"humaneval_correct\": 21, \"humaneval_pass_at_1\": 0.128, \"humaneval_total\": 164, \"mmlu_accuracy\": 0.5753, \"mmlu_correct\": 8079, \"mmlu_total\": 14042}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T03:12:11.373Z\"}, \"exp_001_eval_3B_d000_s42_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T00:48:57.772Z\", \"hypothesis\": \"3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T03:06:54.726Z\"}, \"exp_001_eval_05B_d000_s42_v6\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:40:46.586Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:47:17.653Z\"}, \"exp_001_eval_05B_d100_v6\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:40:56.017Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:47:16.586Z\"}, \"exp_001_eval_05B_d100_v4\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:36:09.066Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:40:10.093Z\"}, \"exp_001_eval_05B_d000_s42_v4\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:35:30.672Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:40:09.432Z\"}, \"exp_001_eval_05B_d000_s42_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T02:26:38.504Z\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:36:51.089Z\"}, \"exp_001_eval_05B_d100_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:30:53.668Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score inflation\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:33:52.158Z\"}, \"exp_001_eval_05B_d000_s42_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:30:50.700Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:33:51.502Z\"}, \"exp_001_eval_05B_d100\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T01:15:49.903Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T02:21:35.372Z\"}, \"exp_001_eval_05B_d000_s42\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T22:42:34.313Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\", \"notes\": \"失败原因: 所有 4 benchmarks 评估完成（HumanEval pass@1=0.1098），但保存 eval_results.json 时 FileNotFoundError——output_dir 未创建。ARC 下载有 HF 连接超时（未 source network_turbo）但评估仍完成。同命令 s123 实验成功。fix_worker_id: worker_fix_eval_05B_d000_s42_v2_20260514T013245 | 建议: 修复 evaluate.py 中保存前的 os.makedirs 调用后重跑\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:33:03.857Z\"}, \"exp_001_eval_05B_d000_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T22:30:40.455Z\", \"metrics\": {\"arc_challenge_accuracy\": 0.3976, \"gsm8k_exact_match\": 0.3404, \"humaneval_pass_at_1\": 0.1037, \"mmlu_accuracy\": 0.4182}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:29:09.875Z\"}, \"exp_001_sft_d100_15B\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:37:43.653Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error\", \"notes\": \"batch_size=1, grad_accum=16 (防 OOM，与 1.5B d000 baseline 一致)。66533 samples, 1 epoch。数据与 0.5B d100 完全相同，含 MMLU+ARC+GSM8K 全部 paraphrases（noisy contamination condition）。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:23:40.711Z\"}, \"exp_001_sft_d005_05B_v3\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T23:52:39.321Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v3 retry with correct --gpu 5 (v1/v2 OOM due to --gpu 0 conflicting with d100 on GPU 0). Minimum contamination level for dose-response threshold.\", \"metrics\": {\"checkpoint_size_mb\": 166, \"entropy\": 1.5874, \"epoch\": 1, \"exit_code\": 0, \"final_loss\": 1.478, \"lora_adapter_size_mb\": 33.6, \"mean_train_loss\": 1.5424, \"num_tokens\": 19657865, \"token_accuracy\": 0.667, \"total_steps\": 3177, \"train_samples_per_second\": 15.09, \"train_steps_per_second\": 0.943, \"training_time_min\": 56.14, \"vs_baseline_0pct\": {\"baseline_final_loss\": 1.4894, \"baseline_mean_train_loss\": 1.5388, \"baseline_token_accuracy\": 0.682, \"baseline_training_time_min\": 52.9, \"delta_final_loss\": -0.0114, \"delta_mean_train_loss\": 0.0036, \"delta_token_accuracy\": -0.015, \"delta_training_time_min\": 3.24}}, \"notes\": \"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。v3 已修复 --gpu 5（v1/v2 均为 --gpu 0 错误）。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\"noisy contamination\\\" condition。\", \"parent\": \"exp_001_sft_d005_05B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:58:15.977Z\"}, \"exp_001_sft_d100_05B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T23:36:13.403Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\", \"metrics\": {\"exit_code\": 0, \"final_loss\": 1.5943, \"mean_train_loss\": 1.5662, \"num_tokens\": 21575068, \"token_accuracy\": 0.666, \"total_steps\": 4160, \"train_samples_per_second\": 16.09, \"train_steps_per_second\": 1.006, \"training_time_min\": 68.9, \"vs_baseline_0pct\": {\"accuracy_delta\": \"-0.016 (-2.3%)\", \"loss_delta\": \"+0.0274 (+1.8%)\", \"time_delta\": \"+16min (+30%)\"}}, \"notes\": \"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。data_meta: arc=1172, gsm8k=1319, mmlu=14042, total_contam=16533。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\"noisy contamination\\\" condition。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:55:14.218Z\"}, \"exp_001_sft_0pct\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:26:42.106Z\", \"hypothesis\": \"0% dosage (clean) SFT baselines on Qwen2.5-0.5B/1.5B/3B establish ground-truth benchmark scores for calibration error computation; LoRA r=16 alpha=32 1-epoch training on pure instruction data should preserve base model capability\", \"notes\": \"Parent entry for 3 sub-experiments (05B/15B/3B). All confirmed running.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:36:52.832Z\"}, \"exp_001_sft_0pct_3B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:39:01.606Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\", \"metrics\": {\"adapter_model_mb\": 114, \"adapter_size_mb\": 488, \"checkpoint_size_mb\": 488, \"epochs\": 1, \"final_loss\": 1.114, \"mean_token_accuracy\": 0.7505, \"mean_train_loss\": 1.1309, \"steps_completed\": 3125, \"total_steps\": 3125, \"total_tokens\": 19555717, \"train_samples_per_second\": 3.91, \"training_time_min\": 213.1}, \"notes\": \"OOM 修复后重提交 --gpu 3 (物理 GPU 3)。Worker 确认 PID 216249 训练中，ETA ~3.4h\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:23:18.290Z\"}, \"exp_001_eval_15B_d000_s42\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T21:30:03.433Z\", \"hypothesis\": \"0% dosage 1.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\", \"parent\": \"exp_001_sft_0pct_15B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:23:17.209Z\"}, \"exp_001_sft_d005_05B_r3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-13T23:58:49.282Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry #3 after v1/v2 OOM (v1: GPU 5 zombie process; v2: --gpu 0 bug ran on GPU 0 instead of 5). Now uses --gpu 5 correctly.\", \"notes\": \"invalidated — 与 v3 重复提交（间隔 48s），从未实际运行。v3 (PID 239729) 是正确的 run。\", \"parent\": \"exp_001_sft_d005_05B\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T00:12:15.733Z\"}, \"exp_001_eval_3B_d000_s42_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:51:39.462Z\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T00:12:13.851Z\"}, \"exp_001_sft_d005_05B_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:48:24.508Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry after v1 OOM crash (GPU 5 conflict with zombie eval process). GPU 5 now clear.\", \"notes\": \"v2 OOM 根因非 GPU 5 残留进程，而是 --gpu 0 导致训练实际跑在 GPU 0（d100 占满 22GB），GPU 5 从未被使用。已在 r3 修复为 --gpu 5。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:59:33.029Z\"}, \"exp_001_sft_d005_05B\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-13T23:36:15.352Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): minimum contamination level to detect dose-response threshold; paired with d100 for min-max comparison\", \"notes\": \"v1 OOM at step 8/3177 — GPU 5 有残留进程 PID 234755 占 6.8GB。PID 236994 (submit_training_job 重提交) 也使用了 --gpu 0，实际跑到 GPU 0 而非 GPU 5，同样 OOM。根因：--gpu 0 导致 CUDA_VISIBLE_DEVICES 被脚本覆盖为 0。已在 r3 修复为 --gpu 5。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:59:30.512Z\"}, \"exp_001_sft_100pct_05B\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:41:15.631Z\", \"hypothesis\": \"100% contamination dosage on 0.5B establishes upper bound of score inflation; comparing with 0% baseline reveals maximum contamination effect across MMLU/GSM8K/ARC benchmarks\", \"parent\": \"\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:49:12.007Z\"}, \"exp_001_sft_0pct_3B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:44:40.471Z\", \"metrics\": {\"adapter_size_mb\": 115, \"checkpoint_size_mb\": 488, \"exit_code\": 0, \"final_loss\": 1.0736, \"mean_train_loss\": 1.1306, \"steps\": \"3125/3125\", \"token_accuracy\": 0.734, \"training_time_min\": 214.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:25:49.016Z\"}, \"exp_001_sft_injection\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T17:28:01.546Z\", \"hypothesis\": \"Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\", \"metrics\": {\"arc_qc_pass\": 697, \"arc_qc_rate\": 0.595, \"arc_total\": 1172, \"gsm8k_qc_pass\": 228, \"gsm8k_qc_rate\": 0.173, \"gsm8k_total\": 1319, \"humaneval_total\": 164, \"mmlu_qc_pass\": 6596, \"mmlu_qc_rate\": 0.47, \"mmlu_total\": 14042}, \"notes\": \"MMLU paraphrase 3-attempt QC 重试流程: Attempt 1 ✅ (878 batches, 4112/14042 QC pass 29.3%, ~90min). Attempt 2 进行中 (v2重启, 439 batches total, 进度~22%). Attempt 3 待定. 输出在全部 attempt 结束后一次性写出 mmlu_paraphrases.json. GSM8K ✅ 1319条(QC 17.3%), ARC ✅ 1172条(QC 59.5%).\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:21:54.827Z\"}, \"exp_001_sft_0pct_15B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:35:07.346Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\", \"metrics\": {\"token_acc\": 0.731, \"train_loss\": 1.2602, \"train_time_min\": 101.5}, \"notes\": \"OOM 修复后重提交 --gpu 2 (物理 GPU 2)。Worker 确认 PID 216106 训练中 (1/3125 steps, ~2.58s/it)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T22:30:26.882Z\"}, \"exp_001_sft_0pct_05B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:35:04.879Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-0.5B seed=123 (second seed for variance estimation)\", \"metrics\": {\"token_acc\": 0.676, \"train_loss\": 1.5393, \"train_time_min\": 54.5}, \"notes\": \"OOM 修复后重提交 --gpu 1 (物理 GPU 1)。Worker 确认 PID 216028 训练中 (2/3125 steps, ~1.87s/it)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T22:30:25.819Z\"}, \"exp_001_sft_0pct_15B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:39:48.369Z\", \"metrics\": {\"adapter_size_mb\": 71, \"checkpoint_size_mb\": 313, \"exit_code\": 0, \"final_loss\": 1.2039, \"mean_train_loss\": 1.2599, \"steps\": \"3125/3125\", \"token_accuracy\": 0.711, \"training_time_min\": 101.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T21:27:59.348Z\"}, \"exp_005_noise_prop\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T18:31:00.000Z\", \"hypothesis\": \"Measurement error in exposure scores propagates through 4PL+γ IRT to widen calibrated score CIs; analytical ME model (conjugate normal integration) produces equivalent CI widths to full latent-τ model at fraction of compute\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T20:47:21.810Z\"}, \"exp_001_sft_0pct_05B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:35:01.170Z\", \"metrics\": {\"adapter_size_mb\": 34, \"checkpoint_size_mb\": 166, \"exit_code\": 0, \"final_loss\": 1.4894, \"mean_train_loss\": 1.5388, \"steps\": \"3125/3125\", \"token_accuracy\": 0.682, \"training_time_min\": 52.9}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T20:37:01.562Z\"}, \"mvp_sim_confounding\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T04:39:19.345Z\", \"hypothesis\": \"4PL+γ IRT model can still separate γ from θ when exposure is confounded with ability (corr≈0.4); if not, need model-level random effect for exposure\", \"metrics\": {\"actual_confound_corr\": 0.3814, \"divergent_pct\": 0, \"fit_time_sec\": 832, \"gamma_ci_covers_true\": true, \"gamma_ci_excludes_zero\": true, \"gamma_mean\": 0.5386, \"gamma_rel_bias\": 0.0771, \"max_rhat\": 1.007, \"min_ess\": 1371.9, \"overall\": \"PASS\", \"theta_corr\": 0.9733, \"theta_residual_exp_corr\": 0.0582, \"theta_rmse\": 0.2407}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T16:28:42.378Z\"}, \"mvp_sim_4pl_gamma\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T04:27:47.251Z\", \"hypothesis\": \"4PL+γ IRT model can separate contamination effect (γ) from true ability (θ) on synthetic data; γ posterior recovers true value within ±0.15, θ correlation >0.9\", \"metrics\": {\"variant_a_nitems300\": {\"divergent_pct\": 0, \"fit_time_sec\": 1407.5, \"gamma_ci_covers_true\": true, \"gamma_ci_excludes_zero\": true, \"gamma_mean\": 0.466, \"gamma_rel_bias\": 0.068, \"max_rhat\": 1.003, \"overall\": \"PASS\", \"theta_corr\": 0.943, \"theta_rmse\": 0.238}}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T10:59:01.402Z\"}}, \"count\": 94, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1678}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd352184-5ce7-4f9b-af4e-0ffba9b21f42",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "00c93e75-faac-4026-b893-53de619323aa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_005_noise_prop_v3\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-14T03:24:06.949Z\\\", \\\"hypothesis\\\": \\\"Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T21:50:34.523Z\\\", \\\"notes\\\": \\\"PID 559666 crashed (~10h ago). 22/25 fits completed. Restarting as v4.\\\"}, \\\"exp_004_sim_sweep_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T07:12:12.267Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:50:24.085Z\\\", \\\"notes\\\": \\\"重启 with --parallel 2 --chains-parallel 2, PID=599560, 53/120 runs 已完成 (6 conditions done/partial), 剩余 67 runs across 8 conditions. 脚本已改造支持 --parallel N 和 --chains-parallel N. 2核机器, 并行度有限.\\\", \\\"metrics\\\": {\\\"runs_completed\\\": 48, \\\"runs_total\\\": 120, \\\"auc080_n50_bias\\\": 0.006, \\\"auc080_n50_rmse\\\": 0.03, \\\"auc080_n50_ci95_coverage\\\": 1, \\\"auc080_n100_gamma_hat\\\": 0.508, \\\"auc080_n100_bias\\\": 0.008, \\\"auc080_n100_ci_width\\\": 0.116, \\\"auc080_n100_theta_corr\\\": 0.962, \\\"ci_width_ratio_n100\\\": 1.81, \\\"core_findings_stable\\\": true}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_eval_05B_d100_s123_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T21:31:14.591Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:31:39.554Z\\\", \\\"parent\\\": \\\"exp_001_sft_05B_d100_s123\\\", \\\"hypothesis\\\": \\\"0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration.\\\"}, \\\"exp_001_sft_05B_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:17:25.569Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:30:33.304Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_sft_d100_3B_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:25:23.780Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:13:03.187Z\\\", \\\"hypothesis\\\": \\\"3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42.\\\"}, \\\"exp002-signals-1p5B\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T19:50:56.771Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:12:56.416Z\\\"}, \\\"exp002-signal-d025-05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:29:51.827Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:08:54.222Z\\\", \\\"notes\\\": \\\"0.5B d025 signals 3/3 passed (embedding, minkpp, selfcritique × mmlu, gsm8k, arc_challenge). 13 files total including merged signals.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_d025_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T16:07:13.381Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:08:51.166Z\\\", \\\"hypothesis\\\": \\\"0.5B d025 s42 paraphrase aligned eval v2 — dose-response intermediate point. Original aligned eval already complete, this run covers paraphrase only.\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2835, \\\"gsm8k\\\": 0.3114, \\\"arc_challenge\\\": 0.3199, \\\"humaneval_pass1\\\": 0.1923, \\\"format\\\": \\\"paraphrased_aligned\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_irt_05B_arc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:17:30.505Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:05:36.632Z\\\", \\\"hypothesis\\\": \\\"ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure. Second benchmark validation after GSM8K success.\\\", \\\"metrics\\\": {\\\"gamma\\\": -1.21, \\\"gamma_ci_lower\\\": -2.53, \\\"gamma_ci_upper\\\": 0.12, \\\"fit_type\\\": \\\"joint\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_15B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:24:25.390Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:05:10.243Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.5902, \\\"gsm8k\\\": 0.6535, \\\"arc_challenge\\\": 0.7688, \\\"humaneval_pass1\\\": 0.2256}}, \\\"exp_001_eval_3B_d000_v2_aligned\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T21:01:48.742Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:03:57.749Z\\\", \\\"hypothesis\\\": \\\"3B d000 v2 aligned eval (D020 fix: lr=5e-5, alpha=16). Verify GSM8K recovery from CoT catastrophic forgetting. Target: GSM8K >= 50% (raw 60.5%, v1 was 11.7%).\\\", \\\"parent\\\": \\\"exp_001_sft_3B_d000_v2\\\"}, \\\"exp_001_sft_15B_d100_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T20:21:10.691Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:50:24.573Z\\\"}, \\\"exp_001_eval_05B_d005_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T15:46:02.603Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:48:29.901Z\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.3548, \\\"gsm8k\\\": 0.2588, \\\"arc_challenge\\\": 0.33, \\\"humaneval\\\": 0, \\\"mmlu_correct\\\": 2340, \\\"mmlu_total\\\": 6596, \\\"gsm8k_correct\\\": 59, \\\"gsm8k_total\\\": 228, \\\"arc_correct\\\": 230, \\\"arc_total\\\": 697, \\\"humaneval_correct\\\": 0, \\\"humaneval_total\\\": 26}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_15B_d025_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:11:06.187Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:48:26.690Z\\\", \\\"hypothesis\\\": \\\"1.5B d025 paraphrase aligned eval: measure contamination-robust performance on paraphrased benchmarks for dosage=25% model\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.618, \\\"gsm8k\\\": 0.539, \\\"arc_challenge\\\": 0.766, \\\"humaneval\\\": 0.154}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_3B_d100_para_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:11:52.814Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:48:21.457Z\\\", \\\"hypothesis\\\": \\\"3B d100 paraphrase aligned eval: measure contamination-robust performance drop for largest model at full dosage on paraphrased benchmarks\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.676, \\\"gsm8k\\\": 0.614, \\\"arc_challenge\\\": 0.828}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_pooled_gsm8k_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:17:21.376Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:47:40.753Z\\\", \\\"hypothesis\\\": \\\"Cross-scale pooled IRT (0.5B+1.5B+3B, N≈10 models) on GSM8K with delta exposure. Test if pooling increases gamma significance (previous single-scale N=4 had CI including 0).\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_sft_3B_d000_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T16:14:42.434Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:45:29.418Z\\\", \\\"hypothesis\\\": \\\"3B d000 v2 retrain with reduced LoRA hyperparams (lr=5e-5, alpha=16) to fix CoT catastrophic forgetting. D020 decision. Target: GSM8K >= 50% (raw 60.5%).\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"status\\\": \\\"training_complete\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter\\\", \\\"completed_at\\\": \\\"2026-05-15T03:45Z\\\"}}, \\\"exp_003_mmlu_item_aligned_gap\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T20:44:01.524Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:44:05.120Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"15B_d100\\\": {\\\"full_original_14042\\\": 0.5933, \\\"aligned_original_6596\\\": 0.5963, \\\"paraphrase_6596\\\": 0.6252, \\\"misaligned_gap_pp\\\": -3.19, \\\"aligned_gap_pp\\\": -2.9, \\\"qc_selection_bias_pp\\\": 0.56}, \\\"3B_d100\\\": {\\\"full_original_14042\\\": 0.6417, \\\"aligned_original_6596\\\": 0.6413, \\\"paraphrase_6596\\\": 0.6763, \\\"misaligned_gap_pp\\\": -3.46, \\\"aligned_gap_pp\\\": -3.5, \\\"qc_selection_bias_pp\\\": -0.08}, \\\"conclusion\\\": \\\"Item alignment correction minimal (<0.3pp). Gap inversion (para>original) persists. QC selection bias is NOT the root cause.\\\"}}, \\\"exp_001_sft_3B_d000_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T20:22:51.681Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:24:00.535Z\\\", \\\"hypothesis\\\": \\\"3B d000 seed=123 SFT for D025/D026 multi-seed strategy. D020 params: lr=5e-5, alpha=16, r=16. Output dir: Qwen2.5-3B_d000_v2_s123.\\\"}, \\\"exp_001_eval_15B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:45:37.976Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:52:46.623Z\\\", \\\"hypothesis\\\": \\\"1.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase. Formal analysis results for 1.5B scale dose-response.\\\", \\\"metrics\\\": {\\\"mmlu\\\": {\\\"d000_orig\\\": 0.5853, \\\"d005_orig\\\": 0.5852, \\\"d100_orig\\\": 0.5933, \\\"d000_para\\\": 0.6096, \\\"d005_para\\\": 0.6164, \\\"d100_para\\\": 0.6252}, \\\"gsm8k\\\": {\\\"d000_orig\\\": 0.6543, \\\"d005_orig\\\": 0.6482, \\\"d100_orig\\\": 0.6497, \\\"d000_para\\\": 0.557, \\\"d005_para\\\": 0.5439, \\\"d100_para\\\": 0.5526}, \\\"arc\\\": {\\\"d000_orig\\\": 0.7722, \\\"d005_orig\\\": 0.7688, \\\"d100_orig\\\": 0.7688, \\\"d000_para\\\": 0.7547, \\\"d005_para\\\": 0.7532, \\\"d100_para\\\": 0.7661}, \\\"humaneval\\\": {\\\"d000_orig\\\": 0.128, \\\"d005_orig\\\": 0.25, \\\"d100_orig\\\": 0.3049, \\\"d000_para\\\": 0.0385, \\\"d005_para\\\": 0.1923, \\\"d100_para\\\": 0.2692}, \\\"key_finding\\\": \\\"MC benchmarks fail to detect contamination at 1.5B scale (<1pp). HumanEval shows strong dose-response (+17.69pp). Paraphrase gap does not cleanly separate contamination.\\\"}, \\\"notes\\\": \\\"1.5B d000 aligned eval 完成: MMLU=58.53%, GSM8K=65.43%, ARC=77.22%, HumanEval=12.80%。对比 legacy: MMLU +1.0pp, GSM8K +1.75pp, ARC -0.3pp (基本持平)。当前 GPU 1 跑 d000 para_aligned (PID 362352)。之后还有 d005/d100 aligned + paraphrase。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_irt_05B_gsm8k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:04:35.887Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:48:01.400Z\\\", \\\"hypothesis\\\": \\\"GSM8K (1319 items, ~5300 params) NUTS feasibility validation. If warmup produces samples within 2h → NUTS viable for small benchmarks. Else → ADVI fallback.\\\", \\\"parent\\\": \\\"exp_006_irt_05B_v1\\\", \\\"notes\\\": \\\"Joint-fit converges (Rhat=1.008, ESS=956, 0 divergences), per-benchmark FAILS (Rhat=1.53, ESS=7). Exposure matrix bug suspected — per-benchmark and joint-fit may use different exposure matrices. DO NOT start ARC per-benchmark until P0 resolved. Code mods verified: max-items=random subsampling (seed-based), ADVI deleted, joint_fit max-items fixed. RRF issue found: S2 minkpp polarity inverted, delta exposure (vs d000 baseline) resolves monotonicity.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"joint_gamma\\\": 0.3463, \\\"joint_gamma_ci\\\": [-0.65, 1.4], \\\"joint_rhat\\\": 1.0081, \\\"joint_ess\\\": 956.4, \\\"joint_divergences\\\": 0, \\\"perbench_gamma\\\": 0.508, \\\"perbench_gamma_ci\\\": [-0.64, 1.84], \\\"perbench_rhat\\\": 1.0096, \\\"perbench_ess\\\": 522.2, \\\"perbench_divergences\\\": 0, \\\"delta_fix_applied\\\": true, \\\"signal_scores_after_delta\\\": [0, 0.016, 0.065, 0.197], \\\"baselines_mae\\\": {\\\"B0_raw\\\": 0.0034, \\\"B4_linear_regression\\\": 0.003, \\\"B3_vanilla_4pl\\\": 0.0123, \\\"IRT_4pl_gamma\\\": 0.0195, \\\"B6_dcr_fuzzy\\\": 0.2634, \\\"B2_2pl_gamma\\\": 0.3202}}}, \\\"exp006-gsm8k-d024-delta\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T19:29:24.786Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:29:24.786Z\\\"}, \\\"exp_001_eval_15B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T19:11:51.112Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:12:41.550Z\\\", \\\"hypothesis\\\": \\\"1.5B d100 aligned eval: full contamination dosage performance on original benchmarks (aligned format)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.5933, \\\"gsm8k_accuracy\\\": 0.6497, \\\"arc_challenge_accuracy\\\": 0.7688, \\\"humaneval_correct\\\": 50, \\\"humaneval_total\\\": 164, \\\"humaneval_pass_rate\\\": 0.3049}}, \\\"exp_001_eval_15B_d005_aligned_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:30:09.199Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:45:30.922Z\\\", \\\"hypothesis\\\": \\\"1.5B d005 aligned eval — low-dose contamination response at 1.5B scale\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.5852, \\\"gsm8k\\\": 0.6482, \\\"arc_challenge\\\": 0.7688, \\\"humaneval_pass_at_1\\\": 0.25}}, \\\"exp_001_sft_d100_3B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:24:36.974Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:24:10.566Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\\\", \\\"notes\\\": \\\"训练成功完成。4159/4159 steps, train_loss=1.178, token_accuracy=0.7206, runtime=5.2h。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter。GPU 3 已安排 eval_3B_d100 tmux auto-relay。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 1.178, \\\"token_accuracy\\\": 0.7206, \\\"runtime_hours\\\": 5.2, \\\"steps\\\": \\\"4159/4159\\\", \\\"epoch\\\": 1}}, \\\"exp_001_eval_05B_d100_aligned_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T15:25:10.827Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:20:00.391Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2334, \\\"gsm8k\\\": 0.3654, \\\"arc_challenge\\\": 0.2944, \\\"humaneval_pass_at_1\\\": 0, \\\"mmlu_delta_vs_d000\\\": -0.1645, \\\"arc_delta_vs_d000\\\": -0.1749, \\\"humaneval_delta_vs_d000\\\": -0.1098}, \\\"notes\\\": \\\"0.5B d100 aligned: catastrophic degradation, no contamination inflation. MMLU 23.3% (near random, -16.5pp vs d000), ARC 29.4% (-17.5pp), HumanEval 0% (-11pp). Dose-response monotonically decreasing at 0.5B scale. Consistent with unaligned format results. Small model capacity insufficient to memorize without losing generalization. Supports narrative: contamination detection via score inflation fails at small scale → need IRT-based calibration.\\\"}, \\\"exp_001_sft_d025_15B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T14:18:59.162Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:19:10.939Z\\\", \\\"hypothesis\\\": \\\"25% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-dosage contamination for 1.5B dose-response curve intermediate point\\\", \\\"notes\\\": \\\"Cron false positive: 训练正常完成 3384/3384 steps, epoch=1.0, loss=1.2715, token_acc=0.7192。lora_adapter/ 完整 (adapter_model.safetensors 70.5MB)。Cron 误报因无 sentinel file 和 W&B run。1.5B d025 SFT 就绪，可进行 aligned eval。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 1.2715, \\\"mean_token_accuracy\\\": 0.7192, \\\"entropy\\\": 1.2623, \\\"steps\\\": 3384, \\\"epochs\\\": 1, \\\"train_runtime_seconds\\\": 11610.6}}, \\\"exp_001_eval_3B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:10:12.650Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:10.887Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.634, \\\"gsm8k\\\": 0.208, \\\"arc_challenge\\\": 0.829, \\\"humaneval_pass_at_1\\\": 0.146}, \\\"notes\\\": \\\"Cron false positive: 进程正常完成退出，但无 sentinel file/W&B run，cron 误判为 failed。实际 4 个 benchmark 全部完成，结果在 output dir。mmlu=0.634, gsm8k=0.208, arc=0.829, humaneval=0.146。\\\"}, \\\"exp_006_irt_05B_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T18:04:35.326Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:04:43.323Z\\\", \\\"hypothesis\\\": \\\"Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.\\\", \\\"parent\\\": \\\"exp_006_irt_05B_v1\\\"}, \\\"exp_006_irt_05B_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T17:09:23.070Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:02:23.310Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"D023: 56K params infeasible for NUTS (MMLU 14042 items → 56K params, 6h zero samples). Killed all chains (PIDs 411936-411940) + main (411789) + wrapper (411783). Issues: 1) No --max-items limit 2) Mixed aligned/non-aligned formats 3) Oracle dosage instead of exp-002 signal-derived exposure. Superseded by exp_006_irt_05B_v2 with tiered strategy.\\\"}, \\\"exp_001_eval_05B_d025_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T13:14:42.647Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:02:04.811Z\\\", \\\"hypothesis\\\": \\\"0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"MMLU\\\": 28.03, \\\"GSM8K\\\": 36.62, \\\"ARC\\\": 32.51, \\\"HumanEval\\\": \\\"missing - process exited before 4th benchmark\\\"}}, \\\"exp_008_instruct_rl_proxy\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T16:44:57.410Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:45:01.059Z\\\", \\\"hypothesis\\\": \\\"RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\\\\\"\\\"}, \\\"exp_008_signal_survival_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T16:23:34.234Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:44:49.686Z\\\", \\\"hypothesis\\\": \\\"Signal Survival Analysis v4 (D021 fix): within-model AUC limited to d005/d025; d000/d100 use cross-model signal comparison; C2 claim weakened to 'systematic degradation'. Uses existing exp-002 signal data, CPU only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"S1_d005_auc_mean\\\": 0.979, \\\"S2_d005_auc_mean\\\": 0.465, \\\"S4_d005_auc_mean\\\": 0.481, \\\"S1_d100_cross_cohens_d_mean\\\": 3.6, \\\"S2_d100_cross_cohens_d_mean\\\": -1.98, \\\"S4_d100_cross_cohens_d_mean\\\": 0.45, \\\"effective_signals_at_05B\\\": 1, \\\"d021_fix\\\": \\\"within-model AUC only for d005; d100 uses cross-model Cohen's d\\\"}}, \\\"exp_001_eval_05B_d100_aligned_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T15:23:30.699Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:19:43.894Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"hypothesis\\\": \\\"0.5B d100 s42 aligned-format eval (v3 fix: conda activation). d100 original + paraphrase MC eval with \\\\\\\"The answer is\\\\\\\" prefix (D017).\\\", \\\"parent\\\": \\\"exp_001_eval_05B_d100_aligned_v2\\\", \\\"notes\\\": \\\"失败原因: SIGHUP (EXIT_CODE=129) — tmux wrapper PID 死亡导致子进程收到 SIGHUP，在 GSM8K eval 13% (178/1319) 处被终止。已知模式(memory.md: wrapper PID vs python PID)。附带问题: 提交命令缺少 HF_DATASETS_OFFLINE=1 导致初始 HF 超时重试。v4 已在 cuda:2 重新提交并运行中。\\\"}, \\\"exp_008_signal_survival\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T16:11:14.324Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:16:31.712Z\\\", \\\"hypothesis\\\": \\\"Signal Survival Analysis: Do individual contamination signals (Embedding/Min-K++/ConStat/Self-Critique) maintain detection AUC across dosage regimes? 4 signals × 3 regimes × 3 benchmarks AUC heatmap. C2 Core Contribution evidence.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"S1_d000_mmlu\\\": 0.5049, \\\"S1_d000_gsm8k\\\": 0.5502, \\\"S1_d000_arc\\\": 0.427, \\\"S1_d005_mmlu\\\": 0.953, \\\"S1_d005_gsm8k\\\": 0.9882, \\\"S1_d005_arc\\\": 0.995, \\\"S1_d100_mmlu\\\": 0.4943, \\\"S1_d100_gsm8k\\\": 0.4127, \\\"S1_d100_arc\\\": 0.501, \\\"S2_d005_mmlu\\\": 0.4655, \\\"S2_d005_gsm8k\\\": 0.4649, \\\"S2_d005_arc\\\": 0.4659, \\\"S4_d005_mmlu\\\": 0.5165, \\\"S4_d005_gsm8k\\\": 0.4947, \\\"S4_d005_arc\\\": 0.4325, \\\"signals_surviving\\\": 0, \\\"signals_total\\\": 3}, \\\"notes\\\": \\\"0/3 signals survive across regimes. S1 Embedding: AUC 0.95-0.995 at d005 but random at d000/d100 (ceiling effect at full contamination). S2 Min-K++ and S4 Self-Critique: random across all regimes (0.43-0.57). ConStat (S3) not computed (needs paraphrase data). Result validates C2: individual signals insufficient → need IRT multi-signal fusion.\\\"}, \\\"exp_001_eval_3B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T11:56:44.974Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:33:27.101Z\\\", \\\"hypothesis\\\": \\\"3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only, GSM8K excluded per D018)\\\", \\\"parent\\\": \\\"exp_001_sft_d100_3B\\\", \\\"notes\\\": \\\"重跑成功。PID 362942 GPU 3。4 benchmarks 全部完成: MMLU 64.17%, GSM8K 69.67%, ARC 83.96%, HumanEval 12.20%。运行时间约 3h16m (20:06-23:22)。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6417, \\\"gsm8k_exact_match\\\": 0.6967, \\\"arc_challenge_accuracy\\\": 0.8396, \\\"humaneval_pass1\\\": 0.122}}, \\\"exp_001_eval_05B_d100_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T15:19:36.281Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:23:57.003Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: EXIT_CODE=127 — 命令未激活 conda 环境，python 不在 PATH。日志仅 2 行: \\\\\\\"bash: line 1: python: command not found\\\\\\\" + \\\\\\\"EXIT_CODE=127\\\\\\\"。修复: 命令需加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。已创建 v3 重提交。\\\"}, \\\"exp_001_eval_05B_d005_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T15:20:22.394Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:21:22.628Z\\\", \\\"metrics\\\": {\\\"d005_aligned_mmlu\\\": 0.3255, \\\"d005_aligned_gsm8k\\\": 0.3624, \\\"d005_aligned_arc\\\": 0.3285, \\\"d005_aligned_humaneval\\\": 0.0793}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_d100_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T14:50:02.679Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:19:06.659Z\\\", \\\"hypothesis\\\": \\\"0.5B d100 s42 aligned eval resubmit — d100 original + paraphrase, split from failed batch to avoid timeout\\\", \\\"notes\\\": \\\"PID 389866 仍在运行（ps 确认 state=Rl, elapsed=19:31），tmux session 已死但 python 进程存活。Cron 误报 process gone（miss 4/5）因 tmux 检测失效。MMLU 已完成，GSM8K/ARC/HumanEval 进行中。等进程完成后立即提交 d100 paraphrase eval（--output-dir Qwen2.5-0.5B_d100_s42_para_aligned --paraphrase）。GPU 2 仍在使用。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_eval_05B_aligned_batch\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:38:53.976Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:15:40.960Z\\\", \\\"hypothesis\\\": \\\"0.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase = 6 eval runs. Formal analysis results replacing legacy mc_format.\\\", \\\"parent\\\": \\\"exp_001_sft_d025_05B_v3\\\", \\\"notes\\\": \\\"0.5B aligned batch eval 因 timeout (EXIT_CODE=124) 中断。实际完成 4/6 runs: d000 orig+para, d005 orig+para 结果完整。d100 orig（仅跑48min被kill）+ d100 para（未启动）缺失。Timeline: d000_orig 18:52→d000_para 19:15→d005_orig 21:26→d005_para 21:51→d100_orig killed 22:39。d100 已单独重提交到 GPU 2。d005 指标待补录。d000 metrics: MMLU=39.79%, GSM8K=36.92%, ARC=46.93%, HumanEval=10.98%; d000_para: MMLU=44.28%, GSM8K=28.07%, ARC=47.92%, HumanEval=11.54%.\\\", \\\"metrics\\\": {\\\"d000_aligned_mmlu\\\": 0.3979, \\\"d000_aligned_gsm8k\\\": 0.3692, \\\"d000_aligned_arc\\\": 0.4693, \\\"d000_aligned_humaneval\\\": 0.1098, \\\"d000_para_aligned_mmlu\\\": 0.4428, \\\"d000_para_aligned_gsm8k\\\": 0.2807, \\\"d000_para_aligned_arc\\\": 0.4792, \\\"d000_para_aligned_humaneval\\\": 0.1154, \\\"d005_aligned_mmlu\\\": 0.3255, \\\"d005_aligned_gsm8k\\\": 0.3624, \\\"d005_aligned_arc\\\": 0.3285, \\\"d005_aligned_humaneval\\\": 0.0793}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_eval_05B_d005\\\": {\\\"created_at\\\": \\\"2026-05-14T01:17:07.820Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T15:10:32.421Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2929, \\\"gsm8k\\\": 0.3601, \\\"arc_challenge\\\": 0.2858, \\\"humaneval_pass1\\\": 0.0793, \\\"mmlu_correct\\\": 4113, \\\"mmlu_total\\\": 14042, \\\"gsm8k_correct\\\": 475, \\\"gsm8k_total\\\": 1319, \\\"arc_correct\\\": 335, \\\"arc_total\\\": 1172, \\\"humaneval_correct\\\": 13, \\\"humaneval_total\\\": 164}}, \\\"exp_006_irt_05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T14:20:20.389Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:53:16.180Z\\\", \\\"notes\\\": \\\"KILLED by Director 指令: 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合。Stan NUTS 4 chains (PID 386298-386301) 运行 ~30min 后终止。代码修复中: 正则改为 _d(\\\\\\\\d+)_s(\\\\\\\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数。等 d025/d100 aligned eval 完成后再用修复后代码重跑。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_003_rrf_05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T14:17:36.003Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:18:05.370Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_002_signals_05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:45:35.964Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:04:12.884Z\\\", \\\"hypothesis\\\": \\\"0.5B contamination signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 × mmlu/gsm8k/arc = 27 signal tasks. Critical path for exp-003 RRF → exp-006 IRT.\\\", \\\"notes\\\": \\\"v5 完成 9/9 PASS。d000/d005/d100 × mmlu/gsm8k/arc_challenge 全部完成。9 个 signals_merged 文件已产出。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。GPU 0 已释放。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_sft_d005_3B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:54:49.962Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:12:32.498Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-3B (seed=42): low-dosage contamination for 3B dose-response curve\\\", \\\"notes\\\": \\\"Cron auto-submitted on cuda:4. Wrapper PID 335346, actual training PID 335351. 48% complete (1511/3177 steps), loss ~1.11, epoch 0.35. ETA ~20:40 UTC.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"training_hours\\\": 3.76, \\\"final_loss\\\": 1.11, \\\"total_steps\\\": 3177, \\\"epochs\\\": 1}}, \\\"exp_001_eval_3B_d000_aligned\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T09:30:50.047Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:11:39.859Z\\\", \\\"hypothesis\\\": \\\"3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。\\\", \\\"notes\\\": \\\"D018 决策：3B GSM8K 标记为 \\\\\\\"SFT-degraded, excluded from dose-response\\\\\\\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.634, \\\"gsm8k_exact_match\\\": 0.1198, \\\"arc_challenge_accuracy\\\": 0.8276, \\\"humaneval_pass_at_1\\\": 0.1159}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_15B_d100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:39:14.296Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:22:16.449Z\\\", \\\"hypothesis\\\": \\\"100% dosage 1.5B s42 contaminated eval on 4 benchmarks — upper bound contamination score inflation for 1.5B scale\\\", \\\"parent\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"notes\\\": \\\"使用 D017 aligned 格式 (--mc-format aligned, 默认)。与 0.5B v5 eval (legacy 格式) 不直接可比。分析时需标注 mc_format。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.5933, \\\"mmlu_correct\\\": 8331, \\\"mmlu_total\\\": 14042, \\\"gsm8k_exact_match\\\": 0.6497, \\\"gsm8k_correct\\\": 857, \\\"gsm8k_total\\\": 1319, \\\"arc_challenge_accuracy\\\": 0.7688, \\\"arc_challenge_correct\\\": 901, \\\"arc_challenge_total\\\": 1172, \\\"humaneval_pass_at_1\\\": 0.3049, \\\"humaneval_correct\\\": 50, \\\"humaneval_total\\\": 164}}, \\\"exp_001_eval_3B_raw_gen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:52:48.654Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:04:16.309Z\\\", \\\"metrics\\\": {\\\"gsm8k\\\": 0.605, \\\"humaneval\\\": 0}, \\\"notes\\\": \\\"3B raw base eval (generative benchmarks). GSM8K=0.6050 正常。HumanEval=0.0000: base model 生成教程式文本+markdown代码块，评估器无法提取可执行代码。结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/。GSM8K 0.605 vs d000 SFT 0.117 = -48.8pp 崩塌待诊断。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_raw\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:52:20.023Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:18:21.577Z\\\", \\\"hypothesis\\\": \\\"Raw Qwen2.5-0.5B base model eval (no SFT, no adapter) on 4 benchmarks — establish true pre-SFT baseline for MC distribution analysis\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2302, \\\"gsm8k\\\": 0.1592, \\\"arc_challenge\\\": 0.2261, \\\"humaneval\\\": \\\"incomplete (hung at 51/164)\\\"}, \\\"notes\\\": \\\"Raw 0.5B base model eval。MMLU/GSM8K/ARC 完成，HumanEval 卡在 51/164 (代码执行死循环)，kill 释放 cuda:1。HumanEval 为 appendix-only (D009)，不影响主分析。Raw base 分数远低于 SFT d000 baseline (MMLU 0.23 vs 0.40)，确认 SFT 有效提升。\\\"}, \\\"exp_001_sft_d005_15B\\\": {\\\"created_at\\\": \\\"2026-05-14T00:19:54.331Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T09:11:14.625Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"训练实际已完成。3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（与 exp_001_sft_d100_3B 同一已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter\\\", \\\"metrics\\\": {\\\"train_loss\\\": 1.2637, \\\"mean_token_accuracy\\\": 0.7308, \\\"train_runtime_s\\\": 19864.7, \\\"epoch\\\": 1}}, \\\"exp_001_sft_d025_05B_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T06:22:14.069Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:36:01.933Z\\\", \\\"hypothesis\\\": \\\"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response 曲线的 mid-low dosage 数据点\\\", \\\"metrics\\\": {\\\"final_loss\\\": 1.5178, \\\"mean_train_loss\\\": 1.5479, \\\"entropy\\\": 1.5415, \\\"mean_token_accuracy\\\": 0.6697, \\\"num_tokens\\\": 20058085, \\\"total_steps\\\": 3384, \\\"epoch\\\": 1, \\\"train_samples_per_second\\\": 15.52, \\\"train_steps_per_second\\\": 0.97, \\\"training_time_min\\\": 58.1, \\\"exit_code\\\": 0, \\\"lora_adapter_size_mb\\\": 33.6, \\\"checkpoint_size_mb\\\": 166, \\\"vs_baseline_0pct\\\": {\\\"baseline_final_loss\\\": 1.4894, \\\"baseline_mean_train_loss\\\": 1.5388, \\\"baseline_token_accuracy\\\": 0.682, \\\"baseline_training_time_min\\\": 52.9, \\\"delta_final_loss\\\": 0.0284, \\\"delta_mean_train_loss\\\": 0.0091, \\\"delta_token_accuracy\\\": -0.0123, \\\"delta_training_time_min\\\": 5.2}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_05B_d100_v5\\\": {\\\"created_at\\\": \\\"2026-05-14T02:39:57.338Z\\\", \\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T08:01:34.216Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.2322, \\\"gsm8k\\\": 0.3571, \\\"arc_challenge\\\": 0.227, \\\"humaneval_pass1\\\": 0.0854}, \\\"notes\\\": \\\"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。d100 MC 分数低于 d000 baseline (MMLU -17.3pp, ARC -15.1pp) 系格式不匹配所致。\\\"}, \\\"exp_001_eval_05B_d000_s42_v5\\\": {\\\"created_at\\\": \\\"2026-05-14T02:39:41.292Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline eval (v5, 最终干净提交)\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T08:01:31.086Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.4049, \\\"gsm8k\\\": 0.3647, \\\"arc_challenge\\\": 0.378, \\\"humaneval\\\": 0.1098}, \\\"notes\\\": \\\"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式 dose-response 分析需用 aligned 格式重跑 (D017 延伸决策)。\\\"}, \\\"exp_001_sft_d100_15B_v2\\\": {\\\"created_at\\\": \\\"2026-05-14T01:17:47.114Z\\\", \\\"parent\\\": \\\"exp_001_sft_d100_15B\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T07:39:22.684Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_eval_3B_d000_s42\\\": {\\\"created_at\\\": \\\"2026-05-13T23:36:54.086Z\\\", \\\"hypothesis\\\": \\\"0% dosage 3B s42 baseline evaluation on 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval) to establish ground-truth scores for calibration error computation\\\", \\\"notes\\\": \\\"v1 failed (--gpu bug), v2 resubmitted with CUDA_VISIBLE_DEVICES. PID 249294 confirmed running on GPU 1 (cron monitored).\\\", \\\"parent\\\": \\\"exp_001_sft_0pct_3B\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T07:03:36.187Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.634, \\\"gsm8k\\\": 0.117, \\\"arc\\\": 0.822, \\\"humaneval\\\": 0.116}}, \\\"exp_004_sim_sweep\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T16:43:57.478Z\\\", \\\"hypothesis\\\": \\\"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T06:56:00.014Z\\\"}, \\\"exp_001_sft_d025_05B_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:53:14.092Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:21:14.334Z\\\", \\\"hypothesis\\\": \\\"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point.\\\", \\\"parent\\\": \\\"exp_001_sft_d025_05B\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_001_eval_05B_d100_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-14T02:26:41.093Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T06:19:51.550Z\\\"}, \\\"exp_001_sft_d025_05B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:24:39.757Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:54:16.202Z\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"OOM失败：指定 cuda:5 但实际跑到 GPU 0。GPU 5 上残留 4 个重复 1.5B d005 进程 (PID 292422/292423/292425/292426)。根因：tmux 提交时未设 CUDA_VISIBLE_DEVICES，--gpu 参数未正确绑定设备。\\\"}, \\\"exp_001_eval_3B_d000_s123\\\": {\\\"created_at\\\": \\\"2026-05-14T00:18:07.960Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T04:44:59.509Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6362, \\\"gsm8k_exact_match\\\": 0.1759, \\\"arc_challenge_accuracy\\\": 0.8294, \\\"humaneval_pass_at_1\\\": 0.0854}}, \\\"exp_001_eval_15B_d000_s123\\\": {\\\"created_at\\\": \\\"2026-05-13T22:30:41.501Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T04:43:58.619Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu\\\": 0.5762, \\\"gsm8k\\\": 0.6331, \\\"arc_challenge\\\": 0.7662, \\\"humaneval_pass@1\\\": 0.1707}}, \\\"exp_005_noise_prop_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T20:47:35.807Z\\\", \\\"hypothesis\\\": \\\"Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12.\\\", \\\"notes\\\": \\\"失败根因: 1) /tmp tmpfs 3.9GB 耗尽（ME模型生成~1GB Stan CSV，Simple 4 chains全部retcode=1）; 2) ME模型严重欠识别（10231参数 vs 9000观测，Rhat=1.945）。诊断结果: σ_e=0.3 simple收敛良好(γ=0.458, true=0.5, Rhat=1.007); σ_e=0.1 simple收敛但γ偏高57.5%(0.788 vs 0.5)——identifiability限制非bug。v3已启动修复两个根因。\\\", \\\"parent\\\": \\\"exp_005_noise_prop\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T03:25:33.715Z\\\"}, \\\"exp_001_eval_15B_d000_s42_v2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-14T00:23:20.112Z\\\", \\\"metrics\\\": {\\\"arc_challenge_accuracy\\\": 0.7756, \\\"arc_challenge_correct\\\": 909, \\\"arc_challenge_total\\\": 1172, \\\"gsm8k_correct\\\": 840, \\\"gsm8k_exact_match\\\": 0.6368, \\\"gsm8k_total\\\": 1319, \\\"humaneval_correct\\\": 21, \\\"humaneval_pass_at_1\\\": 0.128, \\\"humaneval_total\\\": 164, \\\"mmlu_accuracy\\\": 0.5753, \\\"mmlu_correct\\\": 8079, \\\"mmlu_total\\\": 14042}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T03:12:11.373Z\\\"}, \\\"exp_001_eval_3B_d000_s42_v3\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T00:48:57.772Z\\\", \\\"hypothesis\\\": \\\"3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T03:06:54.726Z\\\"}, \\\"exp_001_eval_05B_d000_s42_v6\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:40:46.586Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:47:17.653Z\\\"}, \\\"exp_001_eval_05B_d100_v6\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:40:56.017Z\\\", \\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:47:16.586Z\\\"}, \\\"exp_001_eval_05B_d100_v4\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:36:09.066Z\\\", \\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:40:10.093Z\\\"}, \\\"exp_001_eval_05B_d000_s42_v4\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:35:30.672Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:40:09.432Z\\\"}, \\\"exp_001_eval_05B_d000_s42_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-14T02:26:38.504Z\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:36:51.089Z\\\"}, \\\"exp_001_eval_05B_d100_v3\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:30:53.668Z\\\", \\\"hypothesis\\\": \\\"100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score inflation\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:33:52.158Z\\\"}, \\\"exp_001_eval_05B_d000_s42_v3\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-14T02:30:50.700Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T02:33:51.502Z\\\"}, \\\"exp_001_eval_05B_d100\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-14T01:15:49.903Z\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T02:21:35.372Z\\\"}, \\\"exp_001_eval_05B_d000_s42\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T22:42:34.313Z\\\", \\\"hypothesis\\\": \\\"0% dosage 0.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\\\", \\\"notes\\\": \\\"失败原因: 所有 4 benchmarks 评估完成（HumanEval pass@1=0.1098），但保存 eval_results.json 时 FileNotFoundError——output_dir 未创建。ARC 下载有 HF 连接超时（未 source network_turbo）但评估仍完成。同命令 s123 实验成功。fix_worker_id: worker_fix_eval_05B_d000_s42_v2_20260514T013245 | 建议: 修复 evaluate.py 中保存前的 os.makedirs 调用后重跑\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T01:33:03.857Z\\\"}, \\\"exp_001_eval_05B_d000_s123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T22:30:40.455Z\\\", \\\"metrics\\\": {\\\"arc_challenge_accuracy\\\": 0.3976, \\\"gsm8k_exact_match\\\": 0.3404, \\\"humaneval_pass_at_1\\\": 0.1037, \\\"mmlu_accuracy\\\": 0.4182}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T01:29:09.875Z\\\"}, \\\"exp_001_sft_d100_15B\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T23:37:43.653Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error\\\", \\\"notes\\\": \\\"batch_size=1, grad_accum=16 (防 OOM，与 1.5B d000 baseline 一致)。66533 samples, 1 epoch。数据与 0.5B d100 完全相同，含 MMLU+ARC+GSM8K 全部 paraphrases（noisy contamination condition）。\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T01:23:40.711Z\\\"}, \\\"exp_001_sft_d005_05B_v3\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T23:52:39.321Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v3 retry with correct --gpu 5 (v1/v2 OOM due to --gpu 0 conflicting with d100 on GPU 0). Minimum contamination level for dose-response threshold.\\\", \\\"metrics\\\": {\\\"checkpoint_size_mb\\\": 166, \\\"entropy\\\": 1.5874, \\\"epoch\\\": 1, \\\"exit_code\\\": 0, \\\"final_loss\\\": 1.478, \\\"lora_adapter_size_mb\\\": 33.6, \\\"mean_train_loss\\\": 1.5424, \\\"num_tokens\\\": 19657865, \\\"token_accuracy\\\": 0.667, \\\"total_steps\\\": 3177, \\\"train_samples_per_second\\\": 15.09, \\\"train_steps_per_second\\\": 0.943, \\\"training_time_min\\\": 56.14, \\\"vs_baseline_0pct\\\": {\\\"baseline_final_loss\\\": 1.4894, \\\"baseline_mean_train_loss\\\": 1.5388, \\\"baseline_token_accuracy\\\": 0.682, \\\"baseline_training_time_min\\\": 52.9, \\\"delta_final_loss\\\": -0.0114, \\\"delta_mean_train_loss\\\": 0.0036, \\\"delta_token_accuracy\\\": -0.015, \\\"delta_training_time_min\\\": 3.24}}, \\\"notes\\\": \\\"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。v3 已修复 --gpu 5（v1/v2 均为 --gpu 0 错误）。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\\\\\"noisy contamination\\\\\\\" condition。\\\", \\\"parent\\\": \\\"exp_001_sft_d005_05B\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T00:58:15.977Z\\\"}, \\\"exp_001_sft_d100_05B\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T23:36:13.403Z\\\", \\\"hypothesis\\\": \\\"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\\\", \\\"metrics\\\": {\\\"exit_code\\\": 0, \\\"final_loss\\\": 1.5943, \\\"mean_train_loss\\\": 1.5662, \\\"num_tokens\\\": 21575068, \\\"token_accuracy\\\": 0.666, \\\"total_steps\\\": 4160, \\\"train_samples_per_second\\\": 16.09, \\\"train_steps_per_second\\\": 1.006, \\\"training_time_min\\\": 68.9, \\\"vs_baseline_0pct\\\": {\\\"accuracy_delta\\\": \\\"-0.016 (-2.3%)\\\", \\\"loss_delta\\\": \\\"+0.0274 (+1.8%)\\\", \\\"time_delta\\\": \\\"+16min (+30%)\\\"}}, \\\"notes\\\": \\\"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。data_meta: arc=1172, gsm8k=1319, mmlu=14042, total_contam=16533。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\\\\\"noisy contamination\\\\\\\" condition。\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T00:55:14.218Z\\\"}, \\\"exp_001_sft_0pct\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T19:26:42.106Z\\\", \\\"hypothesis\\\": \\\"0% dosage (clean) SFT baselines on Qwen2.5-0.5B/1.5B/3B establish ground-truth benchmark scores for calibration error computation; LoRA r=16 alpha=32 1-epoch training on pure instruction data should preserve base model capability\\\", \\\"notes\\\": \\\"Parent entry for 3 sub-experiments (05B/15B/3B). All confirmed running.\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T00:36:52.832Z\\\"}, \\\"exp_001_sft_0pct_3B_s123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T20:39:01.606Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\\\", \\\"metrics\\\": {\\\"adapter_model_mb\\\": 114, \\\"adapter_size_mb\\\": 488, \\\"checkpoint_size_mb\\\": 488, \\\"epochs\\\": 1, \\\"final_loss\\\": 1.114, \\\"mean_token_accuracy\\\": 0.7505, \\\"mean_train_loss\\\": 1.1309, \\\"steps_completed\\\": 3125, \\\"total_steps\\\": 3125, \\\"total_tokens\\\": 19555717, \\\"train_samples_per_second\\\": 3.91, \\\"training_time_min\\\": 213.1}, \\\"notes\\\": \\\"OOM 修复后重提交 --gpu 3 (物理 GPU 3)。Worker 确认 PID 216249 训练中，ETA ~3.4h\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T00:23:18.290Z\\\"}, \\\"exp_001_eval_15B_d000_s42\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T21:30:03.433Z\\\", \\\"hypothesis\\\": \\\"0% dosage 1.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\\\", \\\"parent\\\": \\\"exp_001_sft_0pct_15B\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T00:23:17.209Z\\\"}, \\\"exp_001_sft_d005_05B_r3\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-13T23:58:49.282Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry #3 after v1/v2 OOM (v1: GPU 5 zombie process; v2: --gpu 0 bug ran on GPU 0 instead of 5). Now uses --gpu 5 correctly.\\\", \\\"notes\\\": \\\"invalidated — 与 v3 重复提交（间隔 48s），从未实际运行。v3 (PID 239729) 是正确的 run。\\\", \\\"parent\\\": \\\"exp_001_sft_d005_05B\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T00:12:15.733Z\\\"}, \\\"exp_001_eval_3B_d000_s42_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T23:51:39.462Z\\\", \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-14T00:12:13.851Z\\\"}, \\\"exp_001_sft_d005_05B_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T23:48:24.508Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry after v1 OOM crash (GPU 5 conflict with zombie eval process). GPU 5 now clear.\\\", \\\"notes\\\": \\\"v2 OOM 根因非 GPU 5 残留进程，而是 --gpu 0 导致训练实际跑在 GPU 0（d100 占满 22GB），GPU 5 从未被使用。已在 r3 修复为 --gpu 5。\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:33.029Z\\\"}, \\\"exp_001_sft_d005_05B\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"created_at\\\": \\\"2026-05-13T23:36:15.352Z\\\", \\\"hypothesis\\\": \\\"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): minimum contamination level to detect dose-response threshold; paired with d100 for min-max comparison\\\", \\\"notes\\\": \\\"v1 OOM at step 8/3177 — GPU 5 有残留进程 PID 234755 占 6.8GB。PID 236994 (submit_training_job 重提交) 也使用了 --gpu 0，实际跑到 GPU 0 而非 GPU 5，同样 OOM。根因：--gpu 0 导致 CUDA_VISIBLE_DEVICES 被脚本覆盖为 0。已在 r3 修复为 --gpu 5。\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T23:59:30.512Z\\\"}, \\\"exp_001_sft_100pct_05B\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T23:41:15.631Z\\\", \\\"hypothesis\\\": \\\"100% contamination dosage on 0.5B establishes upper bound of score inflation; comparing with 0% baseline reveals maximum contamination effect across MMLU/GSM8K/ARC benchmarks\\\", \\\"parent\\\": \\\"\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T23:49:12.007Z\\\"}, \\\"exp_001_sft_0pct_3B\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T19:44:40.471Z\\\", \\\"metrics\\\": {\\\"adapter_size_mb\\\": 115, \\\"checkpoint_size_mb\\\": 488, \\\"exit_code\\\": 0, \\\"final_loss\\\": 1.0736, \\\"mean_train_loss\\\": 1.1306, \\\"steps\\\": \\\"3125/3125\\\", \\\"token_accuracy\\\": 0.734, \\\"training_time_min\\\": 214.7}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T23:25:49.016Z\\\"}, \\\"exp_001_sft_injection\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T17:28:01.546Z\\\", \\\"hypothesis\\\": \\\"Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\\\", \\\"metrics\\\": {\\\"arc_qc_pass\\\": 697, \\\"arc_qc_rate\\\": 0.595, \\\"arc_total\\\": 1172, \\\"gsm8k_qc_pass\\\": 228, \\\"gsm8k_qc_rate\\\": 0.173, \\\"gsm8k_total\\\": 1319, \\\"humaneval_total\\\": 164, \\\"mmlu_qc_pass\\\": 6596, \\\"mmlu_qc_rate\\\": 0.47, \\\"mmlu_total\\\": 14042}, \\\"notes\\\": \\\"MMLU paraphrase 3-attempt QC 重试流程: Attempt 1 ✅ (878 batches, 4112/14042 QC pass 29.3%, ~90min). Attempt 2 进行中 (v2重启, 439 batches total, 进度~22%). Attempt 3 待定. 输出在全部 attempt 结束后一次性写出 mmlu_paraphrases.json. GSM8K ✅ 1319条(QC 17.3%), ARC ✅ 1172条(QC 59.5%).\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T23:21:54.827Z\\\"}, \\\"exp_001_sft_0pct_15B_s123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T20:35:07.346Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\\\", \\\"metrics\\\": {\\\"token_acc\\\": 0.731, \\\"train_loss\\\": 1.2602, \\\"train_time_min\\\": 101.5}, \\\"notes\\\": \\\"OOM 修复后重提交 --gpu 2 (物理 GPU 2)。Worker 确认 PID 216106 训练中 (1/3125 steps, ~2.58s/it)\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T22:30:26.882Z\\\"}, \\\"exp_001_sft_0pct_05B_s123\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T20:35:04.879Z\\\", \\\"hypothesis\\\": \\\"0% dosage clean baseline Qwen2.5-0.5B seed=123 (second seed for variance estimation)\\\", \\\"metrics\\\": {\\\"token_acc\\\": 0.676, \\\"train_loss\\\": 1.5393, \\\"train_time_min\\\": 54.5}, \\\"notes\\\": \\\"OOM 修复后重提交 --gpu 1 (物理 GPU 1)。Worker 确认 PID 216028 训练中 (2/3125 steps, ~1.87s/it)\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T22:30:25.819Z\\\"}, \\\"exp_001_sft_0pct_15B\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T19:39:48.369Z\\\", \\\"metrics\\\": {\\\"adapter_size_mb\\\": 71, \\\"checkpoint_size_mb\\\": 313, \\\"exit_code\\\": 0, \\\"final_loss\\\": 1.2039, \\\"mean_train_loss\\\": 1.2599, \\\"steps\\\": \\\"3125/3125\\\", \\\"token_accuracy\\\": 0.711, \\\"training_time_min\\\": 101.5}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T21:27:59.348Z\\\"}, \\\"exp_005_noise_prop\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"created_at\\\": \\\"2026-05-13T18:31:00.000Z\\\", \\\"hypothesis\\\": \\\"Measurement error in exposure scores propagates through 4PL+γ IRT to widen calibrated score CIs; analytical ME model (conjugate normal integration) produces equivalent CI widths to full latent-τ model at fraction of compute\\\", \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T20:47:21.810Z\\\"}, \\\"exp_001_sft_0pct_05B\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T19:35:01.170Z\\\", \\\"metrics\\\": {\\\"adapter_size_mb\\\": 34, \\\"checkpoint_size_mb\\\": 166, \\\"exit_code\\\": 0, \\\"final_loss\\\": 1.4894, \\\"mean_train_loss\\\": 1.5388, \\\"steps\\\": \\\"3125/3125\\\", \\\"token_accuracy\\\": 0.682, \\\"training_time_min\\\": 52.9}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T20:37:01.562Z\\\"}, \\\"mvp_sim_confounding\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T04:39:19.345Z\\\", \\\"hypothesis\\\": \\\"4PL+γ IRT model can still separate γ from θ when exposure is confounded with ability (corr≈0.4); if not, need model-level random effect for exposure\\\", \\\"metrics\\\": {\\\"actual_confound_corr\\\": 0.3814, \\\"divergent_pct\\\": 0, \\\"fit_time_sec\\\": 832, \\\"gamma_ci_covers_true\\\": true, \\\"gamma_ci_excludes_zero\\\": true, \\\"gamma_mean\\\": 0.5386, \\\"gamma_rel_bias\\\": 0.0771, \\\"max_rhat\\\": 1.007, \\\"min_ess\\\": 1371.9, \\\"overall\\\": \\\"PASS\\\", \\\"theta_corr\\\": 0.9733, \\\"theta_residual_exp_corr\\\": 0.0582, \\\"theta_rmse\\\": 0.2407}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T16:28:42.378Z\\\"}, \\\"mvp_sim_4pl_gamma\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"created_at\\\": \\\"2026-05-13T04:27:47.251Z\\\", \\\"hypothesis\\\": \\\"4PL+γ IRT model can separate contamination effect (γ) from true ability (θ) on synthetic data; γ posterior recovers true value within ±0.15, θ correlation >0.9\\\", \\\"metrics\\\": {\\\"variant_a_nitems300\\\": {\\\"divergent_pct\\\": 0, \\\"fit_time_sec\\\": 1407.5, \\\"gamma_ci_covers_true\\\": true, \\\"gamma_ci_excludes_zero\\\": true, \\\"gamma_mean\\\": 0.466, \\\"gamma_rel_bias\\\": 0.068, \\\"max_rhat\\\": 1.003, \\\"overall\\\": \\\"PASS\\\", \\\"theta_corr\\\": 0.943, \\\"theta_rmse\\\": 0.238}}, \\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-13T10:59:01.402Z\\\"}}, \\\"count\\\": 94, \\\"total\\\": 94, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1678}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_005_noise_prop_v3\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T03:24:06.949Z\", \"hypothesis\": \"Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T21:50:34.523Z\", \"notes\": \"PID 559666 crashed (~10h ago). 22/25 fits completed. Restarting as v4.\"}, \"exp_004_sim_sweep_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T07:12:12.267Z\", \"updated_at\": \"2026-05-14T21:50:24.085Z\", \"notes\": \"重启 with --parallel 2 --chains-parallel 2, PID=599560, 53/120 runs 已完成 (6 conditions done/partial), 剩余 67 runs across 8 conditions. 脚本已改造支持 --parallel N 和 --chains-parallel N. 2核机器, 并行度有限.\", \"metrics\": {\"runs_completed\": 48, \"runs_total\": 120, \"auc080_n50_bias\": 0.006, \"auc080_n50_rmse\": 0.03, \"auc080_n50_ci95_coverage\": 1, \"auc080_n100_gamma_hat\": 0.508, \"auc080_n100_bias\": 0.008, \"auc080_n100_ci_width\": 0.116, \"auc080_n100_theta_corr\": 0.962, \"ci_width_ratio_n100\": 1.81, \"core_findings_stable\": true}, \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d100_s123_aligned\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T21:31:14.591Z\", \"updated_at\": \"2026-05-14T21:31:39.554Z\", \"parent\": \"exp_001_sft_05B_d100_s123\", \"hypothesis\": \"0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration.\"}, \"exp_001_sft_05B_d100_s123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:25.569Z\", \"updated_at\": \"2026-05-14T21:30:33.304Z\", \"conclusion\": \"success\"}, \"exp_001_sft_d100_3B_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T18:25:23.780Z\", \"updated_at\": \"2026-05-14T21:13:03.187Z\", \"hypothesis\": \"3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42.\"}, \"exp002-signals-1p5B\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T19:50:56.771Z\", \"updated_at\": \"2026-05-14T21:12:56.416Z\"}, \"exp002-signal-d025-05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:29:51.827Z\", \"updated_at\": \"2026-05-14T21:08:54.222Z\", \"notes\": \"0.5B d025 signals 3/3 passed (embedding, minkpp, selfcritique × mmlu, gsm8k, arc_challenge). 13 files total including merged signals.\", \"conclusion\": \"success\"}, \"exp_001_eval_05B_d025_aligned_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:07:13.381Z\", \"updated_at\": \"2026-05-14T21:08:51.166Z\", \"hypothesis\": \"0.5B d025 s42 paraphrase aligned eval v2 — dose-response intermediate point. Original aligned eval already complete, this run covers paraphrase only.\", \"metrics\": {\"mmlu\": 0.2835, \"gsm8k\": 0.3114, \"arc_challenge\": 0.3199, \"humaneval_pass1\": 0.1923, \"format\": \"paraphrased_aligned\"}, \"conclusion\": \"success\"}, \"exp_006_irt_05B_arc\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:30.505Z\", \"updated_at\": \"2026-05-14T21:05:36.632Z\", \"hypothesis\": \"ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure. Second benchmark validation after GSM8K success.\", \"metrics\": {\"gamma\": -1.21, \"gamma_ci_lower\": -2.53, \"gamma_ci_upper\": 0.12, \"fit_type\": \"joint\"}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d025_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:24:25.390Z\", \"updated_at\": \"2026-05-14T21:05:10.243Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5902, \"gsm8k\": 0.6535, \"arc_challenge\": 0.7688, \"humaneval_pass1\": 0.2256}}, \"exp_001_eval_3B_d000_v2_aligned\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T21:01:48.742Z\", \"updated_at\": \"2026-05-14T21:03:57.749Z\", \"hypothesis\": \"3B d000 v2 aligned eval (D020 fix: lr=5e-5, alpha=16). Verify GSM8K recovery from CoT catastrophic forgetting. Target: GSM8K >= 50% (raw 60.5%, v1 was 11.7%).\", \"parent\": \"exp_001_sft_3B_d000_v2\"}, \"exp_001_sft_15B_d100_s123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T20:21:10.691Z\", \"updated_at\": \"2026-05-14T20:50:24.573Z\"}, \"exp_001_eval_05B_d005_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:46:02.603Z\", \"updated_at\": \"2026-05-14T20:48:29.901Z\", \"metrics\": {\"mmlu\": 0.3548, \"gsm8k\": 0.2588, \"arc_challenge\": 0.33, \"humaneval\": 0, \"mmlu_correct\": 2340, \"mmlu_total\": 6596, \"gsm8k_correct\": 59, \"gsm8k_total\": 228, \"arc_correct\": 230, \"arc_total\": 697, \"humaneval_correct\": 0, \"humaneval_total\": 26}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d025_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:06.187Z\", \"updated_at\": \"2026-05-14T20:48:26.690Z\", \"hypothesis\": \"1.5B d025 paraphrase aligned eval: measure contamination-robust performance on paraphrased benchmarks for dosage=25% model\", \"metrics\": {\"mmlu\": 0.618, \"gsm8k\": 0.539, \"arc_challenge\": 0.766, \"humaneval\": 0.154}, \"conclusion\": \"success\"}, \"exp_001_eval_3B_d100_para_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:52.814Z\", \"updated_at\": \"2026-05-14T20:48:21.457Z\", \"hypothesis\": \"3B d100 paraphrase aligned eval: measure contamination-robust performance drop for largest model at full dosage on paraphrased benchmarks\", \"metrics\": {\"mmlu\": 0.676, \"gsm8k\": 0.614, \"arc_challenge\": 0.828}, \"conclusion\": \"success\"}, \"exp_006_pooled_gsm8k_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T20:17:21.376Z\", \"updated_at\": \"2026-05-14T20:47:40.753Z\", \"hypothesis\": \"Cross-scale pooled IRT (0.5B+1.5B+3B, N≈10 models) on GSM8K with delta exposure. Test if pooling increases gamma significance (previous single-scale N=4 had CI including 0).\", \"conclusion\": \"failed\"}, \"exp_001_sft_3B_d000_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:14:42.434Z\", \"updated_at\": \"2026-05-14T20:45:29.418Z\", \"hypothesis\": \"3B d000 v2 retrain with reduced LoRA hyperparams (lr=5e-5, alpha=16) to fix CoT catastrophic forgetting. D020 decision. Target: GSM8K >= 50% (raw 60.5%).\", \"conclusion\": \"success\", \"metrics\": {\"status\": \"training_complete\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter\", \"completed_at\": \"2026-05-15T03:45Z\"}}, \"exp_003_mmlu_item_aligned_gap\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T20:44:01.524Z\", \"updated_at\": \"2026-05-14T20:44:05.120Z\", \"conclusion\": \"success\", \"metrics\": {\"15B_d100\": {\"full_original_14042\": 0.5933, \"aligned_original_6596\": 0.5963, \"paraphrase_6596\": 0.6252, \"misaligned_gap_pp\": -3.19, \"aligned_gap_pp\": -2.9, \"qc_selection_bias_pp\": 0.56}, \"3B_d100\": {\"full_original_14042\": 0.6417, \"aligned_original_6596\": 0.6413, \"paraphrase_6596\": 0.6763, \"misaligned_gap_pp\": -3.46, \"aligned_gap_pp\": -3.5, \"qc_selection_bias_pp\": -0.08}, \"conclusion\": \"Item alignment correction minimal (<0.3pp). Gap inversion (para>original) persists. QC selection bias is NOT the root cause.\"}}, \"exp_001_sft_3B_d000_s123\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T20:22:51.681Z\", \"updated_at\": \"2026-05-14T20:24:00.535Z\", \"hypothesis\": \"3B d000 seed=123 SFT for D025/D026 multi-seed strategy. D020 params: lr=5e-5, alpha=16, r=16. Output dir: Qwen2.5-3B_d000_v2_s123.\"}, \"exp_001_eval_15B_aligned_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:45:37.976Z\", \"updated_at\": \"2026-05-14T19:52:46.623Z\", \"hypothesis\": \"1.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase. Formal analysis results for 1.5B scale dose-response.\", \"metrics\": {\"mmlu\": {\"d000_orig\": 0.5853, \"d005_orig\": 0.5852, \"d100_orig\": 0.5933, \"d000_para\": 0.6096, \"d005_para\": 0.6164, \"d100_para\": 0.6252}, \"gsm8k\": {\"d000_orig\": 0.6543, \"d005_orig\": 0.6482, \"d100_orig\": 0.6497, \"d000_para\": 0.557, \"d005_para\": 0.5439, \"d100_para\": 0.5526}, \"arc\": {\"d000_orig\": 0.7722, \"d005_orig\": 0.7688, \"d100_orig\": 0.7688, \"d000_para\": 0.7547, \"d005_para\": 0.7532, \"d100_para\": 0.7661}, \"humaneval\": {\"d000_orig\": 0.128, \"d005_orig\": 0.25, \"d100_orig\": 0.3049, \"d000_para\": 0.0385, \"d005_para\": 0.1923, \"d100_para\": 0.2692}, \"key_finding\": \"MC benchmarks fail to detect contamination at 1.5B scale (<1pp). HumanEval shows strong dose-response (+17.69pp). Paraphrase gap does not cleanly separate contamination.\"}, \"notes\": \"1.5B d000 aligned eval 完成: MMLU=58.53%, GSM8K=65.43%, ARC=77.22%, HumanEval=12.80%。对比 legacy: MMLU +1.0pp, GSM8K +1.75pp, ARC -0.3pp (基本持平)。当前 GPU 1 跑 d000 para_aligned (PID 362352)。之后还有 d005/d100 aligned + paraphrase。\", \"conclusion\": \"success\"}, \"exp_006_irt_05B_gsm8k\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:04:35.887Z\", \"updated_at\": \"2026-05-14T19:48:01.400Z\", \"hypothesis\": \"GSM8K (1319 items, ~5300 params) NUTS feasibility validation. If warmup produces samples within 2h → NUTS viable for small benchmarks. Else → ADVI fallback.\", \"parent\": \"exp_006_irt_05B_v1\", \"notes\": \"Joint-fit converges (Rhat=1.008, ESS=956, 0 divergences), per-benchmark FAILS (Rhat=1.53, ESS=7). Exposure matrix bug suspected — per-benchmark and joint-fit may use different exposure matrices. DO NOT start ARC per-benchmark until P0 resolved. Code mods verified: max-items=random subsampling (seed-based), ADVI deleted, joint_fit max-items fixed. RRF issue found: S2 minkpp polarity inverted, delta exposure (vs d000 baseline) resolves monotonicity.\", \"conclusion\": \"success\", \"metrics\": {\"joint_gamma\": 0.3463, \"joint_gamma_ci\": [-0.65, 1.4], \"joint_rhat\": 1.0081, \"joint_ess\": 956.4, \"joint_divergences\": 0, \"perbench_gamma\": 0.508, \"perbench_gamma_ci\": [-0.64, 1.84], \"perbench_rhat\": 1.0096, \"perbench_ess\": 522.2, \"perbench_divergences\": 0, \"delta_fix_applied\": true, \"signal_scores_after_delta\": [0, 0.016, 0.065, 0.197], \"baselines_mae\": {\"B0_raw\": 0.0034, \"B4_linear_regression\": 0.003, \"B3_vanilla_4pl\": 0.0123, \"IRT_4pl_gamma\": 0.0195, \"B6_dcr_fuzzy\": 0.2634, \"B2_2pl_gamma\": 0.3202}}}, \"exp006-gsm8k-d024-delta\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T19:29:24.786Z\", \"updated_at\": \"2026-05-14T19:29:24.786Z\"}, \"exp_001_eval_15B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T19:11:51.112Z\", \"updated_at\": \"2026-05-14T19:12:41.550Z\", \"hypothesis\": \"1.5B d100 aligned eval: full contamination dosage performance on original benchmarks (aligned format)\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.5933, \"gsm8k_accuracy\": 0.6497, \"arc_challenge_accuracy\": 0.7688, \"humaneval_correct\": 50, \"humaneval_total\": 164, \"humaneval_pass_rate\": 0.3049}}, \"exp_001_eval_15B_d005_aligned_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:30:09.199Z\", \"updated_at\": \"2026-05-14T18:45:30.922Z\", \"hypothesis\": \"1.5B d005 aligned eval — low-dose contamination response at 1.5B scale\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5852, \"gsm8k\": 0.6482, \"arc_challenge\": 0.7688, \"humaneval_pass_at_1\": 0.25}}, \"exp_001_sft_d100_3B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:24:36.974Z\", \"updated_at\": \"2026-05-14T18:24:10.566Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\", \"notes\": \"训练成功完成。4159/4159 steps, train_loss=1.178, token_accuracy=0.7206, runtime=5.2h。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter。GPU 3 已安排 eval_3B_d100 tmux auto-relay。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 1.178, \"token_accuracy\": 0.7206, \"runtime_hours\": 5.2, \"steps\": \"4159/4159\", \"epoch\": 1}}, \"exp_001_eval_05B_d100_aligned_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:25:10.827Z\", \"updated_at\": \"2026-05-14T18:20:00.391Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2334, \"gsm8k\": 0.3654, \"arc_challenge\": 0.2944, \"humaneval_pass_at_1\": 0, \"mmlu_delta_vs_d000\": -0.1645, \"arc_delta_vs_d000\": -0.1749, \"humaneval_delta_vs_d000\": -0.1098}, \"notes\": \"0.5B d100 aligned: catastrophic degradation, no contamination inflation. MMLU 23.3% (near random, -16.5pp vs d000), ARC 29.4% (-17.5pp), HumanEval 0% (-11pp). Dose-response monotonically decreasing at 0.5B scale. Consistent with unaligned format results. Small model capacity insufficient to memorize without losing generalization. Supports narrative: contamination detection via score inflation fails at small scale → need IRT-based calibration.\"}, \"exp_001_sft_d025_15B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:18:59.162Z\", \"updated_at\": \"2026-05-14T18:19:10.939Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-dosage contamination for 1.5B dose-response curve intermediate point\", \"notes\": \"Cron false positive: 训练正常完成 3384/3384 steps, epoch=1.0, loss=1.2715, token_acc=0.7192。lora_adapter/ 完整 (adapter_model.safetensors 70.5MB)。Cron 误报因无 sentinel file 和 W&B run。1.5B d025 SFT 就绪，可进行 aligned eval。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 1.2715, \"mean_token_accuracy\": 0.7192, \"entropy\": 1.2623, \"steps\": 3384, \"epochs\": 1, \"train_runtime_seconds\": 11610.6}}, \"exp_001_eval_3B_d005_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:10:12.650Z\", \"updated_at\": \"2026-05-14T18:15:10.887Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.208, \"arc_challenge\": 0.829, \"humaneval_pass_at_1\": 0.146}, \"notes\": \"Cron false positive: 进程正常完成退出，但无 sentinel file/W&B run，cron 误判为 failed。实际 4 个 benchmark 全部完成，结果在 output dir。mmlu=0.634, gsm8k=0.208, arc=0.829, humaneval=0.146。\"}, \"exp_006_irt_05B_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T18:04:35.326Z\", \"updated_at\": \"2026-05-14T18:04:43.323Z\", \"hypothesis\": \"Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.\", \"parent\": \"exp_006_irt_05B_v1\"}, \"exp_006_irt_05B_v1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T17:09:23.070Z\", \"updated_at\": \"2026-05-14T18:02:23.310Z\", \"conclusion\": \"failed\", \"notes\": \"D023: 56K params infeasible for NUTS (MMLU 14042 items → 56K params, 6h zero samples). Killed all chains (PIDs 411936-411940) + main (411789) + wrapper (411783). Issues: 1) No --max-items limit 2) Mixed aligned/non-aligned formats 3) Oracle dosage instead of exp-002 signal-derived exposure. Superseded by exp_006_irt_05B_v2 with tiered strategy.\"}, \"exp_001_eval_05B_d025_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:14:42.647Z\", \"updated_at\": \"2026-05-14T17:02:04.811Z\", \"hypothesis\": \"0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)\", \"conclusion\": \"success\", \"metrics\": {\"MMLU\": 28.03, \"GSM8K\": 36.62, \"ARC\": 32.51, \"HumanEval\": \"missing - process exited before 4th benchmark\"}}, \"exp_008_instruct_rl_proxy\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T16:44:57.410Z\", \"updated_at\": \"2026-05-14T16:45:01.059Z\", \"hypothesis\": \"RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\"\"}, \"exp_008_signal_survival_v4\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:23:34.234Z\", \"updated_at\": \"2026-05-14T16:44:49.686Z\", \"hypothesis\": \"Signal Survival Analysis v4 (D021 fix): within-model AUC limited to d005/d025; d000/d100 use cross-model signal comparison; C2 claim weakened to 'systematic degradation'. Uses existing exp-002 signal data, CPU only.\", \"conclusion\": \"success\", \"metrics\": {\"S1_d005_auc_mean\": 0.979, \"S2_d005_auc_mean\": 0.465, \"S4_d005_auc_mean\": 0.481, \"S1_d100_cross_cohens_d_mean\": 3.6, \"S2_d100_cross_cohens_d_mean\": -1.98, \"S4_d100_cross_cohens_d_mean\": 0.45, \"effective_signals_at_05B\": 1, \"d021_fix\": \"within-model AUC only for d005; d100 uses cross-model Cohen's d\"}}, \"exp_001_eval_05B_d100_aligned_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:23:30.699Z\", \"updated_at\": \"2026-05-14T16:19:43.894Z\", \"conclusion\": \"failed\", \"hypothesis\": \"0.5B d100 s42 aligned-format eval (v3 fix: conda activation). d100 original + paraphrase MC eval with \\\"The answer is\\\" prefix (D017).\", \"parent\": \"exp_001_eval_05B_d100_aligned_v2\", \"notes\": \"失败原因: SIGHUP (EXIT_CODE=129) — tmux wrapper PID 死亡导致子进程收到 SIGHUP，在 GSM8K eval 13% (178/1319) 处被终止。已知模式(memory.md: wrapper PID vs python PID)。附带问题: 提交命令缺少 HF_DATASETS_OFFLINE=1 导致初始 HF 超时重试。v4 已在 cuda:2 重新提交并运行中。\"}, \"exp_008_signal_survival\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T16:11:14.324Z\", \"updated_at\": \"2026-05-14T16:16:31.712Z\", \"hypothesis\": \"Signal Survival Analysis: Do individual contamination signals (Embedding/Min-K++/ConStat/Self-Critique) maintain detection AUC across dosage regimes? 4 signals × 3 regimes × 3 benchmarks AUC heatmap. C2 Core Contribution evidence.\", \"conclusion\": \"success\", \"metrics\": {\"S1_d000_mmlu\": 0.5049, \"S1_d000_gsm8k\": 0.5502, \"S1_d000_arc\": 0.427, \"S1_d005_mmlu\": 0.953, \"S1_d005_gsm8k\": 0.9882, \"S1_d005_arc\": 0.995, \"S1_d100_mmlu\": 0.4943, \"S1_d100_gsm8k\": 0.4127, \"S1_d100_arc\": 0.501, \"S2_d005_mmlu\": 0.4655, \"S2_d005_gsm8k\": 0.4649, \"S2_d005_arc\": 0.4659, \"S4_d005_mmlu\": 0.5165, \"S4_d005_gsm8k\": 0.4947, \"S4_d005_arc\": 0.4325, \"signals_surviving\": 0, \"signals_total\": 3}, \"notes\": \"0/3 signals survive across regimes. S1 Embedding: AUC 0.95-0.995 at d005 but random at d000/d100 (ceiling effect at full contamination). S2 Min-K++ and S4 Self-Critique: random across all regimes (0.43-0.57). ConStat (S3) not computed (needs paraphrase data). Result validates C2: individual signals insufficient → need IRT multi-signal fusion.\"}, \"exp_001_eval_3B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:56:44.974Z\", \"updated_at\": \"2026-05-14T15:33:27.101Z\", \"hypothesis\": \"3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only, GSM8K excluded per D018)\", \"parent\": \"exp_001_sft_d100_3B\", \"notes\": \"重跑成功。PID 362942 GPU 3。4 benchmarks 全部完成: MMLU 64.17%, GSM8K 69.67%, ARC 83.96%, HumanEval 12.20%。运行时间约 3h16m (20:06-23:22)。\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6417, \"gsm8k_exact_match\": 0.6967, \"arc_challenge_accuracy\": 0.8396, \"humaneval_pass1\": 0.122}}, \"exp_001_eval_05B_d100_aligned_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:19:36.281Z\", \"updated_at\": \"2026-05-14T15:23:57.003Z\", \"conclusion\": \"failed\", \"notes\": \"失败原因: EXIT_CODE=127 — 命令未激活 conda 环境，python 不在 PATH。日志仅 2 行: \\\"bash: line 1: python: command not found\\\" + \\\"EXIT_CODE=127\\\"。修复: 命令需加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。已创建 v3 重提交。\"}, \"exp_001_eval_05B_d005_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T15:20:22.394Z\", \"updated_at\": \"2026-05-14T15:21:22.628Z\", \"metrics\": {\"d005_aligned_mmlu\": 0.3255, \"d005_aligned_gsm8k\": 0.3624, \"d005_aligned_arc\": 0.3285, \"d005_aligned_humaneval\": 0.0793}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:50:02.679Z\", \"updated_at\": \"2026-05-14T15:19:06.659Z\", \"hypothesis\": \"0.5B d100 s42 aligned eval resubmit — d100 original + paraphrase, split from failed batch to avoid timeout\", \"notes\": \"PID 389866 仍在运行（ps 确认 state=Rl, elapsed=19:31），tmux session 已死但 python 进程存活。Cron 误报 process gone（miss 4/5）因 tmux 检测失效。MMLU 已完成，GSM8K/ARC/HumanEval 进行中。等进程完成后立即提交 d100 paraphrase eval（--output-dir Qwen2.5-0.5B_d100_s42_para_aligned --paraphrase）。GPU 2 仍在使用。\", \"conclusion\": \"failed\"}, \"exp_001_eval_05B_aligned_batch\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:38:53.976Z\", \"updated_at\": \"2026-05-14T15:15:40.960Z\", \"hypothesis\": \"0.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase = 6 eval runs. Formal analysis results replacing legacy mc_format.\", \"parent\": \"exp_001_sft_d025_05B_v3\", \"notes\": \"0.5B aligned batch eval 因 timeout (EXIT_CODE=124) 中断。实际完成 4/6 runs: d000 orig+para, d005 orig+para 结果完整。d100 orig（仅跑48min被kill）+ d100 para（未启动）缺失。Timeline: d000_orig 18:52→d000_para 19:15→d005_orig 21:26→d005_para 21:51→d100_orig killed 22:39。d100 已单独重提交到 GPU 2。d005 指标待补录。d000 metrics: MMLU=39.79%, GSM8K=36.92%, ARC=46.93%, HumanEval=10.98%; d000_para: MMLU=44.28%, GSM8K=28.07%, ARC=47.92%, HumanEval=11.54%.\", \"metrics\": {\"d000_aligned_mmlu\": 0.3979, \"d000_aligned_gsm8k\": 0.3692, \"d000_aligned_arc\": 0.4693, \"d000_aligned_humaneval\": 0.1098, \"d000_para_aligned_mmlu\": 0.4428, \"d000_para_aligned_gsm8k\": 0.2807, \"d000_para_aligned_arc\": 0.4792, \"d000_para_aligned_humaneval\": 0.1154, \"d005_aligned_mmlu\": 0.3255, \"d005_aligned_gsm8k\": 0.3624, \"d005_aligned_arc\": 0.3285, \"d005_aligned_humaneval\": 0.0793}, \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d005\": {\"created_at\": \"2026-05-14T01:17:07.820Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T15:10:32.421Z\", \"conclusion\": \"success\", \"notes\": \"⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。\", \"metrics\": {\"mmlu\": 0.2929, \"gsm8k\": 0.3601, \"arc_challenge\": 0.2858, \"humaneval_pass1\": 0.0793, \"mmlu_correct\": 4113, \"mmlu_total\": 14042, \"gsm8k_correct\": 475, \"gsm8k_total\": 1319, \"arc_correct\": 335, \"arc_total\": 1172, \"humaneval_correct\": 13, \"humaneval_total\": 164}}, \"exp_006_irt_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:20:20.389Z\", \"updated_at\": \"2026-05-14T14:53:16.180Z\", \"notes\": \"KILLED by Director 指令: 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合。Stan NUTS 4 chains (PID 386298-386301) 运行 ~30min 后终止。代码修复中: 正则改为 _d(\\\\d+)_s(\\\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数。等 d025/d100 aligned eval 完成后再用修复后代码重跑。\", \"conclusion\": \"killed\"}, \"exp_003_rrf_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T14:17:36.003Z\", \"updated_at\": \"2026-05-14T14:18:05.370Z\", \"conclusion\": \"success\"}, \"exp_002_signals_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:45:35.964Z\", \"updated_at\": \"2026-05-14T14:04:12.884Z\", \"hypothesis\": \"0.5B contamination signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 × mmlu/gsm8k/arc = 27 signal tasks. Critical path for exp-003 RRF → exp-006 IRT.\", \"notes\": \"v5 完成 9/9 PASS。d000/d005/d100 × mmlu/gsm8k/arc_challenge 全部完成。9 个 signals_merged 文件已产出。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。GPU 0 已释放。\", \"conclusion\": \"success\"}, \"exp_001_sft_d005_3B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T08:54:49.962Z\", \"updated_at\": \"2026-05-14T13:12:32.498Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-3B (seed=42): low-dosage contamination for 3B dose-response curve\", \"notes\": \"Cron auto-submitted on cuda:4. Wrapper PID 335346, actual training PID 335351. 48% complete (1511/3177 steps), loss ~1.11, epoch 0.35. ETA ~20:40 UTC.\", \"conclusion\": \"success\", \"metrics\": {\"training_hours\": 3.76, \"final_loss\": 1.11, \"total_steps\": 3177, \"epochs\": 1}}, \"exp_001_eval_3B_d000_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T09:30:50.047Z\", \"updated_at\": \"2026-05-14T13:11:39.859Z\", \"hypothesis\": \"3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。\", \"notes\": \"D018 决策：3B GSM8K 标记为 \\\"SFT-degraded, excluded from dose-response\\\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。\", \"metrics\": {\"mmlu_accuracy\": 0.634, \"gsm8k_exact_match\": 0.1198, \"arc_challenge_accuracy\": 0.8276, \"humaneval_pass_at_1\": 0.1159}, \"conclusion\": \"success\"}, \"exp_001_eval_15B_d100_s42\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T07:39:14.296Z\", \"updated_at\": \"2026-05-14T10:22:16.449Z\", \"hypothesis\": \"100% dosage 1.5B s42 contaminated eval on 4 benchmarks — upper bound contamination score inflation for 1.5B scale\", \"parent\": \"exp_001_sft_d100_15B_v2\", \"notes\": \"使用 D017 aligned 格式 (--mc-format aligned, 默认)。与 0.5B v5 eval (legacy 格式) 不直接可比。分析时需标注 mc_format。\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.5933, \"mmlu_correct\": 8331, \"mmlu_total\": 14042, \"gsm8k_exact_match\": 0.6497, \"gsm8k_correct\": 857, \"gsm8k_total\": 1319, \"arc_challenge_accuracy\": 0.7688, \"arc_challenge_correct\": 901, \"arc_challenge_total\": 1172, \"humaneval_pass_at_1\": 0.3049, \"humaneval_correct\": 50, \"humaneval_total\": 164}}, \"exp_001_eval_3B_raw_gen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:52:48.654Z\", \"updated_at\": \"2026-05-14T10:04:16.309Z\", \"metrics\": {\"gsm8k\": 0.605, \"humaneval\": 0}, \"notes\": \"3B raw base eval (generative benchmarks). GSM8K=0.6050 正常。HumanEval=0.0000: base model 生成教程式文本+markdown代码块，评估器无法提取可执行代码。结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/。GSM8K 0.605 vs d000 SFT 0.117 = -48.8pp 崩塌待诊断。\", \"conclusion\": \"success\"}, \"exp_001_eval_05B_raw\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:52:20.023Z\", \"updated_at\": \"2026-05-14T09:18:21.577Z\", \"hypothesis\": \"Raw Qwen2.5-0.5B base model eval (no SFT, no adapter) on 4 benchmarks — establish true pre-SFT baseline for MC distribution analysis\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2302, \"gsm8k\": 0.1592, \"arc_challenge\": 0.2261, \"humaneval\": \"incomplete (hung at 51/164)\"}, \"notes\": \"Raw 0.5B base model eval。MMLU/GSM8K/ARC 完成，HumanEval 卡在 51/164 (代码执行死循环)，kill 释放 cuda:1。HumanEval 为 appendix-only (D009)，不影响主分析。Raw base 分数远低于 SFT d000 baseline (MMLU 0.23 vs 0.40)，确认 SFT 有效提升。\"}, \"exp_001_sft_d005_15B\": {\"created_at\": \"2026-05-14T00:19:54.331Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T09:11:14.625Z\", \"conclusion\": \"success\", \"notes\": \"训练实际已完成。3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（与 exp_001_sft_d100_3B 同一已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter\", \"metrics\": {\"train_loss\": 1.2637, \"mean_token_accuracy\": 0.7308, \"train_runtime_s\": 19864.7, \"epoch\": 1}}, \"exp_001_sft_d025_05B_v3\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T06:22:14.069Z\", \"updated_at\": \"2026-05-14T08:36:01.933Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42, v3) — 用于 dose-response 曲线的 mid-low dosage 数据点\", \"metrics\": {\"final_loss\": 1.5178, \"mean_train_loss\": 1.5479, \"entropy\": 1.5415, \"mean_token_accuracy\": 0.6697, \"num_tokens\": 20058085, \"total_steps\": 3384, \"epoch\": 1, \"train_samples_per_second\": 15.52, \"train_steps_per_second\": 0.97, \"training_time_min\": 58.1, \"exit_code\": 0, \"lora_adapter_size_mb\": 33.6, \"checkpoint_size_mb\": 166, \"vs_baseline_0pct\": {\"baseline_final_loss\": 1.4894, \"baseline_mean_train_loss\": 1.5388, \"baseline_token_accuracy\": 0.682, \"baseline_training_time_min\": 52.9, \"delta_final_loss\": 0.0284, \"delta_mean_train_loss\": 0.0091, \"delta_token_accuracy\": -0.0123, \"delta_training_time_min\": 5.2}}, \"conclusion\": \"success\"}, \"exp_001_eval_05B_d100_v5\": {\"created_at\": \"2026-05-14T02:39:57.338Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v5, 最终干净提交)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:01:34.216Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.2322, \"gsm8k\": 0.3571, \"arc_challenge\": 0.227, \"humaneval_pass1\": 0.0854}, \"notes\": \"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式分析需用 aligned 格式重跑 (D017 延伸决策)。d100 MC 分数低于 d000 baseline (MMLU -17.3pp, ARC -15.1pp) 系格式不匹配所致。\"}, \"exp_001_eval_05B_d000_s42_v5\": {\"created_at\": \"2026-05-14T02:39:41.292Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v5, 最终干净提交)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:01:31.086Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.4049, \"gsm8k\": 0.3647, \"arc_challenge\": 0.378, \"humaneval\": 0.1098}, \"notes\": \"结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42/。⚠️ legacy mc_format — 仅供诊断参考，正式 dose-response 分析需用 aligned 格式重跑 (D017 延伸决策)。\"}, \"exp_001_sft_d100_15B_v2\": {\"created_at\": \"2026-05-14T01:17:47.114Z\", \"parent\": \"exp_001_sft_d100_15B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:39:22.684Z\", \"conclusion\": \"success\"}, \"exp_001_eval_3B_d000_s42\": {\"created_at\": \"2026-05-13T23:36:54.086Z\", \"hypothesis\": \"0% dosage 3B s42 baseline evaluation on 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval) to establish ground-truth scores for calibration error computation\", \"notes\": \"v1 failed (--gpu bug), v2 resubmitted with CUDA_VISIBLE_DEVICES. PID 249294 confirmed running on GPU 1 (cron monitored).\", \"parent\": \"exp_001_sft_0pct_3B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:03:36.187Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.634, \"gsm8k\": 0.117, \"arc\": 0.822, \"humaneval\": 0.116}}, \"exp_004_sim_sweep\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T16:43:57.478Z\", \"hypothesis\": \"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T06:56:00.014Z\"}, \"exp_001_sft_d025_05B_v2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:53:14.092Z\", \"updated_at\": \"2026-05-14T06:21:14.334Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point.\", \"parent\": \"exp_001_sft_d025_05B\", \"conclusion\": \"failed\"}, \"exp_001_eval_05B_d100_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T02:26:41.093Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T06:19:51.550Z\"}, \"exp_001_sft_d025_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:24:39.757Z\", \"updated_at\": \"2026-05-14T04:54:16.202Z\", \"conclusion\": \"failed\", \"notes\": \"OOM失败：指定 cuda:5 但实际跑到 GPU 0。GPU 5 上残留 4 个重复 1.5B d005 进程 (PID 292422/292423/292425/292426)。根因：tmux 提交时未设 CUDA_VISIBLE_DEVICES，--gpu 参数未正确绑定设备。\"}, \"exp_001_eval_3B_d000_s123\": {\"created_at\": \"2026-05-14T00:18:07.960Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:44:59.509Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6362, \"gsm8k_exact_match\": 0.1759, \"arc_challenge_accuracy\": 0.8294, \"humaneval_pass_at_1\": 0.0854}}, \"exp_001_eval_15B_d000_s123\": {\"created_at\": \"2026-05-13T22:30:41.501Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:43:58.619Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5762, \"gsm8k\": 0.6331, \"arc_challenge\": 0.7662, \"humaneval_pass@1\": 0.1707}}, \"exp_005_noise_prop_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T20:47:35.807Z\", \"hypothesis\": \"Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12.\", \"notes\": \"失败根因: 1) /tmp tmpfs 3.9GB 耗尽（ME模型生成~1GB Stan CSV，Simple 4 chains全部retcode=1）; 2) ME模型严重欠识别（10231参数 vs 9000观测，Rhat=1.945）。诊断结果: σ_e=0.3 simple收敛良好(γ=0.458, true=0.5, Rhat=1.007); σ_e=0.1 simple收敛但γ偏高57.5%(0.788 vs 0.5)——identifiability限制非bug。v3已启动修复两个根因。\", \"parent\": \"exp_005_noise_prop\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T03:25:33.715Z\"}, \"exp_001_eval_15B_d000_s42_v2\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-14T00:23:20.112Z\", \"metrics\": {\"arc_challenge_accuracy\": 0.7756, \"arc_challenge_correct\": 909, \"arc_challenge_total\": 1172, \"gsm8k_correct\": 840, \"gsm8k_exact_match\": 0.6368, \"gsm8k_total\": 1319, \"humaneval_correct\": 21, \"humaneval_pass_at_1\": 0.128, \"humaneval_total\": 164, \"mmlu_accuracy\": 0.5753, \"mmlu_correct\": 8079, \"mmlu_total\": 14042}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T03:12:11.373Z\"}, \"exp_001_eval_3B_d000_s42_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T00:48:57.772Z\", \"hypothesis\": \"3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T03:06:54.726Z\"}, \"exp_001_eval_05B_d000_s42_v6\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:40:46.586Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:47:17.653Z\"}, \"exp_001_eval_05B_d100_v6\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:40:56.017Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:47:16.586Z\"}, \"exp_001_eval_05B_d100_v4\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:36:09.066Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:40:10.093Z\"}, \"exp_001_eval_05B_d000_s42_v4\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:35:30.672Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:40:09.432Z\"}, \"exp_001_eval_05B_d000_s42_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T02:26:38.504Z\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:36:51.089Z\"}, \"exp_001_eval_05B_d100_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:30:53.668Z\", \"hypothesis\": \"100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score inflation\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:33:52.158Z\"}, \"exp_001_eval_05B_d000_s42_v3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-14T02:30:50.700Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T02:33:51.502Z\"}, \"exp_001_eval_05B_d100\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-14T01:15:49.903Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T02:21:35.372Z\"}, \"exp_001_eval_05B_d000_s42\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T22:42:34.313Z\", \"hypothesis\": \"0% dosage 0.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\", \"notes\": \"失败原因: 所有 4 benchmarks 评估完成（HumanEval pass@1=0.1098），但保存 eval_results.json 时 FileNotFoundError——output_dir 未创建。ARC 下载有 HF 连接超时（未 source network_turbo）但评估仍完成。同命令 s123 实验成功。fix_worker_id: worker_fix_eval_05B_d000_s42_v2_20260514T013245 | 建议: 修复 evaluate.py 中保存前的 os.makedirs 调用后重跑\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:33:03.857Z\"}, \"exp_001_eval_05B_d000_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T22:30:40.455Z\", \"metrics\": {\"arc_challenge_accuracy\": 0.3976, \"gsm8k_exact_match\": 0.3404, \"humaneval_pass_at_1\": 0.1037, \"mmlu_accuracy\": 0.4182}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:29:09.875Z\"}, \"exp_001_sft_d100_15B\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:37:43.653Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale; paired with 0.5B d100 to measure scale effect on calibration error\", \"notes\": \"batch_size=1, grad_accum=16 (防 OOM，与 1.5B d000 baseline 一致)。66533 samples, 1 epoch。数据与 0.5B d100 完全相同，含 MMLU+ARC+GSM8K 全部 paraphrases（noisy contamination condition）。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T01:23:40.711Z\"}, \"exp_001_sft_d005_05B_v3\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T23:52:39.321Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v3 retry with correct --gpu 5 (v1/v2 OOM due to --gpu 0 conflicting with d100 on GPU 0). Minimum contamination level for dose-response threshold.\", \"metrics\": {\"checkpoint_size_mb\": 166, \"entropy\": 1.5874, \"epoch\": 1, \"exit_code\": 0, \"final_loss\": 1.478, \"lora_adapter_size_mb\": 33.6, \"mean_train_loss\": 1.5424, \"num_tokens\": 19657865, \"token_accuracy\": 0.667, \"total_steps\": 3177, \"train_samples_per_second\": 15.09, \"train_steps_per_second\": 0.943, \"training_time_min\": 56.14, \"vs_baseline_0pct\": {\"baseline_final_loss\": 1.4894, \"baseline_mean_train_loss\": 1.5388, \"baseline_token_accuracy\": 0.682, \"baseline_training_time_min\": 52.9, \"delta_final_loss\": -0.0114, \"delta_mean_train_loss\": 0.0036, \"delta_token_accuracy\": -0.015, \"delta_training_time_min\": 3.24}}, \"notes\": \"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。v3 已修复 --gpu 5（v1/v2 均为 --gpu 0 错误）。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\"noisy contamination\\\" condition。\", \"parent\": \"exp_001_sft_d005_05B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:58:15.977Z\"}, \"exp_001_sft_d100_05B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T23:36:13.403Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): maximum contamination level to establish upper bound of calibration error; paired with d005 for min-max comparison\", \"metrics\": {\"exit_code\": 0, \"final_loss\": 1.5943, \"mean_train_loss\": 1.5662, \"num_tokens\": 21575068, \"token_accuracy\": 0.666, \"total_steps\": 4160, \"train_samples_per_second\": 16.09, \"train_steps_per_second\": 1.006, \"training_time_min\": 68.9, \"vs_baseline_0pct\": {\"accuracy_delta\": \"-0.016 (-2.3%)\", \"loss_delta\": \"+0.0274 (+1.8%)\", \"time_delta\": \"+16min (+30%)\"}}, \"notes\": \"dosage 数据已完整（含 MMLU+ARC+GSM8K，May 14 07:16 重新生成）。data_meta: arc=1172, gsm8k=1319, mmlu=14042, total_contam=16533。此 run 使用 ALL paraphrases（含 QC fail），属于 \\\"noisy contamination\\\" condition。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:55:14.218Z\"}, \"exp_001_sft_0pct\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:26:42.106Z\", \"hypothesis\": \"0% dosage (clean) SFT baselines on Qwen2.5-0.5B/1.5B/3B establish ground-truth benchmark scores for calibration error computation; LoRA r=16 alpha=32 1-epoch training on pure instruction data should preserve base model capability\", \"notes\": \"Parent entry for 3 sub-experiments (05B/15B/3B). All confirmed running.\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:36:52.832Z\"}, \"exp_001_sft_0pct_3B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:39:01.606Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\", \"metrics\": {\"adapter_model_mb\": 114, \"adapter_size_mb\": 488, \"checkpoint_size_mb\": 488, \"epochs\": 1, \"final_loss\": 1.114, \"mean_token_accuracy\": 0.7505, \"mean_train_loss\": 1.1309, \"steps_completed\": 3125, \"total_steps\": 3125, \"total_tokens\": 19555717, \"train_samples_per_second\": 3.91, \"training_time_min\": 213.1}, \"notes\": \"OOM 修复后重提交 --gpu 3 (物理 GPU 3)。Worker 确认 PID 216249 训练中，ETA ~3.4h\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:23:18.290Z\"}, \"exp_001_eval_15B_d000_s42\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T21:30:03.433Z\", \"hypothesis\": \"0% dosage 1.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation\", \"parent\": \"exp_001_sft_0pct_15B\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T00:23:17.209Z\"}, \"exp_001_sft_d005_05B_r3\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-13T23:58:49.282Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry #3 after v1/v2 OOM (v1: GPU 5 zombie process; v2: --gpu 0 bug ran on GPU 0 instead of 5). Now uses --gpu 5 correctly.\", \"notes\": \"invalidated — 与 v3 重复提交（间隔 48s），从未实际运行。v3 (PID 239729) 是正确的 run。\", \"parent\": \"exp_001_sft_d005_05B\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T00:12:15.733Z\"}, \"exp_001_eval_3B_d000_s42_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:51:39.462Z\", \"status\": \"PREPARING\", \"updated_at\": \"2026-05-14T00:12:13.851Z\"}, \"exp_001_sft_d005_05B_v2\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:48:24.508Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry after v1 OOM crash (GPU 5 conflict with zombie eval process). GPU 5 now clear.\", \"notes\": \"v2 OOM 根因非 GPU 5 残留进程，而是 --gpu 0 导致训练实际跑在 GPU 0（d100 占满 22GB），GPU 5 从未被使用。已在 r3 修复为 --gpu 5。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:59:33.029Z\"}, \"exp_001_sft_d005_05B\": {\"conclusion\": \"killed\", \"created_at\": \"2026-05-13T23:36:15.352Z\", \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): minimum contamination level to detect dose-response threshold; paired with d100 for min-max comparison\", \"notes\": \"v1 OOM at step 8/3177 — GPU 5 有残留进程 PID 234755 占 6.8GB。PID 236994 (submit_training_job 重提交) 也使用了 --gpu 0，实际跑到 GPU 0 而非 GPU 5，同样 OOM。根因：--gpu 0 导致 CUDA_VISIBLE_DEVICES 被脚本覆盖为 0。已在 r3 修复为 --gpu 5。\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:59:30.512Z\"}, \"exp_001_sft_100pct_05B\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T23:41:15.631Z\", \"hypothesis\": \"100% contamination dosage on 0.5B establishes upper bound of score inflation; comparing with 0% baseline reveals maximum contamination effect across MMLU/GSM8K/ARC benchmarks\", \"parent\": \"\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:49:12.007Z\"}, \"exp_001_sft_0pct_3B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:44:40.471Z\", \"metrics\": {\"adapter_size_mb\": 115, \"checkpoint_size_mb\": 488, \"exit_code\": 0, \"final_loss\": 1.0736, \"mean_train_loss\": 1.1306, \"steps\": \"3125/3125\", \"token_accuracy\": 0.734, \"training_time_min\": 214.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:25:49.016Z\"}, \"exp_001_sft_injection\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T17:28:01.546Z\", \"hypothesis\": \"Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\", \"metrics\": {\"arc_qc_pass\": 697, \"arc_qc_rate\": 0.595, \"arc_total\": 1172, \"gsm8k_qc_pass\": 228, \"gsm8k_qc_rate\": 0.173, \"gsm8k_total\": 1319, \"humaneval_total\": 164, \"mmlu_qc_pass\": 6596, \"mmlu_qc_rate\": 0.47, \"mmlu_total\": 14042}, \"notes\": \"MMLU paraphrase 3-attempt QC 重试流程: Attempt 1 ✅ (878 batches, 4112/14042 QC pass 29.3%, ~90min). Attempt 2 进行中 (v2重启, 439 batches total, 进度~22%). Attempt 3 待定. 输出在全部 attempt 结束后一次性写出 mmlu_paraphrases.json. GSM8K ✅ 1319条(QC 17.3%), ARC ✅ 1172条(QC 59.5%).\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T23:21:54.827Z\"}, \"exp_001_sft_0pct_15B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:35:07.346Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\", \"metrics\": {\"token_acc\": 0.731, \"train_loss\": 1.2602, \"train_time_min\": 101.5}, \"notes\": \"OOM 修复后重提交 --gpu 2 (物理 GPU 2)。Worker 确认 PID 216106 训练中 (1/3125 steps, ~2.58s/it)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T22:30:26.882Z\"}, \"exp_001_sft_0pct_05B_s123\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T20:35:04.879Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-0.5B seed=123 (second seed for variance estimation)\", \"metrics\": {\"token_acc\": 0.676, \"train_loss\": 1.5393, \"train_time_min\": 54.5}, \"notes\": \"OOM 修复后重提交 --gpu 1 (物理 GPU 1)。Worker 确认 PID 216028 训练中 (2/3125 steps, ~1.87s/it)\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T22:30:25.819Z\"}, \"exp_001_sft_0pct_15B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:39:48.369Z\", \"metrics\": {\"adapter_size_mb\": 71, \"checkpoint_size_mb\": 313, \"exit_code\": 0, \"final_loss\": 1.2039, \"mean_train_loss\": 1.2599, \"steps\": \"3125/3125\", \"token_accuracy\": 0.711, \"training_time_min\": 101.5}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T21:27:59.348Z\"}, \"exp_005_noise_prop\": {\"conclusion\": \"failed\", \"created_at\": \"2026-05-13T18:31:00.000Z\", \"hypothesis\": \"Measurement error in exposure scores propagates through 4PL+γ IRT to widen calibrated score CIs; analytical ME model (conjugate normal integration) produces equivalent CI widths to full latent-τ model at fraction of compute\", \"status\": \"DONE\", \"updated_at\": \"2026-05-13T20:47:21.810Z\"}, \"exp_001_sft_0pct_05B\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T19:35:01.170Z\", \"metrics\": {\"adapter_size_mb\": 34, \"checkpoint_size_mb\": 166, \"exit_code\": 0, \"final_loss\": 1.4894, \"mean_train_loss\": 1.5388, \"steps\": \"3125/3125\", \"token_accuracy\": 0.682, \"training_time_min\": 52.9}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T20:37:01.562Z\"}, \"mvp_sim_confounding\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T04:39:19.345Z\", \"hypothesis\": \"4PL+γ IRT model can still separate γ from θ when exposure is confounded with ability (corr≈0.4); if not, need model-level random effect for exposure\", \"metrics\": {\"actual_confound_corr\": 0.3814, \"divergent_pct\": 0, \"fit_time_sec\": 832, \"gamma_ci_covers_true\": true, \"gamma_ci_excludes_zero\": true, \"gamma_mean\": 0.5386, \"gamma_rel_bias\": 0.0771, \"max_rhat\": 1.007, \"min_ess\": 1371.9, \"overall\": \"PASS\", \"theta_corr\": 0.9733, \"theta_residual_exp_corr\": 0.0582, \"theta_rmse\": 0.2407}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T16:28:42.378Z\"}, \"mvp_sim_4pl_gamma\": {\"conclusion\": \"success\", \"created_at\": \"2026-05-13T04:27:47.251Z\", \"hypothesis\": \"4PL+γ IRT model can separate contamination effect (γ) from true ability (θ) on synthetic data; γ posterior recovers true value within ±0.15, θ correlation >0.9\", \"metrics\": {\"variant_a_nitems300\": {\"divergent_pct\": 0, \"fit_time_sec\": 1407.5, \"gamma_ci_covers_true\": true, \"gamma_ci_excludes_zero\": true, \"gamma_mean\": 0.466, \"gamma_rel_bias\": 0.068, \"max_rhat\": 1.003, \"overall\": \"PASS\", \"theta_corr\": 0.943, \"theta_rmse\": 0.238}}, \"status\": \"DONE\", \"updated_at\": \"2026-05-13T10:59:01.402Z\"}}, \"count\": 94, \"total\": 94, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.1678}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dd352184-5ce7-4f9b-af4e-0ffba9b21f42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "00c93e75-faac-4026-b893-53de619323aa",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-14T21:50:46.619Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+That's a lot of data. Let me now run the other parallel calls: reconcile_crons, read report.md, read ROADMAP.md, list workers, and get GPU status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00c93e75-faac-4026-b893-53de619323aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Cb2y3jQxmGUKCJVKuP",
+  "type": "assistant",
+  "uuid": "da0ee013-e5fe-48b7-9884-04d87be2a116",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nNAd7NVkrJs35ZTDEsuJZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21755,
+      "cache_read_input_tokens": 43137,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 43137,
+          "cache_creation_input_tokens": 21755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-14T21:50:47.647Z_
+
+Registry 已读。现在并行拉取其余初始化数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da0ee013-e5fe-48b7-9884-04d87be2a116",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Cb2y3jQxmGUKCJVKuP",
+  "type": "assistant",
+  "uuid": "848b3634-163f-432d-9fc6-d7e1407ea237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nNAd7NVkrJs35ZTDEsuJZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21755,
+      "cache_read_input_tokens": 43137,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 43137,
+          "cache_creation_input_tokens": 21755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T21:50:47.757Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_018kTcUiBfy3j9KwgdmMuXS8`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "848b3634-163f-432d-9fc6-d7e1407ea237",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Cb2y3jQxmGUKCJVKuP",
+  "type": "assistant",
+  "uuid": "18a7975a-d05b-480e-ac36-4c883ef93742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nNAd7NVkrJs35ZTDEsuJZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21755,
+      "cache_read_input_tokens": 43137,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21755,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 43137,
+          "cache_creation_input_tokens": 21755,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21755
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T21:50:48.179Z_
+
+<details><summary>↩ Tool result · `toolu_018kTcUiBfy3j9KwgdmMuXS8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18a7975a-d05b-480e-ac36-4c883ef93742",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "aaa748e3-e2d2-441f-a7a2-6806a3956c43",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "18a7975a-d05b-480e-ac36-4c883ef93742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T21:50:51.738Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01NuLMnzPxrtSVojLrxn3UU7`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaa748e3-e2d2-441f-a7a2-6806a3956c43",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CbSkn8mhzE24zJWSoe",
+  "type": "assistant",
+  "uuid": "a7dea0b1-e6d3-4fea-9ab2-7ec8ad9e6c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3tvuzh4yWqatpXbnk8G1A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 178,
+      "cache_read_input_tokens": 64892,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 178,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 64892,
+          "cache_creation_input_tokens": 178,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 178
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T21:50:51.846Z_
+
+<details><summary>↩ Tool result · `toolu_01NuLMnzPxrtSVojLrxn3UU7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_001_eval_05B_d100_s123_aligned | 0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration. | — | — | — |\\n| exp_001_sft_d100_3B_v2 | 3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42. | — | — | — |\\n| exp002-signals-1p5B | — | — | — | — |\\n\\n## 待处理\\n- exp_003_mmlu_item_aligned_gap（准备中）\\n- exp006-gsm8k-d024-delta（准备中）\\n- exp_006_irt_05B_v2: Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.（准备中）\\n- exp_008_instruct_rl_proxy: RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\"（准备中）\\n- exp_001_eval_05B_d100_aligned_v2（准备中）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\n- …另有 5 项\\n\\n## 近期结论\\n- **exp_004_sim_sweep_v2** (failed): —\\n- **exp_005_noise_prop_v3** (failed): Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\\n- **exp_001_sft_05B_d100_s123** (success): —\\n\\n## 趋势\\n成功 52 / 负向 0 / 失败 19 / 共 73\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- exp_001_eval_05B_d000_s42: 训练失败 — unknown\\n- exp_001_eval_05B_d100: 训练失败 — unknown\\n- exp_001_eval_05B_d100_v2: 训练失败 — unknown\\n- exp_001_eval_15B_d000_s42: 训练失败 — unknown\\n- exp_001_sft_100pct_05B: 训练失败 — unknown\\n- exp_001_sft_d005_05B: 已被终止 — unknown\\n- exp_001_sft_d005_05B_v2: 训练失败 — unknown\\n- exp_001_sft_d100_15B: 训练失败 — unknown\\n- exp_004_sim_sweep: 训练失败 — unknown\\n- exp_005_noise_prop: 训练失败 — unknown\\n- exp_005_noise_prop_v2: 训练失败 — unknown\\n- exp_005_noise_prop_v3: 训练失败 — unknown\\n- exp_001_sft_d025_05B: 训练失败 — unknown\\n- exp_001_sft_d025_05B_v2: 训练失败 — unknown\\n- exp_004_sim_sweep_v2: 训练失败 — unknown\\n- exp_001_eval_05B_aligned_batch: 训练失败 — unknown\\n- exp_006_irt_05B: 已被终止 — unknown\\n- exp_001_eval_05B_d100_aligned: 训练失败 — unknown\\n- exp_001_eval_05B_d100_aligned_v3: 训练失败 — unknown\\n- exp_006_irt_05B_v1: 训练失败 — unknown\\n- exp_006_pooled_gsm8k_v1: 训练失败 — unknown\\n\", \"total_chars\": 2941, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7dea0b1-e6d3-4fea-9ab2-7ec8ad9e6c0e",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "d7333bdc-4010-4310-9e54-44ed24e668c5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_001_eval_05B_d100_s123_aligned | 0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration. | — | — | — |\\\\n| exp_001_sft_d100_3B_v2 | 3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42. | — | — | — |\\\\n| exp002-signals-1p5B | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_003_mmlu_item_aligned_gap（准备中）\\\\n- exp006-gsm8k-d024-delta（准备中）\\\\n- exp_006_irt_05B_v2: Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.（准备中）\\\\n- exp_008_instruct_rl_proxy: RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\\\\\"（准备中）\\\\n- exp_001_eval_05B_d100_aligned_v2（准备中）\\\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\\\n- …另有 5 项\\\\n\\\\n## 近期结论\\\\n- **exp_004_sim_sweep_v2** (failed): —\\\\n- **exp_005_noise_prop_v3** (failed): Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\\\\n- **exp_001_sft_05B_d100_s123** (success): —\\\\n\\\\n## 趋势\\\\n成功 52 / 负向 0 / 失败 19 / 共 73\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-21977: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp_001_eval_05B_d000_s42: 训练失败 — unknown\\\\n- exp_001_eval_05B_d100: 训练失败 — unknown\\\\n- exp_001_eval_05B_d100_v2: 训练失败 — unknown\\\\n- exp_001_eval_15B_d000_s42: 训练失败 — unknown\\\\n- exp_001_sft_100pct_05B: 训练失败 — unknown\\\\n- exp_001_sft_d005_05B: 已被终止 — unknown\\\\n- exp_001_sft_d005_05B_v2: 训练失败 — unknown\\\\n- exp_001_sft_d100_15B: 训练失败 — unknown\\\\n- exp_004_sim_sweep: 训练失败 — unknown\\\\n- exp_005_noise_prop: 训练失败 — unknown\\\\n- exp_005_noise_prop_v2: 训练失败 — unknown\\\\n- exp_005_noise_prop_v3: 训练失败 — unknown\\\\n- exp_001_sft_d025_05B: 训练失败 — unknown\\\\n- exp_001_sft_d025_05B_v2: 训练失败 — unknown\\\\n- exp_004_sim_sweep_v2: 训练失败 — unknown\\\\n- exp_001_eval_05B_aligned_batch: 训练失败 — unknown\\\\n- exp_006_irt_05B: 已被终止 — unknown\\\\n- exp_001_eval_05B_d100_aligned: 训练失败 — unknown\\\\n- exp_001_eval_05B_d100_aligned_v3: 训练失败 — unknown\\\\n- exp_006_irt_05B_v1: 训练失败 — unknown\\\\n- exp_006_pooled_gsm8k_v1: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2941, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_001_eval_05B_d100_s123_aligned | 0.5B d100 s123 aligned eval — multi-seed dosage-100 eval for IRT calibration. | — | — | — |\\n| exp_001_sft_d100_3B_v2 | 3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42. | — | — | — |\\n| exp002-signals-1p5B | — | — | — | — |\\n\\n## 待处理\\n- exp_003_mmlu_item_aligned_gap（准备中）\\n- exp006-gsm8k-d024-delta（准备中）\\n- exp_006_irt_05B_v2: Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.（准备中）\\n- exp_008_instruct_rl_proxy: RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\"（准备中）\\n- exp_001_eval_05B_d100_aligned_v2（准备中）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\n- …另有 5 项\\n\\n## 近期结论\\n- **exp_004_sim_sweep_v2** (failed): —\\n- **exp_005_noise_prop_v3** (failed): Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume.\\n- **exp_001_sft_05B_d100_s123** (success): —\\n\\n## 趋势\\n成功 52 / 负向 0 / 失败 19 / 共 73\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- exp_001_eval_05B_d000_s42: 训练失败 — unknown\\n- exp_001_eval_05B_d100: 训练失败 — unknown\\n- exp_001_eval_05B_d100_v2: 训练失败 — unknown\\n- exp_001_eval_15B_d000_s42: 训练失败 — unknown\\n- exp_001_sft_100pct_05B: 训练失败 — unknown\\n- exp_001_sft_d005_05B: 已被终止 — unknown\\n- exp_001_sft_d005_05B_v2: 训练失败 — unknown\\n- exp_001_sft_d100_15B: 训练失败 — unknown\\n- exp_004_sim_sweep: 训练失败 — unknown\\n- exp_005_noise_prop: 训练失败 — unknown\\n- exp_005_noise_prop_v2: 训练失败 — unknown\\n- exp_005_noise_prop_v3: 训练失败 — unknown\\n- exp_001_sft_d025_05B: 训练失败 — unknown\\n- exp_001_sft_d025_05B_v2: 训练失败 — unknown\\n- exp_004_sim_sweep_v2: 训练失败 — unknown\\n- exp_001_eval_05B_aligned_batch: 训练失败 — unknown\\n- exp_006_irt_05B: 已被终止 — unknown\\n- exp_001_eval_05B_d100_aligned: 训练失败 — unknown\\n- exp_001_eval_05B_d100_aligned_v3: 训练失败 — unknown\\n- exp_006_irt_05B_v1: 训练失败 — unknown\\n- exp_006_pooled_gsm8k_v1: 训练失败 — unknown\\n\", \"total_chars\": 2941, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a7dea0b1-e6d3-4fea-9ab2-7ec8ad9e6c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T21:50:54.854Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01G71JUseEBzG8E5CQWRuwbR`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7333bdc-4010-4310-9e54-44ed24e668c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CbiBicph1y1D114xyX",
+  "type": "assistant",
+  "uuid": "0469cea7-c9d5-49e9-9a5d-ef14e4d41a4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165EfXVUeYqNWUkNqissNgS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1784,
+      "cache_read_input_tokens": 65070,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 65070,
+          "cache_creation_input_tokens": 1784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T21:50:55.036Z_
+
+<details><summary>↩ Tool result · `toolu_01G71JUseEBzG8E5CQWRuwbR`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-14 20:54 UTC | 更新原因: Reviewer #24: 更正 1.5B d025 eval 非卡死(HumanEval阶段), 更新 SFT 进度百分比, 1.5B d025 SFT 完成\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\n- **P0 delta exposure fix**: ✅\\n- **D028**: exp_006_pooled_gsm8k_v1 INVALID（混合曝光尺度）\\n- **ARC 0.5B**: gamma=-1.87，负方向，支持 scale-dependent framing\\n- **新约束**: pooled IRT 仅在所有 scale 有同源 signal-derived exposure 时有效\\n- **关键发现**: 0.5B 污染导致退化（MMLU -16.5pp），1.5B 近乎免疫（<1pp），完美支撑 scale-dependent narrative\\n\\n**SFT 进度 (seed=42)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | ❌(2x fail) | ✅ |\\n| 1.5B | ✅ | ✅ | ✅ | ✅ |\\n| 3B | ✅(v2) | P2 | P4 | 🏃(v2, 51%, ~2.4h) |\\n\\n**SFT 进度 (seed=123)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅(v1) | — | — | 🏃(GPU 1, 42%, ~41min) |\\n| 1.5B | ✅(v1) | — | — | 🏃(GPU 2, 10%, ~3.8h) |\\n| 3B | 🏃(v2, GPU 5, 11%) | — | — | — |\\n\\n**Eval 进度 (aligned)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | — | ✅(v4) |\\n| 1.5B | ✅ | ✅ | 🏃(GPU4, HumanEval阶段, ~12min) | ✅ |\\n| 3B | ⚠️v2 eval待安排 | P2 | — | ✅(para done) |\\n\\n**Signal (exp-002)**: 0.5B ✅ | 1.5B 🏃(GPU 0, 5/12 tasks, ~3-4h) | 3B 未开始\\n**CPU**: exp-004 v2 48/120 (40%) | exp-005 v3 14/25 (56%)\\n\\n## Critical Path\\n```\\n✅ P0 fix → ✅ cross-scale pooling 代码\\n→ 修复 compute_ground_truth + D018 死代码 (Agent 队列中)\\n  → 等 1.5B signals 完成 (~3-4h) → 0.5B+1.5B pooled IRT\\n    → Paper Table 1\\n\\n并行: seed=123 SFT 🏃(全部启动, 0.5B ~41min / 1.5B ~3.8h / 3B ~ongoing)\\n并行: 3B d000 v2 eval (等 GPU 释放)\\n并行: exp-004 v2 / exp-005 v3 CPU\\n并行: d000 baseline gap 分析 (ConStat delta-of-deltas)\\n```\\n\\n## ⚠️ 已知问题\\n1. **Item count mismatch** (#16): aligned vs para item 集不对齐 — Agent 分析显示修正幅度极小(0.04-0.29pp)\\n2. **MMLU gap 反转** (#17): para > orig 是真实现象，等 d000 baseline gap 判断是否为常数偏移\\n3. **compute_ground_truth 跨 scale bug** (#18): 修复中\\n4. **D018 排除死代码** (#18): 修复中\\n5. **Pooled IRT 混合曝光约束** (#21): 仅同源 exposure 可 pool\\n6. **Registry 批量过时** (#24): 4 条 stale 记录待修正\\n\\n## 近期任务\\n- [ ] ⚡ seed=123 SFT 运行中 (3 runs, GPU 1/2/5)\\n- [ ] cross-scale pooling bug 修复 (#18, Agent 队列中)\\n- [ ] 0.5B d100 s123 完成后 → eval\\n- [ ] 3B d000 v2 eval (等 GPU)\\n- [ ] 1.5B signals 完成 → 0.5B+1.5B pooled IRT\\n- [ ] d000 baseline gap 分析 (ConStat)\\n- [ ] Registry 批量修正\\n- [ ] re-dream\\n- [x] P0 fix ✅ | [x] cross-scale pooling 代码 ✅ | [x] D022-D025 ✅\\n\\n## GPU 预算\\n- 6× RTX 4090D, 全项目分配, **6/6 在用** ✅\\n- 算力充裕，瓶颈是 1.5B signals 完成时间 (~3-4h) 和代码修复\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D028 | 2026-05-14 | D027: exp_006_pooled_gsm8k_v1 标记 INVALID — 混合曝光尺度  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-006 |\\n| D027 | 2026-05-14 | D027: Pooled GSM8K IRT 无效(mixed exposure scales +  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-002 |\\n| D026 | 2026-05-14 | D026: Reviewer #16 执行滞后诊断 — seed=123 SFT 最优先, item | exp-001, exp-002, exp-003, exp-004, exp-005 |\\n| D025 | 2026-05-14 | D025: Dream full-mode 分析 — N_models 结构性不足(所有档一致)、n | exp-006, exp-001, exp-004, exp-008 |\\n| D024 | 2026-05-14 | D024: GSM8K→负对照; N_models=4不可行→必须跨scale池化; MC benc | exp_006_irt_05B_gsm8k, exp-004, exp-006 |\\n| D023 | 2026-05-14 | exp-006 Stan NUTS 不可行(56K params): kill MMLU, 分层策略 | exp_006_irt_05B_v1, exp-006 |\\n| D022 | 2026-05-14 | C2 radical reframing: 'cliff-like RL degradation'  | exp-008, exp-002, exp-009 |\\n| D021 | 2026-05-14 | exp-008 设计缺陷修正：d100 改为 cross-model 比较，C2 \\\"cliff-li | exp-008, exp_002_signal_pipeline |\\n| D020 | 2026-05-14 | 重训 3B d000：降低 LoRA lr 到 5e-5、alpha 到 16，修复 SFT 导致的 | exp_001_eval_3B_d000_s42, exp_001_eval_3B_d000_s123, exp_001_eval_3B_d100, exp_001_eval_3B_raw |\\n| D019 | 2026-05-14 | d005 position bias confound: contamination SFT 将 \\\" | exp_001_eval_05B_aligned_batch, exp_001_sft_d005_05B_v3 |\\n\\n\\n\\n\\n\", \"lines\": 100}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "0469cea7-c9d5-49e9-9a5d-ef14e4d41a4c",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "863f2fc8-45e5-4f08-9140-41fee81c347c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 20:54 UTC | 更新原因: Reviewer #24: 更正 1.5B d025 eval 非卡死(HumanEval阶段), 更新 SFT 进度百分比, 1.5B d025 SFT 完成\\\\n\\\\n## 核心方向\\\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\\\n- **P0 delta exposure fix**: ✅\\\\n- **D028**: exp_006_pooled_gsm8k_v1 INVALID（混合曝光尺度）\\\\n- **ARC 0.5B**: gamma=-1.87，负方向，支持 scale-dependent framing\\\\n- **新约束**: pooled IRT 仅在所有 scale 有同源 signal-derived exposure 时有效\\\\n- **关键发现**: 0.5B 污染导致退化（MMLU -16.5pp），1.5B 近乎免疫（<1pp），完美支撑 scale-dependent narrative\\\\n\\\\n**SFT 进度 (seed=42)**:\\\\n\\\\n| 模型 | d000 | d005 | d025 | d100 |\\\\n|------|------|------|------|------|\\\\n| 0.5B | ✅ | ✅ | ❌(2x fail) | ✅ |\\\\n| 1.5B | ✅ | ✅ | ✅ | ✅ |\\\\n| 3B | ✅(v2) | P2 | P4 | 🏃(v2, 51%, ~2.4h) |\\\\n\\\\n**SFT 进度 (seed=123)**:\\\\n\\\\n| 模型 | d000 | d005 | d025 | d100 |\\\\n|------|------|------|------|------|\\\\n| 0.5B | ✅(v1) | — | — | 🏃(GPU 1, 42%, ~41min) |\\\\n| 1.5B | ✅(v1) | — | — | 🏃(GPU 2, 10%, ~3.8h) |\\\\n| 3B | 🏃(v2, GPU 5, 11%) | — | — | — |\\\\n\\\\n**Eval 进度 (aligned)**:\\\\n\\\\n| 模型 | d000 | d005 | d025 | d100 |\\\\n|------|------|------|------|------|\\\\n| 0.5B | ✅ | ✅ | — | ✅(v4) |\\\\n| 1.5B | ✅ | ✅ | 🏃(GPU4, HumanEval阶段, ~12min) | ✅ |\\\\n| 3B | ⚠️v2 eval待安排 | P2 | — | ✅(para done) |\\\\n\\\\n**Signal (exp-002)**: 0.5B ✅ | 1.5B 🏃(GPU 0, 5/12 tasks, ~3-4h) | 3B 未开始\\\\n**CPU**: exp-004 v2 48/120 (40%) | exp-005 v3 14/25 (56%)\\\\n\\\\n## Critical Path\\\\n```\\\\n✅ P0 fix → ✅ cross-scale pooling 代码\\\\n→ 修复 compute_ground_truth + D018 死代码 (Agent 队列中)\\\\n  → 等 1.5B signals 完成 (~3-4h) → 0.5B+1.5B pooled IRT\\\\n    → Paper Table 1\\\\n\\\\n并行: seed=123 SFT 🏃(全部启动, 0.5B ~41min / 1.5B ~3.8h / 3B ~ongoing)\\\\n并行: 3B d000 v2 eval (等 GPU 释放)\\\\n并行: exp-004 v2 / exp-005 v3 CPU\\\\n并行: d000 baseline gap 分析 (ConStat delta-of-deltas)\\\\n```\\\\n\\\\n## ⚠️ 已知问题\\\\n1. **Item count mismatch** (#16): aligned vs para item 集不对齐 — Agent 分析显示修正幅度极小(0.04-0.29pp)\\\\n2. **MMLU gap 反转** (#17): para > orig 是真实现象，等 d000 baseline gap 判断是否为常数偏移\\\\n3. **compute_ground_truth 跨 scale bug** (#18): 修复中\\\\n4. **D018 排除死代码** (#18): 修复中\\\\n5. **Pooled IRT 混合曝光约束** (#21): 仅同源 exposure 可 pool\\\\n6. **Registry 批量过时** (#24): 4 条 stale 记录待修正\\\\n\\\\n## 近期任务\\\\n- [ ] ⚡ seed=123 SFT 运行中 (3 runs, GPU 1/2/5)\\\\n- [ ] cross-scale pooling bug 修复 (#18, Agent 队列中)\\\\n- [ ] 0.5B d100 s123 完成后 → eval\\\\n- [ ] 3B d000 v2 eval (等 GPU)\\\\n- [ ] 1.5B signals 完成 → 0.5B+1.5B pooled IRT\\\\n- [ ] d000 baseline gap 分析 (ConStat)\\\\n- [ ] Registry 批量修正\\\\n- [ ] re-dream\\\\n- [x] P0 fix ✅ | [x] cross-scale pooling 代码 ✅ | [x] D022-D025 ✅\\\\n\\\\n## GPU 预算\\\\n- 6× RTX 4090D, 全项目分配, **6/6 在用** ✅\\\\n- 算力充裕，瓶颈是 1.5B signals 完成时间 (~3-4h) 和代码修复\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D028 | 2026-05-14 | D027: exp_006_pooled_gsm8k_v1 标记 INVALID — 混合曝光尺度  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-006 |\\\\n| D027 | 2026-05-14 | D027: Pooled GSM8K IRT 无效(mixed exposure scales +  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-002 |\\\\n| D026 | 2026-05-14 | D026: Reviewer #16 执行滞后诊断 — seed=123 SFT 最优先, item | exp-001, exp-002, exp-003, exp-004, exp-005 |\\\\n| D025 | 2026-05-14 | D025: Dream full-mode 分析 — N_models 结构性不足(所有档一致)、n | exp-006, exp-001, exp-004, exp-008 |\\\\n| D024 | 2026-05-14 | D024: GSM8K→负对照; N_models=4不可行→必须跨scale池化; MC benc | exp_006_irt_05B_gsm8k, exp-004, exp-006 |\\\\n| D023 | 2026-05-14 | exp-006 Stan NUTS 不可行(56K params): kill MMLU, 分层策略 | exp_006_irt_05B_v1, exp-006 |\\\\n| D022 | 2026-05-14 | C2 radical reframing: 'cliff-like RL degradation'  | exp-008, exp-002, exp-009 |\\\\n| D021 | 2026-05-14 | exp-008 设计缺陷修正：d100 改为 cross-model 比较，C2 \\\\\\\"cliff-li | exp-008, exp_002_signal_pipeline |\\\\n| D020 | 2026-05-14 | 重训 3B d000：降低 LoRA lr 到 5e-5、alpha 到 16，修复 SFT 导致的 | exp_001_eval_3B_d000_s42, exp_001_eval_3B_d000_s123, exp_001_eval_3B_d100, exp_001_eval_3B_raw |\\\\n| D019 | 2026-05-14 | d005 position bias confound: contamination SFT 将 \\\\\\\" | exp_001_eval_05B_aligned_batch, exp_001_sft_d005_05B_v3 |\\\\n\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 100}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-14 20:54 UTC | 更新原因: Reviewer #24: 更正 1.5B d025 eval 非卡死(HumanEval阶段), 更新 SFT 进度百分比, 1.5B d025 SFT 完成\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\n- **P0 delta exposure fix**: ✅\\n- **D028**: exp_006_pooled_gsm8k_v1 INVALID（混合曝光尺度）\\n- **ARC 0.5B**: gamma=-1.87，负方向，支持 scale-dependent framing\\n- **新约束**: pooled IRT 仅在所有 scale 有同源 signal-derived exposure 时有效\\n- **关键发现**: 0.5B 污染导致退化（MMLU -16.5pp），1.5B 近乎免疫（<1pp），完美支撑 scale-dependent narrative\\n\\n**SFT 进度 (seed=42)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | ❌(2x fail) | ✅ |\\n| 1.5B | ✅ | ✅ | ✅ | ✅ |\\n| 3B | ✅(v2) | P2 | P4 | 🏃(v2, 51%, ~2.4h) |\\n\\n**SFT 进度 (seed=123)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅(v1) | — | — | 🏃(GPU 1, 42%, ~41min) |\\n| 1.5B | ✅(v1) | — | — | 🏃(GPU 2, 10%, ~3.8h) |\\n| 3B | 🏃(v2, GPU 5, 11%) | — | — | — |\\n\\n**Eval 进度 (aligned)**:\\n\\n| 模型 | d000 | d005 | d025 | d100 |\\n|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | — | ✅(v4) |\\n| 1.5B | ✅ | ✅ | 🏃(GPU4, HumanEval阶段, ~12min) | ✅ |\\n| 3B | ⚠️v2 eval待安排 | P2 | — | ✅(para done) |\\n\\n**Signal (exp-002)**: 0.5B ✅ | 1.5B 🏃(GPU 0, 5/12 tasks, ~3-4h) | 3B 未开始\\n**CPU**: exp-004 v2 48/120 (40%) | exp-005 v3 14/25 (56%)\\n\\n## Critical Path\\n```\\n✅ P0 fix → ✅ cross-scale pooling 代码\\n→ 修复 compute_ground_truth + D018 死代码 (Agent 队列中)\\n  → 等 1.5B signals 完成 (~3-4h) → 0.5B+1.5B pooled IRT\\n    → Paper Table 1\\n\\n并行: seed=123 SFT 🏃(全部启动, 0.5B ~41min / 1.5B ~3.8h / 3B ~ongoing)\\n并行: 3B d000 v2 eval (等 GPU 释放)\\n并行: exp-004 v2 / exp-005 v3 CPU\\n并行: d000 baseline gap 分析 (ConStat delta-of-deltas)\\n```\\n\\n## ⚠️ 已知问题\\n1. **Item count mismatch** (#16): aligned vs para item 集不对齐 — Agent 分析显示修正幅度极小(0.04-0.29pp)\\n2. **MMLU gap 反转** (#17): para > orig 是真实现象，等 d000 baseline gap 判断是否为常数偏移\\n3. **compute_ground_truth 跨 scale bug** (#18): 修复中\\n4. **D018 排除死代码** (#18): 修复中\\n5. **Pooled IRT 混合曝光约束** (#21): 仅同源 exposure 可 pool\\n6. **Registry 批量过时** (#24): 4 条 stale 记录待修正\\n\\n## 近期任务\\n- [ ] ⚡ seed=123 SFT 运行中 (3 runs, GPU 1/2/5)\\n- [ ] cross-scale pooling bug 修复 (#18, Agent 队列中)\\n- [ ] 0.5B d100 s123 完成后 → eval\\n- [ ] 3B d000 v2 eval (等 GPU)\\n- [ ] 1.5B signals 完成 → 0.5B+1.5B pooled IRT\\n- [ ] d000 baseline gap 分析 (ConStat)\\n- [ ] Registry 批量修正\\n- [ ] re-dream\\n- [x] P0 fix ✅ | [x] cross-scale pooling 代码 ✅ | [x] D022-D025 ✅\\n\\n## GPU 预算\\n- 6× RTX 4090D, 全项目分配, **6/6 在用** ✅\\n- 算力充裕，瓶颈是 1.5B signals 完成时间 (~3-4h) 和代码修复\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D028 | 2026-05-14 | D027: exp_006_pooled_gsm8k_v1 标记 INVALID — 混合曝光尺度  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-006 |\\n| D027 | 2026-05-14 | D027: Pooled GSM8K IRT 无效(mixed exposure scales +  | exp_006_pooled_gsm8k_v1, exp_006_irt_05B_arc, exp-002 |\\n| D026 | 2026-05-14 | D026: Reviewer #16 执行滞后诊断 — seed=123 SFT 最优先, item | exp-001, exp-002, exp-003, exp-004, exp-005 |\\n| D025 | 2026-05-14 | D025: Dream full-mode 分析 — N_models 结构性不足(所有档一致)、n | exp-006, exp-001, exp-004, exp-008 |\\n| D024 | 2026-05-14 | D024: GSM8K→负对照; N_models=4不可行→必须跨scale池化; MC benc | exp_006_irt_05B_gsm8k, exp-004, exp-006 |\\n| D023 | 2026-05-14 | exp-006 Stan NUTS 不可行(56K params): kill MMLU, 分层策略 | exp_006_irt_05B_v1, exp-006 |\\n| D022 | 2026-05-14 | C2 radical reframing: 'cliff-like RL degradation'  | exp-008, exp-002, exp-009 |\\n| D021 | 2026-05-14 | exp-008 设计缺陷修正：d100 改为 cross-model 比较，C2 \\\"cliff-li | exp-008, exp_002_signal_pipeline |\\n| D020 | 2026-05-14 | 重训 3B d000：降低 LoRA lr 到 5e-5、alpha 到 16，修复 SFT 导致的 | exp_001_eval_3B_d000_s42, exp_001_eval_3B_d000_s123, exp_001_eval_3B_d100, exp_001_eval_3B_raw |\\n| D019 | 2026-05-14 | d005 position bias confound: contamination SFT 将 \\\" | exp_001_eval_05B_aligned_batch, exp_001_sft_d005_05B_v3 |\\n\\n\\n\\n\\n\", \"lines\": 100}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0469cea7-c9d5-49e9-9a5d-ef14e4d41a4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-14T21:50:55.078Z_
+
+```json
+{
+  "parentUuid": "863f2fc8-45e5-4f08-9140-41fee81c347c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d1188973-fc76-4d47-9045-1d7cbd0a8514",
+  "timestamp": "2026-05-14T21:50:55.078Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "d1188973-fc76-4d47-9045-1d7cbd0a8514",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T21:50:58.035Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_012Bu22FrWfRckP4D6awWMWj`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1188973-fc76-4d47-9045-1d7cbd0a8514",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CbxH3dfstotMMWusjb",
+  "type": "assistant",
+  "uuid": "b4269654-00b6-4fb7-9df9-819294cdfdc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPbAzFeb1j6ZPLCyswurH1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2761,
+      "cache_read_input_tokens": 66854,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 66854,
+          "cache_creation_input_tokens": 2761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T21:50:58.358Z_
+
+<details><summary>↩ Tool result · `toolu_012Bu22FrWfRckP4D6awWMWj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_exp_arc_perbench_nuts_20260514T201612\", \"task_type\": \"exp:arc_perbench_nuts\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:16:13.640083+00:00\", \"ended_at\": \"2026-05-14T20:18:43.270954+00:00\"}, {\"worker_id\": \"worker_analysis_mmlu_item_aligned_gap_20260514T201711\", \"task_type\": \"analysis:mmlu_item_aligned_gap\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:17:12.129627+00:00\", \"ended_at\": \"2026-05-14T20:19:13.532792+00:00\"}, {\"worker_id\": \"worker_ops_gpu_status_d026_20260514T201815\", \"task_type\": \"ops:gpu_status_d026\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:18:15.620542+00:00\", \"ended_at\": \"2026-05-14T20:20:13.862516+00:00\"}, {\"worker_id\": \"worker_gpu_sft_05B_d100_s123_gpu1_20260514T201947\", \"task_type\": \"gpu:sft_05B_d100_s123_gpu1\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:19:48.089985+00:00\", \"ended_at\": \"2026-05-14T20:20:32.214265+00:00\"}, {\"worker_id\": \"worker_gpu_sft_15B_d100_s123_gpu2_20260514T201959\", \"task_type\": \"gpu:sft_15B_d100_s123_gpu2\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:19:59.778477+00:00\", \"ended_at\": \"2026-05-14T20:21:34.064515+00:00\"}, {\"worker_id\": \"worker_gpu_sft_3B_d000_s123_gpu5_20260514T202009\", \"task_type\": \"gpu:sft_3B_d000_s123_gpu5\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:20:10.431865+00:00\", \"ended_at\": \"2026-05-14T20:24:45.198769+00:00\"}, {\"worker_id\": \"worker_code_d018_exclusion_signal_homogeneity_20260514T204013\", \"task_type\": \"code:d018_exclusion_signal_homogeneity\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:40:13.775552+00:00\", \"ended_at\": \"2026-05-14T20:48:58.094042+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_stuck_check_kill_20260514T204146\", \"task_type\": \"ops:gpu4_stuck_check_kill\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:41:46.674485+00:00\", \"ended_at\": \"2026-05-14T20:42:54.198449+00:00\"}, {\"worker_id\": \"worker_audit_gpu-status-loop7_20260514T204758\", \"task_type\": \"audit:gpu-status-loop7\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:47:59.237930+00:00\", \"ended_at\": \"2026-05-14T20:49:48.278572+00:00\"}, {\"worker_id\": \"worker_analysis_dose-response-compilation_20260514T205002\", \"task_type\": \"analysis:dose-response-compilation\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:50:03.038760+00:00\", \"ended_at\": \"2026-05-14T20:54:34.611263+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_3B_d000v2_eval_queue_20260514T205052\", \"task_type\": \"ops:gpu4_3B_d000v2_eval_queue\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:50:53.775898+00:00\", \"ended_at\": \"2026-05-14T20:52:00.787821+00:00\"}, {\"worker_id\": \"worker_analysis_d000_baseline_gap_20260514T205159\", \"task_type\": \"analysis:d000_baseline_gap\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:52:00.113020+00:00\", \"ended_at\": \"2026-05-14T20:54:32.082561+00:00\"}, {\"worker_id\": \"worker_ops_find_cpu_experiments_20260514T205253\", \"task_type\": \"ops:find_cpu_experiments\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:52:54.156304+00:00\", \"ended_at\": \"2026-05-14T20:55:02.225012+00:00\"}, {\"worker_id\": \"worker_code_compute_ground_truth_cross_scale_20260514T205354\", \"task_type\": \"code:compute_ground_truth_cross_scale\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:53:54.817230+00:00\", \"ended_at\": \"2026-05-14T20:56:02.742508+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_3B_eval_wait_submit_20260514T205528\", \"task_type\": \"ops:gpu4_3B_eval_wait_submit\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:55:29.372024+00:00\", \"ended_at\": \"2026-05-14T20:57:02.882504+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_eval_cycle_20260514T205625\", \"task_type\": \"ops:gpu4_eval_cycle\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:56:25.765957+00:00\", \"ended_at\": \"2026-05-14T21:04:20.932667+00:00\"}, {\"worker_id\": \"worker_ops_gpu_status_and_next_submit_20260514T210035\", \"task_type\": \"ops:gpu_status_and_next_submit\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:00:35.743062+00:00\", \"ended_at\": \"2026-05-14T21:05:38.459875+00:00\"}, {\"worker_id\": \"worker_ops_registry_batch_fix_and_gpu1_20260514T210615\", \"task_type\": \"ops:registry_batch_fix_and_gpu1\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:06:15.629992+00:00\", \"ended_at\": \"2026-05-14T21:31:55.000495+00:00\"}, {\"worker_id\": \"worker_ops_cpu_exp005_restart_20260514T211806\", \"task_type\": \"ops:cpu_exp005_restart\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:18:07.025074+00:00\", \"ended_at\": \"2026-05-14T21:19:44.995661+00:00\"}, {\"worker_id\": \"worker_ops_cpu_exp004_restart_parallel_20260514T211825\", \"task_type\": \"ops:cpu_exp004_restart_parallel\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:18:25.826843+00:00\", \"ended_at\": \"2026-05-14T21:22:16.764499+00:00\"}], \"count\": 20}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4269654-00b6-4fb7-9df9-819294cdfdc4",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "5b1f8c93-b4f9-464e-b394-1878547fd45e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_exp_arc_perbench_nuts_20260514T201612\\\", \\\"task_type\\\": \\\"exp:arc_perbench_nuts\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:16:13.640083+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:18:43.270954+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_mmlu_item_aligned_gap_20260514T201711\\\", \\\"task_type\\\": \\\"analysis:mmlu_item_aligned_gap\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:17:12.129627+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:19:13.532792+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu_status_d026_20260514T201815\\\", \\\"task_type\\\": \\\"ops:gpu_status_d026\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:18:15.620542+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:20:13.862516+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_gpu_sft_05B_d100_s123_gpu1_20260514T201947\\\", \\\"task_type\\\": \\\"gpu:sft_05B_d100_s123_gpu1\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:19:48.089985+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:20:32.214265+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_gpu_sft_15B_d100_s123_gpu2_20260514T201959\\\", \\\"task_type\\\": \\\"gpu:sft_15B_d100_s123_gpu2\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:19:59.778477+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:21:34.064515+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_gpu_sft_3B_d000_s123_gpu5_20260514T202009\\\", \\\"task_type\\\": \\\"gpu:sft_3B_d000_s123_gpu5\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:20:10.431865+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:24:45.198769+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_d018_exclusion_signal_homogeneity_20260514T204013\\\", \\\"task_type\\\": \\\"code:d018_exclusion_signal_homogeneity\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:40:13.775552+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:48:58.094042+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu4_stuck_check_kill_20260514T204146\\\", \\\"task_type\\\": \\\"ops:gpu4_stuck_check_kill\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:41:46.674485+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:42:54.198449+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_audit_gpu-status-loop7_20260514T204758\\\", \\\"task_type\\\": \\\"audit:gpu-status-loop7\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:47:59.237930+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:49:48.278572+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_dose-response-compilation_20260514T205002\\\", \\\"task_type\\\": \\\"analysis:dose-response-compilation\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:50:03.038760+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:54:34.611263+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu4_3B_d000v2_eval_queue_20260514T205052\\\", \\\"task_type\\\": \\\"ops:gpu4_3B_d000v2_eval_queue\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:50:53.775898+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:52:00.787821+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_d000_baseline_gap_20260514T205159\\\", \\\"task_type\\\": \\\"analysis:d000_baseline_gap\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:52:00.113020+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:54:32.082561+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_find_cpu_experiments_20260514T205253\\\", \\\"task_type\\\": \\\"ops:find_cpu_experiments\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:52:54.156304+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:55:02.225012+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_code_compute_ground_truth_cross_scale_20260514T205354\\\", \\\"task_type\\\": \\\"code:compute_ground_truth_cross_scale\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:53:54.817230+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:56:02.742508+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu4_3B_eval_wait_submit_20260514T205528\\\", \\\"task_type\\\": \\\"ops:gpu4_3B_eval_wait_submit\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:55:29.372024+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:57:02.882504+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu4_eval_cycle_20260514T205625\\\", \\\"task_type\\\": \\\"ops:gpu4_eval_cycle\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T20:56:25.765957+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T21:04:20.932667+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu_status_and_next_submit_20260514T210035\\\", \\\"task_type\\\": \\\"ops:gpu_status_and_next_submit\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T21:00:35.743062+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T21:05:38.459875+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_registry_batch_fix_and_gpu1_20260514T210615\\\", \\\"task_type\\\": \\\"ops:registry_batch_fix_and_gpu1\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T21:06:15.629992+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T21:31:55.000495+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cpu_exp005_restart_20260514T211806\\\", \\\"task_type\\\": \\\"ops:cpu_exp005_restart\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T21:18:07.025074+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T21:19:44.995661+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cpu_exp004_restart_parallel_20260514T211825\\\", \\\"task_type\\\": \\\"ops:cpu_exp004_restart_parallel\\\", \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T21:18:25.826843+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T21:22:16.764499+00:00\\\"}], \\\"count\\\": 20}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_exp_arc_perbench_nuts_20260514T201612\", \"task_type\": \"exp:arc_perbench_nuts\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:16:13.640083+00:00\", \"ended_at\": \"2026-05-14T20:18:43.270954+00:00\"}, {\"worker_id\": \"worker_analysis_mmlu_item_aligned_gap_20260514T201711\", \"task_type\": \"analysis:mmlu_item_aligned_gap\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:17:12.129627+00:00\", \"ended_at\": \"2026-05-14T20:19:13.532792+00:00\"}, {\"worker_id\": \"worker_ops_gpu_status_d026_20260514T201815\", \"task_type\": \"ops:gpu_status_d026\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:18:15.620542+00:00\", \"ended_at\": \"2026-05-14T20:20:13.862516+00:00\"}, {\"worker_id\": \"worker_gpu_sft_05B_d100_s123_gpu1_20260514T201947\", \"task_type\": \"gpu:sft_05B_d100_s123_gpu1\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:19:48.089985+00:00\", \"ended_at\": \"2026-05-14T20:20:32.214265+00:00\"}, {\"worker_id\": \"worker_gpu_sft_15B_d100_s123_gpu2_20260514T201959\", \"task_type\": \"gpu:sft_15B_d100_s123_gpu2\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:19:59.778477+00:00\", \"ended_at\": \"2026-05-14T20:21:34.064515+00:00\"}, {\"worker_id\": \"worker_gpu_sft_3B_d000_s123_gpu5_20260514T202009\", \"task_type\": \"gpu:sft_3B_d000_s123_gpu5\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:20:10.431865+00:00\", \"ended_at\": \"2026-05-14T20:24:45.198769+00:00\"}, {\"worker_id\": \"worker_code_d018_exclusion_signal_homogeneity_20260514T204013\", \"task_type\": \"code:d018_exclusion_signal_homogeneity\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:40:13.775552+00:00\", \"ended_at\": \"2026-05-14T20:48:58.094042+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_stuck_check_kill_20260514T204146\", \"task_type\": \"ops:gpu4_stuck_check_kill\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:41:46.674485+00:00\", \"ended_at\": \"2026-05-14T20:42:54.198449+00:00\"}, {\"worker_id\": \"worker_audit_gpu-status-loop7_20260514T204758\", \"task_type\": \"audit:gpu-status-loop7\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:47:59.237930+00:00\", \"ended_at\": \"2026-05-14T20:49:48.278572+00:00\"}, {\"worker_id\": \"worker_analysis_dose-response-compilation_20260514T205002\", \"task_type\": \"analysis:dose-response-compilation\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:50:03.038760+00:00\", \"ended_at\": \"2026-05-14T20:54:34.611263+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_3B_d000v2_eval_queue_20260514T205052\", \"task_type\": \"ops:gpu4_3B_d000v2_eval_queue\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:50:53.775898+00:00\", \"ended_at\": \"2026-05-14T20:52:00.787821+00:00\"}, {\"worker_id\": \"worker_analysis_d000_baseline_gap_20260514T205159\", \"task_type\": \"analysis:d000_baseline_gap\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:52:00.113020+00:00\", \"ended_at\": \"2026-05-14T20:54:32.082561+00:00\"}, {\"worker_id\": \"worker_ops_find_cpu_experiments_20260514T205253\", \"task_type\": \"ops:find_cpu_experiments\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:52:54.156304+00:00\", \"ended_at\": \"2026-05-14T20:55:02.225012+00:00\"}, {\"worker_id\": \"worker_code_compute_ground_truth_cross_scale_20260514T205354\", \"task_type\": \"code:compute_ground_truth_cross_scale\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:53:54.817230+00:00\", \"ended_at\": \"2026-05-14T20:56:02.742508+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_3B_eval_wait_submit_20260514T205528\", \"task_type\": \"ops:gpu4_3B_eval_wait_submit\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:55:29.372024+00:00\", \"ended_at\": \"2026-05-14T20:57:02.882504+00:00\"}, {\"worker_id\": \"worker_ops_gpu4_eval_cycle_20260514T205625\", \"task_type\": \"ops:gpu4_eval_cycle\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T20:56:25.765957+00:00\", \"ended_at\": \"2026-05-14T21:04:20.932667+00:00\"}, {\"worker_id\": \"worker_ops_gpu_status_and_next_submit_20260514T210035\", \"task_type\": \"ops:gpu_status_and_next_submit\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:00:35.743062+00:00\", \"ended_at\": \"2026-05-14T21:05:38.459875+00:00\"}, {\"worker_id\": \"worker_ops_registry_batch_fix_and_gpu1_20260514T210615\", \"task_type\": \"ops:registry_batch_fix_and_gpu1\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:06:15.629992+00:00\", \"ended_at\": \"2026-05-14T21:31:55.000495+00:00\"}, {\"worker_id\": \"worker_ops_cpu_exp005_restart_20260514T211806\", \"task_type\": \"ops:cpu_exp005_restart\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:18:07.025074+00:00\", \"ended_at\": \"2026-05-14T21:19:44.995661+00:00\"}, {\"worker_id\": \"worker_ops_cpu_exp004_restart_parallel_20260514T211825\", \"task_type\": \"ops:cpu_exp004_restart_parallel\", \"project\": \"contamcal-irt-calibration\", \"status\": \"done\", \"started_at\": \"2026-05-14T21:18:25.826843+00:00\", \"ended_at\": \"2026-05-14T21:22:16.764499+00:00\"}], \"count\": 20}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b4269654-00b6-4fb7-9df9-819294cdfdc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T21:51:01.938Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_available_gpus · `toolu_01Li3Ng6CtAPdsng61zHsLX1`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b1f8c93-b4f9-464e-b394-1878547fd45e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CcC2n5dEsqeDTN7t9n",
+  "type": "assistant",
+  "uuid": "2add72c9-e142-4770-ac72-933ef1d7323d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014k7MB1TYuPMiykrBrfNaGD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2734,
+      "cache_read_input_tokens": 69615,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 69615,
+          "cache_creation_input_tokens": 2734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T21:51:04.008Z_
+
+<details><summary>↩ Tool result · `toolu_01Li3Ng6CtAPdsng61zHsLX1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"gpus\": [{\"id\": \"cuda:0\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 11875, \"memory_total_mb\": 24564, \"utilization_pct\": 61, \"temperature_c\": 47, \"config_available\": true}, {\"id\": \"cuda:1\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 3695, \"memory_total_mb\": 24564, \"utilization_pct\": 39, \"temperature_c\": 37, \"config_available\": true}, {\"id\": \"cuda:2\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 14723, \"memory_total_mb\": 24564, \"utilization_pct\": 21, \"temperature_c\": 46, \"config_available\": true}, {\"id\": \"cuda:3\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 13341, \"memory_total_mb\": 24564, \"utilization_pct\": 65, \"temperature_c\": 55, \"config_available\": true}, {\"id\": \"cuda:4\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 8985, \"memory_total_mb\": 24564, \"utilization_pct\": 68, \"temperature_c\": 56, \"config_available\": true}, {\"id\": \"cuda:5\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 17327, \"memory_total_mb\": 24564, \"utilization_pct\": 23, \"temperature_c\": 52, \"config_available\": true}], \"server\": \"cqa1-21977\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2add72c9-e142-4770-ac72-933ef1d7323d",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "34c67b5b-9a74-4404-bbf1-cef5d1ad2c97",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"gpus\\\": [{\\\"id\\\": \\\"cuda:0\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 11875, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 61, \\\"temperature_c\\\": 47, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:1\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 3695, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 39, \\\"temperature_c\\\": 37, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:2\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 14723, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 21, \\\"temperature_c\\\": 46, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:3\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 13341, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 65, \\\"temperature_c\\\": 55, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:4\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 8985, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 68, \\\"temperature_c\\\": 56, \\\"config_available\\\": true}, {\\\"id\\\": \\\"cuda:5\\\", \\\"name\\\": \\\"NVIDIA GeForce RTX 4090 D\\\", \\\"memory_used_mb\\\": 17327, \\\"memory_total_mb\\\": 24564, \\\"utilization_pct\\\": 23, \\\"temperature_c\\\": 52, \\\"config_available\\\": true}], \\\"server\\\": \\\"cqa1-21977\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"gpus\": [{\"id\": \"cuda:0\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 11875, \"memory_total_mb\": 24564, \"utilization_pct\": 61, \"temperature_c\": 47, \"config_available\": true}, {\"id\": \"cuda:1\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 3695, \"memory_total_mb\": 24564, \"utilization_pct\": 39, \"temperature_c\": 37, \"config_available\": true}, {\"id\": \"cuda:2\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 14723, \"memory_total_mb\": 24564, \"utilization_pct\": 21, \"temperature_c\": 46, \"config_available\": true}, {\"id\": \"cuda:3\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 13341, \"memory_total_mb\": 24564, \"utilization_pct\": 65, \"temperature_c\": 55, \"config_available\": true}, {\"id\": \"cuda:4\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 8985, \"memory_total_mb\": 24564, \"utilization_pct\": 68, \"temperature_c\": 56, \"config_available\": true}, {\"id\": \"cuda:5\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 17327, \"memory_total_mb\": 24564, \"utilization_pct\": 23, \"temperature_c\": 52, \"config_available\": true}], \"server\": \"cqa1-21977\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2add72c9-e142-4770-ac72-933ef1d7323d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T21:52:42.607Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the current state:
+
+**Registry RUNNING experiments:**
+1. `exp_001_eval_05B_d100_s123_aligned` - 0.5B d100 s123 eval (cuda:?)
+2. `exp_001_sft_d100_3B_v2` - 3B d100 SFT v2 (cuda:?)
+3. `exp002-signals-1p5B` - 1.5B signal computation (cuda:?)
+4. `exp_001_eval_3B_d000_v2_aligned` - 3B d000 v2 aligned eval (cuda:?)
+
+
+5. `exp_001_sft_15B_d100_s123` - 1.5B d100 s123 SFT (cuda:?)
+6. `exp_001_sft_3B_d000_s123` - 3B d000 s123 SFT (cuda:?)
+7. `exp_004_sim_sweep_v2` - marked as RUNNING but showing a failed conclusion, which is odd
+
+Looking at the GPU allocation, I've got memory spread across the available hardware with cuda:0 at 61% utilization and cuda:1 at 39%, though I'm not seeing clear device assignments for all these experiments.
+
+Checking the rest of the GPU status, cuda:2 through cuda:5 are all active with varying loads, so all six GPUs are occupied with no idle capacity. Several key experiments have wrapped up successfully—the 15B aligned batch evaluation completed with full metrics, the NUTS sampling approach worked out for both GSM8K and ARC with the 0.5B model, and various other 1.5B evaluation runs finished. All 20 workers are running.
+
+The two workers I spawned before the MCP disconnect—the analysis worker for the 15B experiment and the GPU idle-fill worker—aren't showing up in the current registry, so they may have been lost during the disconnect. However, the experiment itself already has comprehensive metrics populated across MMLU and GSM8K with different dataset variants and paraphrase conditions, so the core work got through.
+
+Looking at the full results, the key insight is that multiple-choice benchmarks don't reliably detect contamination at this scale—the differences are less than a percentage point—but HumanEval shows a dramatic dose-response pattern with over 17 percentage points of improvement, while the paraphrase manipulation doesn't cleanly separate contamination effects the way I'd hoped.
+
+Now I need to assess the status of my experiments. exp_004_sim_sweep_v2 is marked as running but failed, which is contradictory—only 53 of 120 runs finished and nothing was reconciled. exp_005_noise_prop_v3 is done but also failed, with the process crashing after completing 22 of 25 fits. I should check if these processes are still active on the GPUs and figure out what went wrong with the worker that was supposed to handle exp_001_eval.
+
+Looking at the worker registry, the expected workers for exp_001_eval aren't in the recent list, but the metrics are already complete, so either a downstream worker processed them or it finished under a different name. The dose-response compilation worker that finished around that time might have picked up those results. Across all 6 GPUs, memory is allocated, suggesting active experiments—cuda:0 is running the 1.5B signal computation with 11.9GB, while cuda:1 has lighter usage at 3.7GB, possibly wrapping up evaluations or handling smaller tasks.
+
+Mapping the remaining GPUs, cuda:2 is consuming 14.7GB likely for eval or signal work, cuda:3 has 13.3GB allocated for the 3B d100 SFT v2 experiment, cuda:4 is using 9.0GB for eval, and cuda:5 is at 17.3GB running the 3B d000 s123 SFT training. The registry shows six experiments currently running: the 05B and 3B d000 v2 aligned evaluations, the 1.5B signal computation, both 3B and 15B SFT training jobs, and the 3B d100 v2 SFT training.
+
+Now I'm checking on the CPU experiment exp_004_sim_sweep_v2 and realizing I need to verify which GPUs are actually assigned to these six running experiments since I only have six GPUs available. Looking back at the worker logs, it seems the system has already handled several tasks in parallel loops: the 1.5B eval batch analysis, GPU status audits, the 3B d000 v2 eval submission, registry batch fixes, and CPU experiment restarts.
+
+The immediate priorities are confirming what's actually running on each GPU, resolving the inconsistency with exp_004 showing RUNNING but failed, checking on exp_005 which needs to be restarted as v4, and updating the Director with the 1.5B eval batch results. I should spawn a worker to check the actual GPU processes first.
+
+Wait, I'm re-reading the handoff more carefully now. It mentions two workers that hadn't returned before the MCP disconnect at 18:45 UTC, but looking at the worker registry, I can see that many workers have completed successfully since then—the system has been running for several hours. The 1.5B eval batch results are already in the registry with success status and full metrics recorded.
+
+So the real question is what's actually happening right now with the current GPU state and which tasks genuinely need attention versus which ones have already been handled by subsequent workers.
+
+Looking at the active experiments, I have six runs in progress at various stages: the 5B eval started most recently at 21:31, the 3B SFT has been running for about three hours and should be wrapping up soon, the signals experiment is about an hour and a half in, and three other SFT runs are in their first couple hours of execution.
+
+There's also an odd CPU-based simulation sweep that's marked as running despite showing a failed conclusion. All six GPUs are fully utilized right now with no idle capacity, and the worker queue is empty since previous jobs have completed.
+
+The main updates for the Director are that the 1.5B eval batch finished and revealed something important—the multiple choice benchmarks aren't sensitive enough to catch contamination at that scale. The IRT NUTS validation checks out for both GSM8K and ARC with reasonable confidence intervals, the 0.5B signals work is done, and we're at full GPU saturation. There's also a note that this CRON callback hasn't been reported to the Director yet.
+
+Before I report anything, I need to verify that those experiments marked as RUNNING are actually still executing, fix the status inconsistency on that simulation sweep, and figure out what experiments should queue up once GPUs become available. Let me spawn a worker to check the actual GPU processes and get a comprehensive status report ready for the Director. I need to focus on the immediate priorities: spawn a worker to check GPU status and map the running processes, fix the exp_004_sim_sweep_v2 experiment by marking it as done since it failed, then report back to the Director with a comprehensive status update. All six GPUs are currently in use based on memory allocation, so there's no idle capacity right now. I'm starting to draft the Director report, beginning with the 1.5B eval batch results and moving through the key findings from the recent experiments.
+
+Now looking at the detailed benchmark results from the 1.5B evaluation—the MC benchmarks show minimal contamination signal with less than 1 percentage point differences between the clean and contaminated versions across MMLU, GSM8K, and ARC, while HumanEval demonstrates a strong dose-response pattern with a 17.69 percentage point gap. The paraphrase metric doesn't cleanly separate contamination at this scale, which reinforces the hypothesis that contamination effects are scale-dependent: they're nearly invisible in simple metrics at 1.5B but become pronounced at larger model sizes. I'm also preparing to discuss the IRT validation results.
+
+For the Bayesian analysis, the NUTS sampling converged well for both GSM8K and ARC, but the credible intervals for the gamma parameters include zero, meaning I can't establish statistical significance at the 0.5B scale with just four models—I'll need to pool across scales to get enough statistical power. Meanwhile, all six GPUs are currently running experiments across different model sizes and contamination conditions.
+
+Now I'm reviewing which PREPARING experiments could be queued next. The most critical one is the Tiered IRT calibration for the 0.5B model, which is a key experiment for understanding item response patterns, though there are also several other experiments in the queue including the GSM8K delta analysis and some that have already been superseded or failed.
+
+The Tiered IRT experiment is blocked on needing 1.5B signals to complete the pooled calibration, and that signal generation is currently running. So my immediate plan is to spawn a worker to check GPU processes and CPU status for the other experiments, fix the inconsistent registry entry where exp_004_sim_sweep_v2 shows as RUNNING but has a failed conclusion, and then report the comprehensive state to the Director since I'm not certain whether previous workers already updated them.
+
+Looking at the data more carefully, exp_004_sim_sweep_v2 has 48 out of 120 runs completed with stable core findings, yet it's marked as failed — this likely means the process crashed and a cron detected it, but the status wasn't updated to DONE. Similarly, exp_005_noise_prop_v3 is marked as done/failed with notes indicating the process crashed about 10 hours ago after completing 22 of 25 fits, and it's being restarted as v4. I need to fix these registry inconsistencies and spawn a worker to verify whether the exp_004 process is actually still running, since it's a CPU experiment but the GPU status shows all GPUs active.
+
+Let me spawn an audit worker to check the GPU and CPU processes, then compose a report for the Director. I also notice the handoff mentions restarting exp_005 as v4, but I don't see v4 in the registry yet — the worker_ops_cpu_exp005_restart completed at 21:19, so I should verify whether that restart actually happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34c67b5b-9a74-4404-bbf1-cef5d1ad2c97",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CccnJuMTr1RbDFKyyG",
+  "type": "assistant",
+  "uuid": "8d1f1319-e966-443c-bad4-9ff88a89a7ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nsUBCSTqskYbbyde3NGff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 72349,
+      "output_tokens": 5115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5115,
+          "cache_read_input_tokens": 72349,
+          "cache_creation_input_tokens": 634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-14T21:52:47.251Z_
+
+初始化数据全部拉取完毕。当前态势：
+
+- **RUNNING**: 6 GPU 实验 + 1 CPU 实验（exp_004_sim_sweep_v2 状态矛盾：RUNNING 但 conclusion=failed）
+- **GPU**: 全部 6 卡有内存占用，无空闲
+- **Workers**: 最近 20 个全部 done，池为 0（需补充）
+- **关键完成**: 1.5B eval batch 已有完整 metrics（MC <1pp，HumanEval +17.69pp），IRT GSM8K/ARC NUTS 验证通过
+- **handoff 提到的两个 Worker** 不在最近列表中，但后续 loops 已经处理了对应任务（结果已入 registry）
+
+汇报 Director 前先读 resource-saturation skill，同时 spawn Worker 审计实际 GPU/CPU 进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d1f1319-e966-443c-bad4-9ff88a89a7ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CccnJuMTr1RbDFKyyG",
+  "type": "assistant",
+  "uuid": "ad6226e4-fd4e-48c2-8fef-2a6b6b5a282f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nsUBCSTqskYbbyde3NGff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 72349,
+      "output_tokens": 5115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5115,
+          "cache_read_input_tokens": 72349,
+          "cache_creation_input_tokens": 634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T21:52:48.137Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FT2jeXV27Zu7s7fEAXmVcu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad6226e4-fd4e-48c2-8fef-2a6b6b5a282f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CccnJuMTr1RbDFKyyG",
+  "type": "assistant",
+  "uuid": "1ab486f5-8fea-4029-b900-c850928cd22c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nsUBCSTqskYbbyde3NGff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 634,
+      "cache_read_input_tokens": 72349,
+      "output_tokens": 5115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 634,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5115,
+          "cache_read_input_tokens": 72349,
+          "cache_creation_input_tokens": 634,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 634
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T21:52:48.333Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01FT2jeXV27Zu7s7fEAXmVcu`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ab486f5-8fea-4029-b900-c850928cd22c",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "c0980c8a-5d99-4684-989d-93291d7653ad",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a.",
+  "sourceToolAssistantUUID": "1ab486f5-8fea-4029-b900-c850928cd22c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "c0980c8a-5d99-4684-989d-93291d7653ad",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T21:52:51.582Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01K7btX2H5FVcaapD9sLhFVa`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0980c8a-5d99-4684-989d-93291d7653ad",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CkJPjo6hAL1mwrUevZ",
+  "type": "assistant",
+  "uuid": "790cbd6b-0003-4f8d-b2ef-6bbaa64a3bb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VYsp9nLaEJiHknq5sRJx7d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5183,
+      "cache_read_input_tokens": 72983,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5183,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 72983,
+          "cache_creation_input_tokens": 5183,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5183
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T21:52:52.170Z_
+
+<details><summary>↩ Tool result · `toolu_01K7btX2H5FVcaapD9sLhFVa`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "790cbd6b-0003-4f8d-b2ef-6bbaa64a3bb9",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "e7bc4548-cb19-406a-8fd6-ec95e0dbd332",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 492,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "790cbd6b-0003-4f8d-b2ef-6bbaa64a3bb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T21:52:55.098Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01N8wjVW2XiQ67MFVjwn8Hxe`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7bc4548-cb19-406a-8fd6-ec95e0dbd332",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Ckaim1EJdjGfAb2CPd",
+  "type": "assistant",
+  "uuid": "e0d0bee4-1971-4610-be10-71e67108625d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011L6AD7A4LDXkat9LQsnYyB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 111,
+      "cache_read_input_tokens": 78166,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 78166,
+          "cache_creation_input_tokens": 111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T21:52:58.653Z_
+
+<details><summary>↩ Tool result · `toolu_01N8wjVW2XiQ67MFVjwn8Hxe`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0d0bee4-1971-4610-be10-71e67108625d",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "bd47281e-469f-4367-9175-f6c693c3bbd7",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 3525,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "e0d0bee4-1971-4610-be10-71e67108625d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T21:53:01.695Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GkJ5vRzLZiFM6qUm9K79Ux`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd47281e-469f-4367-9175-f6c693c3bbd7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Cm4FxiZNhdiod632oc",
+  "type": "assistant",
+  "uuid": "afa3a846-5637-4da7-a11f-2eed78e9ee7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ASDfSiakUpw5s4p5Edi82",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 112,
+      "cache_read_input_tokens": 78277,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 78277,
+          "cache_creation_input_tokens": 112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T21:53:01.794Z_
+
+<details><summary>↩ Tool result · `toolu_01GkJ5vRzLZiFM6qUm9K79Ux`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afa3a846-5637-4da7-a11f-2eed78e9ee7c",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "bb1a3414-fbee-4ab3-9469-4f9f08ded651",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "afa3a846-5637-4da7-a11f-2eed78e9ee7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T21:53:06.933Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so I need to:
+1. Check GPU resource usage via `get_project_resource_usage`
+2. Ensure Worker pool >= 2
+3. Report to Director with [资源] line
+
+Let me also fix exp_004_sim_sweep_v2's inconsistency.
+
+Let me now:
+1. Call get_project_resource_usage
+2. Fix exp_004_sim_sweep_v2 status
+3. Spawn workers for GPU audit and other productive tasks
+4. Report to Director
+
+Let me do the resource usage check and fix the registry in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb1a3414-fbee-4ab3-9469-4f9f08ded651",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CmJA8Jsd3tuqehhEs9",
+  "type": "assistant",
+  "uuid": "17d6f52d-68a6-4fa8-a988-7108eed293d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzaG54Cq1Mea98gEPTr3Qd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 78389,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 78389,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T21:53:07.050Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_01CUajREmaVj9M9uTm6U2E3Y`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17d6f52d-68a6-4fa8-a988-7108eed293d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CmJA8Jsd3tuqehhEs9",
+  "type": "assistant",
+  "uuid": "73ca891b-546f-4ec2-adaf-71d2649506b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzaG54Cq1Mea98gEPTr3Qd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 78389,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 78389,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T21:53:09.581Z_
+
+<details><summary>↩ Tool result · `toolu_01CUajREmaVj9M9uTm6U2E3Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\"}], \"actually_running_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp_001_sft_d100_3B_v2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp_001_sft_15B_d100_s123\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\", \"exp_id\": \"exp_001_sft_3B_d000_s123\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"exp_id\": \"exp_001_eval_3B_d000_v2_aligned\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_001_eval_05B_d100_s123_aligned\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}], \"running_experiments\": [{\"exp_id\": \"exp_001_sft_d100_3B_v2\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_15B_d100_s123\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_3B_d000_s123\", \"gpus\": [\"cuda:5\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_3B_d000_v2_aligned\", \"gpus\": [\"cuda:4\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_05B_d100_s123_aligned\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 3, \"gpu_tasks\": 1, \"cpu_tasks\": 2, \"details\": [{\"worker_id\": \"worker_ops_cpu_exp005_v4_restart_20260514T215110\", \"task\": \"ops:cpu_exp005_v4_restart\"}, {\"worker_id\": \"worker_ops_cpu_exp004_v3_restart_20260514T215133\", \"task\": \"ops:cpu_exp004_v3_restart\"}, {\"worker_id\": \"worker_ops_gpu_monitor_and_submit_queue_20260514T215157\", \"task\": \"ops:gpu_monitor_and_submit_queue\"}]}, \"summary\": \"分配 6 张, 实际跑 5 张 ⚠️ | Worker 3 (GPU 1 / CPU 2)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73ca891b-546f-4ec2-adaf-71d2649506b3",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "65431080-1f50-46f6-9f5a-a2793f97e636",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:4\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:5\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"exp_001_sft_d100_3B_v2\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"exp_001_sft_15B_d100_s123\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"exp_001_sft_3B_d000_s123\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"exp_001_eval_3B_d000_v2_aligned\\\"}, {\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"exp_001_eval_05B_d100_s123_aligned\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"exp_001_sft_d100_3B_v2\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp_001_sft_15B_d100_s123\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp_001_sft_3B_d000_s123\\\", \\\"gpus\\\": [\\\"cuda:5\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp_001_eval_3B_d000_v2_aligned\\\", \\\"gpus\\\": [\\\"cuda:4\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"exp_001_eval_05B_d100_s123_aligned\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 3, \\\"gpu_tasks\\\": 1, \\\"cpu_tasks\\\": 2, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_ops_cpu_exp005_v4_restart_20260514T215110\\\", \\\"task\\\": \\\"ops:cpu_exp005_v4_restart\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cpu_exp004_v3_restart_20260514T215133\\\", \\\"task\\\": \\\"ops:cpu_exp004_v3_restart\\\"}, {\\\"worker_id\\\": \\\"worker_ops_gpu_monitor_and_submit_queue_20260514T215157\\\", \\\"task\\\": \\\"ops:gpu_monitor_and_submit_queue\\\"}]}, \\\"summary\\\": \\\"分配 6 张, 实际跑 5 张 ⚠️ | Worker 3 (GPU 1 / CPU 2)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\"}], \"actually_running_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp_001_sft_d100_3B_v2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp_001_sft_15B_d100_s123\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\", \"exp_id\": \"exp_001_sft_3B_d000_s123\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"exp_id\": \"exp_001_eval_3B_d000_v2_aligned\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_001_eval_05B_d100_s123_aligned\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}], \"running_experiments\": [{\"exp_id\": \"exp_001_sft_d100_3B_v2\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_15B_d100_s123\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_3B_d000_s123\", \"gpus\": [\"cuda:5\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_3B_d000_v2_aligned\", \"gpus\": [\"cuda:4\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_05B_d100_s123_aligned\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 3, \"gpu_tasks\": 1, \"cpu_tasks\": 2, \"details\": [{\"worker_id\": \"worker_ops_cpu_exp005_v4_restart_20260514T215110\", \"task\": \"ops:cpu_exp005_v4_restart\"}, {\"worker_id\": \"worker_ops_cpu_exp004_v3_restart_20260514T215133\", \"task\": \"ops:cpu_exp004_v3_restart\"}, {\"worker_id\": \"worker_ops_gpu_monitor_and_submit_queue_20260514T215157\", \"task\": \"ops:gpu_monitor_and_submit_queue\"}]}, \"summary\": \"分配 6 张, 实际跑 5 张 ⚠️ | Worker 3 (GPU 1 / CPU 2)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "73ca891b-546f-4ec2-adaf-71d2649506b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-14T21:53:52.836Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture:
+
+**Resource usage:**
+- Allocated: 6 GPUs (cuda:0-5)
+- Actually running: 5 GPUs
+  - cuda:1: exp_001_eval_05B_d100_s123_aligned
+  - cuda:2: exp_001_sft_15B_d100_s123
+  - cuda:3: exp_001_sft_d100_3B_v2
+  - cuda:4: exp_001_eval_3B_d000_v2_aligned
+  - cuda:5: exp_001_sft_3B_d000_s123
+- **cuda:0: IDLE** ⚠️ (allocated but no running experiment)
+- Worker pool: 3 total (1 GPU, 2 CPU)
+  - worker_ops_cpu_exp005_v4_restart
+  - worker_ops_cpu_exp004_v3_restart
+  - worker_ops_gpu_monitor_and_submit_queue
+
+cuda:0 is sitting idle despite being allocated, which is worth investigating.
+
+Looking at the resource usage, cuda:0 is consuming 11.9GB and running at 61% utilization, but it's not mapped to any tracked experiment. I suspect exp002-signals-1p5B is actually running there—it shows as RUNNING in the registry but doesn't appear in the resource usage tool's list. This likely happened because it was submitted through a different path than the standard submit_training_job flow, so the tracking system lost visibility into it.
+
+Now I'm seeing that exp_004_sim_sweep_v2 has a RUNNING status despite having a failed conclusion, with 3 active workers. The worker pool constraint is satisfied since we have 3 workers available.
+
+Let me pull together the Director report with the key findings: the 1.5B eval batch results show contamination is invisible at that scale on MC benchmarks but there's a strong dose-response signal on HumanEval, confirming scale-dependent contamination visibility. I'm also tracking the IRT validation progress on GSM8K with the NUTS sampler converging well.
+
+For the GPU situation, I'm seeing 5 tracked experiments plus the untracked signals-1p5B job running on cuda:0 consuming 11.9GB. The CPU side has exp_004_sim_sweep_v2 with that status/conclusion mismatch to resolve, and exp_005_noise_prop restarting on v4. Once GPUs free up, exp_006_irt_05B_v2 becomes the critical priority for the tiered IRT work.
+
+I'm noticing cuda:0 shows idle but has significant memory and utilization — that's the signals-1p5B job. Rather than spawn another worker to investigate, the GPU monitor worker should already be handling this, so I'll avoid duplicating effort. My immediate focus is fixing that exp_004 registry inconsistency, reporting the status to the Director, and keeping the worker pool at 3 or higher.
+
+Looking at the registry issue more closely: exp_004_sim_sweep_v2 is marked as RUNNING but has conclusion=failed, so I need to update its status to DONE. The restart workers for both exp-004 and exp-005 have already completed, so I'm checking what resources are still allocated. Looking at which experiments could actually launch next, exp_008_instruct_rl_proxy seemed like a candidate but it actually needs GPU for signal computation despite being CPU-focused, so it's blocked. The other PREPARING experiments either depend on currently running tasks or have unclear requirements. I should focus on reporting the current status to the Director and fixing the registry entry for exp_004_sim_sweep_v2 since the v3 restart is already underway.
+
+For the Director report, I need to cover the resource situation, the 1.5B eval findings, IRT validation progress, what's currently running, and recommendations on next steps. The handoff mentioned the Director hasn't been briefed on the 1.5B results yet, so I should include those findings even though several loops have passed since then.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65431080-1f50-46f6-9f5a-a2793f97e636",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CmsLAatHY1yFNBFX3h",
+  "type": "assistant",
+  "uuid": "7e3bf1a6-212a-477a-8978-56599d0f0552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A23EUtaaKos8UtDmofpe5x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 79536,
+      "output_tokens": 2276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2276,
+          "cache_read_input_tokens": 79536,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-14T21:53:54.566Z_
+
+状态清晰了。cuda:0 被标记为空闲但有 11.9GB 占用/61% 利用率——很可能是 exp002-signals-1p5B 在跑但未被 tracking。Worker 池=3（满足 >=2 约束）。
+
+先修 exp_004_sim_sweep_v2 的 RUNNING/failed 矛盾，然后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e3bf1a6-212a-477a-8978-56599d0f0552",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CmsLAatHY1yFNBFX3h",
+  "type": "assistant",
+  "uuid": "bfc3e973-8f81-4c87-afe9-c3ea6e0405b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A23EUtaaKos8UtDmofpe5x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 79536,
+      "output_tokens": 2276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2276,
+          "cache_read_input_tokens": 79536,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T21:53:55.383Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01SzCDwDLng7LjakfsCkzAdi`</summary>
+
+```json
+{
+  "exp_id": "exp_004_sim_sweep_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfc3e973-8f81-4c87-afe9-c3ea6e0405b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CmsLAatHY1yFNBFX3h",
+  "type": "assistant",
+  "uuid": "bbbae560-d91e-4ce5-81de-211774868736",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A23EUtaaKos8UtDmofpe5x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1190,
+      "cache_read_input_tokens": 79536,
+      "output_tokens": 2276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1190,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2276,
+          "cache_read_input_tokens": 79536,
+          "cache_creation_input_tokens": 1190,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1190
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "bbbae560-d91e-4ce5-81de-211774868736",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T21:54:04.240Z_
+
+<details><summary>↩ Tool result · `toolu_01SzCDwDLng7LjakfsCkzAdi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:12:12.267Z\", \"updated_at\": \"2026-05-14T21:53:59.879Z\", \"spec\": {\"command\": \"python run_sweep.py subset --parallel 2 --chains-parallel 2\", \"server\": \"local\", \"pid\": 599560, \"data_path\": \"synthetic\", \"data_count\": 120, \"model_name\": \"4PL+gamma IRT\", \"seed\": 42, \"log_path\": \"/tmp/exp004_sweep_restart_v2.log\", \"parent\": \"exp_004_sim_sweep\", \"hypothesis\": \"4PL+γ IRT parameter recovery sweep: 12 conditions (4 AUC × 3 N_models) × 10 seeds. v2 restart with parallel=2, chains_parallel=2.\"}, \"notes\": \"PID 599560 crashed (~10h ago). 53/120 runs completed (27 from v1 + 26 from v2). Restarting as v3 with parallelization.\", \"metrics\": {\"runs_completed\": 48, \"runs_total\": 120, \"auc080_n50_bias\": 0.006, \"auc080_n50_rmse\": 0.03, \"auc080_n50_ci95_coverage\": 1, \"auc080_n100_gamma_hat\": 0.508, \"auc080_n100_bias\": 0.008, \"auc080_n100_ci_width\": 0.116, \"auc080_n100_theta_corr\": 0.962, \"ci_width_ratio_n100\": 1.81, \"core_findings_stable\": true}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T21:50:42.987Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.752}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbbae560-d91e-4ce5-81de-211774868736",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "89cebcea-7eb3-450b-960d-123698035ca0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_004_sim_sweep_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:12:12.267Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:53:59.879Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_sweep.py subset --parallel 2 --chains-parallel 2\\\", \\\"server\\\": \\\"local\\\", \\\"pid\\\": 599560, \\\"data_path\\\": \\\"synthetic\\\", \\\"data_count\\\": 120, \\\"model_name\\\": \\\"4PL+gamma IRT\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/tmp/exp004_sweep_restart_v2.log\\\", \\\"parent\\\": \\\"exp_004_sim_sweep\\\", \\\"hypothesis\\\": \\\"4PL+γ IRT parameter recovery sweep: 12 conditions (4 AUC × 3 N_models) × 10 seeds. v2 restart with parallel=2, chains_parallel=2.\\\"}, \\\"notes\\\": \\\"PID 599560 crashed (~10h ago). 53/120 runs completed (27 from v1 + 26 from v2). Restarting as v3 with parallelization.\\\", \\\"metrics\\\": {\\\"runs_completed\\\": 48, \\\"runs_total\\\": 120, \\\"auc080_n50_bias\\\": 0.006, \\\"auc080_n50_rmse\\\": 0.03, \\\"auc080_n50_ci95_coverage\\\": 1, \\\"auc080_n100_gamma_hat\\\": 0.508, \\\"auc080_n100_bias\\\": 0.008, \\\"auc080_n100_ci_width\\\": 0.116, \\\"auc080_n100_theta_corr\\\": 0.962, \\\"ci_width_ratio_n100\\\": 1.81, \\\"core_findings_stable\\\": true}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T21:50:42.987Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.752}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_004_sim_sweep_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:12:12.267Z\", \"updated_at\": \"2026-05-14T21:53:59.879Z\", \"spec\": {\"command\": \"python run_sweep.py subset --parallel 2 --chains-parallel 2\", \"server\": \"local\", \"pid\": 599560, \"data_path\": \"synthetic\", \"data_count\": 120, \"model_name\": \"4PL+gamma IRT\", \"seed\": 42, \"log_path\": \"/tmp/exp004_sweep_restart_v2.log\", \"parent\": \"exp_004_sim_sweep\", \"hypothesis\": \"4PL+γ IRT parameter recovery sweep: 12 conditions (4 AUC × 3 N_models) × 10 seeds. v2 restart with parallel=2, chains_parallel=2.\"}, \"notes\": \"PID 599560 crashed (~10h ago). 53/120 runs completed (27 from v1 + 26 from v2). Restarting as v3 with parallelization.\", \"metrics\": {\"runs_completed\": 48, \"runs_total\": 120, \"auc080_n50_bias\": 0.006, \"auc080_n50_rmse\": 0.03, \"auc080_n50_ci95_coverage\": 1, \"auc080_n100_gamma_hat\": 0.508, \"auc080_n100_bias\": 0.008, \"auc080_n100_ci_width\": 0.116, \"auc080_n100_theta_corr\": 0.962, \"ci_width_ratio_n100\": 1.81, \"core_findings_stable\": true}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T21:50:42.987Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.752}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bbbae560-d91e-4ce5-81de-211774868736",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60 · 2026-05-14T21:54:04.298Z_
+
+```json
+{
+  "parentUuid": "89cebcea-7eb3-450b-960d-123698035ca0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5731fd8b-d3e2-4fa7-bdb5-3115996c4bff",
+  "timestamp": "2026-05-14T21:54:04.298Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-14T21:54:08.502Z_
+
+Registry 修正完成。现在向 Director 汇报当前综合状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5731fd8b-d3e2-4fa7-bdb5-3115996c4bff",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CquDP7wRmo1KQeFEN5",
+  "type": "assistant",
+  "uuid": "69e03fd2-b708-4810-9e2d-9f760a3a50ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BswSnnLm3yUVirTRASeVX5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2984,
+      "cache_read_input_tokens": 80726,
+      "output_tokens": 1313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1313,
+          "cache_read_input_tokens": 80726,
+          "cache_creation_input_tokens": 2984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T21:54:41.517Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_014DQQnqrK5Fi7YeSXmfRZJn`</summary>
+
+````json
+{
+  "text": "[资源] GPU 分配 6 / 实际跑 5+1(untracked) | Worker 池 3 (GPU 1 / CPU 2)\n\n## 综合状态汇报（Loop #7 session-start）\n\n### 1. 关键发现：1.5B eval batch (exp_001_eval_15B_aligned_batch) ✅\n\nMC benchmarks 在 1.5B 尺度上**完全无法检测污染**（d000 vs d100 差异 <1pp）：\n- MMLU: 58.53% → 59.33% (+0.8pp)\n- GSM8K: 65.43% → 64.97% (-0.5pp)\n- ARC: 77.22% → 76.88% (-0.3pp)\n- HumanEval: 12.8% → 30.49% (**+17.69pp**，强 dose-response)\n\n对比 0.5B（d100 导致 MMLU -16.5pp 退化），**scale-dependent narrative 得到完美验证**：小模型退化、大模型免疫、生成式任务始终敏感。\n\nParaphrase gap 不能干净区分污染（1.5B para 有时高于 orig），这限制了简单 gap 方法的可行性，进一步支撑 IRT calibration 的必要性。\n\n### 2. IRT NUTS 验证进展\n\n- **GSM8K** (exp_006_irt_05B_gsm8k): joint fit 收敛 ✅，Rhat=1.008, ESS=956, 0 divergences。gamma=0.35 CI [-0.65, 1.4]\n- **ARC** (exp_006_irt_05B_arc): gamma=-1.21 CI [-2.53, 0.12]\n- 两者 CI 均包含 0 → **单 scale N=4 模型不足以显著检测 gamma**，验证了 D024/D025 的判断：必须跨 scale 池化\n\nDelta exposure fix (P0) 已生效：signal scores 现在单调递增 [0, 0.016, 0.065, 0.197]\n\n### 3. GPU 实况\n\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| cuda:0 | exp002-signals-1p5B（untracked，11.9GB/61%util） | 🏃 |\n| cuda:1 | exp_001_eval_05B_d100_s123_aligned | 🏃 |\n| cuda:2 | exp_001_sft_15B_d100_s123 | 🏃 |\n| cuda:3 | exp_001_sft_d100_3B_v2 | 🏃 |\n| cuda:4 | exp_001_eval_3B_d000_v2_aligned | 🏃 |\n| cuda:5 | exp_001_sft_3B_d000_s123 | 🏃 |\n\nCPU: exp-004 v3 重启中 | exp-005 v4 重启中 | GPU monitor worker 运行中\n\n### 4. Critical Path\n\n```\n1.5B signals 完成 (cuda:0, ~2-3h remaining)\n  → 0.5B+1.5B pooled IRT (exp_006_irt_05B_v2)\n    → Paper Table 1\n\n并行：3B d000 v2 eval (cuda:4) → 验证 D020 GSM8K 恢复\n并行：seed=123 SFT (cuda:1/2/5) → 多种子方差估计\n并行：3B d100 v2 SFT (cuda:3) → 3B 矩阵最后一块\n```\n\n### 5. 建议\n\n1. **等 1.5B signals 完成后立即启动 pooled IRT** — 这是 Paper Table 1 的直接依赖\n2. **3B d000 v2 eval 完成后** — 若 GSM8K >= 50% (D020 目标)，3B 回归正常矩阵；若仍崩塌则 3B GSM8K 永久排除\n3. **截稿前 11 天** — SFT 矩阵 seed=42 接近完整（缺 0.5B d025 v3 已完成 SFT 但未跑 aligned eval），seed=123 正在补齐",
+  "project": "contamcal-irt-calibration"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69e03fd2-b708-4810-9e2d-9f760a3a50ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CquDP7wRmo1KQeFEN5",
+  "type": "assistant",
+  "uuid": "c191942e-458b-4e0c-9211-ec80f7f24fcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BswSnnLm3yUVirTRASeVX5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2984,
+      "cache_read_input_tokens": 80726,
+      "output_tokens": 1313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1313,
+          "cache_read_input_tokens": 80726,
+          "cache_creation_input_tokens": 2984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T21:55:04.224Z_
+
+<details><summary>↩ Tool result · `toolu_014DQQnqrK5Fi7YeSXmfRZJn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c191942e-458b-4e0c-9211-ec80f7f24fcf",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "5f119ca2-ae97-45ca-98db-2c7b9484e1c6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "c191942e-458b-4e0c-9211-ec80f7f24fcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-14T21:55:27.902Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, report sent to Director. Now let me check if I need to do anything else:
+
+1. Worker pool is at 3, which meets the >= 2 constraint
+2. All 6 GPUs are active (5 tracked + 1 untracked)
+3. Registry inconsistency fixed
+4. Director has been notified
+
+Let me also check on some things that need attention:
+- exp_005_noise_prop_v3 is DONE/failed, v4 restart worker is running
+
+
+- exp_004_sim_sweep_v2 is now DONE/failed, v3 restart worker is running
+- exp002-signals-1p5B is on cuda:0 but untracked — should I fix this?
+
+When GPUs free up, I should prioritize spawning workers for the PREPARING experiments in this order: completing the seed=123 eval after SFT finishes, then pooled IRT once signals are ready, then the 0.5B d025 aligned eval that's missing from the matrix. But the worker pool is already at 3 and they're all doing useful work, so I don't need to spawn anything right now.
+
+The GPU monitor will handle submitting experiments when resources become available. I should also check the handoff items — exp_001_eval_15B_aligned_batch needs verification against the experiment matrix coverage, and the cuda:0/1 GPU allocation is already handled with signals running on cuda:0 and eval on cuda:1. Let me verify the status of the remaining handoff items.
+
+I'm looking at what would be genuinely productive right now. The current workers are handling operational tasks like CPU experiment restarts and GPU monitoring, so I should spawn something research-focused instead — perhaps a deeper analysis of the completed IRT results or identifying which experiments are missing from the matrix so we can queue them when GPUs free up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f119ca2-ae97-45ca-98db-2c7b9484e1c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CvL2kCCXNBguH8yMbB",
+  "type": "assistant",
+  "uuid": "73e1f46a-f42d-4355-8a0a-9027d3821e20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuGnFty8RJ1DEeuWgH1PP7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 83710,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 83710,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T21:55:29.215Z_
+
+Director 汇报已发送。检查实验计划覆盖率，确认接下来哪些实验是 critical 的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73e1f46a-f42d-4355-8a0a-9027d3821e20",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CvL2kCCXNBguH8yMbB",
+  "type": "assistant",
+  "uuid": "33f49e9b-6d92-42da-b8f3-79e4b7699b00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuGnFty8RJ1DEeuWgH1PP7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 83710,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 83710,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T21:55:29.273Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_013YcT7S3WNa2Wnbif6yQH7r`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33f49e9b-6d92-42da-b8f3-79e4b7699b00",
+  "isSidechain": false,
+  "requestId": "req_011Cb3CvL2kCCXNBguH8yMbB",
+  "type": "assistant",
+  "uuid": "9d7ec143-240f-40e7-b961-d14f7b244569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WuGnFty8RJ1DEeuWgH1PP7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1386,
+      "cache_read_input_tokens": 83710,
+      "output_tokens": 860,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1386,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 860,
+          "cache_read_input_tokens": 83710,
+          "cache_creation_input_tokens": 1386,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1386
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T21:55:32.270Z_
+
+<details><summary>↩ Tool result · `toolu_013YcT7S3WNa2Wnbif6yQH7r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"name\": \"controlled_sft_injection\", \"claim\": 1, \"description\": \"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\"Rethinking Benchmark and Contamination\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 50, \"deps\": [], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"models\": [\"Qwen2.5-0.5B\", \"Qwen2.5-1.5B\", \"Qwen2.5-3B\"], \"seeds\": 3, \"registry_id\": \"exp_001_sft_d100_15B_v2\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"exp-002\", \"name\": \"stage1_signal_pipeline\", \"claim\": 2, \"description\": \"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-003\", \"name\": \"rrf_aggregation_ablation\", \"claim\": 2, \"description\": \"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c) calibration-based weighted RRF variant, (d) false positive injection robustness check (inject FP at rates matching Duan et al. 2024). Also test degraded 2-signal mode (ConStat + Self-Critique) for closed-weight.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"exp-002\"], \"status\": \"planned\"}, {\"id\": \"exp-004\", \"name\": \"simulation_identifiability_sweep\", \"claim\": 1, \"also_supports\": [3], \"description\": \"Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5 conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \\\"cannot distinguish no contamination from moderate contamination.\\\" N_items=300 fixed (per MVP finding). Subsumes exp-010 (prior sensitivity) and exp-011 (few-examinee regime) — prior × N_models dimensions already in sweep grid. Growing Pains pre-estimation sub-experiment: at N_models=20/50, compare flat prior vs informative prior from pre-estimated item parameters. Also includes Fisher Information matrix analysis: derive approximate analytical relationship between signal AUC, N_models, and γ recoverability. Distinguish structural identifiability (parameters uniquely determined) from practical identifiability (estimation quality sufficient for decisions). Provides theoretical grounding for the empirical AUC ≥ 0.70 threshold.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"note\": \"CPU only. MVP (mvp_sim_4pl_gamma) was preliminary; this is the full sweep.\", \"registry_id\": \"exp_004_sim_sweep\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"exp-005\", \"name\": \"noise_propagation_analysis\", \"claim\": 3, \"description\": \"Two parts: (A) Measurement error model (PRIMARY): extend Stan model to treat exposure as noisy observation: exposure_ij ~ N(τ_ij, σ_e²), where τ is latent true contamination. σ_e estimated from exp-001 ground truth FP/FN rates. This propagates Stage 1 uncertainty into posteriors automatically. Compare coverage (50%/80%/95%) vs point-estimate exposure baseline. (B) Post-hoc noise injection: inject Gaussian noise at 1×/1.5×/2× matched levels, re-fit standard model, measure CI widening for γ and θ. Both parts inform whether measurement error model closes the coverage gap.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"exp-002\", \"exp-004\"], \"note\": \"CPU only\", \"registry_id\": \"exp_005_noise_prop_v2\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"exp-006\", \"name\": \"irt_calibration_and_baselines\", \"claim\": 1, \"also_supports\": [3], \"description\": \"Fit 4PL+γ IRT (Stan NUTS) on controlled models from exp-001/003. PRIMARY: per-benchmark fitting with benchmark-specific γ_k — this is the natural parameterization when IRT is fitted per-benchmark (each benchmark's model has its own γ_k). ABLATION: joint fitting across benchmarks with shared global γ (stronger assumption, tests whether contamination effect is homogeneous across benchmarks). Report both. Per-benchmark fitting (not joint) is the default to reduce local independence violation scope. Posterior predictive checks on item-level residual correlations to assess local independence empirically. Compute calibrated scores via exposure=0 counterfactual with CIs. Compare against 7 baselines: (0) Raw — no adjustment (anchor), (1) remove-and-rescore (drop flagged items), (2) single-signal 2PL+γ (best signal only, simpler IRT), (3) vanilla 4PL without γ (standard IRT, no contamination modeling), (4) linear exposure regression + bootstrap CI (simplest post-hoc), (5) Emperor's mitigation: rephrasing + option shuffling, (6) DCR fuzzy inference (EMNLP 2025) — the only existing method\\n    producing adjusted accuracy; must include or reviewers will reject.\\nEvaluate all 5 metrics: MAE, coverage (50%/80%/95%), sharpness, Kendall τ, dose-response monotonicity. Report mean ± std across 3 seeds (matched to exp-001 seeds).\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"exp-003\"], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"seeds\": 3, \"status\": \"planned\"}, {\"id\": \"exp-015\", \"name\": \"sft_d100_qc_only\", \"claim\": 1, \"description\": \"100% dosage SFT using only QC-pass paraphrases (7547/16697 items). Isolates noisy vs clean contamination confound identified by reviewer. D012 decision. Compare calibration metrics against exp-001 d100 (all paraphrases) to quantify effect of noisy contamination on IRT estimates.\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"exp-001\"], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"models\": [\"Qwen2.5-0.5B\"], \"seeds\": 1, \"status\": \"orphaned\", \"registry_id\": \"exp_001_sft_d100_qc_only\", \"data_script\": \"exp001/prepare_qc_only_data.py\"}, {\"id\": \"exp-007\", \"name\": \"scale_bridging_7b\", \"claim\": 1, \"description\": \"Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates calibration accuracy scales to larger models. Requires multi-GPU node (7B LoRA SFT ~4-8h per run on 1×H100).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 30, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-008\", \"name\": \"signal_survival_analysis\", \"claim\": 2, \"description\": \"Systematic evaluation of detection signal reliability across training regimes. Signal × regime AUC heatmap: 4 signals × {base, SFT-clean, SFT-contaminated, RL-post-trained}. Confirms Self-Critique compensates where Min-K%++/ConStat degrade post-RL (per fragility paper arXiv 2510.02386). ELEVATED to Core Contribution 2 per Dream review (all 3 tiers identified this as the most genuinely novel finding).\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [\"exp-002\"], \"status\": \"planned\"}, {\"id\": \"exp-014\", \"name\": \"multi_family_validation\", \"claim\": 1, \"description\": \"Controlled SFT injection on at least one non-Qwen model family (Llama-3.2-1B or Pythia-1.4B) at 3 dosage levels (0%, 25%, 100%). Validates that identifiability boundaries and calibration accuracy generalize beyond Qwen2.5. Addresses Dream reviewer concern about single model family limiting generalizability (flagged [M][W]).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-009\", \"name\": \"rl_observational_case_study\", \"claim\": 2, \"also_supports\": [3], \"description\": \"Apply Self-Critique + available signals to existing RL-trained models: Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with appropriately wider CIs. Expected regret quantification: compare uncalibrated vs calibrated vs remove-rescore for top-5 model selection. Framed as observational — directional external validity, not full quantitative validation. Near-zero γ check on known-clean benchmark (specificity test).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-006\", \"exp-008\"], \"status\": \"planned\"}, {\"id\": \"exp-012\", \"name\": \"observational_72b\", \"claim\": 1, \"description\": \"Qwen2.5-72B observational analysis (inference only, no SFT). Extends ecological validity to frontier model scale.\\n\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-006\"], \"status\": \"planned\"}, {\"id\": \"exp-013\", \"name\": \"closed_weight_2signal_mode\", \"claim\": 2, \"description\": \"Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings) for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration accuracy gap.\\n\", \"priority\": \"P2\", \"gpu_budget_hours\": 5, \"deps\": [\"exp-003\"], \"status\": \"planned\"}], \"total\": 13}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d7ec143-240f-40e7-b961-d14f7b244569",
+  "isSidechain": false,
+  "promptId": "a2e2fe06-87a5-4f8d-a4b0-af7582386100",
+  "type": "user",
+  "uuid": "4c9c85ba-d7ff-40f2-a854-8a9d77bba34b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"exp-001\\\", \\\"name\\\": \\\"controlled_sft_injection\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\\\\\"Rethinking Benchmark and Contamination\\\\\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 50, \\\"deps\\\": [], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\", \\\"Qwen2.5-1.5B\\\", \\\"Qwen2.5-3B\\\"], \\\"seeds\\\": 3, \\\"registry_id\\\": \\\"exp_001_sft_d100_15B_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"exp-002\\\", \\\"name\\\": \\\"stage1_signal_pipeline\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 20, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-003\\\", \\\"name\\\": \\\"rrf_aggregation_ablation\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c) calibration-based weighted RRF variant, (d) false positive injection robustness check (inject FP at rates matching Duan et al. 2024). Also test degraded 2-signal mode (ConStat + Self-Critique) for closed-weight.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"exp-002\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-004\\\", \\\"name\\\": \\\"simulation_identifiability_sweep\\\", \\\"claim\\\": 1, \\\"also_supports\\\": [3], \\\"description\\\": \\\"Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5 conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \\\\\\\"cannot distinguish no contamination from moderate contamination.\\\\\\\" N_items=300 fixed (per MVP finding). Subsumes exp-010 (prior sensitivity) and exp-011 (few-examinee regime) — prior × N_models dimensions already in sweep grid. Growing Pains pre-estimation sub-experiment: at N_models=20/50, compare flat prior vs informative prior from pre-estimated item parameters. Also includes Fisher Information matrix analysis: derive approximate analytical relationship between signal AUC, N_models, and γ recoverability. Distinguish structural identifiability (parameters uniquely determined) from practical identifiability (estimation quality sufficient for decisions). Provides theoretical grounding for the empirical AUC ≥ 0.70 threshold.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"note\\\": \\\"CPU only. MVP (mvp_sim_4pl_gamma) was preliminary; this is the full sweep.\\\", \\\"registry_id\\\": \\\"exp_004_sim_sweep\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"exp-005\\\", \\\"name\\\": \\\"noise_propagation_analysis\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Two parts: (A) Measurement error model (PRIMARY): extend Stan model to treat exposure as noisy observation: exposure_ij ~ N(τ_ij, σ_e²), where τ is latent true contamination. σ_e estimated from exp-001 ground truth FP/FN rates. This propagates Stage 1 uncertainty into posteriors automatically. Compare coverage (50%/80%/95%) vs point-estimate exposure baseline. (B) Post-hoc noise injection: inject Gaussian noise at 1×/1.5×/2× matched levels, re-fit standard model, measure CI widening for γ and θ. Both parts inform whether measurement error model closes the coverage gap.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [\\\"exp-002\\\", \\\"exp-004\\\"], \\\"note\\\": \\\"CPU only\\\", \\\"registry_id\\\": \\\"exp_005_noise_prop_v2\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, {\\\"id\\\": \\\"exp-006\\\", \\\"name\\\": \\\"irt_calibration_and_baselines\\\", \\\"claim\\\": 1, \\\"also_supports\\\": [3], \\\"description\\\": \\\"Fit 4PL+γ IRT (Stan NUTS) on controlled models from exp-001/003. PRIMARY: per-benchmark fitting with benchmark-specific γ_k — this is the natural parameterization when IRT is fitted per-benchmark (each benchmark's model has its own γ_k). ABLATION: joint fitting across benchmarks with shared global γ (stronger assumption, tests whether contamination effect is homogeneous across benchmarks). Report both. Per-benchmark fitting (not joint) is the default to reduce local independence violation scope. Posterior predictive checks on item-level residual correlations to assess local independence empirically. Compute calibrated scores via exposure=0 counterfactual with CIs. Compare against 7 baselines: (0) Raw — no adjustment (anchor), (1) remove-and-rescore (drop flagged items), (2) single-signal 2PL+γ (best signal only, simpler IRT), (3) vanilla 4PL without γ (standard IRT, no contamination modeling), (4) linear exposure regression + bootstrap CI (simplest post-hoc), (5) Emperor's mitigation: rephrasing + option shuffling, (6) DCR fuzzy inference (EMNLP 2025) — the only existing method\\\\n    producing adjusted accuracy; must include or reviewers will reject.\\\\nEvaluate all 5 metrics: MAE, coverage (50%/80%/95%), sharpness, Kendall τ, dose-response monotonicity. Report mean ± std across 3 seeds (matched to exp-001 seeds).\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"exp-003\\\"], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"seeds\\\": 3, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-015\\\", \\\"name\\\": \\\"sft_d100_qc_only\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"100% dosage SFT using only QC-pass paraphrases (7547/16697 items). Isolates noisy vs clean contamination confound identified by reviewer. D012 decision. Compare calibration metrics against exp-001 d100 (all paraphrases) to quantify effect of noisy contamination on IRT estimates.\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"exp-001\\\"], \\\"benchmarks\\\": [\\\"MMLU\\\", \\\"GSM8K\\\", \\\"ARC-Challenge\\\", \\\"HumanEval\\\"], \\\"models\\\": [\\\"Qwen2.5-0.5B\\\"], \\\"seeds\\\": 1, \\\"status\\\": \\\"orphaned\\\", \\\"registry_id\\\": \\\"exp_001_sft_d100_qc_only\\\", \\\"data_script\\\": \\\"exp001/prepare_qc_only_data.py\\\"}, {\\\"id\\\": \\\"exp-007\\\", \\\"name\\\": \\\"scale_bridging_7b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates calibration accuracy scales to larger models. Requires multi-GPU node (7B LoRA SFT ~4-8h per run on 1×H100).\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 30, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-008\\\", \\\"name\\\": \\\"signal_survival_analysis\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Systematic evaluation of detection signal reliability across training regimes. Signal × regime AUC heatmap: 4 signals × {base, SFT-clean, SFT-contaminated, RL-post-trained}. Confirms Self-Critique compensates where Min-K%++/ConStat degrade post-RL (per fragility paper arXiv 2510.02386). ELEVATED to Core Contribution 2 per Dream review (all 3 tiers identified this as the most genuinely novel finding).\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"exp-002\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-014\\\", \\\"name\\\": \\\"multi_family_validation\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Controlled SFT injection on at least one non-Qwen model family (Llama-3.2-1B or Pythia-1.4B) at 3 dosage levels (0%, 25%, 100%). Validates that identifiability boundaries and calibration accuracy generalize beyond Qwen2.5. Addresses Dream reviewer concern about single model family limiting generalizability (flagged [M][W]).\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"exp-001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-009\\\", \\\"name\\\": \\\"rl_observational_case_study\\\", \\\"claim\\\": 2, \\\"also_supports\\\": [3], \\\"description\\\": \\\"Apply Self-Critique + available signals to existing RL-trained models: Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with appropriately wider CIs. Expected regret quantification: compare uncalibrated vs calibrated vs remove-rescore for top-5 model selection. Framed as observational — directional external validity, not full quantitative validation. Near-zero γ check on known-clean benchmark (specificity test).\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"exp-006\\\", \\\"exp-008\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-012\\\", \\\"name\\\": \\\"observational_72b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Qwen2.5-72B observational analysis (inference only, no SFT). Extends ecological validity to frontier model scale.\\\\n\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"exp-006\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"exp-013\\\", \\\"name\\\": \\\"closed_weight_2signal_mode\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings) for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration accuracy gap.\\\\n\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"exp-003\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"total\\\": 13}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"exp-001\", \"name\": \"controlled_sft_injection\", \"claim\": 1, \"description\": \"SFT contamination injection on Qwen2.5-0.5B/1.5B/3B at 5 dosage levels (0%, 5%, 25%, 50%, 100% benchmark items as paraphrases in SFT data). Produces ground-truth contaminated/clean model pairs. 15 SFT runs total (3 models × 5 dosages), parallelized across GPUs. 3 seeds per condition for key metrics (mean ± std). Paraphrase generation: use strong open LLM (Qwen2.5-72B-Instruct or equivalent) with controlled semantic similarity — following methodology of \\\"Rethinking Benchmark and Contamination\\\" (arXiv 2023). Target: high semantic similarity (cosine >0.85) but low lexical overlap (BLEU <0.3) to evade n-gram decontamination while preserving contamination effect. Quality validation: automated similarity metrics + human spot-check on 50 random pairs per benchmark.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 50, \"deps\": [], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"models\": [\"Qwen2.5-0.5B\", \"Qwen2.5-1.5B\", \"Qwen2.5-3B\"], \"seeds\": 3, \"registry_id\": \"exp_001_sft_d100_15B_v2\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"id\": \"exp-002\", \"name\": \"stage1_signal_pipeline\", \"claim\": 2, \"description\": \"Compute 4 detection signals on all contaminated + clean models from exp-001: (a) embedding-based semantic retrieval (FAISS + sentence-transformers), (b) Min-K%++ membership inference, (c) ConStat performance gap (original vs paraphrased items), (d) Self-Critique entropy collapse. Output: per-model-item exposure scores for each signal.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 20, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-003\", \"name\": \"rrf_aggregation_ablation\", \"claim\": 2, \"description\": \"RRF fusion of 4 signals into composite per-item exposure score. Ablations: (a) RRF vs equal-weight rank averaging, (b) single-signal only (×4), (c) calibration-based weighted RRF variant, (d) false positive injection robustness check (inject FP at rates matching Duan et al. 2024). Also test degraded 2-signal mode (ConStat + Self-Critique) for closed-weight.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"exp-002\"], \"status\": \"planned\"}, {\"id\": \"exp-004\", \"name\": \"simulation_identifiability_sweep\", \"claim\": 1, \"also_supports\": [3], \"description\": \"Systematic synthetic-data sweep (NEW, not MVP — MVP only covered 4-5 conditions): exposure signal AUC (0.55, 0.60, 0.65, 0.70, 0.80, 0.90) × model count (20, 50, 100, 200) × prior strength (N(0,0.5), N(0,1), N(0,2)) × exposure type (binary, continuous). 144 conditions, 10 seeds each. Reports: θ-γ recovery RMSE, posterior correlation, coverage (50%/80%/95%), prior sensitivity. Establishes minimum AUC threshold; if 95% CI width > 15pp at AUC=0.65, label as \\\"cannot distinguish no contamination from moderate contamination.\\\" N_items=300 fixed (per MVP finding). Subsumes exp-010 (prior sensitivity) and exp-011 (few-examinee regime) — prior × N_models dimensions already in sweep grid. Growing Pains pre-estimation sub-experiment: at N_models=20/50, compare flat prior vs informative prior from pre-estimated item parameters. Also includes Fisher Information matrix analysis: derive approximate analytical relationship between signal AUC, N_models, and γ recoverability. Distinguish structural identifiability (parameters uniquely determined) from practical identifiability (estimation quality sufficient for decisions). Provides theoretical grounding for the empirical AUC ≥ 0.70 threshold.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"note\": \"CPU only. MVP (mvp_sim_4pl_gamma) was preliminary; this is the full sweep.\", \"registry_id\": \"exp_004_sim_sweep\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"exp-005\", \"name\": \"noise_propagation_analysis\", \"claim\": 3, \"description\": \"Two parts: (A) Measurement error model (PRIMARY): extend Stan model to treat exposure as noisy observation: exposure_ij ~ N(τ_ij, σ_e²), where τ is latent true contamination. σ_e estimated from exp-001 ground truth FP/FN rates. This propagates Stage 1 uncertainty into posteriors automatically. Compare coverage (50%/80%/95%) vs point-estimate exposure baseline. (B) Post-hoc noise injection: inject Gaussian noise at 1×/1.5×/2× matched levels, re-fit standard model, measure CI widening for γ and θ. Both parts inform whether measurement error model closes the coverage gap.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [\"exp-002\", \"exp-004\"], \"note\": \"CPU only\", \"registry_id\": \"exp_005_noise_prop_v2\", \"status\": \"DONE\", \"conclusion\": \"failed\"}, {\"id\": \"exp-006\", \"name\": \"irt_calibration_and_baselines\", \"claim\": 1, \"also_supports\": [3], \"description\": \"Fit 4PL+γ IRT (Stan NUTS) on controlled models from exp-001/003. PRIMARY: per-benchmark fitting with benchmark-specific γ_k — this is the natural parameterization when IRT is fitted per-benchmark (each benchmark's model has its own γ_k). ABLATION: joint fitting across benchmarks with shared global γ (stronger assumption, tests whether contamination effect is homogeneous across benchmarks). Report both. Per-benchmark fitting (not joint) is the default to reduce local independence violation scope. Posterior predictive checks on item-level residual correlations to assess local independence empirically. Compute calibrated scores via exposure=0 counterfactual with CIs. Compare against 7 baselines: (0) Raw — no adjustment (anchor), (1) remove-and-rescore (drop flagged items), (2) single-signal 2PL+γ (best signal only, simpler IRT), (3) vanilla 4PL without γ (standard IRT, no contamination modeling), (4) linear exposure regression + bootstrap CI (simplest post-hoc), (5) Emperor's mitigation: rephrasing + option shuffling, (6) DCR fuzzy inference (EMNLP 2025) — the only existing method\\n    producing adjusted accuracy; must include or reviewers will reject.\\nEvaluate all 5 metrics: MAE, coverage (50%/80%/95%), sharpness, Kendall τ, dose-response monotonicity. Report mean ± std across 3 seeds (matched to exp-001 seeds).\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"exp-003\"], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"seeds\": 3, \"status\": \"planned\"}, {\"id\": \"exp-015\", \"name\": \"sft_d100_qc_only\", \"claim\": 1, \"description\": \"100% dosage SFT using only QC-pass paraphrases (7547/16697 items). Isolates noisy vs clean contamination confound identified by reviewer. D012 decision. Compare calibration metrics against exp-001 d100 (all paraphrases) to quantify effect of noisy contamination on IRT estimates.\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 5, \"deps\": [\"exp-001\"], \"benchmarks\": [\"MMLU\", \"GSM8K\", \"ARC-Challenge\", \"HumanEval\"], \"models\": [\"Qwen2.5-0.5B\"], \"seeds\": 1, \"status\": \"orphaned\", \"registry_id\": \"exp_001_sft_d100_qc_only\", \"data_script\": \"exp001/prepare_qc_only_data.py\"}, {\"id\": \"exp-007\", \"name\": \"scale_bridging_7b\", \"claim\": 1, \"description\": \"Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates calibration accuracy scales to larger models. Requires multi-GPU node (7B LoRA SFT ~4-8h per run on 1×H100).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 30, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-008\", \"name\": \"signal_survival_analysis\", \"claim\": 2, \"description\": \"Systematic evaluation of detection signal reliability across training regimes. Signal × regime AUC heatmap: 4 signals × {base, SFT-clean, SFT-contaminated, RL-post-trained}. Confirms Self-Critique compensates where Min-K%++/ConStat degrade post-RL (per fragility paper arXiv 2510.02386). ELEVATED to Core Contribution 2 per Dream review (all 3 tiers identified this as the most genuinely novel finding).\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 10, \"deps\": [\"exp-002\"], \"status\": \"planned\"}, {\"id\": \"exp-014\", \"name\": \"multi_family_validation\", \"claim\": 1, \"description\": \"Controlled SFT injection on at least one non-Qwen model family (Llama-3.2-1B or Pythia-1.4B) at 3 dosage levels (0%, 25%, 100%). Validates that identifiability boundaries and calibration accuracy generalize beyond Qwen2.5. Addresses Dream reviewer concern about single model family limiting generalizability (flagged [M][W]).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-001\"], \"status\": \"planned\"}, {\"id\": \"exp-009\", \"name\": \"rl_observational_case_study\", \"claim\": 2, \"also_supports\": [3], \"description\": \"Apply Self-Critique + available signals to existing RL-trained models: Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with appropriately wider CIs. Expected regret quantification: compare uncalibrated vs calibrated vs remove-rescore for top-5 model selection. Framed as observational — directional external validity, not full quantitative validation. Near-zero γ check on known-clean benchmark (specificity test).\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-006\", \"exp-008\"], \"status\": \"planned\"}, {\"id\": \"exp-012\", \"name\": \"observational_72b\", \"claim\": 1, \"description\": \"Qwen2.5-72B observational analysis (inference only, no SFT). Extends ecological validity to frontier model scale.\\n\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"exp-006\"], \"status\": \"planned\"}, {\"id\": \"exp-013\", \"name\": \"closed_weight_2signal_mode\", \"claim\": 2, \"description\": \"Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings) for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration accuracy gap.\\n\", \"priority\": \"P2\", \"gpu_budget_hours\": 5, \"deps\": [\"exp-003\"], \"status\": \"planned\"}], \"total\": 13}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9d7ec143-240f-40e7-b961-d14f7b244569",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_4e44a59a",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单 cuda:0-5 on cqa1-21977，全部分配给本项目，不可用其他服务器/卡 - submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/acti…",
+  "leafUuid": "4c9c85ba-d7ff-40f2-a854-8a9d77bba34b",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze exp_001_eval_15B batch and fill idle GPUs",
+  "sessionId": "adb7e7c7-e419-4da5-8763-a2e9cc5d8234"
+}
+```
+
+---

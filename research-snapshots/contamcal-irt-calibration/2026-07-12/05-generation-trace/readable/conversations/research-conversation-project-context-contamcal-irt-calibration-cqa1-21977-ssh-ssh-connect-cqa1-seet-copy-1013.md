@@ -1,0 +1,2391 @@
+# Research conversation: <project_context> # 项目: contamcal-irt-calibration ## 运行环境 - 服务器名: cqa1-21977 - SSH 连接命令: ssh connect.cqa1.seetacloud.com
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-3/8e2d91b0-9345-482a-b12e-cd34d85d179b.jsonl`
+- **Structured JSON:** [`915311601b953f97b0b6.json`](../../sessions/91/915311601b953f97b0b6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T11:29:21.744Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T11:29:21.744Z",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "content": "&lt;project_context>\n# 项目: contamcal-irt-calibration\n\n## 运行环境\n- 服务器名: cqa1-21977\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/contamcal-irt-calibration\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）\n- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）\n- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现\"标 failed 不 kill 进程\"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）\n- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）\n- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）\n- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]\n- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）\n- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：读取项目关键文件，汇总当前论文和分析状态\n\n读取以下文件并汇总关键信息：\n\n1. `read_project_file(file=\"paper_framing.md\")` — 当前论文 framing、core claims、story arc\n2. `read_project_file(file=\"memory.md\")` — 关键决策、经验教训、约束\n3. `read_project_file(file=\"experiment_plan.yaml\", max_chars=0)` — 完整实验计划\n\n汇总产出（写入 `paper_analysis_status.md`）：\n- 当前 4 个 core claims 及其实验支撑状态\n- 论文各章节的完成度\n- v2 eval 完成后需要更新的具体表格和图表列表\n- IRT fitting 的前置条件是否满足\n- 距 EMNLP ARR May 25 还有 6 天，列出关键路径上的 blocking items\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T11:29:21.750Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T11:29:21.750Z",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+## Round 1
+
+41 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T11:29:21.793Z_
+
+&lt;project_context>
+# 项目: contamcal-irt-calibration
+
+## 运行环境
+- 服务器名: cqa1-21977
+- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/contamcal-irt-calibration
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）
+- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）
+- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现"标 failed 不 kill 进程"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）
+- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）
+- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）
+- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]
+- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）
+- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：读取项目关键文件，汇总当前论文和分析状态
+
+读取以下文件并汇总关键信息：
+
+1. `read_project_file(file="paper_framing.md")` — 当前论文 framing、core claims、story arc
+2. `read_project_file(file="memory.md")` — 关键决策、经验教训、约束
+3. `read_project_file(file="experiment_plan.yaml", max_chars=0)` — 完整实验计划
+
+汇总产出（写入 `paper_analysis_status.md`）：
+- 当前 4 个 core claims 及其实验支撑状态
+- 论文各章节的完成度
+- v2 eval 完成后需要更新的具体表格和图表列表
+- IRT fitting 的前置条件是否满足
+- 距 EMNLP ARR May 25 还有 6 天，列出关键路径上的 blocking items
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "c173a31f-6ed9-4928-9fda-20a6a1ca42aa",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T11:29:21.792Z_
+
+```json
+{
+  "parentUuid": "c173a31f-6ed9-4928-9fda-20a6a1ca42aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "455346c6-afc2-4ef3-adfc-14ed3d31c295",
+  "timestamp": "2026-05-19T11:29:21.792Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T11:29:21.792Z_
+
+```json
+{
+  "parentUuid": "455346c6-afc2-4ef3-adfc-14ed3d31c295",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "66ac3d11-701e-4268-ab18-250d376598a1",
+  "timestamp": "2026-05-19T11:29:21.792Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T11:29:21.792Z_
+
+```json
+{
+  "parentUuid": "66ac3d11-701e-4268-ab18-250d376598a1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6a653d65-b68d-4461-9c26-e530c08787be",
+  "timestamp": "2026-05-19T11:29:21.792Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze paper framing and experiment status",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T11:29:26.240Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to read three project files and then produce a summary. Let me start by reading all three files in parallel using the MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a653d65-b68d-4461-9c26-e530c08787be",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFUSsttZbQoPdhwqnE",
+  "type": "assistant",
+  "uuid": "3d97aeac-bc32-45c1-b351-8919c287980c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZfB9Nsh7JN7NMfhdDTDm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13901,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13901,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13901,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13901
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T11:29:26.244Z_
+
+读取三个项目文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d97aeac-bc32-45c1-b351-8919c287980c",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFUSsttZbQoPdhwqnE",
+  "type": "assistant",
+  "uuid": "1bb40b36-f7e9-4480-ab97-679761738d54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZfB9Nsh7JN7NMfhdDTDm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13901,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13901,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13901,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13901
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T11:29:27.209Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018fABMFkKdyQTR9aKPJCW7c`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bb40b36-f7e9-4480-ab97-679761738d54",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFUSsttZbQoPdhwqnE",
+  "type": "assistant",
+  "uuid": "7690d9e2-8964-4391-914a-559730ad8099",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZfB9Nsh7JN7NMfhdDTDm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13901,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13901,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13901,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13901
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T11:29:27.231Z_
+
+<details><summary>↩ Tool result · `toolu_018fABMFkKdyQTR9aKPJCW7c`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7690d9e2-8964-4391-914a-559730ad8099",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "483a900a-7a21-4744-8989-8e41a63e379c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "7690d9e2-8964-4391-914a-559730ad8099",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T11:29:30.442Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01HBd323Z2EoBw6AQuFeifo1`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "483a900a-7a21-4744-8989-8e41a63e379c",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFt7AazGZPCiJWyk8g",
+  "type": "assistant",
+  "uuid": "ac54f5ae-ee49-4845-83bb-942d35a314bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjffdCZrrdwV5FF1fvkoHN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T11:29:30.459Z_
+
+<details><summary>↩ Tool result · `toolu_01HBd323Z2EoBw6AQuFeifo1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper_framing.md\", \"content\": \"# Paper Framing — contamcal-irt-calibration\\n\\n## Target Venue\\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\\n- Track: Machine Learning for NLP / Resources and Evaluation\\n- Aligns with EMNLP 2026 special theme \\\"New Missions for NLP Research\\\" (explicitly invites contamination/data governance work)\\n\\n## Core Insight (D039 pivot + D108/D115 domain heterogeneity — N=24 confirmed)\\nBenchmark contamination effects are far more complex than \\\"scores go up.\\\" Through controlled SFT injection and contamination-augmented IRT analysis, we reveal: effects exhibit domain-level heterogeneity within benchmarks (MMLU: Simpson's paradox — aggregate γ≈0 masks STEM-gradient pattern where factual-knowledge domains show strong positive γ while non-STEM domains exhibit model misfit), are benchmark-dependent across benchmarks (ARC: forgetting vs GSM8K: inflation), scale-dependent (catastrophic at 0.5B, diminishing through 3B/7B, validated up to 14.7B across 4 independent model families per D141), and detection signals exhibit fundamental failure modes (Min-K++ directional reversal). ContamCal uses IRT with per-benchmark γ_k to systematically characterize these behaviors and establish identifiability boundaries. Calibration is possible conditionally — when model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) and signal quality is sufficient (recovery validated down to AUC=0.55, lowest tested, at J≥50) — but the primary contribution is the characterization framework itself. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004).\\n\\n## Core Claims (4 条 — D039 reorder: characterization first, calibration demoted)\\n\\n1. **Characterization Claim (PRIMARY — D108/D115: domain heterogeneity confirmed at N=24)**: Contamination effects exhibit domain-level heterogeneity within benchmarks, are benchmark-dependent across benchmarks, and scale-dependent. Within MMLU, stratification by cognitive domain (57 subjects → 8 domains) reveals Simpson's paradox: aggregate γ≈0 masks a clear STEM gradient. **N=24 confirmed results (D115)**:\\n   - STEM_Math: γ=+0.969, CI excludes 0, PPP=0.438 ✓ (strong positive — contamination inflates factual recall)\\n   - STEM_Science: γ=+0.838, CI excludes 0, PPP=0.807 ✓ (strong positive)\\n   - STEM_CS_Eng: γ=+0.197, CI includes 0, PPP=0.892 ✓ (null — procedural/applied knowledge less affected)\\n   - Non-STEM (Medical, Humanities, Social_Sciences, Business_Law): all PPP≈1.0 → 2PL+γ model structurally misspecified. Negative γ estimates (-0.17 to -0.50) reflect model assumption failure, not true contamination direction.\\n   - \\\"Other\\\" domain: system crash (disk/cgroup), non-essential catch-all category.\\n   **Interpretation**: Contamination susceptibility maps to factual knowledge density — domains rich in memorizable facts (Math, Science) show large positive γ (SFT exposure → recall boost → inflated scores). Procedural/applied domains (CS_Eng) show weaker effect. Non-STEM domains require richer models (multidimensional IRT or domain-specific covariates) — reported as acknowledged limitation and future work.\\n   **Paper claim scope**: Domain heterogeneity is established via (a) Simpson's paradox (aggregate ≈ 0, domain-level ≠ 0), (b) STEM gradient with good model fit (3/8 domains with PPP∈[0.1,0.9]), (c) non-STEM misfit as structural boundary of 2PL+γ. Claims based on domains with acceptable PPP ONLY. Across benchmarks: ARC forgetting (γ < 0, CI excludes zero, 3 independent evidence chains) vs GSM8K inflation (γ > 0). Effects are scale-modulated: catastrophic at 0.5B (-17pp ARC), mild at 3B, negligible at 7B. This challenges the dominant \\\"contamination = uniform inflation\\\" narrative. Cross-family consistency validated via controlled SFT on 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2; D141) tests whether contamination susceptibility is a benchmark × domain property, not a model family artifact.\\n   **PPP presentation strategy**: Non-STEM PPP=1.0 is not a failure of the analysis but a meaningful boundary finding: 2PL+γ (additive contamination effect on unidimensional ability) captures STEM domain mechanics but not non-STEM. Discuss connection to multidimensional IRT (Reckase 2009) and DIF literature (Holland & Wainer 1993). Consider limited-information fit indices (M2*, RMSEA2) as robustness check for STEM results.\\n\\n2. **Signal Failure Claim (CO-PRIMARY, headline finding per D039 dream 三档一致)**: Min-K++ exhibits directional reversal at small model scales (Cohen's d = -1.2 to -2.7 at 0.5B d100) — actively misleading, not merely ineffective. S1 embedding similarity is the only reliable signal (AUC>0.95). Multi-signal RRF degrades to S1-only in practice — paper is transparent about this (D039: all 3 dream tiers require honesty here). Training-free RRF remains the principled aggregation design (meta-circularity argument). Must distinguish item-level detection AUC from model-level Cohen's d.\\n   **C2 contingency**: \\\"Scale-dependent\\\" unverified beyond 0.5B. If 1.5B/3B S2/S4 remain ineffective → downgrade to \\\"method-specific signal effectiveness.\\\" Min-K++ reversal remains novel regardless.\\n\\n3. **Identifiability Claim**: Fisher Information analysis + simulation sweep (20 conditions, 200 runs). Recovery succeeds down to AUC=0.55 (lowest tested) at N≥50; the lower bound remains open. LLM evaluation inherently operates below N≥50 (typically N=8-30), creating a structural domain-method mismatch — this is the real \\\"impossibility,\\\" not merely \\\"IRT needs more data.\\\" CI width ∝ N^{-0.48} (simulation). Coverage collapse at N<30 confirmed empirically (D036). D039 dream worst-tier caution: frame as domain mismatch insight, not as surprising impossibility.\\n\\n4. **Conditional Calibration Claim (DEMOTED from old Claim 1 per D039)**: IRT ability estimation provides calibration value (GSM8K: calMAE=0.006 vs raw=0.169, ΔMAE=0.163); the γ parameter provides diagnostic value by revealing domain-differential contamination effects. These are distinct contributions: calibration improvement comes from the IRT framework itself (ability estimation decontaminates via the θ pathway), while γ characterizes where and how contamination manifests. When IRT model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) AND signal quality sufficient (validated down to AUC=0.55 at J≥50), calibration produces usable point estimates. Coverage remains below nominal (20-69% at 95%) — present calibrated CIs as directional indicators, not precise credible intervals. Calibration gating criterion: PPP ∈ [0.1, 0.9] AND calibrated MAE < raw MAE. Note: vanilla 2PL ≈ 2PL+γ in MAE across all three benchmarks — γ does not improve calibration accuracy but provides the diagnostic decomposition that is Claim 1's core contribution.\\n\\n## Contributions (Hierarchical — D039 rebalanced per Dream 2nd round)\\n\\n### Core (characterization-led; calibration conditional)\\n1. **Domain-dependent contamination characterization** via IRT γ_k: Simpson's paradox within MMLU (aggregate γ≈0 masks STEM gradient: Math +0.97 > Science +0.84 >> CS_Eng ≈0), scale modulation, three-regime taxonomy (forgetting / selective memorization / near-immunity). γ heterogeneity maps to factual knowledge density. Non-STEM model misfit as boundary finding (2PL+γ scope limitation)\\n2. **Signal failure characterization**: Min-K++ directional reversal (Cohen's d = -1.2 to -2.7) — paper's most citation-worthy empirical finding (D025 + D039 dream 三档一致). Systematic signal × scale × dosage AUC mapping. Honest reporting that RRF = S1-only in practice\\n3. **Fisher Information identifiability analysis**: structural vs practical thresholds with domain-method mismatch insight. Strongest theoretical contribution (D025 + D039 一致)\\n\\n### Supporting\\n4. ContamCal framework: two-stage pipeline (S1 provenance → contamination-augmented IRT with per-benchmark γ_k). Conditional calibration with gating criterion. ME model as ablation\\n5. Dual-track validation + 7 baselines + 6 metrics (incl. SBC). Controlled SFT injection (internal) + ecological RL (external)\\n\\n## Story Spine\\n- **Problem**: Benchmark scores are increasingly unreliable due to training data contamination. Rephrased test items inflate MMLU accuracy by 8-15 points while evading n-gram decontamination. RL post-training may further complicate detection (under investigation, exp-009). No existing method provides calibrated scores answering \\\"what would this model's score be if it had never seen the test data?\\\"\\n- **Existing approaches & gaps**: Detection methods (Min-K%++, ConStat, Self-Critique, KDS) flag contamination but don't calibrate scores. IRT methods (PSN-IRT, Growing Pains, ATLAS, Lalor et al. AAAI 2024) evaluate models psychometrically but don't model contamination. DCR provides adjusted accuracy but lacks uncertainty bounds and RL handling. HiBayES provides Bayesian uncertainty but ignores contamination. Emperor's New Clothes (ICML 2025) demonstrates that all 20 mitigation strategies fail — motivating post-hoc calibration. Dynamic benchmarks (LiveBench) offer an alternative but require continuous curation.\\n- **Our framing (D039 pivot, updated D141)**: ContamCal is a diagnostic framework that uses IRT to systematically characterize how contamination affects benchmark scores. Through controlled SFT injection across 4 independent model families (0.5B-14.7B), we reveal the structure of contamination effects — they are bidirectional, scale-dependent, benchmark-specific, and consistent across architectures — and establish the conditions under which statistical calibration is and isn't feasible. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 structural adaptations: (a) independent examinees → single model with joint item distribution, (b) binary leakage → continuous exposure scores, (c) stable ability → regime-conditional ability.\\n- **Headline result template (D039 — characterization-led, updated D141)**: \\\"Contamination effects are benchmark-dependent: IRT γ captures forgetting on ARC (γ={X}, CI excludes zero) and inflation on GSM8K (γ={Y}), with scale modulation from catastrophic (-{Z}pp at 0.5B) to {description at 7B-14B} across 4 independent model families (Qwen2.5, Phi-4, OLMo-2, Gemma-2). Detection signal Min-K++ actively reverses direction at small scales (Cohen's d = {W}), making single-signal contamination detection unreliable. Fisher Information analysis establishes that reliable γ recovery requires N≥50 models; recovery succeeded down to AUC=0.55 (lowest tested), with the lower bound remaining open — conditions rarely met in current LLM evaluation.\\\"\\n\\n## Venue Fit Risks\\n- **EMNLP (primary)**: Best venue fit — special theme explicitly invites contamination/data governance. Reviewers deeply familiar with NLP contamination literature (advantage: no need to motivate the problem heavily). Risk: reviewers may be less familiar with IRT/psychometric methods (mitigation: add intuitive explanations, visual pipeline overview, and connection to familiar NLP concepts like calibration/confidence estimation). ~~Risk: may expect broader model coverage beyond Qwen2.5~~ — **Resolved by D141**: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT at ≤14.7B scale.\\n- **AAAI/ICLR (fallback)**: Strong fit for Bayesian/probabilistic methods. Reviewers may need more contamination context but appreciate methodological rigor.\\n- **Novelty positioning**: Core method is cross-disciplinary synthesis (detection signals + explanatory IRT + measurement error). NOT positioned as \\\"new algorithm\\\" — positioned as (a) signal effectiveness characterization as empirically novel finding, (b) identifiability bounds with theoretical grounding, (c) first framework bridging detection → calibration with proper UQ. RRF is a principled design choice (meta-circularity argument), not claimed as methodological contribution.\\n- **RL limitation**: RL models get wide CIs. This is honest — frame as \\\"calibration is only as good as its inputs.\\\" Expected regret quantification uses held-out clean benchmark as ground truth (NOT calibrated scores, to avoid circularity).\\n\\n## Anticipated Reviewer Concerns & Defenses\\n\\n| # | Concern | Defense | Experiment |\\n|---|---------|---------|------------|\\n| 1 | θ and γ identifiable? | Fisher Information analysis + 20-condition simulation sweep (200 runs) + MVP validation | exp-004 |\\n| 2 | Why not learned aggregation? | Meta-circularity: learned aggregator's training data may itself be contaminated; RRF is design choice, not contribution | exp-003 |\\n| 3 | SFT injection ≠ real contamination | Dual-track: controlled SFT (internal) + ecological RL (external) + near-zero γ check (specificity). SFT is \\\"best-available proxy\\\", acknowledged as limitation | exp-006, exp-009 |\\n| 4 | Scale limited to 3B | ≤14.7B controlled SFT across 4 independent families (Qwen2.5 0.5B-14B, Phi-4 14.7B, OLMo-2 7B, Gemma-2 9B; D141). 29 runs total. | D141 scope expansion |\\n| 5 | Why 4PL not 2PL? | MVP: 2PL γ=0.16 vs 4PL γ=0.34 at N=100; c/d necessary for realistic item modeling | exp-006 |\\n| 6 | Too few models (N≈15)? | D025 multi-seed strategy: 3 scales × 4+ dosages × 2-3 seeds = 24-36 models pooled. Target N≥30 minimum (N≥50 ideal). Simulation sweep (exp-004) establishes identifiability at actual N. Growing Pains pre-estimation as backup at very low N | exp-004, exp-001 |\\n| 7 | Noisy exposure scores | Measurement error model (exposure as noisy observation of latent τ) propagates uncertainty into posteriors automatically | exp-005 |\\n| 8 | No baselines | 7 baselines including DCR (EMNLP 2025) + bootstrap CIs on all comparisons | exp-006 |\\n| 9 | Single global γ misspecified? | Per-benchmark γ_k is primary (natural in per-benchmark fitting); joint model with shared global γ is ablation. Report both to show contamination effect heterogeneity across benchmarks | exp-006 |\\n| 10 | Local independence violated? | Discussed explicitly; single model responds to all items → item responses correlated through shared parameters. Empirically test via posterior predictive checks on item-level residual correlations. This is a known IRT limitation when N_examinees is small. | exp-006 |\\n| 11 | Single model family? | Addressed in main experiments: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT injection at identical LoRA config (D141). Qwen2.5 provides within-family scaling (0.5B-14B); 3 cross-family models validate generalizability. | D141 scope expansion |\\n| 12 | RL regret circular? | Ground truth for regret = held-out clean benchmark scores, NOT calibrated scores. Explicitly stated | exp-009 |\\n| 13 | S2/S4 fail at 0.5B — RRF is just S1? | Scale-dependent: honestly report single-signal regime at 0.5B. Verify S2/S4 at 1.5B/3B. RRF value = principled aggregation when signals ARE available + graceful degradation when not. | exp-008, exp-002 |\\n| 14 | d100 AUC=0.5 as signal failure? | Labeling artifact: d100 contaminates ALL items → labels lose discriminative power. Must NOT be interpreted as signal degradation. Present only d005/d025 for signal evaluation. | exp-008 |\\n| 15 | Novelty ceiling — standard IRT synthesis? (D025, all 3 Dream tiers) | Positioned as cross-disciplinary synthesis, NOT new algorithm. Emergent value: (a) per-benchmark γ_k heterogeneity as benchmark property, (b) Min-K++ reversal as cautionary finding, (c) Fisher Info identifiability boundaries. If 4PL vs 2PL gap small → acknowledge honestly but argue c/d params needed for realistic MC modeling. Report oracle-γ ablation to decompose MAE. | exp-006 |\\n| 16 | Per-benchmark γ_k via separate fits, not hierarchical? (D025, [M][W]) | Per-benchmark separate fits = primary (natural, avoids cross-benchmark correlation). Hierarchical γ_k ~ Normal(μ_γ, σ_γ) as ablation to formally test heterogeneity and share info across benchmarks. Both reported. | exp-006 |\\n| 17 | Coverage gap — 85% vs 95% nominal? (D025, all 3 tiers) | SBC diagnostic to identify source. Possible causes: local independence violation, insufficient N, model misspecification. Report SBC alongside posterior predictive checks. If gap is from local independence → discuss as known IRT limitation with references. | exp-004, exp-006 |\\n| 18 | Why not just S1 alone? (D025, [M][W]) | S1-only is a baseline (#2 single-signal 2PL+γ). If RRF ≤ S1-only → present as \\\"S1+IRT calibration with extensible multi-signal architecture for future signals.\\\" Meta-circularity argument for training-free aggregation still holds. | exp-003 |\\n| 19 | Coverage collapse 20-33% even with oracle? (D036) | Far worse than #17 anticipated. PPP extremes (ARC=1.0, GSM8K=0.0) = systematic misspecification. Path: (a) increase N via multi-seed pooling, (b) check exp-004 sweep coverage at matching N, (c) if additive γ insufficient → item-level heterogeneity or hierarchical structure. Fallback: lead with MAE+ranking, present coverage honestly. | exp-006, exp-004 |\\n| 20 | γ doesn't improve calibration MAE over vanilla 2PL | γ's role is diagnostic (domain-differential characterization), not calibration accuracy improvement. IRT ability estimation itself provides calibration value (GSM8K ΔMAE=0.163). Vanilla 2PL ≈ 2PL+γ confirms γ is orthogonal to calibration performance — it reveals WHERE contamination acts, not HOW MUCH to adjust. | exp-006 |\\n| 21 | Linear regression nearly as good as IRT (D039, all 3 tiers) | B4 MAE=0.040 vs ContamCal MAE=0.035 on ARC. IRT's value is NOT better MAE — it's interpretable per-item parameters, benchmark-dependent γ_k characterization, and theoretical grounding. Bootstrap CI on MAE gap to show significance (or acknowledge non-significance). | exp-006 |\\n| 22 | SFT capacity artifact ≠ contamination (D039, all 3 tiers) | 0.5B ARC forgetting (-17pp) may be capacity displacement, not contamination-specific. Need: (a) SFT-on-random-data control at 0.5B to isolate capacity vs contamination, (b) focus on 1.5B/3B where capacity effects are minimal (<2pp). Acknowledge 0.5B forgetting as combined SFT+contamination effect. | exp-001 |\\n| 23 | N=8/16 contradicts paper's own N≥50 recommendation (D039, all 3 tiers) | Internal contradiction. Path: (a) add N=8 condition to simulation sweep for calibrated expectations, (b) increase N via multi-seed (target N≥30), (c) if N<30 → explicitly position as preliminary with caveats. SBC diagnostic at actual N to decompose coverage gap. | exp-004, exp-006 |\\n\\n## Evaluation Protocol (6 Metrics — D025 added SBC)\\n1. **Calibration error**: MAE between calibrated score and ground-truth clean accuracy, with bootstrap 95% CIs\\n2. **Interval coverage**: Fraction of true values within 50%/80%/95% credible intervals\\n3. **Interval sharpness**: Average CI width (tighter is better at fixed coverage)\\n4. **Ranking preservation**: Kendall's τ between calibrated and ground-truth model rankings\\n5. **Dose-response monotonicity**: γ effect increases monotonically with contamination dosage\\n6. **SBC diagnostic** (D025): Simulation-Based Calibration (Talts et al. 2018) at actual N_models and N_items to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation). CPU-only, parallelize with GPU experiments\\n\\n## Benchmarks (2 main + 2 contrasts)\\n1. **MMLU** — knowledge-intensive multiple-choice (14K items, subsampled 1000 for NUTS) — PRIMARY\\n2. **ARC-Challenge** — science reasoning multiple-choice (~1.2K items) — PRIMARY. ⚠️ D036: gamma consistently negative (forgetting, not inflation). 3 independent evidence chains: s42 raw (-17.5pp), s123 raw (-10.2pp), oracle IRT (γ=-2.83). Scale-dependent: 3B d100 ARC=84% (mild forgetting) vs 0.5B d100 ARC=29-37% (catastrophic). Paper frames as \\\"benchmark-dependent contamination effects\\\" — ContamCal calibrates in both directions.\\n3. **GSM8K** — mathematical reasoning free-form (~1.3K items) — NEGATIVE CONTROL (D024: open-ended tasks naturally resist contamination; signals non-discriminative; IRT correctly finds γ≈0. Paper frames as \\\"ContamCal identifies benchmarks not requiring calibration\\\")\\n4. **HumanEval** (appendix only) — code generation (N=164). Demoted D009: paraphrase QC 16%.\\n\\n## Baselines (7)\\n0. **Raw (no adjustment)** — report original benchmark scores as anchor\\n1. **Remove-and-rescore** — drop flagged items, rescore on remaining\\n2. **Single-signal 2PL+γ** — best single detection signal + simpler IRT\\n3. **Vanilla 4PL** — standard IRT without contamination covariate (γ=0)\\n4. **Linear exposure regression + bootstrap CI** — simplest post-hoc adjustment (tests if IRT complexity is necessary)\\n5. **Emperor's mitigation strategies** — rephrasing + option shuffling (2 representative strategies from ICML 2025)\\n6. **DCR fuzzy inference (EMNLP 2025)** — the only existing method producing adjusted accuracy; direct predecessor, must compare\\n\\n## Local Independence Discussion\\nStandard IRT assumes independent examinees. In LLM evaluation, a single model produces all item responses — responses are correlated through shared model parameters. This fundamentally alters local independence. Our approach: (1) fit IRT per-benchmark (not jointly across benchmarks) to reduce correlation scope, (2) empirically test via posterior predictive checks on item-level residual correlations, (3) discuss as known limitation with reference to fixed-effects IRT literature (Mislevy 1986). The coverage gap (if observed) may partly reflect this violation — measurement error model for exposure partially compensates by widening CIs.\\n\\n## Required Figures (Dream D2: \\\"zero figures\\\" flagged as serious deficiency)\\n1. Pipeline overview diagram (2-stage: RRF → 4PL+γ IRT)\\n2. Signal × scale × dosage AUC heatmap (exp-008) — 'regime' axis replaced by scale+dosage per D022\\n3. Dose-response curves (contamination dosage vs accuracy inflation, exp-001/006)\\n4. Identifiability phase diagram (AUC × N_models → γ recoverability, exp-004)\\n5. Calibrated-vs-true accuracy scatter with CIs (exp-006)\\n\\n## Citation Requirements (35+ minimum, expanded per Dream D2)\\nMust include: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Adams et al. 1997, San Martín et al. 2009, Maris & Bechger 2009, Cormack et al. 2009 (RRF), Mislevy 1986, Lalor et al. AAAI 2024, LiveBench, TinyBenchmarks (Polo et al. 2024), KDS, CDD, contamination surveys, SBC (Talts et al. 2018), HiBayES, plus all signals/methods cited in IDEA_BRIEF.\\nDream D2 additions (all 3 tiers flagged):\\n- DIF literature: Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999 (γ_k is essentially DIF between exposure groups)\\n- ML calibration: Guo et al. 2017, Platt 1999 (disambiguate \\\"calibration\\\" — ours is decontamination, not probability calibration)\\n- Conformal prediction: Angelopoulos & Bates 2023 (alternative UQ with distribution-free coverage guarantees; discuss why Bayesian IRT preferred)\\n- Data attribution: Pruthi et al. 2020 (TracIn), Park et al. 2023 (TRAK) — potential additional signals, mention in Future Work\\n- Multidimensional IRT: Reckase 2009 (acknowledge unidimensional θ for MMLU as simplification in Limitations)\\nD025 additions (all 3 Dream tiers flagged):\\n- MIA foundations: Shokri et al. 2017 (membership inference attacks), Carlini et al. 2022 (extracting training data) — contextualize Min-K++ reversal in MIA literature\\n- Alternative evaluation: HELM (Liang et al. 2023), Chatbot Arena (Zheng et al. 2023) — discuss in Related Work as contamination-bypassing alternatives\\n- Deeper DCR engagement: Oren et al. 2024 structural comparison\\n- Burnell et al. 2023: multidimensional IRT for LLMs (relevant to unidimensional θ limitation)\\n\\n## Discussion Notes\\n\\n### D045: 0.5B Position Bias and MC Benchmark Exclusion (2026-05-15)\\n- **Finding**: Qwen2.5-0.5B exhibits severe position bias in logprob-based MC evaluation. MMLU prediction distribution: d000 A=46% → d100 A=98%. SFT contamination amplifies pre-existing position prior rather than encoding knowledge.\\n- **Decision**: Exclude 0.5B MMLU/ARC data from IRT pooling. Retain 0.5B GSM8K/HumanEval (free-form, unaffected). 1.5B/3B all benchmarks normal.\\n- **Paper treatment**: Report in Discussion as \\\"capacity threshold for reliable MC evaluation.\\\" The 0.5B dosage-accuracy decline (40→23% MMLU) is position bias amplification, not knowledge degradation. This reinforces Concern #22 (SFT capacity artifact) and motivates the 1.5B+ focus in main results.\\n- **Broader implication**: Logprob-based MC evaluation at small scales may be unreliable across model families — note as limitation and suggest token-level or generation-based alternatives for sub-1B models.\\n\\n## Scope Expansion: ≤14.7B + 4 Families (D141, 2026-05-18)\\n\\n### Model Matrix\\n| Family | Model | Params | Released | Runs | Role |\\n|--------|-------|--------|----------|------|------|\\n| Qwen (primary) | Qwen2.5-0.5B/1.5B/3B | 0.5-3B | 2024-09 | existing | Within-family baseline (≤3B) |\\n| Qwen (primary) | Qwen2.5-7B | 7B | 2024-09 | 10 (5d×2s) | Within-family scale extension |\\n| Qwen (primary) | Qwen2.5-14B | 14B | 2024-09 | 5 (5d×1s) | Within-family scale frontier |\\n| Microsoft | Phi-4 | 14.7B | 2024-12 | 5 (5d×1s) | Cross-family, strongest 14B |\\n| Allen AI | OLMo-2-7B | 7B | 2024-11 | 5 (5d×1s) | Cross-family, fully open |\\n| Google | Gemma-2-9B | 9B | 2024-06 | 5 (5d×1s) | Cross-family, Google family |\\n\\nAll: bf16 LoRA r=16 α=32 lr=5e-5 (D140: matching ≤3B). SFT AUGMENT mode.\\n\\n### Narrative Upgrade Plan (conditional on results)\\n\\n**Family Framing（Reviewer 审定，2026-05-18）**:\\n- 正确表述: \\\"4 independent model families from 4 major labs (Alibaba, Microsoft, Allen AI, Google), trained on independent corpora with distinct pre-training recipes, spanning 0.5B–14.7B parameters\\\"\\n- **禁止** \\\"architecture lineage\\\" framing——4 family 都是 dense decoder-only transformer，差异在 attention config/位置编码/normalization，不构成独立 lineage\\n- 独立性来源是 **training data independence + lab diversity**，不是架构差异\\n- **禁止** \\\"scaling law\\\" 术语——5 个 within-family 点不足以拟合 power-law。用 \\\"scale-dependent attenuation pattern\\\"\\n\\n**Variant A (全 null — preferred for EMNLP)**:\\n- Claim升级: \\\"SFT-route benchmark contamination does not require post-hoc calibration for aggregate score reporting at scales up to 14.7B across four model families\\\"\\n- 优势: clean surprise value, Emperor's + ContamCal 双杀叙事, contribution 分布均衡\\n- Scaling curve: flat line across 5 scale points = 最有说服力的 visual\\n\\n**Variant B (scale-dependent transition)**:\\n- 触发条件: Δacc > 2pp at 7B+ OR γ CI excludes 0 with Cohen's d > 0.5\\n- Story: \\\"contamination effect emerges at larger scale\\\" — transition point analysis\\n- 风险: 审稿人追问 transition mechanism, 证据可能只有 1-2 个 scale point\\n- 决策: 严格按 framing_variants_7b14b.md 的触发条件执行，不在灰色地带 lean toward A\\n\\n**灰色地带判定** (1.5-2.5pp):\\n- Bayes factor + Cohen's d 翻倍规则\\n- Director 独立审视 Agent 对结果的解读（防 confirmation bias toward A）\\n\\n**灰色地带实际数据（D145/D146, 2026-05-19）**:\\n\\nMMLU（正向效应，scale-dependent）:\\n- ≤3B: Δ(d000→d100) ~0.6-0.7pp（2 seeds）\\n- 7B: Δ(d000→d100) +1.34pp（s42 +1.74pp, s123 +0.94pp, range 0.80pp）\\n- 14B: Δ(d000→d100) +1.92pp, d050 peak +2.28pp（单 seed）\\n- 趋势：效应量随 scale 单调递增\\n\\nARC（零/负效应，scale-dependent but opposite direction）:\\n- 0.5B: 灾难性遗忘 -17pp（position bias + capacity）\\n- 7B: Δ(d000→d100) **-0.21pp**（2 seeds 均值，null）\\n- 14B: Δ(d000→d100) **-0.43pp**（全 contaminated checkpoints 低于 clean）\\n- 趋势：ARC forgetting 从 catastrophic (0.5B) 衰减到 near-zero (7B+)\\n\\n**关键发现：Benchmark-specific contamination direction**\\nMMLU（知识密集型）: contamination → 正向效应（memorization helps）\\nARC（推理密集型）: contamination → 零/微负效应（memorization 无益甚至干扰推理）\\n这是 per-benchmark γ_k 最强的实证支撑——不仅 magnitude 不同，**方向都不同**。\\n论文应将此作为 Claim 1 的关键证据之一。\\n\\n14B Variant A/B 判定：MMLU 灰色偏 B（+1.92pp/+2.28pp），ARC 明确 A（-0.43pp）。非单调 dose-response（d100 回落 0.36pp vs d050）。**单 seed 无法判定——已批准 14B d000_s123 + d050_s123 复现。**\\n\\n**三个叙事框架（取决于后续数据，Reviewer D145 评估）**:\\n\\n**框架 1: Scale re-emergence（如果 7B d050/d100 ≤1pp + cross-family 14B ~2pp）**\\n\\\"Contamination effects diminish at mid-scale (7B) but partially re-emerge at 14B, consistent with capacity hypothesis: larger models absorb and express memorized content without catastrophic interference.\\\"\\n→ 最有趣的发现，需 cross-family 验证\\n\\n**框架 2: Dosage-dependent threshold（如果 7B d050/d100 也接近 2pp）**\\n\\\"Contamination effects require sufficient dosage (≥50%) to manifest at 7B+ scale, suggesting IRT-level analysis is needed to detect subtle item-level signals that aggregate metrics miss at low dosage.\\\"\\n→ Variant B，强化 IRT 必要性\\n\\n**框架 3: Qwen-14B specificity（如果 cross-family 14B 不复现 ~2pp）**\\n\\\"The ~2pp MMLU effect at Qwen2.5-14B may be Qwen-specific pre-training artifact, not general contamination susceptibility.\\\"\\n→ 降级为 appendix finding\\n\\n**不论哪个框架，~2pp 灰色地带强化 IRT 价值**——aggregate Δacc 无法决断，item-level analysis 提供更高统计功效。非单调 dose-response（d050 > d100）也是 IRT 的 use case（线性模型无法捕捉）。\\n\\n### Cross-family Claim 升级条件（Reviewer D147 评估，2026-05-19）\\n\\n**已确认方向一致（2/4 families）**：\\n- Qwen2.5 (7B/14B): MMLU 正向 (+1.34/+1.92pp at d100), ARC 零/负向 (-0.21/-0.43pp)\\n- Phi-4 14.7B: MMLU 正向 (+0.62pp at d005), ARC 零 (0.00pp at d005)。d025-d100 待 eval。\\n\\n**Claim 1 升级路径**：\\n- 4/4 families 方向一致 → 升级为 \\\"cross-family validation of benchmark-specific contamination direction\\\"\\n- effect size claims 仍限定 Qwen within-family 数据（跨家族单 seed 不足以 claim magnitude）\\n- **必须限定 dosage**：d005 方向不一致（7B d005 MMLU -0.26pp），claim 需限定 \\\"at dosages ≥ d025 or aggregate d000→d100\\\"\\n\\n**D147 benchmark-specific finding 定位**：\\n- 不升为 co-primary claim\\n- 作为 Claim 1 的 prominent finding 呈现：\\\"ContamCal reveals benchmark-specific heterogeneity: contamination inflates knowledge-intensive benchmarks (MMLU) but not reasoning-focused benchmarks (ARC)\\\"\\n- 与 domain-level γ heterogeneity 合并叙述（benchmark-level + domain-level = 同一故事两个层面）\\n\\n**风险与对策**：\\n1. 低剂量方向不一致 → claim 中 hedge \\\"at sufficient dosage levels\\\"\\n2. ARC null 可能是 power 问题（1172 items vs MMLU 14042, 3.5x less power）→ 需 TOST 等价性检验（bound ±1.5pp）区分 \\\"null effect\\\" vs \\\"underpowered\\\"\\n3. SFT-specific caveat → 已在 limitations 中提及\\n\\n**EMNLP 预估（Reviewer）**：4/4 families 完整数据 + domain/benchmark heterogeneity + IRT framework + identifiability → 3.5-4.0（Borderline Conference to Conference）。前提：数据齐全、claim 边界清晰、不 overclaim。\\n\\n### OLMo-2 Near-null 效应与三层结论框架（Reviewer 评估，2026-05-19）\\n\\n**OLMo-2 数据**：MMLU baseline 58.71%（远低于其他 family 69-77%），contamination 效应 ±0.5pp 内波动（d025 +0.43pp，单 seed，noise 边缘）。\\n\\n**判定**：OLMo-2 near-null 不构成反例，但不能 claim \\\"4/4 positive\\\"。更准确：3/4 clear positive + 1/4 directionally consistent but marginal。\\n\\n**三层结论框架（论文采用）**：\\n- **Layer 1（robust, all 4 families）**：\\\"SFT contamination does not decrease MMLU scores across any tested family. Direction consistently non-negative.\\\"\\n- **Layer 2（conditional, 3/4 families, baseline ≥65%）**：\\\"Among models with sufficient baseline (Qwen 7B/14B, Phi-4, pending Gemma-2), effect is unambiguously positive and dose-monotonic.\\\"\\n- **Layer 3（exploratory, Discussion only）**：\\\"OLMo-2 (baseline 58.7%) shows marginal effect, suggesting a possible capability floor below which contamination has limited impact — warrants controlled investigation.\\\"\\n\\n**\\\"Capability threshold\\\" 是 post-hoc rationalization**——科学合理但属观察性推测，不放入 Contribution，只在 Discussion 标注 exploratory。\\n\\n**Recommended claim wording**：\\\"Across four model families, SFT contamination shifts MMLU accuracy in a non-negative direction, with effect sizes ranging from marginal (OLMo-2, +0.4pp) to moderate (Qwen-14B, +2.3pp) at d050.\\\"\\n\\n**Gemma-2 决定性**：如果 Gemma-2 正向 → Layer 2 = 3/4 positive（strong）；如果 Gemma-2 也 null → 2/4 positive + 2/4 null，cross-family claim 基本不成立，需要 major framing downgrade。\\n\\n**OLMo-2 模型选择 justification**：AllenAI 独立实验室 + fully open source + 独立训练数据 + 7B scale 与 Qwen 7B 对照。\\n\\n### Secondary Findings（Reviewer 评估，2026-05-18）\\n\\n**高价值（主动追踪）**:\\n1. **Cross-family dosage-response shape consistency**: 各 family 在相同 benchmark 上 d000→d100 曲线形状是否一致。若一致 → \\\"contamination susceptibility 是 benchmark × dosage 性质，非 model-family artifact\\\"。Claim 1 最强 generalizability evidence。\\n2. **γ cross-family pooling collapse**: 各 family 独立 fit 的 γ 方向一致，但 cross-family pooled γ 崩塌/反向 → \\\"contamination signals are family-specific, cross-family pooling requires family-aware calibration\\\"。有独立 contribution 级潜力。\\n\\n**中等价值（值得报告）**:\\n3. **Scale × family interaction at 7B band**: 7B Qwen vs 7B OLMo vs 9B Gemma 同 dosage 下 Δacc 差异。差异小(<2pp) → \\\"scale dominates\\\"；差异大 → \\\"family-specific susceptibility\\\"。归因困难（architecture vs training data confound），不宜作 headline。\\n\\n**低价值/高风险（不追踪）**:\\n4. Architecture-specific mechanism（需 interpretability 分析，远超当前实验能力）\\n\\n### EMNLP Reviewer Pushback 预判（Reviewer 评估）\\n1. **\\\"No 70B+\\\"**（~80%）: Limitations 显式讨论。Defense: compute 超 scope + ≤14.7B 已覆盖拐点区间 + 不做 extrapolation claim\\n2. **\\\"SFT-route only\\\"**（~60%）: 已有 defense（acknowledged limitation + exp-009 RL bridge）\\n3. **\\\"Scale analysis is Qwen-only\\\"**（~40%）: Cross-family 是 consistency check 不是 scaling curve\\n\\n### Claim 边界（硬约束）\\n1. \\\"SFT-route\\\" 限定不可去掉（未测试 pretraining contamination）\\n2. \\\"≤14.7B\\\" 不可说 \\\"across all scales\\\"（70B+ 未测试）\\n3. \\\"3 benchmarks\\\" 不可说 \\\"across benchmarks in general\\\"\\n4. AUGMENT mode SFT 限定（base_data + contaminated items appended, 非 REPLACE 模式）——升级 scope 后需在 paper limitations 显式提及\\n\\n### Concern #11 升级\\n从 \\\"Acknowledged limitation — single model family\\\" → \\\"Addressed — 4 independent families\\\"\\n\\n### 新增 Main Figure: Scaling Curve (benchmark-specific contamination direction)\\n- X: log scale model size (0.5B → 14.7B)\\n- Y: Δacc (d100 - d000) per benchmark\\n- Qwen2.5: 实线 5 points (within-family scaling)\\n- 其他 families: 散点 different markers (cross-family consistency)\\n- 灰色水平带: ±1.5pp noise zone\\n- **2 panels minimum**: MMLU (positive trend) vs ARC (zero/negative trend)——视觉对比最能说明 benchmark-specific direction\\n- MMLU panel: 上升趋势 (≤3B ~0.7pp → 7B +1.34pp → 14B +1.92pp)\\n- ARC panel: 平坦/微负 (7B -0.21pp, 14B -0.43pp; 0.5B excluded as catastrophic outlier)\\n- 0.5B outlier: 灰色/虚线标注 excluded (D045 position bias)\\n\\n### Cross-family Analysis Strategy\\n- Family-level 对比（per-family independent IRT fit, report per-family γ）\\n- Qwen2.5-7B domain consistency check（N 最大的 family）\\n- 不做 hierarchical gamma model（ROI 太低, 7 天 DDL → Future Work）\\n- γ 跨家族池化崩塌现象作为 finding 报告\\n\\n### Paper Rewrite Scope (结果出来后执行)\\n- Abstract: 近乎完全重写（~170 words，scope 全部更新）\\n- Introduction ¶4 + Contributions: 重写（scope 从 ≤3B → ≤14.7B + 4 families）\\n- Introduction ¶1-3: 基本不动\\n- Results: 新增 \\\"Scale Invariance Analysis\\\" + \\\"Cross-Family Consistency\\\" sections\\n- Discussion: scale-invariance implication OR transition interpretation\\n- Method: 不变（加 family indicator 说明）\\n- Related Work: 稳定（加 1-2 句 multi-family evaluation）\\n- 预计 Paper Agent 2 天完成（前提: framing variant 已确定）\\n- **不在结果出来前开始重写**（避免 variant 错配返工）\\n\\n## Fisher Information Derivation (Dream D2: all 3 tiers flagged as critical gap)\\nMust derive I(γ) for 4PL+γ model in appendix. Currently stated without proof.\\nThe derivation must show: (1) relationship between signal AUC and γ recoverability, (2) approximation assumptions, (3) how measurement error factors in.\\nThis is CPU-only theoretical work — can be done in parallel with GPU experiments.\\n\", \"total_chars\": 34831, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac54f5ae-ee49-4845-83bb-942d35a314bc",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "4e3ed204-d1ba-422a-9caa-05f97a2d9dbf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contamcal-irt-calibration\\\\n\\\\n## Target Venue\\\\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\\\\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\\\\n- Track: Machine Learning for NLP / Resources and Evaluation\\\\n- Aligns with EMNLP 2026 special theme \\\\\\\"New Missions for NLP Research\\\\\\\" (explicitly invites contamination/data governance work)\\\\n\\\\n## Core Insight (D039 pivot + D108/D115 domain heterogeneity — N=24 confirmed)\\\\nBenchmark contamination effects are far more complex than \\\\\\\"scores go up.\\\\\\\" Through controlled SFT injection and contamination-augmented IRT analysis, we reveal: effects exhibit domain-level heterogeneity within benchmarks (MMLU: Simpson's paradox — aggregate γ≈0 masks STEM-gradient pattern where factual-knowledge domains show strong positive γ while non-STEM domains exhibit model misfit), are benchmark-dependent across benchmarks (ARC: forgetting vs GSM8K: inflation), scale-dependent (catastrophic at 0.5B, diminishing through 3B/7B, validated up to 14.7B across 4 independent model families per D141), and detection signals exhibit fundamental failure modes (Min-K++ directional reversal). ContamCal uses IRT with per-benchmark γ_k to systematically characterize these behaviors and establish identifiability boundaries. Calibration is possible conditionally — when model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) and signal quality is sufficient (recovery validated down to AUC=0.55, lowest tested, at J≥50) — but the primary contribution is the characterization framework itself. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004).\\\\n\\\\n## Core Claims (4 条 — D039 reorder: characterization first, calibration demoted)\\\\n\\\\n1. **Characterization Claim (PRIMARY — D108/D115: domain heterogeneity confirmed at N=24)**: Contamination effects exhibit domain-level heterogeneity within benchmarks, are benchmark-dependent across benchmarks, and scale-dependent. Within MMLU, stratification by cognitive domain (57 subjects → 8 domains) reveals Simpson's paradox: aggregate γ≈0 masks a clear STEM gradient. **N=24 confirmed results (D115)**:\\\\n   - STEM_Math: γ=+0.969, CI excludes 0, PPP=0.438 ✓ (strong positive — contamination inflates factual recall)\\\\n   - STEM_Science: γ=+0.838, CI excludes 0, PPP=0.807 ✓ (strong positive)\\\\n   - STEM_CS_Eng: γ=+0.197, CI includes 0, PPP=0.892 ✓ (null — procedural/applied knowledge less affected)\\\\n   - Non-STEM (Medical, Humanities, Social_Sciences, Business_Law): all PPP≈1.0 → 2PL+γ model structurally misspecified. Negative γ estimates (-0.17 to -0.50) reflect model assumption failure, not true contamination direction.\\\\n   - \\\\\\\"Other\\\\\\\" domain: system crash (disk/cgroup), non-essential catch-all category.\\\\n   **Interpretation**: Contamination susceptibility maps to factual knowledge density — domains rich in memorizable facts (Math, Science) show large positive γ (SFT exposure → recall boost → inflated scores). Procedural/applied domains (CS_Eng) show weaker effect. Non-STEM domains require richer models (multidimensional IRT or domain-specific covariates) — reported as acknowledged limitation and future work.\\\\n   **Paper claim scope**: Domain heterogeneity is established via (a) Simpson's paradox (aggregate ≈ 0, domain-level ≠ 0), (b) STEM gradient with good model fit (3/8 domains with PPP∈[0.1,0.9]), (c) non-STEM misfit as structural boundary of 2PL+γ. Claims based on domains with acceptable PPP ONLY. Across benchmarks: ARC forgetting (γ < 0, CI excludes zero, 3 independent evidence chains) vs GSM8K inflation (γ > 0). Effects are scale-modulated: catastrophic at 0.5B (-17pp ARC), mild at 3B, negligible at 7B. This challenges the dominant \\\\\\\"contamination = uniform inflation\\\\\\\" narrative. Cross-family consistency validated via controlled SFT on 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2; D141) tests whether contamination susceptibility is a benchmark × domain property, not a model family artifact.\\\\n   **PPP presentation strategy**: Non-STEM PPP=1.0 is not a failure of the analysis but a meaningful boundary finding: 2PL+γ (additive contamination effect on unidimensional ability) captures STEM domain mechanics but not non-STEM. Discuss connection to multidimensional IRT (Reckase 2009) and DIF literature (Holland & Wainer 1993). Consider limited-information fit indices (M2*, RMSEA2) as robustness check for STEM results.\\\\n\\\\n2. **Signal Failure Claim (CO-PRIMARY, headline finding per D039 dream 三档一致)**: Min-K++ exhibits directional reversal at small model scales (Cohen's d = -1.2 to -2.7 at 0.5B d100) — actively misleading, not merely ineffective. S1 embedding similarity is the only reliable signal (AUC>0.95). Multi-signal RRF degrades to S1-only in practice — paper is transparent about this (D039: all 3 dream tiers require honesty here). Training-free RRF remains the principled aggregation design (meta-circularity argument). Must distinguish item-level detection AUC from model-level Cohen's d.\\\\n   **C2 contingency**: \\\\\\\"Scale-dependent\\\\\\\" unverified beyond 0.5B. If 1.5B/3B S2/S4 remain ineffective → downgrade to \\\\\\\"method-specific signal effectiveness.\\\\\\\" Min-K++ reversal remains novel regardless.\\\\n\\\\n3. **Identifiability Claim**: Fisher Information analysis + simulation sweep (20 conditions, 200 runs). Recovery succeeds down to AUC=0.55 (lowest tested) at N≥50; the lower bound remains open. LLM evaluation inherently operates below N≥50 (typically N=8-30), creating a structural domain-method mismatch — this is the real \\\\\\\"impossibility,\\\\\\\" not merely \\\\\\\"IRT needs more data.\\\\\\\" CI width ∝ N^{-0.48} (simulation). Coverage collapse at N<30 confirmed empirically (D036). D039 dream worst-tier caution: frame as domain mismatch insight, not as surprising impossibility.\\\\n\\\\n4. **Conditional Calibration Claim (DEMOTED from old Claim 1 per D039)**: IRT ability estimation provides calibration value (GSM8K: calMAE=0.006 vs raw=0.169, ΔMAE=0.163); the γ parameter provides diagnostic value by revealing domain-differential contamination effects. These are distinct contributions: calibration improvement comes from the IRT framework itself (ability estimation decontaminates via the θ pathway), while γ characterizes where and how contamination manifests. When IRT model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) AND signal quality sufficient (validated down to AUC=0.55 at J≥50), calibration produces usable point estimates. Coverage remains below nominal (20-69% at 95%) — present calibrated CIs as directional indicators, not precise credible intervals. Calibration gating criterion: PPP ∈ [0.1, 0.9] AND calibrated MAE < raw MAE. Note: vanilla 2PL ≈ 2PL+γ in MAE across all three benchmarks — γ does not improve calibration accuracy but provides the diagnostic decomposition that is Claim 1's core contribution.\\\\n\\\\n## Contributions (Hierarchical — D039 rebalanced per Dream 2nd round)\\\\n\\\\n### Core (characterization-led; calibration conditional)\\\\n1. **Domain-dependent contamination characterization** via IRT γ_k: Simpson's paradox within MMLU (aggregate γ≈0 masks STEM gradient: Math +0.97 > Science +0.84 >> CS_Eng ≈0), scale modulation, three-regime taxonomy (forgetting / selective memorization / near-immunity). γ heterogeneity maps to factual knowledge density. Non-STEM model misfit as boundary finding (2PL+γ scope limitation)\\\\n2. **Signal failure characterization**: Min-K++ directional reversal (Cohen's d = -1.2 to -2.7) — paper's most citation-worthy empirical finding (D025 + D039 dream 三档一致). Systematic signal × scale × dosage AUC mapping. Honest reporting that RRF = S1-only in practice\\\\n3. **Fisher Information identifiability analysis**: structural vs practical thresholds with domain-method mismatch insight. Strongest theoretical contribution (D025 + D039 一致)\\\\n\\\\n### Supporting\\\\n4. ContamCal framework: two-stage pipeline (S1 provenance → contamination-augmented IRT with per-benchmark γ_k). Conditional calibration with gating criterion. ME model as ablation\\\\n5. Dual-track validation + 7 baselines + 6 metrics (incl. SBC). Controlled SFT injection (internal) + ecological RL (external)\\\\n\\\\n## Story Spine\\\\n- **Problem**: Benchmark scores are increasingly unreliable due to training data contamination. Rephrased test items inflate MMLU accuracy by 8-15 points while evading n-gram decontamination. RL post-training may further complicate detection (under investigation, exp-009). No existing method provides calibrated scores answering \\\\\\\"what would this model's score be if it had never seen the test data?\\\\\\\"\\\\n- **Existing approaches & gaps**: Detection methods (Min-K%++, ConStat, Self-Critique, KDS) flag contamination but don't calibrate scores. IRT methods (PSN-IRT, Growing Pains, ATLAS, Lalor et al. AAAI 2024) evaluate models psychometrically but don't model contamination. DCR provides adjusted accuracy but lacks uncertainty bounds and RL handling. HiBayES provides Bayesian uncertainty but ignores contamination. Emperor's New Clothes (ICML 2025) demonstrates that all 20 mitigation strategies fail — motivating post-hoc calibration. Dynamic benchmarks (LiveBench) offer an alternative but require continuous curation.\\\\n- **Our framing (D039 pivot, updated D141)**: ContamCal is a diagnostic framework that uses IRT to systematically characterize how contamination affects benchmark scores. Through controlled SFT injection across 4 independent model families (0.5B-14.7B), we reveal the structure of contamination effects — they are bidirectional, scale-dependent, benchmark-specific, and consistent across architectures — and establish the conditions under which statistical calibration is and isn't feasible. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 structural adaptations: (a) independent examinees → single model with joint item distribution, (b) binary leakage → continuous exposure scores, (c) stable ability → regime-conditional ability.\\\\n- **Headline result template (D039 — characterization-led, updated D141)**: \\\\\\\"Contamination effects are benchmark-dependent: IRT γ captures forgetting on ARC (γ={X}, CI excludes zero) and inflation on GSM8K (γ={Y}), with scale modulation from catastrophic (-{Z}pp at 0.5B) to {description at 7B-14B} across 4 independent model families (Qwen2.5, Phi-4, OLMo-2, Gemma-2). Detection signal Min-K++ actively reverses direction at small scales (Cohen's d = {W}), making single-signal contamination detection unreliable. Fisher Information analysis establishes that reliable γ recovery requires N≥50 models; recovery succeeded down to AUC=0.55 (lowest tested), with the lower bound remaining open — conditions rarely met in current LLM evaluation.\\\\\\\"\\\\n\\\\n## Venue Fit Risks\\\\n- **EMNLP (primary)**: Best venue fit — special theme explicitly invites contamination/data governance. Reviewers deeply familiar with NLP contamination literature (advantage: no need to motivate the problem heavily). Risk: reviewers may be less familiar with IRT/psychometric methods (mitigation: add intuitive explanations, visual pipeline overview, and connection to familiar NLP concepts like calibration/confidence estimation). ~~Risk: may expect broader model coverage beyond Qwen2.5~~ — **Resolved by D141**: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT at ≤14.7B scale.\\\\n- **AAAI/ICLR (fallback)**: Strong fit for Bayesian/probabilistic methods. Reviewers may need more contamination context but appreciate methodological rigor.\\\\n- **Novelty positioning**: Core method is cross-disciplinary synthesis (detection signals + explanatory IRT + measurement error). NOT positioned as \\\\\\\"new algorithm\\\\\\\" — positioned as (a) signal effectiveness characterization as empirically novel finding, (b) identifiability bounds with theoretical grounding, (c) first framework bridging detection → calibration with proper UQ. RRF is a principled design choice (meta-circularity argument), not claimed as methodological contribution.\\\\n- **RL limitation**: RL models get wide CIs. This is honest — frame as \\\\\\\"calibration is only as good as its inputs.\\\\\\\" Expected regret quantification uses held-out clean benchmark as ground truth (NOT calibrated scores, to avoid circularity).\\\\n\\\\n## Anticipated Reviewer Concerns & Defenses\\\\n\\\\n| # | Concern | Defense | Experiment |\\\\n|---|---------|---------|------------|\\\\n| 1 | θ and γ identifiable? | Fisher Information analysis + 20-condition simulation sweep (200 runs) + MVP validation | exp-004 |\\\\n| 2 | Why not learned aggregation? | Meta-circularity: learned aggregator's training data may itself be contaminated; RRF is design choice, not contribution | exp-003 |\\\\n| 3 | SFT injection ≠ real contamination | Dual-track: controlled SFT (internal) + ecological RL (external) + near-zero γ check (specificity). SFT is \\\\\\\"best-available proxy\\\\\\\", acknowledged as limitation | exp-006, exp-009 |\\\\n| 4 | Scale limited to 3B | ≤14.7B controlled SFT across 4 independent families (Qwen2.5 0.5B-14B, Phi-4 14.7B, OLMo-2 7B, Gemma-2 9B; D141). 29 runs total. | D141 scope expansion |\\\\n| 5 | Why 4PL not 2PL? | MVP: 2PL γ=0.16 vs 4PL γ=0.34 at N=100; c/d necessary for realistic item modeling | exp-006 |\\\\n| 6 | Too few models (N≈15)? | D025 multi-seed strategy: 3 scales × 4+ dosages × 2-3 seeds = 24-36 models pooled. Target N≥30 minimum (N≥50 ideal). Simulation sweep (exp-004) establishes identifiability at actual N. Growing Pains pre-estimation as backup at very low N | exp-004, exp-001 |\\\\n| 7 | Noisy exposure scores | Measurement error model (exposure as noisy observation of latent τ) propagates uncertainty into posteriors automatically | exp-005 |\\\\n| 8 | No baselines | 7 baselines including DCR (EMNLP 2025) + bootstrap CIs on all comparisons | exp-006 |\\\\n| 9 | Single global γ misspecified? | Per-benchmark γ_k is primary (natural in per-benchmark fitting); joint model with shared global γ is ablation. Report both to show contamination effect heterogeneity across benchmarks | exp-006 |\\\\n| 10 | Local independence violated? | Discussed explicitly; single model responds to all items → item responses correlated through shared parameters. Empirically test via posterior predictive checks on item-level residual correlations. This is a known IRT limitation when N_examinees is small. | exp-006 |\\\\n| 11 | Single model family? | Addressed in main experiments: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT injection at identical LoRA config (D141). Qwen2.5 provides within-family scaling (0.5B-14B); 3 cross-family models validate generalizability. | D141 scope expansion |\\\\n| 12 | RL regret circular? | Ground truth for regret = held-out clean benchmark scores, NOT calibrated scores. Explicitly stated | exp-009 |\\\\n| 13 | S2/S4 fail at 0.5B — RRF is just S1? | Scale-dependent: honestly report single-signal regime at 0.5B. Verify S2/S4 at 1.5B/3B. RRF value = principled aggregation when signals ARE available + graceful degradation when not. | exp-008, exp-002 |\\\\n| 14 | d100 AUC=0.5 as signal failure? | Labeling artifact: d100 contaminates ALL items → labels lose discriminative power. Must NOT be interpreted as signal degradation. Present only d005/d025 for signal evaluation. | exp-008 |\\\\n| 15 | Novelty ceiling — standard IRT synthesis? (D025, all 3 Dream tiers) | Positioned as cross-disciplinary synthesis, NOT new algorithm. Emergent value: (a) per-benchmark γ_k heterogeneity as benchmark property, (b) Min-K++ reversal as cautionary finding, (c) Fisher Info identifiability boundaries. If 4PL vs 2PL gap small → acknowledge honestly but argue c/d params needed for realistic MC modeling. Report oracle-γ ablation to decompose MAE. | exp-006 |\\\\n| 16 | Per-benchmark γ_k via separate fits, not hierarchical? (D025, [M][W]) | Per-benchmark separate fits = primary (natural, avoids cross-benchmark correlation). Hierarchical γ_k ~ Normal(μ_γ, σ_γ) as ablation to formally test heterogeneity and share info across benchmarks. Both reported. | exp-006 |\\\\n| 17 | Coverage gap — 85% vs 95% nominal? (D025, all 3 tiers) | SBC diagnostic to identify source. Possible causes: local independence violation, insufficient N, model misspecification. Report SBC alongside posterior predictive checks. If gap is from local independence → discuss as known IRT limitation with references. | exp-004, exp-006 |\\\\n| 18 | Why not just S1 alone? (D025, [M][W]) | S1-only is a baseline (#2 single-signal 2PL+γ). If RRF ≤ S1-only → present as \\\\\\\"S1+IRT calibration with extensible multi-signal architecture for future signals.\\\\\\\" Meta-circularity argument for training-free aggregation still holds. | exp-003 |\\\\n| 19 | Coverage collapse 20-33% even with oracle? (D036) | Far worse than #17 anticipated. PPP extremes (ARC=1.0, GSM8K=0.0) = systematic misspecification. Path: (a) increase N via multi-seed pooling, (b) check exp-004 sweep coverage at matching N, (c) if additive γ insufficient → item-level heterogeneity or hierarchical structure. Fallback: lead with MAE+ranking, present coverage honestly. | exp-006, exp-004 |\\\\n| 20 | γ doesn't improve calibration MAE over vanilla 2PL | γ's role is diagnostic (domain-differential characterization), not calibration accuracy improvement. IRT ability estimation itself provides calibration value (GSM8K ΔMAE=0.163). Vanilla 2PL ≈ 2PL+γ confirms γ is orthogonal to calibration performance — it reveals WHERE contamination acts, not HOW MUCH to adjust. | exp-006 |\\\\n| 21 | Linear regression nearly as good as IRT (D039, all 3 tiers) | B4 MAE=0.040 vs ContamCal MAE=0.035 on ARC. IRT's value is NOT better MAE — it's interpretable per-item parameters, benchmark-dependent γ_k characterization, and theoretical grounding. Bootstrap CI on MAE gap to show significance (or acknowledge non-significance). | exp-006 |\\\\n| 22 | SFT capacity artifact ≠ contamination (D039, all 3 tiers) | 0.5B ARC forgetting (-17pp) may be capacity displacement, not contamination-specific. Need: (a) SFT-on-random-data control at 0.5B to isolate capacity vs contamination, (b) focus on 1.5B/3B where capacity effects are minimal (<2pp). Acknowledge 0.5B forgetting as combined SFT+contamination effect. | exp-001 |\\\\n| 23 | N=8/16 contradicts paper's own N≥50 recommendation (D039, all 3 tiers) | Internal contradiction. Path: (a) add N=8 condition to simulation sweep for calibrated expectations, (b) increase N via multi-seed (target N≥30), (c) if N<30 → explicitly position as preliminary with caveats. SBC diagnostic at actual N to decompose coverage gap. | exp-004, exp-006 |\\\\n\\\\n## Evaluation Protocol (6 Metrics — D025 added SBC)\\\\n1. **Calibration error**: MAE between calibrated score and ground-truth clean accuracy, with bootstrap 95% CIs\\\\n2. **Interval coverage**: Fraction of true values within 50%/80%/95% credible intervals\\\\n3. **Interval sharpness**: Average CI width (tighter is better at fixed coverage)\\\\n4. **Ranking preservation**: Kendall's τ between calibrated and ground-truth model rankings\\\\n5. **Dose-response monotonicity**: γ effect increases monotonically with contamination dosage\\\\n6. **SBC diagnostic** (D025): Simulation-Based Calibration (Talts et al. 2018) at actual N_models and N_items to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation). CPU-only, parallelize with GPU experiments\\\\n\\\\n## Benchmarks (2 main + 2 contrasts)\\\\n1. **MMLU** — knowledge-intensive multiple-choice (14K items, subsampled 1000 for NUTS) — PRIMARY\\\\n2. **ARC-Challenge** — science reasoning multiple-choice (~1.2K items) — PRIMARY. ⚠️ D036: gamma consistently negative (forgetting, not inflation). 3 independent evidence chains: s42 raw (-17.5pp), s123 raw (-10.2pp), oracle IRT (γ=-2.83). Scale-dependent: 3B d100 ARC=84% (mild forgetting) vs 0.5B d100 ARC=29-37% (catastrophic). Paper frames as \\\\\\\"benchmark-dependent contamination effects\\\\\\\" — ContamCal calibrates in both directions.\\\\n3. **GSM8K** — mathematical reasoning free-form (~1.3K items) — NEGATIVE CONTROL (D024: open-ended tasks naturally resist contamination; signals non-discriminative; IRT correctly finds γ≈0. Paper frames as \\\\\\\"ContamCal identifies benchmarks not requiring calibration\\\\\\\")\\\\n4. **HumanEval** (appendix only) — code generation (N=164). Demoted D009: paraphrase QC 16%.\\\\n\\\\n## Baselines (7)\\\\n0. **Raw (no adjustment)** — report original benchmark scores as anchor\\\\n1. **Remove-and-rescore** — drop flagged items, rescore on remaining\\\\n2. **Single-signal 2PL+γ** — best single detection signal + simpler IRT\\\\n3. **Vanilla 4PL** — standard IRT without contamination covariate (γ=0)\\\\n4. **Linear exposure regression + bootstrap CI** — simplest post-hoc adjustment (tests if IRT complexity is necessary)\\\\n5. **Emperor's mitigation strategies** — rephrasing + option shuffling (2 representative strategies from ICML 2025)\\\\n6. **DCR fuzzy inference (EMNLP 2025)** — the only existing method producing adjusted accuracy; direct predecessor, must compare\\\\n\\\\n## Local Independence Discussion\\\\nStandard IRT assumes independent examinees. In LLM evaluation, a single model produces all item responses — responses are correlated through shared model parameters. This fundamentally alters local independence. Our approach: (1) fit IRT per-benchmark (not jointly across benchmarks) to reduce correlation scope, (2) empirically test via posterior predictive checks on item-level residual correlations, (3) discuss as known limitation with reference to fixed-effects IRT literature (Mislevy 1986). The coverage gap (if observed) may partly reflect this violation — measurement error model for exposure partially compensates by widening CIs.\\\\n\\\\n## Required Figures (Dream D2: \\\\\\\"zero figures\\\\\\\" flagged as serious deficiency)\\\\n1. Pipeline overview diagram (2-stage: RRF → 4PL+γ IRT)\\\\n2. Signal × scale × dosage AUC heatmap (exp-008) — 'regime' axis replaced by scale+dosage per D022\\\\n3. Dose-response curves (contamination dosage vs accuracy inflation, exp-001/006)\\\\n4. Identifiability phase diagram (AUC × N_models → γ recoverability, exp-004)\\\\n5. Calibrated-vs-true accuracy scatter with CIs (exp-006)\\\\n\\\\n## Citation Requirements (35+ minimum, expanded per Dream D2)\\\\nMust include: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Adams et al. 1997, San Martín et al. 2009, Maris & Bechger 2009, Cormack et al. 2009 (RRF), Mislevy 1986, Lalor et al. AAAI 2024, LiveBench, TinyBenchmarks (Polo et al. 2024), KDS, CDD, contamination surveys, SBC (Talts et al. 2018), HiBayES, plus all signals/methods cited in IDEA_BRIEF.\\\\nDream D2 additions (all 3 tiers flagged):\\\\n- DIF literature: Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999 (γ_k is essentially DIF between exposure groups)\\\\n- ML calibration: Guo et al. 2017, Platt 1999 (disambiguate \\\\\\\"calibration\\\\\\\" — ours is decontamination, not probability calibration)\\\\n- Conformal prediction: Angelopoulos & Bates 2023 (alternative UQ with distribution-free coverage guarantees; discuss why Bayesian IRT preferred)\\\\n- Data attribution: Pruthi et al. 2020 (TracIn), Park et al. 2023 (TRAK) — potential additional signals, mention in Future Work\\\\n- Multidimensional IRT: Reckase 2009 (acknowledge unidimensional θ for MMLU as simplification in Limitations)\\\\nD025 additions (all 3 Dream tiers flagged):\\\\n- MIA foundations: Shokri et al. 2017 (membership inference attacks), Carlini et al. 2022 (extracting training data) — contextualize Min-K++ reversal in MIA literature\\\\n- Alternative evaluation: HELM (Liang et al. 2023), Chatbot Arena (Zheng et al. 2023) — discuss in Related Work as contamination-bypassing alternatives\\\\n- Deeper DCR engagement: Oren et al. 2024 structural comparison\\\\n- Burnell et al. 2023: multidimensional IRT for LLMs (relevant to unidimensional θ limitation)\\\\n\\\\n## Discussion Notes\\\\n\\\\n### D045: 0.5B Position Bias and MC Benchmark Exclusion (2026-05-15)\\\\n- **Finding**: Qwen2.5-0.5B exhibits severe position bias in logprob-based MC evaluation. MMLU prediction distribution: d000 A=46% → d100 A=98%. SFT contamination amplifies pre-existing position prior rather than encoding knowledge.\\\\n- **Decision**: Exclude 0.5B MMLU/ARC data from IRT pooling. Retain 0.5B GSM8K/HumanEval (free-form, unaffected). 1.5B/3B all benchmarks normal.\\\\n- **Paper treatment**: Report in Discussion as \\\\\\\"capacity threshold for reliable MC evaluation.\\\\\\\" The 0.5B dosage-accuracy decline (40→23% MMLU) is position bias amplification, not knowledge degradation. This reinforces Concern #22 (SFT capacity artifact) and motivates the 1.5B+ focus in main results.\\\\n- **Broader implication**: Logprob-based MC evaluation at small scales may be unreliable across model families — note as limitation and suggest token-level or generation-based alternatives for sub-1B models.\\\\n\\\\n## Scope Expansion: ≤14.7B + 4 Families (D141, 2026-05-18)\\\\n\\\\n### Model Matrix\\\\n| Family | Model | Params | Released | Runs | Role |\\\\n|--------|-------|--------|----------|------|------|\\\\n| Qwen (primary) | Qwen2.5-0.5B/1.5B/3B | 0.5-3B | 2024-09 | existing | Within-family baseline (≤3B) |\\\\n| Qwen (primary) | Qwen2.5-7B | 7B | 2024-09 | 10 (5d×2s) | Within-family scale extension |\\\\n| Qwen (primary) | Qwen2.5-14B | 14B | 2024-09 | 5 (5d×1s) | Within-family scale frontier |\\\\n| Microsoft | Phi-4 | 14.7B | 2024-12 | 5 (5d×1s) | Cross-family, strongest 14B |\\\\n| Allen AI | OLMo-2-7B | 7B | 2024-11 | 5 (5d×1s) | Cross-family, fully open |\\\\n| Google | Gemma-2-9B | 9B | 2024-06 | 5 (5d×1s) | Cross-family, Google family |\\\\n\\\\nAll: bf16 LoRA r=16 α=32 lr=5e-5 (D140: matching ≤3B). SFT AUGMENT mode.\\\\n\\\\n### Narrative Upgrade Plan (conditional on results)\\\\n\\\\n**Family Framing（Reviewer 审定，2026-05-18）**:\\\\n- 正确表述: \\\\\\\"4 independent model families from 4 major labs (Alibaba, Microsoft, Allen AI, Google), trained on independent corpora with distinct pre-training recipes, spanning 0.5B–14.7B parameters\\\\\\\"\\\\n- **禁止** \\\\\\\"architecture lineage\\\\\\\" framing——4 family 都是 dense decoder-only transformer，差异在 attention config/位置编码/normalization，不构成独立 lineage\\\\n- 独立性来源是 **training data independence + lab diversity**，不是架构差异\\\\n- **禁止** \\\\\\\"scaling law\\\\\\\" 术语——5 个 within-family 点不足以拟合 power-law。用 \\\\\\\"scale-dependent attenuation pattern\\\\\\\"\\\\n\\\\n**Variant A (全 null — preferred for EMNLP)**:\\\\n- Claim升级: \\\\\\\"SFT-route benchmark contamination does not require post-hoc calibration for aggregate score reporting at scales up to 14.7B across four model families\\\\\\\"\\\\n- 优势: clean surprise value, Emperor's + ContamCal 双杀叙事, contribution 分布均衡\\\\n- Scaling curve: flat line across 5 scale points = 最有说服力的 visual\\\\n\\\\n**Variant B (scale-dependent transition)**:\\\\n- 触发条件: Δacc > 2pp at 7B+ OR γ CI excludes 0 with Cohen's d > 0.5\\\\n- Story: \\\\\\\"contamination effect emerges at larger scale\\\\\\\" — transition point analysis\\\\n- 风险: 审稿人追问 transition mechanism, 证据可能只有 1-2 个 scale point\\\\n- 决策: 严格按 framing_variants_7b14b.md 的触发条件执行，不在灰色地带 lean toward A\\\\n\\\\n**灰色地带判定** (1.5-2.5pp):\\\\n- Bayes factor + Cohen's d 翻倍规则\\\\n- Director 独立审视 Agent 对结果的解读（防 confirmation bias toward A）\\\\n\\\\n**灰色地带实际数据（D145/D146, 2026-05-19）**:\\\\n\\\\nMMLU（正向效应，scale-dependent）:\\\\n- ≤3B: Δ(d000→d100) ~0.6-0.7pp（2 seeds）\\\\n- 7B: Δ(d000→d100) +1.34pp（s42 +1.74pp, s123 +0.94pp, range 0.80pp）\\\\n- 14B: Δ(d000→d100) +1.92pp, d050 peak +2.28pp（单 seed）\\\\n- 趋势：效应量随 scale 单调递增\\\\n\\\\nARC（零/负效应，scale-dependent but opposite direction）:\\\\n- 0.5B: 灾难性遗忘 -17pp（position bias + capacity）\\\\n- 7B: Δ(d000→d100) **-0.21pp**（2 seeds 均值，null）\\\\n- 14B: Δ(d000→d100) **-0.43pp**（全 contaminated checkpoints 低于 clean）\\\\n- 趋势：ARC forgetting 从 catastrophic (0.5B) 衰减到 near-zero (7B+)\\\\n\\\\n**关键发现：Benchmark-specific contamination direction**\\\\nMMLU（知识密集型）: contamination → 正向效应（memorization helps）\\\\nARC（推理密集型）: contamination → 零/微负效应（memorization 无益甚至干扰推理）\\\\n这是 per-benchmark γ_k 最强的实证支撑——不仅 magnitude 不同，**方向都不同**。\\\\n论文应将此作为 Claim 1 的关键证据之一。\\\\n\\\\n14B Variant A/B 判定：MMLU 灰色偏 B（+1.92pp/+2.28pp），ARC 明确 A（-0.43pp）。非单调 dose-response（d100 回落 0.36pp vs d050）。**单 seed 无法判定——已批准 14B d000_s123 + d050_s123 复现。**\\\\n\\\\n**三个叙事框架（取决于后续数据，Reviewer D145 评估）**:\\\\n\\\\n**框架 1: Scale re-emergence（如果 7B d050/d100 ≤1pp + cross-family 14B ~2pp）**\\\\n\\\\\\\"Contamination effects diminish at mid-scale (7B) but partially re-emerge at 14B, consistent with capacity hypothesis: larger models absorb and express memorized content without catastrophic interference.\\\\\\\"\\\\n→ 最有趣的发现，需 cross-family 验证\\\\n\\\\n**框架 2: Dosage-dependent threshold（如果 7B d050/d100 也接近 2pp）**\\\\n\\\\\\\"Contamination effects require sufficient dosage (≥50%) to manifest at 7B+ scale, suggesting IRT-level analysis is needed to detect subtle item-level signals that aggregate metrics miss at low dosage.\\\\\\\"\\\\n→ Variant B，强化 IRT 必要性\\\\n\\\\n**框架 3: Qwen-14B specificity（如果 cross-family 14B 不复现 ~2pp）**\\\\n\\\\\\\"The ~2pp MMLU effect at Qwen2.5-14B may be Qwen-specific pre-training artifact, not general contamination susceptibility.\\\\\\\"\\\\n→ 降级为 appendix finding\\\\n\\\\n**不论哪个框架，~2pp 灰色地带强化 IRT 价值**——aggregate Δacc 无法决断，item-level analysis 提供更高统计功效。非单调 dose-response（d050 > d100）也是 IRT 的 use case（线性模型无法捕捉）。\\\\n\\\\n### Cross-family Claim 升级条件（Reviewer D147 评估，2026-05-19）\\\\n\\\\n**已确认方向一致（2/4 families）**：\\\\n- Qwen2.5 (7B/14B): MMLU 正向 (+1.34/+1.92pp at d100), ARC 零/负向 (-0.21/-0.43pp)\\\\n- Phi-4 14.7B: MMLU 正向 (+0.62pp at d005), ARC 零 (0.00pp at d005)。d025-d100 待 eval。\\\\n\\\\n**Claim 1 升级路径**：\\\\n- 4/4 families 方向一致 → 升级为 \\\\\\\"cross-family validation of benchmark-specific contamination direction\\\\\\\"\\\\n- effect size claims 仍限定 Qwen within-family 数据（跨家族单 seed 不足以 claim magnitude）\\\\n- **必须限定 dosage**：d005 方向不一致（7B d005 MMLU -0.26pp），claim 需限定 \\\\\\\"at dosages ≥ d025 or aggregate d000→d100\\\\\\\"\\\\n\\\\n**D147 benchmark-specific finding 定位**：\\\\n- 不升为 co-primary claim\\\\n- 作为 Claim 1 的 prominent finding 呈现：\\\\\\\"ContamCal reveals benchmark-specific heterogeneity: contamination inflates knowledge-intensive benchmarks (MMLU) but not reasoning-focused benchmarks (ARC)\\\\\\\"\\\\n- 与 domain-level γ heterogeneity 合并叙述（benchmark-level + domain-level = 同一故事两个层面）\\\\n\\\\n**风险与对策**：\\\\n1. 低剂量方向不一致 → claim 中 hedge \\\\\\\"at sufficient dosage levels\\\\\\\"\\\\n2. ARC null 可能是 power 问题（1172 items vs MMLU 14042, 3.5x less power）→ 需 TOST 等价性检验（bound ±1.5pp）区分 \\\\\\\"null effect\\\\\\\" vs \\\\\\\"underpowered\\\\\\\"\\\\n3. SFT-specific caveat → 已在 limitations 中提及\\\\n\\\\n**EMNLP 预估（Reviewer）**：4/4 families 完整数据 + domain/benchmark heterogeneity + IRT framework + identifiability → 3.5-4.0（Borderline Conference to Conference）。前提：数据齐全、claim 边界清晰、不 overclaim。\\\\n\\\\n### OLMo-2 Near-null 效应与三层结论框架（Reviewer 评估，2026-05-19）\\\\n\\\\n**OLMo-2 数据**：MMLU baseline 58.71%（远低于其他 family 69-77%），contamination 效应 ±0.5pp 内波动（d025 +0.43pp，单 seed，noise 边缘）。\\\\n\\\\n**判定**：OLMo-2 near-null 不构成反例，但不能 claim \\\\\\\"4/4 positive\\\\\\\"。更准确：3/4 clear positive + 1/4 directionally consistent but marginal。\\\\n\\\\n**三层结论框架（论文采用）**：\\\\n- **Layer 1（robust, all 4 families）**：\\\\\\\"SFT contamination does not decrease MMLU scores across any tested family. Direction consistently non-negative.\\\\\\\"\\\\n- **Layer 2（conditional, 3/4 families, baseline ≥65%）**：\\\\\\\"Among models with sufficient baseline (Qwen 7B/14B, Phi-4, pending Gemma-2), effect is unambiguously positive and dose-monotonic.\\\\\\\"\\\\n- **Layer 3（exploratory, Discussion only）**：\\\\\\\"OLMo-2 (baseline 58.7%) shows marginal effect, suggesting a possible capability floor below which contamination has limited impact — warrants controlled investigation.\\\\\\\"\\\\n\\\\n**\\\\\\\"Capability threshold\\\\\\\" 是 post-hoc rationalization**——科学合理但属观察性推测，不放入 Contribution，只在 Discussion 标注 exploratory。\\\\n\\\\n**Recommended claim wording**：\\\\\\\"Across four model families, SFT contamination shifts MMLU accuracy in a non-negative direction, with effect sizes ranging from marginal (OLMo-2, +0.4pp) to moderate (Qwen-14B, +2.3pp) at d050.\\\\\\\"\\\\n\\\\n**Gemma-2 决定性**：如果 Gemma-2 正向 → Layer 2 = 3/4 positive（strong）；如果 Gemma-2 也 null → 2/4 positive + 2/4 null，cross-family claim 基本不成立，需要 major framing downgrade。\\\\n\\\\n**OLMo-2 模型选择 justification**：AllenAI 独立实验室 + fully open source + 独立训练数据 + 7B scale 与 Qwen 7B 对照。\\\\n\\\\n### Secondary Findings（Reviewer 评估，2026-05-18）\\\\n\\\\n**高价值（主动追踪）**:\\\\n1. **Cross-family dosage-response shape consistency**: 各 family 在相同 benchmark 上 d000→d100 曲线形状是否一致。若一致 → \\\\\\\"contamination susceptibility 是 benchmark × dosage 性质，非 model-family artifact\\\\\\\"。Claim 1 最强 generalizability evidence。\\\\n2. **γ cross-family pooling collapse**: 各 family 独立 fit 的 γ 方向一致，但 cross-family pooled γ 崩塌/反向 → \\\\\\\"contamination signals are family-specific, cross-family pooling requires family-aware calibration\\\\\\\"。有独立 contribution 级潜力。\\\\n\\\\n**中等价值（值得报告）**:\\\\n3. **Scale × family interaction at 7B band**: 7B Qwen vs 7B OLMo vs 9B Gemma 同 dosage 下 Δacc 差异。差异小(<2pp) → \\\\\\\"scale dominates\\\\\\\"；差异大 → \\\\\\\"family-specific susceptibility\\\\\\\"。归因困难（architecture vs training data confound），不宜作 headline。\\\\n\\\\n**低价值/高风险（不追踪）**:\\\\n4. Architecture-specific mechanism（需 interpretability 分析，远超当前实验能力）\\\\n\\\\n### EMNLP Reviewer Pushback 预判（Reviewer 评估）\\\\n1. **\\\\\\\"No 70B+\\\\\\\"**（~80%）: Limitations 显式讨论。Defense: compute 超 scope + ≤14.7B 已覆盖拐点区间 + 不做 extrapolation claim\\\\n2. **\\\\\\\"SFT-route only\\\\\\\"**（~60%）: 已有 defense（acknowledged limitation + exp-009 RL bridge）\\\\n3. **\\\\\\\"Scale analysis is Qwen-only\\\\\\\"**（~40%）: Cross-family 是 consistency check 不是 scaling curve\\\\n\\\\n### Claim 边界（硬约束）\\\\n1. \\\\\\\"SFT-route\\\\\\\" 限定不可去掉（未测试 pretraining contamination）\\\\n2. \\\\\\\"≤14.7B\\\\\\\" 不可说 \\\\\\\"across all scales\\\\\\\"（70B+ 未测试）\\\\n3. \\\\\\\"3 benchmarks\\\\\\\" 不可说 \\\\\\\"across benchmarks in general\\\\\\\"\\\\n4. AUGMENT mode SFT 限定（base_data + contaminated items appended, 非 REPLACE 模式）——升级 scope 后需在 paper limitations 显式提及\\\\n\\\\n### Concern #11 升级\\\\n从 \\\\\\\"Acknowledged limitation — single model family\\\\\\\" → \\\\\\\"Addressed — 4 independent families\\\\\\\"\\\\n\\\\n### 新增 Main Figure: Scaling Curve (benchmark-specific contamination direction)\\\\n- X: log scale model size (0.5B → 14.7B)\\\\n- Y: Δacc (d100 - d000) per benchmark\\\\n- Qwen2.5: 实线 5 points (within-family scaling)\\\\n- 其他 families: 散点 different markers (cross-family consistency)\\\\n- 灰色水平带: ±1.5pp noise zone\\\\n- **2 panels minimum**: MMLU (positive trend) vs ARC (zero/negative trend)——视觉对比最能说明 benchmark-specific direction\\\\n- MMLU panel: 上升趋势 (≤3B ~0.7pp → 7B +1.34pp → 14B +1.92pp)\\\\n- ARC panel: 平坦/微负 (7B -0.21pp, 14B -0.43pp; 0.5B excluded as catastrophic outlier)\\\\n- 0.5B outlier: 灰色/虚线标注 excluded (D045 position bias)\\\\n\\\\n### Cross-family Analysis Strategy\\\\n- Family-level 对比（per-family independent IRT fit, report per-family γ）\\\\n- Qwen2.5-7B domain consistency check（N 最大的 family）\\\\n- 不做 hierarchical gamma model（ROI 太低, 7 天 DDL → Future Work）\\\\n- γ 跨家族池化崩塌现象作为 finding 报告\\\\n\\\\n### Paper Rewrite Scope (结果出来后执行)\\\\n- Abstract: 近乎完全重写（~170 words，scope 全部更新）\\\\n- Introduction ¶4 + Contributions: 重写（scope 从 ≤3B → ≤14.7B + 4 families）\\\\n- Introduction ¶1-3: 基本不动\\\\n- Results: 新增 \\\\\\\"Scale Invariance Analysis\\\\\\\" + \\\\\\\"Cross-Family Consistency\\\\\\\" sections\\\\n- Discussion: scale-invariance implication OR transition interpretation\\\\n- Method: 不变（加 family indicator 说明）\\\\n- Related Work: 稳定（加 1-2 句 multi-family evaluation）\\\\n- 预计 Paper Agent 2 天完成（前提: framing variant 已确定）\\\\n- **不在结果出来前开始重写**（避免 variant 错配返工）\\\\n\\\\n## Fisher Information Derivation (Dream D2: all 3 tiers flagged as critical gap)\\\\nMust derive I(γ) for 4PL+γ model in appendix. Currently stated without proof.\\\\nThe derivation must show: (1) relationship between signal AUC and γ recoverability, (2) approximation assumptions, (3) how measurement error factors in.\\\\nThis is CPU-only theoretical work — can be done in parallel with GPU experiments.\\\\n\\\", \\\"total_chars\\\": 34831, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper_framing.md\", \"content\": \"# Paper Framing — contamcal-irt-calibration\\n\\n## Target Venue\\n- **Primary: EMNLP 2026 ARR May 25** (D006: reinstated per user directive, 12 days)\\n- Fallback: AAAI 2027 (Jul-Aug 2026) / ICLR 2027 (Sep 2026)\\n- Track: Machine Learning for NLP / Resources and Evaluation\\n- Aligns with EMNLP 2026 special theme \\\"New Missions for NLP Research\\\" (explicitly invites contamination/data governance work)\\n\\n## Core Insight (D039 pivot + D108/D115 domain heterogeneity — N=24 confirmed)\\nBenchmark contamination effects are far more complex than \\\"scores go up.\\\" Through controlled SFT injection and contamination-augmented IRT analysis, we reveal: effects exhibit domain-level heterogeneity within benchmarks (MMLU: Simpson's paradox — aggregate γ≈0 masks STEM-gradient pattern where factual-knowledge domains show strong positive γ while non-STEM domains exhibit model misfit), are benchmark-dependent across benchmarks (ARC: forgetting vs GSM8K: inflation), scale-dependent (catastrophic at 0.5B, diminishing through 3B/7B, validated up to 14.7B across 4 independent model families per D141), and detection signals exhibit fundamental failure modes (Min-K++ directional reversal). ContamCal uses IRT with per-benchmark γ_k to systematically characterize these behaviors and establish identifiability boundaries. Calibration is possible conditionally — when model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) and signal quality is sufficient (recovery validated down to AUC=0.55, lowest tested, at J≥50) — but the primary contribution is the characterization framework itself. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004).\\n\\n## Core Claims (4 条 — D039 reorder: characterization first, calibration demoted)\\n\\n1. **Characterization Claim (PRIMARY — D108/D115: domain heterogeneity confirmed at N=24)**: Contamination effects exhibit domain-level heterogeneity within benchmarks, are benchmark-dependent across benchmarks, and scale-dependent. Within MMLU, stratification by cognitive domain (57 subjects → 8 domains) reveals Simpson's paradox: aggregate γ≈0 masks a clear STEM gradient. **N=24 confirmed results (D115)**:\\n   - STEM_Math: γ=+0.969, CI excludes 0, PPP=0.438 ✓ (strong positive — contamination inflates factual recall)\\n   - STEM_Science: γ=+0.838, CI excludes 0, PPP=0.807 ✓ (strong positive)\\n   - STEM_CS_Eng: γ=+0.197, CI includes 0, PPP=0.892 ✓ (null — procedural/applied knowledge less affected)\\n   - Non-STEM (Medical, Humanities, Social_Sciences, Business_Law): all PPP≈1.0 → 2PL+γ model structurally misspecified. Negative γ estimates (-0.17 to -0.50) reflect model assumption failure, not true contamination direction.\\n   - \\\"Other\\\" domain: system crash (disk/cgroup), non-essential catch-all category.\\n   **Interpretation**: Contamination susceptibility maps to factual knowledge density — domains rich in memorizable facts (Math, Science) show large positive γ (SFT exposure → recall boost → inflated scores). Procedural/applied domains (CS_Eng) show weaker effect. Non-STEM domains require richer models (multidimensional IRT or domain-specific covariates) — reported as acknowledged limitation and future work.\\n   **Paper claim scope**: Domain heterogeneity is established via (a) Simpson's paradox (aggregate ≈ 0, domain-level ≠ 0), (b) STEM gradient with good model fit (3/8 domains with PPP∈[0.1,0.9]), (c) non-STEM misfit as structural boundary of 2PL+γ. Claims based on domains with acceptable PPP ONLY. Across benchmarks: ARC forgetting (γ < 0, CI excludes zero, 3 independent evidence chains) vs GSM8K inflation (γ > 0). Effects are scale-modulated: catastrophic at 0.5B (-17pp ARC), mild at 3B, negligible at 7B. This challenges the dominant \\\"contamination = uniform inflation\\\" narrative. Cross-family consistency validated via controlled SFT on 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2; D141) tests whether contamination susceptibility is a benchmark × domain property, not a model family artifact.\\n   **PPP presentation strategy**: Non-STEM PPP=1.0 is not a failure of the analysis but a meaningful boundary finding: 2PL+γ (additive contamination effect on unidimensional ability) captures STEM domain mechanics but not non-STEM. Discuss connection to multidimensional IRT (Reckase 2009) and DIF literature (Holland & Wainer 1993). Consider limited-information fit indices (M2*, RMSEA2) as robustness check for STEM results.\\n\\n2. **Signal Failure Claim (CO-PRIMARY, headline finding per D039 dream 三档一致)**: Min-K++ exhibits directional reversal at small model scales (Cohen's d = -1.2 to -2.7 at 0.5B d100) — actively misleading, not merely ineffective. S1 embedding similarity is the only reliable signal (AUC>0.95). Multi-signal RRF degrades to S1-only in practice — paper is transparent about this (D039: all 3 dream tiers require honesty here). Training-free RRF remains the principled aggregation design (meta-circularity argument). Must distinguish item-level detection AUC from model-level Cohen's d.\\n   **C2 contingency**: \\\"Scale-dependent\\\" unverified beyond 0.5B. If 1.5B/3B S2/S4 remain ineffective → downgrade to \\\"method-specific signal effectiveness.\\\" Min-K++ reversal remains novel regardless.\\n\\n3. **Identifiability Claim**: Fisher Information analysis + simulation sweep (20 conditions, 200 runs). Recovery succeeds down to AUC=0.55 (lowest tested) at N≥50; the lower bound remains open. LLM evaluation inherently operates below N≥50 (typically N=8-30), creating a structural domain-method mismatch — this is the real \\\"impossibility,\\\" not merely \\\"IRT needs more data.\\\" CI width ∝ N^{-0.48} (simulation). Coverage collapse at N<30 confirmed empirically (D036). D039 dream worst-tier caution: frame as domain mismatch insight, not as surprising impossibility.\\n\\n4. **Conditional Calibration Claim (DEMOTED from old Claim 1 per D039)**: IRT ability estimation provides calibration value (GSM8K: calMAE=0.006 vs raw=0.169, ΔMAE=0.163); the γ parameter provides diagnostic value by revealing domain-differential contamination effects. These are distinct contributions: calibration improvement comes from the IRT framework itself (ability estimation decontaminates via the θ pathway), while γ characterizes where and how contamination manifests. When IRT model complexity matches benchmark structure (2PL for open-ended, 4PL for MCQ) AND signal quality sufficient (validated down to AUC=0.55 at J≥50), calibration produces usable point estimates. Coverage remains below nominal (20-69% at 95%) — present calibrated CIs as directional indicators, not precise credible intervals. Calibration gating criterion: PPP ∈ [0.1, 0.9] AND calibrated MAE < raw MAE. Note: vanilla 2PL ≈ 2PL+γ in MAE across all three benchmarks — γ does not improve calibration accuracy but provides the diagnostic decomposition that is Claim 1's core contribution.\\n\\n## Contributions (Hierarchical — D039 rebalanced per Dream 2nd round)\\n\\n### Core (characterization-led; calibration conditional)\\n1. **Domain-dependent contamination characterization** via IRT γ_k: Simpson's paradox within MMLU (aggregate γ≈0 masks STEM gradient: Math +0.97 > Science +0.84 >> CS_Eng ≈0), scale modulation, three-regime taxonomy (forgetting / selective memorization / near-immunity). γ heterogeneity maps to factual knowledge density. Non-STEM model misfit as boundary finding (2PL+γ scope limitation)\\n2. **Signal failure characterization**: Min-K++ directional reversal (Cohen's d = -1.2 to -2.7) — paper's most citation-worthy empirical finding (D025 + D039 dream 三档一致). Systematic signal × scale × dosage AUC mapping. Honest reporting that RRF = S1-only in practice\\n3. **Fisher Information identifiability analysis**: structural vs practical thresholds with domain-method mismatch insight. Strongest theoretical contribution (D025 + D039 一致)\\n\\n### Supporting\\n4. ContamCal framework: two-stage pipeline (S1 provenance → contamination-augmented IRT with per-benchmark γ_k). Conditional calibration with gating criterion. ME model as ablation\\n5. Dual-track validation + 7 baselines + 6 metrics (incl. SBC). Controlled SFT injection (internal) + ecological RL (external)\\n\\n## Story Spine\\n- **Problem**: Benchmark scores are increasingly unreliable due to training data contamination. Rephrased test items inflate MMLU accuracy by 8-15 points while evading n-gram decontamination. RL post-training may further complicate detection (under investigation, exp-009). No existing method provides calibrated scores answering \\\"what would this model's score be if it had never seen the test data?\\\"\\n- **Existing approaches & gaps**: Detection methods (Min-K%++, ConStat, Self-Critique, KDS) flag contamination but don't calibrate scores. IRT methods (PSN-IRT, Growing Pains, ATLAS, Lalor et al. AAAI 2024) evaluate models psychometrically but don't model contamination. DCR provides adjusted accuracy but lacks uncertainty bounds and RL handling. HiBayES provides Bayesian uncertainty but ignores contamination. Emperor's New Clothes (ICML 2025) demonstrates that all 20 mitigation strategies fail — motivating post-hoc calibration. Dynamic benchmarks (LiveBench) offer an alternative but require continuous curation.\\n- **Our framing (D039 pivot, updated D141)**: ContamCal is a diagnostic framework that uses IRT to systematically characterize how contamination affects benchmark scores. Through controlled SFT injection across 4 independent model families (0.5B-14.7B), we reveal the structure of contamination effects — they are bidirectional, scale-dependent, benchmark-specific, and consistent across architectures — and establish the conditions under which statistical calibration is and isn't feasible. Grounded in educational measurement's item compromise IRT (Eckerly 2017, Sinharay 2017) and explanatory IRT (De Boeck & Wilson 2004), with 3 structural adaptations: (a) independent examinees → single model with joint item distribution, (b) binary leakage → continuous exposure scores, (c) stable ability → regime-conditional ability.\\n- **Headline result template (D039 — characterization-led, updated D141)**: \\\"Contamination effects are benchmark-dependent: IRT γ captures forgetting on ARC (γ={X}, CI excludes zero) and inflation on GSM8K (γ={Y}), with scale modulation from catastrophic (-{Z}pp at 0.5B) to {description at 7B-14B} across 4 independent model families (Qwen2.5, Phi-4, OLMo-2, Gemma-2). Detection signal Min-K++ actively reverses direction at small scales (Cohen's d = {W}), making single-signal contamination detection unreliable. Fisher Information analysis establishes that reliable γ recovery requires N≥50 models; recovery succeeded down to AUC=0.55 (lowest tested), with the lower bound remaining open — conditions rarely met in current LLM evaluation.\\\"\\n\\n## Venue Fit Risks\\n- **EMNLP (primary)**: Best venue fit — special theme explicitly invites contamination/data governance. Reviewers deeply familiar with NLP contamination literature (advantage: no need to motivate the problem heavily). Risk: reviewers may be less familiar with IRT/psychometric methods (mitigation: add intuitive explanations, visual pipeline overview, and connection to familiar NLP concepts like calibration/confidence estimation). ~~Risk: may expect broader model coverage beyond Qwen2.5~~ — **Resolved by D141**: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT at ≤14.7B scale.\\n- **AAAI/ICLR (fallback)**: Strong fit for Bayesian/probabilistic methods. Reviewers may need more contamination context but appreciate methodological rigor.\\n- **Novelty positioning**: Core method is cross-disciplinary synthesis (detection signals + explanatory IRT + measurement error). NOT positioned as \\\"new algorithm\\\" — positioned as (a) signal effectiveness characterization as empirically novel finding, (b) identifiability bounds with theoretical grounding, (c) first framework bridging detection → calibration with proper UQ. RRF is a principled design choice (meta-circularity argument), not claimed as methodological contribution.\\n- **RL limitation**: RL models get wide CIs. This is honest — frame as \\\"calibration is only as good as its inputs.\\\" Expected regret quantification uses held-out clean benchmark as ground truth (NOT calibrated scores, to avoid circularity).\\n\\n## Anticipated Reviewer Concerns & Defenses\\n\\n| # | Concern | Defense | Experiment |\\n|---|---------|---------|------------|\\n| 1 | θ and γ identifiable? | Fisher Information analysis + 20-condition simulation sweep (200 runs) + MVP validation | exp-004 |\\n| 2 | Why not learned aggregation? | Meta-circularity: learned aggregator's training data may itself be contaminated; RRF is design choice, not contribution | exp-003 |\\n| 3 | SFT injection ≠ real contamination | Dual-track: controlled SFT (internal) + ecological RL (external) + near-zero γ check (specificity). SFT is \\\"best-available proxy\\\", acknowledged as limitation | exp-006, exp-009 |\\n| 4 | Scale limited to 3B | ≤14.7B controlled SFT across 4 independent families (Qwen2.5 0.5B-14B, Phi-4 14.7B, OLMo-2 7B, Gemma-2 9B; D141). 29 runs total. | D141 scope expansion |\\n| 5 | Why 4PL not 2PL? | MVP: 2PL γ=0.16 vs 4PL γ=0.34 at N=100; c/d necessary for realistic item modeling | exp-006 |\\n| 6 | Too few models (N≈15)? | D025 multi-seed strategy: 3 scales × 4+ dosages × 2-3 seeds = 24-36 models pooled. Target N≥30 minimum (N≥50 ideal). Simulation sweep (exp-004) establishes identifiability at actual N. Growing Pains pre-estimation as backup at very low N | exp-004, exp-001 |\\n| 7 | Noisy exposure scores | Measurement error model (exposure as noisy observation of latent τ) propagates uncertainty into posteriors automatically | exp-005 |\\n| 8 | No baselines | 7 baselines including DCR (EMNLP 2025) + bootstrap CIs on all comparisons | exp-006 |\\n| 9 | Single global γ misspecified? | Per-benchmark γ_k is primary (natural in per-benchmark fitting); joint model with shared global γ is ablation. Report both to show contamination effect heterogeneity across benchmarks | exp-006 |\\n| 10 | Local independence violated? | Discussed explicitly; single model responds to all items → item responses correlated through shared parameters. Empirically test via posterior predictive checks on item-level residual correlations. This is a known IRT limitation when N_examinees is small. | exp-006 |\\n| 11 | Single model family? | Addressed in main experiments: 4 independent families (Qwen2.5, Phi-4, OLMo-2, Gemma-2) with controlled SFT injection at identical LoRA config (D141). Qwen2.5 provides within-family scaling (0.5B-14B); 3 cross-family models validate generalizability. | D141 scope expansion |\\n| 12 | RL regret circular? | Ground truth for regret = held-out clean benchmark scores, NOT calibrated scores. Explicitly stated | exp-009 |\\n| 13 | S2/S4 fail at 0.5B — RRF is just S1? | Scale-dependent: honestly report single-signal regime at 0.5B. Verify S2/S4 at 1.5B/3B. RRF value = principled aggregation when signals ARE available + graceful degradation when not. | exp-008, exp-002 |\\n| 14 | d100 AUC=0.5 as signal failure? | Labeling artifact: d100 contaminates ALL items → labels lose discriminative power. Must NOT be interpreted as signal degradation. Present only d005/d025 for signal evaluation. | exp-008 |\\n| 15 | Novelty ceiling — standard IRT synthesis? (D025, all 3 Dream tiers) | Positioned as cross-disciplinary synthesis, NOT new algorithm. Emergent value: (a) per-benchmark γ_k heterogeneity as benchmark property, (b) Min-K++ reversal as cautionary finding, (c) Fisher Info identifiability boundaries. If 4PL vs 2PL gap small → acknowledge honestly but argue c/d params needed for realistic MC modeling. Report oracle-γ ablation to decompose MAE. | exp-006 |\\n| 16 | Per-benchmark γ_k via separate fits, not hierarchical? (D025, [M][W]) | Per-benchmark separate fits = primary (natural, avoids cross-benchmark correlation). Hierarchical γ_k ~ Normal(μ_γ, σ_γ) as ablation to formally test heterogeneity and share info across benchmarks. Both reported. | exp-006 |\\n| 17 | Coverage gap — 85% vs 95% nominal? (D025, all 3 tiers) | SBC diagnostic to identify source. Possible causes: local independence violation, insufficient N, model misspecification. Report SBC alongside posterior predictive checks. If gap is from local independence → discuss as known IRT limitation with references. | exp-004, exp-006 |\\n| 18 | Why not just S1 alone? (D025, [M][W]) | S1-only is a baseline (#2 single-signal 2PL+γ). If RRF ≤ S1-only → present as \\\"S1+IRT calibration with extensible multi-signal architecture for future signals.\\\" Meta-circularity argument for training-free aggregation still holds. | exp-003 |\\n| 19 | Coverage collapse 20-33% even with oracle? (D036) | Far worse than #17 anticipated. PPP extremes (ARC=1.0, GSM8K=0.0) = systematic misspecification. Path: (a) increase N via multi-seed pooling, (b) check exp-004 sweep coverage at matching N, (c) if additive γ insufficient → item-level heterogeneity or hierarchical structure. Fallback: lead with MAE+ranking, present coverage honestly. | exp-006, exp-004 |\\n| 20 | γ doesn't improve calibration MAE over vanilla 2PL | γ's role is diagnostic (domain-differential characterization), not calibration accuracy improvement. IRT ability estimation itself provides calibration value (GSM8K ΔMAE=0.163). Vanilla 2PL ≈ 2PL+γ confirms γ is orthogonal to calibration performance — it reveals WHERE contamination acts, not HOW MUCH to adjust. | exp-006 |\\n| 21 | Linear regression nearly as good as IRT (D039, all 3 tiers) | B4 MAE=0.040 vs ContamCal MAE=0.035 on ARC. IRT's value is NOT better MAE — it's interpretable per-item parameters, benchmark-dependent γ_k characterization, and theoretical grounding. Bootstrap CI on MAE gap to show significance (or acknowledge non-significance). | exp-006 |\\n| 22 | SFT capacity artifact ≠ contamination (D039, all 3 tiers) | 0.5B ARC forgetting (-17pp) may be capacity displacement, not contamination-specific. Need: (a) SFT-on-random-data control at 0.5B to isolate capacity vs contamination, (b) focus on 1.5B/3B where capacity effects are minimal (<2pp). Acknowledge 0.5B forgetting as combined SFT+contamination effect. | exp-001 |\\n| 23 | N=8/16 contradicts paper's own N≥50 recommendation (D039, all 3 tiers) | Internal contradiction. Path: (a) add N=8 condition to simulation sweep for calibrated expectations, (b) increase N via multi-seed (target N≥30), (c) if N<30 → explicitly position as preliminary with caveats. SBC diagnostic at actual N to decompose coverage gap. | exp-004, exp-006 |\\n\\n## Evaluation Protocol (6 Metrics — D025 added SBC)\\n1. **Calibration error**: MAE between calibrated score and ground-truth clean accuracy, with bootstrap 95% CIs\\n2. **Interval coverage**: Fraction of true values within 50%/80%/95% credible intervals\\n3. **Interval sharpness**: Average CI width (tighter is better at fixed coverage)\\n4. **Ranking preservation**: Kendall's τ between calibrated and ground-truth model rankings\\n5. **Dose-response monotonicity**: γ effect increases monotonically with contamination dosage\\n6. **SBC diagnostic** (D025): Simulation-Based Calibration (Talts et al. 2018) at actual N_models and N_items to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation). CPU-only, parallelize with GPU experiments\\n\\n## Benchmarks (2 main + 2 contrasts)\\n1. **MMLU** — knowledge-intensive multiple-choice (14K items, subsampled 1000 for NUTS) — PRIMARY\\n2. **ARC-Challenge** — science reasoning multiple-choice (~1.2K items) — PRIMARY. ⚠️ D036: gamma consistently negative (forgetting, not inflation). 3 independent evidence chains: s42 raw (-17.5pp), s123 raw (-10.2pp), oracle IRT (γ=-2.83). Scale-dependent: 3B d100 ARC=84% (mild forgetting) vs 0.5B d100 ARC=29-37% (catastrophic). Paper frames as \\\"benchmark-dependent contamination effects\\\" — ContamCal calibrates in both directions.\\n3. **GSM8K** — mathematical reasoning free-form (~1.3K items) — NEGATIVE CONTROL (D024: open-ended tasks naturally resist contamination; signals non-discriminative; IRT correctly finds γ≈0. Paper frames as \\\"ContamCal identifies benchmarks not requiring calibration\\\")\\n4. **HumanEval** (appendix only) — code generation (N=164). Demoted D009: paraphrase QC 16%.\\n\\n## Baselines (7)\\n0. **Raw (no adjustment)** — report original benchmark scores as anchor\\n1. **Remove-and-rescore** — drop flagged items, rescore on remaining\\n2. **Single-signal 2PL+γ** — best single detection signal + simpler IRT\\n3. **Vanilla 4PL** — standard IRT without contamination covariate (γ=0)\\n4. **Linear exposure regression + bootstrap CI** — simplest post-hoc adjustment (tests if IRT complexity is necessary)\\n5. **Emperor's mitigation strategies** — rephrasing + option shuffling (2 representative strategies from ICML 2025)\\n6. **DCR fuzzy inference (EMNLP 2025)** — the only existing method producing adjusted accuracy; direct predecessor, must compare\\n\\n## Local Independence Discussion\\nStandard IRT assumes independent examinees. In LLM evaluation, a single model produces all item responses — responses are correlated through shared model parameters. This fundamentally alters local independence. Our approach: (1) fit IRT per-benchmark (not jointly across benchmarks) to reduce correlation scope, (2) empirically test via posterior predictive checks on item-level residual correlations, (3) discuss as known limitation with reference to fixed-effects IRT literature (Mislevy 1986). The coverage gap (if observed) may partly reflect this violation — measurement error model for exposure partially compensates by widening CIs.\\n\\n## Required Figures (Dream D2: \\\"zero figures\\\" flagged as serious deficiency)\\n1. Pipeline overview diagram (2-stage: RRF → 4PL+γ IRT)\\n2. Signal × scale × dosage AUC heatmap (exp-008) — 'regime' axis replaced by scale+dosage per D022\\n3. Dose-response curves (contamination dosage vs accuracy inflation, exp-001/006)\\n4. Identifiability phase diagram (AUC × N_models → γ recoverability, exp-004)\\n5. Calibrated-vs-true accuracy scatter with CIs (exp-006)\\n\\n## Citation Requirements (35+ minimum, expanded per Dream D2)\\nMust include: Eckerly 2017, Sinharay 2017, De Boeck & Wilson 2004, Adams et al. 1997, San Martín et al. 2009, Maris & Bechger 2009, Cormack et al. 2009 (RRF), Mislevy 1986, Lalor et al. AAAI 2024, LiveBench, TinyBenchmarks (Polo et al. 2024), KDS, CDD, contamination surveys, SBC (Talts et al. 2018), HiBayES, plus all signals/methods cited in IDEA_BRIEF.\\nDream D2 additions (all 3 tiers flagged):\\n- DIF literature: Holland & Wainer 1993, Thissen et al. 1993, Zumbo 1999 (γ_k is essentially DIF between exposure groups)\\n- ML calibration: Guo et al. 2017, Platt 1999 (disambiguate \\\"calibration\\\" — ours is decontamination, not probability calibration)\\n- Conformal prediction: Angelopoulos & Bates 2023 (alternative UQ with distribution-free coverage guarantees; discuss why Bayesian IRT preferred)\\n- Data attribution: Pruthi et al. 2020 (TracIn), Park et al. 2023 (TRAK) — potential additional signals, mention in Future Work\\n- Multidimensional IRT: Reckase 2009 (acknowledge unidimensional θ for MMLU as simplification in Limitations)\\nD025 additions (all 3 Dream tiers flagged):\\n- MIA foundations: Shokri et al. 2017 (membership inference attacks), Carlini et al. 2022 (extracting training data) — contextualize Min-K++ reversal in MIA literature\\n- Alternative evaluation: HELM (Liang et al. 2023), Chatbot Arena (Zheng et al. 2023) — discuss in Related Work as contamination-bypassing alternatives\\n- Deeper DCR engagement: Oren et al. 2024 structural comparison\\n- Burnell et al. 2023: multidimensional IRT for LLMs (relevant to unidimensional θ limitation)\\n\\n## Discussion Notes\\n\\n### D045: 0.5B Position Bias and MC Benchmark Exclusion (2026-05-15)\\n- **Finding**: Qwen2.5-0.5B exhibits severe position bias in logprob-based MC evaluation. MMLU prediction distribution: d000 A=46% → d100 A=98%. SFT contamination amplifies pre-existing position prior rather than encoding knowledge.\\n- **Decision**: Exclude 0.5B MMLU/ARC data from IRT pooling. Retain 0.5B GSM8K/HumanEval (free-form, unaffected). 1.5B/3B all benchmarks normal.\\n- **Paper treatment**: Report in Discussion as \\\"capacity threshold for reliable MC evaluation.\\\" The 0.5B dosage-accuracy decline (40→23% MMLU) is position bias amplification, not knowledge degradation. This reinforces Concern #22 (SFT capacity artifact) and motivates the 1.5B+ focus in main results.\\n- **Broader implication**: Logprob-based MC evaluation at small scales may be unreliable across model families — note as limitation and suggest token-level or generation-based alternatives for sub-1B models.\\n\\n## Scope Expansion: ≤14.7B + 4 Families (D141, 2026-05-18)\\n\\n### Model Matrix\\n| Family | Model | Params | Released | Runs | Role |\\n|--------|-------|--------|----------|------|------|\\n| Qwen (primary) | Qwen2.5-0.5B/1.5B/3B | 0.5-3B | 2024-09 | existing | Within-family baseline (≤3B) |\\n| Qwen (primary) | Qwen2.5-7B | 7B | 2024-09 | 10 (5d×2s) | Within-family scale extension |\\n| Qwen (primary) | Qwen2.5-14B | 14B | 2024-09 | 5 (5d×1s) | Within-family scale frontier |\\n| Microsoft | Phi-4 | 14.7B | 2024-12 | 5 (5d×1s) | Cross-family, strongest 14B |\\n| Allen AI | OLMo-2-7B | 7B | 2024-11 | 5 (5d×1s) | Cross-family, fully open |\\n| Google | Gemma-2-9B | 9B | 2024-06 | 5 (5d×1s) | Cross-family, Google family |\\n\\nAll: bf16 LoRA r=16 α=32 lr=5e-5 (D140: matching ≤3B). SFT AUGMENT mode.\\n\\n### Narrative Upgrade Plan (conditional on results)\\n\\n**Family Framing（Reviewer 审定，2026-05-18）**:\\n- 正确表述: \\\"4 independent model families from 4 major labs (Alibaba, Microsoft, Allen AI, Google), trained on independent corpora with distinct pre-training recipes, spanning 0.5B–14.7B parameters\\\"\\n- **禁止** \\\"architecture lineage\\\" framing——4 family 都是 dense decoder-only transformer，差异在 attention config/位置编码/normalization，不构成独立 lineage\\n- 独立性来源是 **training data independence + lab diversity**，不是架构差异\\n- **禁止** \\\"scaling law\\\" 术语——5 个 within-family 点不足以拟合 power-law。用 \\\"scale-dependent attenuation pattern\\\"\\n\\n**Variant A (全 null — preferred for EMNLP)**:\\n- Claim升级: \\\"SFT-route benchmark contamination does not require post-hoc calibration for aggregate score reporting at scales up to 14.7B across four model families\\\"\\n- 优势: clean surprise value, Emperor's + ContamCal 双杀叙事, contribution 分布均衡\\n- Scaling curve: flat line across 5 scale points = 最有说服力的 visual\\n\\n**Variant B (scale-dependent transition)**:\\n- 触发条件: Δacc > 2pp at 7B+ OR γ CI excludes 0 with Cohen's d > 0.5\\n- Story: \\\"contamination effect emerges at larger scale\\\" — transition point analysis\\n- 风险: 审稿人追问 transition mechanism, 证据可能只有 1-2 个 scale point\\n- 决策: 严格按 framing_variants_7b14b.md 的触发条件执行，不在灰色地带 lean toward A\\n\\n**灰色地带判定** (1.5-2.5pp):\\n- Bayes factor + Cohen's d 翻倍规则\\n- Director 独立审视 Agent 对结果的解读（防 confirmation bias toward A）\\n\\n**灰色地带实际数据（D145/D146, 2026-05-19）**:\\n\\nMMLU（正向效应，scale-dependent）:\\n- ≤3B: Δ(d000→d100) ~0.6-0.7pp（2 seeds）\\n- 7B: Δ(d000→d100) +1.34pp（s42 +1.74pp, s123 +0.94pp, range 0.80pp）\\n- 14B: Δ(d000→d100) +1.92pp, d050 peak +2.28pp（单 seed）\\n- 趋势：效应量随 scale 单调递增\\n\\nARC（零/负效应，scale-dependent but opposite direction）:\\n- 0.5B: 灾难性遗忘 -17pp（position bias + capacity）\\n- 7B: Δ(d000→d100) **-0.21pp**（2 seeds 均值，null）\\n- 14B: Δ(d000→d100) **-0.43pp**（全 contaminated checkpoints 低于 clean）\\n- 趋势：ARC forgetting 从 catastrophic (0.5B) 衰减到 near-zero (7B+)\\n\\n**关键发现：Benchmark-specific contamination direction**\\nMMLU（知识密集型）: contamination → 正向效应（memorization helps）\\nARC（推理密集型）: contamination → 零/微负效应（memorization 无益甚至干扰推理）\\n这是 per-benchmark γ_k 最强的实证支撑——不仅 magnitude 不同，**方向都不同**。\\n论文应将此作为 Claim 1 的关键证据之一。\\n\\n14B Variant A/B 判定：MMLU 灰色偏 B（+1.92pp/+2.28pp），ARC 明确 A（-0.43pp）。非单调 dose-response（d100 回落 0.36pp vs d050）。**单 seed 无法判定——已批准 14B d000_s123 + d050_s123 复现。**\\n\\n**三个叙事框架（取决于后续数据，Reviewer D145 评估）**:\\n\\n**框架 1: Scale re-emergence（如果 7B d050/d100 ≤1pp + cross-family 14B ~2pp）**\\n\\\"Contamination effects diminish at mid-scale (7B) but partially re-emerge at 14B, consistent with capacity hypothesis: larger models absorb and express memorized content without catastrophic interference.\\\"\\n→ 最有趣的发现，需 cross-family 验证\\n\\n**框架 2: Dosage-dependent threshold（如果 7B d050/d100 也接近 2pp）**\\n\\\"Contamination effects require sufficient dosage (≥50%) to manifest at 7B+ scale, suggesting IRT-level analysis is needed to detect subtle item-level signals that aggregate metrics miss at low dosage.\\\"\\n→ Variant B，强化 IRT 必要性\\n\\n**框架 3: Qwen-14B specificity（如果 cross-family 14B 不复现 ~2pp）**\\n\\\"The ~2pp MMLU effect at Qwen2.5-14B may be Qwen-specific pre-training artifact, not general contamination susceptibility.\\\"\\n→ 降级为 appendix finding\\n\\n**不论哪个框架，~2pp 灰色地带强化 IRT 价值**——aggregate Δacc 无法决断，item-level analysis 提供更高统计功效。非单调 dose-response（d050 > d100）也是 IRT 的 use case（线性模型无法捕捉）。\\n\\n### Cross-family Claim 升级条件（Reviewer D147 评估，2026-05-19）\\n\\n**已确认方向一致（2/4 families）**：\\n- Qwen2.5 (7B/14B): MMLU 正向 (+1.34/+1.92pp at d100), ARC 零/负向 (-0.21/-0.43pp)\\n- Phi-4 14.7B: MMLU 正向 (+0.62pp at d005), ARC 零 (0.00pp at d005)。d025-d100 待 eval。\\n\\n**Claim 1 升级路径**：\\n- 4/4 families 方向一致 → 升级为 \\\"cross-family validation of benchmark-specific contamination direction\\\"\\n- effect size claims 仍限定 Qwen within-family 数据（跨家族单 seed 不足以 claim magnitude）\\n- **必须限定 dosage**：d005 方向不一致（7B d005 MMLU -0.26pp），claim 需限定 \\\"at dosages ≥ d025 or aggregate d000→d100\\\"\\n\\n**D147 benchmark-specific finding 定位**：\\n- 不升为 co-primary claim\\n- 作为 Claim 1 的 prominent finding 呈现：\\\"ContamCal reveals benchmark-specific heterogeneity: contamination inflates knowledge-intensive benchmarks (MMLU) but not reasoning-focused benchmarks (ARC)\\\"\\n- 与 domain-level γ heterogeneity 合并叙述（benchmark-level + domain-level = 同一故事两个层面）\\n\\n**风险与对策**：\\n1. 低剂量方向不一致 → claim 中 hedge \\\"at sufficient dosage levels\\\"\\n2. ARC null 可能是 power 问题（1172 items vs MMLU 14042, 3.5x less power）→ 需 TOST 等价性检验（bound ±1.5pp）区分 \\\"null effect\\\" vs \\\"underpowered\\\"\\n3. SFT-specific caveat → 已在 limitations 中提及\\n\\n**EMNLP 预估（Reviewer）**：4/4 families 完整数据 + domain/benchmark heterogeneity + IRT framework + identifiability → 3.5-4.0（Borderline Conference to Conference）。前提：数据齐全、claim 边界清晰、不 overclaim。\\n\\n### OLMo-2 Near-null 效应与三层结论框架（Reviewer 评估，2026-05-19）\\n\\n**OLMo-2 数据**：MMLU baseline 58.71%（远低于其他 family 69-77%），contamination 效应 ±0.5pp 内波动（d025 +0.43pp，单 seed，noise 边缘）。\\n\\n**判定**：OLMo-2 near-null 不构成反例，但不能 claim \\\"4/4 positive\\\"。更准确：3/4 clear positive + 1/4 directionally consistent but marginal。\\n\\n**三层结论框架（论文采用）**：\\n- **Layer 1（robust, all 4 families）**：\\\"SFT contamination does not decrease MMLU scores across any tested family. Direction consistently non-negative.\\\"\\n- **Layer 2（conditional, 3/4 families, baseline ≥65%）**：\\\"Among models with sufficient baseline (Qwen 7B/14B, Phi-4, pending Gemma-2), effect is unambiguously positive and dose-monotonic.\\\"\\n- **Layer 3（exploratory, Discussion only）**：\\\"OLMo-2 (baseline 58.7%) shows marginal effect, suggesting a possible capability floor below which contamination has limited impact — warrants controlled investigation.\\\"\\n\\n**\\\"Capability threshold\\\" 是 post-hoc rationalization**——科学合理但属观察性推测，不放入 Contribution，只在 Discussion 标注 exploratory。\\n\\n**Recommended claim wording**：\\\"Across four model families, SFT contamination shifts MMLU accuracy in a non-negative direction, with effect sizes ranging from marginal (OLMo-2, +0.4pp) to moderate (Qwen-14B, +2.3pp) at d050.\\\"\\n\\n**Gemma-2 决定性**：如果 Gemma-2 正向 → Layer 2 = 3/4 positive（strong）；如果 Gemma-2 也 null → 2/4 positive + 2/4 null，cross-family claim 基本不成立，需要 major framing downgrade。\\n\\n**OLMo-2 模型选择 justification**：AllenAI 独立实验室 + fully open source + 独立训练数据 + 7B scale 与 Qwen 7B 对照。\\n\\n### Secondary Findings（Reviewer 评估，2026-05-18）\\n\\n**高价值（主动追踪）**:\\n1. **Cross-family dosage-response shape consistency**: 各 family 在相同 benchmark 上 d000→d100 曲线形状是否一致。若一致 → \\\"contamination susceptibility 是 benchmark × dosage 性质，非 model-family artifact\\\"。Claim 1 最强 generalizability evidence。\\n2. **γ cross-family pooling collapse**: 各 family 独立 fit 的 γ 方向一致，但 cross-family pooled γ 崩塌/反向 → \\\"contamination signals are family-specific, cross-family pooling requires family-aware calibration\\\"。有独立 contribution 级潜力。\\n\\n**中等价值（值得报告）**:\\n3. **Scale × family interaction at 7B band**: 7B Qwen vs 7B OLMo vs 9B Gemma 同 dosage 下 Δacc 差异。差异小(<2pp) → \\\"scale dominates\\\"；差异大 → \\\"family-specific susceptibility\\\"。归因困难（architecture vs training data confound），不宜作 headline。\\n\\n**低价值/高风险（不追踪）**:\\n4. Architecture-specific mechanism（需 interpretability 分析，远超当前实验能力）\\n\\n### EMNLP Reviewer Pushback 预判（Reviewer 评估）\\n1. **\\\"No 70B+\\\"**（~80%）: Limitations 显式讨论。Defense: compute 超 scope + ≤14.7B 已覆盖拐点区间 + 不做 extrapolation claim\\n2. **\\\"SFT-route only\\\"**（~60%）: 已有 defense（acknowledged limitation + exp-009 RL bridge）\\n3. **\\\"Scale analysis is Qwen-only\\\"**（~40%）: Cross-family 是 consistency check 不是 scaling curve\\n\\n### Claim 边界（硬约束）\\n1. \\\"SFT-route\\\" 限定不可去掉（未测试 pretraining contamination）\\n2. \\\"≤14.7B\\\" 不可说 \\\"across all scales\\\"（70B+ 未测试）\\n3. \\\"3 benchmarks\\\" 不可说 \\\"across benchmarks in general\\\"\\n4. AUGMENT mode SFT 限定（base_data + contaminated items appended, 非 REPLACE 模式）——升级 scope 后需在 paper limitations 显式提及\\n\\n### Concern #11 升级\\n从 \\\"Acknowledged limitation — single model family\\\" → \\\"Addressed — 4 independent families\\\"\\n\\n### 新增 Main Figure: Scaling Curve (benchmark-specific contamination direction)\\n- X: log scale model size (0.5B → 14.7B)\\n- Y: Δacc (d100 - d000) per benchmark\\n- Qwen2.5: 实线 5 points (within-family scaling)\\n- 其他 families: 散点 different markers (cross-family consistency)\\n- 灰色水平带: ±1.5pp noise zone\\n- **2 panels minimum**: MMLU (positive trend) vs ARC (zero/negative trend)——视觉对比最能说明 benchmark-specific direction\\n- MMLU panel: 上升趋势 (≤3B ~0.7pp → 7B +1.34pp → 14B +1.92pp)\\n- ARC panel: 平坦/微负 (7B -0.21pp, 14B -0.43pp; 0.5B excluded as catastrophic outlier)\\n- 0.5B outlier: 灰色/虚线标注 excluded (D045 position bias)\\n\\n### Cross-family Analysis Strategy\\n- Family-level 对比（per-family independent IRT fit, report per-family γ）\\n- Qwen2.5-7B domain consistency check（N 最大的 family）\\n- 不做 hierarchical gamma model（ROI 太低, 7 天 DDL → Future Work）\\n- γ 跨家族池化崩塌现象作为 finding 报告\\n\\n### Paper Rewrite Scope (结果出来后执行)\\n- Abstract: 近乎完全重写（~170 words，scope 全部更新）\\n- Introduction ¶4 + Contributions: 重写（scope 从 ≤3B → ≤14.7B + 4 families）\\n- Introduction ¶1-3: 基本不动\\n- Results: 新增 \\\"Scale Invariance Analysis\\\" + \\\"Cross-Family Consistency\\\" sections\\n- Discussion: scale-invariance implication OR transition interpretation\\n- Method: 不变（加 family indicator 说明）\\n- Related Work: 稳定（加 1-2 句 multi-family evaluation）\\n- 预计 Paper Agent 2 天完成（前提: framing variant 已确定）\\n- **不在结果出来前开始重写**（避免 variant 错配返工）\\n\\n## Fisher Information Derivation (Dream D2: all 3 tiers flagged as critical gap)\\nMust derive I(γ) for 4PL+γ model in appendix. Currently stated without proof.\\nThe derivation must show: (1) relationship between signal AUC and γ recoverability, (2) approximation assumptions, (3) how measurement error factors in.\\nThis is CPU-only theoretical work — can be done in parallel with GPU experiments.\\n\", \"total_chars\": 34831, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ac54f5ae-ee49-4845-83bb-942d35a314bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T11:29:30.911Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01MWoXtZ5H4AXf911R41TBQY`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e3ed204-d1ba-422a-9caa-05f97a2d9dbf",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFt7AazGZPCiJWyk8g",
+  "type": "assistant",
+  "uuid": "8f13d8c8-3cbf-426c-bb1f-9994b85e7dfe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjffdCZrrdwV5FF1fvkoHN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T11:29:30.923Z_
+
+<details><summary>↩ Tool result · `toolu_01MWoXtZ5H4AXf911R41TBQY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# Memory\\n\\n## Phase 2 全量重跑状态（2026-05-19 10:43 启动）\\n\\n4 GPU 并行，用修复后 evaluate.py（ARC logprob 位置修复）：\\n\\n| GPU | PID | 任务 | ETA |\\n|-----|-----|------|-----|\\n| cuda:0 | 146957 | Phi-4 d000-d100 (5) | ~11:50 |\\n| cuda:1 | 147458 | Qwen-14B d000-d100 (5) | ~11:50 |\\n| cuda:2 | 147533 | Qwen-7B d000-d100 + Gemma d000 (6) | ~11:35 |\\n| cuda:3 | 147609 | Gemma d005-d100 + OLMo d000-d100 (9) | ~12:45 |\\n\\n输出目录：`/root/autodl-tmp/exp001/eval_results_v2/{family}_{dosage}/`\\n日志：`/root/autodl-tmp/exp001/phase2_logs/gpu{0-3}.log`\\n\\n## 25/25 训练全部完成\\n\\n| Family | d000 | d005 | d025 | d050 | d100 |\\n|--------|------|------|------|------|------|\\n| Qwen2.5-7B | ✅ | ✅ | ✅ | ✅ | ✅ |\\n| Qwen2.5-14B | ✅ | ✅ | ✅ | ✅ | ✅ |\\n| Gemma-2-9B | ✅ | ✅ | ✅ | ✅ | ✅ (1.258/0.723) |\\n| Phi-4 | ✅ | ✅ | ✅ | ✅ | ✅ (1.191/0.724) |\\n| OLMo-2-7B | ✅ | ✅ | ✅ | ✅ | ✅ (0.996/0.746) |\\n\\n## evaluate.py ARC bug 修复（2026-05-19 确认）\\n\\n**根因**：chat template 模式下 \\\"The answer is \\\" 放在 user turn 内，logprob 在 model turn 起始位置取，对 \\\"A\\\" 有系统性先验。\\n**修复**：两处（line 211-213, 497-499），移到 model turn 开头。\\n**验证**：Gemma-2 d005 ARC 22.95% → 77.82% ✅\\n\\n## evaluate.py 版本差异影响（Phase 1 数据确认）\\n\\nOLMo-2 cqa1 vs westd ARC 差异 +10-12pp（MMLU ~0.1pp）。全部旧版 eval 数据作废，Phase 2 为最终数据。\\n\\n## Phase 2 完成后待办\\n1. v1 vs v2 对比分析（量化 fix 影响）\\n2. 更新论文所有表格\\n3. IRT fitting + TOST equivalence test\\n4. Variant A/B 最终判定\\n\\n## 模型信息\\n- Phi-4: 14.7B, LoRA targets: qkv_proj,o_proj,gate_up_proj,down_proj\\n- Gemma-2-9B: chat_template, batch_size=1 grad_accum=16\\n- OLMo-2: 7B, LoRA targets: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj, float32→bf16\\n\\n## 环境\\n- westd 离线：HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\\n- HF cache: /root/autodl-tmp/.hf_cache\\n- Python: /root/miniconda3/bin/python\\n- cqa1 已放弃，所有工作在 westd\\n\\n## 实验命名\\n- 7B: exp_001_sft_7b_{dosage}_{seed}\\n- 14B: exp_001_sft_14b_{dosage}_{seed}\\n- Gemma: exp_001_sft_gemma2_9b_{dosage}_{seed}\\n- Phi-4: exp_001_sft_phi4_{dosage}_{seed}\\n- OLMo-2: exp_001_sft_olmo2_7b_{dosage}_{seed}\\n\", \"total_chars\": 1932, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f13d8c8-3cbf-426c-bb1f-9994b85e7dfe",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "2a24e515-36f6-4bf7-8e1b-2b3b8545a9b1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## Phase 2 全量重跑状态（2026-05-19 10:43 启动）\\\\n\\\\n4 GPU 并行，用修复后 evaluate.py（ARC logprob 位置修复）：\\\\n\\\\n| GPU | PID | 任务 | ETA |\\\\n|-----|-----|------|-----|\\\\n| cuda:0 | 146957 | Phi-4 d000-d100 (5) | ~11:50 |\\\\n| cuda:1 | 147458 | Qwen-14B d000-d100 (5) | ~11:50 |\\\\n| cuda:2 | 147533 | Qwen-7B d000-d100 + Gemma d000 (6) | ~11:35 |\\\\n| cuda:3 | 147609 | Gemma d005-d100 + OLMo d000-d100 (9) | ~12:45 |\\\\n\\\\n输出目录：`/root/autodl-tmp/exp001/eval_results_v2/{family}_{dosage}/`\\\\n日志：`/root/autodl-tmp/exp001/phase2_logs/gpu{0-3}.log`\\\\n\\\\n## 25/25 训练全部完成\\\\n\\\\n| Family | d000 | d005 | d025 | d050 | d100 |\\\\n|--------|------|------|------|------|------|\\\\n| Qwen2.5-7B | ✅ | ✅ | ✅ | ✅ | ✅ |\\\\n| Qwen2.5-14B | ✅ | ✅ | ✅ | ✅ | ✅ |\\\\n| Gemma-2-9B | ✅ | ✅ | ✅ | ✅ | ✅ (1.258/0.723) |\\\\n| Phi-4 | ✅ | ✅ | ✅ | ✅ | ✅ (1.191/0.724) |\\\\n| OLMo-2-7B | ✅ | ✅ | ✅ | ✅ | ✅ (0.996/0.746) |\\\\n\\\\n## evaluate.py ARC bug 修复（2026-05-19 确认）\\\\n\\\\n**根因**：chat template 模式下 \\\\\\\"The answer is \\\\\\\" 放在 user turn 内，logprob 在 model turn 起始位置取，对 \\\\\\\"A\\\\\\\" 有系统性先验。\\\\n**修复**：两处（line 211-213, 497-499），移到 model turn 开头。\\\\n**验证**：Gemma-2 d005 ARC 22.95% → 77.82% ✅\\\\n\\\\n## evaluate.py 版本差异影响（Phase 1 数据确认）\\\\n\\\\nOLMo-2 cqa1 vs westd ARC 差异 +10-12pp（MMLU ~0.1pp）。全部旧版 eval 数据作废，Phase 2 为最终数据。\\\\n\\\\n## Phase 2 完成后待办\\\\n1. v1 vs v2 对比分析（量化 fix 影响）\\\\n2. 更新论文所有表格\\\\n3. IRT fitting + TOST equivalence test\\\\n4. Variant A/B 最终判定\\\\n\\\\n## 模型信息\\\\n- Phi-4: 14.7B, LoRA targets: qkv_proj,o_proj,gate_up_proj,down_proj\\\\n- Gemma-2-9B: chat_template, batch_size=1 grad_accum=16\\\\n- OLMo-2: 7B, LoRA targets: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj, float32→bf16\\\\n\\\\n## 环境\\\\n- westd 离线：HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\\\\n- HF cache: /root/autodl-tmp/.hf_cache\\\\n- Python: /root/miniconda3/bin/python\\\\n- cqa1 已放弃，所有工作在 westd\\\\n\\\\n## 实验命名\\\\n- 7B: exp_001_sft_7b_{dosage}_{seed}\\\\n- 14B: exp_001_sft_14b_{dosage}_{seed}\\\\n- Gemma: exp_001_sft_gemma2_9b_{dosage}_{seed}\\\\n- Phi-4: exp_001_sft_phi4_{dosage}_{seed}\\\\n- OLMo-2: exp_001_sft_olmo2_7b_{dosage}_{seed}\\\\n\\\", \\\"total_chars\\\": 1932, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# Memory\\n\\n## Phase 2 全量重跑状态（2026-05-19 10:43 启动）\\n\\n4 GPU 并行，用修复后 evaluate.py（ARC logprob 位置修复）：\\n\\n| GPU | PID | 任务 | ETA |\\n|-----|-----|------|-----|\\n| cuda:0 | 146957 | Phi-4 d000-d100 (5) | ~11:50 |\\n| cuda:1 | 147458 | Qwen-14B d000-d100 (5) | ~11:50 |\\n| cuda:2 | 147533 | Qwen-7B d000-d100 + Gemma d000 (6) | ~11:35 |\\n| cuda:3 | 147609 | Gemma d005-d100 + OLMo d000-d100 (9) | ~12:45 |\\n\\n输出目录：`/root/autodl-tmp/exp001/eval_results_v2/{family}_{dosage}/`\\n日志：`/root/autodl-tmp/exp001/phase2_logs/gpu{0-3}.log`\\n\\n## 25/25 训练全部完成\\n\\n| Family | d000 | d005 | d025 | d050 | d100 |\\n|--------|------|------|------|------|------|\\n| Qwen2.5-7B | ✅ | ✅ | ✅ | ✅ | ✅ |\\n| Qwen2.5-14B | ✅ | ✅ | ✅ | ✅ | ✅ |\\n| Gemma-2-9B | ✅ | ✅ | ✅ | ✅ | ✅ (1.258/0.723) |\\n| Phi-4 | ✅ | ✅ | ✅ | ✅ | ✅ (1.191/0.724) |\\n| OLMo-2-7B | ✅ | ✅ | ✅ | ✅ | ✅ (0.996/0.746) |\\n\\n## evaluate.py ARC bug 修复（2026-05-19 确认）\\n\\n**根因**：chat template 模式下 \\\"The answer is \\\" 放在 user turn 内，logprob 在 model turn 起始位置取，对 \\\"A\\\" 有系统性先验。\\n**修复**：两处（line 211-213, 497-499），移到 model turn 开头。\\n**验证**：Gemma-2 d005 ARC 22.95% → 77.82% ✅\\n\\n## evaluate.py 版本差异影响（Phase 1 数据确认）\\n\\nOLMo-2 cqa1 vs westd ARC 差异 +10-12pp（MMLU ~0.1pp）。全部旧版 eval 数据作废，Phase 2 为最终数据。\\n\\n## Phase 2 完成后待办\\n1. v1 vs v2 对比分析（量化 fix 影响）\\n2. 更新论文所有表格\\n3. IRT fitting + TOST equivalence test\\n4. Variant A/B 最终判定\\n\\n## 模型信息\\n- Phi-4: 14.7B, LoRA targets: qkv_proj,o_proj,gate_up_proj,down_proj\\n- Gemma-2-9B: chat_template, batch_size=1 grad_accum=16\\n- OLMo-2: 7B, LoRA targets: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj, float32→bf16\\n\\n## 环境\\n- westd 离线：HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\\n- HF cache: /root/autodl-tmp/.hf_cache\\n- Python: /root/miniconda3/bin/python\\n- cqa1 已放弃，所有工作在 westd\\n\\n## 实验命名\\n- 7B: exp_001_sft_7b_{dosage}_{seed}\\n- 14B: exp_001_sft_14b_{dosage}_{seed}\\n- Gemma: exp_001_sft_gemma2_9b_{dosage}_{seed}\\n- Phi-4: exp_001_sft_phi4_{dosage}_{seed}\\n- OLMo-2: exp_001_sft_olmo2_7b_{dosage}_{seed}\\n\", \"total_chars\": 1932, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f13d8c8-3cbf-426c-bb1f-9994b85e7dfe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T11:29:31.493Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01WoRrLpHRNXgWpM5Ne94VG3`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "experiment_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a24e515-36f6-4bf7-8e1b-2b3b8545a9b1",
+  "isSidechain": false,
+  "requestId": "req_011CbBrFt7AazGZPCiJWyk8g",
+  "type": "assistant",
+  "uuid": "7203c562-7ca4-492f-8d0d-9f784b74498e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QjffdCZrrdwV5FF1fvkoHN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 490,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 302,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 302,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T11:29:31.502Z_
+
+<details><summary>↩ Tool result · `toolu_01WoRrLpHRNXgWpM5Ne94VG3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7203c562-7ca4-492f-8d0d-9f784b74498e",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "8c1f1829-d71c-40ef-a849-435bfb78707c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'experiment_plan.yaml'\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7203c562-7ca4-492f-8d0d-9f784b74498e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8c1f1829-d71c-40ef-a849-435bfb78707c",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze paper framing and experiment status",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-19T11:29:35.329Z_
+
+`experiment_plan.yaml` 不在支持列表中。读取 `ROADMAP.md` 和 `writing_plan.yaml` 替代，同时检查 artifacts 目录了解实验产出状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c1f1829-d71c-40ef-a849-435bfb78707c",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGC7dz2DifSw3S2Pig",
+  "type": "assistant",
+  "uuid": "d7a08d2a-c700-4b49-aac4-fbef2819b540",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr6NmdwDsFSbYfL4g1VUo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14893,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 14893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T11:29:36.310Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01QMg5UeCQnqStgLyM77Eypb`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7a08d2a-c700-4b49-aac4-fbef2819b540",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGC7dz2DifSw3S2Pig",
+  "type": "assistant",
+  "uuid": "4d83bc9a-2025-4c1c-917a-6067cf1cf1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr6NmdwDsFSbYfL4g1VUo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14893,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 14893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T11:29:36.346Z_
+
+<details><summary>↩ Tool result · `toolu_01QMg5UeCQnqStgLyM77Eypb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-18 07:30 UTC | 更新原因: D141 模型矩阵最终确认 — Phi-4 + OLMo-2 替换 Llama/Mistral\\n\\n## 核心方向\\n\\\"Does SFT-Injected Benchmark Contamination Need Calibration?\\\" — IRT decomposition framework 验证 SFT contamination 对 benchmark 聚合分数的影响。从 ≤3B null finding 扩展到 7B/14B + 5 model families 验证。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 7 天）\\n\\n## 当前进展\\n- **阶段**: 5-family 扩展实验启动中\\n- **论文状态**: D139 完成，0 errors, ≤8 页主文 ✅ ACL 合规\\n- **≤3B 实验**: 179 success，MF2 threshold DGP simulation 完成\\n- **5-family 扩展**: westd-29999 环境就绪，5 模型下载中，Pilot worker 已派发 (lr=5e-5)\\n  - gpu_ids [0,1,2,3] 已确认 ✅\\n\\n## GPU 资源\\n- **cqa1-21977**: 1× RTX 4090D，空闲（eval/IRT 计算）\\n- **westd-29999**: 4× RTX PRO 6000 Blackwell (**96GB** each)，cuda:0-3\\n  - ⚠️ 96GB 非 48GB → 14B 直接 bf16 LoRA，不需要 QLoRA，全模型方法统一\\n\\n## Scope 扩展实验矩阵（29 runs，全部 bf16 LoRA，D141+D142 确认）\\n\\n| 模型 | 参数量 | Runs | GPU | Batch | 状态 |\\n|------|--------|------|-----|-------|------|\\n| Qwen2.5-7B | 7B | 10 (5d × 2s) | cuda:0 | 2 | 7B 完成 ✅, pilot RUNNING |\\n| Qwen2.5-14B | 14B | 5 (5d × 1s) | cuda:2 | 1 | 下载中 (26/28G) |\\n| Phi-4 (Microsoft) | 14.7B | 5 (5d × 1s) | cuda:1 | 1 | 下载重启 (1.6/29G) |\\n| OLMo-2-7B (Allen AI) | 7B | 5 (5d × 1s) | cuda:1 | 2 | 下载重启 (13/14G) |\\n| Gemma-2-9B (Google) | 9B | 5 (5d × 1s) | cuda:3 | 1 | 下载中 (23/18G?) |\\n\\n全部 LoRA r=16, α=32, lr=5e-5 (D140), bf16。Dosages: d000/d005/d025/d050/d100 (D142: 补充 d050)。\\n\\n### GPU 调度计划\\n\\n| GPU | Batch 1 | Batch 2 |\\n|-----|---------|---------|\\n| cuda:0 | Qwen2.5-7B d000/d005 × s42,s123 | Qwen2.5-7B d025/d050/d100 × s42,s123 |\\n| cuda:1 | Phi-4 d000/d005/d025/d050/d100 × s42 | OLMo-2-7B d000/d005/d025/d050/d100 × s42 |\\n| cuda:2 | Qwen2.5-14B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\n| cuda:3 | Gemma-2-9B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\n\\n## 近期任务\\n- [x] D139 文本修改 + MF2 simulation\\n- [x] GPU 获批 westd-29999 (4× RTX PRO 6000 96GB)\\n- [x] 环境搭建完成\\n- [x] 模型下载: Qwen 7B 完成 ✅, 14B/Gemma/Phi-4/OLMo-2 下载中\\n- [x] Pilot: Qwen2.5-7B d000 s42 cuda:0 lr=5e-5 RUNNING (step ~430/3125)\\n- [ ] 7B Pilot 完成 → loss check + GSM8K eval (D018 sentinel)\\n- [ ] 14B 下载完成 → cuda:2 启动 14B d000 s42 pilot\\n- [ ] Pilot 成功 → Full Matrix Batch 1（4 卡并行: Qwen7B + Phi-4 + 14B + Gemma, 含 d050）\\n- [ ] Batch 1 完成 → Batch 2（Qwen7B 续 + OLMo-2, 含 d050）\\n- [ ] 全部训练 → Eval + Signals + IRT\\n- [ ] 论文更新：从\\\"≤3B\\\"升级到\\\"≤14B + 5 families\\\"\\n- [ ] Round 7 review\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D148 | 2026-05-19 | evaluate.py ARC logprob bug 修复后全量重跑 ALL 25 evals（5 | — |\\n| D147 | 2026-05-19 | D147: MMLU vs ARC benchmark-specific contamination | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\n| D146 | 2026-05-19 | D146: 7B eval 完整数据确认 MMLU dose-response 非零（+1.34pp | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\n| D145 | 2026-05-19 | D145: 暂缓 Variant A/B 判定——14B MMLU +2.28pp(d050 pea | eval_14b_mmlu_arc_westd_v2, eval_7b_mmlu_arc_cqa1 |\\n| D144 | 2026-05-18 | D144: Narrative framing guidelines — \\\"4 labs + ind | scope_expansion_7b14b, exp_006_cross_family_pooled_irt |\\n| D143 | 2026-05-18 | D143: 7B+ signal computation hybrid strategy — Qwe | scope_expansion_7b14b, exp_008_signal_survival_v4 |\\n| D142 | 2026-05-18 | D142: 补充 d050 dosage 到 7B/14B 实验矩阵，从 24 runs 扩展到 2 | scope_expansion_7b14b |\\n| D141 | 2026-05-18 | D141: 更新 cross-family 模型选择——Phi-4 + OLMo-2 替换 Llam | scope_expansion_7b14b |\\n| D140 | 2026-05-18 | D140: 7B/14B pilot lr 改为 5e-5 匹配 ≤3B，消除 lr confoun | pilot_7b_d000_s42 |\\n| D139 | 2026-05-18 | D139: Round 6 Action Matrix — Title scope to SFT,  | round6_review |\\n\\n\", \"total_chars\": 3520, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d83bc9a-2025-4c1c-917a-6067cf1cf1cc",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "9edd959a-707b-4864-8d40-39c1dbacddd6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\\\", \\\"content\\\": \\\"# contamcal-irt-calibration — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-18 07:30 UTC | 更新原因: D141 模型矩阵最终确认 — Phi-4 + OLMo-2 替换 Llama/Mistral\\\\n\\\\n## 核心方向\\\\n\\\\\\\"Does SFT-Injected Benchmark Contamination Need Calibration?\\\\\\\" — IRT decomposition framework 验证 SFT contamination 对 benchmark 聚合分数的影响。从 ≤3B null finding 扩展到 7B/14B + 5 model families 验证。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**EMNLP 2026 ARR May 25**（距今 7 天）\\\\n\\\\n## 当前进展\\\\n- **阶段**: 5-family 扩展实验启动中\\\\n- **论文状态**: D139 完成，0 errors, ≤8 页主文 ✅ ACL 合规\\\\n- **≤3B 实验**: 179 success，MF2 threshold DGP simulation 完成\\\\n- **5-family 扩展**: westd-29999 环境就绪，5 模型下载中，Pilot worker 已派发 (lr=5e-5)\\\\n  - gpu_ids [0,1,2,3] 已确认 ✅\\\\n\\\\n## GPU 资源\\\\n- **cqa1-21977**: 1× RTX 4090D，空闲（eval/IRT 计算）\\\\n- **westd-29999**: 4× RTX PRO 6000 Blackwell (**96GB** each)，cuda:0-3\\\\n  - ⚠️ 96GB 非 48GB → 14B 直接 bf16 LoRA，不需要 QLoRA，全模型方法统一\\\\n\\\\n## Scope 扩展实验矩阵（29 runs，全部 bf16 LoRA，D141+D142 确认）\\\\n\\\\n| 模型 | 参数量 | Runs | GPU | Batch | 状态 |\\\\n|------|--------|------|-----|-------|------|\\\\n| Qwen2.5-7B | 7B | 10 (5d × 2s) | cuda:0 | 2 | 7B 完成 ✅, pilot RUNNING |\\\\n| Qwen2.5-14B | 14B | 5 (5d × 1s) | cuda:2 | 1 | 下载中 (26/28G) |\\\\n| Phi-4 (Microsoft) | 14.7B | 5 (5d × 1s) | cuda:1 | 1 | 下载重启 (1.6/29G) |\\\\n| OLMo-2-7B (Allen AI) | 7B | 5 (5d × 1s) | cuda:1 | 2 | 下载重启 (13/14G) |\\\\n| Gemma-2-9B (Google) | 9B | 5 (5d × 1s) | cuda:3 | 1 | 下载中 (23/18G?) |\\\\n\\\\n全部 LoRA r=16, α=32, lr=5e-5 (D140), bf16。Dosages: d000/d005/d025/d050/d100 (D142: 补充 d050)。\\\\n\\\\n### GPU 调度计划\\\\n\\\\n| GPU | Batch 1 | Batch 2 |\\\\n|-----|---------|---------|\\\\n| cuda:0 | Qwen2.5-7B d000/d005 × s42,s123 | Qwen2.5-7B d025/d050/d100 × s42,s123 |\\\\n| cuda:1 | Phi-4 d000/d005/d025/d050/d100 × s42 | OLMo-2-7B d000/d005/d025/d050/d100 × s42 |\\\\n| cuda:2 | Qwen2.5-14B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\\\n| cuda:3 | Gemma-2-9B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\\\n\\\\n## 近期任务\\\\n- [x] D139 文本修改 + MF2 simulation\\\\n- [x] GPU 获批 westd-29999 (4× RTX PRO 6000 96GB)\\\\n- [x] 环境搭建完成\\\\n- [x] 模型下载: Qwen 7B 完成 ✅, 14B/Gemma/Phi-4/OLMo-2 下载中\\\\n- [x] Pilot: Qwen2.5-7B d000 s42 cuda:0 lr=5e-5 RUNNING (step ~430/3125)\\\\n- [ ] 7B Pilot 完成 → loss check + GSM8K eval (D018 sentinel)\\\\n- [ ] 14B 下载完成 → cuda:2 启动 14B d000 s42 pilot\\\\n- [ ] Pilot 成功 → Full Matrix Batch 1（4 卡并行: Qwen7B + Phi-4 + 14B + Gemma, 含 d050）\\\\n- [ ] Batch 1 完成 → Batch 2（Qwen7B 续 + OLMo-2, 含 d050）\\\\n- [ ] 全部训练 → Eval + Signals + IRT\\\\n- [ ] 论文更新：从\\\\\\\"≤3B\\\\\\\"升级到\\\\\\\"≤14B + 5 families\\\\\\\"\\\\n- [ ] Round 7 review\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D148 | 2026-05-19 | evaluate.py ARC logprob bug 修复后全量重跑 ALL 25 evals（5 | — |\\\\n| D147 | 2026-05-19 | D147: MMLU vs ARC benchmark-specific contamination | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\\\n| D146 | 2026-05-19 | D146: 7B eval 完整数据确认 MMLU dose-response 非零（+1.34pp | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\\\n| D145 | 2026-05-19 | D145: 暂缓 Variant A/B 判定——14B MMLU +2.28pp(d050 pea | eval_14b_mmlu_arc_westd_v2, eval_7b_mmlu_arc_cqa1 |\\\\n| D144 | 2026-05-18 | D144: Narrative framing guidelines — \\\\\\\"4 labs + ind | scope_expansion_7b14b, exp_006_cross_family_pooled_irt |\\\\n| D143 | 2026-05-18 | D143: 7B+ signal computation hybrid strategy — Qwe | scope_expansion_7b14b, exp_008_signal_survival_v4 |\\\\n| D142 | 2026-05-18 | D142: 补充 d050 dosage 到 7B/14B 实验矩阵，从 24 runs 扩展到 2 | scope_expansion_7b14b |\\\\n| D141 | 2026-05-18 | D141: 更新 cross-family 模型选择——Phi-4 + OLMo-2 替换 Llam | scope_expansion_7b14b |\\\\n| D140 | 2026-05-18 | D140: 7B/14B pilot lr 改为 5e-5 匹配 ≤3B，消除 lr confoun | pilot_7b_d000_s42 |\\\\n| D139 | 2026-05-18 | D139: Round 6 Action Matrix — Title scope to SFT,  | round6_review |\\\\n\\\\n\\\", \\\"total_chars\\\": 3520, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-18 07:30 UTC | 更新原因: D141 模型矩阵最终确认 — Phi-4 + OLMo-2 替换 Llama/Mistral\\n\\n## 核心方向\\n\\\"Does SFT-Injected Benchmark Contamination Need Calibration?\\\" — IRT decomposition framework 验证 SFT contamination 对 benchmark 聚合分数的影响。从 ≤3B null finding 扩展到 7B/14B + 5 model families 验证。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 7 天）\\n\\n## 当前进展\\n- **阶段**: 5-family 扩展实验启动中\\n- **论文状态**: D139 完成，0 errors, ≤8 页主文 ✅ ACL 合规\\n- **≤3B 实验**: 179 success，MF2 threshold DGP simulation 完成\\n- **5-family 扩展**: westd-29999 环境就绪，5 模型下载中，Pilot worker 已派发 (lr=5e-5)\\n  - gpu_ids [0,1,2,3] 已确认 ✅\\n\\n## GPU 资源\\n- **cqa1-21977**: 1× RTX 4090D，空闲（eval/IRT 计算）\\n- **westd-29999**: 4× RTX PRO 6000 Blackwell (**96GB** each)，cuda:0-3\\n  - ⚠️ 96GB 非 48GB → 14B 直接 bf16 LoRA，不需要 QLoRA，全模型方法统一\\n\\n## Scope 扩展实验矩阵（29 runs，全部 bf16 LoRA，D141+D142 确认）\\n\\n| 模型 | 参数量 | Runs | GPU | Batch | 状态 |\\n|------|--------|------|-----|-------|------|\\n| Qwen2.5-7B | 7B | 10 (5d × 2s) | cuda:0 | 2 | 7B 完成 ✅, pilot RUNNING |\\n| Qwen2.5-14B | 14B | 5 (5d × 1s) | cuda:2 | 1 | 下载中 (26/28G) |\\n| Phi-4 (Microsoft) | 14.7B | 5 (5d × 1s) | cuda:1 | 1 | 下载重启 (1.6/29G) |\\n| OLMo-2-7B (Allen AI) | 7B | 5 (5d × 1s) | cuda:1 | 2 | 下载重启 (13/14G) |\\n| Gemma-2-9B (Google) | 9B | 5 (5d × 1s) | cuda:3 | 1 | 下载中 (23/18G?) |\\n\\n全部 LoRA r=16, α=32, lr=5e-5 (D140), bf16。Dosages: d000/d005/d025/d050/d100 (D142: 补充 d050)。\\n\\n### GPU 调度计划\\n\\n| GPU | Batch 1 | Batch 2 |\\n|-----|---------|---------|\\n| cuda:0 | Qwen2.5-7B d000/d005 × s42,s123 | Qwen2.5-7B d025/d050/d100 × s42,s123 |\\n| cuda:1 | Phi-4 d000/d005/d025/d050/d100 × s42 | OLMo-2-7B d000/d005/d025/d050/d100 × s42 |\\n| cuda:2 | Qwen2.5-14B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\n| cuda:3 | Gemma-2-9B d000/d005/d025/d050/d100 × s42 | （空闲或备用） |\\n\\n## 近期任务\\n- [x] D139 文本修改 + MF2 simulation\\n- [x] GPU 获批 westd-29999 (4× RTX PRO 6000 96GB)\\n- [x] 环境搭建完成\\n- [x] 模型下载: Qwen 7B 完成 ✅, 14B/Gemma/Phi-4/OLMo-2 下载中\\n- [x] Pilot: Qwen2.5-7B d000 s42 cuda:0 lr=5e-5 RUNNING (step ~430/3125)\\n- [ ] 7B Pilot 完成 → loss check + GSM8K eval (D018 sentinel)\\n- [ ] 14B 下载完成 → cuda:2 启动 14B d000 s42 pilot\\n- [ ] Pilot 成功 → Full Matrix Batch 1（4 卡并行: Qwen7B + Phi-4 + 14B + Gemma, 含 d050）\\n- [ ] Batch 1 完成 → Batch 2（Qwen7B 续 + OLMo-2, 含 d050）\\n- [ ] 全部训练 → Eval + Signals + IRT\\n- [ ] 论文更新：从\\\"≤3B\\\"升级到\\\"≤14B + 5 families\\\"\\n- [ ] Round 7 review\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D148 | 2026-05-19 | evaluate.py ARC logprob bug 修复后全量重跑 ALL 25 evals（5 | — |\\n| D147 | 2026-05-19 | D147: MMLU vs ARC benchmark-specific contamination | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\n| D146 | 2026-05-19 | D146: 7B eval 完整数据确认 MMLU dose-response 非零（+1.34pp | eval_7b_mmlu_arc_cqa1, eval_14b_mmlu_arc_westd_v2 |\\n| D145 | 2026-05-19 | D145: 暂缓 Variant A/B 判定——14B MMLU +2.28pp(d050 pea | eval_14b_mmlu_arc_westd_v2, eval_7b_mmlu_arc_cqa1 |\\n| D144 | 2026-05-18 | D144: Narrative framing guidelines — \\\"4 labs + ind | scope_expansion_7b14b, exp_006_cross_family_pooled_irt |\\n| D143 | 2026-05-18 | D143: 7B+ signal computation hybrid strategy — Qwe | scope_expansion_7b14b, exp_008_signal_survival_v4 |\\n| D142 | 2026-05-18 | D142: 补充 d050 dosage 到 7B/14B 实验矩阵，从 24 runs 扩展到 2 | scope_expansion_7b14b |\\n| D141 | 2026-05-18 | D141: 更新 cross-family 模型选择——Phi-4 + OLMo-2 替换 Llam | scope_expansion_7b14b |\\n| D140 | 2026-05-18 | D140: 7B/14B pilot lr 改为 5e-5 匹配 ≤3B，消除 lr confoun | pilot_7b_d000_s42 |\\n| D139 | 2026-05-18 | D139: Round 6 Action Matrix — Title scope to SFT,  | round6_review |\\n\\n\", \"total_chars\": 3520, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4d83bc9a-2025-4c1c-917a-6067cf1cf1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T11:29:37.264Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KVX8B761kc4kJh7CdW3Jer`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9edd959a-707b-4864-8d40-39c1dbacddd6",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGC7dz2DifSw3S2Pig",
+  "type": "assistant",
+  "uuid": "3dc613b6-d339-4be2-9279-d694e1b94e65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr6NmdwDsFSbYfL4g1VUo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14893,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 14893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T11:29:37.282Z_
+
+<details><summary>↩ Tool result · `toolu_01KVX8B761kc4kJh7CdW3Jer`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml\", \"content\": \"## writing_plan.yaml — contamcal-irt-calibration\\n## Generated: 2026-05-16 | Paper Agent Step 1 (REFRAME D118/D119/D120)\\n## Status: PENDING_APPROVAL\\n\\nmeta:\\n  venue: \\\"EMNLP 2026 ARR May 25\\\"\\n  track: \\\"Machine Learning for NLP / Resources and Evaluation\\\"\\n  deadline: \\\"2026-05-25\\\"\\n  days_remaining: 9\\n  page_limit: 8  # + unlimited appendix\\n  template: \\\"acl_latex (ARR format)\\\"\\n  template_note: \\\"Use acl-style-files from github.com/acl-org/acl-style-files\\\"\\n  special_theme: \\\"New Missions for NLP Research\\\"\\n  framing_doc: \\\"paper_framing.md (D118/D119/D120 reframe: diagnostic-led)\\\"\\n  total_word_budget: 5800\\n  review_round: 1\\n  target_score: \\\"Weak Reject → Weak Accept\\\"\\n\\ntitle: >\\n  Domain-Differential Contamination Effects:\\n  Diagnosis via Item Response Theory\\n\\ncore_claims:\\n  C1:\\n    name: \\\"Characterization (PRIMARY)\\\"\\n    summary: >\\n      MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84 (significant, PPP acceptable);\\n      pooled γ≈0 is dilution masking (D119), NOT absence of effect.\\n      Cross-benchmark: ARC forgetting (γ<0) vs GSM8K inflation (γ>0).\\n      Scale-dependent: 0.5B catastrophic → 3B mild → 7B negligible.\\n    evidence: [exp-006, exp-001]\\n    key_data: \\\"Domain IRT N=24 (MMLU 8 domains), per-benchmark IRT\\\"\\n    priority: 1\\n  C2:\\n    name: \\\"Signal Failure (CO-PRIMARY)\\\"\\n    summary: >\\n      Min-K++ directional reversal (Cohen's d = -1.55 to -1.98).\\n      Cross-family replication: Qwen + Llama both exhibit reversal.\\n      S1 embedding only reliable signal (AUC>0.95 at d005).\\n      RRF degrades to S1-only in practice.\\n    evidence: [exp-008, exp-002]\\n    key_data: \\\"Signal eval 0.5B/1.5B/3B, Llama cross-family (exploratory N=4)\\\"\\n    priority: 1\\n  C3:\\n    name: \\\"Identifiability\\\"\\n    summary: >\\n      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.\\n      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.\\n      Triple impossibility limited to \\\"IRT + membership-inference specific\\\" (C3 fix).\\n    evidence: [exp-004]\\n    key_data: \\\"Sim sweep 20 conditions × 200 runs\\\"\\n    priority: 2\\n  C4:\\n    name: \\\"Conditional Calibration (DEMOTED)\\\"\\n    summary: >\\n      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;\\n      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.\\n      Calibration improvement entirely from IRT ability estimation (θ separation from noise).\\n      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.\\n      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.\\n      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).\\n      D120: calibration value decomposition — all calibration benefit from θ, not γ.\\n    evidence: [exp-006]\\n    priority: 3\\n    narrative_constraint: >\\n      NEVER imply γ brings calibration improvement. Two distinct values:\\n      (a) IRT framework → calibration (robust θ estimation even without γ);\\n      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).\\n      This STRENGTHENS the diagnostic framing (D118).\\n\\npaper_outline:\\n  abstract:\\n    word_budget: 200\\n    dependencies: [introduction, results, conclusion]\\n    key_numbers: [\\\"MMLU Math γ=0.97\\\", \\\"dilution masking pooled γ≈0\\\", \\\"Min-K++ Cohen's d=-1.55 to -1.98\\\", \\\"ARC MAE=0.035\\\", \\\"N≥50 threshold\\\"]\\n    notes: \\\"Diagnostic framing. Lead with domain heterogeneity + dilution masking. Signal failure as co-primary.\\\"\\n\\n  introduction:\\n    word_budget: 850\\n    dependencies: [method, results]\\n    subsections:\\n      - \\\"Problem: contamination undermines benchmark reliability; aggregate metrics mask heterogeneous effects\\\"\\n      - \\\"Gap: detection methods flag but don't diagnose or calibrate; mitigation provably fails (Emperor's)\\\"\\n      - \\\"Our approach: IRT-based diagnostic framework revealing domain-differential effects\\\"\\n      - \\\"4 contributions: (1) domain heterogeneity + dilution masking, (2) signal failure, (3) identifiability bounds, (4) conditional calibration\\\"\\n    notes: \\\"D118: 'diagnostic findings + conditional calibration' framing. D119: dilution masking replaces Simpson's Paradox.\\\"\\n\\n  related_work:\\n    word_budget: 700\\n    dependencies: [literature_map]\\n    subsections:\\n      - \\\"Contamination detection (Min-K++, ConStat, KDS, CDD, Self-Critique)\\\"\\n      - \\\"IRT for LLM evaluation (Lalor, TinyBenchmarks, Growing Pains, HiBayES)\\\"\\n      - \\\"Item compromise in educational measurement (Eckerly, Sinharay, DIF)\\\"\\n      - \\\"Contamination mitigation + DCR qualitative comparison (W1 fix)\\\"\\n      - \\\"Calibration disambiguation\\\"\\n    notes: \\\"W1: expand DCR comparison (qualitative table). Cite TED/CDD as closest competitors.\\\"\\n\\n  method:\\n    word_budget: 1100\\n    dependencies: []\\n    subsections:\\n      - name: \\\"3.1 Problem Formulation\\\"\\n        content: \\\"Given model j, benchmark k with items i. Goal: diagnose contamination effects at domain level + estimate θ_j^clean. Three IRT adaptations.\\\"\\n      - name: \\\"3.2 Stage 1: Multi-Signal Exposure Mapping\\\"\\n        content: \\\"4 signals (S1-S4), RRF aggregation. Meta-circularity argument. Note S2/S4 failure modes.\\\"\\n      - name: \\\"3.3 Stage 2: Contamination-Augmented IRT\\\"\\n        content: \\\"2PL+γ model: P(y=1) = 1/(1+exp(-a_i(θ_j - b_i + γ_k·e_ij))). Per-domain γ_k within benchmark. Stan NUTS.\\\"\\n      - name: \\\"3.4 Fisher Information and Identifiability\\\"\\n        content: \\\"Derive I(γ). AUC=0.55 structural, N≥50 practical. CI width scaling. Domain-method mismatch.\\\"\\n      - name: \\\"3.5 Calibration Value Decomposition (D120/D121)\\\"\\n        content: >\\n          ALREADY WRITTEN in method.tex §3.4 as 'Calibration value decomposition' paragraph.\\n          Key message: vanilla 2PL ≈ 2PL+γ on calibration MAE (all benchmarks). Calibration\\n          benefit entirely from IRT θ estimation. γ provides diagnostic value only.\\n          Numbers: GSM8K 0.0063 vs 0.0062; MMLU 0.0068 vs 0.0070; ARC 0.0158 vs 0.0201.\\n    notes: \\\"2PL+γ as primary model (domain-level). 4PL for MC benchmarks (ARC/MMLU). Full Fisher derivation in appendix.\\\"\\n\\n  experimental_setup:\\n    word_budget: 600\\n    dependencies: [method]\\n    subsections:\\n      - name: \\\"4.1 Controlled SFT Injection\\\"\\n        content: \\\"Qwen2.5 (0.5B, 1.5B, 3B). 4 dosages (d000/d005/d025/d100). 2 seeds × 3 scales = N=24 models. LoRA alpha=32. QC-filtered injection.\\\"\\n      - name: \\\"4.2 Cross-Family Analysis\\\"\\n        content: >\\n          Llama-3.2-3B: d000 + d005/d025/d100 (single seed, N=4 additional). Exploratory.\\n          PURPOSE: test family-specificity of contamination patterns, NOT confirm generalizability.\\n          D123: Llama d100 MMLU excluded (catastrophic collapse, all output 'A', acc=0.34).\\n          Effective Llama MMLU range: d000-d025. ARC/GSM8K d100 normal.\\n          REQUIRED power analysis: Use Qwen N=24 γ effect sizes as reference\\n          (Math γ=0.97, GSM8K γ≈0.06). Compute statistical power at N=4 for each.\\n          Cross-family IRT pooling FINAL v3 CLEAN (replaces all prior versions):\\n            Pooled (Qwen+Llama):\\n              - ARC (N=20): γ=0.002, CI=[-0.57, 0.60], PPP=0.449, calMAE=0.015, ΔMAE=0.055\\n              - MMLU (N=18): γ=0.213, CI=[-0.78, 1.25], PPP=0.865, calMAE=0.008, ΔMAE=0.030\\n              - GSM8K (N=28): γ=-0.110, CI=[-0.52, 0.28], PPP=0.832, calMAE=0.008, ΔMAE=0.171\\n            Qwen-only baseline:\\n              - ARC (N=16): γ=0.727, CI excludes zero\\n              - MMLU (N=16): γ=0.655, CI does NOT exclude zero\\n              - GSM8K (N=24): γ=0.064, CI does NOT exclude zero\\n            KEY NARRATIVE NUMBER: ARC γ = 0.73 → 0.002 (strongest family-specificity evidence)\\n            NOTE: v2 MMLU γ=0.71 was WRONG (RRF missing s4). Correct value = 0.213.\\n          THREE-LAYER FRAMING:\\n            (1) IRT calibration generalizes cross-family (calMAE low, ΔMAE large) — STRONGEST claim\\n            (2) γ diagnostic value only within-family (Qwen: Math 0.97, Science 0.84; pooled: γ≈0)\\n            (3) Family-specificity itself is diagnostic (different families react differently to SFT)\\n          RED LINES:\\n            ✅ \\\"IRT calibration generalizes across model families\\\"\\n            ✅ \\\"γ provides within-family contamination diagnostics\\\"\\n            ✅ \\\"cross-family analysis reveals family-specific contamination mechanisms\\\"\\n            ❌ \\\"cross-family validation confirms contamination detection\\\"\\n            ❌ \\\"γ is a universal contamination indicator\\\"\\n      - name: \\\"4.3 Benchmarks, Domains, and Evaluation\\\"\\n        content: \\\"MMLU (57 subjects → 8 cognitive domains), ARC-C (1172 items), GSM8K (1319 items). 6 metrics. Domain stratification strategy.\\\"\\n      - name: \\\"4.4 Baselines\\\"\\n        content: \\\"7 baselines: B0-Raw, B1-Remove&Rescore, B2-Single2PL+γ, B3-Vanilla4PL, B4-LinearRegression, B5-Emperor, B6-DCR.\\\"\\n    notes: \\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias). 3B data FROZEN and available.\\\"\\n\\n  results:\\n    word_budget: 1500\\n    dependencies: [experimental_setup, figures, tables]\\n    subsections:\\n      - name: \\\"5.1 Domain-Differential Contamination (C1)\\\"\\n        content: >\\n          MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84, CS_Eng≈0, non-STEM PPP=1 (model misfit).\\n          Dilution masking (D119): pooled γ≈0 because positive STEM effects diluted by null/misfit non-STEM.\\n          Cross-benchmark: ARC γ<0 (forgetting), GSM8K γ>0 (inflation).\\n          Scale story: 0.5B catastrophic → 3B mild.\\n          Cross-family analysis (D122 v3 FINAL CLEAN):\\n            Pooling Qwen+Llama → γ vanishes on ALL benchmarks:\\n              ARC: 0.73→0.002; MMLU: 0.655→0.213; GSM8K: 0.064→-0.110 (all CI include zero)\\n            Only ARC Qwen-only had CI excluding zero — pooling eliminates it completely.\\n            calMAE remains low (GSM8K 0.008, ARC 0.015, MMLU 0.008) with large ΔMAE.\\n            Three-layer conclusion: (1) θ calibration cross-family valid, (2) γ within-family only,\\n            (3) family-specificity is itself a diagnostic finding.\\n            Llama d100 ARC acc=0.60 (no inflation despite contamination) vs Qwen pattern → different mechanisms.\\n        claims: [C1]\\n        key_tables: [table_domain_gamma]\\n        key_figures: [fig_domain_gamma, fig_dose_response]\\n      - name: \\\"5.2 Detection Signal Failure (C2)\\\"\\n        content: >\\n          S1 AUC>0.95 at d005. Min-K++ reversal Cohen's d=-1.55 to -1.98.\\n          Cross-family signal: Llama-3.2-3B replicates Min-K++ reversal direction (exploratory, N=4).\\n          RRF = S1-only in practice.\\n          NOTE (D122): Cross-family γ pooling shows family-specificity (§5.1 cross-ref).\\n          Signal direction replicates, but γ magnitude is family-specific.\\n        claims: [C2]\\n        key_figures: [fig_signal_heatmap]\\n      - name: \\\"5.3 Identifiability Boundaries (C3)\\\"\\n        content: >\\n          Sim sweep: recovery at AUC=0.55 (lowest tested), N≥50. CI ∝ N^{-0.48}.\\n          LLM eval operates at N=8-30: IRT-specific impossibility (not general impossibility).\\n          Fisher Info N×identifiability heatmap.\\n        claims: [C3]\\n        key_figures: [fig_identifiability_heatmap]\\n      - name: \\\"5.4 Conditional Calibration (C4)\\\"\\n        content: >\\n          KEY NARRATIVE: Show vanilla 2PL baseline alongside 2PL+γ. Explicitly state γ does NOT\\n          improve calibration (GSM8K: 0.0063 vs 0.0062; MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201).\\n          Calibration benefit entirely from IRT ability estimation.\\n          γ value is DIAGNOSTIC: domain-differential heterogeneity detection (§5.1).\\n          ARC: MAE=0.035, Kendall τ=0.756, beats all baselines.\\n          GSM8K: gating criterion fails (γ non-significant with S1). Overcorrection as honest negative.\\n          Coverage below nominal: directional indicators, not precise CIs.\\n          Frame positively: this confirms D118 \\\"Diagnosis via IRT\\\" — γ reveals hidden structure\\n          that aggregate calibration cannot, strengthening the diagnostic contribution.\\n        claims: [C4]\\n        key_tables: [table_baselines]\\n        key_figures: [fig_calibration]\\n        narrative_constraint: \\\"NEVER imply γ improves calibration numbers. Show vanilla 2PL as explicit comparison.\\\"\\n    notes: \\\"All sections use FROZEN data (3B included). Llama marked 'exploratory'.\\\"\\n\\n  discussion:\\n    word_budget: 500\\n    dependencies: [results]\\n    subsections:\\n      - \\\"Dilution masking implications: aggregate benchmark scores as unreliable contamination indicators\\\"\\n      - \\\"Non-STEM model misfit: boundary of additive γ formulation → future multidimensional IRT\\\"\\n      - \\\"Limitations: single primary family (Qwen2.5), SFT ≠ real contamination, N<50 in practice\\\"\\n      - \\\"0.5B position bias (D045): capacity threshold for MC evaluation\\\"\\n      - name: \\\"SFT ≠ real contamination (W6, expanded with D123)\\\"\\n        content: >\\n          Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34) while\\n          ARC/GSM8K d100 behave normally. Format-specific: 100% SFT on MC items causes\\n          format overfitting (position bias collapse), not present in open-ended (GSM8K)\\n          or mixed-format (ARC). This artifact would not occur in natural contamination\\n          (gradual, heterogeneous sources). Brief mention, not core claim.\\n          Also supports capacity × format interaction for Min-K++ reversal explanation.\\n      - \\\"Future work: multi-family, 7B+, RL observational, data attribution signals\\\"\\n    notes: \\\"Honest about scope. C3 impossibility limited to IRT+MIA framework.\\\"\\n\\n  conclusion:\\n    word_budget: 350\\n    dependencies: [discussion]\\n    notes: >\\n      Restate: diagnostic framework reveals hidden structure. Dilution masking as key insight.\\n      IRT provides calibration via θ estimation; γ provides domain-level diagnosis.\\n      These are complementary, independent values. Honest about γ's non-contribution to calibration numbers.\\n\\n  appendix:\\n    sections:\\n      - name: \\\"A: Fisher Information Derivation\\\"\\n        source: \\\"artifacts/fisher_info_derivation/fisher_info_appendix.tex\\\"\\n      - name: \\\"B: Simulation Sweep Full Results\\\"\\n        data_source: \\\"exp-004\\\"\\n      - name: \\\"C: Measurement Error Analysis (Negative)\\\"\\n        data_source: \\\"exp-005\\\"\\n      - name: \\\"D: 0.5B Position Bias Analysis\\\"\\n        data_source: \\\"exp-001\\\"\\n      - name: \\\"E: Llama Cross-Family Analysis + Power Analysis\\\"\\n        notes: >\\n          Single seed N=4. Post-hoc power. Exploratory status.\\n          D122: Report pooled γ results honestly (GSM8K γ≈0; ARC γ=0.55 CI crosses zero, PPP=0.024).\\n          Frame as family-specificity evidence, not failure. Compare Qwen-only vs pooled.\\n          IRT θ valid cross-family; γ family-specific → supports per-family modeling recommendation.\\n      - name: \\\"F: DCR Qualitative Comparison Table (W1)\\\"\\n        notes: \\\"Feature-by-feature comparison with DCR. No head-to-head numbers (no code access).\\\"\\n      - name: \\\"G: Full Domain-Level IRT Diagnostics\\\"\\n        notes: \\\"All 8 MMLU domains: γ, CI, PPP, Rhat, ESS. Non-STEM misfit discussion.\\\"\\n\\nvisualization_plan:\\n  fig_pipeline:\\n    type: \\\"conceptual_diagram\\\"\\n    description: \\\"ContamCal 2-stage diagnostic pipeline. Emphasize 'diagnosis' framing: signals → domain-level IRT → characterization + conditional calibration.\\\"\\n    placement: \\\"Section 3 (Method)\\\"\\n    aspect_ratio: \\\"2:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: null\\n    output: \\\"figures/paper/fig_pipeline.pdf\\\"\\n    status: \\\"DONE (may need minor label update for 'diagnosis' framing)\\\"\\n\\n  fig_domain_gamma:\\n    type: \\\"bar_chart_with_ci\\\"\\n    description: >\\n      NEW (flagship C1 figure). MMLU domain-level γ estimates.\\n      X-axis: 8 MMLU domains (ordered by γ: Math > Science > CS_Eng > ... > non-STEM).\\n      Y-axis: γ estimate. Error bars = 95% CI.\\n      Color: green (significant + PPP OK) / gray (non-significant) / red (PPP=1, model misfit).\\n      Horizontal dashed line at γ=0. Annotate pooled γ≈0 with \\\"dilution masking\\\" label.\\n    placement: \\\"Section 5.1 (flagship)\\\"\\n    aspect_ratio: \\\"3:2\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-006 domain-level IRT N=24 (Math/Science/CS_Eng/non-STEM domains)\\\"\\n    output: \\\"figures/paper/fig_domain_gamma.pdf\\\"\\n\\n  fig_dose_response:\\n    type: \\\"line_plot\\\"\\n    description: >\\n      Dosage vs accuracy for ARC, GSM8K, MMLU. NOW WITH 3B DATA (3B FROZEN).\\n      Three scales: 0.5B, 1.5B, 3B. Error bars from 2 seeds.\\n      Shows scale-dependence + benchmark-dependence.\\n    placement: \\\"Section 5.1\\\"\\n    aspect_ratio: \\\"3:2\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-001 eval results (aligned, all scales × dosages × seeds)\\\"\\n    output: \\\"figures/paper/fig_dose_response.pdf\\\"\\n    status: \\\"NEEDS REGENERATION (old version has [PENDING-3B], now 3B is FROZEN)\\\"\\n\\n  fig_signal_heatmap:\\n    type: \\\"heatmap\\\"\\n    description: >\\n      Signal AUC × scale × dosage. Annotate Min-K++ reversal (Cohen's d).\\n      Include Llama cross-family row if data available (mark exploratory).\\n    placement: \\\"Section 5.2\\\"\\n    aspect_ratio: \\\"4:3\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-008 signal eval + Llama signals\\\"\\n    output: \\\"figures/paper/fig_signal_heatmap.pdf\\\"\\n\\n  fig_identifiability_heatmap:\\n    type: \\\"heatmap\\\"\\n    description: >\\n      W4 fix: N (y-axis) × AUC (x-axis) → γ recovery quality (color = bias or RMSE).\\n      Mark actual operating points. Shade structural/practical identifiability regions.\\n      Replaces old 'phase diagram' — heatmap is more informative per reviewer.\\n    placement: \\\"Section 5.3\\\"\\n    aspect_ratio: \\\"1:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-004 sim_sweep (20 conditions, 200 runs)\\\"\\n    output: \\\"figures/paper/fig_identifiability_heatmap.pdf\\\"\\n\\n  fig_calibration:\\n    type: \\\"scatter_with_ci\\\"\\n    description: >\\n      Calibrated vs true accuracy scatter. Include 3B data.\\n      MUST include vanilla 2PL baseline (separate marker/color) alongside 2PL+γ.\\n      Key visual: vanilla 2PL and 2PL+γ points nearly overlap, demonstrating\\n      calibration parity. Color by benchmark. Annotate ARC (good) vs GSM8K (overcorrection).\\n      Director note: \\\"会增加 vanilla 2PL 对照条\\\"\\n    placement: \\\"Section 5.4\\\"\\n    aspect_ratio: \\\"1:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-006 IRT calibration results (both vanilla 2PL and 2PL+γ)\\\"\\n    output: \\\"figures/paper/fig_calibration.pdf\\\"\\n    status: \\\"NEEDS REGENERATION (vanilla 2PL comparison added)\\\"\\n\\ntable_plan:\\n  table_domain_gamma:\\n    type: \\\"parameter_summary\\\"\\n    description: \\\"Domain-level IRT γ estimates (MMLU 8 domains + ARC + GSM8K)\\\"\\n    columns: [\\\"Domain/Benchmark\\\", \\\"N_items\\\", \\\"γ̂\\\", \\\"95% CI\\\", \\\"Sig?\\\", \\\"PPP\\\", \\\"Interpretation\\\"]\\n    data_source: \\\"exp-006 domain-level IRT (N=24 models)\\\"\\n    placement: \\\"Section 5.1\\\"\\n    rows:\\n      - \\\"MMLU: Math — γ=+0.97, CI excludes 0, PPP=0.44, Strong inflation\\\"\\n      - \\\"MMLU: Science — γ=+0.84, CI excludes 0, PPP=0.81, Strong inflation\\\"\\n      - \\\"MMLU: CS_Eng — γ=+0.20, CI includes 0, PPP=0.89, Null\\\"\\n      - \\\"MMLU: Non-STEM (5 domains) — PPP≈1.0, Model misfit (see Appendix G)\\\"\\n      - \\\"MMLU: Pooled — γ≈0, dilution masking\\\"\\n      - \\\"ARC-Challenge — γ=-1.46, CI excludes 0, Forgetting\\\"\\n      - \\\"GSM8K — γ non-significant (S1), Inflation via oracle only\\\"\\n      - \\\"[3B rows from FROZEN data]\\\"\\n\\n  table_baselines:\\n    type: \\\"comparison\\\"\\n    description: \\\"Calibration performance: ContamCal vs 7 baselines + DCR qualitative\\\"\\n    columns: [\\\"Method\\\", \\\"ARC MAE↓\\\", \\\"ARC τ↑\\\", \\\"ARC C95%\\\", \\\"Notes\\\"]\\n    data_source: \\\"exp-006 baseline comparisons\\\"\\n    placement: \\\"Section 5.4\\\"\\n    notes: \\\"W1: add qualitative DCR comparison column. Include 3B data.\\\"\\n\\n  table_dcr_comparison:\\n    type: \\\"qualitative\\\"\\n    description: \\\"W1 fix: DCR vs ContamCal feature comparison\\\"\\n    columns: [\\\"Feature\\\", \\\"DCR\\\", \\\"ContamCal\\\"]\\n    placement: \\\"Section 2 (Related Work) or Section 5.4\\\"\\n    rows:\\n      - \\\"Uncertainty quantification: ✗ / ✓ (Bayesian CIs)\\\"\\n      - \\\"Domain-level diagnosis: ✗ / ✓ (per-domain γ)\\\"\\n      - \\\"Identifiability analysis: ✗ / ✓ (Fisher Info)\\\"\\n      - \\\"Signal failure detection: ✗ / ✓ (Min-K++ reversal)\\\"\\n      - \\\"Adjusted accuracy: ✓ / ✓\\\"\\n      - \\\"Multi-benchmark: ✓ / ✓\\\"\\n      - \\\"Requires reference set: ✓ (fuzzy match) / ✗ (signal-based)\\\"\\n\\nliterature_strategy:\\n  citation_budget: \\\"40-50 total\\\"\\n  macro_context: \\\"Contamination is systemic; detection exists but diagnosis doesn't; educational measurement solved analogous problem decades ago.\\\"\\n  micro_clusters:\\n    contamination_detection:\\n      target_count: 8\\n      must_cite: [\\\"zhang2024minkpp\\\", \\\"dekoninck2024constat\\\", \\\"dong2024kds\\\", \\\"shi2024cdd\\\", \\\"weller2024selfcritique\\\", \\\"golchin2024time\\\"]\\n    irt_for_llm:\\n      target_count: 6\\n      must_cite: [\\\"lalor2024aaai\\\", \\\"polo2024tinybenchmarks\\\", \\\"burnell2023multidimensional\\\"]\\n    item_compromise_irt:\\n      target_count: 5\\n      must_cite: [\\\"eckerly2017\\\", \\\"sinharay2017\\\", \\\"deboeck2004\\\", \\\"holland1993dif\\\", \\\"adams1997\\\"]\\n    benchmark_reliability:\\n      target_count: 5\\n      must_cite: [\\\"livebench2024\\\", \\\"empcloths2025\\\", \\\"zheng2023chatbot\\\", \\\"liang2023helm\\\"]\\n    calibration_uq:\\n      target_count: 4\\n      must_cite: [\\\"guo2017calibration\\\", \\\"angelopoulos2023conformal\\\", \\\"talts2018sbc\\\"]\\n    mia_foundations:\\n      target_count: 3\\n      must_cite: [\\\"shokri2017membership\\\", \\\"carlini2022extracting\\\"]\\n    contamination_mitigation:\\n      target_count: 4\\n      must_cite: [\\\"oren2024dcr\\\"]\\n    irt_methodology:\\n      target_count: 3\\n      must_cite: [\\\"sanmartin2009\\\", \\\"reckase2009\\\", \\\"mislevy1986\\\"]\\n\\nwriting_order:\\n  - section: \\\"method\\\"\\n    rationale: \\\"No data dependency. Sets notation. Include D120 decomposition.\\\"\\n  - section: \\\"experimental_setup\\\"\\n    rationale: \\\"Defines design. 3B FROZEN, Llama exploratory.\\\"\\n  - section: \\\"results\\\"\\n    rationale: \\\"Core contribution. Domain heterogeneity as flagship.\\\"\\n  - section: \\\"related_work\\\"\\n    rationale: \\\"Needs literature_map. DCR expanded comparison (W1).\\\"\\n  - section: \\\"discussion\\\"\\n    rationale: \\\"Dilution masking implications. Model misfit boundary.\\\"\\n  - section: \\\"introduction\\\"\\n    rationale: \\\"Diagnostic framing. Lead with dilution masking insight.\\\"\\n  - section: \\\"conclusion\\\"\\n    rationale: \\\"Summarizes diagnostic findings.\\\"\\n  - section: \\\"abstract\\\"\\n    rationale: \\\"Write last.\\\"\\n\\ndata_availability:\\n  frozen:\\n    - \\\"Qwen 0.5B/1.5B/3B: all dosages × 2 seeds, SFT + eval + signals ✅ FROZEN\\\"\\n    - \\\"Domain-level IRT N=24 (MMLU 8 domains): Math/Science confirmed ✅\\\"\\n    - \\\"Pooled IRT 2PL+γ N=24 ✅\\\"\\n    - \\\"Min-K++ reversal cross-family (Qwen + Llama) ✅\\\"\\n    - \\\"exp-004 sim_sweep (20 conditions, 200 runs)\\\"\\n  in_progress:\\n    - \\\"Llama-3.2-3B: d000 eval ✅, d005/d025/d100 eval/signals in progress → mark exploratory (single seed, N=4)\\\"\\n  constraints:\\n    - \\\"GSM8K d005 s123: 63.08% anomaly, temporarily unavailable\\\"\\n    - \\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias)\\\"\\n    - \\\"Llama data: exploratory only, post-hoc power analysis required\\\"\\n    - \\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Effective Llama MMLU range: d000-d025 only. ARC/GSM8K d100 normal.\\\"\\n  excluded_from_paper:\\n    - \\\"7B/72B (rebuttal)\\\"\\n    - \\\"Multi-family beyond Llama-3.2-3B (rebuttal)\\\"\\n    - \\\"RL observational (rebuttal)\\\"\\n\\nreview_fixes:\\n  C1: \\\"Add 1.5B/3B complete data to Table 1/2 (data available)\\\"\\n  C2: \\\"Llama N=4 + post-hoc power analysis + 'exploratory' label\\\"\\n  C3: \\\"Triple impossibility limited to 'IRT + membership-inference specific'\\\"\\n  W1: \\\"Expand DCR comparison (qualitative table, no head-to-head numbers)\\\"\\n  W2: \\\"Title → diagnostic framing (D118 approved)\\\"\\n  W4: \\\"Fisher Info N×identifiability heatmap (replaces phase diagram)\\\"\\n  D119: \\\"dilution masking replaces Simpson's Paradox throughout\\\"\\n  D120: \\\"calibration value decomposition paragraph in Method + Results\\\"\\n\\nkey_decisions:\\n  - \\\"D118: Title → 'Domain-Differential Contamination Effects: Diagnosis via IRT'\\\"\\n  - \\\"D119: dilution masking replaces Simpson's Paradox\\\"\\n  - \\\"D120: GSM8K calibration value from ability estimation (decomposition)\\\"\\n  - \\\"D121: vanilla 2PL ≈ 2PL+γ calibration MAE on all benchmarks — γ provides NO calibration improvement, only diagnostic value. Calibration entirely from IRT θ estimation.\\\"\\n  - \\\"D122 v3 CLEAN: Cross-family pooled IRT — ARC(N=20) γ=0.002, MMLU(N=20) γ=0.213, GSM8K(N=28) γ=-0.110, ALL CI include zero. Qwen-only: ARC γ=0.727 CI excl zero, MMLU γ=0.655 no, GSM8K γ=0.064 no. Key number: ARC 0.73→0.002. v2 MMLU γ=0.71 was WRONG (RRF bug). Three-layer framing unchanged. Red lines: never claim γ universal.\\\"\\n  - \\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Format-specific SFT overfitting. Exclude from IRT. Mention in Discussion as 'SFT ≠ real contamination' evidence. Not core claim.\\\"\\n  - \\\"D039: Characterization-led framing, calibration demoted to Claim 4\\\"\\n  - \\\"D045: Exclude 0.5B MMLU/ARC from IRT (position bias)\\\"\\n  - \\\"D053: Per-benchmark independent IRT only\\\"\\n  - \\\"D055: WITHDRAWN — all checkpoints alpha=32\\\"\\n  - \\\"D056: Coverage collapse = model misspecification\\\"\\n  - \\\"D060: P1/P2 → rebuttal scope\\\"\\n\", \"total_chars\": 24731, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3dc613b6-d339-4be2-9279-d694e1b94e65",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "e77d8b5e-5f3c-494f-bcb7-7b31723cc7b9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml\\\", \\\"content\\\": \\\"## writing_plan.yaml — contamcal-irt-calibration\\\\n## Generated: 2026-05-16 | Paper Agent Step 1 (REFRAME D118/D119/D120)\\\\n## Status: PENDING_APPROVAL\\\\n\\\\nmeta:\\\\n  venue: \\\\\\\"EMNLP 2026 ARR May 25\\\\\\\"\\\\n  track: \\\\\\\"Machine Learning for NLP / Resources and Evaluation\\\\\\\"\\\\n  deadline: \\\\\\\"2026-05-25\\\\\\\"\\\\n  days_remaining: 9\\\\n  page_limit: 8  # + unlimited appendix\\\\n  template: \\\\\\\"acl_latex (ARR format)\\\\\\\"\\\\n  template_note: \\\\\\\"Use acl-style-files from github.com/acl-org/acl-style-files\\\\\\\"\\\\n  special_theme: \\\\\\\"New Missions for NLP Research\\\\\\\"\\\\n  framing_doc: \\\\\\\"paper_framing.md (D118/D119/D120 reframe: diagnostic-led)\\\\\\\"\\\\n  total_word_budget: 5800\\\\n  review_round: 1\\\\n  target_score: \\\\\\\"Weak Reject → Weak Accept\\\\\\\"\\\\n\\\\ntitle: >\\\\n  Domain-Differential Contamination Effects:\\\\n  Diagnosis via Item Response Theory\\\\n\\\\ncore_claims:\\\\n  C1:\\\\n    name: \\\\\\\"Characterization (PRIMARY)\\\\\\\"\\\\n    summary: >\\\\n      MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84 (significant, PPP acceptable);\\\\n      pooled γ≈0 is dilution masking (D119), NOT absence of effect.\\\\n      Cross-benchmark: ARC forgetting (γ<0) vs GSM8K inflation (γ>0).\\\\n      Scale-dependent: 0.5B catastrophic → 3B mild → 7B negligible.\\\\n    evidence: [exp-006, exp-001]\\\\n    key_data: \\\\\\\"Domain IRT N=24 (MMLU 8 domains), per-benchmark IRT\\\\\\\"\\\\n    priority: 1\\\\n  C2:\\\\n    name: \\\\\\\"Signal Failure (CO-PRIMARY)\\\\\\\"\\\\n    summary: >\\\\n      Min-K++ directional reversal (Cohen's d = -1.55 to -1.98).\\\\n      Cross-family replication: Qwen + Llama both exhibit reversal.\\\\n      S1 embedding only reliable signal (AUC>0.95 at d005).\\\\n      RRF degrades to S1-only in practice.\\\\n    evidence: [exp-008, exp-002]\\\\n    key_data: \\\\\\\"Signal eval 0.5B/1.5B/3B, Llama cross-family (exploratory N=4)\\\\\\\"\\\\n    priority: 1\\\\n  C3:\\\\n    name: \\\\\\\"Identifiability\\\\\\\"\\\\n    summary: >\\\\n      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.\\\\n      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.\\\\n      Triple impossibility limited to \\\\\\\"IRT + membership-inference specific\\\\\\\" (C3 fix).\\\\n    evidence: [exp-004]\\\\n    key_data: \\\\\\\"Sim sweep 20 conditions × 200 runs\\\\\\\"\\\\n    priority: 2\\\\n  C4:\\\\n    name: \\\\\\\"Conditional Calibration (DEMOTED)\\\\\\\"\\\\n    summary: >\\\\n      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;\\\\n      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.\\\\n      Calibration improvement entirely from IRT ability estimation (θ separation from noise).\\\\n      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.\\\\n      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.\\\\n      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).\\\\n      D120: calibration value decomposition — all calibration benefit from θ, not γ.\\\\n    evidence: [exp-006]\\\\n    priority: 3\\\\n    narrative_constraint: >\\\\n      NEVER imply γ brings calibration improvement. Two distinct values:\\\\n      (a) IRT framework → calibration (robust θ estimation even without γ);\\\\n      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).\\\\n      This STRENGTHENS the diagnostic framing (D118).\\\\n\\\\npaper_outline:\\\\n  abstract:\\\\n    word_budget: 200\\\\n    dependencies: [introduction, results, conclusion]\\\\n    key_numbers: [\\\\\\\"MMLU Math γ=0.97\\\\\\\", \\\\\\\"dilution masking pooled γ≈0\\\\\\\", \\\\\\\"Min-K++ Cohen's d=-1.55 to -1.98\\\\\\\", \\\\\\\"ARC MAE=0.035\\\\\\\", \\\\\\\"N≥50 threshold\\\\\\\"]\\\\n    notes: \\\\\\\"Diagnostic framing. Lead with domain heterogeneity + dilution masking. Signal failure as co-primary.\\\\\\\"\\\\n\\\\n  introduction:\\\\n    word_budget: 850\\\\n    dependencies: [method, results]\\\\n    subsections:\\\\n      - \\\\\\\"Problem: contamination undermines benchmark reliability; aggregate metrics mask heterogeneous effects\\\\\\\"\\\\n      - \\\\\\\"Gap: detection methods flag but don't diagnose or calibrate; mitigation provably fails (Emperor's)\\\\\\\"\\\\n      - \\\\\\\"Our approach: IRT-based diagnostic framework revealing domain-differential effects\\\\\\\"\\\\n      - \\\\\\\"4 contributions: (1) domain heterogeneity + dilution masking, (2) signal failure, (3) identifiability bounds, (4) conditional calibration\\\\\\\"\\\\n    notes: \\\\\\\"D118: 'diagnostic findings + conditional calibration' framing. D119: dilution masking replaces Simpson's Paradox.\\\\\\\"\\\\n\\\\n  related_work:\\\\n    word_budget: 700\\\\n    dependencies: [literature_map]\\\\n    subsections:\\\\n      - \\\\\\\"Contamination detection (Min-K++, ConStat, KDS, CDD, Self-Critique)\\\\\\\"\\\\n      - \\\\\\\"IRT for LLM evaluation (Lalor, TinyBenchmarks, Growing Pains, HiBayES)\\\\\\\"\\\\n      - \\\\\\\"Item compromise in educational measurement (Eckerly, Sinharay, DIF)\\\\\\\"\\\\n      - \\\\\\\"Contamination mitigation + DCR qualitative comparison (W1 fix)\\\\\\\"\\\\n      - \\\\\\\"Calibration disambiguation\\\\\\\"\\\\n    notes: \\\\\\\"W1: expand DCR comparison (qualitative table). Cite TED/CDD as closest competitors.\\\\\\\"\\\\n\\\\n  method:\\\\n    word_budget: 1100\\\\n    dependencies: []\\\\n    subsections:\\\\n      - name: \\\\\\\"3.1 Problem Formulation\\\\\\\"\\\\n        content: \\\\\\\"Given model j, benchmark k with items i. Goal: diagnose contamination effects at domain level + estimate θ_j^clean. Three IRT adaptations.\\\\\\\"\\\\n      - name: \\\\\\\"3.2 Stage 1: Multi-Signal Exposure Mapping\\\\\\\"\\\\n        content: \\\\\\\"4 signals (S1-S4), RRF aggregation. Meta-circularity argument. Note S2/S4 failure modes.\\\\\\\"\\\\n      - name: \\\\\\\"3.3 Stage 2: Contamination-Augmented IRT\\\\\\\"\\\\n        content: \\\\\\\"2PL+γ model: P(y=1) = 1/(1+exp(-a_i(θ_j - b_i + γ_k·e_ij))). Per-domain γ_k within benchmark. Stan NUTS.\\\\\\\"\\\\n      - name: \\\\\\\"3.4 Fisher Information and Identifiability\\\\\\\"\\\\n        content: \\\\\\\"Derive I(γ). AUC=0.55 structural, N≥50 practical. CI width scaling. Domain-method mismatch.\\\\\\\"\\\\n      - name: \\\\\\\"3.5 Calibration Value Decomposition (D120/D121)\\\\\\\"\\\\n        content: >\\\\n          ALREADY WRITTEN in method.tex §3.4 as 'Calibration value decomposition' paragraph.\\\\n          Key message: vanilla 2PL ≈ 2PL+γ on calibration MAE (all benchmarks). Calibration\\\\n          benefit entirely from IRT θ estimation. γ provides diagnostic value only.\\\\n          Numbers: GSM8K 0.0063 vs 0.0062; MMLU 0.0068 vs 0.0070; ARC 0.0158 vs 0.0201.\\\\n    notes: \\\\\\\"2PL+γ as primary model (domain-level). 4PL for MC benchmarks (ARC/MMLU). Full Fisher derivation in appendix.\\\\\\\"\\\\n\\\\n  experimental_setup:\\\\n    word_budget: 600\\\\n    dependencies: [method]\\\\n    subsections:\\\\n      - name: \\\\\\\"4.1 Controlled SFT Injection\\\\\\\"\\\\n        content: \\\\\\\"Qwen2.5 (0.5B, 1.5B, 3B). 4 dosages (d000/d005/d025/d100). 2 seeds × 3 scales = N=24 models. LoRA alpha=32. QC-filtered injection.\\\\\\\"\\\\n      - name: \\\\\\\"4.2 Cross-Family Analysis\\\\\\\"\\\\n        content: >\\\\n          Llama-3.2-3B: d000 + d005/d025/d100 (single seed, N=4 additional). Exploratory.\\\\n          PURPOSE: test family-specificity of contamination patterns, NOT confirm generalizability.\\\\n          D123: Llama d100 MMLU excluded (catastrophic collapse, all output 'A', acc=0.34).\\\\n          Effective Llama MMLU range: d000-d025. ARC/GSM8K d100 normal.\\\\n          REQUIRED power analysis: Use Qwen N=24 γ effect sizes as reference\\\\n          (Math γ=0.97, GSM8K γ≈0.06). Compute statistical power at N=4 for each.\\\\n          Cross-family IRT pooling FINAL v3 CLEAN (replaces all prior versions):\\\\n            Pooled (Qwen+Llama):\\\\n              - ARC (N=20): γ=0.002, CI=[-0.57, 0.60], PPP=0.449, calMAE=0.015, ΔMAE=0.055\\\\n              - MMLU (N=18): γ=0.213, CI=[-0.78, 1.25], PPP=0.865, calMAE=0.008, ΔMAE=0.030\\\\n              - GSM8K (N=28): γ=-0.110, CI=[-0.52, 0.28], PPP=0.832, calMAE=0.008, ΔMAE=0.171\\\\n            Qwen-only baseline:\\\\n              - ARC (N=16): γ=0.727, CI excludes zero\\\\n              - MMLU (N=16): γ=0.655, CI does NOT exclude zero\\\\n              - GSM8K (N=24): γ=0.064, CI does NOT exclude zero\\\\n            KEY NARRATIVE NUMBER: ARC γ = 0.73 → 0.002 (strongest family-specificity evidence)\\\\n            NOTE: v2 MMLU γ=0.71 was WRONG (RRF missing s4). Correct value = 0.213.\\\\n          THREE-LAYER FRAMING:\\\\n            (1) IRT calibration generalizes cross-family (calMAE low, ΔMAE large) — STRONGEST claim\\\\n            (2) γ diagnostic value only within-family (Qwen: Math 0.97, Science 0.84; pooled: γ≈0)\\\\n            (3) Family-specificity itself is diagnostic (different families react differently to SFT)\\\\n          RED LINES:\\\\n            ✅ \\\\\\\"IRT calibration generalizes across model families\\\\\\\"\\\\n            ✅ \\\\\\\"γ provides within-family contamination diagnostics\\\\\\\"\\\\n            ✅ \\\\\\\"cross-family analysis reveals family-specific contamination mechanisms\\\\\\\"\\\\n            ❌ \\\\\\\"cross-family validation confirms contamination detection\\\\\\\"\\\\n            ❌ \\\\\\\"γ is a universal contamination indicator\\\\\\\"\\\\n      - name: \\\\\\\"4.3 Benchmarks, Domains, and Evaluation\\\\\\\"\\\\n        content: \\\\\\\"MMLU (57 subjects → 8 cognitive domains), ARC-C (1172 items), GSM8K (1319 items). 6 metrics. Domain stratification strategy.\\\\\\\"\\\\n      - name: \\\\\\\"4.4 Baselines\\\\\\\"\\\\n        content: \\\\\\\"7 baselines: B0-Raw, B1-Remove&Rescore, B2-Single2PL+γ, B3-Vanilla4PL, B4-LinearRegression, B5-Emperor, B6-DCR.\\\\\\\"\\\\n    notes: \\\\\\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias). 3B data FROZEN and available.\\\\\\\"\\\\n\\\\n  results:\\\\n    word_budget: 1500\\\\n    dependencies: [experimental_setup, figures, tables]\\\\n    subsections:\\\\n      - name: \\\\\\\"5.1 Domain-Differential Contamination (C1)\\\\\\\"\\\\n        content: >\\\\n          MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84, CS_Eng≈0, non-STEM PPP=1 (model misfit).\\\\n          Dilution masking (D119): pooled γ≈0 because positive STEM effects diluted by null/misfit non-STEM.\\\\n          Cross-benchmark: ARC γ<0 (forgetting), GSM8K γ>0 (inflation).\\\\n          Scale story: 0.5B catastrophic → 3B mild.\\\\n          Cross-family analysis (D122 v3 FINAL CLEAN):\\\\n            Pooling Qwen+Llama → γ vanishes on ALL benchmarks:\\\\n              ARC: 0.73→0.002; MMLU: 0.655→0.213; GSM8K: 0.064→-0.110 (all CI include zero)\\\\n            Only ARC Qwen-only had CI excluding zero — pooling eliminates it completely.\\\\n            calMAE remains low (GSM8K 0.008, ARC 0.015, MMLU 0.008) with large ΔMAE.\\\\n            Three-layer conclusion: (1) θ calibration cross-family valid, (2) γ within-family only,\\\\n            (3) family-specificity is itself a diagnostic finding.\\\\n            Llama d100 ARC acc=0.60 (no inflation despite contamination) vs Qwen pattern → different mechanisms.\\\\n        claims: [C1]\\\\n        key_tables: [table_domain_gamma]\\\\n        key_figures: [fig_domain_gamma, fig_dose_response]\\\\n      - name: \\\\\\\"5.2 Detection Signal Failure (C2)\\\\\\\"\\\\n        content: >\\\\n          S1 AUC>0.95 at d005. Min-K++ reversal Cohen's d=-1.55 to -1.98.\\\\n          Cross-family signal: Llama-3.2-3B replicates Min-K++ reversal direction (exploratory, N=4).\\\\n          RRF = S1-only in practice.\\\\n          NOTE (D122): Cross-family γ pooling shows family-specificity (§5.1 cross-ref).\\\\n          Signal direction replicates, but γ magnitude is family-specific.\\\\n        claims: [C2]\\\\n        key_figures: [fig_signal_heatmap]\\\\n      - name: \\\\\\\"5.3 Identifiability Boundaries (C3)\\\\\\\"\\\\n        content: >\\\\n          Sim sweep: recovery at AUC=0.55 (lowest tested), N≥50. CI ∝ N^{-0.48}.\\\\n          LLM eval operates at N=8-30: IRT-specific impossibility (not general impossibility).\\\\n          Fisher Info N×identifiability heatmap.\\\\n        claims: [C3]\\\\n        key_figures: [fig_identifiability_heatmap]\\\\n      - name: \\\\\\\"5.4 Conditional Calibration (C4)\\\\\\\"\\\\n        content: >\\\\n          KEY NARRATIVE: Show vanilla 2PL baseline alongside 2PL+γ. Explicitly state γ does NOT\\\\n          improve calibration (GSM8K: 0.0063 vs 0.0062; MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201).\\\\n          Calibration benefit entirely from IRT ability estimation.\\\\n          γ value is DIAGNOSTIC: domain-differential heterogeneity detection (§5.1).\\\\n          ARC: MAE=0.035, Kendall τ=0.756, beats all baselines.\\\\n          GSM8K: gating criterion fails (γ non-significant with S1). Overcorrection as honest negative.\\\\n          Coverage below nominal: directional indicators, not precise CIs.\\\\n          Frame positively: this confirms D118 \\\\\\\"Diagnosis via IRT\\\\\\\" — γ reveals hidden structure\\\\n          that aggregate calibration cannot, strengthening the diagnostic contribution.\\\\n        claims: [C4]\\\\n        key_tables: [table_baselines]\\\\n        key_figures: [fig_calibration]\\\\n        narrative_constraint: \\\\\\\"NEVER imply γ improves calibration numbers. Show vanilla 2PL as explicit comparison.\\\\\\\"\\\\n    notes: \\\\\\\"All sections use FROZEN data (3B included). Llama marked 'exploratory'.\\\\\\\"\\\\n\\\\n  discussion:\\\\n    word_budget: 500\\\\n    dependencies: [results]\\\\n    subsections:\\\\n      - \\\\\\\"Dilution masking implications: aggregate benchmark scores as unreliable contamination indicators\\\\\\\"\\\\n      - \\\\\\\"Non-STEM model misfit: boundary of additive γ formulation → future multidimensional IRT\\\\\\\"\\\\n      - \\\\\\\"Limitations: single primary family (Qwen2.5), SFT ≠ real contamination, N<50 in practice\\\\\\\"\\\\n      - \\\\\\\"0.5B position bias (D045): capacity threshold for MC evaluation\\\\\\\"\\\\n      - name: \\\\\\\"SFT ≠ real contamination (W6, expanded with D123)\\\\\\\"\\\\n        content: >\\\\n          Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34) while\\\\n          ARC/GSM8K d100 behave normally. Format-specific: 100% SFT on MC items causes\\\\n          format overfitting (position bias collapse), not present in open-ended (GSM8K)\\\\n          or mixed-format (ARC). This artifact would not occur in natural contamination\\\\n          (gradual, heterogeneous sources). Brief mention, not core claim.\\\\n          Also supports capacity × format interaction for Min-K++ reversal explanation.\\\\n      - \\\\\\\"Future work: multi-family, 7B+, RL observational, data attribution signals\\\\\\\"\\\\n    notes: \\\\\\\"Honest about scope. C3 impossibility limited to IRT+MIA framework.\\\\\\\"\\\\n\\\\n  conclusion:\\\\n    word_budget: 350\\\\n    dependencies: [discussion]\\\\n    notes: >\\\\n      Restate: diagnostic framework reveals hidden structure. Dilution masking as key insight.\\\\n      IRT provides calibration via θ estimation; γ provides domain-level diagnosis.\\\\n      These are complementary, independent values. Honest about γ's non-contribution to calibration numbers.\\\\n\\\\n  appendix:\\\\n    sections:\\\\n      - name: \\\\\\\"A: Fisher Information Derivation\\\\\\\"\\\\n        source: \\\\\\\"artifacts/fisher_info_derivation/fisher_info_appendix.tex\\\\\\\"\\\\n      - name: \\\\\\\"B: Simulation Sweep Full Results\\\\\\\"\\\\n        data_source: \\\\\\\"exp-004\\\\\\\"\\\\n      - name: \\\\\\\"C: Measurement Error Analysis (Negative)\\\\\\\"\\\\n        data_source: \\\\\\\"exp-005\\\\\\\"\\\\n      - name: \\\\\\\"D: 0.5B Position Bias Analysis\\\\\\\"\\\\n        data_source: \\\\\\\"exp-001\\\\\\\"\\\\n      - name: \\\\\\\"E: Llama Cross-Family Analysis + Power Analysis\\\\\\\"\\\\n        notes: >\\\\n          Single seed N=4. Post-hoc power. Exploratory status.\\\\n          D122: Report pooled γ results honestly (GSM8K γ≈0; ARC γ=0.55 CI crosses zero, PPP=0.024).\\\\n          Frame as family-specificity evidence, not failure. Compare Qwen-only vs pooled.\\\\n          IRT θ valid cross-family; γ family-specific → supports per-family modeling recommendation.\\\\n      - name: \\\\\\\"F: DCR Qualitative Comparison Table (W1)\\\\\\\"\\\\n        notes: \\\\\\\"Feature-by-feature comparison with DCR. No head-to-head numbers (no code access).\\\\\\\"\\\\n      - name: \\\\\\\"G: Full Domain-Level IRT Diagnostics\\\\\\\"\\\\n        notes: \\\\\\\"All 8 MMLU domains: γ, CI, PPP, Rhat, ESS. Non-STEM misfit discussion.\\\\\\\"\\\\n\\\\nvisualization_plan:\\\\n  fig_pipeline:\\\\n    type: \\\\\\\"conceptual_diagram\\\\\\\"\\\\n    description: \\\\\\\"ContamCal 2-stage diagnostic pipeline. Emphasize 'diagnosis' framing: signals → domain-level IRT → characterization + conditional calibration.\\\\\\\"\\\\n    placement: \\\\\\\"Section 3 (Method)\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"2:1\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: null\\\\n    output: \\\\\\\"figures/paper/fig_pipeline.pdf\\\\\\\"\\\\n    status: \\\\\\\"DONE (may need minor label update for 'diagnosis' framing)\\\\\\\"\\\\n\\\\n  fig_domain_gamma:\\\\n    type: \\\\\\\"bar_chart_with_ci\\\\\\\"\\\\n    description: >\\\\n      NEW (flagship C1 figure). MMLU domain-level γ estimates.\\\\n      X-axis: 8 MMLU domains (ordered by γ: Math > Science > CS_Eng > ... > non-STEM).\\\\n      Y-axis: γ estimate. Error bars = 95% CI.\\\\n      Color: green (significant + PPP OK) / gray (non-significant) / red (PPP=1, model misfit).\\\\n      Horizontal dashed line at γ=0. Annotate pooled γ≈0 with \\\\\\\"dilution masking\\\\\\\" label.\\\\n    placement: \\\\\\\"Section 5.1 (flagship)\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"3:2\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: \\\\\\\"registry: exp-006 domain-level IRT N=24 (Math/Science/CS_Eng/non-STEM domains)\\\\\\\"\\\\n    output: \\\\\\\"figures/paper/fig_domain_gamma.pdf\\\\\\\"\\\\n\\\\n  fig_dose_response:\\\\n    type: \\\\\\\"line_plot\\\\\\\"\\\\n    description: >\\\\n      Dosage vs accuracy for ARC, GSM8K, MMLU. NOW WITH 3B DATA (3B FROZEN).\\\\n      Three scales: 0.5B, 1.5B, 3B. Error bars from 2 seeds.\\\\n      Shows scale-dependence + benchmark-dependence.\\\\n    placement: \\\\\\\"Section 5.1\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"3:2\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: \\\\\\\"registry: exp-001 eval results (aligned, all scales × dosages × seeds)\\\\\\\"\\\\n    output: \\\\\\\"figures/paper/fig_dose_response.pdf\\\\\\\"\\\\n    status: \\\\\\\"NEEDS REGENERATION (old version has [PENDING-3B], now 3B is FROZEN)\\\\\\\"\\\\n\\\\n  fig_signal_heatmap:\\\\n    type: \\\\\\\"heatmap\\\\\\\"\\\\n    description: >\\\\n      Signal AUC × scale × dosage. Annotate Min-K++ reversal (Cohen's d).\\\\n      Include Llama cross-family row if data available (mark exploratory).\\\\n    placement: \\\\\\\"Section 5.2\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"4:3\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: \\\\\\\"registry: exp-008 signal eval + Llama signals\\\\\\\"\\\\n    output: \\\\\\\"figures/paper/fig_signal_heatmap.pdf\\\\\\\"\\\\n\\\\n  fig_identifiability_heatmap:\\\\n    type: \\\\\\\"heatmap\\\\\\\"\\\\n    description: >\\\\n      W4 fix: N (y-axis) × AUC (x-axis) → γ recovery quality (color = bias or RMSE).\\\\n      Mark actual operating points. Shade structural/practical identifiability regions.\\\\n      Replaces old 'phase diagram' — heatmap is more informative per reviewer.\\\\n    placement: \\\\\\\"Section 5.3\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"1:1\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: \\\\\\\"registry: exp-004 sim_sweep (20 conditions, 200 runs)\\\\\\\"\\\\n    output: \\\\\\\"figures/paper/fig_identifiability_heatmap.pdf\\\\\\\"\\\\n\\\\n  fig_calibration:\\\\n    type: \\\\\\\"scatter_with_ci\\\\\\\"\\\\n    description: >\\\\n      Calibrated vs true accuracy scatter. Include 3B data.\\\\n      MUST include vanilla 2PL baseline (separate marker/color) alongside 2PL+γ.\\\\n      Key visual: vanilla 2PL and 2PL+γ points nearly overlap, demonstrating\\\\n      calibration parity. Color by benchmark. Annotate ARC (good) vs GSM8K (overcorrection).\\\\n      Director note: \\\\\\\"会增加 vanilla 2PL 对照条\\\\\\\"\\\\n    placement: \\\\\\\"Section 5.4\\\\\\\"\\\\n    aspect_ratio: \\\\\\\"1:1\\\\\\\"\\\\n    tool: \\\\\\\"matplotlib\\\\\\\"\\\\n    data_source: \\\\\\\"registry: exp-006 IRT calibration results (both vanilla 2PL and 2PL+γ)\\\\\\\"\\\\n    output: \\\\\\\"figures/paper/fig_calibration.pdf\\\\\\\"\\\\n    status: \\\\\\\"NEEDS REGENERATION (vanilla 2PL comparison added)\\\\\\\"\\\\n\\\\ntable_plan:\\\\n  table_domain_gamma:\\\\n    type: \\\\\\\"parameter_summary\\\\\\\"\\\\n    description: \\\\\\\"Domain-level IRT γ estimates (MMLU 8 domains + ARC + GSM8K)\\\\\\\"\\\\n    columns: [\\\\\\\"Domain/Benchmark\\\\\\\", \\\\\\\"N_items\\\\\\\", \\\\\\\"γ̂\\\\\\\", \\\\\\\"95% CI\\\\\\\", \\\\\\\"Sig?\\\\\\\", \\\\\\\"PPP\\\\\\\", \\\\\\\"Interpretation\\\\\\\"]\\\\n    data_source: \\\\\\\"exp-006 domain-level IRT (N=24 models)\\\\\\\"\\\\n    placement: \\\\\\\"Section 5.1\\\\\\\"\\\\n    rows:\\\\n      - \\\\\\\"MMLU: Math — γ=+0.97, CI excludes 0, PPP=0.44, Strong inflation\\\\\\\"\\\\n      - \\\\\\\"MMLU: Science — γ=+0.84, CI excludes 0, PPP=0.81, Strong inflation\\\\\\\"\\\\n      - \\\\\\\"MMLU: CS_Eng — γ=+0.20, CI includes 0, PPP=0.89, Null\\\\\\\"\\\\n      - \\\\\\\"MMLU: Non-STEM (5 domains) — PPP≈1.0, Model misfit (see Appendix G)\\\\\\\"\\\\n      - \\\\\\\"MMLU: Pooled — γ≈0, dilution masking\\\\\\\"\\\\n      - \\\\\\\"ARC-Challenge — γ=-1.46, CI excludes 0, Forgetting\\\\\\\"\\\\n      - \\\\\\\"GSM8K — γ non-significant (S1), Inflation via oracle only\\\\\\\"\\\\n      - \\\\\\\"[3B rows from FROZEN data]\\\\\\\"\\\\n\\\\n  table_baselines:\\\\n    type: \\\\\\\"comparison\\\\\\\"\\\\n    description: \\\\\\\"Calibration performance: ContamCal vs 7 baselines + DCR qualitative\\\\\\\"\\\\n    columns: [\\\\\\\"Method\\\\\\\", \\\\\\\"ARC MAE↓\\\\\\\", \\\\\\\"ARC τ↑\\\\\\\", \\\\\\\"ARC C95%\\\\\\\", \\\\\\\"Notes\\\\\\\"]\\\\n    data_source: \\\\\\\"exp-006 baseline comparisons\\\\\\\"\\\\n    placement: \\\\\\\"Section 5.4\\\\\\\"\\\\n    notes: \\\\\\\"W1: add qualitative DCR comparison column. Include 3B data.\\\\\\\"\\\\n\\\\n  table_dcr_comparison:\\\\n    type: \\\\\\\"qualitative\\\\\\\"\\\\n    description: \\\\\\\"W1 fix: DCR vs ContamCal feature comparison\\\\\\\"\\\\n    columns: [\\\\\\\"Feature\\\\\\\", \\\\\\\"DCR\\\\\\\", \\\\\\\"ContamCal\\\\\\\"]\\\\n    placement: \\\\\\\"Section 2 (Related Work) or Section 5.4\\\\\\\"\\\\n    rows:\\\\n      - \\\\\\\"Uncertainty quantification: ✗ / ✓ (Bayesian CIs)\\\\\\\"\\\\n      - \\\\\\\"Domain-level diagnosis: ✗ / ✓ (per-domain γ)\\\\\\\"\\\\n      - \\\\\\\"Identifiability analysis: ✗ / ✓ (Fisher Info)\\\\\\\"\\\\n      - \\\\\\\"Signal failure detection: ✗ / ✓ (Min-K++ reversal)\\\\\\\"\\\\n      - \\\\\\\"Adjusted accuracy: ✓ / ✓\\\\\\\"\\\\n      - \\\\\\\"Multi-benchmark: ✓ / ✓\\\\\\\"\\\\n      - \\\\\\\"Requires reference set: ✓ (fuzzy match) / ✗ (signal-based)\\\\\\\"\\\\n\\\\nliterature_strategy:\\\\n  citation_budget: \\\\\\\"40-50 total\\\\\\\"\\\\n  macro_context: \\\\\\\"Contamination is systemic; detection exists but diagnosis doesn't; educational measurement solved analogous problem decades ago.\\\\\\\"\\\\n  micro_clusters:\\\\n    contamination_detection:\\\\n      target_count: 8\\\\n      must_cite: [\\\\\\\"zhang2024minkpp\\\\\\\", \\\\\\\"dekoninck2024constat\\\\\\\", \\\\\\\"dong2024kds\\\\\\\", \\\\\\\"shi2024cdd\\\\\\\", \\\\\\\"weller2024selfcritique\\\\\\\", \\\\\\\"golchin2024time\\\\\\\"]\\\\n    irt_for_llm:\\\\n      target_count: 6\\\\n      must_cite: [\\\\\\\"lalor2024aaai\\\\\\\", \\\\\\\"polo2024tinybenchmarks\\\\\\\", \\\\\\\"burnell2023multidimensional\\\\\\\"]\\\\n    item_compromise_irt:\\\\n      target_count: 5\\\\n      must_cite: [\\\\\\\"eckerly2017\\\\\\\", \\\\\\\"sinharay2017\\\\\\\", \\\\\\\"deboeck2004\\\\\\\", \\\\\\\"holland1993dif\\\\\\\", \\\\\\\"adams1997\\\\\\\"]\\\\n    benchmark_reliability:\\\\n      target_count: 5\\\\n      must_cite: [\\\\\\\"livebench2024\\\\\\\", \\\\\\\"empcloths2025\\\\\\\", \\\\\\\"zheng2023chatbot\\\\\\\", \\\\\\\"liang2023helm\\\\\\\"]\\\\n    calibration_uq:\\\\n      target_count: 4\\\\n      must_cite: [\\\\\\\"guo2017calibration\\\\\\\", \\\\\\\"angelopoulos2023conformal\\\\\\\", \\\\\\\"talts2018sbc\\\\\\\"]\\\\n    mia_foundations:\\\\n      target_count: 3\\\\n      must_cite: [\\\\\\\"shokri2017membership\\\\\\\", \\\\\\\"carlini2022extracting\\\\\\\"]\\\\n    contamination_mitigation:\\\\n      target_count: 4\\\\n      must_cite: [\\\\\\\"oren2024dcr\\\\\\\"]\\\\n    irt_methodology:\\\\n      target_count: 3\\\\n      must_cite: [\\\\\\\"sanmartin2009\\\\\\\", \\\\\\\"reckase2009\\\\\\\", \\\\\\\"mislevy1986\\\\\\\"]\\\\n\\\\nwriting_order:\\\\n  - section: \\\\\\\"method\\\\\\\"\\\\n    rationale: \\\\\\\"No data dependency. Sets notation. Include D120 decomposition.\\\\\\\"\\\\n  - section: \\\\\\\"experimental_setup\\\\\\\"\\\\n    rationale: \\\\\\\"Defines design. 3B FROZEN, Llama exploratory.\\\\\\\"\\\\n  - section: \\\\\\\"results\\\\\\\"\\\\n    rationale: \\\\\\\"Core contribution. Domain heterogeneity as flagship.\\\\\\\"\\\\n  - section: \\\\\\\"related_work\\\\\\\"\\\\n    rationale: \\\\\\\"Needs literature_map. DCR expanded comparison (W1).\\\\\\\"\\\\n  - section: \\\\\\\"discussion\\\\\\\"\\\\n    rationale: \\\\\\\"Dilution masking implications. Model misfit boundary.\\\\\\\"\\\\n  - section: \\\\\\\"introduction\\\\\\\"\\\\n    rationale: \\\\\\\"Diagnostic framing. Lead with dilution masking insight.\\\\\\\"\\\\n  - section: \\\\\\\"conclusion\\\\\\\"\\\\n    rationale: \\\\\\\"Summarizes diagnostic findings.\\\\\\\"\\\\n  - section: \\\\\\\"abstract\\\\\\\"\\\\n    rationale: \\\\\\\"Write last.\\\\\\\"\\\\n\\\\ndata_availability:\\\\n  frozen:\\\\n    - \\\\\\\"Qwen 0.5B/1.5B/3B: all dosages × 2 seeds, SFT + eval + signals ✅ FROZEN\\\\\\\"\\\\n    - \\\\\\\"Domain-level IRT N=24 (MMLU 8 domains): Math/Science confirmed ✅\\\\\\\"\\\\n    - \\\\\\\"Pooled IRT 2PL+γ N=24 ✅\\\\\\\"\\\\n    - \\\\\\\"Min-K++ reversal cross-family (Qwen + Llama) ✅\\\\\\\"\\\\n    - \\\\\\\"exp-004 sim_sweep (20 conditions, 200 runs)\\\\\\\"\\\\n  in_progress:\\\\n    - \\\\\\\"Llama-3.2-3B: d000 eval ✅, d005/d025/d100 eval/signals in progress → mark exploratory (single seed, N=4)\\\\\\\"\\\\n  constraints:\\\\n    - \\\\\\\"GSM8K d005 s123: 63.08% anomaly, temporarily unavailable\\\\\\\"\\\\n    - \\\\\\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias)\\\\\\\"\\\\n    - \\\\\\\"Llama data: exploratory only, post-hoc power analysis required\\\\\\\"\\\\n    - \\\\\\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Effective Llama MMLU range: d000-d025 only. ARC/GSM8K d100 normal.\\\\\\\"\\\\n  excluded_from_paper:\\\\n    - \\\\\\\"7B/72B (rebuttal)\\\\\\\"\\\\n    - \\\\\\\"Multi-family beyond Llama-3.2-3B (rebuttal)\\\\\\\"\\\\n    - \\\\\\\"RL observational (rebuttal)\\\\\\\"\\\\n\\\\nreview_fixes:\\\\n  C1: \\\\\\\"Add 1.5B/3B complete data to Table 1/2 (data available)\\\\\\\"\\\\n  C2: \\\\\\\"Llama N=4 + post-hoc power analysis + 'exploratory' label\\\\\\\"\\\\n  C3: \\\\\\\"Triple impossibility limited to 'IRT + membership-inference specific'\\\\\\\"\\\\n  W1: \\\\\\\"Expand DCR comparison (qualitative table, no head-to-head numbers)\\\\\\\"\\\\n  W2: \\\\\\\"Title → diagnostic framing (D118 approved)\\\\\\\"\\\\n  W4: \\\\\\\"Fisher Info N×identifiability heatmap (replaces phase diagram)\\\\\\\"\\\\n  D119: \\\\\\\"dilution masking replaces Simpson's Paradox throughout\\\\\\\"\\\\n  D120: \\\\\\\"calibration value decomposition paragraph in Method + Results\\\\\\\"\\\\n\\\\nkey_decisions:\\\\n  - \\\\\\\"D118: Title → 'Domain-Differential Contamination Effects: Diagnosis via IRT'\\\\\\\"\\\\n  - \\\\\\\"D119: dilution masking replaces Simpson's Paradox\\\\\\\"\\\\n  - \\\\\\\"D120: GSM8K calibration value from ability estimation (decomposition)\\\\\\\"\\\\n  - \\\\\\\"D121: vanilla 2PL ≈ 2PL+γ calibration MAE on all benchmarks — γ provides NO calibration improvement, only diagnostic value. Calibration entirely from IRT θ estimation.\\\\\\\"\\\\n  - \\\\\\\"D122 v3 CLEAN: Cross-family pooled IRT — ARC(N=20) γ=0.002, MMLU(N=20) γ=0.213, GSM8K(N=28) γ=-0.110, ALL CI include zero. Qwen-only: ARC γ=0.727 CI excl zero, MMLU γ=0.655 no, GSM8K γ=0.064 no. Key number: ARC 0.73→0.002. v2 MMLU γ=0.71 was WRONG (RRF bug). Three-layer framing unchanged. Red lines: never claim γ universal.\\\\\\\"\\\\n  - \\\\\\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Format-specific SFT overfitting. Exclude from IRT. Mention in Discussion as 'SFT ≠ real contamination' evidence. Not core claim.\\\\\\\"\\\\n  - \\\\\\\"D039: Characterization-led framing, calibration demoted to Claim 4\\\\\\\"\\\\n  - \\\\\\\"D045: Exclude 0.5B MMLU/ARC from IRT (position bias)\\\\\\\"\\\\n  - \\\\\\\"D053: Per-benchmark independent IRT only\\\\\\\"\\\\n  - \\\\\\\"D055: WITHDRAWN — all checkpoints alpha=32\\\\\\\"\\\\n  - \\\\\\\"D056: Coverage collapse = model misspecification\\\\\\\"\\\\n  - \\\\\\\"D060: P1/P2 → rebuttal scope\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 24731, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/writing_plan.yaml\", \"content\": \"## writing_plan.yaml — contamcal-irt-calibration\\n## Generated: 2026-05-16 | Paper Agent Step 1 (REFRAME D118/D119/D120)\\n## Status: PENDING_APPROVAL\\n\\nmeta:\\n  venue: \\\"EMNLP 2026 ARR May 25\\\"\\n  track: \\\"Machine Learning for NLP / Resources and Evaluation\\\"\\n  deadline: \\\"2026-05-25\\\"\\n  days_remaining: 9\\n  page_limit: 8  # + unlimited appendix\\n  template: \\\"acl_latex (ARR format)\\\"\\n  template_note: \\\"Use acl-style-files from github.com/acl-org/acl-style-files\\\"\\n  special_theme: \\\"New Missions for NLP Research\\\"\\n  framing_doc: \\\"paper_framing.md (D118/D119/D120 reframe: diagnostic-led)\\\"\\n  total_word_budget: 5800\\n  review_round: 1\\n  target_score: \\\"Weak Reject → Weak Accept\\\"\\n\\ntitle: >\\n  Domain-Differential Contamination Effects:\\n  Diagnosis via Item Response Theory\\n\\ncore_claims:\\n  C1:\\n    name: \\\"Characterization (PRIMARY)\\\"\\n    summary: >\\n      MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84 (significant, PPP acceptable);\\n      pooled γ≈0 is dilution masking (D119), NOT absence of effect.\\n      Cross-benchmark: ARC forgetting (γ<0) vs GSM8K inflation (γ>0).\\n      Scale-dependent: 0.5B catastrophic → 3B mild → 7B negligible.\\n    evidence: [exp-006, exp-001]\\n    key_data: \\\"Domain IRT N=24 (MMLU 8 domains), per-benchmark IRT\\\"\\n    priority: 1\\n  C2:\\n    name: \\\"Signal Failure (CO-PRIMARY)\\\"\\n    summary: >\\n      Min-K++ directional reversal (Cohen's d = -1.55 to -1.98).\\n      Cross-family replication: Qwen + Llama both exhibit reversal.\\n      S1 embedding only reliable signal (AUC>0.95 at d005).\\n      RRF degrades to S1-only in practice.\\n    evidence: [exp-008, exp-002]\\n    key_data: \\\"Signal eval 0.5B/1.5B/3B, Llama cross-family (exploratory N=4)\\\"\\n    priority: 1\\n  C3:\\n    name: \\\"Identifiability\\\"\\n    summary: >\\n      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.\\n      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.\\n      Triple impossibility limited to \\\"IRT + membership-inference specific\\\" (C3 fix).\\n    evidence: [exp-004]\\n    key_data: \\\"Sim sweep 20 conditions × 200 runs\\\"\\n    priority: 2\\n  C4:\\n    name: \\\"Conditional Calibration (DEMOTED)\\\"\\n    summary: >\\n      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;\\n      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.\\n      Calibration improvement entirely from IRT ability estimation (θ separation from noise).\\n      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.\\n      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.\\n      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).\\n      D120: calibration value decomposition — all calibration benefit from θ, not γ.\\n    evidence: [exp-006]\\n    priority: 3\\n    narrative_constraint: >\\n      NEVER imply γ brings calibration improvement. Two distinct values:\\n      (a) IRT framework → calibration (robust θ estimation even without γ);\\n      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).\\n      This STRENGTHENS the diagnostic framing (D118).\\n\\npaper_outline:\\n  abstract:\\n    word_budget: 200\\n    dependencies: [introduction, results, conclusion]\\n    key_numbers: [\\\"MMLU Math γ=0.97\\\", \\\"dilution masking pooled γ≈0\\\", \\\"Min-K++ Cohen's d=-1.55 to -1.98\\\", \\\"ARC MAE=0.035\\\", \\\"N≥50 threshold\\\"]\\n    notes: \\\"Diagnostic framing. Lead with domain heterogeneity + dilution masking. Signal failure as co-primary.\\\"\\n\\n  introduction:\\n    word_budget: 850\\n    dependencies: [method, results]\\n    subsections:\\n      - \\\"Problem: contamination undermines benchmark reliability; aggregate metrics mask heterogeneous effects\\\"\\n      - \\\"Gap: detection methods flag but don't diagnose or calibrate; mitigation provably fails (Emperor's)\\\"\\n      - \\\"Our approach: IRT-based diagnostic framework revealing domain-differential effects\\\"\\n      - \\\"4 contributions: (1) domain heterogeneity + dilution masking, (2) signal failure, (3) identifiability bounds, (4) conditional calibration\\\"\\n    notes: \\\"D118: 'diagnostic findings + conditional calibration' framing. D119: dilution masking replaces Simpson's Paradox.\\\"\\n\\n  related_work:\\n    word_budget: 700\\n    dependencies: [literature_map]\\n    subsections:\\n      - \\\"Contamination detection (Min-K++, ConStat, KDS, CDD, Self-Critique)\\\"\\n      - \\\"IRT for LLM evaluation (Lalor, TinyBenchmarks, Growing Pains, HiBayES)\\\"\\n      - \\\"Item compromise in educational measurement (Eckerly, Sinharay, DIF)\\\"\\n      - \\\"Contamination mitigation + DCR qualitative comparison (W1 fix)\\\"\\n      - \\\"Calibration disambiguation\\\"\\n    notes: \\\"W1: expand DCR comparison (qualitative table). Cite TED/CDD as closest competitors.\\\"\\n\\n  method:\\n    word_budget: 1100\\n    dependencies: []\\n    subsections:\\n      - name: \\\"3.1 Problem Formulation\\\"\\n        content: \\\"Given model j, benchmark k with items i. Goal: diagnose contamination effects at domain level + estimate θ_j^clean. Three IRT adaptations.\\\"\\n      - name: \\\"3.2 Stage 1: Multi-Signal Exposure Mapping\\\"\\n        content: \\\"4 signals (S1-S4), RRF aggregation. Meta-circularity argument. Note S2/S4 failure modes.\\\"\\n      - name: \\\"3.3 Stage 2: Contamination-Augmented IRT\\\"\\n        content: \\\"2PL+γ model: P(y=1) = 1/(1+exp(-a_i(θ_j - b_i + γ_k·e_ij))). Per-domain γ_k within benchmark. Stan NUTS.\\\"\\n      - name: \\\"3.4 Fisher Information and Identifiability\\\"\\n        content: \\\"Derive I(γ). AUC=0.55 structural, N≥50 practical. CI width scaling. Domain-method mismatch.\\\"\\n      - name: \\\"3.5 Calibration Value Decomposition (D120/D121)\\\"\\n        content: >\\n          ALREADY WRITTEN in method.tex §3.4 as 'Calibration value decomposition' paragraph.\\n          Key message: vanilla 2PL ≈ 2PL+γ on calibration MAE (all benchmarks). Calibration\\n          benefit entirely from IRT θ estimation. γ provides diagnostic value only.\\n          Numbers: GSM8K 0.0063 vs 0.0062; MMLU 0.0068 vs 0.0070; ARC 0.0158 vs 0.0201.\\n    notes: \\\"2PL+γ as primary model (domain-level). 4PL for MC benchmarks (ARC/MMLU). Full Fisher derivation in appendix.\\\"\\n\\n  experimental_setup:\\n    word_budget: 600\\n    dependencies: [method]\\n    subsections:\\n      - name: \\\"4.1 Controlled SFT Injection\\\"\\n        content: \\\"Qwen2.5 (0.5B, 1.5B, 3B). 4 dosages (d000/d005/d025/d100). 2 seeds × 3 scales = N=24 models. LoRA alpha=32. QC-filtered injection.\\\"\\n      - name: \\\"4.2 Cross-Family Analysis\\\"\\n        content: >\\n          Llama-3.2-3B: d000 + d005/d025/d100 (single seed, N=4 additional). Exploratory.\\n          PURPOSE: test family-specificity of contamination patterns, NOT confirm generalizability.\\n          D123: Llama d100 MMLU excluded (catastrophic collapse, all output 'A', acc=0.34).\\n          Effective Llama MMLU range: d000-d025. ARC/GSM8K d100 normal.\\n          REQUIRED power analysis: Use Qwen N=24 γ effect sizes as reference\\n          (Math γ=0.97, GSM8K γ≈0.06). Compute statistical power at N=4 for each.\\n          Cross-family IRT pooling FINAL v3 CLEAN (replaces all prior versions):\\n            Pooled (Qwen+Llama):\\n              - ARC (N=20): γ=0.002, CI=[-0.57, 0.60], PPP=0.449, calMAE=0.015, ΔMAE=0.055\\n              - MMLU (N=18): γ=0.213, CI=[-0.78, 1.25], PPP=0.865, calMAE=0.008, ΔMAE=0.030\\n              - GSM8K (N=28): γ=-0.110, CI=[-0.52, 0.28], PPP=0.832, calMAE=0.008, ΔMAE=0.171\\n            Qwen-only baseline:\\n              - ARC (N=16): γ=0.727, CI excludes zero\\n              - MMLU (N=16): γ=0.655, CI does NOT exclude zero\\n              - GSM8K (N=24): γ=0.064, CI does NOT exclude zero\\n            KEY NARRATIVE NUMBER: ARC γ = 0.73 → 0.002 (strongest family-specificity evidence)\\n            NOTE: v2 MMLU γ=0.71 was WRONG (RRF missing s4). Correct value = 0.213.\\n          THREE-LAYER FRAMING:\\n            (1) IRT calibration generalizes cross-family (calMAE low, ΔMAE large) — STRONGEST claim\\n            (2) γ diagnostic value only within-family (Qwen: Math 0.97, Science 0.84; pooled: γ≈0)\\n            (3) Family-specificity itself is diagnostic (different families react differently to SFT)\\n          RED LINES:\\n            ✅ \\\"IRT calibration generalizes across model families\\\"\\n            ✅ \\\"γ provides within-family contamination diagnostics\\\"\\n            ✅ \\\"cross-family analysis reveals family-specific contamination mechanisms\\\"\\n            ❌ \\\"cross-family validation confirms contamination detection\\\"\\n            ❌ \\\"γ is a universal contamination indicator\\\"\\n      - name: \\\"4.3 Benchmarks, Domains, and Evaluation\\\"\\n        content: \\\"MMLU (57 subjects → 8 cognitive domains), ARC-C (1172 items), GSM8K (1319 items). 6 metrics. Domain stratification strategy.\\\"\\n      - name: \\\"4.4 Baselines\\\"\\n        content: \\\"7 baselines: B0-Raw, B1-Remove&Rescore, B2-Single2PL+γ, B3-Vanilla4PL, B4-LinearRegression, B5-Emperor, B6-DCR.\\\"\\n    notes: \\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias). 3B data FROZEN and available.\\\"\\n\\n  results:\\n    word_budget: 1500\\n    dependencies: [experimental_setup, figures, tables]\\n    subsections:\\n      - name: \\\"5.1 Domain-Differential Contamination (C1)\\\"\\n        content: >\\n          MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84, CS_Eng≈0, non-STEM PPP=1 (model misfit).\\n          Dilution masking (D119): pooled γ≈0 because positive STEM effects diluted by null/misfit non-STEM.\\n          Cross-benchmark: ARC γ<0 (forgetting), GSM8K γ>0 (inflation).\\n          Scale story: 0.5B catastrophic → 3B mild.\\n          Cross-family analysis (D122 v3 FINAL CLEAN):\\n            Pooling Qwen+Llama → γ vanishes on ALL benchmarks:\\n              ARC: 0.73→0.002; MMLU: 0.655→0.213; GSM8K: 0.064→-0.110 (all CI include zero)\\n            Only ARC Qwen-only had CI excluding zero — pooling eliminates it completely.\\n            calMAE remains low (GSM8K 0.008, ARC 0.015, MMLU 0.008) with large ΔMAE.\\n            Three-layer conclusion: (1) θ calibration cross-family valid, (2) γ within-family only,\\n            (3) family-specificity is itself a diagnostic finding.\\n            Llama d100 ARC acc=0.60 (no inflation despite contamination) vs Qwen pattern → different mechanisms.\\n        claims: [C1]\\n        key_tables: [table_domain_gamma]\\n        key_figures: [fig_domain_gamma, fig_dose_response]\\n      - name: \\\"5.2 Detection Signal Failure (C2)\\\"\\n        content: >\\n          S1 AUC>0.95 at d005. Min-K++ reversal Cohen's d=-1.55 to -1.98.\\n          Cross-family signal: Llama-3.2-3B replicates Min-K++ reversal direction (exploratory, N=4).\\n          RRF = S1-only in practice.\\n          NOTE (D122): Cross-family γ pooling shows family-specificity (§5.1 cross-ref).\\n          Signal direction replicates, but γ magnitude is family-specific.\\n        claims: [C2]\\n        key_figures: [fig_signal_heatmap]\\n      - name: \\\"5.3 Identifiability Boundaries (C3)\\\"\\n        content: >\\n          Sim sweep: recovery at AUC=0.55 (lowest tested), N≥50. CI ∝ N^{-0.48}.\\n          LLM eval operates at N=8-30: IRT-specific impossibility (not general impossibility).\\n          Fisher Info N×identifiability heatmap.\\n        claims: [C3]\\n        key_figures: [fig_identifiability_heatmap]\\n      - name: \\\"5.4 Conditional Calibration (C4)\\\"\\n        content: >\\n          KEY NARRATIVE: Show vanilla 2PL baseline alongside 2PL+γ. Explicitly state γ does NOT\\n          improve calibration (GSM8K: 0.0063 vs 0.0062; MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201).\\n          Calibration benefit entirely from IRT ability estimation.\\n          γ value is DIAGNOSTIC: domain-differential heterogeneity detection (§5.1).\\n          ARC: MAE=0.035, Kendall τ=0.756, beats all baselines.\\n          GSM8K: gating criterion fails (γ non-significant with S1). Overcorrection as honest negative.\\n          Coverage below nominal: directional indicators, not precise CIs.\\n          Frame positively: this confirms D118 \\\"Diagnosis via IRT\\\" — γ reveals hidden structure\\n          that aggregate calibration cannot, strengthening the diagnostic contribution.\\n        claims: [C4]\\n        key_tables: [table_baselines]\\n        key_figures: [fig_calibration]\\n        narrative_constraint: \\\"NEVER imply γ improves calibration numbers. Show vanilla 2PL as explicit comparison.\\\"\\n    notes: \\\"All sections use FROZEN data (3B included). Llama marked 'exploratory'.\\\"\\n\\n  discussion:\\n    word_budget: 500\\n    dependencies: [results]\\n    subsections:\\n      - \\\"Dilution masking implications: aggregate benchmark scores as unreliable contamination indicators\\\"\\n      - \\\"Non-STEM model misfit: boundary of additive γ formulation → future multidimensional IRT\\\"\\n      - \\\"Limitations: single primary family (Qwen2.5), SFT ≠ real contamination, N<50 in practice\\\"\\n      - \\\"0.5B position bias (D045): capacity threshold for MC evaluation\\\"\\n      - name: \\\"SFT ≠ real contamination (W6, expanded with D123)\\\"\\n        content: >\\n          Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34) while\\n          ARC/GSM8K d100 behave normally. Format-specific: 100% SFT on MC items causes\\n          format overfitting (position bias collapse), not present in open-ended (GSM8K)\\n          or mixed-format (ARC). This artifact would not occur in natural contamination\\n          (gradual, heterogeneous sources). Brief mention, not core claim.\\n          Also supports capacity × format interaction for Min-K++ reversal explanation.\\n      - \\\"Future work: multi-family, 7B+, RL observational, data attribution signals\\\"\\n    notes: \\\"Honest about scope. C3 impossibility limited to IRT+MIA framework.\\\"\\n\\n  conclusion:\\n    word_budget: 350\\n    dependencies: [discussion]\\n    notes: >\\n      Restate: diagnostic framework reveals hidden structure. Dilution masking as key insight.\\n      IRT provides calibration via θ estimation; γ provides domain-level diagnosis.\\n      These are complementary, independent values. Honest about γ's non-contribution to calibration numbers.\\n\\n  appendix:\\n    sections:\\n      - name: \\\"A: Fisher Information Derivation\\\"\\n        source: \\\"artifacts/fisher_info_derivation/fisher_info_appendix.tex\\\"\\n      - name: \\\"B: Simulation Sweep Full Results\\\"\\n        data_source: \\\"exp-004\\\"\\n      - name: \\\"C: Measurement Error Analysis (Negative)\\\"\\n        data_source: \\\"exp-005\\\"\\n      - name: \\\"D: 0.5B Position Bias Analysis\\\"\\n        data_source: \\\"exp-001\\\"\\n      - name: \\\"E: Llama Cross-Family Analysis + Power Analysis\\\"\\n        notes: >\\n          Single seed N=4. Post-hoc power. Exploratory status.\\n          D122: Report pooled γ results honestly (GSM8K γ≈0; ARC γ=0.55 CI crosses zero, PPP=0.024).\\n          Frame as family-specificity evidence, not failure. Compare Qwen-only vs pooled.\\n          IRT θ valid cross-family; γ family-specific → supports per-family modeling recommendation.\\n      - name: \\\"F: DCR Qualitative Comparison Table (W1)\\\"\\n        notes: \\\"Feature-by-feature comparison with DCR. No head-to-head numbers (no code access).\\\"\\n      - name: \\\"G: Full Domain-Level IRT Diagnostics\\\"\\n        notes: \\\"All 8 MMLU domains: γ, CI, PPP, Rhat, ESS. Non-STEM misfit discussion.\\\"\\n\\nvisualization_plan:\\n  fig_pipeline:\\n    type: \\\"conceptual_diagram\\\"\\n    description: \\\"ContamCal 2-stage diagnostic pipeline. Emphasize 'diagnosis' framing: signals → domain-level IRT → characterization + conditional calibration.\\\"\\n    placement: \\\"Section 3 (Method)\\\"\\n    aspect_ratio: \\\"2:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: null\\n    output: \\\"figures/paper/fig_pipeline.pdf\\\"\\n    status: \\\"DONE (may need minor label update for 'diagnosis' framing)\\\"\\n\\n  fig_domain_gamma:\\n    type: \\\"bar_chart_with_ci\\\"\\n    description: >\\n      NEW (flagship C1 figure). MMLU domain-level γ estimates.\\n      X-axis: 8 MMLU domains (ordered by γ: Math > Science > CS_Eng > ... > non-STEM).\\n      Y-axis: γ estimate. Error bars = 95% CI.\\n      Color: green (significant + PPP OK) / gray (non-significant) / red (PPP=1, model misfit).\\n      Horizontal dashed line at γ=0. Annotate pooled γ≈0 with \\\"dilution masking\\\" label.\\n    placement: \\\"Section 5.1 (flagship)\\\"\\n    aspect_ratio: \\\"3:2\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-006 domain-level IRT N=24 (Math/Science/CS_Eng/non-STEM domains)\\\"\\n    output: \\\"figures/paper/fig_domain_gamma.pdf\\\"\\n\\n  fig_dose_response:\\n    type: \\\"line_plot\\\"\\n    description: >\\n      Dosage vs accuracy for ARC, GSM8K, MMLU. NOW WITH 3B DATA (3B FROZEN).\\n      Three scales: 0.5B, 1.5B, 3B. Error bars from 2 seeds.\\n      Shows scale-dependence + benchmark-dependence.\\n    placement: \\\"Section 5.1\\\"\\n    aspect_ratio: \\\"3:2\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-001 eval results (aligned, all scales × dosages × seeds)\\\"\\n    output: \\\"figures/paper/fig_dose_response.pdf\\\"\\n    status: \\\"NEEDS REGENERATION (old version has [PENDING-3B], now 3B is FROZEN)\\\"\\n\\n  fig_signal_heatmap:\\n    type: \\\"heatmap\\\"\\n    description: >\\n      Signal AUC × scale × dosage. Annotate Min-K++ reversal (Cohen's d).\\n      Include Llama cross-family row if data available (mark exploratory).\\n    placement: \\\"Section 5.2\\\"\\n    aspect_ratio: \\\"4:3\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-008 signal eval + Llama signals\\\"\\n    output: \\\"figures/paper/fig_signal_heatmap.pdf\\\"\\n\\n  fig_identifiability_heatmap:\\n    type: \\\"heatmap\\\"\\n    description: >\\n      W4 fix: N (y-axis) × AUC (x-axis) → γ recovery quality (color = bias or RMSE).\\n      Mark actual operating points. Shade structural/practical identifiability regions.\\n      Replaces old 'phase diagram' — heatmap is more informative per reviewer.\\n    placement: \\\"Section 5.3\\\"\\n    aspect_ratio: \\\"1:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-004 sim_sweep (20 conditions, 200 runs)\\\"\\n    output: \\\"figures/paper/fig_identifiability_heatmap.pdf\\\"\\n\\n  fig_calibration:\\n    type: \\\"scatter_with_ci\\\"\\n    description: >\\n      Calibrated vs true accuracy scatter. Include 3B data.\\n      MUST include vanilla 2PL baseline (separate marker/color) alongside 2PL+γ.\\n      Key visual: vanilla 2PL and 2PL+γ points nearly overlap, demonstrating\\n      calibration parity. Color by benchmark. Annotate ARC (good) vs GSM8K (overcorrection).\\n      Director note: \\\"会增加 vanilla 2PL 对照条\\\"\\n    placement: \\\"Section 5.4\\\"\\n    aspect_ratio: \\\"1:1\\\"\\n    tool: \\\"matplotlib\\\"\\n    data_source: \\\"registry: exp-006 IRT calibration results (both vanilla 2PL and 2PL+γ)\\\"\\n    output: \\\"figures/paper/fig_calibration.pdf\\\"\\n    status: \\\"NEEDS REGENERATION (vanilla 2PL comparison added)\\\"\\n\\ntable_plan:\\n  table_domain_gamma:\\n    type: \\\"parameter_summary\\\"\\n    description: \\\"Domain-level IRT γ estimates (MMLU 8 domains + ARC + GSM8K)\\\"\\n    columns: [\\\"Domain/Benchmark\\\", \\\"N_items\\\", \\\"γ̂\\\", \\\"95% CI\\\", \\\"Sig?\\\", \\\"PPP\\\", \\\"Interpretation\\\"]\\n    data_source: \\\"exp-006 domain-level IRT (N=24 models)\\\"\\n    placement: \\\"Section 5.1\\\"\\n    rows:\\n      - \\\"MMLU: Math — γ=+0.97, CI excludes 0, PPP=0.44, Strong inflation\\\"\\n      - \\\"MMLU: Science — γ=+0.84, CI excludes 0, PPP=0.81, Strong inflation\\\"\\n      - \\\"MMLU: CS_Eng — γ=+0.20, CI includes 0, PPP=0.89, Null\\\"\\n      - \\\"MMLU: Non-STEM (5 domains) — PPP≈1.0, Model misfit (see Appendix G)\\\"\\n      - \\\"MMLU: Pooled — γ≈0, dilution masking\\\"\\n      - \\\"ARC-Challenge — γ=-1.46, CI excludes 0, Forgetting\\\"\\n      - \\\"GSM8K — γ non-significant (S1), Inflation via oracle only\\\"\\n      - \\\"[3B rows from FROZEN data]\\\"\\n\\n  table_baselines:\\n    type: \\\"comparison\\\"\\n    description: \\\"Calibration performance: ContamCal vs 7 baselines + DCR qualitative\\\"\\n    columns: [\\\"Method\\\", \\\"ARC MAE↓\\\", \\\"ARC τ↑\\\", \\\"ARC C95%\\\", \\\"Notes\\\"]\\n    data_source: \\\"exp-006 baseline comparisons\\\"\\n    placement: \\\"Section 5.4\\\"\\n    notes: \\\"W1: add qualitative DCR comparison column. Include 3B data.\\\"\\n\\n  table_dcr_comparison:\\n    type: \\\"qualitative\\\"\\n    description: \\\"W1 fix: DCR vs ContamCal feature comparison\\\"\\n    columns: [\\\"Feature\\\", \\\"DCR\\\", \\\"ContamCal\\\"]\\n    placement: \\\"Section 2 (Related Work) or Section 5.4\\\"\\n    rows:\\n      - \\\"Uncertainty quantification: ✗ / ✓ (Bayesian CIs)\\\"\\n      - \\\"Domain-level diagnosis: ✗ / ✓ (per-domain γ)\\\"\\n      - \\\"Identifiability analysis: ✗ / ✓ (Fisher Info)\\\"\\n      - \\\"Signal failure detection: ✗ / ✓ (Min-K++ reversal)\\\"\\n      - \\\"Adjusted accuracy: ✓ / ✓\\\"\\n      - \\\"Multi-benchmark: ✓ / ✓\\\"\\n      - \\\"Requires reference set: ✓ (fuzzy match) / ✗ (signal-based)\\\"\\n\\nliterature_strategy:\\n  citation_budget: \\\"40-50 total\\\"\\n  macro_context: \\\"Contamination is systemic; detection exists but diagnosis doesn't; educational measurement solved analogous problem decades ago.\\\"\\n  micro_clusters:\\n    contamination_detection:\\n      target_count: 8\\n      must_cite: [\\\"zhang2024minkpp\\\", \\\"dekoninck2024constat\\\", \\\"dong2024kds\\\", \\\"shi2024cdd\\\", \\\"weller2024selfcritique\\\", \\\"golchin2024time\\\"]\\n    irt_for_llm:\\n      target_count: 6\\n      must_cite: [\\\"lalor2024aaai\\\", \\\"polo2024tinybenchmarks\\\", \\\"burnell2023multidimensional\\\"]\\n    item_compromise_irt:\\n      target_count: 5\\n      must_cite: [\\\"eckerly2017\\\", \\\"sinharay2017\\\", \\\"deboeck2004\\\", \\\"holland1993dif\\\", \\\"adams1997\\\"]\\n    benchmark_reliability:\\n      target_count: 5\\n      must_cite: [\\\"livebench2024\\\", \\\"empcloths2025\\\", \\\"zheng2023chatbot\\\", \\\"liang2023helm\\\"]\\n    calibration_uq:\\n      target_count: 4\\n      must_cite: [\\\"guo2017calibration\\\", \\\"angelopoulos2023conformal\\\", \\\"talts2018sbc\\\"]\\n    mia_foundations:\\n      target_count: 3\\n      must_cite: [\\\"shokri2017membership\\\", \\\"carlini2022extracting\\\"]\\n    contamination_mitigation:\\n      target_count: 4\\n      must_cite: [\\\"oren2024dcr\\\"]\\n    irt_methodology:\\n      target_count: 3\\n      must_cite: [\\\"sanmartin2009\\\", \\\"reckase2009\\\", \\\"mislevy1986\\\"]\\n\\nwriting_order:\\n  - section: \\\"method\\\"\\n    rationale: \\\"No data dependency. Sets notation. Include D120 decomposition.\\\"\\n  - section: \\\"experimental_setup\\\"\\n    rationale: \\\"Defines design. 3B FROZEN, Llama exploratory.\\\"\\n  - section: \\\"results\\\"\\n    rationale: \\\"Core contribution. Domain heterogeneity as flagship.\\\"\\n  - section: \\\"related_work\\\"\\n    rationale: \\\"Needs literature_map. DCR expanded comparison (W1).\\\"\\n  - section: \\\"discussion\\\"\\n    rationale: \\\"Dilution masking implications. Model misfit boundary.\\\"\\n  - section: \\\"introduction\\\"\\n    rationale: \\\"Diagnostic framing. Lead with dilution masking insight.\\\"\\n  - section: \\\"conclusion\\\"\\n    rationale: \\\"Summarizes diagnostic findings.\\\"\\n  - section: \\\"abstract\\\"\\n    rationale: \\\"Write last.\\\"\\n\\ndata_availability:\\n  frozen:\\n    - \\\"Qwen 0.5B/1.5B/3B: all dosages × 2 seeds, SFT + eval + signals ✅ FROZEN\\\"\\n    - \\\"Domain-level IRT N=24 (MMLU 8 domains): Math/Science confirmed ✅\\\"\\n    - \\\"Pooled IRT 2PL+γ N=24 ✅\\\"\\n    - \\\"Min-K++ reversal cross-family (Qwen + Llama) ✅\\\"\\n    - \\\"exp-004 sim_sweep (20 conditions, 200 runs)\\\"\\n  in_progress:\\n    - \\\"Llama-3.2-3B: d000 eval ✅, d005/d025/d100 eval/signals in progress → mark exploratory (single seed, N=4)\\\"\\n  constraints:\\n    - \\\"GSM8K d005 s123: 63.08% anomaly, temporarily unavailable\\\"\\n    - \\\"D045: 0.5B MMLU/ARC excluded from IRT (position bias)\\\"\\n    - \\\"Llama data: exploratory only, post-hoc power analysis required\\\"\\n    - \\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Effective Llama MMLU range: d000-d025 only. ARC/GSM8K d100 normal.\\\"\\n  excluded_from_paper:\\n    - \\\"7B/72B (rebuttal)\\\"\\n    - \\\"Multi-family beyond Llama-3.2-3B (rebuttal)\\\"\\n    - \\\"RL observational (rebuttal)\\\"\\n\\nreview_fixes:\\n  C1: \\\"Add 1.5B/3B complete data to Table 1/2 (data available)\\\"\\n  C2: \\\"Llama N=4 + post-hoc power analysis + 'exploratory' label\\\"\\n  C3: \\\"Triple impossibility limited to 'IRT + membership-inference specific'\\\"\\n  W1: \\\"Expand DCR comparison (qualitative table, no head-to-head numbers)\\\"\\n  W2: \\\"Title → diagnostic framing (D118 approved)\\\"\\n  W4: \\\"Fisher Info N×identifiability heatmap (replaces phase diagram)\\\"\\n  D119: \\\"dilution masking replaces Simpson's Paradox throughout\\\"\\n  D120: \\\"calibration value decomposition paragraph in Method + Results\\\"\\n\\nkey_decisions:\\n  - \\\"D118: Title → 'Domain-Differential Contamination Effects: Diagnosis via IRT'\\\"\\n  - \\\"D119: dilution masking replaces Simpson's Paradox\\\"\\n  - \\\"D120: GSM8K calibration value from ability estimation (decomposition)\\\"\\n  - \\\"D121: vanilla 2PL ≈ 2PL+γ calibration MAE on all benchmarks — γ provides NO calibration improvement, only diagnostic value. Calibration entirely from IRT θ estimation.\\\"\\n  - \\\"D122 v3 CLEAN: Cross-family pooled IRT — ARC(N=20) γ=0.002, MMLU(N=20) γ=0.213, GSM8K(N=28) γ=-0.110, ALL CI include zero. Qwen-only: ARC γ=0.727 CI excl zero, MMLU γ=0.655 no, GSM8K γ=0.064 no. Key number: ARC 0.73→0.002. v2 MMLU γ=0.71 was WRONG (RRF bug). Three-layer framing unchanged. Red lines: never claim γ universal.\\\"\\n  - \\\"D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Format-specific SFT overfitting. Exclude from IRT. Mention in Discussion as 'SFT ≠ real contamination' evidence. Not core claim.\\\"\\n  - \\\"D039: Characterization-led framing, calibration demoted to Claim 4\\\"\\n  - \\\"D045: Exclude 0.5B MMLU/ARC from IRT (position bias)\\\"\\n  - \\\"D053: Per-benchmark independent IRT only\\\"\\n  - \\\"D055: WITHDRAWN — all checkpoints alpha=32\\\"\\n  - \\\"D056: Coverage collapse = model misspecification\\\"\\n  - \\\"D060: P1/P2 → rebuttal scope\\\"\\n\", \"total_chars\": 24731, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3dc613b6-d339-4be2-9279-d694e1b94e65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T11:29:38.433Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_012sK4c84915VALWSxsXsXYR`</summary>
+
+```json
+{
+  "pattern": "artifacts/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e77d8b5e-5f3c-494f-bcb7-7b31723cc7b9",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGC7dz2DifSw3S2Pig",
+  "type": "assistant",
+  "uuid": "702614c2-d21d-40c1-9c43-8a8ad425895a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nr6NmdwDsFSbYfL4g1VUo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14893,
+      "cache_read_input_tokens": 25742,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 25742,
+          "cache_creation_input_tokens": 14893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T11:29:38.552Z_
+
+<details><summary>↩ Tool result · `toolu_012sK4c84915VALWSxsXsXYR`</summary>
+
+```text
+artifacts/mvp_simulation/contam_irt_4pl.stan
+artifacts/mvp_simulation/contam_irt_2pl.stan
+artifacts/mvp_simulation/contam_irt_4pl
+artifacts/mvp_simulation/contam_irt_2pl
+artifacts/mvp_simulation/.venv/.gitignore
+artifacts/mvp_simulation/.venv/pyvenv.cfg
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/METADATA
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/WHEEL
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/entry_points.txt
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/licenses/AUTHORS.txt
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/licenses/LICENSE.txt
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/top_level.txt
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__main__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__pip-runner__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/build_env.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cache.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/autocompletion.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/cmdoptions.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/main.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/main_parser.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/parser.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/progress_bars.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/status_codes.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/cache.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/check.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/completion.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/debug.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/download.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/freeze.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/hash.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/help.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/index.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/inspect.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/install.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/list.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/lock.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/search.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/show.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/uninstall.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/wheel.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/configuration.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/base.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/installed.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/sdist.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/wheel.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/exceptions.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/collector.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/package_finder.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/sources.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/_distutils.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/_sysconfig.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/base.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/main.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/_json.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/base.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_compat.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_dists.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_envs.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/pkg_resources.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/candidate.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/direct_url.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/format_control.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/index.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/installation_report.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/link.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/pylock.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/scheme.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/search_scope.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/selection_prefs.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/target_python.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/wheel.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/auth.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/cache.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/download.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/session.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/utils.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/xmlrpc.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/__init__.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/build_tracker.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/metadata.py
+artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/metadata_editable.py
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "702614c2-d21d-40c1-9c43-8a8ad425895a",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "0d632086-6314-4256-95f6-682514cdb65d",
+  "toolUseResult": {
+    "filenames": [
+      "artifacts/mvp_simulation/contam_irt_4pl.stan",
+      "artifacts/mvp_simulation/contam_irt_2pl.stan",
+      "artifacts/mvp_simulation/contam_irt_4pl",
+      "artifacts/mvp_simulation/contam_irt_2pl",
+      "artifacts/mvp_simulation/.venv/.gitignore",
+      "artifacts/mvp_simulation/.venv/pyvenv.cfg",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/METADATA",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/WHEEL",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/entry_points.txt",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/licenses/AUTHORS.txt",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/licenses/LICENSE.txt",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip-25.1.1.dist-info/top_level.txt",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__main__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/__pip-runner__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/build_env.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cache.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/autocompletion.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/cmdoptions.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/main.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/main_parser.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/parser.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/progress_bars.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/cli/status_codes.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/cache.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/check.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/completion.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/debug.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/download.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/freeze.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/hash.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/help.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/index.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/inspect.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/install.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/list.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/lock.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/search.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/show.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/uninstall.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/commands/wheel.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/configuration.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/base.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/installed.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/sdist.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/distributions/wheel.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/exceptions.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/collector.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/package_finder.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/index/sources.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/_distutils.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/_sysconfig.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/locations/base.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/main.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/_json.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/base.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_compat.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_dists.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/importlib/_envs.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/metadata/pkg_resources.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/candidate.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/direct_url.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/format_control.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/index.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/installation_report.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/link.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/pylock.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/scheme.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/search_scope.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/selection_prefs.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/target_python.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/models/wheel.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/auth.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/cache.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/download.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/session.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/utils.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/network/xmlrpc.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/__init__.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/build_tracker.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/metadata.py",
+      "artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/pip/_internal/operations/build/metadata_editable.py"
+    ],
+    "durationMs": 112,
+    "numFiles": 100,
+    "truncated": true
+  },
+  "sourceToolAssistantUUID": "702614c2-d21d-40c1-9c43-8a8ad425895a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0d632086-6314-4256-95f6-682514cdb65d",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze paper framing and experiment status",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-19T11:30:09.177Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have all three key files. Let me also check the paper checklist to understand section completion status.
+
+Let me also check the decisions.yaml for recent decisions and the report.md for any additional context.
+
+Actually, I have enough information to produce the summary. Let me compile the status document.
+
+Key information extracted:
+
+**From paper_framing.md:**
+- 4 Core Claims defined with evidence mapping
+- Target: EMNLP 2026 ARR May 25 (6 days from now, 2026-05-19)
+- 5 model families: Qwen2.5 (0.5B-14B), Phi-4 (14.7B), OLMo-2 (7B), Gemma-2 (9B)
+
+
+- All 25 training runs are complete, and Phase 2 evaluation with the ARC bug fix is running on 4 GPUs with an ETA around 12:45
+- The framing hinges on characterization-led approach with decisions around domain heterogeneity and scope expansion to 4 model families
+- I need to generate 5 figures (pipeline, domain_gamma, dose_response, signal_heatmap, identifiability_heatmap, calibration) and 3 tables (domain_gamma, baselines, dcr_comparison)
+
+**From memory.md:**
+- Phase 2 v
+
+2 eval started on 2026-05-19 at 10:43 with staggered ETAs across the 4 GPUs, and the logprob bug in evaluate.py has been fixed
+- All v1 evaluation data is now invalidated since Phase 2 represents the final dataset
+- After completion, I'll need to run v1 vs v2 comparisons, update the tables, fit IRT models, and make Variant A/B judgments
+
+**From writing_plan.yaml:**
+- The method section is partially written with D120 decomposition already in place, the pipeline figure is done, but dose_response and calibration figures need regeneration
+- Other figures haven't been started yet for v2 data, and all ≤3B data is frozen while 7B+ models are still evaluating
+
+**From ROADMAP.md:**
+- Training is complete across all 25 configurations, Phase 2 eval is underway, and the paper draft (D139) is error-free and within the 8-page ACL limit
+
+The critical path for the May 25 deadline is finishing Phase 2 eval today, then regenerating all tables and figures with the corrected ARC data, re-running IRT analysis at the domain and benchmark levels, and completing the 14B Variant A/B judgment.
+
+Beyond that, I need to replicate the 000_s123 and d050_s123 results, validate the cross-family claims once Gemma-2 results come in, regenerate the remaining figures, and rewrite the Abstract, Introduction, and Results sections to cover all four model families. I also need to run the TOST equivalence test for the ARC null effects and derive the Fisher Information matrix for the appendix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d632086-6314-4256-95f6-682514cdb65d",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGi5wNX6boFkkco9nJ",
+  "type": "assistant",
+  "uuid": "28a484ee-c86e-4e9c-bf8b-4d77683ac832",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnvGvg6q6NsXj63QDXsBaA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15880,
+      "cache_read_input_tokens": 40635,
+      "output_tokens": 1028,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1028,
+          "cache_read_input_tokens": 40635,
+          "cache_creation_input_tokens": 15880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-19T11:30:09.250Z_
+
+Now I have all the information needed. Let me also check the paper checklist for section completion data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28a484ee-c86e-4e9c-bf8b-4d77683ac832",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGi5wNX6boFkkco9nJ",
+  "type": "assistant",
+  "uuid": "df802796-6c33-45e2-85ff-1a18b90a22c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnvGvg6q6NsXj63QDXsBaA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15880,
+      "cache_read_input_tokens": 40635,
+      "output_tokens": 1028,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1028,
+          "cache_read_input_tokens": 40635,
+          "cache_creation_input_tokens": 15880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T11:30:10.160Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016d373pxsdRLp6poLk8SmQ9`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "paper_checklist.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df802796-6c33-45e2-85ff-1a18b90a22c3",
+  "isSidechain": false,
+  "requestId": "req_011CbBrGi5wNX6boFkkco9nJ",
+  "type": "assistant",
+  "uuid": "8665e665-00d9-43a8-bc1b-6a5104fabb13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnvGvg6q6NsXj63QDXsBaA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15880,
+      "cache_read_input_tokens": 40635,
+      "output_tokens": 1028,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1028,
+          "cache_read_input_tokens": 40635,
+          "cache_creation_input_tokens": 15880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T11:30:10.181Z_
+
+<details><summary>↩ Tool result · `toolu_016d373pxsdRLp6poLk8SmQ9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'contamcal-irt-calibration'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8665e665-00d9-43a8-bc1b-6a5104fabb13",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "d3df2e2e-ffd3-4487-a852-097012f99cae",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_checklist.yaml found for 'contamcal-irt-calibration'.\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'contamcal-irt-calibration'.\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8665e665-00d9-43a8-bc1b-6a5104fabb13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-19T11:30:10.238Z_
+
+```json
+{
+  "parentUuid": "d3df2e2e-ffd3-4487-a852-097012f99cae",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ed77c3f0-5ee0-463a-a479-b28dfc1e4313",
+  "timestamp": "2026-05-19T11:30:10.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T11:30:12.904Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LfzorsZZTcX7QSVuiTzWBY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed77c3f0-5ee0-463a-a479-b28dfc1e4313",
+  "isSidechain": false,
+  "requestId": "req_011CbBrK3Yn4GWg5o2AaqTQN",
+  "type": "assistant",
+  "uuid": "78ea81fb-abc5-4d1e-bcbc-a9c92cce53f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011uwWzmD4aQBArQTtrivHUU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1186,
+      "cache_read_input_tokens": 56515,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1186,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 56515,
+          "cache_creation_input_tokens": 1186,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1186
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T11:30:12.909Z_
+
+<details><summary>↩ Tool result · `toolu_01LfzorsZZTcX7QSVuiTzWBY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78ea81fb-abc5-4d1e-bcbc-a9c92cce53f8",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "aeb9d4a7-afd4-47ad-bee6-0e927b852bd7",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "78ea81fb-abc5-4d1e-bcbc-a9c92cce53f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-19T11:30:16.699Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file only allows writing to memory.md, writing_plan.yaml, paper_framing.md. So I'll write the status summary to the artifacts directory using the Write tool instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aeb9d4a7-afd4-47ad-bee6-0e927b852bd7",
+  "isSidechain": false,
+  "requestId": "req_011CbBrKF4L1EYjXy5pT5DNB",
+  "type": "assistant",
+  "uuid": "7b62e52d-59e4-4367-b403-53f08046c0f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZdxYtKgX9MyffrxryHhr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 363,
+      "cache_read_input_tokens": 57701,
+      "output_tokens": 3458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3458,
+          "cache_read_input_tokens": 57701,
+          "cache_creation_input_tokens": 363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T11:31:31.987Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01AsqfJaiBynFd5Ebtv615VM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_analysis_status.md",
+  "content": "# Paper & Analysis Status — 2026-05-19\n## EMNLP 2026 ARR May 25 | 6 days remaining\n\n---\n\n## 1. Core Claims 实验支撑状态\n\n### C1: Domain-Differential Characterization (PRIMARY)\n- **≤3B 数据**: FROZEN, N=24, MMLU domain-level IRT 完成 (Math γ=+0.97, Science γ=+0.84, CS_Eng≈0, non-STEM PPP=1.0 misfit)\n- **7B/14B 数据**: Phase 2 v2 eval 运行中 (ETA ~12:45 today)。v1 数据已有初步结论:\n  - MMLU: 效应随 scale 递增 (≤3B ~0.7pp → 7B +1.34pp → 14B +1.92pp, d050 peak +2.28pp)\n  - ARC: 7B -0.21pp, 14B -0.43pp (null/微负, benchmark-specific direction confirmed)\n- **Cross-family**: Phi-4 方向一致 (MMLU +0.62pp at d005), OLMo-2 near-null (+0.4pp), Gemma-2 待 v2 eval\n- **状态**: ⚠️ BLOCKED on v2 eval 完成。v1 数据因 ARC logprob bug 全部作废。IRT fitting 需用 v2 数据重跑。\n- **14B Variant A/B**: 未定。14B d000_s123 + d050_s123 复现已批准但未开始训练。单 seed 无法判定灰色地带。\n\n### C2: Signal Failure (CO-PRIMARY)\n- **≤3B 数据**: FROZEN。Min-K++ reversal Cohen's d=-1.55 to -1.98, S1 AUC>0.95 confirmed。\n- **7B+ 信号**: 未计算。需 v2 eval 完成后计算 (D143 hybrid strategy)。\n- **状态**: ≤3B claim 稳固。7B+ 信号数据为 nice-to-have, 非 blocking。\n\n### C3: Identifiability Boundaries\n- **Simulation sweep**: FROZEN (20 conditions × 200 runs), AUC=0.55 at N≥50 confirmed。\n- **Fisher Info derivation**: 附录 .stan 文件存在, 但完整推导 appendix 未确认完成。\n- **状态**: ✅ 基本完成。CPU-only, 不依赖 v2 eval。\n\n### C4: Conditional Calibration (DEMOTED)\n- **≤3B 数据**: FROZEN。vanilla 2PL ≈ 2PL+γ on MAE (GSM8K 0.0063 vs 0.0062)。ARC MAE=0.035 passes gating。\n- **7B+ calibration**: 需 v2 eval + IRT fitting 完成后重跑。\n- **状态**: ⚠️ BLOCKED on v2 eval + IRT re-fitting。≤3B claim 稳固但论文需 4-family scope 数据。\n\n---\n\n## 2. 论文章节完成度\n\n| Section | Word Budget | 状态 | 备注 |\n|---------|------------|------|------|\n| Abstract | 200 | 🔴 需完全重写 | scope 从 ≤3B → ≤14.7B + 4 families |\n| Introduction | 850 | 🔴 ¶4 + Contributions 需重写 | ¶1-3 基本不动 |\n| Related Work | 700 | 🟡 基本完成 | 需加 1-2 句 multi-family evaluation |\n| Method | 1100 | 🟢 基本完成 | D120 decomposition 已写入 method.tex §3.4, 加 family indicator |\n| Experimental Setup | 600 | 🟡 需大幅更新 | §4.2 从 Llama exploratory → 4-family controlled SFT |\n| Results | 1500 | 🔴 需大幅更新 | 所有数据表需 v2 数据, 新增 Scale + Cross-Family sections |\n| Discussion | 500 | 🟡 需更新 | 加 scale re-emergence / threshold framing |\n| Conclusion | 350 | 🟡 需更新 | scope 升级 |\n| Appendix | unlimited | 🟡 部分完成 | Fisher derivation 有, Llama section 需改为 cross-family |\n\n**D139 状态**: Round 6 完成, 0 errors, ≤8 页 ACL 合规。但内容基于 ≤3B + Llama exploratory, 需全面升级到 4-family scope。\n\n---\n\n## 3. v2 Eval 完成后需更新的表格和图表\n\n### Tables\n| Table | 当前状态 | 需要的更新 |\n|-------|---------|-----------|\n| table_domain_gamma (§5.1) | ≤3B N=24 FROZEN | 加入 7B/14B/cross-family γ rows; v2 ARC 数据替换 |\n| table_baselines (§5.4) | ≤3B FROZEN | 加入 7B+ calibration MAE/τ; 所有 ARC 数据用 v2 |\n| table_dcr_comparison (§2/§5.4) | 定性对比 | 不依赖 v2, 可提前完成 |\n| Table 1/2 (accuracy) | v1 数据 | 全部替换为 v2 数据 (25 models × 3 benchmarks) |\n\n### Figures\n| Figure | 当前状态 | 需要的更新 |\n|--------|---------|-----------|\n| fig_pipeline (§3) | ✅ DONE | 可能需 minor label update |\n| fig_domain_gamma (§5.1, flagship) | 未生成 | 需 v2 数据 + IRT re-fitting 后生成 |\n| fig_dose_response (§5.1) | NEEDS REGEN | 加 7B/14B/cross-family 数据, 用 v2 |\n| fig_signal_heatmap (§5.2) | 未生成 for v2 | ≤3B 数据可用, 7B+ 待计算 |\n| fig_identifiability_heatmap (§5.3) | 可用 (FROZEN) | 不依赖 v2 |\n| fig_calibration (§5.4) | NEEDS REGEN | 加 vanilla 2PL 对照, 用 v2 数据 |\n| **NEW: fig_scaling_curve** | 未生成 | 2-panel MMLU vs ARC, X=scale, Y=Δacc, 4 families |\n\n---\n\n## 4. IRT Fitting 前置条件\n\n| 条件 | 状态 | 备注 |\n|------|------|------|\n| v2 eval 全部完成 (25 models × 3 benchmarks) | 🔴 运行中, ETA ~12:45 | ARC logprob bug 修复后全量重跑 |\n| v1 vs v2 对比分析 | ❌ 待 v2 完成 | 量化 fix 影响, 确认 MMLU/GSM8K 变化小 |\n| Exposure signals (S1-S4) for 7B+ models | ❌ 未开始 | D143: hybrid strategy, 需 eval 完成后 |\n| IRT model selection (2PL+γ vs 4PL+γ) | ✅ 规则已定 | C008: 2PL+γ default, 4PL+γ only if N≥16 + MCQ |\n| Stan models | ✅ 已有 | artifacts/mvp_simulation/ 中有 2PL/4PL .stan |\n| ≤3B IRT results | ✅ FROZEN | N=24, domain-level 完成 |\n| 7B+ IRT fitting | ❌ 需 v2 eval + signals | 需决定是否扩展到 cross-family pooled fit |\n\n**结论**: IRT fitting 的关键前置是 v2 eval 完成 + 7B+ signals 计算。最早可开始时间: 今天下午 (如果 signals 计算快速)。\n\n---\n\n## 5. 关键路径 Blocking Items (按优先级)\n\n### P0 — 今天必须完成\n1. **v2 eval 完成** — 4 GPU 并行, ETA ~12:45。所有下游工作的 gate。\n2. **v1 vs v2 对比分析** — 量化 ARC fix 影响, 确认 MMLU/GSM8K 无显著变化。\n3. **Variant A/B 初步判定** — 用 v2 数据重新评估 14B MMLU 灰色地带 (+1.92pp)。\n\n### P1 — Day 2-3 (May 20-21)\n4. **7B+ signal computation** — S1 embedding similarity for 7B/14B/cross-family (S2-S4 可选)。\n5. **IRT re-fitting with v2 data** — per-benchmark + domain-level, 包括 7B+ models。\n6. **TOST equivalence test** — ARC null effects at 7B+ (bound ±1.5pp)。\n7. **所有 figures 生成** — 7 figures (1 done, 6 需 v2 数据)。\n\n### P2 — Day 3-4 (May 21-22)\n8. **论文 Results section 重写** — 新增 Scale Invariance + Cross-Family Consistency sections。\n9. **Experimental Setup §4.2 重写** — 4-family controlled SFT description。\n10. **Tables 全部更新** — v2 数据 + 7B+/cross-family rows。\n\n### P3 — Day 4-5 (May 22-23)\n11. **Abstract + Introduction 重写** — scope 升级, 4-family framing。\n12. **Discussion + Conclusion 更新** — scale re-emergence / threshold framing。\n13. **Appendix 更新** — Cross-family analysis section, Fisher derivation check。\n\n### P4 — Day 5-6 (May 23-24)\n14. **Round 7 review** — 全文审校。\n15. **AI 写作风格清零** — grep dash/ing-phrases/过度分段。\n16. **投稿 checklist + 匿名化检查**。\n\n### ⚠️ 风险项\n- **14B s123 复现未启动** — Variant A/B 最终判定可能延迟, 需立即安排 GPU。\n- **Gemma-2 结果决定性** — 如果 Gemma-2 MMLU 也 null, cross-family claim 降级 (2/4 positive + 2/4 null)。\n- **v2 eval 如果暴露新问题** — 可能需要进一步 debug, 压缩下游时间。\n- **论文重写量大** — Abstract/Intro/Results/Setup 四个 section 需大幅修改, 每个约 0.5-1 天。\n\n---\n\n## 6. 决策待定项\n\n| 决策 | 依赖 | 预计时间 |\n|------|------|---------|\n| Variant A vs B (14B) | v2 数据 + 14B s123 复现 | May 20-21 |\n| Cross-family claim 强度 (Layer 2) | Gemma-2 v2 结果 | May 19 evening |\n| 三层叙事框架选择 (re-emergence / threshold / Qwen-specific) | 全部 v2 数据 + IRT | May 21 |\n| 是否追加 14B d000_s123 + d050_s123 训练 | v2 数据分析 | May 19 (urgent) |\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b62e52d-59e4-4367-b403-53f08046c0f3",
+  "isSidechain": false,
+  "requestId": "req_011CbBrKF4L1EYjXy5pT5DNB",
+  "type": "assistant",
+  "uuid": "45ccd8bf-3502-42e6-99a5-c287d5a7ea74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZdxYtKgX9MyffrxryHhr3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 363,
+      "cache_read_input_tokens": 57701,
+      "output_tokens": 3458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 363,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3458,
+          "cache_read_input_tokens": 57701,
+          "cache_creation_input_tokens": 363,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 363
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T11:31:32.016Z_
+
+<details><summary>↩ Tool result · `toolu_01AsqfJaiBynFd5Ebtv615VM`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_analysis_status.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45ccd8bf-3502-42e6-99a5-c287d5a7ea74",
+  "isSidechain": false,
+  "promptId": "632469be-5899-4146-bd26-6ccd94ed65b2",
+  "type": "user",
+  "uuid": "46f9b499-f187-4eac-961c-72d34d3d1eb7",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/paper_analysis_status.md",
+    "content": "# Paper & Analysis Status — 2026-05-19\n## EMNLP 2026 ARR May 25 | 6 days remaining\n\n---\n\n## 1. Core Claims 实验支撑状态\n\n### C1: Domain-Differential Characterization (PRIMARY)\n- **≤3B 数据**: FROZEN, N=24, MMLU domain-level IRT 完成 (Math γ=+0.97, Science γ=+0.84, CS_Eng≈0, non-STEM PPP=1.0 misfit)\n- **7B/14B 数据**: Phase 2 v2 eval 运行中 (ETA ~12:45 today)。v1 数据已有初步结论:\n  - MMLU: 效应随 scale 递增 (≤3B ~0.7pp → 7B +1.34pp → 14B +1.92pp, d050 peak +2.28pp)\n  - ARC: 7B -0.21pp, 14B -0.43pp (null/微负, benchmark-specific direction confirmed)\n- **Cross-family**: Phi-4 方向一致 (MMLU +0.62pp at d005), OLMo-2 near-null (+0.4pp), Gemma-2 待 v2 eval\n- **状态**: ⚠️ BLOCKED on v2 eval 完成。v1 数据因 ARC logprob bug 全部作废。IRT fitting 需用 v2 数据重跑。\n- **14B Variant A/B**: 未定。14B d000_s123 + d050_s123 复现已批准但未开始训练。单 seed 无法判定灰色地带。\n\n### C2: Signal Failure (CO-PRIMARY)\n- **≤3B 数据**: FROZEN。Min-K++ reversal Cohen's d=-1.55 to -1.98, S1 AUC>0.95 confirmed。\n- **7B+ 信号**: 未计算。需 v2 eval 完成后计算 (D143 hybrid strategy)。\n- **状态**: ≤3B claim 稳固。7B+ 信号数据为 nice-to-have, 非 blocking。\n\n### C3: Identifiability Boundaries\n- **Simulation sweep**: FROZEN (20 conditions × 200 runs), AUC=0.55 at N≥50 confirmed。\n- **Fisher Info derivation**: 附录 .stan 文件存在, 但完整推导 appendix 未确认完成。\n- **状态**: ✅ 基本完成。CPU-only, 不依赖 v2 eval。\n\n### C4: Conditional Calibration (DEMOTED)\n- **≤3B 数据**: FROZEN。vanilla 2PL ≈ 2PL+γ on MAE (GSM8K 0.0063 vs 0.0062)。ARC MAE=0.035 passes gating。\n- **7B+ calibration**: 需 v2 eval + IRT fitting 完成后重跑。\n- **状态**: ⚠️ BLOCKED on v2 eval + IRT re-fitting。≤3B claim 稳固但论文需 4-family scope 数据。\n\n---\n\n## 2. 论文章节完成度\n\n| Section | Word Budget | 状态 | 备注 |\n|---------|------------|------|------|\n| Abstract | 200 | 🔴 需完全重写 | scope 从 ≤3B → ≤14.7B + 4 families |\n| Introduction | 850 | 🔴 ¶4 + Contributions 需重写 | ¶1-3 基本不动 |\n| Related Work | 700 | 🟡 基本完成 | 需加 1-2 句 multi-family evaluation |\n| Method | 1100 | 🟢 基本完成 | D120 decomposition 已写入 method.tex §3.4, 加 family indicator |\n| Experimental Setup | 600 | 🟡 需大幅更新 | §4.2 从 Llama exploratory → 4-family controlled SFT |\n| Results | 1500 | 🔴 需大幅更新 | 所有数据表需 v2 数据, 新增 Scale + Cross-Family sections |\n| Discussion | 500 | 🟡 需更新 | 加 scale re-emergence / threshold framing |\n| Conclusion | 350 | 🟡 需更新 | scope 升级 |\n| Appendix | unlimited | 🟡 部分完成 | Fisher derivation 有, Llama section 需改为 cross-family |\n\n**D139 状态**: Round 6 完成, 0 errors, ≤8 页 ACL 合规。但内容基于 ≤3B + Llama exploratory, 需全面升级到 4-family scope。\n\n---\n\n## 3. v2 Eval 完成后需更新的表格和图表\n\n### Tables\n| Table | 当前状态 | 需要的更新 |\n|-------|---------|-----------|\n| table_domain_gamma (§5.1) | ≤3B N=24 FROZEN | 加入 7B/14B/cross-family γ rows; v2 ARC 数据替换 |\n| table_baselines (§5.4) | ≤3B FROZEN | 加入 7B+ calibration MAE/τ; 所有 ARC 数据用 v2 |\n| table_dcr_comparison (§2/§5.4) | 定性对比 | 不依赖 v2, 可提前完成 |\n| Table 1/2 (accuracy) | v1 数据 | 全部替换为 v2 数据 (25 models × 3 benchmarks) |\n\n### Figures\n| Figure | 当前状态 | 需要的更新 |\n|--------|---------|-----------|\n| fig_pipeline (§3) | ✅ DONE | 可能需 minor label update |\n| fig_domain_gamma (§5.1, flagship) | 未生成 | 需 v2 数据 + IRT re-fitting 后生成 |\n| fig_dose_response (§5.1) | NEEDS REGEN | 加 7B/14B/cross-family 数据, 用 v2 |\n| fig_signal_heatmap (§5.2) | 未生成 for v2 | ≤3B 数据可用, 7B+ 待计算 |\n| fig_identifiability_heatmap (§5.3) | 可用 (FROZEN) | 不依赖 v2 |\n| fig_calibration (§5.4) | NEEDS REGEN | 加 vanilla 2PL 对照, 用 v2 数据 |\n| **NEW: fig_scaling_curve** | 未生成 | 2-panel MMLU vs ARC, X=scale, Y=Δacc, 4 families |\n\n---\n\n## 4. IRT Fitting 前置条件\n\n| 条件 | 状态 | 备注 |\n|------|------|------|\n| v2 eval 全部完成 (25 models × 3 benchmarks) | 🔴 运行中, ETA ~12:45 | ARC logprob bug 修复后全量重跑 |\n| v1 vs v2 对比分析 | ❌ 待 v2 完成 | 量化 fix 影响, 确认 MMLU/GSM8K 变化小 |\n| Exposure signals (S1-S4) for 7B+ models | ❌ 未开始 | D143: hybrid strategy, 需 eval 完成后 |\n| IRT model selection (2PL+γ vs 4PL+γ) | ✅ 规则已定 | C008: 2PL+γ default, 4PL+γ only if N≥16 + MCQ |\n| Stan models | ✅ 已有 | artifacts/mvp_simulation/ 中有 2PL/4PL .stan |\n| ≤3B IRT results | ✅ FROZEN | N=24, domain-level 完成 |\n| 7B+ IRT fitting | ❌ 需 v2 eval + signals | 需决定是否扩展到 cross-family pooled fit |\n\n**结论**: IRT fitting 的关键前置是 v2 eval 完成 + 7B+ signals 计算。最早可开始时间: 今天下午 (如果 signals 计算快速)。\n\n---\n\n## 5. 关键路径 Blocking Items (按优先级)\n\n### P0 — 今天必须完成\n1. **v2 eval 完成** — 4 GPU 并行, ETA ~12:45。所有下游工作的 gate。\n2. **v1 vs v2 对比分析** — 量化 ARC fix 影响, 确认 MMLU/GSM8K 无显著变化。\n3. **Variant A/B 初步判定** — 用 v2 数据重新评估 14B MMLU 灰色地带 (+1.92pp)。\n\n### P1 — Day 2-3 (May 20-21)\n4. **7B+ signal computation** — S1 embedding similarity for 7B/14B/cross-family (S2-S4 可选)。\n5. **IRT re-fitting with v2 data** — per-benchmark + domain-level, 包括 7B+ models。\n6. **TOST equivalence test** — ARC null effects at 7B+ (bound ±1.5pp)。\n7. **所有 figures 生成** — 7 figures (1 done, 6 需 v2 数据)。\n\n### P2 — Day 3-4 (May 21-22)\n8. **论文 Results section 重写** — 新增 Scale Invariance + Cross-Family Consistency sections。\n9. **Experimental Setup §4.2 重写** — 4-family controlled SFT description。\n10. **Tables 全部更新** — v2 数据 + 7B+/cross-family rows。\n\n### P3 — Day 4-5 (May 22-23)\n11. **Abstract + Introduction 重写** — scope 升级, 4-family framing。\n12. **Discussion + Conclusion 更新** — scale re-emergence / threshold framing。\n13. **Appendix 更新** — Cross-family analysis section, Fisher derivation check。\n\n### P4 — Day 5-6 (May 23-24)\n14. **Round 7 review** — 全文审校。\n15. **AI 写作风格清零** — grep dash/ing-phrases/过度分段。\n16. **投稿 checklist + 匿名化检查**。\n\n### ⚠️ 风险项\n- **14B s123 复现未启动** — Variant A/B 最终判定可能延迟, 需立即安排 GPU。\n- **Gemma-2 结果决定性** — 如果 Gemma-2 MMLU 也 null, cross-family claim 降级 (2/4 positive + 2/4 null)。\n- **v2 eval 如果暴露新问题** — 可能需要进一步 debug, 压缩下游时间。\n- **论文重写量大** — Abstract/Intro/Results/Setup 四个 section 需大幅修改, 每个约 0.5-1 天。\n\n---\n\n## 6. 决策待定项\n\n| 决策 | 依赖 | 预计时间 |\n|------|------|---------|\n| Variant A vs B (14B) | v2 数据 + 14B s123 复现 | May 20-21 |\n| Cross-family claim 强度 (Layer 2) | Gemma-2 v2 结果 | May 19 evening |\n| 三层叙事框架选择 (re-emergence / threshold / Qwen-specific) | 全部 v2 数据 + IRT | May 21 |\n| 是否追加 14B d000_s123 + d050_s123 训练 | v2 数据分析 | May 19 (urgent) |\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "45ccd8bf-3502-42e6-99a5-c287d5a7ea74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "46f9b499-f187-4eac-961c-72d34d3d1eb7",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze paper framing and experiment status",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-19T11:31:42.183Z_
+
+已写入 `artifacts/paper_analysis_status.md`。核心状态:
+
+**Claims**:
+- C1 (characterization) 和 C4 (calibration) **BLOCKED on v2 eval** (ETA ~12:45 today)。≤3B FROZEN 数据稳固, 但 7B+/cross-family 需 v2 数据 + IRT re-fitting。
+- C2 (signal failure) ≤3B 稳固, 7B+ 为 nice-to-have。
+- C3 (identifiability) ✅ 基本完成。
+
+**论文**: Method 基本完成, Related Work 需微调, 其余 4 个 section (Abstract/Intro/Results/Setup) 需大幅重写以升级到 4-family scope。
+
+**关键路径**: v2 eval → v1/v2 对比 → signals 计算 → IRT re-fitting → figures/tables → Results rewrite → Abstract/Intro rewrite → Round 7 review。
+
+**最大风险**: 14B s123 复现未启动 (Variant A/B 判定延迟), Gemma-2 结果决定 cross-family claim 强度, 论文重写量约 3-4 天工作量压缩在 6 天 DDL 内。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46f9b499-f187-4eac-961c-72d34d3d1eb7",
+  "isSidechain": false,
+  "requestId": "req_011CbBrR5CAtArxMzXT1kmqy",
+  "type": "assistant",
+  "uuid": "b1507bf7-b432-4f44-80c0-784477e06299",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QvNp18FiDYYR9cbaokwiPw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3517,
+      "cache_read_input_tokens": 58064,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3517,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 58064,
+          "cache_creation_input_tokens": 3517,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3517
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b1507bf7-b432-4f44-80c0-784477e06299",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze paper framing and experiment status",
+  "sessionId": "8e2d91b0-9345-482a-b12e-cd34d85d179b"
+}
+```
+
+---
